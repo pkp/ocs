@@ -38,7 +38,7 @@ class RoomForm extends Form {
 		$this->addCheck(new FormValidatorLocale($this, 'name', 'required', 'manager.scheduler.room.form.nameRequired'));
 		
 		// If provided, building ID is valid
-		$this->addCheck(new FormValidatorCustom($this, 'buildingId', 'required', 'manager.scheduler.room.form.buildingIdValid', create_function('$buildingId, $schedConfId', '$buildingDao =& DAORegistry::getDAO(\'BuildingDAO\'); return $buildingDao->buildingExistsForSchedConf($buildingId, $schedConfId);'), array($schedConf->getSchedConfId())));
+		$this->addCheck(new FormValidatorCustom($this, 'buildingId', 'required', 'manager.scheduler.room.form.buildingIdValid', create_function('$buildingId, $schedConfId', '$buildingDao =& DAORegistry::getDAO(\'BuildingDAO\'); return $buildingDao->buildingExistsForSchedConf($buildingId, $schedConfId);'), array($schedConf->getId())));
 
 		$this->addCheck(new FormValidatorPost($this));
 	}

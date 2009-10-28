@@ -61,7 +61,7 @@ class ReviewReportPlugin extends ReportPlugin {
 		header('content-disposition: attachment; filename=report.csv');
 
 		$reviewReportDao =& DAORegistry::getDAO('ReviewReportDAO');
-		list($commentsIterator, $reviewsIterator) = $reviewReportDao->getReviewReport($schedConf->getSchedConfId());
+		list($commentsIterator, $reviewsIterator) = $reviewReportDao->getReviewReport($schedConf->getId());
 
 		$comments = array();
 		while ($row =& $commentsIterator->next()) {

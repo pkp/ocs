@@ -40,7 +40,7 @@ class UserRegistrationForm extends Form {
 
 		parent::Form('registration/userRegistrationForm.tpl');
 
-		$this->addCheck(new FormValidatorCustom($this, 'registrationTypeId', 'required', 'manager.registration.form.typeIdValid', create_function('$registrationTypeId, $schedConfId, $typeId', '$registrationTypeDao =& DAORegistry::getDAO(\'RegistrationTypeDAO\'); return $registrationTypeDao->openRegistrationTypeExistsByTypeId($typeId, $schedConfId);'), array($schedConf->getSchedConfId(), $typeId)));
+		$this->addCheck(new FormValidatorCustom($this, 'registrationTypeId', 'required', 'manager.registration.form.typeIdValid', create_function('$registrationTypeId, $schedConfId, $typeId', '$registrationTypeDao =& DAORegistry::getDAO(\'RegistrationTypeDAO\'); return $registrationTypeDao->openRegistrationTypeExistsByTypeId($typeId, $schedConfId);'), array($schedConf->getId(), $typeId)));
 
 		import('captcha.CaptchaManager');
 		$captchaManager = new CaptchaManager();
@@ -79,7 +79,7 @@ class UserRegistrationForm extends Form {
 		$registrationTypeDao =& DAORegistry::getDAO('RegistrationTypeDAO');
 		$registrationType =& $registrationTypeDao->getRegistrationType($this->getData('registrationTypeId'));
 		if ($registrationType && $registrationType->getCode() != '') {
-			$this->addCheck(new FormValidatorCustom($this, 'feeCode', 'required', 'manager.registration.form.feeCodeValid', create_function('$feeCode, $schedConfId, $form', '$registrationTypeDao =& DAORegistry::getDAO(\'RegistrationTypeDAO\'); return $registrationTypeDao->checkCode($form->getData(\'registrationTypeId\'), $schedConfId, $feeCode);'), array($schedConf->getSchedConfId(), $this)));
+			$this->addCheck(new FormValidatorCustom($this, 'feeCode', 'required', 'manager.registration.form.feeCodeValid', create_function('$feeCode, $schedConfId, $form', '$registrationTypeDao =& DAORegistry::getDAO(\'RegistrationTypeDAO\'); return $registrationTypeDao->checkCode($form->getData(\'registrationTypeId\'), $schedConfId, $feeCode);'), array($schedConf->getId(), $this)));
 		}
 		return parent::validate();
 	}
@@ -94,7 +94,7 @@ class UserRegistrationForm extends Form {
 		$site =& Request::getSite();
 
 		$registrationOptionDao =& DAORegistry::getDAO('RegistrationOptionDAO');
-		$registrationOptions =& $registrationOptionDao->getRegistrationOptionsBySchedConfId($schedConf->getSchedConfId());
+		$registrationOptions =& $registrationOptionDao->getRegistrationOptionsBySchedConfId($schedConf->getId());
 		$templateMgr->assign_by_ref('registrationOptions', $registrationOptions);
 		$templateMgr->assign('registrationTypeId', $this->typeId);
 
@@ -217,8 +217,8 @@ class UserRegistrationForm extends Form {
 			$roleDao =& DAORegistry::getDAO('RoleDAO');
 			$role = new Role();
 			$role->setRoleId(ROLE_ID_READER);
-			$role->setSchedConfId($schedConf->getSchedConfId());
-			$role->setConferenceId($conference->getConferenceId());
+			$role->setSchedConfId($schedConf->getId());
+			$role->setConferenceId($conference->getId());
 			$role->setUserId($user->getId());
 			$roleDao->insertRole($role);
 
@@ -236,7 +236,7 @@ class UserRegistrationForm extends Form {
 		// Get the registration type
 		$registrationTypeDao =& DAORegistry::getDAO('RegistrationTypeDAO');
 		$registrationType =& $registrationTypeDao->getRegistrationType($this->getData('registrationTypeId'));
-		if (!$registrationType || $registrationType->getSchedConfId() != $schedConf->getSchedConfId()) {
+		if (!$registrationType || $registrationType->getSchedConfId() != $schedConf->getId()) {
 			Request::redirect('index');
 		}
 
@@ -248,7 +248,7 @@ class UserRegistrationForm extends Form {
 		import('registration.Registration');
 		$registration = new Registration();
 
-		$registration->setSchedConfId($schedConf->getSchedConfId());
+		$registration->setSchedConfId($schedConf->getId());
 		$registration->setUserId($user->getId());
 		$registration->setTypeId($this->getData('registrationTypeId'));
 		$registration->setSpecialRequests($this->getData('specialRequests') ? $this->getData('specialRequests') : null);
@@ -258,7 +258,7 @@ class UserRegistrationForm extends Form {
 		$registrationId = $registrationDao->insertRegistration($registration);
 
 		$registrationOptionDao =& DAORegistry::getDAO('RegistrationOptionDAO');
-		$registrationOptions =& $registrationOptionDao->getRegistrationOptionsBySchedConfId($schedConf->getSchedConfId());
+		$registrationOptions =& $registrationOptionDao->getRegistrationOptionsBySchedConfId($schedConf->getId());
 		$registrationOptionIds = (array) $this->getData('registrationOptionId');
 
 		$cost = $registrationType->getCost();
@@ -277,7 +277,7 @@ class UserRegistrationForm extends Form {
 			unset($registrationOption);
 		}
 
-		$queuedPayment =& $paymentManager->createQueuedPayment($schedConf->getConferenceId(), $schedConf->getSchedConfId(), QUEUED_PAYMENT_TYPE_REGISTRATION, $user->getId(), $registrationId, $cost, $registrationType->getCurrencyCodeAlpha());
+		$queuedPayment =& $paymentManager->createQueuedPayment($schedConf->getConferenceId(), $schedConf->getId(), QUEUED_PAYMENT_TYPE_REGISTRATION, $user->getId(), $registrationId, $cost, $registrationType->getCurrencyCodeAlpha());
 		$queuedPaymentId = $paymentManager->queuePayment($queuedPayment, time() + (60 * 60 * 24 * 30)); // 30 days to complete
 
 		if ($cost == 0) {

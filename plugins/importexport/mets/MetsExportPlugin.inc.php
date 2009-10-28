@@ -71,7 +71,7 @@ class METSExportPlugin extends ImportExportPlugin {
 				$templateMgr =& TemplateManager::getManager();
 
 				$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
-				$currentSchedConfs =& $schedConfDao->getCurrentSchedConfs($conference->getConferenceId());
+				$currentSchedConfs =& $schedConfDao->getCurrentSchedConfs($conference->getId());
 
 				$siteDao =& DAORegistry::getDAO('SiteDAO');
 				$site = $siteDao->getSite();
@@ -96,7 +96,7 @@ class METSExportPlugin extends ImportExportPlugin {
 		XMLCustomWriter::setAttribute($root, 'xmlns:xsi', 'http://www.w3.org/2001/XMLSchema-instance');
 		XMLCustomWriter::setAttribute($root, 'PROFILE', 'Australian METS Profile 1.0');
 		XMLCustomWriter::setAttribute($root, 'TYPE', 'conference');
-		XMLCustomWriter::setAttribute($root, 'OBJID', 'C-'.$conference->getConferenceId());
+		XMLCustomWriter::setAttribute($root, 'OBJID', 'C-'.$conference->getId());
 		XMLCustomWriter::setAttribute($root, 'xsi:schemaLocation', 'http://www.loc.gov/METS/ http://www.loc.gov/mets/mets.xsd');
 		$headerNode =& MetsExportDom::createmetsHdr($doc);
 		XMLCustomWriter::appendChild($root, $headerNode);
@@ -129,7 +129,7 @@ class METSExportPlugin extends ImportExportPlugin {
 		XMLCustomWriter::setAttribute($root, 'xmlns:xsi', 'http://www.w3.org/2001/XMLSchema-instance');
 		XMLCustomWriter::setAttribute($root, 'PROFILE', 'Australian METS Profile 1.0');
 		XMLCustomWriter::setAttribute($root, 'TYPE', 'conference');
-		XMLCustomWriter::setAttribute($root, 'OBJID', 'C-'.$conference->getConferenceId());
+		XMLCustomWriter::setAttribute($root, 'OBJID', 'C-'.$conference->getId());
 		XMLCustomWriter::setAttribute($root, 'xsi:schemaLocation', 'http://www.loc.gov/METS/ http://www.loc.gov/mets/mets.xsd');
 		$headerNode =& MetsExportDom::createmetsHdr($doc);
 		XMLCustomWriter::appendChild($root, $headerNode);

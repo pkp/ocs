@@ -113,7 +113,7 @@ class TrackSubmissionHandler extends AuthorHandler {
 		$templateMgr->assign_by_ref('suppFiles', $submission->getSuppFiles());
 
 		$controlledVocabDao =& DAORegistry::getDAO('ControlledVocabDAO');
-		$templateMgr->assign('sessionTypes', $controlledVocabDao->enumerateBySymbolic('sessionTypes', ASSOC_TYPE_SCHED_CONF, $schedConf->getSchedConfId()));
+		$templateMgr->assign('sessionTypes', $controlledVocabDao->enumerateBySymbolic('sessionTypes', ASSOC_TYPE_SCHED_CONF, $schedConf->getId()));
 
 		import('submission.trackDirector.TrackDirectorSubmission');
 		$templateMgr->assign_by_ref('directorDecisionOptions', TrackDirectorSubmission::getDirectorDecisionOptions());
@@ -396,7 +396,7 @@ class TrackSubmissionHandler extends AuthorHandler {
 
 		if ($authorSubmission == null) {
 			$isValid = false;
-		} else if ($authorSubmission->getSchedConfId() != $schedConf->getSchedConfId()) {
+		} else if ($authorSubmission->getSchedConfId() != $schedConf->getId()) {
 			$isValid = false;
 		} else {
 			if ($authorSubmission->getUserId() != $user->getId()) {

@@ -53,32 +53,32 @@ class StatisticsHandler extends ManagerHandler {
 		$toDate = mktime(23, 59, 59, 12, 31, $statisticsYear);
 
 		$schedConfStatisticsDao =& DAORegistry::getDAO('SchedConfStatisticsDAO');
-		$paperStatistics = $schedConfStatisticsDao->getPaperStatistics($schedConf->getSchedConfId(), null, $fromDate, $toDate);
+		$paperStatistics = $schedConfStatisticsDao->getPaperStatistics($schedConf->getId(), null, $fromDate, $toDate);
 		$templateMgr->assign('paperStatistics', $paperStatistics);
 
-		$limitedPaperStatistics = $schedConfStatisticsDao->getPaperStatistics($schedConf->getSchedConfId(), $trackIds, $fromDate, $toDate);
+		$limitedPaperStatistics = $schedConfStatisticsDao->getPaperStatistics($schedConf->getId(), $trackIds, $fromDate, $toDate);
 		$templateMgr->assign('limitedPaperStatistics', $limitedPaperStatistics);
 
-		$limitedPaperStatistics = $schedConfStatisticsDao->getPaperStatistics($schedConf->getSchedConfId(), $trackIds, $fromDate, $toDate);
+		$limitedPaperStatistics = $schedConfStatisticsDao->getPaperStatistics($schedConf->getId(), $trackIds, $fromDate, $toDate);
 		$templateMgr->assign('paperStatistics', $paperStatistics);
 
 		$trackDao =& DAORegistry::getDAO('TrackDAO');
-		$tracks =& $trackDao->getSchedConfTracks($schedConf->getSchedConfId());
+		$tracks =& $trackDao->getSchedConfTracks($schedConf->getId());
 		$templateMgr->assign('tracks', $tracks->toArray());
 
-		$reviewerStatistics = $schedConfStatisticsDao->getReviewerStatistics($schedConf->getSchedConfId(), $trackIds, $fromDate, $toDate);
+		$reviewerStatistics = $schedConfStatisticsDao->getReviewerStatistics($schedConf->getId(), $trackIds, $fromDate, $toDate);
 		$templateMgr->assign('reviewerStatistics', $reviewerStatistics);
 
-		$allUserStatistics = $schedConfStatisticsDao->getUserStatistics($schedConf->getSchedConfId(), null, $toDate);
+		$allUserStatistics = $schedConfStatisticsDao->getUserStatistics($schedConf->getId(), null, $toDate);
 		$templateMgr->assign('allUserStatistics', $allUserStatistics);
 
-		$userStatistics = $schedConfStatisticsDao->getUserStatistics($schedConf->getSchedConfId(), $fromDate, $toDate);
+		$userStatistics = $schedConfStatisticsDao->getUserStatistics($schedConf->getId(), $fromDate, $toDate);
 		$templateMgr->assign('userStatistics', $userStatistics);
 
-		$allRegistrationStatistics = $schedConfStatisticsDao->getRegistrationStatistics($schedConf->getSchedConfId(), null, $toDate);
+		$allRegistrationStatistics = $schedConfStatisticsDao->getRegistrationStatistics($schedConf->getId(), null, $toDate);
 		$templateMgr->assign('allRegistrationStatistics', $allRegistrationStatistics);
 
-		$registrationStatistics = $schedConfStatisticsDao->getRegistrationStatistics($schedConf->getSchedConfId(), $fromDate, $toDate);
+		$registrationStatistics = $schedConfStatisticsDao->getRegistrationStatistics($schedConf->getId(), $fromDate, $toDate);
 		$templateMgr->assign('registrationStatistics', $registrationStatistics);
 
 		$reportPlugins =& PluginRegistry::loadCategory('reports');

@@ -38,7 +38,7 @@ class RTSetupHandler extends RTAdminHandler {
 			$rt = $rtDao->getConferenceRTByConference($conference);
 
 			$versionOptions = array();
-			$versions = $rtDao->getVersions($conference->getConferenceId());
+			$versions = $rtDao->getVersions($conference->getId());
 			foreach ($versions->toArray() as $version) {
 				$versionOptions[$version->getVersionId()] = $version->getTitle();
 			}

@@ -28,8 +28,8 @@ class AuthorSubmitStep1Form extends AuthorSubmitForm {
 
 		// Validation checks for this form
 		$this->addCheck(new FormValidator($this, 'trackId', 'required', 'author.submit.form.trackRequired'));
-		$this->addCheck(new FormValidatorCustom($this, 'trackId', 'required', 'author.submit.form.trackRequired', array(DAORegistry::getDAO('TrackDAO'), 'trackExists'), array($schedConf->getSchedConfId())));
-		$this->addCheck(new FormValidatorControlledVocab($this, 'sessionType', 'optional', 'author.submit.form.sessionTypeRequired', 'paperType', ASSOC_TYPE_SCHED_CONF, $schedConf->getSchedConfId()));
+		$this->addCheck(new FormValidatorCustom($this, 'trackId', 'required', 'author.submit.form.trackRequired', array(DAORegistry::getDAO('TrackDAO'), 'trackExists'), array($schedConf->getId())));
+		$this->addCheck(new FormValidatorControlledVocab($this, 'sessionType', 'optional', 'author.submit.form.sessionTypeRequired', 'paperType', ASSOC_TYPE_SCHED_CONF, $schedConf->getId()));
 	}
 
 	/**
@@ -51,15 +51,15 @@ class AuthorSubmitStep1Form extends AuthorSubmitForm {
 		// submissions. Otherwise, display only tracks they are allowed
 		// to submit to.
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
-		$isDirector = $roleDao->roleExists($conference->getConferenceId(), $schedConf->getSchedConfId(), $user->getId(), ROLE_ID_DIRECTOR) ||
-			$roleDao->roleExists($conference->getConferenceId(), $schedConf->getSchedConfId(), $user->getId(), ROLE_ID_TRACK_DIRECTOR) ||
-			$roleDao->roleExists($conference->getConferenceId(), 0, $user->getId(), ROLE_ID_DIRECTOR) ||
-			$roleDao->roleExists($conference->getConferenceId(), 0, $user->getId(), ROLE_ID_TRACK_DIRECTOR);
+		$isDirector = $roleDao->roleExists($conference->getId(), $schedConf->getId(), $user->getId(), ROLE_ID_DIRECTOR) ||
+			$roleDao->roleExists($conference->getId(), $schedConf->getId(), $user->getId(), ROLE_ID_TRACK_DIRECTOR) ||
+			$roleDao->roleExists($conference->getId(), 0, $user->getId(), ROLE_ID_DIRECTOR) ||
+			$roleDao->roleExists($conference->getId(), 0, $user->getId(), ROLE_ID_TRACK_DIRECTOR);
 
-		$templateMgr->assign('trackOptions', array('0' => Locale::translate('author.submit.selectTrack')) + $trackDao->getTrackTitles($schedConf->getSchedConfId(), !$isDirector));
+		$templateMgr->assign('trackOptions', array('0' => Locale::translate('author.submit.selectTrack')) + $trackDao->getTrackTitles($schedConf->getId(), !$isDirector));
 
 		$paperTypeDao =& DAORegistry::getDAO('PaperTypeDAO');
-		$sessionTypes = $paperTypeDao->getPaperTypes($schedConf->getSchedConfId());
+		$sessionTypes = $paperTypeDao->getPaperTypes($schedConf->getId());
 		$templateMgr->assign('sessionTypes', $sessionTypes->toArray());
 
 		parent::display();
@@ -117,7 +117,7 @@ class AuthorSubmitStep1Form extends AuthorSubmitForm {
 
 			$this->paper = new Paper();
 			$this->paper->setUserId($user->getId());
-			$this->paper->setSchedConfId($schedConf->getSchedConfId());
+			$this->paper->setSchedConfId($schedConf->getId());
 			$this->paper->setTrackId($this->getData('trackId'));
 			$this->paper->stampStatusModified();
 			$reviewMode = $schedConf->getSetting('reviewMode');

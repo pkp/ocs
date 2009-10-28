@@ -26,8 +26,8 @@ class MetsExportDom {
 		XMLCustomWriter::setAttribute($structMap, 'TYPE', 'logical');
 		$cDiv =& XMLCustomWriter::createElement($doc, 'METS:div');
 		XMLCustomWriter::setAttribute($cDiv, 'TYPE', 'series');
-		XMLCustomWriter::setAttribute($cDiv, 'DMDID', 'CS-'.$conference->getConferenceId());
-		XMLCustomWriter::setAttribute($cDiv, 'ADMID', 'A-'.$conference->getConferenceId());
+		XMLCustomWriter::setAttribute($cDiv, 'DMDID', 'CS-'.$conference->getId());
+		XMLCustomWriter::setAttribute($cDiv, 'ADMID', 'A-'.$conference->getId());
 		foreach ($schedConfs as $schedConf) {
 			MetsExportDom::generateSchedConfDiv($doc, $cDiv, $schedConf);
 		}
@@ -44,8 +44,8 @@ class MetsExportDom {
 		XMLCustomWriter::setAttribute($structMap, 'TYPE', 'logical');
 		$cDiv =& XMLCustomWriter::createElement($doc, 'METS:div');
 		XMLCustomWriter::setAttribute($cDiv, 'TYPE', 'series');
-		XMLCustomWriter::setAttribute($cDiv, 'DMDID', 'CS-'.$conference->getConferenceId());
-		XMLCustomWriter::setAttribute($cDiv, 'ADMID', 'A-'.$conference->getConferenceId());
+		XMLCustomWriter::setAttribute($cDiv, 'DMDID', 'CS-'.$conference->getId());
+		XMLCustomWriter::setAttribute($cDiv, 'ADMID', 'A-'.$conference->getId());
 		$i = 0;
 		while ($i < sizeof($schedConfIdArray)) {
 			$schedConf =& $schedConfDAO->getSchedConf($schedConfIdArray[$i]);
@@ -64,8 +64,8 @@ class MetsExportDom {
 		XMLCustomWriter::setAttribute($structMap, 'TYPE', 'logical');
 		$cDiv =& XMLCustomWriter::createElement($doc, 'METS:div');
 		XMLCustomWriter::setAttribute($cDiv, 'TYPE', 'series');
-		XMLCustomWriter::setAttribute($cDiv, 'DMDID', 'CS-'.$conference->getConferenceId());
-		XMLCustomWriter::setAttribute($cDiv, 'ADMID', 'A-'.$conference->getConferenceId());
+		XMLCustomWriter::setAttribute($cDiv, 'DMDID', 'CS-'.$conference->getId());
+		XMLCustomWriter::setAttribute($cDiv, 'ADMID', 'A-'.$conference->getId());
 		MetsExportDom::generateSchedConfDiv($doc, $cDiv, $schedConf);
 		XMLCustomWriter::appendChild($structMap, $cDiv);
 		XMLCustomWriter::appendChild($root, $structMap);
@@ -77,10 +77,10 @@ class MetsExportDom {
 	function generateSchedConfDiv(&$doc, &$root, &$schedConf) {
 		$sDiv =& XMLCustomWriter::createElement($doc, 'METS:div');
 		XMLCustomWriter::setAttribute($sDiv, 'TYPE', 'conference');
-		XMLCustomWriter::setAttribute($sDiv, 'DMDID', 'SCHC-'.$schedConf->getSchedConfId());
+		XMLCustomWriter::setAttribute($sDiv, 'DMDID', 'SCHC-'.$schedConf->getId());
 		MetsExportDom::generateOverViewDiv($doc, $sDiv, $schedConf);
 		$publishedPaperDAO =& DAORegistry::getDAO('PublishedPaperDAO');
-		$publishedPapersIterator =& $publishedPaperDAO->getPublishedPapers($schedConf->getSchedConfId());
+		$publishedPapersIterator =& $publishedPaperDAO->getPublishedPapers($schedConf->getId());
 		$publishedPaperArray =& $publishedPapersIterator->toArray();
 
 		$i = 0;
@@ -96,12 +96,12 @@ class MetsExportDom {
 	 */
 	function generateOverViewDiv(&$doc, &$root, &$schedConf) {
 		$schedConfSettingsDAO =& DAORegistry::getDAO('SchedConfSettingsDAO');
-		$schedConfOverview = $schedConfSettingsDAO->getSetting($schedConf->getSchedConfId(), 'schedConfOverview');
-		$schedConfIntroduction = $schedConfSettingsDAO->getSetting($schedConf->getSchedConfId(), 'schedConfIntroduction');
+		$schedConfOverview = $schedConfSettingsDAO->getSetting($schedConf->getId(), 'schedConfOverview');
+		$schedConfIntroduction = $schedConfSettingsDAO->getSetting($schedConf->getId(), 'schedConfIntroduction');
 		if($schedConfOverview != '' || $schedConfIntroduction != ''){
 			$sDiv =& XMLCustomWriter::createElement($doc, 'METS:div');
 			XMLCustomWriter::setAttribute($sDiv, 'TYPE', 'overview');
-			XMLCustomWriter::setAttribute($sDiv, 'DMDID', 'OV-'.$schedConf->getSchedConfId());
+			XMLCustomWriter::setAttribute($sDiv, 'DMDID', 'OV-'.$schedConf->getId());
 			XMLCustomWriter::appendChild($root, $sDiv);
 		}
 	}
@@ -149,7 +149,7 @@ class MetsExportDom {
 	 */
 	function generateConfDmdSecDom(&$doc, $root, &$conference) {
 		$dmdSec =& XMLCustomWriter::createElement($doc, 'METS:dmdSec');
-		XMLCustomWriter::setAttribute($dmdSec, 'ID', 'CS-'.$conference->getConferenceId());
+		XMLCustomWriter::setAttribute($dmdSec, 'ID', 'CS-'.$conference->getId());
 		$mdWrap =& XMLCustomWriter::createElement($doc, 'METS:mdWrap');
 		$xmlData =& XMLCustomWriter::createElement($doc, 'METS:xmlData');
 		XMLCustomWriter::setAttribute($mdWrap, 'MDTYPE', 'MODS');
@@ -171,7 +171,7 @@ class MetsExportDom {
 	 */
 	function generateSchedConfDmdSecDom(&$doc, &$root, &$conference, &$schedConf) {
 		$dmdSec =& XMLCustomWriter::createElement($doc, 'METS:dmdSec');
-		XMLCustomWriter::setAttribute($dmdSec, 'ID', 'SCHC-'.$schedConf->getSchedConfId());
+		XMLCustomWriter::setAttribute($dmdSec, 'ID', 'SCHC-'.$schedConf->getId());
 		$mdWrap =& XMLCustomWriter::createElement($doc, 'METS:mdWrap');
 		$xmlData =& XMLCustomWriter::createElement($doc, 'METS:xmlData');
 		XMLCustomWriter::setAttribute($mdWrap, 'MDTYPE', 'MODS');
@@ -200,7 +200,7 @@ class MetsExportDom {
 		XMLCustomWriter::appendChild($root, $dmdSec);
 		MetsExportDom::generateOverViewDmdSecDom($doc, $root, $schedConf);
 		$publishedPaperDAO =& DAORegistry::getDAO('PublishedPaperDAO');
-		$publishedPapersIterator =& $publishedPaperDAO->getPublishedPapers($schedConf->getSchedConfId());
+		$publishedPapersIterator =& $publishedPaperDAO->getPublishedPapers($schedConf->getId());
 		$publishedPaperArray =& $publishedPapersIterator->toArray();
 
 		$i = 0;
@@ -215,11 +215,11 @@ class MetsExportDom {
 	 */
 	function generateOverViewDmdSecDom(&$doc, $root, &$schedConf) {
 		$schedConfSettingsDAO =& DAORegistry::getDAO('SchedConfSettingsDAO');
-		$schedConfOverview = $schedConfSettingsDAO->getSetting($schedConf->getSchedConfId(), 'schedConfOverview');
-		$schedConfIntroduction = $schedConfSettingsDAO->getSetting($schedConf->getSchedConfId(), 'schedConfIntroduction');
+		$schedConfOverview = $schedConfSettingsDAO->getSetting($schedConf->getId(), 'schedConfOverview');
+		$schedConfIntroduction = $schedConfSettingsDAO->getSetting($schedConf->getId(), 'schedConfIntroduction');
 		if($schedConfOverview != '' || $schedConfIntroduction != ''){
 			$dmdSec =& XMLCustomWriter::createElement($doc, 'METS:dmdSec');
-			XMLCustomWriter::setAttribute($dmdSec, 'ID', 'OV-'.$schedConf->getSchedConfId());
+			XMLCustomWriter::setAttribute($dmdSec, 'ID', 'OV-'.$schedConf->getId());
 			$mdWrap =& XMLCustomWriter::createElement($doc, 'METS:mdWrap');
 			$xmlData =& XMLCustomWriter::createElement($doc, 'METS:xmlData');
 			XMLCustomWriter::setAttribute($mdWrap, 'MDTYPE', 'MODS');
@@ -375,7 +375,7 @@ class MetsExportDom {
 	 */
 	function generateSchedConfFileSecDom(&$doc, &$root, &$conference, &$schedConf) {
 		$publishedPaperDAO =& DAORegistry::getDAO('PublishedPaperDAO');
-		$publishedPapersIterator =& $publishedPaperDAO->getPublishedPapers($schedConf->getSchedConfId());
+		$publishedPapersIterator =& $publishedPaperDAO->getPublishedPapers($schedConf->getId());
 		$publishedPaperArray =& $publishedPapersIterator->toArray();
 
 		$i = 0;
@@ -515,7 +515,7 @@ class MetsExportDom {
 	function createmetsamdSec($doc, &$root, &$conference) {
 		$amdSec =& XMLCustomWriter::createElement($doc, 'METS:amdSec');
 		$techMD =& XMLCustomWriter::createElement($doc, 'METS:techMD');
-		XMLCustomWriter::setAttribute($techMD, 'ID', 'A-'.$conference->getConferenceId());
+		XMLCustomWriter::setAttribute($techMD, 'ID', 'A-'.$conference->getId());
 		$mdWrap =& XMLCustomWriter::createElement($doc, 'METS:mdWrap');
 		XMLCustomWriter::setAttribute($mdWrap, 'MDTYPE', 'PREMIS');
 		$xmlData =& XMLCustomWriter::createElement($doc, 'METS:xmlData');
@@ -524,7 +524,7 @@ class MetsExportDom {
 		XMLCustomWriter::setAttribute($root, 'xsi:schemaLocation', str_replace(' http://www.loc.gov/standards/premis/v1 http://www.loc.gov/standards/premis/v1/PREMIS-v1-1.xsd', '', $root->getAttribute('xsi:schemaLocation')) . ' http://www.loc.gov/standards/premis/v1 http://www.loc.gov/standards/premis/v1/PREMIS-v1-1.xsd');
 		$objectIdentifier =& XMLCustomWriter::createElement($doc, 'premis:objectIdentifier');
 		XMLCustomWriter::createChildWithText($doc, $objectIdentifier, 'premis:objectIdentifierType', 'internal');
-		XMLCustomWriter::createChildWithText($doc, $objectIdentifier, 'premis:objectIdentifierValue', 'C-'.$conference->getConferenceId());
+		XMLCustomWriter::createChildWithText($doc, $objectIdentifier, 'premis:objectIdentifierValue', 'C-'.$conference->getId());
 		XMLCustomWriter::appendChild($pObject, $objectIdentifier);
 		$preservationLevel =& Request::getUserVar('preservationLevel');
 		if($preservationLevel == ''){

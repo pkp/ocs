@@ -73,7 +73,7 @@ class NLMExportPlugin extends ImportExportPlugin {
 				$this->setBreadcrumbs(array(), true);
 				$publishedPaperDao =& DAORegistry::getDAO('PublishedPaperDAO');
 				$rangeInfo = Handler::getRangeInfo('papers');
-				$paperIds = $publishedPaperDao->getPublishedPaperIdsAlphabetizedBySchedConf($conference->getConferenceId());
+				$paperIds = $publishedPaperDao->getPublishedPaperIdsAlphabetizedBySchedConf($conference->getId());
 				$totalPapers = count($paperIds);
 				if ($rangeInfo->isValid()) $paperIds = array_slice($paperIds, $rangeInfo->getCount() * ($rangeInfo->getPage()-1), $rangeInfo->getCount());
 				import('core.VirtualArrayIterator');

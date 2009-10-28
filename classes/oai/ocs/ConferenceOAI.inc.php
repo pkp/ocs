@@ -45,7 +45,7 @@ class ConferenceOAI extends OAI {
 
 		$this->site =& Request::getSite();
 		$this->conference =& Request::getConference();
-		$this->conferenceId = isset($this->conference) ? $this->conference->getConferenceId() : null;
+		$this->conferenceId = isset($this->conference) ? $this->conference->getId() : null;
 		$this->dao =& DAORegistry::getDAO('OAIDAO');
 		$this->dao->setOAI($this);
 	}

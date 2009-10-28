@@ -58,7 +58,7 @@ class SchedulerHandler extends ManagerHandler {
 		$rangeInfo =& Handler::getRangeInfo('buildings', array());
 		$buildingDao =& DAORegistry::getDAO('BuildingDAO');
 		while (true) {
-			$buildings =& $buildingDao->getBuildingsBySchedConfId($schedConf->getSchedConfId(), $rangeInfo);
+			$buildings =& $buildingDao->getBuildingsBySchedConfId($schedConf->getId(), $rangeInfo);
 			if ($buildings->isInBounds()) break;
 			unset($rangeInfo);
 			$rangeInfo =& $buildings->getLastPageRangeInfo();
@@ -82,7 +82,7 @@ class SchedulerHandler extends ManagerHandler {
 		$buildingDao =& DAORegistry::getDAO('BuildingDAO');
 
 		// Ensure building is for this conference
-		if ($buildingDao->getBuildingSchedConfId($buildingId) == $schedConf->getSchedConfId()) {
+		if ($buildingDao->getBuildingSchedConfId($buildingId) == $schedConf->getId()) {
 			$buildingDao->deleteBuildingById($buildingId);
 		}
 
@@ -102,7 +102,7 @@ class SchedulerHandler extends ManagerHandler {
 		$buildingDao =& DAORegistry::getDAO('BuildingDAO');
 
 		// Ensure building is valid and for this conference
-		if (($buildingId != null && $buildingDao->getBuildingSchedConfId($buildingId) == $schedConf->getSchedConfId()) || ($buildingId == null)) {
+		if (($buildingId != null && $buildingDao->getBuildingSchedConfId($buildingId) == $schedConf->getId()) || ($buildingId == null)) {
 			import('manager.form.scheduler.BuildingForm');
 
 			$templateMgr =& TemplateManager::getManager();
@@ -146,7 +146,7 @@ class SchedulerHandler extends ManagerHandler {
 		$buildingId = Request::getUserVar('buildingId') == null ? null : (int) Request::getUserVar('buildingId');
 		$buildingDao =& DAORegistry::getDAO('BuildingDAO');
 
-		if (($buildingId != null && $buildingDao->getBuildingSchedConfId($buildingId) == $schedConf->getSchedConfId()) || $buildingId == null) {
+		if (($buildingId != null && $buildingDao->getBuildingSchedConfId($buildingId) == $schedConf->getId()) || $buildingId == null) {
 
 			$buildingForm = new BuildingForm($buildingId);
 			$buildingForm->readInputData();
@@ -193,7 +193,7 @@ class SchedulerHandler extends ManagerHandler {
 		$buildingDao =& DAORegistry::getDAO('BuildingDAO');
 		$building =& $buildingDao->getBuilding($buildingId);
 
-		if (!$schedConf || !$building || $building->getSchedConfId() != $schedConf->getSchedConfId()) {
+		if (!$schedConf || !$building || $building->getSchedConfId() != $schedConf->getId()) {
 			Request::redirect(null, null, null, 'scheduler');
 		}
 
@@ -232,7 +232,7 @@ class SchedulerHandler extends ManagerHandler {
 
 		if (	$room && $building && $schedConf &&
 			$room->getBuildingId() == $building->getBuildingId() &&
-			$building->getSchedConfId() == $schedConf->getSchedConfId()
+			$building->getSchedConfId() == $schedConf->getId()
 		) {
 			$roomDao->deleteRoomById($roomId);
 		}
@@ -261,7 +261,7 @@ class SchedulerHandler extends ManagerHandler {
 
 		// Ensure room is valid and for this conference
 		if (	$building && $schedConf &&
-			$building->getSchedConfId() == $schedConf->getSchedConfId() &&
+			$building->getSchedConfId() == $schedConf->getId() &&
 			((
 				!$room && $roomId == 0
 			) || (
@@ -318,7 +318,7 @@ class SchedulerHandler extends ManagerHandler {
 
 		// Ensure that the specified parameters are valid
 		if (	!$building || !$schedConf ||
-			$schedConf->getSchedConfId() != $building->getSchedConfId()
+			$schedConf->getId() != $building->getSchedConfId()
 		) {
 			Request::redirect(null, null, null, 'scheduler');
 		}
@@ -368,7 +368,7 @@ class SchedulerHandler extends ManagerHandler {
 		$rangeInfo =& Handler::getRangeInfo('specialEvents', array());
 		$specialEventDao =& DAORegistry::getDAO('SpecialEventDAO');
 		while (true) {
-			$specialEvents =& $specialEventDao->getSpecialEventsBySchedConfId($schedConf->getSchedConfId(), $rangeInfo);
+			$specialEvents =& $specialEventDao->getSpecialEventsBySchedConfId($schedConf->getId(), $rangeInfo);
 			if ($specialEvents->isInBounds()) break;
 			unset($rangeInfo);
 			$rangeInfo =& $specialEvents->getLastPageRangeInfo();
@@ -392,7 +392,7 @@ class SchedulerHandler extends ManagerHandler {
 		$specialEventDao =& DAORegistry::getDAO('SpecialEventDAO');
 
 		// Ensure specialEvent is for this conference
-		if ($specialEventDao->getSpecialEventSchedConfId($specialEventId) == $schedConf->getSchedConfId()) {
+		if ($specialEventDao->getSpecialEventSchedConfId($specialEventId) == $schedConf->getId()) {
 			$specialEventDao->deleteSpecialEventById($specialEventId);
 		}
 
@@ -412,7 +412,7 @@ class SchedulerHandler extends ManagerHandler {
 		$specialEventDao =& DAORegistry::getDAO('SpecialEventDAO');
 
 		// Ensure special event is valid and for this conference
-		if (($specialEventId != null && $specialEventDao->getSpecialEventSchedConfId($specialEventId) == $schedConf->getSchedConfId()) || ($specialEventId == null)) {
+		if (($specialEventId != null && $specialEventDao->getSpecialEventSchedConfId($specialEventId) == $schedConf->getId()) || ($specialEventId == null)) {
 			import('manager.form.scheduler.SpecialEventForm');
 
 			$templateMgr =& TemplateManager::getManager();
@@ -460,7 +460,7 @@ class SchedulerHandler extends ManagerHandler {
 		$specialEventId = Request::getUserVar('specialEventId') == null ? null : (int) Request::getUserVar('specialEventId');
 		$specialEventDao =& DAORegistry::getDAO('SpecialEventDAO');
 
-		if (($specialEventId != null && $specialEventDao->getSpecialEventSchedConfId($specialEventId) == $schedConf->getSchedConfId()) || $specialEventId == null) {
+		if (($specialEventId != null && $specialEventDao->getSpecialEventSchedConfId($specialEventId) == $schedConf->getId()) || $specialEventId == null) {
 
 			if (checkPhpVersion('5.0.0')) { // WARNING: This form needs $this in constructor
 				$specialEventForm = new SpecialEventForm($specialEventId);
@@ -581,7 +581,7 @@ class SchedulerHandler extends ManagerHandler {
 		$rangeInfo =& Handler::getRangeInfo('timeBlocks', array());
 		$timeBlockDao =& DAORegistry::getDAO('TimeBlockDAO');
 		while (true) {
-			$timeBlocks =& $timeBlockDao->getTimeBlocksBySchedConfId($schedConf->getSchedConfId(), $rangeInfo);
+			$timeBlocks =& $timeBlockDao->getTimeBlocksBySchedConfId($schedConf->getId(), $rangeInfo);
 			if ($timeBlocks->isInBounds()) break;
 			unset($rangeInfo);
 			$rangeInfo =& $timeBlocks->getLastPageRangeInfo();
@@ -605,7 +605,7 @@ class SchedulerHandler extends ManagerHandler {
 		$timeBlockDao =& DAORegistry::getDAO('TimeBlockDAO');
 
 		// Ensure time block is for this conference
-		if ($timeBlockDao->getTimeBlockSchedConfId($timeBlockId) == $schedConf->getSchedConfId()) {
+		if ($timeBlockDao->getTimeBlockSchedConfId($timeBlockId) == $schedConf->getId()) {
 			$timeBlockDao->deleteTimeBlockById($timeBlockId);
 		}
 
@@ -632,7 +632,7 @@ class SchedulerHandler extends ManagerHandler {
 		$timeBlockDao =& DAORegistry::getDAO('TimeBlockDAO');
 
 		// Ensure time block is valid and for this conference
-		if (($timeBlockId != null && $timeBlockDao->getTimeBlockSchedConfId($timeBlockId) == $schedConf->getSchedConfId()) || ($timeBlockId == null)) {
+		if (($timeBlockId != null && $timeBlockDao->getTimeBlockSchedConfId($timeBlockId) == $schedConf->getId()) || ($timeBlockId == null)) {
 			import('manager.form.scheduler.TimeBlockForm');
 
 			$templateMgr =& TemplateManager::getManager();
@@ -674,7 +674,7 @@ class SchedulerHandler extends ManagerHandler {
 		$timeBlockId = Request::getUserVar('timeBlockId') == null ? null : (int) Request::getUserVar('timeBlockId');
 		$timeBlockDao =& DAORegistry::getDAO('TimeBlockDAO');
 
-		if (($timeBlockId != null && $timeBlockDao->getTimeBlockSchedConfId($timeBlockId) == $schedConf->getSchedConfId()) || $timeBlockId == null) {
+		if (($timeBlockId != null && $timeBlockDao->getTimeBlockSchedConfId($timeBlockId) == $schedConf->getId()) || $timeBlockId == null) {
 
 			if (checkPhpVersion('5.0.0')) { // WARNING: This form needs $this in constructor
 				$timeBlockForm = new TimeBlockForm($timeBlockId);

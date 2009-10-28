@@ -33,7 +33,7 @@ class StaticPagesPlugin extends GenericPlugin {
 	}
 
 	function isTinyMCEInstalled() {
-		$tinyMCEPlugin = &PluginRegistry::getPlugin('generic', 'TinyMCEPlugin');
+		$tinyMCEPlugin =& PluginRegistry::getPlugin('generic', 'TinyMCEPlugin');
 
 		if ( $tinyMCEPlugin )
 			return $tinyMCEPlugin->getEnabled();
@@ -52,8 +52,8 @@ class StaticPagesPlugin extends GenericPlugin {
 			$this->addLocaleData();
 			if ($this->getEnabled()) {
 				$this->import('StaticPagesDAO');
-				$staticPagesDAO = &new StaticPagesDAO();
-				$returner = &DAORegistry::registerDAO('StaticPagesDAO', $staticPagesDAO);
+				$staticPagesDAO =& new StaticPagesDAO();
+				$returner =& DAORegistry::registerDAO('StaticPagesDAO', $staticPagesDAO);
 
 				HookRegistry::register('LoadHandler', array(&$this, 'callbackHandleContent'));
 			}
@@ -66,7 +66,7 @@ class StaticPagesPlugin extends GenericPlugin {
 	 * Declare the handler function to process the actual page PATH
 	 */
 	function callbackHandleContent($hookName, $args) {
-		$templateMgr = &TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager();
 
 		$page =& $args[0];
 		$op =& $args[1];
@@ -84,7 +84,7 @@ class StaticPagesPlugin extends GenericPlugin {
 	 */
 	function getEnabled() {
 		$conference =& Request::getConference();
-		$conferenceId = $conference?$conference->getConferenceId():0;
+		$conferenceId = $conference?$conference->getId():0;
 		return $this->getSetting($conferenceId, 0, 'enabled');
 	}
 
@@ -93,7 +93,7 @@ class StaticPagesPlugin extends GenericPlugin {
 	 */
 	function setEnabled($enabled) {
 		$conference =& Request::getConference();
-		$conferenceId = $conference?$conference->getConferenceId():0;
+		$conferenceId = $conference?$conference->getId():0;
 		$this->updateSetting($conferenceId, 0, 'enabled', $enabled);
 
 		return true;
@@ -130,7 +130,7 @@ class StaticPagesPlugin extends GenericPlugin {
 	function manage($verb, $args) {
 		$returner = true;
 
-		$templateMgr = &TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->register_function('plugin_url', array(&$this, 'smartyPluginUrl'));
 		$templateMgr->assign('pagesPath', Request::url(null, null, 'pages', 'view', 'REPLACEME'));
 
@@ -150,7 +150,7 @@ class StaticPagesPlugin extends GenericPlugin {
 				$conference =& Request::getConference();
 
 				$this->import('StaticPagesSettingsForm');
-				$form = new StaticPagesSettingsForm($this, $conference->getConferenceId());
+				$form = new StaticPagesSettingsForm($this, $conference->getId());
 
 				$templateMgr->assign('pageHierarchy', $pageCrumbs);
 				$form->initData();
@@ -163,7 +163,7 @@ class StaticPagesPlugin extends GenericPlugin {
 				$this->import('StaticPagesEditForm');
 
 				$staticPageId = isset($args[0])?(int)$args[0]:null;
-				$form = new StaticPagesEditForm($this, $conference->getConferenceId(), $staticPageId);
+				$form = new StaticPagesEditForm($this, $conference->getId(), $staticPageId);
 
 				if ($form->isLocaleResubmit()) {
 					$form->readInputData();
@@ -187,7 +187,7 @@ class StaticPagesPlugin extends GenericPlugin {
 				$this->import('StaticPagesEditForm');
 
 				$staticPageId = isset($args[0])?(int)$args[0]:null;
-				$form = new StaticPagesEditForm($this, $conference->getConferenceId(), $staticPageId);
+				$form = new StaticPagesEditForm($this, $conference->getId(), $staticPageId);
 
 				if (Request::getUserVar('edit')) {
 					$form->readInputData();

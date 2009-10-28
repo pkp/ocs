@@ -47,7 +47,7 @@ class IndexHandler extends Handler {
 			$redirect = $conference->getSetting('schedConfRedirect');
 			if (!empty($redirect)) {
 				$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
-				$redirectSchedConf =& $schedConfDao->getSchedConf($redirect, $conference->getConferenceId());
+				$redirectSchedConf =& $schedConfDao->getSchedConf($redirect, $conference->getId());
 				if ($redirectSchedConf) Request::redirect($conference->getPath(), $redirectSchedConf->getPath());
 			}
 

@@ -306,8 +306,8 @@ class UserManagementForm extends Form {
 					$roleId = $roleDao->getRoleIdFromPath($roleName);
 					if ($roleId != null) {
 						$role = new Role();
-						$role->setConferenceId($conference->getConferenceId());
-						$role->setSchedConfId($schedConf?$schedConf->getSchedConfId():0);
+						$role->setConferenceId($conference->getId());
+						$role->setSchedConfId($schedConf?$schedConf->getId():0);
 						$role->setUserId($userId);
 						$role->setRoleId($roleId);
 						$roleDao->insertRole($role);

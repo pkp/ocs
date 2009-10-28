@@ -46,7 +46,7 @@ class AccommodationSettingsForm extends Form {
 		$templateMgr =& TemplateManager::getManager();
 		$site =& Request::getSite();
 		$templateMgr->assign('helpTopicId','conference.currentConferences.accommodation');
-		$templateMgr->assign('publicSchedConfFilesDir', Request::getBaseUrl() . '/' . PublicFileManager::getSchedConfFilesPath($schedConf->getSchedConfId()));
+		$templateMgr->assign('publicSchedConfFilesDir', Request::getBaseUrl() . '/' . PublicFileManager::getSchedConfFilesPath($schedConf->getId()));
 		$templateMgr->assign('accommodationFiles', $schedConf->getSetting('accommodationFiles'));
 		parent::display();
 	}
@@ -84,7 +84,7 @@ class AccommodationSettingsForm extends Form {
 
 		foreach ($this->_data as $name => $value) {
 			$settingsDao->updateSetting(
-				$schedConf->getSchedConfId(),
+				$schedConf->getId(),
 				$name,
 				$value,
 				$this->settings[$name],

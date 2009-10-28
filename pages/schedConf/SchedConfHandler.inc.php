@@ -50,7 +50,7 @@ class SchedConfHandler extends Handler {
 			if ($enableAnnouncementsHomepage) {
 				$numAnnouncementsHomepage = $conference->getSetting('numAnnouncementsHomepage');
 				$announcementDao =& DAORegistry::getDAO('AnnouncementDAO');
-				$announcements =& $announcementDao->getNumAnnouncementsNotExpiredByConferenceId($conference->getConferenceId(), $schedConf->getSchedConfId(), $numAnnouncementsHomepage);
+				$announcements =& $announcementDao->getNumAnnouncementsNotExpiredByConferenceId($conference->getId(), $schedConf->getId(), $numAnnouncementsHomepage);
 				$templateMgr->assign('announcements', $announcements);
 				$templateMgr->assign('enableAnnouncementsHomepage', $enableAnnouncementsHomepage);
 			}
@@ -86,12 +86,12 @@ class SchedConfHandler extends Handler {
 		$trackDao =& DAORegistry::getDAO('TrackDAO');
 		$trackDirectorsDao =& DAORegistry::getDAO('TrackDirectorsDAO');
 		$tracks = array();
-		$tracks =& $trackDao->getSchedConfTracks($schedConf->getSchedConfId());
+		$tracks =& $trackDao->getSchedConfTracks($schedConf->getId());
 		$tracks =& $tracks->toArray();
 		$templateMgr->assign_by_ref('tracks', $tracks);
 		$trackDirectors = array();
 		foreach ($tracks as $track) {
-			$trackDirectors[$track->getTrackId()] =& $trackDirectorsDao->getDirectorsByTrackId($conference->getConferenceId(), $track->getTrackId());
+			$trackDirectors[$track->getTrackId()] =& $trackDirectorsDao->getDirectorsByTrackId($conference->getId(), $track->getTrackId());
 		}
 		$templateMgr->assign_by_ref('trackDirectors', $trackDirectors);
 
@@ -209,7 +209,7 @@ class SchedConfHandler extends Handler {
 
 		$user =& Request::getUser();
 		$registrationDao =& DAORegistry::getDAO('RegistrationDAO');
-		if ($user && ($registrationId = $registrationDao->getRegistrationIdByUser($user->getId(), $schedConf->getSchedConfId()))) {
+		if ($user && ($registrationId = $registrationDao->getRegistrationIdByUser($user->getId(), $schedConf->getId()))) {
 			// This user has already registered.
 			$registration =& $registrationDao->getRegistration($registrationId);
 
@@ -245,7 +245,7 @@ class SchedConfHandler extends Handler {
 		} else {
 			// A registration type has not been chosen; prompt for one.
 			$registrationTypeDao =& DAORegistry::getDAO('RegistrationTypeDAO');
-			$registrationTypes =& $registrationTypeDao->getRegistrationTypesBySchedConfId($schedConf->getSchedConfId());
+			$registrationTypes =& $registrationTypeDao->getRegistrationTypesBySchedConfId($schedConf->getId());
 			$templateMgr->assign_by_ref('registrationTypes', $registrationTypes);
 			return $templateMgr->display('registration/selectRegistrationType.tpl');
 		}
@@ -266,7 +266,7 @@ class SchedConfHandler extends Handler {
 
 		$user =& Request::getUser();
 		$registrationDao =& DAORegistry::getDAO('RegistrationDAO');
-		if ($user && ($registrationId = $registrationDao->getRegistrationIdByUser($user->getId(), $schedConf->getSchedConfId()))) {
+		if ($user && ($registrationId = $registrationDao->getRegistrationIdByUser($user->getId(), $schedConf->getId()))) {
 			// This user has already registered.
 			$registration =& $registrationDao->getRegistration($registrationId);
 			if ( !$registration || $registration->getDatePaid() ) {
@@ -366,7 +366,7 @@ class SchedConfHandler extends Handler {
 		$roomDao =& DAORegistry::getDAO('RoomDAO');
 
 		$buildingsAndRooms = $allRooms = array();
-		$buildings =& $buildingDao->getBuildingsBySchedConfId($schedConf->getSchedConfId());
+		$buildings =& $buildingDao->getBuildingsBySchedConfId($schedConf->getId());
 		while ($building =& $buildings->next()) {
 			$buildingId = $building->getBuildingId();
 			$rooms =& $roomDao->getRoomsByBuildingId($buildingId);
@@ -389,7 +389,7 @@ class SchedConfHandler extends Handler {
 		$itemsByTime = array();
 
 		$publishedPaperDao =& DAORegistry::getDAO('PublishedPaperDAO');
-		$publishedPapers =& $publishedPaperDao->getPublishedPapers($schedConf->getSchedConfId(), PAPER_SORT_ORDER_TIME);
+		$publishedPapers =& $publishedPaperDao->getPublishedPapers($schedConf->getId(), PAPER_SORT_ORDER_TIME);
 		while ($paper =& $publishedPapers->next()) {
 			if ($paper->getStartTime()) {
 				$startTime = strtotime($paper->getStartTime());
@@ -400,7 +400,7 @@ class SchedConfHandler extends Handler {
 		unset($publishedPapers);
 
 		$specialEventDao =& DAORegistry::getDAO('SpecialEventDAO');
-		$specialEvents =& $specialEventDao->getSpecialEventsBySchedConfId($schedConf->getSchedConfId());
+		$specialEvents =& $specialEventDao->getSpecialEventsBySchedConfId($schedConf->getId());
 		while ($specialEvent =& $specialEvents->next()) {
 			$startTime = strtotime($specialEvent->getStartTime());
 			if ($startTime) $itemsByTime[$startTime][] =& $specialEvent;
@@ -489,7 +489,7 @@ class SchedConfHandler extends Handler {
 			$publishedPaperDao =& DAORegistry::getDAO('PublishedPaperDAO');
 			$trackDao =& DAORegistry::getDAO('TrackDAO');
 
-			$tracks =& $trackDao->getTrackTitles($schedConf->getSchedConfId());
+			$tracks =& $trackDao->getTrackTitles($schedConf->getId());
 
 			// Get the user's search conditions, if any
 			$searchField = Request::getUserVar('searchField');
@@ -513,7 +513,7 @@ class SchedConfHandler extends Handler {
 				$schedConf->getSetting('previewAbstracts')
 			);
 
-			$publishedPapers =& $publishedPaperDao->getPublishedPapersInTracks($schedConf->getSchedConfId(), Request::getUserVar('track'), $searchField, $searchMatch, $search, $previewAbstracts);
+			$publishedPapers =& $publishedPaperDao->getPublishedPapersInTracks($schedConf->getId(), Request::getUserVar('track'), $searchField, $searchMatch, $search, $previewAbstracts);
 
 			// Set search parameters
 			$duplicateParameters = array(
@@ -544,8 +544,8 @@ class SchedConfHandler extends Handler {
 
 		// Ensure the user is entitled to view the scheduled conference...
 		if (isset($schedConf) && ($conference->getEnabled() || (
-				Validation::isDirector($conference->getConferenceId()) ||
-				Validation::isConferenceManager($conference->getConferenceId())))) {
+				Validation::isDirector($conference->getId()) ||
+				Validation::isConferenceManager($conference->getId())))) {
 
 			// Assign header and content for home page
 			$templateMgr->assign('displayPageHeaderTitle', $conference->getPageHeaderTitle(true));
@@ -562,7 +562,7 @@ class SchedConfHandler extends Handler {
 			import('file.PublicFileManager');
 			$publicFileManager = new PublicFileManager();
 			$templateMgr->addStyleSheet(
-				Request::getBaseUrl() . '/' . $publicFileManager->getConferenceFilesPath($conference->getConferenceId()) . '/' . $styleFileName
+				Request::getBaseUrl() . '/' . $publicFileManager->getConferenceFilesPath($conference->getId()) . '/' . $styleFileName
 			);
 		}
 	}

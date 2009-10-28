@@ -104,7 +104,7 @@ class AnnouncementFeedBlockPlugin extends BlockPlugin {
 		if (!$conference->getSetting('enableAnnouncements')) return ''; 
 
 		$plugin =& $this->getAnnouncementFeedPlugin();
-		$displayPage = $plugin->getSetting($conference->getConferenceId(), 0, 'displayPage');
+		$displayPage = $plugin->getSetting($conference->getId(), 0, 'displayPage');
 		$requestedPage = Request::getRequestedPage();
 
 		if (($displayPage == 'all') || ($displayPage == 'homepage' && (empty($requestedPage) || $requestedPage == 'index' || $requestedPage == 'announcement')) || ($displayPage == $requestedPage)) { 

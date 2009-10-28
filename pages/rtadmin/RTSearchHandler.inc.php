@@ -33,7 +33,7 @@ class RTSearchHandler extends RTAdminHandler {
 		$rtDao =& DAORegistry::getDAO('RTDAO');
 
 		$versionId = isset($args[0])?$args[0]:0;
-		$version =& $rtDao->getVersion($versionId, $conference->getConferenceId());
+		$version =& $rtDao->getVersion($versionId, $conference->getId());
 		$contextId = isset($args[1])?$args[1]:0;
 		$context =& $rtDao->getContext($contextId);
 
@@ -59,7 +59,7 @@ class RTSearchHandler extends RTAdminHandler {
 		$rangeInfo = Handler::getRangeInfo('searches');
 
 		$versionId = isset($args[0])?$args[0]:0;
-		$version =& $rtDao->getVersion($versionId, $conference->getConferenceId());
+		$version =& $rtDao->getVersion($versionId, $conference->getId());
 
 		$contextId = isset($args[1])?$args[1]:0;
 		$context =& $rtDao->getContext($contextId);
@@ -87,7 +87,7 @@ class RTSearchHandler extends RTAdminHandler {
 
 		$conference = Request::getConference();
 		$versionId = isset($args[0])?$args[0]:0;
-		$version =& $rtDao->getVersion($versionId, $conference->getConferenceId());
+		$version =& $rtDao->getVersion($versionId, $conference->getId());
 		$contextId = isset($args[1])?$args[1]:0;
 		$context =& $rtDao->getContext($contextId);
 		$searchId = isset($args[2])?$args[2]:0;
@@ -112,7 +112,7 @@ class RTSearchHandler extends RTAdminHandler {
 
 		$conference = Request::getConference();
 		$versionId = isset($args[0])?$args[0]:0;
-		$version =& $rtDao->getVersion($versionId, $conference->getConferenceId());
+		$version =& $rtDao->getVersion($versionId, $conference->getId());
 		$contextId = isset($args[1])?$args[1]:0;
 		$context =& $rtDao->getContext($contextId);
 		$searchId = isset($args[2])?$args[2]:0;
@@ -132,7 +132,7 @@ class RTSearchHandler extends RTAdminHandler {
 
 		$conference = Request::getConference();
 		$versionId = isset($args[0])?$args[0]:0;
-		$version =& $rtDao->getVersion($versionId, $conference->getConferenceId());
+		$version =& $rtDao->getVersion($versionId, $conference->getId());
 		$contextId = isset($args[1])?$args[1]:0;
 		$context =& $rtDao->getContext($contextId);
 		$searchId = isset($args[2])?$args[2]:0;
@@ -155,7 +155,7 @@ class RTSearchHandler extends RTAdminHandler {
 
 		$conference = Request::getConference();
 		$versionId = isset($args[0])?$args[0]:0;
-		$version =& $rtDao->getVersion($versionId, $conference->getConferenceId());
+		$version =& $rtDao->getVersion($versionId, $conference->getId());
 		$contextId = isset($args[1])?$args[1]:0;
 		$context =& $rtDao->getContext($contextId);
 		$searchId = isset($args[2])?$args[2]:0;

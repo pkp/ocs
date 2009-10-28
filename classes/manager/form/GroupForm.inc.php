@@ -86,7 +86,7 @@ class GroupForm extends Form {
 		}
 
 		$this->group->setAssocType(ASSOC_TYPE_SCHED_CONF);
-		$this->group->setAssocId($schedConf->getSchedConfId());
+		$this->group->setAssocId($schedConf->getId());
 		$this->group->setTitle($this->getData('title'), null); // Localized
 
 		// Eventually this will be a general Groups feature; for now,

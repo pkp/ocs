@@ -76,8 +76,8 @@ class PeopleHandler extends ManagerHandler {
 
 		if ($roleId) {
 			while (true) {
-				$users =& $roleDao->getUsersByRoleId($roleId, $conference->getConferenceId(),
-					($schedConf? $schedConf->getSchedConfId() : null), $searchType, $search, $searchMatch, $rangeInfo, $sort, $sortDirection);
+				$users =& $roleDao->getUsersByRoleId($roleId, $conference->getId(),
+					($schedConf? $schedConf->getId() : null), $searchType, $search, $searchMatch, $rangeInfo, $sort, $sortDirection);
 				if ($users->isInBounds()) break;
 				unset($rangeInfo);
 				$rangeInfo =& $users->getLastPageRangeInfo();
@@ -108,7 +108,7 @@ class PeopleHandler extends ManagerHandler {
 					break;
 			}
 		} else {
-			$users =& $roleDao->getUsersByConferenceId($conference->getConferenceId(), $searchType, $search, $searchMatch, $rangeInfo, $sort, $sortDirection);
+			$users =& $roleDao->getUsersByConferenceId($conference->getId(), $searchType, $search, $searchMatch, $rangeInfo, $sort, $sortDirection);
 			$helpTopicId = 'conference.users.allUsers';
 		}
 
@@ -126,7 +126,7 @@ class PeopleHandler extends ManagerHandler {
 		if ($roleId == ROLE_ID_REVIEWER) {
 			$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
 			$templateMgr->assign('rateReviewerOnQuality', $conference->getSetting('rateReviewerOnQuality'));
-			$templateMgr->assign('qualityRatings', $conference->getSetting('rateReviewerOnQuality') ? $reviewAssignmentDao->getAverageQualityRatings($conference->getConferenceId()) : null);
+			$templateMgr->assign('qualityRatings', $conference->getSetting('rateReviewerOnQuality') ? $reviewAssignmentDao->getAverageQualityRatings($conference->getId()) : null);
 		}
 		$templateMgr->assign('helpTopicId', $helpTopicId);
 		$templateMgr->assign('fieldOptions', Array(
@@ -238,7 +238,7 @@ class PeopleHandler extends ManagerHandler {
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
 		$rolePath = $roleDao->getRolePath($roleId);
 
-		$isConferenceManager = Validation::isConferenceManager($conference->getConferenceId()) || Validation::isSiteAdmin();
+		$isConferenceManager = Validation::isConferenceManager($conference->getId()) || Validation::isSiteAdmin();
 
 		// Don't allow scheduled conference directors (who can end up here) to enroll
 		// conference managers or scheduled conference directors.
@@ -248,22 +248,22 @@ class PeopleHandler extends ManagerHandler {
 				$rolePath != ROLE_PATH_SITE_ADMIN &&
 				$isConferenceManager) {
 
-			$schedConfId = ($schedConf? $schedConf->getSchedConfId() : 0);
+			$schedConfId = ($schedConf? $schedConf->getId() : 0);
 
 			for ($i=0; $i<count($users); $i++) {
-				if (!$roleDao->roleExists($conference->getConferenceId(), $schedConfId, $users[$i], $roleId)) {
+				if (!$roleDao->roleExists($conference->getId(), $schedConfId, $users[$i], $roleId)) {
 					if ($schedConfId == 0) {
 						// In case they're enrolled in individual scheduled conferences and we want to enrol
 						// them in the whole conference, ensure they don't have multiple roles
-						$roleDao->deleteRoleByUserId($users[$i], $conference->getConferenceId(), $roleId);
-					} else if ($roleDao->roleExists($conference->getConferenceId(), 0, $users[$i], $roleId)) {
+						$roleDao->deleteRoleByUserId($users[$i], $conference->getId(), $roleId);
+					} else if ($roleDao->roleExists($conference->getId(), 0, $users[$i], $roleId)) {
 						// If they're enrolled in the whole conference, this individual
 						// enrollment isn't valuable.
 						return;
 					}
 
 					$role = new Role();
-					$role->setConferenceId($conference->getConferenceId());
+					$role->setConferenceId($conference->getId());
 					if ($schedConf && $rolePath != ROLE_PATH_CONFERENCE_MANAGER) {
 						$role->setSchedConfId($schedConfId);
 					} else {
@@ -287,13 +287,13 @@ class PeopleHandler extends ManagerHandler {
 		$this->validate();
 
 		$conference =& Request::getConference();
-		$isConferenceManager = Validation::isConferenceManager($conference->getConferenceId()) || Validation::isSiteAdmin();
+		$isConferenceManager = Validation::isConferenceManager($conference->getId()) || Validation::isSiteAdmin();
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
 
 		// Don't allow scheduled conference managers to unenroll scheduled conference managers or
 		// conference managers. FIXME is this still relevant?
 		if ($roleId != ROLE_ID_SITE_ADMIN && $isConferenceManager) {
-			$roleDao->deleteRoleByUserId(Request::getUserVar('userId'), $conference->getConferenceId(), $roleId);
+			$roleDao->deleteRoleByUserId(Request::getUserVar('userId'), $conference->getId(), $roleId);
 		}
 
 		Request::redirect(null, null, null, 'people');
@@ -323,7 +323,7 @@ class PeopleHandler extends ManagerHandler {
 		$schedConf =& Request::getSchedConf();
 		if (!$schedConf) Request::redirect(null, null, 'manager');
 
-		unset($conferenceTitles[$conference->getConferenceId()]);
+		unset($conferenceTitles[$conference->getId()]);
 
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('rolePath', $rolePath);
@@ -352,9 +352,9 @@ class PeopleHandler extends ManagerHandler {
 			$roles =& $roleDao->getRolesByConferenceId($syncConference == 'all' ? null : $syncConference, $roleId);
 			while (!$roles->eof()) {
 				$role =& $roles->next();
-				$role->setConferenceId($conference->getConferenceId());
-				$role->setSchedConfId($schedConf->getSchedConfId());
-				if ($role->getRolePath() != ROLE_PATH_SITE_ADMIN && !$roleDao->roleExists($role->getConferenceId(), $schedConf->getSchedConfId(), $role->getUserId(), $role->getRoleId())) {
+				$role->setConferenceId($conference->getId());
+				$role->setSchedConfId($schedConf->getId());
+				if ($role->getRolePath() != ROLE_PATH_SITE_ADMIN && !$roleDao->roleExists($role->getConferenceId(), $schedConf->getId(), $role->getUserId(), $role->getRoleId())) {
 					$roleDao->insertRole($role);
 				}
 			}
@@ -397,7 +397,7 @@ class PeopleHandler extends ManagerHandler {
 
 		$templateMgr =& TemplateManager::getManager();
 
-		if ($userId !== null && !Validation::canAdminister($conference->getConferenceId(), $userId)) {
+		if ($userId !== null && !Validation::canAdminister($conference->getId(), $userId)) {
 			// We don't have administrative rights
 			// over this user. Display an error.
 			$templateMgr->assign('pageTitle', 'manager.people');
@@ -444,8 +444,8 @@ class PeopleHandler extends ManagerHandler {
 
 		// Ensure that we have administrative priveleges over the specified user(s).
 		if (
-			(!empty($oldUserId) && !Validation::canAdminister($conference->getConferenceId(), $oldUserId)) ||
-			(!empty($newUserId) && !Validation::canAdminister($conference->getConferenceId(), $newUserId))
+			(!empty($oldUserId) && !Validation::canAdminister($conference->getId(), $oldUserId)) ||
+			(!empty($newUserId) && !Validation::canAdminister($conference->getId(), $newUserId))
 		) {
 			$templateMgr->assign('pageTitle', 'manager.people');
 			$templateMgr->assign('errorMsg', 'manager.people.noAdministrativeRights');
@@ -500,7 +500,7 @@ class PeopleHandler extends ManagerHandler {
 
 		if ($roleId) {
 			while (true) {
-				$users =& $roleDao->getUsersByRoleId($roleId, $conference->getConferenceId(), $schedConf->getSchedConfId(), $searchType, $search, $searchMatch, $rangeInfo);
+				$users =& $roleDao->getUsersByRoleId($roleId, $conference->getId(), $schedConf->getId(), $searchType, $search, $searchMatch, $rangeInfo);
 				if ($users->isInBounds()) break;
 				unset($rangeInfo);
 				$rangeInfo =& $users->getLastPageRangeInfo();
@@ -509,7 +509,7 @@ class PeopleHandler extends ManagerHandler {
 			$templateMgr->assign('roleId', $roleId);
 		} else {
 			while (true) {
-				$users =& $roleDao->getUsersByConferenceId($conference->getConferenceId(), $searchType, $search, $searchMatch, $rangeInfo);
+				$users =& $roleDao->getUsersByConferenceId($conference->getId(), $searchType, $search, $searchMatch, $rangeInfo);
 				if ($users->isInBounds()) break;
 				unset($rangeInfo);
 				$rangeInfo =& $users->getLastPageRangeInfo();
@@ -532,7 +532,7 @@ class PeopleHandler extends ManagerHandler {
 		if ($roleId == ROLE_ID_REVIEWER) {
 			$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
 			$templateMgr->assign('rateReviewerOnQuality', $conference->getSetting('rateReviewerOnQuality'));
-			$templateMgr->assign('qualityRatings', $conference->getSetting('rateReviewerOnQuality') ? $reviewAssignmentDao->getAverageQualityRatings($conference->getConferenceId()) : null);
+			$templateMgr->assign('qualityRatings', $conference->getSetting('rateReviewerOnQuality') ? $reviewAssignmentDao->getAverageQualityRatings($conference->getId()) : null);
 		}
 		$templateMgr->assign('fieldOptions', Array(
 			USER_FIELD_FIRSTNAME => 'user.firstName',
@@ -561,7 +561,7 @@ class PeopleHandler extends ManagerHandler {
 		$conference =& Request::getConference();
 
 		if ($userId != null && $userId != $user->getId()) {
-			if (!Validation::canAdminister($conference->getConferenceId(), $userId)) {
+			if (!Validation::canAdminister($conference->getId(), $userId)) {
 				// We don't have administrative rights
 				// over this user. Display an error.
 				$templateMgr =& TemplateManager::getManager();
@@ -620,7 +620,7 @@ class PeopleHandler extends ManagerHandler {
 
 		if ($userId != null && $userId != $user->getId()) {
 			$roleDao =& DAORegistry::getDAO('RoleDAO');
-			$roleDao->deleteRoleByUserId($userId, $conference->getConferenceId());
+			$roleDao->deleteRoleByUserId($userId, $conference->getId());
 		}
 
 		Request::redirect(null, null, null, 'people', 'all');
@@ -636,7 +636,7 @@ class PeopleHandler extends ManagerHandler {
 		$conference =& Request::getConference();
 		$userId = Request::getUserVar('userId');
 
-		if (!empty($userId) && !Validation::canAdminister($conference->getConferenceId(), $userId)) {
+		if (!empty($userId) && !Validation::canAdminister($conference->getId(), $userId)) {
 			// We don't have administrative rights
 			// over this user. Display an error.
 			$templateMgr =& TemplateManager::getManager();
@@ -717,7 +717,7 @@ class PeopleHandler extends ManagerHandler {
 			$site =& Request::getSite();
 			$conference =& Request::getConference();
 			$roleDao =& DAORegistry::getDAO('RoleDAO');
-			$roles =& $roleDao->getRolesByUserId($user->getId(), $conference->getConferenceId());
+			$roles =& $roleDao->getRolesByUserId($user->getId(), $conference->getId());
 
 			$countryDao =& DAORegistry::getDAO('CountryDAO');
 			$country = null;

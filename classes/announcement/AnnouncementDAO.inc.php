@@ -29,7 +29,7 @@ class AnnouncementDAO extends PKPAnnouncementDAO {
 			while (!$schedConfs->eof()) {
 				$schedConf =& $schedConfs->next();			
 				$schedConfArgs[] = ASSOC_TYPE_SCHED_CONF;
-				$schedConfArgs[] = $schedConf->getSchedConfId();
+				$schedConfArgs[] = $schedConf->getId();
 			}
 		} else {
 			$schedConfArgs = array(ASSOC_TYPE_SCHED_CONF, $schedConfId);
@@ -59,7 +59,7 @@ class AnnouncementDAO extends PKPAnnouncementDAO {
 			while (!$schedConfs->eof()) {
 				$schedConf =& $schedConfs->next();			
 				$schedConfArgs[] = ASSOC_TYPE_SCHED_CONF;
-				$schedConfArgs[] = $schedConf->getSchedConfId();
+				$schedConfArgs[] = $schedConf->getId();
 			}
 		} else {
 			$schedConfArgs = array(ASSOC_TYPE_SCHED_CONF, $schedConfId);
@@ -89,7 +89,7 @@ class AnnouncementDAO extends PKPAnnouncementDAO {
 			while (!$schedConfs->eof()) {
 				$schedConf =& $schedConfs->next();			
 				$schedConfArgs[] = ASSOC_TYPE_SCHED_CONF;
-				$schedConfArgs[] = $schedConf->getSchedConfId();
+				$schedConfArgs[] = $schedConf->getId();
 			}
 		} else {
 			$schedConfArgs = array(ASSOC_TYPE_SCHED_CONF, $schedConfId);

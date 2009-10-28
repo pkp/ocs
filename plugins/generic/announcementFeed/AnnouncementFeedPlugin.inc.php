@@ -59,7 +59,7 @@ class AnnouncementFeedPlugin extends GenericPlugin {
 	 */
 	function getEnabled() {
 		$conference =& Request::getConference();
-		$conferenceId = $conference?$conference->getConferenceId():0;
+		$conferenceId = $conference?$conference->getId():0;
 		return $this->getSetting($conferenceId, 0, 'enabled');
 	}
 
@@ -92,7 +92,7 @@ class AnnouncementFeedPlugin extends GenericPlugin {
 			$templateManager =& $args[0];
 			$currentConference =& $templateManager->get_template_vars('currentConference');
 			$announcementsEnabled = $currentConference ? $currentConference->getSetting('enableAnnouncements') : false;
-			$displayPage = $currentConference ? $this->getSetting($currentConference->getConferenceId(), 0, 'displayPage') : null;
+			$displayPage = $currentConference ? $this->getSetting($currentConference->getId(), 0, 'displayPage') : null;
 			$requestedPage = Request::getRequestedPage();
 
 			if ( $announcementsEnabled && (($displayPage == 'all') || ($displayPage == 'homepage' && (empty($requestedPage) || $requestedPage == 'index' || $requestedPage == 'announcement')) || ($displayPage == $requestedPage)) ) { 
@@ -151,7 +151,7 @@ class AnnouncementFeedPlugin extends GenericPlugin {
 				$templateMgr->register_function('plugin_url', array(&$this, 'smartyPluginUrl'));
 
 				$this->import('SettingsForm');
-				$form = new SettingsForm($this, $conference->getConferenceId());
+				$form = new SettingsForm($this, $conference->getId());
 
 				if (Request::getUserVar('save')) {
 					$form->readInputData();
@@ -167,12 +167,12 @@ class AnnouncementFeedPlugin extends GenericPlugin {
 				}
 				break;
 			case 'enable':
-				$this->updateSetting($conference->getConferenceId(), 0, 'enabled', true);
+				$this->updateSetting($conference->getId(), 0, 'enabled', true);
 				$message = Locale::translate('plugins.generic.announcementFeed.enabled');
 				$returner = false;
 				break;
 			case 'disable':
-				$this->updateSetting($conference->getConferenceId(), 0, 'enabled', false);
+				$this->updateSetting($conference->getId(), 0, 'enabled', false);
 				$message = Locale::translate('plugins.generic.announcementFeed.enabled');
 				$returner = false;
 				break;	

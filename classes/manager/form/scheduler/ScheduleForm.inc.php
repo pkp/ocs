@@ -151,7 +151,7 @@ class ScheduleForm extends Form {
 		$buildingDao =& DAORegistry::getDAO('BuildingDAO');
 		$roomDao =& DAORegistry::getDAO('RoomDAO');
 		$schedConf =& Request::getSchedConf();
-		$buildings =& $buildingDao->getBuildingsBySchedConfId($schedConf->getSchedConfId());
+		$buildings =& $buildingDao->getBuildingsBySchedConfId($schedConf->getId());
 		while ($building =& $buildings->next()) {
 			$buildingId = $building->getBuildingId();
 			$rooms =& $roomDao->getRoomsByBuildingId($buildingId);
@@ -169,7 +169,7 @@ class ScheduleForm extends Form {
 		$templateMgr->assign_by_ref('buildingsAndRooms', $buildingsAndRooms);
 
 		$timeBlockDao =& DAORegistry::getDAO('TimeBlockDAO');
-		$timeBlocks =& $timeBlockDao->getTimeBlocksBySchedConfId($schedConf->getSchedConfId());
+		$timeBlocks =& $timeBlockDao->getTimeBlocksBySchedConfId($schedConf->getId());
 		$timeBlocks =& $timeBlocks->toArray();
 		$templateMgr->assign_by_ref('timeBlocks', $timeBlocks);
 
@@ -180,7 +180,7 @@ class ScheduleForm extends Form {
 	 * Initialize form data from current building.
 	 */
 	function initData() {
-		$publishedPapersIterator =& $this->publishedPaperDao->getPublishedPapers($this->schedConf->getSchedConfId());
+		$publishedPapersIterator =& $this->publishedPaperDao->getPublishedPapers($this->schedConf->getId());
 		$publishedPapers =& $publishedPapersIterator->toArray();
 
 		$this->_data = array(
@@ -192,7 +192,7 @@ class ScheduleForm extends Form {
 	 * Assign form data to user-submitted data.
 	 */
 	function readInputData() {
-		$publishedPapers =& $this->publishedPaperDao->getPublishedPapers($this->schedConf->getSchedConfId());
+		$publishedPapers =& $this->publishedPaperDao->getPublishedPapers($this->schedConf->getId());
 
 		// Read in the list of changes that need applying
 		$changeList = array();
@@ -276,7 +276,7 @@ class ScheduleForm extends Form {
 					// Otherwise, a time block was chosen.
 					$timeBlockDao =& DAORegistry::getDAO('TimeBlockDAO');
 					$timeBlock =& $timeBlockDao->getTimeBlock((int) $newValue);
-					if (!$timeBlock || $timeBlock->getSchedConfId() != $schedConf->getSchedConfId()) break;
+					if (!$timeBlock || $timeBlock->getSchedConfId() != $schedConf->getId()) break;
 					$publishedPaper->setStartTime($timeBlock->getStartTime());
 					$publishedPaper->setEndTime($timeBlock->getEndTime());
 					break;
@@ -331,7 +331,7 @@ class ScheduleForm extends Form {
 			unset($modifiedPaper);
 		}
 
-		$publishedPapers =& $this->publishedPaperDao->getPublishedPapers($this->schedConf->getSchedConfId());
+		$publishedPapers =& $this->publishedPaperDao->getPublishedPapers($this->schedConf->getId());
 
 		$publishedPaperDao =& DAORegistry::getDAO('PublishedPaperDAO'); // For modifying room IDs
 		$paperDao =& DAORegistry::getDAO('PaperDAO'); // For modifying times/dates

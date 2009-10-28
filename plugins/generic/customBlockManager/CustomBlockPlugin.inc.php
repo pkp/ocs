@@ -100,7 +100,7 @@ class CustomBlockPlugin extends BlockPlugin {
 		$conference =& Request::getConference();
 
 		$this->import('CustomBlockEditForm');
-		$form = new CustomBlockEditForm($this, $conference->getConferenceId());
+		$form = new CustomBlockEditForm($this, $conference->getId());
 		
 		switch ($verb) {
 			case 'enable':
@@ -155,7 +155,7 @@ class CustomBlockPlugin extends BlockPlugin {
 		$conference =& Request::getConference();
 		if (!$conference) return '';
 
-		$templateMgr->assign('customBlockContent', $this->getSetting($conference->getConferenceId(), 0, 'blockContent'));
+		$templateMgr->assign('customBlockContent', $this->getSetting($conference->getId(), 0, 'blockContent'));
 		return parent::getContents($templateMgr);
 
 	}

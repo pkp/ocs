@@ -89,14 +89,14 @@ class ConferenceSetupStep4Form extends ConferenceSetupForm {
 				return false;
 			}
 			$uploadName = $settingName . '.css';
-			if($fileManager->uploadConferenceFile($conference->getConferenceId(), $settingName, $uploadName)) {
+			if($fileManager->uploadConferenceFile($conference->getId(), $settingName, $uploadName)) {
 				$value = array(
 					'name' => $fileManager->getUploadedFileName($settingName),
 					'uploadName' => $uploadName,
 					'dateUploaded' => date("Y-m-d g:i:s")
 				);
 
-				$settingsDao->updateSetting($conference->getConferenceId(), $settingName, $value, 'object');
+				$settingsDao->updateSetting($conference->getId(), $settingName, $value, 'object');
 				return true;
 			}
 		}

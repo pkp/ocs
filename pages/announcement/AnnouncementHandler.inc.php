@@ -39,10 +39,10 @@ class AnnouncementHandler extends PKPAnnouncementHandler {
 
 		$announcementDao =& DAORegistry::getDAO('AnnouncementDAO');
 		if($schedConf) {
-			$announcements =& $announcementDao->getAnnouncementsNotExpiredByConferenceId($conference->getConferenceId(), $schedConf->getSchedConfId(), $rangeInfo);
+			$announcements =& $announcementDao->getAnnouncementsNotExpiredByConferenceId($conference->getId(), $schedConf->getId(), $rangeInfo);
 			$announcementsIntroduction = $schedConf->getLocalizedSetting('announcementsIntroduction');
 		} else {
-			$announcements =& $announcementDao->getAnnouncementsNotExpiredByAssocId(ASSOC_TYPE_CONFERENCE, $conference->getConferenceId(), $rangeInfo);
+			$announcements =& $announcementDao->getAnnouncementsNotExpiredByAssocId(ASSOC_TYPE_CONFERENCE, $conference->getId(), $rangeInfo);
 			$announcementsIntroduction = $conference->getLocalizedSetting('announcementsIntroduction');
 		}
 
@@ -69,13 +69,13 @@ class AnnouncementHandler extends PKPAnnouncementHandler {
 				$conference =& Request::getConference();
 				return (
 					$conference &&
-					$announcementDao->getAnnouncementAssocId($announcementId) == $conference->getConferenceId()
+					$announcementDao->getAnnouncementAssocId($announcementId) == $conference->getId()
 				);
 			case ASSOC_TYPE_SCHED_CONF:
 				$schedConf =& Request::getSchedConf(); 
 				return (
 					$schedConf &&
-					$announcementDao->getAnnouncementAssocId($announcementId) == $schedConf->getSchedConfId()
+					$announcementDao->getAnnouncementAssocId($announcementId) == $schedConf->getId()
 				);
 			default:
 				return false;

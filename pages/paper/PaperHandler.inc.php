@@ -390,19 +390,19 @@ class PaperHandler extends Handler {
 		$conference =& Request::getConference();
 		$schedConf =& Request::getSchedConf();
 		
-		$conferenceId = $conference->getConferenceId();
+		$conferenceId = $conference->getId();
 		$publishedPaperDao =& DAORegistry::getDAO('PublishedPaperDAO');
 
 		if ($schedConf->getSetting('enablePublicPaperId')) {
 			$paper =& $publishedPaperDao->getPublishedPaperByBestPaperId(
-				$schedConf->getSchedConfId(),
+				$schedConf->getId(),
 				$paperId,
 				$schedConf->getSetting('previewAbstracts')?true:false
 			);
 		} else {
 			$paper =& $publishedPaperDao->getPublishedPaperByPaperId(
 				(int) $paperId,
-				$schedConf->getSchedConfId(),
+				$schedConf->getId(),
 				$schedConf->getSetting('previewAbstracts')?true:false
 			);
 		}
@@ -410,8 +410,8 @@ class PaperHandler extends Handler {
 		// if paper does not exist, is not published, or is not part of
 		// the right conference & sched conf, redirect to index.
 		if (isset($schedConf) && isset($paper) && isset($conference) &&
-				$paper->getSchedConfId() == $schedConf->getSchedConfId() &&
-				$schedConf->getConferenceId() == $conference->getConferenceId()) {
+				$paper->getSchedConfId() == $schedConf->getId() &&
+				$schedConf->getConferenceId() == $conference->getId()) {
 
 			// Check if login is required for viewing.
 			if (!Validation::isLoggedIn() && $schedConf->getSetting('restrictPaperAccess')) {

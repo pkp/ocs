@@ -28,7 +28,7 @@ class CustomLocalePlugin extends GenericPlugin {
 				$locale = Locale::getLocale();
 				$localeFiles = Locale::getLocaleFiles($locale);
 				$conference = Request::getConference();
-				$conferenceId = $conference->getConferenceId();
+				$conferenceId = $conference->getId();
 				$publicFilesDir = Config::getVar('files', 'public_files_dir');
 				$customLocalePathBase = $publicFilesDir . DIRECTORY_SEPARATOR . 'conferences' . DIRECTORY_SEPARATOR . $conferenceId . DIRECTORY_SEPARATOR . CUSTOM_LOCALE_DIR . DIRECTORY_SEPARATOR . $locale . DIRECTORY_SEPARATOR;
 
@@ -54,7 +54,7 @@ class CustomLocalePlugin extends GenericPlugin {
 		$localeFilename =& $args[1];
 
 		$conference = Request::getConference();
-		$conferenceId = $conference->getConferenceId();
+		$conferenceId = $conference->getId();
 		$publicFilesDir = Config::getVar('files', 'public_files_dir');
 		$customLocalePath = $publicFilesDir . DIRECTORY_SEPARATOR . 'conferences' . DIRECTORY_SEPARATOR . $conferenceId . DIRECTORY_SEPARATOR . CUSTOM_LOCALE_DIR . DIRECTORY_SEPARATOR . $locale . DIRECTORY_SEPARATOR . $localeFilename;
 
@@ -82,13 +82,13 @@ class CustomLocalePlugin extends GenericPlugin {
 	function getEnabled() {
 		$conference =& Request::getConference();
 		if (!$conference) return false;
-		return $this->getSetting($conference->getConferenceId(), 0, 'enabled');
+		return $this->getSetting($conference->getId(), 0, 'enabled');
 	}
 
 	function setEnabled($enabled) {
 		$conference =& Request::getConference();
 		if ($conference) {
-			$this->updateSetting($conference->getConferenceId(), 0, 'enabled', $enabled ? true : false);
+			$this->updateSetting($conference->getId(), 0, 'enabled', $enabled ? true : false);
 			return true;
 		}
 		return false;

@@ -23,12 +23,12 @@ class StaticPagesHandler extends Handler {
 	function view ($args) {
 		if (count($args) > 0 ) {
 			Locale::requireComponents(array(LOCALE_COMPONENT_PKP_COMMON, LOCALE_COMPONENT_APPLICATION_COMMON));			
-			$conference = &Request::getConference();
-			$conferenceId = $conference->getConferenceId();
+			$conference =& Request::getConference();
+			$conferenceId = $conference->getId();
 			$path = $args[0];
 
-			$staticPagesPlugin = &PluginRegistry::getPlugin('generic', 'StaticPagesPlugin');
-			$templateMgr = &TemplateManager::getManager();
+			$staticPagesPlugin =& PluginRegistry::getPlugin('generic', 'StaticPagesPlugin');
+			$templateMgr =& TemplateManager::getManager();
 
 			$staticPagesDAO =& DAORegistry::getDAO('StaticPagesDAO');
 			$staticPage = $staticPagesDAO->getStaticPageByPath($conferenceId, $path);

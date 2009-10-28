@@ -115,7 +115,7 @@ class ConferenceSiteSettingsForm extends Form {
 		$conference->setPath($this->getData('path'));
 		$conference->setEnabled($this->getData('enabled'));
 
-		if ($conference->getConferenceId() != null) {
+		if ($conference->getId() != null) {
 			$conferenceDao->updateConference($conference);
 		} else {
 			$site =& Request::getSite();

@@ -83,7 +83,7 @@ class GatewayPlugin extends Plugin {
 	function getEnabled() {
 		$conference =& Request::getConference();
 		if (!$conference) return false;
-		return $this->getSetting($conference->getConferenceId(), 0, 'enabled');
+		return $this->getSetting($conference->getId(), 0, 'enabled');
 	}
 
 	/**
@@ -93,7 +93,7 @@ class GatewayPlugin extends Plugin {
 		$conference =& Request::getConference();
 		if ($conference) {
 			$this->updateSetting(
-				$conference->getConferenceId(),
+				$conference->getId(),
 				0,
 				'enabled',
 				$enabled?true:false

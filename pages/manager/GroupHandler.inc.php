@@ -41,7 +41,7 @@ class GroupHandler extends ManagerHandler {
 		$this->setupTemplate();
 
 		$schedConf =& Request::getSchedConf();
-		$schedConfId = $schedConf? $schedConf->getSchedConfId():0;
+		$schedConfId = $schedConf? $schedConf->getId():0;
 
 		$rangeInfo =& Handler::getRangeInfo('groups', array());
 		$groupDao =& DAORegistry::getDAO('GroupDAO');
@@ -71,7 +71,7 @@ class GroupHandler extends ManagerHandler {
 		
 		$groupDao =& DAORegistry::getDAO('GroupDAO');
 		$groupDao->deleteObject($group);
-		$groupDao->resequenceGroups(ASSOC_TYPE_SCHED_CONF, $schedConf->getSchedConfId());
+		$groupDao->resequenceGroups(ASSOC_TYPE_SCHED_CONF, $schedConf->getId());
 
 		Request::redirect(null, null, null, 'groups');
 	}
@@ -128,7 +128,7 @@ class GroupHandler extends ManagerHandler {
 
 		if ($groupId !== null) {
 			$groupDao =& DAORegistry::getDAO('GroupDAO');
-			$group =& $groupDao->getGroup($groupId, ASSOC_TYPE_SCHED_CONF, $schedConf->getSchedConfId());
+			$group =& $groupDao->getGroup($groupId, ASSOC_TYPE_SCHED_CONF, $schedConf->getId());
 			if (!$group) {
 				Request::redirect(null, null, null, 'groups');
 			}
@@ -281,7 +281,7 @@ class GroupHandler extends ManagerHandler {
 
 			$roleDao =& DAORegistry::getDAO('RoleDAO');
 			while (true) {
-				$users = $roleDao->getUsersByRoleId(null, $conference->getConferenceId(), null, $searchType, $search, $searchMatch, $rangeInfo);
+				$users = $roleDao->getUsersByRoleId(null, $conference->getId(), null, $searchType, $search, $searchMatch, $rangeInfo);
 				if ($users->isInBounds()) break;
 				unset($rangeInfo);
 				$rangeInfo =& $users->getLastPageRangeInfo();
@@ -408,7 +408,7 @@ class GroupHandler extends ManagerHandler {
 
 		if ($groupId !== null) {
 			$groupDao =& DAORegistry::getDAO('GroupDAO');
-			$group =& $groupDao->getGroup($groupId, ASSOC_TYPE_SCHED_CONF, $schedConf->getSchedConfId());
+			$group =& $groupDao->getGroup($groupId, ASSOC_TYPE_SCHED_CONF, $schedConf->getId());
 
 			if (!$group) $passedValidation = false;
 			else $this->group =& $group;

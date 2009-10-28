@@ -273,7 +273,7 @@ class TimelineForm extends Form {
 		if ($schedConf->getSetting('startDate') != $this->_data['startDate']) {
 			ConferenceLog::logEvent(
 				$schedConf->getConferenceId(),
-				$schedConf->getSchedConfId(),
+				$schedConf->getId(),
 				CONFERENCE_LOG_CONFIGURATION,
 				LOG_TYPE_DEFAULT,
 				0, 'log.timeline.startDateChanged',
@@ -285,7 +285,7 @@ class TimelineForm extends Form {
 		if ($schedConf->getSetting('endDate') != $this->_data['endDate']) {
 			ConferenceLog::logEvent(
 				$schedConf->getConferenceId(),
-				$schedConf->getSchedConfId(),
+				$schedConf->getId(),
 				CONFERENCE_LOG_CONFIGURATION,
 				LOG_TYPE_DEFAULT,
 				0, 'log.timeline.endDateChanged',
@@ -297,7 +297,7 @@ class TimelineForm extends Form {
 		if ($schedConf->getSetting('regAuthorOpenDate') != $this->_data['regAuthorOpenDate']) {
 			ConferenceLog::logEvent(
 				$schedConf->getConferenceId(),
-				$schedConf->getSchedConfId(),
+				$schedConf->getId(),
 				CONFERENCE_LOG_CONFIGURATION,
 				LOG_TYPE_DEFAULT,
 				0, 'log.timeline.regAuthorOpenDateChanged',
@@ -308,7 +308,7 @@ class TimelineForm extends Form {
 		if ($schedConf->getSetting('regAuthorCloseDate') != $this->_data['regAuthorCloseDate']) {
 			ConferenceLog::logEvent(
 				$schedConf->getConferenceId(),
-				$schedConf->getSchedConfId(),
+				$schedConf->getId(),
 				CONFERENCE_LOG_CONFIGURATION,
 				LOG_TYPE_DEFAULT,
 				0, 'log.timeline.regAuthorCloseDateChanged',
@@ -319,7 +319,7 @@ class TimelineForm extends Form {
 		if ($schedConf->getSetting('showCFPDate') != $this->_data['showCFPDate']) {
 			ConferenceLog::logEvent(
 				$schedConf->getConferenceId(),
-				$schedConf->getSchedConfId(),
+				$schedConf->getId(),
 				CONFERENCE_LOG_CONFIGURATION,
 				LOG_TYPE_DEFAULT,
 				0, 'log.timeline.showCFPDateChanged',
@@ -331,7 +331,7 @@ class TimelineForm extends Form {
 		if ($schedConf->getSetting('submissionsOpenDate') != $this->_data['submissionsOpenDate']) {
 			ConferenceLog::logEvent(
 				$schedConf->getConferenceId(),
-				$schedConf->getSchedConfId(),
+				$schedConf->getId(),
 				CONFERENCE_LOG_CONFIGURATION,
 				LOG_TYPE_DEFAULT,
 				0, 'log.timeline.submissionsOpenDateChanged',
@@ -342,7 +342,7 @@ class TimelineForm extends Form {
 		if ($schedConf->getSetting('submissionsCloseDate') != $this->_data['submissionsCloseDate']) {
 			ConferenceLog::logEvent(
 				$schedConf->getConferenceId(),
-				$schedConf->getSchedConfId(),
+				$schedConf->getId(),
 				CONFERENCE_LOG_CONFIGURATION,
 				LOG_TYPE_DEFAULT,
 				0, 'log.timeline.submissionsCloseDateChanged',
@@ -353,7 +353,7 @@ class TimelineForm extends Form {
 		if ($schedConf->getSetting('regReviewerOpenDate') != $this->_data['regReviewerOpenDate']) {
 			ConferenceLog::logEvent(
 				$schedConf->getConferenceId(),
-				$schedConf->getSchedConfId(),
+				$schedConf->getId(),
 				CONFERENCE_LOG_CONFIGURATION,
 				LOG_TYPE_DEFAULT,
 				0, 'log.timeline.regReviewerOpenDateChanged',
@@ -364,7 +364,7 @@ class TimelineForm extends Form {
 		if ($schedConf->getSetting('regReviewerCloseDate') != $this->_data['regReviewerCloseDate']) {
 			ConferenceLog::logEvent(
 				$schedConf->getConferenceId(),
-				$schedConf->getSchedConfId(),
+				$schedConf->getId(),
 				CONFERENCE_LOG_CONFIGURATION,
 				LOG_TYPE_DEFAULT,
 				0, 'log.timeline.regReviewerCloseDateChanged',
@@ -375,7 +375,7 @@ class TimelineForm extends Form {
 		if ($schedConf->getSetting('postAbstractsDate') != $this->_data['postAbstractsDate']) {
 			ConferenceLog::logEvent(
 				$schedConf->getConferenceId(),
-				$schedConf->getSchedConfId(),
+				$schedConf->getId(),
 				CONFERENCE_LOG_CONFIGURATION,
 				LOG_TYPE_DEFAULT,
 				0, 'log.timeline.postAbstractsDateChanged',
@@ -386,7 +386,7 @@ class TimelineForm extends Form {
 		if ($schedConf->getSetting('postAbstracts') != $this->_data['postAbstracts']) {
 			ConferenceLog::logEvent(
 				$schedConf->getConferenceId(),
-				$schedConf->getSchedConfId(),
+				$schedConf->getId(),
 				CONFERENCE_LOG_CONFIGURATION,
 				LOG_TYPE_DEFAULT,
 				0, 'log.timeline.postAbstractsChanged',
@@ -397,7 +397,7 @@ class TimelineForm extends Form {
 		if ($schedConf->getSetting('postScheduleDate') != $this->_data['postScheduleDate']) {
 			ConferenceLog::logEvent(
 				$schedConf->getConferenceId(),
-				$schedConf->getSchedConfId(),
+				$schedConf->getId(),
 				CONFERENCE_LOG_CONFIGURATION,
 				LOG_TYPE_DEFAULT,
 				0, 'log.timeline.postScheduleDateChanged',
@@ -408,7 +408,7 @@ class TimelineForm extends Form {
 		if ($schedConf->getSetting('postSchedule') != $this->_data['postSchedule']) {
 			ConferenceLog::logEvent(
 				$schedConf->getConferenceId(),
-				$schedConf->getSchedConfId(),
+				$schedConf->getId(),
 				CONFERENCE_LOG_CONFIGURATION,
 				LOG_TYPE_DEFAULT,
 				0, 'log.timeline.postScheduleChanged',
@@ -419,7 +419,7 @@ class TimelineForm extends Form {
 		if ($schedConf->getSetting('postPapersDate') != $this->_data['postPapersDate']) {
 			ConferenceLog::logEvent(
 				$schedConf->getConferenceId(),
-				$schedConf->getSchedConfId(),
+				$schedConf->getId(),
 				CONFERENCE_LOG_CONFIGURATION,
 				LOG_TYPE_DEFAULT,
 				0, 'log.timeline.postPapersDateChanged',
@@ -430,7 +430,7 @@ class TimelineForm extends Form {
 		if ($schedConf->getSetting('postPapers') != $this->_data['postPapers']) {
 			ConferenceLog::logEvent(
 				$schedConf->getConferenceId(),
-				$schedConf->getSchedConfId(),
+				$schedConf->getId(),
 				CONFERENCE_LOG_CONFIGURATION,
 				LOG_TYPE_DEFAULT,
 				0, 'log.timeline.postPapersChanged',
@@ -441,7 +441,7 @@ class TimelineForm extends Form {
 		if ($schedConf->getSetting('delayOpenAccessDate') != $this->_data['delayOpenAccessDate']) {
 			ConferenceLog::logEvent(
 				$schedConf->getConferenceId(),
-				$schedConf->getSchedConfId(),
+				$schedConf->getId(),
 				CONFERENCE_LOG_CONFIGURATION,
 				LOG_TYPE_DEFAULT,
 				0, 'log.timeline.delayOpenAccessDateChanged',
@@ -452,7 +452,7 @@ class TimelineForm extends Form {
 		if ($schedConf->getSetting('delayOpenAccess') != $this->_data['delayOpenAccess']) {
 			ConferenceLog::logEvent(
 				$schedConf->getConferenceId(),
-				$schedConf->getSchedConfId(),
+				$schedConf->getId(),
 				CONFERENCE_LOG_CONFIGURATION,
 				LOG_TYPE_DEFAULT,
 				0, 'log.timeline.delayOpenAccessChanged',
@@ -463,7 +463,7 @@ class TimelineForm extends Form {
 		if ($schedConf->getSetting('closeCommentsDate') != $this->_data['closeCommentsDate']) {
 			ConferenceLog::logEvent(
 				$schedConf->getConferenceId(),
-				$schedConf->getSchedConfId(),
+				$schedConf->getId(),
 				CONFERENCE_LOG_CONFIGURATION,
 				LOG_TYPE_DEFAULT,
 				0, 'log.timeline.closeCommentsDateChanged',
@@ -474,7 +474,7 @@ class TimelineForm extends Form {
 		if ($schedConf->getSetting('closeComments') != $this->_data['closeComments']) {
 			ConferenceLog::logEvent(
 				$schedConf->getConferenceId(),
-				$schedConf->getSchedConfId(),
+				$schedConf->getId(),
 				CONFERENCE_LOG_CONFIGURATION,
 				LOG_TYPE_DEFAULT,
 				0, 'log.timeline.closeCommentsChanged',

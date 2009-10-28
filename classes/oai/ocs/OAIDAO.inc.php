@@ -454,7 +454,7 @@ class OAIDAO extends DAO {
 			$abbrev = $conference->getPath();
 			array_push($sets, new OAISet($abbrev, $title, ''));
 
-			$tracks =& $this->trackDao->getConferenceTracks($conference->getConferenceId());
+			$tracks =& $this->trackDao->getConferenceTracks($conference->getId());
 			foreach ($tracks->toArray() as $track) {
 				array_push($sets, new OAISet($abbrev . ':' . $track->getLocalizedAbbrev(), $track->getTrackTitle(), ''));
 			}
@@ -478,15 +478,15 @@ class OAIDAO extends DAO {
 		$conferenceId = null;
 
 		$conference =& $this->conferenceDao->getConferenceByPath($conferenceSpec);
-		if (!isset($conference) || (isset($restrictConferenceId) && $conference->getConferenceId() != $restrictConferenceId)) {
+		if (!isset($conference) || (isset($restrictConferenceId) && $conference->getId() != $restrictConferenceId)) {
 			return array(0, 0);
 		}
 
-		$conferenceId = $conference->getConferenceId();
+		$conferenceId = $conference->getId();
 		$trackId = null;
 
 		if (isset($trackSpec)) {
-			$track =& $this->trackDao->getTrackByAbbrev($trackSpec, $conference->getConferenceId());
+			$track =& $this->trackDao->getTrackByAbbrev($trackSpec, $conference->getId());
 			if (isset($track)) {
 				$trackId = $track->getTrackId();
 			} else {

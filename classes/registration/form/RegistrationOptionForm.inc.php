@@ -122,7 +122,7 @@ class RegistrationOptionForm extends Form {
 			$registrationOption = new RegistrationOption();
 		}
 
-		$registrationOption->setSchedConfId($schedConf->getSchedConfId());
+		$registrationOption->setSchedConfId($schedConf->getId());
 		$registrationOption->setName($this->getData('name'), null); // Localized
 		$registrationOption->setDescription($this->getData('description'), null); // Localized
 		$registrationOption->setOpeningDate($this->getData('openDate'));

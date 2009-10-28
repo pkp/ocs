@@ -128,7 +128,7 @@ class SchedConfSettingsForm extends Form {
 		$schedConf->setConferenceId($this->getData('conferenceId'));
 		$schedConf->setPath($this->getData('path'));
 
-		if ($schedConf->getSchedConfId() != null) {
+		if ($schedConf->getId() != null) {
 			$schedConfDao->updateSchedConf($schedConf);
 			$track = null; // avoid warning
 		} else {

@@ -80,7 +80,7 @@ class ConferenceLanguagesHandler extends ManagerHandler {
 					
 		$conference =& Request::getConference();
 		$conferenceSettingsDao =& DAORegistry::getDAO('ConferenceSettingsDAO');
-		$conferenceSettingsDao->reloadLocalizedDefaultSettings($conference->getConferenceId(), 'registry/conferenceSettings.xml', array(
+		$conferenceSettingsDao->reloadLocalizedDefaultSettings($conference->getId(), 'registry/conferenceSettings.xml', array(
 				'indexUrl' => Request::getIndexUrl(),
 				'conferencePath' => $conference->getData('path'),
 				'primaryLocale' => $conference->getPrimaryLocale(),

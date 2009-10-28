@@ -77,7 +77,7 @@ class UserImportExportPlugin extends ImportExportPlugin {
 				import('file.FileManager');
 				if (($userFile = FileManager::getUploadedFilePath('userFile')) !== false) {
 					// Import the uploaded file
-					$parser = new UserXMLParser($schedConf->getConferenceId(), $schedConf->getSchedConfId());
+					$parser = new UserXMLParser($schedConf->getConferenceId(), $schedConf->getId());
 					$users =& $parser->parseData($userFile);
 
 					$i = 0;
@@ -152,7 +152,7 @@ class UserImportExportPlugin extends ImportExportPlugin {
 					array_push($users, $newUser);
 				}
 
-				$parser = new UserXMLParser($schedConf->getConferenceId(), $schedConf->getSchedConfId());
+				$parser = new UserXMLParser($schedConf->getConferenceId(), $schedConf->getId());
 				$parser->setUsersToImport($users);
 				if (!$parser->importUsers($sendNotify, $continueOnError)) {
 					// Failures occurred
@@ -164,7 +164,7 @@ class UserImportExportPlugin extends ImportExportPlugin {
 				break;
 			case 'exportAll':
 				$this->import('UserExportDom');
-				$users =& $roleDao->getUsersBySchedConfId($schedConf->getSchedConfId());
+				$users =& $roleDao->getUsersBySchedConfId($schedConf->getId());
 				$users =& $users->toArray();
 				$doc =& UserExportDom::exportUsers($schedConf, $users);
 				header("Content-Type: application/xml");
@@ -178,7 +178,7 @@ class UserImportExportPlugin extends ImportExportPlugin {
 				$rolePaths = array();
 				foreach (Request::getUserVar('roles') as $rolePath) {
 					$roleId = $roleDao->getRoleIdFromPath($rolePath);
-					$thisRoleUsers =& $roleDao->getUsersByRoleId($roleId, $schedConf->getSchedConfId());
+					$thisRoleUsers =& $roleDao->getUsersByRoleId($roleId, $schedConf->getId());
 					foreach ($thisRoleUsers->toArray() as $user) {
 						$users[$user->getId()] = $user;
 					}
@@ -230,7 +230,7 @@ class UserImportExportPlugin extends ImportExportPlugin {
 				import('file.FileManager');
 
 				// Import the uploaded file
-				$parser = new UserXMLParser($schedConf->getConferenceId(), $schedConf->getSchedConfId());
+				$parser = new UserXMLParser($schedConf->getConferenceId(), $schedConf->getId());
 				$users =& $parser->parseData($xmlFile);
 
 				if (!$parser->importUsers($sendNotify, $continueOnError)) {
@@ -255,14 +255,14 @@ class UserImportExportPlugin extends ImportExportPlugin {
 				$roleDao =& DAORegistry::getDAO('RoleDAO');
 				$rolePaths = null;
 				if (empty($args)) {
-					$users =& $roleDao->getUsersBySchedConfId($schedConf->getSchedConfId());
+					$users =& $roleDao->getUsersBySchedConfId($schedConf->getId());
 					$users =& $users->toArray();
 				} else {
 					$users = array();
 					$rolePaths = array();
 					foreach ($args as $rolePath) {
 						$roleId = $roleDao->getRoleIdFromPath($rolePath);
-						$thisRoleUsers =& $roleDao->getUsersByRoleId($roleId, $schedConf->getSchedConfId());
+						$thisRoleUsers =& $roleDao->getUsersByRoleId($roleId, $schedConf->getId());
 						foreach ($thisRoleUsers->toArray() as $user) {
 							$users[$user->getId()] = $user;
 						}

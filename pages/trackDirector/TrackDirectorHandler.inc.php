@@ -38,7 +38,7 @@ class TrackDirectorHandler extends Handler {
 		$this->setupTemplate();
 
 		$schedConf =& Request::getSchedConf();
-		$schedConfId = $schedConf->getSchedConfId();
+		$schedConfId = $schedConf->getId();
 		$user =& Request::getUser();
 
 		// Get the user's search conditions, if any
@@ -90,7 +90,7 @@ class TrackDirectorHandler extends Handler {
 		while (true) {
 			$submissions =& $trackDirectorSubmissionDao->$functionName(
 				$user->getId(),
-				$schedConf->getSchedConfId(),
+				$schedConf->getId(),
 				$filterTrack,
 				$searchField,
 				$searchMatch,
@@ -169,11 +169,11 @@ class TrackDirectorHandler extends Handler {
 			Validation::redirectLogin();
 		}
 
-		if($page == ROLE_PATH_TRACK_DIRECTOR && !Validation::isTrackDirector($conference->getConferenceId(), $schedConf->getSchedConfId())) {
+		if($page == ROLE_PATH_TRACK_DIRECTOR && !Validation::isTrackDirector($conference->getId(), $schedConf->getId())) {
 			Validation::redirectLogin();
 		}
 
-		if($page == ROLE_PATH_DIRECTOR && !Validation::isDirector($conference->getConferenceId(), $schedConf->getSchedConfId())) {
+		if($page == ROLE_PATH_DIRECTOR && !Validation::isDirector($conference->getId(), $schedConf->getId())) {
 			Validation::redirectLogin();
 		}
 	}

@@ -99,7 +99,7 @@ class PaperSearchDAO extends DAO {
 
 		if (!empty($conference)) {
 			$sqlWhere .= ' AND i.conference_id = ?';
-			$params[] = $conference->getConferenceId();
+			$params[] = $conference->getId();
 		}
 
 		$result =& $this->retrieveCached(

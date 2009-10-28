@@ -72,7 +72,7 @@ class PaymentSettingsForm extends Form {
 		if (isset($this->plugins[$paymentMethodPluginName])) {
 			$plugin =& $this->plugins[$paymentMethodPluginName];
 			foreach ($plugin->getSettingsFormFieldNames() as $field) {
-				$this->_data[$field] = $plugin->getSetting($schedConf->getConferenceId(), $schedConf->getSchedConfId(), $field);
+				$this->_data[$field] = $plugin->getSetting($schedConf->getConferenceId(), $schedConf->getId(), $field);
 			}
 		}
 	}
@@ -109,7 +109,7 @@ class PaymentSettingsForm extends Form {
 		if (isset($this->plugins[$paymentMethodPluginName])) {
 			$plugin =& $this->plugins[$paymentMethodPluginName];
 			foreach ($plugin->getSettingsFormFieldNames() as $field) {
-				$plugin->updateSetting($schedConf->getConferenceId(), $schedConf->getSchedConfId(), $field, $this->getData($field));
+				$plugin->updateSetting($schedConf->getConferenceId(), $schedConf->getId(), $field, $this->getData($field));
 			}
 		}
 	}

@@ -61,7 +61,7 @@ class UserHandler extends Handler {
 
 			// Fetch the user's roles for each conference
 			while ($conference =& $conferences->next()) {
-				$conferenceId = $conference->getConferenceId();
+				$conferenceId = $conference->getId();
 				$schedConfId = 0;
 				
 				// First, the generic roles for this conference
@@ -80,14 +80,14 @@ class UserHandler extends Handler {
 				// TODO: don't display scheduled conference roles if granted at conference level too?
 				$schedConfs =& $schedConfDao->getSchedConfsByConferenceId($conferenceId);
 				while ($schedConf =& $schedConfs->next()) {
-					$schedConfId = $schedConf->getSchedConfId();
+					$schedConfId = $schedConf->getId();
 
 					$schedConfRoles =& $roleDao->getRolesByUserId($userId, $conferenceId, $schedConfId);
 					if(!empty($schedConfRoles)) {
 						$schedConfsToDisplay[$conferenceId][$schedConfId] =& $schedConf;
 						$this->getRoleDataForConference($userId, $conferenceId, $schedConfId, $submissionsCount, $isValid);
 					}
-					$allSchedConfs[$conference->getConferenceId()][$schedConf->getSchedConfId()] =& $schedConf;
+					$allSchedConfs[$conference->getId()][$schedConf->getId()] =& $schedConf;
 					unset($schedConf);
 				}
 				
@@ -97,7 +97,7 @@ class UserHandler extends Handler {
 					$conferencesToDisplay[$conferenceId] =& $conference;
 				}
 				
-				$allConferences[$conference->getConferenceId()] =& $conference;
+				$allConferences[$conference->getId()] =& $conference;
 				unset($schedConfs);
 				unset($conference);
 			}
@@ -105,14 +105,14 @@ class UserHandler extends Handler {
 			$templateMgr->assign('showAllConferences', 1);
 			$templateMgr->assign_by_ref('userConferences', $conferencesToDisplay);
 		} else {  // Currently within a conference's context
-			$conferenceId = $conference->getConferenceId();
+			$conferenceId = $conference->getId();
 			$userConferences = array($conference);
 			
 			$this->getRoleDataForConference($userId, $conferenceId, 0, $submissionsCount, $isValid);
 
 			$schedConfs =& $schedConfDao->getSchedConfsByConferenceId($conferenceId);
 			while($schedConf =& $schedConfs->next()) {
-				$schedConfId = $schedConf->getSchedConfId();
+				$schedConfId = $schedConf->getId();
 				$schedConfRoles =& $roleDao->getRolesByUserId($userId, $conferenceId, $schedConfId);
 				if(!empty($schedConfRoles)) {
 					$this->getRoleDataForConference($userId, $conferenceId, $schedConfId, $submissionsCount, $isValid);
@@ -256,7 +256,7 @@ class UserHandler extends Handler {
 
 		if ($schedConfAction->$func($schedConf)) {
 			$role = new Role();
-			$role->setSchedConfId($schedConf->getSchedConfId());
+			$role->setSchedConfId($schedConf->getId());
 			$role->setConferenceId($schedConf->getConferenceId());
 			$role->setRoleId($roleId);
 			$role->setUserId($user->getId());

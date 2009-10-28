@@ -45,7 +45,7 @@ class ProgramSettingsForm extends Form {
 
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('helpTopicId','conference.currentConferences.program');
-		$templateMgr->assign('publicSchedConfFilesDir', Request::getBaseUrl() . '/' . PublicFileManager::getSchedConfFilesPath($schedConf->getSchedConfId()));
+		$templateMgr->assign('publicSchedConfFilesDir', Request::getBaseUrl() . '/' . PublicFileManager::getSchedConfFilesPath($schedConf->getId()));
 		$templateMgr->assign('programFile', $schedConf->getSetting('programFile'));
 
 		parent::display();
@@ -112,7 +112,7 @@ class ProgramSettingsForm extends Form {
 				return false;
 			}
 			$uploadName = 'program-' . $locale . '.' . $extension;
-			if ($fileManager->uploadSchedConfFile($schedConf->getSchedConfId(), $settingName, $uploadName)) {
+			if ($fileManager->uploadSchedConfFile($schedConf->getId(), $settingName, $uploadName)) {
 				$value = $schedConf->getSetting($settingName);
 				$value[$locale] = array(
 					'name' => $oldName,
@@ -140,8 +140,8 @@ class ProgramSettingsForm extends Form {
 
 		import('file.PublicFileManager');
 		$fileManager = new PublicFileManager();
-		if ($fileManager->removeSchedConfFile($schedConf->getSchedConfId(), $locale !== null ? $setting[$locale]['uploadName'] : $setting['uploadName'] )) {
-			return $settingsDao->deleteSetting($schedConf->getSchedConfId(), $settingName, $locale);
+		if ($fileManager->removeSchedConfFile($schedConf->getId(), $locale !== null ? $setting[$locale]['uploadName'] : $setting['uploadName'] )) {
+			return $settingsDao->deleteSetting($schedConf->getId(), $settingName, $locale);
 		} else {
 			return false;
 		}

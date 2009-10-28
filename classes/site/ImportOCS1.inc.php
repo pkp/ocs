@@ -222,7 +222,7 @@ class ImportOCS1 {
 				printf("Using existing conference\n");
 			}
 			$conference->updateSetting('title', array(Locale::getLocale() => $this->globalConfigInfo['name']), null, true);
-			$this->conferenceId = $conference->getConferenceId();
+			$this->conferenceId = $conference->getId();
 			$this->conferenceIsNew = false;
 		}
 		$this->conference =& $conference;
@@ -353,7 +353,7 @@ class ImportOCS1 {
 			foreach ($levels as $key => $level) {
 				$fee = $fees[$key];
 				$registrationType = new RegistrationType();
-				$registrationType->setSchedConfId($schedConf->getSchedConfId());
+				$registrationType->setSchedConfId($schedConf->getId());
 				$registrationType->setName($level, Locale::getLocale());
 				$registrationType->setCost($fee);
 				$registrationType->setCurrencyCodeAlpha('USD'); // FIXME?
@@ -372,7 +372,7 @@ class ImportOCS1 {
 			foreach ($levelsLate as $key => $level) {
 				$fee = $feesLate[$key];
 				$registrationType = new RegistrationType();
-				$registrationType->setSchedConfId($schedConf->getSchedConfId());
+				$registrationType->setSchedConfId($schedConf->getId());
 				$registrationType->setName($level . ' (Late)', Locale::getLocale());
 				$registrationType->setCost($fee);
 				$registrationType->setCurrencyCodeAlpha('USD'); // FIXME?
@@ -455,11 +455,11 @@ class ImportOCS1 {
 				continue;
 			}
 
-			if ($registrationDao->registrationExistsByUser($user->getId(), $schedConf->getSchedConfId())) {
+			if ($registrationDao->registrationExistsByUser($user->getId(), $schedConf->getId())) {
 				$this->errors[] = "A duplicate registration (level \"$seekingRegLevel\") was skipped for user with email $email.";
 			} else {
 				$registration = new Registration();
-				$registration->setSchedConfId($schedConf->getSchedConfId());
+				$registration->setSchedConfId($schedConf->getId());
 				$registration->setUserId($user->getId());
 				$registration->setTypeId($registrationType->getTypeId());
 				if ($row['has_paid'] == 'paid') $registration->setDatePaid(Core::cleanVar($row['date_paid']));
@@ -500,7 +500,7 @@ class ImportOCS1 {
 
 			$track = new Track();
 			$schedConf =& $this->schedConfMap[$row['cf']];
-			$track->setSchedConfId($schedConf->getSchedConfId());
+			$track->setSchedConfId($schedConf->getId());
 			$track->setTitle(Core::cleanVar($row['track']), Locale::getLocale());
 			$track->setSequence(++$sequence);
 			$track->setDirectorRestricted(0);
@@ -536,7 +536,7 @@ class ImportOCS1 {
 		while (!$result->EOF) {
 			$row =& $result->fields;
 			$schedConf =& $this->schedConfMap[$row['cf']];
-			$schedConfId = $schedConf->getSchedConfId();
+			$schedConfId = $schedConf->getId();
 
 			$user = $userDao->getUserByUsername(Core::cleanVar($row['login']));
 			if (!$user) {
@@ -583,7 +583,7 @@ class ImportOCS1 {
 
 				// Make this user a author
 				$role = new Role();
-				$role->setSchedConfId($schedConf->getSchedConfId());
+				$role->setSchedConfId($schedConf->getId());
 				$role->setConferenceId($schedConf->getConferenceId());
 				$role->setUserId($user->getId());
 				$role->setRoleId(ROLE_ID_REVIEWER);
@@ -625,7 +625,7 @@ class ImportOCS1 {
 		while (!$result->EOF) {
 			$row =& $result->fields;
 			$schedConf =& $this->schedConfMap[$row['cf']];
-			$schedConfId = $schedConf->getSchedConfId();
+			$schedConfId = $schedConf->getId();
 
 			// Bring in the primary user for this paper.
 			$user = $userDao->getUserByUsername(Core::cleanVar($row['login']));
@@ -672,7 +672,7 @@ class ImportOCS1 {
 
 				// Make this user a author
 				$role = new Role();
-				$role->setSchedConfId($schedConf->getSchedConfId());
+				$role->setSchedConfId($schedConf->getId());
 				$role->setConferenceId($schedConf->getConferenceId());
 				$role->setUserId($user->getId());
 				$role->setRoleId(ROLE_ID_AUTHOR);
@@ -695,7 +695,7 @@ class ImportOCS1 {
 					// Create an "Unassigned" track to use for submissions
 					// that didn't have a track in OCS 1.x.
 					$track = new Track();
-					$track->setSchedConfId($schedConf->getSchedConfId());
+					$track->setSchedConfId($schedConf->getId());
 					$track->setTitle('UNASSIGNED', Locale::getLocale());
 					$track->setSequence(REALLY_BIG_NUMBER);
 					$track->setDirectorRestricted(1);
@@ -870,7 +870,7 @@ class ImportOCS1 {
 				continue;
 			}
 
-			$schedConfId = $schedConf->getSchedConfId();
+			$schedConfId = $schedConf->getId();
 			$paperId = $paper->getPaperId();
 			$reviewerId = $reviewer->getId();
 

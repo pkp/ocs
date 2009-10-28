@@ -31,7 +31,7 @@ class LoginHandler extends PKPLoginHandler {
 			$userId = (int)$args[0];
 			$conference =& Request::getConference();
 
-			if (!Validation::canAdminister($conference->getConferenceId(), $userId)) {
+			if (!Validation::canAdminister($conference->getId(), $userId)) {
 				// We don't have administrative rights
 				// over this user. Display an error.
 				$templateMgr =& TemplateManager::getManager();

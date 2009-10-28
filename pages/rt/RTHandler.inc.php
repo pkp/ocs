@@ -110,7 +110,7 @@ class RTHandler extends PaperHandler {
 		$conferenceRt =& $rtDao->getConferenceRTByConference($conference);
 
 		$context =& $rtDao->getContext($contextId);
-		if ($context) $version =& $rtDao->getVersion($context->getVersionId(), $conference->getConferenceId());
+		if ($context) $version =& $rtDao->getVersion($context->getVersionId(), $conference->getId());
 
 		if (!$context || !$version || !$conferenceRt || $conferenceRt->getVersion()==null || $conferenceRt->getVersion() != $context->getVersionId()) {
 			Request::redirect(null, null, 'paper', 'view', array($paperId, $galleyId));

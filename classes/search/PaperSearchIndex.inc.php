@@ -265,7 +265,7 @@ class PaperSearchIndex {
 
 			if ($log) echo "Indexing \"", $schedConf->getFullTitle(), "\" ... ";
 
-			$papers =& $paperDao->getPapersBySchedConfId($schedConf->getSchedConfId());
+			$papers =& $paperDao->getPapersBySchedConfId($schedConf->getId());
 			while (!$papers->eof()) {
 				$paper =& $papers->next();
 				if ($paper->getDateSubmitted()) {

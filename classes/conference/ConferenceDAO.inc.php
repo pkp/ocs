@@ -93,7 +93,7 @@ class ConferenceDAO extends DAO {
 		);
 
 		$conference->setConferenceId($this->getInsertConferenceId());
-		return $conference->getConferenceId();
+		return $conference->getId();
 	}
 
 	/**
@@ -114,7 +114,7 @@ class ConferenceDAO extends DAO {
 				$conference->getPath(),
 				$conference->getSequence(),
 				$conference->getEnabled() ? 1 : 0,
-				$conference->getConferenceId()
+				$conference->getId()
 			)
 		);
 	}
@@ -124,7 +124,7 @@ class ConferenceDAO extends DAO {
 	 * @param $conference Conference
 	 */
 	function deleteConference(&$conference) {
-		return $this->deleteConferenceById($conference->getConferenceId());
+		return $this->deleteConferenceById($conference->getId());
 	}
 
 	/**
@@ -202,7 +202,7 @@ class ConferenceDAO extends DAO {
 		$conferences = array();
 		$conferenceIterator =& $this->getConferences();
 		while ($conference =& $conferenceIterator->next()) {
-			$conferences[$conference->getConferenceId()] = $conference->getConferenceTitle();
+			$conferences[$conference->getId()] = $conference->getConferenceTitle();
 			unset($conference);
 		}
 		return $conferences;
@@ -216,7 +216,7 @@ class ConferenceDAO extends DAO {
 		$conferences = array();
 		$conferenceIterator =& $this->getEnabledConferences();
 		while ($conference =& $conferenceIterator->next()) {
-			$conferences[$conference->getConferenceId()] = $conference->getConferenceTitle();
+			$conferences[$conference->getId()] = $conference->getConferenceTitle();
 			unset($conference);
 		}
 		return $conferences;

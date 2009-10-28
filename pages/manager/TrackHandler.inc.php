@@ -34,7 +34,7 @@ class TrackHandler extends ManagerHandler {
 		$rangeInfo =& Handler::getRangeInfo('tracks', array());
 		$trackDao =& DAORegistry::getDAO('TrackDAO');
 		while (true) {
-			$tracks =& $trackDao->getSchedConfTracks($schedConf->getSchedConfId(), $rangeInfo);
+			$tracks =& $trackDao->getSchedConfTracks($schedConf->getId(), $rangeInfo);
 			if ($tracks->isInBounds()) break;
 			unset($rangeInfo);
 			$rangeInfo =& $tracks->getLastPageRangeInfo();
@@ -105,7 +105,7 @@ class TrackHandler extends ManagerHandler {
 		$schedConf =& Request::getSchedConf();
 		if (isset($args) && !empty($args)) {
 			$trackDao =& DAORegistry::getDAO('TrackDAO');
-			$trackDao->deleteTrackById($args[0], $schedConf->getSchedConfId());
+			$trackDao->deleteTrackById($args[0], $schedConf->getId());
 		}
 
 		Request::redirect(null, null, null, 'tracks');
@@ -119,12 +119,12 @@ class TrackHandler extends ManagerHandler {
 
 		$schedConf =& Request::getSchedConf();
 		$trackDao =& DAORegistry::getDAO('TrackDAO');
-		$track =& $trackDao->getTrack(Request::getUserVar('trackId'), $schedConf->getSchedConfId());
+		$track =& $trackDao->getTrack(Request::getUserVar('trackId'), $schedConf->getId());
 
 		if ($track != null) {
 			$track->setSequence($track->getSequence() + (Request::getUserVar('d') == 'u' ? -1.5 : 1.5));
 			$trackDao->updateTrack($track);
-			$trackDao->resequenceTracks($schedConf->getSchedConfId());
+			$trackDao->resequenceTracks($schedConf->getId());
 		}
 
 		Request::redirect(null, null, null, 'tracks');

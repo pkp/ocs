@@ -57,7 +57,7 @@ class CustomBlockManagerPlugin extends GenericPlugin {
 				$conference =& Request::getConference();
 				if ( !$conference ) return false;
 				
-				$blocks = $this->getSetting($conference->getConferenceId(), 0, 'blocks');
+				$blocks = $this->getSetting($conference->getId(), 0, 'blocks');
 				if ( !is_array($blocks) ) break;
 				$i= 0;
 				foreach ( $blocks as $block ) {
@@ -85,7 +85,7 @@ class CustomBlockManagerPlugin extends GenericPlugin {
 	 */
 	function getEnabled() {
 		$conference =& Request::getConference();
- 		$conferenceId = $conference?$conference->getConferenceId():0;
+ 		$conferenceId = $conference?$conference->getId():0;
 		return $this->getSetting($conferenceId, 0, 'enabled');
 	}
 
@@ -94,7 +94,7 @@ class CustomBlockManagerPlugin extends GenericPlugin {
 	 */
 	function setEnabled($enabled) {
  		$conference =& Request::getConference();
- 		$conferenceId = $conference?$conference->getConferenceId():0;
+ 		$conferenceId = $conference?$conference->getId():0;
  		$this->updateSetting($conferenceId, 0, 'enabled', $enabled);
 	}
 
@@ -159,7 +159,7 @@ class CustomBlockManagerPlugin extends GenericPlugin {
 				$templateMgr->assign('pageHierarchy', $pageCrumbs);
 
 				$this->import('SettingsForm');
-				$form = new SettingsForm($this, $conference->getConferenceId());
+				$form = new SettingsForm($this, $conference->getId());
 				$form->readInputData();
 				
 				if (Request::getUserVar('addBlock')) {

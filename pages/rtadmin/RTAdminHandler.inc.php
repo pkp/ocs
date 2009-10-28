@@ -42,7 +42,7 @@ class RTAdminHandler extends Handler {
 			$rtDao =& DAORegistry::getDAO('RTDAO');
 			$rt = $rtDao->getConferenceRTByConference($conference);
 			if (isset($rt)) {
-				$version = $rtDao->getVersion($rt->getVersion(), $conference->getConferenceId());
+				$version = $rtDao->getVersion($rt->getVersion(), $conference->getId());
 			}
 
 			// Display the administration menu for this conference.
@@ -65,7 +65,7 @@ class RTAdminHandler extends Handler {
 			$allConferences =& $allConferences->toArray();
 
 			foreach ($allConferences as $conference) {
-				if ($roleDao->roleExists($conference->getConferenceId(), 0, $user->getId(), ROLE_ID_CONFERENCE_MANAGER)) {
+				if ($roleDao->roleExists($conference->getId(), 0, $user->getId(), ROLE_ID_CONFERENCE_MANAGER)) {
 					$conferences[] = $conference;
 				}
 			}
@@ -93,7 +93,7 @@ class RTAdminHandler extends Handler {
 		}
 
 		$versionId = isset($args[0])?$args[0]:0;
-		$conferenceId = $conference->getConferenceId();
+		$conferenceId = $conference->getId();
 
 		$version = $rtDao->getVersion($versionId, $conferenceId);
 

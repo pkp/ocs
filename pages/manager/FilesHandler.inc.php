@@ -159,7 +159,7 @@ class FilesHandler extends ManagerHandler {
 
 	function getRealFilesDir($currentDir) {
 		$conference =& Request::getConference();
-		$base = '/conferences/' . $conference->getConferenceId();
+		$base = '/conferences/' . $conference->getId();
 
 		return Config::getVar('files', 'files_dir') . $base .'/' . $currentDir;
 	}

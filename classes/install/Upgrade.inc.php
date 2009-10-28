@@ -62,7 +62,7 @@ class Upgrade extends Installer {
 		// Get conference IDs for insertion, including 0 for site-level
 		$conferenceIds = array(0);
 		while ($conference =& $conferences->next()) {
-			$conferenceIds[] = $conference->getConferenceId();
+			$conferenceIds[] = $conference->getId();
 			unset($conference);
 		}
 
@@ -329,9 +329,9 @@ class Upgrade extends Installer {
 
 		$schedConfs =& $schedConfDao->getSchedConfs();
 		while ($schedConf =& $schedConfs->next()) {
-			$papers =& $paperDao->getPapersBySchedConfId($schedConf->getSchedConfId());
+			$papers =& $paperDao->getPapersBySchedConfId($schedConf->getId());
 			$reviewMode = $schedConf->getSetting('reviewMode');
-			$paperDao->update('UPDATE papers SET review_mode = ? WHERE sched_conf_id = ?', array((int) $reviewMode, $schedConf->getSchedConfId()));
+			$paperDao->update('UPDATE papers SET review_mode = ? WHERE sched_conf_id = ?', array((int) $reviewMode, $schedConf->getId()));
 			unset($schedConf);
 		}
 		return true;
@@ -468,12 +468,12 @@ class Upgrade extends Installer {
 
 			foreach ($locales as $locale) Locale::requireComponents(array(LOCALE_COMPONENT_OCS_DEFAULT), $locale);
 
-			$schedConfs =& $schedConfDao->getSchedConfsByConferenceId($conference->getConferenceId());
+			$schedConfs =& $schedConfDao->getSchedConfsByConferenceId($conference->getId());
 			while ($schedConf =& $schedConfs->next()) {
 				$allowIndividualSubmissions = $schedConf->getSetting('allowIndividualSubmissions');
 				$allowPanelSubmissions = $schedConf->getSetting('allowPanelSubmissions');
 				if ($allowIndividualSubmissions || $allowPanelSubmissions) {
-					$paperType =& $paperTypeDao->build($schedConf->getSchedConfId());
+					$paperType =& $paperTypeDao->build($schedConf->getId());
 				}
 				if ($allowIndividualSubmissions) {
 					$paperTypeEntry =& $paperTypeEntryDao->newDataObject();
@@ -490,7 +490,7 @@ class Upgrade extends Installer {
 							'int',
 							'',
 							(int) $paperTypeEntry->getId(),
-							(int) $schedConf->getSchedConfId(),
+							(int) $schedConf->getId(),
 							0 // SUBMISSION_TYPE_SINGLE (since removed)
 						)
 					);
@@ -511,7 +511,7 @@ class Upgrade extends Installer {
 							'int',
 							'',
 							(int) $paperTypeEntry->getId(),
-							(int) $schedConf->getSchedConfId(),
+							(int) $schedConf->getId(),
 							1 // SUBMISSION_TYPE_PANEL (since removed)
 						)
 					);

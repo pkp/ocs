@@ -135,7 +135,7 @@ class EditCommentForm extends Form {
 		// If no directors are currently assigned, send this message to
 		// all of the conference's directors.
 		if (empty($directorAddresses)) {
-			$directors =& $roleDao->getUsersByRoleId(ROLE_ID_DIRECTOR, $conference->getConferenceId());
+			$directors =& $roleDao->getUsersByRoleId(ROLE_ID_DIRECTOR, $conference->getId());
 			while (!$directors->eof()) {
 				$director =& $directors->next();
 				$directorAddresses[$director->getEmail()] = $director->getFullName();

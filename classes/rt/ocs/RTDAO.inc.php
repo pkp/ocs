@@ -28,7 +28,7 @@ class RTDAO extends DAO {
 	 * @return RT
 	 */
 	function &getConferenceRTByConference(&$conference) {
-		$rt = new ConferenceRT($conference->getConferenceId());
+		$rt = new ConferenceRT($conference->getId());
 		$rt->setEnabled($conference->getSetting('rtEnabled')?true:false);
 		$rt->setVersion((int) $conference->getSetting('rtVersionId'));
 		$rt->setAbstract($conference->getSetting('rtAbstract')?true:false);

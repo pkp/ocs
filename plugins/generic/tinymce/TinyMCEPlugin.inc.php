@@ -368,7 +368,7 @@ class TinyMCEPlugin extends GenericPlugin {
 	 */
 	function getEnabled() {
 		$conference =& Request::getConference();
-		$conferenceId = $conference?$conference->getConferenceId():0;
+		$conferenceId = $conference?$conference->getId():0;
 		return $this->getSetting($conferenceId, 0, 'enabled');
 	}
 
@@ -394,7 +394,7 @@ class TinyMCEPlugin extends GenericPlugin {
  	 */
 	function manage($verb, $args, &$message) {
 		$conference =& Request::getConference();
-		$conferenceId = $conference?$conference->getConferenceId():0;
+		$conferenceId = $conference?$conference->getId():0;
 		switch ($verb) {
 			case 'enable':
 				$this->updateSetting($conferenceId, 0, 'enabled', true);

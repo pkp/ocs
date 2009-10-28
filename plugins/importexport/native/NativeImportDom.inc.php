@@ -138,7 +138,7 @@ class NativeImportDom {
 		$foundTrackId = $foundTrackTitle = null;
 		$index = 0;
 		foreach($titles as $locale => $title) {
-			$track = $trackDao->getTrackByTitle($title, $schedConf->getSchedConfId());
+			$track = $trackDao->getTrackByTitle($title, $schedConf->getId());
 			if ($track) {
 				$trackId = $track->getTrackId();
 				if ($foundTrackId) { 
@@ -169,7 +169,7 @@ class NativeImportDom {
 		$foundTrackId = $foundTrackAbbrev = null;
 		$index = 0;
 		foreach($abbrevs as $locale => $abbrev) {
-			$abbrevTrack = $trackDao->getTrackByAbbrev($abbrev, $schedConf->getSchedConfId());
+			$abbrevTrack = $trackDao->getTrackByAbbrev($abbrev, $schedConf->getId());
 			if ($abbrevTrack) {
 				$trackId = $abbrevTrack->getTrackId();
 				if ($foundTrackId) {
@@ -207,7 +207,7 @@ class NativeImportDom {
 			$track->setAbbrev($abbrevs, null);
 			$track->setIdentifyType($identifyTypes, null);
 			$track->setPolicy($policies, null);
-			$track->setSchedConfId($schedConf->getSchedConfId());
+			$track->setSchedConfId($schedConf->getId());
 			$track->setSequence(REALLY_BIG_NUMBER);
 			$track->setMetaIndexed(1);
 			$track->setEditorRestricted(1);
@@ -245,7 +245,7 @@ class NativeImportDom {
 		$paperDao =& DAORegistry::getDAO('PaperDAO');
 
 		$paper = new Paper();
-		$paper->setSchedConfId($schedConf->getSchedConfId());
+		$paper->setSchedConfId($schedConf->getId());
 		$paper->setUserId($user->getId());
 		$paper->setTrackId($track->getTrackId());
 		$paper->setStatus(SUBMISSION_STATUS_PUBLISHED);
@@ -401,7 +401,7 @@ class NativeImportDom {
 		// Insert published paper entry.
 		$publishedPaper = new PublishedPaper();
 		$publishedPaper->setPaperId($paper->getPaperId());
-		$publishedPaper->setSchedConfId($schedConf->getSchedConfId());
+		$publishedPaper->setSchedConfId($schedConf->getId());
 
 		if (($node = $paperNode->getChildByName('date_published'))) {
 			$publishedDate = strtotime($node->getValue());
@@ -419,7 +419,7 @@ class NativeImportDom {
 
 		$publishedPaper->setPubId($publishedPaperDao->insertPublishedPaper($publishedPaper));
 
-		$publishedPaperDao->resequencePublishedPapers($track->getTrackId(), $schedConf->getSchedConfId());
+		$publishedPaperDao->resequencePublishedPapers($track->getTrackId(), $schedConf->getId());
 
 		/* --- Galleys (html or otherwise handled simultaneously) --- */
 		import('file.PaperFileManager');

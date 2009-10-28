@@ -41,7 +41,7 @@ class ConferenceHistoryHandler extends ManagerHandler {
 		if ($logId) {
 			$logDao =& DAORegistry::getDAO('ConferenceEventLogDAO');
 			$logEntry =& $logDao->getLogEntry($logId);
-			if ($logEntry && $logEntry->getConferenceId() != $conference->getConferenceId()) Request::redirect(null, null, null, 'index');
+			if ($logEntry && $logEntry->getConferenceId() != $conference->getId()) Request::redirect(null, null, null, 'index');
 		}
 
 		if (isset($logEntry)) {
@@ -52,7 +52,7 @@ class ConferenceHistoryHandler extends ManagerHandler {
 
 			import('conference.log.ConferenceLog');
 			while (true) {
-				$eventLogEntries =& ConferenceLog::getEventLogEntries($conference->getConferenceId(), null, $rangeInfo);
+				$eventLogEntries =& ConferenceLog::getEventLogEntries($conference->getId(), null, $rangeInfo);
 				if ($eventLogEntries->isInBounds()) break;
 				unset($rangeInfo);
 				$rangeInfo =& $eventLogEntries->getLastPageRangeInfo();
@@ -77,7 +77,7 @@ class ConferenceHistoryHandler extends ManagerHandler {
 		$rangeInfo =& Handler::getRangeInfo('eventLogEntries', array($assocType, $assocId));
 		$logDao =& DAORegistry::getDAO('ConferenceEventLogDAO');
 		while (true) {
-			$eventLogEntries =& $logDao->getConferenceLogEntriesByAssoc($conference->getConferenceId(), null, $assocType, $assocId, $rangeInfo);
+			$eventLogEntries =& $logDao->getConferenceLogEntriesByAssoc($conference->getId(), null, $assocType, $assocId, $rangeInfo);
 			if ($eventLogEntries->isInBounds()) break;
 			unset($rangeInfo);
 			$rangeInfo =& $eventLogEntries->getLastPageRangeInfo();
@@ -104,9 +104,9 @@ class ConferenceHistoryHandler extends ManagerHandler {
 		$logDao =& DAORegistry::getDAO('ConferenceEventLogDAO');
 
 		if ($logId) {
-			$logDao->deleteLogEntry($logId, $conference->getConferenceId());
+			$logDao->deleteLogEntry($logId, $conference->getId());
 		} else {
-			$logDao->deleteConferenceLogEntries($conference->getConferenceId());
+			$logDao->deleteConferenceLogEntries($conference->getId());
 		}
 
 		Request::redirect(null, null, null, 'conferenceEventLog');

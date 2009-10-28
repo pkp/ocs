@@ -62,8 +62,8 @@ class RegistrantReportPlugin extends ReportPlugin {
 
 		$registrantReportDao =& DAORegistry::getDAO('RegistrantReportDAO');
 		list($registrants, $registrantOptions) = $registrantReportDao->getRegistrantReport(
-			$conference->getConferenceId(),
-			$schedConf->getSchedConfId()
+			$conference->getId(),
+			$schedConf->getId()
 		);
 				
 		$columns = array(
@@ -83,7 +83,7 @@ class RegistrantReportPlugin extends ReportPlugin {
 		);
 		
 		$registrationOptionDAO =& DAORegistry::getDAO('RegistrationOptionDAO');
-		$registrationOptions =& $registrationOptionDAO->getRegistrationOptionsBySchedConfId($schedConf->getSchedConfId());
+		$registrationOptions =& $registrationOptionDAO->getRegistrationOptionsBySchedConfId($schedConf->getId());
 		
 		// column name = 'option' + optionId => column value = name of the registration option
 		while ($registrationOption =& $registrationOptions->next()) {

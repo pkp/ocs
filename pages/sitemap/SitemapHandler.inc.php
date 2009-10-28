@@ -56,20 +56,20 @@ class SitemapHandler extends Handler {
 	 */
 	function createSitemapIndex() {
 		$conferenceDao =& DAORegistry::getDAO('ConferenceDAO');
-		$schedConfDao = &DAORegistry::getDAO('SchedConfDAO');
+		$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
 		
 		$doc =& XMLCustomWriter::createDocument();
 		$root =& XMLCustomWriter::createElement($doc, 'sitemapindex');
 		XMLCustomWriter::setAttribute($root, 'xmlns', SITEMAP_XSD_URL);
 
-		$conferences = &$conferenceDao->getConferences();
+		$conferences =& $conferenceDao->getConferences();
 		while ($conference =& $conferences->next()) {
 			$sitemapUrl = Request::url($conference->getPath(), 'index', 'sitemap');
 			$sitemap =& XMLCustomWriter::createElement($doc, 'sitemap');
 			XMLCustomWriter::createChildWithText($doc, $sitemap, 'loc', $sitemapUrl, false);
 			XMLCustomWriter::appendChild($root, $sitemap);
 		
-			$schedConfs = &$schedConfDao->getSchedConfsByConferenceId($conference->getConferenceId());
+			$schedConfs =& $schedConfDao->getSchedConfsByConferenceId($conference->getId());
 			while ($schedConf =& $schedConfs->next()) {
 				$sitemapUrl = Request::url($conference->getPath(), $schedConf->getPath(), 'sitemap');
 				$sitemap =& XMLCustomWriter::createElement($doc, 'sitemap');
@@ -89,8 +89,8 @@ class SitemapHandler extends Handler {
 	 * @return XMLNode
 	 */
 	function createConfSitemap() {		
-		$conference = &Request::getConference();
-		$conferenceId = $conference->getConferenceId();
+		$conference =& Request::getConference();
+		$conferenceId = $conference->getId();
 		
 		$doc =& XMLCustomWriter::createDocument();
 		$root =& XMLCustomWriter::createElement($doc, 'urlset');
@@ -109,11 +109,11 @@ class SitemapHandler extends Handler {
 	 * @return XMLNode
 	 */
 	function createSchedConfSitemap() {		
-		$publishedPaperDao = &DAORegistry::getDAO('PublishedPaperDAO');
+		$publishedPaperDao =& DAORegistry::getDAO('PublishedPaperDAO');
 		$galleyDao =& DAORegistry::getDAO('PaperGalleyDAO');
 		
-		$conference = &Request::getConference();
-		$conferenceId = $conference->getConferenceId();
+		$conference =& Request::getConference();
+		$conferenceId = $conference->getId();
 		$schedConf = Request::getSchedConf();
 
 		$doc =& XMLCustomWriter::createDocument();
@@ -138,7 +138,7 @@ class SitemapHandler extends Handler {
 		XMLCustomWriter::appendChild($root, SitemapHandler::createUrlTree($doc, Request::url($conference->getPath(), $schedConf->getPath(), 'schedConf', 'accommodation')));
 		XMLCustomWriter::appendChild($root, SitemapHandler::createUrlTree($doc, Request::url($conference->getPath(), $schedConf->getPath(), 'schedConf', 'organizingTeam')));
 		// Individual Papers
-		$publishedPapers =& $publishedPaperDao->getPublishedPapers($schedConf->getSchedConfId());
+		$publishedPapers =& $publishedPaperDao->getPublishedPapers($schedConf->getId());
 		while ($paper =& $publishedPapers->next()) {
 			// Abstract
 			XMLCustomWriter::appendChild($root, SitemapHandler::createUrlTree($doc, Request::url($conference->getPath(), $schedConf->getPath(), 'paper', 'view', $paper->getPaperId())));

@@ -37,7 +37,7 @@ class EmailHandler extends ManagerHandler {
 		$emailTemplateDao =& DAORegistry::getDAO('EmailTemplateDAO');
 		$emailTemplatesArray =& $emailTemplateDao->getEmailTemplates(
 			Locale::getLocale(),
-			$conference->getConferenceId()
+			$conference->getId()
 		);
 
 		import('core.ArrayItemIterator');
@@ -131,8 +131,8 @@ class EmailHandler extends ManagerHandler {
 
 		$emailKey = array_shift($args);
 		$emailTemplateDao =& DAORegistry::getDAO('EmailTemplateDAO');
-		if ($emailTemplateDao->customTemplateExistsByKey($emailKey, $conference->getConferenceId())) {
-			$emailTemplateDao->deleteEmailTemplateByKey($emailKey, $conference->getConferenceId());
+		if ($emailTemplateDao->customTemplateExistsByKey($emailKey, $conference->getId())) {
+			$emailTemplateDao->deleteEmailTemplateByKey($emailKey, $conference->getId());
 		}
 
 		Request::redirect(null, null, null, 'emails');
@@ -148,7 +148,7 @@ class EmailHandler extends ManagerHandler {
 			$conference =& Request::getConference();
 
 			$emailTemplateDao =& DAORegistry::getDAO('EmailTemplateDAO');
-			$emailTemplateDao->deleteEmailTemplateByKey($args[0], $conference->getConferenceId());
+			$emailTemplateDao->deleteEmailTemplateByKey($args[0], $conference->getId());
 		}
 
 		Request::redirect(null, null, null, 'emails');
@@ -163,7 +163,7 @@ class EmailHandler extends ManagerHandler {
 		$conference =& Request::getConference();
 		
 		$emailTemplateDao =& DAORegistry::getDAO('EmailTemplateDAO');
-		$emailTemplateDao->deleteEmailTemplatesByConference($conference->getConferenceId());
+		$emailTemplateDao->deleteEmailTemplatesByConference($conference->getId());
 
 		Request::redirect(null, null, null, 'emails');
 	}
@@ -179,7 +179,7 @@ class EmailHandler extends ManagerHandler {
 			$conference =& Request::getConference();
 
 			$emailTemplateDao =& DAORegistry::getDAO('EmailTemplateDAO');
-			$emailTemplate = $emailTemplateDao->getBaseEmailTemplate($args[0], $conference->getConferenceId());
+			$emailTemplate = $emailTemplateDao->getBaseEmailTemplate($args[0], $conference->getId());
 
 			if (isset($emailTemplate)) {
 				if ($emailTemplate->getCanDisable()) {
@@ -188,7 +188,7 @@ class EmailHandler extends ManagerHandler {
 						$emailTemplateDao->updateBaseEmailTemplate($emailTemplate);
 					} else {
 						$emailTemplate->setAssocType(ASSOC_TYPE_CONFERENCE);
-						$emailTemplate->setAssocId($conference->getConferenceId());
+						$emailTemplate->setAssocId($conference->getId());
 						$emailTemplateDao->insertBaseEmailTemplate($emailTemplate);
 					}
 				}
@@ -208,7 +208,7 @@ class EmailHandler extends ManagerHandler {
 
 		if (isset($args) && !empty($args)) {
 			$emailTemplateDao =& DAORegistry::getDAO('EmailTemplateDAO');
-			$emailTemplate = $emailTemplateDao->getBaseEmailTemplate($args[0], $conference->getConferenceId());
+			$emailTemplate = $emailTemplateDao->getBaseEmailTemplate($args[0], $conference->getId());
 
 			if (isset($emailTemplate)) {
 				if ($emailTemplate->getCanDisable()) {

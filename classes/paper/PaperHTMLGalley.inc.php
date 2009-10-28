@@ -172,7 +172,7 @@ class PaperHTMLGalley extends PaperGalley {
 					$schedConf =& Request::getSchedConf();
 					import ('file.PublicFileManager');
 					$publicFileManager = new PublicFileManager();
-					$url = Request::getBaseUrl() . '/' . $publicFileManager->getSchedConfFilesPath($schedConf->getSchedConfId()) . '/' . implode('/', $urlParts) . ($anchor?'#' . $anchor:'');
+					$url = Request::getBaseUrl() . '/' . $publicFileManager->getSchedConfFilesPath($schedConf->getId()) . '/' . implode('/', $urlParts) . ($anchor?'#' . $anchor:'');
 				break;
 		}
 		return $matchArray[1] . $url . $matchArray[3];

@@ -39,7 +39,7 @@ class MailTemplate extends PKPMailTemplate {
 
 		if (isset($this->emailKey)) {
 			$emailTemplateDao =& DAORegistry::getDAO('EmailTemplateDAO');
-			$emailTemplate =& $emailTemplateDao->getEmailTemplate($this->emailKey, $this->locale, $conference == null ? 0 : $conference->getConferenceId());
+			$emailTemplate =& $emailTemplateDao->getEmailTemplate($this->emailKey, $this->locale, $conference == null ? 0 : $conference->getId());
 		}
 
 		$userSig = '';

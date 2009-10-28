@@ -52,7 +52,7 @@ class SchedConfDAO extends DAO {
 			if(!$conference)
 				$conferenceId = -1;
 			else
-				$conferenceId = $conference->getConferenceId();
+				$conferenceId = $conference->getId();
 		}
 
 		$returner = null;
@@ -107,7 +107,7 @@ class SchedConfDAO extends DAO {
 		);
 
 		$schedConf->setSchedConfId($this->getInsertSchedConfId());
-		return $schedConf->getSchedConfId();
+		return $schedConf->getId();
 	}
 
 	/**
@@ -130,7 +130,7 @@ class SchedConfDAO extends DAO {
 				$schedConf->getConferenceId(),
 				$schedConf->getPath(),
 				$schedConf->getSequence(),
-				$schedConf->getSchedConfId()
+				$schedConf->getId()
 			)
 		);
 	}
@@ -140,7 +140,7 @@ class SchedConfDAO extends DAO {
 	 * @param $schedConf SchedConf
 	 */
 	function deleteSchedConf(&$schedConf) {
-		return $this->deleteSchedConfById($schedConf->getSchedConfId());
+		return $this->deleteSchedConfById($schedConf->getId());
 	}
 
 	/**
@@ -151,7 +151,7 @@ class SchedConfDAO extends DAO {
 		$schedConfs = array();
 		$schedConfIterator =& $this->getSchedConfsByConferenceId($conferenceId);
 		while ($schedConf =& $schedConfIterator->next()) {
-			$schedConfs[$schedConf->getSchedConfId()] = $schedConf->getSchedConfTitle();
+			$schedConfs[$schedConf->getId()] = $schedConf->getSchedConfTitle();
 			unset($schedConf);
 		}
 		return $schedConfs;
@@ -185,7 +185,7 @@ class SchedConfDAO extends DAO {
 
 		while (!$schedConfs->eof()) {
 			$schedConf =& $schedConfs->next();
-			$this->deleteSchedConfById($schedConf->getSchedConfId());
+			$this->deleteSchedConfById($schedConf->getId());
 		}
 	}
 

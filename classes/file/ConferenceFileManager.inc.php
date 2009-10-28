@@ -33,7 +33,7 @@ class ConferenceFileManager extends FileManager {
 	 * @param $conferenceId int
 	 */
 	function ConferenceFileManager(&$conference) {
-		$this->conferenceId = $conference->getConferenceId();
+		$this->conferenceId = $conference->getId();
 		$this->conference =& $conference;
 		$this->filesDir = Config::getVar('files', 'files_dir') . '/conferences/' . $this->conferenceId . '/';
 	}

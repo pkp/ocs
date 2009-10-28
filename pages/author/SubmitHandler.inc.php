@@ -207,7 +207,7 @@ class SubmitHandler extends AuthorHandler {
 				$templateMgr->assign_by_ref('conference', $conference);
 				// If this is a director and there is a
 				// submission file, paper can be expedited.
-				if (Validation::isDirector($conference->getConferenceId()) && $paper->getSubmissionFileId()) {
+				if (Validation::isDirector($conference->getId()) && $paper->getSubmissionFileId()) {
 					$templateMgr->assign('canExpedite', true);
 				}
 				$templateMgr->assign('paperId', $paperId);
@@ -354,7 +354,7 @@ class SubmitHandler extends AuthorHandler {
 		$paper =& $this->paper;
 
 		// The author must also be a director to perform this task.
-		if (Validation::isDirector($conference->getConferenceId()) && $paper->getSubmissionFileId()) {
+		if (Validation::isDirector($conference->getId()) && $paper->getSubmissionFileId()) {
 			import('submission.director.DirectorAction');
 			DirectorAction::expediteSubmission($paper);
 			Request::redirect(null, null, 'director', 'schedulingQueue');
@@ -387,7 +387,7 @@ class SubmitHandler extends AuthorHandler {
 		if (isset($paperId)) {
 			// Check that paper exists for this conference and user and that submission is incomplete
 			$paper =& $paperDao->getPaper((int) $paperId);
-			if (!$paper || $paper->getUserId() !== $user->getId() || $paper->getSchedConfId() !== $schedConf->getSchedConfId()) {
+			if (!$paper || $paper->getUserId() !== $user->getId() || $paper->getSchedConfId() !== $schedConf->getId()) {
 				Request::redirect(null, null, null, 'submit');
 			}
 
@@ -401,7 +401,7 @@ class SubmitHandler extends AuthorHandler {
 			// director or track director.
 			import('schedConf.SchedConfAction');
 			$schedConf =& Request::getSchedConf();
-			if (!$schedConf || (!SchedConfAction::submissionsOpen($schedConf) && !Validation::isDirector($schedConf->getConferenceId(), $schedConf->getSchedConfId()) && !Validation::isTrackDirector($schedConf->getConferenceId()))) {
+			if (!$schedConf || (!SchedConfAction::submissionsOpen($schedConf) && !Validation::isDirector($schedConf->getConferenceId(), $schedConf->getId()) && !Validation::isTrackDirector($schedConf->getConferenceId()))) {
 				Request::redirect(null, null, 'author', 'index');
 			}
 		}

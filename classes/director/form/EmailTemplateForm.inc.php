@@ -50,7 +50,7 @@ class EmailTemplateForm extends Form {
 	function display() {
 		$templateMgr =& TemplateManager::getManager();
 
-		$conferenceId = $this->conference->getConferenceId();
+		$conferenceId = $this->conference->getId();
 
 		$emailTemplateDao =& DAORegistry::getDAO('EmailTemplateDAO');
 		$emailTemplate =& $emailTemplateDao->getBaseEmailTemplate($this->emailKey, $conferenceId);
@@ -64,7 +64,7 @@ class EmailTemplateForm extends Form {
 	 * Initialize form data from current settings.
 	 */
 	function initData() {
-		$conferenceId = $this->conference->getConferenceId();
+		$conferenceId = $this->conference->getId();
 		$emailTemplateDao =& DAORegistry::getDAO('EmailTemplateDAO');
 
 		$emailTemplate =& $emailTemplateDao->getLocaleEmailTemplate($this->emailKey, $conferenceId);
@@ -106,7 +106,7 @@ class EmailTemplateForm extends Form {
 	 * Save email template.
 	 */
 	function execute() {
-		$conferenceId = $this->conference->getConferenceId();
+		$conferenceId = $this->conference->getId();
 
 		$emailTemplateDao =& DAORegistry::getDAO('EmailTemplateDAO');
 		$emailTemplate =& $emailTemplateDao->getLocaleEmailTemplate($this->emailKey, $conferenceId);

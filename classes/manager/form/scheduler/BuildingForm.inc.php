@@ -100,7 +100,7 @@ class BuildingForm extends Form {
 			$building = new Building();
 		}
 
-		$building->setSchedConfId($schedConf->getSchedConfId());
+		$building->setSchedConfId($schedConf->getId());
 		$building->setName($this->getData('name'), null); // Localized
 		$building->setAbbrev($this->getData('abbrev'), null); // Localized
 		$building->setDescription($this->getData('description'), null); // Localized

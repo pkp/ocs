@@ -58,7 +58,7 @@ class PayPalPlugin extends PaymethodPlugin {
 
 		// Make sure that all settings form fields have been filled in
 		foreach ($this->getSettingsFormFieldNames() as $settingName) {
-			$setting = $this->getSetting($schedConf->getConferenceId(), $schedConf->getSchedConfId(), $settingName);
+			$setting = $this->getSetting($schedConf->getConferenceId(), $schedConf->getId(), $settingName);
 			if (empty($setting)) return false;
 		}
 		return true;
@@ -75,7 +75,7 @@ class PayPalPlugin extends PaymethodPlugin {
 		$user =& Request::getUser();
 
 		$params = array(
-			'business' => $this->getSetting($schedConf->getConferenceId(), $schedConf->getSchedConfId(), 'selleraccount'),
+			'business' => $this->getSetting($schedConf->getConferenceId(), $schedConf->getId(), 'selleraccount'),
 			'item_name' => $queuedPayment->getDescription(),
 			'amount' => $queuedPayment->getAmount(),
 			'quantity' => 1,
@@ -95,7 +95,7 @@ class PayPalPlugin extends PaymethodPlugin {
 
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('params', $params);
-		$templateMgr->assign('paypalFormUrl', $this->getSetting($schedConf->getConferenceId(), $schedConf->getSchedConfId(), 'paypalurl'));
+		$templateMgr->assign('paypalFormUrl', $this->getSetting($schedConf->getConferenceId(), $schedConf->getId(), 'paypalurl'));
 		$templateMgr->display($this->getTemplatePath() . 'paymentForm.tpl');
 	}
 
@@ -129,7 +129,7 @@ class PayPalPlugin extends PaymethodPlugin {
 
 				// Create POST response
 				$ch = curl_init();
-				curl_setopt($ch, CURLOPT_URL, $this->getSetting($schedConf->getConferenceId(), $schedConf->getSchedConfId(), 'paypalurl'));
+				curl_setopt($ch, CURLOPT_URL, $this->getSetting($schedConf->getConferenceId(), $schedConf->getId(), 'paypalurl'));
 				curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 				curl_setopt($ch, CURLOPT_POST, 1);
 				curl_setopt($ch, CURLOPT_HTTPHEADER, Array('Content-Type: application/x-www-form-urlencoded', 'Content-Length: ' . strlen($req)));
@@ -186,7 +186,7 @@ class PayPalPlugin extends PaymethodPlugin {
 							if (
 								($queuedAmount = $queuedPayment->getAmount()) != ($grantedAmount = Request::getUserVar('mc_gross')) ||
 								($queuedCurrency = $queuedPayment->getCurrencyCode()) != ($grantedCurrency = Request::getUserVar('mc_currency')) ||
-								($grantedEmail = Request::getUserVar('receiver_email')) != ($queuedEmail = $this->getSetting($schedConf->getConferenceId(), $schedConf->getSchedConfId(), 'selleraccount'))
+								($grantedEmail = Request::getUserVar('receiver_email')) != ($queuedEmail = $this->getSetting($schedConf->getConferenceId(), $schedConf->getId(), 'selleraccount'))
 							) {
 								// The integrity checks for the transaction failed. Complain.
 								$mail->assignParams(array(

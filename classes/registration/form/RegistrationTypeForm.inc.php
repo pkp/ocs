@@ -116,7 +116,7 @@ class RegistrationTypeForm extends Form {
 
 		$schedConf =& Request::getSchedConf();
 		$registrationOptionDao =& DAORegistry::getDAO('RegistrationOptionDAO');
-		$registrationOptions =& $registrationOptionDao->getRegistrationOptionsBySchedConfId($schedConf->getSchedConfId());
+		$registrationOptions =& $registrationOptionDao->getRegistrationOptionsBySchedConfId($schedConf->getId());
 		$registrationOptionsArray =& $registrationOptions->toArray();
 		$templateMgr->assign_by_ref('registrationOptions', $registrationOptionsArray);
 
@@ -180,7 +180,7 @@ class RegistrationTypeForm extends Form {
 			$registrationType = new RegistrationType();
 		}
 
-		$registrationType->setSchedConfId($schedConf->getSchedConfId());
+		$registrationType->setSchedConfId($schedConf->getId());
 		$registrationType->setName($this->getData('name'), null); // Localized
 		$registrationType->setDescription($this->getData('description'), null); // Localized
 		$registrationType->setCost(round($this->getData('cost'), 2));

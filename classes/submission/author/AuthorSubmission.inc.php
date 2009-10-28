@@ -165,7 +165,7 @@ class AuthorSubmission extends Paper {
 		// Optimization: Use the Request scheduled conference object
 		// if available and if it's the same as the paper's sched conf
 		$schedConf =& Request::getSchedConf();
-		if (!$schedConf || $this->getSchedConfId() != $schedConf->getSchedConfId()) {
+		if (!$schedConf || $this->getSchedConfId() != $schedConf->getId()) {
 			unset($schedConf);
 			$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
 			$schedConf =& $schedConfDao->getSchedConf($this->getSchedConfId());

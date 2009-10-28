@@ -197,7 +197,7 @@ class Request extends PKPRequest {
 
 		if ($schedConf =& Request::getSchedConf()) { 
 			// The user is in the sched. conf. context, see if they have one role only
-			$roles =& $roleDao->getRolesByUserId($userId, $schedConf->getConferenceId(), $schedConf->getSchedConfId());
+			$roles =& $roleDao->getRolesByUserId($userId, $schedConf->getConferenceId(), $schedConf->getId());
 			if(count($roles) == 1) {
 				$role = array_shift($roles);
 				if ($role->getRoleId() == ROLE_ID_READER) Request::redirect(null, 'index');
@@ -208,7 +208,7 @@ class Request extends PKPRequest {
 		} elseif ($conference =& Request::getConference()) { 
 			// The user is in the conference context, see if they have one role only 
 			$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
-			$roles =& $roleDao->getRolesByUserId($userId, $conference->getConferenceId());
+			$roles =& $roleDao->getRolesByUserId($userId, $conference->getId());
 			if(count($roles) == 1) {
 				$role = array_shift($roles);
 				$confPath = $conference->getPath();

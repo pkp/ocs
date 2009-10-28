@@ -75,7 +75,7 @@ class SubmissionReviewHandler extends ReviewerHandler {
 		$templateMgr->assign_by_ref('reviewerRecommendationOptions', ReviewAssignment::getReviewerRecommendationOptions());
 
 		$controlledVocabDao =& DAORegistry::getDAO('ControlledVocabDAO');
-		$templateMgr->assign('sessionTypes', $controlledVocabDao->enumerateBySymbolic('sessionTypes', ASSOC_TYPE_SCHED_CONF, $schedConf->getSchedConfId()));
+		$templateMgr->assign('sessionTypes', $controlledVocabDao->enumerateBySymbolic('sessionTypes', ASSOC_TYPE_SCHED_CONF, $schedConf->getId()));
 
 		$templateMgr->assign('helpTopicId', 'editorial.reviewersRole.review');		
 		$templateMgr->display('reviewer/submission.tpl');
@@ -239,7 +239,7 @@ class SubmissionReviewHandler extends ReviewerHandler {
 
 		$reviewerSubmission =& $reviewerSubmissionDao->getReviewerSubmission($reviewId);
 
-		if (!$reviewerSubmission || $reviewerSubmission->getSchedConfId() != $schedConf->getSchedConfId()) {
+		if (!$reviewerSubmission || $reviewerSubmission->getSchedConfId() != $schedConf->getId()) {
 			$isValid = false;
 		} elseif ($user && empty($newKey)) {
 			if ($reviewerSubmission->getReviewerId() != $user->getId()) {

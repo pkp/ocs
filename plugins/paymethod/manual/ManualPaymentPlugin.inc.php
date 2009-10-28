@@ -49,7 +49,7 @@ class ManualPaymentPlugin extends PaymethodPlugin {
 
 		// Make sure that all settings form fields have been filled in
 		foreach ($this->getSettingsFormFieldNames() as $settingName) {
-			$setting = $this->getSetting($schedConf->getConferenceId(), $schedConf->getSchedConfId(), $settingName);
+			$setting = $this->getSetting($schedConf->getConferenceId(), $schedConf->getId(), $settingName);
 			if (empty($setting)) return false;
 		}
 

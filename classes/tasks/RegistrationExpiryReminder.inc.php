@@ -37,7 +37,7 @@ class RegistrationExpiryReminder extends ScheduledTask {
 		$registrationTypeDao =& DAORegistry::getDAO('RegistrationTypeDAO');
 
 		$schedConfName = $schedConf->getSchedConfTitle();
-		$schedConfId = $schedConf->getSchedConfId();
+		$schedConfId = $schedConf->getId();
 		$user =& $userDao->getUser($registration->getUserId());
 		if (!isset($user)) return false;
 
@@ -102,7 +102,7 @@ class RegistrationExpiryReminder extends ScheduledTask {
 			// Retrieve all registration that match expiry date
 			$registrationDao =& DAORegistry::getDAO('RegistrationDAO');
 			$dateEnd = $expiryYear . '-' . $expiryMonth . '-' . $expiryDay;
-			$registration =& $registrationDao->getRegistrationByDateEnd($dateEnd, $schedConf->getSchedConfId()); 
+			$registration =& $registrationDao->getRegistrationByDateEnd($dateEnd, $schedConf->getId()); 
 
 			while (!$registration->eof()) {
 				$registration =& $registration->next();
@@ -124,7 +124,7 @@ class RegistrationExpiryReminder extends ScheduledTask {
 			// Retrieve all registration that match expiry date
 			$registrationDao =& DAORegistry::getDAO('RegistrationDAO');
 			$dateEnd = $expiryYear . '-' . $expiryMonth . '-' . $expiryDay;
-			$registration =& $registrationDao->getRegistrationByDateEnd($dateEnd, $schedConf->getSchedConfId()); 
+			$registration =& $registrationDao->getRegistrationByDateEnd($dateEnd, $schedConf->getId()); 
 
 			while (!$registration->eof()) {
 				$registration =& $registration->next();
@@ -152,12 +152,12 @@ class RegistrationExpiryReminder extends ScheduledTask {
 			// Retrieve all registration that match expiry date
 			$registrationDao =& DAORegistry::getDAO('RegistrationDAO');
 			$dateEnd = $expiryYear . '-' . $expiryMonth . '-' . $expiryDay;
-			$registration =& $registrationDao->getRegistrationByDateEnd($dateEnd, $schedConf->getSchedConfId()); 
+			$registration =& $registrationDao->getRegistrationByDateEnd($dateEnd, $schedConf->getId()); 
 
 			while (!$registration->eof()) {
 				$registration =& $registration->next();
 				// Ensure that user does not have another, valid registration
-				if (!$registrationDao->isValidRegistrationByUser($registration->getUserId(), $schedConf->getSchedConfId())) {
+				if (!$registrationDao->isValidRegistrationByUser($registration->getUserId(), $schedConf->getId())) {
 					$this->sendReminder($registration, $conference, $schedConf, 'REGISTRATION_AFTER_EXPIRY_LAST');
 				}
 			}
@@ -190,12 +190,12 @@ class RegistrationExpiryReminder extends ScheduledTask {
 			// Retrieve all registration that match expiry date
 			$registrationDao =& DAORegistry::getDAO('RegistrationDAO');
 			$dateEnd = $expiryYear . '-' . $expiryMonth . '-' . $expiryDay;
-			$registration =& $registrationDao->getRegistrationByDateEnd($dateEnd, $schedConf->getSchedConfId()); 
+			$registration =& $registrationDao->getRegistrationByDateEnd($dateEnd, $schedConf->getId()); 
 
 			while (!$registration->eof()) {
 				$registration =& $registration->next();
 				// Ensure that user does not have another, valid registration
-				if (!$registrationDao->isValidRegistrationByUser($registration->getUserId(), $schedConf->getSchedConfId())) {
+				if (!$registrationDao->isValidRegistrationByUser($registration->getUserId(), $schedConf->getId())) {
 					$this->sendReminder($registration, $conference, $schedConf, 'REGISTRATION_AFTER_EXPIRY');
 				}
 			}
@@ -217,7 +217,7 @@ class RegistrationExpiryReminder extends ScheduledTask {
 		while (!$schedConfs->eof()) {
 			$schedConf =& $schedConfs->next();
 
-			if(!$conference || $schedConf->getConferenceId() != $conference->getConferenceId()) {
+			if(!$conference || $schedConf->getConferenceId() != $conference->getId()) {
 				$conference =& $conferenceDao->getConference($schedConf->getConferenceId());
 			}
 
@@ -247,7 +247,7 @@ class RegistrationExpiryReminder extends ScheduledTask {
 			while (!$schedConfs->eof()) {
 				$schedConf =& $schedConfs->next();
 
-				if(!$conference || $schedConf->getConferenceId() != $conference->getConferenceId()) {
+				if(!$conference || $schedConf->getConferenceId() != $conference->getId()) {
 					$conference =& $conferenceDao->getConference($schedConf->getConferenceId());
 				}
 
@@ -270,7 +270,7 @@ class RegistrationExpiryReminder extends ScheduledTask {
 			while (!$schedConfs->eof()) {
 				$schedConf =& $schedConfs->next();
 
-				if(!$conference || $schedConf->getConferenceId() != $conference->getConferenceId()) {
+				if(!$conference || $schedConf->getConferenceId() != $conference->getId()) {
 					$conference =& $conferenceDao->getConference($schedConf->getConferenceId());
 				}
 
@@ -289,7 +289,7 @@ class RegistrationExpiryReminder extends ScheduledTask {
 				while (!$schedConfs->eof()) {
 					$schedConf =& $schedConfs->next();
 
-					if(!$conference || $schedConf->getConferenceId() != $conference->getConferenceId()) {
+					if(!$conference || $schedConf->getConferenceId() != $conference->getId()) {
 						$conference =& $conferenceDao->getConference($schedConf->getConferenceId());
 					}
 

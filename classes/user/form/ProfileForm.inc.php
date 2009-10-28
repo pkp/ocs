@@ -135,7 +135,7 @@ class ProfileForm extends Form {
 		$schedConf =& Request::getSchedConf();
 		if ($schedConf) {
 			$roleDao =& DAORegistry::getDAO('RoleDAO');
-			$roles =& $roleDao->getRolesByUserId($user->getId(), $schedConf->getSchedConfId());
+			$roles =& $roleDao->getRolesByUserId($user->getId(), $schedConf->getId());
 			$roleNames = array();
 			foreach ($roles as $role) $roleNames[$role->getRolePath()] = $role->getRoleName();
 			import('schedConf.SchedConfAction');
@@ -273,7 +273,7 @@ class ProfileForm extends Form {
 			$role = new Role();
 			$role->setUserId($user->getId());
 			$role->setConferenceId($schedConf->getConferenceId());
-			$role->setSchedConfId($schedConf->getSchedConfId());
+			$role->setSchedConfId($schedConf->getId());
 			if (SchedConfAction::allowRegReviewer($schedConf)) {
 				$role->setRoleId(ROLE_ID_REVIEWER);
 				$hasRole = Validation::isReviewer();
@@ -305,10 +305,10 @@ class ProfileForm extends Form {
 
 		foreach ($schedConfs as $thisSchedConf) {
 			if ($thisSchedConf->getSetting('enableOpenAccessNotification') == true) {
-				$currentlyReceives = $user->getSetting('openAccessNotification', $thisSchedConf->getSchedConfId());
-				$shouldReceive = !empty($openAccessNotify) && in_array($thisSchedConf->getSchedConfId(), $openAccessNotify);
+				$currentlyReceives = $user->getSetting('openAccessNotification', $thisSchedConf->getId());
+				$shouldReceive = !empty($openAccessNotify) && in_array($thisSchedConf->getId(), $openAccessNotify);
 				if ($currentlyReceives != $shouldReceive) {
-					$userSettingsDao->updateSetting($user->getId(), 'openAccessNotification', $shouldReceive, 'bool', $thisSchedConf->getSchedConfId());
+					$userSettingsDao->updateSetting($user->getId(), 'openAccessNotification', $shouldReceive, 'bool', $thisSchedConf->getId());
 				}
 			}
 		}

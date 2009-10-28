@@ -142,7 +142,7 @@ class PhpMyVisitesPlugin extends GenericPlugin {
 	function getEnabled() {
 		$conference =& Request::getConference();
 		if (!$conference) return false;
-		return $this->getSetting($conference->getConferenceId(), 0, 'enabled');
+		return $this->getSetting($conference->getId(), 0, 'enabled');
 	}
 
 	/**
@@ -151,7 +151,7 @@ class PhpMyVisitesPlugin extends GenericPlugin {
 	function setEnabled($enabled) {
 		$conference =& Request::getConference();
 		if ($conference) {
-			$this->updateSetting($conference->getConferenceId(), 0, 'enabled', $enabled ? true : false);
+			$this->updateSetting($conference->getId(), 0, 'enabled', $enabled ? true : false);
 			return true;
 		}
 		return false;
@@ -169,7 +169,7 @@ class PhpMyVisitesPlugin extends GenericPlugin {
 
 			if (!empty($currentConference)) {
 				$conference =& Request::getConference();
-				$conferenceId = $conference->getConferenceId();
+				$conferenceId = $conference->getId();
 				$phpmvSiteId = $this->getSetting($conferenceId, 0, 'phpmvSiteId');
 				$phpmvUrl = $this->getSetting($conferenceId, 0, 'phpmvUrl');
 
@@ -210,7 +210,7 @@ class PhpMyVisitesPlugin extends GenericPlugin {
 			case 'settings':
 				if ($this->getEnabled()) {
 					$this->import('PhpMyVisitesSettingsForm');
-					$form = new PhpMyVisitesSettingsForm($this, $conference->getConferenceId());
+					$form = new PhpMyVisitesSettingsForm($this, $conference->getId());
 					if (Request::getUserVar('save')) {
 						$form->readInputData();
 						if ($form->validate()) {

@@ -48,7 +48,7 @@ class AboutHandler extends Handler {
 			} else {
 				$templateMgr->assign('showAboutSchedConf', false);
 				$settings = $conference->getSettings();
-				$templateMgr->assign_by_ref('currentSchedConfs', $schedConfDao->getCurrentSchedConfs($conference->getConferenceId()));
+				$templateMgr->assign_by_ref('currentSchedConfs', $schedConfDao->getCurrentSchedConfs($conference->getId()));
 			}
 
 			$customAboutItems = $conference->getSetting('customAboutItems');
@@ -126,8 +126,8 @@ class AboutHandler extends Handler {
 		$conference =& Request::getConference();
 		$schedConf =& Request::getSchedConf();
 
-		$conferenceId = $conference->getConferenceId();
-		$schedConfId = ($schedConf? $schedConf->getSchedConfId():-1);
+		$conferenceId = $conference->getId();
+		$schedConfId = ($schedConf? $schedConf->getId():-1);
 
 		if($schedConf)
 			$settings = $schedConf->getSettings();
@@ -175,10 +175,10 @@ class AboutHandler extends Handler {
 			// Organizing Team information using Role info.
 			$roleDao =& DAORegistry::getDAO('RoleDAO');
 
-			$directors =& $roleDao->getUsersByRoleId(ROLE_ID_DIRECTOR, $conference->getConferenceId(), $schedConfId);
+			$directors =& $roleDao->getUsersByRoleId(ROLE_ID_DIRECTOR, $conference->getId(), $schedConfId);
 			$directors =& $directors->toArray();
 
-			$trackDirectors =& $roleDao->getUsersByRoleId(ROLE_ID_TRACK_DIRECTOR, $conference->getConferenceId(), $schedConfId);
+			$trackDirectors =& $roleDao->getUsersByRoleId(ROLE_ID_TRACK_DIRECTOR, $conference->getId(), $schedConfId);
 			$trackDirectors =& $trackDirectors->toArray();
 
 			$templateMgr->assign_by_ref('directors', $directors);
@@ -190,7 +190,7 @@ class AboutHandler extends Handler {
 			$groupDao =& DAORegistry::getDAO('GroupDAO');
 			$groupMembershipDao =& DAORegistry::getDAO('GroupMembershipDAO');
 
-			$allGroups =& $groupDao->getGroups(ASSOC_TYPE_SCHED_CONF, $schedConf->getSchedConfId());
+			$allGroups =& $groupDao->getGroups(ASSOC_TYPE_SCHED_CONF, $schedConf->getId());
 			$teamInfo = array();
 			$groups = array();
 			while ($group =& $allGroups->next()) {
@@ -237,7 +237,7 @@ class AboutHandler extends Handler {
 
 		if($schedConf) {
 			$settings = $schedConf->getSettings();
-			$schedConfId = $schedConf->getSchedConfId();
+			$schedConfId = $schedConf->getId();
 		} else {
 			$settings = $conference->getSettings();
 			$schedConfId = 0;
@@ -245,13 +245,13 @@ class AboutHandler extends Handler {
 
 		$user = null;
 		if (!isset($settings['boardEnabled']) || $settings['boardEnabled'] != true) {
-			$directors =& $roleDao->getUsersByRoleId(ROLE_ID_DIRECTOR, $conference->getConferenceId());
+			$directors =& $roleDao->getUsersByRoleId(ROLE_ID_DIRECTOR, $conference->getId());
 			while ($potentialUser =& $directors->next()) {
 				if ($potentialUser->getId() == $userId)
 					$user =& $potentialUser;
 			}
 
-			$trackDirectors =& $roleDao->getUsersByRoleId(ROLE_ID_TRACK_DIRECTOR, $conference->getConferenceId());
+			$trackDirectors =& $roleDao->getUsersByRoleId(ROLE_ID_TRACK_DIRECTOR, $conference->getId());
 			while ($potentialUser =& $trackDirectors->next()) {
 				if ($potentialUser->getId() == $userId)
 					$user =& $potentialUser;
@@ -325,7 +325,7 @@ class AboutHandler extends Handler {
 		$registrationFax =& $schedConf->getSetting('registrationFax');
 		$registrationMailingAddress =& $schedConf->getSetting('registrationMailingAddress');
 		$registrationAdditionalInformation =& $schedConf->getLocalizedSetting('registrationAdditionalInformation');
-		$registrationTypes =& $registrationTypeDao->getRegistrationTypesBySchedConfId($schedConf->getSchedConfId());
+		$registrationTypes =& $registrationTypeDao->getRegistrationTypesBySchedConfId($schedConf->getId());
 
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('registrationName', $registrationName);
@@ -384,9 +384,9 @@ class AboutHandler extends Handler {
 			$conferences =& $conferenceDao->getEnabledConferences();
 			// Fetch the user's roles for each conference
 			foreach ($conferences->toArray() as $conference) {
-				$roles =& $roleDao->getRolesByUserId($user->getId(), $conference->getConferenceId());
+				$roles =& $roleDao->getRolesByUserId($user->getId(), $conference->getId());
 				if (!empty($roles)) {
-					$rolesByConference[$conference->getConferenceId()] =& $roles;
+					$rolesByConference[$conference->getId()] =& $roles;
 				}
 			}
 		}
@@ -454,32 +454,32 @@ class AboutHandler extends Handler {
 		$toDate = mktime(23, 59, 59, 12, 31, $statisticsYear);
 
 		$schedConfStatisticsDao =& DAORegistry::getDAO('SchedConfStatisticsDAO');
-		$paperStatistics = $schedConfStatisticsDao->getPaperStatistics($schedConf->getSchedConfId(), null, $fromDate, $toDate);
+		$paperStatistics = $schedConfStatisticsDao->getPaperStatistics($schedConf->getId(), null, $fromDate, $toDate);
 		$templateMgr->assign('paperStatistics', $paperStatistics);
 
-		$limitedPaperStatistics = $schedConfStatisticsDao->getPaperStatistics($schedConf->getSchedConfId(), $trackIds, $fromDate, $toDate);
+		$limitedPaperStatistics = $schedConfStatisticsDao->getPaperStatistics($schedConf->getId(), $trackIds, $fromDate, $toDate);
 		$templateMgr->assign('limitedPaperStatistics', $limitedPaperStatistics);
 
-		$limitedPaperStatistics = $schedConfStatisticsDao->getPaperStatistics($schedConf->getSchedConfId(), $trackIds, $fromDate, $toDate);
+		$limitedPaperStatistics = $schedConfStatisticsDao->getPaperStatistics($schedConf->getId(), $trackIds, $fromDate, $toDate);
 		$templateMgr->assign('paperStatistics', $paperStatistics);
 
 		$trackDao =& DAORegistry::getDAO('TrackDAO');
-		$tracks =& $trackDao->getSchedConfTracks($schedConf->getSchedConfId());
+		$tracks =& $trackDao->getSchedConfTracks($schedConf->getId());
 		$templateMgr->assign('tracks', $tracks->toArray());
 
-		$reviewerStatistics = $schedConfStatisticsDao->getReviewerStatistics($schedConf->getSchedConfId(), $trackIds, $fromDate, $toDate);
+		$reviewerStatistics = $schedConfStatisticsDao->getReviewerStatistics($schedConf->getId(), $trackIds, $fromDate, $toDate);
 		$templateMgr->assign('reviewerStatistics', $reviewerStatistics);
 
-		$allUserStatistics = $schedConfStatisticsDao->getUserStatistics($schedConf->getSchedConfId(), null, $toDate);
+		$allUserStatistics = $schedConfStatisticsDao->getUserStatistics($schedConf->getId(), null, $toDate);
 		$templateMgr->assign('allUserStatistics', $allUserStatistics);
 
-		$userStatistics = $schedConfStatisticsDao->getUserStatistics($schedConf->getSchedConfId(), $fromDate, $toDate);
+		$userStatistics = $schedConfStatisticsDao->getUserStatistics($schedConf->getId(), $fromDate, $toDate);
 		$templateMgr->assign('userStatistics', $userStatistics);
 
-		$allRegistrationStatistics = $schedConfStatisticsDao->getRegistrationStatistics($schedConf->getSchedConfId(), null, $toDate);
+		$allRegistrationStatistics = $schedConfStatisticsDao->getRegistrationStatistics($schedConf->getId(), null, $toDate);
 		$templateMgr->assign('allRegistrationStatistics', $allRegistrationStatistics);
 
-		$registrationStatistics = $schedConfStatisticsDao->getRegistrationStatistics($schedConf->getSchedConfId(), $fromDate, $toDate);
+		$registrationStatistics = $schedConfStatisticsDao->getRegistrationStatistics($schedConf->getId(), $fromDate, $toDate);
 		$templateMgr->assign('registrationStatistics', $registrationStatistics);
 
 		$templateMgr->display('about/statistics.tpl');

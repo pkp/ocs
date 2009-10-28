@@ -43,7 +43,7 @@ class AnnouncementTypeForm extends PKPAnnouncementTypeForm {
 	function _setAnnouncementTypeAssocId(&$announcementType) {
 		$conference =& Request::getConference();
 		$announcementType->setAssocType(ASSOC_TYPE_CONFERENCE);
-		$announcementType->setAssocId($conference->getConferenceId());
+		$announcementType->setAssocId($conference->getId());
 	}
 }
 

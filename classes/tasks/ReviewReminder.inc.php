@@ -107,7 +107,7 @@ class ReviewReminder extends ScheduledTask {
 			// Fetch the Paper and the Sched Conf if necessary.
 			if ($paper == null || $paper->getPaperId() != $reviewAssignment->getPaperId()) {
 				$paper =& $paperDao->getPaper($reviewAssignment->getPaperId());
-				if ($schedConf == null || $schedConf->getSchedConfId() != $paper->getSchedConfId()) {
+				if ($schedConf == null || $schedConf->getId() != $paper->getSchedConfId()) {
 					$schedConf =& $schedConfDao->getSchedConf($paper->getSchedConfId());
 
 					$inviteReminderEnabled = $schedConf->getSetting('remindForInvite');
@@ -139,7 +139,7 @@ class ReviewReminder extends ScheduledTask {
 
 			if ($shouldRemind) {
 				// We may still have to look up the conference.
-				if(!$conference || $schedConf->getConferenceId() != $conference->getConferenceId()) {
+				if(!$conference || $schedConf->getConferenceId() != $conference->getId()) {
 					$conference =& $conferenceDao->getConference($schedConf->getConferenceId());
 				}
 				$this->sendReminder ($reviewAssignment, $paper, $conference, $schedConf);

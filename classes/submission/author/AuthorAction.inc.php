@@ -51,7 +51,7 @@ class AuthorAction extends Action {
 
 				$trackDirectorSubmissionDao =& DAORegistry::getDAO('TrackDirectorSubmissionDAO');
 				$schedConf =& Request::getSchedConf();
-				if (!$schedConf || $schedConf->getSchedConfId() != $authorSubmission->getSchedConfId()) {
+				if (!$schedConf || $schedConf->getId() != $authorSubmission->getSchedConfId()) {
 					$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
 					unset($schedConf);
 					$schedConf =& $schedConfDao->getSchedConf($authorSubmission->getSchedConfId());
@@ -293,14 +293,14 @@ class AuthorAction extends Action {
 
 	function mayEditPaper(&$authorSubmission) {
 		$schedConf =& Request::getSchedConf();
-		if (!$schedConf || $schedConf->getSchedConfId() != $authorSubmission->getSchedConfId()) {
+		if (!$schedConf || $schedConf->getId() != $authorSubmission->getSchedConfId()) {
 			unset($schedConf);
 			$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
 			$schedConf =& $schedConfDao->getSchedConf($paper->getSchedConfId());
 		}
 
 		// Directors acting as Authors can always edit.
-		if (Validation::isDirector($schedConf->getConferenceId(), $schedConf->getSchedConfId()) || Validation::isTrackDirector($schedConf->getConferenceId(), $schedConf->getSchedConfId())) return true;
+		if (Validation::isDirector($schedConf->getConferenceId(), $schedConf->getId()) || Validation::isTrackDirector($schedConf->getConferenceId(), $schedConf->getId())) return true;
 
 		// Incomplete submissions can always be edited.
 		if ($authorSubmission->getSubmissionProgress() != 0) return true;

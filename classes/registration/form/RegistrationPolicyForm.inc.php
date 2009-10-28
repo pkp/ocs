@@ -99,7 +99,7 @@ class RegistrationPolicyForm extends Form {
 	function initData() {
 		$schedConfSettingsDao =& DAORegistry::getDAO('SchedConfSettingsDAO');
 		$schedConf =& Request::getSchedConf();
-		$schedConfId = $schedConf->getSchedConfId();
+		$schedConfId = $schedConf->getId();
 
 		$this->_data = array(
 			'registrationName' => $schedConfSettingsDao->getSetting($schedConfId, 'registrationName'),
@@ -164,7 +164,7 @@ class RegistrationPolicyForm extends Form {
 	function execute() {
 		$schedConfSettingsDao =& DAORegistry::getDAO('SchedConfSettingsDAO');
 		$schedConf =& Request::getSchedConf();
-		$schedConfId = $schedConf->getSchedConfId();
+		$schedConfId = $schedConf->getId();
 
 		$schedConfSettingsDao->updateSetting($schedConfId, 'registrationName', $this->getData('registrationName'), 'string');
 		$schedConfSettingsDao->updateSetting($schedConfId, 'registrationEmail', $this->getData('registrationEmail'), 'string');

@@ -62,8 +62,8 @@ class PaperReportPlugin extends ReportPlugin {
 
 		$paperReportDao =& DAORegistry::getDAO('PaperReportDAO');
 		list($papersIterator, $authorsIterator, $decisionsIteratorsArray) = $paperReportDao->getPaperReport(
-			$conference->getConferenceId(),
-			$schedConf->getSchedConfId()
+			$conference->getId(),
+			$schedConf->getId()
 		);
 		$maxAuthors = $this->getMaxAuthorCount($authorsIterator);
 		

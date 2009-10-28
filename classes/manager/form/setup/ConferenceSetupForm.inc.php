@@ -74,7 +74,7 @@ class ConferenceSetupForm extends Form {
 			if (isset($this->settings[$name])) {
 				$isLocalized = in_array($name, $this->getLocaleFieldNames());
 				$settingsDao->updateSetting(
-					$conference->getConferenceId(),
+					$conference->getId(),
 					$name,
 					$value,
 					$this->settings[$name],
@@ -107,9 +107,9 @@ class ConferenceSetupForm extends Form {
 				return false;
 			}
 			$uploadName = $settingName . '_' . $locale . $extension;
-			if ($fileManager->uploadConferenceFile($conference->getConferenceId(), $settingName, $uploadName)) {
+			if ($fileManager->uploadConferenceFile($conference->getId(), $settingName, $uploadName)) {
 				// Get image dimensions
-				$filePath = $fileManager->getConferenceFilesPath($conference->getConferenceId());
+				$filePath = $fileManager->getConferenceFilesPath($conference->getId());
 				list($width, $height) = getimagesize($filePath . '/' . $uploadName);
 
 				$value = $conference->getSetting($settingName);
@@ -121,7 +121,7 @@ class ConferenceSetupForm extends Form {
 					'dateUploaded' => Core::getCurrentDate()
 				);
 
-				$settingsDao->updateSetting($conference->getConferenceId(), $settingName, $value, 'object', true);
+				$settingsDao->updateSetting($conference->getId(), $settingName, $value, 'object', true);
 				return true;
 			}
 		}
@@ -137,12 +137,12 @@ class ConferenceSetupForm extends Form {
 	function deleteImage($settingName, $locale = null) {
 		$conference =& Request::getConference();
 		$settingsDao =& DAORegistry::getDAO('ConferenceSettingsDAO');
-		$setting = $settingsDao->getSetting($conference->getConferenceId(), $settingName);
+		$setting = $settingsDao->getSetting($conference->getId(), $settingName);
 
 		import('file.PublicFileManager');
 		$fileManager = new PublicFileManager();
-		if ($fileManager->removeConferenceFile($conference->getConferenceId(), $locale !== null ? $setting[$locale]['uploadName'] : $setting['uploadName'] )) {
-			$returner = $settingsDao->deleteSetting($conference->getConferenceId(), $settingName, $locale);
+		if ($fileManager->removeConferenceFile($conference->getId(), $locale !== null ? $setting[$locale]['uploadName'] : $setting['uploadName'] )) {
+			$returner = $settingsDao->deleteSetting($conference->getId(), $settingName, $locale);
 			// Ensure page header is refreshed
 			if ($returner) {
 				$templateMgr =& TemplateManager::getManager();

@@ -51,7 +51,7 @@ class CommentHandler extends Handler {
 		$comment =& $commentDao->getComment($commentId, $paperId, 2);
 
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
-		$isManager = Validation::isConferenceManager($conference->getConferenceId());
+		$isManager = Validation::isConferenceManager($conference->getId());
 
 		if (!$comment) $comments =& $commentDao->getRootCommentsByPaperId($paperId, 1);
 		else $comments =& $comment->getChildren();
@@ -172,7 +172,7 @@ class CommentHandler extends Handler {
 		$schedConf =& Request::getSchedConf();
 
 		$publishedPaperDao =& DAORegistry::getDAO('PublishedPaperDAO');
-		$paper =& $publishedPaperDao->getPublishedPaperByPaperId($paperId, $schedConf->getSchedConfId(), $schedConf->getSetting('previewAbstracts'));
+		$paper =& $publishedPaperDao->getPublishedPaperByPaperId($paperId, $schedConf->getId(), $schedConf->getSetting('previewAbstracts'));
 		$this->paper =& $paper;
 
 		if ($paper == null) {

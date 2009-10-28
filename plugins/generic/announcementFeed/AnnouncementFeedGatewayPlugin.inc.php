@@ -96,13 +96,13 @@ class AnnouncementFeedGatewayPlugin extends GatewayPlugin {
 		if (!isset($typeMap[$type])) return false;
 
 		// Get limit setting, if any 
-		$limitRecentItems = $announcementFeedPlugin->getSetting($conference->getConferenceId(), 0, 'limitRecentItems');
-		$recentItems = (int) $announcementFeedPlugin->getSetting($conference->getConferenceId(), 0, 'recentItems');
+		$limitRecentItems = $announcementFeedPlugin->getSetting($conference->getId(), 0, 'limitRecentItems');
+		$recentItems = (int) $announcementFeedPlugin->getSetting($conference->getId(), 0, 'recentItems');
 
 		$announcementDao =& DAORegistry::getDAO('AnnouncementDAO');
-		$conferenceId = $conference->getConferenceId();
+		$conferenceId = $conference->getId();
 		if ($schedConf) {
-			$schedConfId = $schedConf->getSchedConfId();
+			$schedConfId = $schedConf->getId();
 		} else {
 			$schedConfId = 0;
 		}
@@ -115,11 +115,11 @@ class AnnouncementFeedGatewayPlugin extends GatewayPlugin {
 		}
 
 		// Get date of most recent announcement
-		$lastDateUpdated = $announcementFeedPlugin->getSetting($conference->getConferenceId(), $schedConfId, 'dateUpdated');
+		$lastDateUpdated = $announcementFeedPlugin->getSetting($conference->getId(), $schedConfId, 'dateUpdated');
 		if ($announcements->wasEmpty()) {
 			if (empty($lastDateUpdated)) { 
 				$dateUpdated = Core::getCurrentDate(); 
-				$announcementFeedPlugin->updateSetting($conference->getConferenceId(), $schedConfId, 'dateUpdated', $dateUpdated, 'string');			
+				$announcementFeedPlugin->updateSetting($conference->getId(), $schedConfId, 'dateUpdated', $dateUpdated, 'string');			
 			} else {
 				$dateUpdated = $lastDateUpdated;
 			}
@@ -127,7 +127,7 @@ class AnnouncementFeedGatewayPlugin extends GatewayPlugin {
 			$mostRecentAnnouncement =& $announcementDao->getMostRecentAnnouncementByConferenceId($conferenceId, $schedConfId);
 			$dateUpdated = $mostRecentAnnouncement->getDatetimePosted();
 			if (empty($lastDateUpdated) || (strtotime($dateUpdated) > strtotime($lastDateUpdated))) { 
-				$announcementFeedPlugin->updateSetting($conference->getConferenceId(), $schedConfId, 'dateUpdated', $dateUpdated, 'string');			
+				$announcementFeedPlugin->updateSetting($conference->getId(), $schedConfId, 'dateUpdated', $dateUpdated, 'string');			
 			}
 		}
 

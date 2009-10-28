@@ -46,7 +46,7 @@ class TimeBlockForm extends Form {
 
 		$allOk = true;
 
-		$timeBlocks =& $timeBlockDao->getTimeBlocksBySchedConfId($schedConf->getSchedConfId());
+		$timeBlocks =& $timeBlockDao->getTimeBlocksBySchedConfId($schedConf->getId());
 		while ($timeBlock =& $timeBlocks->next()) {
 			if ($this->timeBlockId != $timeBlock->getTimeBlockId()) {
 				$bStart = strtotime($timeBlock->getStartTime());
@@ -160,7 +160,7 @@ class TimeBlockForm extends Form {
 			$timeBlock = new TimeBlock();
 		}
 
-		$timeBlock->setSchedConfId($schedConf->getSchedConfId());
+		$timeBlock->setSchedConfId($schedConf->getId());
 		$timeBlock->setStartTime($this->getData('startTime'));
 		$timeBlock->setEndTime($this->getData('endTime'));
 

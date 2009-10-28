@@ -451,7 +451,7 @@ class TrackDirectorSubmission extends Paper {
 
 	function isOriginalSubmissionComplete() {
 		$schedConf =& Request::getSchedConf();
-		if (!$schedConf || $this->getSchedConfId() != $schedConf->getSchedConfId()) {
+		if (!$schedConf || $this->getSchedConfId() != $schedConf->getId()) {
 			unset($schedConf);
 			$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
 			$schedConf =& $schedConfDao->getSchedConf($this->getSchedConfId());

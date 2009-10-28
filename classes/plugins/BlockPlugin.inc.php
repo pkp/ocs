@@ -38,7 +38,7 @@ class BlockPlugin extends Plugin {
 	 */
 	function getBlockContext() {
 		$conference =& Request::getConference();
-		$conferenceId = ($conference?$conference->getConferenceId():0);
+		$conferenceId = ($conference?$conference->getId():0);
 		return $this->getSetting($conferenceId, 0, 'context');
 	}
 
@@ -48,7 +48,7 @@ class BlockPlugin extends Plugin {
 	 */
 	function setBlockContext($context) {
 		$conference =& Request::getConference();
-		$conferenceId = ($conference?$conference->getConferenceId():0);
+		$conferenceId = ($conference?$conference->getId():0);
 		return $this->updateSetting($conferenceId, 0, 'context', $context, 'int');
 	}
 
@@ -66,7 +66,7 @@ class BlockPlugin extends Plugin {
 	 */
 	function getEnabled() {
 		$conference =& Request::getConference();
-		$conferenceId = ($conference?$conference->getConferenceId():0);
+		$conferenceId = ($conference?$conference->getId():0);
 		return $this->getSetting($conferenceId, 0, 'enabled');
 	}
 
@@ -76,7 +76,7 @@ class BlockPlugin extends Plugin {
 	 */
 	function setEnabled($enabled) {
 		$conference =& Request::getConference();
-		$conferenceId = ($conference?$conference->getConferenceId():0);
+		$conferenceId = ($conference?$conference->getId():0);
 		return $this->updateSetting($conferenceId, 0, 'enabled', $enabled, 'bool');
 	}
 
@@ -87,7 +87,7 @@ class BlockPlugin extends Plugin {
 	 */
 	function getSeq() {
 		$conference =& Request::getConference();
-		$conferenceId = ($conference?$conference->getConferenceId():0);
+		$conferenceId = ($conference?$conference->getId():0);
 		return $this->getSetting($conferenceId, 0, 'seq');
 	}
 
@@ -98,7 +98,7 @@ class BlockPlugin extends Plugin {
 	 */
 	function setSeq($i) {
 		$conference =& Request::getConference();
-		$conferenceId = ($conference?$conference->getConferenceId():0);
+		$conferenceId = ($conference?$conference->getId():0);
 		return $this->updateSetting($conferenceId, 0, 'seq', $i, 'int');
 	}
 

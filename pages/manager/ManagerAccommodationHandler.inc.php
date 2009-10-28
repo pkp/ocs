@@ -78,7 +78,7 @@ class ManagerAccommodationHandler extends ManagerHandler {
 				$extension = $fileManager->getExtension($oldName);
 				if (!$extension) break;
 				$uploadName = 'accommodation-' . $thisFileKey . '.' . $extension;
-				if ($success && $success = $fileManager->uploadSchedConfFile($schedConf->getSchedConfId(), 'accommodationFile', $uploadName)) {
+				if ($success && $success = $fileManager->uploadSchedConfFile($schedConf->getId(), 'accommodationFile', $uploadName)) {
 					$value = array(
 						'name' => $oldName,
 						'uploadName' => $uploadName,
@@ -106,7 +106,7 @@ class ManagerAccommodationHandler extends ManagerHandler {
 			if ($deleteKey !== null) {
 				import('file.PublicFileManager');
 				$fileManager = new PublicFileManager();
-				if ($fileManager->removeSchedConfFile($schedConf->getSchedConfId(), $accommodationFiles[$formLocale][$deleteKey]['uploadName'])) {
+				if ($fileManager->removeSchedConfFile($schedConf->getId(), $accommodationFiles[$formLocale][$deleteKey]['uploadName'])) {
 					unset($accommodationFiles[$formLocale][$deleteKey]);
 					$schedConf->updateSetting('accommodationFiles', $accommodationFiles, 'object', true);
 				}

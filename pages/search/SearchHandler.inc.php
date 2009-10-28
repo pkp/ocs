@@ -59,7 +59,7 @@ class SearchHandler extends Handler {
 			$yearRange = $publishedPaperDao->getPaperYearRange(null);
 		} else {
 			$conference =& Request::getConference();
-			$yearRange = $publishedPaperDao->getPaperYearRange($conference->getConferenceId());
+			$yearRange = $publishedPaperDao->getPaperYearRange($conference->getId());
 		}	
 
 		SearchHandler::assignAdvancedSearchParameters($templateMgr, $yearRange);
@@ -86,7 +86,7 @@ class SearchHandler extends Handler {
 
 			$schedConf =& Request::getSchedConf();
 			$publishedPapers = $authorDao->getPublishedPapersForAuthor(
-				$schedConf?$schedConf->getSchedConfId():null,
+				$schedConf?$schedConf->getId():null,
 				$firstName,
 				$middleName,
 				$lastName,
@@ -154,7 +154,7 @@ class SearchHandler extends Handler {
 			$schedConf =& Request::getSchedConf();
 
 			$authors =& $authorDao->getAuthorsAlphabetizedBySchedConf(
-				isset($schedConf)?$schedConf->getSchedConfId():null,
+				isset($schedConf)?$schedConf->getId():null,
 				$searchInitial,
 				$rangeInfo
 			);
@@ -184,8 +184,8 @@ class SearchHandler extends Handler {
 		$rangeInfo = Handler::getRangeInfo('search');
 
 		$allPaperIds =& $publishedPaperDao->getPublishedPaperIdsAlphabetizedByTitle(
-			$conference? $conference->getConferenceId():null,
-			$schedConf?$schedConf->getSchedConfId():null,
+			$conference? $conference->getId():null,
+			$schedConf?$schedConf->getId():null,
 			$rangeInfo);
 
 		// FIXME: this is horribly inefficient.
@@ -233,7 +233,7 @@ class SearchHandler extends Handler {
 		$conferenceIndex = array();
 		$schedConfIndex = array();
 		while ($conference =& $conferences->next()) {
-			$conferenceId = $conference->getConferenceId();
+			$conferenceId = $conference->getId();
 			$conferenceIndex[$conferenceId] =& $conference;
 			$schedConfsIterator =& $schedConfDao->getSchedConfsByConferenceId($conferenceId);
 			$schedConfIndex[$conferenceId] =& $schedConfsIterator->toArray();
@@ -293,7 +293,7 @@ class SearchHandler extends Handler {
 		if (!empty($searchConferenceId)) {
 			$conferenceDao =& DAORegistry::getDAO('ConferenceDAO');
 			$conference =& $conferenceDao->getConference($searchConferenceId);
-			$yearRange = $publishedPaperDao->getPaperYearRange($conference->getConferenceId());
+			$yearRange = $publishedPaperDao->getPaperYearRange($conference->getId());
 		} else {
 			$conference =& Request::getConference();
 			$yearRange = $publishedPaperDao->getPaperYearRange(null);

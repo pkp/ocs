@@ -16,35 +16,35 @@ import('db.DAO');
 class StaticPagesDAO extends DAO {
 
 	function getStaticPage($staticPageId) {
-		$result = &$this->retrieve(
+		$result =& $this->retrieve(
 			'SELECT * FROM static_pages WHERE static_page_id = ?', $staticPageId
 		);
 
 		$returner = null;
 		if ($result->RecordCount() != 0) {
-			$returner = &$this->_returnStaticPageFromRow($result->GetRowAssoc(false));
+			$returner =& $this->_returnStaticPageFromRow($result->GetRowAssoc(false));
 		}
 		$result->Close();
 		return $returner;		
 	}	
 	
 	function &getStaticPagesByConferenceId($conferenceId, $rangeInfo = null) {
-		$result = &$this->retrieveRange(
+		$result =& $this->retrieveRange(
 			'SELECT * FROM static_pages WHERE conference_id = ?', $conferenceId, $rangeInfo
 		);
 		
-		$returner = &new DAOResultFactory($result, $this, '_returnStaticPageFromRow');
+		$returner =& new DAOResultFactory($result, $this, '_returnStaticPageFromRow');
 		return $returner;
 	}
 	
 	function getStaticPageByPath($conferenceId, $path) {
-		$result = &$this->retrieve(
+		$result =& $this->retrieve(
 			'SELECT * FROM static_pages WHERE conference_id = ? AND path = ?', array($conferenceId, $path)
 		);
 
 		$returner = null;
 		if ($result->RecordCount() != 0) {
-			$returner = &$this->_returnStaticPageFromRow($result->GetRowAssoc(false));
+			$returner =& $this->_returnStaticPageFromRow($result->GetRowAssoc(false));
 		}
 		$result->Close();
 		return $returner;		
@@ -95,10 +95,10 @@ class StaticPagesDAO extends DAO {
 	}
 	
 	function &_returnStaticPageFromRow(&$row) {
-		$staticPagesPlugin = &PluginRegistry::getPlugin('generic', 'StaticPagesPlugin');
+		$staticPagesPlugin =& PluginRegistry::getPlugin('generic', 'StaticPagesPlugin');
 		$staticPagesPlugin->import('StaticPage');
 		
-		$staticPage = &new StaticPage();
+		$staticPage =& new StaticPage();
 		$staticPage->setStaticPageId($row['static_page_id']);
 		$staticPage->setPath($row['path']);
 		$staticPage->setConferenceId($row['conference_id']);

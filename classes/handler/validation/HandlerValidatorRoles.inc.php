@@ -41,11 +41,11 @@ class HandlerValidatorRoles extends HandlerValidator {
 	function isValid() {
 		// Get conference ID from request
 		$conference =& Request::getConference();
-		$conferenceId = $conference ? $conference->getConferenceId() : 0;
+		$conferenceId = $conference ? $conference->getId() : 0;
 
 		// Get scheduled conference ID from request
 		$schedConf =& Request::getSchedConf();
-		$schedConfId = $schedConf ? $schedConf->getSchedConfId() : 0;
+		$schedConfId = $schedConf ? $schedConf->getId() : 0;
 		
 		$user = Request::getUser();
 		if ( !$user ) return false;

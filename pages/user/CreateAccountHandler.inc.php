@@ -55,7 +55,7 @@ class CreateAccountHandler extends UserHandler {
 
 			// We have the conference, but need to select a scheduled conference
 			$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
-			$schedConfs =& $schedConfDao->getEnabledSchedConfs($conference->getConferenceId());
+			$schedConfs =& $schedConfDao->getEnabledSchedConfs($conference->getId());
 
 			$templateMgr =& TemplateManager::getManager();
 			$templateMgr->assign('pageHierarchy', array(
@@ -181,7 +181,7 @@ class CreateAccountHandler extends UserHandler {
 
 		if ($conference != null) {
 			$conferenceSettingsDao =& DAORegistry::getDAO('ConferenceSettingsDAO');
-			if ($conferenceSettingsDao->getSetting($conference->getConferenceId(), 'disableUserReg')) {
+			if ($conferenceSettingsDao->getSetting($conference->getId(), 'disableUserReg')) {
 				// Users cannot create accounts for this conference
 				$this->createAccountDisabled();
 				exit;

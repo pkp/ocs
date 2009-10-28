@@ -99,15 +99,8 @@ class Conference extends DataObject {
 	 * @return int
 	 */
 	function getConferenceId() {
-		return $this->getData('conferenceId');
-	}
-	
-	/**
-	 * Get ID of conference (for generic calls in PKP WAL).
-	 * @return int
-	 */
-	function getId() {
-		return $this->getData('conferenceId');
+		trigger_error('Deprecated function.');
+		return $this->getId();
 	}
 
 	/**
@@ -115,7 +108,8 @@ class Conference extends DataObject {
 	 * @param $conferenceId int
 	 */
 	function setConferenceId($conferenceId) {
-		return $this->setData('conferenceId', $conferenceId);
+		trigger_error('Deprecated function.');
+		return $this->setId($conferenceId);
 	}
 
 	/**

@@ -37,7 +37,7 @@ class ManagerSchedConfHandler extends ManagerHandler {
 
 		$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
 		while (true) {
-			$schedConfs =& $schedConfDao->getSchedConfsByConferenceId($conference->getConferenceId(), $rangeInfo);
+			$schedConfs =& $schedConfDao->getSchedConfsByConferenceId($conference->getId(), $rangeInfo);
 			if ($schedConfs->isInBounds()) break;
 			unset($rangeInfo);
 			$rangeInfo =& $schedConfs->getLastPageRangeInfo();
@@ -60,13 +60,13 @@ class ManagerSchedConfHandler extends ManagerHandler {
 		$conference = Request::getConference();
 
 		if($schedConf) {
-			$schedConfId = $schedConf->getSchedConfId();
+			$schedConfId = $schedConf->getId();
 		} else {
 			$schedConfId = null;
 		}
 
 		if($conference) {
-			$conferenceId = $conference->getConferenceId();
+			$conferenceId = $conference->getId();
 		} else {
 			$conferenceId = null;
 		}
@@ -168,7 +168,7 @@ class ManagerSchedConfHandler extends ManagerHandler {
 		$conference =& Request::getConference();
 
 		$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
-		$schedConf =& $schedConfDao->getSchedConf(Request::getUserVar('id'), $conference->getConferenceId());
+		$schedConf =& $schedConfDao->getSchedConf(Request::getUserVar('id'), $conference->getId());
 		$direction = Request::getUserVar('d');
 
 		if ($schedConf != null) {
@@ -181,13 +181,13 @@ class ManagerSchedConfHandler extends ManagerHandler {
 				if ($prevId == null)
 					$prevSeq = 0;
 				else {
-					$prevSchedConf = $schedConfDao->getConference($prevId, $conference->getConferenceId());
+					$prevSchedConf = $schedConfDao->getConference($prevId, $conference->getId());
 					$prevSeq = $prefSchedConf->getSequence();
 				}
 				$schedConf->setSequence($prevSeq + .5);
 			}
 			$schedConfDao->updateSchedConf($schedConf);
-			$schedConfDao->resequenceSchedConfs($conference->getConferenceId());
+			$schedConfDao->resequenceSchedConfs($conference->getId());
 		}
 
 		// Moving up or down with the arrows requires a page reload.

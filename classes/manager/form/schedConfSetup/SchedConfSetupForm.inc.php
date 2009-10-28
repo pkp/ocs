@@ -71,7 +71,7 @@ class SchedConfSetupForm extends Form {
 			if (isset($this->settings[$name])) {
 				$isLocalized = in_array($name, $this->getLocaleFieldNames());
 				$settingsDao->updateSetting(
-					$schedConf->getSchedConfId(),
+					$schedConf->getId(),
 					$name,
 					$value,
 					$this->settings[$name],

@@ -98,7 +98,7 @@ class DirectorDecisionCommentForm extends CommentForm {
 			// If no directors are currently assigned to this paper,
 			// send the email to all directors for the conference
 			if (empty($directorAddresses)) {
-				$directors =& $roleDao->getUsersByRoleId(ROLE_ID_DIRECTOR, $conference->getConferenceId());
+				$directors =& $roleDao->getUsersByRoleId(ROLE_ID_DIRECTOR, $conference->getId());
 				while (!$directors->eof()) {
 					$director =& $directors->next();
 					$directorAddresses[$director->getEmail()] = $director->getFullName();

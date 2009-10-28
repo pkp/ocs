@@ -85,7 +85,7 @@ class Plugin extends PKPPlugin {
 		$conference =& $args[1];
 
 		$pluginSettingsDao =& DAORegistry::getDAO('PluginSettingsDAO');
-		$pluginSettingsDao->installSettings($conference->getConferenceId(), 0, $this->getName(), $this->getNewConferencePluginSettingsFile());
+		$pluginSettingsDao->installSettings($conference->getId(), 0, $this->getName(), $this->getNewConferencePluginSettingsFile());
 
 		return false;
 	}

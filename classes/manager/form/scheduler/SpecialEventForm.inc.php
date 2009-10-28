@@ -127,7 +127,7 @@ class SpecialEventForm extends Form {
 			$specialEvent = new SpecialEvent();
 		}
 
-		$specialEvent->setSchedConfId($schedConf->getSchedConfId());
+		$specialEvent->setSchedConfId($schedConf->getId());
 		$specialEvent->setName($this->getData('name'), null); // Localized
 		$specialEvent->setDescription($this->getData('description'), null); // Localized
 		$specialEvent->setStartTime(date('Y-m-d H:i:s', $this->getData('startTime')));

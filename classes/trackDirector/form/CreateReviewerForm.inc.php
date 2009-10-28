@@ -174,7 +174,7 @@ class CreateReviewerForm extends Form {
 		$schedConf =& Request::getSchedConf();
 		$role = new Role();
 		$role->setConferenceId($schedConf->getConferenceId());
-		$role->setSchedConfId($schedConf->getSchedConfId());
+		$role->setSchedConfId($schedConf->getId());
 		$role->setUserId($userId);
 		$role->setRoleId(ROLE_ID_REVIEWER);
 		$roleDao->insertRole($role);

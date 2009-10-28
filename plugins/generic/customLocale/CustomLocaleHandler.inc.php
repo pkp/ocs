@@ -84,7 +84,7 @@ class CustomLocaleHandler extends Handler {
 		import('file.FileManager');
 		import('i18n.EditableLocaleFile');
 		$conference = Request::getConference();
-		$conferenceId = $conference->getConferenceId();
+		$conferenceId = $conference->getId();
 		$publicFilesDir = Config::getVar('files', 'public_files_dir');
 		$customLocaleDir = $publicFilesDir . DIRECTORY_SEPARATOR . 'conferences' . DIRECTORY_SEPARATOR . $conferenceId . DIRECTORY_SEPARATOR . CUSTOM_LOCALE_DIR;
 		$customLocalePath = $customLocaleDir . DIRECTORY_SEPARATOR . $locale . DIRECTORY_SEPARATOR . $filename;
@@ -142,7 +142,7 @@ class CustomLocaleHandler extends Handler {
 		}
 
 		$conference =& Request::getConference();
-		$conferenceId = $conference->getConferenceId();
+		$conferenceId = $conference->getId();
 		$changes = Request::getUserVar('changes');
 		$customFilesDir = Config::getVar('files', 'public_files_dir') . DIRECTORY_SEPARATOR . 'conferences' . DIRECTORY_SEPARATOR . $conferenceId . DIRECTORY_SEPARATOR . CUSTOM_LOCALE_DIR . DIRECTORY_SEPARATOR . $locale;
 		$customFilePath = $customFilesDir . DIRECTORY_SEPARATOR . $filename;

@@ -46,7 +46,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		$user =& Request::getUser();
 
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
-		$isDirector = $roleDao->roleExists($conference->getConferenceId(), $schedConf->getSchedConfId(), $user->getId(), ROLE_ID_DIRECTOR);
+		$isDirector = $roleDao->roleExists($conference->getId(), $schedConf->getId(), $user->getId(), ROLE_ID_DIRECTOR);
 
 		$trackDao =& DAORegistry::getDAO('TrackDAO');
 		$track =& $trackDao->getTrack($submission->getTrackId());
@@ -66,7 +66,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		$templateMgr->assign('enableComments', $enableComments);
 
 		$trackDao =& DAORegistry::getDAO('TrackDAO');
-		$templateMgr->assign_by_ref('tracks', $trackDao->getTrackTitles($schedConf->getSchedConfId()));
+		$templateMgr->assign_by_ref('tracks', $trackDao->getTrackTitles($schedConf->getId()));
 		if ($enableComments) {
 			import('paper.Paper');
 			$templateMgr->assign('commentsStatus', $submission->getCommentsStatus());
@@ -84,7 +84,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		}
 
 		$controlledVocabDao =& DAORegistry::getDAO('ControlledVocabDAO');
-		$templateMgr->assign('sessionTypes', $controlledVocabDao->enumerateBySymbolic('paperType', ASSOC_TYPE_SCHED_CONF, $schedConf->getSchedConfId()));
+		$templateMgr->assign('sessionTypes', $controlledVocabDao->enumerateBySymbolic('paperType', ASSOC_TYPE_SCHED_CONF, $schedConf->getId()));
 
 		$templateMgr->assign('mayEditPaper', true);
 
@@ -163,7 +163,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		$reviewFormDao =& DAORegistry::getDAO('ReviewFormDAO');
 
 		$trackDao =& DAORegistry::getDAO('TrackDAO');
-		$tracks =& $trackDao->getSchedConfTracks($schedConf->getSchedConfId());
+		$tracks =& $trackDao->getSchedConfTracks($schedConf->getId());
 
 		$directorDecisions = $submission->getDecisions($stage);
 		$lastDecision = count($directorDecisions) >= 1 ? $directorDecisions[count($directorDecisions) - 1]['decision'] : null;
@@ -198,7 +198,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		}
 
 		// get conference published review form titles
-		$reviewFormTitles =& $reviewFormDao->getConferenceReviewFormTitles($conference->getConferenceId(), 1);
+		$reviewFormTitles =& $reviewFormDao->getConferenceReviewFormTitles($conference->getId(), 1);
 
 		$reviewFormResponseDao =& DAORegistry::getDAO('ReviewFormResponseDAO');
 		$reviewFormResponses = array();
@@ -253,7 +253,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		$templateMgr->assign('helpTopicId', 'editorial.trackDirectorsRole.review');
 
 		$controlledVocabDao =& DAORegistry::getDAO('ControlledVocabDAO');
-		$templateMgr->assign('sessionTypes', $controlledVocabDao->enumerateBySymbolic('sessionTypes', ASSOC_TYPE_SCHED_CONF, $schedConf->getSchedConfId()));
+		$templateMgr->assign('sessionTypes', $controlledVocabDao->enumerateBySymbolic('sessionTypes', ASSOC_TYPE_SCHED_CONF, $schedConf->getId()));
 
 		$templateMgr->display('trackDirector/submissionReview.tpl');
 	}
@@ -455,7 +455,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 
 			$rangeInfo =& Handler::getRangeInfo('reviewers', array($submission->getCurrentStage(), (string) $searchType, (string) $search, (string) $searchMatch)); // Paper ID intentionally omitted
 			while (true) {
-				$reviewers = $trackDirectorSubmissionDao->getReviewersForPaper($schedConf->getSchedConfId(), $paperId, $submission->getCurrentStage(), $searchType, $search, $searchMatch, $rangeInfo, $sort, $sortDirection);
+				$reviewers = $trackDirectorSubmissionDao->getReviewersForPaper($schedConf->getId(), $paperId, $submission->getCurrentStage(), $searchType, $search, $searchMatch, $rangeInfo, $sort, $sortDirection);
 				if ($reviewers->isInBounds()) break;
 				unset($rangeInfo);
 				$rangeInfo =& $reviewers->getLastPageRangeInfo();
@@ -473,7 +473,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 
 			$templateMgr->assign_by_ref('reviewers', $reviewers);
 			$templateMgr->assign('paperId', $paperId);
-			$templateMgr->assign('reviewerStatistics', $trackDirectorSubmissionDao->getReviewerStatistics($schedConf->getSchedConfId()));
+			$templateMgr->assign('reviewerStatistics', $trackDirectorSubmissionDao->getReviewerStatistics($schedConf->getId()));
 			$templateMgr->assign('fieldOptions', Array(
 				USER_FIELD_INTERESTS => 'user.interests',
 				USER_FIELD_FIRSTNAME => 'user.firstName',
@@ -481,9 +481,9 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 				USER_FIELD_USERNAME => 'user.username',
 				USER_FIELD_EMAIL => 'user.email'
 			));
-			$templateMgr->assign('completedReviewCounts', $reviewAssignmentDao->getCompletedReviewCounts($schedConf->getSchedConfId()));
+			$templateMgr->assign('completedReviewCounts', $reviewAssignmentDao->getCompletedReviewCounts($schedConf->getId()));
 			$templateMgr->assign('rateReviewerOnQuality', $schedConf->getSetting('rateReviewerOnQuality'));
-			$templateMgr->assign('averageQualityRatings', $reviewAssignmentDao->getAverageQualityRatings($schedConf->getSchedConfId()));
+			$templateMgr->assign('averageQualityRatings', $reviewAssignmentDao->getAverageQualityRatings($schedConf->getId()));
 
 			$templateMgr->assign('helpTopicId', 'conference.roles.reviewers');
 			$templateMgr->assign('alphaList', explode(' ', Locale::translate('common.alphaList')));
@@ -623,10 +623,10 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 
 		// Enroll reviewer
 		for ($i=0; $i<count($users); $i++) {
-			if (!$roleDao->roleExists($schedConf->getConferenceId(), $schedConf->getSchedConfId(), $users[$i], $roleId)) {
+			if (!$roleDao->roleExists($schedConf->getConferenceId(), $schedConf->getId(), $users[$i], $roleId)) {
 				$role = new Role();
 				$role->setConferenceId($schedConf->getConferenceId());
-				$role->setSchedConfId($schedConf->getSchedConfId());
+				$role->setSchedConfId($schedConf->getId());
 				$role->setUserId($users[$i]);
 				$role->setRoleId($roleId);
 
@@ -937,7 +937,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 
 		$conference =& Request::getConference();
 		$reviewFormDao =& DAORegistry::getDAO('ReviewFormDAO');
-		$reviewForm =& $reviewFormDao->getReviewForm($reviewFormId, $conference->getConferenceId());
+		$reviewForm =& $reviewFormDao->getReviewForm($reviewFormId, $conference->getId());
 		$reviewFormElementDao =& DAORegistry::getDAO('ReviewFormElementDAO');
 		$reviewFormElements =& $reviewFormElementDao->getReviewFormElements($reviewFormId);
 		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
@@ -989,7 +989,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 			$conference =& Request::getConference();
 			$rangeInfo =& Handler::getRangeInfo('reviewForms');
 			$reviewFormDao =& DAORegistry::getDAO('ReviewFormDAO');
-			$reviewForms =& $reviewFormDao->getConferenceActiveReviewForms($conference->getConferenceId(), $rangeInfo);
+			$reviewForms =& $reviewFormDao->getConferenceActiveReviewForms($conference->getId(), $rangeInfo);
 			$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
 			$reviewAssignment =& $reviewAssignmentDao->getReviewAssignmentById($reviewId);
 
@@ -1851,7 +1851,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		if ($trackDirectorSubmission == null) {
 			$isValid = false;
 
-		} else if ($trackDirectorSubmission->getSchedConfId() != $schedConf->getSchedConfId()) {
+		} else if ($trackDirectorSubmission->getSchedConfId() != $schedConf->getId()) {
 			$isValid = false;
 
 		} else if ($trackDirectorSubmission->getDateSubmitted() == null) {

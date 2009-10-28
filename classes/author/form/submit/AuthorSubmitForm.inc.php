@@ -143,7 +143,7 @@ class AuthorSubmitForm extends Form {
 		$trackDirectorsDao =& DAORegistry::getDAO('TrackDirectorsDAO');
 		$editAssignmentDao =& DAORegistry::getDAO('EditAssignmentDAO');
 
-		$trackDirectors =& $trackDirectorsDao->getDirectorsByTrackId($schedConf->getSchedConfId(), $trackId);
+		$trackDirectors =& $trackDirectorsDao->getDirectorsByTrackId($schedConf->getId(), $trackId);
 
 		foreach ($trackDirectors as $trackDirector) {
 			$editAssignment = new EditAssignment();

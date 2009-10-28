@@ -306,10 +306,10 @@ class CreateAccountForm extends Form {
 
 		foreach ($allowedRoles as $k => $v) {
 			$roleId = $roleDao->getRoleIdFromPath($k);
-			if ($this->getData($v) && !$roleDao->roleExists($conference->getConferenceId(), $schedConf->getSchedConfId(), $userId, $roleId)) {
+			if ($this->getData($v) && !$roleDao->roleExists($conference->getId(), $schedConf->getId(), $userId, $roleId)) {
 				$role = new Role();
-				$role->setConferenceId($conference->getConferenceId());
-				$role->setSchedConfId($schedConf->getSchedConfId());
+				$role->setConferenceId($conference->getId());
+				$role->setSchedConfId($schedConf->getId());
 				$role->setUserId($userId);
 				$role->setRoleId($roleId);
 				$roleDao->insertRole($role);
@@ -323,7 +323,7 @@ class CreateAccountForm extends Form {
 
 		if (isset($allowedRoles['reader']) && $this->getData('openAccessNotification')) {
 			$userSettingsDao =& DAORegistry::getDAO('UserSettingsDAO');
-			$userSettingsDao->updateSetting($userId, 'openAccessNotification', true, 'bool', $conference->getConferenceId());
+			$userSettingsDao->updateSetting($userId, 'openAccessNotification', true, 'bool', $conference->getId());
 		}
 	}
 

@@ -31,10 +31,10 @@ class AnnouncementForm extends PKPAnnouncementForm {
 		$conference =& Request::getConference();
 
 		// If provided, announcement type is valid 
-		$this->addCheck(new FormValidatorCustom($this, 'typeId', 'optional', 'manager.announcements.form.typeIdValid', create_function('$typeId, $conferenceId', '$announcementTypeDao =& DAORegistry::getDAO(\'AnnouncementTypeDAO\'); return $announcementTypeDao->announcementTypeExistsByTypeId($typeId, ASSOC_TYPE_CONFERENCE, $conferenceId);'), array($conference->getConferenceId())));
+		$this->addCheck(new FormValidatorCustom($this, 'typeId', 'optional', 'manager.announcements.form.typeIdValid', create_function('$typeId, $conferenceId', '$announcementTypeDao =& DAORegistry::getDAO(\'AnnouncementTypeDAO\'); return $announcementTypeDao->announcementTypeExistsByTypeId($typeId, ASSOC_TYPE_CONFERENCE, $conferenceId);'), array($conference->getId())));
 
 		// If supplied, the scheduled conference exists and belongs to the conference
-		$this->addCheck(new FormValidatorCustom($this, 'schedConfId', 'required', 'manager.announcements.form.schedConfIdValid', create_function('$schedConfId, $conferenceId', 'if ($schedConfId == 0) return true; $schedConfDao =& DAORegistry::getDAO(\'SchedConfDAO\'); $schedConf =& $schedConfDao->getSchedConf($schedConfId); if(!$schedConf) return false; return ($schedConf->getConferenceId() == $conferenceId);'), array($conference->getConferenceId())));
+		$this->addCheck(new FormValidatorCustom($this, 'schedConfId', 'required', 'manager.announcements.form.schedConfIdValid', create_function('$schedConfId, $conferenceId', 'if ($schedConfId == 0) return true; $schedConfDao =& DAORegistry::getDAO(\'SchedConfDAO\'); $schedConf =& $schedConfDao->getSchedConf($schedConfId); if(!$schedConf) return false; return ($schedConf->getConferenceId() == $conferenceId);'), array($conference->getId())));
 	}
 
 	/**
@@ -46,7 +46,7 @@ class AnnouncementForm extends PKPAnnouncementForm {
 
 		$conference =& Request::getConference();
 		$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
-		$schedConfs =& $schedConfDao->getSchedConfsByConferenceId($conference->getConferenceId());
+		$schedConfs =& $schedConfDao->getSchedConfsByConferenceId($conference->getId());
 		$templateMgr->assign('schedConfs', $schedConfs);
 
 		parent::display();
@@ -78,7 +78,7 @@ class AnnouncementForm extends PKPAnnouncementForm {
 	
 	function _getAnnouncementTypesAssocId() {
 		$conference =& Request::getConference();
-		return array(ASSOC_TYPE_CONFERENCE, $conference->getConferenceId()); 
+		return array(ASSOC_TYPE_CONFERENCE, $conference->getId()); 
 	}
 
 	/**
@@ -89,7 +89,7 @@ class AnnouncementForm extends PKPAnnouncementForm {
 		if ($this->getData('schedConfId') == 0) {
 			$conference =& Request::getConference();
 			$announcement->setAssocType(ASSOC_TYPE_CONFERENCE);
-			$announcement->setAssocId($conference->getConferenceId());
+			$announcement->setAssocId($conference->getId());
 		} else {
 			$announcement->setAssocType(ASSOC_TYPE_SCHED_CONF);
 			$announcement->setAssocId($this->getData('schedConfId'));
@@ -102,7 +102,7 @@ class AnnouncementForm extends PKPAnnouncementForm {
 	function execute() {
 		parent::execute();
 		$conference =& Request::getConference();
-		$conferenceId = $conference->getConferenceId();
+		$conferenceId = $conference->getId();
 		
 		// Send a notification to associated users
 		import('notification.Notification');

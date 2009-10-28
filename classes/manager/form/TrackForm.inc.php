@@ -83,10 +83,10 @@ class TrackForm extends Form {
 			$trackDirectorsDao =& DAORegistry::getDAO('TrackDirectorsDAO');
 
 			// Get track directors not assigned to this track
-			$unassignedDirectors =& $trackDirectorsDao->getDirectorsNotInTrack($schedConf->getSchedConfId(), $this->trackId);
+			$unassignedDirectors =& $trackDirectorsDao->getDirectorsNotInTrack($schedConf->getId(), $this->trackId);
 
 			// Get track directors assigned to this track
-			$assignedDirectors =& $trackDirectorsDao->getDirectorsByTrackId($schedConf->getSchedConfId(), $this->trackId);
+			$assignedDirectors =& $trackDirectorsDao->getDirectorsByTrackId($schedConf->getId(), $this->trackId);
 		}
 
 		$templateMgr->assign('unassignedDirectors', $unassignedDirectors);
@@ -125,7 +125,7 @@ class TrackForm extends Form {
 			}
 		} else {
 			$this->_data = array(
-				'unassignedDirectors' => $trackDirectorsDao->getDirectorsNotInTrack($conference->getConferenceId(), null)
+				'unassignedDirectors' => $trackDirectorsDao->getDirectorsNotInTrack($conference->getId(), null)
 			);
 
 		}
@@ -152,7 +152,7 @@ class TrackForm extends Form {
 
 		if (!isset($track)) {
 			$track = new Track();
-			$track->setSchedConfId($schedConf->getSchedConfId());
+			$track->setSchedConfId($schedConf->getId());
 			$track->setSequence(REALLY_BIG_NUMBER);
 		}
 
@@ -171,16 +171,16 @@ class TrackForm extends Form {
 			$trackId = $track->getTrackId();
 		} else {
 			$trackId = $trackDao->insertTrack($track);
-			$trackDao->resequenceTracks($schedConf->getSchedConfId());
+			$trackDao->resequenceTracks($schedConf->getId());
 		}
 
 		// Save assigned directors
 		$trackDirectorsDao =& DAORegistry::getDAO('TrackDirectorsDAO');
-		$trackDirectorsDao->deleteDirectorsByTrackId($trackId, $schedConf->getSchedConfId());
+		$trackDirectorsDao->deleteDirectorsByTrackId($trackId, $schedConf->getId());
 		$directors = explode(':', Request::getUserVar('assignedDirectors'));
 		foreach ($directors as $edUserId) {
 			if (!empty($edUserId)) {
-				$trackDirectorsDao->insertDirector($schedConf->getSchedConfId(), $trackId, $edUserId);
+				$trackDirectorsDao->insertDirector($schedConf->getId(), $trackId, $edUserId);
 			}
 		}
 	}

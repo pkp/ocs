@@ -75,7 +75,7 @@ class NativeImportExportPlugin extends ImportExportPlugin {
 				$this->setBreadcrumbs(array(), true);
 				$publishedPaperDao =& DAORegistry::getDAO('PublishedPaperDAO');
 				$rangeInfo = Handler::getRangeInfo('papers');
-				$paperIds = $publishedPaperDao->getPublishedPaperIdsAlphabetizedBySchedConf($conference->getConferenceId(), $schedConf->getSchedConfId());
+				$paperIds = $publishedPaperDao->getPublishedPaperIdsAlphabetizedBySchedConf($conference->getId(), $schedConf->getId());
 				$totalPapers = count($paperIds);
 				if ($rangeInfo->isValid()) $paperIds = array_slice($paperIds, $rangeInfo->getCount() * ($rangeInfo->getPage()-1), $rangeInfo->getCount());
 				import('core.VirtualArrayIterator');
@@ -118,7 +118,7 @@ class NativeImportExportPlugin extends ImportExportPlugin {
 					// import papers within an appropriate context. If not,
 					// prompt them for the.
 					if (!isset($context['track'])) {
-						$templateMgr->assign('trackOptions', array('0' => Locale::translate('author.submit.selectTrack')) + $trackDao->getTrackTitles($schedConf->getSchedConfId(), false));
+						$templateMgr->assign('trackOptions', array('0' => Locale::translate('author.submit.selectTrack')) + $trackDao->getTrackTitles($schedConf->getId(), false));
 						$templateMgr->assign('temporaryFileId', $temporaryFile->getId());
 						return $templateMgr->display($this->getTemplatePath() . 'paperContext.tpl');
 					}
@@ -292,10 +292,10 @@ class NativeImportExportPlugin extends ImportExportPlugin {
 								$track =& $trackDao->getTrack(($trackIdentifier = array_shift($args)));
 								break;
 							case 'track_name':
-								$track =& $trackDao->getTrackByTitle(($trackIdentifier = array_shift($args)), $schedConf->getSchedConfId());
+								$track =& $trackDao->getTrackByTitle(($trackIdentifier = array_shift($args)), $schedConf->getId());
 								break;
 							case 'track_abbrev':
-								$track =& $trackDao->getTrackByAbbrev(($trackIdentifier = array_shift($args)), $schedConf->getSchedConfId());
+								$track =& $trackDao->getTrackByAbbrev(($trackIdentifier = array_shift($args)), $schedConf->getId());
 								break;
 							default:
 								return $this->usage($scriptName);
@@ -328,7 +328,7 @@ class NativeImportExportPlugin extends ImportExportPlugin {
 				if ($xmlFile != '') switch (array_shift($args)) {
 					case 'paper':
 						$paperId = array_shift($args);
-						$publishedPaper =& $publishedPaperDao->getPublishedPaperByBestPaperId($schedConf->getSchedConfId(), $paperId);
+						$publishedPaper =& $publishedPaperDao->getPublishedPaperByBestPaperId($schedConf->getId(), $paperId);
 						if ($publishedPaper == null) {
 							echo Locale::translate('plugins.importexport.native.cliError') . "\n";
 							echo Locale::translate('plugins.importexport.native.export.error.paperNotFound', array('paperId' => $paperId)) . "\n\n";

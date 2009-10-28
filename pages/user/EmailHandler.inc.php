@@ -54,7 +54,7 @@ class EmailHandler extends UserHandler {
 		);
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
 		if ($conference) {
-			$roles =& $roleDao->getRolesByUserId($user->getId(), $conference->getConferenceId());
+			$roles =& $roleDao->getRolesByUserId($user->getId(), $conference->getId());
 			foreach ($roles as $role) {
 				if (in_array($role->getRoleId(), $unlimitedEmailRoles)) $canSendUnlimitedEmails = true;
 			}
@@ -101,7 +101,7 @@ class EmailHandler extends UserHandler {
 			}
 
 			// Last, "deal-breakers" -- access is not allowed.
-			if ($paper && $paper->getSchedConfId() !== $schedConf->getSchedConfId()) $hasAccess = false;
+			if ($paper && $paper->getSchedConfId() !== $schedConf->getId()) $hasAccess = false;
 
 			if ($hasAccess) {
 				import('mail.PaperMailTemplate');

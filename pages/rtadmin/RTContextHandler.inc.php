@@ -32,7 +32,7 @@ class RTContextHandler extends RTAdminHandler {
 
 		$rtDao =& DAORegistry::getDAO('RTDAO');
 		$versionId = isset($args[0])?$args[0]:0;
-		$version =& $rtDao->getVersion($versionId, $conference->getConferenceId());
+		$version =& $rtDao->getVersion($versionId, $conference->getId());
 
 		import('rt.ocs.form.ContextForm');
 		$contextForm = new ContextForm(null, $versionId);
@@ -56,7 +56,7 @@ class RTContextHandler extends RTAdminHandler {
 		$rangeInfo = Handler::getRangeInfo('contexts');
 
 		$versionId = isset($args[0])?$args[0]:0;
-		$version =& $rtDao->getVersion($versionId, $conference->getConferenceId());
+		$version =& $rtDao->getVersion($versionId, $conference->getId());
 
 		if ($version) {
 			$this->setupTemplate(true, $version);
@@ -81,7 +81,7 @@ class RTContextHandler extends RTAdminHandler {
 
 		$conference = Request::getConference();
 		$versionId = isset($args[0])?$args[0]:0;
-		$version =& $rtDao->getVersion($versionId, $conference->getConferenceId());
+		$version =& $rtDao->getVersion($versionId, $conference->getId());
 		$contextId = isset($args[1])?$args[1]:0;
 		$context =& $rtDao->getContext($contextId);
 
@@ -104,7 +104,7 @@ class RTContextHandler extends RTAdminHandler {
 
 		$conference = Request::getConference();
 		$versionId = isset($args[0])?$args[0]:0;
-		$version =& $rtDao->getVersion($versionId, $conference->getConferenceId());
+		$version =& $rtDao->getVersion($versionId, $conference->getId());
 		$contextId = isset($args[1])?$args[1]:0;
 		$context =& $rtDao->getContext($contextId);
 
@@ -122,7 +122,7 @@ class RTContextHandler extends RTAdminHandler {
 
 		$conference = Request::getConference();
 		$versionId = isset($args[0])?$args[0]:0;
-		$version =& $rtDao->getVersion($versionId, $conference->getConferenceId());
+		$version =& $rtDao->getVersion($versionId, $conference->getId());
 		$contextId = isset($args[1])?$args[1]:0;
 		$context =& $rtDao->getContext($contextId);
 
@@ -143,7 +143,7 @@ class RTContextHandler extends RTAdminHandler {
 
 		$conference = Request::getConference();
 		$versionId = isset($args[0])?$args[0]:0;
-		$version =& $rtDao->getVersion($versionId, $conference->getConferenceId());
+		$version =& $rtDao->getVersion($versionId, $conference->getId());
 		$contextId = isset($args[1])?$args[1]:0;
 		$context =& $rtDao->getContext($contextId);
 

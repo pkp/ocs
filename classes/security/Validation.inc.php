@@ -177,13 +177,13 @@ class Validation {
 		if ($conferenceId === -1) {
 			// Get conference ID from request
 			$conference =& Request::getConference();
-			$conferenceId = $conference ? $conference->getConferenceId() : 0;
+			$conferenceId = $conference ? $conference->getId() : 0;
 		}
 
 		if ($schedConfId === -1) {
 			// Get scheduled conference ID from request
 			$schedConf =& Request::getSchedConf();
-			$schedConfId = $schedConf ? $schedConf->getSchedConfId() : 0;
+			$schedConfId = $schedConf ? $schedConf->getId() : 0;
 		}
 
 		$sessionManager =& SessionManager::getManager();

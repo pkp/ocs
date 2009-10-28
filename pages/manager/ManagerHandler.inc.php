@@ -40,7 +40,7 @@ class ManagerHandler extends Handler {
 		$templateMgr =& TemplateManager::getManager();
 
 		$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
-		$schedConfs =& $schedConfDao->getSchedConfsByConferenceId($conference->getConferenceId());
+		$schedConfs =& $schedConfDao->getSchedConfsByConferenceId($conference->getId());
 		$templateMgr->assign_by_ref('schedConfs', $schedConfs);
 
 		$announcementsEnabled = $conference->getSetting('enableAnnouncements');
@@ -82,7 +82,7 @@ class ManagerHandler extends Handler {
 					// Special case for emailing entire groups:
 					// Check for a group ID and add recipients.
 					$groupDao =& DAORegistry::getDAO('GroupDAO');
-					$group =& $groupDao->getGroup($groupId, ASSOC_TYPE_SCHED_CONF, $schedConf->getSchedConfId());
+					$group =& $groupDao->getGroup($groupId, ASSOC_TYPE_SCHED_CONF, $schedConf->getId());
 					if ($group) {
 						$groupMembershipDao =& DAORegistry::getDAO('GroupMembershipDAO');
 						$memberships =& $groupMembershipDao->getMemberships($group->getId());

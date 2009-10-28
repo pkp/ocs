@@ -51,8 +51,8 @@ class TemplateManager extends PKPTemplateManager {
 
 			if (isset($conference)) {
 				$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
-				$archivedSchedConfsExist = $schedConfDao->archivedSchedConfsExist($conference->getConferenceId());
-				$currentSchedConfsExist = $schedConfDao->currentSchedConfsExist($conference->getConferenceId());
+				$archivedSchedConfsExist = $schedConfDao->archivedSchedConfsExist($conference->getId());
+				$currentSchedConfsExist = $schedConfDao->currentSchedConfsExist($conference->getId());
 				$this->assign('archivedSchedConfsExist', $archivedSchedConfsExist);
 				$this->assign('currentSchedConfsExist', $currentSchedConfsExist);
 
@@ -75,14 +75,14 @@ class TemplateManager extends PKPTemplateManager {
 				$navMenuItems =& $conference->getLocalizedSetting('navItems');
 				$this->assign_by_ref('navMenuItems', $navMenuItems);
 
-				$this->assign('publicConferenceFilesDir', Request::getBaseUrl() . '/' . PublicFileManager::getConferenceFilesPath($conference->getConferenceId()));
+				$this->assign('publicConferenceFilesDir', Request::getBaseUrl() . '/' . PublicFileManager::getConferenceFilesPath($conference->getId()));
 
 				$this->assign('displayPageHeaderTitle', $conference->getPageHeaderTitle());
 				$this->assign('displayPageHeaderLogo', $conference->getPageHeaderLogo());
 				$this->assign('displayPageHeaderTitleAltText', $conference->getLocalizedSetting('pageHeaderTitleImageAltText'));
 				$this->assign('displayPageHeaderLogoAltText', $conference->getLocalizedSetting('pageHeaderLogoImageAltText'));
 				$this->assign('displayFavicon', $conference->getLocalizedFavicon());
-				$this->assign('faviconDir', Request::getBaseUrl() . '/' . PublicFileManager::getConferenceFilesPath($conference->getConferenceId()));
+				$this->assign('faviconDir', Request::getBaseUrl() . '/' . PublicFileManager::getConferenceFilesPath($conference->getId()));
 				$this->assign('alternatePageHeader', $conference->getLocalizedSetting('conferencePageHeader'));
 				$this->assign('metaSearchDescription', $conference->getLocalizedSetting('searchDescription'));
 				$this->assign('metaSearchKeywords', $conference->getLocalizedSetting('searchKeywords'));
@@ -95,7 +95,7 @@ class TemplateManager extends PKPTemplateManager {
 				if (isset($schedConf)) {
 
 					// This will be needed if inheriting public conference files from the scheduled conference.
-					$this->assign('publicFilesDir', Request::getBaseUrl() . '/' . PublicFileManager::getSchedConfFilesPath($schedConf->getSchedConfId()));
+					$this->assign('publicFilesDir', Request::getBaseUrl() . '/' . PublicFileManager::getSchedConfFilesPath($schedConf->getId()));
 					$this->assign('primaryLocale', $conference->getSetting('primaryLocale'));
 					$this->assign('alternateLocales', $conference->getPrimaryLocale());
 
@@ -145,14 +145,14 @@ class TemplateManager extends PKPTemplateManager {
 					
 				} else {
 
-					$this->assign('publicFilesDir', Request::getBaseUrl() . '/' . PublicFileManager::getConferenceFilesPath($conference->getConferenceId()));
+					$this->assign('publicFilesDir', Request::getBaseUrl() . '/' . PublicFileManager::getConferenceFilesPath($conference->getId()));
 				}
 
 				// Assign conference stylesheet and footer
 				$conferenceStyleSheet = $conference->getSetting('conferenceStyleSheet');
 				if ($conferenceStyleSheet) {
 					$this->addStyleSheet(Request::getBaseUrl() .
-					'/' .	PublicFileManager::getConferenceFilesPath($conference->getConferenceId()) .
+					'/' .	PublicFileManager::getConferenceFilesPath($conference->getId()) .
 					'/' . $conferenceStyleSheet['uploadName']);
 				}
 
@@ -161,7 +161,7 @@ class TemplateManager extends PKPTemplateManager {
 					$schedConfStyleSheet = $schedConf->getSetting('schedConfStyleSheet');
 					if ($schedConfStyleSheet) {
 						$this->addStyleSheet(Request::getBaseUrl() .
-						'/' .	PublicFileManager::getSchedConfFilesPath($schedConf->getSchedConfId()) .
+						'/' .	PublicFileManager::getSchedConfFilesPath($schedConf->getId()) .
 						'/' . $schedConfStyleSheet['uploadName']);
 					}
 				}
