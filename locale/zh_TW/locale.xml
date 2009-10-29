@@ -219,7 +219,7 @@
 	<message key="schedConf.registration.conferenceFees">註冊費</message>
 	<message key="schedConf.registration.type">註冊類別</message>
 	<message key="schedConf.registration.cost">費用</message>
-	<message key="schedConf.registration.noneAvailable">無可利用之註冊類別.</message>
+	<message key="schedConf.registrationTypes.noneAvailable">無可利用之註冊類別.</message>
 	<message key="schedConf.registration.register">註冊者</message>
 	<message key="schedConf.registration.typeCloses">(關閉 {$closingDate})</message>
 	<message key="schedConf.registration.typeClosed">(註冊關閉 {$closingDate})</message>

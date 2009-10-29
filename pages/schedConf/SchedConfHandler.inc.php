@@ -293,7 +293,7 @@ class SchedConfHandler extends Handler {
 		}
 		$form->readInputData();
 		if ($form->validate()) {
-			if ($registrationError = $form->execute() != REGISTRATION_SUCCESSFUL) {
+			if (($registrationError = $form->execute()) != REGISTRATION_SUCCESSFUL) {
 				if($registrationError == REGISTRATION_FAILED) {
 					// User not created
 					$templateMgr->assign('message', 'schedConf.registration.failed');

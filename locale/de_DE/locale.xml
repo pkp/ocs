@@ -251,7 +251,7 @@
         <message key="schedConf.registration.conferenceFees">Tagungsgeb&#252;hren</message>
         <message key="schedConf.registration.type">Anmeldungsform</message>
         <message key="schedConf.registration.cost">Kosten</message>
-        <message key="schedConf.registration.noneAvailable">Keine Anmeldungsformen stehen zur Verf&#252;gung.</message>
+        <message key="schedConf.registrationTypes.noneAvailable">Keine Anmeldungsformen stehen zur Verf&#252;gung.</message>
         <message key="schedConf.registration.register">Anmelden</message>
         <message key="schedConf.registration.typeCloses">(Schlie&#223;t am {$closingDate})</message>
         <message key="schedConf.registration.typeClosed">(Anmeldezeitraum geschlossen am {$closingDate})</message>

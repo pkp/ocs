@@ -252,7 +252,7 @@
 	<message key="schedConf.registration.conferenceFees">Taxa de Incrição</message>
 	<message key="schedConf.registration.type">Tipo de Inscrição</message>
 	<message key="schedConf.registration.cost">Custo</message>
-	<message key="schedConf.registration.noneAvailable">Nenhum tipo de inscrição disponível.</message>
+	<message key="schedConf.registrationTypes.noneAvailable">Nenhum tipo de inscrição disponível.</message>
 	<message key="schedConf.registration.register">Inscrever</message>
 	<message key="schedConf.registration.typeCloses">(Encerramento {$closingDate})</message>
 	<message key="schedConf.registration.typeClosed">(Inscrições Encerradas {$closingDate})</message>

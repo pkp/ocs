@@ -250,7 +250,7 @@
 	<message key="schedConf.registration.conferenceFees">Costi del convegno</message>
 	<message key="schedConf.registration.type">Tipo di Registrazione</message>
 	<message key="schedConf.registration.cost">Prezzo</message>
-	<message key="schedConf.registration.noneAvailable">Nessun tipo di registrazione &#x00E8; disponibile.</message>
+	<message key="schedConf.registrationTypes.noneAvailable">Nessun tipo di registrazione &#x00E8; disponibile.</message>
 	<message key="schedConf.registration.register">Registra</message>
 	<message key="schedConf.registration.typeCloses">(Chiude {$closingDate})</message>
 	<message key="schedConf.registration.typeClosed">(Registrazione chiusa {$closingDate})</message>

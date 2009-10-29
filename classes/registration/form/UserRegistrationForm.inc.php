@@ -16,11 +16,10 @@
 
 import('form.Form');
 
-define('REGISTRATION_SUCCESSFUL',	0x100000001);
-define('REGISTRATION_FAILED',		0x100000002);
-define('REGISTRATION_NO_PAYMENT',	0x100000003);
-define('REGISTRATION_FREE',		0x100000004);
-
+define('REGISTRATION_SUCCESSFUL',	1);
+define('REGISTRATION_FAILED',		2);
+define('REGISTRATION_NO_PAYMENT',	3);
+define('REGISTRATION_FREE',		4);
 
 class UserRegistrationForm extends Form {
 	/** @var captchaEnabled boolean whether or not captcha is enabled for this form */
@@ -178,7 +177,7 @@ class UserRegistrationForm extends Form {
 	}
 
 	/**
-	 * Save registration. 
+	 * Save registration.
 	 */
 	function execute() {
 		$schedConf =& Request::getSchedConf();

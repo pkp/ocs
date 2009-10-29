@@ -219,7 +219,7 @@
 	<message key="schedConf.registration.conferenceFees">Taxes de la Conferència/Congrés</message>
 	<message key="schedConf.registration.type">Tipus d'inscripció</message>
 	<message key="schedConf.registration.cost">Import</message>
-	<message key="schedConf.registration.noneAvailable">No hi ha tipus d'inscripció disponibles.</message>
+	<message key="schedConf.registrationTypes.noneAvailable">No hi ha tipus d'inscripció disponibles.</message>
 	<message key="schedConf.registration.register">Inscripció</message>
 	<message key="schedConf.registration.typeCloses">(Tancats {$closingDate})</message>
 	<message key="schedConf.registration.typeClosed">(Registre tancat {$closingDate})</message>

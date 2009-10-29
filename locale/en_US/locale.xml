@@ -279,7 +279,8 @@
 	<message key="schedConf.registration.failed">Your registration has failed.  Please try again.</message>
 	<message key="schedConf.registration.type">Registration Type</message>
 	<message key="schedConf.registration.cost">Cost</message>
-	<message key="schedConf.registration.noneAvailable">No registration types are available.</message>
+	<message key="schedConf.registrationTypes.noneAvailable">No registration types are available.</message>
+	<message key="schedConf.registrationOptions.noneAvailable">No registration options are available.</message>
 	<message key="schedConf.registration.register">Register</message>
 	<message key="schedConf.registration.typeCloses">(Closes {$closingDate})</message>
 	<message key="schedConf.registration.typeClosed">(Registration Closed {$closingDate})</message>

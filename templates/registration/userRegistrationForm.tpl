@@ -91,7 +91,7 @@
 	{/iterate}
 	{if $registrationOptions->wasEmpty()}
 		<tr>
-			<td colspan="2" class="nodata">{translate key="schedConf.registration.noneAvailable"}</td>
+			<td colspan="2" class="nodata">{translate key="schedConf.registrationOptions.noneAvailable"}</td>
 		</tr>
 	{/if}
 	<tr>
