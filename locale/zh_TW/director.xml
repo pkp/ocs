@@ -35,7 +35,6 @@
 	<message key="director.paper.designateReviewVersion">楆示原始檔案作為審查用版本</message>
 	<message key="director.paper.uploadReviewVersion">上傳修改後的檔案作為審查用的版本</message>
 	<message key="director.paper.uploadDirectorVersion">上傳主編的版本</message>
-	<message key="director.paper.stageDisabled">目前當無法進行審查工作，可能是因為摘要審查尚未完成或者作者尚未提供論文完稿供審查.</message>
 	<message key="director.paper.showSuppFile">提供檔案給審查者</message>
 	<message key="director.paper.clear">清除</message>
 	<message key="director.paper.clearReviewer">清除審查者</message>

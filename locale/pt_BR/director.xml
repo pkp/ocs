@@ -38,7 +38,6 @@
 	<message key="director.paper.designateReviewVersion">Designar documento original como Versão para Avaliação.</message>
 	<message key="director.paper.uploadReviewVersion">Enviar Versão atualizada para Avaliação</message>
 	<message key="director.paper.uploadDirectorVersion">Enviar Versão do Diretor</message>
-	<message key="director.paper.stageDisabled">Não é possível realizar a avaliação. A avaliação do resumo não foi concluída, ou o autor não enviou um documento para avaliação.</message>
 	<message key="director.paper.showSuppFile">Habilitar documento aos avaliadores</message>
 	<message key="director.paper.clear">Liberar</message>
 	<message key="director.paper.clearReviewer">Liberar Avaliador</message>

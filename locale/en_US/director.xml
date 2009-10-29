@@ -41,8 +41,8 @@
 	<message key="director.paper.designateReviewVersion">Designate the original file as the Review Version</message>
 	<message key="director.paper.uploadReviewVersion">Upload a revised file to serve as the Review Version</message>
 	<message key="director.paper.uploadDirectorVersion">Upload Director Version</message>
-	<message key="director.paper.stageDisabled">It's not yet possible to perform this review. Either the abstract review is not yet complete, or the author has not yet provided a paper for review.</message>
 	<message key="director.paper.showSuppFile">Present file to reviewers</message>
+	<message key="director.paper.stageDisabled">It's not yet possible to perform this review. The abstract review is not yet complete.</message>
 	<message key="director.paper.clear">Clear</message>
 	<message key="director.paper.clearReviewer">Clear reviewer</message>
 	<message key="director.paper.changeTrack">Change Track</message>

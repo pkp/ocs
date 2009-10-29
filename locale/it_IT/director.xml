@@ -38,7 +38,6 @@
 	<message key="director.paper.designateReviewVersion">Indica il file originale come versione di revisione</message>
 	<message key="director.paper.uploadReviewVersion">Carica un file revisionato che serva come versione di revisione</message>
 	<message key="director.paper.uploadDirectorVersion">Carica le versione del Direttore</message>
-	<message key="director.paper.stageDisabled">Non &#x00E8; ancora possibile terminare questa revisione. O la revisione dell'abstract non &#x00E8; ancora completata, o l'autore non ha ancora fornito una relazione per la revisione.</message>
 	<message key="director.paper.showSuppFile">Presenta il file ai revisori</message>
 	<message key="director.paper.clear">Rimuovi</message>
 	<message key="director.paper.clearReviewer">Rimuovi il revisore</message>

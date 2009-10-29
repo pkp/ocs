@@ -35,7 +35,6 @@
 	<message key="director.paper.designateReviewVersion">Die urspr&#252;ngliche Datei als zu begutachtende Version kennzeichnen.</message>
 	<message key="director.paper.uploadReviewVersion">&#220;berarbeitete Datei hochladen, die als zu begutachtende Version dienen soll</message>
 	<message key="director.paper.uploadDirectorVersion">Version des Leiters hochladen</message>
-	<message key="director.paper.stageDisabled">Es ist noch nicht m&#246;glich, dieses Gutachten durchzuf&#252;hren. Entweder ist das Gutachten des Abstracts noch nicht abgeschlossen, oder der Autor hat noch kein Paper zur Begutachtung eingereicht.</message>
 	<message key="director.paper.showSuppFile">Datei Gutachtern zur Verf&#252;gung stellen</message>
 	<message key="director.paper.clear">Zur&#252;cksetzen</message>
 	<message key="director.paper.clearReviewer">Gutachter zur&#252;cksetzen</message>

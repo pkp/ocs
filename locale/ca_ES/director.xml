@@ -35,7 +35,6 @@
 	<message key="director.paper.designateReviewVersion">Designar al fitxer original Versió Revisada</message>
 	<message key="director.paper.uploadReviewVersion">Dipositar la versió corregida que serà la Versió Revisada</message>
 	<message key="director.paper.uploadDirectorVersion">Actualitza Director de la Versió</message>
-	<message key="director.paper.stageDisabled">No és possible fer aquesta revisió. El resum no està complet o l'autor encara no ha dipositat el treball per a revisió.</message>
 	<message key="director.paper.showSuppFile">lliura l'arxiu als revisors </message>
 	<message key="director.paper.clear">Neteja</message>
 	<message key="director.paper.clearReviewer">Neteja Revisor</message>

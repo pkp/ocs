@@ -155,7 +155,7 @@ class Conference extends DataObject {
 	 */
 	function &getSettings() {
 		$conferenceSettingsDao =& DAORegistry::getDAO('ConferenceSettingsDAO');
-		$settings =& $conferenceSettingsDao->getConferenceSettings($this->getData('conferenceId'));
+		$settings =& $conferenceSettingsDao->getConferenceSettings($this->getId());
 		return $settings;
 	}
 
@@ -176,7 +176,7 @@ class Conference extends DataObject {
 	 */
 	function &getSetting($name, $locale = null) {
 		$conferenceSettingsDao =& DAORegistry::getDAO('ConferenceSettingsDAO');
-		$setting =& $conferenceSettingsDao->getSetting($this->getData('conferenceId'), $name, $locale);
+		$setting =& $conferenceSettingsDao->getSetting($this->getId(), $name, $locale);
 		return $setting;
 	}
 

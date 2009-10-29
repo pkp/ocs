@@ -41,24 +41,21 @@
 			{/foreach}
 		</td>
 	</tr>
-	
-	
+
 	{if $reviewingAbstractOnly}
-
 		{* If this review level is for the abstract only, show the abstract. *}
-
 		<tr valign="top">
 			<td class="label" width="20%">{translate key="submission.abstract"}</td>
 			<td width="80%" class="value">
 				{$submission->getLocalizedAbstract()}
 			</td>
 		</tr>
-
 	{else}
-
-		{* This is an abstract-and-paper or paper-only review. Don't show the
-		 * abstract, and show any review files or supplementary files. *}
-
+		{**
+		 * This is an abstract-and-paper or paper-only review. Don't
+		 * show the abstract, and show any review files or
+		 * supplementary files.
+		 *}
 		<tr valign="top">
 			<td class="label" width="20%">{translate key="submission.reviewVersion"}</td>
 			{if $reviewFile}
@@ -92,7 +89,6 @@
 					<form method="post" action="{url op="setSuppFileVisibility"}">
 						<input type="hidden" name="paperId" value="{$submission->getPaperId()}" />
 						<input type="hidden" name="fileId" value="{$suppFile->getSuppFileId()}" />
-
 						<a href="{url op="downloadFile" path=$submission->getPaperId()|to_array:$suppFile->getFileId():$suppFile->getRevision()}" class="file">{$suppFile->getFileName()|escape}</a>&nbsp;&nbsp;
 						{$suppFile->getDateModified()|date_format:$dateFormatShort}
 						<label for="show">{translate key="director.paper.showSuppFile"}</label>
@@ -115,12 +111,11 @@
 
 <div id="peerReview">
 
-{if ($stage == REVIEW_STAGE_PRESENTATION && $submission->getCurrentStage() != REVIEW_STAGE_PRESENTATION) || ($stage == REVIEW_STAGE_PRESENTATION && $submission->getSubmissionFileId() == null)} 
-	{assign var="isStageDisabled" value=true} 
+{if ($stage == REVIEW_STAGE_PRESENTATION && $submission->getCurrentStage() != REVIEW_STAGE_PRESENTATION)}
+	{assign var="isStageDisabled" value=true}
 {/if}
 
 {if $isStageDisabled}
-
 	<table class="data" width="100%">
 		<tr valign="middle">
 			<td><h3>{translate key="submission.peerReview"}</h3></td>
@@ -129,9 +124,7 @@
 			<td><span class="instruct">{translate key="director.paper.stageDisabled"}</span></td>
 		</tr>
 	</table>
-
 {else}
-
 	<table class="data" width="100%">
 		<tr valign="middle">
 			<td width="30%">
@@ -153,11 +146,11 @@
 	{assign var="start" value="A"|ord}
 	{foreach from=$reviewAssignments item=reviewAssignment key=reviewKey}
 	{assign var="reviewId" value=$reviewAssignment->getReviewId()}
-	
+
 	{if not $reviewAssignment->getCancelled()}
 		{assign var="reviewIndex" value=$reviewIndexes[$reviewId]}
 		<div class="separator"></div>
-	
+
 		<table class="data" width="100%">
 		<tr>
 			<td width="20%"><h4>{translate key="user.role.reviewer"} {$reviewIndex+$start|chr}</h4></td>
@@ -356,6 +349,5 @@
 	</table>
 	{/if}
 	{/foreach}
-
 {/if}
 </div>

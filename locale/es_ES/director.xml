@@ -35,7 +35,6 @@
 	<message key="director.paper.designateReviewVersion"> Designar al fichero original Versión Revisada</message>
 	<message key="director.paper.uploadReviewVersion">Depositar la versión corregida que será la Versión Revisada</message>
 	<message key="director.paper.uploadDirectorVersion">Actualizar Director de la Versión</message>
-	<message key="director.paper.stageDisabled">No es posible hacer esta recensión. El resumen no está completo o el autor todavía no ha depositado el trabajo para recensión.</message>
 	<message key="director.paper.showSuppFile">mandar el fichero a los revisores</message>
 	<message key="director.paper.clear">Limpiar</message>
 	<message key="director.paper.clearReviewer">Limpiar Recensor</message>

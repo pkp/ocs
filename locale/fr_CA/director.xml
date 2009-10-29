@@ -38,7 +38,6 @@
 	<message key="director.paper.designateReviewVersion">Désigner le fichier original en tant que fichier évalué</message>
 	<message key="director.paper.uploadReviewVersion">Télécharger une version révisée du fichier vers le serveur pour fins d'évaluation</message>
 	<message key="director.paper.uploadDirectorVersion">Télécharger la version du responsable vers le serveur</message>
-	<message key="director.paper.stageDisabled">Il n'est pas encore possible d'effectuer cette évaluation. Soit l'évaluation du résumé n'est pas encore finie, soit l'auteur n'a pas encore fourni une communication à évaluer.</message>
 	<message key="director.paper.showSuppFile">Présenter le fichier aux évaluateurs</message>
 	<message key="director.paper.clear">Effacer</message>
 	<message key="director.paper.clearReviewer">Supprimer l'évaluateur</message>

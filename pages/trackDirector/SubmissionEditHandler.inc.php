@@ -173,7 +173,6 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		$showPeerReviewOptions = $isCurrent && $submission->getReviewFile() != null ? true : false;
 
 		$allowRecommendation = ($isCurrent  || ($stage == REVIEW_STAGE_ABSTRACT && $reviewMode == REVIEW_MODE_BOTH_SEQUENTIAL)) &&
-			($submission->getReviewFileId() || $stage != REVIEW_STAGE_PRESENTATION) &&
 			!empty($editAssignments);
 
 		$reviewingAbstractOnly = ($reviewMode == REVIEW_MODE_BOTH_SEQUENTIAL && $stage == REVIEW_STAGE_ABSTRACT) || $reviewMode == REVIEW_MODE_ABSTRACTS_ALONE;
