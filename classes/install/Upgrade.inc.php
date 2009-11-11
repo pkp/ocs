@@ -589,7 +589,7 @@ class Upgrade extends Installer {
 		$paperDao =& DAORegistry::getDAO('PaperDAO');
 		$punctuation = array ("\"", "\'", ",", ".", "!", "?", "-", "$", "(", ")");
 
-		$result =& $paperDao->retrieve('SELECT paperid, locale, setting_value FROM article_settings WHERE setting_name = ?', "title");
+		$result =& $paperDao->retrieve('SELECT paper_id, locale, setting_value FROM paper_settings WHERE setting_name = ?', "title");
 		while (!$result->EOF) {
 			$row = $result->GetRowAssoc(false);
 			$cleanTitle = str_replace($punctuation, "", $row['setting_value']);
@@ -668,6 +668,8 @@ class Upgrade extends Installer {
 				}
 			}
 		}
+		
+		return true;
 	}
 }
 

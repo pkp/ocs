@@ -66,7 +66,6 @@
 
 	<upgrade minversion="2.0.0.0" maxversion="2.1.2.0">
 		<data file="dbscripts/xml/upgrade/2.3.0_update.xml" />
-		<data file="dbscripts/xml/data/locale/{$installedLocale}/email_templates_data.xml"/>
 		<code function="changePresenterInUserEmailTemplates" />
 		<code function="updateReviewDeadlineSettings" />
 		<code function="cleanImageAlts" />
