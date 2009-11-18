@@ -1946,9 +1946,6 @@
 			<NOTNULL/>
 		</field>
 		<field name="code" type="C2" size="80" />
-		<field name="currency_code_alpha" type="C2" size="3">
-			<NOTNULL/>
-		</field>
 		<field name="opening_date" type="D"/>
 		<field name="closing_date" type="T">
 			<NOTNULL/>
