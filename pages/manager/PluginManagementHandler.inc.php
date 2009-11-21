@@ -366,12 +366,12 @@ class PluginManagementHandler extends ManagerHandler {
 		$templateMgr =& TemplateManager::getManager();
 		$pageCrumbs = array(
 			array(
-				Request::url(null, 'user'),
+				Request::url(null, null, 'user'),
 				'navigation.user',
 				false
 			),
 			array(
-				Request::url(null, 'manager'),
+				Request::url(null, null, 'manager'),
 				'manager.conferenceSiteManagement',
 				false
 			)
@@ -379,7 +379,7 @@ class PluginManagementHandler extends ManagerHandler {
 		
 		if ($subclass) {
 			$pageCrumbs[] = array(
-				Request::url(null, 'manager', 'plugins'),
+				Request::url(null, null, 'manager', 'plugins'),
 				'manager.plugins.pluginManagement',
 				false
 			);
@@ -387,7 +387,7 @@ class PluginManagementHandler extends ManagerHandler {
 
 		if ($category) {
 			$pageCrumbs[] = array(
-				Request::url(null, 'manager', 'plugins', $category),
+				Request::url(null, null, 'manager', 'plugins', $category),
 				"plugins.categories.$category",
 				false
 			);
