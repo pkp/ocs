@@ -453,6 +453,7 @@ class SchedulerHandler extends ManagerHandler {
 	 */
 	function updateSpecialEvent() {
 		$this->validate();
+		$this->setupTemplate(true);
 
 		import('manager.form.scheduler.SpecialEventForm');
 
@@ -479,8 +480,6 @@ class SchedulerHandler extends ManagerHandler {
 				}
 
 			} else {
-				$this->setupTemplate(true);
-
 				$templateMgr =& TemplateManager::getManager();
 				$templateMgr->append('pageHierarchy', array(Request::url(null, null, 'manager', 'specialEvents'), 'manager.scheduler.specialEvents'));
 
