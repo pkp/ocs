@@ -133,8 +133,8 @@ class SubmissionCommentsHandler extends TrackDirectorHandler {
 		$paperId = (int) Request::getUserVar('paperId');
 		$submissionEditHandler = new SubmissionEditHandler();
 		$submissionEditHandler->validate($paperId);
-		$paperDao =& DAORegistry::getDAO('PaperDAO');
-		$submission =& $paperDao->getPaper($paperId);
+		$trackDirectorSubmissionDao =& DAORegistry::getDAO('TrackDirectorSubmissionDAO');
+		$submission =& $trackDirectorSubmissionDao->getTrackDirectorSubmission($paperId);
 
 		parent::setupTemplate(true);		
 		if (TrackDirectorAction::emailDirectorDecisionComment($submission, Request::getUserVar('send'))) {
