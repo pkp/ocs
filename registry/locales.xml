@@ -29,6 +29,7 @@
 	<locale key="es_AR" name="España Argentino"/>
 	<locale key="es_ES" name="España Castellano"/>
 	<locale key="en_US" name="English"/>
+	<locale key="eu_ES" name="Basque" />
 	<locale key="fr_CA" name="Français (Canada)"/>
 	<locale key="fr_FR" name="Français (France)"/>
 	<locale key="it_IT" name="Italiano"/>
