@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * ../ocs2-devel//locale/eu_ES/presenter.xml
+  *
+  * Copyright (c) 2000-2009 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the eu_ES (Basque) locale.
+  *
+  * $Id$
+  -->
+
+<locale name="eu_ES" full_name = "Basque">
+	<message key="presenter.submit">Bidalketa berria</message>
+	<message key="presenter.track">Bidalketa aktiboak</message>
+	<message key="presenter.submit.startHere">Hasi hemen kongresu honetara lan bat bidaltzeko.</message>
+	<message key="presenter.submit.startHereLink">Bidalketa-prozesuaren lehenengo urratsa</message>
+	<message key="presenter.submit.step1">1. urratsa. Bidalketa hasi</message>
+	<message key="presenter.submit.step2">2. urratsa. Bidalketaren metadatuak sartu</message>
+	<message key="presenter.submit.step3">3. urratsa. Bidalketa kargatu</message>
+	<message key="presenter.submit.step4">4. urratsa. Fitxategi osagarriak kargatu</message>
+	<message key="presenter.submit.step4a">4a. urratsa. Fitxategi osagarri bat gehitu</message>
+	<message key="presenter.submit.step5">5. urratsa. Bidalketa berretsi</message>
+	<message key="presenter.submit.step5SkipSupp">4. urratsa. Bidalketa berretsi</message>
+	<message key="presenter.submit.start">1. Hasi</message>
+	<message key="presenter.submit.metadata">2. Metadatuak sartu</message>
+	<message key="presenter.submit.upload">3. Bidalketa kargatu</message>
+	<message key="presenter.submit.supplementaryFiles">4. Fitxategi osagarriak kargatu</message>
+	<message key="presenter.submit.confirmation">5. Berretsi</message>
+	<message key="presenter.submit.confirmationSkipSupp">4. Berretsi</message>
+	<message key="presenter.submit.cancelSubmission">Bidalketa hau geroago osa dezakezu, Egilearen hasierako orrian Bidalketa aktiboak hautatuta.</message>
+	<message key="presenter.submit.notAcceptingYet">Kongresu hau oraindik ez da hasi bidalketak onartzen.</message>
+	<message key="presenter.submit.notAccepting">Kongresu honek ez du bidalketarik onartzen orain.</message>
+	<message key="presenter.submit.submissionDeadlinePassed">{$closedDate} egunean itxi zen kongresu honetara lanak bidaltzeko epea.</message>
+	<message key="presenter.submit.authorRegistrationClosed">Egileen izen-ematea itxita dago kongresu honetan.</message>
+	<message key="presenter.submissions.confirmDelete">Ziur zaude bukatu gabeko bidalketa hau ezabatu nahi duzula?</message>
+	<message key="presenter.submissions.viewStatus">Ikusi egoera</message>
+	<message key="presenter.submissions.noSubmissions">Bidalketarik ez.</message>
+	<message key="presenter.submit.howToSubmit"><![CDATA[Zailtasunik baduzu, <a href="mailto:{$supportEmail}">{$supportName}</a> ({$supportPhone}) da laguntza emateko kontaktua.]]></message>
+	<message key="presenter.submit.howToSubmitNoPhone"><![CDATA[Zailtasunik baduzu, <a href="mailto:{$supportEmail}">{$supportName}</a> da laguntza emateko kontaktua.]]></message>
+	<message key="presenter.submit.conferenceTrack">Kongresuaren atala</message>
+	<message key="presenter.submit.conferenceTrackDescription"><![CDATA[Hautatu zein Ataletara bidali nahi duzun (ikusi <a href="{$aboutUrl}" target="_new">Atalen politikak</a>).]]></message>
+	<message key="presenter.submit.selectTrack">Hautatu atal bat...</message>
+	<message key="presenter.submit.submissionChecklist">Bidalketa prestatzeko zerrenda</message>
+	<message key="presenter.submit.submissionChecklistDescription">Bidalketa kongresura helarazteko prest dagoela adierazteko, markatu zerrendako puntu guztiak (zuzendariarentzako oharrak ondoren gehi daitezke).</message>
+	<message key="presenter.submit.verifyChecklist">Jarraitu ahal izateko, bidalketa prestatzeko zerrendako puntu guztiak osatuta daudela ziurtatu behar duzu.</message>
+	<message key="presenter.submit.copyrightNoticeAgree">Egileek onartzen dituzte Copyright informazio honetako baldintza guztiak. Baldintza horiek artikulua kongresu honetan argitaratzen denean, argitaratzen bada, aplikatuko dira (zuzendariarentzako oharrak behean gehi daitezke).</message>
+	<message key="presenter.submit.copyrightNoticeAgreeRequired">Jarraitu ahal izateko, Copyright informazioko baldintzak onartu behar dituzu.</message>
+	<message key="presenter.submit.commentsForDirector">Kongresuaren zuzendariarentzako oharrak</message>
+	<message key="presenter.submit.comments">Idatzi testua (aukerakoa)</message>
+	<message key="presenter.submit.form.trackRequired">Hautatu bidalketari dagokion atala.</message>
+	<message key="presenter.submit.form.abstractRequired">Sartu zure bidalketaren laburpena (abstract-a).</message>
+	<message key="presenter.submit.privacyStatement">Kongresuaren Pribatutasun-deklarazioa</message>
+	<message key="presenter.submit.reorderInstructions">Berrordenatu egileak argitalpenean zerrendatuko diren ordena berean azaltzeko.</message>
+	<message key="presenter.submit.selectPrincipalContact">Korrespondentzia editorialerako kontaktu nagusia.</message>
+	<message key="presenter.submit.addPresenter">Gehitu egilea</message>
+	<message key="presenter.submit.deletePresenter">Ezabatu egilea</message>
+	<message key="presenter.submit.submissionIndexingDescription">Sartu bidalketa indexatzeko hitzak edo terminoak, puntu eta komaz bereizita (1terminoa; 2terminoa; 3terminoa).</message>
+	<message key="presenter.submit.submissionSupportingAgencies">Agentzia laguntzaileak</message>
+	<message key="presenter.submit.submissionSupportingAgenciesDescription">Identifikatu bidalketa honetan aurkezten den lanari diru-laguntza edo bestelakoa ematen dioten agentziak.</message>
+	<message key="presenter.submit.agencies">Agentziak</message>
+	<message key="presenter.submit.subjectClassInstructions">Erabili hiperestekatutako sailkapen-sistema bidalketa sailkatzeko terminoak eta, egoki bada, zenbakiak hautatzeko.</message>
+	<message key="presenter.submit.languageInstructions"><![CDATA[euskara=eu; ingelesa=en; frantsesa=fr; gaztelania=es. <a href="http://www.loc.gov/standards/iso639-2/php/code_list.php" target="_blank">Kode gehiago</a>.]]></message>
+	<message key="presenter.submit.form.presenterRequired">Egile bat behintzat adierazi behar da.</message>
+	<message key="presenter.submit.form.presenterRequiredFields">Egile bakoitzaren izena, abizena eta helbide elektronikoa eman behar dira.</message>
+	<message key="presenter.submit.form.titleRequired">Sartu zure lanaren titulua.</message>
+	<message key="presenter.submit.submissionFile">Bidalketa-fitxategia</message>
+	<message key="presenter.submit.uploadSubmissionFile">Kargatu bidalketa-fitxategia</message>
+	<message key="presenter.submit.replaceSubmissionFile">Ordeztu bidalketa-fitxategia</message>
+	<message key="presenter.submit.noSubmissionFile">Ez da bidalketa-fitxategirik kargatu.</message>
+	<message key="presenter.submit.noSubmissionConfirm">Ziur zaude bidalketa-fitxategirik kargatu gabe jarraitu nahi duzula?</message>
+	<message key="presenter.submit.supplementaryFilesInstructions">Urrats hau aukerakoa da, bidalketa osatzeko Fitxategi osagarriak gehitzeko erabiltzen da. Edozein formatutakoak izan daitezke eta eduki ditzakete: (a) ikerketa-tresnak, (b) datu multzoak, (c) irakurleek bestela eskuratu ezin dituzten iturriak, (d) testuan integratu ezin diren zenbakiak eta taulak, edo lanari ekarpenen bat egiten dioten bestelako materialak.</message>
+	<message key="presenter.submit.supplementaryFiles.saveToUpload">Sakatu 'Gorde' fitxategia kargatzeko (ondoren, fitxategi gehiago kargatu ahal izango dira).</message>
+	<message key="presenter.submit.forgottenSubmitSuppFile">Ziur zaude aukeratu duzun fitxategi osagarria kargatu gabe jarraitu nahi duzula?</message>
+	<message key="presenter.submit.noSupplementaryFiles">Bidalketari ez zaio fitxategi osagarririk gehitu.</message>
+	<message key="presenter.submit.backToSupplementaryFiles">Itzuli Fitxategi osagarrietara</message>
+	<message key="presenter.submit.confirmDeleteSuppFile">Ziur zaude fitxategi osagarri hau ezabatu nahi duzula?</message>
+	<message key="presenter.submit.uploadSuppFile">Kargatu fitxategi osagarria</message>
+	<message key="presenter.submit.addSupplementaryFile">Fitxategi osagarri bat gehitu</message>
+	<message key="presenter.submit.editSupplementaryFile">Fitxategi osagarri bat editatu</message>
+	<message key="presenter.submit.supplementaryFileData">Fitxategi osagarriaren metadatuak</message>
+	<message key="presenter.submit.supplementaryFileDataDescription">Material osagarria indexatzeko, adierazi kargatutako fitxategi osagarriaren metadatuak.</message>
+	<message key="presenter.submit.supplementaryFileUpload">Fitxategi osagarria</message>
+	<message key="presenter.submit.suppFile.createrOrOwner">Fitxategiaren sortzailea (edo jabea)</message>
+	<message key="presenter.submit.suppFile.researchInstrument">Ikerketa-tresna</message>
+	<message key="presenter.submit.suppFile.researchMaterials">Ikerketako materialak</message>
+	<message key="presenter.submit.suppFile.researchResults">Ikerketaren emaitza</message>
+	<message key="presenter.submit.suppFile.transcripts">Transkripzioak</message>
+	<message key="presenter.submit.suppFile.dataAnalysis">Datu-analisia</message>
+	<message key="presenter.submit.suppFile.dataSet">Datu multzoa</message>
+	<message key="presenter.submit.suppFile.sourceText">Iturburu-testua</message>
+	<message key="presenter.submit.suppFile.briefDescription">Azalpen laburra</message>
+	<message key="presenter.submit.suppFile.contributorOrSponsor">Diru-emaileak edo erakunde babesleak</message>
+	<message key="presenter.submit.suppFile.availableToPeers">Aurkeztu fitxategia ebaluatzaileei (metadaturik gabe), ez du arriskurik ebaluazio anonimoarentzat.</message>
+	<message key="presenter.submit.suppFile.publisherDescription">Formalki argitaratutako materialekin bakarrik erabili.</message>
+	<message key="presenter.submit.suppFile.dateDescription">Datuak bildu ziren edo tresna sortu zen eguna.</message>
+	<message key="presenter.submit.suppFile.sourceDescription">Ikerketaren izena edo bestelako jatorria</message>
+	<message key="presenter.submit.suppFile.specifyOtherType">Zehaztu bestelakoa</message>
+	<message key="presenter.submit.suppFile.noFile">Ez da fitxategirik kargatu.</message>
+	<message key="presenter.submit.suppFile.form.titleRequired">Idatzi fitxategi osagarri honen titulua.</message>
+	<message key="presenter.submit.suppFile.form.subjectRequired">Sartu gaia.</message>
+	<message key="presenter.submit.suppFile.form.descriptionRequired">Sartu azalpena.</message>
+	<message key="presenter.suppFile.suppFilePublicIdentificationExists">Fitxategi osagarriaren identifikazio publikoa lehendik emanda dago.</message>
+	<message key="presenter.suppFile.publicSuppFileIdentifier">Fitxategi osagarriaren identifikatzaile publikoa</message>
+	<message key="presenter.submit.addSubmissionFile">Fitxategi osagarri bat gehitu</message>
+	<message key="presenter.submit.submissionFileUpload">Fitxategi osagarria</message>
+	<message key="presenter.submit.confirmationDescription">Eskuizkribua {$conferenceTitle} kongresura bidaltzeko, sakatu 'Amaitu bidalketa'. Bidalketa egin duen kontaktu nagusiak hartu-agiri bat jasoko du posta elektronikoz eta bidalketak prozesu editorialean daraman martxa jarraitu ahal izango du. Eskerrik asko {$conferenceTitle} kongresuan argitaratzeko duzun interesagatik.</message>
+	<message key="presenter.submit.noFiles">Bidalketa honi ez zaio fitxategirik erantsi.</message>
+	<message key="presenter.submit.filesSummary">Fitxategi-laburpena</message>
+	<message key="presenter.submit.finishSubmission">Amaitu bidalketa</message>
+	<message key="presenter.submit.submissionComplete">Bidalketa osatu da. Eskerrik asko zure lana {$conferenceTitle} kongresura bidaltzeagatik.</message>
+	<message key="presenter.submit.expedite"><![CDATA[Bidalketa dagoeneko argitaratzeko prest badago, gehiagoko ebaluazio edo edizio lanik gabe, zuzenean bidal daiteke Kongresu-aktaren orrira, <a href="{$expediteUrl}" class="action">hemen klik eginda</a>. (Oharra: Kongresu-zuzendariek bakarrik egin dezakete beren lanekin.)]]></message>
+	<message key="presenter.paper.uploadPresenterVersion">Kargatu Egilearen bertsioa</message>
+	<message key="presenter.submit.presenterSubmitLoginMessage">Kongresu honetara lanak bidaltzeko, erabiltzaile-kontua eduki behar da Horrela, gure zuzendariek zure bidalketen jarraipena egin ahal izango dute eta zurekin harremanetan jarri ahal izango dira lanaren egoeraren berri emateko eta informazio osagarria eskatzeko.</message>
+</locale>

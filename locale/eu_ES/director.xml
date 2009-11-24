@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * ../ocs2-devel//locale/eu_ES/director.xml
+  *
+  * Copyright (c) 2000-2009 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the eu_ES (Basque) locale.
+  *
+  * $Id$
+  -->
+
+<locale name="eu_ES" full_name = "Basque">
+	<message key="director.home">Zuzendariaren hasierako orria</message>
+	<message key="director.submissionQueue">Bidalketen ilara</message>
+	<message key="director.submissionArchive">Bidalketa-artxiboa</message>
+	<message key="director.allTracks">Atal guztiak</message>
+	<message key="director.allDirectors">Zuzendari guztiak</message>
+	<message key="director.me">Nire burua</message>
+	<message key="director.submissionQueue.noSubmissions">Ez dago bidalketarik ilaran.</message>
+	<message key="director.submissionQueue.saveChanges">Ilarako bidalketetan egindako aldaketak gorde?</message>
+	<message key="director.submissionArchive.noSubmissions">Ez dago bidalketarik artxiboan.</message>
+	<message key="director.submissionArchive.saveChanges">Bidalketa artxibatuetan egindako aldaketak gorde? Ezabatzeko markatuta dauden bidalketak betiko ezabatuko dira sistematik.</message>
+	<message key="director.submissionArchive.confirmDelete">Ziur zaude betiko ezabatu nahi duzula bidalketa hau?</message>
+	<message key="director.submissionReview.confirmDecision">Ziur zaude erabaki hau grabatu nahi duzula?</message>
+	<message key="director.submissionReview.confirmToLayout">Jakinarazi zaio erabakia egileari? Jakinarazi ez bazaio, sakatu Utzi eta erabili Egileari jakinarazteko tresna bidalketa maketaziora bidali aurretik.</message>
+	<message key="director.submissionReview.confirmToArchive">Jakinarazi zaio erabakia egileari? Jakinarazi ez bazaio, sakatu Utzi eta erabili Egileari jakinarazteko tresna bidalketa artxibora bidali aurretik.</message>
+	<message key="director.submissionReview.notes">Epeak adierazten du mugaegunerako zenbat aste falta diren edo, (-) zeinua badu, zenbat aste pasatu diren mugaegunetik. Ebaluatzaileak ebaluazioa egitea onartzen duenean betetzen da.</message>
+	<message key="director.notifyUsers">Jakinarazi erabiltzaileei</message>
+	<message key="director.notifyUsers.allUsers">Kongresu honetako erabiltzaile guztiei ({$count} erabiltzaile)</message>
+	<message key="director.notifyUsers.interestedUsers">Kongresu honetako eguneratzeak jaso nahi dituzten erabiltzaileei ({$count} erabiltzaile)</message>
+	<message key="director.notifyUsers.includeToc">Sartu kongresu honetako aurkezpenak</message>
+	<message key="director.notifyUsers.allReaders">Irakurle guztiei ({$count} erabiltzaile)</message>
+	<message key="director.notifyUsers.allPresenters">Argitaratutako aurkezle guztiei ({$count} erabiltzaile)</message>
+	<message key="director.notifyUsers.allPaidRegistrants">Ordaindu duten izen-emaile guztiei ({$count} erabiltzaile)</message>
+	<message key="director.notifyUsers.allRegistrants">Izen-emaile guztiei ({$count} erabiltzaile)</message>
+	<message key="director.navigation.management">Kudeaketa</message>
+	<message key="director.paper.sendToArchive">Artxibatu bidalketa hau</message>
+	<message key="director.paper.designateReviewVersion">Izendatu jatorrizko fitxategia Ebaluazio-bertsio gisa</message>
+	<message key="director.paper.uploadReviewVersion">Kargatu berrikusitako fitxategi bat Ebaluazio-bertsio gisa</message>
+	<message key="director.paper.uploadDirectorVersion">Kargatu Zuzendariaren bertsioa</message>
+	<message key="director.paper.stageDisabled">Ebaluazioa ezin da egin oraindik. Edo laburpenaren ebaluazioa ez dago bukatuta, edo egileak ez du lana bidali ebaluatzeko.</message>
+	<message key="director.paper.showSuppFile">Aurkeztu fitxategia ebaluatzaileei</message>
+	<message key="director.paper.clear">Garbitu</message>
+	<message key="director.paper.clearReviewer">Kendu ebaluatzailea</message>
+	<message key="director.paper.changeTrack">Aldatu atala</message>
+	<message key="director.paper.setDueDate">Ezarri mugaeguna</message>
+	<message key="director.paper.addReviewer">Gehitu ebaluatzailea</message>
+	<message key="director.paper.toReviewer">Ebaluatzaileari</message>
+	<message key="director.paper.notifyReviewer">Jakinarazi ebaluatzaileari</message>
+	<message key="director.paper.initiateReview">Hasi ebaluazioa</message>
+	<message key="director.paper.cancelReview">Ezereztu Ebaluatzeko eskaera</message>
+	<message key="director.paper.clearReview">Kendu ebaluatzailea</message>
+	<message key="director.paper.enterRecommendation">Sartu gomendioa</message>
+	<message key="director.paper.enterReviewerRecommendation">Sartu Ebaluatzailearen gomendioa</message>
+	<message key="director.paper.recommendation">Gomendioa</message>
+	<message key="director.paper.selectReviewer">Hautatu Ebaluatzailea</message>
+	<message key="director.paper.replaceReviewer">Ordeztu Ebaluatzailea</message>
+	<message key="director.paper.directorToEnter">Zuzendariak hemen sar ditzake ebaluatzailearentzako gomendioak/oharrak</message>
+	<message key="director.paper.uploadReviewForReviewer">Kargatu ebaluazioa</message>
+	<message key="director.paper.peerReviewOptions">Adituen ebaluazioaren aukerak</message>
+	<message key="director.paper.decision">Erabakia</message>
+	<message key="director.paper.recordDecision">Grabatu erabakia</message>
+	<message key="director.paper.cannotRecord">Ezin da erabakirik grabatu; ataleko zuzendaria izendatu gabe dago edo ez da ebaluazio-fitxategirik kargatu.</message>
+	<message key="director.paper.cannotRecordYet">Erabakia grabatu aurretik, bidalketa Ataleko zuzendari bati esleitu behar zaio. Besterik ezean, Ebaluazio-bertsioa bera izango da Zuzendariaren bertsioa.</message>
+	<message key="director.paper.cannotRecordTooLate">Bidalketak bukatuta dauka ebaluazio-fasea. Ezin duzu erabakia aldatu orain.</message>
+	<message key="director.paper.designateDueDate">Ezarri mugaeguna</message>
+	<message key="director.paper.designateDueDateDescription">Ebaluatzaile honen mugaeguna aldatzeko, sartu beste egun bat, edo ezabatu eguna eta sartu ebaluazioa egiteko aste kopurua.</message>
+	<message key="director.paper.todaysDate">Gaurko eguna</message>
+	<message key="director.paper.requestedByDate">Entregatzeko data</message>
+	<message key="director.paper.dueDateFormat">Formatua: UUUU-HH-EE</message>
+	<message key="director.paper.numberOfWeeks">Aste kopurua</message>
+	<message key="director.paper.showPresenter">Utzi egileari fitxategia ikusten</message>
+	<message key="director.paper.rateReviewer">Baloratu Ebaluatzailea</message>
+	<message key="director.paper.reviewerRating.veryGood">5 Oso ona</message>
+	<message key="director.paper.reviewerRating.good">4</message>
+	<message key="director.paper.reviewerRating.average">3 Normala</message>
+	<message key="director.paper.reviewerRating.poor">2</message>
+	<message key="director.paper.reviewerRating.veryPoor">1 Txarra</message>
+	<message key="director.paper.quality">Balorazioa</message>
+	<message key="director.paper.comments">Oharrak</message>
+	<message key="director.paper.commentsRequired">Iruzkinen eremua nahitaezkoa da.</message>
+	<message key="director.paper.archiveSubmission">Artxibatu bidalketa</message>
+	<message key="director.paper.restoreToQueue">Leheneratu Aktiboen Zerrendara</message>
+	<message key="director.paper.assignTrackDirector">Gehitu Ataleko zuzendaria</message>
+	<message key="director.paper.assignDirector">Gehitu zuzendaria</message>
+	<message key="director.paper.selectDirector">Hautatu {$roleName}</message>
+	<message key="director.paper.selectDecision">Hautatu erabakia</message>
+	<message key="director.paper.decision.invitePresentation">Gonbidatu Aurkezpena</message>
+	<message key="director.paper.decision.accept">Onartu bidalketa</message>
+	<message key="director.paper.decision.pendingRevisions">Berrikusi egin behar da</message>
+	<message key="director.paper.decision.decline">Ez onartu bidalketa</message>
+	<message key="director.paper.moveToLayout">Eraman maketaziora</message>
+	<message key="director.paper.createGalley">Fitxategi hau argitaratzeko prest dago.</message>
+	<message key="director.paper.completeReview">Markatu ebaluazioa bukatutako gisa</message>
+	<message key="director.paper.scheduleSubmission">Bidali</message>
+	<message key="director.submissions.showBy">Erakutsi</message>
+	<message key="director.submissions.submitMMDD">Bidalia: HH-EE</message>
+	<message key="director.submissions.activeAssignments">Esleipen aktiboak</message>
+	<message key="director.submissions.invite">Gonbidatu</message>
+	<message key="director.submissions.accept">Onartu</message>
+	<message key="director.submissions.noSubmissions">Bidalketarik ez</message>
+	<message key="director.submissions.lastAssigned">Azkena</message>
+	<message key="director.submissions.averageTime">Asteak</message>
+	<message key="director.submissions.lastCompleted">Azkeneko bukatua</message>
+	<message key="director.submissions.assignedTo">Honi esleitua</message>
+	<message key="director.submissions.inTrack">Atala</message>
+</locale>

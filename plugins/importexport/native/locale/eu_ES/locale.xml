@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../locale/locale.dtd">
+
+<!--
+  * locale.xml
+  *
+  * Copyright (c) 2000-2009 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the eu_ES (Basque (Euskara)) locale.
+  *
+  * $Id$
+  -->
+
+<locale name="eu_ES" full_name="Euskara">
+	<message key="plugins.importexport.native.displayName">Lanen (paperen) XML plugina</message>
+	<message key="plugins.importexport.native.description">Lanak inportatu eta esportatu</message>
+
+	<message key="plugins.importexport.native.cliUsage"><![CDATA[Erabilera: {$scriptName} {$pluginName} [command] ...
+Komandoak:
+	import [xmlFileName] [conference_path] [sched_conf_path] [user_name] ...
+	export [xmlFileName] [conference_path] [sched_conf_path] papers [paperId1] [paperId2] ...
+	export [xmlFileName] [conference_path] [sched_conf_path] paper [paperId]
+
+Parametro gehiago beharko dira datuak inportatzeko jarraian adierazten den bezala, XML dokumentuaren erroko nodoaren arabera.
+
+Erroko nodoa <paper> edo <papers> bada, parametro gehiago eman behar dira.
+Formatu hauek onartzen dira:
+
+{$scriptName} {$pluginName} import [xmlFileName] [conference_path]
+	[sched_conf_path] [user_name] track_id [trackId]
+
+{$scriptName} {$pluginName} import [xmlFileName] [conference_path]
+	[sched_conf_path] [user_name] track_name [trackName]
+
+{$scriptName} {$pluginName} import [xmlFileName] [conference_path]
+	[sched_conf_path] [user_name] track_abbrev [trackAbbrev]
+]]></message>
+	<message key="plugins.importexport.native.export">Esportatu datuak</message>
+	<message key="plugins.importexport.native.export.tracks">Esportatu atalak</message>
+	<message key="plugins.importexport.native.export.papers">Esportatu lanak</message>
+
+	<message key="plugins.importexport.native.selectPaper">Hautatu lana</message>
+
+	<message key="plugins.importexport.native.import.papers">Inportatu lanak</message>
+	<message key="plugins.importexport.native.import.papers.description">Inportatu nahi duzun fitxategiak lan bat edo gehiago dauzka. Lan horiek zein ataletara inportatu aukeratu behar duzu; denak ez baditu atal berera inportatu nahi, XML fitxategi desberdinetan banatu beharko dituzu edo, bestela, denak batera inportatu eta gero bakoitza bere lekura eraman.</message>
+
+	<message key="plugins.importexport.native.import">Inportatu datuak</message>
+	<message key="plugins.importexport.native.import.description">Plugin honek native.dtd Dokumentu Tipoaren Definizioan oinarrituta inportatzen ditu datuak. Onartzen dituen erroko nodoak &amp;lt;paper&amp;gt; eta &amp;lt;papers&amp;gt; dira.</message>
+
+	<message key="plugins.importexport.native.import.error">Inportazioko errorea</message>
+	<message key="plugins.importexport.native.import.error.description">Errore bat edo gehiago gertatu dira inportatzean. Begiratu inportazio-fitxategiaren formatua bat datorren espezifikazioekin. Inportazio-erroreen xehetasunak behean ematen dira.</message>
+
+	<message key="plugins.importexport.native.cliError">ERROREA:</message>
+	<message key="plugins.importexport.native.error.uploadFailed">Kargatzeak huts egin du; ziurtatu zure zerbitzariak onartzen duela fitxategiak kargatzea eta fitxategi hori ez dela handiegia zure PHP eta web-zerbitzariaren konfiguraziorako.</message>
+	<message key="plugins.importexport.native.error.unknownUser">"{$userName}" erabiltzailea ez dago.</message>
+	<message key="plugins.importexport.native.error.unknownConference">"{$conferencePath}" kongresuaren edo "{$schedConfPath}" kongresu programatuaren bidea ez dago.</message>
+	<message key="plugins.importexport.native.export.error.couldNotWrite">Ezin izan da idatzi "{$fileName}" fitxategian.</message>
+	<message key="plugins.importexport.native.export.error.trackNotFound">Ez dago "{$trackIdentifier}" IDarekin bat datorren atalik.</message>
+	<message key="plugins.importexport.native.export.error.paperNotFound">Ez dago "{$paperId}" IDarekin bat datorren lanik.</message>
+	<message key="plugins.importexport.native.import.error.unsupportedRoot">Plugin honek ez du onartzen "{$rootName}" erroko nodoa. Ziurtatu fitxategia ondo eratuta dagoela eta saiatu berriro.</message>
+
+	<message key="plugins.importexport.native.import.error.invalidBooleanValue">"{$value}" balio boolear baliogabea zehaztu da. Erabili "true" edo "false".</message>
+	<message key="plugins.importexport.native.import.error.invalidDate">"{$value}" data baliogabea zehaztu da.</message>
+	<message key="plugins.importexport.native.import.error.unknownEncoding">"{$type}" kodeketa mota ezezagunarekin kapsulatu dira datuak.</message>
+	<message key="plugins.importexport.native.import.error.couldNotWriteFile">Ezin izan da gorde "{$originalName}" fitxategiaren kopia lokala.</message>
+	<message key="plugins.importexport.native.import.error.illegalUrl">"{$url}" URLa ez da baliozkoa. Web bidezko inportazioak http, https, ftp, edo ftps metodoak bakarrik onartzen ditu.</message>
+	<message key="plugins.importexport.native.import.error.unknownSuppFileType">"{$suppFileType}" fitxategi osagarriaren mota ezezaguna zehaztu da.</message>
+	<message key="plugins.importexport.native.import.error.couldNotCopy">"{$url}" URLa ezin izan da kopiatu fitxategi lokalera.</message>
+	<message key="plugins.importexport.native.import.error.paperTitleLocaleUnsupported">"{$paperTitle}" lanaren tituluaren hizkuntza ("{$locale}") ez da erabiltzen kongresu honetan.</message>
+	<message key="plugins.importexport.native.import.error.paperAbstractLocaleUnsupported">"{$paperTitle}" lanaren laburpenaren hizkuntza ("{$locale}") ez da erabiltzen kongresu honetan.</message>
+	<message 
+key="plugins.importexport.native.import.error.galleyLabelMissing">"{$trackTitle}" 
+ataleko "{$paperTitle}" lanean galerada-etiketa bat falta zen.</message>
+	<message key="plugins.importexport.native.import.error.suppFileMissing">"{$trackTitle}" ataleko "{$paperTitle}" lanean fitxategi osagarri bat falta zen.</message>
+	<message 
+key="plugins.importexport.native.import.error.galleyFileMissing">"{$trackTitle}" 
+ataleko "{$paperTitle}" lanean galerada-fitxategi bat falta zen.</message>
+
+	<message key="plugins.importexport.native.import.error.trackTitleLocaleUnsupported">"{$trackTitle}" atalaren tituluaren hizkuntza ("{$locale}") ez da erabiltzen kongresu honetan.</message>
+	<message key="plugins.importexport.native.import.error.trackAbbrevLocaleUnsupported">"{$trackAbbrev}" atalaren laburduraren hizkuntza ("{$locale}") ez da erabiltzen kongresu honetan.</message>
+	<message key="plugins.importexport.native.import.error.trackIdentifyTypeLocaleUnsupported">"{$trackIdentifyType}" atalaren identifikazio mota hizkuntza ("{$locale}") ez da erabiltzen kongresu honetan.</message>
+	<message key="plugins.importexport.native.import.error.trackPolicyLocaleUnsupported">"{$trackPolicy}" atalaren politikaren hizkuntza ("{$locale}") ez da erabiltzen kongresu honetan.</message>
+
+	<message key="plugins.importexport.native.import.error.trackTitleMismatch">"{$track1Title}" atalaren titulua eta "{$track2Title}" atalaren titulua kongresuaren atal desberdinenak dira.</message>
+	<message key="plugins.importexport.native.import.error.trackTitleMatch">"{$trackTitle}" atalaren titulua bat dator kongresu-atal batekin, baina atal honen beste titulu bat ez dator bat kongresu-atalaren beste titulu batekin.</message>
+	<message key="plugins.importexport.native.import.error.trackAbbrevMismatch">"{$track1Abbrev}" atalaren laburdura eta "{$track2Abbrev}" atalaren laburdura kongresuaren atal desberdinenak dira.</message>
+	<message key="plugins.importexport.native.import.error.trackAbbrevMatch">"{$trackAbbrev}" atalaren laburdura bat dator kongresu-atal batekin, baina atal honen beste laburdura bat ez dator bat kongresu-atalaren beste laburdura batekin.</message>
+
+	<message key="plugins.importexport.native.import.error.paperDisciplineLocaleUnsupported">"{$paperTitle}" lanaren diziplinaren hizkuntza ("{$locale}") ez da erabiltzen kongresu honetan.</message>
+	<message key="plugins.importexport.native.import.error.paperTypeLocaleUnsupported">"{$paperTitle}" lanaren motaren hizkuntza ("{$locale}") ez da erabiltzen kongresu honetan.</message>
+	<message key="plugins.importexport.native.import.error.paperSubjectLocaleUnsupported">"{$paperTitle}" lanaren gaiaren hizkuntza ("{$locale}") ez da erabiltzen kongresu honetan.</message>
+	<message key="plugins.importexport.native.import.error.paperSubjectClassLocaleUnsupported">"{$paperTitle}" lanaren gaikako sailkapenaren hizkuntza ("{$locale}") ez da erabiltzen kongresu honetan.</message>
+	<message key="plugins.importexport.native.import.error.paperCoverageGeoLocaleUnsupported">"{$paperTitle}" lanaren estaldura geografikoaren hizkuntza ("{$locale}") ez da erabiltzen kongresu honetan.</message>
+	<message key="plugins.importexport.native.import.error.paperCoverageChronLocaleUnsupported">"{$paperTitle}" lanaren estaldura geografikoaren hizkuntza ("{$locale}") ez da erabiltzen kongresu honetan.</message>
+	<message key="plugins.importexport.native.import.error.paperCoverageSampleLocaleUnsupported">"{$paperTitle}" lanaren ikerketa-estalduraren hizkuntza ("{$locale}") ez da erabiltzen kongresu honetan.</message>
+	<message key="plugins.importexport.native.import.error.paperSponsorLocaleUnsupported">"{$paperTitle}" lanaren babeslearen hizkuntza ("{$locale}") ez da erabiltzen kongresu honetan.</message>
+
+	<message 
+key="plugins.importexport.native.import.error.paperAuthorCompetingInterestsLocaleUnsupported">"{$paperTitle}" 
+lanaren "{$authorFullName}" egilearen interes-gatazkaren hizkuntza ("{$locale}") ez da 
+erabiltzen kongresu honetan.</message>
+	<message 
+key="plugins.importexport.native.import.error.paperAuthorBiographyLocaleUnsupported">"{$paperTitle}" 
+lanaren "{$authorFullName}" egilearen biografiaren hizkuntza ("{$locale}") ez da 
+erabiltzen kongresu honetan.</message>
+
+	<message key="plugins.importexport.native.import.error.galleyLocaleUnsupported">"{$paperTitle}" lanaren galerada baten hizkuntza ("{$locale}") ez da erabiltzen kongresu honetan.</message>
+
+	<message 
+key="plugins.importexport.native.import.error.paperSuppFileTitleLocaleUnsupported">"{$paperTitle}" 
+lanaren "{$suppFileTitle}" fitxategi osagarriaren tituluaren hizkuntza ("{$locale}") 
+ez da erabiltzen kongresu honetan.</message>
+	<message 
+key="plugins.importexport.native.import.error.paperSuppFileCreatorLocaleUnsupported">"{$paperTitle}" 
+lanaren "{$suppFileTitle}" fitxategi osagarraren sortzailearen hizkuntza ("{$locale}") 
+ez da erabiltzen kongresu honetan.</message>
+	<message 
+key="plugins.importexport.native.import.error.paperSuppFileSubjectLocaleUnsupported">"{$paperTitle}" 
+lanaren fitxategi osagarri baten gaiaren hizkuntza ("{$locale}") ez da erabiltzen 
+kongresu honetan.</message>
+	<message 
+key="plugins.importexport.native.import.error.paperSuppFileTypeOtherLocaleUnsupported">"{$paperTitle}" 
+lanaren fitxategi osagarri baten mota pertsonalizatuaren hizkuntza ("{$locale}") ez da 
+erabiltzen kongresu honetan.</message>
+	<message 
+key="plugins.importexport.native.import.error.paperSuppFileDescriptionLocaleUnsupported">"{$paperTitle}" 
+lanaren "{$suppFileTitle}" fitxategi osagarriaren azalpenaren hizkuntza ("{$locale}") 
+ez da erabiltzen kongresu honetan.</message>
+	<message 
+key="plugins.importexport.native.import.error.paperSuppFilePublisherLocaleUnsupported">"{$paperTitle}" 
+lanaren "{$suppFileTitle}" fitxategi osagarriaren argitaratzailearen hizkuntza 
+("{$locale}") ez da erabiltzen kongresu honetan.</message>
+	<message 
+key="plugins.importexport.native.import.error.paperSuppFileSponsorLocaleUnsupported">"{$paperTitle}" 
+lanaren "{$suppFileTitle}" fitxategi osagarriaren babeslearen hizkuntza ("{$locale}") 
+ez da erabiltzen kongresu honetan.</message>
+	<message 
+key="plugins.importexport.native.import.error.paperSuppFileSourceLocaleUnsupported">"{$paperTitle}" 
+lanaren "{$suppFileTitle}" fitxategi osagarriaren iturriaren hizkuntza ("{$locale}") 
+ez da erabiltzen kongresu honetan.</message>
+
+	<message key="plugins.importexport.native.import.success">Ongi inportatu 
+da</message>
+	<message 
+key="plugins.importexport.native.import.success.description">Inportazioa ondo egin da. 
+Beheko zerrendan daude inportatutako elementuak.</message>
+
+</locale>
+
