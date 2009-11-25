@@ -468,7 +468,7 @@ class TranslatorHandler extends Handler {
 			$file->insert($emailKey, $subject, $body, $description);
 
 		$file->write();
-		if (Request::getUserVar('returnToCheck')==1) Request::redirect(null, null, 'check', $locale);
+		if (Request::getUserVar('returnToCheck')==1) Request::redirect(null, null, null, 'check', $locale);
 		else Request::redirect(null, null, null, 'edit', $locale);
 	}
 
