@@ -231,11 +231,9 @@
 	<message key="manager.schedConfSetup.submissions.abstractsAlone">Resumen</message>
 	<message key="manager.schedConfSetup.submissions.acceptSupplementaryReviewMaterials">Los ficheros suplementarios pueden enviarse con los resúmenes y las presentaciones.</message>
 	<message key="manager.schedConfSetup.submissions.addChecklistItem">Añadir un elemento a la lista de requisitos</message>
-	<message key="manager.schedConfSetup.submissions.allowIndividualSubmissions">Permitir el envío de presentaciones individuales</message>
-	<message key="manager.schedConfSetup.submissions.allowPanelSubmissions">Permitir el envío de presentaciones múltiples, presentadas por los organizadores de sesiones con paneles concretos.</message>
 	<message key="manager.schedConfSetup.submissions.bothTogether">Resumen y trabajo juntos</message>
 	<message key="manager.schedConfSetup.submissions.callForPapers">Call for papers (CFP)</message>
-	<message key="manager.schedConfSetup.submissions.cfpMessage">Mensaje para Call for papers </message>
+	<message key="manager.schedConfSetup.submissions.cfpMessage">Mensaje para Call for papers</message>
 	<message key="manager.schedConfSetup.submissions.cfpMessageDescription"><![CDATA[Esta información se encuentra en el enlace "call-for-papers" de la página de inicio de la conferencia.]]></message>
 	<message key="manager.schedConfSetup.submissions.coverage">Cobertura</message>
 	<message key="manager.schedConfSetup.submissions.coverageChronExamples">(p.e., El Renacimiento Europeo; Periodo Jurásico; Tercer Trimestre; etc.)</message>
@@ -468,4 +466,8 @@
 	<message key="manager.tracks.unassignDirector">No se ha asignado Director</message>
 	<message key="manager.tracks.unassigned">Existen Directores de sección</message>
 	<message key="manager.websiteManagement">Gestión del sitio web</message>
+	<message key="manager.scheduler.timeBlock.createNew">Crear Nuevo Bloque de Tiempo</message>
+	<message key="manager.accommodation">Alojamiento</message>
+	<message key="manager.accommodation.form.accommodationFiles">Ficheros</message>
+	<message key="manager.accommodation.form.accommodationFiles.description">Use esta sección para subir uno o mas ficheros para inscriptos y potenciales inscriptos, como ser mapas, formularios, etc.</message>
 </locale>

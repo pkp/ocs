@@ -100,4 +100,11 @@
 	<message key="director.submissions.lastAssigned">Última</message>
 	<message key="director.submissions.averageTime">Semanas</message>
 	<message key="director.submissions.lastCompleted">Última concluída</message>
+	<message key="director.allDirectors">Todos os diretores</message>
+	<message key="director.me">a mim</message>
+	<message key="director.notifyUsers.allAuthors">Todos os palestrantes com publicações ({$count} usuários)</message>
+	<message key="director.paper.stageDisabled">Não é possível ainda realizar a avaliação. A avaliação do resumo não foi concluída.</message>
+	<message key="director.paper.archiveSubmission">Rejeitar e arquivar submissão</message>
+	<message key="director.submissions.assignedTo">Designado a</message>
+	<message key="director.submissions.inTrack">Na Modalidade</message>
 </locale>

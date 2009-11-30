@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * locale.xml
+  *
+  * Copyright (c) 2003-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the en_US (U.S. English) locale.
+  *
+  * $Id$
+  -->
+ 
+<locale name="en_US" full_name="U.S. English">
+	<message key="plugins.generic.customBlockManager.displayName">Adminsitraçaõ de Blocos Customizados</message>
+	<message key="plugins.generic.customBlockManager.description">This Plugin lets you manage custom sidebar blocks.  You can edit the blocks in the settings of each plugin that you create here.</message>	
+	<message key="plugin.generic.customBlockManager.introduction"><![CDATA[Use este plugin para incluir ou excluir plugins de bloco customizados.  Edite os conteúdos através dos <a href="{$systemPluginsUrl}">Plugins do Sistema</a> (na seção Pluigns de Bloco).  Para incluir seu plugin no local desejado, nas barras laterais, acesse <a href="{$setupStep4}">Passo 4 da Configuração</a>.]]></message>
+	<message key="plugins.generic.customBlockManager.settings">Configurações</message>
+	<message key="plugins.generic.customBlockManager.blockName">Nome do bloco</message>	
+	<message key="plugins.generic.customBlockManager.action">Ação</message>	
+	<message key="plugins.generic.customBlockManager.delete">Excluir</message>	
+	<message key="plugins.generic.customBlockManager.addBlock">Incluir bloco</message>	
+
+	<message key="plugins.generic.customBlock.content">Conteúdo</message>
+	<message key="plugins.generic.customBlock.saved">O conteúdo deste bloco foi salvo.</message>
+	<message key="plugins.generic.customBlock.nameSuffix">(Plugin de Bloco Customizado)</message>
+	<message key="plugins.generic.customBlock.description">Este é um plugin produzido pelo usuário.</message>
+	<message key="plugins.generic.customBlock.editContent">Editar o conteúdo da barra lateral</message>
+	<message key="plugins.generic.customBlock.contentRequired">Algum conteúdo é obrigatório. Caso deseje excluir este bloco, faça-o através do Plugin de Administração de Blocos ou desmarcando este bloco no Passo 5 de configuração.</message>
+	<message key="plugins.generic.customBlock.edit">Editar</message>
+</locale>

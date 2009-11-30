@@ -14,6 +14,6 @@
  
 <locale name="it_IT" full_name="Italiano">
 	<message key="plugins.block.navigation.displayName">Blocco di navigazione</message>
-	<message key="plugins.block.navigation.description">Questo plugin inserisce nel menu laterale uQuesto plugin fornisce i link di navigazione nella barra laterale.</message>
+	<message key="plugins.block.navigation.description">Questo plugin fornisce i link di navigazione nella barra laterale.</message>
 	<message key="plugins.block.navigation.conferenceContent">Contenuto della conferenza</message>
 </locale>

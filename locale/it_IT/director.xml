@@ -100,4 +100,11 @@
 	<message key="director.submissions.lastAssigned">Pi&#x00F9; recente</message>
 	<message key="director.submissions.averageTime">Settimane</message>
 	<message key="director.submissions.lastCompleted">Ultimo completato</message>
+	<message key="director.allDirectors">Tutti i direttori</message>
+	<message key="director.me">Io</message>
+	<message key="director.notifyUsers.allAuthors">Tutti i relatori pubblicati ({$count} users)</message>
+	<message key="director.paper.stageDisabled">Non è ancora possibile revisionare questo paper; la revisione dell'abstract non è stata completata.</message>
+	<message key="director.paper.archiveSubmission">Rifiuta e archivia la submission</message>
+	<message key="director.submissions.assignedTo">Assegnata a</message>
+	<message key="director.submissions.inTrack">In Track</message>
 </locale>

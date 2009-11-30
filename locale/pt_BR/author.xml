@@ -113,4 +113,15 @@
 	<message key="author.submit.expedite"><![CDATA[Caso a submissão já esteja em um formato pronto para publicação, sem a necessidade de revisão, edição ou layout, ela pode ser enviada diretamente para publicação <a href="{$expediteUrl}" class="action">clicando aqui!</a>. (Aviso: Apenas Diretores da conferência possuem esta opção para as suas submissões.)]]></message>
 	<message key="author.paper.uploadAuthorVersion">Transferir Versão do Autor</message>
 	<message key="presenter.submit.authorSubmitLoginMessage">Um cadastro de usuário é necessário para enviar documentos à esta conferência. Isto permite aos diretores acompanhar e controlar a submissão, além de permitir o contato durante o andamento do processo editorial, ou caso seja necessária a atualização de informações</message>
+	<message key="author.submit.step3AbstOnly">Passo 2. Informando os Metadados da submissão</message>
+	<message key="author.submit.metadataOnly">2. Informar metadados</message>
+	<message key="author.submit.uploadOnly">3. Enviar submissão</message>
+	<message key="author.submit.supplementaryFilesAbstractOnly">4. Enviar arquivos suplementares</message>
+	<message key="author.submit.supplementaryFilesInfoAbstractOnly">Passo 3a. Enviando arquivos suplementares</message>
+	<message key="author.submissions.queuedAbstractReviewRevisions">Resumo em avaliação: correções obrigatórias</message>
+	<message key="author.submissions.queuedPaperReviewRevisions">Documento em avaliação: correções obrigatórias</message>
+	<message key="author.submit.form.authorRequired">Pelo menos um autor deve ser informado.</message>
+	<message key="author.submit.form.authorRequiredFields">Prénome, sobrenome e endereço de e-mail de cada autor são obrigatórios.</message>
+	<message key="author.submit.reorder">Alterar ordem dos autores</message>
+	<message key="author.submit.form.wordCountAlert">O limite máximo de palavras para resumos desta modalidade foi excedido.</message>
 </locale>

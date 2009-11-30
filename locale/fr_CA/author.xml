@@ -113,4 +113,15 @@
 	<message key="author.submit.expedite"><![CDATA[Si cette soumission est déjà dans un format prêt à être publié, sans autre travail d'évaluation ou de mise en page, elle peut directement être envoyée à la page des Actes en <a href="{$expediteUrl}" class="action">cliquant ici</a>. (Note: Seuls les responsables de conférence ont droit à cette option pour leurs soumissions.)]]></message>
 	<message key="author.paper.uploadAuthorVersion">Télécharger la version de l'auteur vers le serveur</message>
 	<message key="presenter.submit.authorSubmitLoginMessage">Un compte utilisateur est nécessaire pour soumettre des documents à cette conférence. Ceci permet aux responsables de suivre vos soumissions, de vous contacter quand le statut de vos soumissions est modifié, ou pour vous demander plus de renseignements.</message>
+	<message key="author.submit.step3AbstOnly">Étape 2. Saisir les métadonnées de la soumission</message>
+	<message key="author.submit.metadataOnly">2. Saisir les métadonnées</message>
+	<message key="author.submit.uploadOnly">3. Télécharger la soumission</message>
+	<message key="author.submit.supplementaryFilesAbstractOnly">3. Télécharger les fichiers supplémentaires</message>
+	<message key="author.submit.supplementaryFilesInfoAbstractOnly">Étape 3a. Télécharger les fichiers supplémentaires</message>
+	<message key="author.submissions.queuedAbstractReviewRevisions">Résumé en évaluation : Révisions exigées</message>
+	<message key="author.submissions.queuedPaperReviewRevisions">Communication en évaluation : Révisions exigées</message>
+	<message key="author.submit.form.authorRequired">Au minimum un auteur est obligatoire.</message>
+	<message key="author.submit.form.authorRequiredFields">Le prénom, le nom de famille, et l'adresse de courriel de chaque auteur est obligatoire.</message>
+	<message key="author.submit.reorder">Réordonner le nom de l'auteur</message>
+	<message key="author.submit.form.wordCountAlert">Vous avez dépassé la limite maximale de mots fixée pour les résumés, dans cette section de la conférence.</message>
 </locale>

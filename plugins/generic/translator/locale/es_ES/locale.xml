@@ -73,4 +73,5 @@ Se remite a la versión en inglés como versión por defecto.</message>
 	<message key="plugins.generic.translator.deleteKey">Delete this key</message>
 	<message key="plugins.generic.translator.deleteEmail">Delete this email</message>
 	<message key="plugins.generic.translator.saveBeforeContinuing">Be sure to save any changes made on this page before continuing or they will be lost. Do you wish to continue? If so, any unsaved changes will be lost.</message>
+	<message key="plugins.generic.translator.localeKey.description">Políticas respecto al proceso de evaluación, instrucciones para autores y acceso.</message>
 </locale>

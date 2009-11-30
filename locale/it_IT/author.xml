@@ -113,4 +113,15 @@
 	<message key="author.submit.expedite"><![CDATA[Se questa submission &#x00E8; in un formato tale da esser pronta per essere pubblicata, senza ulteriori revisioni o lavori di modifica, pu&#x00F2; essere inviata direttamente alla pagina Procedure attraverso <a href="{$expediteUrl}" class="action">Cliccando qui</a>. (Notare: Solo i direttori del convegno hanno questa opzione per le loro submission.)]]></message>
 	<message key="author.paper.uploadAuthorVersion">Carica la versione dell'autore</message>
 	<message key="presenter.submit.authorSubmitLoginMessage">&#x00C8; richiesto un account d'utente per sottoporre materiale a questo convegno. Questo permette ai nostri direttori di seguire le tue submission e contattarti quando lo stato della tua submission cambia, o se sono richieste ulteriori informazioni da te.</message>
+	<message key="author.submit.step3AbstOnly">Passo 2. Inserire i metadati del paper.</message>
+	<message key="author.submit.metadataOnly">2. Inserire i metadati</message>
+	<message key="author.submit.uploadOnly">3. Caricare il manoscritto</message>
+	<message key="author.submit.supplementaryFilesAbstractOnly">3. Caricare file supplementari</message>
+	<message key="author.submit.supplementaryFilesInfoAbstractOnly">3a. Caricare file supplementari.</message>
+	<message key="author.submissions.queuedAbstractReviewRevisions">Abstract in revisione: sono richieste modifiche</message>
+	<message key="author.submissions.queuedPaperReviewRevisions">Paper in revisione: sono richieste modifiche</message>
+	<message key="author.submit.form.authorRequired">E' necessario inserire almeno un autore</message>
+	<message key="author.submit.form.authorRequiredFields">Nome, cognome e indirizzo email sono obbligatori per ciascun autore.</message>
+	<message key="author.submit.reorder">Riordina i nomi degli autori</message>
+	<message key="author.submit.form.wordCountAlert">Hai superato il numero di parole accettato per la presentazione di abstract.</message>
 </locale>

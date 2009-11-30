@@ -87,8 +87,6 @@
 	<message key="reviewer.paper.reviewFormResponse.form.responseRequired">Preencha os campos obrigatórios.</message>
 	<message key="manager.reviewForms.list.description">Os formulários de avaliação pelos pares criados aqui estarão disponíveis aos avaliadores para preenchimento, em vez do formulário padrão que consiste em duas caixas de texto de comentários com comentários exclusivos para o autor e outra para o  Editor e o Autor. Formulários de avaliação podem ser designados a seções específicas, e os editores poderão escolher qual formulário utilizar no momento da avaliação. em todos os casos, os editores poderão incluir as avaliações nas correspondências com o autor.</message>
 	<message key="manager.reviewForms.noneChosen">Nenhuma / Formulário de avaliação padrão</message>
-	<message key="manager.sections.form.reviewFormId">É necessário escolher um formulário de avaliação válido</message>
-	
 	<!-- Common Form Messages -->
 
 	<!-- Common Email Messages -->
@@ -136,10 +134,6 @@
 	<message key="track.title">Título da Modalidade</message>
 	<message key="track.abbreviation">Abreviatura</message>
 	<message key="track.abbreviation.example">(Por exemplo, Papers=PAP)</message>
-	<message key="track.default.title">Papers</message>
-	<message key="track.default.abbrev">PAP</message>
-	<message key="track.default.policy"></message>
-
 	<!-- Common Paper Terms -->
 	<message key="paper.papers">Submissões</message>
 	<message key="paper.submissionId">ID da Submissão</message>
@@ -189,11 +183,6 @@
 	<message key="submission.authorsRevisedVersion">Versão revisada do Autor</message>
 	<message key="submission.authorVersion">Versão do Autor</message>
 	<message key="submission.layout.description">Este passo opcional pode ser utilizado para converter as submissões para outros formatos antes ou depois de serem encaminhadas para Apresentações.</message>
-
-	<message key="submission.paperType">Tipo da Submissão</message>
-	<message key="submission.paperType.single">Apresentação Individual</message>
-	<message key="submission.paperType.panel">Apresentação de Painel</message>
-
 
 	<message key="submissions.track">Modalidade</message>
 	<message key="submissions.queuedAbstractReview">Resumo em Avaliação</message>
@@ -382,11 +371,6 @@ Note que a interface OAI pode ser desativada para este portal nas configuraçõe
 	<message key="conference.history.noLogEntries">Nenhuma entrada de log.</message>
 
 	<!-- Scheduled Conference Management -->
-	<message key="manager.schedConfs.form.createInstructions">Uma instância agendada da Conferência é criada ao informar o título (caso seja uma conferência anual, o nome da conferência concatenado com o ano, por exemplo) e a URL. Seu cadastro será de Diretor de Conferência e poderá designar outros Diretores, que poderão administrar os detalhes do evento, começando pelo agendamento da conferência em 
-Cronograma da Conferência.</message>
-	<message key="manager.schedConfs.form.pathAlphaNumeric">O caminho pode conter apenas caracteres alfanuméricos, sublinhado, hífens,
-e deve começar e terminar com um caractere alfanumérico.</message>
-
 	<!-- Program settings -->
 
 	<!-- Conference Management -->
@@ -464,7 +448,6 @@ Título do sistema de classificação]]></message>
 
 
 	<!-- Track Management -->
-	<message key="manager.tracks.submissionsToThisTrack">Submissões desta modalidade</message>
 	<!-- Timeline management -->
 
 	
@@ -482,8 +465,6 @@ Título do sistema de classificação]]></message>
 	<message key="manager.people.confirmDisable">Desabilitar este usuário? Esta ação impossibilitará o usuário de acessar o sistema.
 
 Pode ser incluído o motivo para desabilitar a conta.</message>
-	<message key="manager.people.enrollUserAsDescription">O sistema permite o cadastrado de usuários sem função. Papéis podem ser atribuídos ou removidos a qualquer momento após a criação do cadastro.
-O usuário só poderá ser encontrado na lista Todos os Usuários.</message>
 	<message key="manager.people.noAdministrativeRights"><![CDATA[Você não possui direitos administrativos sobre este usuário porque:
 		<ul>
 			<li>O usuário é o administrador do sistema</li>
@@ -500,9 +481,6 @@ O usuário só poderá ser encontrado na lista Todos os Usuários.</message>
 	<!-- Registration Type Management -->
 
 	<!-- Registration Management -->
-	<message key="manager.registration.selectRegistrant.desc">Registration access privileges are automatically granted to the conference's Conference Directors, Directors, and Track Directors.
-Gerentes Gerais, Diretores e Diretores de Modalidades terão acesso automático ao conteúdo para Inscritos.</message>
-
 	<!-- Announcement Type Management -->
 
 	<!-- Announcements Management -->
@@ -523,9 +501,9 @@ com sinal positivo (+) indicando avaliação em andamento.]]></message>
 	<!-- Track Director -->
 	<message key="trackDirector.author.confirmRenotify">Notificar autor novamente reiniciará a tarefa. Deseja realmente notificar o autor?</message>
 
-	<message key="trackDirector.regrets.breadcrumb">Histórico da Avaliação</message>
+	<message key="trackDirector.regrets.breadcrumb">Desistências</message>
 	<message key="trackDirector.regrets.title">#{$paperId} Histórico da Avaliação</message>
-	<message key="trackDirector.regrets">Histórico da Avaliação</message>
+	<message key="trackDirector.regrets">Desistências</message>
 	<message key="trackDirector.regrets.link">Visualizar Histórico da Avaliação</message>
 	<message key="trackDirector.regrets.reviewStage">Avaliação pelos Pares, Estágio {$stage}</message>
 	<message key="trackDirector.regrets.decisionStage">Decisão do Diretor, Estágio {$stage}</message>
@@ -933,10 +911,6 @@ A validação pode falhar em URLs para pesquisa que requeiram dados via o métod
 	 *
 	-->
 	<!-- Icons: Default "alt" text -->
-	<message key="icon.small.alt">Pequena</message>
-	<message key="icon.medium.alt">Média</message>
-	<message key="icon.large.alt">Grande</message>
-
 	<!-- Debug messages -->
 
 	<!--
@@ -944,37 +918,8 @@ A validação pode falhar em URLs para pesquisa que requeiram dados via o métod
 	 * DEFAULT - Default settings for setup items.
 	 *
 	-->
-	<message key="default.conferenceSettings.copyrightNotice"><![CDATA[Autores que submetem trabalhos a esta conferência aceitam os seguintes termos:<br/>
-<strong>a)</strong>&nbsp;Autores retêm os direitos de autoria do trabalho, enquanto permitem à conferência disponibilizar o trabalho não publicado sob uma licença <a href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution License</a>, que permite o livre acesso, uso e divulgação/compartilhamento do trabalho, com indicação de autoria e sua apresentação inicial nesta conferência.<br/>
-<strong>b)</strong>&nbsp;Autores são autorizados a abrir mão dos termos da licença Creative Commons e assumir outros arranjos contratuais separados para a distribuição não-exclusiva e subseqüênte publicação do trabalho (ex.: publicar uma versão revisada em uma revista, armazenar em repositório institucional, ou publicar como capítulo de um livro), com indicação de sua apresentação inicial nesta conferência.<br/>
-<strong>c)</strong>&nbsp;Autores são estimulados a publicar e distribuir seu trabalho online (ex.: em repositórios institucionais ou no sua página pessoal) a qualquer ponto antes e após a conferência.]]></message>
-
-	<message key="default.schedConfSettings.checklist.notPreviouslyPublished">A contribuição é original e inédita, e não está sendo avaliada para publicação por outra conferência; caso contrário, justificar em "Comentários ao Diretor"</message>
-	<message key="default.schedConfSettings.checklist.fileFormat">Os arquivos para submissão estão em formato Microsoft Word, OpenOffice ou RTF.</message>
-	<message key="default.schedConfSettings.checklist.addressesLinked"><![CDATA[Todos os endereços de páginas na Internet (URLs), incluídas no texto (Ex.: <a href="http://www.ibict.br">http://www.ibict.br</a>) estão ativos e prontos para clicar.]]></message>
-	<message key="default.schedConfSettings.checklist.submissionAppearance">O texto está em espaço simples; usa uma fonte de 12-pontos; emprega itálico em vez de sublinhar (exceto em endereços URL); com figuras e tabelas inseridas no texto, e não em seu final.</message>
-	<message key="default.schedConfSettings.checklist.anonymous">Caso a modalidade seja avaliada pelos pares, indicações de autoria foram removidas do documento, com o uso de "o Autor" e ano na bibliografia e notas de rodapé, em vez de nome do autor, título do documento, etc.</message>
-	<message key="default.schedConfSettings.checklist.personalInformationRemoved">Caso a modalidade seja avaliada pelos pares, todos os documentos do Microsoft Office (incluindo Documentos Suplementares) foram salvos acessando no menu Arquivo a opção Salvar Como; em seguida clicando em Ferramentas (ou Opções no Mac); em seguida clicando em Segurança; escolhendo "Remover informações pessoais das propriedades do arquivo ao salvar"; finalizar clicando Salvar.</message>
-	<message key="default.conferenceSettings.privacyStatement">Os nomes e endereços informados nesta revista serão usados exclusivamente para os serviços prestados por esta publicação, não sendo disponibilizados para outras finalidades ou à terceiros.</message>
-	<message key="default.conferenceSettings.authorSelfArchivePolicy">Autores tem permissão e são estimulados a submeter itens adicionais ou portais institucionais, antes e após a publicação (sempre oferecendo uma indexação detalhada referenciando o local da publicação do item).</message>
-	<message key="default.conferenceSettings.emailSignature">________________________________________________________________________
-{$conferenceName}
-{$conferenceUrl}</message>
-	<message key="default.conferenceSettings.forReaders"><![CDATA[Estimulamos os leitores a se cadastrarem para receber as notificações de publicação dos documentos a esta conferência. Recomendamos a leitura do conteúdo em <a href="{$aboutUrl}">Sobre a Conferência</a> para conhecer as políticas, além de visitar a <a href="{$conferenceUrl}">Página inicial da Conferência</a> para informações e novidades sobre futuras conferências.]]></message>
-	<message key="default.conferenceSettings.forAuthors"><![CDATA[Deseja enviar contribuições à revista? Convidamos todos a conferir a página <a href="{$aboutUrl}">Sobre a Conferência</a> para conhecer as políticas, além de visitar a <a href="{$conferenceUrl}">Página inicial da Conferência</a> para informações e novidades sobre futuras conferências.]]></message>
-	<message key="default.conferenceSettings.lockssLicense"><![CDATA[Esta conferência utiliza o sistema LOCKSS para criar um sistema de arquivo distribuído entre as bibliotecas participantes e permite às mesmas criar arquivos permanentes da revista para a preservação e restauração. <a href="http://lockss.stanford.edu/">Saiba mais...</a>]]></message>
-
-	<message key="default.schedConfSettings.emailSignature">________________________________________________________________________
-{$conferenceName} {$schedConfName}
-{$schedConfUrl}</message>
-	<message key="default.schedConfSettings.checklist.bibliographicRequirements"><![CDATA[O texto segue os padrões de estilo e requisitos bibliográficos descritos em <a href="{$authorGuidelinesUrl}">Normas de Submissão</a>, disponível em Sobre a Conferência.]]></message>
-	<message key="default.schedConfSettings.forReaders"><![CDATA[Estimulamos os leitores a se cadastrarem para receber as notificações de publicação dos documentos a esta conferência. Clique em <a href="{$accountUrl}">Cadastro</a> no menu do sistema. Esta lista permite aos organizadores oferecer um mínimo de suporte ou acesso ao conteúdo. Conheça a <a href="{$privacyStatementUrl}">Declaração de Privacidade</a> que assegura aos leitores e usuários a privacidade de seus nomes e endereços de e-mail, sendo utilizados apenas para esta conferência.]]></message>
-	<message key="default.schedConfSettings.forAuthors"><![CDATA[Deseja enviar contribuições à revista? Convidamos todos a conferir a página <a href="{$aboutUrl}">Sobre a Conferência</a> para conhecer as políticas das modalidades, bem como as <a href="{$authorGuidelinesUrl}">Normas de Submissão</a>. Os autores devem <a href="{$accountUrl}">se cadastrar</a> no sistema antes de iniciar o processo de submissão, ou <a href="{$loginUrl}">acessar o sistema</a> e iniciar o processo de submissão, caso já possuam um cadastro.]]></message>
-
 	<message key="common.time">Hora</message>
 	<message key="common.sortBy">Ordenar por...</message>
-	<message key="email.compose.tooSoon">Tentativa de envio de mensagem muito próxima do envio de mensagem anterior.
-Aguarde alguns minutos antes de enviar outra mensagem.</message>
 	<message key="schedConf.accommodation">Acomodações</message>
 	<message key="schedConf.schedule.title">Agenda</message>
 	<message key="schedConf.accommodation.title">Acomodações</message>
@@ -1002,4 +947,54 @@ Aguarde alguns minutos antes de enviar outra mensagem.</message>
 	<message key="about.delayedOpenAccessDescription">O conteúdo desta conferência estará disponível para acesso livre em {$delayedOpenAccessDuration} mês(es) após a conferência agendada ser liberada aos participantes.</message>
 	<message key="log.timeline.postScheduleDateChanged">A data de publicação de agendamento foi alterada de {$oldPostScheduleDate} para {$newPostScheduleDate}.</message>
 	<message key="log.timeline.postScheduleChanged">A configuração "publicação da agenda" foi alterada de {$oldPostSchedule} para {$newPostSchedule}.</message>
+	<message key="common.copy">Cópia</message>
+	<message key="common.preview">Visualizar</message>
+	<message key="common.activate">Ativar</message>
+	<message key="common.deactivate">Desativar</message>
+	<message key="manager.reviewForms.confirmDeleteUnpublished">Deseja realmente excluir este formulário de avaliação não publicado?</message>
+	<message key="manager.reviewFormElements.confirmDelete">Deseja realmente excluir o elemente deste formulário de avaliação publicado?</message>
+	<message key="manager.reviewFormElement.changeType">Aviso: Alterar o tipo de elemento de um formulário de avaliação de múltipla escolha para campo aberto resultará na exclusão das opções de múltipla escolha.</message>
+	<message key="editor.paper.confirmChangeReviewForm">Aviso: Alterar o formulário de avaliação afetará todas as respostas de avaliadores que usaram este formulário. Deseja realmente continuar?</message>
+	<message key="common.sitePageHeader.altText">Imagem de cabeçalho do site</message>
+	<message key="common.pageHeader.altText">Imagem de cabeçalho de páginas internas</message>
+	<message key="common.homePageHeader.altText">Imagem de cabeçalho da página inicial</message>
+	<message key="common.conferenceHomepageImage.altText">Imagem da página inicial da Conferência</message>
+	<message key="paper.citations">Referências</message>
+	<message key="paper.comments.trackDefault">Padrão</message>
+	<message key="paper.comments.disable">Desabilitar</message>
+	<message key="paper.comments.enable">Habilitar</message>
+	<message key="paper.fontSize">Tamanho da fonte</message>
+	<message key="paper.fontSize.small.altText">Menor</message>
+	<message key="paper.fontSize.medium.altText">Média</message>
+	<message key="paper.fontSize.large.altText">Maior</message>
+	<message key="paper.sessionType">Tipo de sessão</message>
+	<message key="schedConf.registration.free">Sua inscrição foi registrada, sem necessidade de pagamento.</message>
+	<message key="schedConf.registration.failed">Sua inscrição falhou. Tente novamente.</message>
+	<message key="schedConf.registrationOptions.noneAvailable">Inscrições não disponíveis no momento.</message>
+	<message key="schedConf.registration.optionCloses">(Encerra {$closingDate})</message>
+	<message key="schedConf.registration.optionClosed">(Inscrições encerradas {$closingDate})</message>
+	<message key="schedConf.registration.optionFuture">(Inscrições abertas {$openingDate})</message>
+	<message key="schedConf.registration.options">Opções de inscrição</message>
+	<message key="manager.setup.citations">Permitir a autores encaminhar separadamente uma lista de referências (citações) como parte da submissão.</message>
+	<message key="submission.comments.viewableDescription"><![CDATA[Estes comentários podem ser compartilhados com o autor.<br />
+(Após salvar, outros comentários podem ser incluídos.)]]></message>
+	<message key="about.conferencePolicies">Políticas da Conferência</message>
+	<message key="about.aboutThisPublishingSystem.altText">Processo de submissão, avaliação e publicação do OCS</message>
+	<message key="log.director.unpublish">O documento foi devolvido à fila.</message>
+	<message key="notification.mailListDescription">Informe seu endereço de e-mail para receber notificações instantâneas de conteúdo importante recentemente incluído na conferência.</message>
+	<message key="notification.notificationsPublicDescription"><![CDATA[Esta página apresenta atualizações importantes associadas a esta conferência, como avisos, noticias ou novas submissões. Pode-se assinar estas notificações via Canais RSS (clicando nas imagens à direita), ou <a href="{$emailUrl}">via e-mail.</a>]]></message>
+	<message key="notification.type.paperSubmitted">Um novo documento, "{$param}", foi enviado.</message>
+	<message key="notification.type.editing">Eventos da Edição</message>
+	<message key="notification.type.directorDecisionComment">Um comentário foi feito na decisão editorial por  "{$param}".</message>
+	<message key="notification.type.galleyModified">Uma composição foi alterada por "{$param}".</message>
+	<message key="notification.type.metadataModified">Os metadados de "{$param}" foram alterados.</message>
+	<message key="notification.type.newAnnouncement">Um novo aviso foi criado.</message>
+	<message key="notification.type.reviewerComment">Um avaliador comentou sobre "{$param}".</message>
+	<message key="notification.type.reviewerFormComment">Um formulário de avaliação sobre "{$param}" foi enviado.</message>
+	<message key="notification.type.reviewing">Eventos da Avaliação</message>
+	<message key="notification.type.site">Eventos do Site</message>
+	<message key="notification.type.submissionComment">Um diretor comentou sobre "{$param}".</message>
+	<message key="notification.type.submissions">Eventos da Submissão</message>
+	<message key="notification.type.suppFileModified">O(s) arquivo(s) suplementares de "{$param}" foram alterados</message>
+	<message key="notification.type.userComment">Um leitor fez um comentário sobre "{$param}".</message>
 </locale>

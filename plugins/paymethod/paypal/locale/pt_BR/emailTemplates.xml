@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE email_texts SYSTEM "../../../../../lib/pkp/dtd/emailTemplateData.dtd">
+<!--
+  * emailTemplateData.xml
+  *
+  * Copyright (c) 2000-2009 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localized email templates XML file.
+  *
+  * $Id$
+  -->
+<email_texts locale="pt_BR">
+	<email_text key="PAYPAL_INVESTIGATE_PAYMENT">
+		<subject>Atividade incomum no PayPal</subject>
+		<body>O Open Conference Systems encontrou atividade incomum relacionada com o suporte ao pagamento via to PayPal, da conferência {$schedConfName}. Esta atividade pode exigir investigação mais profunda ou intervenção manual.
+			
+Esta mensagem foi gerada automaticamente pelo plugin PayPal do Open Conference Systems.
+
+Informações completas da requisição:
+{$postInfo}
+
+Informações adicionais (caso fornecidas):
+{$additionalInfo}
+
+Variáveis do Servidor:
+{$serverVars}</body>
+	</email_text>
+</email_texts>

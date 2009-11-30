@@ -55,4 +55,8 @@
 	<message key="admin.conferences.transcode">Converti i metadati degli interventi da ISO8859-1</message>
 	<message key="admin.conferences.form.importPathRequired">&#x00C8; richiesto il path dell'importazione.</message>
 	<message key="admin.conferences.importErrors">Importazione fallita</message>
+	<message key="admin.mergeUsers">Fondi gli utenti</message>
+	<message key="admin.mergeUsers.mergeUser">Fondi gli utenti</message>
+	<message key="admin.mergeUsers.allUsers">Tutti gli utenti</message>
+	<message key="admin.mergerUsers.noneEnrolled">Nessun utente iscritto</message>
 </locale>
