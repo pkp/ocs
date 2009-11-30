@@ -16,22 +16,22 @@
 	<section>
 		<![CDATA[
 <ol>
-	<li><a href="#section1">¿Como empiezo un congreso con OCS?</a></li>
-	<li><a href="#section2">¿Donde puedo encontrar soporte tecnico, avisar de errores y sugerir mejoras al usar OCS?</a></li>
-	<li><a href="#section3"> ¿Como deberia hacer para traducir OCS a otro idioma?</a></li>
-	<li><a href="#section4"> ¿Como puedo publicitar en linea acerca de los procedimientos de mi congreso?</a></li>
-	<li><a href="#section5"> ¿Como puede el congreso presentar un registro de quienes han servido en su equipo editorial?</a></li>
-	<li><a href="#section6">¿Como puedo permitir a loa lectores ingresar como revisores para el congreso?</a></li>
-	<li><a href="#section7"> ¿Como puedo encontrar revisores adicionales para un envio al congreso fuera de la lista actual de revisores disponibles?</a></li>
-	<li><a href="#section8"> ¿Cuales son las distintas maneras en las que los procedimientos del congreso pueden ser publicados en formato de acceso abierto, haciendo que los contenidos del procedimientos sean gratis para los lectores?</a></li>
+	<li><a href="#section1">Â¿Como empiezo un congreso con OCS?</a></li>
+	<li><a href="#section2">Â¿Donde puedo encontrar soporte tecnico, avisar de errores y sugerir mejoras al usar OCS?</a></li>
+	<li><a href="#section3"> Â¿Como deberia hacer para traducir OCS a otro idioma?</a></li>
+	<li><a href="#section4"> Â¿Como puedo publicitar en linea acerca de los procedimientos de mi congreso?</a></li>
+	<li><a href="#section5"> Â¿Como puede el congreso presentar un registro de quienes han servido en su equipo editorial?</a></li>
+	<li><a href="#section6">Â¿Como puedo permitir a loa lectores ingresar como revisores para el congreso?</a></li>
+	<li><a href="#section7"> Â¿Como puedo encontrar revisores adicionales para un envio al congreso fuera de la lista actual de revisores disponibles?</a></li>
+	<li><a href="#section8"> Â¿Cuales son las distintas maneras en las que los procedimientos del congreso pueden ser publicados en formato de acceso abierto, haciendo que los contenidos del procedimientos sean gratis para los lectores?</a></li>
 </ol>
 		]]>	
 	</section>
-	<section title="1. ¿Como empiezo un congreso con OCS?">
+	<section title="1. Â¿Como empiezo un congreso con OCS?">
 		<![CDATA[
 <ol type="a">
 	<li><a href="http://pkp.sfu.ca/ocs_download" target="_blank">Descargar</a> OCS e instalar el software, siguiendo su guia de instalacion, en un sevidor web que satisfaga los requerimientos del software.</li>
-	<li> Use el usuario de administracion y su contraseña - generado en la instalacion de OCS - para ingresar.</li>
+	<li> Use el usuario de administracion y su contraseÃ±a - generado en la instalacion de OCS - para ingresar.</li>
 	<li> Una vez ingresado como un Administrador, cree un sitio web del congreso yendo al Sitio de Inicio de Usuario Administrador, haciendo click en Congreso Alojados, y creando un nuevo congreso alojado.</li>
 	<li> Seras el primer Gestor del Congreso para el resultante sitio web del congreso. Configure el sitio web completando los seis pasos de Gestion del Sitio Web, que se encuentra en la pagina de Gestion del Sitio del Congreso, en Gestion del Congreso.</li>
 	<li> Crea un nuevo congreso programado visitando la pagina de Congresos Alojados, en Gestion General.</li>
@@ -40,33 +40,33 @@
 </ol>
 		]]>
 	</section>
-	<section title="2. ¿Donde puedo encontrar soporte tecnico, avisar de errores y sugerir mejoras al usar OCS?">
+	<section title="2. Â¿Donde puedo encontrar soporte tecnico, avisar de errores y sugerir mejoras al usar OCS?">
 		<![CDATA[
 <p>El Public Knowledge Project opera un <a href="http://pkp.sfu.ca/support/forum/" target="_blank">Foro de Soporte</a> con mas de mil preguntas de intercambio, donde las respuestas pueden ser buscadas y las preguntas subidas. Por ejemplo, los mensajes de error pueden ser buscadas, guiando a soluciones propuestas para asuntos conocidos. Si eso falla, los usuarios puedn enviar sus dudas a <a href="mailto:pkp-support@sfu.ca">pkp-support@sfu.ca</a>. Los reportes de error deberian ser enviados a traves del <a href="http://pkp.sfu.ca/bugzilla/" target="_blank">Bugzilla</a>.</p> de PKP.
 		]]>
 	</section>
-	<section title="3. ¿Como deberia hacer para traducir OCS a otro idioma?">
+	<section title="3. Â¿Como deberia hacer para traducir OCS a otro idioma?">
 		<![CDATA[
 <p> Las instrucciones son provistas en el archivo de Leeme, el cual esta incluido en la descarga de OCS. El PKP mantiene una pagina en
 <a href="http://pkp.sfu.ca/ocs-translating" target="_blank">traduciendo OCS</a>, asi como una lista de <a href="http://pkp.sfu.ca/ocs-languages" target="_blank">lenguajes</a> en los que OCS ha sido traducdio. Tambien podes pedir ayuda en el <a href="http://pkp.sfu.ca/support/forum/" target="_blank">Foro de Soporte de PKP</a> y <a href="mailto:pkp-support@sfu.ca"> via email</a>.</p>
 		]]>
 	</section>
-	<section title="4. ¿Como puedo publicitar en linea acerca de los procedimientos de mi congreso?">
+	<section title="4. Â¿Como puedo publicitar en linea acerca de los procedimientos de mi congreso?">
 		<![CDATA[
 <p> Los procedimientos de tu congreso empezaran siendo mostrados en Google y los otros grandes motores de busqueda, pero puedes tomar otros pasos tambien. Este seguro de registrar el congreso con el PKP Harverster en el paso 6 - Indexacion del Congreso en el Sitio Web de Gestion, el que llevara que tu congreso sea indexado en los indices de Iniciativa de Archivos Abiertos , incluyendo el <a href="http://pkp.sfu.ca/harvester/" target="_blank">PKP Harvester</a> y <a href="http://oaister.umdl.umich.edu/o/oaister/" target="_blank">OAIster</a>. Si los procedimientos de tu congreso son de acceso abierto, hable con la bibliotecaria de su universidad acerca de como sus procedimientos pueden ser listados en los procedimientos electronicos de la libreria, y como puedes contactar un nombero de otras bibliotecas de busqueda a traves de una lista de servidores blbiotecarios. Mire si puede usar el sitio web o la lista de servidores de las asociaciones profesionales relevantes para anunciar un "pedido de trabajos" o el inicio del congreso. </p>
 		]]>
 	</section>
-	<section title="5. ¿Como puede el congreso presentar un registro de quienes han servido en su equipo editorial?">
+	<section title="5. Â¿Como puede el congreso presentar un registro de quienes han servido en su equipo editorial?">
 		<![CDATA[
-<p> El Gestor del Congreso puede entrar esta informacion haciendo click en el link de Equipo Organizador en Congresos Actuales, en la pagina de Gestion del Sitio del Congreso. Alternativamente, en el paso 1.7 en Gestion del Sitio Web, el Gestor del Congreso puede crear una pagina de "Historia del Equipo Editorial" como un nuevo item en Acerca del Congreso. En tal pagina, puede grabar el nombre, titulo editorial y años trabajando de los miembros del equipo editorial.</p>
+<p> El Gestor del Congreso puede entrar esta informacion haciendo click en el link de Equipo Organizador en Congresos Actuales, en la pagina de Gestion del Sitio del Congreso. Alternativamente, en el paso 1.7 en Gestion del Sitio Web, el Gestor del Congreso puede crear una pagina de "Historia del Equipo Editorial" como un nuevo item en Acerca del Congreso. En tal pagina, puede grabar el nombre, titulo editorial y aÃ±os trabajando de los miembros del equipo editorial.</p>
 		]]>
 	</section>
-	<section title="6. ¿Como puedo permitir a loa lectores ingresar como revisores para el congreso?">
+	<section title="6. Â¿Como puedo permitir a loa lectores ingresar como revisores para el congreso?">
 		<![CDATA[
 <p> En la pagina de Entrar, aquellos que no se han registrado son alentados para crear una cuenta con un congreso programado. En la pagina de Cuenta uno puede crear cuentas como Revisores, asi como Lectores y/o Autores. Los Revisores apareceran dentro de la lista de la que los Directores de Seccion pueden seleccionar e invitar para revisar envios. En el paso 2.3 de Configuracion de Gestion del Sitio Web, el Gestor del Congreso puede agregar una nota "Para Lectores" acerca del interes del congreso de tener lectores que sirvan como Revisores para el congreso. De igual modo, el congreso puede alentar a los usuarios a enrolarse como Lectores para propositos de notificacion asi como para ser capaces de indentificar cuantos lectores regulares existen.</p>
 		]]>
 	</section>
-	<section title="¿Como puedo encontrar revisores adicionales para un envio al congreso fuera de la lista actual de revisores disponibles?">
+	<section title="Â¿Como puedo encontrar revisores adicionales para un envio al congreso fuera de la lista actual de revisores disponibles?">
 		<![CDATA[
 <p> Hay un numero de tecnicas para usar. Una vez que un potencial revisor es identificado con un nombre, luego su email y afiliacion puede ser identificada usando una busqueda mas en el nombre.</p>
 <ol type="a">
@@ -77,9 +77,9 @@
 </ol>
 		]]>
 	</section>
-	<section title="8. ¿Cuales son las distintas maneras en las que los procedimientos del congreso pueden ser publicados en formato de acceso abierto, haciendo que los contenidos del procedimientos sean gratis para los lectores?">
+	<section title="8. Â¿Cuales son las distintas maneras en las que los procedimientos del congreso pueden ser publicados en formato de acceso abierto, haciendo que los contenidos del procedimientos sean gratis para los lectores?">
 		<![CDATA[
-<p>Podrias consultar el articulo de John Willinsky <ahref="http://www.jpgmonline.com/article.asp?issn=0022-3859;year=2003;volume=49;issue=3;spage=263;epage=267;aulast=Willinsky;type=0" target="_blank">"The Nine Flavours of Open Access Scholarly Publishing" </a> en el Journal of Postgraduate Medicine. Tambien, la Fundacion Soros ha preparado una  <a href="http://www.soros.org/openaccess/scholarly_guide.shtml" target="_blank"> Guia para publicacion de Acceso Abierto y Sociedades Academicas </a> la que es una "guia para ayudar a las sociedades academicas y a los pequeños publicadores a acceder a las opciones disponibles para el futuro de sus programas de publicacion de revista". <a href="http://www.arl.org/sparc/" target="_blank">SPARC (Scholarly Publishing and Academic Resources Coalition)</a>, la Coalicion de Publicaciones y Recursos Academicos, tambien provee un numero de fuentes relacionadas a la publicacion de acceso abierto.</p>
+<p>Podrias consultar el articulo de John Willinsky <ahref="http://www.jpgmonline.com/article.asp?issn=0022-3859;year=2003;volume=49;issue=3;spage=263;epage=267;aulast=Willinsky;type=0" target="_blank">"The Nine Flavours of Open Access Scholarly Publishing" </a> en el Journal of Postgraduate Medicine. Tambien, la Fundacion Soros ha preparado una  <a href="http://www.soros.org/openaccess/scholarly_guide.shtml" target="_blank"> Guia para publicacion de Acceso Abierto y Sociedades Academicas </a> la que es una "guia para ayudar a las sociedades academicas y a los pequeÃ±os publicadores a acceder a las opciones disponibles para el futuro de sus programas de publicacion de revista". <a href="http://www.arl.org/sparc/" target="_blank">SPARC (Scholarly Publishing and Academic Resources Coalition)</a>, la Coalicion de Publicaciones y Recursos Academicos, tambien provee un numero de fuentes relacionadas a la publicacion de acceso abierto.</p>
 		]]>
 	</section>
 </topic>

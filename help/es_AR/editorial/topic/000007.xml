@@ -14,7 +14,7 @@
 
 <topic id="editorial/topic/000007" locale="es_AR" title="Pagina de Revision" toc="editorial/toc/000001"  key="editorial.directorsRole.reviewPage">
 	<section>
-		<![CDATA[<p> La Pagina de Revision es un registro del proceso editorial, incluyendo secciones de Envio, Revision del Resumen/Revision del Trabajo, Revision, Decision del Director, Completar, y Diseño. </p>
+		<![CDATA[<p> La Pagina de Revision es un registro del proceso editorial, incluyendo secciones de Envio, Revision del Resumen/Revision del Trabajo, Revision, Decision del Director, Completar, y DiseÃ±o. </p>
 		
 		<p> Dependiendo de como el Gestor del Congreso ha arreglado los envios en el Paso 2 de Configuracion de Gestion del Congreso, la Revision sera dividida en una o dos paginas: Revision del Resumen; Revision del Trabajo; o ambas. Si ambas paginas estan presentes, los items en cada una seran tan largos excepto donde haya observaciones.</p>]]>	
 	</section>
@@ -23,7 +23,7 @@
 	</section>
 	<section title="Revision">
 		<![CDATA[<p> La seccion de Revision aparece en todas las paginas de revision. Permite al Director manejar los Revisores y visualizar arrepentimientos y cancelaciones.</p>
-		<p>Para asignar un Revisor, el Director debe hacer click en el link de Seleccionar Revisor, elegir un Revisor de la lista, y luego enviar al Revisor un mail de solicitud, para lo cual debe hacer click en el icono de email debajo del encabezado de Solicitar. El Revisor recibira instrucciones de completar la revision en linea; si por alguna razon el Revisor no puede completar la revision online, el Director tiene, desde esta seccion, acceso a todas las opciones del Revisor: pueden señarlar la intencion del Revisor de hacer o no la revision; cargar una version ya revisada que el Revisor puede haberle enviado por email; y puede confiar en la recomendacion del revisor.</p>
+		<p>Para asignar un Revisor, el Director debe hacer click en el link de Seleccionar Revisor, elegir un Revisor de la lista, y luego enviar al Revisor un mail de solicitud, para lo cual debe hacer click en el icono de email debajo del encabezado de Solicitar. El Revisor recibira instrucciones de completar la revision en linea; si por alguna razon el Revisor no puede completar la revision online, el Director tiene, desde esta seccion, acceso a todas las opciones del Revisor: pueden seÃ±arlar la intencion del Revisor de hacer o no la revision; cargar una version ya revisada que el Revisor puede haberle enviado por email; y puede confiar en la recomendacion del revisor.</p>
 		<p> Mas de un Revisor al mismo tiempo puede ser asignado a un mismo envio, y las rondas subsecuentes de revision pueden ser comenzadas por el Director si este elegi volver  a someter a Revision, para la Decision del Director. Las solicitudes de revision pueden ser canceladas tan solo haciendo click en el link de Cancelar solicitud de Revision.</p>
 		<p> Si el Gestor del Congreso ha habilitado, en el Paso 3 de Configuracion del Congreso Programado, la opcion de Calificar Revisores, los Directores podran calificar a los Revisores en una escala de 5 puntos.</p> ]]>
 	</section>
@@ -35,7 +35,7 @@
 	<section title="Completar">
 		<![CDATA[<p> La seccion de Completar aparece en la escena final del proceso de revision del envio. Clickear en el boton de Completar agregara el envio a la lista de Presentaciones, y lo eliminara de la cola de Revision.</p>]]>
 	</section>
-	<section title="Diseño">
-		<![CDATA[<p> La seccion de Diseño aparece solo en esta ultima etapa del proceso de revision del envio. Los Directores pueden cargar archivos de galeria (tipicamente en HTML o PDF) del resumen del envio o del trabajo completo, los cuales estaran disponibles para ser descargados de la lista de Presentaciones del congreso programado. El Director puede tambien cargar archivos complementarios, los cuales apareceran en el resumen o en la Herramienta de Apoyo de Lectura de la presentacion.</p>]]>
+	<section title="DiseÃ±o">
+		<![CDATA[<p> La seccion de DiseÃ±o aparece solo en esta ultima etapa del proceso de revision del envio. Los Directores pueden cargar archivos de galeria (tipicamente en HTML o PDF) del resumen del envio o del trabajo completo, los cuales estaran disponibles para ser descargados de la lista de Presentaciones del congreso programado. El Director puede tambien cargar archivos complementarios, los cuales apareceran en el resumen o en la Herramienta de Apoyo de Lectura de la presentacion.</p>]]>
 	</section>
 </topic>
