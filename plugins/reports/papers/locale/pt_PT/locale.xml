@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../locale/locale.dtd">
+
+<!--
+  * locale.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the pt_BR (Portuguese) locale.
+  *
+  * $Id$
+  -->
+
+<locale name="pt_PT" full_name="Português">
+	<message key="plugins.reports.papers.displayName">Relatório de Submissões</message>
+	<message key="plugins.reports.papers.description">Este plugin implementa um relatório CSV com a lista de submissões e informações relacionadas.</message>
+	<message key="plugins.reports.papers.nodecision">Sem decisão</message>
+</locale>

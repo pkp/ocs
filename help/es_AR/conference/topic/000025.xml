@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic SYSTEM "../../../topic.dtd">
+
+<!--
+  * 000025.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Conference Management - Users - All Enrolled Users 
+  *
+  * $Id$
+-->
+
+<topic id="conference/topic/000025" locale="es_AR" title="Todos los usuario enrolados" toc="conference/toc/000003" key="conference.users.allUsers">
+	<section>
+		<![CDATA[<p> La pagina de Todos los usuarios enrolados lista todos los usuarios en el sistema que actualmente estan enrolados con el congreso alojado, y provee una funcion de busqueda para encontrar usuarios particulares por su nombre, direccion de email, etc. El Gestor del Congreso puede editar, remover, o deshabilitar cuentas; al "remover" una usuario" se removera a la cuenta del usuario de la lista de enrolados del congreso alojado, pero no borrara la cuenta del sistema mismo, mientras que la opcion de deshabilitar solo no le permitira ingresar a su cuenta. Adicionalmente, el Gestor del Sitio es capaz de ingresar temporalemente como cualquier usuario, usando el link de Ingresar como, el cual es particularmente util para solucionar problemas o consignar trabajo en nombre del usuario.</p>
+
+		<p> El Gestor del Congreso puede enviar un mail a multiples usuarios al seleccione el casillero al lado de su nombre (o de enviar  un mail a todos los usuarios listados, haciendo click en el boton de Seleccionar todos), y clickeando el boton de Enviar Email.</p>
+		<p> El Gestor del Congreso puede tambien enrolar un usuario ya registrado en el sistema con el congreso alojado haciendo clcik en el link de Enrolar Usuario Existente y luego buscando el nombre del usuario en cuestion; se puede crear un nuevo usuario presionando el link de Crear un Nuevo Usuario y llenando la subsiguiente forma de perfil/registracion; y puede hacer coincidir usuarios entre congresos alojados, lo cual agrega al congreso alojado seleccionado a los usuarios/roles elegidos de otro congreso alojado.</p>
+		
+		<p>* Por favor note que es imposible sencillamente borrar un usuario del sistema: en cambio, un usuario deberia ser fusionado dentro de la cuenta de otro usuario. Esto es asi para que los datos del usuario en nuestro sistema - los cuales incluyen trabajos, resumenes, y otras informacions - no queden "huerfanos", lo cual los hace inaccesibles para el usuario .</p>]]>	
+	</section>
+</topic>

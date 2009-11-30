@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic SYSTEM "../../../topic.dtd">
+
+<!--
+  * 000006.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Editorial Process - Director's Role - Summary Page
+  *
+  * $Id$
+  -->
+
+<topic id="editorial/topic/000006" locale="es_AR" title="Pagina de Resumen" toc="editorial/toc/000001" subtoc="editorial/toc/000006" key="editorial.directorsRole.summaryPage">
+	<section>
+		<![CDATA[<p> Cada envio tiene una pagina de resumen, que presenta una sinopsis del envio, una lista de Directores asignados; el estatus del envio (tanto como si ha sido archivado como si no: aqui tambien es donde los envios pueden ser archivados o restaurados a la lista activa); y Metadatos del Envio. El Director puede usar la pagina de resumen para trabajar sobre los archivos del envio y sus metadatos asociados o para la informacion indexada.</p>]]>	
+	</section>
+</topic>

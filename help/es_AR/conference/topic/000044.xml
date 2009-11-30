@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic SYSTEM "../../../topic.dtd">
+
+<!--
+  * 000044.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Conference Management - Current Conferences - Setup - Details
+  *
+  * $Id$
+  -->
+
+<topic id="conference/topic/000044" locale="es_AR" title="Detalles" toc="conference/toc/000014"  key="conference.currentConferences.setup.details">
+	<section>
+		<![CDATA[<p> El primer paso para establecer un congreso programado es definir los detalles preliminares. Estos detalles involucran una breve descripcion y vision general del congreso; la sede del congreso; el contacto principal y informacion del contacto tecnico; nombres de organizacion y sponsors contribuyentes con el congreso; y un email con la firma asi como una direccion de email rebotados puede ser especificada (Para usar la funcion de direccion de "rebote", la opcion "permitir_sobre_remitente" en OCS config.inch.php debe ser habilitada).</p>]]>
+	</section>
+</topic>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic SYSTEM "../../../topic.dtd">
+
+<!--
+  * 000002.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * User Interface - About
+  *
+  * $Id$
+  -->
+
+<topic id="user/topic/000002" locale="es_AR" title="Acerca" toc="user/toc/000000" key="user.about">
+	<section>
+		<![CDATA[<p> La pagina de Acerca del Congreso presenta congresos actuales (si es aplicable), contactos, politicas, envios y otra informacion relevante. Aqui es donde los Autores potenciales pueden aprender mas acerca del alcance y foco del congreso, la politica del congreso programado en cuanto a la Revision por Pares, como preparar un envio asi como su formato, y como enviar un trabajo al congreso. Los Organizadores del Congreso son listados aqui, como sponsors y fuentes de soporte. Hay un mapa del sitio, y una entrada en el sistema de publicacion.</p>]]>	
+	</section>
+</topic>

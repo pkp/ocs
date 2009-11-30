@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic SYSTEM "../../../topic.dtd">
+
+<!--
+  * 000026.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Conference Management - Users - Enroll a User from This Site in This Conference 
+  *
+  * $Id$
+-->
+
+<topic id="conference/topic/000026" locale="es_AR" title="Enrolar un usario a este Congreso desde este Sitio" toc="conference/toc/000003" key="conference.users.enrollExistingUsers">
+	<section>
+		<![CDATA[<p> Seleccionando el  link Enrolar un Usuario a este Congreso desde este Sitio - link disponible en la pagina de Gestion del Sitio del Congreso -, el Gestor del Congreso vera una lista los todos los usuarios registrados en el sistema, y sera capaz de buscar en la lista de usuario, o saltar a una letra determinada del alfabeto. El Gestor del Congreso puede enrolar multiples usuarios al mismo tiempo seleccione el casillero al lado de su nombre, seleccionado un usuario desde el menu desplegable, y clickeando el botond de Enrolar los Usuarios Seleccionados.</p> ]]>	
+	</section>
+</topic>

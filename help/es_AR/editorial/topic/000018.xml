@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic SYSTEM "../../../topic.dtd">
+
+<!--
+  * 000018.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Editorial Process - Director's Role - Submissions - Unassigned 
+  *
+  * $Id$
+  -->
+
+<topic id="editorial/topic/000018" locale="es_AR" title="Sin Asignar" toc="editorial/toc/000005" key="editorial.directorsRole.submissions.unassigned">
+	<section>
+		<![CDATA[<p> Si una presentacion es enviada a una seccion del Congreso que no tiene un Director de Seccion asignado, la presentacion sera listada en la cola de Sin Director Asignado. Para asignar la presentacion, el Director puede hacer click en el link de Sin Asignar en su pagina de inicio de Usuario; clickear en el titulo del envio; y luego elegir asignar otro Director o Director de Seccion, o Asignarse a si mismo. Haciendo click en el link de Agregar Director de Seccion se mostrara una lista de Director de Seccion disponibles, con sus nombres, secciones del Congreso, y el numero de asignaciones completas y activas. Si clickeamos en "Asignar", dentro de Accion en la entrada de Director de Seccion, un email preparado sera generado a ese Director de Seccion. Cuando un envio es asignado a un Director de Seccion, se movera de la cola de Sin Director Asignado a la cola de En Revision.</p>]]>	
+	</section>
+</topic>

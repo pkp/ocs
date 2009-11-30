@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic SYSTEM "../../../topic.dtd">
+
+<!--
+  * 000002.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Editorial Process - Track Director's Role  
+  *
+  * $Id$
+  -->
+
+<topic id="editorial/topic/000002" locale="es_AR" title="Rol del Director de Seccion" toc="editorial/toc/000000" subtoc="editorial/toc/000002" key="editorial.trackDirectorsRole">
+	<section>
+		<![CDATA[<p> El Director de Seccion esta envuelto en el proceso de envio desde la Revision hasta la Presentacion (o Archivacion). Los Directores de Seccion tienen acceso solo a aquellos envios a los cuales han sido asignados. Los Directores de Seccion pueden ser asignados directamente a una seccion, de modo que todo envio a esa seccion es ubicado automaticamente en su cola de Revision; o los Directores pueden asignar muchos envios en forma manual.</p>]]>	
+	</section>
+</topic>
+
+

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE toc SYSTEM "../../../toc.dtd">
+
+<!--
+  * 000009.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * table of contents for Conference Management - General Management - Reading Tools.
+  *
+  * $Id$
+  -->
+
+<toc id="conference/toc/000009" locale="es_AR" title="Herramientas de lectura" parent_topic="conference/topic/000009">
+	<topic id="conference/topic/000041" title="Opciones de Herramientas de Lectura" />
+	<topic id="conference/topic/000042" title="Versiones" />
+	<topic id="conference/topic/000043" title="Contextos" />
+
+	<breadcrumb url="conference/topic/000000" title="Gestion del Congreso" />
+	<breadcrumb url="conference/topic/000001" title="Gestion General" />
+	<breadcrumb url="conference/topic/000009" title="Herramientas de lectura" />
+</toc>

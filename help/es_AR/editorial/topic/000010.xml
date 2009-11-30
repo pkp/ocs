@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic SYSTEM "../../../topic.dtd">
+
+<!--
+  * 000010.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Editorial Process - Track Director's Role - Submissions 
+  *
+  * $Id$
+  -->
+
+<topic id="editorial/topic/000010" locale="es_AR" title="Envios" toc="editorial/toc/000002" key="editorial.trackDirectorsRole.submissions">
+	<section>
+		<![CDATA[<p> Una vez que un envio al congreso es asignado a un Director de Seccion, este envio es listado en la pagina de Envios en Revision del Director de Seccion. Se visualizara informacion breve acerca del envio como titulo, nombres de los Autores, seccion, y fecha de envio, junto a la eventual informacion en lo concerniente a la revision por pares. </p>]]>	
+	</section>
+</topic>

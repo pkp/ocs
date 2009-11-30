@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic SYSTEM "../../../topic.dtd">
+
+<!--
+  * 000001.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * User Interface - Home
+  *
+  * $Id$
+  -->
+
+<topic id="user/topic/000001" locale="en_US" title="Home" toc="user/toc/000000" key="user.home">
+	<section>
+		<![CDATA[<p>There are three "Home" pages: first, the site-level Home page, where one or more hosted conferences are listed; second, the hosted conference Home page; and third, a scheduled conference Home page. These three Home pages are similar in many ways, but differ in certain respects.</p>]]>	
+	</section>
+
+	<section title="Main Site Home Page">
+		<![CDATA[<p>Upon accessing the main site Home page you will be provided with a description of the site as a whole, and a list of conferences residing on the site. From here you can access a hosted conference Home page, access any current scheduled conferences, and also register with a scheduled conference. The available navigation features on the main site are as follows:</p>
+		<p><strong>Top Navigation Bar</strong></p>
+		<p><em>Home</em> and <em>About</em> provide an overview of all conferences on the site, rather than an individual conference. </p>
+		<p><em>Log In</em> allows you to create a user profile if you have not already done so. See {help_topic key="user.registerProfile" text="Register and Profile"}. The Log In link will be replaced with a User Home link once you register and log in. See {help_topic key="user.userHome" text="User Home"}.</p>
+		<p><em>Account</em> allows you to create an account with a hosted conference.</p>
+		<p><em>Search</em> allows you to search the entire site or just an individual conference. See {help_topic key="user.searchBrowse" text="Search and Browse"}.</p>
+		<p><strong>Right Navigation Bar*</strong></p>
+		<p><em>Open Conference Systems</em> will take you to the Public Knowledge Project website, which provides resources for OCS system and OA research and practice.</p>
+		<p><em>Conference Help</em> provides context-dependent online help.</p>
+		<p>The form under <em>User</em> allows you to log in with username and password. After logging in you will be taken to your User Home page. Once logged in, there will be links under <em>User</em> to a list of conferences you have registered, and to your account.</p>
+		<p><em>Language</em> allows you to choose the language supported by OCS.</p>
+		<p>The search field under <em>Conference Content</em> allows you to conduct basic search through the site with a few criteria. For an advanced search, use the Search link on the top navigation bar.</p>	
+		<p><em>Font Size</em> allows you to adjust the font size of the site.</p>]]>
+	</section>
+
+	<section title="Hosted Conference Home Page">
+		<![CDATA[<p>A hosted conference Home page can be reached when clicking on <em>View Conference</em> under the conference's title on the site Home page, or when a conference's title is clicked from <em>User Home</em>. The available navigation features on Conference Home page are as follows:</p>
+		<p><strong>Top Navigation Bar</strong></p>
+		<p><em>Home</em> and <em>About</em> provide information about the particular conference.</p>
+		<p><em>Log In</em> and <em>Account</em> work as mentioned above.</p>
+		<p><em>User Home</em> appears once you have logged in, and displays the user Home page. This page provides links to your conference roles, and to your account.</p>	
+		<p><em>Search</em> provides extensive search options, for searching all conferences or a particular conference.</p>	
+		<p><em>Current Conferences</em> displays the information regarding the current conferences, if available.</p>	
+		<p><em>Archives</em> displays the titles of previous conferences, if available. Clicking on the title of a previous conference will show related information.</p>
+		<p><em>Announcements</em> link appears on the top navigation bar if enabled by the Conference Manager. Clicking on this link will access the Announcements page.</p>
+		
+		<p><strong>Right Navigation Bar*</strong></p>
+		<p><em>Open Conference Systems</em> link will take you to the Public Knowledge Project website, which provides resources for OCS system and OA research and practice.</p>
+		<p><em>Conference Help</em> link provides context-dependent online help.</p>
+		<p>Form under <em>User</em> allows you to log in with username and password. After logging in you will be taken to your User Home page. Once logged in, there will be links under <em>User</em> to a list of conferences you have registered, and to your account.</p>
+		<p><em>Language</em> allows you to choose the language supported by OCS.</p>
+		<p>The search field under <em>Conference Content</em> allows you to conduct basic search through the site with a few criteria. For an advanced search, use the Search link on the top navigation bar.</p>
+		<p><em>Browse</em> allows you to browse by conference, by author, or by title.</p>
+		<p><em>Font Size</em> allows you to adjust the font size of the site.</p>
+		<p>There is also <em>Information</em> for Readers in the right navigation bar.</p>]]>
+	</section>
+
+	<section title="Scheduled Conference Home Page">
+		<![CDATA[<p>A hosted conference can have any number of current scheduled conferences (not to mentioned archived conferences), which can be found from the hosted conference Home page. The scheduled conference Home page contains matter pertaining directly to the conference in question (an overview; a call for papers; a link for proposal submissions; track policies; a program; a presentation and authors list; and so on). These items are also linked to from the right navigation bar. Otherwise, the page is identical to the hosted conference Home page.</p>]]>
+	</section>
+
+	<section>
+		<![CDATA[<p>Breadcrumb links are offered at the top of the page, just below top navigation bar, in both situations.</p>
+<p>* Please note that for OCS, the navigation bar resides on the right by default, but elements of the bar, or the whole bar itself, may be repositioned right or left. Some items from this navigation bar may also be disabled.</p>]]>
+	</section>
+</topic>

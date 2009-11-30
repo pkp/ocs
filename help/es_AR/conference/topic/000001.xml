@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic SYSTEM "../../../topic.dtd">
+
+<!--
+  * 000001.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Conference Management - General Management 
+  *
+  * $Id$
+  -->
+
+<topic id="conference/topic/000001" locale="es_AR" title="Gestion del Congreso" toc="conference/toc/000000" subtoc="conference/toc/000001" key="conference.generalManagement.index">
+	<section>
+		<![CDATA[<p> Cuando un Gestor de Congreso ingresa y visita la pagina del sitio de Gestion de Congreso, primero veran un numero de items bajo el encabezado de <strong>Gestion General</strong>. Ellos pueden configurar todo el Congreso alojado {help_topic key="conference.generalManagement.websiteManagement" text="Configuracion"}; planificar un {help_topic key="conference.generalManagement.scheduledConferences" text="Congreso"}; revisar los {help_topic key="conference.generalManagement.emails" text="Emails preparados"}; configurar las {help_topic key="conference.generalManagement.readingTools" text="herramientas de lectura"}; configurar el {help_topic key="conference.generalManagement.filesBrowser" text="Examinador de archivos"}; chequear y configurar los {help_topic key="conference.generalManagement.languages" text="idiomas"}; configurar y examinar los {help_topic key="conference.generalManagement.eventLog" text="Registro de eventos"}; y configurar los {help_topic key="conference.generalManagement.plugins" text="plugins del sistema"}.</p>]]>
+	</section>
+</topic>
+		
+		

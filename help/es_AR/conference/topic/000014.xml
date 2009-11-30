@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic SYSTEM "../../../topic.dtd">
+
+<!--
+  * 000014.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Conference Management - Current Conferences - Setup 
+  *
+  * $Id$
+  -->
+
+<topic id="conference/topic/000014" locale="es_AR" title="Configuracion" toc="conference/toc/000002" subtoc="conference/toc/000014" key="conference.currentConferences.setup">
+	<section>
+		<![CDATA[<p> Despues de crear un sitio web para el congreso usando Gestion de Sitio Web (Mire {help_topic key="conference.generalManagement.websiteManagement" text="Gestion del Sitio Web"}) y crear una instancia programada del congreso usando Congresos Programados (Mire {help_topic key="conference.generalManagement.scheduledConferences" text="Congreso Programado"}), el Gestor del Congreso debera completar los tres pasos de Configuracion de Congreso Actual  </p>]]>
+	</section>
+</topic>

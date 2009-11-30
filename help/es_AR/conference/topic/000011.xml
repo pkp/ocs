@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic SYSTEM "../../../topic.dtd">
+
+<!--
+  * 000011.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Conferennce Management - General Management - Languages 
+  *
+  * $Id$
+  -->
+
+<topic id="conference/topic/000011" locale="es_AR" title="Idiomas" toc="conference/toc/000001" key="conference.generalManagement.languages">
+	<section>
+		<![CDATA[<p> OCS es una sistema multilenguaje, permitiendo que los congresos sean publicados en numerosos idiomas. Tambien provee soporte multilenguaje, haciendo posible presentar la interfaz entera en multiples lenguajes. Los idiomas disponibles estan listados en la pagina de Idiomas dentro del area de Gestion del Sitio, y pueden ser configurados desde alli. Los Gestores del Congreso pueden habilitar todos los idiomas que hayan sido instalados por el Gestor del Sitio. Si mas de un lenguaje es seleccionado como el soporte local y guardado, los usuarios van a poder elegir entre esos idiomas para varias secciones del sitio, asi como seran capaces de elegir, de un menu de eleccion de idioma en la barra lateral, el lenguaje que prefieran para desplegar en el sitio. De este modo, es posible para los usuarios visualizar el congreso e ingresar datos en cualquiera de los lenguajes soportados.</p>]]>	
+	</section>
+</topic>

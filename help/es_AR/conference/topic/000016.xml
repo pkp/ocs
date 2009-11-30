@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic SYSTEM "../../../topic.dtd">
+
+<!--
+  * 000016.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Conference Management - Current Conferences - Conference Tracks
+  *
+  * $Id$
+  -->
+
+<topic id="conference/topic/000016" locale="es_AR" title="Secciones del Congreso" toc="conference/toc/000002"  key="conference.currentConferences.tracks">
+	<section>
+		<![CDATA[<p> Los Congresos pueden ser divididos en multiples pistas o secciones, con diferentes politicas y criterios para cada seccion. OCS viene con una seccion por default llamada "Trabajos en General", la cual puede ser editada o removida. Los Directores de Seccion pueden tener la responsabilidad  del proceso editorial en lo concerniente a una seccion en particular. Al menos una seccion debe estar abierta al publico (por ejemplo, los envios no restringidos solo a Directores y Directores de Seccion) para que los autores sean capaces de realizar envios; durante el proceso de envio, ellos deben elejir entre las diferentes secciones que estan abiertas para ellos.</p>]]>
+
+	</section>
+	<section title="Creando una seccion">
+
+		<![CDATA[<p> El Gestor del Congreso puede crear una nueva seccion clickeando el link de Crear Seccion en la parte inferior de la pagina, y llenando la forma resultante. Una breve declaracion de la politica de la seccion deberia describir el campo o alcance de la seccion, asi como el tipo de envios buscados, ya sea si los envios son revisadas por pares y la identificacion del tipo de envio sea un resumen revisado por pares, trabajos sin refereato, presentacion invitada, etc.</p>
+
+		<p> Los terminos indexados pueden ser aplicados a cada seccion, y la seccion puede ser marcada como revisada o no por pares (esta designacion aparecer en Acerca de la Conferencia, dentro de Politias de Seccion, a menos que la seccion haya sido omitida, una opcion que tambien esta disponible desde esta pagina). </p>
+		
+		<p> El Gestor del Congreso puede tambien restringir el pedido de realizar envios a la seccion a los Directores y Directores de Seccion unicamente, quien deben tambien estar registrados como autores para poder realizar envios; las secciones que hayan sido marcadas asi NO apareceran en las opciones de envio a los autores no autorizados. </p>
+
+		<p> Si existen Directores de Seccion enrolados con el congreso, sus nombres apareceran y pueden ser asginados a esta seccion. Los Directores de Seccion contaron con control directivo solo sobre los envios remitidos a su seccion; pero los Directores tienen control sobre todos los envios.</p>]]>
+
+	</section>
+	<section title="Gestionando Secciones">
+		<![CDATA[<p> El Gestor del Congreso puede administrar las secciones existentes desde la pagina principal de Secciones del Congreso. Las secciones pueden ser ordenadas usando las flechas de arriba y abajo (los cambios en el orden de las pistas afectaran el orden por default en que las secciones del congreso aparecen en la Tabla de Contenidos); pueden ser eliminadas clickenado el link Eliminar; y pueden ser editadas clickeando el link Edit, cual mostrara los mismos campos que la pagina de Crear Seccion.</p>]]>
+	</section>
+</topic>

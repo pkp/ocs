@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic SYSTEM "../../../topic.dtd">
+
+<!--
+  * 000028.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Conference Management - Users - Merge Users
+  *
+  * $Id$
+  -->
+
+<topic id="conference/topic/000028" locale="es_AR" title="Fusion de Usuarios" toc="conference/toc/000003" key="conference.users.mergeUsers">
+	<section>
+		<![CDATA[<p> El rasgo de Fusionar Usuarios permite al Gestor del Congreso fusionar dos cuentas en una sola cuenta, transfiriendo tareas, envios, y otros items de la primera cuenta a la segunda, asi como elimianando esta primera. Normalmente se hace cuando alguien tiene dos cuentas de usuario. </p>
+			<p>Los siguientes items son transferidos:</p>
+			<ul>
+				<li>Autoria de articulos</li>
+				<li>Comentarios publicos en articulos</li>
+				<li>Notas del articulo</li>
+				<li>Tareas y decisiones del Director</li>
+				<li>Tareas de revision</li>
+				<li>Email de articulo y entradas de registro de eventos</li>
+				<li>Teclas de acceso del revisor</li>
+				<li>Roles</li>
+			</ul>
+			<p>Los siguientes items <strong>no</strong> son transferidos:</p>
+			<ul>
+				<li>Sesiones</li>
+				<li>Registrationes</li>
+				<li>Notification de estatus (por ejemplo, si el usuario se ha o no anotado para recibir notificaciones acerca de las noticias del congreso)</li>
+				<li>Membresia del equipo editorial</li>
+				<li>Estatus de los Directores de Seccion en la seccion</li>
+				<li>Informacion del perfil del usuario (como nombre, apellido, etc.)</li>
+			</ul>
+			<p> Esta posibilidad deberia ser usado con precaucion, ya que no es reversible e involucra la transferencia de documentos de la cuenta de un usuario a otra.</p>
+	        ]]>
+	</section>
+</topic>

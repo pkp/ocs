@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic SYSTEM "../../../topic.dtd">
+
+<!--
+  * 000036.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Conference Management - General Management - Website Management - Additional Website Content
+  *
+  * $Id$
+  -->
+
+<topic id="conference/topic/000036" locale="es_AR" title="Contenido adicional del Sitio Web" toc="conference/toc/000005" key="conference.generalManagement.websiteManagement.additional">
+	<section>
+		<![CDATA[<p><em> Redireccionar al Congreso Programado:</em><br /> Todo pedido al congreso alojado sera redireccionado al congreso programado seleccionado. Esta configuracion tipicamente es usada cuando el congreso aloja un solo congreso programado.</p>
+		<p><em>Pagina de Inicio:</em><br /> Esto es para agregar sabor al sitio de tu congreso visual y verbalmente, a traves del cargado de una imagen y la adiccion de informacion extra. El campo de Contenido Adicional aceptara HTML, y se desplegara debajo de la imagen de la pagina de inicio, en caso de que se ha cargado una imagen.</p>
+		<p><em>Informacion para Usuarios:</em><br /> OCS provee informacion default para Lectores y Autores. Esta informacion puede ser modificada. Aparece dentro del titulo de Informacion, en la barra lateral derecha.</p>
+		<p><em>Anuncios:</em><br /> Los anuncios pueden ser habilitados aqui: se puede fijar si aparecen o no en la pagina de inicio, y en que numero. Solo los Gestores del Congreso pueden hacer anuncios: si estan habilitados, aparecera un link para agregar un nuevo anuncio en la pagina de Gestion del Sitio del Congreso. </p>
+		<p><em>Acceso a Presentaciones del Congreso</em><br /> Hay tres alternativas para permitir acceso a las presentaciones del congreso - a cualquiera indiscriminadamente, a aquellos que tienen cuentas en el sitio web del congreso, o a los participantes registrados del congreso unicamente. </p>]]>
+	</section>
+</topic>

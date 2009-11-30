@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic SYSTEM "../../../topic.dtd">
+
+<!--
+  * 000042.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Conference Management - General Management - Reading Tools - Versions
+  *
+  * $Id$
+  -->
+
+<topic id="conference/topic/000042" locale="es_AR" title="Versiones" toc="conference/toc/000009" key="conference.generalManagement.readingTools.versions">
+	<section>
+		<![CDATA[
+            <p> La pagina de Versiones de Herramientas de Lecturas, disponibles desde la pagina principal de Herramientas de Lectura, lista todas las versiones de Items Relacionados disponibles, y las correspondientes opciones de configuracion (Validar; Metadatos; Contextos; Editar; Eliminar) para cada uno. Se pueden agregar nuevas versiones a esta lista haciendo click en el link de Crear Version, ubicado en la parte inferior de la pagina, asi como las versiones originales pueden ser restauradas a su configuracion default si hacemos click en Restaurar Versiones a Default.</p>]]>
+</section>
+<section title="Opciones de configuracion de Versiones">
+		<![CDATA[
+           <p><em>Validar:</em><br /> Esta opcion funciona buscando datos en la base asociados con el Item Relacionado (por favor, note que esto toma tiempo para completarse) y como resultado tendremos una declaracion para cada uno de los datos de base asociados con el item avalando su validez (especificamente, si el URL especificado para los datos de base funcionan o no) asi como la fuente del problema, si es que existe uno. Si una URL esta listada como invalida, el Gestor del Congreso debera verificarlo manualmente y, si es necesario, arreglar este URL haciendo click en el link de Editar al lado de tal URL. </p>
+		<p><em>Metadatos:</em><br /> Los metadatos para cada version proveen el titulo, una clave, una breve descripcion, etc., acerca de ese campo o disciplina, los cuales pueden ser editados. </p>
+		<p><em>Contextos:</em><br /> Cada version de Item Relacionado consiste en varias agrupaciones, o contextos, de datos de la base (por ejemplo, el trabajo del Autor, Buscar Terminos, Estudios Relacionados, etc.) con cada contexto consistente de un numero de busqueda de datos en la base relevantes. Para mas informacion, mire {help_topic key="conference.generalManagement.readingTools.contexts" text="Contextos"}.</p>
+		<p><em>Exportar:</em><br /> Si el Gestor del Congreso desarrolla Herramientas de Lectura adicionales, estas pueden ser exportada al Projeto de Conocimiento Publico para el uso de otros congresos en campos.</p>
+		<p><em>Eliminar:</em><br /> Esto eliminara la version en cuestion de la lista de Versiones. Podemos deshacer esto clickeando el link de Restaurar Versiones a Default, ubicado al pie de la pagina; sin embargo, esto revertira<em>todos</em> los cambios en todas las versiones.</p>
+            ]]>
+	</section>
+</topic>

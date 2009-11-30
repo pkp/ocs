@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic SYSTEM "../../../topic.dtd">
+
+<!--
+  * 000022.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Conference Management - Current Conferences - Scheduler
+  *
+  * $Id$
+  -->
+
+<topic id="conference/topic/000022" locale="es_AR" title="Promagracion" toc="conference/toc/000002"  key="conference.currentConferences.scheduler">
+	<section>
+		<![CDATA[<p> Con las opciones disponibles en la pagina de Programacion, el Gestor del Congreso puede crear locaciones (como edificios y habitaciones dentro de edificios) a las cuales se les puede asignar las presentaciones, asi como se pueden crear eventos especiales de congresos. Una vez creado, el programa del congreso estara disponible desde el link de Informacion del Congreso, ubicado en la barra lateral asi como en la pagina de inicio del congreso.</p>]]> 
+	</section>
+	<section title="Gestionando edificios y habitaciones">
+		<![CDATA[<p> El Gestor del Congreso puede crear uno o mas edificos, con uno o mas cuartos. Para crear un edificio, el Gestor del Congreso tiene que hacer click en el link de Programacion, despues el link de Edificios y Habitaciones para luego presionar el link de Crear un Nuevo Edificio. El Gestor del Congreso debe asignar al nuevo edificio un nombre y abreviacion, asi como tambien puede entrar una descripcion opcional. Los edificios que han sido agregados al sistema pueden ser editados, eliminados y arreglados en cuanto a su orden desde la pagina de Edificios y Habitaciones.</p>  
+
+		<p> Para cada edificio hay un link a las Habitaciones: clickeando en este lista se desplegara una lista de habitaciones asociadas a ese edificio, con un link para Crear una Nueva Habitacion ubicado en la parte inferior de la pagina. El Gestor del Congreso debera proover un nombre y abreviacion para cada cuarto, asi como tambien puede cargar una descripcion opcional. Nuevamente, las habitaciones agregadas al sistema pueden ser editadas, eliminadas y arregladas por motivos de visualizacion desde la pagina de Habitaciones.</p>
+
+		<p> Es recomendable agregar direcciones a la descripcion de los edificios y cuartos agregados al sistema: estas direcciones estaran disponibles desde la pagina del Programa del Congreso.</p>
+		<p> Los eventos especiales NO pueden ser asignados a una locacion de edificio/habitacion, por lo cual estas ubicaciones no deben ser subidas al sistema.</p> ]]>
+	</section>
+	<section title="Gestionando eventos especiales">
+		<![CDATA[<p> Los eventos especiales que caigan fuera del campo de presentaciones, paneles, ideas centrales, y demas, pueden tambien ser agregados al programa del congreso. Haciendo click en el link de Eventos Especiales (disponible desde la pagina de Programacion) el Gestor del COngreso sera conducido a la pagina de Eventos Especiales, donde los eventos pueden ser creados, agregados y borrados. Para crear un nuevo evento, el Gestor del Congreso debe clickear en el link de Crear un Nuevo Evento Especial, llenar el nombre del evento; la fecha; el inicio y cierre; y agregar una descripcion, si es necesaria. Como no es posiblñe asignar estos eventos a edificios y habitaciones, es recomendable poner informacion de la locacion y direcciones en la misma descripcion.</p> ]]>
+	</section>
+	<section title="Programando Presentaciones">
+		<![CDATA[<p> Haciendo click sobre el link de Programar Presentaciones, desde la pagina de Programacion, desplegara una lista de todas las presentaciones aceptadas, asi como la opciones de programarlas en cuanto a la ubicacion y la fecha. Cuando la localicion es una marca opcional (si la presentacion no tiene una locacion fija, esto aparecera en el programa del congreso de todos modos), la fecha y el tiempo deben ser fijados.</p>]]>
+	</section>
+</topic>

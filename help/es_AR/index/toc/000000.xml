@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE toc SYSTEM "../../../toc.dtd">
+
+<!--
+  * 000000.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Main table of contents for help. 
+  *
+  * $Id$
+  -->
+
+<toc id="index/toc/000000" locale="es_AR" title="Ayuda de OCS" parent_topic="index/topic/000000">
+	<topic id="intro/topic/000000" title="Introduccion a OCS" />
+	<topic id="site/topic/000000" title="Gestion del Sitio" />
+	<topic id="conference/topic/000000" title="Gestion del Congreso" />
+	<topic id="submission/topic/000000" title="Proceso de Envio" />
+	<topic id="editorial/topic/000000" title="Proceso de Edicion" />
+      <topic id="publishing/topic/000000" title="Proceso de Publicacion" />
+	<topic id="user/topic/000000" title="Sitio Web del Congreso" />
+</toc>

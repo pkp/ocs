@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic SYSTEM "../../../topic.dtd">
+
+<!--
+  * 000003.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Site Administration - Administrative Functions 
+  *
+  * $Id$
+  -->
+
+<topic id="site/topic/000003" locale="es_AR" title="Funciones Administrativas" toc="site/toc/000000" key="site.administrativeFunctions">
+	<section>
+		<![CDATA[<p> Varias funciones administrativas estan disponibles en el area de administracion del sitio. Estas funciones deberian generalmente ser usadas con precaucion, ya que su uso inapropiado podria guiar a resultados inesperados.</p>]]>
+	</section>
+	<section title="Informacion del Sistema">
+		<![CDATA[<p> Informacion general acerca del contexto del servidor y la historia de la version de OCS (incluyendo actualizaciones pasadas). Una interfaz basada en la web para modificar el archivo de configuracion de OCS es tambien provisto.</p>]]>
+	</section>
+	<section title="Expiracion de sesiones de usuarios">
+		<![CDATA[<p> Limpia todos las sesiones de usuarios activos en el sistema, requiriendo que todo usuario que esta actualmente ingresado en el sistema deba logearse nuevamente.</p>]]>
+	</section>
+	<section title="Limpiar datos en cache">
+		<![CDATA[<p>Limpia todos los datos en cache. Esta funcion puede ser util para forzar a que los datos sean cargados nuevamente luego de que se han realizado modificaciones de nuestro gusto.</p>]]>
+	</section>
+	<section title="Limpiar plantillas en cache">
+		<![CDATA[<p> Limpia todas las versiones de plantillas HTML en cache. Esta funcion puede ser util para forzar que las plantillas ean cargadas nuevamente luego de que se han realizado personalizaciones.</p>]]>
+	</section>
+</topic>
