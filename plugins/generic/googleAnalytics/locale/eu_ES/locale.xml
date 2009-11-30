@@ -7,26 +7,27 @@
   * Copyright (c) 2000-2009 John Willinsky
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
   *
-  * Google Analytics plugin localization strings for the en_US (U.S. English) locale.
+  * Google Analytics plugin localization strings for the eu_ES (Basque (Euskara)) locale.
   *
   * $Id$
   -->
  
-<locale name="en_US" full_name="U.S. English">
+<locale name="eu_ES" full_name="Euskara">
 
 	<!-- Google Analytics -->
-	<message key="plugins.generic.googleAnalytics.displayName">Google Analytics Plugin</message>
-	<message key="plugins.generic.googleAnalytics.description"><![CDATA[Integrate OCS with Google Analytics, Google's web site traffic analysis application. Requires that you have already setup a Google Analytics account. Please see the <a href="http://www.google.com/analytics/" title="Google Analytics site">Google Analytics site</a> for more information.]]></message>
+	<message key="plugins.generic.googleAnalytics.displayName">Google Analytics Plugina</message>
+	<message key="plugins.generic.googleAnalytics.description"><![CDATA[Integratu OCS Google Analytics-ekin, Google-ren webguneen trafikoa analizatzeko aplikazioarekin. Google Analytics kontua edukitzea eskatzen du. Informazio gehiago <a href="http://www.google.com/analytics/" title="Google Analytics site">Google Analytics-en gunean</a>.]]></message>
 
 	<!-- Google Analytics Settings Management -->
-	<message key="plugins.generic.googleAnalytics.manager.settings">Settings</message>
-	<message key="plugins.generic.googleAnalytics.manager.googleAnalyticsSettings">Google Analytics Settings</message>
-	<message key="plugins.generic.googleAnalytics.manager.settings.description"><![CDATA[<p>With this plugin enabled Google Analytics may be used to collect and analyze web site usage and traffic for this journal. Please note that this plugin requires that you have already setup a Google Analytics account. Please see the <a href="http://www.google.com/analytics/" title="Google Analytics site">Google Analytics site</a> for more information.</p><p>Please note that Google Analytics may require up to 24 hours before statistics are collected and reported. During this period, the 'Check Status' function may not accurately report whether it has detected the required tracking code for the journal.</p>]]></message>
-	<message key="plugins.generic.googleAnalytics.manager.settings.googleAnalyticsSiteId">Account number</message>
-	<message key="plugins.generic.googleAnalytics.manager.settings.googleAnalyticsSiteIdInstructions"><![CDATA[Within Google Analytics, click on 'Check Status' to view the tracking code for your site. For legacy tracking code, the account number is displayed within the tracking code as: _uacct = "###". For new tracking code, the account number is displayed within the tracking code as: var pageTracker = _gat._getTracker("###"). Enter the text that corresponds to ###.]]></message>
-	<message key="plugins.generic.googleAnalytics.manager.settings.googleAnalyticsSiteIdRequired">Please enter an account number.</message>
-	<message key="plugins.generic.googleAnalytics.manager.settings.trackingCode">Tracking code</message>
-	<message key="plugins.generic.googleAnalytics.manager.settings.trackingCodeRequired">Please select a tracking code to use.</message>
-	<message key="plugins.generic.googleAnalytics.manager.settings.urchin">Legacy tracking code (urchin.js)</message>
-	<message key="plugins.generic.googleAnalytics.manager.settings.ga">New tracking code (ga.js)</message>
+	<message key="plugins.generic.googleAnalytics.manager.settings">Ezarpenak</message>
+	<message key="plugins.generic.googleAnalytics.manager.googleAnalyticsSettings">Google Analytics ezarpenak</message>
+	<message key="plugins.generic.googleAnalytics.manager.settings.description"><![CDATA[<p>Plugin hau gaituz gero, Google Analytics erabili ahal izango da webgune honen erabilera eta trafikoa jaso eta analizatzeko. Kontuan izan Google Analytics-en kontua edukitzea eskatzen duela. Informazio gehiago <a href="http://www.google.com/analytics/" title="Google Analytics site">Google Analytics-en gunean</a>.</p><p>Gogoan izan Google Analytics-ek 24 ordu ere behar izan ditzakeela estatistikak bildu eta txostena prestatzeko. Denbora horretan, 'Egiaztatu egoera' funtzioa ez da oso zehatza izango gunearen segimendu-kodea detektatu duen ala ez adierazten.</p>]]></message>
+	<message key="plugins.generic.googleAnalytics.manager.settings.googleAnalyticsSiteId">Kontu-zenbakia</message>
+	<message key="plugins.generic.googleAnalytics.manager.settings.googleAnalyticsSiteIdInstructions"><![CDATA[Google Analytics-en, sakatu 'Egiaztatu egoera' zure gunearen segimendu-kodea ikusteko. Segimendu-kode heredatuan, kontu-zenbakia honela ikusten da: _uacct = "###". Segimendu-kode berrian, kontu-zenbakia honela ikusten da: var pageTracker = _gat._getTracker("###"). Idatzi ### kateari dagokion testua.]]></message>
+	<message key="plugins.generic.googleAnalytics.manager.settings.googleAnalyticsSiteIdRequired">Sartu kontu-zenbakia</message>
+	<message key="plugins.generic.googleAnalytics.manager.settings.trackingCode">Segimendu-kodea</message>
+	<message key="plugins.generic.googleAnalytics.manager.settings.trackingCodeRequired">Hautatu erabili nahi den segimendu-kodea</message>
+	<message key="plugins.generic.googleAnalytics.manager.settings.urchin">Segimendu-kode heredatua (urchin.js)</message>
+	<message key="plugins.generic.googleAnalytics.manager.settings.ga">Segimendu-kode berria (ga.js)</message>
 </locale>
+
