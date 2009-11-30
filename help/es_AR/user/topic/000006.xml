@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic SYSTEM "../../../topic.dtd">
+
+<!--
+  * 000006.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * User Interface - Search and Browse
+  *
+  * $Id$
+  -->
+
+<topic id="user/topic/000006" locale="es_AR" title="Busqueda y Navegacion" toc="user/toc/000000" key="user.searchBrowse">
+	<section>
+		<![CDATA[<p> Ademas de la funcion de busqueda en el tope de la barra de navegacion, los contenidos del congreso pueden ser buscados por los autores, titulos, resumen, terminos de indexacion, o texto completo en la barra derecha de navegacion. El texto completo de los contenidos pueden ser buscado tanto en formato HTML como PDF. Alternativamente, usando el link de Navegar en la barra lateral derecha, los lectores pueden buscar los contenidos del sitio agrupados por congreso, autor, o por titulo, todo en orden alfabetico. Tambien podemos ver otros congresos publicacion en el Open Journal Systems mientras navegamos.</p>]]>
+	</section>
+</topic>

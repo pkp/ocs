@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE toc SYSTEM "../../../toc.dtd">
+
+<!--
+  * 000000.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * table of contents for User Interface. 
+  *
+  * $Id$
+  -->
+
+<toc id="user/toc/000000" locale="en_US" title="Sitio Web del Congreso" parent_topic="user/topic/000000">
+	<topic id="user/topic/000001" title="Inicio" />
+	<topic id="user/topic/000002" title="Acerca" />
+	<topic id="user/topic/000003" title="Sitio de Usuario" />
+	<topic id="user/topic/000004" title="Registro de Perfil" />
+	<topic id="user/topic/000005" title="Archivos Actuales" />
+	<topic id="user/topic/000006" title="Busqueda y Navegacion" />
+	<topic id="user/topic/000007" title="Herramientas de Lectura" />
+
+	<breadcrumb url="user/topic/000000" title="Sitio Web del Congreso" />
+</toc>

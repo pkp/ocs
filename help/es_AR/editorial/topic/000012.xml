@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic SYSTEM "../../../topic.dtd">
+
+<!--
+  * 000012.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Editorial Process - Track Director's Role - Presentations 
+  *
+  * $Id$
+  -->
+
+<topic id="editorial/topic/000012" locale="es_AR" title="Presentaciones" toc="editorial/toc/000002" key="editorial.trackDirectorsRole.presentations">
+	<section>
+		<![CDATA[<p> Clickeando el boton de Completar en la pagina de Revision, el envio aceptado es agregado a la lista de Presentaciones. Aquellos trabajos en la lista de Presentaciones son publicamente visibles, y deberian ser programados por el Gestor del Congreso en la pagina de Programacion. Para mas informacion, vea {help_topic key="conference.currentConferences.scheduler" text="Programacion"}. Las presentaciones programadas pueden ser vistas en el Congreso Programado en Informacion del Congreso, en el Pagina de Inicio del Congreso. </p>
+                     <p> Las presentaciones (como, por ejemplo, resumenes, trabajos en PDF y/o formato HTML) son subidas al sitio web del congreso, al cual se puede acceder desde la pagina de Presentaciones y Autores, dentro de Informacion del Congreso, en la Pagina de Inicio del Congreso. </p>
+		]]>	
+	</section>
+</topic>

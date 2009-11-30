@@ -1,0 +1,1075 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../locale.dtd">
+
+<!--
+  * locale.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the es_AR locale.
+  *
+  * Translated by Proyecto de Enlace de Bibliotecas de la UNLP: http://www.prebi.unlp.edu.ar
+  *
+  * $Id$
+  -->
+
+<locale name="es_AR" full_name="Español (Argentina)">
+	<!--
+	 * This file is organized into several major sections, separated
+	 * by comments like this one. These sections are called:
+	 *  COMMON - Contains frequently-used words
+	 *  ENTITIES - Contains terms pertaining to the system's major
+	 *             entities, e.g. Paper, Conference, Track
+	 *  INTERFACE - Contains phrases organized by the section of the
+	 *              user interface they appear in.
+	 *  LOG - Contains phrases related to log entries
+	 *  MISC - Entries that don't belong elsewhere.
+	 *  DEFAULT - Default settings for configuration items.
+	-->
+
+	<!--
+	 *
+	 * COMMON - This section contains the most frequently-used words
+	 *
+	-->
+
+	<!-- Common Messages -->
+	<message key="common.openConferenceSystems">Open Conference Systems</message>
+	<message key="common.noDate">(fecha)</message>
+	<message key="common.days">Días</message>
+	<message key="common.timeZone">Zona horaria</message>
+	<message key="common.ellipsis">...</message>
+	<message key="common.path">Ruta</message>
+	<message key="common.dateTimeSeparator">Caracter separador de la fecha</message>
+	<message key="common.ccLicense"><![CDATA[
+		<a target="_new" rel="license" href="http://creativecommons.org/licenses/by/3.0/">
+			<img alt="Creative Commons License" style="border-width:0" src="{$ccLicenseImageUrl}"/>
+		</a>
+		<br/>
+		Este <span xmlns:dc="http://purl.org/dc/elements/1.1/" href="http://purl.org/dc/dcmitype/Text" rel="dc:type">trabajo</span> se distribuye con la licencia <a rel="license" target="_new" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0  License</a>.
+	]]></message>
+	<message key="common.sortBy">Ordenar Por...</message>
+	<message key="common.sitePageHeader.altText">Imagen del Encabezado del Sitio</message>
+	<message key="common.pageHeader.altText">Imagen del Encabezado de Página</message>
+	<message key="common.homePageHeader.altText">Imagen del Encabezado de la Página Principal</message>
+	<message key="common.conferenceHomepageImage.altText">Imagen de la Página de Inicio del Congreso</message>
+	
+	<!-- Common Form Messages -->
+	
+
+	<!-- Common Email Messages -->
+
+	<!-- Common Localization Terms -->
+
+	<!-- Common Error Messages -->
+
+	<!-- Navigation -->
+	<message key="navigation.conferenceHelp">Ayuda</message>
+	<message key="navigation.loggedInAs">Ha accecido como...</message>
+	<message key="navigation.logout">Salir</message>
+	<message key="navigation.account">Cuenta</message>
+	<message key="navigation.archive">Archivo</message>
+	<message key="navigation.current">Eventos en curso</message>
+	<message key="navigation.otherConferences">Otros eventos</message>
+	<message key="navigation.myProfile">Mi perfil</message>
+	<message key="navigation.myConferences">Mi evento</message>
+	<message key="navigation.conferenceContent">Contenido del Congreso</message>
+	<message key="navigation.browseByConference">Por evento</message>
+	<message key="navigation.browseByPresenter">Por autor</message>
+	<message key="navigation.info">Información</message>
+	<message key="navigation.infoForPresenters">Para autores</message>
+	<message key="navigation.infoForReviewers">Para evaluadores</message>
+	<message key="navigation.infoForPresenters.long">Informació para autores</message>
+	<message key="navigation.infoForReviewers.long">Información para los evaluadores</message>
+	<message key="navigation.fontSize">Tamaño de letra</message>
+
+	<!-- Paper Queues -->
+	<message key="common.queue.long.submissionsUnassigned">Sin asignar</message>
+	<message key="common.queue.short.submissionsUnassigned">Sin asignar</message>
+	<message key="common.queue.long.submissionsInReview">Comunicación en revisión</message>
+	<message key="common.queue.short.submissionsInReview">En revisión</message>
+	<message key="common.queue.long.submissionsAccepted">Presentaciones</message>
+	<message key="common.queue.short.submissionsAccepted">Presentaciones</message>
+	<message key="common.queue.long.submissionsArchives">Archivos</message>
+	<message key="common.queue.short.submissionsArchives">archivos</message>
+	<message key="common.queue.long.active">Envios activos</message>
+	<message key="common.queue.short.active">Activos</message>
+	<message key="common.queue.long.completed">Envios archivados</message>
+	<message key="common.queue.short.completed">Archivados</message>
+
+	<!--
+	 *
+	 * ENTITIES - This section contains terms pertaining to the system's
+	 *            major entities, e.g. Paper, Conference, Track
+	 *
+	-->
+
+	<!-- Common Track Terms -->
+	<message key="track.track">Secciones</message>
+	<message key="track.tracks">Secciones de la conferencia</message>
+	<message key="track.title">Título de la sección</message>
+	<message key="track.abbreviation">Abreviatura</message>
+	<message key="track.abbreviation.example">(Por ejemplo, Trabajos generales=GEN)</message>
+	<message key="track.default.title">Trabajos generales</message>
+	<message key="track.default.abbrev">GEN</message>
+	<message key="track.default.policy"></message>
+
+	<!-- Common Paper Terms -->
+	<message key="paper.papers">Comunicaciones</message>
+	<message key="paper.submissionId">ID envío</message>
+	<message key="paper.title">Título</message>
+	<message key="paper.presenters">Autores</message>
+	<message key="paper.conferenceTrack">Secciones de la conferencia</message>
+	<message key="paper.file">Archivo</message>
+	<message key="paper.suppFile">Archivo suplementario</message>
+	<message key="paper.suppFiles">Archivo(s) suplementario(s)</message>
+	<message key="paper.suppFilesAbbrev">Archivos Supl.</message>
+	<message key="paper.discipline">Disciplina y subdisciplina</message>
+	<message key="paper.subjectClassification">Clasificación por materias</message>
+	<message key="paper.subject">Palabras clave</message>
+	<message key="paper.coverage">Cobertura</message>
+	<message key="paper.coverageGeo">Cobertura Geo-espacial</message>
+	<message key="paper.coverageChron">Cobertura cronológica o histórica</message>
+	<message key="paper.coverageSample">Características de las muestra</message>
+	<message key="paper.type">Tipo, método o aproximación</message>
+	<message key="paper.language">Idioma</message>
+	<message key="paper.trackDirector">TE</message>
+	<message key="paper.commentsToDirector">Comentarios del autor</message>
+	<message key="paper.submission">Envío</message>
+	<message key="paper.submissions">Envíos</message>
+	<message key="paper.abstract">Resumen</message>
+	<message key="paper.details">Detalles</message>
+	<message key="paper.location">Lugar</message>
+	<message key="paper.time">Tiempo</message>
+	<message key="paper.comments.trackDefault">Por defecto</message>
+	<message key="paper.comments.disable">Desactivado</message>
+	<message key="paper.comments.enable">Activado</message>
+	<message key="paper.fontSize">Tamaño de fuente</message>
+
+
+	<!-- Submission Tracking - Common -->
+	<message key="submission.fromTime">De</message>
+	<message key="submission.toTime">Para</message>
+	<message key="submission.abstractReview">Revisión del resumen</message>
+	<message key="submission.paperReview">Revisión del trabajo</message>
+	<message key="submission.page.abstractReview">#{$id} Revisión del resumen</message>
+	<message key="submission.page.paperReview">#{$id} Revisión del trabajo</message>
+	<message key="submission.uploadFile">Subir el archivo</message>
+	<message key="submission.changeTrack">Cambiar a</message>
+	<message key="submission.acceptance">Conforme a la revisión</message>
+	<message key="submission.complete.description">Añadir el trabajo  a la lista de comunicaciones aceptadas.</message>
+	<message key="submission.directorDecision">Director que toma de decisiones</message>
+	<message key="submission.stage">Estado del envío&amp;nbsp;{$stage}</message>
+	<message key="submission.directorReview">Director de la revisión</message>
+	<message key="submission.notifyPresenter">Notificar al autor</message>
+	<message key="submission.notifyDirector">Notificar al director</message>
+	<message key="submission.directorPresenterRecord">Director/Autor Email</message>
+	<message key="submission.directorVersion">Director de la versión</message>
+	<message key="submission.presentersRevisedVersion">Archivo corregido por los autores</message>
+	<message key="submission.presenterVersion">Versión del autor</message>
+	<message key="submission.layout.description">Este paso es opcional y sirve para aplicar una plantilla a los trabajos enviados o cambiar los formatos de los archivos antes o después de que los manuscritos se pasen a Presentaciones.</message>
+
+	<message key="submission.paperType">Tipo de envío</message>
+	<message key="submission.paperType.single">Presentación individual</message>
+	<message key="submission.paperType.panel">Presentación colectiva (panel)</message>
+
+
+	<message key="submissions.track">Sección</message>
+	<message key="submissions.queuedAbstractReview">Resumen en revisión</message>
+	<message key="submissions.queuedPaperReview">Trabajo en revisión</message>
+	<message key="submissions.published">Remitido</message>
+	<message key="submissions.accepted">Aceptado</message>
+	<message key="submissions.reviewStage">Estado de la revisión</message>
+	<message key="submissions.reviewType">Tipo de revisión</message>
+	<message key="submissions.pendingPresentation">Cargando</message>
+	<message key="submissions.expired">Ha expirado</message>
+	<message key="submissions.directorDecision">Director- toma de decisiones</message>
+	<message key="submissions.directorRuling">Regulador</message>
+	<message key="trackDirector.galley.replaceGalley">Reemplazar fichero</message>
+	<message key="submission.abstract">Resumen</message>
+	<message key="submission.paper">Trabajo</message>
+
+	<!-- Submission list search engine -->
+
+	<!-- Submission Notes -->
+
+	<!-- Common Conference Terms -->
+	<message key="conference.conferences">Conferencias/Congresos</message>
+	<message key="conference.conference">Conferencia/Congreso</message>
+
+	<!-- Common Scheduled Conference Terms -->
+	<message key="schedConf.scheduledConferences">Conferencias/Congresos programados</message>
+	<message key="schedConf.noScheduledConferences">No hay Conferencias/Congresos programados</message>
+	<message key="schedConf.schedConf">Relación de eventos programados</message>
+	<message key="schedConf.contents">Información del evento</message>
+	<message key="schedConf.overview">Descripción</message>
+	<message key="schedConf.trackPolicies">Políticas de Secciones</message>
+	<message key="schedConf.schedule">Agenda</message>
+	<message key="schedConf.program">Programa</message>
+	<message key="schedConf.cfp">Call for papers</message>
+	<message key="schedConf.discussion">Discusión</message>
+	<message key="schedConf.registration">Inscripción</message>
+	<message key="schedConf.accommodation">Alojamiento</message>
+	<message key="schedConf.supporters">Organizadores y socios</message>
+	<message key="schedConf.timeline">Plazo</message>
+	<message key="schedConf.schedule">Calendario de eventos</message>
+	<message key="schedConf.links">Enlaces relacionados</message>
+	<message key="schedConf.presentations">Presentaciones y Autores</message>
+	<message key="schedConf.presentations.short">Presentaciones</message>
+	<message key="schedConf.abstract">Resumen</message>
+	<message key="schedConf.submission">Presentación</message>
+	<message key="schedConf.submissions">Presentaciones</message>
+
+	<message key="schedConf.cfp.title">Call for papers</message>
+	<message key="schedConf.overview.title">Descripción</message>
+	<message key="schedConf.presentations.title">Presentaciones y Autores</message>
+	<message key="schedConf.schedule.title">Calendario de Eventos</message>
+	<message key="schedConf.program.title">Programa</message>
+	<message key="schedConf.accommodation.title">Acomodaciones</message>
+	<message key="schedConf.trackPolicies.title">Políticas</message>
+	
+	<message key="schedConf.scheduler.locations">Ubicaciones del Congreso</message>
+
+	<!-- User self-registration form -->
+	<message key="schedConf.registration.alreadyRegistered">Usted ya está inscrito, aunque el pago todavía no se ha recibido. Si hay algún error o desea cambiar su inscripción, póngase en contacto con la persona indicada en "Acerca de".</message>
+	<message key="schedConf.registration.alreadyRegisteredAndPaid">Usted ya está registrado en esta Conferencia/Congreso y su inscripción ha sido abonada. Si hay algún error o desea cambiar su inscripción, póngase en contacto con la persona indicada en "Acerca de".</message>
+	<message key="schedConf.registration.noPaymentMethodAvailable">Su inscripción se ha registrado. Si procede, contactaremos con usted en relación con el pago.</message>
+	<message key="schedConf.registration.conferenceFees">Tasas del Congreso</message>
+	<message key="schedConf.registration.type">Tipos de Inscripción</message>
+	<message key="schedConf.registration.cost">Importe</message>
+	<message key="schedConf.registration.noneAvailable">No hay tipos de inscripción disponibles.</message>
+	<message key="schedConf.registration.register">Inscripción</message>
+	<message key="schedConf.registration.typeCloses">(Finaliza el {$closingDate})</message>
+	<message key="schedConf.registration.typeClosed">(Registro cerrado {$closingDate})</message>
+	<message key="schedConf.registration.typeFuture">(Registro disponile a partir de {$openingDate}) </message>
+	<message key="schedConf.registration.feeCode">Código de tasas</message>
+	<message key="schedConf.registration.feeCode.description">Si se le dio un código para la inscripción, por favor, escríbalo aquí y asegúrese de que ha elegido el tipo correcto. En caso contrario, deje en blanco dicho campo.</message>
+	<message key="schedConf.registration.specialRequests">Requisito especial</message>
+	<message key="schedConf.registration.specialRequests.description">Por favor, indique algún requisito especial, dieta, accesibilidad, etc.</message>
+	<message key="schedConf.registration.account">Cuenta de Usuario</message>
+	<message key="schedConf.registration.loggedInAs"><![CDATA[Ahora está conectado. Verifique si la información de sus cuentas es correcta. Si no lo es  vaya a <a href="{$profileUrl}">Mi Perfil</a> o <a href="{$logoutUrl}">salir</a> para usar otra cuenta.]]></message>
+	<message key="schedConf.registration.createAccount.description"><![CDATA[Actualmente no está conectado. Para inscribirse en esta Conferencia/Congreso, es necesario disponer de una cuenta. Si ya tiene una, <a href="{$loginUrl}"> haga clic aquí </ a> para acceder, de lo contrario, rellene la información que aparece a continuación para de crear una nueva cuenta.]]></message>
+	<message key="schedConf.registration."></message>
+
+	<!-- User -->
+	<message key="user.showAllConferences">Mostrar mis eventos</message>
+	<message key="user.createAccount">Crear</message>
+	<message key="user.url.description">Esto aparecerá como un enlace en la parte inferior de la biografía del "Acerca del autor" y en la página "Grupo de trabajo".</message>
+	<message key="user.createAccountForOtherConferences">Crear una cuenta para otros eventos</message>
+	<message key="user.myConferences">Mis eventos</message>
+	<message key="user.noRoles.chooseConference"> Esta cuenta no está actualmente asociada a ningún congreso. Por favor, seleccione un congreso:</message>
+	<message key="user.noRoles.submitProposalRegClosed"> Envío de propuestas: El registro de autores se encuentra cerrado en este momento.</message>
+	<message key="user.noRoles.regReviewerClosed"> Registro como un Revisor del Congreso: El registro de Revisores se encuentra cerrado en este momento.</message>
+	<message key="user.noRoles.registerUnavailable"> Registro para participar del congreso: La inscripción no se acepta en este momento.</message>
+        <message key="user.noRoles.noRolesForConference"> Su cuenta no posee ningun rol en este congreso. Por favor seleccione una accion:</message>
+	<message key="user.noRoles.submitProposal">Enviar una propuesta</message>
+        <message key="user.noRoles.submitProposalSubmissionsClosed">Enviar una Propuesta: Envios estan cerrados en este momento.</message>
+	<message key="user.noRoles.regReviewer">Registrarse como un Revisor del Congreso.</message>
+	<message key="user.noRoles.register">Inscribirse para participar del congreso</message>
+		    	
+
+	<!-- Roles -->
+	<message key="user.role.manager">Gestor del evento</message>
+	<message key="user.role.director">Director</message>
+	<message key="user.role.trackDirector">Director de al sección</message>
+	<message key="user.role.presenter">Autor</message>
+
+	<message key="user.role.managers">Gestores del evento</message>
+	<message key="user.role.directors">Directores</message>
+	<message key="user.role.trackDirectors">Directores de la sección</message>
+	<message key="user.role.presenters">Autores</message>
+
+	<!--
+	 *
+	 * LOG - This section contains entries related to log entries.
+	 *
+	-->
+	
+	<message key="event.logType.paper">Tipo de Documento</message>
+	<message key="event.logType.presenter">Autor</message>
+	<message key="event.logType.director">Director</message>
+	<message key="event.logType.review">Revisor</message>
+	<message key="event.logType.conference">Conferencia/Congreso</message>
+
+	<message key="event.eventLog">Log del evento</message>
+	<message key="event.logLevel">Nivel</message>
+	
+	<message key="event.logLevel.info">Información</message>
+	<message key="event.logLevel.notice">Noticia</message>
+	<message key="event.logLevel.warning">¡Atención!</message>
+	<message key="event.logLevel.error">Error</message>
+
+	<message key="event.general.defaultEvent">Envío de evento</message>
+	
+	<!-- Submission events -->
+	
+	<message key="submission.event.general.abstractSubmitted">Resumen enviado</message>
+	<message key="submission.event.general.presentationSubmitted">Presentación enviada</message>
+	<message key="submission.event.general.paperPublished">Articulo publicado</message>
+
+	<message key="submission.event.presenter.presenterRevision">Trabajo revisado por el autor</message>
+
+	<message key="submission.event.general.presenterRevision">Archivo actualizado del trabajo revisado por el autor</message>
+
+	<message key="submission.event.director.directorAssigned">Director asignado al envío</message>
+	<message key="submission.event.director.directorUnassigned">No se ha asignado director desde el envío</message>
+	<message key="submission.event.director.directorDecision">Se ha enviado la decisión del Director</message>
+	<message key="submission.event.director.directorFile">Archivo actualizado enviado por el director</message>
+	<message key="submission.event.director.submissionArchived">Envío archivado</message>
+	<message key="submission.event.director.submissionRestored">Envío recuperado del archivo</message>
+
+
+	<!-- Conference events -->
+	<message key="conference.event.general.configuration">Configuración del Congreso modificada</message>
+	<message key="conference.event.general.deadline">El plazo del Congreso ha finalizado</message>
+
+	<!--
+	 *
+	 * INTERFACE - Contains phrases organized by the section of the
+	 *             user interface they appear in.
+	 *
+	-->
+
+	<!-- Reader paper view -->
+	<message key="reader.fullTextNotAvailable">Los textos de la conferencia/Congreso no están disponibles actualmente.</message>
+	<message key="reader.fullTextRegistroRequired">Es necesario registrarse en la Conferencia/Congreso para ver los documentos.</message>
+	<message key="reader.fullTextAccountRequired"><![CDATA[Se necesita una cuenta en este sitio para poder ver los documentos. <Un href = "($ registerUrl)"> Haga clic aquí </ a> para crear una cuenta.]]></message>
+	<message key="reader.fullTextRegistrantsOnlyUntil">El acceso a este evento se iniciará el día {$date}.</message>
+	<message key="reader.fullTextNotPostedYet">Los documentos de esta Conferencia/Congreso se publicarán el día {$date}.</message>
+
+	<!-- Reader Comments -->
+	<message key="comments.authenticated">{$userName}</message>
+	<message key="comments.commentsOnPaper">Comentarios a documento</message>
+	<message key="comments.commentsClosed">Cierre de comentarios el día {$closeCommentsDate}.</message>
+
+	<!-- Site Administration -->
+
+	<message key="admin.settings.oaiRegistrationDescription"><![CDATA[Para que el contenido de todas las Conferencias/Congresos estén indizados dentro de un sistema distribuido de bases de datos de investigación, <a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">registre</a> su URL en el <a href="http://pkp.sfu.ca/harvester/" target="_blank">recolector de metadatos del Public Knowledge Project</a>. Esta herramienta captura los metadatos  indizados en esta Conferencia/Congreso, lo que permite relizar una búsqueda precisa y colectiva entre los proveedores de datos que cumplen con <a href="http://www.openarchives.org/OAI/openarchivesprotocol.htm#Introduction" target="_blank">el protocolo de recolección de metadatos de la Open Archives Initiative</a>.
+<br /><br />
+<a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">Haga clic aquí</a> e introduzca <span class="highlight">{$siteUrl}</span> bajo <strong>la URL</strong>, y <span class="highlight">{$oaiUrl}</span> bajo <strong>Base URL para Archivos OAI</strong>.
+<br /><br />
+Tenga en cuenta que la interfaz OAI puede ser desactivada para este sitio al editar la configuración del sistema. Las futuras versiones del OCS permitirán que la interfaz  OAI pueda ser activada o desactivada para cada una de las Conferencias/Congresos del sitio.]]></message>
+
+
+
+	<!-- Languages -->
+	<message key="admin.languages.languageOptions">Opciones de idiomas</message>
+	<message key="admin.languages.profileLocales">Cuando se asignen los roles (gestores, directores, revisores, etc.), deben indicarse los idiomas de trabajo de cada persona en sus perfiles para facilitar el trabajo de los directores de las Conferencia.</message>
+
+	<message key="admin.auth.defaultSourceDescription"><![CDATA[Especificar por defecto una  fuente de autenticación que no sea válida para OCS tiene los siguientes efectos:
+<ul>
+	<li>Si un usuario intenta crear una nueva cuenta con este sitio con un nombre de usuario que existe en la fuente de autenticación (pero no en la base de datos OCS), el intento de registro sólo estará permitido si la contraseña proporcionada es válida para la cuenta de usuario.</li>
+</ul>]]></message>
+
+	<!-- System Information -->
+	<message key="admin.editSystemConfigInstructions"><![CDATA[Use este formulario para modificar la configuración de su sistema (el fichero <tt>config.inc.php</tt>). Haga Clic en Guardar para guardar la nueva configuración, or "Visualizar"  simplemente para visualizar la configuración modificada y no modificar la configuración existente.<br /><br />
+<span class="formError">Atención: Modificando estos parámetros puede hacer que su web quede en un  estado inaccesible (que requiere modificar manualmente su fichero de configuración). Se recomienda encarecidamente que usted no haga cambios a menos que sepa exactamente lo que está haciendo.</span>]]></message>
+	<message key="admin.overwriteConfigFileInstructions"><![CDATA[<h4>NOTA!</div>
+<p>El sistema no puede sobrescribir automáticamente el fichero de configuración. Para aplicar los cambios de configuración debe abrir <tt>config.inc.php</ tt> con un editor de texto adecuado y sustituir los contenido de los siguientes campos de texto.</p>]]></message>
+
+	<message key="admin.conferences.importRegistros">Importar registros</message>
+
+	<!-- Registro Management -->
+
+	<!-- Scheduler -->
+
+
+
+
+	
+	<!-- Payment Handling -->
+
+	<message key="payment.type.registration">Inscripción a la Conferencia/Congreso</message>
+
+	<!-- Conference Event Log -->
+	<message key="conference.event.confirmClearLog">¿Está seguro de que desea borrar el log de la inscripción a las Conferencia/Congreso?</message>
+	<message key="conference.event.confirmDeleteLogEntry">¿Está seguro de que quiere eliminar estas entradas de registro de eventos?</message>
+	<message key="conference.event.deleteLogEntry">Borrar los Log de entrada</message>
+	<message key="conference.event.backToEventLog">Volver a los logs del Evento</message>
+	<message key="conference.history.conferenceEventLog">Logs del Evento</message>
+	<message key="conference.history.clearLog">Limpiar Logs</message>
+	<message key="conference.history.noLogEntries">No hay logs de entradas.</message>
+
+	<!-- Scheduled Conference Management -->
+
+	<!-- Program settings -->
+	
+	<!-- Accommodation settings -->
+
+	<!-- Conference Management -->
+
+	<!-- Statistics & Reports -->
+
+	<message key="manager.statistics.reports.dateFrom">De</message>
+	<message key="manager.statistics.reports.dateTo">Hasta</message>
+	<message key="manager.statistics.reports.reportType">Tipo de Informe</message>
+	<message key="manager.statistics.reports.type.conference">Informe del Congreso</message>
+	<message key="manager.statistics.reports.type.schedConf">Informe del Congreso programada</message>
+	<message key="manager.statistics.reports.type.director">Informe del Director</message>
+	<message key="manager.statistics.reports.type.reviewer">Informe del Revisor</message>
+	<message key="manager.statistics.reports.type.track">Informe</message>
+	<message key="manager.statistics.reports.generate">Generar informe</message>
+	<message key="manager.statistics.reports.status">Estado (Acceptado, rechazado, otro)</message>
+	<message key="manager.statistics.reports.dateDecided">Fecha de decisión</message>
+	<message key="manager.statistics.reports.presenter">Autor #{$num}</message>
+	<message key="manager.statistics.reports.affiliation">Institución #{$num}</message>
+	<message key="manager.statistics.reports.country">País #{$num}</message>
+	<message key="manager.statistics.reports.reviewer">Revisor #{$num}</message>
+	<message key="manager.statistics.reports.director">Director #{$num}</message>
+	<message key="manager.statistics.reports.score">Resultado #{$num}</message>
+	<message key="manager.statistics.reports.singleScore">Resultado</message>
+	<message key="manager.statistics.reports.recommendation">Recomendaciones #{$num}</message>
+	<message key="manager.statistics.reports.daysToDecision">Días pendientes para la decisión dobre el trabajo</message>
+	<message key="manager.statistics.reports.daysToPublication">Días pendientes para la publicación</message>
+
+	<!-- Plugin Management -->
+
+	<!-- General plugin information -->
+	<message key="plugins.categories.generic.description">Los plugins genéricos se usan para extender el sistema del Open Conference de diferentes maneras que otras categorías de plugins no soportan.</message>
+	<message key="plugins.categories.auth.description">Los plugins de autorización permiten al Open Conference System delegar tareas de autenticación de los usuarios a otros sistemas, tales como servidores LDAP.</message>
+
+
+
+
+	<message key="plugins.categories.citationFormats.description">Los plugins de formatos de citas proveen a los usuarios con varios formatos en los cuales acceder a las citas de los trabajos.</message>
+ 
+ 
+ 
+	
+
+	<!-- Files Browser -->
+
+	<!--
+	     ***
+	     *** Generic setup locale keys
+	     ***
+	-->
+	<message key="manager.setup.homeHeaderTitleImageAlt1Invalid">Formato de imagen no válido para el título de la cabecera de la página de inicio alternativa. Los formatos permitidos  son .gif, .jpg, or .png.</message>
+	<message key="manager.setup.homeHeaderLogoImageAlt1Invalid">Formato de imagen no válido para el logo de la cabecera de la página de inicio alternativa. Los formatos aceptados son .gif, .jpg, or .png.</message>
+	<message key="manager.setup.pageHeaderTitleImageAlt1Invalid">Formato de imagen no válido para el título de la cabecera de página alternativa. Los formatos permitidos son .gif, .jpg, or .png.</message>
+	<message key="manager.setup.pageHeaderLogoImageAlt1Invalid">Formato de imagen no válido para el logo de la cabecera de página alternativa. Los formatos permitidos son .gif, .jpg, or .png.</message>
+	<message key="manager.setup.homeHeaderTitleImageAlt2Invalid">Formato de imagen no válido para el título de la cabecera de la segunda página de inicio alternativa. Los formatos permitivos son .gif, .jpg, or .png.</message>
+	<message key="manager.setup.homeHeaderLogoImageAlt2Invalid">Formato de imagen no válido para el logo de la cabecera de la segunda página de inicio alternativa. Los formatos permitivos son .gif, .jpg, or .png.</message>
+	<message key="manager.setup.pageHeaderTitleImageAlt2Invalid">Formato de imagen no válido para el título de la cabecera de  página de la segunda alternativa. Los formatos permitidos son .gif, .jpg, or .png.</message>
+	<message key="manager.setup.pageHeaderLogoImageAlt2Invalid">Formato de imagen no válido para el título de la cabecera de página de la segunda alternativa. Los formatos permitivos son .gif, .jpg, or .png.</message>
+	<message key="manager.setup.finalStepSavedNotes">
+		<![CDATA[
+			<p>¡Casi Hecho!</p>
+			<p>Se ha creado una Conferencia, que puede tratarse de única conferencia, una conferencia anual, o una serie de conferencias programadas, todas pueden ser administradas desde este sitio. Para programar una Conferencia específica, vaya a <a href="{$schedConfSetupUrl}">Conferencia/Congresos programados</a>. Puede acceder a esta página en cualquier momento a través de la página de Gestión de Conferencia/Congreso.</p>
+			<p>Puede volver a esas seis páginas en cualquier momento siguiendo los enlaces "Inicio > Gestor Conferencia/Congreso > Puesta en Marcha".</p>
+			<p>Puede administrar las conferencias programadas en "Usuario > Gestor del Congreso > Puesta en Marcha"</p>
+			]]></message>
+
+
+
+	<!--
+	     ***
+	     *** Website Management (a.k.a. Conference Setup)
+	     ***
+	-->
+
+	<message key="manager.setup.styleSheet">Hoja de estilo del Congreso</message>
+
+
+
+
+
+	<!-- Conference setup page 1 -->
+
+
+	<!-- Conference setup page 2 -->
+	<message key="manager.setup.additionalContent.homepageImage.description"></message>
+
+	<!-- Conference setup page 3 -->
+
+	<!-- Conference setup page 4 -->
+
+	<!-- Conference setup page 5 -->
+
+	<!-- Conference setup page 6 -->
+	<message key="manager.setup.indexing.registerConferenceForIndexing.description"><![CDATA[Para que los contenidos de esta conferencia se indicen dentro de un sistema distribuido de base de datos, <a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">registre</a> la URL de su conferencia en el <a href="http://pkp.sfu.ca/harvester/" target="_blank">recolector</a> de metadatos del Public Knowledge Project. Este servicio recolecta los metadatos  de cada artículo indizado en esta conferencia, permite una búsqueda entre los sitios que cumplen con el <a href="http://www.openarchives.org/OAI/openarchivesprotocol.htm#Introduction" target="_blank">Protocolo de Recolección de metadatos OAI (PMH-OAI)</a>.
+<br /><br />
+Observe que si el administrador del sistema ya ha regisrado este sitio en el recolector PKP, su conferencia se indizará automáticamente si necesidad de que la registre de nuevo.
+<br /><br />
+<a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">Pulse aquí</a> y entre <span class="highlight">{$siteUrl}</span> a la  <strong>URL</strong>, y <span class="highlight">{$oaiUrl}</span> a la  <strong>URL de Archivo OAI</strong>.]]></message>
+
+	<!-- 
+	     ***
+	     *** Scheduled Conference Setup
+	     ***
+	-->
+
+
+
+
+	<!-- Scheduled Conference Setup Paso 1 -->
+
+	<!-- Scheduled Conference Setup Paso 2 -->
+	
+	<message key="manager.schedConfSetup.submissions.subjectClassificationDescription"><![CDATA[[la Conferencia/Congreso utilizará un sistema de  clasificación de materias disponible en la web.<br />
+Nombre del sistema de clasificación]]></message>
+
+	<!-- Scheduled Conference Setup Paso 3 -->
+	
+	<!-- Languages -->
+	<message key="manager.languages.alternateLocale1">Interfaz #1</message>
+	<message key="manager.languages.alternateLocale2">Interfaz #2</message>
+	<message key="manager.languages.alternativeLanguageOptions">Opciones de idioma</message>
+	<message key="manager.languages.conferenceTitleAltLanguages">La imagen para el nombre, la cabecera de la página, etc. se cargarán en cada uno de los idiomas oficiales del Congreso.</message>
+
+	<!-- Track Management -->
+	<message key="manager.tracks.form.abstractLimitRequired">Es obligatorio un limite para los abstract para esta sección</message>
+	<message key="manager.tracks.form.abstractLimitNumeric">El limite para los abstract para esta sección debe ser un valor numérico positivo</message>	
+	<message key="manager.tracks.submissionsToThisTrack">Los envíos hechos a esta sección</message>
+	<message key="manager.tracks.abstractLimit">Límite de los Abstract de la Sección</message>
+	<message key="manager.tracks.abstractsDisabled">No se requiere resumen para hacer el envío.</message>
+
+
+
+	
+
+
+
+
+	<!-- Import/Export -->
+
+	<!-- Groups / Organizing Team -->
+
+
+
+	<!-- People Management -->
+	<message key="manager.people.confirmDisable">¿Desactivar este usuario? El usuario no podrá acceder al sistema.
+
+Opcionalmente usted puede proporcionar al usuario la razón para la inhabilitación de su cuenta.</message>
+	<message key="manager.people.noAdministrativeRights"><![CDATA[lo sentimos, usted no tienen derechos de administración sobre este usuario. Esto se debe a que:
+		<ul>
+			<li>El usuario es el administrador de la web</li>
+			<li>El usuario está resgistrado en conferencias que no gestiona</li>
+		</ul>
+	Esta tarea sólo la puede realizar el administrador del sistema.
+	]]></message>
+
+
+	<message key="manager.people.signOutAsUser">Salir Como usuario</message>
+
+	<!-- Email Management -->
+
+	<!-- Registro Policy Management -->
+	
+	<message key="manager.registrationPolicies.registrationPoliciesSaved">La configuración de la política de inscripción, se ha actualizado.</message>
+	<message key="manager.registrationPolicies.enableRegistroExpiryReminderBeforeMonthsValid">Por favor, utilice la casilla de verificación prevista.</message>
+	<message key="manager.registrationPolicies.numMonthsBeforeRegistroExpiryReminderValid">Por favor, seleccione un valor válido para el número de meses antes de que caduque su registro.</message>
+	<message key="manager.registrationPolicies.numWeeksBeforeRegistroExpiryReminderValid">Por favor, seleccione un valor válido para el número de semanas antes de que caduque su registro.</message>
+	<message key="manager.registrationPolicies.numMonthsAfterRegistroExpiryReminderValid">Por favor, seleccione un valor válido para el número de meses después de que caduque su registro.</message>
+	<message key="manager.registrationPolicies.numWeeksAfterRegistroExpiryReminderValid">Por favor, seleccione un valor válido para el número de semanas después de que caduque su registro.</message>
+
+	<!-- Registro Type Management -->
+
+	<!-- Registro Management -->
+
+	<!-- Announcement Type Management -->
+
+	<!-- Announcements Management -->
+
+	<!-- Director -->
+
+
+	<!-- Navigation sidebar menu -->
+
+	<!-- Used by director in submission review / editing -->
+	<message key="director.paper.selectReviewerNotes"><![CDATA[El nombre enlaza con el perfil del revisor.<br/>
+Calificación superior a 5 (Excelente).<br/>
+Las semanas se refieren al periodo medio de tiempo para hacer la revisión.<br/>
+La última, es la fecha correspondiente a aquella revisión que se ha comprometido a hacer mas recientemente.<br/>
+En activo significa cuantas revisiones están actualmente en marcha.]]></message>
+
+
+
+	<!-- Track Director -->
+	<message key="trackDirector.presenter.confirmRenotify">Notificar al autor que debe reiniciar la asignación de evaluadores. ¿Está seguro de que quiere hacer esto?</message>
+
+	<message key="trackDirector.regrets.breadcrumb">Renuncias</message>
+	<message key="trackDirector.regrets.title">#{$paperId} Renuncias de revisores &amp; Cancelaciones</message>
+	<message key="trackDirector.regrets">Renuncias</message>
+	<message key="trackDirector.regrets.link">Ver las renuncias, Cancelaciones</message>
+	<message key="trackDirector.regrets.reviewStage">Etapa de revisión (Peer Review){$stage}</message>
+	<message key="trackDirector.regrets.decisionStage">Etapa de la decisión del Director {$stage}</message>
+	<message key="trackDirector.regrets.regretsAndCancels">Renuncia del Revisor &amp; Cancelaciones</message>
+	<message key="trackDirector.regrets.regret">Renuncia</message>
+	<message key="trackDirector.regrets.result">Resultado</message>
+	<message key="trackDirector.review.enrollReviewer">Emplear a un usuario ya existente como revisor</message>
+	<message key="trackDirector.review.createReviewer">Introducir nuevo revisor</message>
+
+	<!-- Reviewer -->
+	<message key="reviewer.completedReviews">Hecho</message>
+	<message key="reviewer.averageQuality">Calificación</message>
+
+	<!-- Used in submission review -->
+	<message key="reviewer.paper.fileToBeReviewed">Archivo para revisar</message>
+	<message key="reviewer.paper.notifyTheDirector">Notificar al director</message>
+	<message key="reviewer.paper.canDoReview">Hará la revisión</message>
+	<message key="reviewer.paper.cannotDoReview">No puede hacer la revisión</message>
+	<message key="reviewer.paper.restrictedFileAccess">El trabajo sólo puede verse si se realiza la revisión.</message>
+	<message key="reviewer.paper.submissionDirector">Submission Director</message>
+	<message key="reviewer.paper.reviewerCommentsDescription">Escriba o copie aquí los comentarios de su revisión</message>
+	<message key="reviewer.paper.directorToEnter">Director To Enter</message>
+	<message key="reviewer.paper.sendReminder">Enviar recordatorio</message>
+	<message key="reviewer.paper.automatic">(Auto)</message>
+	<message key="reviewer.paper.selectRecommendation">Seleccionar la recomendación</message>
+	<message key="reviewer.paper.recommendation">Recomendación</message>
+	<message key="reviewer.paper.submitReview">Enviar la revisión al Director</message>
+	<message key="reviewer.paper.reviewerComments">Comentarios</message>
+	<message key="reviewer.paper.uploadedFile">Subir archivos</message>
+	<message key="reviewer.paper.reviewersAnnotatedVersion">Versión depositada por el revisor</message>
+	<message key="reviewer.paper.reviewersAnnotatedVersionDescription">(Si quiere hacer anotaciones en el archivo, para el director, guárdelo en su disco duro y utilice Browse/Upload.)</message>
+	<message key="reviewer.paper.schedule.request">Pregunta del Director</message>
+	<message key="reviewer.paper.schedule.response">Su respuesta</message>
+	<message key="reviewer.paper.schedule.submitted">Revisión enviada</message>
+	<message key="reviewer.paper.schedule.due">Plazo para la revisión</message>
+	<message key="reviewer.paper.decision.accept">Se ha aceptado el envío</message>
+	<message key="reviewer.paper.decision.pendingRevisions">Se revisará de nuevo</message>
+	<message key="reviewer.paper.decision.resubmitElsewhere">Envíelo a otro medio</message>
+	<message key="reviewer.paper.decision.decline">Se ha rechazado el envío</message>
+	<message key="reviewer.paper.decision.seeComments">Ver comentarios</message>
+	<message key="reviewer.paper.schedule">Calendario</message>
+	<message key="reviewer.paper.submissionToBeReviewed">Original para revisar</message>
+	<message key="reviewer.paper.reviewSchedule">Plazo para la revisión</message>
+	<message key="reviewer.paper.reviewSteps">Pasos de la revisión</message>
+	<message key="reviewer.paper.reviewerGuidelines">Instrucciones para los revisores</message>
+	<message key="reviewer.paper.notifyEditorA">Notificar al director del envío</message>
+	<message key="reviewer.paper.notifyEditorB">si aceptará o no realizar la revisión.</message>
+	<message key="reviewer.paper.consultGuidelines">Si realizará la revisión, consulte las Instrucciones para Revisores debajo.</message>
+	<message key="reviewer.paper.downloadSubmissionAbstractOnly">Revise el resumen facilitado con el envío.</message>
+	<message key="reviewer.paper.downloadSubmissionSubmission">Revisar el envío.</message>
+	<message key="reviewer.paper.enterReviewA">Pulse el icono para introducir (o pegar) la  revisión de este envío.</message>
+	<message key="reviewer.paper.uploadFile">Adicionalmente, puede subir archivos para consulta del director o los autores.</message>
+	<message key="reviewer.paper.selectRecommendation">Seleccionar una recomendación y enviar la revisión para completar el proceso de evaluación. Debe introducir la revisión o subir un archivo antes de seleccionar una recomendación.</message>
+	<message key="reviewer.paper.mustSelectDecision">No se ha seleccionado una recomendación. Debe elegir una recomendación.</message>
+	<message key="reviewer.paper.confirmDecision">Una vez haya seleccionado y archivado su decisión respecto al trabajo, no podrá hacer cambios en la revisión. ¿Está seguro de que queire continuar?</message>
+	<message key="reviewer.paper.ensuringBlindReview">Asegurar una revisión anónima</message>
+
+
+	<!-- Presenter -->
+
+<message key="presenter.submissions.confirmDelete">¿Está seguro de que quiere borrar el envío incompleto?</message>
+
+	<!-- Paper Submission Step 1 -->
+
+	<!-- Paper Submission Step 2 -->
+	<message key="presenter.submit.metadataDescription">Esta Conferencia recopila los metadatos de cada trabajo, de acuerdo con los estándares de la Open Archives Initiative, que permiten la identificación objetos digitales. Esto permite  una búsqueda selectiva uy precisa en bases de datos OAI, lo que aumenta la probabilidad de que los lectores encuentren  trabajos como este. El Comité organizador debe insistir en que los metadatos  conviene  enviarlos antes de iniciarse el proceso editorial de manejo de originales</message>
+	<message key="presenter.submit.presentersDescription">Para envíos con más de un  autor, ordene los nombres tal y como deban aparecer en la referencia bibliográfica.</message>
+	<message key="presenter.submit.reorderPresenterName">Reordenar el nombre del autor</message>
+	<message key="presenter.submit.form.abstractMaxLength">La cantidad de palabras del abstract es superior al limite permitido en la seccion.</message>
+
+	<!-- Paper Submission Step 3 -->
+	<message key="presenter.submit.uploadInstructions"><![CDATA[
+Para depositar un trabajo en esta conferencia, siga los siguientes pasos.
+
+<ol>
+<li>Pulse listar (o seleccionar archivo) que abre una ventana  para localizar los archivos en el disco duro de su ordenador.</li>
+<li>Localice el archivo que desea enviar y márquelo.</li>
+<li>Pulse Abrir en la ventana de selección  de archivos, que muestra el nombre del archivo.</li>
+<li>Pulse Subir, lo que permite subir el archivo al servidor de la conferencia y  renombrarlo siguiendo los criterios de la conferencia.</li>
+<li>Cuando haya terminado, pulse Guardar y Continuar.</li>
+</ol>
+
+ El archivo puede visualizarse pulsando sobre el nombre del archivo. Puede depositarse un archivo nuevo o revisado, así se borra el anterior. Los archivos adicionales pueden depositarse usando la opción Archivos Suplementarios (próximo paso). Si tiene problemas con el depósito, contacte por correo electrónico o por teléfono con <a href="mailto:{$supportEmail}">{$supportName}</a> {$supportPhone}. ]]></message>
+
+	<!-- Paper Submission Step 4 -->
+
+	<!-- Paper Submission Step 4a: Supplementary Files -->
+
+	<!-- Paper Submission: upload file -->
+	<message key="submission.submissionFiles">Archivos del envío</message>
+
+	<!-- Paper Submission Step 5 -->
+
+	<!-- Used in submission review / editing -->
+
+	<!-- Submission Tracking - Layout Specific -->
+
+
+	<!-- Submission History -->
+
+	<!-- Submission Event Log -->
+
+	<!-- Submission Email Log -->
+
+	<!-- Submission Comments -->
+	<message key="submission.comments.directorPresenterCorrespondence">Director/Autor para la correspondencia</message>
+	<message key="submission.comments.viewableDescription"><![CDATA[Estos comentario pueden compartirse con el autor.<br />
+(Después de guardar, pueden añadirse más comentarios.)]]></message>
+	<message key="submission.comments.canShareWithPresenter">Para el autor y el director</message>
+	<message key="submission.comments.cannotShareWithPresenter">Para el director</message>
+	<message key="submission.comments.blindCcReviewers">Después del envío, haga una copia de la decisión editorial, sin cabeceras ni nombres, para mandársela a los revisores.</message>
+	<message key="submission.comments.forPresenterDirector">Para el autor y el director</message>
+	<message key="submission.comments.forDirector">Para el director</message>
+	<message key="submission.comments.saveAndEmailPresenter">Guardar y enviar un correo electrónico al autor</message>
+	<message key="submission.comments.saveAndEmailDirector">Guardar y enviar un correo electrónico al Director</message>
+
+	<!-- Login -->
+	<message key="user.login.createAccount">¿No es usuario aún? Cree una cuenta en este sitio</message>
+	<message key="user.login.resetPasswordInstructions"><![CDATA[Por razones de seguridad, este sistema envía por correo la nueva contraseña  para usuarios registrados, en lugar de solicitar la actual contraseña
+<br /><br />Escriba su dirección de correo electrónico para recibir la  nueva. Se enviará la confirmación a esa dirección de email.]]></message>
+	<message key="user.login.rememberMe">Recordar</message>
+
+	<!-- Profile -->
+
+	<!-- Registration -->
+	<message key="user.account.repeatPassword">Repita la contraseña</message>
+	<message key="user.account.form.usernameExists">El nombre de usuario elegido ya está en uso.</message>
+	<message key="user.account.form.usernameAlphaNumeric">El nombre de usuario solo puede contener caracteres alfanúmericos, guión bajo, y guiones, y debe comenzar y acabar con un caracter alfanumérico.</message>
+	<message key="user.account.form.emailExists">El email elegido ya está en uso por otro usuario.</message>
+	<message key="user.account.form.passwordsDoNotMatch">La contraseña no coincide.</message>
+	<message key="user.account.selectConference">Selecccione el evento al que se quiere asociar</message>
+	<message key="user.account.noConferences">No existen eventos en los pueda inscribirse desde este sitio.</message>
+	<message key="user.account.selectSchedConf">Seleccione el evento al que se quiera inscribir</message>
+	<message key="user.account.noSchedConfs">No existen eventos en los pueda inscribirse desde este sitio.</message>
+	<message key="user.account.createAs">Crear una cuenta como</message>
+	<message key="user.account.privacyStatement">Condiciones de privacidad</message>
+	<message key="user.account.completeForm">Rellene este formulario para crearse una cuenta en este evento.</message>
+	<message key="user.account.hasAccount"><![CDATA[<a href="{$accountUrl}">Pulse aquí</a> si tiene una cuenta en ésta o en otra conferencia albergada en este sitio.]]></message>
+	<message key="user.account.hasNoAccount"><![CDATA[<a href="{$accountUrl}">Pulse aquí</a> si <strong>no</strong>dispone todavía de una cuenta en ésta o en otra conferencia en este sitio.]]></message>
+	<message key="user.account.loginToRegister">Entre su nombre de usuario y contraseña para crear una cuenta en este evento.</message>
+	<message key="user.account.createAccountDisabled">Este evento no acepta actualmente nuevos usuarios.</message>
+	<message key="user.account.usernameRestriction">El nombre de usuario debe contener sólo caracteres en minúscula, números y guiones o guión bajo.</message>
+	<message key="user.account.passwordLengthRestriction">La contraseña debe contener al menos {$length} caracteres.</message>
+	<message key="user.account.form.passwordLengthTooShort">La contraseña que ha introducido no es lo suficientemente larga.</message>
+	<message key="user.account.readerDescription">Notificar por email cuando se publiquen presentaciones.</message>
+	<message key="user.account.openAccessNotificationDescription">Notificar por email cuando la conferencia sea de acceso abierto.</message>
+	<message key="user.account.presenterDescription">Pueden enviarse artículos a la conferencia.</message>
+	<message key="user.account.reviewerDescriptionNoInterests">Acepto hacer la revisión de trabajos de esta conferencia.</message>
+	<message key="user.account.reviewerDescription">Acepto hacer la revisión de trabajos de esta conferencia. Señale los temas de su interés ( áreas y métodos de trabajo).</message>
+	<message key="user.account.presenterRegistrationMessage">Aunque tienen una cuenta en de usuario en este sitio, actualmente no es autor de ningún trabajo de esta conferencia.</message>
+
+
+
+	<!-- Search -->
+	<message key="search.browsePresenterIndex">Listar el índice de autores</message>
+	<message key="search.searchFor">Búsqueda de trabajos por</message>
+	<message key="search.inField">En</message>
+	<message key="search.presenter">Autores</message>
+	<message key="search.withinConference">En</message>
+	<message key="search.allConferences">Todos los eventos</message>
+	<message key="search.presenterIndex">Listar por autores</message>
+	<message key="search.presenterDetails">Detalles del autor</message>
+	<message key="search.syntaxInstructions"><![CDATA[Recomendaciones para las búsquedas: <ul>
+<li>Los términos de búsqueda son susceptibles a las mayúsculas y minúsculas</li>
+<li>Las palabras comunes se ignoran</li>
+<li>Por defecto, sólo se recuperan los trabajos que contengan <em>todos</em> los términos de la misma (es decir, implica el operador <em>AND</em>) </li>
+<li>Combine palabras con <em>OR</em> para buscar trabajos que contengan  algunos de los términos; p.e., <em>educación OR investigación</em></li>
+<li>Use paréntesis para crear peticiones más complejas; p.e., <em>archivos (revistas OR conferencias) NOT tesis)</em></li>
+<li>Busque la frase exacta poniendo el texto entre comillas; p.e., <em>"open access publishing"</em></li>
+<li>Excluya una palabra con el prefijo<strong>-</strong> o <em>NOT</em>; p.e., <em>online -politics</em> o <em>online NOT politics</em></li>
+<li>Use <strong>*</strong> como comodín dentro de una cadena de caracteres; p.e., <em>soci*</em> se ajusta a documentos que contienen "sociológico" o "social"</li>
+</ul>]]></message>
+
+	<!-- Interstitial page for PDFs -->
+	<message key="paper.pdf.title">Formato PDF</message>
+	<message key="paper.pdf.note"><![CDATA[El archivo PDF que ha seleccionado puede descargarse, si su navegador tiene instalado el plug-in PDF reader (si no, puede obtenerlo de <a href="http://www.adobe.com/products/acrobat/readstep2.html">Adobe Acrobat Reader</a>). Alternativamente, puede descargarse el archivo en su ordenador, donde puede abrirlo usando un lector de archivos PDF. Si desea más inforamción de cómo imprimir, guardar y manejar archivos PDF, Highwire Press le facilita una valiosa ayuda <a href="http://highwire.stanford.edu/help/pdf-faq.dtl">en el menú de FAQs acerca de PDFs</a>.<br /><br />Si el archivo no se descarga automáticamente, <a href="{$url}">pulse aquí</a>.]]></message>
+
+	<!-- Interstitial page for non-PDF non-HTML galleys -->
+	<message key="paper.nonpdf.title">Descarga de trabajo</message>
+	<message key="paper.nonpdf.note"><![CDATA[El archivo que ha seleccionado debería descargarse automáticamente. Si no lo hace, pulse en el siguiente enlace. Tenga en cuenta que este archivo puede necesitar un visor o plugin especial para su visualización.<br /><br />Si el archivo no se descarga automáticamente, <a href="{$url}">pulse aquí</a>.]]></message>
+
+	<!-- Site index -->
+	<message key="site.conferencesHosted">Eventos albergados en esta web</message>
+	<message key="site.conferenceView">Ver evento</message>
+	<message key="site.conferenceAccount">Cuentas del usuario</message>
+	<message key="site.schedConfView">Ver los detalles del evento</message>
+	<message key="site.schedConfCurrent">Calendario actual de eventos</message>
+
+	<!-- Conference page -->
+	<message key="conference.currentConferences">Eventos programados</message>
+	<message key="conference.noCurrentConferences">No existen eventos activos actualmente. Por favor compruebe los archivos de  anteriores eventos programados.</message>
+	<message key="conference.archive">Archivos del evento</message>
+
+	<!-- Scheduled Conference page -->
+	<message key="schedConf.proposalSubmission">Propuesta de envío</message>
+
+	<!-- Call-for-Papers (CFP) page -->
+	<message key="schedConf.cfp.submitHere">Aquí empieza el envío al evento o conferencia.</message>
+
+	<!-- Conference Proceedings -->
+	<message key="presentations.notPermitted">Usted todavía no tiene acceso a las presentaciones del evento.</message>
+	<message key="presentations.trackEmpty">No existen trabajos disponibles.</message>
+	<message key="presentations.schedConfEmpty">Las presentaciones de esta conferencia todavía no están disponibles o no se ajustan a las existentes.</message>
+	
+	<!-- Program page -->
+	<message key="schedConf.program.programFileInstructions">El programa de este evento se enuentra disponible a través del siguiente enlace.</message>
+	<message key="schedConf.program.viewProgramFile">Ver el programa</message>
+	
+	<!-- About The Conference -->
+	<message key="about.statistics">Estadísticas</message>
+	<message key="about.conferenceContact">Contacto</message>
+	<message key="about.aboutTheConference">Acerca del evento</message>
+	<message key="about.organizingTeam">Organización</message>
+	<message key="about.editorialPolicies">Políticas editoriales</message>
+	<message key="about.submissions">Envíos</message>
+	<message key="about.sponsors">Patrocinadores</message>
+	<message key="about.contributors">Acerca de los colaboradores</message>
+	<message key="about.onlineSubmissions">Envíos online</message>
+	<message key="about.onlineSubmissions.haveAccount">Usted ya tiene un nombre de Usuario/Contraseña{$conferenceTitle}?</message>
+	<message key="about.onlineSubmissions.login">Vaya a la página de acceso</message>
+	<message key="about.onlineSubmissions.needAccount">¿Necesita un nombre de Usuario/Password?</message>
+	<message key="about.onlineSubmissions.registration">Vaya a la página de registro</message>
+	<message key="about.onlineSubmissions.registrationRequired">Se necesita estar registrado y clave de acceso para el envío online de trabajos y poder consultar el estado de los mismos.</message>
+	<message key="about.presenterGuidelines">Instrucciones para autores</message>
+	<message key="about.submissionPreparationChecklist">Lista de requisitos para los envíos online </message>
+	<message key="about.copyrightNotice">Términos sobre el Copyright</message>
+	<message key="about.privacyStatement">Declaración de privacidad</message>
+	<message key="about.peerReviewProcess">Proceso de Peer Review</message>
+	<message key="about.openAccessPolicy">Política Open Access</message>
+	<message key="about.archiveAccessPolicy">Política sobre el acceso a los archivos</message>
+	<message key="about.delayedOpenAccess">Open Access pospuesto </message>
+	<message key="about.delayedOpenAccessDescription1">Los contenidos de esta conferencia estarán disponibles en acceso abierto</message>
+	<message key="about.delayedOpenAccessDescription2">meses después de que los contenidos de la conferencia se distribuyan entre los participantes.</message>
+	<message key="about.presenterSelfArchive">Auto-archivo del autor</message>
+	<message key="about.archiving">Archivo</message>
+	<message key="about.registration">Inscripción</message>
+	<message key="about.registrationContact">Contacto para la inscripción</message>
+	<message key="about.availableRegistrationTypes">Tipo de Inscripción</message>
+	<message key="about.aboutThisPublishingSystem">Acerca de este sistema</message>
+	<message key="about.currentConferences">Eventos actuales</message>
+	<message key="about.aboutOCSConference"><![CDATA[Esta conferencia utiliza Open Conference Systems {$ocsVersion}, que es un software open source para la gestión online de Conferencias/Congresos/Conferencias creado, mantenido y distribuido gratuitamente por  <a href="http://pkp.sfu.ca/">Public Knowledge Project</a> con  licencia GNU (General Public License).]]></message>
+	<message key="about.aboutOCSSite"><![CDATA[Este sitio web utiliza Open Conference Systems {$ocsVersion}, que es un software open source para la gestión online de Conferencias/Congresos/Conferencias creado, mantenido y distribuido gratuitamente por  <a href="http://pkp.sfu.ca/">Public Knowledge Project</a> con  licencia GNU (General Public License).]]></message>
+
+	<!-- Announcement -->
+
+	<!-- Help -->
+	<message key="help.ocsHelp">Ayuda del Open Conference Systems</message>
+	<message key="help.ocsHelpAbbrev">Ayuda del OCS</message>
+
+	<!-- Installer -->
+	<message key="installer.ocsInstallation">Instalación de OCS</message>
+	<message key="installer.ocsUpgrade">Actualización de OCS</message>
+	<message key="installer.installationInstructions"><![CDATA[<h4>OCS Version {$version}</h4>
+
+<p>Gracias por descargarse el <strong>Open Conference Systems</strong> que forma parte del Public Knowledge Project. Antes de iniciar la instalación, por favor lea el contenido del archivo <a href="{$baseUrl}/docs/README">README</a> incluido en el paquete de software. Para mayor información sobre el Public Knowledge Project y sus otros proyectos de desarrollo de software, por favor visite la página web del <a href="http://pkp.sfu.ca/" target="_blank">PKP</a>. Si tiene alguna duda sobre el Open Conference Systems, diríjase al <a href="http://pkp.sfu.ca/support/forum">foro de discusión</a> o visite la web PKP's online <a href="http://pkp.sfu.ca/bugzilla/" target="_blank">incidencias del sistema</a>. A pesar de que el foro es lugar recomendado para las consultas, también puede dirigirse al equipo desarrollador <a href="mailto:pkp-support@sfu.ca">pkp-support@sfu.ca</a>.</p>
+
+<h4>Actualización</h4>
+
+<p>Si está actualizando alguna versión de la instalación OCS 2.x, <a href="{$upgradeUrl}">pulse aquí</a> y siga los pasos que se indican.</p>
+
+<h4>Requisitos del sistema</h4>
+
+<ul>
+	<li><a href="http://www.php.net/" target="_blank">PHP</a> >= 4.2.x (incluido PHP 5.x)</li>
+	<li><a href="http://www.mysql.com/" target="_blank">MySQL</a> >= 3.23.23 (incluido MySQL 4.x) o <a href="http://www.postgresql.org/" target="_blank">PostgreSQL</a> >= 7.1 (incluido PostgreSQL 8.x)</li>
+	<li><a href="http://httpd.apache.org/" target="_blank">Apache</a> >= 1.3.2x o >= 2.0.4x o Microsoft IIS 6</li>
+	<li>Sistema operativo: cualquiera que soporte el software anterior, incluyendo <a href="http://www.linux.org/" target="_blank">Linux</a>, <a href="http://www.bsd.org/" target="_blank">BSD</a>, <a href="http://www.sun.com/" target="_blank">Solaris</a>, <a href="http://www.apple.com/" target="_blank">Mac OS X</a>, <a href="http://www.microsoft.com/">Windows</a></li>
+</ul>
+
+<p>PKP no dispone de los recursos para probar las posibles combinaciones de versiones de software y las diversas plataformas, por ello no puede garantizar su correcto funcionamiento o su mantenimiento.</p>
+
+<p>Los cambios de la configuración pueden hacerse después de la instalación editando el archivo <tt>config.inc.php</tt> en el directorio base del OCS, o a través de la interfaz web del administrador.</p>
+
+<h4>Bases de datos que pueden utilizarse</h4>
+
+<p>OCS se ha probado hasta ahora con MySQL y PostgreSQL, aunque otros sistemas de gestión de bases de datos como <a href="http://php.weblogs.com/adodb/" target="_blank">ADOdb</a> pueden funcionar (total o parcialmente). Si lo desea puede enviar documentos que hablen de la compatibilidad con otros sistemas, o el código fuente de parches que la permitan, al equipo desarrollador del OCS.</p>
+
+<h4>Pasos para la Pre-Instalación</h4>
+
+<p>1. Los siguientes archivos y directorios (y sus contenidos) deben tener permisos de escritura:</p>
+<ul>
+	<li><tt>config.inc.php</tt> permiso de escritura (opcional): {$writable_config}</li>
+	<li><tt>public/</tt> permiso de escritura: {$writable_public}</li>
+	<li><tt>cache/</tt> permiso de escritura {$writable_cache}</li>
+	<li><tt>cache/t_cache/</tt> permiso de escritura: {$writable_templates_cache}</li>
+	<li><tt>cache/t_compile/</tt> permiso de escritura: {$writable_templates_compile}</li>
+	<li><tt>cache/_db</tt> permiso de escritura: {$writable_db_cache}</li>
+</ul>
+
+<p>2. Debe crearse un directorio con permisos de escritura para almacenar los archivos de los trabajos (ver "Configuración de Archivos" más abajo).</p>
+
+<h4>Manual de instalación</h4>
+
+<p>Seleccione <strong>Manual de Instalación</strong> para mostrar los pasos necesarios en SQL para crear el esquema de la base de datos del OCS y los valores iniciales para que la instalación de la base de datos  pueda hacerse manualmente. Esta opción es útil cuando se producen problemas durante la instalación, particularmente con plataformas que no la admiten. Tenga en cuenta que este método de instalación no creará la base de datos o ninguna otra tabla, aunque en el archivo de configuración todavía podrán escribirse las opciones indicadas para  la base de  base de datos.</p>]]></message>
+	<message key="installer.upgradeInstructions"><![CDATA[<h4>OCS Version {$version}</h4>
+<p>Gracias por descargarse el  <strong>Open Conference Systems</strong> del Public Knowledge Project's. Antes de iniciar la instalación, por favor lea el archivo <a href="{$baseUrl}/docs/README">README</a> y <a href="{$baseUrl}/docs/UPGRADE">UPGRADE</a> incluidos en este paquete de software. Para mas información acerca del Public Knowledge Project y sus proyectos de software, por favor visite la web del <a href="http://pkp.sfu.ca/" target="_blank">PKP</a>. Si tiene alguna duda sobre el Open Conference Systems, diríjase al <a href="http://pkp.sfu.ca/support/forum">foro de discusión</a> o visite la web PKP's online <a href="http://pkp.sfu.ca/bugzilla/" target="_blank">incidencias del sistema</a>. A pesar de que el foro es el lugar recomendado para las consultas, también puede dirigirse al equipo desarrollador <a href="mailto:pkp-support@sfu.ca">pkp-support@sfu.ca</a>.</p>
+<p>Es <strong>altamente recomendable</strong> que haga una copia de seguridad de su base de datos, de los directorios, y del directorio de instalación del OCS antes de comenzar.</p>
+<p>Si utiliza <a href="http://www.php.net/features.safe-mode" target="_blank">PHP en modo seguro</a>, por favor asegúrese  de que la opción  max_execution_time directive en la configuración de su archivo php.ini esté nivel alto (high limit). Si se alcanza ésta u otro límite de tiempo (p.e. Apache's "Timeout" directive) y se interrumpe el proceso de actualización, habrá que intervenir manualmente el sistema.</p>]]></message>
+	<message key="installer.localeSettingsInstructions"><![CDATA[Para usar completamente Unicode (UTF-8), seleccione UTF-8 para todas las opciones de código de caracteres. Para esta opción se requiere una versión de MySQL >= 4.1.1 o PostgreSQL >= 7.1. tenga en cuenta también que para utilizar completamente Unicode se necesita PHP >= 4.3.0 compilado para soportar <a href="http://www.php.net/mbstring" target="_blank">mbstring</a> library (habilitado por defecto en las versiones más recientes de PHP). Usted puede tener problemas con sistemas de caracteres extendidos si su servidor no cumple  con estos requisitos.<br /><br />
+Su servidor actualmente soporta mbstring: <strong>{$supportsMBString}</strong>]]></message>
+	<message key="installer.localeInstructions">El idioma de uso de este sistema. Por favor consulte la documentación de OCS  si esta interesado en la traducción de otros idiomas que no se mencionan aquí.</message>
+	<message key="installer.additionalLocalesInstructions">Seleccione otros idomas para este sistema. Estos idomas estarán disponibles para el uso de eventos albergados en este sitio. Pueden instalarse otros idomas desde la interfaz del administrador.</message>
+	<message key="installer.filesDirInstructions"><![CDATA[Introduzca la ruta completa del directorio existente para guardar los archivos cargados. este directorio no debería ser accesible directamente a través  de la web. <strong>Por favor, asegúrese de que este directorio existe y tiene permiso de escritura antes de la instalación.</strong> Los nombres de los directorios de las rutas en Windows deben utilizar barras, p.e.. "C:/myconference/files".]]></message>
+	<message key="installer.databaseSettingsInstructions">OCS requiere access a la base de datos  SQL para almacenar sus datos. Consulte los la lista de tipos de bases de datos que pueden emplearse. En los campos que vienen a continuaci�n, debe indicar las opciones para to conectar a la base de datos.</message>
+	<message key="installer.installOCS">Instalar Open Conference System</message>
+	<message key="installer.upgradeOCS">Actualizar Open Conference System</message>
+	<message key="installer.reinstallAfterDatabaseError"><![CDATA[<strong>Atención:</strong> Si la instalación falla durante la instalación de la base de datos, necesitará retirar la base de datos del OCS o las tablas de la base antes de reinstalarla.]]></message>
+	<message key="installer.overwriteConfigFileInstructions"><![CDATA[<h4>¡IMPORTANTE!</h4>
+<p>El instalador no pudo sobrescribir automáticamente el archivo de configuración. Antes de usar el sistema, por favor abra el archivo <tt>config.inc.php</tt> con un editor de texto y reemplace su contenido con el del texto mencionado más abajo.</p>]]></message>
+	<message key="installer.manualSQLInstructions"><![CDATA[<h4>Manual de Instalación</h4>
+<p>Las órdenes SQL para crear el esquema de la base de datos del  OCS y los datos iniciales se dan más abajo. Tenga en cuenta que el sistema no podrá usarse hasta que esas órdenes no se hayan ejecutado manualmente. También tendrá que configurar manualmente <tt>config.inc.php</tt> el archivo de configuración.</p>]]></message>
+	<message key="installer.installationComplete"><![CDATA[<p>La instalación del OCS se ha realizado con éxito.</p>
+<p>Puede empezar a utilizar el sistema, <a href="{$loginUrl}">login</a> con el nombre de usuario y contraseña introducidos en la página anterior.</p>
+<p>Si desea recibir noticias y actualizaciones, <strong>por favor, regístrese en <a href="http://pkp.sfu.ca/ocs/register" target="_new">http://pkp.sfu.ca/ocs/register</a>.</strong> Si tiene alguna pregunta o comentarios, por favor vaya al <a href="http://pkp.sfu.ca/support/forum" target="_new">foro de discusión</a>.</p>]]></message>
+	<message key="installer.upgradeComplete"><![CDATA[<p>La actualización del OCS a la versión {$version} se ha completado satisfactoriamente.</p>
+<p>No olvide poner la opción "installed" del archivo de configuración config.inc.php en <em>On</em>.</p>
+<p>Si todavía no se ha isncrito y desea recibir noticias y actualizaciones, <strong>por favor regístrese en <a href="http://pkp.sfu.ca/ocs/register" target="_new">http://pkp.sfu.ca/ocs/register</a>.</strong> Si tienen alguna pregunta o comentario, por favor consulte  <a href="http://pkp.sfu.ca/support/forum" target="_new">el foro de apoyo técnico</a>.</p>]]></message>
+
+
+	<!-- Paper Logs -->
+	<message key="log.default.abstractPeriodExpired">La ventana para el envío de resúmenes de trabajos incompletos {$paperId} ha expirado. El trabajo se ha retirado.</message>
+	<message key="log.default.paperPeriodExpired">La ventana para el envío de trabajos incompletos {$paperId} ha expirado. El trabajo se ha retirado.</message>
+	<message key="log.presenter.abstractSubmitted">{$presenterName} ha enviado un resumen, ID {$submissionId}.</message>
+	<message key="log.presenter.presentationSubmitted">{$presenterName} ha depositado una presentación, ID {$submissionId}.</message>
+	<message key="log.presenter.documentRevised">{$presenterName} ha revisado el trabajo {$paperId}. El nuevo ID del archivo es {$fileId}.</message>
+	<message key="log.review.reviewerAssigned">{$reviewerName} se ha asignado {$paperId} para revisión {$stage}.</message>
+	<message key="log.review.reviewerUnassigned">{$reviewerName} no se ha asignado {$paperId} para revisión {$stage}.</message>
+	<message key="log.review.reviewInitiated">La paso {$stage} de revisión {$reviewerName} del envío {$paperId} ha comenzado.</message>
+	<message key="log.review.reviewReinitiated">La paso  {$stage} de revisión por{$reviewerName} del envío {$paperId} se ha reiniciado.</message>
+	<message key="log.review.reviewCancelled">La paso {$stage} de revisión  por {$reviewerName} del envío  {$paperId} se ha cancelado.</message>
+	<message key="log.review.reviewCleared">La paso {$stage} de revisión por {$reviewerName} del envío {$paperId} ha finalizado.</message>
+	<message key="log.review.reviewerRated">{$reviewerName} ha aceptado para el paso {$stage} la revisión del envío {$paperId}.</message>
+	<message key="log.review.reviewDueDateSet">La fecha para el paso {$stage} de revisión del trabajo {$paperId} por {$reviewerName} se ha puesto en  {$dueDate}.</message>
+	<message key="log.review.reviewRecommendationSet">La recomendación para {$stage} la revisión del trabajo {$paperId} realizada por {$reviewerName} está hecha.</message>
+	<message key="log.review.reviewRecommendationSetByProxy">La recomendación hecha de {$stage} la revisión del trabajo {$paperId} se ha enviado al director, {$directorName}, de parte del revisor, {$reviewerName}.</message>
+	<message key="log.review.resubmit">El trabajo {$paperId} se ha enviado de nuevo para revisión.</message>
+	<message key="log.review.reviewDeclined">{$reviewerName} ha declinado la invitación {$stage} a revisar el trabajo {$paperId}.</message>
+	<message key="log.review.reviewAccepted">{$reviewerName} ha  aceptado {$stage} la revisión del trabajo {$paperId}.</message>
+	<message key="log.review.reviewAcceptedByProxy">{$userName} ha aceptado {$stage} la revisión del trabajo {$paperId} en nombre de {$reviewerName}.</message>
+	<message key="log.review.reviewFileByProxy">El Director, {$userName}, ha depositado el archivo de revisión {$stage} del trabajo {$paperId} en nombre del revisor, {$reviewerName}.</message>
+	<message key="log.review.reviewerFile">Se ha depositado un archivo de un revisor.</message>
+	<message key="log.director.decision">La decisión sobre la publicación ({$decision}) del trabajo {$paperId} la registró {$directorName}.</message>
+	<message key="log.director.publish">El trabajo se ha publicado.</message>
+
+	<message key="log.director.metadataModified">Los metadatos de este trabajo los ha modificado {$directorName}.</message>
+	<message key="log.director.directorFile">Se ha depositado una versión del director correspondiente a su trabajo.</message>
+	<message key="log.director.archived">El trabajo {$paperId} se ha archivado.</message>
+	<message key="log.director.restored">El trabajo {$paperId} está de nuevo en cola.</message>
+	<message key="log.director.directorAssigned">{$directorName} se ha asignado como director del envío {$paperId}.</message>
+	<message key="log.director.submissionExpedited">{$directorName} ha  enviado la versión editada del trabajo {$paperId}.</message>
+	<message key="log.layout.layoutFileSet">{$directorName} ha  formateado el trabajo {$paperId}.</message>
+
+	<!-- Conference log entries -->
+	<message key="log.deadline.submissionDeadlinePassed">La fecha de envíos de trabajos ha expirado.</message>
+	<message key="log.deadline.presentationsReleasedToParticipants">Las presentaciones están disponibles para los participantes.</message>
+	<message key="log.deadline.presentationsReleasedToPublic">Las presentaciones se han abierto al público en general.</message>
+		
+	<message key="log.timeline.publicationStateChanged">El estado de la publicación ha pasado de {$oldPublicationState} a {$newPublicationState}.</message>
+	<message key="log.timeline.submissionStateChanged">El estado del envío ha pasado de {$oldSubmissionState} a {$newSubmissionState}.</message>
+	<message key="log.timeline.startDateChanged">La conferencia ha cambiado la fecha de inicio de {$oldStartDate} a {$newStartDate}.</message>
+	<message key="log.timeline.endDateChanged">La fecha de finalización de la conferencia ha cambiado de {$oldEndDate} a {$newEndDate}.</message>
+	<message key="log.timeline.regReviewerOpenDateChanged">La fecha de inscripción ha cambiado de {$oldRegReviewerOpenDate} a {$newRegReviewerOpenDate}.</message>
+	<message key="log.timeline.regReviewerCloseDateChanged">la fecha de cierre de inscripción ha cambiado de {$oldRegReviewerCloseDate} a {$newRegReviewerCloseDate}.</message>
+	<message key="log.timeline.regPresenterOpenDateChanged">La fecha de inicio de inscripción para los autores ha cambiado de {$oldRegPresenterOpenDate} a {$newRegPresenterOpenDate}.</message>
+	<message key="log.timeline.regPresenterCloseDateChanged">La fecha de cierre de inscripción de los autores ha cambiado de {$oldRegPresenterCloseDate} a {$newRegPresenterCloseDate}.</message>
+	<message key="log.timeline.showCFPDateChanged">La fecha del "call for papers" ha cambiado de {$oldShowCFPDate} a {$newShowCFPDate}.</message>
+	<message key="log.timeline.submissionsOpenDateChanged">La fecha de envío de trabajos ha cambiado de {$oldSubmissionsOpenDate} a {$newSubmissionsOpenDate}</message>
+	<message key="log.timeline.submissionsCloseDateChanged">La fecha de envío de trabajos ha cambiado de {$oldSubmissionsCloseDate} a {$newSubmissionsCloseDate}</message>
+	<message key="log.timeline.postAbstractsDateChanged">La fecha de envío de resúmenes ha cambiado de {$oldPostAbstractsDate} a {$newPostAbstractsDate}.</message>
+	<message key="log.timeline.postAbstractsChanged">La publicación de resúmenes ha cambiado de {$oldPostAbstracts} a {$newPostAbstracts}.</message>
+	<message key="log.timeline.postPapersDateChanged">La fecha de publicación de trabajos ha cambiado de  {$oldPostPapersDate} a {$newPostPapersDate}.</message>
+	<message key="log.timeline.postPapersChanged">Los trabajos publicados han variado de  {$oldPostPapers} a {$newPostPapers}.</message>
+	<message key="log.timeline.delayOpenAccessDateChanged">La fecha para open access ha cambiado de {$oldDelayOpenAccessDate} a {$newDelayOpenAccessDate}.</message>
+	<message key="log.timeline.delayOpenAccessChanged">El embargo de los trabajos hasta su acceso abierto ha cambiado de {$oldDelayOpenAccess} a {$newDelayOpenAccess}.</message>
+	<message key="log.timeline.closeCommentsDateChanged">La fecha de finalización de comentarios ha cambiado de {$oldCloseCommentsDate} a {$newCloseCommentsDate}.</message>
+	<message key="log.timeline.closeCommentsChanged">El cierre de comentarios ha cambiado de {$oldCloseComments} a {$newCloseComments}.</message>
+	
+	<!-- Reading Tools entries -->
+
+
+	<!-- RT Settings -->
+	<message key="rt.admin.settings">Configuración de las lecturas recomendadas</message>
+
+	<message key="rt.admin.rtEnable">Para activar las Herramientas de Lectura, seleccione las opciones y elija el campo para los artículos relacionados, pulse Configuración.</message>
+	<message key="rt.admin.settings.description">Las Herramientas de Lectura aparecen en un marco junto a los artículos publicados en las secciones de la conferencia que se han indizado. Las Herramientas de Lectura consisten en una serie de herramientas opcionales relacionadas con los artículos publicados, listadas abajo, y una serie de herramientas que permiten el accesso a los artículos, organizados por área y disciplina.</message>
+	<message key="rt.admin.settings.enableReadingTools">Activar Herramientas de Lectura para determinadas secciones de la conferencia.</message>
+	<message key="rt.admin.settings.relatedItems">Artículos relacionados con esta disciplina</message>
+
+	<message key="rt.admin.options">Herramientas opcionales</message>
+
+	<message key="rt.admin.settings.bibFormat">Formato de la bibliografía</message>
+	<message key="rt.admin.settings.presenterBio">Acerca del autor (Muestra una breve descripción proporcionada por el autor de su curriculum).</message>
+	<message key="rt.admin.settings.addComment">Añadir comentario (permite a los lectores enviar comentarios, que el Director puede borrar. Esta opción debe activarse en el paso 2 de la Configuración "Comentarios de Lectores").</message>
+	<message key="rt.admin.settings.emailPresenter">Email del autor (lleva a una plantilla de correo con el mail del autor).</message>
+
+	<!-- RT Versions -->
+
+	<!-- RT Contexts -->
+
+	<!-- RT Searches -->
+
+	<message key="rt.admin.validateUrls.description"><![CDATA[Es probable que más abajo se muestren URL no válidas para los sitios de búsqueda.<br/>
+Debe comprobar manualmente que el URL señalado no es válido, ya la exactitud de este test no lo es al 100%.<br/>
+La validacion de URLs  puede fallar si requieren el envío de datos.]]></message>
+
+	<!-- RT Entities -->
+
+
+
+	<message key="rt.presenterBio">Acerca del autor</message>
+
+	<message key="rt.metadata.dublinCore.primaryPresenter">Creador</message>
+
+	<message key="rt.metadata.pkp.primaryPresenter">Nombre del autor, institución, país</message>
+	<message key="rt.metadata.pkp.peerReviewed">Trabajo revisado (Peer-reviewed)</message>
+
+
+	<message key="rt.captureCite.available">Disponible:</message>
+	<message key="rt.captureCite.capture">Descargar la referencia</message>
+	<message key="rt.captureCite.acaoLocation">Norte América</message>
+	<message key="rt.captureCite.capture.endNote"><![CDATA[<a href="]]>{$url}<![CDATA[">EndNote</a> - Formato EndNote  (Macintosh &amp; Windows)]]></message>
+	<message key="rt.captureCite.capture.referenceManager"><![CDATA[<a href="]]>{$url}<![CDATA[">Reference Manager</a> - Formato RIS (Solo para Windows)]]></message>
+	<message key="rt.captureCite.capture.proCite"><![CDATA[<a href="]]>{$url}<![CDATA[">ProCite</a> - Foramto RIS (Macintosh &amp; Windows)]]></message>
+
+	<message key="rt.emailPresenter">Enviar un email al autor</message>
+	<message key="rt.beNotifiedWhen">Notificar cuando...</message>
+
+	<message key="rt.thisConference">Buscar evento</message>
+
+	<message key="rt.comments.commentsClosed">† Los comentarios se cerraron en {$closeCommentsDate}</message>
+
+	<message key="rt.context.authorTermsDescription">Para los artículos con más de un autor, deje todos los nombres a buscar por similaridad con el trabajo compartido, o busque uno por uno seleccionando un solo nombre. Para saber más sobre las fuentes encontradas, seleccione ACERCA DE. La documentación se ha seleccionado por su relevancia y por su acceso abierto (libre) a  todo o parte de sus contenidos.</message>
+
+
+	<!--
+	 *
+	 * MISC - Entries that do not belong in the other sections.
+	 *
+	-->
+	<!-- Icons: Default "alt" text -->
+	<message key="icon.small.alt">Pequeño</message>
+	<message key="icon.medium.alt">Mediano</message>
+	<message key="icon.large.alt">Grande</message>
+
+	<!-- Debug messages -->
+
+	<!--
+	 *
+	 * DEFAULT - Default settings for setup items.
+	 *
+	-->
+	<message key="default.conferenceSettings.copyrightNotice"><![CDATA[Los autores que envíen algún trabajo a la conferencia están de acuerdo con los siguientes términos:<br/>
+<strong>a)</strong>&nbsp; Los autores retienen el copyright de sus trabajos,  y autorizar a la organización de la conferencia  a  que sus trabajos se publiquen con la licencia <a href="http://creativecommons.org/licenses/by/3.0/">Creative Commons de Reconocimiento</a>, que permite a terceros el libre acceso a los archivos, usar y compartir los trabajos, con el reconocimiento de la autoría y como primer punto de referencia de su presentación,  esta conferencia.<br/>
+<strong>b)</strong>&nbsp;Los autores renuncian  a los términos de la licencia CC y en un texto aparte, señalan los términos del acuerdo para la distribución no exclusiva y ulterior publicación de este trabajo (p.e., publicar en una versión revisada en una revista, depositarlo en un repositorio institucional o publicarlo en un libro), con el reconocimiento, como primer punto de referencia de su presentación, esta conferencia.<br/>
+<strong>c)</strong>&nbsp; Adicionalmente, se recomienda a los autores, a depositar y compartir sus trabajos a través de la web (p.e., en repositorios institucionales o en sus páginas web) bien antes o después de la conferencia.]]></message>
+
+	<message key="default.schedConfSettings.checklist.notPreviouslyPublished">El trabajo enviado ni se ha publicado previamente, ni se ha enviado a otro congreso para su evaluación (o se hace una aclaración en el apartado comentarios al Director).</message>
+	<message key="default.schedConfSettings.checklist.fileFormat">El archivo enviado esta en formato Microsoft Word, RTF, or WordPerfect.</message>
+	<message key="default.schedConfSettings.checklist.addressesLinked"><![CDATA[todas las direcciones URL del texto (p.e., <a href="http://pkp.sfu.ca">http://pkp.sfu.ca</a>) están activas y listas para utilizar.]]></message>
+	<message key="default.schedConfSettings.checklist.submissionAppearance">El texto debe enviarse con interlineado sencillo, con un tamaño de letra de 12 puntos; utilice cursiva, en lugar de subrayado (excepto con direcciones URL); todas las imágenes, figuras y tablas se insertan en el texto en el lugar adecuado, en lugar de ponerlas todas al final.</message>
+	<message key="default.schedConfSettings.checklist.anonymous">Cuando se envía a evaluar, los nombres de los autores y el año se eliminan, se utilizará "Autor"  y año usado en la bibliografía y notas a pie de página, en lugar de los nombres de los autores, título del trabajo, etc.</message>
+	<message key="default.schedConfSettings.checklist.personalInformationRemoved">Cuando se envía a revisión, todos los archivos de Microsoft Office (incluyendo los archivos adicionales) se guardan yendo al menú Archivos y seleccionando "Guardar como"; pulsando herramientas (u opciones en Mac); Pulsando Seguridad; seleccionando "Sustraer información personal de las propiedades del archivo mientras se guarda"; pulsando Guardar.</message>
+	<message key="default.conferenceSettings.privacyStatement">Los nombres y direcciones de correo introducidos se usarán exclusivamente con los fines de esta Conferencia y  no se facilitarán a terceros.</message>
+	<message key="default.conferenceSettings.presenterSelfArchivePolicy">Los autores están autorizados a depositar sus trabajos en páginas personales o repositorios institucionales antes y después de esta Conferencia (mientras se facilite la referencia bibliográfica).</message>
+	<message key="default.conferenceSettings.emailSignature"><![CDATA[________________________________________________________________________
+{$conferenceName}
+{$conferenceUrl}
+]]></message>
+	<message key="default.conferenceSettings.forReaders"><![CDATA[Recomendamos a los lectores que acepten el servicio de alerta de  los trabajos que se depositan en esa conferencia. Recomendamos que lea <a href="{$aboutUrl}">Acerca del Congreso"</a> la página sobre las políticas de la conferencia, y visite la <a href="{$conferenceUrl}">Página de Inicio</a> para ver las conferencias que se aproximan.]]></message>
+	<message key="default.conferenceSettings.forPresenters"><![CDATA[¿Está interesado en hacer un envío a esta conferencia? Recomendamos que lea <a href="{$aboutUrl}">Acerca del Congreso"</a> la página sobre las políticas de la conferencia, y viste la <a href="{$conferenceUrl}">Página de Inicio</a> para ver las conferencias que se aproximan.]]></message>
+	<message key="default.conferenceSettings.lockssLicense"><![CDATA[Esta conferencia uliliza el sistema LOCKSS para crear un sistema de archivos distribuidos entre las bibliotecas participantes, y permite a esas bibliotecas crear archivos permanentes de la conferencia con fines de preservación y restablecimiento. <a href="http://lockss.stanford.edu/">Más....</a>]]></message>
+
+	<message key="default.schedConfSettings.emailSignature"><![CDATA[________________________________________________________________________
+{$conferenceName} {$schedConfName}
+{$schedConfUrl}
+]]></message>
+	<message key="default.schedConfSettings.checklist.bibliographicRequirements"><![CDATA[El texto debe tener el formato y estilo de referencias bibliográficas descrito en <a href="{$presenterGuidelinesUrl}">Instrucciones para Autores</a>, que se encuentran un el menú "Acerca de esta Conferencia".]]></message>
+	<message key="default.schedConfSettings.forReaders"><![CDATA[Recomendamos que los lectores opten por el envío de notificación del envío de  nuevos trabajos a esta conferencia. Utilice el enlace<a href="{$accountUrl}">Cuenta</a> situado en la parte superior de la página de inicio de al conferencia. Esto permite a la conferencia una colaboración a nivel de usuarios-lectores. Consulte la <a href="{$privacyStatementUrl}"> Declaración de Privacidad</a> de la conferencia, que asegura que la identidad de los y su email no se usarán con otros fines.]]></message>
+	<message key="default.schedConfSettings.forPresenters"><![CDATA[¿está interesado en enviar un trabajo a esta conferencia? le recomendamos que consulte en <a href="{$aboutUrl}">Acerca de esta Conferencia</a> para conocer las políticas de la misma, así como las <a href="{$presenterGuidelinesUrl}">Instrucciones para Autores</a>. Los autores necesitan <a href="{$accountUrl}">crear una cuenta</a> en la web de la conferencia antes de hacer el envío, y si ya disponían de ella, simplemente deben <a href="{$loginUrl}">acceder</a> al sistema e iniciar el envío.]]></message>
+
+</locale>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic SYSTEM "../../../topic.dtd">
+
+<!--
+  * 000002.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Conference Management - Current Conferences 
+  *
+  * $Id$
+  -->
+
+<topic id="conference/topic/000002" locale="es_AR" title="Congresos Actuales" toc="conference/toc/000000" subtoc="conference/toc/000002" key="conference.currentConferences.index">
+	<section>
+		<![CDATA[<p> Cuando un nuevo congreso es programado, esto aparece en la pagina de Gestion de Congresos bajo el encabezado de <strong>Congresos Actuales</strong>, junto con enlaces a todo item de configuracion disponible para tal congreso programado.
+		</p>]]>
+	</section>
+</topic>
+		

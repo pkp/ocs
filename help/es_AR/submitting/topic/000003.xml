@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic SYSTEM "../../../topic.dtd">
+
+<!--
+  * 000003.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Submission Process - Indexing and Metadata 
+  *
+  * $Id$
+  -->
+
+<topic id="submission/topic/000003" locale="es_AR" title="Indexacion y Metadatos" toc="submission/toc/000000" key="submission.indexingMetadata">
+	<section>
+		<![CDATA[<p> El sistema del congreso hace que el Autor participe en la indexacion de envios en el congreso. El sistema mismo tambien genera alguna indexacion o elementos de metadatos (como titulo del congreso, fecha, URL, etc.). Los metadatos, o datos acerca de datos, equivalen a una serie de terminos que describen el documento o datos, por lo que es comparable con el uso de terminos de indexacion, que hacen lo mismo. El Congreso usa un protocolo de Metadatos para indexar envios que han sido desarrollados y es mantenido por Open Archives Iniciative (OAT - Iniciativa de Archivos Abiertos), que esta involucrado, a su vez, con el Dublin Core Metadata Iniciative. The OAI Metadata Harvesting Protocol is the emerging standard for research, enabling OAI compliant search engines to create research indexes based on the resources from around the world. De todos modos, los contenidos del congreso tambien estan disponibles a traves de Google y otros motores de busqueda estandarizados y amplios.</p>
+		<p><em>Elementos de Metadatos.</em> El Dublin Core consiste en 15 elementos de metadatos que son usados para identificar y describir documentos. Los elementos incluyen terminos de indexacion tradicionales para identificar documentos, como Autor, Titulo, Descripcion (Resumen), Sujeto; y permite indexaciones mas detalladas al incluir elementos como Tipo, Cobertura, y Sponsor. El Gestor del Congreso y Director del Congreso han seleccionado cuales elementos de metadatos son apropiados por el congreso programado y se muestran ejemplo de cada uno, basado en el alcande del congreso y su foco, a fin de guiar Autores. Esto puede hacerse en el paso 2.4 de Configuracion del Gestion del Congreso.</p>
+		<p><em>Ventajas de Indexar.</em> Se alienta a los Autores a completar la indexacion de su envio en el paso dos del proceso de Envio, y tendran la oportunidad de revisar y repasar los metadatos como parte del proceso editorial. Los metadatos seran tambien revisados como parte de la edicion. Los metadatos por este congreso seran "harvesteados" por un numero de motores de busquedas dedicados a la investigacion, que crean, en efecto, un indice de busqueda o guia. Los trabajos bien indexados seran mucho mas faciles de encontrar por aquellos que los necesitan y se mas probables de ser citados. Mientras que hay limites en el numero de terminos de indexacion de un trabajo, los Autores son alentados a pensar como su trabajo es pòsicionado y encontrado en virtud de esta indexacion detallada.</p>
+		<p><em>Finalizando el paso de Indexacion y Metadatos.</em> Cuando se ingresa un resumen, HTML limitados pueden ser usados para alcanzar formatos mas complejos. Si el congreso programado solo esta aceptando resumenes, este sera el paso final del proceso de envio; de otro modo, deberas completar mas pasos. </p>]]>	
+	</section>
+</topic>

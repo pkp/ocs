@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic SYSTEM "../../../topic.dtd">
+
+<!--
+  * 000000.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * User Interface Index 
+  *
+  * $Id$
+  -->
+
+<topic id="user/topic/000000" locale="es_AR" title="Sitio Web del Congreso" toc="index/toc/000000" subtoc="user/toc/000000" key="user.index">
+	<section>
+		<![CDATA[<p>Los rasgos del usuario interfaz de OCS estan basados en los de OJS, los que a su vez son compartidos con otras publicaciones en linea. Otros sistemas de gestion de congresos pueden tener rasgos similares tambien, con el proposito comun de proveer un ambiente amigable de lectura en linea, y para mejorar la experiencia de lectura con investigacion y erudicion. </p>]]>	
+	</section>
+</topic>

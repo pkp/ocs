@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic SYSTEM "../../../topic.dtd">
+
+<!--
+  * 000045.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Conference Management - Current Conferences - Setup - Submissions
+  *
+  * $Id$
+  -->
+
+<topic id="conference/topic/000045" locale="es_AR" title="Envios" toc="conference/toc/000014"  key="conference.currentConferences.setup.submissions">
+	<section>
+		<![CDATA[<p>The second step to setting up a scheduled conference concerns all aspects of submission handling. This is broken into five main sections. </p>
+		
+		<p><em>Proceso de Envio:</em><br /> La primera seccion detalla que tipo de envios seran aceptados por el sistema, y como el sistema manejara las notificaciones. El Gestor del Congreso puede especificar si el proceso de envio aceptara solo resumenes; solo propuestas; resumenes y propuestas juntas; o resumenes seguidos de una propuesta, luego de que el resumen ha sido aceptado. El Gestor del Congreso puede habilitar diferentes tipos de envios, contra los que los presentadores deben presentar (si tanto las sesiones individuales como multiples son seleccionadas, el remitente tendra que elegir uno o el otro antes de proceder). El Gestor del Congreso tambien puede permitir el cargado de ficheros suplementarios; y puede decidir si el contacto principal del congreso y/o otro email recibiran un email de notificacion cada vez que un autor complete un envio.</p>
+		
+		<p> Por favor, note que si el Gestor del Congreso cambia el proceso de envio luego de que algunos envios ya han entrado, esos envios van a tener que terminar los flujos de edicion y revision de todos modos, de acuerdo al proceso de envio contra el cual enviaron. </p>
+
+		<p><em>Pedir por trabajos:</em><br /> El Gestor del Congreso puede ingresar aqui un mensaje de pedido de trabajos, usando HTML. Este mensaje aparecera en su propia pagina en la paginade inicio del congreso programado, y desde la barra lateral. </p>
+		
+		<p><em>Guias para el Autor:</em><br /> En orden de asegurar el formato apropiado asi como los estandars bibliograficos, el Gestor del Congreso puede ingresar una extensiva Guia para el Autor en HTML, la cual estara disponible desde la pagina de Acerca del Congreso. El Gestor del Congreso puede tambien crear y editar una Lista de Control de Preparacion de Envio (una lista de control de 7 puntos es provista por default); a los Autores les sera requerido aceptar cada punto en la lista de control antes de enviar al congreso programado.</p>
+		
+		<p><em>Indexando el envio:</em><br /> El Gestor del Congreso puede habilitar diferentes tipos de indexacion para envios; los Autores seran capaces de agregar ellos mismos informacion para indexar en los campos habilitados para envios, y los Directores podran ver y editar esa informacion una vez que el envio ha sido completado.</p>
+		
+		<p><em>Identificacion del Contenido del Congreso:</em><br /> Finalmente, el Gestor del Congreso puede permitir adjuntar identificadores unicos a las presentaciones y ficheros suplementarios. Esto tiene un numero de usos: si el congreso usa un sistema de registracion de item como DOT, pueden marcar items usando ese sistema.</p>]]>
+	</section>
+</topic>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic SYSTEM "../../../topic.dtd">
+
+<!--
+  * 000016.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Editorial Process - Author's Role - Submissions
+  *
+  * $Id$
+  -->
+
+<topic id="editorial/topic/000016" locale="es_AR" title="Envios" toc="editorial/toc/000004" key="editorial.authorsRole.submissions">
+	<section>
+		<![CDATA[<p> Una vez registrados, el Autor puede visitar su lista de Envios Activos chequeando su Pagina de Inicio de Usuario Autor. Si actualmente el congreso programado esta aceptando envios, el Autor vera un link para empezar el proceso de envio en la parte inferior de la pagina. El Autor puede tambien visitar un archivo de envios pasados haciendo click en el link de Archivo, denttro del titulo de Envios Activos.</p>
+		<p> Si el congreso esta, actualmente, aceptando envios, el Autor debe seguir un proceso de envio de multiples pasos, donde la cantidad de pasas depende de los requerimientos del congreso programado para considerar un envio completado.</p>
+		<p><em>Solo Resumen</em><br/> Si el congreso programado solo requiere un resumen, el proceso de envio puede tener dos pasos de largo. Para el primer paso, el Autor debera aceptar ciertos requerimientos, como una lista de chequeo establecida; un potencia aviso de copyright; y cosas similares. En el segundo paso el Autor debera proveer autoria e informacion indexada, asi como el titulo del envio y resumen.</p>
+		<p><em>Propuesta Completa</em><br /> Si el congreso programado requiere una propuesta completa, el proceso de envio sera muy parecido al de arriba, pero en vez de un resumen, el Autor debera cargar el documento completo en el sistema(por ejemplo, un archivo .doc, .wpd o .odt).</p>
+		<p><em>Resumen y propuesta juntos</em><br /> Si el congreso programado requiera tanto resumen como propuesta, el proceso de envio requerira los pasos de arriba antes de ser completado.</p>
+		<p><em>Resumen seguido de la Presentacion</em><br /> Si el congreso programado requiere primero un resumen, para luego seguir con la presentacion, el Autor incialmente solo tendra que enviar dicho resumen, junto a cierta informacion indexada. Si el resumen supera el proceso de revision inicial, el Autor sera invitado a enviar la presentacion completa, la cual tambien puede pasar por un proceso de revision.</p>
+		
+		<p> Existen muchas otras posibles configuraciones:</p>
+		<ul>
+			<li> El sistema puede permitir solo presentaciones individuales, o puede permitir que el/los Autor/es envien sesiones de multiples presentaciones, o ambas; </li>
+			<li> El sistema puede tambien permitir el cargado de archivos suplementarios, lo cual es opcional.</li>
+		</ul>
+		]]>	
+	</section>
+</topic>

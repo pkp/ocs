@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic SYSTEM "../../../topic.dtd">
+
+<!--
+  * 000013.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Editorial Process - Track Director's Role - Archives
+  *
+  * $Id$
+  -->
+
+<topic id="editorial/topic/000013" locale="es_AR" title="Archivos" toc="editorial/toc/000002" key="editorial.trackDirectorsRole.archives">
+	<section>
+		<![CDATA[<p> Los envios en la cola de Archivos han sido rechazados en algun punto del proceso de revision. Estos pueden ser rechazados en forma inmediata por la revision inicial del Director de Seccion, o pueden ser declinados despues de un proceso sustancial de revision por pares. Si un envio ha sido archivado por error, puede ser restaurado a un estado activo haciendo click en el titulo de envio en la cola de Archivos; cliclenado el la pagina de Resumen; y haciendo click en el link de Restaurar a Lista Activa.</p>]]>	
+	</section>
+</topic>

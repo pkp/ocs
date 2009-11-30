@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic SYSTEM "../../../topic.dtd">
+
+<!--
+  * 000017.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Conference Management - Current Conferences - Organizing Team
+  *
+  * $Id$
+  -->
+
+<topic id="conference/topic/000017" locale="es_AR" title="Equipo organizador" toc="conference/toc/000002"  key="conference.currentConferences.organizingTeam">
+	<section>
+		<![CDATA[<p> OCS muestra la lista de un equipo organizador en la pagina Acerca del Congreso; esta lista incluye los nombres  de los integrantes, que a su vez cuentan con un link a sus biografias y direcciones de email. El Gestor del Congreso puede controlar la forma en que el Congreso Programado exhibe su equipo organizador desde la pagina de Gestion del Sitio de Equipo Organizador del Congreso; a saber, si el equipo organizador es seleccionado de los roles asignados del sistema (Gestor del Congreso, Director, Director de Seccion, etc.) o si son elegidos a mano.</p>
+
+		<p> Si la primera opcion es seleccionada (crear equipo de los roles asignados), el Gestor del Congreso no tendra que hacer mas trabajo y el equipo sera poblado en forma automatica. Si la segunda opcion es elegida, el Gestor del Congreso debera definir los titulos del equipo organizador (Directores; Managars; etc.) y completado con los usarios del sistema de datos.</p>
+		
+		<p> Para cambiar de un metodo al otro, el Gestor del Congreso debera hacer click en el apropiado boton y luego tocar el boton de Grabar.]]>
+
+	</section>
+	<section title="Crear un titulo en el equipo organizador">
+
+		<![CDATA[<p> Haciendo click en el link de Crear titulo en el equipo organizador - ubicado en la parte inferior de la pagina -, esto permitira al Gestor del Congreso especificar un titulo en particular. Cuando el nuevo titulo ha sido llenado y el boton de "Salvar" ha sido apretado, el titulo aparecera en la lista de Titulos del Equipo Organizador.</p>]]>
+	</section>
+
+	<section title="Gestionando el equipo organizador">
+		<![CDATA[<p> Una vez que el titulo existe, el Gestor del Congreso puede agregar usuarios enrolados a el sencillamente clickeando el link de Membresia, y luego Agregar un miembro en las pagina de lista de Miembros. Usuarios multiples pueden ser asignados a un titulo; ellos tambien puede ser facilmente borrados y su orden de desplegamiento arreglado en la pagina de lista de miembros. Por favor, note que el usuario no tiene que estar enrolado en un rol administrativo para ser agregado a un titulo: esto puede ser especialmente util para un cartel de avisos, y asi.</p>
+		
+		<p> Los nombres de los titulos pueden ser editados clickendo el link de Editar al lado de su nombre, y pueden ser borrados haciendo click en el link de Borrar. Su orden de desplegamiento en Acerca del Congreso tambien puede ser arreglado usando las flechas de arriba y abajo.</p>
+		
+		<p> Los Gestores del Congreso tambien pueden enviar mails en masa a todos los miembros de un determinado titulo presionando el icono de email que se encuentra al lado del nombre del tituloe.</p>]]>
+
+	</section>
+</topic>

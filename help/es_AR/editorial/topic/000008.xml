@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic SYSTEM "../../../topic.dtd">
+
+<!--
+  * 000008.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Editorial Process - Director's Role - History Page
+  *
+  * $Id$
+  -->
+
+<topic id="editorial/topic/000008" locale="es_AR" title="Pagina de Historial" toc="editorial/toc/000001" key="editorial.directorsRole.historyPage">
+	<section>
+		<![CDATA[<p> Si el Gestor del Congreso ha habilitado el registro en el Paso 5 de Configuracion de Gestion del Sitio Web, la Pagina de Historial contendra un numero de eventos relevantes, asi como una seccion de notas del envio, donde el Director puede agregar notas privadas en lo concerniente al envio.</p>
+		<p> Los eventos incluyen un Registro de Eventos, que detalla acciones sucedidas desde el envio del autor para adelante; un Email de Registro, que lista todo email enviado de un usuario a otro relacionado con el envio, y sus contenidos; y Notas del Envio.</p>
+		<p> Todas las entradas registradas pueden ser vistas y analizadas individualmente, y cada evento puede ser borrado en cualquier momento.</p>
+		<p> Por favor note que borrar un evento solo afectara al evento para esa entrada en particular - no para todos los eventos sucedidos a lo largo de todo el congreso programado.</p>]]>	
+	</section>
+</topic>

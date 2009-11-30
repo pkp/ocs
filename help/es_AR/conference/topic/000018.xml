@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic SYSTEM "../../../topic.dtd">
+
+<!--
+  * 000018.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Conference Management - Current Conferences - Program
+  *
+  * $Id$
+  -->
+
+<topic id="conference/topic/000018" locale="es_AR" title="Programa" toc="conference/toc/000002"  key="conference.currentConferences.program">
+	<section>
+		<![CDATA[<p> El Gestor del Congreso puede subir un programa y especificar el titulo de hipervinculo, o pueden ingresar un programa de texto/HTML en un campo de texto. El programa estara disponible en la lista de Informacion del Congreso en la barra lateral.</p>]]>
+
+	</section>
+</topic>

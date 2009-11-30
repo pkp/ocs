@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic SYSTEM "../../../topic.dtd">
+
+<!--
+  * 000020.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Conference Management - Current Conferences - Stats & Reports
+  *
+  * $Id$
+  -->
+
+<topic id="conference/topic/000020" locale="es_AR" title="Estadisticas y reportes" toc="conference/toc/000002"  key="conference.currentConferences.statsReports">
+	<section>
+		<![CDATA[<p> La pagina de Estadisticas del Congreso programado sirve dos propositos: provee estadisticas y reportes para el Gestor del Congreso para mirar y en algunos casos exportar, asi como permite la seleccion de determinadas estadisticas para ser mostradas en la pagina de Acerca del Congreso.</p>]]>
+	</section>
+
+	<section title="Gestionando y viendo Estadisticas y Reportes">
+
+		<![CDATA[<p> El Gestor del Congreso debe primero seleccionar que secciones del Congreso usar para compilar estadisticas. Mas de una seccion puede ser seleccionada si mantenemos presionados el boton de Control mientras seleccionamos. Cuando el boton de Guardar es apretado, las estadisticas para las secciones elegidas seran mostradas en la lista ubicada debajo. Los años del calendarios pueden ser cambiados sencillamente apretando los botones de avanzar y retroceder en ambos lados de la fecha.</p>
+
+		<p> El Gestor del Congreso puede tambien exportar datos unicos del sistema. Los datos soportados incluyen un reporte de trabajos (listan todos los trabajos en el sistema); un reporte de registro (listando todos los congresos programados); y un reporte de revision (listando toda la informacion de revision de envios). Estos estan disponibles en formato valores separados por coma - CSV, por sus siglas en ingles -.</p>  ]]>
+	</section>
+	<section title="Publicar estadisticas para ser desplegadas">
+		<![CDATA[<p> El Gestor del Congreso puede seleccionar estadisticas para estar disponibles en la pagina de Acerca del Congreso, revisando el buzon al lado de las estadisticas deseadas y haciendo click en el boton de Guardar.</p>]]>
+	</section>
+</topic>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE toc SYSTEM "../../../toc.dtd">
+
+<!--
+  * 000004.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * table of contents for Editorial Process - Author's Role.
+  *
+  * $Id$
+  -->
+
+<toc id="editorial/toc/000004" locale="es_AR" title="Rol del Autor" parent_topic="editorial/topic/000004">
+	<topic id="editorial/topic/000016" title="Envios" />
+	<topic id="editorial/topic/000017" title="Revision" />
+	
+	<breadcrumb url="editorial/topic/000000" title="Proceso Editorial" />
+	<breadcrumb url="editorial/topic/000004" title="Rol del Autor" />
+</toc>

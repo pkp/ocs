@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic SYSTEM "../../../topic.dtd">
+
+<!--
+  * 000006.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Conference Management - General Management - Scheduled Conferences
+  *
+  * $Id$
+  -->
+
+<topic id="conference/topic/000006" locale="es_AR" title="Congresos programados" toc="conference/toc/000001" key="conference.generalManagement.scheduledConferences">
+	<section>
+		<![CDATA[<p> La pagina del Congreso programado lista todos los congresos programados que has creado, tanto si son actuales como si estan archivados. Puedes crear un nuevo Congreso programado en esta pagina al clickear el link Crear un nuevo Congreso preparado: esto te lleva a una pagina donde debes completar el titulo del nuevo congreso programado, su sigla y su ruta. Cuando concluimos con esto, el congreso recien creado aparecera en la lista de Congresos Programados, y todas las opciones de gestion apareceran dentro de Congresos Actuales en la pagina de Gestion del Sitio del Congreso. </p>]]>
+	</section>
+</topic>

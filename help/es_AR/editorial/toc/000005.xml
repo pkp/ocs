@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE toc SYSTEM "../../../toc.dtd">
+
+<!--
+  * 000005.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Editorial Process - Director's Role - Submissions
+  *
+  * $Id$
+  -->
+
+<toc id="editorial/toc/000005" locale="es_AR" title="Envios" parent_topic="editorial/topic/000005">
+	<topic id="editorial/topic/000018" title="Sin Asignar" />
+	<topic id="editorial/topic/000019" title="En Revision" />
+	<topic id="editorial/topic/000020" title="Presentaciones" />
+	<topic id="editorial/topic/000021" title="Archivos" />
+
+	<breadcrumb url="editorial/topic/000000" title="Proceso Editorial" />
+	<breadcrumb url="editorial/topic/000001" title="Rol del Director" />
+	<breadcrumb url="editorial/topic/000005" title="Envios" />
+</toc>

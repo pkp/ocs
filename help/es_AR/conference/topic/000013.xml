@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic SYSTEM "../../../topic.dtd">
+
+<!--
+  * 000013.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Conference Management - General Management - System Plugins
+  *
+  * $Id$
+  -->
+
+<topic id="conference/topic/000013" locale="es_AR" title="Plugins del Sistema" toc="conference/toc/000001" key="conference.generalManagement.plugins">
+	<section>
+		<![CDATA[<p> OCS usa una robusta arquitectura de plugins, haciendole facil a los desarrolladores agregar nuevas funcionalidades sin hacer cambios en los codigos centrales. Una cantidad de plugins vienen pre-instalados por default. Los plugins se ubican dentro de las siguientes categorias generales: plugins genericos; importar/exportar plugins; plugins de pago; bloqueo de plugins; plugins de formatos de citas; y plugins tematicos. </p>
+		
+		<p> Algunos plugins simplemente necesitan ser habilitados para funcionar, mientras que otros necesitan distintos niveles de configuracion. Para mas informacion, revise la documentacion incluida con cada plugin, encontrada dentro del directorio de plugins de OCS.(/path/to/install/plugins).</p>]]>
+	</section>
+</topic>

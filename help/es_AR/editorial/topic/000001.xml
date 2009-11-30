@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic SYSTEM "../../../topic.dtd">
+
+<!--
+  * 000001.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Editorial Process - Director's Role 
+  *
+  * $Id$
+  -->
+
+<topic id="editorial/topic/000001" locale="es_AR" title="Rol del Director" toc="editorial/toc/000000" subtoc="editorial/toc/000001" key="editorial.directorsRole">
+	<section>
+		<![CDATA[<p> El Director supervisa el proceso editorial, comenzando con la asignacion del Director de Seccion a un envio. El Director tiene acceso a todos los envios del congreso durante todo el proceso. </p>
+		]]>	
+	</section>
+</topic>

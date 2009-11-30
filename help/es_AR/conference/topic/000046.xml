@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic SYSTEM "../../../topic.dtd">
+
+<!--
+  * 000046.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Conference Management - Current Conferences - Setup - Review 
+  *
+  * $Id$
+  -->
+
+<topic id="conference/topic/000046" locale="es_AR" title="Revision" toc="conference/toc/000014"  key="conference.currentConferences.setup.review">
+	<section>
+		<![CDATA[<p> El tercer paso para establecer un congreso programado concierne a todos los aspectos del proceso de revision. Este esta dividido en tres secciones principales. </p>
+		
+		<p><em>Politica de Revision:</em><br /> La politica de revision del congreso programado esta resumida para lectores y autores y aparecera en la pagina del "Acerca del Congreso".</p>
+		<p><em>Revision por pares:</em><br /> La guia de revision esta especificada aqui, y esta disponible para los Revisores cuando entran al proceso de revision. Adicionalmente, el Gestor del Congreso puede especificar como debe interactuar el Revisor con los archivos enviados, cuanto tiempo tiene para acceder a esos archivos, asi como cuan seguido se les recuerda que la revision no ha sido completada. Tambien existe una opcion que permite a los Directores calificar a los Revisores en una escala de cinco puntos. </p>
+		<p><em>Decision del Director:</em><br /> Esto determina si el email de Notificar Autor ira a todos los responsables del envio o solo al contacto principal (es solo valido cuando la publicacion pertenece a mas de un autor).</p>]]>
+	</section>
+</topic>

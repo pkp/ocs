@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic SYSTEM "../../../topic.dtd">
+
+<!--
+  * 000000.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Conference Management Main 
+  *
+  * $Id$
+  -->
+
+<topic id="conference/topic/000000" locale="es_AR" title="Gestion del Congreso" toc="index/toc/000000" subtoc="conference/toc/000000" key="conference.index">
+	<section>
+		<![CDATA[<p> El rol de Gestor de congreso se divide en tres tareas administrativas basicas, todas disponibles en la pagina de Gestion de Congreso desde su Sitio de usuario:</p>
+		
+<ol>
+<li><em>Configurar el sitio del congreso alojado.</em> Desde la pagina de Gestion del Congreso, el Gestor del Congreso primero deberia visitar la pagina {help_topic key="conference.generalManagement.websiteManagement" text="Gestion del congreso"}  y seguir los seis pasos hacia un Sitio Web de Congreso. El Gestor del Congreso deberia entonces establecer un Congreso programado visitando la pagina {help_topic key="conference.generalManagement.scheduledConferences" text="Congresos Programados"}. Mire {help_topic key="conference.generalManagement.index" text="Gestion General"} para un analisis detallado. </li>
+<li><em>Configurar el Congreso programado.</em> Despues que el Gestor de Congresos ha establecido un Congreso programado, el nombre del Congreso aparecera en la pagina de Gestion del Congreso, junto con una lista de paginas de configuracion, bajo el encabezado de  <strong> Congresos Actuales </strong>. El Gestor del Congreso deberia primero visitar la pagina {help_topic key="conference.currentConferences.setup" text="Configuracion"} y seguir los tres pasos a un Congreso Programado, y entonces visitar el resto de las paginas de Congresos Actuales. Para mas informacion, mire {help_topic key="conference.currentConferences.index" text="Congresos Actuales"}. </li>
+<li><em> Administrar usuarios.</em> El Gestor del Congreso puede registrar nuevos usuarios con el sistema y asignar roles especificos para su congreso alojado, y pueden enrolar usuarios creados anteriormentes con su congreso alojado. Mire {help_topic key="conference.users.index" text="Usuarios"} y {help_topic key="conference.roles.index" text="Roles"} para mas informacion de cada uno. </li>
+</ol>]]>	
+	</section>
+</topic>

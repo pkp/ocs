@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic SYSTEM "../../../topic.dtd">
+
+<!--
+  * 000021.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Conference Management - Current Conferences - Registration
+  *
+  * $Id$
+  -->
+
+<topic id="conference/topic/000021" locale="es_AR" title="Registracion" toc="conference/toc/000002"  key="conference.currentConferences.registration">
+	<section>
+		<![CDATA[<p> El Gestor del Congreso puede utilizar la opcion de Registracion para crear diferentes tipos de registracion para el congreso programado. Las registraciones pueden ser usadas para restringir el acceso a material que se encuentra online, y, junto al plugin de pago puede manejar la asistencia y pago al congreso.</p>]]>
+	</section>
+
+	<section title="Rellenando las politicas de registracion">
+
+		<![CDATA[<p> El primer paso en la gestion del proceso de registracion es definir las politicas de registradcion. Para visitar la pagina de Tipos de Registracion, el Gestor del Congreso puede hacer click en el link Registraciones, en la pagina de Gestion del Sitio del Congreso para el Congreso en cuestion, y luego clickear en el link de Politicas de Registracion. </p>
+
+		<p> El Gestor del Congreso deberia primero llenar la informacion del Gestor de Registracion, y detallar la registracion en el cuadro de texto que acompaña. La informacion estara disponible en la pagina de Acerca del Congreso. La casilla de Informacion de Registracion puede aceptar HTML.</p> 
+
+		<p> El Gestor del Congreso puede tambien definir que el sistema mande en forma automatica recordatorios de expiracion de la registracion; de todos modos, para que esta opcion se encuentre disponible, las opciones de tareas programadas deberan ser habilitadas en OCS' config.inc.php file. Los emails mismos pueden ser editados desde la pagina de Gestion de Emails preparados del Congreso.</p>
+
+		<p> Si el congreso programado esta usando un retraso para brindar acceso abierto (esto puede ser habilitado y configurado en el Cronograma del Congreso), el Gestor del Congreso puede tambien incluir un email de notificacion automatica cuando esa fecha es alcanzada; nuevamente, esto tambien requiere que las opciones de tareas programadas sean definidas en config.inc.php. Una declaracion de politica de acceso libre mas detallada puede ser agregada en esta pagina, la cual estara disponible en Acerca del Congreso. La politica de un autor acerca de la archivacion de sus trabajos puede tambien ser cargada, si el congreso soporta esto.</p> ]]>
+	</section>
+	<section title="Gestionando tipos de registracion">
+		
+		<![CDATA[<p> El Gestor del Congreso puede definir distintos tipos de registracion para el congreso programado dependiendo de su necidad. Como ejemplos podemos incluir crear estudiantes, dependencias/facultades, y tipos de registraciones de expositores invitados para un congreso academico. Para crear y manejar los tipos de registraciones, el Gestor del Congreso puede hacer click en el link de Registracion en la pagina de Gestion del Sitio del Congreso para el congreso en cuestion, y luego clickear en en link de Tipos de Registracion.</p>
+		<p> Al presionar el link de Crear un nuevo tipo de regitracion que se encuentra en la parte inferior de la pagina abrira una pagina de tipos de registracion. El Gestor del Congreso puede especificar un nombre y una descripcion del tipo de registracion, asi como un costo, una moneda, un codigo secreto para registraciones restringidas, el dia de apertura y cierre de registaciones, asi como el tipo de acceso (online, fisico, o ambos). Se puede determinar una fecha de finalizacion para el acceso al contenido online, asi como el requerimiento de autenticacion del dominio y membresia a una organizacion. Finalmente, el Gestor del Congreso puede determinar si las registracion esta disponible o no publicamente, en caso de que un tipo de registracion interna sea necesitado.</p>
+		<p> Una vez que las registraciones han sido creadas, pueden ser editados, eliminadas o movidas hacia arriba o abajo para propositos de visualizacion en la pagina de Tipos de Registracion.</p>]]>
+	</section>
+	<section title="Gestionando registraciones">
+		<![CDATA[<p> El Gestor del Congreso puede adherir nuevas registraciones haciendo click en el link de Crear nuevas registraciones, ubicado en la parte inferior de la pagina, encontrando el usuario enrolado en cuestion, y presionando el link de Enrolar que se encuentra al lado de su nombre. Esto mostrara una forma donde el Gestor del Congreso tendra que seleccionar el tipo de registracion; ingresar los nombres de dominio/IP relevantes y informacion de membresia, si es necesario; escribir cualquier item de solicitud especial; y marcar el pago cuando es recibido. Las personas registradas pueden ser eliminadas de la pagina principal de Registraciones haciendo click al link de Borrar al lado de su nombre.</p>]]>
+	</section>
+</topic>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic SYSTEM "../../../topic.dtd">
+
+<!--
+  * 000015.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Editorial Process - Reviewer's Role - Review
+  *
+  * $Id$
+  -->
+
+<topic id="editorial/topic/000015" locale="es_AR" title="Revision" toc="editorial/toc/000003" key="editorial.reviewersRole.review">
+	<section>
+		<![CDATA[<p> El proceso de Revision esta dividido en cinco pasos, cuya intencion es guiar al Revisor a traves del proceso de Revision.</p>
+		<p><em> Paso 1</em><br /> Primero, el Revisor tiene que informar al Director de Seccion si el/ella tomara la revision. La decision deberia tomarse luego de revisar los metadatos del envio y su resumen, y quizas mirar el envio, haciendo click en el nombre del archivo en el Paso 2 (dependiendo de las polticas del congreso, el archivo puede no estar disponible antes de que el Revisor acepte revisarlo). La fecha limite en el Programa de Revision podria ser tambien un factor influyente en la decision del Revisor. Una vez que el Revisor responde, esto es grabado en Respuestas del Programa de Revision.</p>
+		<p><em> Si no puede hacer la revision</em>. El Revisor que no puede hacer la revision clickea en el icono de email con el nombre de "Incapaz de hacer la revision", que lleva a un email preparado al Gestor del Congreso, el cual el Revisor puede modificar para ingresar, si asi lo desea, la causa que le imposibilita hacer la revision (por ejemplo, tiempo, conflictos de intereses, falta de experiencia, etc.).</p>
+		<p><em>Si puede hacer la revision</em>. El Revisor que puede hacer la revision clickea en el iocono de email bajo el nombre de "Hare la revision", que lleva a un email preparado al Gestor del Congreso, y que indicara al Gestor del Congreso y al Autor que la revision esta en proceso.</p>
+		<p><em>Paso 2</em><br /> El Revisor esta incitado a leer la Guia del Revisor, la cual esta impresa en la parte inferior de la pagina. Esta Guia ha sido ingresa por el Gestior del Congreso en el Paso 3.1 de Configuracion del Congreso Programado.</p>
+		
+		<p><em>Paso 3</em><br /> El Revisor debera entonces revisar todos los materiales enviados, incluyendo resumenes y todo archivo cargado, si se encuentran. El Revisor podra descargar y ver todos los archivos de la presentacion, y archivos suplementarios si esta permitido por el Autor y el Director.</p>
+		
+		
+		<p><em>Paso 4</em><br /> El Revisor clickea en el icono de Revision y se le presenta dos cuadros de textos donde la revision puede ser escrita o pegada: el primer cuadro es para tanto Director como Autor, mientras que el segundo es solo para el Director. El Revisor puede escribir o pegar revisiones en esos cuadros y presionar el boton de "Guardar" en el final de la forma, para retornar y hacer cambios despues. El Revisor puede volver a hacer cambios hasta que elige una Recomendacion, lo que indica que el proceso de Revision esta completo.</p>
+		<p><em>Paso 5</em><br /> El Revisor tambien tiene la opcion, ademas de ingresar una revision, de subir un archivo para el Director de Seccion y/o para el Autor. 	El archivo puede ser una version del envio por parte del Revisor, o datos relevantes u otros materiales que puedan ayudar al Director de Seccion y/o Autor. Estara a cargo del Director de Seccion decidir si el archivo debe o no ser mostrado al Autor.</p>
+		<p><em>Paso 6</em><br /> El Revisor debe luego seleccionar una recomendacion para el envio en el menu desplegable: Aceptar Envio; Se requieren mas revisiones; Enviar a otro lado; Rechazar Envios; o Ver Comentarios. Cuando el Revisor hace click en el boton de Enviar Revision al Director, entonces tienen que llenar un email preparado al Director de Seccion. El email puede ser editado por el Revisor antes de ser enviado. Una vez enviado, esto es grabado en Revision Enviada en el Programa de Revision. El Revisor no sera capaz de hacer click en el boton de Enviar Revision hasta que haya ingresado una revision o un archivo haya sido cargado .</p>
+		<p> Una vez que el Revisor ha hecho una recomendacion, la revision es cerrada y no se pueden hacer mas cambios.</p>]]>	
+	</section>
+</topic>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic SYSTEM "../../../topic.dtd">
+
+<!--
+  * 000026.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Editorial Process - Track Director's Role - Review - Director Decision
+  *
+  * $Id$
+  -->
+
+<topic id="editorial/topic/000026" locale="en_US" title="Director Decision" toc="editorial/toc/000011" key="editorial.trackDirectorsRole.review.directorDecision">
+	<section>
+		<![CDATA[<p>Una vez que se han reunido todas las revisiones, el Director de Sección debería enviar un email de confirmación al Revisor haciendo click en el ícono de email, pudiendo evaluar al Revisor con una escala de cinco puntos, así como decidir si deja o no al Autor ver el Documento del Revisor. El Director de Sección puede ver las recomendaciones, comentarios y archivos que ha subido el Revisor, debiendo tomar una decisión respecto del envío.</p>
+            <p><em>Registrar la Decisión</em>. El Director de Sección selecciona una decisión del menú desplegable: Aceptar Envío, Solicitar Revisiones, o Declinar el Envío, y presiona luego el botón de Registrar Decisión.</p>
+		<p>El Director de Sección debería resumir las razones de la Decisión del Director al Autor, en un email que quede en el Registro de Email Director/Autor. El Director de Sección debería también subir una Versión del Director del envío, posiblemente con sugerencias o comentarios. Finalmente, el Directos de Sección deberá enviar un email al Autor usando el ícono de Notificar al Autor. Los Comentarios de los Revisores pueden ser importados a este email, haciendo click en el botón de Importar Revisiones de Pares, por encima de la línea de asunto del email. Por favor note que los comentarios que el Revisor ha indicado como sólo para el Director no serán importados.</p>
+		<p>Si el Director de Sección selecciona Aceptar Envío, entonces luego de notificar al Autor, el Director de Sección puede seleccionar una versión del envío disponible y hacer click en el botón Enviar que está junto a Mover a Composición. La Versión del Director es por defecto la Versión de Revisión, y el Director de Sección puede hacer cambios a esta versión - restaurar el nombre del Autor, por ejemplo - y subirla como Versión del Director.</p>
+		<p>Si el Director de Sección selecciona Requerir Revisiones, el Director de Sección debería de notificar al Autor via email incluyendo un resumen de lo que debe ser hecho en la revisión, quedando esto registrado en el Registro de Email Director/Autor. El Autor debería revisar la versión actual para satisfacer la demanda y suvir nuevamente la versión revisada. La versión revisada y subida como Versión de Revisión por el Autor aparece entonces como Versión del Autor, y puede ser designada como reenvío y subida como Versión de Revisión para otra ronda de Revisiones de Pares y Decisión del Director. </p>
+		<p>Si el Director de Sección decide Declinar el Envío, éste es movido a la lista de Archivos, con su estado indicando Declinado.</p>
+            <p><em>Resumen seguido de Presentación</em>. Si el envío revisado es un Resumen seguido de una Presentación, una vez que la opción Invitar Presentación es seleccionada por el Director de Sección en la página de Revisión de Resumen, éste pasa a Revisión de Artículo, y vuelve a pasar por el mismo procedimiento mencionado anteriormente, si es necesario. El Director de Sección puede solicitar al Revisor un resumen para hacer la revisión de un artículo, o remover al actual Revisor y seleccionar uno nuevo. </p>  
+            ]]>	
+	</section>
+</topic>

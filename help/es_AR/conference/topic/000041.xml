@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic SYSTEM "../../../topic.dtd">
+
+<!--
+  * 000041.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Conference Management - General Management - Reading Tools - Reading Tool Settings
+  *
+  * $Id$
+  -->
+
+<topic id="conference/topic/000041" locale="es_AR" title="Ajuste de Herramientas de Lectura" toc="conference/toc/000009" key="conference.generalManagement.readingTools.settings">
+	<section>
+		<![CDATA[<p> Las Herramientas de Lectura pueden ser habilitadas seleccionando el casillero en esta pagina y eligiendo los Campos de Items Relacionados deseados. Otras herramientas opcionales pueden ser habilitadas seleccionando el casillero al lado de su nombre. Todas las Herramientas de Lectura aparecen en un marco a la derecha de la presentacion, estipulando que esa seccion en particular tiene habilitada la indexacion. </p>
+		]]>
+	</section>
+</topic>

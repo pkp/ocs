@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic SYSTEM "../../../topic.dtd">
+
+<!--
+  * 000024.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Conference Management - Current Conferences - Accommodation
+  *
+  * $Id$
+  -->
+
+<topic id="conference/topic/000024" locale="es_AR" title="Acomodacion" toc="conference/toc/000002" key="conference.currentConferences.accommodation">
+	<section>
+		<![CDATA[<p> Desde aqui podemos proveer informacion util para atender a congreso, como reservaciones de hotel, informacion del aeropuerto y transporte, direcciones para manejarse, guias turisticas, etc. Se pueden cargar multiples archivos, y se pueden agregar textos HTML a un campo para despliegue automatico. Esta informacion estara disponible desde la Informacion del Congreso ubicada en la barra lateral.</p>]]>
+	</section>
+</topic>

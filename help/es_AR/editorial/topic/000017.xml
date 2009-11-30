@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic SYSTEM "../../../topic.dtd">
+
+<!--
+  * 000017.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Editorial Process - Author's Role - Review
+  *
+  * $Id$
+  -->
+
+<topic id="editorial/topic/000017" locale="es_AR" title="Revision" toc="editorial/toc/000004" subtoc="editorial/toc/000017" key="editorial.authorsRole.review">
+	<section>
+		<![CDATA[<p> El Autor puede seguir el progreso de su envio a traves del proceso de revision si visita la pagina de Envios Activos: habra una indicacion de del status del envio, desde Esperando Asignacion a Trabajo en Revision. Si el envio ha sido movido a Archivos, el estatus en Archivos puede ser Subido o Rechazado/Archivado.</p>
+		 <p> Ademas, el Autor esta involucrado en el proceso editorial, incluyendo enviar un trabajo completo, o actualizar versiones revisadas, o proveer mas tarde archivos de presentacion, si esta requerido. </p>
+          ]]>	
+	</section>
+</topic>

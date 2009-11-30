@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic SYSTEM "../../../topic.dtd">
+
+<!--
+  * 000023.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Editorial Process - Director's Role - Submission Summary - Submission Metadata
+  *
+  * $Id$
+  -->
+
+<topic id="editorial/topic/000023" locale="es_AR" title="Metadatos del Envio" toc="editorial/toc/000006" key="editorial.directorsRole.summaryPage.submissionMetadata">
+	<section>
+		<![CDATA[<p> La pagina de Metadatos del Envio muestra todo los metadatos ingresados por el autor, incluyendo resumen y titulo. Los Directores de Seccion pueden editar los metadatos del envio mientras un envio activo es asignado a ellos; los Directores pueden editar los metadatos en cualquier momento; y los Autores pueden editar los metadatos del envio mientras que el envio no esta bajo revision activa. </p>]]>	
+	</section>
+</topic>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic SYSTEM "../../../topic.dtd">
+
+<!--
+  * 000004.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Conference Management - Roles 
+  *
+  * $Id$
+  -->
+
+<topic id="conference/topic/000004" locale="es_AR" title="Roles" toc="conference/toc/000000" subtoc="conference/toc/000004" key="conference.roles.index">
+	<section>
+		<![CDATA[<p> Este sistema de congresos usa un numero de roles publicadores tradicionales en congresos para llevar el proceso editorial. Una persona puede ser registrada en mas de una capacidad, de modo que el congreso podria, por ejemplo, ser manejado por una persona que sirve todos los roles excepto Revisor y Autor. Mas tipicamente, un Gestir de Congresos puede tambien actuar como Director y como Director de Seccion. Los revisores son a menudo registrados como Autores.</p>
+			<p><em>Acceso limitado por rol</em>. Los usuarios tienen diferentes derechos y permisos dependiendo de que roles les fueron asignados. Por ejemplo, los Autores y Revisor ingresan a su propio espacio personal dentro del Sitio Web del Congreso; y los Directores de Seccion estan solo autorizados a ver los envios a los cuales fueron asignados. Un Director puede ver todos los envios del Congreso programado, pero sin embargo no puede ver los envios a otros congresos programados.</p>]]>	
+	</section>
+</topic>
+			
+		

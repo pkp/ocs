@@ -19,11 +19,13 @@
 <locales>
 	<locale key="ca_ES" name="Català (Espanya)"/>
 	<locale key="de_DE" name="Deutsch"/>
+	<locale key="en_US" name="English"/>	
+	<locale key="es_AR" name="España Argentino"/>	
 	<locale key="es_ES" name="España Castellano"/>
-	<locale key="en_US" name="English"/>
 	<locale key="eu_ES" name="Basque" />
 	<locale key="fr_CA" name="Français (Canada)"/>
 	<locale key="it_IT" name="Italiano"/>
 	<locale key="pt_BR" name="Português (Brasil)"/>
+	<locale key="pt_PT" name="Português (Portugal)"/>
 	<locale key="zh_TW" name="正體中文"/>
 </locales>

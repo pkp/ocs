@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic SYSTEM "../../../topic.dtd">
+
+<!--
+  * 000043.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Conference Management - General Management - Reading Tools - Contexts
+  *
+  * $Id$
+  -->
+
+<topic id="conference/topic/000043" locale="es_AR" title="Contextos" toc="conference/toc/000009" key="conference.generalManagement.readingTools.contexts">
+	<section>
+		<![CDATA[<p> Cada version de Items Relacionados consiste en multiples contextos donde cada contexto, a su vez, consiste en un numero de busqueda. Por ejemplo, la version de Item Relacionado "Agricultura" incluye una lista de contextos; el contexto de "Pagar para ver" incluye links a motores de busqueda para servicios de "Pagar para ver", como Ingenta, Ebrary, y asi. Estas busquedas, y los contextos en los que estan agrupadas, pueden ser cradas, editadas o borradas. Ambas pueden ser reordenadas.</p>]]>
+</section>
+<section title="Opciones de Configuracion de Contexto">
+	<![CDATA[
+		<p><em>Metadatos:</em><br /> El Gestor del Congreso puede editar el titulo, abreviacion, y descripcion del contexto. Tambien hay opciones para determinar si el nombre del autor (por ejemplo, para usarlo con "Otros trabajos del Autor", o citas de este trabajo), o los terminos de indexacion geograficos seran usados para buscar los datos en cuestion en la base. Otra opcion, usada con Definicion de Terminos, permite al lector seleccionar el termino a buscar haciendo doble click en cualquier palabra en texto hml. El Gestor del Congreso puede usar estas opciones para configurar sus herramientas de lectura.</p>
+		<p><em>Busquedas:</em><br /> El Gestor del Congreso puede editar o borrar la busqueda URL para cada dato en la base. Para cada base de datos es provista una base URL que habilitara al lector para apreder mas acerca de la base de datos, asi como el motor de busqueda URL especifico relacionado con esta. Se pueden establecer dos tipos de busquedas, una busqueda CONSEGUIR (GET), y si eso no funciona con la base de datos, una busqueda de CORREO (POST) esta tambien soportada.</p>
+		<p><em>Eliminar:</em><br /> Esto eliminara el contexto en cuestion de la lista de Contextos. Se puede deshacer esto clickeando el link de Restaurar Versiones a Default, ubicado en la parte de inferior de la pagina de Versiones, aunque esto revertira <em>todos</em> los cambios en todas las versiones.</p>]]>
+	</section>
+</topic>

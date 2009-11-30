@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic SYSTEM "../../../topic.dtd">
+
+<!--
+  * 000003.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Conference Management - Users 
+  *
+  * $Id$
+  -->
+
+<topic id="conference/topic/000003" locale="es_AR" title="Usuarios" toc="conference/toc/000000" subtoc="conference/toc/000003" key="conference.users.index">
+	<section>
+		<![CDATA[<p> El Gestor de Congresos es responsable de gestioanr usuarios: crear, deshabilitar y modificar cuentas de usuarios; enrolar usuarios ya existentes con un Congreso alojado; fusionar cuentas de usuarios; y contactar usuarios individualmente o en un grupo.</p>]]>	
+	</section>
+</topic>

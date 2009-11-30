@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic SYSTEM "../../../topic.dtd">
+
+<!--
+  * 000031.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Conference Management - Roles - Track Directors 
+  *
+  * $Id$
+  -->
+
+<topic id="conference/topic/000031" locale="es_AR" title="Directores de Seccion" toc="conference/toc/000004" key="conference.roles.trackDirectors">
+	<section>
+		<![CDATA[<p> Asignados por el Director, los Directores de Seccion son responsables de guiar los envios de su seccion a traves del proceso de revision y edicion. Los Directores de Seccion tendran contacto directo con Revisores y Autores. </p>
+		<p>Para mas informacion, mire {help_topic key="editorial.trackDirectorsRole" text="pagina del rol de los Directores de Seccion"}.</p>]]>	
+	</section>
+</topic>

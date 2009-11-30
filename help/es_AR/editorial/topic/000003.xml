@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic SYSTEM "../../../topic.dtd">
+
+<!--
+  * 000003.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Editorial Process - Reviewer's Role
+  *
+  * $Id$
+  -->
+
+<topic id="editorial/topic/000003" locale="es_AR" title="Rol del Revisor" toc="editorial/toc/000000" subtoc="editorial/toc/000003" key="editorial.reviewersRole">
+	<section>
+		<![CDATA[<p> Ya sea iniciando sesion en el sitio web del Congreso o por el acceso a revision mediante un solo click, el Revisor puede proveer comentarios y revision a favor o en contra del envio, lo cual es usado como referencia por el Director de Seccion. Las opciones del Revisor pueden ser configuradas por el Gestor del Congreso en el Paso 3.1 de Configuracion de Congreso Programado. Los criterios especificos a la hora de su juicio asi como las instrucciones de revision que el Revisor sigue, estan describidos en el Paso 3.2 de Configuracion del Congreso Programado. </p>]]>	
+	</section>
+</topic>

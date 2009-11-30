@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * ../ocs2-devel//locale/pt_PT/admin.xml
+  *
+  * Copyright (c) 2000-2009 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the pt_PT (Português (Portugal)) locale.
+  *
+  * $Id$
+  -->
+
+<locale name="pt_PT" full_name = "Português (Portugal)">
+	<message key="admin.languages.primaryLocaleInstructions">Este será o idioma padrão para o portal e todas as conferências hospedadas.</message>
+	<message key="admin.languages.supportedLocalesInstructions">Os idiomas seleccionados estarão disponíveis para todas as conferências no portal, e constarão da lista de idiomas que aparece em cada página do sistema (esta opção pode ser desactivada individualmente por conferência). Caso não sejam seleccionados vários idiomas, a lista de idiomas não estará disponível e a opção "configurações de idioma" não estará disponível para as conferências.</message>
+	<message key="admin.languages.confirmUninstall">Deseja realmente remover este idioma? A execução pode afetar conferências hospedas que podem estar utilizando o idioma.</message>
+	<message key="admin.languages.installNewLocalesInstructions">Seleccionar idiomas adicionais para uso no sistema. Os idiomas devem ser instalados antes que possam ser utilizados pelas conferências hospedadas. Veja a documentação para informações sobre como incluir novos idiomas no sistema.</message>
+	<message key="admin.auth.enableSyncProfiles">Activar sincronização de perfil de utilizadores (caso seja suportado pelo plugin de autenticação!). Os perfis dos utilizadores serão actualizados com o conteúdo da fonte remota assim que o utilizador aceder ao sistema, e alterações no perfil (incluindo alteração de senha) realizadas dentro do sistema actualizarão a fonte remota. Caso esta opção não esteja activada, os perfis no sistema serão mantidos separados da fonte remota.</message>
+	<message key="admin.auth.enableSyncPasswords">Activar alteração de senha de utilizador (caso suportado pelo plugin de autenticação!). Activar esta opção permite ao utilizador modificar a senha do sistema e fazer uso da opção de recuperação de senha para criar uma nova senha. Estas funcionalidades não estarão disponíveis aos utilizadores com esta fonte de autenticação, caso não seja activada.</message>
+	<message key="admin.auth.enableCreateUsers">Activar criação de utilizadores (caso suportado pelo plugin de autenticação!). Utilizadores adicionados ao sistema serão automaticamente incluídos na fonte de autenticação remota, caso não existam ainda. Inclusive, utilizadores criados através do registo de utilizadores também serão incluídos automaticamente na fonte remota, caso esta seja a fonte de autenticação padrão.</message>
+	<message key="admin.systemVersion">Versão do sistema</message>
+	<message key="admin.systemConfiguration">Configuração</message>
+	<message key="admin.systemConfigurationDescription"><![CDATA[Configurações do sistema do arquivo <tt>config.inc.php</tt>.]]></message>
+	<message key="admin.mergeUsers">Juntar Utilizadores</message>
+	<message key="admin.mergeUsers.mergeUser">Juntar Utilizador</message>
+	<message key="admin.mergeUsers.into.description">Seleccionar um utilizador a quem atribuir as submissões anteriores, editando atribuições, etc.</message>
+	<message key="admin.mergeUsers.from.description">Seleccionar um utilizador para juntar numa conta de utilizador (e.g., quando alguém possui duas contas de utilizadores). A conta seleccionada em primeiro será eliminada e as suas submissões, atribuições, etc. serão atribuídas a uma segunda conta.</message>
+	<message key="admin.mergeUsers.allUsers">Todos os utilizadores Inscritos</message>
+	<message key="admin.mergeUsers.confirm">Tem a certeza que pretende juntar a conta do seguinte utilizador "{$oldUsername}" com a conta do utilizador "{$newUsername}"? A conta com o utilizador "{$oldUsername}" deixará de existir. Esta acação é irreversível.</message>
+	<message key="admin.mergerUsers.noneEnrolled">Utilizadores não inscritos.</message>
+	<message key="admin.hostedConferences">Conferências Hospedadas</message>
+	<message key="admin.settings.conferenceRedirect">Redireccionar para Conferência</message>
+	<message key="admin.settings.conferenceRedirectInstructions">Os pedidos apresentados ao Portal Principal serão direccionados a esta conferência. Esta opção pode ser útil caso o Portal hospede apenas uma conferência.</message>
+	<message key="admin.settings.noConferenceRedirect">Não redireccionar</message>
+	<message key="admin.auth.ocs">Utilizadores da Base de Dados padrão</message>
+	<message key="admin.conferences.conferenceSettings">Configurações da Conferência</message>
+	<message key="admin.conferences.noneCreated">Nenhuma conferência criada</message>
+	<message key="admin.conferences.confirmDelete">Deseja realmente eliminar permanentemente esta conferência e seu conteúdo?</message>
+	<message key="admin.conferences.create">Criar Conferência</message>
+	<message key="admin.conferences.createInstructions">O seu registo como Administrador Geral da Conferência será automático. Após criação de uma conferência, acede-a como administrador e continue com as configurações e registo de utilizadores.</message>
+	<message key="admin.conferences.urlWillBe">A URL da conferência será: {$sampleUrl}</message>
+	<message key="admin.conferences.form.titleRequired">Título obrigatório.</message>
+	<message key="admin.conferences.form.pathRequired">Caminho obrigatório</message>
+	<message key="admin.conferences.form.pathAlphaNumeric">O caminho pode conter apenas caracteres alfanuméricos, sublinhado, hífens, e deve começar e terminar com um caractere alfanumérico.</message>
+	<message key="admin.conferences.form.pathExists">O caminho seleccionado já está em uso por outra conferência</message>
+	<message key="admin.conferences.enableConferenceInstructions">Permitir Acesso Livre a esta conferência no portal</message>
+	<message key="admin.conferences.conferenceDescription">Descrição da conferência</message>
+	<message key="admin.conferences.conferenceDescriptionInstructions">A descrição da conferência identifica a sua missão constante, sendo exibida na página principal da conferência, bem como em todas as páginas de eventos da conferência.</message>
+	<message key="admin.conferences.importOCS1">Importar de OCS 1</message>
+	<message key="admin.conferences.importOCS1.editMigratedConference">Editar Conferência Migrada</message>
+	<message key="admin.conferences.importOCS1.conflict.desc">Alguns utilizadores possuem registos conflituantes. A versão 1.x permite vários utilizadores com o mesmo e-mail, enquanto a versão 2.x não permite. Nos registos abaixo, foi designado um e-mail temporário à segunda lista dos registos. Estes deverão ser corrigidos manualmente, informando um novo e-mail ou mesclando as contas.</message>
+	<message key="admin.conferences.importOCS1.errors.desc">Os seguintes erros foram encontrados durante a migração.</message>
+	<message key="admin.conferences.importOCS1.conflict">{$firstUsername} ({$firstName}) e {$secondUsername} ({$secondName})</message>
+	<message key="admin.conferences.importOCS1Instructions"><![CDATA[Consulte o UPGRADE distribuído com o sistema para informações detalhadas sobre como migrar da versão 1.x para a versão 2. Note que este processo NÃO criará uma conferência completamente configurada; apenas alguns itens (ex. papers) serão importados. <strong>Todos os utilizadores importados deverão configurar novas senhas. É altamente recomendado que o Presidente Comissão Organizadora da Conferência verifica todas as informações importadas antes do lançamento da conferência.</strong>]]></message>
+	<message key="admin.conference.pathImportInstructions">Caminho existente ou caminho a ser criado (ex.: "conf1")</message>
+	<message key="admin.conference.importPath">Caminho físico da versão 1</message>
+	<message key="admin.conference.importPathInstructions">Caminho físico completo da instalação da versão 1.x (ex.: "/var/www/ocs") </message>
+	<message key="admin.conferences.importRegistrations">Importar registos</message>
+	<message key="admin.conferences.emailUsers">Os e-mails criaram utilizadores com dados de login, incluindo uma senha automática</message>
+	<message key="admin.conferences.transcode">Transcodificar metadados da submissão de ISO8859-1</message>
+	<message key="admin.conferences.form.importPathRequired">Caminho da importação obrigatório</message>
+	<message key="admin.conferences.importErrors">Importação não concluída com êxito</message>
+</locale>

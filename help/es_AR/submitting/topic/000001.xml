@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic SYSTEM "../../../topic.dtd">
+
+<!--
+  * 000001.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Submission Process - Author Guidelines 
+  *
+  * $Id$
+  -->
+
+<topic id="submission/topic/000001" locale="es_AR" title="Pautas del Autor" toc="submission/toc/000000" key="submission.authorGuidelines">
+	<section>
+		<![CDATA[<p> El Congreso provee un juego de guias para el autor en Acerca del Congreso, que cubren la bibliografia y otros formatos estandars empleados por el congreso programado.</p>
+		         <p> Los autores pueden chequear el Llamado por Trabajos para entender mejor los temas y topicos del congreso; la pagina de Politicas de Seccion para aprender acerca de los tipos de envios deseados; y el Cronograma del Congreso para revisar la fecha de envio. Esta tambien sugerido buscar por trabajos publicados en congresos previos para obtener una idea clara de los aspectos que no estan detallados en la guia, si estan disponibles. </p>]]>	
+	</section>
+</topic>

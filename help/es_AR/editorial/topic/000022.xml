@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic SYSTEM "../../../topic.dtd">
+
+<!--
+  * 000022.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Editorial Process - Director's Role - Summary Page - Submission Management
+  *
+  * $Id$
+  -->
+
+<topic id="editorial/topic/000022" locale="es_AR" title="Gestion del Envio" toc="editorial/toc/000006" key="editorial.directorsRole.summaryPage.submissionManagement">
+	<section>
+		<![CDATA[<p> Varias partes de la gestion general del envio pueden ser resueltas desde la pagina de Sumario.</p>]]>
+	</section>
+	<section title="Envio">
+		<![CDATA[<p> La seccion de Envio da una vision general del envio, su titulo, nombre del autor y de quien lo envio, y tipo de envio; permite al Director enviar un mail al Autor y/o remitente (si no es tambien el Autor); permite al Director revisar y remplazar el archivo enviado originalmente y archivos suplementarios; y permite al Director cambiar la seccion a la cual el pedido ha sido enviado.</p>
+		<p> Antes de asignar un Director de Seccion para gestionar la fase de Revision del envio, el Director deberia hacer click en el link sobre el titulo del articulo a fin de abrir el archivo y asegurarse que parece adecuado para revision.</p>]]>
+	</section>
+	<section title="Directores">
+		<![CDATA[<p> Para que el envio proceda a la fase de Revision, el Director debe asignar un Director de Seccion del listado de Directores de Seccion. Si los Directores de Seccion no son usados por este congreso, el Director puede seleccionar "Agregarse" y supervisar personalmente la fase de revision. Varios Directores de Seccion pueden ser asignados con varias tareas a un solo envio. Esta accion enviara un mail automatico al Director de Seccion con la notificacion de la tarea a cumplir.</p>]]>
+	</section>
+	<section title="Estatus">
+		<![CDATA[<p> El Director puede revisar el estado actual del envio, y fecha de su iniciacion y ultima modificacion.
+		<p> Si el envio es obviamente no apropiado para el congreso, el Director puede hacer click en el link de Archivar Envio, el cual iniciara un email personalizable al Autor, indicando que el envio no es apropiado y no sera publicado. Una vez que el email es enviado, el envio sera movido a Archivos. El Director de Seccion asignado tambien puede realizar esta accion.</p>]]>
+	</section>
+	<section title="Metadatos del Envio">
+           <![CDATA[<p> Los Metadatos ingresados por el Autor al enviar son mostrados aqui, y pueden ser editados por el Director. El Director de Seccion asignado puede tambien editar estos metadatos enviados. </p>]]>	
+	</section>
+</topic>

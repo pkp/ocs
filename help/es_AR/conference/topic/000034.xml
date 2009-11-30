@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic SYSTEM "../../../topic.dtd">
+
+<!--
+  * 000034.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Conference Management - Roles - Readers 
+  *
+  * $Id$
+  -->
+
+<topic id="conference/topic/000034" locale="es_AR" title="Lectores" toc="conference/toc/000004" key="conference.roles.readers">
+	<section>
+		<![CDATA[<p> Los lectores pueden registrarse para leer los actas del congreso, sin importar si tienen acceso abierto inmediatamente o si son abiertos un tiempo despues de la publicacion inicial. Los lectores registrados recibiran un email de notificacion de los trabajos publicados en el congreso, y seran capaces de recibir otros emails enviados por el Director o el Gestor del Congreso. </p>
+        <p> Los nuevos usuarios pueden enrolarse como lectores en registracion a un congreso programado, asi como pueden enrolarse con otros congresos programados desde su pagina de perfil.</p>
+          ]]>	
+	</section>
+</topic>

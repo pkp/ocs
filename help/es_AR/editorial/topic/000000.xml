@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic SYSTEM "../../../topic.dtd">
+
+<!--
+  * 000000.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Editorial Process Index 
+  *
+  * $Id$
+  -->
+
+<topic id="editorial/topic/000000" locale="es_AR" title="Proceso Editorial" toc="index/toc/000000" subtoc="editorial/toc/000000" key="editorial.index">
+	<section>
+		<![CDATA[<p> El Proceso Editorial para un envio del congreso consiste en tres pasos: el envio inicial, el cual se mueve para revision, y luego para le edicion.</p> 
+		
+		<p> Si una presentacion es enviada a una seccion que no tiene un Director de Seccion asignado, esto aparece en la cola de Director Sin Asignar, y debe ser asignado a un Director de Seccion o Director para moverlo a la cola de Revision. Si la seccion si tiene un Director de Seccion asignada a ella, el envio aparecera en la cola de Revision, con el Director de Seccion automaticamente asignado.</p>
+		
+		<p> Una vez que el proceso de revision esta completado, el Director de Seccion debe tomar una de las siguientes decisiones: aceptar el envio, punto en el cual aparecera un boton de Completar que puede tambien ser clickeado (esto movera la presentacion a la lista de Presentaciones dentro del listado de Informacion del Congreso, y permitira que la presentacion sea programada); requerir revisiones, por lo que el Autor debera subir una nueva version del envio (y, opcionalmente, el envio puede ingresar a una nueva ronda de revision); o rechazar el envio, donde el Director de Seccion deberia tambien archivar el envio para removerlo completamente de la cola activa. Este proceso de revision puede ocurrir tanto para el resumen (abstract) como la presentacion misma, o para ambos, dependiendo de la configuracion del congreso programado.</p>
+		<p> El Director de seccion puede tambien crear, editar y actualizar uno o mas archivos de galeria para aparecer en el sitio web del Congreso.</p>]]>	
+	</section>
+</topic>

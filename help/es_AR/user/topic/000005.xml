@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic SYSTEM "../../../topic.dtd">
+
+<!--
+  * 000005.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * User Interface - Current and Archives
+  *
+  * $Id$
+  -->
+
+<topic id="user/topic/000005" locale="en_US" title="Current and Archives" toc="user/toc/000000" key="user.currentArchives">
+	<section>
+		<![CDATA[<p>Scheduled conferences can exist as either current conferences or archived conferences. Typically, scheduled conferences that have outstanding timelines (papers are still being accepted; registrations are still being taken; the conference itself is in progress) are considered 'current' conferences, although it is possible to override some settings and archive a conference prematurely.</p>
+		<p>The Conference Manager can set when a scheduled conference is archived from the Conference Timeline page located on the Conference Site Management page.</p>
+		<p>Current and archived conferences are available from their respective top navigation bar links when viewing a hosted conference.</p>]]>	
+	</section>
+</topic>
