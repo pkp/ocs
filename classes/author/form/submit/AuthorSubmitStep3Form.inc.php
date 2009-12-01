@@ -250,6 +250,7 @@ class AuthorSubmitStep3Form extends AuthorSubmitForm {
 					$paper->addAuthor($author);
 				}
 			}
+			unset($author);
 		}
 
 		// Remove deleted authors
