@@ -100,4 +100,11 @@
 	<message key="director.submissions.lastAssigned">Dernier</message>
 	<message key="director.submissions.averageTime">Semaines</message>
 	<message key="director.submissions.lastCompleted">Dernier complété</message>
+	<message key="director.allDirectors">Tous les responsables</message>
+	<message key="director.me">Moi</message>
+	<message key="director.notifyUsers.allAuthors">Tous les présentateurs publiés ({$count} utilisateurs)</message>
+	<message key="director.paper.stageDisabled">Ce n'est pas encore possible d'effectuer cette évaluation. L'évaluation du résumé n'est pas encore complétée.</message>
+	<message key="director.paper.archiveSubmission">Rejeter et archiver la soumission</message>
+	<message key="director.submissions.assignedTo">Assignée à</message>
+	<message key="director.submissions.inTrack">Dans la section</message>
 </locale>

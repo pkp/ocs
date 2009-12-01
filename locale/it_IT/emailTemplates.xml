@@ -373,4 +373,27 @@ Grazie,
 {$principalContactSignature}</body>
 		<description>Questa email viene spedita a un utente creato di recente per dargli il benvenuto nel sistema e per fornirgli un record del suo nome utente e password.</description>
 	</email_text>
+	<email_text key="NOTIFICATION">
+		<subject>Nuova notifica da  {$siteTitle}</subject>
+		<body>Hai ricevuto una notifica da {$siteTitle}:
+
+{$notificationContents}
+
+Link: {$url}
+
+{$principalContactSignature}</body>
+	</email_text>
+	<email_text key="NOTIFICATION_MAILLIST">
+		<subject>Nuova notifica da {$siteTitle}</subject>
+		<body>Hai ricevuto una notifica da {$siteTitle}:
+--
+{$notificationContents}
+
+Link: {$url}
+--
+
+Se non vuoi più ricevere email di notifica, vai a {$unsubscribeLink} e inserisci il tuo username e la password.
+
+{$principalContactSignature}</body>
+	</email_text>
 </email_texts>

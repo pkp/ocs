@@ -377,4 +377,58 @@ Atenciosamente,
 {$principalContactSignature}</body>
 		<description>Este e-mail é enviado ao usuário recentemente cadastrado para validação de conta de e-mail.</description>
 	</email_text>
+	<email_text key="NOTIFICATION">
+		<subject>Nova notificação de {$siteTitle}</subject>
+		<body>Você tem uma nova notificação de {$siteTitle}:
+
+{$notificationContents}
+
+Link: {$url}
+
+{$principalContactSignature}</body>
+	</email_text>
+	<email_text key="NOTIFICATION_MAILLIST">
+		<subject>Nova notificação de {$siteTitle}</subject>
+		<body>Você recebeu uma nova notificação de {$siteTitle}:
+--
+{$notificationContents}
+
+Link: {$url}
+--
+
+Caso deseje não receber mais estas notificações, acesse {$unsubscribeLink} e informe seu e-mail e senha para cancelar a assinatura.
+
+{$principalContactSignature}</body>
+	</email_text>
+	<email_text key="NOTIFICATION_MAILLIST_WELCOME">
+		<subject>Bem-vindo a lista de mensagens de {$siteTitle}</subject>
+		<body>Você se cadastrou para receber notificações de {$siteTitle}.
+
+Clique no link a seguir para confirmar a solicitação e incluir seu e-mail na lista de mensagens: {$confirmLink}
+
+Caso deseje não receber mais as notificações, acesse {$unsubscribeLink} e informe seu e-mail e senha para cancelar o serviço.
+
+Sua senha para desabilitar as notificações é: {$password}
+
+{$principalContactSignature}</body>
+	</email_text>
+	<email_text key="NOTIFICATION_MAILLIST_PASSWORD">
+		<subject>Informações de cadastro na lista de mensagens de {$siteTitle}</subject>
+		<body>Sua nova senha para desabilitar o serviço é: {$password}
+
+Caso não deseje mais receber as notificações, acesse {$unsubscribeLink} e informe seu e-mail e senha para cancelar a assinatura.
+
+{$principalContactSignature}</body>
+	</email_text>
+	<email_text key="MANUAL_PAYMENT_RECEIVED">
+		<subject>Pagaemento recebido para a conferência {$conferenceName}</subject>
+		<body>{$registrantName}:
+
+Recebemos o pagemento para a conferência {$conferenceName} e sua inscrição foi atualizada.
+
+Em caso de dúvidas, entre em contato através deste e-mail
+
+{$registrationContactSignature}</body>
+		<description></description>
+	</email_text>
 </email_texts>

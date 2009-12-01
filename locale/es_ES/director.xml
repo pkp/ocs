@@ -97,4 +97,14 @@
 	<message key="director.submissions.lastAssigned">Lo más tardar</message>
 	<message key="director.submissions.averageTime">Semanas</message>
 	<message key="director.submissions.lastCompleted">Resuelto el último</message>
+	<message key="director.allDirectors">Todos los Directores</message>
+	<message key="director.me">Yo</message>
+	<message key="director.notifyUsers.allReaders">Todos los lectores ({$count} usuarios)</message>
+	<message key="director.notifyUsers.allAuthors">Todos los presentadores publicados ({$count} usuarios)</message>
+	<message key="director.notifyUsers.allPaidRegistrants">Todos los inscriptos pagos ({$count} usuarios)</message>
+	<message key="director.notifyUsers.allRegistrants">Todos los inscriptos  ({$count} usuarios)</message>
+	<message key="director.paper.stageDisabled">Aún no es posible realizar esta revisión. La revisión del resumen es está completa aún</message>
+	<message key="director.paper.archiveSubmission">Rechazar y archivar envio</message>
+	<message key="director.submissions.assignedTo">Asignado a</message>
+	<message key="director.submissions.inTrack">En Sección</message>
 </locale>

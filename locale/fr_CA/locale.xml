@@ -68,7 +68,6 @@
  	<message key="editor.paper.clearReviewForm">Effacer le formulaire d'évaluation</message>
  	<message key="reviewer.paper.enterReviewForm">Cliquer sur l'icône pour compléter le formulaire d'évaluation.</message>
   	<message key="manager.reviewForms.list.description">Les formulaires d'évaluation par les pairs créés ici seront présentés aux évaluateurs pour complétion, au lieu du formulaire par défaut qui consiste en deux boîtes de texte libre, la première "pour l'auteur et le rédacteur" et la deuxième "pour le rédacteur". Des formulaire d'évaluation peuvent être attribués à une section spécifique de la revue, et les rédacteurs auront l'option de choisir quel formulaire utiliser en assignant l'évaluation. Dans tous les cas, les rédacteurs auront l'option d'inclure les évaluations lors de leurs communications avec l'auteur.</message>
- 	<message key="manager.sections.form.reviewFormId">Prière de vous assurer que vous avez choisi un formulaire d'évaluation valide.</message>
 	<!-- Common Messages -->
 
   <message key="common.openConferenceSystems">Open Conference Systems</message>
@@ -124,9 +123,6 @@
   <message key="track.title">Titre de la section</message>
   <message key="track.abbreviation">Abréviation</message>
   <message key="track.abbreviation.example">(Par exemple, communications générales=GEN)</message>
-  <message key="track.default.title">Communications générales</message>
-  <message key="track.default.abbrev">GEN</message>
-  <message key="track.default.policy"></message>
   <!-- Common Paper Terms -->
   <message key="paper.papers">Communications</message>
   <message key="paper.submissionId">ID de la soumission</message>
@@ -175,9 +171,6 @@
   <message key="submission.authorsRevisedVersion">Version du fichier révisée pas l'auteur</message>
   <message key="submission.authorVersion">Version de l'auteur</message>
   <message key="submission.layout.description">Cette étape optionnelle permet de mettre en page les soumissions ou de changer les formats de fichiers, que ce soit avant ou après l'envoi des soumissions dans les Présentations.</message>
-  <message key="submission.paperType">Type de soumission</message>
-  <message key="submission.paperType.single">Présentation individuelle</message>
-  <message key="submission.paperType.panel">Présentation commune</message>
   <message key="submissions.track">Section</message>
   <message key="submissions.queuedAbstractReview">Résumé en évaluation</message>
   <message key="submissions.queuedPaperReview">Communication en évaluation</message>
@@ -355,8 +348,6 @@
 	-->
   <!-- Conference setup page 1 -->
   <!-- Conference setup page 2 -->
-  <message key="manager.setup.additionalContent.homepageImage.description">
-  </message>
   <!-- Conference setup page 3 -->
   <!-- Conference setup page 4 -->
   <!-- Conference setup page 5 -->
@@ -379,7 +370,6 @@ Titre du système de Classification]]></message>
   <!-- Scheduled Conference Setup Step 3 -->
   <!-- Languages -->
   <!-- Track Management -->
-  <message key="manager.tracks.submissionsToThisTrack">Les soumissions faites pour cette section de la conférence</message>
   <!-- Timeline management -->
   <!-- Import/Export -->
   <!-- Groups / Organizing Team -->
@@ -751,39 +741,12 @@ La validation peut échouer dans le cas d'adresses URL dont les données de form
 	 *
 	-->
   <!-- Icons: Default "alt" text -->
-  <message key="icon.small.alt">Petit</message>
-  <message key="icon.medium.alt">Moyen</message>
-  <message key="icon.large.alt">Grand</message>
   <!-- Debug messages -->
   <!--
 	 *
 	 * DEFAULT - Default settings for setup items.
 	 *
 	-->
-  <message key="default.conferenceSettings.copyrightNotice"><![CDATA[Les auteurs qui soumettent des propositions à cette conférence sont d'accord avec les conditions suivantes:<br/>
-<strong>a)</strong>&nbsp;Les auteurs conservent les droits sur leur travail, tout en autorisant la conférence à placer ce travail non publié sous une <a href="http://creativecommons.org/licenses/by/3.0/">Licence Creative Commons</a>, qui autorise les autres à y accéder automatiquement, à l'utiliser, et à partager le travail, en reconnaissant la propriété du travail à l'auteur et de sa présentation initiale à cette conférence.<br/>
-<strong>b)</strong>&nbsp;Les auteurs peuvent renoncer aux termes de la licence CC et entrer dans des arrangements contractuels supplémentaires pour une distribution non exclusive et une publication subséquente de ce travail (par ex., publier une version révisée dans une revue, le poster dans un dépôt institutionnel ou le publier dans un livre), avec une reconnaissance de sa présentation initiale à cette conférence.<br/>
-<strong>c)</strong>&nbsp;De plus, les auteurs sont encouragés à diffuser et partager leur travail en ligne (par ex., sur un dépôt institutionnel ou sur leur site Web) à n'importe quel moment avant et après la conférence.]]></message>
-  <message key="default.schedConfSettings.checklist.notPreviouslyPublished">La soumission n'a pas été publiée précédemment, pas plus qu'elle n'a été soumise à une autre conférence pour évaluation (ou une explication a été fournie dans les commentaires au responsable).</message>
-  <message key="default.schedConfSettings.checklist.fileFormat">Le format de la soumission est dans le format OpenOffice, Microsoft Word, RTF, ou un format de fichier WordPerfect.</message>
-  <message key="default.schedConfSettings.checklist.addressesLinked"><![CDATA[Toutes les adresses URL dans le texte (par ex., <a href="http://pkp.sfu.ca">http://pkp.sfu.ca</a>) sont actives et prêtes à cliquer.]]></message>
-  <message key="default.schedConfSettings.checklist.submissionAppearance">Le texte est à simple interligne; utilise une police de 12 points; emploie l'italique plutôt que le souligné (sauf pour les adresses URL); et place toutes les illustrations, figures, et tables aux endroits appropriés dans le texte plutôt qu'à la fin.</message>
-  <message key="default.schedConfSettings.checklist.anonymous">Dans le cas d'une soumission à une section de la conférence évaluée par les pairs, les noms des auteurs sont effacés de la soumission, avec "Auteur" et l'année utilisés dans la bibliographie et en bas des pages, au lieu du nom de l'auteur, du titre du papier, etc.</message>
-  <message key="default.schedConfSettings.checklist.personalInformationRemoved">En soumettant à une évaluation par les pairs, tous les documents Microsoft Office (y compris les fichiers supplementaires) doivent être enregistrés en cliquant sur "Enregistrer Sous" dans le menu "Fichier"; en cliquant sur Outils (ou Options sur un Mac); et en sélectionnant "Effacer les informations personnelles du fichier lors de l'enregistrement" dans la catégorie "Sécurité"; et cliquer sur Enregistrer.</message>
-  <message key="default.conferenceSettings.privacyStatement">Les noms et adresses de courriels entrés dans ce site de la conférence seront utilisés exclusivement aux fins indiquées pour cette conférence et ne serviront à aucune autre fin, ni à toute autre partie.</message>
-  <message key="default.conferenceSettings.authorSelfArchivePolicy">Les auteurs ont la permission d'afficher leurs ouvrages sur un site Web personnel ou institutionnel avant et après leur publication dans cette conférence (tout en donnant les détails bibliographiques à cette publication).</message>
-  <message key="default.conferenceSettings.emailSignature">________________________________________________________________________
-{$conferenceName}
-{$conferenceUrl}</message>
-  <message key="default.conferenceSettings.forReaders"><![CDATA[Nous incitons les lecteurs à s'inscrire pour recevoir les avis de publication pour cette conférence. Nous vous recommandons de visiter la rubrique <a href="{$aboutUrl}">À propos de la conférence</a> pour les politiques de la conférence, et visiter la page d'<a href="{$conferenceUrl}">Accueil de la conférence</a> afin de découvrir les nouveautés à venir.]]></message>
-  <message key="default.conferenceSettings.forAuthors"><![CDATA[Intéressé à souemttre d'une communication à cette conférence? Nous vous recommandons de visiter la page <a href="{$aboutUrl}">À propos de la conférence</a> pour les politiques de la conférence, et voir la page d'<a href="{$conferenceUrl}">Accueil de la conférence</a> pour découvrir les conférences à venir.]]></message>
-  <message key="default.conferenceSettings.lockssLicense"><![CDATA[Cette conférence utilise le système LOCKSS pour créer un système distribué d'archivage parmi les librairies participantes et permet à ces librairies de créer des archives permanentes de la conférence dans un but de préservation et de restauration. <a href="http://lockss.stanford.edu/">Plus...</a>]]></message>
-  <message key="default.schedConfSettings.emailSignature">________________________________________________________________________
-{$conferenceName} {$schedConfName}
-{$schedConfUrl}</message>
-  <message key="default.schedConfSettings.checklist.bibliographicRequirements"><![CDATA[Le texte adhère aux exigences de style et bibliographiques définies dans les <a href="{$authorGuidelinesUrl}">Directives aux auteurs</a>, qui se trouvent dans À propos de la conférence.]]></message>
-  <message key="default.schedConfSettings.forReaders"><![CDATA[Nous encourageons les lecteurs à s'inscrire pour être informés des communications postées pour cette conférence. Utiliser le lien <a href="{$accountUrl}">Compte</a> en haut de la page d'accueil. Cette liste permet à la conférence d'avoir un certain support de la part des lecteurs. Voir la <a href="{$privacyStatementUrl}">Déclaration de confidentialité</a> qui assure aux lecteurs que leurs noms et adresses de courriels ne seront pas utilisés dans d'autres buts.]]></message>
-  <message key="default.schedConfSettings.forAuthors"><![CDATA[Intéressé à soumettre d'une communication à cette conférence? Nous vous recommandons de visiter la page <a href="{$aboutUrl}">À propos de la conférence</a> pour les politiques de section de la conférence, ainsi que les <a href="{$authorGuidelinesUrl}">Directives aux auteurs</a>. Les auteurs doivent <a href="{$accountUrl}">créer un compte</a> sur cette conférence avant de pouvoir faire parvenir leurs soumissions, ou si le compte existe déjà, peuvent simplement <a href="{$loginUrl}">se connecter</a> et commencer la procédure de soumission.]]></message>
 	<message key="common.time">Heure</message>
 	<message key="common.sortBy">Trier par...</message>
 	<message key="schedConf.accommodation">Hébergement</message>
@@ -817,4 +780,53 @@ La validation peut échouer dans le cas d'adresses URL dont les données de form
 	<message key="user.noRoles.regReviewerClosed">S'incrire en tant qu'évaluateur de conférence: L'inscription en tant qu'évaluateur est présentement fermée.</message>
 	<message key="user.noRoles.register">S'incrire pour assister à la conférence</message>
 	<message key="user.noRoles.registerUnavailable">S'incrire pour assister à la conférence: Les inscriptions ne sont pas acceptées pour le moment.</message>
+	<message key="common.copy">Copier</message>
+	<message key="common.preview">Aperçu</message>
+	<message key="common.activate">Activer</message>
+	<message key="common.deactivate">Désactiver</message>
+	<message key="manager.reviewForms.confirmDeleteUnpublished">Êtes-vous certain que vous souhaitez supprimer ce formulaire d'évaluation non publié?</message>
+	<message key="manager.reviewFormElements.confirmDelete">Êtes-vous certain que vous souhaitez supprimer un élément d'un formulaire d'évaluation publié?</message>
+	<message key="manager.reviewFormElement.changeType">Avertissement : Modifier le type d'élément du formulaire d'évaluation du type « à choix multiples » à un type « ouvert » aura pour conséquence la suppression des options reliées au choix multiples.</message>
+	<message key="editor.paper.confirmChangeReviewForm">Avertissement : Modifier le formulaire d'évaluation affectera toutes les réponses faites par les évaluateurs qui auront utilisé ce formulaire. Êtes-vous certain de vouloir continuer?</message>
+	<message key="reviewer.paper.reviewFormResponse.form.responseRequired">Veuillez remplir les champs obligatoires.</message>
+	<message key="common.sitePageHeader.altText">Image de l'en-tête du site</message>
+	<message key="common.pageHeader.altText">Image de l'en-tête de la page</message>
+	<message key="common.homePageHeader.altText">Image de l'en-tête de la page d'accueil</message>
+	<message key="common.conferenceHomepageImage.altText">Image de la page d'accueil de la conférence</message>
+	<message key="paper.citations">Références</message>
+	<message key="paper.comments.trackDefault">Par défaut</message>
+	<message key="paper.comments.disable">Désactiver</message>
+	<message key="paper.comments.enable">Activer</message>
+	<message key="paper.fontSize">Taille de police</message>
+	<message key="paper.fontSize.small.altText">Petite</message>
+	<message key="paper.fontSize.medium.altText">Moyenne</message>
+	<message key="paper.fontSize.large.altText">Grande</message>
+	<message key="paper.sessionType">Type de session</message>
+	<message key="schedConf.registration.free">Votre inscription a été enregistré et aucun paiement n'est nécessaire.</message>
+	<message key="schedConf.registration.failed">Votre inscription a échoué. Veuillez essayer de nouveau.</message>
+	<message key="schedConf.registrationOptions.noneAvailable">Aucune option d'inscription n'est disponible.</message>
+	<message key="schedConf.registration.optionCloses">(Ferme le {$closingDate})</message>
+	<message key="schedConf.registration.optionClosed">(Inscriptions fermées le {$closingDate})</message>
+	<message key="schedConf.registration.optionFuture">(Ouverture des inscription le {$openingDate})</message>
+	<message key="schedConf.registration.options">Options d'inscription</message>
+	<message key="manager.setup.citations">Permettre aux auteurs de fournir séparément une liste structurée de références bibliographiques en tant que partie intégrante de leur soumission.</message>
+	<message key="about.conferencePolicies">Politiques de la conférence</message>
+	<message key="about.aboutThisPublishingSystem.altText">Processus de publication, d'évaluation et de soumission d'OCS</message>
+	<message key="log.director.unpublish">La communication a été déplacée de nouveau dans la file d'attente.</message>
+	<message key="notification.mailListDescription">Saisir votre adresse de courriel pour recevoir immédiatement les avis relatifs à tout nouveau contenu important ajouté à la conférence.</message>
+	<message key="notification.notificationsPublicDescription"><![CDATA[Cette page affiche les mises à jour importantes associées à cette conférence telles que les nouvelles communications et les annonces. Vous pouvez vous abonner à ces avis par l'intermédiare des flux RSS (en cliquant sur les images à droite), ou <a href="{$emailUrl}">par courriel.</a>]]></message>
+	<message key="notification.type.paperSubmitted">Une nouvelle communiation, "{$param}", a été soumise.</message>
+	<message key="notification.type.editing">Événements de révision</message>
+	<message key="notification.type.directorDecisionComment">Un commentaire a été laissé concernant la décision du rédacteur pour "{$param}".</message>
+	<message key="notification.type.galleyModified">Une épreuve a été modifiée pour "{$param}".</message>
+	<message key="notification.type.metadataModified">Les métadonnées de "{$param}" ont été modifiées.</message>
+	<message key="notification.type.newAnnouncement">Une nouvelle annonce a été créée.</message>
+	<message key="notification.type.reviewerComment">Un évaluateur a écrit un commentaire sur "{$param}".</message>
+	<message key="notification.type.reviewerFormComment">Une évaluation de formulaire d'évaluation a été soumise pour "{$param}".</message>
+	<message key="notification.type.reviewing">Événements d'évaluation</message>
+	<message key="notification.type.site">Événements du site</message>
+	<message key="notification.type.submissionComment">Une responsable a écrit un commentaire à propos de "{$param}".</message>
+	<message key="notification.type.submissions">Événements de soumission</message>
+	<message key="notification.type.suppFileModified">Le (ou les) fichier(s) supplémentaire(s) de "{$param}" a (ont) été modifié(s).</message>
+	<message key="notification.type.userComment">Un lecteur a fait un commentaire sur "{$param}"</message>
 </locale>

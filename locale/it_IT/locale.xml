@@ -85,7 +85,6 @@
 	<message key="editor.paper.reviewForms">Moduli di revisione</message>
 	<message key="editor.paper.selectReviewForm">Seleziona il modulo di revisione</message>
 	<message key="editor.paper.clearReviewForm">Pulisci il modulo di revisione</message>
-	<message key="manager.sections.form.reviewFormId">Assicurati che hai scelto una forma di revisione valida</message>
 	<message key="manager.reviewForms.list.description">I moduli di peer review creati qui verranno presentati ai revisori per essere completati, invece del modulo di default che consiste di due caselle di testo vuote, la prima "per l'autore e per il curatore", e la seconda "per il curatore". I moduli di revisione possono essere designati per una sezione specifica della rivista, e i curatori avranno l'opzione di scegliere quale modulo usare nell'assegnare la revisione. In tutti i casi, i curatori avranno l'opzione di includere le revisioni in corrispondenza dell'autore.</message>
 	<!-- Common Form Messages -->
 
@@ -134,10 +133,6 @@
 	<message key="track.title">Titolo della sessione</message>
 	<message key="track.abbreviation">Abbreviazione</message>
 	<message key="track.abbreviation.example">(Per esempio, Relazioni generali=GEN)</message>
-	<message key="track.default.title">Relazioni generali</message>
-	<message key="track.default.abbrev">GEN</message>
-	<message key="track.default.policy"></message>
-
 	<!-- Common Paper Terms -->
 	<message key="paper.papers">Interventi</message>
 	<message key="paper.submissionId">ID della submission</message>
@@ -187,11 +182,6 @@
 	<message key="submission.authorsRevisedVersion">Versione del file rivista dall'autore</message>
 	<message key="submission.authorVersion">Versione dell'autore</message>
 	<message key="submission.layout.description">Questa fase opzionale pu&#x00F2; essere usata per visualizzare le submissions o cambiare i formati dei file sia prima che dopo che le submissions siano inviate per la presentazione.</message>
-
-	<message key="submission.paperType">Tipo di submission</message>
-	<message key="submission.paperType.single">Presentazione singola</message>
-	<message key="submission.paperType.panel">Presentazione della commisione</message>
-
 
 	<message key="submissions.track">Sessione</message>
 	<message key="submissions.queuedAbstractReview">Abstract in revisione</message>
@@ -461,7 +451,6 @@ Titolo del sistema di classificazione]]></message>
 
 
 	<!-- Track Management -->
-	<message key="manager.tracks.submissionsToThisTrack">Submission effettuate per questa sessione di convegno</message>
 	<!-- Timeline management -->
 
 	
@@ -928,10 +917,6 @@ Il processo di validazione pu&#x00F2; non funzionare sulle URL di ricerca che ri
 	 *
 	-->
 	<!-- Icons: Default "alt" text -->
-	<message key="icon.small.alt">Piccolo</message>
-	<message key="icon.medium.alt">Medio</message>
-	<message key="icon.large.alt">Largo</message>
-
 	<!-- Debug messages -->
 
 	<!--
@@ -939,35 +924,6 @@ Il processo di validazione pu&#x00F2; non funzionare sulle URL di ricerca che ri
 	 * DEFAULT - Default settings for setup items.
 	 *
 	-->
-	<message key="default.conferenceSettings.copyrightNotice"><![CDATA[Gli autori che inviano a questo convegno aderiscono ai seguenti termini:<br/>
-<strong>a)</strong>&nbsp;Gli autori mantengono il copyright sul loro lavoro, mentre permettono al convegno di mettere questo lavoro inedito sotto una <a href="http://creativecommons.org/licenses/by/3.0/">Licenza Creative Commons Attribution</a>, che permette ad altri di accedere gratuitamente, usare, e condividere il lavoro, con un riconoscimento dell'autorit&#x00E0; del lavoro e la sua presentazione iniziale a questo convegno.<br/>
-<strong>b)</strong>&nbsp;Gli autori possono rinunciare ai termini della licenza CC e inserire dentro patti contrattuali separati e addizionali per la distribuzione non esclusiva e susseguente pubblicazione di questo lavoro (es., pubblicare una versione revisionata in una rivista, inviarlo a un repository istituzionale o pubblicarlo in un libro), con un riconoscimento della sua presentazione iniziale a questo convegno.<br/>
-<strong>c)</strong>&nbsp;Inoltre, gli autori sono incoraggiati a inviare e condividere il loro lavoro online (es., in repositories istituzionali o sul loro sito web) in ogni momento prima o dopo il convegno.]]></message>
-
-	<message key="default.schedConfSettings.checklist.notPreviouslyPublished">La submission non &#x00E8; stata pubblicata precedentemente, n&#x00E8; &#x00E8; stata considerata prima in un altro convegno (o &#x00E8; stata fornita una spiegazione nei Commenti al direttore).</message>
-	<message key="default.schedConfSettings.checklist.fileFormat">Il file della submission &#x00E8; in formato OpenOffice, Microsoft Word, RTF, o WordPerfect.</message>
-	<message key="default.schedConfSettings.checklist.addressesLinked"><![CDATA[Tutti gli indirizzi URL nel testo (es., <a href="http://pkp.sfu.ca">http://pkp.sfu.ca</a>) sono attivi e pronti da cliccare.]]></message>
-	<message key="default.schedConfSettings.checklist.submissionAppearance">Il testo ha singoli spazi; usa un carattere 12-point ; impiega italic, piuttosto che  sottolineare (eccetto con gli indirizzi URL); e tutte le illustrazioni, figure, e tabelle sono posizionate  all'interno del testo nei punti appropriati, piuttosto che alla fine.</message>
-	<message key="default.schedConfSettings.checklist.anonymous">Se si invia a una sessione peer-reviewed del convegno, i nomi degli autori sono rimossi dalla submission, con "Autore" e anno usati nella bibliograia e note a pi&#x00E8; di pagina, invece del nome dell'autore, del titolo della relazione, ecc.</message>
-	<message key="default.schedConfSettings.checklist.personalInformationRemoved">Se si invia a peer review, tutti i documenti Microsoft Office (inclusi i file supplementari) sono stati salvati andando a File e selezionando Salva come; cliccando Strumenti (o Opzioni in un Mac); cliccando Sicurezza; selezionando "Rimuovi le informazioni personali dalle propriet&#x00E0; del file nel salvare"; cliccando Salva.</message>
-	<message key="default.conferenceSettings.privacyStatement">I nomi e gli indirizzi email inseriti in questo sito di convegno saranno usati esclusivamente per i propositi dichiarati di questo convegno e non saranno disponibili per nessun altro proposito o per nessun altra occasione.</message>
-	<message key="default.conferenceSettings.authorSelfArchivePolicy">Agli autori &#x00E8; concesso di inviare le loro relazioni a siti web personali o istituzionali prima e dopo la pubblicazione in questo convegno (fornendo i dettagli bibliografici di questa pubblicazione).</message>
-	<message key="default.conferenceSettings.emailSignature"><![CDATA[________________________________________________________________________
-{$conferenceName}
-{$conferenceUrl}
-]]></message>
-	<message key="default.conferenceSettings.forReaders"><![CDATA[Incoraggiamo i lettori a iscriversi per essere notificati riguardo alle relazioni inviate per questo convegno. Raccomandiamo di visionare la pagina <a href="{$aboutUrl}">Informazioni generali</a> sulle modalit&#x00E0; del convegno, e visitare la <a href="{$conferenceUrl}">Homepage del convegno</a> per trovare quali convegni stiano emergendo.]]></message>
-	<message key="default.conferenceSettings.forAuthors"><![CDATA[Sei interessato a inviare a questo convegno? Ti raccomandiamo di visionare la pagina <a href="{$aboutUrl}">Informazioni generali</a> per le modalit&#x00E0; del convegno, e visitare la <a href="{$conferenceUrl}">Homepage del convegno</a> per trovare quali convegni stiano emergendo.]]></message>
-	<message key="default.conferenceSettings.lockssLicense"><![CDATA[Questo convegno utilizza il sistema LOCKSS per creare un sistema di archiviazione distribuito fra le biblioteche partecipanti e permette a queste biblioteche di creare archivi permanenti del convegno con scopo di conservazione e restaurazione. <a href="http://lockss.stanford.edu/">Info...</a>]]></message>
-
-	<message key="default.schedConfSettings.emailSignature"><![CDATA[________________________________________________________________________
-{$conferenceName} {$schedConfName}
-{$schedConfUrl}
-]]></message>
-	<message key="default.schedConfSettings.checklist.bibliographicRequirements"><![CDATA[Il testo &#x00E8; aderente ai requisiti stilistici e bibliografici delineati nelle <a href="{$authorGuidelinesUrl}">Linee guida dell'autore</a>, che si trovano in Informazioni generali.]]></message>
-	<message key="default.schedConfSettings.forReaders"><![CDATA[Incoraggiamo i lettori a iscriversi per essere notificati riguardo alle relazioni inviate per questo convegno. Usa il link <a href="{$accountUrl}">Account</a> in alto all'homepage per il convegno. Questa lista permette al convegno di dichiarare un certo livello di supporto e di lettori. Si veda la <a href="{$privacyStatementUrl}">Dichiarazione sulla privacy</a> del convegno che assicura ai lettori che i loro nomi e indirizzi email non saranno usati per altri scopi.]]></message>
-	<message key="default.schedConfSettings.forAuthors"><![CDATA[Interessato a inviare a questo convegno? Ti raccomandiamo di visionare la pagina <a href="{$aboutUrl}">Informazioni generali</a> per le modalit&#x00E0; delle sessioni del convegno, come anche le <a href="{$authorGuidelinesUrl}">Linee guida dell'autore</a>. Gli autori devono <a href="{$accountUrl}">creare un account</a> nel convegno prima di inviare, o se esiste gi&#x00E0; un account, possono semplicemente <a href="{$loginUrl}">registrarsi</a> e iniziare il processo di submission.]]></message>
-
 	<message key="common.time">Tempo</message>
 	<message key="common.sortBy">Ordina per...</message>
 	<message key="schedConf.accommodation">Sistemazione</message>
@@ -997,4 +953,52 @@ Il processo di validazione pu&#x00F2; non funzionare sulle URL di ricerca che ri
 	<message key="about.delayedOpenAccessDescription">Il contenuto di questa conferenza sarà disponibile in formato open access {$delayedOpenAccessDuration} mese(i) dopo che la conferenza programmata è stata rilasciata ai partecipanti.</message>
 	<message key="log.timeline.postScheduleDateChanged">La data programmata per l'invio è cambiata da {$oldPostScheduleDate} a {$newPostScheduleDate}.</message>
 	<message key="log.timeline.postScheduleChanged">L'impostazione "programma per l'invio" è cambiata da {$oldPostSchedule} a {$newPostSchedule}.</message>
+	<message key="common.copy">Copia</message>
+	<message key="common.preview">Anteprima</message>
+	<message key="common.activate">Attiva</message>
+	<message key="common.deactivate">Disattiva</message>
+	<message key="manager.reviewForms.confirmDeleteUnpublished">Sei sicuro di voler cancellare questo modulo per revisioni?</message>
+	<message key="manager.reviewFormElements.confirmDelete">Sei sicuro di voler cancellare un oggetto dal modulo per le revisioni?</message>
+	<message key="manager.reviewFormElement.changeType">Attenzione: sostituendo un elemento a scelta multipla con uno a inserimento libero si perderanno tutte le opzioni scelte.</message>
+	<message key="editor.paper.confirmChangeReviewForm">Attenzione: I cambiamenti sul modulo di revisione avranno effetto anche su tutte le informazioni già inserite utilizzando il modulo stesso. Sei sicuro di continuare?</message>
+	<message key="common.sitePageHeader.altText">Immagine dell'intestazione del sito</message>
+	<message key="common.pageHeader.altText">Immagine dell'intestazione della pagina</message>
+	<message key="common.homePageHeader.altText">Immagine dell'intestazione della Home page</message>
+	<message key="common.conferenceHomepageImage.altText">Immagine della Home page del convegno</message>
+	<message key="paper.citations">Citazioni bibliografiche</message>
+	<message key="paper.comments.trackDefault">Default</message>
+	<message key="paper.comments.disable">Disabilita</message>
+	<message key="paper.comments.enable">Abilita</message>
+	<message key="paper.fontSize">Dimensioni del carattere</message>
+	<message key="paper.fontSize.small.altText">Piccolo</message>
+	<message key="paper.fontSize.medium.altText">Medio</message>
+	<message key="paper.fontSize.large.altText">Grande</message>
+	<message key="paper.sessionType">Tipo di sessione</message>
+	<message key="schedConf.registration.free">La tua registrazione è stata affettuata con successo; non sono dovuti pagamenti.</message>
+	<message key="schedConf.registration.failed">La tua registrazione è fallita. Riprova in seguito.</message>
+	<message key="schedConf.registrationOptions.noneAvailable">Non sono disponibili opzioni di registrazione.</message>
+	<message key="schedConf.registration.optionCloses">(Chiusura {$closingDate})</message>
+	<message key="schedConf.registration.optionClosed">(Chiusura delle registrazioni {$closingDate})</message>
+	<message key="schedConf.registration.optionFuture">(Apertura delle registrazioni {$openingDate})</message>
+	<message key="schedConf.registration.options">Opzioni di registrazione</message>
+	<message key="manager.setup.citations">Permetti agli autori di fornire a parte una lista formattata delle citazioni bibliografiche della loro submission.</message>
+	<message key="about.conferencePolicies">Politiche del convegno</message>
+	<message key="about.aboutThisPublishingSystem.altText">OCS Submission, Review, and Publishing Process</message>
+	<message key="log.director.unpublish">Il paper è stato riportato nella coda.</message>
+	<message key="notification.mailListDescription">Inserisci il tuo indirizzo di posta per essere informato su aggiornamenti importanti di questo convegno.</message>
+	<message key="notification.type.paperSubmitted">E' stato sottomesso un nuovo paper, "{$param}"</message>
+	<message key="notification.type.editing">Modifiche agli event.</message>
+	<message key="notification.type.directorDecisionComment">La decisione dell'editor su {$param}" ha ricevuto un commento.</message>
+	<message key="notification.type.galleyModified">E' stato modificato un file per {$param}"</message>
+	<message key="notification.type.metadataModified">I metadati di {$param}" sono stati modificati</message>
+	<message key="notification.type.newAnnouncement">E' stato aggiunto un nuovo avviso</message>
+	<message key="notification.type.reviewerComment">Un revisore ha lasciato un commento su {$param}"</message>
+	<message key="notification.type.reviewerFormComment">E' stato completato un modulo di revisione per {$param}".</message>
+	<message key="notification.type.reviewing">Eventi di revisione</message>
+	<message key="notification.type.site">Eventi del sito</message>
+	<message key="notification.type.submissionComment">Un direttore ha commentato {$param}".</message>
+	<message key="notification.type.submissions">Eventi di submission</message>
+	<message key="notification.type.suppFileModified">I file supplementari di {$param}" sono stati modificati.</message>
+	<message key="notification.type.userComment">Un lettore ha commentato {$param}".</message>
+	<message key="notification.notificationsPublicDescription"><![CDATA[Questa pagina mostra aggiornamenti importanti del convegno, come nuovi paper o avvisi. E' possibile ricevere queste notifiche tramite RSS (cliccando sull'immagine a destra) o <a href="{$emailUrl}">per email.</a>]]></message>
 </locale>

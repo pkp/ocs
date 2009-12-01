@@ -248,8 +248,8 @@ class AuthorDAO extends DAO {
 				$author->getCountry(),
 				$author->getEmail(),
 				$author->getUrl(),
-				$author->getPrimaryContact(),
-				$author->getSequence()
+				(int) $author->getPrimaryContact(),
+				(float) $author->getSequence()
 			)
 		);
 

@@ -55,4 +55,12 @@
 	<message key="admin.conferences.transcode">Transcodificar metadados da submissão de ISO8859-1</message>
 	<message key="admin.conferences.form.importPathRequired">Caminho da importação obrigatório</message>
 	<message key="admin.conferences.importErrors">Importação não concluída com êxito</message>
+	<message key="admin.locale.maybeIncomplete">Idiomas marcados podem estar incompletos.</message>
+	<message key="admin.mergeUsers">Mesclar usuários</message>
+	<message key="admin.mergeUsers.mergeUser">Mesclar usuário</message>
+	<message key="admin.mergeUsers.into.description">Escolha um usuário a quem atribuir as submissões, tarefas de edição, entre outras, do usuário anteriormente escolhido.</message>
+	<message key="admin.mergeUsers.from.description">Escolha um usuário para mesclar seu cadastro em outro (útil quando uma pessoa possui mais de um cadastro no sistema). O cadastro escolhido primeiro será excluído e todas as suas atividades (submissões, avaliações, tarefas editoriais) serão atribuídas ao segundo cadastro escolhido.</message>
+	<message key="admin.mergeUsers.allUsers">Todos os usuáiros cadastrados</message>
+	<message key="admin.mergeUsers.confirm">Deseja realmente mesclar o cadastro de "{$oldUsername}" com o cadastro de "{$newUsername}"? O cadastro "{$oldUsername}" será excluído permanentemente. Esta ação é irreversível.</message>
+	<message key="admin.mergerUsers.noneEnrolled">Nenhum usuário cadastrado.</message>
 </locale>

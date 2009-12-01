@@ -15,4 +15,12 @@
 	<message key="plugins.paymethod.manual.displayName">Pagamento Manual</message>
 	<message key="plugins.paymethod.manual.description">O Gerente da Conferência será responsável por registrar o recebimento do pagamento realizado pelos usuários.</message>
 	<message key="plugins.paymethod.manual">Pagamento de Inscrição</message>
+	<message key="plugins.paymethod.manual.settings">Configurações de Pagamento Manual</message>
+	<message key="plugins.paymethod.manual.settings.instructions">Instruções</message>
+	<message key="plugins.paymethod.manual.settings.manualInstructions">Instruções para pagamento de taxas para usuários que escolhem pagamento manual</message>
+	<message key="plugins.paymethod.manual.sendNotificationOfPayment">Enviar notificação de pagamento</message>
+	<message key="plugins.paymethod.manual.paymentNotification">Notificação de pagamento</message>
+	<message key="plugins.paymethod.manual.notificationSent">Notificação de pagamento enviada</message>
+	<message key="plugins.paymethod.manual.purchase.title">Título</message>
+	<message key="plugins.paymethod.manual.purchase.fee">Taxa</message>
 </locale>

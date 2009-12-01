@@ -8,6 +8,7 @@
  *
  * $Id$
  *}
+
 {if !empty($forReaders) || !empty($forAuthors)}
 <div class="block" id="sidebarInformation">
 	<span class="blockTitle">{translate key="plugins.block.information.link"}</span>

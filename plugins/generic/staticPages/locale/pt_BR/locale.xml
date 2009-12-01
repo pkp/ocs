@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../locale/locale.dtd">
+
+<!--
+  * locale.xml
+  *
+  * Copyright (c) 2000-2009 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the en_US (U.S. English) locale.
+  *
+  -->
+ 
+<locale name="en_US" full_name="U.S. English">
+	<message key="plugins.generic.staticPages.displayName">Plugin de Páginas Estáticas</message>
+	<message key="plugins.generic.staticPages.description">Este plugin permite a administração de páginas de conteúdo estático.</message>
+	<message key="plugins.generic.staticPages.pageTitle">Título</message>
+	<message key="plugins.generic.staticPages.content">Conteúdo</message>
+
+	<message key="plugins.generic.staticPages.path">Caminho</message>
+	<message key="plugins.generic.staticPages.requirement.tinymce"><![CDATA[<strong>O Plugin TinyMCE deve estar instalado e habilitado para incluir/editar conteúdo.</strong>]]></message>
+
+	<message key="plugins.generic.staticPages.editAddContent">Editar/Incluir conteúdo</message>
+
+	<message key="plugins.generic.staticPages.addStaticPage">Incluir página estática</message>
+	<message key="plugins.generic.staticPages.addNewPage">Incluir nova página</message>
+	<message key="plugins.generic.staticPages.editStaticPage">Editar página estática</message>	
+
+	<message key="plugins.generic.staticPages.settingInstructions">O formulário a seguir exibe todas as páginas criadas. Clique nos links à direita para editar ou excluir as páginas.</message>
+	<message key="plugins.generic.staticPages.editInstructions">Use o formluário a seguir para incluir/editar conteúdo.</message>
+	<message key="plugins.generic.staticPages.viewInstructions"><![CDATA[As páginas estão disponíveis em: {$pagesPath}, onde %PATH% é um valor de sua escolha. <strong>Nota:</strong> As páginas deverão ter caminhos diferentes.]]></message>
+	<message key="plugins.generic.staticPages.duplicatePath">Este caminho já existe para outra página.</message>
+	
+	<message key="plugins.generic.staticPages.pageSaved">Página salva com sucesso.</message>
+	<message key="plugins.generic.staticPages.pageDeleted">Página excluída com sucesso.</message>
+	
+	<message key="plugins.generic.staticPages.noneExist">Nenhuma página criada.</message>
+</locale>
