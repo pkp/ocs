@@ -246,6 +246,7 @@ class PresenterSubmitStep2Form extends PresenterSubmitForm {
 					$paper->addPresenter($presenter);
 				}
 			}
+			unset($presenter);
 		}
 
 		// Remove deleted presenters
