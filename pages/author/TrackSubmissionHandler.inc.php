@@ -115,8 +115,10 @@ class TrackSubmissionHandler extends AuthorHandler {
 		$controlledVocabDao =& DAORegistry::getDAO('ControlledVocabDAO');
 		$templateMgr->assign('sessionTypes', $controlledVocabDao->enumerateBySymbolic('sessionTypes', ASSOC_TYPE_SCHED_CONF, $schedConf->getId()));
 
-		import('submission.trackDirector.TrackDirectorSubmission');
-		$templateMgr->assign_by_ref('directorDecisionOptions', TrackDirectorSubmission::getDirectorDecisionOptions());
+		// FIXME: Author code should not use track director object
+		$trackDirectorSubmissionDao =& DAORegistry::getDAO('TrackDirectorSubmissionDAO');
+		$trackDirectorSubmission =& $trackDirectorSubmissionDao->getTrackDirectorSubmission($submission->getPaperId());
+		$templateMgr->assign_by_ref('directorDecisionOptions', $trackDirectorSubmission->getDirectorDecisionOptions());
 
 		$templateMgr->assign('helpTopicId','editorial.authorsRole');
 		$templateMgr->display('author/submission.tpl');
@@ -172,9 +174,10 @@ class TrackSubmissionHandler extends AuthorHandler {
 		$templateMgr->assign_by_ref('suppFiles', $authorSubmission->getSuppFiles());
 		$templateMgr->assign('lastDirectorDecision', $lastDecision);
 
-		// Bring in director decision options
-		import('submission.trackDirector.TrackDirectorSubmission');
-		$templateMgr->assign_by_ref('directorDecisionOptions', TrackDirectorSubmission::getDirectorDecisionOptions());
+		// FIXME: Author code should not use track director object
+		$trackDirectorSubmissionDao =& DAORegistry::getDAO('TrackDirectorSubmissionDAO');
+		$trackDirectorSubmission =& $trackDirectorSubmissionDao->getTrackDirectorSubmission($authorSubmission->getPaperId());
+		$templateMgr->assign_by_ref('directorDecisionOptions', $trackDirectorSubmission->getDirectorDecisionOptions());
 
 		// Determine whether or not certain features should be disabled (i.e. past deadline)
 		$templateMgr->assign('mayEditPaper', AuthorAction::mayEditPaper($authorSubmission));

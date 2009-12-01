@@ -59,8 +59,9 @@ class TrackDirectorAction extends Action {
 	 * Records a director's submission decision.
 	 * @param $trackDirectorSubmission object
 	 * @param $decision int
+	 * @param $stage int
 	 */
-	function recordDecision($trackDirectorSubmission, $decision) {
+	function recordDecision($trackDirectorSubmission, $decision, $stage) {
 		$editAssignments =& $trackDirectorSubmission->getEditAssignments();
 		if (empty($editAssignments)) return;
 
@@ -82,13 +83,25 @@ class TrackDirectorAction extends Action {
 				$trackDirectorSubmission->stampStatusModified();
 			}
 
-			$trackDirectorSubmission->addDecision($directorDecision, $trackDirectorSubmission->getCurrentStage());
+			$trackDirectorSubmission->addDecision($directorDecision, $stage);
 			$decisions = TrackDirectorSubmission::getDirectorDecisionOptions();
 			// Add log
 			import('paper.log.PaperLog');
 			import('paper.log.PaperEventLogEntry');
 			Locale::requireComponents(array(LOCALE_COMPONENT_APPLICATION_COMMON, LOCALE_COMPONENT_OCS_DIRECTOR));
-			PaperLog::logEvent($trackDirectorSubmission->getPaperId(), PAPER_LOG_DIRECTOR_DECISION, LOG_TYPE_DIRECTOR, $user->getId(), 'log.director.decision', array('directorName' => $user->getFullName(), 'paperId' => $trackDirectorSubmission->getPaperId(), 'decision' => Locale::translate($decisions[$decision])));
+			PaperLog::logEvent(
+				$trackDirectorSubmission->getPaperId(),
+				PAPER_LOG_DIRECTOR_DECISION,
+				LOG_TYPE_DIRECTOR,
+				$user->getId(),
+				'log.director.decision',
+				array(
+					'directorName' => $user->getFullName(),
+					'paperId' => $trackDirectorSubmission->getPaperId(),
+					'decision' => Locale::translate($decisions[$decision]),
+					'round' => ($stage == REVIEW_STAGE_ABSTRACT?'submission.abstractReview':'submission.paperReview')
+				)
+			);
 		}
 
 		if($decision == SUBMISSION_DIRECTOR_DECISION_ACCEPT || $decision == SUBMISSION_DIRECTOR_DECISION_INVITE) {

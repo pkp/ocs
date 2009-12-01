@@ -15,7 +15,7 @@
 <tr valign="top">
 	<td class="label" width="20%">{translate key="director.paper.selectDecision"}</td>
 	<td width="80%" class="value" colspan="2">
-		<form method="post" action="{url op="recordDecision"}">
+		<form method="post" action="{url op="recordDecision" path=$stage}">
 			<input type="hidden" name="paperId" value="{$submission->getPaperId()}" />
 			<select name="decision" size="1" class="selectMenu"{if not $allowRecommendation} disabled="disabled"{/if}>
 				{assign var=availableDirectorDecisionOptions value=`$submission->getDirectorDecisionOptions($currentSchedConf,$stage)`}

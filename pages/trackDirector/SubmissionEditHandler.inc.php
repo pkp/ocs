@@ -345,30 +345,23 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		Request::redirect(null, null, null, 'submission', $paperId);
 	}
 
-	function recordDecision() {
-		$paperId = Request::getUserVar('paperId');
+	function recordDecision($args) {
+		$paperId = (int) Request::getUserVar('paperId');
+		$decision = (int) Request::getUserVar('decision');
+		$stage = (int) array_shift($args);
+
 		$this->validate($paperId, TRACK_DIRECTOR_ACCESS_REVIEW);
 		$conference =& Request::getConference();
 		$schedConf =& Request::getSchedConf();
 		$submission =& $this->submission;
 
-		$stage = $submission->getCurrentStage();
-
-		$decision = Request::getUserVar('decision');
-
-		// If the director requires revisions for the presentation, reset reviews
-		if($submission->getCurrentStage() == REVIEW_STAGE_PRESENTATION &&
-				($decision == SUBMISSION_DIRECTOR_DECISION_PENDING_REVISIONS || $decision == SUBMISSION_DIRECTOR_DECISION_DECLINE)) {
-			$submission->setCurrentStage(REVIEW_STAGE_PRESENTATION);
-			$submission->setSubmissionProgress(2);
-			$stage = REVIEW_STAGE_PRESENTATION;
-
-			TrackDirectorAction::recordDecision($submission, $decision);
-		} else if($submission->getCurrentStage() == REVIEW_STAGE_ABSTRACT &&
-				($decision == SUBMISSION_DIRECTOR_DECISION_PENDING_REVISIONS || $decision == SUBMISSION_DIRECTOR_DECISION_DECLINE)) {
+		// If the director changes the decision on the first round,
+		// roll back to the abstract review stage.
+		if (
+			$submission->getCurrentStage() == REVIEW_STAGE_PRESENTATION &&
+			$stage == REVIEW_STAGE_ABSTRACT
+		) {
 			$submission->setCurrentStage(REVIEW_STAGE_ABSTRACT);
-			$submission->setSubmissionProgress(3);
-			$stage = REVIEW_STAGE_ABSTRACT;
 
 			// Now, unassign all reviewers from the paper review
 			foreach ($submission->getReviewAssignments(REVIEW_STAGE_PRESENTATION) as $reviewAssignment) {
@@ -377,14 +370,14 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 				}
 			}
 
-			TrackDirectorAction::recordDecision($submission, $decision);
+			TrackDirectorAction::recordDecision($submission, $decision, $stage);
 		} else {
 			switch ($decision) {
 				case SUBMISSION_DIRECTOR_DECISION_ACCEPT:
 				case SUBMISSION_DIRECTOR_DECISION_INVITE:
 				case SUBMISSION_DIRECTOR_DECISION_PENDING_REVISIONS:
 				case SUBMISSION_DIRECTOR_DECISION_DECLINE:
-					TrackDirectorAction::recordDecision($submission, $decision);
+					TrackDirectorAction::recordDecision($submission, $decision, $stage);
 					break;
 			}
 		}
