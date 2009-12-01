@@ -95,8 +95,10 @@ class TrackSubmissionHandler extends PresenterHandler {
 		$templateMgr->assign_by_ref('revisedFile', $submission->getRevisedFile());
 		$templateMgr->assign_by_ref('suppFiles', $submission->getSuppFiles());
 
-		import('submission.trackDirector.TrackDirectorSubmission');
-		$templateMgr->assign_by_ref('directorDecisionOptions', TrackDirectorSubmission::getDirectorDecisionOptions());
+		// FIXME: Presenter code should not use track director object
+		$trackDirectorSubmissionDao =& DAORegistry::getDAO('TrackDirectorSubmissionDAO');
+		$trackDirectorSubmission =& $trackDirectorSubmissionDao->getTrackDirectorSubmission($submission->getPaperId());
+		$templateMgr->assign_by_ref('directorDecisionOptions', $trackDirectorSubmission->getDirectorDecisionOptions());
 
 		$templateMgr->assign('helpTopicId','editorial.authorsRole');
 		$templateMgr->display('presenter/submission.tpl');
@@ -150,9 +152,10 @@ class TrackSubmissionHandler extends PresenterHandler {
 		$templateMgr->assign_by_ref('suppFiles', $presenterSubmission->getSuppFiles());
 		$templateMgr->assign('lastDirectorDecision', $lastDecision);
 
-		// Bring in director decision options
-		import('submission.trackDirector.TrackDirectorSubmission');
-		$templateMgr->assign_by_ref('directorDecisionOptions', TrackDirectorSubmission::getDirectorDecisionOptions());
+		// FIXME: Presenter code should not use track director object
+		$trackDirectorSubmissionDao =& DAORegistry::getDAO('TrackDirectorSubmissionDAO');
+		$trackDirectorSubmission =& $trackDirectorSubmissionDao->getTrackDirectorSubmission($presenterSubmission->getPaperId());
+		$templateMgr->assign_by_ref('directorDecisionOptions', $trackDirectorSubmission->getDirectorDecisionOptions());
 
 		// Determine whether or not certain features should be disabled (i.e. past deadline)
 		$templateMgr->assign('mayEditPaper', PresenterAction::mayEditPaper($presenterSubmission));

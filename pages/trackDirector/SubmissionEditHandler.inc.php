@@ -99,7 +99,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		$templateMgr->assign_by_ref('cancelsAndRegrets', $cancelsAndRegrets);
 		$templateMgr->assign_by_ref('reviewFilesByStage', $reviewFilesByStage);
 		$templateMgr->assign_by_ref('directorDecisions', $directorDecisions);
-		$templateMgr->assign_by_ref('directorDecisionOptions', TrackDirectorSubmission::getDirectorDecisionOptions());
+		$templateMgr->assign_by_ref('directorDecisionOptions', $submission->getDirectorDecisionOptions());
 		$templateMgr->assign('rateReviewerOnQuality', $schedConf->getSetting('rateReviewerOnQuality'));
 
 		import('submission.reviewAssignment.ReviewAssignment');
@@ -208,7 +208,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		$templateMgr->assign('rateReviewerOnQuality', $schedConf->getSetting('rateReviewerOnQuality'));
 		$templateMgr->assign('showPeerReviewOptions', $showPeerReviewOptions);
 		$templateMgr->assign_by_ref('tracks', $tracks->toArray());
-		$templateMgr->assign_by_ref('directorDecisionOptions', TrackDirectorSubmission::getDirectorDecisionOptions());
+		$templateMgr->assign_by_ref('directorDecisionOptions', $submission->getDirectorDecisionOptions());
 		$templateMgr->assign_by_ref('lastDecision', $lastDecision);
 		$templateMgr->assign_by_ref('directorDecisions', $directorDecisions);
 
@@ -310,20 +310,20 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		Request::redirect(null, null, null, 'submission', $paperId);
 	}
 
-	function recordDecision() {
+	function recordDecision($args) {
 		$paperId = Request::getUserVar('paperId');
+		$decision = Request::getUserVar('decision');
+		$stage = (int) array_shift($args);
 		list($conference, $schedConf, $submission) = SubmissionEditHandler::validate($paperId, TRACK_DIRECTOR_ACCESS_REVIEW);
 
-		$stage = $submission->getCurrentStage();
-
-		$decision = Request::getUserVar('decision');
-
-		// If the director changes the decision from invite to revisions
-		// required or decline, roll back to abstract review stage
-		if($submission->getCurrentStage() == REVIEW_STAGE_PRESENTATION &&
-				($decision == SUBMISSION_DIRECTOR_DECISION_PENDING_REVISIONS || $decision == SUBMISSION_DIRECTOR_DECISION_DECLINE)) {
+		// If the director changes the decision on the first round to
+		// something other than "invite" (or "accept" -- necessary?),
+		// roll back to the abstract review stage.
+		if (
+			$submission->getCurrentStage() == REVIEW_STAGE_PRESENTATION &&
+			$stage == REVIEW_STAGE_ABSTRACT
+		) {
 			$submission->setCurrentStage(REVIEW_STAGE_ABSTRACT);
-			$submission->setSubmissionProgress(2);
 			$stage = REVIEW_STAGE_ABSTRACT;
 
 			// Now, unassign all reviewers from the paper review
@@ -333,14 +333,14 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 				}
 			}
 
-			TrackDirectorAction::recordDecision($submission, $decision);
+			TrackDirectorAction::recordDecision($submission, $decision, $stage);
 		} else {
 			switch ($decision) {
 				case SUBMISSION_DIRECTOR_DECISION_ACCEPT:
 				case SUBMISSION_DIRECTOR_DECISION_INVITE:
 				case SUBMISSION_DIRECTOR_DECISION_PENDING_REVISIONS:
 				case SUBMISSION_DIRECTOR_DECISION_DECLINE:
-					TrackDirectorAction::recordDecision($submission, $decision);
+					TrackDirectorAction::recordDecision($submission, $decision, $stage);
 					break;
 			}
 		}

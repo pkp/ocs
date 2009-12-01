@@ -253,9 +253,9 @@ class TrackDirectorHandler extends Handler {
 		SubmissionEditHandler::changeTypeConst();
 	}
 
-	function recordDecision() {
+	function recordDecision($args) {
 		import('pages.trackDirector.SubmissionEditHandler');
-		SubmissionEditHandler::recordDecision();
+		SubmissionEditHandler::recordDecision($args);
 	}
 
 	function selectReviewer($args) {
