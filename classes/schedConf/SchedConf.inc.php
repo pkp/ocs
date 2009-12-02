@@ -108,7 +108,7 @@ class SchedConf extends DataObject {
 	 * @return int
 	 */
 	function getSchedConfId() {
-		trigger_error('Deprecated function.');
+		if (Config::getVar('debug', 'deprecation_warnings')) trigger_error('Deprecated function.');
 		return $this->getId();
 	}
 
@@ -117,7 +117,7 @@ class SchedConf extends DataObject {
 	 * @param $schedConfId int
 	 */
 	function setSchedConfId($schedConfId) {
-		trigger_error('Deprecated function.');
+		if (Config::getVar('debug', 'deprecation_warnings')) trigger_error('Deprecated function.');
 		return $this->setId($schedConfId);
 	}
 

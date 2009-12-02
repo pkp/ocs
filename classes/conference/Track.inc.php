@@ -35,7 +35,7 @@ class Track extends DataObject {
 	}
 
 	function getTrackTitle() {
-		trigger_error('Deprecated function.');
+		if (Config::getVar('debug', 'deprecation_warnings')) trigger_error('Deprecated function.');
 		return $this->getLocalizedTitle();
 	}
 
@@ -47,7 +47,7 @@ class Track extends DataObject {
 	}
 
 	function getTrackAbbrev() {
-		trigger_error('Deprecated function.');
+		if (Config::getVar('debug', 'deprecation_warnings')) trigger_error('Deprecated function.');
 		return $this->getLocalizedAbbrev();
 	}
 
@@ -182,7 +182,7 @@ class Track extends DataObject {
 	}
 
 	function getTrackIdentifyType() {
-		trigger_error('Deprecated function.');
+		if (Config::getVar('debug', 'deprecation_warnings')) trigger_error('Deprecated function.');
 		return $this->getLocalizedIdentifyType();
 	}
 
@@ -261,7 +261,7 @@ class Track extends DataObject {
 	}
 
 	function getTrackPolicy() {
-		trigger_error('Deprecated function.');
+		if (Config::getVar('debug', 'deprecation_warnings')) trigger_error('Deprecated function.');
 		return $this->getLocalizedPolicy();
 	}
 

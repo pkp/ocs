@@ -99,7 +99,7 @@ class Conference extends DataObject {
 	 * @return int
 	 */
 	function getConferenceId() {
-		trigger_error('Deprecated function.');
+		if (Config::getVar('debug', 'deprecation_warnings')) trigger_error('Deprecated function.');
 		return $this->getId();
 	}
 
@@ -108,7 +108,7 @@ class Conference extends DataObject {
 	 * @param $conferenceId int
 	 */
 	function setConferenceId($conferenceId) {
-		trigger_error('Deprecated function.');
+		if (Config::getVar('debug', 'deprecation_warnings')) trigger_error('Deprecated function.');
 		return $this->setId($conferenceId);
 	}
 

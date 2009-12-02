@@ -390,3 +390,6 @@ show_stacktrace = Off
 
 ; Display an error message when something goes wrong.
 display_errors = Off
+
+; Display deprecation warnings
+deprecation_warnings = Off

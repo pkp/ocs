@@ -38,30 +38,22 @@ class Request extends PKPRequest {
 	 * @param $anchor string Name of desired anchor on the target page
 	 */
 	function redirect($conferencePath = null, $schedConfPath = null, $page = null, $op = null, $path = null, $params = null, $anchor = null) {
-		Request::redirectUrl(Request::url($conferencePath, $schedConfPath, $page, $op, $path, $params, $anchor));
+		$_this =& PKPRequest::_checkThis();
+		$_this->redirectUrl($_this->url($conferencePath, $schedConfPath, $page, $op, $path, $params, $anchor));
 	}
 
 	/**
-	 * Get the conference path requested in the URL ("index" for top-level site requests).
-	 * @return string 
+	 * Deprecated
+	 * @see PKPPageRouter::getRequestedContextPath()
 	 */
 	function getRequestedConferencePath() {
 		static $conference;
+		$_this =& PKPRequest::_checkThis();
 
 		if (!isset($conference)) {
-			if (Request::isPathInfoEnabled()) {
-				$conference = '';
-				if (isset($_SERVER['PATH_INFO'])) {
-					$vars = explode('/', $_SERVER['PATH_INFO']);
-					if (count($vars) >= 2) {
-						$conference = Core::cleanFileVar($vars[1]);
-					}
-				}
-			} else {
-				$conference = Request::getUserVar('conference');
-			}
+			$conferenceArray = $_this->_delegateToRouter('getRequestedContextPath', 1);
+			$conference = $conferenceArray[0];
 
-			$conference = empty($conference) ? 'index' : $conference;
 			HookRegistry::call('Request::getRequestedConferencePath', array(&$conference));
 		}
 
@@ -69,186 +61,86 @@ class Request extends PKPRequest {
 	}
 
 	/**
-	 * Get the scheduled conference path requested in the URL ("index" for top-level site requests).
-	 * @return string 
+	 * Deprecated
+	 * @see PKPPageRouter::getRequestedContextPath()
 	 */
 	function getRequestedSchedConfPath() {
 		static $schedConf;
+		$_this =& PKPRequest::_checkThis();
 
 		if (!isset($schedConf)) {
-			if (Request::isPathInfoEnabled()) {
-				$schedConf = '';
-				if (isset($_SERVER['PATH_INFO'])) {
-					$vars = explode('/', $_SERVER['PATH_INFO']);
-					if (count($vars) >= 3) {
-						$schedConf = Core::cleanFileVar($vars[2]);
-					}
-				}
-			} else {
-				$schedConf = Request::getUserVar('schedConf');
-			}
+			$schedConfArray = $_this->_delegateToRouter('getRequestedContextPath', 2);
+			$schedConf = $schedConfArray[0];
 
-			$schedConf = empty($schedConf) ? 'index' : $schedConf;
 			HookRegistry::call('Request::getRequestedSchedConfPath', array(&$schedConf));
 		}
 
 		return $schedConf;
 	}
-	
-	function getRequestedContextPath($contextLevel = null) {
-		switch ($contextLevel) {
-			case 1:
-				return array(Request::getRequestedConferencePath());
-				break;
-			case 2:
-				return array(Request::getRequestedSchedConfPath());
-				break;
-			default:
-				return array(Request::getRequestedConferencePath(), Request::getRequestedSchedConfPath());
-		}
-	}
-	
-	function &getContext($level = 1) {
-		$returner = false;
-		switch ($level) {
-			case 1:
-				$returner =& Request::getConference();
-				break;
-			case 2:
-				$returner =& Request::getSchedConf();
-				break;	
-		}
-		return $returner;	
-	}
-	
-	function &getContextByName($contextName) {
-		$returner = false;
-		switch ($contextName) {
-			case 'conference':
-				$returner =& Request::getConference();
-				break;
-			case 'schedConf':
-				$returner =& Request::getSchedConf();
-				break;	
-		}
-		return $returner;
-	}
 
 	/**
-	 * Get the conference associated with the current request.
-	 * @return Conference
+	 * Deprecated
+	 * @see PKPPageRouter::getContext()
 	 */
 	function &getConference() {
-		static $conference;
-
-		if (!isset($conference)) {
-			$path = Request::getRequestedConferencePath();
-			if ($path != 'index') {
-				$conferenceDao =& DAORegistry::getDAO('ConferenceDAO');
-				$conference = $conferenceDao->getConferenceByPath(Request::getRequestedConferencePath());
-			}
-		}
-
-		return $conference;
+		$_this =& PKPRequest::_checkThis();
+		return $_this->_delegateToRouter('getContext', 1);
 	}
 
 	/**
-	 * Get the scheduled conference associated with the current request.
-	 * @return schedConf object
+	 * Deprecated
+	 * @see PKPPageRouter::getContext()
 	 */
 	function &getSchedConf() {
-		static $schedConf;
-
-		if (!isset($schedConf)) {
-			$path = Request::getRequestedSchedConfPath();
-			if ($path != 'index') {
-				$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
-				$schedConf = $schedConfDao->getSchedConfByPath(Request::getRequestedSchedConfPath());
-			}
-		}
-
-		return $schedConf;
+		$_this =& PKPRequest::_checkThis();
+		return $_this->_delegateToRouter('getContext', 2);
 	}
 
 	/**
-	 * Build a URL into OCS.
-	 * @param $conferencePath string Optional path for conference to use
-	 * @param $schedConfPath string Optional path for scheduled conference to use
-	 * @param $page string Optional name of page to invoke
-	 * @param $op string Optional name of operation to invoke
-	 * @param $path mixed Optional string or array of args to pass to handler
-	 * @param $params array Optional set of name => value pairs to pass as user parameters
-	 * @param $anchor string Optional name of anchor to add to URL
-	 * @param $escape boolean Whether or not to escape ampersands for this URL; default false.
+	 * Deprecated
+	 * @see PKPPageRouter::getRequestedContextPath()
+	 */
+	function getRequestedContextPath($contextLevel = null) {
+		$_this =& PKPRequest::_checkThis();
+		return $_this->_delegateToRouter('getRequestedContextPath', $contextLevel);
+	}
+
+	/**
+	 * Deprecated
+	 * @see PKPPageRouter::getContext()
+	 */
+	function &getContext($level = 1) {
+		$_this =& PKPRequest::_checkThis();
+		return $_this->_delegateToRouter('getContext', $level);
+	}
+
+	/**
+	 * Deprecated
+	 * @see PKPPageRouter::getContextByName()
+	 */
+	function &getContextByName($contextName) {
+		$_this =& PKPRequest::_checkThis();
+		return $_this->_delegateToRouter('getContextByName', $contextName);
+	}
+
+	/**
+	 * Deprecated
+	 * @see PKPPageRouter::url()
 	 */
 	function url($conferencePath = null, $schedConfPath = null, $page = null,
 			$op = null, $path = null, $params = null, $anchor = null, $escape = false) {
-		return parent::url(array($conferencePath, $schedConfPath), $page, $op, $path, $params, $anchor, $escape);
+		$_this =& PKPRequest::_checkThis();
+		return $_this->_delegateToRouter('url', array($conferencePath, $schedConfPath), $page, $op, $path,
+			$params, $anchor, $escape);
 	}
-	
-		
+
 	/**
-	 * Redirect to user home page (or the role home page if the user has one role).
+	 * Deprecated
+	 * @see OCSPageRouter::redirectHome()
 	 */
 	function redirectHome() {
-		$roleDao =& DAORegistry::getDAO('RoleDAO');
-		$user = Request::getUser();
-		$userId = $user->getId();
-
-		if ($schedConf =& Request::getSchedConf()) { 
-			// The user is in the sched. conf. context, see if they have one role only
-			$roles =& $roleDao->getRolesByUserId($userId, $schedConf->getConferenceId(), $schedConf->getId());
-			if(count($roles) == 1) {
-				$role = array_shift($roles);
-				if ($role->getRoleId() == ROLE_ID_READER) Request::redirect(null, 'index');
-				Request::redirect(null, null, $role->getRolePath());
-			} else {
-				Request::redirect(null, null, 'user');
-			}
-		} elseif ($conference =& Request::getConference()) { 
-			// The user is in the conference context, see if they have one role only 
-			$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
-			$roles =& $roleDao->getRolesByUserId($userId, $conference->getId());
-			if(count($roles) == 1) {
-				$role = array_shift($roles);
-				$confPath = $conference->getPath();
-				$schedConfPath = 'index';
-
-				if ($role->getSchedConfId()) {
-					$schedConf = $schedConfDao->getSchedConf($role->getSchedConfId());
-					$schedConfPath = $schedConf->getPath();
-				}
-				if ($role->getRoleId() == ROLE_ID_READER) Request::redirect($confPath, $schedConfPath, 'index');
-				Request::redirect($confPath, $schedConfPath, $role->getRolePath());
-			} else {
-				Request::redirect(null, null,  'user');
-			}
-		} else {
-			// The user is at the site context, check to see if they are
-			// only registered in one conf/SchedConf w/ one role
-			$conferenceDao =& DAORegistry::getDAO('ConferenceDAO');
-			$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
-			$roles = $roleDao->getRolesByUserId($userId);
-			
-			if(count($roles) == 1) {
-				$role = array_shift($roles);
-				$confPath = 'index';
-				$schedConfPath = 'index';
-				
-				if ($role->getConferenceId()) {
-					$conference = $conferenceDao->getConference($role->getConferenceId());
-					isset($conference) ? $confPath = $conference->getPath() :
-										 $confPath = 'index';
-				}
-				if ($role->getSchedConfId()) {
-					$schedConf = $schedConfDao->getSchedConf($role->getSchedConfId());
-					isset($schedConf) ? $schedConfPath = $schedConf->getPath() :
-										$schedConfPath = 'index';
-				}
-				
-				Request::redirect($confPath, $schedConfPath, $role->getRolePath());
-			} else Request::redirect('index', 'index', 'user');
-		}
+		$_this =& PKPRequest::_checkThis();
+		return $_this->_delegateToRouter('redirectHome');
 	}
 }
 
