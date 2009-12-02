@@ -76,7 +76,7 @@ class Paper extends Submission {
 	 * @return string
 	 */
 	function getPaperTitle() {
-		trigger_error('Deprecated function');
+		if (Config::getVar('debug', 'deprecation_warnings')) trigger_error('Deprecated function.');
 		return $this->getLocalizedTitle();
 	}
 
@@ -86,7 +86,7 @@ class Paper extends Submission {
 	 * @return string
 	 */
 	function getPaperAbstract() {
-		trigger_error('Deprecated function');
+		if (Config::getVar('debug', 'deprecation_warnings')) trigger_error('Deprecated function.');
 		return $this->getLocalizedAbstract();
 	}
 
@@ -181,7 +181,7 @@ class Paper extends Submission {
 	 * @return string
 	 */
 	function getPaperDiscipline() {
-		trigger_error('Deprecated function');
+		if (Config::getVar('debug', 'deprecation_warnings')) trigger_error('Deprecated function.');
 		return $this->getLocalizedDiscipline();
 	}
 
@@ -192,7 +192,7 @@ class Paper extends Submission {
 	 * @return string
 	 */
 	function getPaperSubjectClass() {
-		trigger_error('Deprecated function.');
+		if (Config::getVar('debug', 'deprecation_warnings')) trigger_error('Deprecated function.');
 		return $this->getLocalizedSubjectClass();
 	}
 
@@ -202,7 +202,7 @@ class Paper extends Submission {
 	 * @return string
 	 */
 	function getPaperSubject() {
-		trigger_error('Deprecated function.');
+		if (Config::getVar('debug', 'deprecation_warnings')) trigger_error('Deprecated function.');
 		return $this->getLocalizedSubject();
 	}
 
@@ -212,7 +212,7 @@ class Paper extends Submission {
 	 * @return string
 	 */
 	function getPaperCoverageGeo() {
-		trigger_error('Deprecated function.');
+		if (Config::getVar('debug', 'deprecation_warnings')) trigger_error('Deprecated function.');
 		return $this->getLocalizedCoverageGeo();
 	}
 
@@ -222,7 +222,7 @@ class Paper extends Submission {
 	 * @return string
 	 */
 	function getPaperCoverageChron() {
-		trigger_error('Deprecated function.');
+		if (Config::getVar('debug', 'deprecation_warnings')) trigger_error('Deprecated function.');
 		return $this->getLocalizedCoverageChron();
 	}
 
@@ -232,7 +232,7 @@ class Paper extends Submission {
 	 * @return string
 	 */
 	function getPaperCoverageSample() {
-		trigger_error('Deprecated function.');
+		if (Config::getVar('debug', 'deprecation_warnings')) trigger_error('Deprecated function.');
 		return $this->getLocalizedCoverageSample();
 	}
 
@@ -242,7 +242,7 @@ class Paper extends Submission {
 	 * @return string
 	 */
 	function getPaperType() {
-		trigger_error('Deprecated function.');
+		if (Config::getVar('debug', 'deprecation_warnings')) trigger_error('Deprecated function.');
 		return $this->getLocalizedType();
 	}
 
@@ -252,7 +252,7 @@ class Paper extends Submission {
 	 * @return string
 	 */
 	function getPaperSponsor() {
-		trigger_error('Deprecated function.');
+		if (Config::getVar('debug', 'deprecation_warnings')) trigger_error('Deprecated function.');
 		return $this->getLocalizedSponsor();
 	}
 

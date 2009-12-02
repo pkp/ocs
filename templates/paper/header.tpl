@@ -15,8 +15,12 @@
 <head>
 	<title>{$paper->getFirstAuthor(true)|escape}</title>
 	<meta http-equiv="Content-Type" content="text/html; charset={$defaultCharset|escape}" />
-	<meta name="description" content="" />
-	<meta name="keywords" content="" />
+	{if $paper->getLocalizedSubject()}
+		<meta name="keywords" content="{$paper->getLocalizedSubject()|escape}" />
+	{/if}
+
+	{include file="paper/dublincore.tpl"}
+	{include file="paper/googlescholar.tpl"}
 
 	<link rel="stylesheet" href="{$baseUrl}/lib/pkp/styles/common.css" type="text/css" />
 	<link rel="stylesheet" href="{$baseUrl}/styles/common.css" type="text/css" />

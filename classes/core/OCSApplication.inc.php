@@ -31,7 +31,18 @@ class OCSApplication extends PKPApplication {
 		PKPApplication::initialize($application);
 
 		import('i18n.Locale');
-		import('core.Request');
+	}
+
+	/**
+	 * Get the dispatcher implementation singleton
+	 * @return Dispatcher
+	 */
+	function &getDispatcher() {
+		$dispatcher =& parent::getDispatcher();
+
+		// Inject application-specific configuration
+		$dispatcher->addRouterName('core.OCSPageRouter', 'page');
+		return $dispatcher;
 	}
 
 	/**
@@ -44,7 +55,7 @@ class OCSApplication extends PKPApplication {
 	function getContextDepth() {
 		return 2;
 	}
-	
+
 	function getContextList() {
 		return array('conference', 'schedConf');
 	}
@@ -72,18 +83,6 @@ class OCSApplication extends PKPApplication {
 	 */
 	function getVersionDescriptorUrl() {
 		return('http://pkp.sfu.ca/ocs/xml/ocs-version.xml');
-	}
-
-	/**
-	 * Determine whether or not the request is cacheable.
-	 * @return boolean
-	 */
-	function isCacheable() {
-		if (defined('SESSION_DISABLE_INIT')) return false;
-		if (!Config::getVar('general', 'installed')) return false;
-		if (!empty($_POST) || Validation::isLoggedIn()) return false;
-
-		return false; // FIXME: Not implemented yet.
 	}
 
 	/**
@@ -123,7 +122,7 @@ class OCSApplication extends PKPApplication {
 			'RoleDAO' => 'security.RoleDAO',
 			'RegistrationDAO' => 'registration.RegistrationDAO',
 			'RegistrationTypeDAO' => 'registration.RegistrationTypeDAO',
-			'RegistrationOptionDAO' => 'registration.RegistrationOptionDAO',			
+			'RegistrationOptionDAO' => 'registration.RegistrationOptionDAO',
 			'ReviewAssignmentDAO' => 'submission.reviewAssignment.ReviewAssignmentDAO',
 			'ReviewerSubmissionDAO' => 'submission.reviewer.ReviewerSubmissionDAO',
 			'ReviewFormDAO' => 'reviewForm.ReviewFormDAO',

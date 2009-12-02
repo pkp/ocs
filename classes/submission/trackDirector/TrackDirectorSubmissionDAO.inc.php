@@ -162,7 +162,7 @@ class TrackDirectorSubmissionDAO extends DAO {
 		}
 
 		// Update director decisions; hacked necessarily to iterate by reference.
-		for ($i = 1; $i <= $trackDirectorSubmission->getCurrentStage(); $i++) {
+		foreach (array(REVIEW_STAGE_ABSTRACT, REVIEW_STAGE_PRESENTATION) as $i) {
 			$directorDecisions = $trackDirectorSubmission->getDecisions($i);
 			$insertedDecision = false;
 			if (is_array($directorDecisions)) {

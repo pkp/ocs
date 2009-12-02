@@ -72,7 +72,7 @@ class UserHandler extends Handler {
 				}
 
 				// Determine if conference setup is incomplete, to provide a message for JM
-				$setupIncomplete[$conferenceId] = $this->checkCompleteSetup($conference);
+				$setupIncomplete[$conferenceId] = $this->checkIncompleteSetup($conference);
 				
 				$this->getRoleDataForConference($userId, $conferenceId, $schedConfId, $submissionsCount, $isValid);
 
@@ -183,12 +183,12 @@ class UserHandler extends Handler {
 	 * @param $conference Object 
 	 * @return boolean True iff setup is incomplete
 	 */
-	function checkCompleteSetup($conference) {
-		if($conference->getSetting('contactEmail') == "" ||  
-			$conference->getSetting('contactName') == "" || 
-			$conference->getLocalizedSetting('abbreviation') == "") {
-			return true;
-		} else return false;
+	function checkIncompleteSetup($conference) {
+		if (
+			$conference->getSetting('contactEmail') == '' ||  
+			$conference->getSetting('contactName') == ''
+		) return true;
+		return false;
 	}
 
 	/**

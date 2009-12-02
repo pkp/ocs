@@ -79,6 +79,7 @@ class TrackHandler extends ManagerHandler {
 	 */
 	function updateTrack() {
 		parent::validate();
+		$this->setupTemplate(true);
 
 		import('manager.form.TrackForm');
 
@@ -88,9 +89,7 @@ class TrackHandler extends ManagerHandler {
 		if ($trackForm->validate()) {
 			$trackForm->execute();
 			Request::redirect(null, null, null, 'tracks');
-
 		} else {
-			$this->setupTemplate(true);
 			$trackForm->display();
 		}
 	}
