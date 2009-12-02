@@ -300,7 +300,7 @@ class SubmitHandler extends AuthorHandler {
 
 		import('file.FileManager');
 		$fileManager = new FileManager();
-		if ($fileManager->uploadError('uploadSuppFile')) {
+		if ($fileManager->uploadError('uploadSuppFile') && $suppFileId == 0) {
 			$submitForm->addError('uploadSubmissionFile', Locale::translate('common.uploadFailed'));
 		}
 
