@@ -15,7 +15,7 @@
 
 <h3>{translate key="director.paper.selectDirector" roleName=$roleName|translate}</h3>
 
-<form name="submit" method="post" action="{url op="assignDirector" paperId=$paperId}">
+<form name="submit" method="post" action="{url op="assignDirector" path=$rolePath paperId=$paperId}">
 	<select name="searchField" size="1" class="selectMenu">
 		{html_options_translate options=$fieldOptions selected=$searchField}
 	</select>
@@ -27,7 +27,7 @@
 	<input type="text" name="search" class="textField" value="{$search|escape}" />&nbsp;<input type="submit" value="{translate key="common.search"}" class="button" />
 </form>
 
-<p>{foreach from=$alphaList item=letter}<a href="{url op="assignDirector" paperId=$paperId searchInitial=$letter}">{if $letter == $searchInitial}<strong>{$letter|escape}</strong>{else}{$letter|escape}{/if}</a> {/foreach}<a href="{url op="assignDirector" paperId=$paperId}">{if $searchInitial==''}<strong>{translate key="common.all"}</strong>{else}{translate key="common.all"}{/if}</a></p>
+<p>{foreach from=$alphaList item=letter}<a href="{url op="assignDirector" path=$rolePath paperId=$paperId searchInitial=$letter}">{if $letter == $searchInitial}<strong>{$letter|escape}</strong>{else}{$letter|escape}{/if}</a> {/foreach}<a href="{url op="assignDirector" paperId=$paperId}">{if $searchInitial==''}<strong>{translate key="common.all"}</strong>{else}{translate key="common.all"}{/if}</a></p>
 
 <div id="directors">
 <table width="100%" class="listing">

@@ -289,6 +289,7 @@ class DirectorHandler extends TrackDirectorHandler {
 
 			if ($forDirectors) {
 				$roleName = 'user.role.director';
+				$rolePath = 'director';
 				while (true) {
 					$directors =& $directorSubmissionDao->getUsersNotAssignedToPaper($schedConf->getId(), $paperId, RoleDAO::getRoleIdFromPath('director'), $searchType, $search, $searchMatch, $rangeInfo);
 					if ($directors->isInBounds()) break;
@@ -298,6 +299,7 @@ class DirectorHandler extends TrackDirectorHandler {
 				}
 			} else {
 				$roleName = 'user.role.trackDirector';
+				$rolePath = 'trackDirector';
 				while (true) {
 					$directors =& $directorSubmissionDao->getUsersNotAssignedToPaper($schedConf->getId(), $paperId, RoleDAO::getRoleIdFromPath('trackDirector'), $searchType, $search, $searchMatch, $rangeInfo);
 					if ($directors->isInBounds()) break;
@@ -311,6 +313,7 @@ class DirectorHandler extends TrackDirectorHandler {
 
 			$templateMgr->assign_by_ref('directors', $directors);
 			$templateMgr->assign('roleName', $roleName);
+			$templateMgr->assign('rolePath', $rolePath);
 			$templateMgr->assign('paperId', $paperId);
 
 			$trackDao =& DAORegistry::getDAO('TrackDAO');
