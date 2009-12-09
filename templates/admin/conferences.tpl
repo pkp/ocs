@@ -42,9 +42,6 @@ $(document).ready(function() { setupTableDND("#adminConferences", "moveConferenc
 		<td align="right"><a href="{url op="editConference" path=$conference->getId()}" class="action">{translate key="common.edit"}</a>&nbsp;|&nbsp;<a class="action" href="{url op="deleteConference" path=$conference->getId()}" onclick="return confirm('{translate|escape:"jsparam" key="admin.conferences.confirmDelete"}')">{translate key="common.delete"}</a></td>
 	</tr>
 	{/iterate}
-	<tr>
-		<td colspan="4" class="endseparator">&nbsp;</td>
-	</tr>
 	{if $conferences->wasEmpty()}
 	<tr>
 		<td colspan="4" class="nodata">{translate key="admin.conferences.noneCreated"}</td>
@@ -53,6 +50,9 @@ $(document).ready(function() { setupTableDND("#adminConferences", "moveConferenc
 		<td colspan="4" class="endseparator">&nbsp;</td>
 	<tr>
 	{else}
+		<tr>
+			<td colspan="4" class="endseparator">&nbsp;</td>
+		</tr>
 		<tr>
 			<td colspan="2" align="left">{page_info iterator=$conferences}</td>
 			<td colspan="2" align="right">{page_links anchor="conferences" name="conferences" iterator=$conferences}</td>
