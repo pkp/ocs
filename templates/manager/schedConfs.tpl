@@ -48,9 +48,6 @@ $(document).ready(function() { setupTableDND("#adminSchedConfs", "moveSchedConf"
 		</td>
 	</tr>
 	{/iterate}
-	<tr>
-		<td colspan="4" class="endseparator">&nbsp;</td>
-	</tr>
 	{if $schedConfs->wasEmpty()}
 	<tr>
 		<td colspan="4" class="nodata">{translate key="manager.schedConfs.noneCreated"}</td>
@@ -59,6 +56,9 @@ $(document).ready(function() { setupTableDND("#adminSchedConfs", "moveSchedConf"
 		<td colspan="4" class="endseparator">&nbsp;</td>
 	<tr>
 	{else}
+		<tr>
+			<td colspan="4" class="endseparator">&nbsp;</td>
+		</tr>
 		<tr>
 			<td colspan="2" align="left">{page_info iterator=$schedConfs}</td>
 			<td colspan="2" align="right">{page_links anchor="schedConfs" name="schedConfs" iterator=$schedConfs}</td>
