@@ -17,6 +17,10 @@
 import('plugins.Plugin');
 
 class GenericPlugin extends Plugin {
+	function GenericPlugin() {
+		parent::Plugin();
+	}
+
 	// No additional functions for now.
 }
 

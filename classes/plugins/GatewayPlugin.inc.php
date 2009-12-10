@@ -15,6 +15,10 @@
 //$Id$
 
 class GatewayPlugin extends Plugin {
+	function GatewayPlugin() {
+		parent::Plugin();
+	}
+
 	/**
 	 * Get the name of this plugin. The name must be unique within
 	 * its category.
