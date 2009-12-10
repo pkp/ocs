@@ -22,6 +22,9 @@ import('core.PKPApplication');
 define('ASSOC_TYPE_CONFERENCE',	0x0000100);
 define('ASSOC_TYPE_SCHED_CONF',	0x0000101);
 
+define('CONTEXT_CONFERENCE', 1);
+define('CONTEXT_SCHED_CONF', 2);
+
 class OCSApplication extends PKPApplication {
 	function OCSApplication() {
 		parent::PKPApplication();
