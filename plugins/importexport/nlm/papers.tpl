@@ -20,7 +20,7 @@
 function toggleChecked() {
 	var elements = document.papers.elements;
 	for (var i=0; i < elements.length; i++) {
-		if (elements[i].name = 'paperId[]') {
+		if (elements[i].name == 'paperId[]') {
 			elements[i].checked = !elements[i].checked;
 		}
 	}
