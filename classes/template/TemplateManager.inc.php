@@ -167,7 +167,9 @@ class TemplateManager extends PKPTemplateManager {
 				}
 			} else { // Not within conference context
 				// Add the site-wide logo, if set for this locale or the primary locale
-				$this->assign('displaySitePageHeaderTitle', $site->getLocalizedPageHeaderTitle());
+				$displayPageHeaderTitle = $site->getLocalizedPageHeaderTitle();
+				$this->assign('displayPageHeaderTitle', $displayPageHeaderTitle);
+				if (isset($displayPageHeaderTitle['altText'])) $this->assign('displayPageHeaderTitleAltText', $displayPageHeaderTitle['altText']);
 
 				$this->assign('publicFilesDir', Request::getBaseUrl() . '/' . PublicFileManager::getSiteFilesPath());
 			}
