@@ -51,9 +51,7 @@ class Request extends PKPRequest {
 		$_this =& PKPRequest::_checkThis();
 
 		if (!isset($conference)) {
-			$conferenceArray = $_this->_delegateToRouter('getRequestedContextPath', 1);
-			$conference = $conferenceArray[0];
-
+			$conference = $_this->_delegateToRouter('getRequestedContextPath', 1);
 			HookRegistry::call('Request::getRequestedConferencePath', array(&$conference));
 		}
 
@@ -69,9 +67,7 @@ class Request extends PKPRequest {
 		$_this =& PKPRequest::_checkThis();
 
 		if (!isset($schedConf)) {
-			$schedConfArray = $_this->_delegateToRouter('getRequestedContextPath', 2);
-			$schedConf = $schedConfArray[0];
-
+			$schedConf = $_this->_delegateToRouter('getRequestedContextPath', 2);
 			HookRegistry::call('Request::getRequestedSchedConfPath', array(&$schedConf));
 		}
 
@@ -102,7 +98,14 @@ class Request extends PKPRequest {
 	 */
 	function getRequestedContextPath($contextLevel = null) {
 		$_this =& PKPRequest::_checkThis();
-		return $_this->_delegateToRouter('getRequestedContextPath', $contextLevel);
+
+		// Emulate the old behavior of getRequestedContextPath for
+		// backwards compatibility.
+		if (is_null($contextLevel)) {
+			return $_this->_delegateToRouter('getRequestedContextPaths');
+		} else {
+			return array($_this->_delegateToRouter('getRequestedContextPath', $contextLevel));
+		}
 	}
 
 	/**
