@@ -27,7 +27,7 @@ class CustomLocaleHandler extends Handler {
 	/**
 	 * Constructor
 	 */
-	function CustomLocaleHandler {
+	function CustomLocaleHandler() {
 		parent::Handler();
 		
 		$this->addCheck(new HandlerValidatorConference($this));		
