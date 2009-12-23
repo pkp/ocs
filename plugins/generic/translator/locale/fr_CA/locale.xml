@@ -73,4 +73,9 @@
 	<message key="plugins.generic.translator.deleteEmail">Supprimer ce courriel</message>
 	<message key="plugins.generic.translator.saveBeforeContinuing">Assurez-vous d'enregistrer tous les changements effectués sur cette page avant de continuer ou ils seront perdus. Voulez-vous continuer? Si c'est le cas, tout changement non enregistré sera perdu.</message>
 	<message key="plugins.generic.translator.localeKey.description">Saisir une clé de langue complète pour fins de recherche.</message>
+	<message key="plugins.generic.translator.enabled">Le plugiciel de traduction a été activé.</message>
+	<message key="plugins.generic.translator.disabled">Le plugiciel de traduction a été désactivé.</message>
+	<message key="plugins.generic.translator.tarMissing">La fonctionnalité d'exportation de ce plugiciel a été désactivée parce que le fichier binaire tar configuré ne peut pas être trouvé sur ce système. Veuillez vous assurer que vous avez installé le programme tar et, à partir de là, configurer le chemin vers le fichier binaire tar dans la section [cli] de config.inc.php.</message>
+	<message key="plugins.generic.translator.fileNotWriteable">Ce fichier de langue n'est pas disponible en écriture par le serveur. Tous les changements que vous ferez ne seront pas enregistrés.</message>
+	<message key="plugins.generic.translator.filesNotWriteable">Ces fichiers de langue ne sont pas disponibles en écriture par le serveur. Tous les changements que vous ferez à ces fichiers ne seront pas enregistrés.</message>
 </locale>

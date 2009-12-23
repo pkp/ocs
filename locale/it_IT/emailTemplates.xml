@@ -396,4 +396,35 @@ Se non vuoi più ricevere email di notifica, vai a {$unsubscribeLink} e inserisc
 
 {$principalContactSignature}</body>
 	</email_text>
+	<email_text key="NOTIFICATION_MAILLIST_WELCOME">
+		<subject>Benvenuto nella mailing list di {$siteTitle}!</subject>
+		<body>Hai chiesto di ricevere notifiche da {$siteTitle}.
+			
+Clicca sul link sottostante per confermare la richiesta: {$confirmLink}
+
+Se non vuoi più ricevere aggiornamenti vai a {$unsubscribeLink} e inserisci il tuo indirizzo email e la password.
+
+La password per disabilitare le notifiche è: {$password}
+
+{$principalContactSignature}</body>
+		<description>Questo messaggio è diretto agli utenti non registrati che hanno scelto di ricevere aggiornamenti attraverso la mailing list</description>
+	</email_text>
+	<email_text key="NOTIFICATION_MAILLIST_PASSWORD">
+		<subject>Informazioni sulla mailing list di  {$siteTitle}</subject>
+		<body>Se non vuoi più ricevere aggiornamenti vai a {$unsubscribeLink} e inserisci il tuo indirizzo email e la password.
+
+La password per disabilitare le notifiche è: {$password}
+
+{$principalContactSignature}</body>
+	</email_text>
+	<email_text key="MANUAL_PAYMENT_RECEIVED">
+		<subject>Ricevuta di pagamento per {$conferenceName}</subject>
+		<body>{$registrantName}:
+
+Abbiamo ricevuto e registrato il tuo pagamento per {$conferenceName}.
+
+Per qualsiasi informazione non esitare a contattarmi
+
+{$registrationContactSignature}</body>
+	</email_text>
 </email_texts>

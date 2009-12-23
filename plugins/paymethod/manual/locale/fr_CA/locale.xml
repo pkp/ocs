@@ -14,4 +14,12 @@
 	<message key="plugins.paymethod.manual.displayName">Paiement manuel</message>
 	<message key="plugins.paymethod.manual.description">Le gestionnaire de la conférence enregistrera la réception du paiement d'un utilisateur.</message>
 	<message key="plugins.paymethod.manual">Paiement de l'inscription</message>
+	<message key="plugins.paymethod.manual.settings">Paramètres de paiement manuel</message>
+	<message key="plugins.paymethod.manual.settings.instructions">Instructions</message>
+	<message key="plugins.paymethod.manual.settings.manualInstructions">Les instructions de paiement des frais pour les utilisateurs sélectionnant le paiement manuel des frais</message>
+	<message key="plugins.paymethod.manual.sendNotificationOfPayment">Envoyer un avis de paiement</message>
+	<message key="plugins.paymethod.manual.paymentNotification">Avis de paiement</message>
+	<message key="plugins.paymethod.manual.notificationSent">Avis de paiement envoyé</message>
+	<message key="plugins.paymethod.manual.purchase.title">Titre</message>
+	<message key="plugins.paymethod.manual.purchase.fee">Frais</message>
 </locale>

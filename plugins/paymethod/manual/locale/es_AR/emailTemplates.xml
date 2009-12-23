@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE email_texts SYSTEM "../../../../../lib/pkp/dtd/emailTemplateData.dtd">
+<!--
+  * emailTemplateData.xml
+  *
+  * Copyright (c) 2000-2009 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localized email templates XML file.
+  *
+  * $Id$
+  -->
+<email_texts locale="es_AR">
+	<email_text key="MANUAL_PAYMENT_NOTIFICATION">
+		<subject>Notificación de pago manual</subject>
+		<body>Un pago manual necesita ser procesado para la conferencia {$schedConfName} y el usuario {$userFullName} (nombre de usuario "{$userName}").
+
+El item por el que se ha pagado es "{$itemName}".
+El costo es {$itemCost} ({$itemCurrencyCode}).
+
+Este email fue generado por el plugin de Pago Manual de Open Conference Systems.</body>
+	</email_text>
+</email_texts>

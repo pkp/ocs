@@ -157,7 +157,7 @@
   <message key="submission.paperReview">Évaluation de la communication</message>
   <message key="submission.page.abstractReview">#{$id} Résumé d'évaluation</message>
   <message key="submission.page.paperReview">#{$id} Évaluation de la communication</message>
-  <message key="submission.uploadFile">Télécharger la communication vers le serveur</message>
+  <message key="submission.uploadFile">Télécharger la communication</message>
   <message key="submission.changeTrack">Changer à</message>
   <message key="submission.acceptance">Accepté pour évaluation</message>
   <message key="submission.complete.description">Ajouter la soumission à la liste des présentations acceptées.</message>
@@ -178,7 +178,7 @@
   <message key="submissions.accepted">Accepté</message>
   <message key="submissions.reviewStage">Étape d'évaluation</message>
   <message key="submissions.reviewType">Type d'évaluation</message>
-  <message key="submissions.pendingPresentation">En attente de téléchargement vers le serveur</message>
+  <message key="submissions.pendingPresentation">En attente de téléchargement</message>
   <message key="submissions.expired">Expiré</message>
   <message key="submissions.directorDecision">Décision du responsable</message>
   <message key="submissions.directorRuling">Décision ferme du responsable</message>
@@ -402,7 +402,7 @@ La mention active correspond au nombre d'évaluation en délibération ou en cou
   <message key="trackDirector.regrets.breadcrumb">Message de refus</message>
   <message key="trackDirector.regrets.title">#{$paperId} Message de refus de l'évaluateur et Annulations</message>
   <message key="trackDirector.regrets">Message de refus</message>
-  <message key="trackDirector.regrets.link">Voir les messages de refus, les annulations</message>
+  <message key="trackDirector.regrets.link">Voir les messages de refus, annulations</message>
   <message key="trackDirector.regrets.reviewStage">Évaluation par les pairs, étape {$stage}</message>
   <message key="trackDirector.regrets.decisionStage">Décision du responsable, étape {$stage}</message>
   <message key="trackDirector.regrets.regretsAndCancels"><![CDATA[Message de refus de l'évaluateur & Annulations]]></message>
@@ -424,13 +424,13 @@ La mention active correspond au nombre d'évaluation en délibération ou en cou
   <message key="reviewer.paper.directorToEnter">À entrer par le responsable</message>
   <message key="reviewer.paper.sendReminder">Envoyer un rappel</message>
   <message key="reviewer.paper.automatic">(Auto)</message>
-  <message key="reviewer.paper.selectRecommendation">Sélectionner une recommandation et soumettre l'évaluation pour compléter le processus. Vous devez écrire une évaluation ou téléchargez un fichier vers le serveur avant de choisir une recommandation.</message>
+  <message key="reviewer.paper.selectRecommendation">Sélectionner une recommandation et soumettre l'évaluation pour compléter le processus. Vous devez écrire une évaluation ou téléchargez un fichier avant de choisir une recommandation.</message>
   <message key="reviewer.paper.recommendation">Recommandation</message>
   <message key="reviewer.paper.submitReview">Soumettre l'évaluation au responsable</message>
   <message key="reviewer.paper.reviewerComments">Commentaires</message>
-  <message key="reviewer.paper.uploadedFile">Fichiers téléchargés vers le serveur</message>
-  <message key="reviewer.paper.reviewersAnnotatedVersion">Version téléchargée vers le serveur par l'évaluateur</message>
-  <message key="reviewer.paper.reviewersAnnotatedVersionDescription">(Si vous souhaitez annoter ce fichier pour le responsable, enregistrez-le sur votre disque dur puis utiliser Naviguer/Télécharger vers le serveur.)</message>
+  <message key="reviewer.paper.uploadedFile">Fichiers téléchargés</message>
+  <message key="reviewer.paper.reviewersAnnotatedVersion">Version téléchargée par l'évaluateur</message>
+  <message key="reviewer.paper.reviewersAnnotatedVersionDescription">(Si vous souhaitez annoter ce fichier pour le responsable, enregistrez-le sur votre disque dur puis utiliser Naviguer/Télécharger.)</message>
   <message key="reviewer.paper.schedule.request">Requête du responsable</message>
   <message key="reviewer.paper.schedule.response">Votre réponse</message>
   <message key="reviewer.paper.schedule.submitted">Évaluation soumise</message>
@@ -452,14 +452,14 @@ La mention active correspond au nombre d'évaluation en délibération ou en cou
   <!-- Paper Submission Step 1 -->
   <!-- Paper Submission Step 2 -->
   <!-- Paper Submission Step 3 -->
-  <message key="author.submit.uploadInstructions"><![CDATA[Pour télécharger vers le serveur une communication à cette conférence, compléter les étapes suivantes.
+  <message key="author.submit.uploadInstructions"><![CDATA[<p>Pour télécharger une communication à cette conférence, compléter les étapes suivantes.</p>
 
 <ol>
 <li>Sur cette page, cliquer sur Parcourir (ou Choisir un fichier) qui ouvre une fenêtre de sélection de fichier sur le disque dur de votre ordinateur.</li>
 <li>Sélectionner le fichier que vous voulez soumettre.</li>
 <li>Cliquer sur la fenêtre Choisir un fichier, ceci placera son nom sur cette page.</li>
-<li>Cliquer sur Télécharger vers le serveur de cette page, ceci téléchargera le fichier de votre ordinateur au site web de la conférence et le renommera selon les normes de la conférence.</li>
-<li>Une fois la soumission téléchargée vers le serveur, cliquer sur Enregistrer et continuer au bas de la page.</li>
+<li>Cliquer sur Télécharger de cette page, ceci téléchargera le fichier de votre ordinateur au site web de la conférence et le renommera selon les normes de la conférence.</li>
+<li>Une fois la soumission téléchargée, cliquer sur Enregistrer et continuer au bas de la page.</li>
 </ol>]]></message>
   <!-- Paper Submission Step 4 -->
   <!-- Paper Submission Step 4a: Supplementary Files -->
@@ -634,7 +634,7 @@ La mention active correspond au nombre d'évaluation en délibération ou en cou
 	<li><tt>cache/_db</tt> est disponible en écriture: {$writable_db_cache}</li>
 </ul>
 
-<p>2. Un répertoire pour enregistrer les fichiers téléchargés vers le serveur doit être créé avec les droits en écriture (voir "Paramètres des fichiers" ci-dessous).</p>
+<p>2. Un répertoire pour enregistrer les fichiers téléchargés doit être créé avec les droits en écriture (voir "Paramètres des fichiers" ci-dessous).</p>
 
 <h4>Installation manuelle</h4>
 
@@ -668,7 +668,7 @@ p><p>N'oubliez pas de remettre "installed" dans votre fichier de configuration "
   <message key="log.default.abstractPeriodExpired">La fenêtre du résumé de la soumission pour une communication incomplète {$paperId} a expirée. La communication a été envoyée à la corbeille.</message>
   <message key="log.default.paperPeriodExpired">La fenêtre de la soumission pour une communication incomplèet {$paperId} a expirée. La communication a été envoyée à la corbeille.</message>
   <message key="log.author.abstractSubmitted">{$authorName} a présenté un résumé de soumission, ID: {$submissionId}.</message>
-  <message key="log.author.presentationSubmitted">{$authorName} a téléchargé une présentation vers le serveur, ID: {$submissionId}.</message>
+  <message key="log.author.presentationSubmitted">{$authorName} a téléchargé une présentation, ID: {$submissionId}.</message>
   <message key="log.author.documentRevised">{$authorName} a révisé le papier {$paperId}. Le nouvel ID du fichier est {$fileId}.</message>
   <message key="log.review.reviewerAssigned">{$reviewerName} a été assigné à l'évaluation de la soumission {$paperId} pour l'étape d'évaluation {$stage}.</message>
   <message key="log.review.reviewerUnassigned">{$reviewerName} a été retiré de l'évaluation de la soumission {$paperId} pour l'étape d'évaluation {$stage}.</message>
@@ -684,11 +684,11 @@ p><p>N'oubliez pas de remettre "installed" dans votre fichier de configuration "
   <message key="log.review.reviewDeclined">{$reviewerName} a refusé l'étape {$stage} d'évaluation de la soumission {$paperId}.</message>
   <message key="log.review.reviewAccepted">{$reviewerName} a accepté l'étape {$stage} d'évaluation de la soumission {$paperId}.</message>
   <message key="log.review.reviewAcceptedByProxy">{$userName} a accepté l'étape{$stage} d'évaluation de la soumission {$paperId} au nom de {$reviewerName}.</message>
-  <message key="log.review.reviewFileByProxy">Le responsable, {$userName}, a téléchargé le fichier de l'évaluation vers le serveur pour l'étape {$stage} de de la soumission {$paperId} au nom de l'évaluateur {$reviewerName}.</message>
-  <message key="log.review.reviewerFile">Le fichier d'un évaluateur a été téléchargé vers le serveur.</message>
+  <message key="log.review.reviewFileByProxy">Le responsable, {$userName}, a téléchargé le fichier de l'évaluation pour l'étape {$stage} de de la soumission {$paperId} au nom de l'évaluateur {$reviewerName}.</message>
+  <message key="log.review.reviewerFile">Le fichier d'un évaluateur a été téléchargé.</message>
   <message key="log.director.decision">Une décision d'un responsable ({$decision}) pour la communication {$paperId} a été enregistrée par {$directorName}.</message>
   <message key="log.director.publish">Le papier a été publié.</message>
-  <message key="log.director.directorFile">Une version du responsable du fichier de soumission a été téléchargée vers le serveur.</message>
+  <message key="log.director.directorFile">Une version du responsable du fichier de soumission a été téléchargée.</message>
   <message key="log.director.archived">La soumission {$paperId} a été archivée.</message>
   <message key="log.director.restored">La soumission {$paperId} a été restaurée dans la file d'attente.</message>
   <message key="log.director.directorAssigned">{$directorName} a été assigné comme responsable de la soumision {$paperId}.</message>

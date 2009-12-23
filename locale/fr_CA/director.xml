@@ -36,8 +36,8 @@
 	<message key="director.navigation.management">Gestion</message>
 	<message key="director.paper.sendToArchive">Archiver cette soumission</message>
 	<message key="director.paper.designateReviewVersion">Désigner le fichier original en tant que fichier évalué</message>
-	<message key="director.paper.uploadReviewVersion">Télécharger une version révisée du fichier vers le serveur pour fins d'évaluation</message>
-	<message key="director.paper.uploadDirectorVersion">Télécharger la version du responsable vers le serveur</message>
+	<message key="director.paper.uploadReviewVersion">Télécharger une version révisée du fichier pour fins d'évaluation</message>
+	<message key="director.paper.uploadDirectorVersion">Télécharger la version du responsable</message>
 	<message key="director.paper.showSuppFile">Présenter le fichier aux évaluateurs</message>
 	<message key="director.paper.clear">Effacer</message>
 	<message key="director.paper.clearReviewer">Supprimer l'évaluateur</message>
@@ -55,11 +55,11 @@
 	<message key="director.paper.selectReviewer">Sélectionner l'évaluateur</message>
 	<message key="director.paper.replaceReviewer">Remplacer l'évaluateur</message>
 	<message key="director.paper.directorToEnter">Le responsable doit entrer les recommandation/commentaires pour l'évaluateur</message>
-	<message key="director.paper.uploadReviewForReviewer">Télécharger l'évaluation vers le serveur</message>
+	<message key="director.paper.uploadReviewForReviewer">Télécharger l'évaluation</message>
 	<message key="director.paper.peerReviewOptions">Options d'évaluation par les pairs</message>
 	<message key="director.paper.decision">Décision</message>
 	<message key="director.paper.recordDecision">Enregistrer la décision</message>
-	<message key="director.paper.cannotRecord">Impossible d'enregistrer une décision; aucun responsable de section n'a encore été défini ou aucun fichier n'a été téléchargé vers le serveur.</message>
+	<message key="director.paper.cannotRecord">Impossible d'enregistrer une décision; aucun responsable de section n'a encore été défini ou aucun fichier n'a été téléchargé.</message>
 	<message key="director.paper.cannotRecordYet">Avant qu'une décision ne puisse être enregistrée, une soumission doit être assignée à un responsable de section. La version d'évaluation devient alors, par défaut, la version du responsable.</message>
 	<message key="director.paper.cannotRecordTooLate">La soumission a déjà achevé sa phase d'évaluation. Vous ne pouvez plus modifier cette décision.</message>
 	<message key="director.paper.designateDueDate">Désigner une échéance</message>

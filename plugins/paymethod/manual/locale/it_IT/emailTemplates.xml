@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE email_texts SYSTEM "../../../../../lib/pkp/dtd/emailTemplateData.dtd">
+<!--
+  * emailTemplateData.xml
+  *
+  * Copyright (c) 2000-2009 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localized email templates XML file.
+  *
+  * $Id$
+  -->
+<email_texts locale="it_IT">
+	<email_text key="MANUAL_PAYMENT_NOTIFICATION">
+		<subject>Notifica di pagamento manuale</subject>
+		<body>Bisogna procedere alla registrazione manuale del pagamento {$userFullName} (username "{$userName}") per {$schedConfName}.</body>
+	</email_text>
+</email_texts>

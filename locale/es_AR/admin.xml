@@ -54,4 +54,13 @@
 	<message key="admin.conferences.transcode">Codificación de documentos de metadatos de ISO8859-1</message>
 	<message key="admin.conferences.form.importPathRequired"> La ruta de importación es obligatoria.</message>
 	<message key="admin.conferences.importErrors">La importación no se ha completado con éxito</message>
+	<message key="admin.mergerUsers.noneEnrolled">No hay usuarios enrolados.</message>
+	<message key="admin.mergeUsers.allUsers">Todos los Usuarios Enrolados</message>
+	<message key="admin.locale.maybeIncomplete">Conf. regionales marcadas pueden estar incompletas</message>
+	<message key="admin.conferences.importRegistrations">Importar inscripciones</message>
+	<message key="admin.mergeUsers">Combinar Usuarios</message>
+	<message key="admin.mergeUsers.mergeUser">Combinar Usuario</message>
+	<message key="admin.mergeUsers.into.description">Selecciona un usuario para atribuirle los envíos, asignaciones etc.. del usuario previamente seleccionado</message>
+	<message key="admin.mergeUsers.from.description">Seleccionar un usuario para combinar con otra cuenta de usuario (por ej. alguien que posee dos cuentas). La cuenta seleccionada primero será eliminada y sus envíos, asignaciones etc... serán asignadas al segundo usuario</message>
+	<message key="admin.mergeUsers.confirm">¿Está seguro que deesa combinar la cuenta con el nombre  "{$oldUsername}" junto a la cuenta con el nombre "{$newUsername}"? La cuenta con el nombre "{$oldUsername}" no existirá más. Esta acción no puede deshacerse.</message>
 </locale>

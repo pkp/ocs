@@ -59,4 +59,8 @@
 	<message key="admin.mergeUsers.mergeUser">Fondi gli utenti</message>
 	<message key="admin.mergeUsers.allUsers">Tutti gli utenti</message>
 	<message key="admin.mergerUsers.noneEnrolled">Nessun utente iscritto</message>
+	<message key="admin.locale.maybeIncomplete">I file contrassegnati potrebbero essere incompleti.</message>
+	<message key="admin.mergeUsers.into.description">Seleziona un utente al quale attribuire submission, modifiche e assegnazioni dell'utente precedente.</message>
+	<message key="admin.mergeUsers.from.description">Seleziona un utente da fondere su un altro (per esempio, qualcuno che ha due utenti). Il primo utente selezionato verrà cancellato e tutte le sue submission e incarichi verranno spostati sul secondo.</message>
+	<message key="admin.mergeUsers.confirm">Sei sicuro di voler fondere "{$oldUsername}" su "{$newUsername}"? L'account con nome "{$oldUsername}" verrà cancellato. Questa azione è irreversibile.</message>
 </locale>

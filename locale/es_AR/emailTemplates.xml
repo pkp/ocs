@@ -350,4 +350,92 @@ Gracias por seguir interesado en nuestro trabajo,
 {$editorialContactSignature}</body>
 		<description>Este e-mail se envía a ponentes registrados	que han solicitado recibir información por e-mail cuando un número se publique en Open Access</description>
 	</email_text>
+	<email_text key="NOTIFICATION">
+		<subject>Nueva notificación desde {$siteTitle}</subject>
+		<body>Usted posee una nueva notificación desde {$siteTitle}:
+
+{$notificationContents}
+
+Enlace: {$url}
+
+{$principalContactSignature}</body>
+	</email_text>
+	<email_text key="NOTIFICATION_MAILLIST">
+		<subject>Nueva notificación desde {$siteTitle}</subject>
+		<body>Usted tiene una nueva notificación desde ${siteTitle}:
+--
+{$notificationContents}
+
+Enlace: {$url}
+--
+Si usted no desea recibir más notifiaciones por correo, por favor diríjase a {$unsubscribeLink} e ingrese su dirección de email y su clave.
+
+{$principalContactSignature}</body>
+	</email_text>
+	<email_text key="NOTIFICATION_MAILLIST_WELCOME">
+		<subject>Bienvenido a la lista de correos de {$siteTitle}</subject>
+		<body>Usted se ha registrado para recibir notificaciones de {$siteTitle}.
+
+Por favor, haga un clic en el enlace a continuación para confirmar su solicitud y agregar su dirección de email a la lista de correos:{$confirmLink}
+
+Si usted desea dejar de recibir emails con notificaciones, por favor diríjase a {$unsubscribeLink} e ingrese su dirección de email y su clave.
+
+Su contraseña para deshabilitar los emails de notificaciones es: $ {$password}
+
+{$principalContactSignature}</body>
+	</email_text>
+	<email_text key="NOTIFICATION_MAILLIST_PASSWORD">
+		<subject>Notificación con información en la lista de correos de {$siteTitle}</subject>
+		<body>Su nueva contraseña para deshabilitar las notificacion es: {$password}
+
+Si usted desea dejar de recibir emails con notificaciones, por favor diríjase a {$unsubscribeLink} e ingrese su dirección de email y contraseña.
+
+{$principalContactSignature}</body>
+	</email_text>
+	<email_text key="USER_VALIDATE">
+		<subject>Validación de cuenta de usuario</subject>
+		<body>{$userFullName}
+
+Usted ha creado una cuenta en {$conferenceName}, pero antes de poder comenzar a utilizarla, necesita validad su dirección de email. Para eso, simplemente haga un clic en el enlace a continuación:
+
+{$activateUrl}
+
+Muchas gracias,
+{$principalContactSignature}</body>
+	</email_text>
+	<email_text key="REVIEW_REQUEST">
+		<subject>Solicitud de revisión de Paper</subject>
+		<body>{$reviewerName}:
+
+Considero que usted servirá como un excelente revisor de la propuesta  "{$paperTitle}," la cual ha sido enviada a {$conferenceName}. El extracto del envio ha sido insertado más abajo, y espero que tenga la amabilidad de considerar aceptar esta importante tarea para nosotros.
+
+Por favor, ingrese dentro del sitio web de la conferenia antes de {$weekLaterDate} para indicar si acepta realizar la revisión o no, además de acceder a la información del paper y registrar su recomendación al respecto. El sitio web es {$conferenceUrl}
+
+La revisión se realizará hasta la fecha {$reviewDueDate}.
+
+Si no posee un usuario y una contraseña en el sitio web de la conferencia, puede utilizar el enlace a continuación para reiniciar su contraseña (que se le enviará por email junto a su nombre de usuario): {$passwordResetUrl}
+
+URL del envio: {$submissionReviewUrl}
+
+Muchas gracias por considerar este pedido.
+
+{$editorialContactSignature}
+
+
+
+"{$paperTitle}"
+
+Abstract
+{$paperAbstract}</body>
+	</email_text>
+	<email_text key="MANUAL_PAYMENT_RECEIVED">
+		<subject>Su pago para {$conferenceName} ha sido recibido.</subject>
+		<body>{$registrantName}:
+
+Su pago para {$conferenceName} ha sido recibido y registrado en su cuenta.
+
+Si posee alguna pregunta, por favor no dude en contactarme.
+Atentamente,
+{$registrationContactSignature}</body>
+	</email_text>
 </email_texts>
