@@ -123,4 +123,5 @@
 	<message key="author.submit.form.wordCountAlert">Usted ha excedido el máximo de palabras para los resúmenes de esta sección de la conferencia</message>
 	<message key="author.submit.supplementaryFiles.saveToUpload">Haga clic en Guardar para subir el fichero (después de lo cual podrá subir ficheros adicionales)</message>
 	<message key="author.submit.forgottenSubmitSuppFile">¿Está seguro que desea continuar sin subir el fichero suplementario que ha elegido?</message>
+	<message key="author.submit.howToSubmitNoPhone"><![CDATA[¿Tiene problemas? Póngase en contacto con <a href="mailto:{$supportEmail}">{$supportName}</a>.]]></message>
 </locale>

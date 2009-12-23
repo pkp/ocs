@@ -107,8 +107,6 @@
 	<message key="navigation.infoForReviewers">Para evaluadores</message>
 	<message key="navigation.infoForAuthors.long">Informació para autores</message>
 	<message key="navigation.infoForReviewers.long">Información para los evaluadores</message>
-	<message key="navigation.fontSize">Tamaño de letra</message>
-
 	<!-- Paper Queues -->
 	<message key="common.queue.long.submissionsUnassigned">Sin asignar</message>
 	<message key="common.queue.short.submissionsUnassigned">Sin asignar</message>
@@ -186,8 +184,6 @@
 	<message key="submission.authorVersion">Versión del autor</message>
 	<message key="submission.layout.description">este paso es opcional y sirve para aplicar una palntilla a los trabajos enviados o cambiar los formatos de los ficheros antes o después de que los manuscritos se pasen a Presentaciones.</message>
 
-	<message key="submission.paperType">Tipo de envío</message>
-	<message key="submission.paperType.single">Presentación individual</message>
 	<message key="submissions.track">Sección</message>
 	<message key="submissions.queuedAbstractReview">resumen en recensión</message>
 	<message key="submissions.queuedPaperReview">Trabajo en recensión</message>
@@ -988,4 +984,6 @@ La validacion de URLs  puede fallar si requieren el envío de datos.]]></message
 	<message key="notification.type.userComment">Un lector ha realizado un comentario en "{$param}"</message>
 	<message key="reviewer.paper.notifyEditorB">si estaría dispuesto a llevar a cabo la revisión.</message>
 	<message key="log.timeline.postScheduleDateChanged">La fecha de envío ha cambiado del  {$oldPostScheduleDate} al {$newPostScheduleDate}.</message>
+	<message key="log.timeline.postScheduleChanged">La configuración de "envío de agenda" ha cambiado de {$oldPostSchedule} a {$newPostSchedule}.</message>
+	<message key="notification.type.reviewerFormComment">Se ha enviado un formulario de revisión para "{$param}".</message>
 </locale>

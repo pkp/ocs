@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE email_texts SYSTEM "../../../../../lib/pkp/dtd/emailTemplateData.dtd">
+<!--
+  * emailTemplateData.xml
+  *
+  * Copyright (c) 2000-2009 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localized email templates XML file.
+  *
+  * $Id$
+  -->
+<email_texts locale="fr_CA">
+	<email_text key="PAYPAL_INVESTIGATE_PAYMENT">
+		<subject>Activité inhabituelle de PayPal</subject>
+		<body>Open Conference Systems a rencontré une activité inhabituelle reliée au paiement PayPal pour la conférence {$schedConfName}. Cette activité peut nécessiter une investigation plus poussée ou une intervention manuelle.
+
+Ce courriel a été généré par le plugiciel PayPal du Open Conference Systems.
+
+L'information publiée complète pour la requête :
+{$postInfo}
+
+Information supplémentaire (si fournie) :
+{$additionalInfo}
+
+Variables du serveur:
+{$serverVars}</body>
+		<description>Ce modèle de courriel est utilisé pour aviser le contact principal d'une conférence qu'une activité suspecte ou qu'une activité demandant une intervention manuelle a été rencontrée par le plugiciel PayPal.</description>
+	</email_text>
+</email_texts>

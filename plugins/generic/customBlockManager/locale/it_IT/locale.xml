@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * locale.xml
+  *
+  * Copyright (c) 2003-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the en_US (U.S. English) locale.
+  *
+  * $Id$
+  -->
+ 
+<locale name="en_US" full_name="U.S. English">
+	<message key="plugins.generic.customBlockManager.displayName">Gestione di blocchi personalizzati</message>
+	<message key="plugins.generic.customBlockManager.description">Questo plugin permette la gestione personalizzata di blocchi nella barra laterale. E' possibile modificare i blocchi nelle impostazioni di ogni plugin.</message>	
+	<message key="plugin.generic.customBlockManager.introduction"><![CDATA[You can use this plugin to add or delete custom block plugins.  You can then edit the content through the <a href="{$systemPluginsUrl}">System Plugins</a> page (in the Blocks Plugin section).  To place your plugin in the desired location in the sidebar, go to <a href="{$setupStep4}">Setup step 4</a>]]></message>
+	<message key="plugins.generic.customBlockManager.settings">Impostazioni</message>
+	<message key="plugins.generic.customBlockManager.blockName">Nome del blocco</message>	
+	<message key="plugins.generic.customBlockManager.action">Azione</message>	
+	<message key="plugins.generic.customBlockManager.delete">Cancella</message>	
+	<message key="plugins.generic.customBlockManager.addBlock">Aggiungi</message>	
+
+	<message key="plugins.generic.customBlock.content">Contenuto</message>
+	<message key="plugins.generic.customBlock.saved">Il contenuto è stato salvato.</message>
+	<message key="plugins.generic.customBlock.nameSuffix">(Plugin dei blocchi personalizzati)</message>
+	<message key="plugins.generic.customBlock.description">Questo blocco è generato dall'utente.</message>
+	<message key="plugins.generic.customBlock.editContent">Modifica il contenuto della barra laterale</message>
+	<message key="plugins.generic.customBlock.contentRequired">E' nevcessario inserire un contenuto. Se vuoi cancellare questo blocco, puoi farlo dal Plugin di gestione dei blocchi o disattivandolo nel punto 5 del setup.</message>
+	<message key="plugins.generic.customBlock.edit">Modifica</message>
+</locale>

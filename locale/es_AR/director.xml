@@ -107,4 +107,6 @@
 	<message key="director.submissions.lastCompleted">Resuelto el último</message>
 	<message key="director.submissions.assignedTo">Asignado a</message>
 	<message key="director.submissions.inTrack">En Sección</message>
+	<message key="director.notifyUsers.allAuthors">Todos los presentadores publicados ({$count} usuarios)</message>
+	<message key="director.paper.showAuthor">Permitir al autor ver el archivo</message>
 </locale>

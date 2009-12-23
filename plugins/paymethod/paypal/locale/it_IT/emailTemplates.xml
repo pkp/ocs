@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE email_texts SYSTEM "../../../../../lib/pkp/dtd/emailTemplateData.dtd">
+<!--
+  * emailTemplateData.xml
+  *
+  * Copyright (c) 2000-2009 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localized email templates XML file.
+  *
+  * $Id$
+  -->
+<email_texts locale="it_IT">
+	<email_text key="PAYPAL_INVESTIGATE_PAYMENT">
+		<subject>Attività PayPal sospetta</subject>
+		<body>Open Conference Systems ha rilevato attività sospetta nel supporto al pagamento via  PayPal per il convegno {$schedConfName}. Questa attività potrebbe richiedere un controllo.
+			
+Questa email è stata generata da Open Conference Systems.
+
+Informazioni generali:
+{$postInfo}
+
+Ulteriori informazioni (se disponibili):
+{$additionalInfo}</body>
+	</email_text>
+</email_texts>
