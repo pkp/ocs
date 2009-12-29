@@ -5,7 +5,7 @@
  */
  
 /**
- * @file index.php
+ * @file pages/schedConfs/index.php
  *
  * Copyright (c) 2000-2009 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
@@ -17,8 +17,13 @@
 
 //$Id$
 
-define('HANDLER_CLASS', 'SchedConfsHandler');
 
-import('pages.schedConfs.SchedConfsHandler');
+switch ($op) {
+	case 'current':
+	case 'archive':
+		define('HANDLER_CLASS', 'SchedConfsHandler');
+		import('pages.schedConfs.SchedConfsHandler');
+		break;
+}
 
 ?>

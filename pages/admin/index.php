@@ -17,6 +17,7 @@
 
 //$Id$
 
+
 switch ($op) {
 	//
 	// Settings
@@ -83,9 +84,10 @@ switch ($op) {
 		define('HANDLER_CLASS', 'AdminFunctionsHandler');
 		import('pages.admin.AdminFunctionsHandler');
 		break;
-	default:
+	case 'index':
 		define('HANDLER_CLASS', 'AdminHandler');
 		import('pages.admin.AdminHandler');
+		break;
 }
 
 ?>

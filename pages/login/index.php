@@ -5,7 +5,7 @@
  */
  
 /**
- * @file index.php
+ * @file pages/login/index.php
  *
  * Copyright (c) 2000-2009 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
@@ -17,8 +17,23 @@
 
 //$Id$
 
-define('HANDLER_CLASS', 'LoginHandler');
 
-import('pages.login.LoginHandler');
+switch ($op) {
+	case 'signInAsUser':
+	case 'signOutAsUser':
+	case 'index':
+	case 'implicitAuthLogin':
+	case 'implicitAuthReturn':
+	case 'signIn':
+	case 'signOut':
+	case 'lostPassword':
+	case 'requestResetPassword':
+	case 'resetPassword':
+	case 'changePassword':
+	case 'savePassword':
+		define('HANDLER_CLASS', 'LoginHandler');
+		import('pages.login.LoginHandler');
+		break;
+}
 
 ?>

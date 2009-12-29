@@ -210,10 +210,6 @@ class DirectorHandler extends TrackDirectorHandler {
 		$templateMgr->display('director/submissions.tpl');
 	}
 
-	function updateSubmissionArchive() {
-		$this->submissionArchive();
-	}
-
 	/**
 	 * Delete the specified edit assignment.
 	 */

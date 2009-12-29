@@ -5,7 +5,7 @@
  */
  
 /**
- * @file index.php
+ * @file pages/oai/index.php
  *
  * Copyright (c) 2000-2009 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
@@ -17,8 +17,12 @@
 
 //$Id$
 
-define('HANDLER_CLASS', 'OAIHandler');
 
-import('pages.oai.OAIHandler');
+switch ($op) {
+	case 'index':
+		define('HANDLER_CLASS', 'OAIHandler');
+		import('pages.oai.OAIHandler');
+		break;
+}
 
 ?>

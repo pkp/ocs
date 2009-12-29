@@ -5,7 +5,7 @@
  */
  
 /**
- * @file index.php
+ * @file pages/user/index.php
  *
  * Copyright (c) 2000-2009 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
@@ -16,6 +16,7 @@
  */
 
 //$Id$
+
 
 switch ($op) {
 	//
@@ -44,9 +45,13 @@ switch ($op) {
 		define('HANDLER_CLASS', 'EmailHandler');
 		import('pages.user.EmailHandler');
 		break;
-	default:
+	case 'index':
+	case 'setLocale':
+	case 'become':
+	case 'viewCaptcha':
 		define('HANDLER_CLASS', 'UserHandler');
 		import('pages.user.UserHandler');
+		break;
 }
 
 ?>

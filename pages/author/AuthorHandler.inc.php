@@ -136,7 +136,6 @@ class AuthorHandler extends Handler {
 		}
 		$templateMgr->assign('pageHierarchy', $pageHierarchy);
 	}
-
 }
 
 ?>

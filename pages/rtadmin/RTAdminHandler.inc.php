@@ -216,4 +216,5 @@ function smarty_rtadmin_validate_url ($search, $errors) {
 
 	return $errors;
 }
+
 ?>

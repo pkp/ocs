@@ -54,7 +54,6 @@ class AdminHandler extends Handler {
 				: array(array(Request::url(null, null, 'user'), 'navigation.user'))
 		);
 	}
-
 }
 
 ?>

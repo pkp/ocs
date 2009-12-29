@@ -127,7 +127,6 @@ class ManagerHandler extends Handler {
 
 		$templateMgr->assign('pageHierarchy', $pageHierarchy);
 	}
-
 }
 
 ?>

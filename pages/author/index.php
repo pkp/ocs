@@ -17,6 +17,7 @@
 
 //$Id$
 
+
 switch ($op) {
 	//
 	// Paper Submission
@@ -65,9 +66,10 @@ switch ($op) {
 		define('HANDLER_CLASS', 'SubmissionCommentsHandler');
 		import('pages.author.SubmissionCommentsHandler');
 		break;
-	default:
+	case 'index':
 		define('HANDLER_CLASS', 'AuthorHandler');
 		import('pages.author.AuthorHandler');
+		break;
 }
 
 ?>
