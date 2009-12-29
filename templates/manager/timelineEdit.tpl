@@ -34,13 +34,19 @@
 		<td width="50%" class="heading"><h4>{translate key="manager.timeline.postDate"}</h4></td>
 	</tr>
 	<tr valign="top">
-		<td width="50%" class="label">{translate key="manager.timeline.schedConfStartsOn"}</td>
+		<td width="50%" class="label">
+			<a name="startDate"></a>
+			{translate key="manager.timeline.schedConfStartsOn"}
+		</td>
 		<td width="50%" class="value">
 			{html_select_date prefix="startDate" time=$startDate all_extra="class=\"selectMenu\"" start_year=$firstYear end_year=$lastYear}
 		</td>
 	</tr>
 	<tr valign="top">
-		<td width="50%" class="label">{translate key="manager.timeline.schedConfEndsOn"}</td>
+		<td width="50%" class="label">
+			<a name="endDate"></a>
+			{translate key="manager.timeline.schedConfEndsOn"}
+		</td>
 		<td width="50%" class="value">
 			{html_select_date prefix="endDate" time=$endDate all_extra="class=\"selectMenu\"" start_year=$firstYear end_year=$lastYear}
 		</td>
@@ -56,13 +62,19 @@
 		<td width="50%" class="heading"><h4>{translate key="manager.timeline.postDate"}</h4></td>
 	</tr>
 	<tr valign="top">
-		<td width="50%" class="label">{translate key="manager.timeline.schedConfAppearsOn"}</td>
+		<td width="50%" class="label">
+			<a name="siteStartDate"></a>
+			{translate key="manager.timeline.schedConfAppearsOn"}
+		</td>
 		<td width="50%" class="value">
 			{html_select_date prefix="siteStartDate" time=$siteStartDate all_extra="class=\"selectMenu\"" start_year=$firstYear end_year=$lastYear}
 		</td>
 	</tr>
 	<tr valign="top">
-		<td width="50%" class="label">{translate key="manager.timeline.schedConfArchivedOn"}</td>
+		<td width="50%" class="label">
+			<a name="siteEndDate"></a>
+			{translate key="manager.timeline.schedConfArchivedOn"}
+		</td>
 		<td width="50%" class="value">
 			{html_select_date prefix="siteEndDate" time=$siteEndDate all_extra="class=\"selectMenu\"" start_year=$firstYear end_year=$lastYear}
 		</td>
@@ -78,13 +90,19 @@
 		<td width="50%" class="heading"><h4>{translate key="manager.timeline.postDate"}</h4></td>
 	</tr>
 	<tr valign="top">
-		<td width="50%" class="label">{translate key="manager.timeline.openRegAuthor"}</td>
+		<td width="50%" class="label">
+			<a name="regAuthorOpenDate"></a>
+			{translate key="manager.timeline.openRegAuthor"}
+		</td>
 		<td width="50%" class="value">
 			{html_select_date prefix="regAuthorOpenDate" time=$regAuthorOpenDate all_extra="class=\"selectMenu\"" start_year=$firstYear end_year=$lastYear}
 		</td>
 	</tr>
 	<tr valign="top">
-		<td width="50%" class="label">{translate key="manager.timeline.closeRegAuthor"}</td>
+		<td width="50%" class="label">
+			<a name="regAuthorCloseDate"></a>
+			{translate key="manager.timeline.closeRegAuthor"}
+		</td>
 		<td width="50%" class="value">
 			{html_select_date prefix="regAuthorCloseDate" time=$regAuthorCloseDate all_extra="class=\"selectMenu\"" start_year=$firstYear end_year=$lastYear}
 			<input type="hidden" name="regAuthorCloseDateHour" value="23" />
@@ -93,19 +111,28 @@
 		</td>
 	</tr>
 	<tr valign="top">
-		<td width="50%" class="label">{translate key="manager.timeline.showCFP"}</td>
+		<td width="50%" class="label">
+			<a name="showCFPDate"></a>
+			{translate key="manager.timeline.showCFP"}
+		</td>
 		<td width="50%" class="value">
 			{html_select_date prefix="showCFPDate" time=$showCFPDate all_extra="class=\"selectMenu\"" start_year=$firstYear end_year=$lastYear}
 		</td>
 	</tr>
 	<tr valign="top">
-		<td width="50%" class="label">{translate key="manager.timeline.submissionsOpen"}</td>
+		<td width="50%" class="label">
+			<a name="submissionsOpenDate"></a>
+			{translate key="manager.timeline.submissionsOpen"}
+		</td>
 		<td width="50%" class="value">
 			{html_select_date prefix="submissionsOpenDate" time=$submissionsOpenDate all_extra="class=\"selectMenu\"" start_year=$firstYear end_year=$lastYear}
 		</td>
 	</tr>
 	<tr valign="top">
-		<td width="50%" class="label">{translate key="manager.timeline.submissionsClosed"}</td>
+		<td width="50%" class="label">
+			<a name="submissionsCloseDate"></a>
+			{translate key="manager.timeline.submissionsClosed"}
+		</td>
 		<td width="50%" class="value">
 			{html_select_date prefix="submissionsCloseDate" time=$submissionsCloseDate all_extra="class=\"selectMenu\"" start_year=$firstYear end_year=$lastYear}
 			<input type="hidden" name="submissionsCloseDateHour" value="23" />
@@ -124,13 +151,19 @@
 		<td width="50%" class="heading"><h4>{translate key="manager.timeline.postDate"}</h4></td>
 	</tr>
 	<tr valign="top">
-		<td width="50%" class="label">{translate key="manager.timeline.openRegReviewer"}</td>
+		<td width="50%" class="label">
+			<a name="regReviewerOpenDate"></a>
+			{translate key="manager.timeline.openRegReviewer"}
+		</td>
 		<td width="50%" class="value">
 			{html_select_date prefix="regReviewerOpenDate" time=$regReviewerOpenDate all_extra="class=\"selectMenu\"" start_year=$firstYear end_year=$lastYear}
 		</td>
 	</tr>
 	<tr valign="top">
-		<td width="50%" class="label">{translate key="manager.timeline.closeRegReviewer"}</td>
+		<td width="50%" class="label">
+			<a name="regReviewerCloseDate"></a>
+			{translate key="manager.timeline.closeRegReviewer"}
+		</td>
 		<td width="50%" class="value">
 			{html_select_date prefix="regReviewerCloseDate" time=$regReviewerCloseDate all_extra="class=\"selectMenu\"" start_year=$firstYear end_year=$lastYear}
 			<input type="hidden" name="regReviewerCloseDateHour" value="23" />
