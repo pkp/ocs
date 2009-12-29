@@ -294,7 +294,8 @@ class SchedConfHandler extends Handler {
 		$form->readInputData();
 		if ($form->validate()) {
 			if (($registrationError = $form->execute()) != REGISTRATION_SUCCESSFUL) {
-				if($registrationError == REGISTRATION_FAILED) {
+				$templateMgr->assign('isUserLoggedIn', Validation::isLoggedIn()); // In case a user was just created, make sure they appear logged in
+				if ($registrationError == REGISTRATION_FAILED) {
 					// User not created
 					$templateMgr->assign('message', 'schedConf.registration.failed');
 					$templateMgr->assign('backLinkLabel', 'common.back');
@@ -317,6 +318,7 @@ class SchedConfHandler extends Handler {
 			}
 			// Otherwise, payment is handled for us.
 		} else {
+			$templateMgr->assign('isUserLoggedIn', Validation::isLoggedIn()); // In case a user was just created, make sure they appear logged in
 			$form->display();
 		}
 	}
