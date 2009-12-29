@@ -5,7 +5,7 @@
  */
  
 /**
- * @file index.php
+ * @file pages/trackDirector/index.php
  *
  * Copyright (c) 2000-2009 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
@@ -120,8 +120,11 @@ switch ($op) {
 		define('HANDLER_CLASS', 'SubmissionCommentsHandler');
 		import('pages.trackDirector.SubmissionCommentsHandler');
 		break;
-	default:	
+	case 'index':
+	case 'instructions':
 		define('HANDLER_CLASS', 'TrackDirectorHandler');
 		import('pages.trackDirector.TrackDirectorHandler');
+		break;
 }
+
 ?>

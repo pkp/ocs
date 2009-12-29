@@ -5,7 +5,7 @@
  */
  
 /**
- * @file index.php
+ * @file pages/payment/index.php
  *
  * Copyright (c) 2000-2009 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
@@ -18,8 +18,12 @@
 
 //$Id$
 
-define('HANDLER_CLASS', 'PaymentHandler');
 
-import('pages.payment.PaymentHandler');
+switch ($op) {
+	case 'plugin':
+		define('HANDLER_CLASS', 'PaymentHandler');
+		import('pages.payment.PaymentHandler');
+		break;
+}
 
 ?>

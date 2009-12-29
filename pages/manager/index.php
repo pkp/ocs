@@ -17,6 +17,7 @@
 
 //$Id$
 
+
 switch ($op) {
 	//
 	//	announcements
@@ -322,9 +323,11 @@ switch ($op) {
 		define('HANDLER_CLASS', 'ConferenceHistoryHandler');
 		import('pages.manager.ConferenceHistoryHandler');
 		break;
-	default:	
+	case 'index':
+	case 'email':
 		define('HANDLER_CLASS', 'ManagerHandler');
 		import('pages.manager.ManagerHandler');
+		break;
 }
 
 ?>

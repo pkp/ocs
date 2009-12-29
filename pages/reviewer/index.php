@@ -5,7 +5,7 @@
  */
  
 /**
- * @file index.php
+ * @file pages/reviewer/index.php
  *
  * Copyright (c) 2000-2009 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
@@ -51,9 +51,10 @@ switch ($op) {
 		define('HANDLER_CLASS', 'SubmissionCommentsHandler');
 		import('pages.reviewer.SubmissionCommentsHandler');
 		break;
-	default:	
+	case 'index':
 		define('HANDLER_CLASS', 'ReviewerHandler');
 		import('pages.reviewer.ReviewerHandler');
+		break;
 }
 
 ?>

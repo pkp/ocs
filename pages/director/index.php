@@ -120,7 +120,14 @@ switch ($op) {
 		define('HANDLER_CLASS', 'SubmissionCommentsHandler');
 		import('pages.trackDirector.SubmissionCommentsHandler');
 		break;
-	default:
+	case 'index':
+	case 'submissions':
+	case 'deleteEditAssignment':
+	case 'assignDirector':
+	case 'deleteSubmission':
+	case 'movePaper':
+	case 'notifyUsers':
+	case 'instructions':
 		define('HANDLER_CLASS', 'DirectorHandler');
 		import('pages.director.DirectorHandler');
 }

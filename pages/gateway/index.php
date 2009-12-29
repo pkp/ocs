@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @file index.php
+ * @file pages/gateway/index.php
  *
  * Copyright (c) 2000-2009 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
@@ -10,11 +10,17 @@
  *
  * @package pages.gateway
  *
- * $Id$
  */
 
-define('HANDLER_CLASS', 'GatewayHandler');
+// $Id$
 
-import('pages.gateway.GatewayHandler');
+
+switch ($op) {
+	case 'index':
+	case 'plugin':
+		define('HANDLER_CLASS', 'GatewayHandler');
+		import('pages.gateway.GatewayHandler');
+		break;
+}
 
 ?>

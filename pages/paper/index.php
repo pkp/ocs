@@ -5,7 +5,7 @@
  */
  
 /**
- * @file index.php
+ * @file pages/paper/index.php
  *
  * Copyright (c) 2000-2009 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
@@ -17,8 +17,19 @@
 
 //$Id$
 
-define('HANDLER_CLASS', 'PaperHandler');
 
-import('pages.paper.PaperHandler');
+switch ($op) {
+	case 'view':
+	case 'viewPDFInterstitial':
+	case 'viewDownloadInterstitial':
+	case 'viewPaper':
+	case 'viewRST':
+	case 'viewFile':
+	case 'download':
+	case 'downloadSuppFile':
+		define('HANDLER_CLASS', 'PaperHandler');
+		import('pages.paper.PaperHandler');
+		break;
+}
 
 ?>

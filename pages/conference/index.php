@@ -17,8 +17,12 @@
 
 //$Id$
 
-define('HANDLER_CLASS', 'ConferenceHandler');
 
-import('pages.conference.ConferenceHandler');
+switch ($op) {
+	case 'index':
+		define('HANDLER_CLASS', 'ConferenceHandler');
+		import('pages.conference.ConferenceHandler');
+		break;
+}
 
 ?>

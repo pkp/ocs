@@ -5,7 +5,7 @@
  */
  
 /**
- * @file index.php
+ * @file pages/rtadmin/index.php
  *
  * Copyright (c) 2000-2009 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
@@ -16,6 +16,7 @@
  */
 
 //$Id$
+
 
 switch ($op) {
 	//
@@ -64,9 +65,11 @@ switch ($op) {
 		define('HANDLER_CLASS', 'RTSearchHandler');
 		import('pages.rtadmin.RTSearchHandler');
 		break;
-	default:	
+	case 'index':
+	case 'validateUrls':
 		define('HANDLER_CLASS', 'RTAdminHandler');
 		import('pages.rtadmin.RTAdminHandler');
+		break;
 }
 
 ?>
