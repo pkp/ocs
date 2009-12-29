@@ -85,7 +85,7 @@ class PayPalPlugin extends PaymethodPlugin {
 			'lc' => String::substr(Locale::getLocale(), 3), 
 			'custom' => $queuedPaymentId,
 			'notify_url' => Request::url(null, null, 'payment', 'plugin', array($this->getName(), 'ipn')),  
-			'return' => Request::url(null, null, 'payment', 'plugin', array($this->getName(), 'return')),
+			'return' => $queuedPayment->getRequestUrl(),
 			'cancel_return' => Request::url(null, null, 'payment', 'plugin', array($this->getName(), 'cancel')),
 			'first_name' => ($user)?$user->getFirstName():'',  
 			'last_name' => ($user)?$user->getLastname():'',
@@ -284,9 +284,6 @@ class PayPalPlugin extends PaymethodPlugin {
 				));
 				$templateMgr->display('common/message.tpl');
 				exit();
-				break;
-			case 'return':
-				Request::redirect(null, null, 'index');
 				break;
 		}
 		parent::handle($args); // Don't know what to do with it
