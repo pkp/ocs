@@ -55,7 +55,7 @@ class PaperReportPlugin extends ReportPlugin {
 	function display(&$args) {
 		$conference =& Request::getConference();
 		$schedConf =& Request::getSchedConf();
-		Locale::requireComponents(array(LOCALE_COMPONENT_APPLICATION_COMMON, LOCALE_COMPONENT_PKP_SUBMISSION));
+		Locale::requireComponents(array(LOCALE_COMPONENT_APPLICATION_COMMON, LOCALE_COMPONENT_PKP_SUBMISSION, LOCALE_COMPONENT_PKP_USER, LOCALE_COMPONENT_OCS_MANAGER));
 
 		header('content-type: text/comma-separated-values');
 		header('content-disposition: attachment; filename=report.csv');
@@ -107,6 +107,10 @@ class PaperReportPlugin extends ReportPlugin {
 			'track_title' => Locale::translate('track.title'),
 			'language' => Locale::translate('common.language'),
 			'director_decision' => Locale::translate('submission.directorDecision'),
+			'start_time' => Locale::translate('manager.scheduler.startTime'),
+			'end_time' => Locale::translate('manager.scheduler.endTime'),
+			'building' => Locale::translate('manager.scheduler.building'),
+			'room' => Locale::translate('manager.scheduler.room'),
 			'status' => Locale::translate('common.status')
 		));
 
@@ -116,9 +120,39 @@ class PaperReportPlugin extends ReportPlugin {
 		import('paper.Paper'); // Bring in getStatusMap function
 		$statusMap =& Paper::getStatusMap();
 
+		$controlledVocabDao =& DAORegistry::getDAO('ControlledVocabDAO');
+		$sessionTypes = $controlledVocabDao->enumerateBySymbolic('paperType', ASSOC_TYPE_SCHED_CONF, $schedConf->getSchedConfId());
+
+		// Load building and room data
+		$buildingDao =& DAORegistry::getDAO('BuildingDAO');
+		$roomDao =& DAORegistry::getDAO('RoomDAO');
+
+		$buildings = $rooms = array();
+		$buildingsIterator =& $buildingDao->getBuildingsBySchedConfId($schedConf->getId());
+		while ($building =& $buildingsIterator->next()) {
+			$buildingId = $building->getId();
+			$buildings[$buildingId] =& $building;
+			$roomsIterator =& $roomDao->getRoomsByBuildingId($buildingId);
+			while ($room =& $roomsIterator->next()) {
+				$roomId = $room->getId();
+				$rooms[$roomId] =& $room;
+				unset($room);
+			}
+			unset($building);
+			unset($roomsIterator);
+		}
+		unset($buildingsIterator);
+
 		$authorIndex = 0;
 		while ($row =& $papersIterator->next()) {
-			$authors = $this->mergeAuthors($authorsIterator[$row['article_id']]->toArray());
+			if (isset($authorsIterator[$row['article_id']])) {
+				$authorIterator =& $authorsIterator[$row['article_id']];
+				$authors = $this->mergeAuthors($authorIterator->toArray());
+			} else {
+				// No authors for a submission.
+				$authors = array();
+			}
+			unset($authorIterator);
 			foreach ($columns as $index => $junk) {
 				if ($index == 'director_decision') {
 					if (isset($decisions[$row['paper_id']])) {
@@ -130,6 +164,21 @@ class PaperReportPlugin extends ReportPlugin {
 					$columns[$index] = Locale::translate($statusMap[$row[$index]]);
 				} elseif ($index == 'abstract') {
 					$columns[$index] = html_entity_decode(strip_tags($row[$index]));
+				} elseif ($index == 'start_time' || $index == 'end_time') {
+					$columns[$index] = $row[$index];
+				} elseif ($index == 'building') {
+					$columns['building'] = '';
+					$room =& $rooms[$row['room_id']];
+					if ($room) {
+						$building =& $buildings[$room->getBuildingId()];
+						if ($building) $columns[$index] = $building->getBuildingName();
+					}
+					unset($room, $building);
+				} elseif ($index == 'room') {
+					$columns['room'] = '';
+					$room =& $rooms[$row['room_id']];
+					if ($room) $columns[$index] = $room->getRoomName();
+					unset($room);
 				} elseif (strstr($index, 'biography') !== false) {
 					// "Convert" HTML to text for export
 					$columns[$index] = isset($authors[$index])?html_entity_decode(strip_tags($authors[$index])):'';
@@ -154,7 +203,7 @@ class PaperReportPlugin extends ReportPlugin {
 	 * @param $authorsIterator DBRowIterator
 	 * @return int
 	 */
-	function getMaxAuthorCount($authorsIterator) {
+	function getMaxAuthorCount(&$authorsIterator) {
 		$maxAuthors = 0;
 		foreach ($authorsIterator as $authorIterator) {
 			$maxAuthors = $authorIterator->getCount() > $maxAuthors ? $authorIterator->getCount() : $maxAuthors;
