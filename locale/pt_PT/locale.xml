@@ -934,8 +934,8 @@ O servidor actualmente tem suporte a mbstring: <strong>{$supportsMBString}</stro
 	<message key="log.timeline.endDateChanged">Data de conclusão da conferência {$oldEndDate} alterada para {$newEndDate}.</message>
 	<message key="log.timeline.regReviewerOpenDateChanged">Data de abertura de inscrição de avaliadores {$oldRegReviewerOpenDate} alterada para {$newRegReviewerOpenDate}.</message>
 	<message key="log.timeline.regReviewerCloseDateChanged">Data de encerramento da inscrição de avaliadores {$oldRegReviewerCloseDate} alterada para {$newRegReviewerCloseDate}.</message>
-	<message key="log.timeline.regPresenterOpenDateChanged">Data de abertura de inscrição de autores {$oldRegPresenterOpenDate} alterada para {$newRegPresenterOpenDate}.</message>
-	<message key="log.timeline.regPresenterCloseDateChanged">Data de encerramento de inscrição de autores {$oldRegPresenterCloseDate} alterada para {$newRegPresenterCloseDate}.</message>
+	<message key="log.timeline.regPresenterOpenDateChanged">Data de abertura de inscrição de autores {$oldRegAuthorOpenDate} alterada para {$newRegAuthorOpenDate}.</message>
+	<message key="log.timeline.regPresenterCloseDateChanged">Data de encerramento de inscrição de autores {$oldRegAuthorCloseDate} alterada para {$newRegAuthorCloseDate}.</message>
 	<message key="log.timeline.showCFPDateChanged">A data de exibição da Call for Papers (CPS) {$oldShowCFPDate} alterada para {$newShowCFPDate}.</message>
 	<message key="log.timeline.submissionsOpenDateChanged">Data de abertura de submissões {$oldSubmissionsOpenDate} alterada para {$newSubmissionsOpenDate}</message>
 	<message key="log.timeline.submissionsCloseDateChanged">Data de encerramento das submissões {$oldSubmissionsCloseDate} alterada para {$newSubmissionsCloseDate}</message>

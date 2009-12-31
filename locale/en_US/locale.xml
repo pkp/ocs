@@ -800,8 +800,8 @@ Your server currently supports mbstring: <strong>{$supportsMBString}</strong>]]>
 	<message key="log.timeline.endDateChanged">The conference end date changed from {$oldEndDate} to {$newEndDate}.</message>
 	<message key="log.timeline.regReviewerOpenDateChanged">The author registration open date changed from {$oldRegReviewerOpenDate} to {$newRegReviewerOpenDate}.</message>
 	<message key="log.timeline.regReviewerCloseDateChanged">The author registration close date changed from {$oldRegReviewerCloseDate} to {$newRegReviewerCloseDate}.</message>
-	<message key="log.timeline.regAuthorOpenDateChanged">The author registration open date changed from {$oldRegPresenterOpenDate} to {$newRegPresenterOpenDate}.</message>
-	<message key="log.timeline.regAuthorCloseDateChanged">The author registration close date changed from {$oldRegPresenterCloseDate} to {$newRegPresenterCloseDate}.</message>
+	<message key="log.timeline.regAuthorOpenDateChanged">The author registration open date changed from {$oldRegAuthorOpenDate} to {$newRegAuthorOpenDate}.</message>
+	<message key="log.timeline.regAuthorCloseDateChanged">The author registration close date changed from {$oldRegAuthorCloseDate} to {$newRegAuthorCloseDate}.</message>
 	<message key="log.timeline.showCFPDateChanged">The CFP display date changed from {$oldShowCFPDate} to {$newShowCFPDate}.</message>
 	<message key="log.timeline.submissionsOpenDateChanged">The submission open date changed from {$oldSubmissionsOpenDate} to {$newSubmissionsOpenDate}</message>
 	<message key="log.timeline.submissionsCloseDateChanged">The submission close date changed from {$oldSubmissionsCloseDate} to {$newSubmissionsCloseDate}</message>

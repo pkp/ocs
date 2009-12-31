@@ -855,8 +855,8 @@ Il vostro server supporta mbstring: <strong>{$supportsMBString}</strong>]]></mes
 	<message key="log.timeline.endDateChanged">La data di fine del convegno &#x00E8; cambiata da  {$oldEndDate} a {$newEndDate}.</message>
 	<message key="log.timeline.regReviewerOpenDateChanged">La data d'apertura della registrazione dell'autore &#x00E8; cambiata da {$oldRegReviewerOpenDate} a {$newRegReviewerOpenDate}.</message>
 	<message key="log.timeline.regReviewerCloseDateChanged">La data di chiusura della registrazione dell'autore &#x00E8; cambiata da {$oldRegReviewerCloseDate} a {$newRegReviewerCloseDate}.</message>
-	<message key="log.timeline.regAuthorOpenDateChanged">La data d'apertura della registrazione dell'autore &#x00E8; cambiata da {$oldRegPresenterOpenDate} a {$newRegPresenterOpenDate}.</message>
-	<message key="log.timeline.regAuthorCloseDateChanged">La data di chiusura della registrazione dell'autore &#x00E8; cambiata da {$oldRegPresenterCloseDate} a {$newRegPresenterCloseDate}.</message>
+	<message key="log.timeline.regAuthorOpenDateChanged">La data d'apertura della registrazione dell'autore &#x00E8; cambiata da {$oldRegAuthorOpenDate} a {$newRegAuthorOpenDate}.</message>
+	<message key="log.timeline.regAuthorCloseDateChanged">La data di chiusura della registrazione dell'autore &#x00E8; cambiata da {$oldRegAuthorCloseDate} a {$newRegAuthorCloseDate}.</message>
 	<message key="log.timeline.showCFPDateChanged">La data dei CFP visualizzati &#x00E8; cambiata da {$oldShowCFPDate} a {$newShowCFPDate}.</message>
 	<message key="log.timeline.submissionsOpenDateChanged">La data d'apertura della submission &#x00E8; cambiata da {$oldSubmissionsOpenDate} a {$newSubmissionsOpenDate}</message>
 	<message key="log.timeline.submissionsCloseDateChanged">La data di chiusura della submission &#x00E8; cambiata da {$oldSubmissionsCloseDate} a {$newSubmissionsCloseDate}</message>

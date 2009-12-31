@@ -2599,8 +2599,8 @@ da.</message>
 	<message key="log.timeline.endDateChanged"><![CDATA[Kongresuaren amaiera-data aldatu da: {$oldEndDate} -> {$newEndDate}.]]></message>
 	<message key="log.timeline.regReviewerOpenDateChanged"><![CDATA[Egileen izen-ematea irekitzeko data aldatu da: {$oldRegReviewerOpenDate} -> {$newRegReviewerOpenDate}.]]></message>
 	<message key="log.timeline.regReviewerCloseDateChanged"><![CDATA[Egileen izen-ematea ixteko data aldatu da: {$oldRegReviewerCloseDate} -> {$newRegReviewerCloseDate}.]]></message>
-	<message key="log.timeline.regPresenterOpenDateChanged"><![CDATA[Egileen izen-ematea irekitzeko data aldatu da: {$oldRegPresenterOpenDate} -> {$newRegPresenterOpenDate}.]]></message>
-	<message key="log.timeline.regPresenterCloseDateChanged"><![CDATA[Egileen izen-ematea ixteko data aldatu da: {$oldRegPresenterCloseDate} -> {$newRegPresenterCloseDate}.]]></message>
+	<message key="log.timeline.regPresenterOpenDateChanged"><![CDATA[Egileen izen-ematea irekitzeko data aldatu da: {$oldRegAuthorOpenDate} -> {$newRegAuthorOpenDate}.]]></message>
+	<message key="log.timeline.regPresenterCloseDateChanged"><![CDATA[Egileen izen-ematea ixteko data aldatu da: {$oldRegAuthorCloseDate} -> {$newRegAuthorCloseDate}.]]></message>
 	<message key="log.timeline.showCFPDateChanged"><![CDATA[Lanen eskaera (CFP) bistaratzeko data aldatu da: {$oldShowCFPDate} -> {$newShowCFPDate}.]]></message>
 	<message key="log.timeline.submissionsOpenDateChanged"><![CDATA[Bidalketak egiten hasteko data aldatu da: {$oldSubmissionsOpenDate} -> {$newSubmissionsOpenDate}]]></message>
 	<message key="log.timeline.submissionsCloseDateChanged"><![CDATA[Bidalketak egiteko itxiera-data aldatu da: {$oldSubmissionsCloseDate} -> {$newSubmissionsCloseDate}]]></message>

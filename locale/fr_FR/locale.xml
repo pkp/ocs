@@ -894,8 +894,8 @@ p><p>N'oubliez pas de remettre "installed" dans votre fichier de configuration "
 	<message key="log.timeline.endDateChanged">La date de début de la conférence a changé de {$oldEndDate} à {$newEndDate}.</message>
 	<message key="log.timeline.regReviewerOpenDateChanged">La date de début des inscriptions des auteurs changée de {$oldRegReviewerOpenDate} à {$newRegReviewerOpenDate}.</message>
 	<message key="log.timeline.regReviewerCloseDateChanged">La date de fermeture des inscriptions des auteurs changée de {$oldRegReviewerCloseDate} à {$newRegReviewerCloseDate}.</message>
-	<message key="log.timeline.regAuthorOpenDateChanged">La date de début des inscriptions des auteurs changée de {$oldRegPresenterOpenDate} à {$newRegPresenterOpenDate}.</message>
-	<message key="log.timeline.regAuthorCloseDateChanged">La date de fermeture des inscriptions des auteurs changée de {$oldRegPresenterCloseDate} à {$newRegPresenterCloseDate}.</message>
+	<message key="log.timeline.regAuthorOpenDateChanged">La date de début des inscriptions des auteurs changée de {$oldRegAuthorOpenDate} à {$newRegAuthorOpenDate}.</message>
+	<message key="log.timeline.regAuthorCloseDateChanged">La date de fermeture des inscriptions des auteurs changée de {$oldRegAuthorCloseDate} à {$newRegAuthorCloseDate}.</message>
 	<message key="log.timeline.showCFPDateChanged">La date de l'affichage de l'AAP a changé de  {$oldShowCFPDate} à {$newShowCFPDate}.</message>
 	<message key="log.timeline.submissionsOpenDateChanged">La date d'ouverture des propositions changée de {$oldSubmissionsOpenDate} à {$newSubmissionsOpenDate}</message>
 	<message key="log.timeline.submissionsCloseDateChanged">La date de fermerture des propositions changée de {$oldSubmissionsCloseDate} à {$newSubmissionsCloseDate}</message>

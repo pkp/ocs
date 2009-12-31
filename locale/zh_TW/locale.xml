@@ -919,8 +919,8 @@ Active 為目前被考慮或進行中的審查稿件數量。]]></message>
 	<message key="log.timeline.endDateChanged">研討會結束日期已經從 {$oldEndDate} 變更為 {$newEndDate}。</message>
 	<message key="log.timeline.regReviewerOpenDateChanged">開放作者註冊的日期已經從 {$oldRegReviewerOpenDate} 變更為 {$newRegReviewerOpenDate}。</message>
 	<message key="log.timeline.regReviewerCloseDateChanged">關閉作者註冊的日期已經從 {$oldRegReviewerCloseDate} 變更為 {$newRegReviewerCloseDate}。</message>
-	<message key="log.timeline.regAuthorOpenDateChanged">作者註冊開放日期已經從 {$oldRegPresenterOpenDate} 變更為 {$newRegPresenterOpenDate}。</message>
-	<message key="log.timeline.regAuthorCloseDateChanged">作者註冊關閉日期已經從 {$oldRegPresenterCloseDate} 變更為 {$newRegPresenterCloseDate}。</message>
+	<message key="log.timeline.regAuthorOpenDateChanged">作者註冊開放日期已經從 {$oldRegAuthorOpenDate} 變更為 {$newRegAuthorOpenDate}。</message>
+	<message key="log.timeline.regAuthorCloseDateChanged">作者註冊關閉日期已經從 {$oldRegAuthorCloseDate} 變更為 {$newRegAuthorCloseDate}。</message>
 	<message key="log.timeline.showCFPDateChanged">徵稿顯示日期已經從 {$oldShowCFPDate} 變更為 {$newShowCFPDate}。</message>
 	<message key="log.timeline.submissionsOpenDateChanged">開放投稿日期已經從 {$oldSubmissionsOpenDate} 變更為 {$newSubmissionsOpenDate}。</message>
 	<message key="log.timeline.submissionsCloseDateChanged">關閉投稿日期已經從 {$oldSubmissionsCloseDate} 變更為 {$newSubmissionsCloseDate}。</message>
