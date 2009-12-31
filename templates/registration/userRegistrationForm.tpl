@@ -45,6 +45,7 @@
 <div id="conferenceFees">
 <h3>{translate key="schedConf.registration.conferenceFees"}</h3>
 
+{if !$registrationOptions->wasEmpty()}
 <table class="listing" width="100%">
 	<tr>
 		<td colspan="2" class="headseparator">&nbsp;</td>
@@ -98,6 +99,7 @@
 		<td colspan="2" class="endseparator">&nbsp;</td>
 	</tr>
 </table>
+{/if}
 
 <p>
 	<label for="feeCode">{translate key="schedConf.registration.feeCode"}</label>&nbsp;&nbsp;<input id="feeCode" name="feeCode" type="text" value="{$feeCode|escape}" class="textField" /><br />
