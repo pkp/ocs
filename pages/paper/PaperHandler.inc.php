@@ -82,7 +82,8 @@ class PaperHandler extends Handler {
 		$paper =& $this->paper;
 		$this->setupTemplate();
 
-		if (!$galley) {
+		if (!$galley || !is_a($galley, 'PaperGalley')) {
+			unset($galley);
 			$galleyDao =& DAORegistry::getDAO('PaperGalleyDAO');
 			$galley =& $galleyDao->getGalley($galleyId, $paper->getPaperId());
 		}
@@ -109,7 +110,8 @@ class PaperHandler extends Handler {
 		$paper =& $this->paper;
 		$this->setupTemplate();
 
-		if (!$galley) {
+		if (!$galley || !is_a($galley, 'PaperGalley')) {
+			unset($galley);
 			$galleyDao =& DAORegistry::getDAO('PaperGalleyDAO');
 			$galley =& $galleyDao->getGalley($galleyId, $paper->getPaperId());
 		}
