@@ -914,8 +914,8 @@ El seu servidor actualment suporta mbstring: <strong>{$supportsMBString}</strong
 	<message key="log.timeline.endDateChanged">La data de finalització de la conferència ha canviat de {$oldEndDate} a {$newEndDate}.</message>
 	<message key="log.timeline.regReviewerOpenDateChanged">La data d'inscripció ha canviat de {$oldRegReviewerOpenDate} a {$newRegReviewerOpenDate}.</message>
 	<message key="log.timeline.regReviewerCloseDateChanged">la data de tancament d'inscripció ha canviat de {$oldRegReviewerCloseDate} a {$newRegReviewerCloseDate}.</message>
-	<message key="log.timeline.regAuthorOpenDateChanged">La data d'inici d'inscripció per als autors ha canviat de {$oldRegPresenterOpenDate} a {$newRegPresenterOpenDate}.</message>
-	<message key="log.timeline.regAuthorCloseDateChanged">La data de tancament d'inscripció dels autors ha canviat de {$oldRegPresenterCloseDate} a {$newRegPresenterCloseDate}.</message>
+	<message key="log.timeline.regAuthorOpenDateChanged">La data d'inici d'inscripció per als autors ha canviat de {$oldRegAuthorOpenDate} a {$newRegAuthorOpenDate}.</message>
+	<message key="log.timeline.regAuthorCloseDateChanged">La data de tancament d'inscripció dels autors ha canviat de {$oldRegAuthorCloseDate} a {$newRegAuthorCloseDate}.</message>
 	<message key="log.timeline.showCFPDateChanged">La data del "call for papers" ha canviat de {$oldShowCFPDate} a {$newShowCFPDate}.</message>
 	<message key="log.timeline.submissionsOpenDateChanged">La data de tramesa de treballs ha canviat de {$oldSubmissionsOpenDate} a {$newSubmissionsOpenDate}</message>
 	<message key="log.timeline.submissionsCloseDateChanged">La data de tramesa de treballs ha canviat de {$oldSubmissionsCloseDate} a {$newSubmissionsCloseDate}</message>
