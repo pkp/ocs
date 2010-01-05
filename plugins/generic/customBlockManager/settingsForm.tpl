@@ -53,7 +53,7 @@
 </table>
 <p><input type="submit" class="button" name="addBlock" value="{translate key="plugins.generic.customBlockManager.addBlock"}" />
 <input type="submit" class="button" name="save" value="{translate key="common.save"}" />
-<input type="button" value="{translate key="common.cancel"}" class="button" onclick="document.location.href='{url page="manager" op="plugins" escape=false}'" /></p>
+<input type="button" value="{translate key="common.cancel"}" class="button" onclick="document.location.href='{url page="manager" op="plugins"}'" /></p>
 </form>
 
 <p><span class="formRequired">{translate key="common.requiredField"}</span></p>

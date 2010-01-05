@@ -53,9 +53,9 @@
 		</td>
 	</tr>
 	<tr valign="top">
-		<td class="label">{fieldLabel name="path" key="common.path" required="true"}</td>
+		<td class="label">{fieldLabel name="schedConfPath" key="common.path" required="true"}</td>
 		<td class="value">
-			<input type="text" id="path" name="path" value="{$path|escape}" size="16" maxlength="32" class="textField" />
+			<input type="text" id="schedConfPath" name="schedConfPath" value="{$schedConfPath|escape}" size="16" maxlength="32" class="textField" />
 			<br />
 			{translate|assign:"sampleEllipsis" key="common.ellipsis"}
 			{url|assign:"sampleUrl" schedConf="path" page="$sampleEllipsis"}
@@ -64,7 +64,7 @@
 	</tr>
 </table>
 
-<p><input type="submit" value="{translate key="common.save"}" class="button defaultButton" /> <input type="button" value="{translate key="common.cancel"}" class="button" onclick="document.location.href='{url op="schedConfs" escape=false}'" /></p>
+<p><input type="submit" value="{translate key="common.save"}" class="button defaultButton" /> <input type="button" value="{translate key="common.cancel"}" class="button" onclick="document.location.href='{url op="schedConfs"}'" /></p>
 
 </form>
 

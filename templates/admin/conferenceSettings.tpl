@@ -52,7 +52,7 @@
 	<tr valign="top">
 		<td class="label">{fieldLabel name="conferencePath" key="common.path" required="true"}</td>
 		<td class="value">
-			<input type="text" id="path" name="conferencePath" value="{$conferencePath|escape}" size="16" maxlength="32" class="textField" />
+			<input type="text" id="conferencePath" name="conferencePath" value="{$conferencePath|escape}" size="16" maxlength="32" class="textField" />
 			<br />
 			{translate|assign:"sampleEllipsis" key="common.ellipsis"}
 			{url|assign:"sampleUrl" conference="path" schedConf="$sampleEllipsis"}
@@ -66,7 +66,7 @@
 	</tr>
 </table>
 
-<p><input type="submit" value="{translate key="common.save"}" class="button defaultButton" /> <input type="button" value="{translate key="common.cancel"}" class="button" onclick="document.location.href='{url op="conferences" escape=false}'" /></p>
+<p><input type="submit" value="{translate key="common.save"}" class="button defaultButton" /> <input type="button" value="{translate key="common.cancel"}" class="button" onclick="document.location.href='{url op="conferences"}'" /></p>
 
 </form>
 

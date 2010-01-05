@@ -155,7 +155,7 @@
 </div>
 <div class="separator"></div>
 
-<p><input type="submit" value="{translate key="common.saveAndContinue"}" class="button defaultButton" /> <input type="button" value="{translate key="common.cancel"}" class="button" onclick="document.location.href='{url op="submit" path="4" paperId=$paperId escape=false}'" /></p>
+<p><input type="submit" value="{translate key="common.saveAndContinue"}" class="button defaultButton" /> <input type="button" value="{translate key="common.cancel"}" class="button" onclick="document.location.href='{url op="submit" path="4" paperId=$paperId}'" /></p>
 
 <p><span class="formRequired">{translate key="common.requiredField"}</span></p>
 

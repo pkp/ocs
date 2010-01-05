@@ -9,7 +9,7 @@
  * @class ProfileHandler
  * @ingroup pages_user
  *
- * @brief Handle requests for modifying user profiles. 
+ * @brief Handle requests for modifying user profiles.
  */
 
 //$Id$

@@ -107,7 +107,7 @@ function changeTime(paperId) {
 // Used to sort the display by a certain piece of data
 function sortBy(sortName) {
 	document.schedule.sort.value = sortName;
-	document.schedule.action = "{/literal}{url op="schedule" escape=false}{literal}";
+	document.schedule.action = "{/literal}{url op="schedule"}{literal}";
 	document.schedule.submit();
 }
 
@@ -235,7 +235,7 @@ function sortBy(sortName) {
 	<a href="javascript:sortBy('title');">{translate key="paper.title"}</a>
 </p>
 
-<p><input type="submit" value="{translate key="common.save"}" class="button defaultButton" /> <input type="button" value="{translate key="common.cancel"}" class="button" onclick="document.location.href='{url op="schedules" escape=false}'" /></p>
+<p><input type="submit" value="{translate key="common.save"}" class="button defaultButton" /> <input type="button" value="{translate key="common.cancel"}" class="button" onclick="document.location.href='{url op="schedules"}'" /></p>
 
 </form>
 

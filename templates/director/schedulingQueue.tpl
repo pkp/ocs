@@ -23,7 +23,7 @@
 
 <br/>
 
-<form action="#">{translate key="track.track"}:&nbsp;<select name="track" onchange="location.href='{url track="TRACK_ID" escape=false}'.replace('TRACK_ID', this.options[this.selectedIndex].value)" size="1" class="selectMenu">{html_options options=$trackOptions selected=$track}</select></form>
+<form action="#">{translate key="track.track"}:&nbsp;<select name="track" onchange="location.href='{url track="TRACK_ID"}'.replace('TRACK_ID', this.options[this.selectedIndex].value)" size="1" class="selectMenu">{html_options options=$trackOptions selected=$track}</select></form>
 
 <br />
 

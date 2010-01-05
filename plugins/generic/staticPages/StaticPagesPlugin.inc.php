@@ -52,7 +52,7 @@ class StaticPagesPlugin extends GenericPlugin {
 			$this->addLocaleData();
 			if ($this->getEnabled()) {
 				$this->import('StaticPagesDAO');
-				if (checkPhpVersion('5.0.0')) { // WARNING: This class needs $this in constructor
+				if (checkPhpVersion('5.0.0')) { // WARNING: see http://pkp.sfu.ca/wiki/index.php/Information_for_Developers#Use_of_.24this_in_the_constructur
 					$staticPagesDAO = new StaticPagesDAO();
 				} else {
 					$staticPagesDAO =& new StaticPagesDAO();

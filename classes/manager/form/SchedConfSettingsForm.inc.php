@@ -36,9 +36,9 @@ class SchedConfSettingsForm extends Form {
 		// Validation checks for this form
 		$this->addCheck(new FormValidatorLocale($this, 'title', 'required', 'manager.schedConfs.form.titleRequired'));
 		$this->addCheck(new FormValidatorLocale($this, 'acronym', 'required', 'manager.schedConfs.form.acronymRequired'));
-		$this->addCheck(new FormValidator($this, 'path', 'required', 'manager.schedConfs.form.pathRequired'));
-		$this->addCheck(new FormValidatorAlphaNum($this, 'path', 'required', 'manager.schedConfs.form.pathAlphaNumeric'));
-		$this->addCheck(new FormValidatorCustom($this, 'path', 'required', 'manager.schedConfs.form.pathExists', create_function('$path,$form,$schedConfDao', 'return !$schedConfDao->schedConfExistsByPath($path) || ($form->getData(\'oldPath\') != null && $form->getData(\'oldPath\') == $path);'), array(&$this, DAORegistry::getDAO('SchedConfDAO'))));
+		$this->addCheck(new FormValidator($this, 'schedConfPath', 'required', 'manager.schedConfs.form.pathRequired'));
+		$this->addCheck(new FormValidatorAlphaNum($this, 'schedConfPath', 'required', 'manager.schedConfs.form.pathAlphaNumeric'));
+		$this->addCheck(new FormValidatorCustom($this, 'schedConfPath', 'required', 'manager.schedConfs.form.pathExists', create_function('$path,$form,$schedConfDao', 'return !$schedConfDao->schedConfExistsByPath($path) || ($form->getData(\'oldPath\') != null && $form->getData(\'oldPath\') == $path);'), array(&$this, DAORegistry::getDAO('SchedConfDAO'))));
 		$this->addCheck(new FormValidatorPost($this));
 	}
 
@@ -65,7 +65,7 @@ class SchedConfSettingsForm extends Form {
 				$this->_data = array(
 					'conferenceId' => $schedConf->getConferenceId(),
 					'title' => $schedConf->getTitle(null), // Localized
-					'path' => $schedConf->getPath(),
+					'schedConfPath' => $schedConf->getPath(),
 					'acronym' => $schedConf->getSchedConfAcronym(null) // Localized
 				);
 			} else {
@@ -91,7 +91,7 @@ class SchedConfSettingsForm extends Form {
 	 * Assign form data to user-submitted data.
 	 */
 	function readInputData() {
-		$this->readUserVars(array('conferenceId', 'acronym', 'title', 'path'));
+		$this->readUserVars(array('conferenceId', 'acronym', 'title', 'schedConfPath'));
 
 		if (isset($this->schedConfId)) {
 			$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
@@ -126,7 +126,7 @@ class SchedConfSettingsForm extends Form {
 		}
 
 		$schedConf->setConferenceId($this->getData('conferenceId'));
-		$schedConf->setPath($this->getData('path'));
+		$schedConf->setPath($this->getData('schedConfPath'));
 
 		if ($schedConf->getId() != null) {
 			$schedConfDao->updateSchedConf($schedConf);
@@ -153,12 +153,12 @@ class SchedConfSettingsForm extends Form {
 
 			Locale::requireComponents(array(LOCALE_COMPONENT_APPLICATION_COMMON, LOCALE_COMPONENT_OCS_DEFAULT));
 			$schedConfSettingsDao->installSettings($schedConfId, Config::getVar('general', 'registry_dir') . '/schedConfSettings.xml', array(
-				'authorGuidelinesUrl' => Request::url($conference->getPath(), $this->getData('path'), 'about', 'submissions', null, null, 'authorGuidelines'),
+				'authorGuidelinesUrl' => Request::url($conference->getPath(), $this->getData('schedConfPath'), 'about', 'submissions', null, null, 'authorGuidelines'),
 				'indexUrl' => Request::getIndexUrl(),
 				'conferencePath' => $conference->getPath(),
 				'conferenceName' => $conference->getConferenceTitle(),
-				'schedConfPath' => $this->getData('path'),
-				'schedConfUrl' => Request::url($conference->getPath(), $this->getData('path'), 'index'),
+				'schedConfPath' => $this->getData('schedConfPath'),
+				'schedConfUrl' => Request::url($conference->getPath(), $this->getData('schedConfPath'), 'index'),
 				'schedConfName' => $title
 			));
 

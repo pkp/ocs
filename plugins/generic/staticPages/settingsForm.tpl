@@ -53,7 +53,7 @@
 </table>
 <a class="action" href={plugin_url path="add"}>{translate key="plugins.generic.staticPages.addNewPage"}</a>
 
-<p><input type="button" value="{translate key="common.done"}" class="button defaultButton" onclick="document.location.href='{url page="manager" op="plugins" escape=false}'" /></p>
+<p><input type="button" value="{translate key="common.done"}" class="button defaultButton" onclick="document.location.href='{url page="manager" op="plugins"}'" /></p>
 
 </form>
 

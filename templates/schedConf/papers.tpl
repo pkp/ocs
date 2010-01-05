@@ -28,7 +28,7 @@
 		{translate key="user.lastName"}
 		{foreach from=$alphaList item=letter}<a href="{url op="presentations" searchInitial=$letter track=$track}">{if $letter == $searchInitial}<strong>{$letter|escape}</strong>{else}{$letter|escape}{/if}</a> {/foreach}<a href="{url op="presentations" track=$track}">{if $searchInitial==''}<strong>{translate key="common.all"}</strong>{else}{translate key="common.all"}{/if}</a>
 		<br />
-		{translate key="track.track"}: <select name="track" onchange="location.href='{url searchField=$searchField searchMatch=$searchMatch search=$search track="TRACK_ID" escape=false}'.replace('TRACK_ID', this.options[this.selectedIndex].value)" size="1" class="selectMenu">{html_options options=$trackOptions selected=$track}</select>
+		{translate key="track.track"}: <select name="track" onchange="location.href='{url searchField=$searchField searchMatch=$searchMatch search=$search track="TRACK_ID"}'.replace('TRACK_ID', this.options[this.selectedIndex].value)" size="1" class="selectMenu">{html_options options=$trackOptions selected=$track}</select>
 	</form>
 	&nbsp;
 
