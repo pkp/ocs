@@ -72,7 +72,6 @@
 </div>
 {if $currentSchedConf->getSetting('registrationName')}
 
-<div class="separator"></div>
 <div id="registrationContact">
 <h3>{translate key="manager.registrationPolicies.registrationContact"}</h3>
 
