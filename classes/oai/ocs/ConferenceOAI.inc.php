@@ -51,6 +51,14 @@ class ConferenceOAI extends OAI {
 	}
 
 	/**
+	 * Return a list of ignorable GET parameters.
+	 * @return array
+	 */
+	function getNonPathInfoParams() {
+		return array('conference', 'schedConf', 'page');
+	}
+
+	/**
 	 * Convert paper ID to OAI identifier.
 	 * @param $paperId int
 	 * @return string
