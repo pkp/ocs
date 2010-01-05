@@ -33,9 +33,9 @@ class ConferenceSiteSettingsForm extends Form {
 
 		// Validation checks for this form
 		$this->addCheck(new FormValidatorLocale($this, 'title', 'required', 'admin.conferences.form.titleRequired'));
-		$this->addCheck(new FormValidator($this, 'path', 'required', 'admin.conferences.form.pathRequired'));
-		$this->addCheck(new FormValidatorAlphaNum($this, 'path', 'required', 'admin.conferences.form.pathAlphaNumeric'));
-		$this->addCheck(new FormValidatorCustom($this, 'path', 'required', 'admin.conferences.form.pathExists', create_function('$path,$form,$conferenceDao', 'return !$conferenceDao->conferenceExistsByPath($path) || ($form->getData(\'oldPath\') != null && $form->getData(\'oldPath\') == $path);'), array(&$this, DAORegistry::getDAO('ConferenceDAO'))));
+		$this->addCheck(new FormValidator($this, 'conferencePath', 'required', 'admin.conferences.form.pathRequired'));
+		$this->addCheck(new FormValidatorAlphaNum($this, 'conferencePath', 'required', 'admin.conferences.form.pathAlphaNumeric'));
+		$this->addCheck(new FormValidatorCustom($this, 'conferencePath', 'required', 'admin.conferences.form.pathExists', create_function('$path,$form,$conferenceDao', 'return !$conferenceDao->conferenceExistsByPath($path) || ($form->getData(\'oldPath\') != null && $form->getData(\'oldPath\') == $path);'), array(&$this, DAORegistry::getDAO('ConferenceDAO'))));
 		$this->addCheck(new FormValidatorPost($this));
 	}
 
@@ -61,7 +61,7 @@ class ConferenceSiteSettingsForm extends Form {
 				$this->_data = array(
 					'title' => $conference->getTitle(null), // Localized
 					'description' => $conference->getDescription(null), // Localized
-					'path' => $conference->getPath(),
+					'conferencePath' => $conference->getPath(),
 					'enabled' => $conference->getEnabled()
 				);
 
@@ -88,7 +88,7 @@ class ConferenceSiteSettingsForm extends Form {
 	 * Assign form data to user-submitted data.
 	 */
 	function readInputData() {
-		$this->readUserVars(array('title', 'description', 'path', 'enabled'));
+		$this->readUserVars(array('title', 'description', 'conferencePath', 'enabled'));
 		$this->setData('enabled', (int)$this->getData('enabled'));
 
 		if (isset($this->conferenceId)) {
@@ -112,7 +112,7 @@ class ConferenceSiteSettingsForm extends Form {
 			$conference = new Conference();
 		}
 
-		$conference->setPath($this->getData('path'));
+		$conference->setPath($this->getData('conferencePath'));
 		$conference->setEnabled($this->getData('enabled'));
 
 		if ($conference->getId() != null) {
@@ -152,13 +152,13 @@ class ConferenceSiteSettingsForm extends Form {
 			$titles = $this->getData('title');
 			Locale::requireComponents(array(LOCALE_COMPONENT_OCS_DEFAULT));
 			$conferenceSettingsDao->installSettings($conferenceId, Config::getVar('general', 'registry_dir') . '/conferenceSettings.xml', array(
-				'privacyStatementUrl' => Request::url($this->getData('path'), 'index', 'about', 'submissions', null, null, 'privacyStatement'),
+				'privacyStatementUrl' => Request::url($this->getData('conferencePath'), 'index', 'about', 'submissions', null, null, 'privacyStatement'),
 				'loginUrl' => Request::url('index', 'index', 'login'),
-				'conferenceUrl' => Request::url($this->getData('path'), null),
-				'conferencePath' => $this->getData('path'),
+				'conferenceUrl' => Request::url($this->getData('conferencePath'), null),
+				'conferencePath' => $this->getData('conferencePath'),
 				'primaryLocale' => $site->getPrimaryLocale(),
-				'aboutUrl' => Request::url($this->getData('path'), 'index', 'about', null),
-				'accountUrl' => Request::url($this->getData('path'), 'index', 'user', 'register'),
+				'aboutUrl' => Request::url($this->getData('conferencePath'), 'index', 'about', null),
+				'accountUrl' => Request::url($this->getData('conferencePath'), 'index', 'user', 'register'),
 				'conferenceName' => $titles[$site->getPrimaryLocale()]
 			));
 
