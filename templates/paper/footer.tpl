@@ -37,7 +37,7 @@
 	if(document.captureEvents) {
 		document.captureEvents(Event.DBLCLICK);
 	}
-	document.ondblclick = new Function("openSearchTermWindow('{/literal}{url page="rt" op="context" path=$paperId|to_array:$galleyId:$defineTermsContextId escape=false}{literal}')");
+	document.ondblclick = new Function("openSearchTermWindow('{/literal}{url page="rt" op="context" path=$paperId|to_array:$galleyId:$defineTermsContextId}{literal}')");
 // -->
 {/literal}
 </script>

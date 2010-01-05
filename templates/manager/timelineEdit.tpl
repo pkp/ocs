@@ -314,7 +314,7 @@
 <p>
 	{if $errorsExist}<input type="checkbox" name="overrideDates" value="1" id="overrideDates" />&nbsp;&nbsp;<label for="overrideDates">{translate key="manager.timeline.overrideDates"}</label><br />{/if}
 	<input type="submit" value="{translate key="common.save"}" class="button defaultButton" />
-	<input type="button" value="{translate key="common.cancel"}" class="button" onclick="document.location.href='{url op="index" escape=false}'" />
+	<input type="button" value="{translate key="common.cancel"}" class="button" onclick="document.location.href='{url op="index"}'" />
 </p>
 
 </form>
