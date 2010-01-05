@@ -23,12 +23,13 @@ import('handler.Handler');
 class PaperHandler extends Handler {
 	/** the paper associated with this request **/
 	var $paper;
-		
+
 	/**
 	 * Constructor
-	 **/
-	function PaperHandler() {
-		parent::Handler();
+	 * @param $request Request
+	 */
+	function PaperHandler(&$request) {
+		parent::Handler($request);
 
 		$this->addCheck(new HandlerValidatorConference($this));
 		$this->addCheck(new HandlerValidatorSchedConf($this));
@@ -36,13 +37,16 @@ class PaperHandler extends Handler {
 
 	/**
 	 * View Paper.
+	 * @param $args array
+	 * @param $request Request
 	 */
-	function view($args) {
+	function view($args, &$request) {
+		$router =& $request->getRouter();
 		$paperId = isset($args[0]) ? $args[0] : 0;
 		$galleyId = isset($args[1]) ? (int) $args[1] : 0;
 
-		$this->validate($paperId, $galleyId);
-		$conference =& Request::getConference();
+		$this->validate($request, $paperId, $galleyId);
+		$conference =& $router->getContext($request, CONTEXT_CONFERENCE);
 		$paper =& $this->paper;
 		$this->setupTemplate();
 
@@ -53,13 +57,13 @@ class PaperHandler extends Handler {
 		$galley =& $galleyDao->getGalley($galleyId, $paper->getPaperId());
 
 		if (!$conferenceRt->getEnabled()) {
-			if (!$galley || $galley->isHtmlGalley()) return PaperHandler::viewPaper($args);
-			else if ($galley->isPdfGalley()) return PaperHandler::viewPDFInterstitial($args, $galley);
-			else return PaperHandler::viewDownloadInterstitial($args, $galley);
+			if (!$galley || $galley->isHtmlGalley()) return PaperHandler::viewPaper($args, $request);
+			else if ($galley->isPdfGalley()) return PaperHandler::viewPDFInterstitial($args, $request, $galley);
+			else return PaperHandler::viewDownloadInterstitial($args, $request, $galley);
 		}
 
 		if (!$paper) {
-			Request::redirect(null, null, null, Request::getRequestedPage());
+			$request->redirect(null, null, null, $router->getRequestedPage($request));
 			return;
 		}
 
@@ -74,21 +78,23 @@ class PaperHandler extends Handler {
 
 	/**
 	 * Paper interstitial page before PDF is shown
+	 * @param $args array
+	 * @param $request Request
+	 * @param $galley PaperGalley
 	 */
-	function viewPDFInterstitial($args, $galley = null) {
+	function viewPDFInterstitial($args, &$request, $galley = null) {
 		$paperId = isset($args[0]) ? $args[0] : 0;
 		$galleyId = isset($args[1]) ? (int) $args[1] : 0;
-		$this->validate($paperId, $galleyId);
+		$this->validate($request, $paperId, $galleyId);
 		$paper =& $this->paper;
 		$this->setupTemplate();
 
-		if (!$galley || !is_a($galley, 'PaperGalley')) {
-			unset($galley);
+		if (!$galley) {
 			$galleyDao =& DAORegistry::getDAO('PaperGalleyDAO');
 			$galley =& $galleyDao->getGalley($galleyId, $paper->getPaperId());
 		}
 
-		if (!$galley) Request::redirect(null, null, 'view', $paperId);
+		if (!$galley) $request->redirect(null, null, 'view', $paperId);
 
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('paperId', $paperId);
@@ -101,22 +107,24 @@ class PaperHandler extends Handler {
 	/**
 	 * Paper interstitial page before a non-PDF, non-HTML galley is
 	 * downloaded
+	 * @param $args array
+	 * @param $request Request
+	 * @param $galley PaperGalley
 	 */
-	function viewDownloadInterstitial($args, $galley = null) {
+	function viewDownloadInterstitial($args, &$request, $galley = null) {
 		$paperId = isset($args[0]) ? $args[0] : 0;
 		$galleyId = isset($args[1]) ? (int) $args[1] : 0;
 
-		$this->validate($paperId, $galleyId);
+		$this->validate($request, $paperId, $galleyId);
 		$paper =& $this->paper;
 		$this->setupTemplate();
 
-		if (!$galley || !is_a($galley, 'PaperGalley')) {
-			unset($galley);
+		if (!$galley) {
 			$galleyDao =& DAORegistry::getDAO('PaperGalleyDAO');
 			$galley =& $galleyDao->getGalley($galleyId, $paper->getPaperId());
 		}
 
-		if (!$galley) Request::redirect(null, null, 'view', $paperId);
+		if (!$galley) $request->redirect(null, null, 'view', $paperId);
 
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('paperId', $paperId);
@@ -128,14 +136,17 @@ class PaperHandler extends Handler {
 
 	/**
 	 * Paper view
+	 * @param $args array
+	 * @param $request Request
 	 */
-	function viewPaper($args) {
+	function viewPaper($args, &$request) {
+		$router =& $request->getRouter();
 		$paperId = isset($args[0]) ? $args[0] : 0;
 		$galleyId = isset($args[1]) ? (int) $args[1] : 0;
 
-		$this->validate($paperId, $galleyId);
-		$conference =& Request::getConference();
-		$schedConf =& Request::getSchedConf();
+		$this->validate($request, $paperId, $galleyId);
+		$conference =& $router->getContext($request, CONTEXT_CONFERENCE);
+		$schedConf =& $router->getContext($request, CONTEXT_SCHED_CONF);
 		$paper =& $this->paper;
 		$this->setupTemplate();
 
@@ -187,7 +198,7 @@ class PaperHandler extends Handler {
 
 			// Use the paper's CSS file, if set.
 			if ($galley->isHTMLGalley() && $styleFile =& $galley->getStyleFile()) {
-				$templateMgr->addStyleSheet(Request::url(null, null, 'paper', 'viewFile', array(
+				$templateMgr->addStyleSheet($router->url($request, null, null, 'paper', 'viewFile', array(
 					$paper->getPaperId(),
 					$galley->getGalleyId(),
 					$styleFile->getFileId()
@@ -235,15 +246,18 @@ class PaperHandler extends Handler {
 
 	/**
 	 * Paper Reading tools
+	 * @param $args array
+	 * @param $request Request
 	 */
-	function viewRST($args) {
+	function viewRST($args, &$request) {
+		$router =& $request->getRouter();
 		$paperId = isset($args[0]) ? $args[0] : 0;
 		$galleyId = isset($args[1]) ? (int) $args[1] : 0;
 
-		$this->validate($paperId, $galleyId);
+		$this->validate($request, $paperId, $galleyId);
 
-		$conference =& Request::getConference();
-		$schedConf =& Request::getSchedConf();
+		$conference =& $router->getContext($request, CONTEXT_CONFERENCE);
+		$schedConf =& $router->getContext($request, CONTEXT_SCHED_CONF);
 		$paper =& $this->paper;
 		$this->setupTemplate();
 
@@ -306,27 +320,28 @@ class PaperHandler extends Handler {
 	/**
 	 * View a file (inlines file).
 	 * @param $args array ($paperId, $galleyId, $fileId [optional])
+	 * @param $request Request
 	 */
-	function viewFile($args) {
+	function viewFile($args, &$request) {
 		$paperId = isset($args[0]) ? $args[0] : 0;
 		$galleyId = isset($args[1]) ? $args[1] : 0;
 		$fileId = isset($args[2]) ? (int) $args[2] : 0;
 
-		$this->validate($paperId, $galleyId);
+		$this->validate($request, $paperId, $galleyId);
 		$paper =& $this->paper;
 		$this->setupTemplate();
 
 		$galleyDao =& DAORegistry::getDAO('PaperGalleyDAO');
 		$galley =& $galleyDao->getGalley($galleyId, $paper->getPaperId());
 
-		if (!$galley) Request::redirect(null, null, null, null, 'view', $paperId);
+		if (!$galley) $request->redirect(null, null, null, null, 'view', $paperId);
 
 		if (!$fileId) {
 			$galleyDao->incrementViews($galleyId);
 			$fileId = $galley->getFileId();
 		} else {
 			if (!$galley->isDependentFile($fileId)) {
-				Request::redirect(null, null, null, null, 'view', $paperId);
+				$request->redirect(null, null, null, null, 'view', $paperId);
 			}
 		}
 
@@ -337,12 +352,14 @@ class PaperHandler extends Handler {
 
 	/**
 	 * Downloads the document
+	 * @param $args array
+	 * @param $request Request
 	 */
-	function download($args) {
+	function download($args, &$request) {
 		$paperId = isset($args[0]) ? $args[0] : 0;
 		$galleyId = isset($args[1]) ? (int)$args[1] : 0;
 
-		$this->validate($paperId, $galleyId);
+		$this->validate($request, $paperId, $galleyId);
 		$paper =& $this->paper;
 
 		$galleyDao =& DAORegistry::getDAO('PaperGalleyDAO');
@@ -356,13 +373,19 @@ class PaperHandler extends Handler {
 		}
 	}
 
-	function downloadSuppFile($args) {
+	/**
+	 * Downloads a supplementary file
+	 * @param $args array
+	 * @param $request Request
+	 */
+	function downloadSuppFile($args, &$request) {
+		$router =& $request->getRouter();
 		$paperId = isset($args[0]) ? $args[0] : 0;
 		$suppId = isset($args[1]) ? $args[1] : 0;
 
-		$schedConf =& Request::getSchedConf();
+		$schedConf =& $router->getContext($request, CONTEXT_SCHED_CONF);
 
-		$this->validate($paperId);
+		$this->validate($request, $paperId);
 		$paper =& $this->paper;
 
 		$suppFileDao =& DAORegistry::getDAO('SuppFileDAO');
@@ -385,13 +408,18 @@ class PaperHandler extends Handler {
 
 	/**
 	 * Validation
+	 * @see lib/pkp/classes/handler/PKPHandler#validate()
+	 * @param $request Request
+	 * @param $paperId integer
+	 * @param $galleyId integer
 	 */
-	function validate($paperId, $galleyId = null) {
-		parent::validate();
+	function validate(&$request, $paperId, $galleyId = null) {
+		$router =& $request->getRouter();
+		parent::validate(null, $request);
 
-		$conference =& Request::getConference();
-		$schedConf =& Request::getSchedConf();
-		
+		$conference =& $router->getContext($request, CONTEXT_CONFERENCE);
+		$schedConf =& $router->getContext($request, CONTEXT_SCHED_CONF);
+
 		$conferenceId = $conference->getId();
 		$publishedPaperDao =& DAORegistry::getDAO('PublishedPaperDAO');
 
@@ -438,7 +466,7 @@ class PaperHandler extends Handler {
 			}
 
 		} else {
-			Request::redirect(null, null, 'index');
+			$request->redirect(null, null, 'index');
 		}
 
 		$this->paper =& $paper;
