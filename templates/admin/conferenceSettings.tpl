@@ -50,9 +50,9 @@
 		</td>
 	</tr>
 	<tr valign="top">
-		<td class="label">{fieldLabel name="path" key="common.path" required="true"}</td>
+		<td class="label">{fieldLabel name="conferencePath" key="common.path" required="true"}</td>
 		<td class="value">
-			<input type="text" id="path" name="path" value="{$path|escape}" size="16" maxlength="32" class="textField" />
+			<input type="text" id="path" name="conferencePath" value="{$conferencePath|escape}" size="16" maxlength="32" class="textField" />
 			<br />
 			{translate|assign:"sampleEllipsis" key="common.ellipsis"}
 			{url|assign:"sampleUrl" conference="path" schedConf="$sampleEllipsis"}
