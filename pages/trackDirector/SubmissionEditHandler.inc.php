@@ -1005,6 +1005,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		$paperId = isset($args[0]) ? (int) $args[0] : 0;
 		$this->validate($paperId, TRACK_DIRECTOR_ACCESS_REVIEW);
 		$submission =& $this->submission;
+		$this->setupTemplate(true, $paperId, 'summary');
 
 		$reviewId = isset($args[1]) ? (int) $args[1] : null;
 
