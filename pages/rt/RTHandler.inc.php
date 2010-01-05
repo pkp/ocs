@@ -9,7 +9,7 @@
  * @class RTHandler
  * @ingroup pages_rt
  *
- * @brief Handle Reading Tools requests. 
+ * @brief Handle Reading Tools requests.
  *
  */
 
@@ -26,28 +26,32 @@ import('paper.PaperHandler');
 class RTHandler extends PaperHandler {
 	/**
 	 * Constructor
-	 **/
-	function RTHandler() {
-		parent::PaperHandler();
+	 * @param $request Request
+	 */
+	function RTHandler(&$request) {
+		parent::PaperHandler($request);
 	}
-	
+
 	/**
 	 * Display a author biography
+	 * @param $args array
+	 * @param $request Request
 	 */
-	function bio($args) {
+	function bio($args, &$request) {
+		$router =& $request->getRouter();
 		$this->setupTemplate();
 		$paperId = isset($args[0]) ? $args[0] : 0;
 		$galleyId = isset($args[1]) ? (int) $args[1] : 0;
 
-		$this->validate($paperId, $galleyId);
-		$conference =& Request::getConference();
+		$this->validate($request, $paperId, $galleyId);
+		$conference =& $router->getContext($request, CONTEXT_CONFERENCE);
 		$paper =& $this->paper;
 
 		$rtDao =& DAORegistry::getDAO('RTDAO');
 		$conferenceRt =& $rtDao->getConferenceRTByConference($conference);
 
 		if (!$conferenceRt || !$conferenceRt->getAuthorBio()) {
-			Request::redirect(null, null, Request::getRequestedPage());
+			$request->redirect(null, null, $router->getRequestedPage($request));
 		}
 
 		$templateMgr =& TemplateManager::getManager();
@@ -59,13 +63,17 @@ class RTHandler extends PaperHandler {
 
 	/**
 	 * Display the paper metadata
+	 * @param $args array
+	 * @param $request Request
 	 */
-	function metadata($args) {
+	function metadata($args, &$request) {
+		$router =& $request->getRouter();
 		$this->setupTemplate();
 		$paperId = isset($args[0]) ? $args[0] : 0;
 		$galleyId = isset($args[1]) ? (int) $args[1] : 0;
-		$this->validate($paperId, $galleyId);
-		$conference =& Request::getConference();
+		$this->validate($request, $paperId, $galleyId);
+		$conference =& $router->getContext($request, CONTEXT_CONFERENCE);
+		$schedConf =& $router->getContext($request, CONTEXT_SCHED_CONF);
 		$paper =& $this->paper;
 
 
@@ -73,7 +81,7 @@ class RTHandler extends PaperHandler {
 		$conferenceRt =& $rtDao->getConferenceRTByConference($conference);
 
 		if (!$conferenceRt || !$conferenceRt->getViewMetadata()) {
-			Request::redirect(null, null, Request::getRequestedPage());
+			$request->redirect(null, null, $router->getRequestedPage($request));
 		}
 
 		$trackDao =& DAORegistry::getDAO('TrackDAO');
@@ -95,15 +103,18 @@ class RTHandler extends PaperHandler {
 
 	/**
 	 * Display an RT search context
+	 * @param $args array
+	 * @param $request Request
 	 */
-	function context($args) {
+	function context($args, &$request) {
+		$router =& $request->getRouter();
 		$this->setupTemplate();
 		$paperId = isset($args[0]) ? $args[0] : 0;
 		$galleyId = isset($args[1]) ? (int) $args[1] : 0;
 		$contextId = Isset($args[2]) ? (int) $args[2] : 0;
 
-		$this->validate($paperId, $galleyId);
-		$conference =& Request::getConference();
+		$this->validate($request, $paperId, $galleyId);
+		$conference =& $router->getContext($request, CONTEXT_CONFERENCE);
 		$paper =& $this->paper;
 
 		$rtDao =& DAORegistry::getDAO('RTDAO');
@@ -113,7 +124,7 @@ class RTHandler extends PaperHandler {
 		if ($context) $version =& $rtDao->getVersion($context->getVersionId(), $conference->getId());
 
 		if (!$context || !$version || !$conferenceRt || $conferenceRt->getVersion()==null || $conferenceRt->getVersion() != $context->getVersionId()) {
-			Request::redirect(null, null, 'paper', 'view', array($paperId, $galleyId));
+			$request->redirect(null, null, 'paper', 'view', array($paperId, $galleyId));
 		}
 
 		// Deal with the post and URL parameters for each search
@@ -175,7 +186,7 @@ class RTHandler extends PaperHandler {
 		$templateMgr->assign_by_ref('searches', $searches);
 		$templateMgr->assign('searchParams', $searchParams);
 		$templateMgr->assign('searchValues', $searchValues);
-		$templateMgr->assign('defineTerm', Request::getUserVar('defineTerm'));
+		$templateMgr->assign('defineTerm', $request->getUserVar('defineTerm'));
 		$templateMgr->assign('keywords', explode(';', $paper->getLocalizedSubject()));
 		$templateMgr->assign('coverageGeo', $paper->getLocalizedCoverageGeo());
 		$templateMgr->assign_by_ref('conferenceSettings', $conference->getSettings());
@@ -184,22 +195,26 @@ class RTHandler extends PaperHandler {
 
 	/**
 	 * Display citation information
+	 * @param $args array
+	 * @param $request Request
 	 */
-	function captureCite($args) {
+	function captureCite($args, &$request) {
+		$router =& $request->getRouter();
 		$this->setupTemplate();
 		$paperId = isset($args[0]) ? $args[0] : 0;
 		$galleyId = isset($args[1]) ? (int) $args[1] : 0;
 		$citeType = isset($args[2]) ? $args[2] : null;
 
-		$this->validate($paperId, $galleyId);
-		$conference =& Request::getConference();
+		$this->validate($request, $paperId, $galleyId);
+		$conference =& $router->getContext($request, CONTEXT_CONFERENCE);
+		$schedConf =& $router->getContext($request, CONTEXT_SCHED_CONF);
 		$paper =& $this->paper;
 
 		$rtDao =& DAORegistry::getDAO('RTDAO');
 		$conferenceRt =& $rtDao->getConferenceRTByConference($conference);
 
 		if (!$conferenceRt || !$conferenceRt->getCaptureCite()) {
-			Request::redirect(null, null, Request::getRequestedPage());
+			$request->redirect(null, null, $router->getRequestedPage($request));
 		}
 
 		$templateMgr =& TemplateManager::getManager();
@@ -227,20 +242,24 @@ class RTHandler extends PaperHandler {
 
 	/**
 	 * Display a printer-friendly version of the paper
+	 * @param $args array
+	 * @param $request Request
 	 */
-	function printerFriendly($args) {
+	function printerFriendly($args, &$request) {
+		$router =& $request->getRouter();
 		$this->setupTemplate();
 		$paperId = isset($args[0]) ? $args[0] : 0;
 		$galleyId = isset($args[1]) ? (int) $args[1] : 0;
-		$this->validate($paperId, $galleyId);
-		$conference =& Request::getConference();
+		$this->validate($request, $paperId, $galleyId);
+		$conference =& $router->getContext($request, CONTEXT_CONFERENCE);
+		$schedConf =& $router->getContext($request, CONTEXT_SCHED_CONF);
 		$paper =& $this->paper;
 
 		$rtDao =& DAORegistry::getDAO('RTDAO');
 		$conferenceRt =& $rtDao->getConferenceRTByConference($conference);
 
 		if (!$conferenceRt || !$conferenceRt->getPrinterFriendly()) {
-			Request::redirect(null, null, Request::getRequestedPage());
+			$request->redirect(null, null, $router->getRequestedPage($request));
 		}
 
 		$paperGalleyDao =& DAORegistry::getDAO('PaperGalleyDAO');
@@ -257,39 +276,43 @@ class RTHandler extends PaperHandler {
 		$templateMgr->assign_by_ref('conference', $conference);
 		$templateMgr->assign('paperId', $paperId);
 		$templateMgr->assign('galleyId', $galleyId);
-		$templateMgr->display('rt/printerFriendly.tpl');	
+		$templateMgr->display('rt/printerFriendly.tpl');
 	}
 
 	/**
 	 * Display the "Email Colleague" form
+	 * @param $args array
+	 * @param $request Request
 	 */
-	function emailColleague($args) {
+	function emailColleague($args, &$request) {
+		$router =& $request->getRouter();
 		$this->setupTemplate();
 		$paperId = isset($args[0]) ? $args[0] : 0;
 		$galleyId = isset($args[1]) ? (int) $args[1] : 0;
 
-		$this->validate($paperId, $galleyId);
-		$conference =& Request::getConference();
+		$this->validate($request, $paperId, $galleyId);
+		$conference =& $router->getContext($request, CONTEXT_CONFERENCE);
+		$schedConf =& $router->getContext($request, CONTEXT_SCHED_CONF);
 		$paper =& $this->paper;
 
 		$rtDao =& DAORegistry::getDAO('RTDAO');
 		$conferenceRt =& $rtDao->getConferenceRTByConference($conference);
-		$user =& Request::getUser();
+		$user =& $request->getUser();
 
 		if (!$conferenceRt || !$conferenceRt->getEmailOthers() || !$user) {
-			Request::redirect(null, null, Request::getRequestedPage());
+			$request->redirect(null, null, $router->getRequestedPage($request));
 		}
 
 		import('mail.MailTemplate');
 		$email = new MailTemplate('EMAIL_LINK');
 
-		if (Request::getUserVar('send') && !$email->hasErrors()) {
+		if ($request->getUserVar('send') && !$email->hasErrors()) {
 			$email->send();
 
 			$templateMgr =& TemplateManager::getManager();
 			$templateMgr->display('rt/sent.tpl');
 		} else {
-			if (!Request::getUserVar('continued')) {
+			if (!$request->getUserVar('continued')) {
 				$primaryAuthor = $paper->getAuthors();
 				$primaryAuthor = $primaryAuthor[0];
 
@@ -298,69 +321,76 @@ class RTHandler extends PaperHandler {
 					'paperTitle' => strip_tags($paper->getLocalizedTitle()),
 					'schedConf' => $schedConf->getSchedConfTitle(),
 					'authorName' => $primaryAuthor->getFullName(),
-					'paperUrl' => Request::url(null, null, 'paper', 'view', $paper->getBestPaperId())
+					'paperUrl' => $router->url($request, null, null, 'paper', 'view', array($paper->getBestPaperId()))
 				));
 			}
-			$email->displayEditForm(Request::url(null, null, null, 'emailColleague', array($paperId, $galleyId)), null, 'rt/email.tpl', array('op' => 'emailColleague'));
+			$email->displayEditForm($router->url($request, null, null, null, 'emailColleague', array($paperId, $galleyId)), null, 'rt/email.tpl', array('op' => 'emailColleague'));
 		}
 	}
 
 	/**
 	 * Display the "email author"
+	 * @param $args array
+	 * @param $request Request
 	 */
-	function emailAuthor($args) {
+	function emailAuthor($args, &$request) {
+		$router =& $request->getRouter();
 		$this->setupTemplate();
 		$paperId = isset($args[0]) ? $args[0] : 0;
 		$galleyId = isset($args[1]) ? (int) $args[1] : 0;
 
-		$this->validate($paperId, $galleyId);
-		$conference =& Request::getConference();
+		$this->validate($request, $paperId, $galleyId);
+		$conference =& $router->getContext($request, CONTEXT_CONFERENCE);
+		$schedConf =& $router->getContext($request, CONTEXT_SCHED_CONF);
 		$paper =& $this->paper;
 
 		$rtDao =& DAORegistry::getDAO('RTDAO');
 		$conferenceRt =& $rtDao->getConferenceRTByConference($conference);
-		$user =& Request::getUser();
+		$user =& $request->getUser();
 
 		if (!$conferenceRt || !$conferenceRt->getEmailAuthor() || !$user) {
-			Request::redirect(null, null, Request::getRequestedPage());
+			$request->redirect(null, null, $router->getRequestedPage($request));
 		}
 
 		import('mail.MailTemplate');
 		$email = new MailTemplate();
 
-		if (Request::getUserVar('send') && !$email->hasErrors()) {
+		if ($request->getUserVar('send') && !$email->hasErrors()) {
 			$email->send();
 
 			$templateMgr =& TemplateManager::getManager();
 			$templateMgr->display('rt/sent.tpl');
 		} else {
-			if (!Request::getUserVar('continued')) {
+			if (!$request->getUserVar('continued')) {
 				$email->setSubject('[' . $schedConf->getLocalizedSetting('acronym') . '] ' . strip_tags($paper->getLocalizedTitle()));
 				$authors =& $paper->getAuthors();
 				$author =& $authors[0];
 				$email->addRecipient($author->getEmail(), $author->getFullName());
 			}
-			$email->displayEditForm(Request::url(null, null, null, 'emailAuthor', array($paperId, $galleyId)), null, 'rt/email.tpl', array('op' => 'emailAuthor'));
+			$email->displayEditForm($router->url($request, null, null, null, 'emailAuthor', array($paperId, $galleyId)), null, 'rt/email.tpl', array('op' => 'emailAuthor'));
 		}
 	}
 
 	/**
 	 * Display a list of supplementary files
+	 * @param $args array
+	 * @param $request Request
 	 */
-	function suppFiles($args) {
+	function suppFiles($args, &$request) {
+		$router =& $request->getRouter();
 		$this->setupTemplate();
 		$paperId = isset($args[0]) ? $args[0] : 0;
 		$galleyId = isset($args[1]) ? (int) $args[1] : 0;
 
-		$this->validate($paperId, $galleyId);
-		$conference =& Request::getConference();
+		$this->validate($request, $paperId, $galleyId);
+		$conference =& $router->getContext($request, CONTEXT_CONFERENCE);
 		$paper =& $this->paper;
 
 		$rtDao =& DAORegistry::getDAO('RTDAO');
 		$conferenceRt =& $rtDao->getConferenceRTByConference($conference);
 
 		if (!$conferenceRt || !$conferenceRt->getSupplementaryFiles()) {
-			Request::redirect(null, null, Request::getRequestedPage());
+			$request->redirect(null, null, $router->getRequestedPage($request));
 		}
 
 		$templateMgr =& TemplateManager::getManager();
@@ -374,14 +404,17 @@ class RTHandler extends PaperHandler {
 
 	/**
 	 * Display the metadata of a supplementary file
+	 * @param $args array
+	 * @param $request Request
 	 */
-	function suppFileMetadata($args) {
+	function suppFileMetadata($args, &$request) {
+		$router =& $request->getRouter();
 		$this->setupTemplate();
 		$paperId = isset($args[0]) ? $args[0] : 0;
 		$galleyId = isset($args[1]) ? (int) $args[1] : 0;
 		$suppFileId = isset($args[2]) ? (int) $args[2] : 0;
-		$this->validate($paperId, $galleyId);
-		$conference =& Request::getConference();
+		$this->validate($request, $paperId, $galleyId);
+		$conference =& $router->getContext($request, CONTEXT_CONFERENCE);
 		$paper =& $this->paper;
 
 		$rtDao =& DAORegistry::getDAO('RTDAO');
@@ -391,7 +424,7 @@ class RTHandler extends PaperHandler {
 		$suppFile = $suppFileDao->getSuppFile($suppFileId, $paper->getPaperId());
 
 		if (!$conferenceRt || !$conferenceRt->getSupplementaryFiles() || !$suppFile) {
-			Request::redirect(null, null, Request::getRequestedPage());
+			$request->redirect(null, null, $router->getRequestedPage($request));
 		}
 
 		$templateMgr =& TemplateManager::getManager();
@@ -406,22 +439,25 @@ class RTHandler extends PaperHandler {
 
 	/**
 	 * Display the "finding references" search engine list
+	 * @param $args array
+	 * @param $request Request
 	 */
-	function findingReferences($args) {
+	function findingReferences($args, &$request) {
+		$router =& $request->getRouter();
 		$this->setupTemplate();
 		$paperId = isset($args[0]) ? $args[0] : 0;
 		$galleyId = isset($args[1]) ? (int) $args[1] : 0;
-		$this->validate($paperId, $galleyId);
-		$conference =& Request::getConference();
+		$this->validate($request, $paperId, $galleyId);
+		$conference =& $router->getContext($request, CONTEXT_CONFERENCE);
 		$paper =& $this->paper;
- 
+
 		$rtDao =& DAORegistry::getDAO('RTDAO');
 		$conferenceRt =& $rtDao->getConferenceRTByConference($conference);
- 
+
 		if (!$conferenceRt || !$conferenceRt->getFindingReferences()) {
-			Request::redirect(null, null, Request::getRequestedPage());
+			$request->redirect(null, null, $router->getRequestedPage($request));
 		}
- 
+
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('paperId', $paperId);
 		$templateMgr->assign('galleyId', $galleyId);
