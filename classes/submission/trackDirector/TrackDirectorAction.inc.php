@@ -842,7 +842,7 @@ class TrackDirectorAction extends Action {
 		$user =& Request::getUser();
 
 		if (!HookRegistry::call('TrackDirectorAction::setEditingFile', array(&$trackDirectorSubmission, &$fileId, &$revision))) {
-			// Copy the file from the director decision file folder to the copyedit file folder
+			// Copy the file from the director decision file folder to the layout folder
 			$newFileId = $paperFileManager->copyToLayoutFile($fileId, $revision);
 
 			$trackDirectorSubmission->setLayoutFileId($newFileId);

@@ -89,7 +89,6 @@ class RoleBlockPlugin extends BlockPlugin {
 				case 'submitSuppFile':
 				case 'saveSubmitSuppFile':
 				case 'deleteSubmitSuppFile':
-				case 'expediteSubmission':
 					// Block disabled for submission
 					return null;
 				default:

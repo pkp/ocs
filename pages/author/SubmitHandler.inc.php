@@ -205,11 +205,6 @@ class SubmitHandler extends AuthorHandler {
 
 				$templateMgr =& TemplateManager::getManager();
 				$templateMgr->assign_by_ref('conference', $conference);
-				// If this is a director and there is a
-				// submission file, paper can be expedited.
-				if (Validation::isDirector($conference->getId()) && $paper->getSubmissionFileId()) {
-					$templateMgr->assign('canExpedite', true);
-				}
 				$templateMgr->assign('paperId', $paperId);
 				$templateMgr->assign('helpTopicId','submission.index');
 				$templateMgr->display('author/submit/complete.tpl');
@@ -340,27 +335,6 @@ class SubmitHandler extends AuthorHandler {
 		}
 
 		Request::redirect(null, null, null, 'submit', '4', array('paperId' => $paperId));
-	}
-
-	function expediteSubmission() {
-		$paperId = (int) Request::getUserVar('paperId');
-
-		$this->validate($paperId);
-		$this->setupTemplate(true);
-
-		$conference =& Request::getConference();
-		$schedConf =& Request::getSchedConf();
-
-		$paper =& $this->paper;
-
-		// The author must also be a director to perform this task.
-		if (Validation::isDirector($conference->getId()) && $paper->getSubmissionFileId()) {
-			import('submission.director.DirectorAction');
-			DirectorAction::expediteSubmission($paper);
-			Request::redirect(null, null, 'director', 'schedulingQueue');
-		}
-
-		Request::redirect(null, null, null, 'track');
 	}
 
 	/**
