@@ -15,13 +15,6 @@
 <div id="submissionComplete">
 <p>{translate key="author.submit.submissionComplete" conferenceTitle=$conference->getConferenceTitle()}</p>
 
-{* TODO: expedite handler is incomplete
-{if $canExpedite}
-	{url|assign:"expediteUrl" op="expediteSubmission" paperId=$paperId}
-	{translate key="author.submit.expedite" expediteUrl=$expediteUrl}
-{/if}
-*}
-
 <p>&#187; <a href="{url page="author"}">{translate key="author.track"}</a></p>
 </div>
 {include file="common/footer.tpl"}

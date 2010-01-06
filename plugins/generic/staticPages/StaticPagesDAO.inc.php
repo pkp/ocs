@@ -8,8 +8,8 @@
  * @package plugins.generic.staticPages
  * @class StaticPagesDAO
  *
- * Operations for retrieving and modifying StaticPages objects. 
- * 
+ * Operations for retrieving and modifying StaticPages objects.
+ *
  */
 import('db.DAO');
 
@@ -25,18 +25,18 @@ class StaticPagesDAO extends DAO {
 			$returner =& $this->_returnStaticPageFromRow($result->GetRowAssoc(false));
 		}
 		$result->Close();
-		return $returner;		
-	}	
-	
+		return $returner;
+	}
+
 	function &getStaticPagesByConferenceId($conferenceId, $rangeInfo = null) {
 		$result =& $this->retrieveRange(
 			'SELECT * FROM static_pages WHERE conference_id = ?', $conferenceId, $rangeInfo
 		);
-		
-		$returner =& new DAOResultFactory($result, $this, '_returnStaticPageFromRow');
+
+		$returner = new DAOResultFactory($result, $this, '_returnStaticPageFromRow');
 		return $returner;
 	}
-	
+
 	function getStaticPageByPath($conferenceId, $path) {
 		$result =& $this->retrieve(
 			'SELECT * FROM static_pages WHERE conference_id = ? AND path = ?', array($conferenceId, $path)
@@ -47,9 +47,9 @@ class StaticPagesDAO extends DAO {
 			$returner =& $this->_returnStaticPageFromRow($result->GetRowAssoc(false));
 		}
 		$result->Close();
-		return $returner;		
-	}	
-	
+		return $returner;
+	}
+
 	function insertStaticPage(&$staticPage) {
 		$this->update(
 			'INSERT INTO static_pages
@@ -61,30 +61,30 @@ class StaticPagesDAO extends DAO {
 				$staticPage->getPath()
 			)
 		);
-		
+
 		$staticPage->setStaticPageId($this->getInsertStaticPageId());
 		$this->updateLocaleFields($staticPage);
-		
+
 		return $staticPage->getStaticPageId();
 	}
-	
+
 	function updateStaticPage(&$staticPage) {
 		$returner = $this->update(
 			'UPDATE static_pages
 				SET
 					conference_id = ?,
 					path = ?
-				WHERE static_page_id = ?', 
+				WHERE static_page_id = ?',
 				array(
 					$staticPage->getConferenceId(),
 					$staticPage->getPath(),
 					$staticPage->getStaticPageId()
 					)
 			);
-		$this->updateLocaleFields($staticPage);		
-		return $returner;	
+		$this->updateLocaleFields($staticPage);
+		return $returner;
 	}
-	
+
 	function deleteStaticPageById($staticPageId) {
 		$returner = $this->update(
 			'DELETE FROM static_pages WHERE static_page_id = ?', $staticPageId
@@ -93,24 +93,24 @@ class StaticPagesDAO extends DAO {
 			'DELETE FROM static_page_settings WHERE static_page_id = ?', $staticPageId
 		);
 	}
-	
+
 	function &_returnStaticPageFromRow(&$row) {
 		$staticPagesPlugin =& PluginRegistry::getPlugin('generic', 'StaticPagesPlugin');
 		$staticPagesPlugin->import('StaticPage');
-		
-		$staticPage =& new StaticPage();
+
+		$staticPage = new StaticPage();
 		$staticPage->setStaticPageId($row['static_page_id']);
 		$staticPage->setPath($row['path']);
 		$staticPage->setConferenceId($row['conference_id']);
 
-		$this->getDataObjectSettings('static_page_settings', 'static_page_id', $row['static_page_id'], $staticPage);		
+		$this->getDataObjectSettings('static_page_settings', 'static_page_id', $row['static_page_id'], $staticPage);
 		return $staticPage;
 	}
-	
+
 	function getInsertStaticPageId() {
 		return $this->getInsertId('static_pages', 'static_page_id');
 	}
-	
+
 	/**
 	 * Get field names for which data is localized.
 	 * @return array
@@ -127,8 +127,8 @@ class StaticPagesDAO extends DAO {
 		$this->updateDataObjectSettings('static_page_settings', $staticPage, array(
 			'static_page_id' => $staticPage->getStaticPageId()
 		));
-	}	
-	
+	}
+
 	/**
 	 * Find duplicate path
 	 * @param $path String
@@ -142,7 +142,7 @@ class StaticPagesDAO extends DAO {
 					$path
 					);
 		if (isset($staticPageId)) $params[] = $staticPageId;
-		
+
 		$result = $this->retrieve(
 			'SELECT *
 				FROM static_pages
@@ -151,14 +151,14 @@ class StaticPagesDAO extends DAO {
 				(isset($staticPageId)?' AND NOT (static_page_id = ?)':''),
 				$params
 			);
-		
+
 		if($result->RecordCount() == 0) {
 			// no duplicate exists
 			$returner = false;
 		} else {
 			$returner = true;
-		}	
-		return $returner; 
-	} 
+		}
+		return $returner;
+	}
 }
 ?>
