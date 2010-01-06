@@ -108,12 +108,12 @@ class ProfileHandler extends UserHandler {
 		}
 		$passwordForm->readInputData();
 
+		$this->setupTemplate(true);
 		if ($passwordForm->validate()) {
 			$passwordForm->execute();
 			Request::redirect(null, null, Request::getRequestedPage());
 
 		} else {
-			$this->setupTemplate(true);
 			$passwordForm->display();
 		}
 	}
