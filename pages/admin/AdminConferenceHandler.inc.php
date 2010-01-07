@@ -77,6 +77,7 @@ class AdminConferenceHandler extends AdminHandler {
 	 */
 	function updateConference() {
 		$this->validate();
+		$this->setupTemplate(true);
 
 		import('admin.form.ConferenceSiteSettingsForm');
 
@@ -93,7 +94,6 @@ class AdminConferenceHandler extends AdminHandler {
 			Request::redirect(null, null, null, 'conferences');
 
 		} else {
-			$this->setupTemplate(true);
 			$settingsForm->display();
 		}
 	}
