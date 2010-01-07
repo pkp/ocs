@@ -60,7 +60,6 @@ class TimelineHandler extends ManagerHandler {
 			$timelineForm->execute();
 			Request::redirect(null, null, null, 'index');
 		} else {
-			$this->setupTemplate(true);
 			$timelineForm->setData('errorsExist', true);
 			$timelineForm->display();
 		}

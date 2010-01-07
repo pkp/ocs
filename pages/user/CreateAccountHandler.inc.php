@@ -103,7 +103,6 @@ class CreateAccountHandler extends UserHandler {
 			}
 			Validation::login($regForm->getData('username'), $regForm->getData('password'), $reason);
 			if ($reason !== null) {
-				$this->setupTemplate(true);
 				$templateMgr =& TemplateManager::getManager();
 				$templateMgr->assign('pageTitle', 'user.login');
 				$templateMgr->assign('errorMsg', $reason==''?'user.login.accountDisabled':'user.login.accountDisabledWithReason');

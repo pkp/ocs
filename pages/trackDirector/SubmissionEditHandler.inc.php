@@ -1127,6 +1127,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 	function saveSuppFile($args) {
 		$paperId = Request::getUserVar('paperId');
 		$this->validate($paperId);
+		$this->setupTemplate(true, $paperId, 'summary');
 		$submission =& $this->submission;
 
 		$suppFileId = isset($args[0]) ? (int) $args[0] : 0;
@@ -1152,7 +1153,6 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 
 			Request::redirect(null, null, null, 'submissionReview', $paperId);
 		} else {
-			$this->setupTemplate(true, $paperId, 'summary');
 			$submitForm->display();
 		}
 	}
@@ -1339,6 +1339,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		$galleyId = (int) array_shift($args);
 		$stage = (int) array_shift($args);
 		$this->validate($paperId, TRACK_DIRECTOR_ACCESS_EDIT);
+		$this->setupTemplate(true, $paperId, 'editing');
 		$submission =& $this->submission;
 
 		import('submission.form.PaperGalleyForm');
@@ -1370,7 +1371,6 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 			}
 			Request::redirect(null, null, null, 'submissionReview', array($paperId, $stage));
 		} else {
-			$this->setupTemplate(true, $paperId, 'editing');
 			$submitForm->display();
 		}
 	}

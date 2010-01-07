@@ -183,6 +183,7 @@ class AdminConferenceHandler extends AdminHandler {
 	 */
 	function doImportOCS1() {
 		$this->validate();
+		$this->setupTemplate(true);
 
 		import('admin.form.ImportOCS1Form');
 
@@ -202,7 +203,6 @@ class AdminConferenceHandler extends AdminHandler {
 				Request::redirect(null, null, null, 'editConference', $conferenceId);
 			}
 		} else {
-			$this->setupTemplate(true);
 			$importForm->display();
 		}
 	}

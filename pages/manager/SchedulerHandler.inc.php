@@ -139,6 +139,7 @@ class SchedulerHandler extends ManagerHandler {
 	 */
 	function updateBuilding() {
 		$this->validate();
+		$this->setupTemplate(true);
 
 		import('manager.form.scheduler.BuildingForm');
 
@@ -161,8 +162,6 @@ class SchedulerHandler extends ManagerHandler {
 				}
 
 			} else {
-				$this->setupTemplate(true);
-
 				$templateMgr =& TemplateManager::getManager();
 				$templateMgr->append('pageHierarchy', array(Request::url(null, null, 'manager', 'buildings'), 'manager.scheduler.buildings'));
 
@@ -304,6 +303,7 @@ class SchedulerHandler extends ManagerHandler {
 	 */
 	function updateRoom() {
 		$this->validate();
+		$this->setupTemplate(true);
 
 		import('manager.form.scheduler.RoomForm');
 
@@ -338,8 +338,6 @@ class SchedulerHandler extends ManagerHandler {
 				}
 
 			} else {
-				$this->setupTemplate(true);
-
 				$templateMgr =& TemplateManager::getManager();
 				$templateMgr->append('pageHierarchy', array(Request::url(null, null, 'manager', 'rooms', array($buildingId)), 'manager.scheduler.rooms'));
 
@@ -491,9 +489,8 @@ class SchedulerHandler extends ManagerHandler {
 
 				$specialEventForm->display();
 			}
-
 		} else {
-				Request::redirect(null, null, null, 'specialEvents');
+			Request::redirect(null, null, null, 'specialEvents');
 		}	
 	}
 
@@ -693,8 +690,6 @@ class SchedulerHandler extends ManagerHandler {
 				}
 
 			} else {
-				SchedulerHandler::setupTemplate(true);
-
 				$templateMgr =& TemplateManager::getManager();
 				$templateMgr->append('pageHierarchy', array(Request::url(null, null, 'manager', 'timeBlocks'), 'manager.scheduler.timeBlocks'));
 
