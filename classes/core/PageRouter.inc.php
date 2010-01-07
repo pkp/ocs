@@ -1,12 +1,12 @@
 <?php
 
 /**
- * @file classes/core/OCSPageRouter.inc.php
+ * @file classes/core/PageRouter.inc.php
  *
  * Copyright (c) 2003-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @class OCSPageRouter
+ * @class PageRouter
  * @ingroup core
  *
  * @brief Class providing OCS-specific page routing.
@@ -19,7 +19,7 @@
 
 import('core.PKPPageRouter');
 
-class OCSPageRouter extends PKPPageRouter {
+class PageRouter extends PKPPageRouter {
 	/**
 	 * Redirect to user home page (or the role home page if the user has one role).
 	 * @param $request PKPRequest the request to be routed

@@ -112,7 +112,7 @@ class TemplateManager extends PKPTemplateManager {
 					$this->assign('schedConfPostAccommodation', $schedConf->getSetting('postAccommodation'));
 					$this->assign('schedConfPostSupporters', $schedConf->getSetting('postSupporters'));
 					$this->assign('schedConfPostPayment', $schedConf->getSetting('postPayment'));
-					
+
 					// CFP displayed
 					$showCFPDate = $schedConf->getSetting('showCFPDate');
 					$postCFP = $schedConf->getSetting('postCFP');
@@ -138,11 +138,11 @@ class TemplateManager extends PKPTemplateManager {
 					if ($postSubmission && $currentTime > $submissionsOpenDate && $currentTime < $submissionsCloseDate) {
 						$this->assign('schedConfShowSubmissionLink', true);
 					}
-	
+
 					import('payment.ocs.OCSPaymentManager');
 					$paymentManager =& OCSPaymentManager::getManager();
 					$this->assign('schedConfPaymentsEnabled', $paymentManager->isConfigured());
-					
+
 				} else {
 
 					$this->assign('publicFilesDir', Request::getBaseUrl() . '/' . PublicFileManager::getConferenceFilesPath($conference->getId()));
@@ -222,31 +222,6 @@ class TemplateManager extends PKPTemplateManager {
 			$text = isset($params['text']) ? $params['text'] : '';
 			return "<a href=\"$link\">$text</a>";
 		}
-	}
-
-	/**
-	 * Generate a URL into OCS. (This is a wrapper around Request::url to make it available to Smarty templates.)
-	 */
-	function smartyUrl($params, &$smarty) {
-		// Extract the variables named in $paramList, and remove them
-		// from the params array. Variables remaining in params will be
-		// passed along to Request::url as extra parameters.
-		$context = array();
-		$contextList = OCSApplication::getContextList();
-
-		if ( !isset($params['context']) ) {
-			foreach ($contextList as $contextName) {
-				if (isset($params[$contextName])) {
-					$context[$contextName] = $params[$contextName];
-					unset($params[$contextName]);
-				} else {
-					$context[$contextName] = null;				
-				}
-			}
-			$params['context'] = $context;
-		}
-		
-		return parent::smartyUrl($params, $smarty);
 	}
 
 	/**

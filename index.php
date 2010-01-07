@@ -58,10 +58,9 @@
 
 // Initialize global environment
 define('INDEX_FILE_LOCATION', __FILE__);
-require('lib/pkp/includes/driver.inc.php');
+require('lib/pkp/includes/bootstrap.inc.php');
 
-// Initialize the application environment
-import('core.OCSApplication');
-$application = new OCSApplication();
+// Serve the request
+$application =& PKPApplication::getApplication();
 $application->execute();
 ?>
