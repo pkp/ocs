@@ -1,12 +1,12 @@
 <?php
 
 /**
- * @file classes/core/OCSApplication.inc.php
+ * @file classes/core/Application.inc.php
  *
  * Copyright (c) 2000-2009 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @class OCSApplication
+ * @class Application
  * @ingroup core
  * @see PKPApplication
  *
@@ -25,27 +25,9 @@ define('ASSOC_TYPE_SCHED_CONF',	0x0000101);
 define('CONTEXT_CONFERENCE', 1);
 define('CONTEXT_SCHED_CONF', 2);
 
-class OCSApplication extends PKPApplication {
-	function OCSApplication() {
+class Application extends PKPApplication {
+	function Application() {
 		parent::PKPApplication();
-	}
-
-	function initialize(&$application) {
-		PKPApplication::initialize($application);
-
-		import('i18n.Locale');
-	}
-
-	/**
-	 * Get the dispatcher implementation singleton
-	 * @return Dispatcher
-	 */
-	function &getDispatcher() {
-		$dispatcher =& parent::getDispatcher();
-
-		// Inject application-specific configuration
-		$dispatcher->addRouterName('core.OCSPageRouter', ROUTE_PAGE);
-		return $dispatcher;
 	}
 
 	/**
