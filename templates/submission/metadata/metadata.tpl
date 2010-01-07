@@ -161,7 +161,7 @@
 
 {if $currentSchedConf->getSetting('metaCitations')}
 	<div id="citations">
-	<h4>{translate key="paper.citations"}</h4>
+	<h4>{translate key="submission.citations"}</h4>
 
 	<table width="100%" class="data">
 		<tr valign="top">

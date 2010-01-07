@@ -335,18 +335,19 @@ function moveAuthor(dir, authorIndex) {
 <div class="separator"></div>
 
 {if $currentSchedConf->getSetting('metaCitations')}
-<div id="citations">
+<div id="metaCitations">
 <h3>{translate key="submission.citations"}</h3>
 
 <p>{translate key="author.submit.submissionCitations"}</p>
 
 <table width="100%" class="data">
 <tr valign="top">
-	<td width="20%" class="label">{fieldLabel name="citations" key="paper.citations"}</td>
+	<td width="20%" class="label">{fieldLabel name="citations" key="submission.citations"}</td>
 	<td width="80%" class="value"><textarea name="citations" id="citations" class="textArea" rows="15" cols="60">{$citations|escape}</textarea></td>
 </tr>
 </table>
 </div>
+
 <div class="separator"></div>
 {/if}
 
