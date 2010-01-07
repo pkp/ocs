@@ -285,6 +285,7 @@ class TrackSubmissionHandler extends AuthorHandler {
 		$paperId = Request::getUserVar('paperId');
 		$this->validate($paperId, true);
 		$authorSubmission =& $this->submission;
+		parent::setupTemplate(true, $paperId, 'summary');
 
 		$suppFileId = isset($args[0]) ? (int) $args[0] : 0;
 
@@ -297,7 +298,6 @@ class TrackSubmissionHandler extends AuthorHandler {
 			$submitForm->execute();
 			Request::redirect(null, null, null, 'submission', $paperId);
 		} else {
-			parent::setupTemplate(true, $paperId, 'summary');
 			$submitForm->display();
 		}
 	}

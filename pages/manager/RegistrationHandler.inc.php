@@ -282,8 +282,6 @@ class RegistrationHandler extends ManagerHandler {
 				}
 
 			} else {
-				$this->setupTemplate();
-
 				$templateMgr =& TemplateManager::getManager();
 				$templateMgr->append('pageHierarchy', array(Request::url(null, null, 'manager', 'registration'), 'manager.registration'));
 
@@ -603,6 +601,7 @@ class RegistrationHandler extends ManagerHandler {
 	 */
 	function updateRegistrationOption() {
 		$this->validate();
+		$this->setupTemplate(true);
 
 		import('registration.form.RegistrationOptionForm');
 
@@ -643,8 +642,6 @@ class RegistrationHandler extends ManagerHandler {
 				}
 
 			} else {
-				$this->setupTemplate(true);
-
 				$templateMgr =& TemplateManager::getManager();
 				$templateMgr->append('pageHierarchy', array(Request::url(null, null, 'manager', 'registrationOptions'), 'manager.registrationOptions'));
 

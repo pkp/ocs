@@ -91,6 +91,13 @@ class CommentHandler extends Handler {
 		$this->validate($paperId);
 		$paper =& $this->paper;
 
+		$parent =& $commentDao->getComment($parentId, $paperId);
+		if (isset($parent) && $parent->getPaperId() != $paperId) {
+			Request::redirect(null, null, null, 'view', array($paperId, $galleyId));
+		}
+
+		$this->setupTemplate($paper, $galleyId, $parent);
+
 		// Bring in comment constants
 		$commentDao =& DAORegistry::getDAO('CommentDAO');
 
@@ -105,11 +112,6 @@ class CommentHandler extends Handler {
 
 		if (!$enableComments) Request::redirect(null, null, 'index');
 		if ($commentsRequireRegistration && !Request::getUser()) Validation::redirectLogin();
-
-		$parent =& $commentDao->getComment($parentId, $paperId);
-		if (isset($parent) && $parent->getPaperId() != $paperId) {
-			Request::redirect(null, null, null, 'view', array($paperId, $galleyId));
-		}
 
 		import('comment.form.CommentForm');
 		$commentForm = new CommentForm(null, $paperId, $galleyId, isset($parent)?$parentId:null);
@@ -135,7 +137,6 @@ class CommentHandler extends Handler {
 			}
 		}
 
-		$this->setupTemplate($paper, $galleyId, $parent);
 		$commentForm->display();
 	}
 

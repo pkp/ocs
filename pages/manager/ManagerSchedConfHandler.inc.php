@@ -102,6 +102,7 @@ class ManagerSchedConfHandler extends ManagerHandler {
 	 */
 	function updateSchedConf() {
 		$this->validate();
+		$this->setupTemplate(true);
 
 		import('manager.form.SchedConfSettingsForm');
 
@@ -121,7 +122,6 @@ class ManagerSchedConfHandler extends ManagerHandler {
 			Request::redirect(null, null, null, 'schedConfs');
 
 		} else {
-			$this->setupTemplate(true);
 			$settingsForm->display();
 		}
 	}
