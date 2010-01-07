@@ -240,6 +240,7 @@ class DirectorHandler extends TrackDirectorHandler {
 	 */
 	function assignDirector($args) {
 		$this->validate();
+		Locale::requireComponents(array(LOCALE_COMPONENT_PKP_MANAGER)); // manager.people.noneEnrolled
 
 		$schedConf =& Request::getSchedConf();
 		$paperId = Request::getUserVar('paperId');
