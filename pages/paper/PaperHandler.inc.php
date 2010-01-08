@@ -457,6 +457,7 @@ class PaperHandler extends Handler {
 				// Bar access to abstract?
 				((!isset($galleyId) || $galleyId==0) && !SchedConfAction::mayViewProceedings($schedConf))
 			) {
+				$this->setupTemplate();				
 				$templateMgr =& TemplateManager::getManager();
 				$templateMgr->assign_by_ref('paper', $paper);
 				$templateMgr->assign_by_ref('schedConf', $schedConf);
