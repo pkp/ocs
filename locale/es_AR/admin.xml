@@ -7,12 +7,12 @@
   * Copyright (c) 2000-2009 John Willinsky
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
   *
-  * Localization strings for the es_AR (España Argentino) locale.
+  * Localization strings for the es_AR (Español (Argentina)) locale.
   *
   * $Id$
   -->
 
-<locale name="es_AR" full_name = "España Argentino">
+<locale name="es_AR" full_name = "Español (Argentina)">
 	<message key="admin.languages.primaryLocaleInstructions">Este será el idioma por defecto para todo el sitio y las Conferencias que aloje.</message>
 	<message key="admin.languages.supportedLocalesInstructions">Seleccione las interfaces de idiomas que podrán usarse en este sitio. Los idiomas seleccionados estarán disponibles para su uso por todas las Conferencias/Congresos, y también aparecen en el menú "Idioma" en cada página del sitio (se puede cambiar en las páginas de cada Conferencia/Congreso). Si no selecciona múltiples interfaces, no aparecerá el menú para cambiar de idioma y la configuración de idioma no estará disponible en la Conferencia/Congreso.</message>
 	<message key="admin.languages.confirmUninstall">¿Está seguro de desinstalar este idioma? Esto puede afectar a cualquier Conferencia/Congreso asociada a ese lugar.</message>
