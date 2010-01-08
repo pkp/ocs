@@ -7,12 +7,12 @@
   * Copyright (c) 2000-2009 John Willinsky
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
   *
-  * Localization strings for the es_AR (España Argentino) locale.
+  * Localization strings for the es_AR (Español (Argentina)) locale.
   *
   * $Id$
   -->
 
-<locale name="es_AR" full_name = "España Argentino">
+<locale name="es_AR" full_name = "Español (Argentina)">
 	<message key="manager.accommodation">Acomodaciones</message>
 	<message key="manager.accommodation.form.accommodationFiles">Archivos</message>
 	<message key="manager.accommodation.form.accommodationFiles.description">Use esta sección para subir uno o más archivos para los registrantes y registrantes potenciales, como mapas, formularios, etc. </message>
