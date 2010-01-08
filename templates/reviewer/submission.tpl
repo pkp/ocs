@@ -120,7 +120,7 @@ function confirmSubmissionCheck() {
 <table width="100%" class="data">
 <tr valign="top">
 	<td width="3%">{$currentStep|escape}.{assign var="currentStep" value=$currentStep+1}</td>
-	<td width="97%"><span class="instruct">{translate key="reviewer.paper.notifyEditorA"}{if $editAssignment}, {$editAssignment->getDirectorFullName()},{/if} {translate key="reviewer.paper.notifyEditorB"}</span></td>
+	<td width="97%"><span class="instruct">{translate key="reviewer.paper.notifyEditorA"}{if $editAssignment}, {$editAssignment->getDirectorFullName()|escape},{/if} {translate key="reviewer.paper.notifyEditorB"}</span></td>
 </tr>
 <tr valign="top">
 	<td>&nbsp;</td>

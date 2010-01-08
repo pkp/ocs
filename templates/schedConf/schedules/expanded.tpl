@@ -88,7 +88,7 @@
 			</li>
 		{else}
 			<li>
-				{if $showAuthors} {$item->getAuthorString()}, {/if}<a class="action" href="{url page="paper" op="view" path=$item->getBestPaperId()}">{$item->getLocalizedTitle()|escape}</a>
+				{if $showAuthors} {$item->getAuthorString()|escape}, {/if}<a class="action" href="{url page="paper" op="view" path=$item->getBestPaperId()}">{$item->getLocalizedTitle()|escape}</a>
 				{assign var=roomId value=$item->getRoomId()}
 				{if $roomId && $allRooms[$roomId]}
 					{assign var=room value=$allRooms[$roomId]}

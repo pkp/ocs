@@ -43,7 +43,7 @@
 {iterate from=directors item=director}
 {assign var=directorId value=$director->getId()}
 <tr valign="top">
-	<td><a class="action" href="{url op="userProfile" path=$directorId}">{$director->getFullName()}</a></td>
+	<td><a class="action" href="{url op="userProfile" path=$directorId}">{$director->getFullName()|escape}</a></td>
 	<td>
 		{assign var=thisDirectorTracks value=$directorTracks[$directorId]}
 		{foreach from=$thisDirectorTracks item=track}
