@@ -47,7 +47,7 @@
 		<tr valign="top">
 			<td class="label" width="20%">{translate key="submission.abstract"}</td>
 			<td width="80%" class="value">
-				{$submission->getLocalizedAbstract()}
+				{$submission->getLocalizedAbstract()|strip_unsafe_html}
 			</td>
 		</tr>
 	{else}

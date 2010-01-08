@@ -15,10 +15,10 @@
 	xmlns:dc="http://purl.org/dc/elements/1.1/"
 	xmlns:prism="http://prismstandard.org/namespaces/1.2/basic/">
     
-	<channel rdf:about="{if $schedConf}{$schedConf->getUrl()}{else}{$conference->getUrl()}{/if}">
+	<channel rdf:about="{if $schedConf}{$schedConf->getUrl()|escape}{else}{$conference->getUrl()|escape}{/if}">
 		{* required elements *}
 		<title>{if $schedConf}{$schedConf->getSchedConfTitle()|escape:"html"|strip}{else}{$conference->getConferenceTitle()|escape:"html"|strip}{/if}: {translate key="announcement.announcements"}</title>
-		<link>{if $schedConf}{$schedConf->getUrl()}{else}{$conference->getUrl()}{/if}</link>
+		<link>{if $schedConf}{$schedConf->getUrl()|escape}{else}{$conference->getUrl()|escape}{/if}</link>
 		{if $schedConf && $schedConf->getSchedConfIntroduction()}
 			{assign var="description" value=$schedConf->getSchedConfIntroduction()}
 		{elseif $conference->getConferenceDescription()}

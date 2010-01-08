@@ -79,7 +79,7 @@
 						<input type="radio" name="directorDecisionFile" value="{$reviewFile->getFileId()},{$reviewFile->getRevision()}" />
 						{assign var="sendableVersionExists" value=true}
 					{/if}
-					<a href="{url op="downloadFile" path=$submission->getPaperId()|to_array:$reviewFile->getFileId():$reviewFile->getRevision()}" class="file">{$reviewFile->getFileName()}</a>&nbsp;&nbsp;
+					<a href="{url op="downloadFile" path=$submission->getPaperId()|to_array:$reviewFile->getFileId():$reviewFile->getRevision()}" class="file">{$reviewFile->getFileName()|escape}</a>&nbsp;&nbsp;
 					{$reviewFile->getDateModified()|date_format:$dateFormatShort}
 				</td>
 			</tr>
@@ -95,7 +95,7 @@
 						<input type="radio" name="directorDecisionFile" value="{$authorFile->getFileId()},{$authorFile->getRevision()}" />
 						{assign var="sendableVersionExists" value=true}
 					{/if}
-					<a href="{url op="downloadFile" path=$submission->getPaperId()|to_array:$authorFile->getFileId():$authorFile->getRevision()}" class="file">{$authorFile->getFileName()}</a>&nbsp;&nbsp;
+					<a href="{url op="downloadFile" path=$submission->getPaperId()|to_array:$authorFile->getFileId():$authorFile->getRevision()}" class="file">{$authorFile->getFileName()|escape}</a>&nbsp;&nbsp;
 						{$authorFile->getDateModified()|date_format:$dateFormatShort}
 				</td>
 			</tr>
@@ -116,7 +116,7 @@
 						<input type="radio" name="directorDecisionFile" value="{$directorFile->getFileId()},{$directorFile->getRevision()}" />
 						{assign var="sendableVersionExists" value=true}
 					{/if}
-					<a href="{url op="downloadFile" path=$submission->getPaperId()|to_array:$directorFile->getFileId():$directorFile->getRevision()}" class="file">{$directorFile->getFileName()}</a>&nbsp;&nbsp;
+					<a href="{url op="downloadFile" path=$submission->getPaperId()|to_array:$directorFile->getFileId():$directorFile->getRevision()}" class="file">{$directorFile->getFileName()|escape}</a>&nbsp;&nbsp;
 					{$directorFile->getDateModified()|date_format:$dateFormatShort}
 				</td>
 				<td width="30%" class="value"><a href="{url op="deletePaperFile" path=$submission->getPaperId()|to_array:$directorFile->getFileId():$directorFile->getRevision()}" class="action">{translate key="common.delete"}</a></td>

@@ -159,7 +159,7 @@ class PaperGalleyDAO extends DAO {
 				$galley->getLocale(),
 				(int)$galley->isHTMLGalley(),
 				$galley->isHTMLGalley() ? $galley->getStyleFileId() : null,
-				$galley->getSequence() == null ? $this->getNextGalleySequence($galley->getPaperID()) : $galley->getSequence()
+				$galley->getSequence() == null ? $this->getNextGalleySequence($galley->getPaperId()) : $galley->getSequence()
 			)
 		);
 		$galley->setGalleyId($this->getInsertGalleyId());

@@ -151,7 +151,7 @@ class SuppFileDAO extends DAO {
 			$suppFile->setDateSubmitted(Core::getCurrentDate());
 		}
 		if ($suppFile->getSequence() == null) {
-			$suppFile->setSequence($this->getNextSuppFileSequence($suppFile->getPaperID()));
+			$suppFile->setSequence($this->getNextSuppFileSequence($suppFile->getPaperId()));
 		}
 		$this->update(
 			sprintf('INSERT INTO paper_supplementary_files

@@ -53,8 +53,8 @@
 		<td>{$submission->getTrackAbbrev()|escape}</td>
 		<td>{$submission->getAuthorString(true)|truncate:40:"..."|escape}</td>
 		<td><a href="{url op="submission" path=$submission->getPaperId()}" class="action">{$submission->getLocalizedTitle()|strip_unsafe_html|truncate:40:"..."}</a></td>
-		<td><select name="schedule[{$submission->getPaperID()}]" class="selectMenu">{html_options options=$issueOptions|truncate:40:"..."}</select></td>
-		<td width="10%"><input type="checkbox" name="remove[]" value="{$submission->getPaperID()}" /></td>
+		<td><select name="schedule[{$submission->getPaperId()}]" class="selectMenu">{html_options options=$issueOptions|truncate:40:"..."}</select></td>
+		<td width="10%"><input type="checkbox" name="remove[]" value="{$submission->getPaperId()}" /></td>
 	</tr>
 	<tr>
 		<td colspan="7" class="{if $schedulingQueueSubmissions->eof()}end{/if}separator">&nbsp;</td>

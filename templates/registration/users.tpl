@@ -50,7 +50,7 @@
 {iterate from=users item=user}
 {assign var="userid" value=$user->getId()}
 <tr valign="top">
-	<td>{if $isSchedConfManager}<a class="action" href="{url op="userProfile" path=$userid}">{/if}{$user->getUsername()}{if $isSchedConfManager}</a>{/if}</td>
+	<td>{if $isSchedConfManager}<a class="action" href="{url op="userProfile" path=$userid}">{/if}{$user->getUsername()|escape}{if $isSchedConfManager}</a>{/if}</td>
 	<td>{$user->getFullName(true)|escape}</td>
 	<td class="nowrap">
 		{assign var=emailString value="`$user->getFullName()` <`$user->getEmail()`>"}
