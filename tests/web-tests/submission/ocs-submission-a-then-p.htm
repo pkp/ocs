@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="" />
+<title>ocs-submission-a-then-p</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">ocs-submission-a-then-p</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>${baseUrl}/index.php/${conference}/${schedConf}/author</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Step one of the submission process</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>checklist-1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>checklist-2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>checklist-3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>checklist-4</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>checklist-5</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>checklist-6</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>checklist-7</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>commentsToDirector</td>
+	<td>Comment to the Director</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>//input[@value='Save and continue']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForTitle</td>
+	<td>glob:Step 2*</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>500</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>authors-0-firstName</td>
+	<td>John</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>authors-0-lastName</td>
+	<td>Deere</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>authors-0-email</td>
+	<td>john@deere.org</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>authors-0-url</td>
+	<td>http://sdglh.org/#frag1</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>authors-0-country</td>
+	<td>label=Antarctica</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>title[en_US]</td>
+	<td>Selenium greatly reduces web test efforts</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>abstract</td>
+	<td>If we'd use more selenium tests then pre-release tests would be a breeze.</td>
+</tr>
+<!--Save the article ID for later reference-->
+<tr>
+	<td>storeEval</td>
+	<td>window.location.href.substring(window.location.href.lastIndexOf('=') + 1)</td>
+	<td>paperId</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>//input[@value='Save and continue']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTitle</td>
+	<td>Active Submissions</td>
+	<td></td>
+</tr>
+<!--Assign an editor to the paper (assuming user 1)-->
+<tr>
+	<td>open</td>
+	<td>${baseUrl}/index.php/${conference}/${schedConf}/director/assignDirector/director?directorId=1&amp;paperId=${paperId}</td>
+	<td></td>
+</tr>
+<!--Accept the abstract-->
+<tr>
+	<td>open</td>
+	<td>${baseUrl}/index.php/${conference}/${schedConf}/director/submissionReview/${paperId}/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>decision</td>
+	<td>label=Invite Presentation</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>submit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure you wish to record this decision?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForPageToLoad</td>
+	<td>30000</td>
+	<td></td>
+</tr>
+<!--Continue with the paper submission-->
+<tr>
+	<td>open</td>
+	<td>${baseUrl}/index.php/${conference}/${schedConf}/author/submit/2?paperId=${paperId}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForPageToLoad</td>
+	<td>30000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForTitle</td>
+	<td>glob:Step 2*</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>500</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>submissionFile</td>
+	<td>${testfile}</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>uploadSubmissionFile</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>//input[@value='Save and continue']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForTitle</td>
+	<td>glob:Step 4*</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>500</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>//input[@value='Finish Submission']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForTitle</td>
+	<td>Active Submissions</td>
+	<td></td>
+</tr>
+
+</tbody></table>
+</body>
+</html>
