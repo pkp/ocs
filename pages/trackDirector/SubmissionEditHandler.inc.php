@@ -316,8 +316,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		$stage = (int) array_shift($args);
 		list($conference, $schedConf, $submission) = SubmissionEditHandler::validate($paperId, TRACK_DIRECTOR_ACCESS_REVIEW);
 
-		// If the director changes the decision on the first round to
-		// something other than "invite" (or "accept" -- necessary?),
+		// If the director changes the decision on the first round,
 		// roll back to the abstract review stage.
 		if (
 			$submission->getCurrentStage() == REVIEW_STAGE_PRESENTATION &&
