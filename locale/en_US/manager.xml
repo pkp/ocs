@@ -536,7 +536,6 @@
 	<message key="manager.setup.conferenceStyleSheetInvalid">Invalid conference stylesheet format or upload failed. Accepted format is .css.</message>
 	<message key="manager.setup.conferenceTitle">Conference Title</message>
 	<message key="manager.setup.finalSchedConfStepSavedNotes"><![CDATA[<p>A scheduled conference has now been set up. Continue to Conference Management by <a href="{$conferenceManagementUrl}">clicking here</a>.</p>]]></message>
-	<message key="manager.setup.htmlSetupInstructions"><![CDATA[If using HTML in Setup text boxes (for font size, bold, color, etc.), note that "returns" in the text are automatically treated as <tt>&lt;br&gt;</tt>.]]></message>
 	<message key="manager.setup.indexing">Conference Indexing</message>
 	<message key="manager.setup.indexing.brief">Indexing</message>
 	<message key="manager.setup.indexing.customTags">Custom tags</message>

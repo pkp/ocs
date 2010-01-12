@@ -458,7 +458,6 @@
 	<message key="manager.setup.conferenceStyleSheetInvalid">Estilo-orriaren formatua ez da zuzena: .css formatua izan behar du.</message>
 	<message key="manager.setup.conferenceTitle">Kongresuaren titulua</message>
 	<message key="manager.setup.finalSchedConfStepSavedNotes"><![CDATA[<p>Kongresu programatu bat konfiguratuta dago orain. Kongresua kudeatzen jarraitzeko, <a href="{$conferenceManagementUrl}">egin klik hemen</a>.</p>]]></message>
-	<message key="manager.setup.htmlSetupInstructions"><![CDATA[Konfigurazioko testu-koadroetan HTML erabiltzeko (letra-tamaina, lodia, kolorea, etab. ezartzeko), kontuan izan "lerro-jauziak" automatikoki <tt>&lt;br&gt;</tt> bezala tratatzen direla.]]></message>
 	<message key="manager.setup.indexing">Kongresuaren indexatzea</message>
 	<message key="manager.setup.indexing.brief">Indexatzea</message>
 	<message key="manager.setup.indexing.customTags">Etiketa pertsonalizatuak</message>
