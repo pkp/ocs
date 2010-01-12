@@ -1129,8 +1129,6 @@ Kontuan izan OAI interfazea desgaitu daitekeela gune honetarako, OCS sistema-kon
 
 	<message key="manager.setup.finalSchedConfStepSavedNotes"><![CDATA[<p>Kongresu programatu bat konfiguratuta dago orain. Kongresua kudeatzen jarraitzeko, <a href="{$conferenceManagementUrl}">egin klik hemen</a>.</p>]]></message>
 
-	<message key="manager.setup.htmlSetupInstructions"><![CDATA[Konfigurazioko testu-koadroetan HTML erabiltzeko (letra-tamaina, lodia, kolorea, etab. ezartzeko), kontuan izan "lerro-jauziak" automatikoki <tt>&lt;br&gt;</tt> bezala tratatzen direla.]]></message>
-
 	<!--
 	     ***
 	     *** Website Management (a.k.a. Conference Setup)

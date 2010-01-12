@@ -371,7 +371,6 @@
 	<message key="manager.setup.conferenceSetupUpdated">您的研討會設定已被更新</message>
 	<message key="manager.setup.conferenceStyleSheetInvalid">無效的研討會樣式表格式。可被接受的格式有：gif, jpg,或png..</message>
 	<message key="manager.setup.conferenceTitle">研討會名稱</message>
-	<message key="manager.setup.htmlSetupInstructions"><![CDATA[如果在設定正文框裡 (如字體大小、粗體字、顏色等) 內使用HTML，請注意在文本內所按下的 "ENTER" 鍵將會自動地轉成<tt>&lt;br&gt;</tt> 斷行的功能.]]></message>
 	<message key="manager.setup.indexing">研討會索引</message>
 	<message key="manager.setup.indexing.brief">索引</message>
 	<message key="manager.setup.indexing.customTags">主要標記</message>

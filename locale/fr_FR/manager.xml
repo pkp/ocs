@@ -347,7 +347,6 @@
 	<message key="manager.setup.conferenceSetupUpdated">L'installation de votre conférence a été mise à jour.</message>
 	<message key="manager.setup.conferenceStyleSheetInvalid">Format de feuille de style de conférence invalide.Le format accepté est le .css.</message>
 	<message key="manager.setup.conferenceTitle">Titre de conférence</message>
-	<message key="manager.setup.htmlSetupInstructions"><![CDATA[Si le HTML est utilisé dans les boîtes à texte des Options (pout la taille de texte, la couleur, l'italique, etc.), remarquez que "entrée" sera automatiquement traité comme <tt>&lt;br&gt;</tt>.]]></message>
 	<message key="manager.setup.indexing">Indexation de la conférence</message>
 	<message key="manager.setup.indexing.brief">Indexation</message>
 	<message key="manager.setup.indexing.customTags">Etiquettes personnalisés</message>

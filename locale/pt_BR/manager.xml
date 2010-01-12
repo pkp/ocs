@@ -417,7 +417,6 @@
 	<message key="manager.setup.conferenceStyleSheetInvalid">Formato de folha de estilo inválido. Formato aceitável é .css.</message>
 	<message key="manager.setup.conferenceTitle">Título da Conferência</message>
 	<message key="manager.setup.finalSchedConfStepSavedNotes"><![CDATA[<p>Um conferência agendada foi configurada. Siga para Administração da Conferência <a href="{$conferenceManagementUrl}">clicando aqui</a>.</p>]]></message>
-	<message key="manager.setup.htmlSetupInstructions"><![CDATA[Em caso de utilização de código HTML nas caixas de texto das Configurações (para tamanho de fonte, estilo da fonte, cor, entre outros), as quebras de linha "automáticas (return/enter)" no texto serão automaticamente tratadas como <tt>&lt;br&gt;</tt>.]]></message>
 	<message key="manager.setup.indexing">Indexação da Conferência</message>
 	<message key="manager.setup.indexing.brief">Indexação</message>
 	<message key="manager.setup.indexing.customTags">Marcações META Personalizadas</message>

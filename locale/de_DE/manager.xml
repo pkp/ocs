@@ -405,7 +405,6 @@
 	<message key="manager.setup.conferenceSetupUpdated">Ihr Konferenz-Setup wurde aktualisiert.</message>
 	<message key="manager.setup.conferenceStyleSheetInvalid">Ung&#252;ltiges Stylesheet-Format f&#252;r Konferenz. Verwendbar ist .css.</message>
 	<message key="manager.setup.conferenceTitle">Konferenztitel</message>
-	<message key="manager.setup.htmlSetupInstructions"><![CDATA[Falls Sie HTML in Setup-Textfeldern (f&#252;r Schriftgr&#246;&#223;e, Schriftschnitt, Farbe etc.) verwenden, denken Sie daran, dass &quot;Enter&quot; im Text automatisch als <tt>&lt;br&gt;</tt> behandelt werden.]]></message>
 	<message key="manager.setup.indexing">Indizierung der Konferenz</message>
 	<message key="manager.setup.indexing.brief">Indizierung</message>
 	<message key="manager.setup.indexing.customTags">Eigene Tags</message>
