@@ -14,6 +14,11 @@
 <data>
 	<!-- Bug #3859: presenter to author rename -->
 	<sql>
+		<!-- Modify default value for PostgreSQL users -->
+		<query driver="postgres7">
+			DROP SEQUENCE IF EXISTS paper_presenters_presenter_id_seq CASCADE
+		</query>
+		
 		<rename table="paper_presenters" column="presenter_id" to="author_id" />
 		<rename table="paper_presenters" to="paper_authors" />
 		<rename table="paper_presenter_settings" column="presenter_id" to="author_id" />
