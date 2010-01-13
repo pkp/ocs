@@ -35,6 +35,15 @@
 		<rename table="groups" column="sched_conf_id" to="assoc_id" />
 	</sql>
 
+	<!-- Bug #4664: abstract announcements -->
+	<sql>
+		<query>ALTER TABLE announcements ADD COLUMN assoc_id INT</query>
+		<query>ALTER TABLE announcements ADD COLUMN assoc_type INT</query>
+		<query>UPDATE announcements SET assoc_type = 256, assoc_id = conference_id WHERE sched_conf_id IS NOT NULL</query>
+		<query>UPDATE announcements SET assoc_type = 257, assoc_id = sched_conf_id WHERE sched_conf_id IS NULL</query>
+		<rename table="announcement_types" column="conference_id" to="assoc_id" />
+	</sql>
+
 	<!-- Bug #4153: abstract email templates -->
 	<sql>
 		<rename table="email_templates" column="conference_id" to="assoc_id" />
