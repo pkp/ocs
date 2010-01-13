@@ -55,7 +55,6 @@
 	<message key="author.submit.submissionIndexingDescription">Facilite uno o más términos que describan el contenido del trabajo. Separar las palabras mediante punto y coma (term1; term2; term3).</message>
 	<message key="author.submit.submissionSupportingAgencies">Entidades patrocinadoras</message>
 	<message key="author.submit.submissionSupportingAgenciesDescription">Identifique las agencias que patrocinan o subvencionan el trabajo que presenta a esta Conferencia.</message>
-	<message key="author.submit.agencies">Entidades</message>
 	<message key="author.submit.subjectClassInstructions">Escoja entre los términos utilizados en el sistema de clasificación (ver hipervínculos) las palabras clave y, si fuera necesario números. Use el sistema de clasificación del enlace para seleccionar los términos de clasificación y, si es necesario, números.</message>
 	<message key="author.submit.languageInstructions"><![CDATA[English=en; French=fr; Spanish=es. <a href="http://www.loc.gov/standards/iso639-2/langcodes.html" target="_blank">Additional codes</a>.]]></message>
 	<message key="presenter.submit.form.authorRequired">Se requiere al menos un autor.</message>
