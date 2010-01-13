@@ -143,6 +143,7 @@ class TrackDAO extends DAO {
 		$track = new Track();
 		$track->setTrackId($row['track_id']);
 		$track->setSchedConfId($row['sched_conf_id']);
+		$track->setReviewFormId($row['review_form_id']);
 		$track->setSequence($row['seq']);
 		$track->setMetaReviewed($row['meta_reviewed']);
 		$track->setDirectorRestricted($row['director_restricted']);
@@ -183,11 +184,12 @@ class TrackDAO extends DAO {
 	function insertTrack(&$track) {
 		$this->update(
 			'INSERT INTO tracks
-				(sched_conf_id, seq, meta_reviewed, director_restricted, hide_about, disable_comments, abstract_word_count)
+				(sched_conf_id, review_form_id, seq, meta_reviewed, director_restricted, hide_about, disable_comments, abstract_word_count)
 				VALUES
-				(?, ?, ?, ?, ?, ?, ?)',
+				(?, ?, ?, ?, ?, ?, ?, ?)',
 			array(
 				(int) $track->getSchedConfId(),
+				$track->getReviewFormId(),
 				(int) $track->getSequence(),
 				$track->getMetaReviewed() ? 1 : 0,
 				$track->getDirectorRestricted() ? 1 : 0,
@@ -208,16 +210,17 @@ class TrackDAO extends DAO {
 	 */
 	function updateTrack(&$track) {
 		$returner = $this->update(
-			'UPDATE tracks
-				SET
-					seq = ?,
-					meta_reviewed = ?,
-					director_restricted = ?,
-					hide_about = ?,
-					disable_comments = ?,
-					abstract_word_count = ?
-				WHERE track_id = ?',
+			'UPDATE	tracks
+			SET	review_form_id = ?,
+				seq = ?,
+				meta_reviewed = ?,
+				director_restricted = ?,
+				hide_about = ?,
+				disable_comments = ?,
+				abstract_word_count = ?
+			WHERE	track_id = ?',
 			array(
+				$track->getReviewFormId(),
 				(int) $track->getSequence(),
 				$track->getMetaReviewed()?1:0,
 				$track->getDirectorRestricted()?1:0,

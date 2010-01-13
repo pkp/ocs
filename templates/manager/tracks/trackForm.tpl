@@ -125,6 +125,13 @@
 	<td class="label">{fieldLabel name="policy" key="manager.tracks.policy"}</td>
 	<td class="value"><textarea name="policy[{$formLocale|escape}]" rows="4" cols="40" id="policy" class="textArea">{$policy[$formLocale]|escape}</textarea></td>
 </tr>
+<td class="label">{fieldLabel name="reviewFormId" key="submission.reviewForm"}</td>
+<td class="value">
+	<select name="reviewFormId" size="1" id="reviewFormId" class="selectMenu">
+		<option value="">{translate key="manager.reviewForms.noneChosen"}</option>
+		{html_options options=$reviewFormOptions selected=$reviewFormId}
+	</select>
+</td>
 <tr valign="top">
 	<td rowspan="2" class="label">{fieldLabel suppressId="true" key="submission.indexing"}</td>
 	<td class="value">

@@ -193,6 +193,22 @@ class TrackDirectorAction extends Action {
 			$reviewAssignment->setDateAssigned(Core::getCurrentDate());
 			$reviewAssignment->setStage($stage);
 
+			// Assign review form automatically if needed
+			$schedConfId = $trackDirectorSubmission->getSchedConfId();
+			$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
+			$schedConf =& $schedConfDao->getSchedConf($schedConfId);
+			$conferenceId = $schedConf->getConferenceId();
+			$trackDao =& DAORegistry::getDAO('TrackDAO');
+			$reviewFormDao =& DAORegistry::getDAO('ReviewFormDAO');
+
+			$trackId = $trackDirectorSubmission->getTrackId();
+			$track =& $trackDao->getTrack($trackId, $conferenceId);
+			if ($track && ($reviewFormId = (int) $track->getReviewFormId())) {
+				if ($reviewFormDao->reviewFormExists($reviewFormId, $conferenceId)) {
+					$reviewAssignment->setReviewFormId($reviewFormId);
+				}
+			}
+
 			$trackDirectorSubmission->addReviewAssignment($reviewAssignment);
 			$trackDirectorSubmissionDao->updateTrackDirectorSubmission($trackDirectorSubmission);
 
@@ -1390,7 +1406,7 @@ import('file.PaperFileManager');
 			import('notification.Notification');
 			$notificationUsers = $paper->getAssociatedUserIds(true, false);
 			foreach ($notificationUsers as $userRole) {
-				$url = Request::url(null, null, $userRole['role'], 'submissionReview', $paper->getPaperId(), null, 'editorDecision');
+				$url = Request::url(null, null, $userRole['role'], 'submissionReview', $paper->getPaperId(), null, 'directorDecision');
 				Notification::createNotification($userRole['id'], "notification.type.directorDecisionComment",
 					$paper->getLocalizedTitle(), $url, 1, NOTIFICATION_TYPE_DIRECTOR_DECISION_COMMENT);
 			}

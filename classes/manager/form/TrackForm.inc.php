@@ -30,12 +30,15 @@ class TrackForm extends Form {
 	function TrackForm($trackId = null) {
 		parent::Form('manager/tracks/trackForm.tpl');
 
+		$conference =& Request::getConference();
 		$this->trackId = $trackId;
 
 		// Validation checks for this form
 		$this->addCheck(new FormValidatorLocale($this, 'title', 'required', 'manager.tracks.form.titleRequired'));
 		$this->addCheck(new FormValidatorLocale($this, 'abbrev', 'required', 'manager.tracks.form.abbrevRequired'));
 		$this->addCheck(new FormValidatorPost($this));
+
+		$this->addCheck(new FormValidatorCustom($this, 'reviewFormId', 'optional', 'manager.sections.form.reviewFormId', array(DAORegistry::getDAO('ReviewFormDAO'), 'reviewFormExists'), array($conference->getConferenceId())));
 	}
 
 	/**
@@ -94,6 +97,14 @@ class TrackForm extends Form {
 		$templateMgr->assign('commentsEnabled', $conference->getSetting('enableComments'));
 		$templateMgr->assign('helpTopicId','conference.currentConferences.tracks');
 
+		$reviewFormDao =& DAORegistry::getDAO('ReviewFormDAO');
+		$reviewForms =& $reviewFormDao->getConferenceActiveReviewForms($conference->getConferenceId());
+		$reviewFormOptions = array();
+		while ($reviewForm =& $reviewForms->next()) {
+			$reviewFormOptions[$reviewForm->getReviewFormId()] = $reviewForm->getReviewFormTitle();
+		}
+		$templateMgr->assign_by_ref('reviewFormOptions', $reviewFormOptions);
+
 		parent::display();
 	}
 
@@ -114,6 +125,7 @@ class TrackForm extends Form {
 				$this->_data = array(
 					'title' => $track->getTitle(null), // Localized
 					'abbrev' => $track->getAbbrev(null), // Localized
+					'reviewFormId' => $section->getReviewFormId(),
 					'metaNotReviewed' => $track->getMetaReviewed()?0:1,
 					'identifyType' => $track->getIdentifyType(null), // Localized
 					'directorRestriction' => $track->getDirectorRestricted(),
@@ -135,7 +147,7 @@ class TrackForm extends Form {
 	 * Assign form data to user-submitted data.
 	 */
 	function readInputData() {
-		$this->readUserVars(array('title', 'abbrev', 'metaNotReviewed', 'identifyType', 'directorRestriction', 'policy', 'hideAbout', 'disableComments', 'wordCount'));
+		$this->readUserVars(array('title', 'abbrev', 'policy', 'reviewFormId', 'metaNotReviewed', 'identifyType', 'directorRestriction', 'hideAbout', 'disableComments', 'wordCount'));
 	}
 
 	/**
@@ -158,6 +170,9 @@ class TrackForm extends Form {
 
 		$track->setTitle($this->getData('title'), null); // Localized
 		$track->setAbbrev($this->getData('abbrev'), null); // Localized
+		$reviewFormId = $this->getData('reviewFormId');
+		if ($reviewFormId === '') $reviewFormId = null;
+		$track->setReviewFormId($reviewFormId);
 		$track->setMetaReviewed($this->getData('metaNotReviewed') ? 0 : 1);
 		$track->setIdentifyType($this->getData('identifyType'), null); // Localized
 		$track->setDirectorRestricted($this->getData('directorRestriction') ? 1 : 0);
