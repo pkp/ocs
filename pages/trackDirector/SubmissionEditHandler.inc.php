@@ -541,6 +541,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 	function enrollSearch($args) {
 		$paperId = isset($args[0]) ? (int) $args[0] : 0;
 		$this->validate($paperId, TRACK_DIRECTOR_ACCESS_REVIEW);
+		Locale::requireComponents(array(LOCALE_COMPONENT_PKP_MANAGER)); // manager.people.enrollment, manager.people.enroll
 		$conference =& Request::getConference();
 		$schedConf =& Request::getSchedConf();
 		$submission =& $this->submission;
