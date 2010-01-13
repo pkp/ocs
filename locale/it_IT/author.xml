@@ -59,7 +59,6 @@
 	<message key="author.submit.submissionIndexingDescription">Fornisci uno o più termini che descrivano il contenuto della submission. Separa i termini con un punto e virgola (termine1; termine2; termine3).</message>
 	<message key="author.submit.submissionSupportingAgencies">Enti finanziatori</message>
 	<message key="author.submit.submissionSupportingAgenciesDescription">Identifica le organizzazioni che hanno fornito fondi o supporto per il lavoro presentato in questa submission.</message>
-	<message key="author.submit.agencies">Organizzazioni</message>
 	<message key="author.submit.subjectClassInstructions">Utilizza il sistema di classificazione ipertestuale per selezionare i termini di classificazione e, se adatto, i numeri.</message>
 	<message key="author.submit.languageInstructions"><![CDATA[Inglese=en; Francese=fr; Spagnolo=es. <a href="http://www.loc.gov/standards/iso639-2/langcodes.html" target="_blank">Codici addizionali</a>.]]></message>
 	<message key="presenter.submit.form.authorRequired">È richiesto almeno un autore.</message>

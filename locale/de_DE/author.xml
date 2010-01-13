@@ -56,7 +56,6 @@
 	<message key="author.submit.submissionIndexingDescription">W&#228;hlen Sie ein bis zwei Schlagw&#246;rter aus, die Ihren Beitrag charakterisieren. </message>
 	<message key="author.submit.submissionSupportingAgencies">Unterst&#252;tzer</message>
 	<message key="author.submit.submissionSupportingAgenciesDescription">Geben Sie Einrichtungen an, welche die in dieser Einreichung pr&#228;sentierte Arbeit finanziert oder unterst&#252;tzt haben.</message>
-	<message key="author.submit.agencies">Einrichtungen</message>
 	<message key="author.submit.subjectClassInstructions">Benutzen Sie das verlinkte Klassifikationssystem, um Klassifikationsbegriffe und (wenn erforderlich) -nummern zu w&#228;hlen.</message>
 	<message key="author.submit.languageInstructions"><![CDATA[Englisch=en; Franz&#246;sisch=fr; Spanisch=es. <a href="http://www.loc.gov/standards/iso639-2/langcodes.html" target="_blank">Weitere Codes</a>.]]></message>
 	<message key="presenter.submit.form.authorRequired">Mindestens ein Autor muss angegeben werden.</message>

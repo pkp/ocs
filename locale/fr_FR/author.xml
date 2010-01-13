@@ -56,7 +56,6 @@
 	<message key="author.submit.submissionIndexingDescription">Fournir un ou plusieurs termes pour décrire le contenu de la proposition. Séparez les termes par des points-virgules (terme1; terme2; terme3).</message>
 	<message key="author.submit.submissionSupportingAgencies">Organismes de soutien</message>
 	<message key="author.submit.submissionSupportingAgenciesDescription">Identifier les organismes apportant des fonds ou un soutien au travail présenté par la proposition.</message>
-	<message key="author.submit.agencies">Organismes</message>
 	<message key="author.submit.subjectClassInstructions">Utiliser le système de  classification hypertextuelle pour sélectionner les termes de classification et, si appropriés, les nombres.</message>
 	<message key="author.submit.languageInstructions"><![CDATA[Anglais=en; Français=fr; Espagnol=es. <a href="http://www.loc.gov/standards/iso639-2/php/code_list.php" target="_blank">Codes Supplémentaires</a>.]]></message>
 	<message key="presenter.submit.form.authorRequired">Au moins un auteur est exigé.</message>

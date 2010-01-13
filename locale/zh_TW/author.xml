@@ -56,7 +56,6 @@
 	<message key="author.submit.submissionIndexingDescription">提供一個或更多描述投稿內容的專有名詞。以分號來將這些專有名詞分開(專有名詞1；專有名詞2；專有名詞3)。</message>
 	<message key="author.submit.submissionSupportingAgencies">計畫補助單位</message>
 	<message key="author.submit.submissionSupportingAgenciesDescription">提供本發表論文研究經費補助或贊助的單位或組織, 如國科會</message>
-	<message key="author.submit.agencies">研究經費補助單位</message>
 	<message key="author.submit.subjectClassInstructions">使用高連接的分類系統去選擇分類專有名詞和適當的數字。</message>
 	<message key="author.submit.languageInstructions"><![CDATA[English=en; 中文=zh; Spanish=es. <a href="http://www.loc.gov/standards/iso639-2/langcodes.html" target="_blank">查詢代碼</a>.]]></message>
 	<message key="presenter.submit.form.authorRequired">至少一位作者是必須的。</message>

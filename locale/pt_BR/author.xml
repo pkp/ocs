@@ -59,7 +59,6 @@
 	<message key="author.submit.submissionIndexingDescription">Digite termos que descrevam da melhor maneira o conteúdo da submissão, segundo as categorias utilizadas pela revista e os exemplos oferecidos pelo editor. Separe os termos com ponto-e-vírgula(termo1; termo2; termo3).</message>
 	<message key="author.submit.submissionSupportingAgencies">Agências de Fomento</message>
 	<message key="author.submit.submissionSupportingAgenciesDescription">Indique as agências que fomentaram ou patrocinaram o trabalho.</message>
-	<message key="author.submit.agencies">Agências</message>
 	<message key="author.submit.subjectClassInstructions">Use o sistema de classificação definido para escolher termos específicos da área do conhecimento, e numeração se apropriado.</message>
 	<message key="author.submit.languageInstructions"><![CDATA[Português=pt; English=en; French=fr; Spanish=es. <a href="http://www.loc.gov/standards/iso639-2/langcodes.html" target="_blank">Códigos Adicionais</a>.]]></message>
 	<message key="presenter.submit.form.authorRequired">A submissão deve ter pelo menos um autor.</message>
