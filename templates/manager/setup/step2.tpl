@@ -99,7 +99,7 @@
 </div>
 </div>
 <div class="separator"></div>
-<div id="announcements">
+<div id="announcementsSetup">
 <h3>2.4 {translate key="manager.setup.additionalContent.announcements"}</h3>
 
 <p>{translate key="manager.setup.additionalContent.announcementsDescription"}</p>
