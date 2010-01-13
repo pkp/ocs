@@ -127,6 +127,7 @@ class SubmissionReviewHandler extends ReviewerHandler {
 		$reviewerSubmission =& $this->submission;
 
 		$this->setupTemplate(true, $paperId, $reviewId);
+		Locale::requireComponents(array(LOCALE_COMPONENT_OCS_AUTHOR)); // author.submit.agencies
 
 		ReviewerAction::viewMetadata($reviewerSubmission, ROLE_ID_REVIEWER);
 	}
