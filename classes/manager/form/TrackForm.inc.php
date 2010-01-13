@@ -125,7 +125,7 @@ class TrackForm extends Form {
 				$this->_data = array(
 					'title' => $track->getTitle(null), // Localized
 					'abbrev' => $track->getAbbrev(null), // Localized
-					'reviewFormId' => $section->getReviewFormId(),
+					'reviewFormId' => $track->getReviewFormId(),
 					'metaNotReviewed' => $track->getMetaReviewed()?0:1,
 					'identifyType' => $track->getIdentifyType(null), // Localized
 					'directorRestriction' => $track->getDirectorRestricted(),
