@@ -154,12 +154,13 @@ class AuthorSubmission extends Paper {
 
 	/**
 	 * Get the submission status. Returns one of the defined constants
-	 * (SUBMISSION_STATUS_INCOMPLETE, SUBMISSION_STATUS_ARCHIVED, SUBMISSION_STATUS_PUBLISHED,
-	 * SUBMISSION_STATUS_DECLINED, SUBMISSION_STATUS_QUEUED_UNASSIGNED,
-	 * SUBMISSION_STATUS_QUEUED_REVIEW, or SUBMISSION_STATUS_QUEUED_EDITING). Note that this function never returns
-	 * a value of SUBMISSION_STATUS_QUEUED -- the three SUBMISSION_STATUS_QUEUED_... constants indicate a queued
-	 * submission. NOTE that this code is similar to getSubmissionStatus in
-	 * the TrackDirectorSubmission class and changes here should be propagated.
+	 * (STATUS_INCOMPLETE, STATUS_ARCHIVED, STATUS_PUBLISHED,
+	 * STATUS_DECLINED, STATUS_QUEUED_UNASSIGNED, * STATUS_QUEUED_REVIEW,
+	 * or STATUS_QUEUED_EDITING). Note that this function never returns
+	 * a value of STATUS_QUEUED -- the three STATUS_QUEUED_... constants
+	 * indicate a queued submission. NOTE that this code is similar to
+	 * getSubmissionStatus in the TrackDirectorSubmission class and changes
+	 * here should be propagated.
 	 */
 	function getSubmissionStatus() {
 		// Optimization: Use the Request scheduled conference object
@@ -172,25 +173,25 @@ class AuthorSubmission extends Paper {
 		}
 
 		$status = $this->getStatus();
-		if ($status == SUBMISSION_STATUS_ARCHIVED ||
-		    $status == SUBMISSION_STATUS_PUBLISHED ||
-		    $status == SUBMISSION_STATUS_DECLINED) return $status;
+		if ($status == STATUS_ARCHIVED ||
+		    $status == STATUS_PUBLISHED ||
+		    $status == STATUS_DECLINED) return $status;
 
-		// The submission is SUBMISSION_STATUS_QUEUED or the author's submission was SUBMISSION_STATUS_INCOMPLETE.
-		if ($this->getSubmissionProgress()) return (SUBMISSION_STATUS_INCOMPLETE);
+		// The submission is STATUS_QUEUED or the author's submission was STATUS_INCOMPLETE.
+		if ($this->getSubmissionProgress()) return (STATUS_INCOMPLETE);
 
-		// The submission is SUBMISSION_STATUS_QUEUED. Find out where it's queued.
+		// The submission is STATUS_QUEUED. Find out where it's queued.
 		$editAssignments = $this->getEditAssignments();
 		if (empty($editAssignments)) 
-			return (SUBMISSION_STATUS_QUEUED_UNASSIGNED);
+			return (STATUS_QUEUED_UNASSIGNED);
 
 		$latestDecision = $this->getMostRecentDecision();
 		if ($latestDecision) {
 			if ($latestDecision == SUBMISSION_DIRECTOR_DECISION_ACCEPT || $latestDecision == SUBMISSION_DIRECTOR_DECISION_DECLINE) {
-				return SUBMISSION_STATUS_QUEUED_EDITING;
+				return STATUS_QUEUED_EDITING;
 			}
 		}
-		return SUBMISSION_STATUS_QUEUED_REVIEW;
+		return STATUS_QUEUED_REVIEW;
 	}
 
 	/**

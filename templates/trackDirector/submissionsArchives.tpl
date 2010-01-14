@@ -31,11 +31,11 @@
 		<td><a href="{url op="submissionReview" path=$paperId}" class="action">{$submission->getLocalizedTitle()|strip_unsafe_html|truncate:60:"..."}</a></td>
 		<td align="right">
 			{assign var="status" value=$submission->getStatus()}
-			{if $status == SUBMISSION_STATUS_ARCHIVED}
+			{if $status == STATUS_ARCHIVED}
 				{translate key="submissions.archived"}
-			{elseif $status == SUBMISSION_STATUS_PUBLISHED}
+			{elseif $status == STATUS_PUBLISHED}
 				{translate key="submissions.published"}
-			{elseif $status == SUBMISSION_STATUS_DECLINED}
+			{elseif $status == STATUS_DECLINED}
 				{translate key="submissions.declined"}
 			{/if}
 		</td>

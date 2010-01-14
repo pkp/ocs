@@ -86,7 +86,7 @@ class AuthorDAO extends DAO {
 			FROM paper_authors aa
 				LEFT JOIN papers a ON (aa.paper_id = a.paper_id)
 			WHERE aa.first_name = ? AND
-				a.status = ' . SUBMISSION_STATUS_PUBLISHED . ' AND
+				a.status = ' . STATUS_PUBLISHED . ' AND
 				(aa.middle_name = ?' . (empty($middleName)?' OR aa.middle_name IS NULL':'') .  ') AND
 				aa.last_name = ? AND
 				(aa.affiliation = ?' . (empty($affiliation)?' OR aa.affiliation IS NULL':'') . ') AND
@@ -149,7 +149,7 @@ class AuthorDAO extends DAO {
 				AND aa.paper_id = a.paper_id
 				' . (isset($schedConfId)?'AND a.sched_conf_id = ? ':'') . '
 				AND pa.paper_id = a.paper_id
-				AND a.status = ' . SUBMISSION_STATUS_PUBLISHED . '
+				AND a.status = ' . STATUS_PUBLISHED . '
 				AND (aa.last_name IS NOT NULL
 				AND aa.last_name <> \'\')' . $initialSql . ' ORDER BY aa.last_name, aa.first_name',
 			empty($params)?false:$params,

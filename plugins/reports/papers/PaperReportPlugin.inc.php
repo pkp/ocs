@@ -145,8 +145,8 @@ class PaperReportPlugin extends ReportPlugin {
 
 		$authorIndex = 0;
 		while ($row =& $papersIterator->next()) {
-			if (isset($authorsIterator[$row['article_id']])) {
-				$authorIterator =& $authorsIterator[$row['article_id']];
+			if (isset($authorsIterator[$row['paper_id']])) {
+				$authorIterator =& $authorsIterator[$row['paper_id']];
 				$authors = $this->mergeAuthors($authorIterator->toArray());
 			} else {
 				// No authors for a submission.

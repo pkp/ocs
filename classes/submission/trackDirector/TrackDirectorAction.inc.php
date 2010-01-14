@@ -76,10 +76,10 @@ class TrackDirectorAction extends Action {
 
 		if (!HookRegistry::call('TrackDirectorAction::recordDecision', array(&$trackDirectorSubmission, $directorDecision))) {
 			if ($decision == SUBMISSION_DIRECTOR_DECISION_DECLINE) {
-				$trackDirectorSubmission->setStatus(SUBMISSION_STATUS_DECLINED);
+				$trackDirectorSubmission->setStatus(STATUS_DECLINED);
 				$trackDirectorSubmission->stampStatusModified();
 			} else {
-				$trackDirectorSubmission->setStatus(SUBMISSION_STATUS_QUEUED);		
+				$trackDirectorSubmission->setStatus(STATUS_QUEUED);		
 				$trackDirectorSubmission->stampStatusModified();
 			}
 
@@ -982,7 +982,7 @@ class TrackDirectorAction extends Action {
 		import('paper.log.PaperEventLogEntry');
 
 		if ($complete) { // Publish the paper.
-			$trackDirectorSubmission->setStatus(SUBMISSION_STATUS_PUBLISHED);
+			$trackDirectorSubmission->setStatus(STATUS_PUBLISHED);
 			$trackDirectorSubmissionDao->updateTrackDirectorSubmission($trackDirectorSubmission);
 
 			// Add a published paper object
@@ -1008,7 +1008,7 @@ class TrackDirectorAction extends Action {
 
 		} else { // Un-publish the paper.
 
-			$trackDirectorSubmission->setStatus(SUBMISSION_STATUS_QUEUED);
+			$trackDirectorSubmission->setStatus(STATUS_QUEUED);
 			$trackDirectorSubmissionDao->updateTrackDirectorSubmission($trackDirectorSubmission);
 
 			// Add log
@@ -1026,7 +1026,7 @@ class TrackDirectorAction extends Action {
 
 		if (HookRegistry::call('TrackDirectorAction::archiveSubmission', array(&$trackDirectorSubmission))) return;
 
-		$trackDirectorSubmission->setStatus(SUBMISSION_STATUS_ARCHIVED);
+		$trackDirectorSubmission->setStatus(STATUS_ARCHIVED);
 		$trackDirectorSubmission->stampStatusModified();
 		$trackDirectorSubmission->stampDateToArchive();
 
@@ -1052,9 +1052,9 @@ class TrackDirectorAction extends Action {
 		$publishedPaperDao =& DAORegistry::getDAO('PublishedPaperDAO');
 		$publishedPaper =& $publishedPaperDao->getPublishedPaperByPaperId($trackDirectorSubmission->getPaperId());
 		if ($publishedPaper) {
-			$trackDirectorSubmission->setStatus(SUBMISSION_STATUS_PUBLISHED);
+			$trackDirectorSubmission->setStatus(STATUS_PUBLISHED);
 		} else {
-			$trackDirectorSubmission->setStatus(SUBMISSION_STATUS_QUEUED);
+			$trackDirectorSubmission->setStatus(STATUS_QUEUED);
 		}
 		unset($publishedPaper);
 

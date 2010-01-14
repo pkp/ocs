@@ -202,7 +202,7 @@ class PaperDAO extends DAO {
 				$paper->getLanguage(),
 				$paper->getCommentsToDirector(),
 				$paper->getCitations(),
-				$paper->getStatus() === null ? SUBMISSION_STATUS_QUEUED : $paper->getStatus(),
+				$paper->getStatus() === null ? STATUS_QUEUED : $paper->getStatus(),
 				$paper->getSubmissionProgress() === null ? 1 : $paper->getSubmissionProgress(),
 				$paper->getReviewMode(),
 				$paper->getCurrentStage(),

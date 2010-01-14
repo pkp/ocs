@@ -42,7 +42,7 @@
 				{if !$mayViewPapers || $paper->getLocalizedAbstract() != ""}<a href="{url page="paper" op="view" path=$paper->getBestPaperId($currentConference)}">{$paper->getLocalizedTitle()|strip_unsafe_html}</a>{else}{$paper->getLocalizedTitle()|strip_unsafe_html}{/if}
 				</td>
 				<td align="right" width="25%">
-					{if $mayViewPapers && $paper->getStatus() == $smarty.const.SUBMISSION_STATUS_PUBLISHED}
+					{if $mayViewPapers && $paper->getStatus() == $smarty.const.STATUS_PUBLISHED}
 						{foreach from=$paper->getGalleys() item=galley name=galleyList}
 							<a href="{url page="paper" op="view" path=$paper->getBestPaperId($currentConference)|to_array:$galley->getGalleyId()}" class="file">{$galley->getGalleyLabel()|escape}</a>
 						{/foreach}

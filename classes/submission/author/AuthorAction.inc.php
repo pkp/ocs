@@ -306,7 +306,7 @@ class AuthorAction extends Action {
 		if ($authorSubmission->getSubmissionProgress() != 0) return true;
 
 		// Archived or declined submissions can never be edited.
-		if ($authorSubmission->getStatus() == SUBMISSION_STATUS_ARCHIVED || $authorSubmission->getStatus() == SUBMISSION_STATUS_DECLINED) return false;
+		if ($authorSubmission->getStatus() == STATUS_ARCHIVED || $authorSubmission->getStatus() == STATUS_DECLINED) return false;
 
 		// If the last recorded editorial decision on the current stage
 		// was "Revisions Required", the author may edit the submission.
