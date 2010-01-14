@@ -55,7 +55,7 @@ class ReviewReportPlugin extends ReportPlugin {
 	function display(&$args) {
 		$conference =& Request::getConference();
 		$schedConf =& Request::getSchedConf();
-		Locale::requireComponents(array(LOCALE_COMPONENT_APPLICATION_COMMON, LOCALE_COMPONENT_PKP_USER, LOCALE_COMPONENT_PKP_SUBMISSION));
+		Locale::requireComponents(array(LOCALE_COMPONENT_APPLICATION_COMMON, LOCALE_COMPONENT_PKP_USER, LOCALE_COMPONENT_PKP_SUBMISSION, LOCALE_COMPONENT_OCS_MANAGER));
 
 		header('content-type: text/comma-separated-values');
 		header('content-disposition: attachment; filename=report.csv');
