@@ -35,8 +35,8 @@
 		{if $submissionProgress == 0}
 			<td><a href="{url op="submission" path=$paperId}" class="action">{if $submission->getLocalizedTitle()}{$submission->getLocalizedTitle()|strip_unsafe_html|truncate:60:"..."}{else}{translate key="common.untitled"}{/if}</a></td>
 			<td align="right">
-				{if $status==SUBMISSION_STATUS_QUEUED_UNASSIGNED}{translate key="submissions.queuedUnassigned"}
-				{elseif $status == SUBMISSION_STATUS_QUEUED_REVIEW}
+				{if $status == STATUS_QUEUED_UNASSIGNED}{translate key="submissions.queuedUnassigned"}
+				{elseif $status == STATUS_QUEUED_REVIEW}
 					{assign var=decision value=$submission->getMostRecentDecision()}
 					{if $currentStage==REVIEW_STAGE_PRESENTATION}
 						<a href="{url op="submissionReview" path=$paperId|to_array}" class="action">
@@ -52,7 +52,7 @@
 							{/if}
 						</a>
 					{/if}
-				{elseif $status == SUBMISSION_STATUS_QUEUED_EDITING}
+				{elseif $status == STATUS_QUEUED_EDITING}
 					<a href="{url op="submissionReview" path=$paperId|to_array}" class="action">{translate key="submissions.queuedEditing"}</a>
 				{/if}
 			</td>

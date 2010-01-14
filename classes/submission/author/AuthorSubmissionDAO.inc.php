@@ -175,7 +175,7 @@ class AuthorSubmissionDAO extends DAO {
 				LEFT JOIN track_settings tapl ON (t.track_id = tapl.track_id AND tapl.setting_name = ? AND tapl.locale = ?)
 				LEFT JOIN track_settings tal ON (t.track_id = tal.track_id AND tal.setting_name = ? AND tal.locale = ?)
 			WHERE	p.submission_progress != 0 AND
-				p.status = ' . (int)SUBMISSION_STATUS_QUEUED,
+				p.status = ' . (int)STATUS_QUEUED,
 			array(
 				'title',
 				$primaryLocale,
@@ -221,8 +221,8 @@ class AuthorSubmissionDAO extends DAO {
 				LEFT JOIN track_settings tal ON (t.track_id = tal.track_id AND tal.setting_name = ? AND tal.locale = ?)
 			WHERE	p.sched_conf_id = ?
 				AND p.user_id = ?' .
-				($active?(' AND p.status = ' . (int) SUBMISSION_STATUS_QUEUED):(
-					' AND ((p.status <> ' . (int) SUBMISSION_STATUS_QUEUED . ' AND p.submission_progress = 0) OR (p.status = ' . (int) SUBMISSION_STATUS_ARCHIVED . '))'
+				($active?(' AND p.status = ' . (int) STATUS_QUEUED):(
+					' AND ((p.status <> ' . (int) STATUS_QUEUED . ' AND p.submission_progress = 0) OR (p.status = ' . (int) STATUS_ARCHIVED . '))'
 				)) .
 				($sortBy?(' ORDER BY ' . $this->getSortMapping($sortBy) . ' ' . $this->getDirectionMapping($sortDirection)) : ''),
 			array(

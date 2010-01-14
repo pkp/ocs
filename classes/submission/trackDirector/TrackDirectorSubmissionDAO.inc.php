@@ -371,7 +371,7 @@ class TrackDirectorSubmissionDAO extends DAO {
 				e.director_id = ?';
 
 		if ($statusSql !== null) $sql .= " AND ($statusSql)";
-		else $sql .= ' AND p.status = ' . SUBMISSION_STATUS_QUEUED;
+		else $sql .= ' AND p.status = ' . STATUS_QUEUED;
 
 		if ($trackId) {
 			$params[] = $trackId;
@@ -429,7 +429,7 @@ class TrackDirectorSubmissionDAO extends DAO {
 		$submissions = array();
 
 		// FIXME Does not pass $rangeInfo else we only get partial results
-		$result = $this->getUnfilteredTrackDirectorSubmissions($trackDirectorId, $schedConfId, $trackId, $searchField, $searchMatch, $search, $dateField, $dateFrom, $dateTo, 'p.status = ' . SUBMISSION_STATUS_PUBLISHED, $rangeInfo, $sortBy, $sortDirection);
+		$result = $this->getUnfilteredTrackDirectorSubmissions($trackDirectorId, $schedConfId, $trackId, $searchField, $searchMatch, $search, $dateField, $dateFrom, $dateTo, 'p.status = ' . STATUS_PUBLISHED, $rangeInfo, $sortBy, $sortDirection);
 
 		$returner = new DAOResultFactory($result, $this, '_returnTrackDirectorSubmissionFromRow');
 		return $returner;
@@ -452,7 +452,7 @@ class TrackDirectorSubmissionDAO extends DAO {
 	function &getTrackDirectorSubmissionsArchives($trackDirectorId, $schedConfId, $trackId, $searchField = null, $searchMatch = null, $search = null, $dateField = null, $dateFrom = null, $dateTo = null, $rangeInfo = null, $sortBy = null, $sortDirection = SORT_DIRECTION_ASC) {
 		$submissions = array();
 
-		$result = $this->getUnfilteredTrackDirectorSubmissions($trackDirectorId, $schedConfId, $trackId, $searchField, $searchMatch, $search, $dateField, $dateFrom, $dateTo, 'p.status <> ' . SUBMISSION_STATUS_QUEUED . ' AND p.status <> ' . SUBMISSION_STATUS_PUBLISHED, $rangeInfo, $sortBy, $sortDirection);
+		$result = $this->getUnfilteredTrackDirectorSubmissions($trackDirectorId, $schedConfId, $trackId, $searchField, $searchMatch, $search, $dateField, $dateFrom, $dateTo, 'p.status <> ' . STATUS_QUEUED . ' AND p.status <> ' . STATUS_PUBLISHED, $rangeInfo, $sortBy, $sortDirection);
 
 		$returner = new DAOResultFactory($result, $this, '_returnTrackDirectorSubmissionFromRow');
 		return $returner;

@@ -75,7 +75,7 @@ class PublishedPaperDAO extends DAO {
 				LEFT JOIN track_settings tal ON (t.track_id = tal.track_id AND tal.setting_name = ? AND tal.locale = ?)
 			WHERE	pp.paper_id = p.paper_id
 				AND pp.sched_conf_id = ?
-				AND p.status = ' . SUBMISSION_STATUS_PUBLISHED;
+				AND p.status = ' . STATUS_PUBLISHED;
 
 		switch ($sortOrder) {
 			case PAPER_SORT_ORDER_TIME:
@@ -97,7 +97,7 @@ class PublishedPaperDAO extends DAO {
 	 */
 	function getPublishedPaperCountBySchedConfId($schedConfId) {
 		$result =& $this->retrieve(
-			'SELECT count(*) FROM published_papers pa, papers a WHERE pa.paper_id = a.paper_id AND a.sched_conf_id = ? AND a.status = ' . SUBMISSION_STATUS_PUBLISHED,
+			'SELECT count(*) FROM published_papers pa, papers a WHERE pa.paper_id = a.paper_id AND a.sched_conf_id = ? AND a.status = ' . STATUS_PUBLISHED,
 			$schedConfId
 		);
 		list($count) = $result->fields;
@@ -128,7 +128,7 @@ class PublishedPaperDAO extends DAO {
 				LEFT JOIN track_settings tal ON (t.track_id = tal.track_id AND tal.setting_name = ? AND tal.locale = ?)
 			WHERE pp.paper_id = p.paper_id
 				AND p.sched_conf_id = ?
-				AND p.status = ' . SUBMISSION_STATUS_PUBLISHED,
+				AND p.status = ' . STATUS_PUBLISHED,
 			array(
 				'title',
 				$primaryLocale,
@@ -217,8 +217,8 @@ class PublishedPaperDAO extends DAO {
 				LEFT JOIN track_settings tal ON (t.track_id = tal.track_id AND tal.setting_name = ? AND tal.locale = ?)
 			WHERE	p.sched_conf_id = ?
 				AND (
-					(p.status = ' . SUBMISSION_STATUS_PUBLISHED . ' AND pa.paper_id IS NOT NULL)' .
-					($previewAbstracts ? 'OR (p.review_mode <> ' . REVIEW_MODE_BOTH_SIMULTANEOUS . ' AND p.status = ' . SUBMISSION_STATUS_QUEUED . ' AND p.current_stage = ' . REVIEW_STAGE_PRESENTATION . ')':'') . '
+					(p.status = ' . STATUS_PUBLISHED . ' AND pa.paper_id IS NOT NULL)' .
+					($previewAbstracts ? 'OR (p.review_mode <> ' . REVIEW_MODE_BOTH_SIMULTANEOUS . ' AND p.status = ' . STATUS_QUEUED . ' AND p.current_stage = ' . REVIEW_STAGE_PRESENTATION . ')':'') . '
 				)
 				AND pp.paper_id = p.paper_id
 				' . ($trackId?'AND p.track_id = ?' : ''). '
@@ -275,7 +275,7 @@ class PublishedPaperDAO extends DAO {
 				AND pa.paper_id = a.paper_id
 				AND a.track_id = ?
 				AND pa.sched_conf_id = ?
-				AND a.status = ' . SUBMISSION_STATUS_PUBLISHED . '
+				AND a.status = ' . STATUS_PUBLISHED . '
 			ORDER BY pa.seq ASC', array(
 				'title',
 				$primaryLocale,
@@ -369,8 +369,8 @@ class PublishedPaperDAO extends DAO {
 			WHERE	a.paper_id = ?' .
 				(isset($schedConfId)?' AND a.sched_conf_id = ?':'') .
 				($previewAbstracts!==true?' AND pa.paper_id IS NOT NULL':'') .
-				($previewAbstracts===true?' AND (a.status = ' . SUBMISSION_STATUS_PUBLISHED . ' OR (a.review_mode <> ' . REVIEW_MODE_BOTH_SIMULTANEOUS . ' AND a.status = ' . SUBMISSION_STATUS_QUEUED . ' AND a.current_stage = ' . REVIEW_STAGE_PRESENTATION . '))':'') .
-				($previewAbstracts===false?' AND a.status = ' . SUBMISSION_STATUS_PUBLISHED:''),
+				($previewAbstracts===true?' AND (a.status = ' . STATUS_PUBLISHED . ' OR (a.review_mode <> ' . REVIEW_MODE_BOTH_SIMULTANEOUS . ' AND a.status = ' . STATUS_QUEUED . ' AND a.current_stage = ' . REVIEW_STAGE_PRESENTATION . '))':'') .
+				($previewAbstracts===false?' AND a.status = ' . STATUS_PUBLISHED:''),
 			$params
 		);
 
@@ -478,7 +478,7 @@ class PublishedPaperDAO extends DAO {
 				LEFT JOIN paper_settings ptl ON (ptl.setting_name = ? AND ptl.paper_id = p.paper_id AND ptl.locale = ?)
 				LEFT JOIN paper_settings ptpl ON (ptpl.setting_name = ? AND ptpl.paper_id = p.paper_id AND ptpl.locale = ?)
 			WHERE	pp.paper_id = p.paper_id AND
-				p.status = ' . SUBMISSION_STATUS_PUBLISHED . '
+				p.status = ' . STATUS_PUBLISHED . '
 				' . ($schedConfId?'AND p.sched_conf_id = ?':'') . '
 				' . ($conferenceId?'AND sc.conference_id = ?':'') . '
 			ORDER BY paper_title',

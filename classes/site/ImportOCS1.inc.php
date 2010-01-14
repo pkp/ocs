@@ -749,7 +749,7 @@ class ImportOCS1 {
 
 			switch ($row['accepted']) {
 				case 'true':
-					$paper->setStatus(SUBMISSION_STATUS_PUBLISHED);
+					$paper->setStatus(STATUS_PUBLISHED);
 					$paperId = $paperDao->insertPaper($paper);
 					$publishedPaper = new PublishedPaper();
 					$publishedPaper->setPaperId($paperId);
@@ -761,11 +761,11 @@ class ImportOCS1 {
 					$publishedPaperDao->resequencePublishedPapers($paper->getTrackId(), $schedConfId);
 					break;
 				case 'reject':
-					$paper->setStatus(SUBMISSION_STATUS_DECLINED);
+					$paper->setStatus(STATUS_DECLINED);
 					$paperId = $paperDao->insertPaper($paper);
 					break;
 				default:
-					$paper->setStatus(SUBMISSION_STATUS_QUEUED);
+					$paper->setStatus(STATUS_QUEUED);
 					$paperId = $paperDao->insertPaper($paper);
 			}
 

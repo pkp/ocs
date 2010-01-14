@@ -22,16 +22,16 @@
 
 
 // Submission status constants
-define('SUBMISSION_STATUS_ARCHIVED', 0);
-define('SUBMISSION_STATUS_QUEUED', 1);
-define('SUBMISSION_STATUS_PUBLISHED', 3);
-define('SUBMISSION_STATUS_DECLINED', 4);
+define('STATUS_ARCHIVED', 0);
+define('STATUS_QUEUED', 1);
+define('STATUS_PUBLISHED', 3);
+define('STATUS_DECLINED', 4);
 
 // AuthorSubmission::getSubmissionStatus will return one of these in place of QUEUED:
-define ('SUBMISSION_STATUS_QUEUED_UNASSIGNED', 6);
-define ('SUBMISSION_STATUS_QUEUED_REVIEW', 7);
-define ('SUBMISSION_STATUS_QUEUED_EDITING', 8);
-define ('SUBMISSION_STATUS_INCOMPLETE', 9);
+define ('STATUS_QUEUED_UNASSIGNED', 5);
+define ('STATUS_QUEUED_REVIEW', 6);
+define ('STATUS_QUEUED_EDITING', 7);
+define ('STATUS_INCOMPLETE', 8);
 
 define ('REVIEW_STAGE_ABSTRACT', 1);
 define ('REVIEW_STAGE_PRESENTATION', 2);

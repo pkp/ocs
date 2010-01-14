@@ -92,11 +92,11 @@ class SchedConfStatisticsDAO extends DAO {
 				$paperIds[] = $row['paper_id'];
 				$returner['numSubmissions']++;
 
-				if (!empty($row['pub_id']) && $row['status'] == SUBMISSION_STATUS_PUBLISHED) {
+				if (!empty($row['pub_id']) && $row['status'] == STATUS_PUBLISHED) {
 					$returner['numPublishedSubmissions']++;
 				}
 
-				if (!empty($row['date_submitted']) && !empty($row['date_published']) && $row['status'] == SUBMISSION_STATUS_PUBLISHED) {
+				if (!empty($row['date_submitted']) && !empty($row['date_published']) && $row['status'] == STATUS_PUBLISHED) {
 					$timeSubmitted = strtotime($this->datetimeFromDB($row['date_submitted']));
 					$timePublished = strtotime($this->datetimeFromDB($row['date_published']));
 					if ($timePublished > $timeSubmitted) {

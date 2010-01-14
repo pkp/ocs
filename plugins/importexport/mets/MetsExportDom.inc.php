@@ -245,7 +245,7 @@ class MetsExportDom {
 	 *  creates the METS:dmdSec element for a published Paper
 	 */
 	function generatePublishedPaperDmdSecDom(&$doc, &$root, &$paper, &$conference, &$schedConf) {
-		if($paper->getStatus() == SUBMISSION_STATUS_PUBLISHED){
+		if($paper->getStatus() == STATUS_PUBLISHED){
 			$dmdSec =& XMLCustomWriter::createElement($doc, 'METS:dmdSec');
 			XMLCustomWriter::setAttribute($dmdSec, 'ID', 'P'.$paper->getPaperId());
 			$mdWrap =& XMLCustomWriter::createElement($doc, 'METS:mdWrap');

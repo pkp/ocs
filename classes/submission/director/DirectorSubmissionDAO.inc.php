@@ -246,7 +246,7 @@ class DirectorSubmissionDAO extends DAO {
 			WHERE	p.sched_conf_id = ?';
 
 		if ($statusSql !== null) $sql .= " AND ($statusSql)";
-		else $sql .= ' AND p.status = ' . SUBMISSION_STATUS_QUEUED;
+		else $sql .= ' AND p.status = ' . STATUS_QUEUED;
 
 		if ($trackId) {
 			$searchSql .= ' AND p.track_id = ?';
@@ -402,7 +402,7 @@ class DirectorSubmissionDAO extends DAO {
 	function &getDirectorSubmissionsAccepted($schedConfId, $trackId, $directorId, $searchField = null, $searchMatch = null, $search = null, $dateField = null, $dateFrom = null, $dateTo = null, $rangeInfo = null, $sortBy = null, $sortDirection = "ASC") {
 		$directorSubmissions = array();
 
-		$result = $this->getUnfilteredDirectorSubmissions($schedConfId, $trackId, $directorId,  $searchField, $searchMatch, $search, $dateField, $dateFrom, $dateTo, 'p.status = ' . SUBMISSION_STATUS_PUBLISHED, $rangeInfo, $sortBy, $sortDirection);
+		$result = $this->getUnfilteredDirectorSubmissions($schedConfId, $trackId, $directorId,  $searchField, $searchMatch, $search, $dateField, $dateFrom, $dateTo, 'p.status = ' . STATUS_PUBLISHED, $rangeInfo, $sortBy, $sortDirection);
 
 		$returner = new DAOResultFactory($result, $this, '_returnDirectorSubmissionFromRow');
 		return $returner;
@@ -425,7 +425,7 @@ class DirectorSubmissionDAO extends DAO {
 	function &getDirectorSubmissionsArchives($schedConfId, $trackId, $directorId, $searchField = null, $searchMatch = null, $search = null, $dateField = null, $dateFrom = null, $dateTo = null, $rangeInfo = null, $sortBy = null, $sortDirection = "ASC") {
 		$directorSubmissions = array();
 
-		$result = $this->getUnfilteredDirectorSubmissions($schedConfId, $trackId, $directorId, $searchField, $searchMatch, $search, $dateField, $dateFrom, $dateTo, 'p.status <> ' . SUBMISSION_STATUS_QUEUED . ' AND p.status <> ' . SUBMISSION_STATUS_PUBLISHED, $rangeInfo, $sortBy, $sortDirection);
+		$result = $this->getUnfilteredDirectorSubmissions($schedConfId, $trackId, $directorId, $searchField, $searchMatch, $search, $dateField, $dateFrom, $dateTo, 'p.status <> ' . STATUS_QUEUED . ' AND p.status <> ' . STATUS_PUBLISHED, $rangeInfo, $sortBy, $sortDirection);
 
 		$returner = new DAOResultFactory($result, $this, '_returnDirectorSubmissionFromRow');
 		return $returner;
@@ -457,7 +457,7 @@ class DirectorSubmissionDAO extends DAO {
 			} elseif (empty($editAssignments)) {
 				// unassigned submissions
 				$submissionsCount[0] += 1;
-			} elseif ($directorSubmission->getStatus() == SUBMISSION_STATUS_QUEUED) {
+			} elseif ($directorSubmission->getStatus() == STATUS_QUEUED) {
 				// in review submissions
 				$submissionsCount[1] += 1;
 			}

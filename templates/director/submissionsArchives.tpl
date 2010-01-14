@@ -35,11 +35,11 @@
 		<td><a href="{url op="submissionReview" path=$paperId}" class="action">{$submission->getLocalizedTitle()|strip_unsafe_html|truncate:60:"..."}</a></td>
 		<td align="right">
 			{assign var="status" value=$submission->getStatus()}
-			{if $status == SUBMISSION_STATUS_ARCHIVED}
+			{if $status == STATUS_ARCHIVED}
 				{translate key="submissions.archived"}&nbsp;&nbsp;<a href="{url op="deleteSubmission" path=$paperId}" onclick="return confirm('{translate|escape:"jsparam" key="director.submissionArchive.confirmDelete"}')" class="action">{translate key="common.delete"}</a>
-			{elseif $status == SUBMISSION_STATUS_PUBLISHED}
+			{elseif $status == STATUS_PUBLISHED}
 				{translate key="submissions.published"}
-			{elseif $status == SUBMISSION_STATUS_DECLINED}
+			{elseif $status == STATUS_DECLINED}
 				{translate key="submissions.declined"}&nbsp;&nbsp;<a href="{url op="deleteSubmission" path=$paperId}" onclick="return confirm('{translate|escape:"jsparam" key="director.submissionArchive.confirmDelete"}')" class="action">{translate key="common.delete"}</a>
 			{/if}
 		</td>
