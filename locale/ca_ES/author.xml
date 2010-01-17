@@ -55,7 +55,6 @@
 	<message key="author.submit.submissionIndexingDescription">Faciliti un o més termes que descriguin el contingut del treball. Separar les paraules mitjançant punt i coma (term1; term2; term3).</message>
 	<message key="author.submit.submissionSupportingAgencies">Entitats patrocinadores</message>
 	<message key="author.submit.submissionSupportingAgenciesDescription">Identifiqui les agències que patrocinen o subvencionen el treball que presenta a aquesta conferència.</message>
-	<message key="author.submit.agencies">Entitats</message>
 	<message key="author.submit.subjectClassInstructions">Esculli entre els termes utilitzats en el sistema de classificació (veure hiperenllaços) les paraules clau i, si fos necessari nombres. Usi el sistema de classificació de l'enllaç per a seleccionar els termes de classificació i, si és necessari, nombres.</message>
 	<message key="author.submit.languageInstructions"><![CDATA[Anglès=en; Català=ca; Espanyol=es. <a href="http://www.loc.gov/standards/iso639-2/langcodes.html" target="_blank">Més codis</a>.]]></message>
 	<message key="presenter.submit.form.authorRequired">Es requereix, al menys, un autor.</message>
