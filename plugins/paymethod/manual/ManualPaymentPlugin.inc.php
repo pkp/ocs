@@ -68,7 +68,7 @@ class ManualPaymentPlugin extends PaymethodPlugin {
 			$templateMgr->assign('itemAmount', $queuedPayment->getAmount());
 			$templateMgr->assign('itemCurrencyCode', $queuedPayment->getCurrencyCode());
 		}
-		$templateMgr->assign('manualInstructions', $this->getSetting($journal->getJournalId(), 'manualInstructions'));
+		$templateMgr->assign('manualInstructions', $this->getSetting($schedConf->getConferenceId(), $schedConf->getId(), 'manualInstructions'));
 		$templateMgr->assign('queuedPaymentId', $queuedPaymentId);
 
 		$templateMgr->display($this->getTemplatePath() . 'paymentForm.tpl');

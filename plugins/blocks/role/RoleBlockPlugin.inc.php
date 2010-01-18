@@ -35,7 +35,7 @@ class RoleBlockPlugin extends BlockPlugin {
 	}
 
 	/**
-	 * Install default settings on journal creation.
+	 * Install default settings on conference creation.
 	 * @return string
 	 */
 	function getNewConferencePluginSettingsFile() {
