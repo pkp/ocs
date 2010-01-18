@@ -39,7 +39,7 @@ class TinyMCEPlugin extends GenericPlugin {
 	}
 
 	/**
-	 * Get the name of the settings file to be installed on new journal
+	 * Get the name of the settings file to be installed on new conference
 	 * creation.
 	 * @return string
 	 */
