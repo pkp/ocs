@@ -1518,7 +1518,7 @@ import('file.PaperFileManager');
 									foreach ($paperComments as $comment) {
 										// If the comment is viewable by the author, then add the comment.
 										if ($comment->getViewable()) {
-											$body .= $comment->getComments() . "\n\n";
+											$body .= String::html2utf(strip_tags($comment->getComments())) . "\n\n";
 											$hasBody = true;
 										}
 									}
