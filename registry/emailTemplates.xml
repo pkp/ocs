@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE emails SYSTEM "../../lib/pkp/dtd/emailTemplates.dtd">
+<!DOCTYPE emails SYSTEM "../lib/pkp/dtd/emailTemplates.dtd">
 <!--
   * emailTemplates.xml
   *
-  * Copyright (c) 2000-2009 John Willinsky
+  * Copyright (c) 2000-2010 John Willinsky
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
   *
   * Email templates XML file.

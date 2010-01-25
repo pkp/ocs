@@ -3,7 +3,7 @@
 /**
  * @file TranslatorHandler.inc.php
  *
- * Copyright (c) 2000-2009 John Willinsky
+ * Copyright (c) 2000-2010 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class TranslatorHandler
@@ -465,7 +465,7 @@ class TranslatorHandler extends Handler {
 <!--
   * emailTemplateData.xml
   *
-  * Copyright (c) 2000-2009 John Willinsky
+  * Copyright (c) 2000-2010 John Willinsky
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
   *
   * Localized email templates XML file.
