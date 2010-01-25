@@ -3,7 +3,7 @@
 /**
  * @file classes/notification/Notification.inc.php
  *
- * Copyright (c) 2003-2009 John Willinsky
+ * Copyright (c) 2003-2010 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class OJSNotification
@@ -38,7 +38,7 @@ class Notification extends PKPNotification {
 	function Notification() {
 		parent::PKPNotification();
 	}
-	
+
 	/**
 	 * return the path to the icon for this type
 	 * @return string
@@ -71,7 +71,7 @@ class Notification extends PKPNotification {
 				return $baseUrl . 'page_alert.gif';
 		}
 	}
-	
+
 	/**
 	 * Static function to send an email to a mailing list user regarding signup or a lost password
 	 * @param $email string
@@ -82,41 +82,42 @@ class Notification extends PKPNotification {
 		import('mail.MailTemplate');
 		$conference = Request::getConference();
 		$site = Request::getSite();
-		
+
 		$params = array(
 			'password' => $password,
 			'siteTitle' => $conference->getConferenceTitle(),
 			'unsubscribeLink' => Request::url(null, 'notification', 'unsubscribeMailList')
 		);
-		
+
 		if ($template == 'NOTIFICATION_MAILLIST_WELCOME') {
 			$keyHash = md5($password);
 			$confirmLink = Request::url(null, 'notification', 'confirmMailListSubscription', array($keyHash, $email));
 			$params["confirmLink"] = $confirmLink;
 		}
-		
+
 		$mail = new MailTemplate($template);
 		$mail->setFrom($site->getLocalizedContactEmail(), $site->getLocalizedContactName());
 		$mail->assignParams($params);
 		$mail->addRecipient($email);
 		$mail->send();
 	}
-	
+
 	/**
 	 * Returns an array of information on the conference's subscription settings
 	 * @return array
 	 */
 	function getSubscriptionSettings() {
 		$conference = Request::getConference();
-		import('payment.ojs.OCSPaymentManager');
+		import('payment.ocs.OCSPaymentManager');
 		$paymentManager =& OCSPaymentManager::getManager();
-		
-		$settings = array('subscriptionsEnabled' => $paymentManager->acceptSubscriptionPayments(),
-				'allowRegReviewer' => $conference->getSetting('allowRegReviewer'),
-				'allowRegAuthor' => $conference->getSetting('allowRegAuthor'));
-		
+
+		$settings = array(
+			'allowRegReviewer' => $conference->getSetting('allowRegReviewer'),
+			'allowRegAuthor' => $conference->getSetting('allowRegAuthor')
+		);
+
 		return $settings;
 	}
- }
+}
 
 ?>
