@@ -465,6 +465,18 @@ Galderaren bat baduzu, jar zaitez harremanetan nirekin, mesedez.
 {$registrationContactSignature}</field>
 			<field name="description">Mezu honek izena eman duen irakurleari jakinarazten dio Kudeatzaileak inskripzioa egin diola. Kongresuaren URLa eta kongresuan sartzeko argibideak ematen ditu.</field>
 		</row>
+		<row>
+			<field name="email_key">PAYMENT_RECEIVED</field>
+			<field name="subject"> Jaso dugu {$conferenceName} kongresurako egin duzun ordainketa</field>
+			<field name="body">{$registrantName}:
+
+ Jaso dugu {$conferenceName} kongresurako egin duzun ordainketa eta erregistratu dugu zure kontuan.
+
+Galderaren bat baduzu, jar zaitez harremanetan nirekin, mesedez.
+
+{$registrationContactSignature}</field>
+			<field name="description">Mezu honek izena eman duen irakurleari jakinarazten. Kongresuaren URLa eta kongresuan sartzeko argibideak ematen ditu.</field>
+		</row>
 		<!--<row>
 			<field name="email_key">REGISTRATION_BEFORE_EXPIRY</field>
 			<field name="subject">Inskripzio-amaieraren abisua</field>

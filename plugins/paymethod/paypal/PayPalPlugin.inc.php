@@ -208,32 +208,53 @@ class PayPalPlugin extends PaymethodPlugin {
 							// Fulfill the queued payment.
 							if ($ocsPaymentManager->fulfillQueuedPayment($queuedPaymentId, $queuedPayment)) {
 								// Send the registrant a notification that their payment was received
+								$schedConfId = $queuedPayment->getSchedConfId();
+								$userId = $queuedPayment->getUserId();
+								$userDao =& DAORegistry::getDAO('UserDAO');
+								$user =& $userDao->getUser($userId);
+
+								if (!$user) {
+									// The user is missing. Complain.
+									$mail->assignParams(array(
+										'schedConfName' => $schedConf->getFullTitle(),
+										'postInfo' => print_r($_POST, true),
+										'additionalInfo' =>
+											"Missing user. Confirmation email could not be sent.\n" .
+											"User ID: $userId\n" .
+											"Queued Payment ID: $queuedPaymentId",
+										'serverVars' => print_r($_SERVER, true)
+									));
+									$mail->send();
+									exit();
+								}
+ 
+								$registrantName = $user->getFullName();
+								$registrantEmail = $user->getEmail();
+
 								$schedConfSettingsDao = &DAORegistry::getDAO('SchedConfSettingsDAO');
-		
-								$registrationName = $schedConfSettingsDao->getSetting($schedConfId, 'registrationName');
-								$registrationEmail = $schedConfSettingsDao->getSetting($schedConfId, 'registrationEmail');
-								$registrationPhone = $schedConfSettingsDao->getSetting($schedConfId, 'registrationPhone');
-								$registrationFax = $schedConfSettingsDao->getSetting($schedConfId, 'registrationFax');
-								$registrationMailingAddress = $schedConfSettingsDao->getSetting($schedConfId, 'registrationMailingAddress');
+
+								$registrationName = $schedConfSettingsDao->getSetting($schedConfId, 'contactName');
+								$registrationEmail = $schedConfSettingsDao->getSetting($schedConfId, 'contactEmail');
+								$registrationPhone = $schedConfSettingsDao->getSetting($schedConfId, 'contactPhone');
+								$registrationFax = $schedConfSettingsDao->getSetting($schedConfId, 'contactFax');
+
 								$registrationContactSignature = $registrationName;
-						
-								if ($registrationMailingAddress != '') $registrationContactSignature .= "\n" . $registrationMailingAddress;
 								if ($registrationPhone != '') $registrationContactSignature .= "\n" . Locale::Translate('user.phone') . ': ' . $registrationPhone;
 								if ($registrationFax != '')	$registrationContactSignature .= "\n" . Locale::Translate('user.fax') . ': ' . $registrationFax;
 						
 								$registrationContactSignature .= "\n" . Locale::Translate('user.email') . ': ' . $registrationEmail;
 
 								$paramArray = array(
-									'registrantName' => $contactName,
-									'schedConfName' => $schedConfName,
+									'registrantName' => $registrantName,
 									'registrationContactSignature' => $registrationContactSignature 
 								);
 						
 								import('mail.MailTemplate');
-								$mail = new MailTemplate('MANUAL_PAYMENT_RECEIVED');
-								$mail->setFrom($registrationEmail, $registrationName);
+								$mail = new MailTemplate('PAYMENT_RECEIVED');
+								$mail->setFrom($contactEmail, $contactName);
+								$mail->addRecipient($registrantEmail, $registrantName);
+								$mail->addCc($contactEmail, $contactName);
 								$mail->assignParams($paramArray);
-								$mail->addRecipient($contactEmail, $contactName);
 								$mail->send();
 								
 								exit();

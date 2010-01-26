@@ -465,6 +465,18 @@ If you have any questions, please feel free to contact me.
 {$registrationContactSignature}</field>
 			<field name="description">This email notifies a registered reader that the Manager has created a registration for them. It provides the conference's URL along with instructions for access.</field>
 		</row>
+		<row>
+			<field name="email_key">PAYMENT_RECEIVED</field>
+			<field name="subject">Your payment for {$conferenceName} has been received</field>
+			<field name="body">{$registrantName}:
+
+Your payment for {$conferenceName} has been received and recorded in your account.
+
+If you have any questions, please feel free to contact me.
+
+{$registrationContactSignature}</field>
+			<field name="description">This email notifies a registered reader that a payment was received. It provides the conference's URL along with instructions for access.</field>
+		</row>
 		<!--<row>
 			<field name="email_key">REGISTRATION_BEFORE_EXPIRY</field>
 			<field name="subject">Notice of Registration Expiry</field>
