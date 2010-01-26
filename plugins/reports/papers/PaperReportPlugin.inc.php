@@ -121,7 +121,7 @@ class PaperReportPlugin extends ReportPlugin {
 		$statusMap =& Paper::getStatusMap();
 
 		$controlledVocabDao =& DAORegistry::getDAO('ControlledVocabDAO');
-		$sessionTypes = $controlledVocabDao->enumerateBySymbolic('paperType', ASSOC_TYPE_SCHED_CONF, $schedConf->getSchedConfId());
+		$sessionTypes = $controlledVocabDao->enumerateBySymbolic('paperType', ASSOC_TYPE_SCHED_CONF, $schedConf->getId());
 
 		// Load building and room data
 		$buildingDao =& DAORegistry::getDAO('BuildingDAO');
