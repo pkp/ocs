@@ -178,6 +178,7 @@ class SchedConfAction {
 	function registeredUser(&$schedConf) {
 		$user = &Request::getUser();
 		$registrationDao = &DAORegistry::getDAO('RegistrationDAO');
+		$result = false;
 
 		if (isset($user) && isset($schedConf)) {
 
