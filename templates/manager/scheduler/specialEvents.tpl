@@ -38,7 +38,7 @@
 				{$specialEvent->getStartTime()|date_format:$timeFormat}{if $specialEvent->getEndTime()}&nbsp;&ndash;&nbsp;{$specialEvent->getEndTime()|date_format:$timeFormat}{/if}
 			{/if}
 		</td>
-		<td><a href="{url op="editSpecialEvent" path=$specialEvent->getSpecialEventId()}" class="action">{translate key="common.edit"}</a>&nbsp;|&nbsp;<a href="{url op="deleteSpecialEvent" path=$specialEvent->getSpecialEventId()}" onclick="return confirm('{translate|escape:"jsparam" key="manager.scheduler.specialEvent.confirmDelete"}')" class="action">{translate key="common.delete"}</a></td>
+		<td><a href="{url op="editSpecialEvent" path=$specialEvent->getId()}" class="action">{translate key="common.edit"}</a>&nbsp;|&nbsp;<a href="{url op="deleteSpecialEvent" path=$specialEvent->getId()}" onclick="return confirm('{translate|escape:"jsparam" key="manager.scheduler.specialEvent.confirmDelete"}')" class="action">{translate key="common.delete"}</a></td>
 	</tr>
 	<tr>
 		<td colspan="3" class="{if $specialEvents->eof()}end{/if}separator">&nbsp;</td>

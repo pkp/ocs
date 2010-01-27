@@ -47,7 +47,7 @@
 				{else}
 					{assign var="suppFileOp" value="viewSuppFile"}
 				{/if}
-				<a href="{url op=$suppFileOp path=$submission->getPaperId()|to_array:$suppFile->getSuppFileId()}" class="file">{$suppFile->getFileName()|escape}</a>&nbsp;&nbsp;{$suppFile->getDateModified()|date_format:$dateFormatShort}<br />
+				<a href="{url op=$suppFileOp path=$submission->getPaperId()|to_array:$suppFile->getId()}" class="file">{$suppFile->getFileName()|escape}</a>&nbsp;&nbsp;{$suppFile->getDateModified()|date_format:$dateFormatShort}<br />
 			{foreachelse}
 				{translate key="common.none"}
 			{/foreach}

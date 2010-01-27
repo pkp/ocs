@@ -1537,7 +1537,7 @@ import('file.PaperFileManager');
 								}
 								foreach ($reviewFormElements as $reviewFormElement) {
 									$body .= strip_tags($reviewFormElement->getReviewFormElementQuestion()) . ": \n";
-									$reviewFormResponse = $reviewFormResponseDao->getReviewFormResponse($reviewId, $reviewFormElement->getReviewFormElementId());
+									$reviewFormResponse = $reviewFormResponseDao->getReviewFormResponse($reviewId, $reviewFormElement->getId());
 			
 									if ($reviewFormResponse) {
 										$possibleResponses = $reviewFormElement->getReviewFormElementPossibleResponses();

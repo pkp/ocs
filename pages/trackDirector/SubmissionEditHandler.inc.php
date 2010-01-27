@@ -209,7 +209,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 			foreach ($submission->getReviewAssignments($stage) as $reviewAssignment) {
 				$reviewForm =& $reviewFormDao->getReviewForm($reviewAssignment->getReviewFormId());
 				if ($reviewForm) {
-					$reviewFormTitles[$reviewForm->getReviewFormId()] = $reviewForm->getReviewFormTitle();
+					$reviewFormTitles[$reviewForm->getId()] = $reviewForm->getReviewFormTitle();
 				}
 				unset($reviewForm);
 				$reviewFormResponses[$reviewAssignment->getReviewId()] = $reviewFormResponseDao->reviewFormResponseExists($reviewAssignment->getReviewId());
