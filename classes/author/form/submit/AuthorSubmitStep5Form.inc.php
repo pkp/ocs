@@ -66,13 +66,13 @@ class AuthorSubmitStep5Form extends AuthorSubmitForm {
 
 		// Designate this as the review version by default.
 		$authorSubmissionDao =& DAORegistry::getDAO('AuthorSubmissionDAO');
-		$authorSubmission =& $authorSubmissionDao->getAuthorSubmission($paper->getPaperId());
+		$authorSubmission =& $authorSubmissionDao->getAuthorSubmission($paper->getId());
 		AuthorAction::designateReviewVersion($authorSubmission);
 		unset($authorSubmission);
 
 		// Update any review assignments so they may access the file
-		$authorSubmission =& $authorSubmissionDao->getAuthorSubmission($paper->getPaperId());
-		$reviewAssignments =& $reviewAssignmentDao->getReviewAssignmentsByPaperId($paper->getPaperId(), REVIEW_STAGE_PRESENTATION);
+		$authorSubmission =& $authorSubmissionDao->getAuthorSubmission($paper->getId());
+		$reviewAssignments =& $reviewAssignmentDao->getReviewAssignmentsByPaperId($paper->getId(), REVIEW_STAGE_PRESENTATION);
 		foreach($reviewAssignments as $reviewAssignment) {
 			$reviewAssignment->setReviewFileId($authorSubmission->getReviewFileId());
 			$reviewAssignmentDao->updateReviewAssignment($reviewAssignment);
@@ -90,7 +90,7 @@ class AuthorSubmitStep5Form extends AuthorSubmitForm {
 
 		import('paper.log.PaperLog');
 		import('paper.log.PaperEventLogEntry');
-		PaperLog::logEvent($this->paperId, PAPER_LOG_PRESENTATION_SUBMIT, LOG_TYPE_AUTHOR, $user->getId(), 'log.author.presentationSubmitted', array('submissionId' => $paper->getPaperId(), 'authorName' => $user->getFullName()));
+		PaperLog::logEvent($this->paperId, PAPER_LOG_PRESENTATION_SUBMIT, LOG_TYPE_AUTHOR, $user->getId(), 'log.author.presentationSubmitted', array('submissionId' => $paper->getId(), 'authorName' => $user->getFullName()));
 
 		return $this->paperId;
 	}

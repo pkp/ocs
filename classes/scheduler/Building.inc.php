@@ -25,7 +25,8 @@ class Building extends DataObject {
 	 * @return int
 	 */
 	function getBuildingId() {
-		return $this->getData('buildingId');
+		if (Config::getVar('debug', 'deprecation_warnings')) trigger_error('Deprecated function.');
+		return $this->getId();
 	}
 
 	/**
@@ -33,7 +34,8 @@ class Building extends DataObject {
 	 * @param $buildingId int
 	 */
 	function setBuildingId($buildingId) {
-		return $this->setData('buildingId', $buildingId);
+		if (Config::getVar('debug', 'deprecation_warnings')) trigger_error('Deprecated function.');
+		return $this->setId($buildingId);
 	}
 
 	/**

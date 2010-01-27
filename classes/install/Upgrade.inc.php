@@ -176,7 +176,7 @@ class Upgrade extends Installer {
 				unset($room);
 			} else {
 				$room =& $rooms[$location];
-				$roomId = $room->getRoomId();
+				$roomId = $room->getId();
 				unset($room);
 			}
 

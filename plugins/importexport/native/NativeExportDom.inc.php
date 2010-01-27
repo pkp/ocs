@@ -58,7 +58,7 @@ class NativeExportDom {
 		$root =& XMLCustomWriter::createElement($doc, 'paper');
 
 		/* --- PaperID --- */
-		XMLCustomWriter::createChildWithText($doc, $root, 'id', $paper->getPaperId());
+		XMLCustomWriter::createChildWithText($doc, $root, 'id', $paper->getId());
 
 		/* --- Titles and Abstracts --- */
 		if (is_array($paper->getTitle(null))) foreach ($paper->getTitle(null) as $locale => $title) {
@@ -206,7 +206,7 @@ class NativeExportDom {
 		$isHtml = $galley->isHTMLGalley();
 
 		import('file.PaperFileManager');
-		$paperFileManager = new PaperFileManager($paper->getPaperId());
+		$paperFileManager = new PaperFileManager($paper->getId());
 		$paperFileDao =& DAORegistry::getDAO('PaperFileDAO');
 
 		$root =& XMLCustomWriter::createElement($doc, $isHtml?'htmlgalley':'galley');
@@ -332,7 +332,7 @@ class NativeExportDom {
 		}
 		
 		import('file.PaperFileManager');
-		$paperFileManager = new PaperFileManager($paper->getPaperId());
+		$paperFileManager = new PaperFileManager($paper->getId());
 		$fileNode =& XMLCustomWriter::createElement($doc, 'file');
 		XMLCustomWriter::appendChild($root, $fileNode);
 		$embedNode =& XMLCustomWriter::createChildWithText($doc, $fileNode, 'embed', base64_encode($paperFileManager->readFile($suppFile->getFileId())));

@@ -124,7 +124,7 @@ class Action {
 				import('notification.Notification');
 				$notificationUsers = $paper->getAssociatedUserIds();
 				foreach ($notificationUsers as $userRole) {
-					$url = Request::url(null, null, $userRole['role'], 'submission', $paper->getPaperId(), null, 'metadata');
+					$url = Request::url(null, null, $userRole['role'], 'submission', $paper->getId(), null, 'metadata');
 					Notification::createNotification($userRole['id'], "notification.type.metadataModified",
 						$paper->getLocalizedTitle(), $url, 1, NOTIFICATION_TYPE_METADATA_MODIFIED);
 				}
@@ -134,7 +134,7 @@ class Action {
 				$user =& Request::getUser();
 				import('paper.log.PaperLog');
 				import('paper.log.PaperEventLogEntry');
-				PaperLog::logEvent($paper->getPaperId(), PAPER_LOG_METADATA_UPDATE, LOG_TYPE_DEFAULT, 0, 'log.director.metadataModified', array('directorName' => $user->getFullName()));
+				PaperLog::logEvent($paper->getId(), PAPER_LOG_METADATA_UPDATE, LOG_TYPE_DEFAULT, 0, 'log.director.metadataModified', array('directorName' => $user->getFullName()));
 
 				return true;
 			}
@@ -197,7 +197,7 @@ class Action {
 				import('notification.Notification');
 				$notificationUsers = $paper->getAssociatedUserIds(true, false);
 				foreach ($notificationUsers as $userRole) {
-					$url = Request::url(null, null, $userRole['role'], 'submissionReview', $paper->getPaperId(), null, 'editorDecision');
+					$url = Request::url(null, null, $userRole['role'], 'submissionReview', $paper->getId(), null, 'editorDecision');
 					Notification::createNotification($userRole['id'], "notification.type.submissionComment",
 						$paper->getLocalizedTitle(), $url, 1, NOTIFICATION_TYPE_SUBMISSION_COMMENT);
 				}

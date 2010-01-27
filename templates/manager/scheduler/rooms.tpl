@@ -38,7 +38,7 @@
 	<tr valign="top">
 		<td>{$room->getRoomName()|escape}</td>
 		<td>{$room->getRoomAbbrev()|escape}</td>
-		<td><a href="{url op="editRoom" path=$room->getBuildingId()|to_array:$room->getRoomId()}" class="action">{translate key="common.edit"}</a>&nbsp;|&nbsp;<a href="{url op="deleteRoom" path=$room->getRoomId()}" onclick="return confirm('{translate|escape:"jsparam" key="manager.scheduler.room.confirmDelete"}')" class="action">{translate key="common.delete"}</a></td>
+		<td><a href="{url op="editRoom" path=$room->getBuildingId()|to_array:$room->getId()}" class="action">{translate key="common.edit"}</a>&nbsp;|&nbsp;<a href="{url op="deleteRoom" path=$room->getId()}" onclick="return confirm('{translate|escape:"jsparam" key="manager.scheduler.room.confirmDelete"}')" class="action">{translate key="common.delete"}</a></td>
 	</tr>
 	<tr>
 		<td colspan="3" class="{if $rooms->eof()}end{/if}separator">&nbsp;</td>

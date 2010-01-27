@@ -70,12 +70,12 @@ class AuthorAction extends Action {
 	function deletePaperFile($paper, $fileId, $revisionId) {
 		import('file.PaperFileManager');
 
-		$paperFileManager = new PaperFileManager($paper->getPaperId());
+		$paperFileManager = new PaperFileManager($paper->getId());
 		$paperFileDao =& DAORegistry::getDAO('PaperFileDAO');
 		$authorSubmissionDao =& DAORegistry::getDAO('AuthorSubmissionDAO');
 
-		$paperFile =& $paperFileDao->getPaperFile($fileId, $revisionId, $paper->getPaperId());
-		$authorSubmission = $authorSubmissionDao->getAuthorSubmission($paper->getPaperId());
+		$paperFile =& $paperFileDao->getPaperFile($fileId, $revisionId, $paper->getId());
+		$authorSubmission = $authorSubmissionDao->getAuthorSubmission($paper->getId());
 		$authorRevisions = $authorSubmission->getAuthorFileRevisions();
 
 		// Ensure that this is actually an author file.
@@ -212,7 +212,7 @@ class AuthorAction extends Action {
 	function downloadAuthorFile($paper, $fileId, $revision = null) {
 		$authorSubmissionDao =& DAORegistry::getDAO('AuthorSubmissionDAO');		
 
-		$submission =& $authorSubmissionDao->getAuthorSubmission($paper->getPaperId());
+		$submission =& $authorSubmissionDao->getAuthorSubmission($paper->getId());
 
 		$canDownload = false;
 
@@ -265,7 +265,7 @@ class AuthorAction extends Action {
 
 			// Check current review version
 			$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
-			$reviewFilesByStage =& $reviewAssignmentDao->getReviewFilesByStage($paper->getPaperId());
+			$reviewFilesByStage =& $reviewAssignmentDao->getReviewFilesByStage($paper->getId());
 			$reviewFile = @$reviewFilesByStage[$paper->getCurrentStage()];
 			if ($reviewFile && $fileId == $reviewFile->getFileId()) {
 				$canDownload = true;
@@ -283,7 +283,7 @@ class AuthorAction extends Action {
 		$result = false;
 		if (!HookRegistry::call('AuthorAction::downloadAuthorFile', array(&$paper, &$fileId, &$revision, &$canDownload, &$result))) {
 			if ($canDownload) {
-				return Action::downloadFile($paper->getPaperId(), $fileId, $revision);
+				return Action::downloadFile($paper->getId(), $fileId, $revision);
 			} else {
 				return false;
 			}

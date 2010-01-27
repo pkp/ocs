@@ -18,7 +18,7 @@
 {assign var=poster value=$comment->getUser()}
 <div id="comment">
 	<li>
-		<a href="{url page="comment" op="view" path=$paper->getPaperId()|to_array:$galleyId:$comment->getCommentId()}" target="_parent">{$comment->getTitle()|escape|default:"&nbsp;"}</a>
+		<a href="{url page="comment" op="view" path=$paper->getId()|to_array:$galleyId:$comment->getCommentId()}" target="_parent">{$comment->getTitle()|escape|default:"&nbsp;"}</a>
 		{if $comment->getChildCommentCount()==1}
 			{translate key="comments.oneReply"}
 		{elseif $comment->getChildCommentCount()>0}
@@ -42,7 +42,7 @@
 
 {if $commentsClosed}{translate key="comments.commentsClosed" closeCommentsDate=$closeCommentsDate|date_format:$dateFormatShort}<br />{/if}
 
-<a href="{url page="comment" op="view" path=$paper->getPaperId()|to_array:$galleyId}" class="action" target="_parent">{translate key="comments.viewAllComments"}</a>
+<a href="{url page="comment" op="view" path=$paper->getId()|to_array:$galleyId}" class="action" target="_parent">{translate key="comments.viewAllComments"}</a>
 
 {assign var=needsSeparator value=1}
 
@@ -54,6 +54,6 @@
 	{else}
 		<br/><br/>
 	{/if}
-	<a class="action" href="{url page="comment" op="add" path=$paper->getPaperId()|to_array:$galleyId}" target="_parent">{translate key="rt.addComment"}</a>
+	<a class="action" href="{url page="comment" op="add" path=$paper->getId()|to_array:$galleyId}" target="_parent">{translate key="rt.addComment"}</a>
 {/if}
 </div>

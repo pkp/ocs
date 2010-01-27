@@ -114,7 +114,7 @@ class RoomForm extends Form {
 		$room->setDescription($this->getData('description'), null); // Localized
 
 		// Update or insert room
-		if ($room->getRoomId() != null) {
+		if ($room->getId() != null) {
 			$roomDao->updateRoom($room);
 		} else {
 			$roomDao->insertRoom($room);

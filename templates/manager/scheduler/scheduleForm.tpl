@@ -148,16 +148,16 @@ function sortBy(sortName) {
 	{assign var=startTime value=$publishedPaper->getStartTime()}
 	{assign var=endTime value=$publishedPaper->getEndTime()}
 	<tr valign="top">
-		<td rowspan="{if $enableTimeBlocks}2{else}4{/if}">{$publishedPaper->getPaperId()|escape}</td>
+		<td rowspan="{if $enableTimeBlocks}2{else}4{/if}">{$publishedPaper->getId()|escape}</td>
 		<td rowspan="{if $enableTimeBlocks}2{else}4{/if}">
-			<input name="paperIds[]" type="hidden" value="{$publishedPaper->getPaperId()|escape}" />
+			<input name="paperIds[]" type="hidden" value="{$publishedPaper->getId()|escape}" />
 			{$publishedPaper->getLocalizedTitle()|escape} ({$publishedPaper->getTrackTitle()|escape})<br />
 			<em>{$publishedPaper->getAuthorString()|escape}</em>
 		</td>
-		<td width="4%"><input id="paper{$publishedPaper->getPaperId()|escape}RoomExists" type="checkbox" {if $publishedPaper->getRoomId()}checked="checked" {/if}name="paper{$publishedPaper->getPaperId()|escape}RoomExists" onchange="changeLocation({$publishedPaper->getPaperId()|escape});" /></td>
-		<td width="9%">{fieldLabel name="paper`$publishedPaper->getPaperId()`RoomExists" key="manager.scheduler.location"}</td>
+		<td width="4%"><input id="paper{$publishedPaper->getId()|escape}RoomExists" type="checkbox" {if $publishedPaper->getRoomId()}checked="checked" {/if}name="paper{$publishedPaper->getId()|escape}RoomExists" onchange="changeLocation({$publishedPaper->getId()|escape});" /></td>
+		<td width="9%">{fieldLabel name="paper`$publishedPaper->getId()`RoomExists" key="manager.scheduler.location"}</td>
 		<td width="33%">
-			<select id="paper{$publishedPaper->getPaperId()}Room" name="paper{$publishedPaper->getPaperId()}Room" onchange="document.schedule.paper{$publishedPaper->getPaperId()|escape}RoomExists.checked = true; changeLocation({$publishedPaper->getPaperId()|escape});" class="selectMenu">
+			<select id="paper{$publishedPaper->getId()}Room" name="paper{$publishedPaper->getId()}Room" onchange="document.schedule.paper{$publishedPaper->getId()|escape}RoomExists.checked = true; changeLocation({$publishedPaper->getId()|escape});" class="selectMenu">
 				{foreach from=$buildingsAndRooms key=buildingId item=buildingEntry}
 					<option disabled="disabled" value="">{$buildingEntry.building->getBuildingAbbrev()}</option>
 					{foreach from=$buildingEntry.rooms key=roomId item=room}
@@ -169,8 +169,8 @@ function sortBy(sortName) {
 	</tr>
 {if $enableTimeBlocks}
 	<tr>
-		<td><input type="checkbox" {if $startTime}checked="checked" {/if}id="paper{$publishedPaper->getPaperId()|escape}TimeBlockExists" name="paper{$publishedPaper->getPaperId()|escape}TimeBlockExists" onchange="changeTimeBlock({$publishedPaper->getPaperId()|escape});" /></td>
-		<td>{fieldLabel name="paper`$publishedPaper->getPaperId()`TimeBlockExists" key="common.date"}</td>
+		<td><input type="checkbox" {if $startTime}checked="checked" {/if}id="paper{$publishedPaper->getId()|escape}TimeBlockExists" name="paper{$publishedPaper->getId()|escape}TimeBlockExists" onchange="changeTimeBlock({$publishedPaper->getId()|escape});" /></td>
+		<td>{fieldLabel name="paper`$publishedPaper->getId()`TimeBlockExists" key="common.date"}</td>
 		<td>
 			{* Kludge: Determine whether or not this is a
 			 * non-existent time block, and disable if needed.
@@ -182,33 +182,33 @@ function sortBy(sortName) {
 				{/if}
 			{/foreach}
 
-			<select {if $startTime && !$timeBlockFound}disabled="disabled" {/if} id="paper{$publishedPaper->getPaperId()}TimeBlock" name="paper{$publishedPaper->getPaperId()}TimeBlock" onchange="document.schedule.paper{$publishedPaper->getPaperId()|escape}TimeBlockExists.checked = true; changeTimeBlock({$publishedPaper->getPaperId()|escape});" class="selectMenu">
+			<select {if $startTime && !$timeBlockFound}disabled="disabled" {/if} id="paper{$publishedPaper->getId()}TimeBlock" name="paper{$publishedPaper->getId()}TimeBlock" onchange="document.schedule.paper{$publishedPaper->getId()|escape}TimeBlockExists.checked = true; changeTimeBlock({$publishedPaper->getId()|escape});" class="selectMenu">
 				{if $startTime && !$timeBlockFound}
 					{* Orphaned time without a time block *}
 					<option>{$startTime|date_format:$datetimeFormatShort} &mdash; {$endTime|date_format:$timeFormat}</option>
 				{/if}
 				{foreach from=$timeBlocks item=timeBlock}
-					<option {if $timeBlock->getStartTime() == $startTime && $timeBlock->getEndTime() == $endTime}selected="selected" {/if}value="{$timeBlock->getTimeBlockId()|escape}">{$timeBlock->getStartTime()|date_format:$datetimeFormatShort} &mdash; {$timeBlock->getEndTime()|date_format:$timeFormat}</option>
+					<option {if $timeBlock->getStartTime() == $startTime && $timeBlock->getEndTime() == $endTime}selected="selected" {/if}value="{$timeBlock->getId()|escape}">{$timeBlock->getStartTime()|date_format:$datetimeFormatShort} &mdash; {$timeBlock->getEndTime()|date_format:$timeFormat}</option>
 				{/foreach}
 			</select>
 		</td>
 	</tr>
 {else}{* $enableTimeBlocks *}
 	<tr>
-		<td><input type="checkbox" {if $startTime}checked="checked" {/if}id="paper{$publishedPaper->getPaperId()|escape}DateExists" name="paper{$publishedPaper->getPaperId()|escape}DateExists" onchange="changeDate({$publishedPaper->getPaperId()|escape});" /></td>
-		<td>{fieldLabel name="paper`$publishedPaper->getPaperId()`DateExists" key="common.date"}</td>
-		<td>{html_select_date prefix="paper`$publishedPaper->getPaperId()`Date" all_extra="class=\"selectMenu\" onchange=\"checkScheduled(`$publishedPaper->getPaperId()`); changeDate(`$publishedPaper->getPaperId()`);\"" time=$startTime|default:$defaultStartTime start_year=$firstYear end_year=$lastYear}</td>
+		<td><input type="checkbox" {if $startTime}checked="checked" {/if}id="paper{$publishedPaper->getId()|escape}DateExists" name="paper{$publishedPaper->getId()|escape}DateExists" onchange="changeDate({$publishedPaper->getId()|escape});" /></td>
+		<td>{fieldLabel name="paper`$publishedPaper->getId()`DateExists" key="common.date"}</td>
+		<td>{html_select_date prefix="paper`$publishedPaper->getId()`Date" all_extra="class=\"selectMenu\" onchange=\"checkScheduled(`$publishedPaper->getId()`); changeDate(`$publishedPaper->getId()`);\"" time=$startTime|default:$defaultStartTime start_year=$firstYear end_year=$lastYear}</td>
 	</tr>
 	<tr>
 		<td>&nbsp;</td>
-		<td>{fieldLabel name="paper`$publishedPaper->getPaperId()`StartTime" key="manager.scheduler.startTime"}</td>
-		<td id="{"paper`$publishedPaper->getPaperId()`StartTime"}">{html_select_time prefix="paper`$publishedPaper->getPaperId()`StartTime" all_extra="class=\"selectMenu\" onchange=\"checkScheduled(`$publishedPaper->getPaperId()`); changeTime(`$publishedPaper->getPaperId()`);\"" display_seconds=false display_meridian=true use_24_hours=false time=$startTime|default:$defaultStartTime}</td>
+		<td>{fieldLabel name="paper`$publishedPaper->getId()`StartTime" key="manager.scheduler.startTime"}</td>
+		<td id="{"paper`$publishedPaper->getId()`StartTime"}">{html_select_time prefix="paper`$publishedPaper->getId()`StartTime" all_extra="class=\"selectMenu\" onchange=\"checkScheduled(`$publishedPaper->getId()`); changeTime(`$publishedPaper->getId()`);\"" display_seconds=false display_meridian=true use_24_hours=false time=$startTime|default:$defaultStartTime}</td>
 	</tr>
 	<tr>
 		<td>&nbsp;</td>
-		<td>{fieldLabel name="paper`$publishedPaper->getPaperId()`EndTime" key="manager.scheduler.endTime"}</td>
-		<td id="{"paper`$publishedPaper->getPaperId()`EndTime"}">
-			{html_select_time prefix="paper`$publishedPaper->getPaperId()`EndTime" all_extra="class=\"selectMenu\" onchange=\"checkScheduled(`$publishedPaper->getPaperId()`); changeTime(`$publishedPaper->getPaperId()`);\"" display_seconds=false display_meridian=true use_24_hours=false time=$endTime|default:$defaultStartTime}
+		<td>{fieldLabel name="paper`$publishedPaper->getId()`EndTime" key="manager.scheduler.endTime"}</td>
+		<td id="{"paper`$publishedPaper->getId()`EndTime"}">
+			{html_select_time prefix="paper`$publishedPaper->getId()`EndTime" all_extra="class=\"selectMenu\" onchange=\"checkScheduled(`$publishedPaper->getId()`); changeTime(`$publishedPaper->getId()`);\"" display_seconds=false display_meridian=true use_24_hours=false time=$endTime|default:$defaultStartTime}
 		</td>
 	</tr>
 {/if}{* $enableTimeBlocks *}

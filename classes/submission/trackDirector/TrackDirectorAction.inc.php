@@ -1080,11 +1080,11 @@ class TrackDirectorAction extends Action {
 	 */
 	function orderGalley($paper, $galleyId, $direction) {
 		$galleyDao =& DAORegistry::getDAO('PaperGalleyDAO');
-		$galley =& $galleyDao->getGalley($galleyId, $paper->getPaperId());
+		$galley =& $galleyDao->getGalley($galleyId, $paper->getId());
 		if (isset($galley)) {
 			$galley->setSequence($galley->getSequence() + ($direction == 'u' ? -1.5 : 1.5));
 			$galleyDao->updateGalley($galley);
-			$galleyDao->resequenceGalleys($paper->getPaperId());
+			$galleyDao->resequenceGalleys($paper->getId());
 		}
 	}
 
@@ -1097,15 +1097,15 @@ class TrackDirectorAction extends Action {
 import('file.PaperFileManager');
 
 		$galleyDao =& DAORegistry::getDAO('PaperGalleyDAO');
-		$galley =& $galleyDao->getGalley($galleyId, $paper->getPaperId());
+		$galley =& $galleyDao->getGalley($galleyId, $paper->getId());
 
 		if (isset($galley) && !HookRegistry::call('TrackDirectorAction::deleteGalley', array(&$paper, &$galley))) {
-			$paperFileManager = new PaperFileManager($paper->getPaperId());
+			$paperFileManager = new PaperFileManager($paper->getId());
 
 			if ($galley->getFileId()) {
 				$paperFileManager->deleteFile($galley->getFileId());
 				import('search.PaperSearchIndex');
-				PaperSearchIndex::deleteTextIndex($paper->getPaperId(), PAPER_SEARCH_GALLEY_FILE, $galley->getFileId());
+				PaperSearchIndex::deleteTextIndex($paper->getId(), PAPER_SEARCH_GALLEY_FILE, $galley->getFileId());
 			}
 			if ($galley->isHTMLGalley()) {
 				if ($galley->getStyleFileId()) {
@@ -1127,11 +1127,11 @@ import('file.PaperFileManager');
 	 */
 	function orderSuppFile($paper, $suppFileId, $direction) {
 		$suppFileDao =& DAORegistry::getDAO('SuppFileDAO');
-		$suppFile =& $suppFileDao->getSuppFile($suppFileId, $paper->getPaperId());
+		$suppFile =& $suppFileDao->getSuppFile($suppFileId, $paper->getId());
 		if (isset($suppFile)) {
 			$suppFile->setSequence($suppFile->getSequence() + ($direction == 'u' ? -1.5 : 1.5));
 			$suppFileDao->updateSuppFile($suppFile);
-			$suppFileDao->resequenceSuppFiles($paper->getPaperId());
+			$suppFileDao->resequenceSuppFiles($paper->getId());
 		}
 	}
 
@@ -1145,13 +1145,13 @@ import('file.PaperFileManager');
 
 		$suppFileDao =& DAORegistry::getDAO('SuppFileDAO');
 
-		$suppFile =& $suppFileDao->getSuppFile($suppFileId, $paper->getPaperId());
+		$suppFile =& $suppFileDao->getSuppFile($suppFileId, $paper->getId());
 		if (isset($suppFile) && !HookRegistry::call('TrackDirectorAction::deleteSuppFile', array(&$paper, &$suppFile))) {
 			if ($suppFile->getFileId()) {
-				$paperFileManager = new PaperFileManager($paper->getPaperId());
+				$paperFileManager = new PaperFileManager($paper->getId());
 				$paperFileManager->deleteFile($suppFile->getFileId());
 				import('search.PaperSearchIndex');
-				PaperSearchIndex::deleteTextIndex($paper->getPaperId(), PAPER_SEARCH_SUPPLEMENTARY_FILE, $suppFile->getFileId());
+				PaperSearchIndex::deleteTextIndex($paper->getId(), PAPER_SEARCH_SUPPLEMENTARY_FILE, $suppFile->getFileId());
 			}
 			$suppFileDao->deleteSuppFile($suppFile);
 		}
@@ -1184,7 +1184,7 @@ import('file.PaperFileManager');
 		$paperGalleyDao =& DAORegistry::getDAO('PaperGalleyDAO');
 		if (HookRegistry::call('TrackDirectorAction::deletePaperImage', array(&$submission, &$fileId, &$revision))) return;
 		foreach ($submission->getGalleys() as $galley) {
-			$images =& $paperGalleyDao->getGalleyImages($galley->getGalleyId());
+			$images =& $paperGalleyDao->getGalleyImages($galley->getId());
 			foreach ($images as $imageFile) {
 				if ($imageFile->getPaperId() == $submission->getPaperId() && $fileId == $imageFile->getFileId() && $imageFile->getRevision() == $revision) {
 					$paperFileManager = new PaperFileManager($submission->getPaperId());
@@ -1356,7 +1356,7 @@ import('file.PaperFileManager');
 			import('notification.Notification');
 			$notificationUsers = $paper->getAssociatedUserIds();
 			foreach ($notificationUsers as $userRole) {
-				$url = Request::url(null, null, $userRole['role'], 'submissionReview', $paper->getPaperId(), null, 'peerReview');
+				$url = Request::url(null, null, $userRole['role'], 'submissionReview', $paper->getId(), null, 'peerReview');
 				Notification::createNotification($userRole['id'], "notification.type.reviewerComment",
 					$paper->getLocalizedTitle(), $url, 1, NOTIFICATION_TYPE_REVIEWER_COMMENT);
 			}
@@ -1406,7 +1406,7 @@ import('file.PaperFileManager');
 			import('notification.Notification');
 			$notificationUsers = $paper->getAssociatedUserIds(true, false);
 			foreach ($notificationUsers as $userRole) {
-				$url = Request::url(null, null, $userRole['role'], 'submissionReview', $paper->getPaperId(), null, 'directorDecision');
+				$url = Request::url(null, null, $userRole['role'], 'submissionReview', $paper->getId(), null, 'directorDecision');
 				Notification::createNotification($userRole['id'], "notification.type.directorDecisionComment",
 					$paper->getLocalizedTitle(), $url, 1, NOTIFICATION_TYPE_DIRECTOR_DECISION_COMMENT);
 			}
@@ -1588,8 +1588,8 @@ import('file.PaperFileManager');
 		$userDao =& DAORegistry::getDAO('UserDAO');
 		$conference =& Request::getConference();
 
-		$comments =& $commentDao->getPaperComments($paper->getPaperId(), COMMENT_TYPE_DIRECTOR_DECISION);
-		$reviewAssignments =& $reviewAssignmentDao->getReviewAssignmentsByPaperId($paper->getPaperId(), $paper->getCurrentStage());
+		$comments =& $commentDao->getPaperComments($paper->getId(), COMMENT_TYPE_DIRECTOR_DECISION);
+		$reviewAssignments =& $reviewAssignmentDao->getReviewAssignmentsByPaperId($paper->getId(), $paper->getCurrentStage());
 
 		$commentsText = "";
 		foreach ($comments as $comment) {
@@ -1622,7 +1622,7 @@ import('file.PaperFileManager');
 				$email->assignParams($paramArray);
 			}
 
-			$email->displayEditForm(Request::url(null, null, null, 'blindCcReviewsToReviewers'), array('paperId' => $paper->getPaperId()));
+			$email->displayEditForm(Request::url(null, null, null, 'blindCcReviewsToReviewers'), array('paperId' => $paper->getId()));
 			return false;
 		}
 	}

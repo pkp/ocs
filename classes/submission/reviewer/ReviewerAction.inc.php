@@ -310,7 +310,7 @@ class ReviewerAction extends Action {
 				import('notification.Notification');
 				$notificationUsers = $paper->getAssociatedUserIds();
 				foreach ($notificationUsers as $userRole) {
-					$url = Request::url(null, null, $userRole['role'], 'submissionReview', $paper->getPaperId(), null, 'peerReview');
+					$url = Request::url(null, null, $userRole['role'], 'submissionReview', $paper->getId(), null, 'peerReview');
 					Notification::createNotification($userRole['id'], "notification.type.reviewerComment",
 						$paper->getLocalizedTitle(), $url, 1, NOTIFICATION_TYPE_REVIEWER_COMMENT);
 				}
@@ -366,7 +366,7 @@ class ReviewerAction extends Action {
 				$paper =& $paperDao->getPaper($paperId);
 				$notificationUsers = $paper->getAssociatedUserIds();
 				foreach ($notificationUsers as $userRole) {
-					$url = Request::url(null, null, $userRole['role'], 'submissionReview', $paper->getPaperId(), null, 'peerReview');
+					$url = Request::url(null, null, $userRole['role'], 'submissionReview', $paper->getId(), null, 'peerReview');
 					Notification::createNotification($userRole['id'], "notification.type.reviewerFormComment",
 						$paper->getLocalizedTitle(), $url, 1, NOTIFICATION_TYPE_REVIEWER_FORM_COMMENT);
 				}
@@ -421,7 +421,7 @@ class ReviewerAction extends Action {
 		$result = false;
 		if (!HookRegistry::call('ReviewerAction::downloadReviewerFile', array(&$paper, &$fileId, &$revision, &$canDownload, &$result))) {
 			if ($canDownload) {
-				return Action::downloadFile($paper->getPaperId(), $fileId, $revision);
+				return Action::downloadFile($paper->getId(), $fileId, $revision);
 			} else {
 				return false;
 			}

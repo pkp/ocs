@@ -236,7 +236,7 @@ class PublishedPaper extends Paper {
 			$publicPaperId = $this->getPublicPaperId();
 			if (!empty($publicPaperId)) return $publicPaperId;
 		}
-		return $this->getPaperId();
+		return $this->getId();
 	}
 }
 

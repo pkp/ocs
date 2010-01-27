@@ -25,7 +25,8 @@ class Room extends DataObject {
 	 * @return int
 	 */
 	function getRoomId() {
-		return $this->getData('roomId');
+		if (Config::getVar('debug', 'deprecation_warnings')) trigger_error('Deprecated function.');
+		return $this->getId();
 	}
 
 	/**
@@ -33,7 +34,8 @@ class Room extends DataObject {
 	 * @param $roomId int
 	 */
 	function setRoomId($roomId) {
-		return $this->setData('roomId', $roomId);
+		if (Config::getVar('debug', 'deprecation_warnings')) trigger_error('Deprecated function.');
+		return $this->setId($roomId);
 	}
 
 	/**

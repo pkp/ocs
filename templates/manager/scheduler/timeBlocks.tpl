@@ -45,7 +45,7 @@
 	<tr valign="top">
 		<td>{$timeBlock->getStartTime()|date_format:$dateFormatShort}</td>
 		<td>{$timeBlock->getStartTime()|date_format:$timeFormat}&nbsp;&ndash;&nbsp;{$timeBlock->getEndTime()|date_format:$timeFormat}</td>
-		<td><a href="{url op="editTimeBlock" path=$timeBlock->getTimeBlockId()}" class="action">{translate key="common.edit"}</a>&nbsp;|&nbsp;<a href="{url op="deleteTimeBlock" path=$timeBlock->getTimeBlockId()}" onclick="return confirm('{translate|escape:"jsparam" key="manager.scheduler.timeBlock.confirmDelete"}')" class="action">{translate key="common.delete"}</a></td>
+		<td><a href="{url op="editTimeBlock" path=$timeBlock->getId()}" class="action">{translate key="common.edit"}</a>&nbsp;|&nbsp;<a href="{url op="deleteTimeBlock" path=$timeBlock->getId()}" onclick="return confirm('{translate|escape:"jsparam" key="manager.scheduler.timeBlock.confirmDelete"}')" class="action">{translate key="common.delete"}</a></td>
 	</tr>
 	{if $timeBlocks->eof()}
 	<tr>

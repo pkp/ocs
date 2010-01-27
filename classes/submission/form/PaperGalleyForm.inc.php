@@ -205,7 +205,7 @@ class PaperGalleyForm extends Form {
 
 			// Insert new galley
 			$galleyDao->insertGalley($galley);
-			$this->galleyId = $galley->getGalleyId();
+			$this->galleyId = $galley->getId();
 		}
 
 		return $this->galleyId;

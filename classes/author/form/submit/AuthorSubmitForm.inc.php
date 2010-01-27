@@ -45,7 +45,7 @@ class AuthorSubmitForm extends Form {
 
 		$this->step = $step;
 		$this->paper = $paper;
-		$this->paperId = $paper ? $paper->getPaperId() : null;
+		$this->paperId = $paper ? $paper->getId() : null;
 	}
 
 	/**
@@ -114,7 +114,7 @@ class AuthorSubmitForm extends Form {
 			}
 
 			$editAssignmentDao =& DAORegistry::getDAO('EditAssignmentDAO');
-			$editAssignments =& $editAssignmentDao->getEditAssignmentsByPaperId($paper->getPaperId());
+			$editAssignments =& $editAssignmentDao->getEditAssignmentsByPaperId($paper->getId());
 			while ($editAssignment =& $editAssignments->next()) {
 				$mail->addBcc($editAssignment->getDirectorEmail(), $editAssignment->getDirectorFullName());
 				unset($editAssignment);
@@ -124,7 +124,7 @@ class AuthorSubmitForm extends Form {
 				'authorName' => $user->getFullName(),
 				'authorUsername' => $user->getUsername(),
 				'editorialContactSignature' => $schedConf->getSetting('contactName') . "\n" . $conference->getConferenceTitle(),
-				'submissionUrl' => Request::url(null, null, 'author', 'submission', $paper->getPaperId())
+				'submissionUrl' => Request::url(null, null, 'author', 'submission', $paper->getId())
 			));
 			$mail->send();
 		}
@@ -147,7 +147,7 @@ class AuthorSubmitForm extends Form {
 
 		foreach ($trackDirectors as $trackDirector) {
 			$editAssignment = new EditAssignment();
-			$editAssignment->setPaperId($paper->getPaperId());
+			$editAssignment->setPaperId($paper->getId());
 			$editAssignment->setDirectorId($trackDirector->getId());
 			$editAssignmentDao->insertEditAssignment($editAssignment);
 			unset($editAssignment);

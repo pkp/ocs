@@ -27,7 +27,7 @@
 	{/foreach}
 
 	<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/general.js"></script>
-	<meta http-equiv="refresh" content="2;URL={url op="download" path=$paperId|to_array:$galley->getGalleyId()}"/>
+	<meta http-equiv="refresh" content="2;URL={url op="download" path=$paperId|to_array:$galley->getId()}"/>
 	{$additionalHeadData}
 </head>
 <body>
@@ -37,7 +37,7 @@
 <div id="main">
 <div id="content">
 		<h3>{translate key="paper.nonpdf.title"}</h3>
-{url|assign:"url" op="download" path=$paperId|to_array:$galley->getGalleyId()}
+{url|assign:"url" op="download" path=$paperId|to_array:$galley->getId()}
 <p>{translate key="paper.nonpdf.note" url=$url}</p>
 
 {call_hook name="Templates::Paper::Interstitial::PageFooter"}

@@ -25,7 +25,8 @@ class TimeBlock extends DataObject {
 	 * @return int
 	 */
 	function getTimeBlockId() {
-		return $this->getData('timeBlockId');
+		if (Config::getVar('debug', 'deprecation_warnings')) trigger_error('Deprecated function.');
+		return $this->getId();
 	}
 
 	/**
@@ -33,7 +34,8 @@ class TimeBlock extends DataObject {
 	 * @param $timeBlockId int
 	 */
 	function setTimeBlockId($timeBlockId) {
-		return $this->setData('timeBlockId', $timeBlockId);
+		if (Config::getVar('debug', 'deprecation_warnings')) trigger_error('Deprecated function.');
+		return $this->setId($timeBlockId);
 	}
 
 	/**

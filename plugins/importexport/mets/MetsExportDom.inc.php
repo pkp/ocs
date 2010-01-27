@@ -112,10 +112,10 @@ class MetsExportDom {
 	function generatePublishedPaperDiv(&$doc, &$root, &$paper, &$schedConf) {
 		$pDiv =& XMLCustomWriter::createElement($doc, 'METS:div');
 		XMLCustomWriter::setAttribute($pDiv, 'TYPE', 'submission');
-		XMLCustomWriter::setAttribute($pDiv, 'DMDID', 'P'.$paper->getPaperId());
+		XMLCustomWriter::setAttribute($pDiv, 'DMDID', 'P'.$paper->getId());
 		$paperGalleyDAO =& DAORegistry::getDAO('PaperGalleyDAO');
 		$i = 0;
-		$galleysArray =& $paperGalleyDAO->getGalleysByPaper($paper->getPaperId());
+		$galleysArray =& $paperGalleyDAO->getGalleysByPaper($paper->getId());
 		while ($i < sizeof($galleysArray)) {
 			MetsExportDom::generatePaperFileDiv($doc, $pDiv,  $galleysArray[$i]);
 			$i++;
@@ -125,7 +125,7 @@ class MetsExportDom {
 		$conferenceRt =& $rtDao->getConferenceRTByConference($schedConf->getConference());
 		if($exportSuppFiles == 'on' || $conferenceRt->getEnabled()) {
 			$suppFileDAO =& DAORegistry::getDAO('SuppFileDAO');
-			$paperFilesArray =& $suppFileDAO->getSuppFilesByPaper($paper->getPaperId());
+			$paperFilesArray =& $suppFileDAO->getSuppFilesByPaper($paper->getId());
 			$i = 0;
 			while ($i < sizeof($paperFilesArray)) {
 				MetsExportDom::generatePaperSuppFilesDiv($doc, $pDiv, $paperFilesArray[$i]);
@@ -247,7 +247,7 @@ class MetsExportDom {
 	function generatePublishedPaperDmdSecDom(&$doc, &$root, &$paper, &$conference, &$schedConf) {
 		if($paper->getStatus() == STATUS_PUBLISHED){
 			$dmdSec =& XMLCustomWriter::createElement($doc, 'METS:dmdSec');
-			XMLCustomWriter::setAttribute($dmdSec, 'ID', 'P'.$paper->getPaperId());
+			XMLCustomWriter::setAttribute($dmdSec, 'ID', 'P'.$paper->getId());
 			$mdWrap =& XMLCustomWriter::createElement($doc, 'METS:mdWrap');
 			$xmlData =& XMLCustomWriter::createElement($doc, 'METS:xmlData');
 			XMLCustomWriter::setAttribute($mdWrap, 'MDTYPE', 'MODS');
@@ -268,7 +268,7 @@ class MetsExportDom {
 				XMLCustomWriter::createChildWithText($doc, $mods, 'mods:abstract', $abstract);
 			}
 
-			MetsExportDom::generateAuthorsDom($doc, $mods, $paper->getPaperId());
+			MetsExportDom::generateAuthorsDom($doc, $mods, $paper->getId());
 			XMLCustomWriter::createChildWithText($doc, $mods, 'mods:genre', 'submission');
 			if($paper->getDatePublished() != ''){
  				$originInfo =& XMLCustomWriter::createElement($doc, 'mods:originInfo');
@@ -284,7 +284,7 @@ class MetsExportDom {
 			$conferenceRt =& $rtDao->getConferenceRTByConference($schedConf->getConference());
 			if($exportSuppFiles == 'on' || $conferenceRt->getEnabled()) {
 				$suppFileDAO =& DAORegistry::getDAO('SuppFileDAO');
-				$paperFilesArray =& $suppFileDAO->getSuppFilesByPaper($paper->getPaperId());
+				$paperFilesArray =& $suppFileDAO->getSuppFilesByPaper($paper->getId());
 				$i = 0;
 				while ($i < sizeof($paperFilesArray)) {
 					MetsExportDom::generatePaperSuppFilesDmdSecDom($doc, $root, $paperFilesArray[$i], $conference, $schedConf);
@@ -391,7 +391,7 @@ class MetsExportDom {
 	function generatePaperFilesDom(&$doc, &$root, &$paper, &$conference, &$schedConf) {
 		$paperGalleyDAO =& DAORegistry::getDAO('PaperGalleyDAO');
 		$i = 0;
-		$galleysArray =& $paperGalleyDAO->getGalleysByPaper($paper->getPaperId());
+		$galleysArray =& $paperGalleyDAO->getGalleysByPaper($paper->getId());
 		while ($i < sizeof($galleysArray)) {
 			MetsExportDom::generatePaperFileDom($doc, $root, $paper, $galleysArray[$i], $conference, $schedConf);
 			$i++;
@@ -401,7 +401,7 @@ class MetsExportDom {
 		$conferenceRt =& $rtDao->getConferenceRTByConference($schedConf->getConference());
 		if($exportSuppFiles == 'on' || $conferenceRt->getEnabled()) {
 			$suppFileDAO =& DAORegistry::getDAO('SuppFileDAO');
-			$paperFilesArray =& $suppFileDAO->getSuppFilesByPaper($paper->getPaperId());
+			$paperFilesArray =& $suppFileDAO->getSuppFilesByPaper($paper->getId());
 			$i = 0;
 			while ($i < sizeof($paperFilesArray)) {
 				MetsExportDom::generatePaperSuppFileDom($doc, $root, $paper, $paperFilesArray[$i], $conference, $schedConf);

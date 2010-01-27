@@ -46,7 +46,7 @@
 		{if $schedConfPaperPermissions[$schedConfId]}
 		{foreach from=$publishedPaper->getLocalizedGalleys() item=galley name=galleyList}
 			&nbsp;
-			<a href="{url conference=$conference->getPath() schedConf=$schedConf->getPath() page="paper" op="view" path=$publishedPaper->getBestPaperId($conference)|to_array:$galley->getGalleyId()}" class="file">{$galley->getGalleyLabel()|escape}</a>
+			<a href="{url conference=$conference->getPath() schedConf=$schedConf->getPath() page="paper" op="view" path=$publishedPaper->getBestPaperId($conference)|to_array:$galley->getId()}" class="file">{$galley->getGalleyLabel()|escape}</a>
 		{/foreach}
 		{/if}
 	</td>

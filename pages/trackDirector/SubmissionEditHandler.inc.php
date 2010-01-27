@@ -1147,7 +1147,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 			$paper =& $paperDao->getPaper($paperId);
 			$notificationUsers = $paper->getAssociatedUserIds(true, false);
 			foreach ($notificationUsers as $userRole) {
-				$url = Request::url(null, null, $userRole['role'], 'submissionReview', $paper->getPaperId(), null, 'layout');
+				$url = Request::url(null, null, $userRole['role'], 'submissionReview', $paper->getId(), null, 'layout');
 				Notification::createNotification($userRole['id'], "notification.type.suppFileModified",
 					$paper->getLocalizedTitle(), $url, 1, NOTIFICATION_TYPE_SUPP_FILE_MODIFIED);
 			}
@@ -1357,7 +1357,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 			$paper =& $paperDao->getPaper($paperId);
 			$notificationUsers = $paper->getAssociatedUserIds(true, false);
 			foreach ($notificationUsers as $userRole) {
-				$url = Request::url(null, null, $userRole['role'], 'submissionReview', $paper->getPaperId(), null, 'layout');
+				$url = Request::url(null, null, $userRole['role'], 'submissionReview', $paper->getId(), null, 'layout');
 				Notification::createNotification($userRole['id'], "notification.type.galleyModified",
 					$paper->getLocalizedTitle(), $url, 1, NOTIFICATION_TYPE_GALLEY_MODIFIED);
 			}

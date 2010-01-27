@@ -38,7 +38,7 @@ class SuppFileForm extends Form {
 
 		if (isset($suppFileId) && !empty($suppFileId)) {
 			$suppFileDao =& DAORegistry::getDAO('SuppFileDAO');
-			$this->suppFile =& $suppFileDao->getSuppFile($suppFileId, $paper->getPaperId());
+			$this->suppFile =& $suppFileDao->getSuppFile($suppFileId, $paper->getId());
 			if (isset($this->suppFile)) {
 				$this->suppFileId = $suppFileId;
 			}

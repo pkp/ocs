@@ -51,7 +51,7 @@ class PaperDAO extends DAO {
 	 */
 	function updateLocaleFields(&$paper) {
 		$this->updateDataObjectSettings('paper_settings', $paper, array(
-			'paper_id' => $paper->getPaperId()
+			'paper_id' => $paper->getId()
 		));
 	}
 
@@ -121,7 +121,7 @@ class PaperDAO extends DAO {
 		$schedConf =& $schedConfDao->getSchedConf($schedConfId);
 		$conferenceId = $schedConf->getConferenceId();
 
-		$paper->setPaperId($row['paper_id']);
+		$paper->setId($row['paper_id']);
 		$paper->setUserId($row['user_id']);
 		$paper->setSchedConfId($row['sched_conf_id']);
 		$paper->setTrackId($row['track_id']);
@@ -216,17 +216,17 @@ class PaperDAO extends DAO {
 			)
 		);
 
-		$paper->setPaperId($this->getInsertPaperId());
+		$paper->setId($this->getInsertPaperId());
 		$this->updateLocaleFields($paper);
 
 		// Insert authors for this paper
 		$authors =& $paper->getAuthors();
 		for ($i=0, $count=count($authors); $i < $count; $i++) {
-			$authors[$i]->setPaperId($paper->getPaperId());
+			$authors[$i]->setPaperId($paper->getId());
 			$this->authorDao->insertAuthor($authors[$i]);
 		}
 
-		return $paper->getPaperId();
+		return $paper->getId();
 	}
 
 	/**
@@ -281,7 +281,7 @@ class PaperDAO extends DAO {
 				$paper->getDirectorFileId(),
 				$paper->getPages(),
 				$paper->getCommentsStatus(),
-				$paper->getPaperId()
+				$paper->getId()
 			)
 		);
 
@@ -298,13 +298,13 @@ class PaperDAO extends DAO {
 		// Remove deleted authors
 		$removedAuthors = $paper->getRemovedAuthors();
 		for ($i=0, $count=count($removedAuthors); $i < $count; $i++) {
-			$this->authorDao->deleteAuthorById($removedAuthors[$i], $paper->getPaperId());
+			$this->authorDao->deleteAuthorById($removedAuthors[$i], $paper->getId());
 		}
 
 		$this->updateLocaleFields($paper);
 
 		// Update author sequence numbers
-		$this->authorDao->resequenceAuthors($paper->getPaperId());
+		$this->authorDao->resequenceAuthors($paper->getId());
 	}
 
 	/**
@@ -312,7 +312,7 @@ class PaperDAO extends DAO {
 	 * @param $paper Paper
 	 */
 	function deletePaper(&$paper) {
-		return $this->deletePaperById($paper->getPaperId());
+		return $this->deletePaperById($paper->getId());
 	}
 
 	/**
@@ -431,7 +431,7 @@ class PaperDAO extends DAO {
 
 		while (!$papers->eof()) {
 			$paper =& $papers->next();
-			$this->deletePaperById($paper->getPaperId());
+			$this->deletePaperById($paper->getId());
 		}
 	}
 

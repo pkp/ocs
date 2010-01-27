@@ -418,7 +418,7 @@ class PaperFileManager extends FileManager {
 	function &generateDummyFile(&$paper) {
 		$paperFileDao =& DAORegistry::getDAO('PaperFileDAO');
 		$paperFile = new PaperFile();
-		$paperFile->setPaperId($paper->getPaperId());
+		$paperFile->setPaperId($paper->getId());
 		$paperFile->setFileName('temp');
 		$paperFile->setOriginalFileName('temp');
 		$paperFile->setFileType('temp');
