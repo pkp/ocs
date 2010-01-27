@@ -121,7 +121,7 @@ class PaperGalleyDAO extends DAO {
 		} else {
 			$galley = new PaperGalley();
 		}
-		$galley->setGalleyId($row['galley_id']);
+		$galley->setId($row['galley_id']);
 		$galley->setPaperId($row['paper_id']);
 		$galley->setLocale($row['locale']);
 		$galley->setFileId($row['file_id']);
@@ -162,8 +162,8 @@ class PaperGalleyDAO extends DAO {
 				$galley->getSequence() == null ? $this->getNextGalleySequence($galley->getPaperId()) : $galley->getSequence()
 			)
 		);
-		$galley->setGalleyId($this->getInsertGalleyId());
-		return $galley->getGalleyId();
+		$galley->setId($this->getInsertGalleyId());
+		return $galley->getId();
 	}
 
 	/**
@@ -188,7 +188,7 @@ class PaperGalleyDAO extends DAO {
 				(int)$galley->isHTMLGalley(),
 				$galley->isHTMLGalley() ? $galley->getStyleFileId() : null,
 				$galley->getSequence(),
-				$galley->getGalleyId()
+				$galley->getId()
 			)
 		);
 	}
@@ -198,7 +198,7 @@ class PaperGalleyDAO extends DAO {
 	 * @param $galley PaperGalley
 	 */
 	function deleteGalley(&$galley) {
-		return $this->deleteGalleyById($galley->getGalleyId());
+		return $this->deleteGalleyById($galley->getId());
 	}
 
 	/**
@@ -229,7 +229,7 @@ class PaperGalleyDAO extends DAO {
 	function deleteGalleysByPaper($paperId) {
 		$galleys =& $this->getGalleysByPaper($paperId);
 		foreach ($galleys as $galley) {
-			$this->deleteGalleyById($galley->getGalleyId(), $paperId);
+			$this->deleteGalleyById($galley->getId(), $paperId);
 		}
 	}
 

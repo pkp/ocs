@@ -33,7 +33,7 @@
 	<tr valign="top">
 		<td>{$building->getBuildingName()|escape}</td>
 		<td>{$building->getBuildingAbbrev()|escape}</td>
-		<td><a href="{url op="editBuilding" path=$building->getBuildingId()}" class="action">{translate key="common.edit"}</a>&nbsp;|&nbsp;<a href="{url op="rooms" path=$building->getBuildingId()}" class="action">{translate key="manager.scheduler.rooms"}</a>&nbsp;|&nbsp;<a href="{url op="deleteBuilding" path=$building->getBuildingId()}" onclick="return confirm('{translate|escape:"jsparam" key="manager.scheduler.building.confirmDelete"}')" class="action">{translate key="common.delete"}</a></td>
+		<td><a href="{url op="editBuilding" path=$building->getId()}" class="action">{translate key="common.edit"}</a>&nbsp;|&nbsp;<a href="{url op="rooms" path=$building->getId()}" class="action">{translate key="manager.scheduler.rooms"}</a>&nbsp;|&nbsp;<a href="{url op="deleteBuilding" path=$building->getId()}" onclick="return confirm('{translate|escape:"jsparam" key="manager.scheduler.building.confirmDelete"}')" class="action">{translate key="common.delete"}</a></td>
 	</tr>
 	<tr>
 		<td colspan="3" class="{if $buildings->eof()}end{/if}separator">&nbsp;</td>

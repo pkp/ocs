@@ -316,7 +316,7 @@ class PublishedPaperDAO extends DAO {
 
 		$publishedPaper = new PublishedPaper();
 		$publishedPaper->setPubId($row['pub_id']);
-		$publishedPaper->setPaperId($row['paper_id']);
+		$publishedPaper->setId($row['paper_id']);
 		$publishedPaper->setSchedConfId($row['sched_conf_id']);
 		$publishedPaper->setDatePublished($this->datetimeFromDB($row['date_published']));
 		$publishedPaper->setSeq($row['seq']);
@@ -577,7 +577,7 @@ class PublishedPaperDAO extends DAO {
 				(?, ?, %s, ?, ?, ?)',
 				$this->datetimeToDB($publishedPaper->getDatePublished())),
 			array(
-				$publishedPaper->getPaperId(),
+				$publishedPaper->getId(),
 				$publishedPaper->getSchedConfId(),
 				$publishedPaper->getSeq(),
 				$publishedPaper->getPublicPaperId(),
@@ -665,7 +665,7 @@ class PublishedPaperDAO extends DAO {
 				WHERE pub_id = ?',
 				$this->datetimeToDB($publishedPaper->getDatePublished())),
 			array(
-				$publishedPaper->getPaperId(),
+				$publishedPaper->getId(),
 				$publishedPaper->getSchedConfId(),
 				$publishedPaper->getSeq(),
 				$publishedPaper->getPublicPaperId(),

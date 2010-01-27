@@ -370,13 +370,13 @@ class SchedConfHandler extends Handler {
 		$buildingsAndRooms = $allRooms = array();
 		$buildings =& $buildingDao->getBuildingsBySchedConfId($schedConf->getId());
 		while ($building =& $buildings->next()) {
-			$buildingId = $building->getBuildingId();
+			$buildingId = $building->getId();
 			$rooms =& $roomDao->getRoomsByBuildingId($buildingId);
 			$buildingsAndRooms[$buildingId] = array(
 				'building' => &$building
 			);
 			while ($room =& $rooms->next()) {
-				$roomId = $room->getRoomId();
+				$roomId = $room->getId();
 				$buildingsAndRooms[$buildingId]['rooms'][$roomId] =& $room;
 				$allRooms[$roomId] =& $room;
 				unset($room);

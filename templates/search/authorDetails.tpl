@@ -30,7 +30,7 @@
 		{$paper->getLocalizedTitle()|strip_unsafe_html}<br/>
 		<a href="{url conference=$conference->getPath() schedConf=$schedConf->getPath() page="paper" op="view" path=$paper->getBestPaperId()}" class="file">{translate key="paper.abstract"}</a>
 		{foreach from=$paper->getLocalizedGalleys() item=galley name=galleyList}
-			&nbsp;<a href="{url conference=$conference->getPath() schedConf=$schedConf->getPath() page="paper" op="view" path=$paper->getBestPaperId()|to_array:$galley->getGalleyId()}" class="file">{$galley->getGalleyLabel()|escape}</a>
+			&nbsp;<a href="{url conference=$conference->getPath() schedConf=$schedConf->getPath() page="paper" op="view" path=$paper->getBestPaperId()|to_array:$galley->getId()}" class="file">{$galley->getGalleyLabel()|escape}</a>
 		{/foreach}
 	</li>
 	{/if}

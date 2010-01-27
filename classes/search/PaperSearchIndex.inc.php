@@ -169,7 +169,7 @@ class PaperSearchIndex {
 		}
 
 		// Update search index
-		$paperId = $paper->getPaperId();
+		$paperId = $paper->getId();
 		PaperSearchIndex::updateTextIndex($paperId, PAPER_SEARCH_AUTHOR, $authorText);
 		PaperSearchIndex::updateTextIndex($paperId, PAPER_SEARCH_TITLE, $paper->getTitle(null));
 
@@ -220,10 +220,10 @@ class PaperSearchIndex {
 	function indexPaperFiles(&$paper) {
 		// Index supplementary files
 		$fileDao =& DAORegistry::getDAO('SuppFileDAO');
-		$files =& $fileDao->getSuppFilesByPaper($paper->getPaperId());
+		$files =& $fileDao->getSuppFilesByPaper($paper->getId());
 		foreach ($files as $file) {
 			if ($file->getFileId()) {
-				PaperSearchIndex::updateFileIndex($paper->getPaperId(), PAPER_SEARCH_SUPPLEMENTARY_FILE, $file->getFileId());
+				PaperSearchIndex::updateFileIndex($paper->getId(), PAPER_SEARCH_SUPPLEMENTARY_FILE, $file->getFileId());
 			}
 			PaperSearchIndex::indexSuppFileMetadata($file);
 		}
@@ -231,10 +231,10 @@ class PaperSearchIndex {
 
 		// Index galley files
 		$fileDao =& DAORegistry::getDAO('PaperGalleyDAO');
-		$files =& $fileDao->getGalleysByPaper($paper->getPaperId());
+		$files =& $fileDao->getGalleysByPaper($paper->getId());
 		foreach ($files as $file) {
 			if ($file->getFileId()) {
-				PaperSearchIndex::updateFileIndex($paper->getPaperId(), PAPER_SEARCH_GALLEY_FILE, $file->getFileId());
+				PaperSearchIndex::updateFileIndex($paper->getId(), PAPER_SEARCH_GALLEY_FILE, $file->getFileId());
 			}
 		}
 	}

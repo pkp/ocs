@@ -36,11 +36,11 @@ class AuthorSubmitSuppFileForm extends Form {
 	 */
 	function AuthorSubmitSuppFileForm($paper, $suppFileId = null) {
 		parent::Form('author/submit/suppFile.tpl');
-		$this->paperId = $paper->getPaperId();
+		$this->paperId = $paper->getId();
 
 		if (isset($suppFileId) && !empty($suppFileId)) {
 			$suppFileDao =& DAORegistry::getDAO('SuppFileDAO');
-			$this->suppFile =& $suppFileDao->getSuppFile($suppFileId, $paper->getPaperId());
+			$this->suppFile =& $suppFileDao->getSuppFile($suppFileId, $paper->getId());
 			if (isset($this->suppFile)) {
 				$this->suppFileId = $suppFileId;
 			}
@@ -187,7 +187,7 @@ class AuthorSubmitSuppFileForm extends Form {
 			$suppFile->setFileId($fileId);
 			$this->setSuppFileData($suppFile);
 			$suppFileDao->insertSuppFile($suppFile);
-			$this->suppFileId = $suppFile->getSuppFileId();
+			$this->suppFileId = $suppFile->getId();
 		}
 
 		return $this->suppFileId;

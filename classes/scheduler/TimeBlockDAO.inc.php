@@ -109,7 +109,7 @@ class TimeBlockDAO extends DAO {
 	 */
 	function &_returnTimeBlockFromRow(&$row) {
 		$timeBlock = new TimeBlock();
-		$timeBlock->setTimeBlockId($row['time_block_id']);
+		$timeBlock->setId($row['time_block_id']);
 		$timeBlock->setSchedConfId($row['sched_conf_id']);
 		$timeBlock->setStartTime($this->datetimeFromDB($row['start_time']));
 		$timeBlock->setEndTime($this->datetimeFromDB($row['end_time']));
@@ -125,7 +125,7 @@ class TimeBlockDAO extends DAO {
 	 */
 	function updateLocaleFields(&$timeBlock) {
 		$this->updateDataObjectSettings('time_block_settings', $timeBlock, array(
-			'time_block_id' => $timeBlock->getTimeBlockId()
+			'time_block_id' => $timeBlock->getId()
 		));
 	}
 
@@ -150,9 +150,9 @@ class TimeBlockDAO extends DAO {
 				$timeBlock->getUnassignedColour()
 			)
 		);
-		$timeBlock->setTimeBlockId($this->getInsertTimeBlockId());
+		$timeBlock->setId($this->getInsertTimeBlockId());
 		$this->updateLocaleFields($timeBlock);
-		return $timeBlock->getTimeBlockId();
+		return $timeBlock->getId();
 	}
 
 	/**
@@ -175,7 +175,7 @@ class TimeBlockDAO extends DAO {
 				$timeBlock->getSchedConfId(),
 				$timeBlock->getAssignedColour(),
 				$timeBlock->getUnassignedColour(),
-				$timeBlock->getTimeBlockId()
+				$timeBlock->getId()
 			)
 		);
 		$this->updateLocaleFields($timeBlock);
@@ -188,7 +188,7 @@ class TimeBlockDAO extends DAO {
 	 * @return boolean
 	 */
 	function deleteTimeBlock($timeBlock) {
-		return $this->deleteTimeBlockById($timeBlock->getTimeBlockId());
+		return $this->deleteTimeBlockById($timeBlock->getId());
 	}
 
 	/**

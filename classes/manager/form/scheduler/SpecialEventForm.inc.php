@@ -134,7 +134,7 @@ class SpecialEventForm extends Form {
 		$specialEvent->setEndTime(date('Y-m-d H:i:s', $this->getData('endTime')));
 
 		// Update or insert specialEvent
-		if ($specialEvent->getSpecialEventId() != null) {
+		if ($specialEvent->getId() != null) {
 			$specialEventDao->updateSpecialEvent($specialEvent);
 		} else {
 			$specialEventDao->insertSpecialEvent($specialEvent);

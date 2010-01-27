@@ -50,10 +50,10 @@ function toggleChecked() {
 {iterate from=reviewFormElements item=reviewFormElement name=reviewFormElements}
 {assign var=reviewFormElementExists value=1}
 	<tr valign="top">
-		<td><input type="checkbox" name="copy[]" value="{$reviewFormElement->getReviewFormElementId()|escape}"/></td>
+		<td><input type="checkbox" name="copy[]" value="{$reviewFormElement->getId()|escape}"/></td>
 		<td>{$reviewFormElement->getReviewFormElementQuestion()|strip_unsafe_html|truncate:200:"..."|escape}</td>
 		<td class="nowrap">
-			<a href="{url op="editReviewFormElement" path=$reviewFormElement->getReviewFormId()|to_array:$reviewFormElement->getReviewFormElementId()}" class="action">{translate key="common.edit"}</a>&nbsp;|&nbsp;<a href="{url op="deleteReviewFormElement" path=$reviewFormElement->getReviewFormId()|to_array:$reviewFormElement->getReviewFormElementId()}" onclick="return confirm('{translate|escape:"jsparam" key="manager.reviewFormElements.confirmDelete"}')" class="action">{translate key="common.delete"}</a>&nbsp;|&nbsp;<a href="{url op="moveReviewFormElement" d=u reviewFormElementId=$reviewFormElement->getReviewFormElementId()}" class="action">&uarr;</a>&nbsp;<a href="{url op="moveReviewFormElement" d=d reviewFormElementId=$reviewFormElement->getReviewFormElementId()}" class="action">&darr;</a>
+			<a href="{url op="editReviewFormElement" path=$reviewFormElement->getReviewFormId()|to_array:$reviewFormElement->getId()}" class="action">{translate key="common.edit"}</a>&nbsp;|&nbsp;<a href="{url op="deleteReviewFormElement" path=$reviewFormElement->getReviewFormId()|to_array:$reviewFormElement->getId()}" onclick="return confirm('{translate|escape:"jsparam" key="manager.reviewFormElements.confirmDelete"}')" class="action">{translate key="common.delete"}</a>&nbsp;|&nbsp;<a href="{url op="moveReviewFormElement" d=u reviewFormElementId=$reviewFormElement->getId()}" class="action">&uarr;</a>&nbsp;<a href="{url op="moveReviewFormElement" d=d reviewFormElementId=$reviewFormElement->getId()}" class="action">&darr;</a>
 		</td>
 	</tr>
 	<tr>

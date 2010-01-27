@@ -89,7 +89,7 @@ class BuildingDAO extends DAO {
 	 */
 	function &_returnBuildingFromRow(&$row) {
 		$building = new Building();
-		$building->setBuildingId($row['building_id']);
+		$building->setId($row['building_id']);
 		$building->setSchedConfId($row['sched_conf_id']);
 		$this->getDataObjectSettings('building_settings', 'building_id', $row['building_id'], $building);
 
@@ -102,7 +102,7 @@ class BuildingDAO extends DAO {
 	 */
 	function updateLocaleFields(&$building) {
 		$this->updateDataObjectSettings('building_settings', $building, array(
-			'building_id' => $building->getBuildingId()
+			'building_id' => $building->getId()
 		));
 	}
 
@@ -121,9 +121,9 @@ class BuildingDAO extends DAO {
 				$building->getSchedConfId()
 			)
 		);
-		$building->setBuildingId($this->getInsertBuildingId());
+		$building->setId($this->getInsertBuildingId());
 		$this->updateLocaleFields($building);
-		return $building->getBuildingId();
+		return $building->getId();
 	}
 
 	/**
@@ -139,7 +139,7 @@ class BuildingDAO extends DAO {
 				WHERE building_id = ?'),
 			array(
 				$building->getSchedConfId(),
-				$building->getBuildingId()
+				$building->getId()
 			)
 		);
 		$this->updateLocaleFields($building);
@@ -152,7 +152,7 @@ class BuildingDAO extends DAO {
 	 * @return boolean
 	 */
 	function deleteBuilding($building) {
-		return $this->deleteBuildingById($building->getBuildingId());
+		return $this->deleteBuildingById($building->getId());
 	}
 
 	/**

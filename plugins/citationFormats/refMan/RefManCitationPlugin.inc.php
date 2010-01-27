@@ -49,7 +49,7 @@ class RefManCitationPlugin extends CitationPlugin {
 	 * @param $paper object
 	 */
 	function cite(&$paper) {
-		header('Content-Disposition: attachment; filename="' . $paper->getPaperId() . '-refMan.ris"');
+		header('Content-Disposition: attachment; filename="' . $paper->getId() . '-refMan.ris"');
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->display($this->getTemplatePath() . '/citation.tpl', 'application/x-Research-Info-Systems');
 	}

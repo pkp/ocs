@@ -249,7 +249,7 @@ class MetadataForm extends Form {
 		import('search.PaperSearchIndex');
 		PaperSearchIndex::indexPaperMetadata($paper);
 
-		return $paper->getPaperId();
+		return $paper->getId();
 	}
 
 	/**

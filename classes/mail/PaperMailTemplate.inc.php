@@ -150,7 +150,7 @@ class PaperMailTemplate extends MailTemplate {
 
 		// Add log entry
 		$paper =& $this->paper;
-		PaperLog::logEmailEntry($paper->getPaperId(), $entry);
+		PaperLog::logEmailEntry($paper->getId(), $entry);
 	}
 
 	function ccAssignedDirectors($paperId) {

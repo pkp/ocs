@@ -35,7 +35,8 @@ class SuppFile extends PaperFile {
 	 * @return int
 	 */
 	function getSuppFileId() {
-		return $this->getData('suppFileId');
+		if (Config::getVar('debug', 'deprecation_warnings')) trigger_error('Deprecated function.');
+		return $this->getId();
 	}
 
 	/**
@@ -43,7 +44,8 @@ class SuppFile extends PaperFile {
 	 * @param $suppFileId int
 	 */
 	function setSuppFileId($suppFileId) {
-		return $this->setData('suppFileId', $suppFileId);
+		if (Config::getVar('debug', 'deprecation_warnings')) trigger_error('Deprecated function.');
+		return $this->setId($suppFileId);
 	}
 
 	/**
@@ -405,7 +407,7 @@ class SuppFile extends PaperFile {
 			$publicSuppFileId = $this->getPublicSuppFileId();
 			if (!empty($publicSuppFileId)) return $publicSuppFileId;
 		}
-		return $this->getSuppFileId();
+		return $this->getId();
 	}
 }
 

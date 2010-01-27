@@ -230,13 +230,13 @@ class SchedulerHandler extends ManagerHandler {
 		if ($room) $building =& $buildingDao->getBuilding($room->getBuildingId());
 
 		if (	$room && $building && $schedConf &&
-			$room->getBuildingId() == $building->getBuildingId() &&
+			$room->getBuildingId() == $building->getId() &&
 			$building->getSchedConfId() == $schedConf->getId()
 		) {
 			$roomDao->deleteRoomById($roomId);
 		}
 
-		if ($building) Request::redirect(null, null, null, 'rooms', array($building->getBuildingId()));
+		if ($building) Request::redirect(null, null, null, 'rooms', array($building->getId()));
 		else Request::redirect(null, null, null, 'scheduler');
 	}
 
@@ -264,13 +264,13 @@ class SchedulerHandler extends ManagerHandler {
 			((
 				!$room && $roomId == 0
 			) || (
-				$room && $room->getBuildingId() == $building->getBuildingId()
+				$room && $room->getBuildingId() == $building->getId()
 			))
 		) {
 			import('manager.form.scheduler.RoomForm');
 
 			$templateMgr =& TemplateManager::getManager();
-			$templateMgr->append('pageHierarchy', array(Request::url(null, null, 'manager', 'rooms', array($building->getBuildingId())), 'manager.scheduler.rooms'));
+			$templateMgr->append('pageHierarchy', array(Request::url(null, null, 'manager', 'rooms', array($building->getId())), 'manager.scheduler.rooms'));
 
 			if ($roomId == null) {
 				$templateMgr->assign('roomTitle', 'manager.scheduler.room.createRoomShort');

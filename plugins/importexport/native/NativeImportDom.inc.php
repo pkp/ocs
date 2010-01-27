@@ -390,17 +390,17 @@ class NativeImportDom {
 		import('paper.log.PaperLog');
 		import('paper.log.PaperEventLogEntry');
 		PaperLog::logEvent(
-			$paper->getPaperId(),
+			$paper->getId(),
 			PAPER_LOG_PAPER_IMPORT,
 			PAPER_LOG_DEFAULT,
 			0,
 			'log.imported',
-			array('userName' => $user->getFullName(), 'paperId' => $paper->getPaperId())
+			array('userName' => $user->getFullName(), 'paperId' => $paper->getId())
 		);
 
 		// Insert published paper entry.
 		$publishedPaper = new PublishedPaper();
-		$publishedPaper->setPaperId($paper->getPaperId());
+		$publishedPaper->setPaperId($paper->getId());
 		$publishedPaper->setSchedConfId($schedConf->getId());
 
 		if (($node = $paperNode->getChildByName('date_published'))) {
@@ -423,7 +423,7 @@ class NativeImportDom {
 
 		/* --- Galleys (html or otherwise handled simultaneously) --- */
 		import('file.PaperFileManager');
-		$paperFileManager = new PaperFileManager($paper->getPaperId());
+		$paperFileManager = new PaperFileManager($paper->getId());
 
 		/* --- Handle galleys --- */
 		$hasErrors = false;
@@ -504,7 +504,7 @@ class NativeImportDom {
 		if ($isHtml) $galley = new PaperHtmlGalley();
 		else $galley = new PaperGalley();
 
-		$galley->setPaperId($paper->getPaperId());
+		$galley->setPaperId($paper->getId());
 		$galley->setSequence($galleyCount);
 
 		// just conference supported locales?
@@ -616,7 +616,7 @@ class NativeImportDom {
 				$galley->setStyleFileId($fileId);
 				$paperGalleyDao->updateGalley($galley);
 			} else {
-				$paperGalleyDao->insertGalleyImage($galley->getGalleyId(), $fileId);
+				$paperGalleyDao->insertGalleyImage($galley->getId(), $fileId);
 			}
 		}
 		return true;
@@ -631,7 +631,7 @@ class NativeImportDom {
 		$suppFileDao =& DAORegistry::getDAO('SuppFileDAO');
 			
 		$suppFile = new SuppFile();
-		$suppFile->setPaperId($paper->getPaperId());
+		$suppFile->setPaperId($paper->getId());
 
 		for ($index=0; ($node = $suppNode->getChildByName('title', $index)); $index++) {
 			$locale = $node->getAttribute('locale');

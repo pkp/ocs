@@ -871,7 +871,7 @@ class ImportOCS1 {
 			}
 
 			$schedConfId = $schedConf->getId();
-			$paperId = $paper->getPaperId();
+			$paperId = $paper->getId();
 			$reviewerId = $reviewer->getId();
 
 			$reviewAssignment = new ReviewAssignment();

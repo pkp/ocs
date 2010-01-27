@@ -89,7 +89,7 @@ class SpecialEventDAO extends DAO {
 	 */
 	function &_returnSpecialEventFromRow(&$row) {
 		$specialEvent = new SpecialEvent();
-		$specialEvent->setSpecialEventId($row['special_event_id']);
+		$specialEvent->setId($row['special_event_id']);
 		$specialEvent->setSchedConfId($row['sched_conf_id']);
 		$specialEvent->setStartTime($this->datetimeFromDB($row['start_time']));
 		$specialEvent->setEndTime($this->datetimeFromDB($row['end_time']));
@@ -104,7 +104,7 @@ class SpecialEventDAO extends DAO {
 	 */
 	function updateLocaleFields(&$specialEvent) {
 		$this->updateDataObjectSettings('special_event_settings', $specialEvent, array(
-			'special_event_id' => $specialEvent->getSpecialEventId()
+			'special_event_id' => $specialEvent->getId()
 		));
 	}
 
@@ -124,9 +124,9 @@ class SpecialEventDAO extends DAO {
 				(int) $specialEvent->getSchedConfId()
 			)
 		);
-		$specialEvent->setSpecialEventId($this->getInsertSpecialEventId());
+		$specialEvent->setId($this->getInsertSpecialEventId());
 		$this->updateLocaleFields($specialEvent);
-		return $specialEvent->getSpecialEventId();
+		return $specialEvent->getId();
 	}
 
 	/**
@@ -144,7 +144,7 @@ class SpecialEventDAO extends DAO {
 				$this->datetimeToDB($specialEvent->getStartTime()), $this->datetimeToDB($specialEvent->getEndTime())
 			), array(
 				(int) $specialEvent->getSchedConfId(),
-				(int) $specialEvent->getSpecialEventId()
+				(int) $specialEvent->getId()
 			)
 		);
 		$this->updateLocaleFields($specialEvent);
@@ -157,7 +157,7 @@ class SpecialEventDAO extends DAO {
 	 * @return boolean
 	 */
 	function deleteSpecialEvent($specialEvent) {
-		return $this->deleteSpecialEventById($specialEvent->getSpecialEventId());
+		return $this->deleteSpecialEventById($specialEvent->getId());
 	}
 
 	/**

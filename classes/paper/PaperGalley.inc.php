@@ -67,7 +67,8 @@ class PaperGalley extends PaperFile {
 	 * @return int
 	 */
 	function getGalleyId() {
-		return $this->getData('galleyId');
+		if (Config::getVar('debug', 'deprecation_warnings')) trigger_error('Deprecated function.');
+		return $this->getId();
 	}
 
 	/**
@@ -75,7 +76,8 @@ class PaperGalley extends PaperFile {
 	 * @param $galleyId int
 	 */
 	function setGalleyId($galleyId) {
-		return $this->setData('galleyId', $galleyId);
+		if (Config::getVar('debug', 'deprecation_warnings')) trigger_error('Deprecated function.');
+		return $this->setId($galleyId);
 	}
 
 	/**

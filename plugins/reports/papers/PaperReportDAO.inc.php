@@ -126,12 +126,12 @@ class PaperReportDAO extends DAO {
 					'biography',
 					$locale,
 					$schedConfId,
-					$paper->getPaperId()
+					$paper->getId()
 				)
 			);
 			$authorIterator = new DBRowIterator($result);
 			unset($result);
-			$authorsReturner[$paper->getPaperId()] = $authorIterator;
+			$authorsReturner[$paper->getId()] = $authorIterator;
 			unset($authorIterator);
 			$index++;
 			unset($paper);

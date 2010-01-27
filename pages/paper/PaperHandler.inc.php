@@ -54,7 +54,7 @@ class PaperHandler extends Handler {
 		$conferenceRt = $rtDao->getConferenceRTByConference($conference);
 
 		$galleyDao =& DAORegistry::getDAO('PaperGalleyDAO');
-		$galley =& $galleyDao->getGalley($galleyId, $paper->getPaperId());
+		$galley =& $galleyDao->getGalley($galleyId, $paper->getId());
 
 		if (!$conferenceRt->getEnabled()) {
 			if (!$galley || $galley->isHtmlGalley()) return PaperHandler::viewPaper($args, $request);
@@ -91,7 +91,7 @@ class PaperHandler extends Handler {
 
 		if (!$galley) {
 			$galleyDao =& DAORegistry::getDAO('PaperGalleyDAO');
-			$galley =& $galleyDao->getGalley($galleyId, $paper->getPaperId());
+			$galley =& $galleyDao->getGalley($galleyId, $paper->getId());
 		}
 
 		if (!$galley) $request->redirect(null, null, 'view', $paperId);
@@ -121,7 +121,7 @@ class PaperHandler extends Handler {
 
 		if (!$galley) {
 			$galleyDao =& DAORegistry::getDAO('PaperGalleyDAO');
-			$galley =& $galleyDao->getGalley($galleyId, $paper->getPaperId());
+			$galley =& $galleyDao->getGalley($galleyId, $paper->getId());
 		}
 
 		if (!$galley) $request->redirect(null, null, 'view', $paperId);
@@ -173,11 +173,11 @@ class PaperHandler extends Handler {
 		$commentsAllowAnonymous = $conference->getSetting('commentsAllowAnonymous');
 
 		if ($enableComments && $paper->getEnableComments()) {
-			$comments =& $commentDao->getRootCommentsByPaperId($paper->getPaperId());
+			$comments =& $commentDao->getRootCommentsByPaperId($paper->getId());
 		}
 
 		$paperGalleyDao =& DAORegistry::getDAO('PaperGalleyDAO');
-		$galley =& $paperGalleyDao->getGalley($galleyId, $paper->getPaperId());
+		$galley =& $paperGalleyDao->getGalley($galleyId, $paper->getId());
 
 		$templateMgr =& TemplateManager::getManager();
 
@@ -191,7 +191,7 @@ class PaperHandler extends Handler {
 
 			// Increment the published paper's abstract views count
 			$publishedPaperDao =& DAORegistry::getDAO('PublishedPaperDAO');
-			$publishedPaperDao->incrementViewsByPaperId($paper->getPaperId());
+			$publishedPaperDao->incrementViewsByPaperId($paper->getId());
 		} else {
 			// Increment the galley's views count
 			$paperGalleyDao->incrementViews($galleyId);
@@ -199,8 +199,8 @@ class PaperHandler extends Handler {
 			// Use the paper's CSS file, if set.
 			if ($galley->isHTMLGalley() && $styleFile =& $galley->getStyleFile()) {
 				$templateMgr->addStyleSheet($router->url($request, null, null, 'paper', 'viewFile', array(
-					$paper->getPaperId(),
-					$galley->getGalleyId(),
+					$paper->getId(),
+					$galley->getId(),
 					$styleFile->getFileId()
 				)));
 			}
@@ -266,7 +266,7 @@ class PaperHandler extends Handler {
 
 		// The RST needs to know whether this galley is HTML or not. Fetch the galley.
 		$paperGalleyDao =& DAORegistry::getDAO('PaperGalleyDAO');
-		$galley =& $paperGalleyDao->getGalley($galleyId, $paper->getPaperId());
+		$galley =& $paperGalleyDao->getGalley($galleyId, $paper->getId());
 
 		$trackDao =& DAORegistry::getDAO('TrackDAO');
 		$track =& $trackDao->getTrack($paper->getTrackId());
@@ -332,7 +332,7 @@ class PaperHandler extends Handler {
 		$this->setupTemplate();
 
 		$galleyDao =& DAORegistry::getDAO('PaperGalleyDAO');
-		$galley =& $galleyDao->getGalley($galleyId, $paper->getPaperId());
+		$galley =& $galleyDao->getGalley($galleyId, $paper->getId());
 
 		if (!$galley) $request->redirect(null, null, null, null, 'view', $paperId);
 
@@ -347,7 +347,7 @@ class PaperHandler extends Handler {
 
 		// reuse track director's view file function
 		import('submission.trackDirector.TrackDirectorAction');
-		TrackDirectorAction::viewFile($paper->getPaperId(), $fileId);
+		TrackDirectorAction::viewFile($paper->getId(), $fileId);
 	}
 
 	/**
@@ -363,12 +363,12 @@ class PaperHandler extends Handler {
 		$paper =& $this->paper;
 
 		$galleyDao =& DAORegistry::getDAO('PaperGalleyDAO');
-		$galley =& $galleyDao->getGalley($galleyId, $paper->getPaperId());
+		$galley =& $galleyDao->getGalley($galleyId, $paper->getId());
 		$galleyDao->incrementViews($galleyId);
 
 		if ($paper && $galley) {
 			import('file.PaperFileManager');
-			$paperFileManager = new PaperFileManager($paper->getPaperId());
+			$paperFileManager = new PaperFileManager($paper->getId());
 			$paperFileManager->downloadFile($galley->getFileId());
 		}
 	}
@@ -390,14 +390,14 @@ class PaperHandler extends Handler {
 
 		$suppFileDao =& DAORegistry::getDAO('SuppFileDAO');
 		if ($schedConf->getSetting('enablePublicSuppFileId')) {
-			$suppFile =& $suppFileDao->getSuppFileByBestSuppFileId($paper->getPaperId(), $suppId);
+			$suppFile =& $suppFileDao->getSuppFileByBestSuppFileId($paper->getId(), $suppId);
 		} else {
-			$suppFile =& $suppFileDao->getSuppFile((int) $suppId, $paper->getPaperId());
+			$suppFile =& $suppFileDao->getSuppFile((int) $suppId, $paper->getId());
 		}
 
 		if ($paper && $suppFile) {
 			import('file.PaperFileManager');
-			$paperFileManager = new PaperFileManager($paper->getPaperId());
+			$paperFileManager = new PaperFileManager($paper->getId());
 			if ($suppFile->isInlineable()) {
 				$paperFileManager->viewFile($suppFile->getFileId());
 			} else {

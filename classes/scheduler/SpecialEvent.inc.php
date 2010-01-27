@@ -29,7 +29,8 @@ class SpecialEvent extends DataObject {
 	 * @return int
 	 */
 	function getSpecialEventId() {
-		return $this->getData('specialEventId');
+		if (Config::getVar('debug', 'deprecation_warnings')) trigger_error('Deprecated function.');
+		return $this->getId();
 	}
 
 	/**
@@ -37,7 +38,8 @@ class SpecialEvent extends DataObject {
 	 * @param $specialEventId int
 	 */
 	function setSpecialEventId($specialEventId) {
-		return $this->setData('specialEventId', $specialEventId);
+		if (Config::getVar('debug', 'deprecation_warnings')) trigger_error('Deprecated function.');
+		return $this->setId($specialEventId);
 	}
 
 	/**

@@ -59,7 +59,7 @@
 		{if $conferenceRt->getCaptureCite()}<li><a href="javascript:openRTWindow('{url page="rt" op="captureCite" path=$paperId|to_array:$galleyId}');">{translate key="rt.captureCite"}</a></li>{/if}
 		{if $conferenceRt->getViewMetadata()}<li><a href="javascript:openRTWindow('{url page="rt" op="metadata" path=$paperId|to_array:$galleyId}');">{translate key="rt.viewMetadata"}</a></li>{/if}
 		{if $conferenceRt->getSupplementaryFiles() && $paper->getSuppFiles()}<li><a href="javascript:openRTWindow('{url page="rt" op="suppFiles" path=$paperId|to_array:$galleyId}');">{translate key="rt.suppFiles"}</a></li>{/if}
-		{if $conferenceRt->getPrinterFriendly()}<li><a href="{if !$galley || $galley->isHtmlGalley()}javascript:openRTWindow('{url page="rt" op="printerFriendly" path=$paperId|to_array:$galleyId}');{else}{url page="paper" op="download" path=$paperId|to_array:$galley->getGalleyId()}{/if}">{translate key="rt.printVersion"}</a></li>{/if}
+		{if $conferenceRt->getPrinterFriendly()}<li><a href="{if !$galley || $galley->isHtmlGalley()}javascript:openRTWindow('{url page="rt" op="printerFriendly" path=$paperId|to_array:$galleyId}');{else}{url page="paper" op="download" path=$paperId|to_array:$galley->getId()}{/if}">{translate key="rt.printVersion"}</a></li>{/if}
 		{if $conferenceRt->getDefineTerms() && $version}
 			{foreach from=$version->getContexts() item=context}
 				{if $context->getDefineTerms()}
@@ -89,7 +89,7 @@
 		{/if}
 		{assign var=rtAddComment value=$conferenceRt->getAddComment()}
 		{if $rtAddComment && $postingAllowed && !$postingDisabled}
-			<li><a href="{url page="comment" op="add" path=$paper->getPaperId()|to_array:$galleyId}" target="_parent">{translate key="rt.addComment"}</a></li>
+			<li><a href="{url page="comment" op="add" path=$paper->getId()|to_array:$galleyId}" target="_parent">{translate key="rt.addComment"}</a></li>
 		{elseif $rtAddComment && $commentsClosed}
 			{translate key="rt.addComment"}†
 			{assign var=needsCommentsNote value=1}
@@ -98,7 +98,7 @@
 			{assign var=needsLoginNote value=1}
 		{/if}
 		{if $conferenceRt->getFindingReferences()}
-			<li><a href="javascript:openRTWindow('{url page="rt" op="findingReferences" path=$paper->getPaperId()|to_array:$galleyId}');">{translate key="rt.findingReferences"}</a></li>
+			<li><a href="javascript:openRTWindow('{url page="rt" op="findingReferences" path=$paper->getId()|to_array:$galleyId}');">{translate key="rt.findingReferences"}</a></li>
 		{/if}
 	</ul>
 </div>

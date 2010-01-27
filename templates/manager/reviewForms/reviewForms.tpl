@@ -37,19 +37,19 @@
 		<td>{$reviewForm->getIncompleteCount()|escape}</td>
 		<td>{$reviewForm->getCompleteCount()|escape}</td>
 		<td align="right" class="nowrap">
-			{if $canEdit}<a href="{url op="editReviewForm" path=$reviewForm->getReviewFormId()}" class="action">{translate key="common.edit"}</a>&nbsp;|{/if}
+			{if $canEdit}<a href="{url op="editReviewForm" path=$reviewForm->getId()}" class="action">{translate key="common.edit"}</a>&nbsp;|{/if}
 			{strip}
 				{if $reviewForm->getActive()}
-					<a href="{url op="deactivateReviewForm" path=$reviewForm->getReviewFormId()}" class="action">{translate key="common.deactivate"}</a>
+					<a href="{url op="deactivateReviewForm" path=$reviewForm->getId()}" class="action">{translate key="common.deactivate"}</a>
 				{else}
-					<a href="{url op="activateReviewForm" path=$reviewForm->getReviewFormId()}" class="action">{translate key="common.activate"}</a>
+					<a href="{url op="activateReviewForm" path=$reviewForm->getId()}" class="action">{translate key="common.activate"}</a>
 				{/if}
 				&nbsp;|
 			{/strip}
-			{if !$canEdit}<a href="{url op="copyReviewForm" path=$reviewForm->getReviewFormId()}" class="action">{translate key="common.copy"}</a>&nbsp;|{/if}
-			<a href="{url op="previewReviewForm" path=$reviewForm->getReviewFormId()}" class="action">{translate key="common.preview"}</a>&nbsp;|
-			{if $canEdit}<a href="{url op="deleteReviewForm" path=$reviewForm->getReviewFormId()}" onclick="return confirm('{translate|escape:"jsparam" key="manager.reviewForms.confirmDeleteUnpublished"}')" class="action">{translate key="common.delete"}</a>&nbsp;|{/if}
-			<a href="{url op="moveReviewForm" d=u reviewFormId=$reviewForm->getReviewFormId()}" class="action">&uarr;</a>&nbsp;<a href="{url op="moveReviewForm" d=d reviewFormId=$reviewForm->getReviewFormId()}" class="action">&darr;</a>
+			{if !$canEdit}<a href="{url op="copyReviewForm" path=$reviewForm->getId()}" class="action">{translate key="common.copy"}</a>&nbsp;|{/if}
+			<a href="{url op="previewReviewForm" path=$reviewForm->getId()}" class="action">{translate key="common.preview"}</a>&nbsp;|
+			{if $canEdit}<a href="{url op="deleteReviewForm" path=$reviewForm->getId()}" onclick="return confirm('{translate|escape:"jsparam" key="manager.reviewForms.confirmDeleteUnpublished"}')" class="action">{translate key="common.delete"}</a>&nbsp;|{/if}
+			<a href="{url op="moveReviewForm" d=u reviewFormId=$reviewForm->getId()}" class="action">&uarr;</a>&nbsp;<a href="{url op="moveReviewForm" d=d reviewFormId=$reviewForm->getId()}" class="action">&darr;</a>
 		</td>
 	</tr>
 	<tr>

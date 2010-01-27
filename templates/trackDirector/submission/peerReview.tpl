@@ -88,7 +88,7 @@
 				<td width="80%" class="value nowrap">
 					<form method="post" action="{url op="setSuppFileVisibility"}">
 						<input type="hidden" name="paperId" value="{$submission->getPaperId()}" />
-						<input type="hidden" name="fileId" value="{$suppFile->getSuppFileId()}" />
+						<input type="hidden" name="fileId" value="{$suppFile->getId()}" />
 						<a href="{url op="downloadFile" path=$submission->getPaperId()|to_array:$suppFile->getFileId():$suppFile->getRevision()}" class="file">{$suppFile->getFileName()|escape}</a>&nbsp;&nbsp;
 						{$suppFile->getDateModified()|date_format:$dateFormatShort}
 						<label for="show">{translate key="director.paper.showSuppFile"}</label>

@@ -101,7 +101,7 @@ class TrackForm extends Form {
 		$reviewForms =& $reviewFormDao->getConferenceActiveReviewForms($conference->getId());
 		$reviewFormOptions = array();
 		while ($reviewForm =& $reviewForms->next()) {
-			$reviewFormOptions[$reviewForm->getReviewFormId()] = $reviewForm->getReviewFormTitle();
+			$reviewFormOptions[$reviewForm->getId()] = $reviewForm->getReviewFormTitle();
 		}
 		$templateMgr->assign_by_ref('reviewFormOptions', $reviewFormOptions);
 

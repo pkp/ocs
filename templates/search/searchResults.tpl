@@ -87,7 +87,7 @@ function ensureKeyword() {
 	<td><a href="{url conference=$conference->getPath() schedConf=$schedConf->getPath()}">{$schedConf->getSchedConfTitle()|escape}</a></td>
 	<td width="30%">{$paper->getLocalizedTitle()|strip_unsafe_html}</td>
 	<td width="30%" align="right">
-		<a href="{url conference=$conference->getPath() schedConf=$schedConf->getPath() page="paper" op="view" path=$publishedPaper->getBestPaperId($conference)}" class="file">{translate key="paper.abstract"}</a>{foreach from=$publishedPaper->getLocalizedGalleys() item=galley name=galleyList}&nbsp;<a href="{url conference=$conference->getPath() schedConf=$schedConf->getPath() page="paper" op="view" path=$publishedPaper->getBestPaperId($conference)|to_array:$galley->getGalleyId()}" class="file">{$galley->getGalleyLabel()|escape}</a>{/foreach}
+		<a href="{url conference=$conference->getPath() schedConf=$schedConf->getPath() page="paper" op="view" path=$publishedPaper->getBestPaperId($conference)}" class="file">{translate key="paper.abstract"}</a>{foreach from=$publishedPaper->getLocalizedGalleys() item=galley name=galleyList}&nbsp;<a href="{url conference=$conference->getPath() schedConf=$schedConf->getPath() page="paper" op="view" path=$publishedPaper->getBestPaperId($conference)|to_array:$galley->getId()}" class="file">{$galley->getGalleyLabel()|escape}</a>{/foreach}
 	</td>
 </tr>
 <tr>

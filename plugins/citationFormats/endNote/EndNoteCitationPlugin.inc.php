@@ -49,7 +49,7 @@ class EndNoteCitationPlugin extends CitationPlugin {
 	 * @param $paper object
 	 */
 	function cite(&$paper) {
-		header('Content-Disposition: attachment; filename="' . $paper->getPaperId() . '-endNote.enw"');
+		header('Content-Disposition: attachment; filename="' . $paper->getId() . '-endNote.enw"');
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->display($this->getTemplatePath() . '/citation.tpl', 'application/x-endnote-refer');
 	}

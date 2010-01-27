@@ -263,7 +263,7 @@ class RTHandler extends PaperHandler {
 		}
 
 		$paperGalleyDao =& DAORegistry::getDAO('PaperGalleyDAO');
-		$galley =& $paperGalleyDao->getGalley($galleyId, $paper->getPaperId());
+		$galley =& $paperGalleyDao->getGalley($galleyId, $paper->getId());
 
 		$trackDao =& DAORegistry::getDAO('TrackDAO');
 		$track =& $trackDao->getTrack($paper->getTrackId());
@@ -422,7 +422,7 @@ class RTHandler extends PaperHandler {
 		$conferenceRt =& $rtDao->getConferenceRTByConference($conference);
 
 		$suppFileDao =& DAORegistry::getDAO('SuppFileDAO');
-		$suppFile = $suppFileDao->getSuppFile($suppFileId, $paper->getPaperId());
+		$suppFile = $suppFileDao->getSuppFile($suppFileId, $paper->getId());
 
 		if (!$conferenceRt || !$conferenceRt->getSupplementaryFiles() || !$suppFile) {
 			$request->redirect(null, null, $router->getRequestedPage($request));

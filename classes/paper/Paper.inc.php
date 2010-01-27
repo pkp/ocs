@@ -65,7 +65,7 @@ class Paper extends Submission {
 	 */
 	function addAuthor($author) {
 		if ($author->getPaperId() == null) {
-			$author->setPaperId($this->getPaperId());
+			$author->setPaperId($this->getId());
 		}
 		parent::addAuthor($author);
 	}
@@ -99,7 +99,8 @@ class Paper extends Submission {
 	 * @return int
 	 */
 	function getPaperId() {
-		return $this->getData('paperId');
+		if (Config::getVar('debug', 'deprecation_warnings')) trigger_error('Deprecated function.');
+		return $this->getId();
 	}
 
 	/**
@@ -107,7 +108,8 @@ class Paper extends Submission {
 	 * @param $paperId int
 	 */
 	function setPaperId($paperId) {
-		return $this->setData('paperId', $paperId);
+		if (Config::getVar('debug', 'deprecation_warnings')) trigger_error('Deprecated function.');
+		return $this->setId($paperId);
 	}
 
 	/**
@@ -490,7 +492,7 @@ class Paper extends Submission {
 	 * @return array User IDs
 	 */
 	function getAssociatedUserIds($authors = true, $reviewers = true, $trackDirectors = true, $directors = true) {
-		$paperId = $this->getPaperId();
+		$paperId = $this->getId();
 
 		$userIds = array();
 

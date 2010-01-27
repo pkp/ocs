@@ -24,7 +24,7 @@ class DirectorDecisionCommentForm extends CommentForm {
 	 * @param $paper object
 	 */
 	function DirectorDecisionCommentForm($paper, $roleId) {
-		parent::CommentForm($paper, COMMENT_TYPE_DIRECTOR_DECISION, $roleId, $paper->getPaperId());
+		parent::CommentForm($paper, COMMENT_TYPE_DIRECTOR_DECISION, $roleId, $paper->getId());
 	}
 
 	/**

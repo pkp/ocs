@@ -153,13 +153,13 @@ class ScheduleForm extends Form {
 		$schedConf =& Request::getSchedConf();
 		$buildings =& $buildingDao->getBuildingsBySchedConfId($schedConf->getId());
 		while ($building =& $buildings->next()) {
-			$buildingId = $building->getBuildingId();
+			$buildingId = $building->getId();
 			$rooms =& $roomDao->getRoomsByBuildingId($buildingId);
 			$buildingsAndRooms[$buildingId] = array(
 				'building' => &$building
 			);
 			while ($room =& $rooms->next()) {
-				$roomId = $room->getRoomId();
+				$roomId = $room->getId();
 				$buildingsAndRooms[$buildingId]['rooms'][$roomId] =& $room;
 				unset($room);
 			}
@@ -210,7 +210,7 @@ class ScheduleForm extends Form {
 		$schedConf =& Request::getSchedConf();
 		$publishedPapersArray = array();
 		while ($publishedPaper =& $publishedPapers->next()) {
-			$paperId = $publishedPaper->getPaperId();
+			$paperId = $publishedPaper->getId();
 			if (isset($changeList[$paperId])) foreach ($changeList[$paperId] as $type => $newValue) switch ($type) {
 				case 'location':
 					$publishedPaper->setRoomId((int) $newValue);
@@ -304,13 +304,13 @@ class ScheduleForm extends Form {
 			$startTime = $publishedPaper->getStartTime();
 			$endTime = $publishedPaper->getEndTime();
 			if (($startTime === null || $endTime === null) && ($startTime || $endTime)) {
-				$fieldName = 'paper' . $publishedPaper->getPaperId() . 'StartTime';
+				$fieldName = 'paper' . $publishedPaper->getId() . 'StartTime';
 				$this->addError($fieldName, Locale::translate('manager.scheduler.checkTimes'));
 				$this->addErrorField($fieldName);
 				$success = false;
 			} elseif ($startTime && $endTime && strtotime($startTime) >= strtotime($endTime)) {
-				$fieldName = 'paper' . $publishedPaper->getPaperId() . 'StartTime';
-				$this->addError('paper' . $publishedPaper->getPaperId() . 'StartTime', Locale::translate('manager.scheduler.checkTimes'));
+				$fieldName = 'paper' . $publishedPaper->getId() . 'StartTime';
+				$this->addError('paper' . $publishedPaper->getId() . 'StartTime', Locale::translate('manager.scheduler.checkTimes'));
 				$this->addErrorField($fieldName);
 				$success = false;
 			}
@@ -336,7 +336,7 @@ class ScheduleForm extends Form {
 		$publishedPaperDao =& DAORegistry::getDAO('PublishedPaperDAO'); // For modifying room IDs
 		$paperDao =& DAORegistry::getDAO('PaperDAO'); // For modifying times/dates
 		while ($publishedPaper =& $publishedPapers->next()) {
-			$paperId = $publishedPaper->getPaperId();
+			$paperId = $publishedPaper->getId();
 			if (isset($modifiedPapersById[$paperId])) {
 				// Check to see if times have been modified
 				$modifiedPaper =& $modifiedPapersById[$paperId];

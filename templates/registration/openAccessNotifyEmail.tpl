@@ -57,7 +57,7 @@ Content-Transfer-Encoding: quoted-printable
 							{if $mayViewPaper}
 								{foreach from=$paper->getGalleys() item=galley name=galleyList}
 									&nbsp;
-									<a href="{url page="paper" op="view" path=$paper->getBestPaperId($currentSchedConf)|to_array:$galley->getGalleyId()}" class="file">{$galley->getGalleyLabel()|escape}</a>
+									<a href="{url page="paper" op="view" path=$paper->getBestPaperId($currentSchedConf)|to_array:$galley->getId()}" class="file">{$galley->getGalleyLabel()|escape}</a>
 								{/foreach}
 							{/if}
 						</td>

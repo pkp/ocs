@@ -48,7 +48,7 @@ class TimeBlockForm extends Form {
 
 		$timeBlocks =& $timeBlockDao->getTimeBlocksBySchedConfId($schedConf->getId());
 		while ($timeBlock =& $timeBlocks->next()) {
-			if ($this->timeBlockId != $timeBlock->getTimeBlockId()) {
+			if ($this->timeBlockId != $timeBlock->getId()) {
 				$bStart = strtotime($timeBlock->getStartTime());
 				$bEnd = strtotime($timeBlock->getEndTime());
 				if (
@@ -165,7 +165,7 @@ class TimeBlockForm extends Form {
 		$timeBlock->setEndTime($this->getData('endTime'));
 
 		// Update or insert time block
-		if ($timeBlock->getTimeBlockId() != null) {
+		if ($timeBlock->getId() != null) {
 			$timeBlockDao->updateTimeBlock($timeBlock);
 		} else {
 			$timeBlockDao->insertTimeBlock($timeBlock);

@@ -105,7 +105,7 @@ class SuppFileDAO extends DAO {
 	 */
 	function updateLocaleFields(&$suppFile) {
 		$this->updateDataObjectSettings('paper_supp_file_settings', $suppFile, array(
-			'supp_id' => $suppFile->getSuppFileId()
+			'supp_id' => $suppFile->getId()
 		));
 	}
 
@@ -169,9 +169,9 @@ class SuppFileDAO extends DAO {
 				$suppFile->getSequence()
 			)
 		);
-		$suppFile->setSuppFileId($this->getInsertSuppFileId());
+		$suppFile->setId($this->getInsertSuppFileId());
 		$this->updateLocaleFields($suppFile);
-		return $suppFile->getSuppFileId();
+		return $suppFile->getId();
 	}
 
 	/**
@@ -198,7 +198,7 @@ class SuppFileDAO extends DAO {
 				$suppFile->getLanguage(),
 				$suppFile->getShowReviewers(),
 				$suppFile->getSequence(),
-				$suppFile->getSuppFileId()
+				$suppFile->getId()
 			)
 		);
 		$this->updateLocaleFields($suppFile);
@@ -210,7 +210,7 @@ class SuppFileDAO extends DAO {
 	 * @param $suppFile SuppFile
 	 */
 	function deleteSuppFile(&$suppFile) {
-		return $this->deleteSuppFileById($suppFile->getSuppFileId());
+		return $this->deleteSuppFileById($suppFile->getId());
 	}
 
 	/**

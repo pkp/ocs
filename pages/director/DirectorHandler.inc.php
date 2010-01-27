@@ -228,7 +228,7 @@ class DirectorHandler extends TrackDirectorHandler {
 
 			if ($paper && $paper->getSchedConfId() === $schedConf->getId()) {
 				$editAssignmentDao->deleteEditAssignmentById($editAssignment->getEditId());
-				Request::redirect(null, null, null, 'submission', $paper->getPaperId());
+				Request::redirect(null, null, null, 'submission', $paper->getId());
 			}
 		}
 

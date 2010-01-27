@@ -52,11 +52,11 @@ function toggleChecked() {
 	{assign var=paper value=$paperData.paper}
 	{assign var=track value=$paperData.track}
 	<tr valign="top">
-		<td><input type="checkbox" name="paperId[]" value="{$paper->getPaperId()}"/></td>
+		<td><input type="checkbox" name="paperId[]" value="{$paper->getId()}"/></td>
 		<td>{$track->getLocalizedTitle()}</td>
 		<td>{$paper->getLocalizedTitle()|strip_unsafe_html}</td>
 		<td>{$paper->getAuthorString()|escape}</td>
-		<td align="right"><a href="{plugin_url path="exportPaper"|to_array:$paper->getPaperId()}" class="action">{translate key="common.export"}</a></td>
+		<td align="right"><a href="{plugin_url path="exportPaper"|to_array:$paper->getId()}" class="action">{translate key="common.export"}</a></td>
 	</tr>
 	<tr>
 		<td colspan="5" class="{if $papers->eof()}end{/if}separator">&nbsp;</td>

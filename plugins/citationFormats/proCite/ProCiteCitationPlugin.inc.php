@@ -49,7 +49,7 @@ class ProCiteCitationPlugin extends CitationPlugin {
 	 * @param $paper object
 	 */
 	function cite(&$paper) {
-		header('Content-Disposition: attachment; filename="' . $paper->getPaperId() . '-proCite.ris"');
+		header('Content-Disposition: attachment; filename="' . $paper->getId() . '-proCite.ris"');
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->display($this->getTemplatePath() . '/citation.tpl', 'application/x-Research-Info-Systems');
 	}

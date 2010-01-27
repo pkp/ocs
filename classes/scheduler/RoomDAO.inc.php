@@ -77,7 +77,7 @@ class RoomDAO extends DAO {
 	 */
 	function &_returnRoomFromRow(&$row) {
 		$room = new Room();
-		$room->setRoomId($row['room_id']);
+		$room->setId($row['room_id']);
 		$room->setBuildingId($row['building_id']);
 		$this->getDataObjectSettings('room_settings', 'room_id', $row['room_id'], $room);
 
@@ -90,7 +90,7 @@ class RoomDAO extends DAO {
 	 */
 	function updateLocaleFields(&$room) {
 		$this->updateDataObjectSettings('room_settings', $room, array(
-			'room_id' => $room->getRoomId()
+			'room_id' => $room->getId()
 		));
 	}
 
@@ -109,9 +109,9 @@ class RoomDAO extends DAO {
 				$room->getBuildingId()
 			)
 		);
-		$room->setRoomId($this->getInsertRoomId());
+		$room->setId($this->getInsertRoomId());
 		$this->updateLocaleFields($room);
-		return $room->getRoomId();
+		return $room->getId();
 	}
 
 	/**
@@ -127,7 +127,7 @@ class RoomDAO extends DAO {
 				WHERE room_id = ?'),
 			array(
 				$room->getBuildingId(),
-				$room->getRoomId()
+				$room->getId()
 			)
 		);
 		$this->updateLocaleFields($room);
@@ -140,7 +140,7 @@ class RoomDAO extends DAO {
 	 * @return boolean
 	 */
 	function deleteRoom($room) {
-		return $this->deleteRoomById($room->getRoomId());
+		return $this->deleteRoomById($room->getId());
 	}
 
 	/**

@@ -106,7 +106,7 @@ class BuildingForm extends Form {
 		$building->setDescription($this->getData('description'), null); // Localized
 
 		// Update or insert building
-		if ($building->getBuildingId() != null) {
+		if ($building->getId() != null) {
 			$buildingDao->updateBuilding($building);
 		} else {
 			$buildingDao->insertBuilding($building);
