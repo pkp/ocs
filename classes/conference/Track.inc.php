@@ -60,7 +60,8 @@ class Track extends DataObject {
 	 * @return int
 	 */
 	function getTrackId() {
-		return $this->getData('trackId');
+		if (Config::getVar('debug', 'deprecation_warnings')) trigger_error('Deprecated function.');
+		return $this->getId();
 	}
 
 	/**
@@ -68,7 +69,8 @@ class Track extends DataObject {
 	 * @param $trackId int
 	 */
 	function setTrackId($trackId) {
-		return $this->setData('trackId', $trackId);
+		if (Config::getVar('debug', 'deprecation_warnings')) trigger_error('Deprecated function.');
+		return $this->setId($trackId);
 	}
 
 	/**

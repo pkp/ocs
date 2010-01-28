@@ -84,7 +84,7 @@
 {assign var="start" value="A"|ord}
 
 {foreach from=$stageAssignments item=reviewAssignment key=reviewKey}
-{assign var="reviewId" value=$reviewAssignment->getReviewId()}
+{assign var="reviewId" value=$reviewAssignment->getId()}
 
 {if !$reviewAssignment->getCancelled()}
 <div class="separator"></div>
@@ -145,7 +145,7 @@
 		<tr valign="top">
 			<td class="label">{translate key="submission.reviewFormResponse"}</td>
 			<td>
-				<a href="javascript:openComments('{url op="viewReviewFormResponse" path=$submission->getPaperId()|to_array:$reviewAssignment->getReviewId()}');" class="icon">{icon name="letter"}</a>
+				<a href="javascript:openComments('{url op="viewReviewFormResponse" path=$submission->getPaperId()|to_array:$reviewAssignment->getId()}');" class="icon">{icon name="letter"}</a>
 			</td>
 		</tr>
 	{/if}
@@ -154,9 +154,9 @@
 		<td colspan="4">
 			{if $reviewAssignment->getMostRecentPeerReviewComment()}
 				{assign var="comment" value=$reviewAssignment->getMostRecentPeerReviewComment()}
-				<a href="javascript:openComments('{url op="viewPeerReviewComments" path=$submission->getPaperId()|to_array:$reviewAssignment->getReviewId() anchor=$comment->getCommentId()}');" class="icon">{icon name="comment"}</a> {$comment->getDatePosted()|date_format:$dateFormatShort}
+				<a href="javascript:openComments('{url op="viewPeerReviewComments" path=$submission->getPaperId()|to_array:$reviewAssignment->getId() anchor=$comment->getId()}');" class="icon">{icon name="comment"}</a> {$comment->getDatePosted()|date_format:$dateFormatShort}
 			{else}
-				<a href="javascript:openComments('{url op="viewPeerReviewComments" path=$submission->getPaperId()|to_array:$reviewAssignment->getReviewId()}');" class="icon">{icon name="comment"}</a>{translate key="common.noComments"}
+				<a href="javascript:openComments('{url op="viewPeerReviewComments" path=$submission->getPaperId()|to_array:$reviewAssignment->getId()}');" class="icon">{icon name="comment"}</a>{translate key="common.noComments"}
 			{/if}
 		</td>
 	</tr>
@@ -167,9 +167,9 @@
 				{foreach from=$reviewAssignment->getReviewerFileRevisions() item=reviewerFile key=key}
 				<tr valign="top">
 					<td valign="middle">
-						<form name="authorView{$reviewAssignment->getReviewId()}" method="post" action="{url op="makeReviewerFileViewable"}">
+						<form name="authorView{$reviewAssignment->getId()}" method="post" action="{url op="makeReviewerFileViewable"}">
 							<a href="{url op="downloadFile" path=$submission->getPaperId()|to_array:$reviewerFile->getFileId():$reviewerFile->getRevision()}" class="file">{$reviewerFile->getFileName()|escape}</a>&nbsp;&nbsp;{$reviewerFile->getDateModified()|date_format:$dateFormatShort}
-							<input type="hidden" name="reviewId" value="{$reviewAssignment->getReviewId()}" />
+							<input type="hidden" name="reviewId" value="{$reviewAssignment->getId()}" />
 							<input type="hidden" name="paperId" value="{$submission->getPaperId()}" />
 							<input type="hidden" name="fileId" value="{$reviewerFile->getFileId()}" />
 							<input type="hidden" name="revision" value="{$reviewerFile->getRevision()}" />
@@ -217,7 +217,7 @@
 			{translate key="submission.directorAuthorRecord"}
 			{if $submission->getMostRecentDirectorDecisionComment()}
 				{assign var="comment" value=$submission->getMostRecentDirectorDecisionComment()}
-				<a href="javascript:openComments('{url op="viewDirectorDecisionComments" path=$submission->getPaperId() anchor=$comment->getCommentId()}');" class="icon">{icon name="comment"}</a> {$comment->getDatePosted()|date_format:$dateFormatShort}
+				<a href="javascript:openComments('{url op="viewDirectorDecisionComments" path=$submission->getPaperId() anchor=$comment->getId()}');" class="icon">{icon name="comment"}</a> {$comment->getDatePosted()|date_format:$dateFormatShort}
 			{else}
 				<a href="javascript:openComments('{url op="viewDirectorDecisionComments" path=$submission->getPaperId()}');" class="icon">{icon name="comment"}</a>{translate key="common.noComments"}
 			{/if}

@@ -87,7 +87,7 @@ class TrackDirectorSubmission extends Paper {
 
 		foreach($this->getReviewAssignments() as $stageKey => $reviews) {
 			foreach ($reviews as $reviewKey => $review) {
-				if($review->getReviewId() == $reviewId) {
+				if($review->getId() == $reviewId) {
 					$this->removedReviewAssignments[] =& $this->reviewAssignments[$stageKey][$reviewKey];
 					unset($this->reviewAssignments[$stageKey][$reviewKey]);
 					return true;
@@ -105,7 +105,7 @@ class TrackDirectorSubmission extends Paper {
 		$reviewAssignments = array();
 		$stageReviewAssignments = $this->reviewAssignments[$reviewAssignment->getStage()];
 		for ($i=0, $count=count($stageReviewAssignments); $i < $count; $i++) {
-			if ($stageReviewAssignments[$i]->getReviewId() == $reviewAssignment->getReviewId()) {
+			if ($stageReviewAssignments[$i]->getReviewId() == $reviewAssignment->getId()) {
 				array_push($reviewAssignments, $reviewAssignment);
 			} else {
 				array_push($reviewAssignments, $stageReviewAssignments[$i]);

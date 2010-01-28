@@ -25,7 +25,7 @@
 
 	{assign var="hasDirectors" value=0}
 	{foreach from=$trackDirectors item=trackTrackDirectors key=key}
-		{if $key == $track->getTrackId()}
+		{if $key == $track->getId()}
 			{foreach from=$trackTrackDirectors item=trackDirector}
 				{if 0 == $hasDirectors++}
 				{translate key="user.role.directors"}

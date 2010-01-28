@@ -45,7 +45,7 @@ class NativeExportDom {
 		}
 
 		$publishedPaperDao =& DAORegistry::getDAO('PublishedPaperDAO');
-		foreach ($publishedPaperDao->getPublishedPapersByTrackId($track->getTrackId(), $schedConf->getId()) as $paper) {
+		foreach ($publishedPaperDao->getPublishedPapersByTrackId($track->getId(), $schedConf->getId()) as $paper) {
 			$paperNode =& NativeExportDom::generatePaperDom($doc, $schedConf, $track, $paper);
 			XMLCustomWriter::appendChild($root, $paperNode);
 			unset($paperNode);

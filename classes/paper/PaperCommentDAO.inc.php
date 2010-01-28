@@ -143,7 +143,7 @@ class PaperCommentDAO extends DAO {
 	 */
 	function &_returnPaperCommentFromRow($row) {
 		$paperComment = new PaperComment();
-		$paperComment->setCommentId($row['comment_id']);
+		$paperComment->setId($row['comment_id']);
 		$paperComment->setCommentType($row['comment_type']);
 		$paperComment->setRoleId($row['role_id']);
 		$paperComment->setPaperId($row['paper_id']);
@@ -184,8 +184,8 @@ class PaperCommentDAO extends DAO {
 			)
 		);
 
-		$paperComment->setCommentId($this->getInsertPaperCommentId());
-		return $paperComment->getCommentId();		
+		$paperComment->setId($this->getInsertPaperCommentId());
+		return $paperComment->getId();		
 	}
 
 	/**
@@ -201,7 +201,7 @@ class PaperCommentDAO extends DAO {
 	 * @param PaperComment object
 	 */
 	function deletePaperComment($paperComment) {
-		$this->deletePaperCommentById($paperComment->getCommentId());
+		$this->deletePaperCommentById($paperComment->getId());
 	}
 
 	/**
@@ -253,7 +253,7 @@ class PaperCommentDAO extends DAO {
 				$paperComment->getCommentTitle(),
 				$paperComment->getComments(),
 				$paperComment->getViewable() === null ? 1 : $paperComment->getViewable(),
-				$paperComment->getCommentId()
+				$paperComment->getId()
 			)
 		);
 	}

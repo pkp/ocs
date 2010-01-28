@@ -91,7 +91,7 @@ class SchedConfHandler extends Handler {
 		$templateMgr->assign_by_ref('tracks', $tracks);
 		$trackDirectors = array();
 		foreach ($tracks as $track) {
-			$trackDirectors[$track->getTrackId()] =& $trackDirectorsDao->getDirectorsByTrackId($conference->getId(), $track->getTrackId());
+			$trackDirectors[$track->getId()] =& $trackDirectorsDao->getDirectorsByTrackId($conference->getId(), $track->getId());
 		}
 		$templateMgr->assign_by_ref('trackDirectors', $trackDirectors);
 

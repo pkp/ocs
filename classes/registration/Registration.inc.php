@@ -37,7 +37,8 @@ class Registration extends DataObject {
 	 * @return int
 	 */
 	function getRegistrationId() {
-		return $this->getData('registrationId');
+		if (Config::getVar('debug', 'deprecation_warnings')) trigger_error('Deprecated function.');
+		return $this->getId();
 	}
 
 	/**
@@ -45,7 +46,8 @@ class Registration extends DataObject {
 	 * @param $registrationId int
 	 */
 	function setRegistrationId($registrationId) {
-		return $this->setData('registrationId', $registrationId);
+		if (Config::getVar('debug', 'deprecation_warnings')) trigger_error('Deprecated function.');
+		return $this->setId($registrationId);
 	}
 
 	/**
