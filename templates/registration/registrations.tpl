@@ -93,7 +93,7 @@ function sortSearch(heading, direction) {
 		<td>{$registration->getRegistrationTypeName()|escape}</td>
 		<td>{$registration->getDateRegistered()|date_format:$dateFormatShort}</td>
 		<td>{$registration->getDatePaid()|date_format:$dateFormatShort}</td>
-		<td><a href="{url op="editRegistration" path=$registration->getRegistrationId()}" class="action">{translate key="common.edit"}</a>&nbsp;|&nbsp;<a href="{url op="deleteRegistration" path=$registration->getRegistrationId()}" onclick="return confirm('{translate|escape:"jsparam" key="manager.registration.confirmDelete"}')" class="action">{translate key="common.delete"}</a></td>
+		<td><a href="{url op="editRegistration" path=$registration->getId()}" class="action">{translate key="common.edit"}</a>&nbsp;|&nbsp;<a href="{url op="deleteRegistration" path=$registration->getId()}" onclick="return confirm('{translate|escape:"jsparam" key="manager.registration.confirmDelete"}')" class="action">{translate key="common.delete"}</a></td>
 	</tr>
 	<tr>
 		<td colspan="5" class="{if $registrations->eof()}end{/if}separator">&nbsp;</td>

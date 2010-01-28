@@ -488,7 +488,7 @@ class OAIDAO extends DAO {
 		if (isset($trackSpec)) {
 			$track =& $this->trackDao->getTrackByAbbrev($trackSpec, $conference->getId());
 			if (isset($track)) {
-				$trackId = $track->getTrackId();
+				$trackId = $track->getId();
 			} else {
 				$trackId = 0;
 			}

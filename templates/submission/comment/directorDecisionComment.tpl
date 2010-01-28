@@ -21,9 +21,9 @@
 	</td>
 	<td width="75%">
 		{if $comment->getAuthorId() eq $userId and not $isLocked}
-			<div style="float: right"><a href="{url op="deleteComment" path=$paperId|to_array:$comment->getCommentId()}" onclick="return confirm('{translate|escape:"jsparam" key="submission.comments.confirmDelete"}')" class="action">{translate key="common.delete"}</a></div>
+			<div style="float: right"><a href="{url op="deleteComment" path=$paperId|to_array:$comment->getId()}" onclick="return confirm('{translate|escape:"jsparam" key="submission.comments.confirmDelete"}')" class="action">{translate key="common.delete"}</a></div>
 		{/if}
-		<div id="{$comment->getCommentId()}">
+		<div id="{$comment->getId()}">
 		{if $comment->getCommentTitle() neq ""}
 			<div class="commentTitle">{translate key="submission.comments.subject"}: {$comment->getCommentTitle()|escape}</div>
 		{/if}

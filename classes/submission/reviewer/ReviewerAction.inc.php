@@ -79,7 +79,7 @@ class ReviewerAction extends Action {
 				$entry->setEventType($decline?PAPER_LOG_REVIEW_DECLINE:PAPER_LOG_REVIEW_ACCEPT);
 				$entry->setLogMessage($decline?'log.review.reviewDeclined':'log.review.reviewAccepted', array('reviewerName' => $reviewer->getFullName(), 'paperId' => $reviewAssignment->getPaperId(), 'stage' => $reviewAssignment->getStage()));
 				$entry->setAssocType(LOG_TYPE_REVIEW);
-				$entry->setAssocId($reviewAssignment->getReviewId());
+				$entry->setAssocId($reviewAssignment->getId());
 
 				PaperLog::logEventEntry($reviewAssignment->getPaperId(), $entry);
 
@@ -164,7 +164,7 @@ class ReviewerAction extends Action {
 				$entry->setEventType(PAPER_LOG_REVIEW_RECOMMENDATION);
 				$entry->setLogMessage('log.review.reviewRecommendationSet', array('reviewerName' => $reviewer->getFullName(), 'paperId' => $reviewAssignment->getPaperId(), 'stage' => $reviewAssignment->getStage()));
 				$entry->setAssocType(LOG_TYPE_REVIEW);
-				$entry->setAssocId($reviewAssignment->getReviewId());
+				$entry->setAssocId($reviewAssignment->getId());
 
 				PaperLog::logEventEntry($reviewAssignment->getPaperId(), $entry);
 			} else {
@@ -244,7 +244,7 @@ class ReviewerAction extends Action {
 		$entry->setEventType(PAPER_LOG_REVIEW_FILE);
 		$entry->setLogMessage('log.review.reviewerFile');
 		$entry->setAssocType(LOG_TYPE_REVIEW);
-		$entry->setAssocId($reviewAssignment->getReviewId());
+		$entry->setAssocId($reviewAssignment->getId());
 
 		PaperLog::logEventEntry($reviewAssignment->getPaperId(), $entry);
 		return true;

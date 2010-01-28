@@ -181,9 +181,9 @@ class TrackForm extends Form {
 		$track->setDisableComments($this->getData('disableComments') ? 1 : 0);
 		$track->setAbstractWordCount($this->getData('wordCount'));
 
-		if ($track->getTrackId() != null) {
+		if ($track->getId() != null) {
 			$trackDao->updateTrack($track);
-			$trackId = $track->getTrackId();
+			$trackId = $track->getId();
 		} else {
 			$trackId = $trackDao->insertTrack($track);
 			$trackDao->resequenceTracks($schedConf->getId());

@@ -48,7 +48,8 @@ class ReviewAssignment extends DataObject {
 	 * @return int
 	 */
 	function getReviewId() {
-		return $this->getData('reviewId');
+		if (Config::getVar('debug', 'deprecation_warnings')) trigger_error('Deprecated function.');
+		return $this->getId();
 	}
 
 	/**
@@ -56,7 +57,8 @@ class ReviewAssignment extends DataObject {
 	 * @param $reviewId int
 	 */
 	function setReviewId($reviewId) {
-		return $this->setData('reviewId', $reviewId);
+		if (Config::getVar('debug', 'deprecation_warnings')) trigger_error('Deprecated function.');
+		return $this->setId($reviewId);
 	}
 
 	/**

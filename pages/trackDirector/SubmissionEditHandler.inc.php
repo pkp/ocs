@@ -181,7 +181,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		$notifyReviewerLogs = array();
 		if($submission->getReviewAssignments($stage)) {
 			foreach ($submission->getReviewAssignments($stage) as $reviewAssignment) {
-				$notifyReviewerLogs[$reviewAssignment->getReviewId()] = array();
+				$notifyReviewerLogs[$reviewAssignment->getId()] = array();
 			}
 		}
 
@@ -212,7 +212,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 					$reviewFormTitles[$reviewForm->getId()] = $reviewForm->getReviewFormTitle();
 				}
 				unset($reviewForm);
-				$reviewFormResponses[$reviewAssignment->getReviewId()] = $reviewFormResponseDao->reviewFormResponseExists($reviewAssignment->getReviewId());
+				$reviewFormResponses[$reviewAssignment->getId()] = $reviewFormResponseDao->reviewFormResponseExists($reviewAssignment->getId());
 			}
 		}
 
@@ -366,7 +366,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 			// Now, unassign all reviewers from the paper review
 			foreach ($submission->getReviewAssignments(REVIEW_STAGE_PRESENTATION) as $reviewAssignment) {
 				if ($reviewAssignment->getRecommendation() !== null && $reviewAssignment->getRecommendation() !== '') {
-					TrackDirectorAction::clearReview($submission, $reviewAssignment->getReviewId());
+					TrackDirectorAction::clearReview($submission, $reviewAssignment->getId());
 				}
 			}
 

@@ -145,7 +145,7 @@ class RegistrationDAO extends DAO {
 	 */
 	function &_returnRegistrationFromRow(&$row) {
 		$registration = new Registration();
-		$registration->setRegistrationId($row['registration_id']);
+		$registration->setId($row['registration_id']);
 		$registration->setSchedConfId($row['sched_conf_id']);
 		$registration->setUserId($row['user_id']);
 		$registration->setTypeId($row['type_id']);
@@ -205,8 +205,8 @@ class RegistrationDAO extends DAO {
 				$registration->getSpecialRequests()
 			)
 		);
-		$registration->setRegistrationId($this->getInsertRegistrationId());
-		return $registration->getRegistrationId();
+		$registration->setId($this->getInsertRegistrationId());
+		return $registration->getId();
 	}
 
 	/**
@@ -237,7 +237,7 @@ class RegistrationDAO extends DAO {
 				$registration->getDomain(),
 				$registration->getIPRange(),
 				$registration->getSpecialRequests(),
-				$registration->getRegistrationId()
+				$registration->getId()
 			)
 		);
 	}

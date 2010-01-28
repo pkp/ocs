@@ -200,7 +200,7 @@ class CommentForm extends Form {
 			$comment->setPaperId($this->paperId);
 			$comment->setChildCommentCount(0);
 			$commentDao->insertComment($comment);
-			$this->commentId = $comment->getCommentId();
+			$this->commentId = $comment->getId();
 		}
 
 		return $this->commentId;

@@ -140,7 +140,7 @@ class NativeImportDom {
 		foreach($titles as $locale => $title) {
 			$track = $trackDao->getTrackByTitle($title, $schedConf->getId());
 			if ($track) {
-				$trackId = $track->getTrackId();
+				$trackId = $track->getId();
 				if ($foundTrackId) { 
 					if ($foundTrackId != $trackId) {
 						// Mismatching tracks found. Throw an error.
@@ -247,7 +247,7 @@ class NativeImportDom {
 		$paper = new Paper();
 		$paper->setSchedConfId($schedConf->getId());
 		$paper->setUserId($user->getId());
-		$paper->setTrackId($track->getTrackId());
+		$paper->setTrackId($track->getId());
 		$paper->setStatus(STATUS_PUBLISHED);
 		$paper->setSubmissionProgress(0);
 		$paper->setCurrentStage(REVIEW_STAGE_ABSTRACT);
@@ -419,7 +419,7 @@ class NativeImportDom {
 
 		$publishedPaper->setPubId($publishedPaperDao->insertPublishedPaper($publishedPaper));
 
-		$publishedPaperDao->resequencePublishedPapers($track->getTrackId(), $schedConf->getId());
+		$publishedPaperDao->resequencePublishedPapers($track->getId(), $schedConf->getId());
 
 		/* --- Galleys (html or otherwise handled simultaneously) --- */
 		import('file.PaperFileManager');

@@ -141,7 +141,7 @@ class TrackDAO extends DAO {
 	 */
 	function &_returnTrackFromRow(&$row) {
 		$track = new Track();
-		$track->setTrackId($row['track_id']);
+		$track->setId($row['track_id']);
 		$track->setSchedConfId($row['sched_conf_id']);
 		$track->setReviewFormId($row['review_form_id']);
 		$track->setSequence($row['seq']);
@@ -173,7 +173,7 @@ class TrackDAO extends DAO {
 	function updateLocaleFields(&$track) {
 		$this->updateDataObjectSettings('track_settings', $track, array(
 
-			'track_id' => $track->getTrackId()
+			'track_id' => $track->getId()
 		));
 	}
 
@@ -199,9 +199,9 @@ class TrackDAO extends DAO {
 			)
 		);
 
-		$track->setTrackId($this->getInsertTrackId());
+		$track->setId($this->getInsertTrackId());
 		$this->updateLocaleFields($track);
-		return $track->getTrackId();
+		return $track->getId();
 	}
 
 	/**
@@ -227,7 +227,7 @@ class TrackDAO extends DAO {
 				$track->getHideAbout()?1:0,
 				$track->getDisableComments()?1:0,
 				(int) $track->getAbstractWordCount(),
-				(int) $track->getTrackId()
+				(int) $track->getId()
 			)
 		);
 		$this->updateLocaleFields($track);
@@ -239,7 +239,7 @@ class TrackDAO extends DAO {
 	 * @param $track Track
 	 */
 	function deleteTrack(&$track) {
-		return $this->deleteTrackById($track->getTrackId(), $track->getSchedConfId());
+		return $this->deleteTrackById($track->getId(), $track->getSchedConfId());
 	}
 
 	/**
@@ -373,7 +373,7 @@ class TrackDAO extends DAO {
 		$tracksIterator =& $this->getSchedConfTracks($schedConfId);
 		while (($track =& $tracksIterator->next())) {
 			if (!$submittableOnly || !$track->getDirectorRestricted()) {
-				$tracks[$track->getTrackId()] = $track->getLocalizedTitle();
+				$tracks[$track->getId()] = $track->getLocalizedTitle();
 			}
 
 			unset($track);

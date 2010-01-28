@@ -217,7 +217,7 @@ class RegistrationForm extends Form {
 		$registration->setDatePaid($this->getData('datePaid'));
 
 		// Update or insert registration
-		if ($registration->getRegistrationId() != null) {
+		if ($registration->getId() != null) {
 			$registrationDao->updateRegistration($registration);
 		} else {
 			$registrationDao->insertRegistration($registration);
