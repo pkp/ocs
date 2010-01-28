@@ -16,16 +16,14 @@
 // $Id$
 
 
-ini_set('display_errors', E_ALL); // FIXME until I improve error handling
-
 require_once('TranslatorAction.inc.php');
 import('handler.Handler');
 
 class TranslatorHandler extends Handler {
 	/** Plugin associated with this request **/
 	var $plugin;
-	
-	/** 
+
+	/**
 	 * Constructor
 	 */
 	function TranslatorHandler() {
@@ -34,7 +32,7 @@ class TranslatorHandler extends Handler {
 		$this->addCheck(new HandlerValidatorRoles($this, true, null, null, array(ROLE_ID_SITE_ADMIN)));
 		$this->plugin =& Registry::get('plugin');
 	}
-	
+
 	function index() {
 		$this->validate();
 		$plugin =& $this->plugin;
@@ -66,7 +64,7 @@ class TranslatorHandler extends Handler {
 
 	function edit($args) {
 		$this->validate();
-		$plugin =& $this->plugin;		
+		$plugin =& $this->plugin;
 		$this->setupTemplate();
 
 		$locale = array_shift($args);
@@ -96,7 +94,7 @@ class TranslatorHandler extends Handler {
 
 	function check($args) {
 		$this->validate();
-		$plugin =& $this->plugin;		
+		$plugin =& $this->plugin;
 		$this->setupTemplate();
 
 		$locale = array_shift($args);
@@ -129,7 +127,7 @@ class TranslatorHandler extends Handler {
 	 */
 	function export($args) {
 		$this->validate();
-		$plugin =& $this->plugin;		
+		$plugin =& $this->plugin;
 		$this->setupTemplate();
 
 		$locale = array_shift($args);
@@ -140,7 +138,7 @@ class TranslatorHandler extends Handler {
 
 	function saveLocaleChanges($args) {
 		$this->validate();
-		$plugin =& $this->plugin;		
+		$plugin =& $this->plugin;
 		$this->setupTemplate();
 
 		$locale = array_shift($args);
@@ -210,7 +208,7 @@ class TranslatorHandler extends Handler {
 
 	function downloadLocaleFile($args) {
 		$this->validate();
-		$plugin =& $this->plugin;		
+		$plugin =& $this->plugin;
 		$this->setupTemplate();
 
 		$locale = array_shift($args);
@@ -229,7 +227,7 @@ class TranslatorHandler extends Handler {
 
 	function editLocaleFile($args) {
 		$this->validate();
-		$plugin =& $this->plugin;		
+		$plugin =& $this->plugin;
 		$this->setupTemplate();
 
 		$locale = array_shift($args);
@@ -281,7 +279,7 @@ class TranslatorHandler extends Handler {
 
 	function editMiscFile($args) {
 		$this->validate();
-		$plugin =& $this->plugin;		
+		$plugin =& $this->plugin;
 		$this->setupTemplate();
 
 		$locale = array_shift($args);
@@ -303,7 +301,7 @@ class TranslatorHandler extends Handler {
 
 	function saveLocaleFile($args) {
 		$this->validate();
-		$plugin =& $this->plugin;		
+		$plugin =& $this->plugin;
 		$this->setupTemplate();
 
 		$locale = array_shift($args);
@@ -331,7 +329,7 @@ class TranslatorHandler extends Handler {
 
 	function deleteLocaleKey($args) {
 		$this->validate();
-		$plugin =& $this->plugin;		
+		$plugin =& $this->plugin;
 		$this->setupTemplate();
 
 		$locale = array_shift($args);
@@ -352,7 +350,7 @@ class TranslatorHandler extends Handler {
 
 	function saveMiscFile($args) {
 		$this->validate();
-		$plugin =& $this->plugin;		
+		$plugin =& $this->plugin;
 		$this->setupTemplate();
 
 		$locale = array_shift($args);
@@ -374,7 +372,7 @@ class TranslatorHandler extends Handler {
 
 	function editEmail($args) {
 		$this->validate();
-		$plugin =& $this->plugin;		
+		$plugin =& $this->plugin;
 		$this->setupTemplate();
 
 		$locale = array_shift($args);
@@ -397,7 +395,7 @@ class TranslatorHandler extends Handler {
 
 	function createFile($args) {
 		$this->validate();
-		$plugin =& $this->plugin;		
+		$plugin =& $this->plugin;
 		$this->setupTemplate();
 
 		$locale = array_shift($args);
@@ -415,7 +413,7 @@ class TranslatorHandler extends Handler {
 
 	function deleteEmail($args) {
 		$this->validate();
-		$plugin =& $this->plugin;		
+		$plugin =& $this->plugin;
 		$this->setupTemplate();
 
 		$locale = array_shift($args);
