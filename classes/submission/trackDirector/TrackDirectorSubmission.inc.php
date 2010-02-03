@@ -450,13 +450,6 @@ class TrackDirectorSubmission extends Paper {
 	}
 
 	function isOriginalSubmissionComplete() {
-		$schedConf =& Request::getSchedConf();
-		if (!$schedConf || $this->getSchedConfId() != $schedConf->getId()) {
-			unset($schedConf);
-			$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
-			$schedConf =& $schedConfDao->getSchedConf($this->getSchedConfId());
-		}
-
 		$reviewMode = $this->getReviewMode();
 		if ($reviewMode == REVIEW_MODE_BOTH_SEQUENTIAL) {
 			return ($this->getSubmissionProgress() != 1);

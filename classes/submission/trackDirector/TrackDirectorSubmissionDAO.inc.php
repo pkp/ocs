@@ -18,11 +18,13 @@
 
 
 import('submission.trackDirector.TrackDirectorSubmission');
-import('submission.author.AuthorSubmission'); // Bring in director decision constants
-import('submission.reviewer.ReviewerSubmission'); // Bring in director decision constants
+
+// Bring in director decision constants
+import('submission.common.Action');
+import('submission.author.AuthorSubmission');
+import('submission.reviewer.ReviewerSubmission');
 
 class TrackDirectorSubmissionDAO extends DAO {
-
 	var $paperDao;
 	var $authorDao;
 	var $userDao;
@@ -266,7 +268,7 @@ class TrackDirectorSubmissionDAO extends DAO {
 	/**
 	 * Retrieve unfiltered track director submissions
 	 */
-	function &getUnfilteredTrackDirectorSubmissions($trackDirectorId, $schedConfId, $trackId = 0, $searchField = null, $searchMatch = null, $search = null, $dateField = null, $dateFrom = null, $dateTo = null, $statusSql = null, $rangeInfo = null, $sortBy = null, $sortDirection = SORT_DIRECTION_ASC) {
+	function &_getUnfilteredTrackDirectorSubmissions($trackDirectorId, $schedConfId, $trackId = 0, $searchField = null, $searchMatch = null, $search = null, $dateField = null, $dateFrom = null, $dateTo = null, $additionalWhereSql = '', $rangeInfo = null, $sortBy = null, $sortDirection = SORT_DIRECTION_ASC) {
 		$primaryLocale = Locale::getPrimaryLocale();
 		$locale = Locale::getLocale();
 
@@ -367,11 +369,9 @@ class TrackDirectorSubmissionDAO extends DAO {
 				LEFT JOIN track_settings tal ON (t.track_id = tal.track_id AND tal.setting_name = ? AND tal.locale = ?)
 				LEFT JOIN paper_settings ptl ON (p.paper_id = ptl.paper_id AND ptl.setting_name = ?)
 				LEFT JOIN paper_settings pptl ON (p.paper_id = pptl.paper_id AND pptl.setting_name = ? AND pptl.locale = ?)
-			WHERE	p.sched_conf_id = ? AND
-				e.director_id = ?';
-
-		if ($statusSql !== null) $sql .= " AND ($statusSql)";
-		else $sql .= ' AND p.status = ' . STATUS_QUEUED;
+			WHERE	p.sched_conf_id = ?
+				' . (!empty($additionalWhereSql)?" AND ($additionalWhereSql)":'') . '
+				AND e.director_id = ?';
 
 		if ($trackId) {
 			$params[] = $trackId;
@@ -401,10 +401,13 @@ class TrackDirectorSubmissionDAO extends DAO {
 	 * @return array DirectorSubmission
 	 */
 	function &getTrackDirectorSubmissionsInReview($trackDirectorId, $schedConfId, $trackId, $searchField = null, $searchMatch = null, $search = null, $dateField = null, $dateFrom = null, $dateTo = null, $rangeInfo = null, $sortBy = null, $sortDirection = SORT_DIRECTION_ASC) {
-		$submissions = array();
-
-		// FIXME Does not pass $rangeInfo else we only get partial results
-		$result = $this->getUnfilteredTrackDirectorSubmissions($trackDirectorId, $schedConfId, $trackId, $searchField, $searchMatch, $search, $dateField, $dateFrom, $dateTo, null, null, $sortBy, $sortDirection);
+		$result = $this->_getUnfilteredTrackDirectorSubmissions(
+			$trackDirectorId, $schedConfId, $trackId,
+			$searchField, $searchMatch, $search,
+			$dateField, $dateFrom, $dateTo,
+			'p.status = ' . STATUS_QUEUED,
+			$rangeInfo, $sortBy, $sortDirection
+		);
 
 		$returner = new DAOResultFactory($result, $this, '_returnTrackDirectorSubmissionFromRow');
 		return $returner;
@@ -426,10 +429,13 @@ class TrackDirectorSubmissionDAO extends DAO {
 	 * @return array DirectorSubmission
 	 */
 	function &getTrackDirectorSubmissionsAccepted($trackDirectorId, $schedConfId, $trackId, $searchField = null, $searchMatch = null, $search = null, $dateField = null, $dateFrom = null, $dateTo = null, $rangeInfo = null, $sortBy = null, $sortDirection = SORT_DIRECTION_ASC) {
-		$submissions = array();
-
-		// FIXME Does not pass $rangeInfo else we only get partial results
-		$result = $this->getUnfilteredTrackDirectorSubmissions($trackDirectorId, $schedConfId, $trackId, $searchField, $searchMatch, $search, $dateField, $dateFrom, $dateTo, 'p.status = ' . STATUS_PUBLISHED, $rangeInfo, $sortBy, $sortDirection);
+		$result = $this->_getUnfilteredTrackDirectorSubmissions(
+			$trackDirectorId, $schedConfId, $trackId,
+			$searchField, $searchMatch, $search,
+			$dateField, $dateFrom, $dateTo,
+			'p.status = ' . STATUS_PUBLISHED,
+			$rangeInfo, $sortBy, $sortDirection
+		);
 
 		$returner = new DAOResultFactory($result, $this, '_returnTrackDirectorSubmissionFromRow');
 		return $returner;
@@ -450,9 +456,13 @@ class TrackDirectorSubmissionDAO extends DAO {
 	 * @return array DirectorSubmission
 	 */
 	function &getTrackDirectorSubmissionsArchives($trackDirectorId, $schedConfId, $trackId, $searchField = null, $searchMatch = null, $search = null, $dateField = null, $dateFrom = null, $dateTo = null, $rangeInfo = null, $sortBy = null, $sortDirection = SORT_DIRECTION_ASC) {
-		$submissions = array();
-
-		$result = $this->getUnfilteredTrackDirectorSubmissions($trackDirectorId, $schedConfId, $trackId, $searchField, $searchMatch, $search, $dateField, $dateFrom, $dateTo, 'p.status <> ' . STATUS_QUEUED . ' AND p.status <> ' . STATUS_PUBLISHED, $rangeInfo, $sortBy, $sortDirection);
+		$result = $this->_getUnfilteredTrackDirectorSubmissions(
+			$trackDirectorId, $schedConfId, $trackId,
+			$searchField, $searchMatch, $search,
+			$dateField, $dateFrom, $dateTo,
+			'p.status <> ' . STATUS_QUEUED . ' AND p.status <> ' . STATUS_PUBLISHED,
+			$rangeInfo, $sortBy, $sortDirection
+		);
 
 		$returner = new DAOResultFactory($result, $this, '_returnTrackDirectorSubmissionFromRow');
 		return $returner;
@@ -462,41 +472,41 @@ class TrackDirectorSubmissionDAO extends DAO {
 	 * Function used for counting purposes for right nav bar
 	 */
 	function &getTrackDirectorSubmissionsCount($trackDirectorId, $schedConfId) {
-
 		$submissionsCount = array();
-		for($i = 0; $i < 4; $i++) {
-			$submissionsCount[$i] = 0;
-		}
 
-		$result = $this->getUnfilteredTrackDirectorSubmissions($trackDirectorId, $schedConfId);
-
-		while (!$result->EOF) {
-			$row = $result->GetRowAssoc(false);
-			$trackDirectorSubmission =& $this->_returnTrackDirectorSubmissionFromRow($row);
-
-			// check if submission is still in review
-			$inReview = true;
-			$decisions = $trackDirectorSubmission->getDecisions();
-			$decision = array_pop($decisions);
-			if (!empty($decision)) {
-				$latestDecision = array_pop($decision);
-				if ($latestDecision['decision'] == SUBMISSION_DIRECTOR_DECISION_ACCEPT) {
-					$inReview = false;
-				}
-			}
-
-			if ($inReview) {
-				$submissionsCount[0] += 1;
-			} else {
-				$submissionsCount[1] += 1;
-			}
-			unset($trackDirectorDecision);
-			$result->MoveNext();
-		}
-
+		// Fetch a count of submissions in review.
+		// "d2" and "d" are used to fetch the single most recent
+		// editor decision.
+		$result =& $this->retrieve(
+			'SELECT	COUNT(*) AS review_count
+			FROM	papers p
+				LEFT JOIN edit_assignments e ON (p.paper_id = e.paper_id)
+			WHERE	p.sched_conf_id = ?
+				AND e.director_id = ?
+				AND p.status = ' . STATUS_QUEUED,
+			array((int) $schedConfId, (int) $trackDirectorId)
+		);
+		$submissionsCount[0] = $result->Fields('review_count');
 		$result->Close();
-		unset($result);
 
+		// Fetch a count of submissions in editing.
+		// "d2" and "d" are used to fetch the single most recent
+		// editor decision.
+		$result =& $this->retrieve(
+			'SELECT	COUNT(*) AS editing_count
+			FROM	papers p
+				LEFT JOIN edit_assignments e ON (p.paper_id = e.paper_id)
+				LEFT JOIN edit_decisions d ON (p.paper_id = d.paper_id)
+				LEFT JOIN edit_decisions d2 ON (p.paper_id = d2.paper_id AND d.edit_decision_id < d2.edit_decision_id)
+			WHERE	p.sched_conf_id = ?
+				AND e.director_id = ?
+				AND p.status = ' . STATUS_QUEUED . '
+				AND d2.edit_decision_id IS NULL
+				AND d.decision = ' . SUBMISSION_DIRECTOR_DECISION_ACCEPT,
+			array((int) $schedConfId, (int) $trackDirectorId)
+		);
+		$submissionsCount[1] = $result->Fields('editing_count');
+		$result->Close();
 		return $submissionsCount;
 	}
 
@@ -808,7 +818,6 @@ class TrackDirectorSubmissionDAO extends DAO {
 			default: return null;
 		}
 	}
-
 }
 
 ?>

@@ -57,13 +57,12 @@
 							<a href="{url conference=$conferencePath schedConf=$schedConfPath  page="director" op="submissions" path="submissionsUnassigned"}">{$directorSubmissionsCount[0]} {translate key="common.queue.short.submissionsUnassigned"}</a>
 						{else}<span class="disabled">0 {translate key="common.queue.short.submissionsUnassigned"}</span>{/if}
 					</td>
-					<td>{if $directorSubmissionsCount[1]}
+					<td colspan="2">
+						{if $directorSubmissionsCount[1]}
 							<a href="{url conference=$conferencePath schedConf=$schedConfPath  page="director" op="submissions" path="submissionsInReview"}">{$directorSubmissionsCount[1]} {translate key="common.queue.short.submissionsInReview"}</a>
-						{else}<span class="disabled">0 {translate key="common.queue.short.submissionsInReview"}</span>{/if}
-					</td>
-					<td>{if $directorSubmissionsCount[2]}
-							<a href="{url conference=$conferencePath schedConf=$schedConfPath  page="director" op="submissions" path="submissionsInEditing"}">{$directorSubmissionsCount[2]} {translate key="common.queue.short.submissionsInEditing"}</a>
-						{else}<span class="disabled">0 {translate key="common.queue.long.submissionsAccepted"}</span>{/if}
+						{else}
+							<span class="disabled">0 {translate key="common.queue.short.submissionsInReview"}</span>
+						{/if}
 					</td>
 					<td align="right">[<a href="{url conference=$conferencePath schedConf=$schedConfPath  page="director" op="notifyUsers"}">{translate key="director.notifyUsers"}</a>]</td>
 				</tr>
@@ -73,15 +72,13 @@
 				<tr>
 					<td>&#187; <a href="{url conference=$conferencePath schedConf=$schedConfPath  page="trackDirector"}">{translate key="user.role.trackDirector"}</a></td>
 					<td></td>
-					<td>{if $trackDirectorSubmissionsCount[0]}
+					<td colspan="3">
+						{if $trackDirectorSubmissionsCount[0]}
 							<a href="{url conference=$conferencePath schedConf=$schedConfPath  page="trackDirector" op="index" path="submissionsInReview"}">{$trackDirectorSubmissionsCount[0]} {translate key="common.queue.short.submissionsInReview"}</a>
-						{else}<span class="disabled">0 {translate key="common.queue.short.submissionsInReview"}</span>{/if}
+						{else}
+							<span class="disabled">0 {translate key="common.queue.short.submissionsInReview"}</span>
+						{/if}
 					</td>
-					<td>{if $trackDirectorSubmissionsCount[1]}
-							<a href="{url conference=$conferencePath schedConf=$schedConfPath  page="trackDirector" op="index" path="submissionsInEditing"}">{$trackDirectorSubmissionsCount[1]} {translate key="common.queue.short.submissionsInEditing"}</a>
-						{else}<span class="disabled">0 {translate key="common.queue.short.submissionsAccepted"}</span>{/if}
-					</td>
-					<td align="right"></td>
 				</tr>
 			{/if}
 			{if $isValid.Author.$conferenceId.$schedConfId || $isValid.Reviewer.$conferenceId.$schedConfId}

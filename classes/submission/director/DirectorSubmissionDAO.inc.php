@@ -163,11 +163,11 @@ class DirectorSubmissionDAO extends DAO {
 	 * @param $dateField int Symbolic SUBMISSION_FIELD_DATE_... identifier
 	 * @param $dateFrom String date to search from
 	 * @param $dateTo String date to search to
-	 * @param $statusSql string Extra SQL conditions to match
+	 * @param $additionalWhereSql string Extra SQL conditions to match
 	 * @param $rangeInfo object
 	 * @return array result
 	 */
-	function &getUnfilteredDirectorSubmissions($schedConfId, $trackId = 0, $directorId = 0, $searchField = null, $searchMatch = null, $search = null, $dateField = null, $dateFrom = null, $dateTo = null, $statusSql = null, $rangeInfo = null, $sortBy = null, $sortDirection = SORT_DIRECTION_ASC) {
+	function &_getUnfilteredDirectorSubmissions($schedConfId, $trackId = 0, $directorId = 0, $searchField = null, $searchMatch = null, $search = null, $dateField = null, $dateFrom = null, $dateTo = null, $additionalWhereSql = '', $rangeInfo = null, $sortBy = null, $sortDirection = SORT_DIRECTION_ASC) {
 		$primaryLocale = Locale::getPrimaryLocale();
 		$locale = Locale::getLocale();
 		$params = array(
@@ -233,8 +233,8 @@ class DirectorSubmissionDAO extends DAO {
 				LEFT JOIN paper_authors pap ON (pap.paper_id = p.paper_id AND pap.primary_contact = 1)
 				LEFT JOIN published_papers pp ON (pp.paper_id = p.paper_id)
 				LEFT JOIN tracks t ON (t.track_id = p.track_id)
-				LEFT JOIN edit_assignments ea ON (ea.paper_id = p.paper_id)
-				LEFT JOIN users ed ON (ea.director_id = ed.user_id)
+				LEFT JOIN edit_assignments e ON (e.paper_id = p.paper_id)
+				LEFT JOIN users ed ON (e.director_id = ed.user_id)
 				LEFT JOIN review_assignments ra ON (ra.paper_id = p.paper_id)
 				LEFT JOIN users re ON (re.user_id = ra.reviewer_id AND cancelled = 0)
 				LEFT JOIN track_settings ttpl ON (t.track_id = ttpl.track_id AND ttpl.setting_name = ? AND ttpl.locale = ?)
@@ -243,10 +243,12 @@ class DirectorSubmissionDAO extends DAO {
 				LEFT JOIN track_settings tal ON (t.track_id = tal.track_id AND tal.setting_name = ? AND tal.locale = ?)
 				LEFT JOIN paper_settings pptl ON (p.paper_id = pptl.paper_id AND pptl.setting_name = ? AND pptl.locale = ?)
 				LEFT JOIN paper_settings ptl ON (p.paper_id = ptl.paper_id AND ptl.setting_name = ? AND pptl.locale = ?)
-			WHERE	p.sched_conf_id = ?';
-
-		if ($statusSql !== null) $sql .= " AND ($statusSql)";
-		else $sql .= ' AND p.status = ' . STATUS_QUEUED;
+				LEFT JOIN edit_assignments ea ON (p.paper_id = ea.paper_id)
+				LEFT JOIN edit_assignments ea2 ON (p.paper_id = ea2.paper_id AND ea.edit_id < ea2.edit_id)
+			WHERE	p.sched_conf_id = ?
+				AND ea2.edit_id IS NULL' .
+				(!empty($additionalWhereSql)?" AND ($additionalWhereSql)":'') . '
+				AND (p.submission_progress = 0 OR (p.review_mode = ' . REVIEW_MODE_BOTH_SEQUENTIAL . ' AND p.submission_progress <> 1))';
 
 		if ($trackId) {
 			$searchSql .= ' AND p.track_id = ?';
@@ -307,28 +309,14 @@ class DirectorSubmissionDAO extends DAO {
 	 * @return array DirectorSubmission
 	 */
 	function &getDirectorSubmissionsUnassigned($schedConfId, $trackId, $directorId, $searchField = null, $searchMatch = null, $search = null, $dateField = null, $dateFrom = null, $dateTo = null, $rangeInfo = null, $sortBy = null, $sortDirection = SORT_DIRECTION_ASC) {
-		$directorSubmissions = array();
-
-		// FIXME Does not pass $rangeInfo else we only get partial results
-		$result = $this->getUnfilteredDirectorSubmissions($schedConfId, $trackId, $directorId, $searchField, $searchMatch, $search, $dateField, $dateFrom, $dateTo, null, null, $sortBy, $sortDirection);
-
-		while (!$result->EOF) {
-			$directorSubmission =& $this->_returnDirectorSubmissionFromRow($result->GetRowAssoc(false));
-
-			// used to check if director exists for this submission
-			$editAssignments =& $directorSubmission->getEditAssignments();
-
-			if (empty($editAssignments) && $directorSubmission->isOriginalSubmissionComplete()) {
-				$directorSubmissions[] =& $directorSubmission;
-			}
-			unset($directorSubmission);
-			$result->MoveNext();
-		}
-		$result->Close();
-		unset($result);
-
-		import('core.ArrayItemIterator');
-		$returner =& ArrayItemIterator::fromRangeInfo($directorSubmissions, $rangeInfo);
+		$result =& $this->_getUnfilteredDirectorSubmissions(
+			$schedConfId, $trackId, $directorId,
+			$searchField, $searchMatch, $search,
+			$dateField, $dateFrom, $dateTo,
+			'p.status = ' . STATUS_QUEUED . ' AND ea.edit_id IS NULL',
+			$rangeInfo, $sortBy, $sortDirection
+		);
+		$returner = new DAOResultFactory($result, $this, '_returnDirectorSubmissionFromRow');
 		return $returner;
 	}
 
@@ -347,41 +335,14 @@ class DirectorSubmissionDAO extends DAO {
 	 * @return array DirectorSubmission
 	 */
 	function &getDirectorSubmissionsInReview($schedConfId, $trackId, $directorId, $searchField = null, $searchMatch = null, $search = null, $dateField = null, $dateFrom = null, $dateTo = null, $rangeInfo = null, $sortBy = null, $sortDirection = SORT_DIRECTION_ASC) {
-		$directorSubmissions = array();
-
-		// FIXME Does not pass $rangeInfo else we only get partial results
-		$result = $this->getUnfilteredDirectorSubmissions($schedConfId, $trackId, $directorId, $searchField, $searchMatch, $search, $dateField, $dateFrom, $dateTo, null, null, $sortBy, $sortDirection);
-
-		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
-
-		// If the submission has passed this review stage, it's out of review.
-		$schedConfDao =& DAORegistry::getDao('SchedConfDAO');
-		$schedConf =& $schedConfDao->getSchedConf($schedConfId);
-
-		while (!$result->EOF) {
-			$directorSubmission =& $this->_returnDirectorSubmissionFromRow($result->GetRowAssoc(false));
-			$paperId = $directorSubmission->getPaperId();
-			for ($i = 1; $i <= $directorSubmission->getCurrentStage(); $i++) {
-				$reviewAssignment =& $reviewAssignmentDao->getReviewAssignmentsByPaperId($paperId, $i);
-				if (!empty($reviewAssignment)) {
-					$directorSubmission->setReviewAssignments($reviewAssignment, $i);
-				}
-			}
-
-			// used to check if director exists for this submission
-			$editAssignments =& $directorSubmission->getEditAssignments();
-
-			if (!empty($editAssignments) && $directorSubmission->isOriginalSubmissionComplete()) {
-				$directorSubmissions[] =& $directorSubmission;
-			}
-			unset($directorSubmission);
-			$result->MoveNext();
-		}
-		$result->Close();
-		unset($result);
-
-		import('core.ArrayItemIterator');
-		$returner =& ArrayItemIterator::fromRangeInfo($directorSubmissions, $rangeInfo);
+		$result =& $this->_getUnfilteredDirectorSubmissions(
+			$schedConfId, $trackId, $directorId,
+			$searchField, $searchMatch, $search,
+			$dateField, $dateFrom, $dateTo,
+			'p.status = ' . STATUS_QUEUED . ' AND ea.edit_id IS NOT NULL',
+			$rangeInfo, $sortBy, $sortDirection
+		);
+		$returner = new DAOResultFactory($result, $this, '_returnDirectorSubmissionFromRow');
 		return $returner;
 	}
 
@@ -400,10 +361,13 @@ class DirectorSubmissionDAO extends DAO {
 	 * @return array DirectorSubmission
 	 */
 	function &getDirectorSubmissionsAccepted($schedConfId, $trackId, $directorId, $searchField = null, $searchMatch = null, $search = null, $dateField = null, $dateFrom = null, $dateTo = null, $rangeInfo = null, $sortBy = null, $sortDirection = "ASC") {
-		$directorSubmissions = array();
-
-		$result = $this->getUnfilteredDirectorSubmissions($schedConfId, $trackId, $directorId,  $searchField, $searchMatch, $search, $dateField, $dateFrom, $dateTo, 'p.status = ' . STATUS_PUBLISHED, $rangeInfo, $sortBy, $sortDirection);
-
+		$result =& $this->_getUnfilteredDirectorSubmissions(
+			$schedConfId, $trackId, $directorId,
+			$searchField, $searchMatch, $search,
+			$dateField, $dateFrom, $dateTo,
+			'p.status = ' . STATUS_PUBLISHED,
+			$rangeInfo, $sortBy, $sortDirection
+		);
 		$returner = new DAOResultFactory($result, $this, '_returnDirectorSubmissionFromRow');
 		return $returner;
 	}
@@ -423,10 +387,13 @@ class DirectorSubmissionDAO extends DAO {
 	 * @return array DirectorSubmission
 	 */
 	function &getDirectorSubmissionsArchives($schedConfId, $trackId, $directorId, $searchField = null, $searchMatch = null, $search = null, $dateField = null, $dateFrom = null, $dateTo = null, $rangeInfo = null, $sortBy = null, $sortDirection = "ASC") {
-		$directorSubmissions = array();
-
-		$result = $this->getUnfilteredDirectorSubmissions($schedConfId, $trackId, $directorId, $searchField, $searchMatch, $search, $dateField, $dateFrom, $dateTo, 'p.status <> ' . STATUS_QUEUED . ' AND p.status <> ' . STATUS_PUBLISHED, $rangeInfo, $sortBy, $sortDirection);
-
+		$result =& $this->_getUnfilteredDirectorSubmissions(
+			$schedConfId, $trackId, $directorId,
+			$searchField, $searchMatch, $search,
+			$dateField, $dateFrom, $dateTo,
+			'p.status <> ' . STATUS_QUEUED . ' AND p.status <> ' . STATUS_PUBLISHED,
+			$rangeInfo, $sortBy, $sortDirection
+		);
 		$returner = new DAOResultFactory($result, $this, '_returnDirectorSubmissionFromRow');
 		return $returner;
 	}
@@ -435,37 +402,43 @@ class DirectorSubmissionDAO extends DAO {
 	 * Function used for counting purposes for right nav bar
 	 */
 	function &getDirectorSubmissionsCount($schedConfId) {
-
-		$schedConfDao =& DAORegistry::getDao('SchedConfDAO');
-		$schedConf =& $schedConfDao->getSchedConf($schedConfId);
-
 		$submissionsCount = array();
-		for($i = 0; $i < 2; $i++) {
-			$submissionsCount[$i] = 0;
-		}
 
-		$result = $this->getUnfilteredDirectorSubmissions($schedConfId);
-
-		while (!$result->EOF) {
-			$directorSubmission =& $this->_returnDirectorSubmissionFromRow($result->GetRowAssoc(false));
-
-			// used to check if director exists for this submission
-			$editAssignments = $directorSubmission->getEditAssignments();
-
-			if (!$directorSubmission->isOriginalSubmissionComplete()) {
-				// Do not include incomplete submissions
-			} elseif (empty($editAssignments)) {
-				// unassigned submissions
-				$submissionsCount[0] += 1;
-			} elseif ($directorSubmission->getStatus() == STATUS_QUEUED) {
-				// in review submissions
-				$submissionsCount[1] += 1;
-			}
-
-			$result->MoveNext();
-		}
+		// Fetch a count of unassigned submissions.
+		// "e2" and "e" are used to fetch only a single assignment
+		// if several exist.
+		$result =& $this->retrieve(
+			'SELECT	COUNT(*) AS unassigned_count
+			FROM	papers p
+				LEFT JOIN edit_assignments e ON (p.paper_id = e.paper_id)
+				LEFT JOIN edit_assignments e2 ON (p.paper_id = e2.paper_id AND e.edit_id < e2.edit_id)
+			WHERE	p.sched_conf_id = ?
+				AND p.status = ' . STATUS_QUEUED . '
+				AND e2.edit_id IS NULL
+				AND e.edit_id IS NULL
+				AND (p.submission_progress = 0 OR (p.review_mode = ' . REVIEW_MODE_BOTH_SEQUENTIAL . ' AND p.submission_progress <> 1))',
+			array((int) $schedConfId)
+		);
+		$submissionsCount[0] = $result->Fields('unassigned_count');
 		$result->Close();
-		unset($result);
+
+		// Fetch a count of submissions in review.
+		// "e2" and "e" are used to fetch only a single assignment
+		// if several exist.
+		$result =& $this->retrieve(
+			'SELECT	COUNT(*) AS review_count
+			FROM	papers p
+				LEFT JOIN edit_assignments e ON (p.paper_id = e.paper_id)
+				LEFT JOIN edit_assignments e2 ON (p.paper_id = e2.paper_id AND e.edit_id < e2.edit_id)
+			WHERE	p.sched_conf_id = ?
+				AND p.status = ' . STATUS_QUEUED . '
+				AND e2.edit_id IS NULL
+				AND e.edit_id IS NOT NULL
+				AND (p.submission_progress = 0 OR (p.review_mode = ' . REVIEW_MODE_BOTH_SEQUENTIAL . ' AND p.submission_progress <> 1))',
+			array((int) $schedConfId)
+		);
+		$submissionsCount[1] = $result->Fields('review_count');
+		$result->Close();
 
 		return $submissionsCount;
 	}
