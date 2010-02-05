@@ -115,6 +115,7 @@ class JQueryPlugin extends GenericPlugin {
 			$jQueryScript = '<script src="http://www.google.com/jsapi"></script>
 			<script>
 				google.load("jquery", "1");
+				google.load("jqueryui", "1");
 			</script>';
 		} else {
 			$jQueryScript = '<script type="text/javascript" src="' . Request::getBaseUrl() . '/lib/pkp/js/lib/jquery/jquery.min.js"></script>
