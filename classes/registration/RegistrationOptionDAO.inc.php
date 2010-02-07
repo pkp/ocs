@@ -315,7 +315,7 @@ class RegistrationOptionDAO extends DAO {
 	 * @param $registrationId int
 	 * @return array $optionIds
 	 */
-	function getRegistrationOptions($registrationId) {
+	function &getRegistrationOptions($registrationId) {
 		$result =& $this->retrieve(
 			'SELECT option_id FROM registration_option_assoc WHERE registration_id = ?',
 			array((int) $registrationId)
