@@ -19,6 +19,8 @@
 
 import('core.PKPApplication');
 
+define('PHP_REQUIRED_VERSION', '4.2.0');
+
 define('ASSOC_TYPE_CONFERENCE',	0x0000100);
 define('ASSOC_TYPE_SCHED_CONF',	0x0000101);
 
