@@ -72,6 +72,6 @@
 		<code function="cleanImageAlts" />
 		<code function="cleanTitles" />
 		<code function="addPluginVersions" />
-		<note file="docs/release-notes/README-2.3.0" />
+		<note file="docs/release-notes/README-2.3" />
 	</upgrade>
 </install>
