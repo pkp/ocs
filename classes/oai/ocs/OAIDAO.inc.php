@@ -73,11 +73,14 @@ class OAIDAO extends DAO {
 	 */
 	function getEarliestDatestamp($conferenceId = null) {
 		$result =& $this->retrieve(
-			'SELECT MIN(pp.date_published)
-			FROM published_papers pp'
-			. (isset($conferenceId) ? ' LEFT JOIN sched_confs sc ON (pp.sched_conf_id = sc.sched_conf_id) WHERE sc.conference_id = ?' : ''),
+			'SELECT	MIN(p.last_modified)
+			FROM	papers p,
+				published_papers pp '
+			. (isset($conferenceId) ? ' LEFT JOIN sched_confs sc ON (pp.sched_conf_id = sc.sched_conf_id) ' : '') .
+			'WHERE	p.paper_id = pp.paper_id'
+			. (isset($conferenceId) ? ' AND sc.conference_id = ?' : ''),
 
-			isset($conferenceId) ? $conferenceId : false
+			isset($conferenceId) ? array((int) $conferenceId) : false
 		);
 
 		if (isset($result->fields[0])) {
@@ -102,7 +105,7 @@ class OAIDAO extends DAO {
 	function recordExists($paperId, $conferenceId = null) {
 		$result =& $this->retrieve(
 			'SELECT COUNT(*)
-			FROM published_papers pp'
+			FROM	published_papers pp'
 			. (isset($conferenceId) ? ', sched_confs s' : '')
 			. ' WHERE pp.paper_id = ?'
 			. (isset($conferenceId) ? ' AND s.conference_id = ? AND pp.sched_conf_id = s.sched_conf_id' : ''),
@@ -129,8 +132,7 @@ class OAIDAO extends DAO {
 			'SELECT	pp.*, p.*,
 				c.path AS conference_path,
 				c.conference_id AS conference_id,
-				s.path AS sched_conf_path,
-				pp.date_published AS date_published,
+				s.path AS sched_conf_path
 			FROM	published_papers pp, conferences c, sched_confs s, papers p
 				LEFT JOIN tracks t ON t.track_id = p.track_id
 			WHERE	pp.paper_id = p.paper_id AND
@@ -138,7 +140,7 @@ class OAIDAO extends DAO {
 				s.sched_conf_id = p.sched_conf_id
 				AND pp.paper_id = ?'
 			. (isset($conferenceId) ? ' AND c.conference_id = ?' : ''),
-			isset($conferenceId) ? array($paperId, $conferenceId) : $paperId
+			isset($conferenceId) ? array((int) $paperId, (int) $conferenceId) : array((int) $paperId)
 		);
 
 		$returner = null;
@@ -169,14 +171,13 @@ class OAIDAO extends DAO {
 
 		$params = array();
 		if (isset($conferenceId)) {
-			array_push($params, $conferenceId);
+			array_push($params, (int) $conferenceId);
 		}
 		if (isset($trackId)) {
-			array_push($params, $trackId);
+			array_push($params, (int) $trackId);
 		}
 		$result =& $this->retrieve(
-			'SELECT	pp.*,
-				p.*,
+			'SELECT	pp.*, p.*,
 				c.path AS conference_path,
 				c.conference_id AS conference_id,
 				s.path AS sched_conf_path
@@ -190,8 +191,8 @@ class OAIDAO extends DAO {
 				s.conference_id = c.conference_id'
 			. (isset($conferenceId) ? ' AND c.conference_id = ?' : '')
 			. (isset($trackId) ? ' AND p.track_id = ?' : '')
-			. (isset($from) ? ' AND pp.date_published >= ' . $this->datetimeToDB($from) : '')
-			. (isset($until) ? ' AND pp.date_published <= ' . $this->datetimeToDB($until) : ''),
+			. (isset($from) ? ' AND p.last_modified >= ' . $this->datetimeToDB($from) : '')
+			. (isset($until) ? ' AND p.last_modified <= ' . $this->datetimeToDB($until) : ''),
 			$params
 		);
 
@@ -226,16 +227,19 @@ class OAIDAO extends DAO {
 
 		$params = array();
 		if (isset($conferenceId)) {
-			array_push($params, $conferenceId);
+			array_push($params, (int) $conferenceId);
 		}
 		if (isset($trackId)) {
-			array_push($params, $trackId);
+			array_push($params, (int) $trackId);
 		}
 		$result =& $this->retrieve(
 			'SELECT	pp.paper_id,
-				pp.date_published,
+				p.last_modified,
 				c.path AS conference_path,
-				s.path AS sched_conf_path
+				c.conference_id,
+				s.path AS sched_conf_path,
+				s.sched_conf_id,
+				p.track_id
 			FROM	published_papers pp,
 				conferences c,
 				sched_confs s,
@@ -246,8 +250,8 @@ class OAIDAO extends DAO {
 				s.conference_id = c.conference_id'
 			. (isset($conferenceId) ? ' AND c.conference_id = ?' : '')
 			. (isset($trackId) ? ' AND p.track_id = ?' : '')
-			. (isset($from) ? ' AND pp.date_published >= ' . $this->datetimeToDB($from) : '')
-			. (isset($until) ? ' AND pp.date_published <= ' . $this->datetimeToDB($until) : ''),
+			. (isset($from) ? ' AND p.last_modified >= ' . $this->datetimeToDB($from) : '')
+			. (isset($until) ? ' AND p.last_modified <= ' . $this->datetimeToDB($until) : ''),
 			$params
 		);
 
@@ -337,9 +341,8 @@ class OAIDAO extends DAO {
 		$record->setData('galleys', $galleys);
 		
 		// FIXME Use public ID in OAI identifier?
-		// FIXME Use "last-modified" field for datestamp?
 		$record->identifier = $this->oai->paperIdToIdentifier($row['paper_id']);
-		$record->datestamp = OAIUtils::UTCDate(strtotime($this->datetimeFromDB($row['date_published'])));
+		$record->datestamp = OAIUtils::UTCDate(strtotime($this->datetimeFromDB($row['last_modified'])));
 		$record->sets = array($conference->getPath() . ':' . $track->getLocalizedAbbrev());
 
 		return $record;
@@ -357,7 +360,7 @@ class OAIDAO extends DAO {
 		$track =& $this->getTrack($row['track_id']);
 
 		$record->identifier = $this->oai->paperIdToIdentifier($row['paper_id']);
-		$record->datestamp = OAIUtils::UTCDate(strtotime($this->datetimeFromDB($row['date_published'])));
+		$record->datestamp = OAIUtils::UTCDate(strtotime($this->datetimeFromDB($row['last_modified'])));
 		$record->sets = array($conference->getPath() . ':' . $track->getLocalizedAbbrev());
 
 		return $record;
@@ -382,7 +385,8 @@ class OAIDAO extends DAO {
 	 */
 	function &getToken($tokenId) {
 		$result =& $this->retrieve(
-			'SELECT * FROM oai_resumption_tokens WHERE token = ?', $tokenId
+			'SELECT * FROM oai_resumption_tokens WHERE token = ?',
+			array($tokenId)
 		);
 
 		if ($result->RecordCount() == 0) {
@@ -410,7 +414,7 @@ class OAIDAO extends DAO {
 			$token->id = md5(uniqid(mt_rand(), true));
 			$result =& $this->retrieve(
 				'SELECT COUNT(*) FROM oai_resumption_tokens WHERE token = ?',
-				$token->id
+				array($token->id)
 			);
 			$val = $result->fields[0];
 
