@@ -82,8 +82,13 @@ class SchedConf extends DataObject {
 	 * Get the localized title of the scheduled conference
 	 * @return string
 	 */
-	function getSchedConfTitle() {
+	function getLocalizedTitle() {
 		return $this->getLocalizedSetting('title');
+	}
+
+	function getSchedConfTitle() {
+		if (Config::getVar('debug', 'deprecation_warnings')) trigger_error('Deprecated function.');
+		return $this->getLocalizedTitle();
 	}
 
 	/**
