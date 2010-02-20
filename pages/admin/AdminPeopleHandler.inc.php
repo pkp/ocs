@@ -36,20 +36,15 @@ class AdminPeopleHandler extends AdminHandler {
 
 		$templateMgr =& TemplateManager::getManager();
 
-		$oldUserId = Request::getUserVar('oldUserId');
+		$oldUserIds = (array) Request::getUserVar('oldUserIds');
 		$newUserId = Request::getUserVar('newUserId');
 
-		if (!empty($oldUserId) && !empty($newUserId)) {
+		if (!empty($oldUserIds) && !empty($newUserId)) {
 			import('user.UserAction');
-			UserAction::mergeUsers($oldUserId, $newUserId);
+			foreach ($oldUserIds as $oldUserId) {
+				UserAction::mergeUsers($oldUserId, $newUserId);
+			}
 			Request::redirect(null, null, 'admin', 'mergeUsers');
-		}
-
-		if (!empty($oldUserId)) {
-			// Get the old username for the confirm prompt.
-			$oldUser =& $userDao->getUser($oldUserId);
-			$templateMgr->assign('oldUsername', $oldUser->getUsername());
-			unset($oldUser);
 		}
 
 		// The administrator must select one or both IDs.
@@ -127,7 +122,7 @@ class AdminPeopleHandler extends AdminHandler {
 			USER_FIELD_INTERESTS => 'user.interests'
 		));
 		$templateMgr->assign('alphaList', explode(' ', Locale::translate('common.alphaList')));
-		$templateMgr->assign('oldUserId', $oldUserId);
+		$templateMgr->assign('oldUserIds', $oldUserIds);
 		$templateMgr->assign('rolePath', $roleDao->getRolePath($roleId));
 		$templateMgr->assign('roleSymbolic', $roleSymbolic);
 		$templateMgr->display('admin/selectMergeUser.tpl');
