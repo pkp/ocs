@@ -9,7 +9,7 @@
  * @class PeopleHandler
  * @ingroup pages_manager
  *
- * @brief Handle requests for people management functions. 
+ * @brief Handle requests for people management functions.
  */
 
 //$Id$
@@ -27,7 +27,7 @@ class PeopleHandler extends ManagerHandler {
 	/**
 	 * Display list of people in the selected role.
 	 * @param $args array first parameter is the role ID to display
-	 */	
+	 */
 	function people($args) {
 		$this->validate();
 		$this->setupTemplate(true);
@@ -48,7 +48,7 @@ class PeopleHandler extends ManagerHandler {
 			$roleId = 0;
 			$roleName = 'manager.people.allUsers';
 		}
-		
+
 		$sort = Request::getUserVar('sort');
 		$sort = isset($sort) ? $sort : 'name';
 		$sortDirection = Request::getUserVar('sortDirection');
@@ -176,7 +176,7 @@ class PeopleHandler extends ManagerHandler {
 			$searchType = USER_FIELD_INITIAL;
 			$search = $searchInitial;
 		}
-		
+
 		$sort = Request::getUserVar('sort');
 		$sort = isset($sort) ? $sort : 'name';
 		$sortDirection = Request::getUserVar('sortDirection');
@@ -437,6 +437,7 @@ class PeopleHandler extends ManagerHandler {
 
 		$conference =& Request::getConference();
 		$schedConf =& Request::getSchedConf();
+		$schedConfId = isset($schedConf)? $schedConf->getId() : null;
 		$templateMgr =& TemplateManager::getManager();
 
 		$oldUserIds = (array) Request::getUserVar('oldUserIds');
@@ -447,7 +448,6 @@ class PeopleHandler extends ManagerHandler {
 		foreach ($oldUserIds as $oldUserId) {
 			if (!Validation::canAdminister($conference->getId(), $oldUserId)) $canAdministerAll = false;
 		}
-
 		if (
 			(!empty($oldUserIds) && !$canAdministerAll) ||
 			(!empty($newUserId) && !Validation::canAdminister($conference->getId(), $newUserId))
@@ -482,6 +482,10 @@ class PeopleHandler extends ManagerHandler {
 			$roleName = 'manager.people.allUsers';
 		}
 
+		$sort = Request::getUserVar('sort');
+		$sort = isset($sort) ? $sort : 'name';
+		$sortDirection = Request::getUserVar('sortDirection');
+
 		$searchType = null;
 		$searchMatch = null;
 		$search = Request::getUserVar('search');
@@ -500,7 +504,7 @@ class PeopleHandler extends ManagerHandler {
 
 		if ($roleId) {
 			while (true) {
-				$users =& $roleDao->getUsersByRoleId($roleId, $conference->getId(), $schedConf->getId(), $searchType, $search, $searchMatch, $rangeInfo);
+				$users =& $roleDao->getUsersByRoleId($roleId, $conference->getId(), $schedConfId, $searchType, $search, $searchMatch, $rangeInfo, $sort);
 				if ($users->isInBounds()) break;
 				unset($rangeInfo);
 				$rangeInfo =& $users->getLastPageRangeInfo();
@@ -509,7 +513,7 @@ class PeopleHandler extends ManagerHandler {
 			$templateMgr->assign('roleId', $roleId);
 		} else {
 			while (true) {
-				$users =& $roleDao->getUsersByConferenceId($conference->getId(), $searchType, $search, $searchMatch, $rangeInfo);
+				$users =& $roleDao->getUsersByConferenceId($conference->getId(), $searchType, $search, $searchMatch, $rangeInfo, $sort);
 				if ($users->isInBounds()) break;
 				unset($rangeInfo);
 				$rangeInfo =& $users->getLastPageRangeInfo();
@@ -545,6 +549,8 @@ class PeopleHandler extends ManagerHandler {
 		$templateMgr->assign('oldUserIds', $oldUserIds);
 		$templateMgr->assign('rolePath', $roleDao->getRolePath($roleId));
 		$templateMgr->assign('roleSymbolic', $roleSymbolic);
+		$templateMgr->assign('sort', $sort);
+		$templateMgr->assign('sortDirection', $sortDirection);
 		$templateMgr->display('manager/people/selectMergeUser.tpl');
 	}
 
