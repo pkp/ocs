@@ -29,7 +29,6 @@
 
 	<message key="plugins.generic.translator.errors.LOCALE_ERROR_MISSING_KEY.title">Claves perdidas</message>
 	<message key="plugins.generic.translator.errors.LOCALE_ERROR_EXTRA_KEY.title">Claves extra</message>
-	<message key="plugins.generic.translator.errors.LOCALE_ERROR_SUSPICIOUS_LENGTH.title">Largo de clave incorrecto</message>
 	<message key="plugins.generic.translator.errors.LOCALE_ERROR_DIFFERING_PARAMS.title">Lista de parámetros incorrecta</message>
 	<message key="plugins.generic.translator.errors.LOCALE_ERROR_MISSING_FILE.title">Ficheros "locale" no encontrados</message>
 	<message key="plugins.generic.translator.errors.EMAIL_ERROR_MISSING_EMAIL.title">Emails no encontrados</message>
@@ -39,10 +38,6 @@
 	<message key="plugins.generic.translator.errors.LOCALE_ERROR_MISSING_KEY.message">La clave "{$key}" no se encuentra en "{$filename}". 
 Se remite a la versión en inglés como versión por defecto.</message>
 	<message key="plugins.generic.translator.errors.LOCALE_ERROR_EXTRA_KEY.message">La Clave "{$key}" ya no se usa y puede eliminarse de "{$filename}".</message>
-	<message key="plugins.generic.translator.errors.LOCALE_ERROR_SUSPICIOUS_LENGTH.message"><![CDATA[La clave "locale" "{$key}" en "{$filename}" tiene una longitud de caracteres considerablemente distino que el de la referencia:<ul>
-		<li>{$value} ({$locale})</li>
-		<li>{$reference} ({$referenceLocale})</li>
-	</ul>]]></message>
 	<message key="plugins.generic.translator.errors.LOCALE_ERROR_DIFFERING_PARAMS.message">La clave local "{$key}" en "{$filename}" difiere de la referencia local en su uso de los parámetros. Por favor revisela de nuevo para comprovar que contiene todos los parámetros relevantes. El/Los parámetro/s erróneo/s es/son:</message>
 	<message key="plugins.generic.translator.errors.LOCALE_ERROR_MISSING_FILE.message">El fichero local "{$filename}" se ha perdido o no se puede leer.</message>
 	<message key="plugins.generic.translator.errors.EMAIL_ERROR_MISSING_EMAIL.message">El mensaje email "{$key}" no se encuentra en la traducción.</message>
