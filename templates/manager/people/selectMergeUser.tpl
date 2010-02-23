@@ -71,10 +71,10 @@
 		{if empty($oldUserIds)}
 			<td width="5%">&nbsp;</td>
 		{/if}
-		<td>{translate key="user.username"}</td>
-		<td width="29%">{translate key="user.name"}</td>
-		<td width="29%">{translate key="user.email"}</td>
-		<td width="15%" align="right">{translate key="common.action"}</td>
+		<td width="29%">{sort_heading key="user.username" sort="username"}</td>
+		<td width="29%">{sort_heading key="user.name" sort="name"}</td>
+		<td width="29%">{sort_heading key="user.email" sort="email"}</td>
+		<td width="13%" align="right">{translate key="common.action"}</td>
 	</tr>
 	<tr>
 		<td colspan="{$numCols}" class="headseparator">&nbsp;</td>
