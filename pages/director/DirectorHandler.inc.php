@@ -89,26 +89,29 @@ class DirectorHandler extends TrackDirectorHandler {
 		$search = Request::getUserVar('search');
 
 		$sort = Request::getUserVar('sort');
-		$sort = isset($sort) ? $sort : 'id';
 		$sortDirection = Request::getUserVar('sortDirection');
 
 		switch($page) {
 			case 'submissionsUnassigned':
 				$functionName = 'getDirectorSubmissionsUnassigned';
 				$helpTopicId = 'editorial.directorsRole.submissions.unassigned';
+				$sort = isset($sort) ? $sort : 'id';
 				break;
 			case 'submissionsAccepted':
 				$functionName = 'getDirectorSubmissionsAccepted';
 				$helpTopicId = 'editorial.directorsRole.submissions.presentations';
+				$sort = isset($sort) ? $sort : 'seq';
 				break;
 			case 'submissionsArchives':
 				$functionName = 'getDirectorSubmissionsArchives';
 				$helpTopicId = 'editorial.directorsRole.submissions.archives';
+				$sort = isset($sort) ? $sort : 'id';
 				break;
 			default:
 				$page = 'submissionsInReview';
 				$functionName = 'getDirectorSubmissionsInReview';
 				$helpTopicId = 'editorial.directorsRole.submissions.inReview';
+				$sort = isset($sort) ? $sort : 'id';
 		}
 
 		$filterDirector = Request::getUserVar('filterDirector');

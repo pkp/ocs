@@ -595,6 +595,7 @@ class DirectorSubmissionDAO extends DAO {
 			case 'active': return 'p.submission_progress';		
 			case 'subLayout': return 'layout_completed';
 			case 'status': return 'p.status';
+			case 'seq': return 'pp.seq';
 			default: return null;
 		}
 	}
