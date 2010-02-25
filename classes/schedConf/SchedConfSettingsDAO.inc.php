@@ -25,7 +25,6 @@ class SchedConfSettingsDAO extends SettingsDAO {
 			$settingCache = array();
 		}
 		if (!isset($settingCache[$schedConfId])) {
-			import('cache.CacheManager');
 			$cacheManager =& CacheManager::getManager();
 			$settingCache[$schedConfId] = $cacheManager->getCache(
 				'schedConfSettings', $schedConfId,

@@ -23,7 +23,6 @@ class ConferenceSettingsDAO extends SettingsDAO {
 			$settingCache = array();
 		}
 		if (!isset($settingCache[$conferenceId])) {
-			import('cache.CacheManager');
 			$cacheManager =& CacheManager::getManager();
 			$settingCache[$conferenceId] = $cacheManager->getCache(
 				'conferenceSettings', $conferenceId,
