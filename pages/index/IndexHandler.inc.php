@@ -66,8 +66,7 @@ class IndexHandler extends Handler {
 			// If the site specifies that we should redirect to a specific conference
 			// by default, do it.
 
-			$siteDao =& DAORegistry::getDAO('SiteDAO');
-			$site =& $siteDao->getSite();
+			$site =& Request::getSite();
 			$conference = $conferenceDao->getConference($site->getRedirect());
 
 			if ($site->getRedirect() && $conference) {
