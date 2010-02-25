@@ -13,9 +13,7 @@
 # $Id$
 #
 
-CVSROOT=:pserver:anonymous@lib-pkp.lib.sfu.ca:/cvs
-OCSMODULE=ocs2
-PKPMODULE=pkp
+GITREP=git://github.com/pkp/ocs.git
 
 if [ -z "$1" ]; then
 	echo "Usage: $0 <version> [<tag>] [<patch_dir>]";
@@ -23,7 +21,7 @@ if [ -z "$1" ]; then
 fi
 
 VERSION=$1
-TAG=${2-HEAD}
+TAG=${2-origin/master}
 PATCHDIR=${3-}
 PREFIX=ocs
 BUILD=$PREFIX-$VERSION
@@ -36,27 +34,27 @@ locale/te_ST							\
 tools/buildpkg.sh						\
 tools/genLocaleReport.sh					\
 tools/genTestLocale.php						\
-tools/test"
+tools/test							\
+.git								\
+lib/pkp/.git"
 
 
 cd $TMPDIR
 
-echo -n "Exporting $OCSMODULE with tag $TAG ... "
-cvs -Q -d $CVSROOT export -r $TAG -d $BUILD $OCSMODULE || exit 1
-echo "Done"
-
-echo -n "Exporting $PKPMODULE with tag $TAG ... "
-cvs -Q -d $CVSROOT export -r $TAG $PKPMODULE || exit 1
-echo "Done"
-
-mv $PKPMODULE $BUILD/lib
-
+echo -n "Cloning $GITREP and checking out tag $TAG ... "
+git clone -q -n $GITREP $BUILD || exit 1
 cd $BUILD
+git checkout -q $TAG || exit 1
+echo "Done"
+
+echo -n "Checking out corresponding submodule ... "
+git submodule -q update --init >/dev/null || exit 1
+echo "Done"
 
 echo -n "Preparing package ... "
 cp config.TEMPLATE.inc.php config.inc.php
-find . -name .cvsignore -exec rm {} \;
-rm -r $EXCLUDE
+find . \( -name .cvsignore -o -name .gitignore -o -name .gitmodules -o -name .keepme \) -exec rm '{}' \;
+rm -rf $EXCLUDE
 echo "Done"
 
 cd ..
