@@ -23,6 +23,7 @@
 	<schema file="lib/pkp/xml/schema/scheduledTasks.xml" />
 	<schema file="lib/pkp/xml/schema/temporaryFiles.xml" />
 	<schema file="lib/pkp/xml/schema/announcements.xml" />
+	<schema file="lib/pkp/xml/schema/reviewForms.xml" />
 
 	<!-- OCS schema -->
 	<schema file="dbscripts/xml/ocs_schema.xml" />

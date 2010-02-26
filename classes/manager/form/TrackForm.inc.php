@@ -38,7 +38,7 @@ class TrackForm extends Form {
 		$this->addCheck(new FormValidatorLocale($this, 'abbrev', 'required', 'manager.tracks.form.abbrevRequired'));
 		$this->addCheck(new FormValidatorPost($this));
 
-		$this->addCheck(new FormValidatorCustom($this, 'reviewFormId', 'optional', 'manager.sections.form.reviewFormId', array(DAORegistry::getDAO('ReviewFormDAO'), 'reviewFormExists'), array($conference->getId())));
+		$this->addCheck(new FormValidatorCustom($this, 'reviewFormId', 'optional', 'manager.sections.form.reviewFormId', array(DAORegistry::getDAO('ReviewFormDAO'), 'reviewFormExists'), array(ASSOC_TYPE_CONFERENCE, $conference->getId())));
 	}
 
 	/**
@@ -98,10 +98,10 @@ class TrackForm extends Form {
 		$templateMgr->assign('helpTopicId','conference.currentConferences.tracks');
 
 		$reviewFormDao =& DAORegistry::getDAO('ReviewFormDAO');
-		$reviewForms =& $reviewFormDao->getConferenceActiveReviewForms($conference->getId());
+		$reviewForms =& $reviewFormDao->getActiveByAssocId(ASSOC_TYPE_CONFERENCE, $conference->getId());
 		$reviewFormOptions = array();
 		while ($reviewForm =& $reviewForms->next()) {
-			$reviewFormOptions[$reviewForm->getId()] = $reviewForm->getReviewFormTitle();
+			$reviewFormOptions[$reviewForm->getId()] = $reviewForm->getLocalizedTitle();
 		}
 		$templateMgr->assign_by_ref('reviewFormOptions', $reviewFormOptions);
 

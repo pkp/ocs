@@ -33,7 +33,7 @@
 	{assign var=canEdit value=0}
 {/if}
 	<tr valign="top">
-		<td>{$reviewForm->getReviewFormTitle()|escape}</td>
+		<td>{$reviewForm->getLocalizedTitle()|escape}</td>
 		<td>{$reviewForm->getIncompleteCount()|escape}</td>
 		<td>{$reviewForm->getCompleteCount()|escape}</td>
 		<td align="right" class="nowrap">
