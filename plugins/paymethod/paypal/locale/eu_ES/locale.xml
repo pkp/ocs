@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../locale/locale.dtd">
+
+<!--
+  * locale.xml
+  *
+  * Copyright (c) 2006-2009 Gunther Eysenbach, Juan Pablo Alperin, MJ Suhonos
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the eu_ES (Basque (Euskara)) locale.
+  *
+ -->
+ 
+<locale name="eu_ES" full_name="Euskara">
+	<message key="plugins.paymethod.paypal.displayName">Paypal</message>
+
+	<!-- PayPal Settings Form -->
+	<message key="plugins.paymethod.paypal.settings.paypalenable">Gaitu PayPal</message>
+	<message key="plugins.paymethod.paypal.settings.paypalurl">IPN URLa</message>
+	<message key="plugins.paymethod.paypal.settings.paypalurl.description"><![CDATA[PayPal-en Instant Payment Notification (IPN) zerbitzuaren URLa da. Probak egiteko, erabili <u>https://www.sandbox.paypal.com/cgi-bin/webscr</u>; produkzio-sistemetarako, erabili <u>https://www.paypal.com/cgi-bin/webscr</u>.]]></message>
+	<message key="plugins.paymethod.paypal.settings.selleraccount">Saltzailearen kontua</message>
+	<message key="plugins.paymethod.paypal.settings.selleraccount.description">Saltzailearen kontuan erabiltzeko PayPal kontuaren erabiltzaile-izena da, normalean helbide elektroniko bat.</message>
+	<message key="plugins.paymethod.paypal.settings.curlNotInstalled">Kontuz: PHPrako CURL euskarria ez dago instalatuta. PayPal ordainketa onartzeko, CURL liburutegia eduki behar da, eta ez du funtzionatuko instalatuta egon arte.</message>
+	<message key="plugins.paymethod.paypal.settings">PayPal ezarpenak</message>
+
+	<!-- PayPal -->
+	<message key="plugins.paymethod.paypal">PayPal ordainketa</message>
+	<message key="plugins.paymethod.paypal.description"><![CDATA[Plugin honekin, PayPal-eko kide ez izan arren, kreditu-txartel ezagunenak erabil ditzakete erabiltzaileek, eta baita eCheck ere, sistema honen bidez ordaintzen dutenean. Kongresu-kudeatzaileak <a href="http://www.paypal.com" target="_new">PayPal Business Account</a> kontu bat ireki beharko du ordaintzeko aukera hau erabiltzeko.]]></message>
+	<message key="plugins.paymethod.paypal.warning">'Jarraitu' sakatzen baduzu, PayPal-en webgunera joango zara.  PayPal-en ordainketa egindakoan, sakatu "Return to Merchant" botoia gune honetara itzultzeko.</message>
+	<message key="plugins.paymethod.paypal.purchase.amount">Zenbatekoa</message>
+	<message key="plugins.paymethod.paypal.purchase.description">Azalpena</message>
+	<message key="plugins.paymethod.paypal.purchase.cancelled">Zure erosketa bertan behera utzi da.</message>
+	<message key="plugins.paymethod.paypal.purchase.cancelled.title">Erosketa ezereztuta</message>
+</locale>
+

@@ -4,7 +4,7 @@
 <!--
   * 000038.xml
   *
-  * Copyright (c) 2000-2008 John Willinsky
+  * Copyright (c) 2000-2010 John Willinsky
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
   *
   * Conference Management - General Management - Website Management - Conference Style
@@ -14,7 +14,7 @@
 
 <topic id="conference/topic/000038" locale="es_AR" title="Estilo del Congreso" toc="conference/toc/000005" key="conference.generalManagement.websiteManagement.style">
 	<section>
-		<![CDATA[<p> Mucho de los aspectos del congreso alojado, en cuanto al estilo y diseño, pueden ser controlados. OCS trata un numero de temas que pueden ser cambiados aqui mediante el menu desplegable (tambien existen una variedad de temas disponibles para ser descargados en <ahref="http://pkp.sfu.ca/theme-gallery" target="_blank">Theme Gallary</a>.) Para tener aun mas control, tambien se puede cargar una hoja de estilo unica. </p>
+		<![CDATA[<p> Mucho de los aspectos del congreso alojado, en cuanto al estilo y diseÃ±o, pueden ser controlados. OCS trata un numero de temas que pueden ser cambiados aqui mediante el menu desplegable (tambien existen una variedad de temas disponibles para ser descargados en <ahref="http://pkp.sfu.ca/theme-gallery" target="_blank">Theme Gallary</a>.) Para tener aun mas control, tambien se puede cargar una hoja de estilo unica. </p>
 		<p> OCS tambien soporta un sistema de bloques para desplegarse en las barras laterales. La interface puede ser construida al gusto mediante el movimiento de bloques de informacion de la izquierda a la derecha, y para arriba o abajo tanto en la barra lateral derecha como la izquierda. Mover un bloque al campo del medio "no seleccionado", lo removera de la interface. </p>]]>
 	</section>
 </topic>

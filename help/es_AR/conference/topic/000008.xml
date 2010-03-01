@@ -4,7 +4,7 @@
 <!--
   * 000008.xml
   *
-  * Copyright (c) 2000-2008 John Willinsky
+  * Copyright (c) 2000-2010 John Willinsky
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
   *
   * Conference Management - General Management - Prepared Emails 
@@ -18,7 +18,7 @@
 		
 	</section>
 	<section title="Sending Emails">
-		<![CDATA[<p> En todo el sistema aparecen iconos de emails para varias tareas. Cuando un icono de email es clickeado, se genera un mail estandar listo para ser enviado, que igualmente puede ser editado por el remitente antes de ser enviado. En este email, el destinario previsto es completado en forma automatica (a menos de que para empezar no haya un destinario previsto), y el resto de los campos son llenados con informacion relevante, como el titulo y el resumen del pedido en cuestion, la fecha limite de una revision, o el acceso al pedido. El remitente puede alterar la direccion de email del destinario asi como agregar receptores adicionales, excepto en los casos que involucren envio de contraseñas (por motivos de seguridad).</p>
+		<![CDATA[<p> En todo el sistema aparecen iconos de emails para varias tareas. Cuando un icono de email es clickeado, se genera un mail estandar listo para ser enviado, que igualmente puede ser editado por el remitente antes de ser enviado. En este email, el destinario previsto es completado en forma automatica (a menos de que para empezar no haya un destinario previsto), y el resto de los campos son llenados con informacion relevante, como el titulo y el resumen del pedido en cuestion, la fecha limite de una revision, o el acceso al pedido. El remitente puede alterar la direccion de email del destinario asi como agregar receptores adicionales, excepto en los casos que involucren envio de contraseÃ±as (por motivos de seguridad).</p>
 
 		<p> Notese que la correcion de la direccion de email del destinario mientras editamos un email no altera la direccion de email cargada en la pagina de Perfil del sistema. Para corregir la direccion de mail del destinario en base permanente, debemos notificar al Gestor del Congreso, quien tiene la autoridad para hacer semejantes cambios en el perfil.</p>]]>
 	</section>

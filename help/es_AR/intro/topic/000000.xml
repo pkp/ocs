@@ -4,7 +4,7 @@
 <!--
   * 000000.xml
   *
-  * Copyright (c) 2000-2008 John Willinsky
+  * Copyright (c) 2000-2010 John Willinsky
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
   *
   * Introduction to OCS Main 
@@ -14,12 +14,12 @@
 
 <topic id="intro/topic/000000" locale="es_AR" title="Introduccion a OCS" toc="index/toc/000000" subtoc="intro/toc/000000" key="intro.index">
 	<section>
-		<![CDATA[<p> Open Conference Systems (OCS - Sistema de Congreso Abierto) es una solucion de fuente abierta para manejar y publicar congresos programados en linea. OCS es un sistema de gestion altamente flexible, asi como un sistema de publicacion, que puede ser descargado gratuitamente e instalado en un servidor Web local. Ha sido diseñado para reducir el tiempo y energia dedicados a las tareas de oficina y de gestion asociadas con la gestion de un congreso, mientras se trabaja sobre la archivacion y la eficiencia del proceso editorial. Busca mejorar la calidad de publicacion y la parte academica de la publicacion de un congreso a traves de un numero de innovaciones, desde hacer mas transparentes las politicas a aumentar la indexacion . </p>]]>	
+		<![CDATA[<p> Open Conference Systems (OCS - Sistema de Congreso Abierto) es una solucion de fuente abierta para manejar y publicar congresos programados en linea. OCS es un sistema de gestion altamente flexible, asi como un sistema de publicacion, que puede ser descargado gratuitamente e instalado en un servidor Web local. Ha sido diseÃ±ado para reducir el tiempo y energia dedicados a las tareas de oficina y de gestion asociadas con la gestion de un congreso, mientras se trabaja sobre la archivacion y la eficiencia del proceso editorial. Busca mejorar la calidad de publicacion y la parte academica de la publicacion de un congreso a traves de un numero de innovaciones, desde hacer mas transparentes las politicas a aumentar la indexacion . </p>]]>	
 	</section>
 	<section title="Contexto del Sistema">
 		<![CDATA[<p><em> OCS es un sistema de gestion y publicacion de congreso</em>. OCS cubre todos los aspectos de gestion y publicacion de un congreso en linea, desde configurar el sitio web para tareas operativas como enviar, revisar, editar, publicar, archivar, e indexar los trabajos del congreso. OCS tambien brinda ayuda para manejar la gente envuelta en la organizacion del congreso, incluyendo el seguimiento del trabajo de directores, directores de seccion, revisores, y autores, notificar lectores y registrantes, asi como para asistir con la correspondencia.</p>
 
-		<p><em>OCS es flexible y escalable</em>. Una unica instalacion de OCS puede soportar la operacion de multiples congresos, asi como multiples años de cada congreso. Cada congreso tiene su propio y unico URL, asi como su propia apariencia y sentido. OCS puede permitir que un solo director maneje todos los aspectos de un congreso, o tambien puede soportar un equipo internacional de personas con responsabilidades diversas para los distintos aspectos del congreso.</p>
+		<p><em>OCS es flexible y escalable</em>. Una unica instalacion de OCS puede soportar la operacion de multiples congresos, asi como multiples aÃ±os de cada congreso. Cada congreso tiene su propio y unico URL, asi como su propia apariencia y sentido. OCS puede permitir que un solo director maneje todos los aspectos de un congreso, o tambien puede soportar un equipo internacional de personas con responsabilidades diversas para los distintos aspectos del congreso.</p>
 
 		<p><em>OCS soporta el principio de extender acceso</em>. Este sistema tiene la intencion de no solo asistir con la publicacion del congreso, pero tambien demostrar como los costos de un congreso pueden ser reducidos al punto en que brindar a los lectores acceso libre a los contenidos de procedimientos puede ser una opcion viable. El concepto de acceso abierto es elaborado en un numero de articulos contenidos en este proyecto, los cuales estan disponibles en forma gratuita en  <a href="http://pkp.sfu.ca/pkp_publications" target="_blank">Publicaciones PKP</a> en el sitio web de Public Knowledge Proyect (PKP - Proyecto de Conocimiento Publico).</p>
 
@@ -41,7 +41,7 @@
 		<li>localizacion y herramientas de traduccion</li>
 		<li>pago en tarjeta de credito para registraciones</li>
 		<li>mensajes automaticos de agradecimiento por el envio de trabajos</li>
-		<li>aceptar usuario/contraseña para los participantes</li>
+		<li>aceptar usuario/contraseÃ±a para los participantes</li>
 		<li>Licencias Creative Commons para las presentaciones</li>
 		<li>un codigo mas securo, escalable y personalizable</li></ul>
 		<p> Los nuevos rasgos incorporados en la ultima version OCS 2.1 incluyen:</p>
@@ -55,7 +55,7 @@
 <![CDATA[<h5>Prceso Editorial</h5><p> Los nuevos envios tipicamente atraviesan un proceso editorial de cuatro pasos, envolviendo directores, directores de seccion, revisores y autores.</p>
 <ol><li><em>Cola de No asignados:</em> Items que esperan asignacion a uno o mas directores de seccion.</li>
 <li><em>Revision de Envio:</em> Items revisados por pares y sujeto a la decision editorial.</li>
-<li><em>Edicion del Envio:</em> Items en correcion del manuscrito y del diseño.</li>
+<li><em>Edicion del Envio:</em> Items en correcion del manuscrito y del diseÃ±o.</li>
 <li><em>Publicacion:</em> Items programados para ser subidos al Sitio Web.</li></ol>
 <h5>Roles Editoriales</h5>
 <ul><li><em>Administracion del Sitio:</em> Supervisa la entera instalacion de OCS, y configura todo congreso nuevo alojado en la instalacion.</li>

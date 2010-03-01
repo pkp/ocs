@@ -3,7 +3,7 @@
 /**
  * @file PresenterSubmitStep2Form.inc.php
  *
- * Copyright (c) 2000-2009 John Willinsky
+ * Copyright (c) 2000-2010 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class PresenterSubmitStep2Form
@@ -205,13 +205,13 @@ class PresenterSubmitStep2Form extends PresenterSubmitForm {
 				$paper->setDateSubmitted(Core::getCurrentDate());
 				$paper->stampStatusModified();
 				$paper->setCurrentStage(REVIEW_STAGE_ABSTRACT);
-				$trackDirectors = $this->assignDirectors($paper);
+				$this->assignDirectors($paper);
 				
 				if ($schedConf->getSetting('acceptSupplementaryReviewMaterials')) {
 					$paper->setSubmissionProgress($this->step + 2); 
 				} else {
 					$paper->setSubmissionProgress(0); 
-					$this->confirmSubmission($paper, $user, $schedConf, $conference, 'SUBMISSION_ACK', $trackDirectors);
+					$this->confirmSubmission($paper, $user, $schedConf, $conference, 'SUBMISSION_ACK');
 				}
 			}
 		}
@@ -246,6 +246,7 @@ class PresenterSubmitStep2Form extends PresenterSubmitForm {
 					$paper->addPresenter($presenter);
 				}
 			}
+			unset($presenter);
 		}
 
 		// Remove deleted presenters

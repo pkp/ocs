@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../locale/locale.dtd">
+
+<!--
+  * locale.xml
+  *
+  * Copyright (c) 2000-2010 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the eu_ES (Basque (Euskara)) locale.
+  *
+  * $Id$
+  -->
+
+<locale name="eu_ES" full_name="Euskara">
+	<message key="plugins.reports.papers.displayName">Lanen (paperen) txostena</message>
+	<message key="plugins.reports.papers.description">Plugin honek lanen eta haien informazioaren zerrenda ematen du CSV txosten batean.</message>
+	<message key="plugins.reports.papers.nodecision">Erabakirik ez</message>
+</locale>
+

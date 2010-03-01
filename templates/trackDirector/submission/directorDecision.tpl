@@ -1,7 +1,7 @@
 {**
  * directorDecision.tpl
  *
- * Copyright (c) 2000-2009 John Willinsky
+ * Copyright (c) 2000-2010 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * Subtemplate defining the director decision table.
@@ -15,7 +15,7 @@
 <tr valign="top">
 	<td class="label" width="20%">{translate key="director.paper.selectDecision"}</td>
 	<td width="80%" class="value" colspan="2">
-		<form method="post" action="{url op="recordDecision"}">
+		<form method="post" action="{url op="recordDecision" path=$stage}">
 			<input type="hidden" name="paperId" value="{$submission->getPaperId()}" />
 			<select name="decision" size="1" class="selectMenu"{if not $allowRecommendation} disabled="disabled"{/if}>
 				{assign var=availableDirectorDecisionOptions value=`$submission->getDirectorDecisionOptions($currentSchedConf,$stage)`}

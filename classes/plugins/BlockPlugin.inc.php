@@ -3,7 +3,7 @@
 /**
  * @file BlockPlugin.inc.php
  *
- * Copyright (c) 2000-2009 John Willinsky
+ * Copyright (c) 2000-2010 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class BlockPlugin
@@ -165,11 +165,12 @@ class BlockPlugin extends Plugin {
 		return $templateMgr->fetch($this->getTemplatePath() . '/' . $blockTemplateFilename);
 	}
 
-	function callback($hookName, &$args) {
+	function callback($hookName, $args) {
 		$params =& $args[0];
 		$smarty =& $args[1];
 		$output =& $args[2];
 		$output .= $this->getContents($smarty);
 	}
 }
+
 ?>

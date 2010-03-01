@@ -3,7 +3,7 @@
 /**
  * @file SchedConfAction.inc.php
  *
- * Copyright (c) 2000-2009 John Willinsky
+ * Copyright (c) 2000-2010 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class SchedConfAction
@@ -178,6 +178,7 @@ class SchedConfAction {
 	function registeredUser(&$schedConf) {
 		$user = &Request::getUser();
 		$registrationDao = &DAORegistry::getDAO('RegistrationDAO');
+		$result = false;
 
 		if (isset($user) && isset($schedConf)) {
 

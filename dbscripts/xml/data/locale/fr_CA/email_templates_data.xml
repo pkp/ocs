@@ -3,7 +3,7 @@
 <!--
   * email_templates_data.xml
   *
-  * Copyright (c) 2000-2009 John Willinsky
+  * Copyright (c) 2000-2010 John Willinsky
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
   *
   * Email templates data XML file (fr_CA).
@@ -490,7 +490,7 @@ Merci,
 		</row>
 		<row>
 			<field name="email_key">MANUAL_PAYMENT_RECEIVED</field>
-			<field name="subject">Confirmation de réception de votre paiement pour {$conferenceName}</field>
+			<field name="subject">Con$firmation de réception de votre paiement pour {$conferenceName}</field>
 			<field name="body">{$registrantName}:
 
 Votre paiement pour {$conferenceName} a été reçu et enregistré dans votre compte.
@@ -499,6 +499,18 @@ Si vous avez des questions, n'hésitez pas à me contacter.
 
 {$registrationContactSignature}</field>
 			<field name="description">Ce courriel alerte un lecteur inscrit que le Gestionnaire a créé une inscription pour lui. Il fournit l'URL de la conférence avec les instructions d'accès.</field>
+		</row>
+		<row>
+			<field name="email_key">PAYMENT_RECEIVED</field>
+			<field name="subject">Confirmation de réception de votre paiement pour {$conferenceName}</field>
+			<field name="body">{$registrantName}:
+
+Votre paiement pour {$conferenceName} a été reçu et enregistré dans votre compte.
+
+Si vous avez des questions, n'hésitez pas à me contacter.
+
+{$registrationContactSignature}</field>
+			<field name="description">Ce courriel alerte un lecteur inscrit. Il fournit l'URL de la conférence avec les instructions d'accès.</field>
 		</row>
 	</table>
 </data>

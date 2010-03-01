@@ -3,7 +3,7 @@
 /**
  * @file PresenterSubmitStep5Form.inc.php
  *
- * Copyright (c) 2000-2009 John Willinsky
+ * Copyright (c) 2000-2010 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class PresenterSubmitStep5Form
@@ -81,13 +81,12 @@ class PresenterSubmitStep5Form extends PresenterSubmitForm {
 		$reviewMode = $presenterSubmission->getReviewMode();
 		$user =& Request::getUser();
 
-		$trackDirectors = array();
 		if ($reviewMode == REVIEW_MODE_BOTH_SIMULTANEOUS || $reviewMode == REVIEW_MODE_PRESENTATIONS_ALONE) {
 			// Editors have not yet been assigned; assign them.
-			$trackDirectors = $this->assignDirectors($paper);
+			$this->assignDirectors($paper);
 		}
 
-		$this->confirmSubmission($paper, $user, $schedConf, $conference, $reviewMode == REVIEW_MODE_BOTH_SEQUENTIAL?'SUBMISSION_UPLOAD_ACK':'SUBMISSION_ACK', $trackDirectors);
+		$this->confirmSubmission($paper, $user, $schedConf, $conference, $reviewMode == REVIEW_MODE_BOTH_SEQUENTIAL?'SUBMISSION_UPLOAD_ACK':'SUBMISSION_ACK');
 
 		import('paper.log.PaperLog');
 		import('paper.log.PaperEventLogEntry');

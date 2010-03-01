@@ -3,7 +3,7 @@
 /**
  * @file TrackDirectorHandler.inc.php
  *
- * Copyright (c) 2000-2009 John Willinsky
+ * Copyright (c) 2000-2010 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class TrackDirectorHandler
@@ -253,9 +253,9 @@ class TrackDirectorHandler extends Handler {
 		SubmissionEditHandler::changeTypeConst();
 	}
 
-	function recordDecision() {
+	function recordDecision($args) {
 		import('pages.trackDirector.SubmissionEditHandler');
-		SubmissionEditHandler::recordDecision();
+		SubmissionEditHandler::recordDecision($args);
 	}
 
 	function selectReviewer($args) {

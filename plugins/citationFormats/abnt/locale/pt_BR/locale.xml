@@ -4,10 +4,12 @@
 <!--
   * locale.xml
   *
-  * Copyright (c) 2000-2009 John Willinsky
+  * Copyright (c) 2000-2010 John Willinsky
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
   *
   * Localization strings for this citation plugin in pt_BR.
+  * Translation and updates by IBICT;
+  * some updates by bruno.beghelli@gmail.com
   *
   * $Id$
   -->
@@ -17,4 +19,5 @@
 	<message key="plugins.citationFormats.abnt.citationFormatName">ABNT</message>
 	<message key="plugins.citationFormats.abnt.description">Este plugin implementa o formato de citação ABNT.</message>
 	<message key="plugins.citationFormat.abnt.location">Brasil</message>
+	<message key="plugins.citationFormats.abnt.retrieved"><![CDATA[Disponível em: <a href="{$url}" target="_new">{$url}</a>. Data de acesso: {$retrievedDate}]]></message>
 </locale>

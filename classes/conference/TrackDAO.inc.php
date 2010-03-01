@@ -3,7 +3,7 @@
 /**
  * @file TrackDAO.inc.php
  *
- * Copyright (c) 2000-2009 John Willinsky
+ * Copyright (c) 2000-2010 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class TrackDAO
@@ -326,6 +326,20 @@ class TrackDAO extends DAO {
 		$result->Close();
 		unset($result);
 
+		return $returner;
+	}
+
+	/**
+	 * Retrieve all tracks for a conference.
+	 * @return DAOResultFactory containing Tracks ordered by sequence
+	 */
+	function &getConferenceTracks($conferenceId, $rangeInfo = null) {
+		$result = &$this->retrieveRange(
+			'SELECT t.* FROM tracks t, sched_confs s WHERE s.conference_id = ? AND s.sched_conf_id = t.sched_conf_id ORDER BY t.seq',
+			$conferenceId, $rangeInfo
+		);
+
+		$returner =& new DAOResultFactory($result, $this, '_returnTrackFromRow');
 		return $returner;
 	}
 

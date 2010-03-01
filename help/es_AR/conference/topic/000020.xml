@@ -4,7 +4,7 @@
 <!--
   * 000020.xml
   *
-  * Copyright (c) 2000-2008 John Willinsky
+  * Copyright (c) 2000-2010 John Willinsky
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
   *
   * Conference Management - Current Conferences - Stats & Reports
@@ -19,7 +19,7 @@
 
 	<section title="Gestionando y viendo Estadisticas y Reportes">
 
-		<![CDATA[<p> El Gestor del Congreso debe primero seleccionar que secciones del Congreso usar para compilar estadisticas. Mas de una seccion puede ser seleccionada si mantenemos presionados el boton de Control mientras seleccionamos. Cuando el boton de Guardar es apretado, las estadisticas para las secciones elegidas seran mostradas en la lista ubicada debajo. Los años del calendarios pueden ser cambiados sencillamente apretando los botones de avanzar y retroceder en ambos lados de la fecha.</p>
+		<![CDATA[<p> El Gestor del Congreso debe primero seleccionar que secciones del Congreso usar para compilar estadisticas. Mas de una seccion puede ser seleccionada si mantenemos presionados el boton de Control mientras seleccionamos. Cuando el boton de Guardar es apretado, las estadisticas para las secciones elegidas seran mostradas en la lista ubicada debajo. Los aÃ±os del calendarios pueden ser cambiados sencillamente apretando los botones de avanzar y retroceder en ambos lados de la fecha.</p>
 
 		<p> El Gestor del Congreso puede tambien exportar datos unicos del sistema. Los datos soportados incluyen un reporte de trabajos (listan todos los trabajos en el sistema); un reporte de registro (listando todos los congresos programados); y un reporte de revision (listando toda la informacion de revision de envios). Estos estan disponibles en formato valores separados por coma - CSV, por sus siglas en ingles -.</p>  ]]>
 	</section>

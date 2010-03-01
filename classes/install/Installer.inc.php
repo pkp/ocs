@@ -3,7 +3,7 @@
 /**
  * @file Installer.inc.php
  *
- * Copyright (c) 2000-2009 John Willinsky
+ * Copyright (c) 2000-2010 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class Installer
@@ -368,7 +368,9 @@ class Installer {
 				$this->log(sprintf('schema: %s', $action['file']));
 
 				require_once('adodb/adodb-xmlschema.inc.php');
-				$schemaXMLParser = &new adoSchema($this->dbconn, $this->dbconn->charSet);
+				$schemaXMLParser = &new adoSchema($this->dbconn);
+				$dict =& $schemaXMLParser->dict;
+				$dict->SetCharSet($this->dbconn->charSet);
 				$sql = $schemaXMLParser->parseSchema($fileName);
 				$schemaXMLParser->destroy();
 

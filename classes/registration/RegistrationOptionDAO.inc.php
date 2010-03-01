@@ -3,7 +3,7 @@
 /**
  * @file RegistrationOptionDAO.inc.php
  *
- * Copyright (c) 2000-2009 John Willinsky
+ * Copyright (c) 2000-2010 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class RegistrationOptionDAO
@@ -315,7 +315,7 @@ class RegistrationOptionDAO extends DAO {
 	 * @param $registrationId int
 	 * @return array $optionIds
 	 */
-	function getRegistrationOptions($registrationId) {
+	function &getRegistrationOptions($registrationId) {
 		$result =& $this->retrieve(
 			'SELECT option_id FROM registration_option_assoc WHERE registration_id = ?',
 			array((int) $registrationId)

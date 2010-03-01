@@ -1,7 +1,7 @@
 {**
  * submissionsInReview.tpl
  *
- * Copyright (c) 2000-2009 John Willinsky
+ * Copyright (c) 2000-2010 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * Show track director's submissions in review.
@@ -48,7 +48,7 @@
 			{foreach from=$submission->getReviewAssignments(null) item=reviewAssignmentTypes}
 				{foreach from=$reviewAssignmentTypes item=assignment name=assignmentList}
 					{assign var=displayedRound value=1}
-					{if !$assignment->getCancelled()}
+					{if not $assignment->getCancelled() and not $assignment->getDeclined()}
 					<tr valign="top">
 						{assign var="stage" value=$assignment->getStage()}
 						<td width="25%" style="padding: 0 4px 0 0; font-size: 1.0em">{$stage|escape}</td>

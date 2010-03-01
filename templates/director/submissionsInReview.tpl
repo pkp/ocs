@@ -1,7 +1,7 @@
 {**
  * submissionsInReview.tpl
  *
- * Copyright (c) 2000-2009 John Willinsky
+ * Copyright (c) 2000-2010 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * Show director's submissions in review.
@@ -49,7 +49,7 @@
 		<table width="100%">
 			{foreach from=$submission->getReviewAssignments() item=reviewAssignments}
 				{foreach from=$reviewAssignments item=assignment name=assignmentList}
-					{if !$assignment->getCancelled()}
+					{if not $assignment->getCancelled() and not $assignment->getDeclined()}
 					<tr valign="top">
 						<td width="46%" style="padding: 0 4px 0 0; font-size: 1.0em">{if $assignment->getStage() == REVIEW_STAGE_ABSTRACT}{translate key="submission.abstract"}{else}{translate key="submission.paper"}{/if}</td>
 						<td width="18%" style="padding: 0 4px 0 0; font-size: 1.0em">{if $assignment->getDateNotified()}{$assignment->getDateNotified()|date_format:$dateFormatTrunc}{else}&mdash;{/if}</td>

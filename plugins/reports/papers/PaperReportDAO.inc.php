@@ -3,7 +3,7 @@
 /**
  * @file PaperReportDAO.inc.php
  *
- * Copyright (c) 2000-2009 John Willinsky
+ * Copyright (c) 2000-2010 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  * 
  * @class PaperReportDAO
@@ -106,18 +106,25 @@ class PaperReportDAO extends DAO {
 					pp.affiliation AS affiliation,
 					pp.country AS country,
 					pp.url AS url,
-					pps.setting_value AS biography
+					COALESCE(ppsl.setting_value, pps.setting_value) AS biography
 				FROM paper_presenters pp
 					LEFT JOIN papers p ON pp.paper_id=p.paper_id
-					LEFT JOIN paper_presenter_settings pps ON pp.presenter_id=pps.presenter_id
-				WHERE
-					p.sched_conf_id = ? AND
-					pp.paper_id = ? AND
-					pps.setting_name = \'biography\'',
-				array($schedConfId, $paper->getPaperId())
+					LEFT JOIN paper_presenter_settings pps ON (pp.presenter_id=pps.presenter_id AND pps.setting_name = ? AND pps.locale = ?)
+					LEFT JOIN paper_presenter_settings ppsl ON (pp.presenter_id=ppsl.presenter_id AND ppsl.setting_name = ? AND ppsl.locale = ?)
+				WHERE	p.sched_conf_id = ? AND
+					pp.paper_id = ?',
+				array(
+					'biography',
+					$primaryLocale,
+					'biography',
+					$locale,
+					$schedConfId,
+					$paper->getPaperId()
+				)
 			);
 			$presenterIterator =& new DBRowIterator($result);
-			$presentersReturner[] = $presenterIterator;
+			$presentersReturner[$paper->getPaperId()] = $presenterIterator;
+			unset($presenterIterator);
 			$index++;
 			unset($paper);
 		}

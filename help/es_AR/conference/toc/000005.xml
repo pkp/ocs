@@ -4,7 +4,7 @@
 <!--
   * 000005.xml
   *
-  * Copyright (c) 2000-2008 John Willinsky
+  * Copyright (c) 2000-2010 John Willinsky
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
   *
   * Conference Management - General Management - Website Management
@@ -15,7 +15,7 @@
 <toc id="conference/toc/000005" locale="es_AR" title="Gestion del Congreso" parent_topic="conference/topic/000005">
 	<topic id="conference/topic/000035" title="Acerca del Congreso" />
 	<topic id="conference/topic/000036" title="Contenido adicional del Sitio Web" />
-      <topic id="conference/topic/000037" title="Encabezados, Pi&aeacute; de Paginas, Listas y Barra de Navegacion del Congreso" />
+      <topic id="conference/topic/000037" title="Encabezados, Pié de Paginas, Listas y Barra de Navegacion del Congreso" />
 	<topic id="conference/topic/000038" title="Estilo del Congreso" />
 	<topic id="conference/topic/000039" title="Auditoria y Registro" />
 	<topic id="conference/topic/000040" title="indices del Congreso" />

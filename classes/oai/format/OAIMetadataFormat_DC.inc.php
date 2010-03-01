@@ -7,7 +7,7 @@
 /**
  * @file OAIMetadataFormat_DC.inc.php
  *
- * Copyright (c) 2000-2009 John Willinsky
+ * Copyright (c) 2000-2010 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class OAIMetadataFormat_DC
@@ -68,6 +68,7 @@ class OAIMetadataFormat_DC extends OAIMetadataFormat {
 
 		$response = '';
 		foreach ($value as $key => $v) {
+			$key = str_replace('_', '-', $key);
 			if (!$multilingual) $response .= "\t<dc:$name>" . $this->oai->prepOutput($v) . "</dc:$name>\n";
 			else {
 				if (is_array($v)) {

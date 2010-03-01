@@ -4,7 +4,7 @@
 <!--
   * 000007.xml
   *
-  * Copyright (c) 2000-2008 John Willinsky
+  * Copyright (c) 2000-2010 John Willinsky
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
   *
   * Conference Management - General Management - Announcements 
@@ -17,12 +17,12 @@
 		<![CDATA[<p> El Gestor de Congreso puede cargar anuncios que se encuentren disponibles para los lectores que visiten el sitio. Los anuncios subidos en la pagina de Anuncios aparecen disponibles desde la barra superior de navegacion, y opcionalmente desde el sitio de inicio del congreso.</p>
 
 
-		<p><em> Utilizando el modulo de anuncios </em>. El Gestor del Congreso debe primero indicar en la ConfiguraciÛn de GestiÛn de Sitio Web 2.4 que el congreso alojado va a usar anuncios. Una vez permitidos, la funciÛn de Anuncios aparecer· dentro de Gestion General como un link. Adem·s, el Gestor del Congreso debe indicar si los anuncios deberÌan o no mostrarse en la pagina de inicio del Congreso, asÌ como especificar el numero de anuncios recientes que se visualizan. TambiÈn puede proveerse un texto introductorio: esto aparecera en la parte superior de la pagina de Anuncios. </p>
+		<p><em> Utilizando el modulo de anuncios </em>. El Gestor del Congreso debe primero indicar en la Configuraci√≥n de Gesti√≥n de Sitio Web 2.4 que el congreso alojado va a usar anuncios. Una vez permitidos, la funci√≥n de Anuncios aparecer√° dentro de Gestion General como un link. Adem√°s, el Gestor del Congreso debe indicar si los anuncios deber√≠an o no mostrarse en la pagina de inicio del Congreso, as√≠ como especificar el numero de anuncios recientes que se visualizan. Tambi√©n puede proveerse un texto introductorio: esto aparecera en la parte superior de la pagina de Anuncios. </p>
 
 		<p><em>Creando Anuncios</em>. Para agregar un anuncio al sitio del Congreso alojado, el Gestor del Congreso debera clickear en el link de anuncios  dentro del titulo de Gestion General en la pagina del Gestion del Sitio del Congreso.</p>
 		
 		<p> El Gestor del Congreso puede crear multiples tipos de anuncios (por ejemplo, Noticias del Sitio, Noticias del Congreso, Noticias para Presentadores, etc.) clickeando el link de Tipos de Anuncios, luego en Crear Tipo de Anuncio y luego darle un nombre al tipo de anuncio que se crea (crear tipos de anuncios es opcional, y los anuncios no necesitan ser asignados a un determinado tipo).</p>
 		
-		<p> Para crear un nuevo anuncio desde la pagina de Anuncios, el Gestor del Congreso debe hacer click en el link Crear Nuevo Anuncio y luego llenar o seleccionar las siguientes opciones. El anuncio puede aparecer con todos los Congresos programados, o en solo uno de ellos; puede ser aÒadido a un tipo de anuncio, si por lo menos un tipo de anuncio ha sido creado; asi como tambien se le puede dar una fecha de expiracion en la cual el anuncio sera removida de la Pagina principal de Anuncios. Es obligatorio completar el titulo del anuncio, una corta descripcion y campos de descripcion. </p>]]>
+		<p> Para crear un nuevo anuncio desde la pagina de Anuncios, el Gestor del Congreso debe hacer click en el link Crear Nuevo Anuncio y luego llenar o seleccionar las siguientes opciones. El anuncio puede aparecer con todos los Congresos programados, o en solo uno de ellos; puede ser a√±adido a un tipo de anuncio, si por lo menos un tipo de anuncio ha sido creado; asi como tambien se le puede dar una fecha de expiracion en la cual el anuncio sera removida de la Pagina principal de Anuncios. Es obligatorio completar el titulo del anuncio, una corta descripcion y campos de descripcion. </p>]]>
 	</section>
 </topic>

@@ -3,7 +3,7 @@
 /**
  * @file Plugin.inc.php
  *
- * Copyright (c) 2000-2009 John Willinsky
+ * Copyright (c) 2000-2010 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class Plugin
@@ -242,7 +242,9 @@ class Plugin {
 		$installer =& $args[0];
 		$result =& $args[1];
 
-		$schemaXMLParser = &new adoSchema($installer->dbconn, $installer->dbconn->charSet);
+		$schemaXMLParser = &new adoSchema($installer->dbconn);
+		$dict =& $schemaXMLParser->dict;
+		$dict->SetCharSet($installer->dbconn->charSet);
 		$sql = $schemaXMLParser->parseSchema($this->getInstallSchemaFile());
 		if ($sql) {
 			$result = $installer->executeSQL($sql);

@@ -3,7 +3,7 @@
 /**
  * @file TrackDirectorAction.inc.php
  *
- * Copyright (c) 2000-2009 John Willinsky
+ * Copyright (c) 2000-2010 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class TrackDirectorAction
@@ -59,13 +59,14 @@ class TrackDirectorAction extends Action {
 	 * Records a director's submission decision.
 	 * @param $trackDirectorSubmission object
 	 * @param $decision int
+	 * @param $round int
 	 */
-	function recordDecision($trackDirectorSubmission, $decision) {
+	function recordDecision($trackDirectorSubmission, $decision, $round) {
 		$editAssignments =& $trackDirectorSubmission->getEditAssignments();
 		if (empty($editAssignments)) return;
 
-		$trackDirectorSubmissionDao = &DAORegistry::getDAO('TrackDirectorSubmissionDAO');
-		$user = &Request::getUser();
+		$trackDirectorSubmissionDao =& DAORegistry::getDAO('TrackDirectorSubmissionDAO');
+		$user =& Request::getUser();
 		$directorDecision = array(
 			'editDecisionId' => null,
 			'directorId' => $user->getUserId(),
@@ -73,7 +74,7 @@ class TrackDirectorAction extends Action {
 			'dateDecided' => date(Core::getCurrentDate())
 		);
 
-		if (!HookRegistry::call('TrackDirectorAction::recordDecision', array(&$trackDirectorSubmission, $directorDecision))) {
+		if (!HookRegistry::call('TrackDirectorAction::recordDecision', array(&$trackDirectorSubmission, $directorDecision, $round))) {
 			if ($decision == SUBMISSION_DIRECTOR_DECISION_DECLINE) {
 				$trackDirectorSubmission->setStatus(SUBMISSION_STATUS_DECLINED);
 				$trackDirectorSubmission->stampStatusModified();
@@ -82,12 +83,26 @@ class TrackDirectorAction extends Action {
 				$trackDirectorSubmission->stampStatusModified();
 			}
 
-			$trackDirectorSubmission->addDecision($directorDecision, $trackDirectorSubmission->getCurrentStage());
-			$decisions = TrackDirectorSubmission::getDirectorDecisionOptions();
+			$trackDirectorSubmission->addDecision($directorDecision, $round);
+			$schedConf =& Request::getSchedConf();
+			$decisions = $trackDirectorSubmission->getDirectorDecisionOptions();
+
 			// Add log
 			import('paper.log.PaperLog');
 			import('paper.log.PaperEventLogEntry');
-			PaperLog::logEvent($trackDirectorSubmission->getPaperId(), PAPER_LOG_DIRECTOR_DECISION, LOG_TYPE_DIRECTOR, $user->getUserId(), 'log.director.decision', array('directorName' => $user->getFullName(), 'paperId' => $trackDirectorSubmission->getPaperId(), 'decision' => Locale::translate($decisions[$decision])));
+			PaperLog::logEvent(
+				$trackDirectorSubmission->getPaperId(),
+				PAPER_LOG_DIRECTOR_DECISION,
+				LOG_TYPE_DIRECTOR,
+				$user->getUserId(),
+				'log.director.decision',
+				array(
+					'directorName' => $user->getFullName(),
+					'paperId' => $trackDirectorSubmission->getPaperId(),
+					'decision' => Locale::translate($decisions[$decision]),
+					'round' => ($round == REVIEW_STAGE_ABSTRACT?'submission.abstractReview':'submission.paperReview')
+				)
+			);
 		}
 
 		if($decision == SUBMISSION_DIRECTOR_DECISION_ACCEPT || $decision == SUBMISSION_DIRECTOR_DECISION_INVITE) {
@@ -1475,7 +1490,7 @@ import('file.PaperFileManager');
 									$body .= Locale::translate('submission.comments.importPeerReviews.reviewerLetter', array('reviewerLetter' => chr(ord('A') + $reviewIndexes[$reviewAssignment->getReviewId()]))) . "\n\n";
 								}
 								foreach ($reviewFormElements as $reviewFormElement) {
-									$body .= $reviewFormElement->getReviewFormElementQuestion() . ": \n";
+									$body .= strip_tags($reviewFormElement->getReviewFormElementQuestion()) . ": \n";
 									$reviewFormResponse = $reviewFormResponseDao->getReviewFormResponse($reviewId, $reviewFormElement->getReviewFormElementId());
 			
 									if ($reviewFormResponse) {	

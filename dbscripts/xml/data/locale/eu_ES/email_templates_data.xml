@@ -1,0 +1,534 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE data SYSTEM "../../../dtd/xmldata.dtd">
+
+<!--
+  * email_templates_data.xml
+  *
+  * Copyright (c) 2000-2010 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Email templates data XML file (euskara).
+  *
+  * $Id$
+  -->
+
+<data>
+	<table name="email_templates_default_data">
+		<field_default name="locale">eu_ES</field_default>
+
+		<!--
+		  *
+		  * General
+		  *
+		  -->
+		<row>
+			<field name="email_key">PASSWORD_RESET_CONFIRM</field>
+			<field name="subject">Pasahitza berrezartzeko berrespena</field>
+			<field name="body"> {$siteTitle} webgunean sartzeko daukazun pasahitza berrezartzeko eskaera jaso dugu.
+
+Eskaera ez bada zuk egindakoa, ez jaramonik egin mezu honi, eta zure pasahitza ez da aldatuko. Pasahitza berrezartzea nahi baduzu, egin klik beheko URLan.
+
+Berrezarri nire pasahitza: {$url}
+
+{$principalContactSignature}</field>
+			<field name="description">Pasahitza ahaztu duten erabiltzaile erregistratuei edo webgunean sartu ezinda dabiltzanei bidaltzen zaie mezu hau. Pasahitza berrezartzeko URL bat ematen du.</field>
+		</row>
+		<row>
+			<field name="email_key">PASSWORD_RESET</field>
+			<field name="subject">Pasahitza berrezarrita</field>
+			<field name="body">{$siteTitle} webgunean sartzeko pasahitza ongi berrezarri da. Ondo gorde erabiltzaile-izen eta pasahitz hauek, kongresuan sartzeko beharko baitituzu.
+
+Zure erabiltzaile-izena: {$username}
+Zure pasahitz berria: {$password}
+
+{$principalContactSignature}</field>
+			<field name="description">Mezu hau bidaltzen zaie PASSWORD_RESET_CONFIRM mezuan azaldutako prozesuaren bidez pasahitza ondo berrezartzea lortu duten erabiltzaile erregistratuei.</field>
+		</row>
+		<row>
+			<field name="email_key">USER_REGISTER</field>
+			<field name="subject">New User Registration</field>
+			<field name="body">Thank you for registering as a user with {$conferenceName}. Please keep track of your username and password, which are needed for all work with this conference.
+
+Username: {$username}
+Password: {$password}
+
+Thank you,
+{$principalContactSignature}</field>
+			<field name="description">This email is sent to a newly registered user to welcome them to the system and provide them with a record of their username and password.</field>
+		</row>
+		<row>
+			<field name="email_key">USER_VALIDATE</field>
+			<field name="subject">Validate Your Account</field>
+			<field name="body">{$userFullName}
+
+You have created an account with {$conferenceName}, but before you can start using it, you need to validate your email account. To do this, simply follow the link below:
+
+{$activateUrl}
+
+Thank you,
+{$principalContactSignature}</field>
+			<field name="description">This email is sent to a newly created user to welcome them to the system and provide them with a record of their username and password.</field>
+		</row>
+
+
+		<!--
+		  *
+		  * Submission-related
+		  *
+		  -->
+		<row>
+			<field name="email_key">SUBMISSION_ACK</field>
+			<field name="subject">Bidalketaren hartu-agiria</field>
+			<field name="body">{$presenterName}:
+
+Eskerrik asko "{$paperTitle}" {$conferenceName} kongresura bidaltzeagatik. Kongresua Interneten kudeatzeko erabiltzen dugun sistemari esker, prozesu editorialean zehar egiten duen ibilbidea jarraitu ahal izango duzu, kongresuaren webgunean sartuta:
+
+Lanaren URLa: {$submissionUrl}
+Erabiltzaile-izena: {$presenterUsername}
+
+Galderaren bat baduzu, jar zaitez harremanetan nirekin, mesedez. Eskerrik asko zure lana bidaltzeko kongresu hau aintzakotzat hartzeagatik.
+
+{$editorialContactSignature}</field>
+			<field name="description">Gaituta badago, mezu hau automatikoki bidaltzen zaio aurkezleari, kongresura lana edo laburpena bidaltzeko prozesua osatzen duenean. Bidalketaren jarraipena egiteko informazioa bidaltzen dio, eta eskerrak ematen dizkio lana bidaltzeagatik.</field>
+		</row>
+		<row>
+			<field name="email_key">SUBMISSION_UPLOAD_ACK</field>
+			<field name="subject">Kargatutako bidalketaren hartu-agiria</field>
+			<field name="body">{$presenterName}:
+
+Eskerrik asko "{$paperTitle}" aurkezpena {$conferenceName} kongresuan kargatzeagatik. Kongresua Interneten kudeatzeko erabiltzen dugun sistemari esker, prozesu editorialean zehar egiten duen ibilbidea jarraitu ahal izango duzu, kongresuaren webgunean sartuta:
+
+Lanaren URLa: {$submissionUrl}
+Erabiltzaile-izena: {$presenterUsername}
+
+Galderaren bat baduzu, jar zaitez harremanetan nirekin, mesedez. Eskerrik asko zure lana bidaltzeko kongresu hau aintzakotzat hartzeagatik.
+
+{$editorialContactSignature}</field>
+			<field name="description">Gaituta badago, mezu hau automatikoki bidaltzen zaio aurkezleari, kongresura lana edo laburpena bidaltzeko prozesua osatzen duenean. Bidalketaren jarraipena egiteko informazioa bidaltzen dio, eta eskerrak ematen dizkio lana bidaltzeagatik.</field>
+		</row>
+		<row>
+			<field name="email_key">SUBMISSION_UNSUITABLE</field>
+			<field name="subject">Bidalketa desegokia</field>
+			<field name="body">{$presenterName}:
+
+"{$paperTitle}" aztertu dugu, eta garbi dago ez zaiola egokitzen {$conferenceName} kongresuaren esparruari eta orientazioari. Gure webgunean Kongresuari buruz ematen dugun informazioa eta orain arte egin ditugun kongresuak kontsultatzea gomendatzen dizugu, zein eratako lanak onartzen ditugun ikusteko. Lana edo laburpena beste kongresu batera, gaiari hobeto egokitzen zaion batera, bidali beharko zenuke.
+
+{$editorialContactSignature}</field>
+		</row>
+		<row>
+			<field name="email_key">SUBMISSION_COMMENT</field>
+			<field name="subject">Bidalketari buruzko oharra</field>
+			<field name="body">{$name}:
+
+{$commentName}(e)k ohar bat egin dio {$conferenceName} kongresura bidalitako "{$paperTitle}" lanari:
+
+{$comments}</field>
+			<field name="description">Mezu honek bidalketa baten edizio-prozesuan parte hartzen ari direnei jakinarazten die ohar berri bat egin dutela.</field>
+		</row>
+		<row>
+			<field name="email_key">SUBMISSION_DECISION_REVIEWERS</field>
+			<field name="subject">"{$paperTitle}" lanari buruzko erabakia</field>
+			<field name="body">{$conferenceName} kongresuko "{$paperTitle}" lanaren ebaluatzaileetako bat zarenez, aurkezleari bidali diogun ebaluazioa eta erabakia bidaltzen dizkizut. Berriro ere eskerrak eman nahi dizkizugu prozesu honi egin diozun ekarpen garrantzitsuagatik.
+ 
+{$editorialContactSignature}
+
+{$comments}</field>
+			<field name="description">Mezu honek jakinarazten die ebaluatzaileei ebaluazio-prozesua bukatu dela. Lanari eta emandako erabakiari buruzko informazioa ematen du, eta eskerrak ematen dizkie ebaluatzaileei egindako lanagatik.</field>
+		</row>
+
+
+		<!--
+		  *
+		  * Director
+		  *
+		  -->
+		<row>
+			<field name="email_key">DIRECTOR_ASSIGN</field>
+			<field name="subject">Zuzendari-izendapena</field>
+			<field name="body">{$editorialContactName}:
+
+{$conferenceName} kongresuko "{$paperTitle}" lana esleitu dizugu prozesu editorialean eraman dezazun, Ataleko zuzendari gisa.  
+
+Lanaren URLa: {$submissionUrl}
+Erabiltzaile-izena: {$directorUsername}
+
+Eskerrik asko,
+{$editorialContactSignature}</field>
+			<field name="description">Mezu honek Ataleko zuzendari bati jakinarazten dio Zuzendariak bidalketa baten edizio-prozesua gainbegiratzeko izendatu duela. Lanari buruzko informazioa eta kongresuaren gunean sartzeko datuak ematen ditu.</field>
+		</row>
+
+
+		<!--
+		  *
+		  * Peer Review
+		  *
+		  -->
+		<row>
+			<field name="email_key">REVIEW_REQUEST</field>
+			<field name="subject">Lana ebaluatzeko eskaera</field>
+			<field name="body">{$reviewerName}:
+
+Uste dut ebaluatzaile bikaina izango zinatekeela {$conferenceName} kongresura bidali diguten "{$paperTitle}" proposamenari buruzko iritzia emateko. Lanaren azalpen laburra behean duzu, eta espero dut aintzakotzat hartu eta pentsatuko duzula guretzat lan garrantzitsu hau egiteko eskaera.
+
+Mesedez, sar zaitez kongresuaren webgunean {$weekLaterDate} aurretik ebaluazioa egiteko prest zauden ala ez esateko eta gero, egiteko prest bazaude, baita lana hartzeko eta zure ebaluazio-txostena eta gomendioa emateko ere. Webgunea {$conferenceUrl} da.
+
+Ebaluazioa egiteko epea {$reviewDueDate} izango litzateke.
+
+Ez badaukazu kongresuaren webgunean sartzeko erabiltzaile-izenik eta pasahitzik, behean ematen den esteka erabil dezakezu pasahitza berrezartzeko (erabiltzaile-izenarekin batera bidaliko dizugu). {$passwordResetUrl}
+
+Lanaren URLa: {$submissionReviewUrl}
+
+Eskerrik asko gure eskaera kontuan hartzeagatik.
+
+{$editorialContactSignature}
+
+
+
+"{$paperTitle}"
+
+Laburpena
+{$paperAbstract}</field>
+			<field name="description">Mezu hau Ataleko zuzendariak bidaltzen dio Ebaluatzaile bati, lan bat ebaluatzea onartuko duen ala ez galdetzeko. Lanari buruzko informazioa ematen du, hala nola titulua eta laburpena, ebaluazioa egiteko epea eta lana bera hartzeko zer egin behar den.</field>
+		</row>
+		<row>
+			<field name="email_key">REVIEW_REQUEST_ONECLICK</field>
+			<field name="subject">Lana ebaluatzeko eskaera</field>
+			<field name="body">{$reviewerName}:
+
+Uste dut ebaluatzaile bikaina izango zinatekeela {$conferenceName} kongresura bidali diguten "{$paperTitle}" lanari buruzko iritzia emateko. Lanaren azalpen laburra behean duzu, eta espero dut aintzakotzat hartu eta pentsatuko duzula guretzat lan garrantzitsu hau egiteko eskaera.
+
+Mesedez, sar zaitez kongresuaren webgunean {$weekLaterDate} aurretik ebaluazioa egiteko prest zauden ala ez esateko eta gero, egiteko prest bazaude, baita lana hartzeko eta zure ebaluazio-txostena eta gomendioa emateko ere.
+
+Ebaluazioa egiteko epea {$reviewDueDate} izango litzateke.
+
+Lanaren URLa: {$submissionReviewUrl}
+
+Eskerrik asko gure eskaera kontuan hartzeagatik.
+
+{$editorialContactSignature}
+
+
+
+"{$paperTitle}"
+
+Laburpena
+{$paperAbstract}</field>
+			<field name="description">Mezu hau Ataleko zuzendariak bidaltzen dio Ebaluatzaile bati, lan bat ebaluatzea onartuko duen ala ez galdetzeko. Lanari buruzko informazioa ematen du, hala nola titulua eta laburpena, ebaluazioa egiteko epea eta lana bera hartzeko zer egin behar den. Mezu hau erabiltzen da Kongresuaren Konfigurazioko 2. urratsean Ebaluazio-prozesu estandarra hautatzen denean, eta klik bakarreko ebaluatzaile-sarbidea gaitzen denean.</field>
+		</row>
+		<row>
+			<field name="email_key">REVIEW_CANCEL</field>
+			<field name="subject">Ebaluazio-eskaera bertan behera uztea</field>
+			<field name="body">{$reviewerName}:
+
+{$conferenceName} kongresurako "{$paperTitle}" lana ebaluatzeko egin genizun eskaera bertan behera uztea erabaki dugu. Sentitzen dugu eta barkamena eskatzen dizugu erabaki honek sor ditzakeen endredoengatik, eta espero dugu aurrerantzean ere gure kongresuko ebaluatzaileen artean izango zaitugula.
+
+Galderaren bat baduzu, jar zaitez harremanetan nirekin, mesedez.
+
+{$editorialContactSignature}</field>
+			<field name="description">Mezu hau Ataleko zuzendariak Ebaluatzaileari bidaltzen dio artikulu baten ebaluazioa egiten hasita dagoenean, ebaluazioa bertan behera utzi dela jakinarazteko.</field>
+		</row>
+		<row>
+			<field name="email_key">REVIEW_CONFIRM</field>
+			<field name="subject">Ebaluazioa egiteko prest</field>
+			<field name="body">{$editorialContactName}:
+
+{$conferenceName} kongresurako "{$paperTitle}" lana ebaluatzeko aukera aztertu dut, eta prest nago egiteko. Eskerrik asko nigan pentsatzeagatik; nire txostena garaiz jasoko duzue, mugaegunerako ( {$reviewDueDate}) eginda egongo da, lehenago ez bada.
+
+{$reviewerName}</field>
+			<field name="description">Mezu hau Ebaluatzaileak Ataleko zuzendariari bidaltzen dio, ebaluazioa egiteko eskaera onartzen duela eta lana garaiz bukatuko duela esateko.</field>
+		</row>
+		<row>
+			<field name="email_key">REVIEW_CONFIRM_ACK</field>
+			<field name="subject">Ebaluazioa egiteko adostasunaren hartu-agiria</field>
+			<field name="body">{$reviewerName}:
+
+Eskerrik asko {$conferenceName} kongresurako "{$paperTitle}" lana {$reviewDueDate} egunerako ebaluatzea onartzeagatik.
+
+{$editorialContactSignature}</field>
+			<field name="description">Mezu hau Ataleko zuzendariak Ebaluatzaileari bidaltzen dio, ebaluazioa egiteko adostasuna jaso duela adierazteko eta ebaluazioa egitera animatzeko.</field>
+		</row>
+		<row>
+			<field name="email_key">REVIEW_DECLINE</field>
+			<field name="subject">Ebaluazioa egin ezina</field>
+			<field name="body">{$editorialContactName}:
+
+Sentitzen dut, baina oraingoan ezingo dut egin {$conferenceName} kongresurako "{$paperTitle}" lanaren ebaluazioa. Eskerrik asko nigan pentsatzeagatik, eta espero dut hurrengo batean ere niregana joko duzuela.
+
+{$reviewerName}</field>
+			<field name="description">Mezu hau Ebaluatzaileak Ataleko zuzendariari bidaltzen dio, ebaluazioa egiteko eskaerari erantzunez, ezin duela egin esateko.</field>
+		</row>
+		<row>
+			<field name="email_key">REVIEW_COMPLETE</field>
+			<field name="subject">Lanaren ebaluazioa eginda</field>
+			<field name="body">{$editorialContactName}:
+
+{$conferenceName} kongresurako "{$paperTitle}" lanaren ebaluazioa bukatu dut, eta "{$recommendation}" gomendioa bidali dut.
+
+{$reviewerName}</field>
+			<field name="description">Mezu hau Ebaluatzaileak Ataleko zuzendariari bidaltzen dio, ebaluazioa egin duela eta oharrak eta gomendioa kongresuaren webgunean sartu dituela esateko.</field>
+		</row>
+		<row>
+			<field name="email_key">REVIEW_ACK</field>
+			<field name="subject">Lanaren ebaluazioaren hartu-agiria</field>
+			<field name="body">{$reviewerName}:
+
+Eskerrik asko {$conferenceName} kongresurako "{$paperTitle}" lanaren ebaluazioa egiteagatik. Zinez estimatzen dugu gure lanen kalitatea hobetzeko egiten diguzun ekarpena.
+
+{$editorialContactSignature}</field>
+			<field name="description">Mezu hau Ataleko zuzendariak Ebaluatzaileari bidaltzen dio, ebaluazio-txostena jaso duela esateko eta eskerrak emateko.</field>
+		</row>
+		<row>
+			<field name="email_key">REVIEW_REMIND</field>
+			<field name="subject">Lana ebaluatzeko oroigarria</field>
+			<field name="body">{$reviewerName}:
+
+{$conferenceName} kongresurako "{$paperTitle}" lanaren ebaluazioa gogorarazteko ohartxo bat baino ez. {$reviewDueDate} egunerako espero genuen zure ebaluazio-txostena, eta prestatuta daukazunean lehenbailehen bidaltzea eskertuko genizuke.
+
+Ez badaukazu kongresuaren webgunean sartzeko erabiltzaile-izenik eta pasahitzik, behean ematen den esteka erabil dezakezu pasahitza berrezartzeko (erabiltzaile-izenarekin batera bidaliko dizugu). {$passwordResetUrl}
+
+Lanaren URLa: {$submissionReviewUrl}
+
+Mesedez, berrets iezaguzu kongresuarentzat biziki garrantzitsua den lan hori burutuko duzula. Besterik gabe, zure erantzunaren zain geratzen naiz.
+
+{$editorialContactSignature}</field>
+			<field name="description">Mezu hau Ataleko zuzendariak Ebaluatzaileari bidaltzen dio, ebaluazioa egiteko epea pasatu dela gogorarazteko.</field>
+		</row>
+		<row>
+			<field name="email_key">REVIEW_REMIND_ONECLICK</field>
+			<field name="subject">Lana ebaluatzeko oroigarria</field>
+			<field name="body">{$reviewerName}:
+
+{$conferenceName} kongresurako "{$paperTitle}" lanaren ebaluazioa gogorarazteko ohartxo bat baino ez. {$reviewDueDate} egunerako espero genuen zure ebaluazio-txostena, eta prestatuta daukazunean lehenbailehen bidaltzea eskertuko genizuke.
+
+Lanaren URLa: {$submissionReviewUrl}
+
+Mesedez, berrets iezaguzu kongresuarentzat biziki garrantzitsua den lan hori burutuko duzula. Besterik gabe, zure erantzunaren zain geratzen naiz.
+
+{$editorialContactSignature}</field>
+			<field name="description">Mezu hau Ataleko zuzendariak Ebaluatzaileari bidaltzen dio, ebaluazioa egiteko epea pasatu dela gogorarazteko.</field>
+		</row>
+		<row>
+			<field name="email_key">REVIEW_REMIND_AUTO</field>
+			<field name="subject">Artikulua ebaluatzeko oroigarri automatizatua</field>
+			<field name="body">{$reviewerName}:
+
+{$conferenceName} kongresurako "{$paperTitle}" lanaren ebaluazioa gogorarazteko ohartxo bat baino ez. "{$reviewDueDate}" egunerako espero genuen zure ebaluazio-txostena, eta, epea igaro denez, mezu hau automatikoki sortu eta bidali da. Eskertuko genizuke prestatu orduko bidaliko bazenigu.
+
+Ez badaukazu kongresuaren webgunean sartzeko erabiltzaile-izenik eta pasahitzik, behean ematen den esteka erabil dezakezu pasahitza berrezartzeko (erabiltzaile-izenarekin batera bidaliko dizugu). {$passwordResetUrl}
+
+Lanaren URLa: {$submissionReviewUrl}
+
+Mesedez, berrets iezaguzu kongresuarentzat biziki garrantzitsua den lan hori burutuko duzula. Besterik gabe, zure erantzunaren zain geratzen naiz.
+
+{$editorialContactSignature}</field>
+			<field name="description">Mezu hau automatikoki bidaltzen da ebaluatzaile baten epea amaitu eta erantzun ez duenean (ikus Konfigurazioko 2. urratseko Ebaluazio-aukerak) eta klik bakarreko ebaluatzaile-sarbidea desgaituta dagoenean. Programatutako atazak (scheduled_tasks) gaituta eta konfiguratuta egon behar dute (ikus konfigurazio-fitxategia).</field>
+		</row>
+		<row>
+			<field name="email_key">REVIEW_REMIND_AUTO_ONECLICK</field>
+			<field name="subject">Artikulua ebaluatzeko oroigarri automatizatua</field>
+			<field name="body">{$reviewerName}:
+
+{$conferenceName} kongresurako "{$paperTitle}" lanaren ebaluazioa gogorarazteko ohartxo bat baino ez. "{$reviewDueDate}" egunerako espero genuen zure ebaluazio-txostena, eta, epea igaro denez, mezu hau automatikoki sortu eta bidali da. Eskertuko genizuke prestatu orduko bidaliko bazenigu.
+
+Lanaren URLa: {$submissionReviewUrl}
+
+Mesedez, berrets iezaguzu kongresuarentzat biziki garrantzitsua den lan hori burutuko duzula. Besterik gabe, zure erantzunaren zain geratzen naiz.
+
+{$editorialContactSignature}</field>
+			<field name="description">Mezu hau automatikoki bidaltzen da ebaluatzaile baten epea amaitu eta erantzun ez duenean (ikus Konfigurazioko 2. urratseko Ebaluazio-aukerak) eta klik bakarreko ebaluatzaile-sarbidea gaituta dagoenean. Programatutako atazak (scheduled_tasks) gaituta eta konfiguratuta egon behar dute (ikus konfigurazio-fitxategia).</field>
+		</row>
+
+
+		<!--
+		  *
+		  * Director Review
+		  *
+		  -->
+		<row>
+			<field name="email_key">SUBMISSION_ABSTRACT_ACCEPT</field>
+			<field name="subject">Laburpenari buruzko erabaki editoriala</field>
+			<field name="body">{$presenterName}:
+
+Zorionak, zuk bidalitako {$paperTitle} lana onartua izan da {$locationCity}(e)n {$conferenceDate} egunetan izango den {$conferenceTitle} kongresuan aurkezteko. 
+
+Eskerrik asko, zure parte-hartzearen zain edukiko gaituzu, eta bitartean atseginez agurtzen zaitugu.
+{$editorialContactSignature}</field>
+			<field name="description">Mezu hau Ataleko zuzendariak Aurkezleari bidaltzen dio, hark bidalitako lanari buruzko erabakia hartu dutela jakinarazteko.</field>
+		</row>
+
+		<row>
+			<field name="email_key">SUBMISSION_ABSTRACT_DECLINE</field>
+			<field name="subject">Lanari buruzko erabaki editoriala</field>
+			<field name="body">{$presenterName}:
+
+Zuk bidalitako "{$paperTitle}" lana ebaluatu dugu, eta jarraian azaltzen dizugu hartu dugun erabakia...
+
+{$editorialContactSignature}</field>
+			<field name="description">Mezu hau Ataleko zuzendariak Aurkezleari bidaltzen dio, hark bidalitako lanari buruzko erabakia hartu dutela jakinarazteko.</field>
+		</row>
+
+ 		<row>
+			<field name="email_key">SUBMISSION_ABSTRACT_REVISE</field>
+			<field name="subject">Lanari buruzko erabaki editoriala</field>
+			<field name="body">{$presenterName}:
+
+Zure "{$paperTitle}" lana arretaz aztertu dugu, eta {$conferenceTitle} kongresuan aurkezteko egokia izan litekeela deritzogu, baldin eta ondoren azaltzen den moduan birmoldatzen bada.
+
+Eskerrik asko, zure parte-hartzearen zain edukiko gaituzu, eta bitartean atseginez agurtzen zaitugu.
+
+{$editorialContactSignature}</field>
+			<field name="description">Mezu hau Ataleko zuzendariak Aurkezleari bidaltzen dio, hark bidalitako lanari buruzko erabakia hartu dutela jakinarazteko.</field>
+		</row>
+
+		<row>
+			<field name="email_key">SUBMISSION_PAPER_ACCEPT</field>
+			<field name="subject">Lanari buruzko erabaki editoriala</field>
+			<field name="body">{$presenterName}:
+
+Zorionak, zuk bidalitako {$paperTitle} lana onartua izan da {$locationCity}(e)n {$conferenceDate} egunetan izango den {$conferenceTitle} kongresuan aurkezteko. 
+
+Eskerrik asko, zure parte-hartzearen zain edukiko gaituzu, eta bitartean atseginez agurtzen zaitugu.
+{$editorialContactSignature}</field>
+			<field name="description">Mezu hau Ataleko zuzendariak Aurkezleari bidaltzen dio, hark bidalitako lanari buruzko erabakia hartu dutela jakinarazteko.</field>
+		</row>
+
+		<row>
+			<field name="email_key">SUBMISSION_PAPER_DECLINE</field>
+			<field name="subject">Lanari buruzko erabaki editoriala</field>
+			<field name="body">{$presenterName}:
+
+Zuk bidalitako "{$paperTitle}" lana ebaluatu dugu, eta jarraian azaltzen dizugu hartu dugun erabakia...
+
+{$editorialContactSignature}</field>
+			<field name="description">Mezu hau Ataleko zuzendariak Aurkezleari bidaltzen dio, hark bidalitako lanari buruzko erabakia hartu dutela jakinarazteko.</field>
+		</row>
+
+		<row>
+			<field name="email_key">SUBMISSION_PAPER_REVISE</field>
+			<field name="subject">Lanari buruzko erabaki editoriala</field>
+			<field name="body">{$presenterName}:
+
+Zure "{$paperTitle}" lana arretaz aztertu dugu, eta {$conferenceTitle} kongresuan aurkezteko egokia izan litekeela deritzogu, baldin eta ondoren azaltzen den moduan birmoldatzen bada.
+
+Eskerrik asko, zure parte-hartzearen zain edukiko gaituzu, eta bitartean atseginez agurtzen zaitugu.
+
+{$editorialContactSignature}</field>
+			<field name="description">Mezu hau Ataleko zuzendariak Aurkezleari bidaltzen dio, hark bidalitako lanari buruzko erabakia hartu dutela jakinarazteko.</field>
+		</row>
+
+
+		<!--
+		  *
+		  * Registration 
+		  *
+		  -->
+		<row>
+			<field name="email_key">REGISTRATION_NOTIFY</field>
+			<field name="subject">Izen-ematearen jakinarazpena</field>
+			<field name="body">{$registrantName}:
+
+Gure lineako kongresua kudeatzeko sisteman izen-emaile gisa inskribatuta zaude {$conferenceName} kongresuan, mota honetan:
+
+{$registrationType}
+
+Izen-emaileek bakarrik ikus dezaketen edukia eskuratzeko, sartu sisteman zure erabiltzaile-izenarekin ("{$username}").
+
+Sisteman sartu ondoren zure profila osatzen duten datuak eta pasahitza aldatu ahal izango dituzu, nahi duzunean.
+
+Kontuan izan, erakunde gisa eman baduzue izena, zuen erakundeko erabiltzaileek ez daukatela saioa hasi beharrik, izen-emaileek bakarrik ikus dezaketen edukia ikusi nahi dutenean sistemak automatikoki autentifikatuko dituelako.
+
+Galderaren bat baduzu, jar zaitez harremanetan nirekin, mesedez.
+
+{$registrationContactSignature}</field>
+			<field name="description">Mezu honek izena eman duen irakurleari jakinarazten dio Kudeatzaileak inskripzioa egin diola. Kongresuaren URLa eta kongresuan sartzeko argibideak ematen ditu.</field>
+		</row>
+		<row>
+			<field name="email_key">OPEN_ACCESS_NOTIFY</field>
+			<field name="subject">Argitalpena sarrera librekoa da orain</field>
+			<field name="body">Irakurle:
+
+{$conferenceName} kongresuak sarrera libreko egin du ondoren zehazten dugun argitalpena. Honekin batera bidaltzen dizugun Aurkibidea aztertzera eta gure webgunean ({$conferenceUrl}) argitaratutako lanak irakurtzera gonbidatzen zaitugu.
+
+Eskerrik asko gure lana interesez jarraitzeagatik,
+{$editorialContactSignature}</field>
+			<field name="description">Mezu hau bidaltzen zaie argitalpena sarrera libreko egiten denean jakinarazpena jaso nahi dutela esan duten erabiltzaile erregistratuei.</field>
+		</row>
+		<row>
+			<field name="email_key">MANUAL_PAYMENT_RECEIVED</field>
+			<field name="subject"> Jaso dugu {$conferenceName} kongresurako egin duzun ordainketa</field>
+			<field name="body">{$registrantName}:
+
+ Jaso dugu {$conferenceName} kongresurako egin duzun ordainketa eta erregistratu dugu zure kontuan.
+
+Galderaren bat baduzu, jar zaitez harremanetan nirekin, mesedez.
+
+{$registrationContactSignature}</field>
+			<field name="description">Mezu honek izena eman duen irakurleari jakinarazten dio Kudeatzaileak inskripzioa egin diola. Kongresuaren URLa eta kongresuan sartzeko argibideak ematen ditu.</field>
+		</row>
+		<row>
+			<field name="email_key">PAYMENT_RECEIVED</field>
+			<field name="subject"> Jaso dugu {$conferenceName} kongresurako egin duzun ordainketa</field>
+			<field name="body">{$registrantName}:
+
+ Jaso dugu {$conferenceName} kongresurako egin duzun ordainketa eta erregistratu dugu zure kontuan.
+
+Galderaren bat baduzu, jar zaitez harremanetan nirekin, mesedez.
+
+{$registrationContactSignature}</field>
+			<field name="description">Mezu honek izena eman duen irakurleari jakinarazten. Kongresuaren URLa eta kongresuan sartzeko argibideak ematen ditu.</field>
+		</row>
+		<!--<row>
+			<field name="email_key">REGISTRATION_BEFORE_EXPIRY</field>
+			<field name="subject">Inskripzio-amaieraren abisua</field>
+			<field name="body">{$registrantName}:
+
+{$conferenceName} kongresuko inskripzio-denbora amaitzera doakizu.
+
+{$registrationType}
+Amaiera-data: {$expiryDate}
+
+Kongresuan sartzen jarraitu ahal izateko, joan kongresuaren webgunera eta berritu izen-ematea, mesedez. Sisteman saioa hasteko zure erabiltzaile-izena, "{$username}", erabil dezakezu.
+
+Galderaren bat baduzu, jar zaitez harremanetan nirekin, mesedez.
+
+{$registrationContactSignature}</field>
+			<field name="description">Mezu honek izen-emaileei jakinarazten die inskripzio-denbora laster amaituko zaiela. Kongresuaren URLa eta kongresuan sartzeko argibideak ematen ditu.</field>
+		</row>-->
+		<!--<row>
+			<field name="email_key">REGISTRATION_AFTER_EXPIRY</field>
+			<field name="subject">Inskripzio-denbora amaitu da</field>
+			<field name="body">{$registrantName}:
+
+{$conferenceName} kongresuko inskripzio-denbora amaitu zaizu.
+
+{$registrationType}
+Amaiera-data: {$expiryDate}
+
+Izen-ematea berritzeko, zoaz mesedez kongresuaren webgunera. Sisteman saioa hasteko zure erabiltzaile-izena, "{$username}", erabil dezakezu.
+
+Galderaren bat baduzu, jar zaitez harremanetan nirekin, mesedez.
+
+{$registrationContactSignature}</field>
+			<field name="description">Mezu honek izen-emaileei jakinarazten die inskripzio-denbora amaitu zaiela. Kongresuaren URLa eta kongresuan sartzeko argibideak ematen ditu.</field>
+		</row>-->
+		<!--<row>
+			<field name="email_key">REGISTRATION_AFTER_EXPIRY_LAST</field>
+			<field name="subject">Inskripzio-denbora amaitu da - Azkeneko jakinarazpena</field>
+			<field name="body">{$registrantName}:
+
+{$conferenceName} kongresuko inskripzio-denbora amaitu zaizu.
+Mesedez, kontuan izan hau dela azkeneko jakinarazpena, ez dizugula berriz gogoraraziko.
+
+{$registrationType}
+Amaiera-data: {$expiryDate}
+
+Izen-ematea berritzeko, zoaz mesedez kongresuaren webgunera. Sisteman saioa hasteko zure erabiltzaile-izena, "{$username}", erabil dezakezu.
+
+Galderaren bat baduzu, jar zaitez harremanetan nirekin, mesedez.
+
+{$registrationContactSignature}</field>
+			<field name="description">Mezu honek izen-emaileei jakinarazten die inskripzio-denbora amaitu zaiela. Kongresuaren URLa eta kongresuan sartzeko argibideak ematen ditu.</field>
+		</row>-->
+	</table>
+</data>
+

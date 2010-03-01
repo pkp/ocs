@@ -4,7 +4,7 @@
 <!--
   * 000027.xml
   *
-  * Copyright (c) 2000-2008 John Willinsky
+  * Copyright (c) 2000-2010 John Willinsky
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
   *
   * Conference Management - Users - Create New User 
@@ -18,7 +18,7 @@
 	</section>   
 	<section title="Creando usuario en un Congreso Alojado">
 		<![CDATA[<p> Es posible crear un usuarios sin importar si hay o no un congreso programado actual. El Gestor del Congreso puede hacer click en el link de Crear Nuevo Usuario dentro del encabezado de Usuario, y rellenar la forma subsecuente.</p>
-		<p> Los campos obligatorios son Nombre; Apellido; Nombre de Usuario; Contraseña/Repetir Contraseña; y Email. El Gestor del Congreso puede optar tener un sistema que genere contraseñas en forma aleatoria; puede enviar al usuario un email de bienvenida con su forma de registracion; y puede adicionalmente pedir al usuario que cambie su contraseña la primera vez que ingresa.</p>
+		<p> Los campos obligatorios son Nombre; Apellido; Nombre de Usuario; ContraseÃ±a/Repetir ContraseÃ±a; y Email. El Gestor del Congreso puede optar tener un sistema que genere contraseÃ±as en forma aleatoria; puede enviar al usuario un email de bienvenida con su forma de registracion; y puede adicionalmente pedir al usuario que cambie su contraseÃ±a la primera vez que ingresa.</p>
 		<p> Note que con este metodo los Gestores del Congreso solo pueden registrar usuarios sin roles asignados, o a los mismos Gestores del Congreso - para crear un usuario con un rol especifico en un congreso alojado, siga el siguiente metodo.</p>  ]]>
 	</section>
 	<section title="Creando usuarios en un Congreso Programado">

@@ -4,7 +4,7 @@
 <!--
   * 000000.xml
   *
-  * Copyright (c) 2000-2008 John Willinsky
+  * Copyright (c) 2000-2010 John Willinsky
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
   *
   * Site Administration Main 
@@ -14,6 +14,6 @@
 
 <topic id="site/topic/000000" locale="es_AR" title="Gestion del Sitio" toc="index/toc/000000" subtoc="site/toc/000000" key="site.index">
 	<section>
-		<![CDATA[<p> Este sistema de gestion y publicacion del congreso esta diseñado para ser instalado y administrador en un servidor local. Una vez instalado, el Gestor del Sitio puede usarlo para crear tantos congreso individuales como son requeridos, y supervisar la administracion de cada congreso que es creado. OCS te permite alojar un unico congreso, que se da una sola vez, o varios congresos a partir de esa unica instalacion, los cuales pueden ser repetidos durante varios años. </p>]]>	
+		<![CDATA[<p> Este sistema de gestion y publicacion del congreso esta diseÃ±ado para ser instalado y administrador en un servidor local. Una vez instalado, el Gestor del Sitio puede usarlo para crear tantos congreso individuales como son requeridos, y supervisar la administracion de cada congreso que es creado. OCS te permite alojar un unico congreso, que se da una sola vez, o varios congresos a partir de esa unica instalacion, los cuales pueden ser repetidos durante varios aÃ±os. </p>]]>	
 	</section>
 </topic> 

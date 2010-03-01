@@ -3,7 +3,7 @@
 /**
  * @file XMLNode.inc.php
  *
- * Copyright (c) 2000-2009 John Willinsky
+ * Copyright (c) 2000-2010 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class XMLNode
@@ -91,8 +91,8 @@ class XMLNode {
 	 * @param $name string attribute name
 	 * @param value string attribute value
 	 */
-	function setAttribute($name, &$value) {
-		$this->attributes[$name] = &$value;
+	function setAttribute($name, $value) {
+		$this->attributes[$name] = $value;
 	}
 
 	/**

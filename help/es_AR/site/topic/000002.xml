@@ -4,7 +4,7 @@
 <!--
   * 000002.xml
   *
-  * Copyright (c) 2000-2008 John Willinsky
+  * Copyright (c) 2000-2010 John Willinsky
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
   *
   * Site Administration - Site Management 
@@ -14,10 +14,10 @@
 
 <topic id="site/topic/000002" locale="es_AR" title="Gestion del Sitio" toc="site/toc/000000" key="site.siteManagement">
 	<section>
-		<![CDATA[<p>OCS esta diseñado para ser un sistema de gestion de multiples congreso, y el Gestor del Sitio es responsable para configurar los parametros del sitio y crear nuevos congresos para ser alojados dentro de un unico sitio. Los congreso alojados son enteramente independientes, con la excepcion de las cuentas de usuarios; un usuario puede participar en cualquier combinacion de roles en cualquier numero de congresos alojados, pero la misma direccion de email y njombre de usuario se referiran al usuario sin importar el congreso.</p>]]>
+		<![CDATA[<p>OCS esta diseÃ±ado para ser un sistema de gestion de multiples congreso, y el Gestor del Sitio es responsable para configurar los parametros del sitio y crear nuevos congresos para ser alojados dentro de un unico sitio. Los congreso alojados son enteramente independientes, con la excepcion de las cuentas de usuarios; un usuario puede participar en cualquier combinacion de roles en cualquier numero de congresos alojados, pero la misma direccion de email y njombre de usuario se referiran al usuario sin importar el congreso.</p>]]>
 	</section>
 	<section title="Configuracion del Sitio">
-		<![CDATA[<p> La informacion basica es ingresada por el Gestor del Sitio, la cual es aplicable a todos los congresos alojados por el sitio, incluyendo el titulo e imagen de texto del sitio; la hoja de estilo del sitio; el discurso de introduccion y una descripcion del sitio; nombre y email del contacto principal; una contraseña de un minimo largo para usuarios registrados; y la indexacion de registaciones.</p>
+		<![CDATA[<p> La informacion basica es ingresada por el Gestor del Sitio, la cual es aplicable a todos los congresos alojados por el sitio, incluyendo el titulo e imagen de texto del sitio; la hoja de estilo del sitio; el discurso de introduccion y una descripcion del sitio; nombre y email del contacto principal; una contraseÃ±a de un minimo largo para usuarios registrados; y la indexacion de registaciones.</p>
 		<p><em>Redireccion del Congreso.</em> Una vez que se configura un congreso alojado, esto aparecera en el menu desplegable para ser seleccionado para el campo de Redieccion del Congreso. Esto asegurar que las consultas al sitio principal sean redireccionadas a un sitio web particular del congreso, lo cual es util cuando un sitio aloja un unico congreso. </p>]]>
 	</section>
 	<section title="Congresos alojados">
@@ -26,7 +26,7 @@
 	             <p> Se pueden tambien importar datos desde OCS 1 a OCS 2 seleccionada "Importar desde OCS 1", llenando la ruta del congreso, la ruta de OCS 1, y seleccionando opciones de importacion, aunque solo determinados items pueden ser importados.</p>]]>
 	</section>
 	<section title="Idiomas">
-		<![CDATA[<p>OCS esta diseñado para ser un sistema multi-lenguajes, que soporta una amplia variedad de lenguajes para el sitio y sus congreso alojados. Desde la pagina de Idiomas, el Gestor del Sitio puede especificar el lenguaje primario del sitio e instalar lenguajes adicionales a medida que estos se hacen disponibles. Para que los lenguajes esten disponible en los congresos alojados, el Gestor del Sitio debe instalarlos, y chequear en Configuracion del Idioma que sean lenguajes soportados..</p>
+		<![CDATA[<p>OCS esta diseÃ±ado para ser un sistema multi-lenguajes, que soporta una amplia variedad de lenguajes para el sitio y sus congreso alojados. Desde la pagina de Idiomas, el Gestor del Sitio puede especificar el lenguaje primario del sitio e instalar lenguajes adicionales a medida que estos se hacen disponibles. Para que los lenguajes esten disponible en los congresos alojados, el Gestor del Sitio debe instalarlos, y chequear en Configuracion del Idioma que sean lenguajes soportados..</p>
 		<p> Ingles, el lenguaje principal, vienen con un idioma default para tanto el sitio como los congresos alojados. lenguajes adicionales pueden ser encontrados en la pagina de <a href="http://pkp.sfu.ca/ocs-languages" target="_blank">idiomas de OCS </a>. Informacion detallada en cuanto a la instalacion de nuevos paquetes de idiomas y hasta la escritura de nuevas traducciones estan disponibles en <a href="http://pkp.sfu.ca/files/docs/translating/index.html" target="_blank">Traduciendo OJS y OCS</a> en el sitio web de PKP.</p>]]>
 	</section>
 	<section title="Fuentes de Autentificacion">

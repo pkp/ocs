@@ -3,7 +3,7 @@
 /**
  * @file TrackSubmissionHandler.inc.php
  *
- * Copyright (c) 2000-2009 John Willinsky
+ * Copyright (c) 2000-2010 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class TrackSubmissionHandler
@@ -95,8 +95,10 @@ class TrackSubmissionHandler extends PresenterHandler {
 		$templateMgr->assign_by_ref('revisedFile', $submission->getRevisedFile());
 		$templateMgr->assign_by_ref('suppFiles', $submission->getSuppFiles());
 
-		import('submission.trackDirector.TrackDirectorSubmission');
-		$templateMgr->assign_by_ref('directorDecisionOptions', TrackDirectorSubmission::getDirectorDecisionOptions());
+		// FIXME: Presenter code should not use track director object
+		$trackDirectorSubmissionDao =& DAORegistry::getDAO('TrackDirectorSubmissionDAO');
+		$trackDirectorSubmission =& $trackDirectorSubmissionDao->getTrackDirectorSubmission($submission->getPaperId());
+		$templateMgr->assign_by_ref('directorDecisionOptions', $trackDirectorSubmission->getDirectorDecisionOptions());
 
 		$templateMgr->assign('helpTopicId','editorial.authorsRole');
 		$templateMgr->display('presenter/submission.tpl');
@@ -150,9 +152,10 @@ class TrackSubmissionHandler extends PresenterHandler {
 		$templateMgr->assign_by_ref('suppFiles', $presenterSubmission->getSuppFiles());
 		$templateMgr->assign('lastDirectorDecision', $lastDecision);
 
-		// Bring in director decision options
-		import('submission.trackDirector.TrackDirectorSubmission');
-		$templateMgr->assign_by_ref('directorDecisionOptions', TrackDirectorSubmission::getDirectorDecisionOptions());
+		// FIXME: Presenter code should not use track director object
+		$trackDirectorSubmissionDao =& DAORegistry::getDAO('TrackDirectorSubmissionDAO');
+		$trackDirectorSubmission =& $trackDirectorSubmissionDao->getTrackDirectorSubmission($presenterSubmission->getPaperId());
+		$templateMgr->assign_by_ref('directorDecisionOptions', $trackDirectorSubmission->getDirectorDecisionOptions());
 
 		// Determine whether or not certain features should be disabled (i.e. past deadline)
 		$templateMgr->assign('mayEditPaper', PresenterAction::mayEditPaper($presenterSubmission));
@@ -389,7 +392,7 @@ class TrackSubmissionHandler extends PresenterHandler {
 			if (!PresenterAction::mayEditPaper($presenterSubmission)) $isValid = false;
 		}
 
-		if ($isValid && $isDeleting) {
+		if (!$isValid) {
 			Request::redirect(null, null, Request::getRequestedPage());
 		}
 

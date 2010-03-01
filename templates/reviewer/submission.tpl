@@ -1,7 +1,7 @@
 {**
  * submission.tpl
  *
- * Copyright (c) 2000-2009 John Willinsky
+ * Copyright (c) 2000-2010 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * Show the reviewer administration page.
@@ -191,25 +191,25 @@ function confirmSubmissionCheck() {
 							{/if}
 						</td>
 					</tr>
-					<tr valign="top">
-						<td class="label">
-							{translate key="paper.suppFiles"}
-						</td>
-						<td class="value">
-							{assign var=sawSuppFile value=0}
-							{foreach from=$suppFiles item=suppFile}
-								{if $suppFile->getShowReviewers() }
-									{assign var=sawSuppFile value=1}
-									<a href="{url op="downloadFile" path=$reviewId|to_array:$paperId:$suppFile->getFileId()}" class="file">{$suppFile->getFileName()|escape}</a><br />
-								{/if}
-							{/foreach}
-		
-							{if !$sawSuppFile}
-								{translate key="common.none"}
-							{/if}
-						</td>
-					</tr>
 				{/if}
+				<tr valign="top">
+					<td class="label">
+						{translate key="paper.suppFiles"}
+					</td>
+					<td class="value">
+						{assign var=sawSuppFile value=0}
+						{foreach from=$suppFiles item=suppFile}
+							{if $suppFile->getShowReviewers() }
+								{assign var=sawSuppFile value=1}
+								<a href="{url op="downloadFile" path=$reviewId|to_array:$paperId:$suppFile->getFileId()}" class="file">{$suppFile->getFileName()|escape}</a><br />
+							{/if}
+						{/foreach}
+
+						{if !$sawSuppFile}
+							{translate key="common.none"}
+						{/if}
+					</td>
+				</tr>
 			{else}
 			<tr><td class="nodata">{translate key="reviewer.paper.restrictedFileAccess"}</td></tr>
 			{/if}

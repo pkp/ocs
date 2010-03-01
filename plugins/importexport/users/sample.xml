@@ -4,7 +4,7 @@
 <!--
   * sample.xml
   *
-  * Copyright (c) 2000-2009 John Willinsky
+  * Copyright (c) 2000-2010 John Willinsky
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
   *
   * Sample user import data.
@@ -41,7 +41,7 @@
 		<biography locale="de_DE">My biography (German) - TestUser2.</biography>
 		<biography locale="en_US">My biography (English) - TestUser2.</biography>
 		<biography locale="es_ES">My biography (Spanish) - TestUser2.</biography>
-		<userLocales>de_DE:en_US</userLocales>
+		<locales>de_DE:en_US</locales>
 		<role type="presenter"/>
         </user>
 </users>

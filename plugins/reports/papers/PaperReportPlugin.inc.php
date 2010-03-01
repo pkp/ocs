@@ -3,7 +3,7 @@
 /**
  * @file PaperReportPlugin.inc.php
  *
- * Copyright (c) 2000-2009 John Willinsky
+ * Copyright (c) 2000-2010 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  * 
  * @class PaperReportPlugin
@@ -67,7 +67,7 @@ class PaperReportPlugin extends ReportPlugin {
 		$maxPresenters = $this->getMaxPresenterCount($presentersIterator);
 		
 		$decisions = array();
-		foreach ($decisionsIteratorsArray as $decisionsIterator){
+		foreach ($decisionsIteratorsArray as $decisionsIterator) {
 			while ($row =& $decisionsIterator->next()) {
 				$decisions[$row['paper_id']] = $row['decision'];
 			}
@@ -116,28 +116,28 @@ class PaperReportPlugin extends ReportPlugin {
 
 		$presenterIndex = 0;
 		while ($row =& $papersIterator->next()) {
-			$presenters = $this->mergePresenters($presentersIterator[$presenterIndex]->toArray());
-			foreach ($columns as $index => $junk) switch ($index) {
-				case 'director_decision':
+			$presenters = $this->mergePresenters($presentersIterator[$row['paper_id']]->toArray());
+			foreach ($columns as $index => $junk) {
+				if ($index == 'director_decision') {
 					if (isset($decisions[$row['paper_id']])) {
 						$columns[$index] = $decisionMessages[$decisions[$row['paper_id']]];
 					} else {
 						$columns[$index] = $decisionMessages[null];
 					}
-					break;
-				case 'status':
+				} elseif ($index == 'status') {
 					$columns[$index] = Locale::translate($statusMap[$row[$index]]);
-					break;
-				case 'abstract':
+				} elseif ($index == 'abstract') {
 					$columns[$index] = strip_tags($row[$index]);
-					break;
-				default:
+				} elseif (strstr($index, 'biography') !== false) {
+					// "Convert" HTML to text for export
+					$columns[$index] = isset($presenters[$index])?html_entity_decode(strip_tags($presenters[$index])):'';
+				} else {
 					if (isset($row[$index])) {
 						$columns[$index] = $row[$index];
 					} else if (isset($presenters[$index])) {
 						$columns[$index] = $presenters[$index];
 					} else $columns[$index] = '';
-					break;
+				}
 			}
 			String::fputcsv($fp, $columns);
 			$presenterIndex++;

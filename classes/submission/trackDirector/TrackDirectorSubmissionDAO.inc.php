@@ -3,7 +3,7 @@
 /**
  * @file TrackDirectorSubmissionDAO.inc.php
  *
- * Copyright (c) 2000-2009 John Willinsky
+ * Copyright (c) 2000-2010 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class TrackDirectorSubmissionDAO
@@ -162,7 +162,7 @@ class TrackDirectorSubmissionDAO extends DAO {
 		}
 
 		// Update director decisions; hacked necessarily to iterate by reference.
-		for ($i = 1; $i <= $trackDirectorSubmission->getCurrentStage(); $i++) {
+		foreach (array(REVIEW_STAGE_ABSTRACT, REVIEW_STAGE_PRESENTATION) as $i) {
 			$directorDecisions = $trackDirectorSubmission->getDecisions($i);
 			$insertedDecision = false;
 			if (is_array($directorDecisions)) {
