@@ -133,12 +133,17 @@ class UserXMLParser {
 							case 'signature':
 								$locale = $attrib->getAttribute('locale');
 								if (empty($locale)) $locale = $schedConfPrimaryLocale;
-								$newUser->setInterests($attrib->getValue(), $locale);
+								$newUser->setSignature($attrib->getValue(), $locale);
 								break;
 							case 'interests':
 								$locale = $attrib->getAttribute('locale');
 								if (empty($locale)) $locale = $schedConfPrimaryLocale;
 								$newUser->setInterests($attrib->getValue(), $locale);
+								break;
+							case 'gossip':
+								$locale = $attrib->getAttribute('locale');
+								if (empty($locale)) $locale = $schedConfPrimaryLocale;
+								$newUser->setGossip($attrib->getValue(), $locale);
 								break;
 							case 'biography':
 								$locale = $attrib->getAttribute('locale');

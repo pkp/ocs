@@ -63,6 +63,15 @@ class UserExportDom {
 					unset($interestsNode);
 				}
 			}
+			if (is_array($user->getGossip(null))) {
+				foreach($user->getGossip(null) as $locale => $value) {
+					$gossipNode =& XMLCustomWriter::createChildWithText($doc, $userNode, 'gossip', $value, false);
+					if ($interestsNode) {
+						XMLCustomWriter::setAttribute($gossipNode, 'locale', $locale);
+					}
+					unset($gossipNode);
+				}
+			}
 			if (is_array($user->getBiography(null))) {
 				foreach($user->getBiography(null) as $locale => $value) {
 					$biographyNode =& XMLCustomWriter::createChildWithText($doc, $userNode, 'biography', $value, false);
