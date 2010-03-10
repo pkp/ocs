@@ -15,6 +15,7 @@
 <head>
 	<title>{$paper->getFirstAuthor(true)|escape}</title>
 	<meta http-equiv="Content-Type" content="text/html; charset={$defaultCharset|escape}" />
+	<meta name="description" content="{$paper->getLocalizedTitle()|strip_tags|escape}" />
 	{if $paper->getLocalizedSubject()}
 		<meta name="keywords" content="{$paper->getLocalizedSubject()|escape}" />
 	{/if}
