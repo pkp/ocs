@@ -78,6 +78,7 @@ class ReviewReminder extends ScheduledTask {
 			'schedConfUrl' => $schedConf->getUrl(),
 			'reviewerPassword' => $reviewer->getPassword(),
 			'reviewDueDate' => strftime(Config::getVar('general', 'date_format_short'), strtotime($reviewAssignment->getDateDue())),
+			'weekLaterDate' => strftime(Config::getVar('general', 'date_format_short'), strtotime('+1 week')),
 			'editorialContactSignature' => $contactName . "\n" . $schedConf->getFullTitle(),
 			'passwordResetUrl' => Request::url($conference->getPath(), $schedConf->getPath(), 'login', 'resetPassword', $reviewer->getUsername(), array('confirm' => Validation::generatePasswordResetHash($reviewer->getId()))),
 			'submissionReviewUrl' => $submissionReviewUrl
