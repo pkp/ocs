@@ -50,7 +50,7 @@ class PaperReportDAO extends DAO {
 				LEFT JOIN track_settings tpl ON (tpl.track_id=p.track_id AND tpl.setting_name = ? AND tpl.locale = ?)
 				LEFT JOIN track_settings tl ON (tl.track_id=p.track_id AND tl.setting_name = ? AND tl.locale = ?)
 			WHERE	p.sched_conf_id = ?
-			ORDER BY title',
+			ORDER BY p.paper_id',
 			array(
 				'title',
 				$primaryLocale,
