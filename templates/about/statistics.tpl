@@ -49,10 +49,6 @@
 			{math equation="round($daysPerReview)"}
 		</td>
 	</tr>{/if}
-	{if $statDaysToPublication}<tr valign="top">
-		<td width="30%" class="label">&nbsp;&nbsp;{translate key="manager.statistics.statistics.daysToPublication"}</td>
-		<td width="70%" class="value">{$limitedPaperStatistics.daysToPublication}</td>
-	</tr>{/if}
 	{if $statRegisteredUsers}<tr valign="top">
 		<td width="30%" class="label">{translate key="manager.statistics.statistics.users"}</td>
 		<td width="70%" class="value">{$userStatistics.totalUsersCount}</td>

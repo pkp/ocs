@@ -101,7 +101,6 @@ class StatisticsHandler extends ManagerHandler {
 			'statCountDecline',
 			'statCountRevise',
 			'statDaysPerReview',
-			'statDaysToPublication',
 			'statRegisteredUsers',
 			'statRegisteredReaders',
 			'statRegistrations'
