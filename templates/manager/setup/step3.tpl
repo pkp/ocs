@@ -208,7 +208,7 @@
 				<table width="100%">
 					<tr valign="top">
 						<td width="5%"><input type="checkbox" name="navItems[{$formLocale|escape}][{$navItemId}][isLiteral]" id="navItems-{$navItemId}-isLiteral" value="1"{if $navItem.isLiteral} checked="checked"{/if} /></td>
-						<td width="95%"><label for="navItems-{$navItemId}-isLiteral">{translate key="manager.setup.layout.navItemIsLiteral"}</label></td>
+						<td width="95%">{fieldLabel name="navItems-$navItemId-isLiteral" key="manager.setup.layout.navItemIsLiteral"}</td>
 					</tr>
 				</table>
 			</td>
@@ -220,7 +220,7 @@
 				<table width="100%">
 					<tr valign="top">
 						<td width="5%"><input type="checkbox" name="navItems[{$formLocale|escape}][{$navItemId}][isAbsolute]" id="navItems-{$navItemId}-isAbsolute" value="1"{if $navItem.isAbsolute} checked="checked"{/if} /></td>
-						<td width="95%"><label for="navItems-{$navItemId}-isAbsolute">{translate key="manager.setup.layout.navItemIsAbsolute"}</label></td>
+						<td width="95%">{fieldLabel name="navItems-$navItemId-isAbsolute" key="manager.setup.layout.navItemIsAbsolute"}</label></td>
 					</tr>
 				</table>
 			</td>
@@ -238,7 +238,7 @@
 				<table width="100%">
 					<tr valign="top">
 						<td width="5%"><input type="checkbox" name="navItems[{$formLocale|escape}][0][isLiteral]" id="navItems-0-isLiteral" value="1" /></td>
-						<td width="95%"><label for="navItems-0-isLiteral">{translate key="manager.setup.layout.navItemIsLiteral"}</label></td>
+						<td width="95%">{fieldLabel name="navItems-0-isLiteral" key="manager.setup.layout.navItemIsLiteral"}</td>
 					</tr>
 				</table>
 			</td>
@@ -250,7 +250,7 @@
 				<table width="100%">
 					<tr valign="top">
 						<td width="5%"><input type="checkbox" name="[{$formLocale|escape}]navItems[0][isAbsolute]" id="navItems-0-isAbsolute" value="1" /></td>
-						<td width="95%"><label for="navItems-0-isAbsolute">{translate key="manager.setup.layout.navItemIsAbsolute"}</label></td>
+						<td width="95%">{fieldLabel name="navItems-0-isAbsolute" key="manager.setup.layout.navItemIsAbsolute"}</td>
 					</tr>
 				</table>
 			</td>

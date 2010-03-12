@@ -580,7 +580,7 @@
 	<message key="manager.setup.layout.useImageLogo">Logo image</message>
 	<message key="manager.setup.layout.useImageTitle">Title image</message>
 	<message key="manager.setup.layout.useTextTitle">Title text</message>
-	<message key="manager.setup.loggingAndAuditing.brief">Logging &amp; Auditing</message>
+	<message key="manager.setup.loggingAndAuditing.brief">Logging &amp;amp; Auditing</message>
 	<message key="manager.setup.loggingAndAuditing.conferenceEventLogging">Conference event logging.</message>
 	<message key="manager.setup.loggingAndAuditing.description">Email logs, event logs, etc.</message>
 	<message key="manager.setup.loggingAndAuditing.pageDescription">Maintain a log of the following actions and materials for all conferences.</message>

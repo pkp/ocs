@@ -36,15 +36,15 @@
 <table width="100%" class="data">
 	<tr valign="top">
 		<td width="5%" class="label"><input type="checkbox" name="paperEventLog" id="paperEventLog" value="1"{if $paperEventLog} checked="checked"{/if} /></td>
-		<td width="95%" class="value"><label for="paperEventLog">{translate key="manager.setup.loggingAndAuditing.submissionEventLogging"}</label></td>
+		<td width="95%" class="value">{fieldLabel name="paperEventLog" key="manager.setup.loggingAndAuditing.submissionEventLogging"}</td>
 	</tr>
 	<tr valign="top">
-		<td width="5%" class="label"><input type="checkbox" name="paperEmailLog" id="paperEmailLog" value="1"{if $paperEmailLog} checked="checked"{/if} /></td>
-		<td width="95%" class="value"><label for="paperEmailLog">{translate key="manager.setup.loggingAndAuditing.submissionEmailLogging"}</label></td>
+		<td class="label"><input type="checkbox" name="paperEmailLog" id="paperEmailLog" value="1"{if $paperEmailLog} checked="checked"{/if} /></td>
+		<td class="value">{fieldLabel name="paperEmailLog" key="manager.setup.loggingAndAuditing.submissionEmailLogging"}</td>
 	</tr>
 	<tr valign="top">
-		<td width="5%" class="label"><input type="checkbox" name="conferenceEventLog" id="conferenceEventLog" value="1"{if $conferenceEventLog} checked="checked"{/if} /></td>
-		<td width="95%" class="value"><label for="conferenceEventLog">{translate key="manager.setup.loggingAndAuditing.conferenceEventLogging"}</label></td>
+		<td class="label"><input type="checkbox" name="conferenceEventLog" id="conferenceEventLog" value="1"{if $conferenceEventLog} checked="checked"{/if} /></td>
+		<td class="value">{fieldLabel name="conferenceEventLog" key="manager.setup.loggingAndAuditing.conferenceEventLogging"}</td>
 	</tr>
 </table>
 </div>

@@ -115,7 +115,7 @@ function prepBlockFields() {
 
 <table width="100%" class="data">
 <tr>
-	<td width="20%" class="label"><label for="conferenceTheme">{translate key="manager.setup.style.conferenceTheme"}</label></td>
+	<td width="20%" class="label">{fieldLabel name="conferenceTheme" key="manager.setup.style.conferenceTheme"}</td>
 	<td width="80%" class="value">
 		<select name="conferenceTheme" class="selectMenu" id="conferenceTheme"{if empty($conferenceThemes)} disabled="disabled"{/if}>
 			<option value="">{translate key="common.none"}</option>

@@ -87,8 +87,8 @@
 
 <p><textarea name="copyrightNotice[{$formLocale|escape}]" id="copyrightNotice" rows="10" cols="60" class="textArea">{$copyrightNotice[$formLocale]|escape}</textarea></p>
 
-<p><input type="checkbox" name="copyrightNoticeAgree" id="copyrightNoticeAgree" value="1"{if $copyrightNoticeAgree} checked="checked"{/if} /> <label for="copyrightNoticeAgree">{translate key="manager.setup.aboutConference.copyrightNoticeAgree"}</label><br/>
-<input type="checkbox" name="postCreativeCommons" id="postCreativeCommons" value="1"{if $postCreativeCommons} checked="checked"{/if} /> <label for="postCreativeCommons">{translate key="manager.setup.aboutConference.postCreativeCommons"}</label><br/></p>
+<p><input type="checkbox" name="copyrightNoticeAgree" id="copyrightNoticeAgree" value="1"{if $copyrightNoticeAgree} checked="checked"{/if} /> {fieldLabel name="copyrightNoticeAgree" key="manager.setup.aboutConference.copyrightNoticeAgree"}<br/>
+<input type="checkbox" name="postCreativeCommons" id="postCreativeCommons" value="1"{if $postCreativeCommons} checked="checked"{/if} /> {fieldLabel name="postCreativeCommons" key="manager.setup.aboutConference.postCreativeCommons"}<br/></p>
 </div>
 <div class="separator"></div>
 <div id="archiveAccessPolicyInfo">
@@ -116,21 +116,21 @@
 <table width="100%" class="data">
 	<tr valign="top">
 		<td width="5%" class="label"><input type="checkbox" name="restrictPaperAccess" id="restrictPaperAccess" value="1"{if $restrictPaperAccess} checked="checked"{/if} /></td>
-		<td width="95%" colspan="2" class="value"><label for="restrictPaperAccess">{translate key="manager.setup.aboutConference.restrictPaperAccess"}</label></td>
+		<td width="95%" colspan="2" class="value">{fieldLabel name="restrictPaperAccess" key="manager.setup.aboutConference.restrictPaperAccess"}</td>
 	</tr>
 	<tr valign="top">
 		<td width="5%" class="label"><input type="checkbox" name="enableComments" id="enableComments" value="1"{if $enableComments} checked="checked"{/if} /></td>
-		<td width="95%" colspan="2" class="value"><label for="enableComments">{translate key="manager.setup.aboutConference.comments.enable"}</label></td>
+		<td width="95%" colspan="2" class="value">{fieldLabel name="enableComments" key="manager.setup.aboutConference.comments.enable"}</td>
 	</tr>
 	<tr valign="top">
 		<td width="5%" class="label">&nbsp;</td>
 		<td width="5%" class="label"><input type="checkbox" name="commentsRequireRegistration" id="commentsRequireRegistration" value="1"{if $commentsRequireRegistration} checked="checked"{/if} /></td>
-		<td width="90%" class="value"><label for="commentsRequireRegistration">{translate key="manager.setup.aboutConference.comments.requireRegistration"}</label></td>
+		<td width="90%" class="value">{fieldLabel name="commentsRequireRegistration" key="manager.setup.aboutConference.comments.requireRegistration"}</td>
 	</tr>
 	<tr valign="top">
 		<td width="5%" class="label">&nbsp;</td>
 		<td width="5%" class="label"><input type="checkbox" name="commentsAllowAnonymous" id="commentsAllowAnonymous" value="1"{if $commentsAllowAnonymous} checked="checked"{/if} /></td>
-		<td width="90%" class="value"><label for="commentsAllowAnonymous">{translate key="manager.setup.aboutConference.comments.allowAnonymous"}</label></td>
+		<td width="90%" class="value">{fieldLabel name="commentsAllowAnonymous" key="manager.setup.aboutConference.comments.allowAnonymous"}</td>
 	</tr>
 </table>
 <div id="policy">

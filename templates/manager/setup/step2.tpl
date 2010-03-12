@@ -116,12 +116,12 @@
 
 <p>
 	<input type="checkbox" name="enableAnnouncements" id="enableAnnouncements" value="1" {if $enableAnnouncements} checked="checked"{/if} />&nbsp;
-	<label for="enableAnnouncements">{translate key="manager.setup.additionalContent.enableAnnouncements"}</label>
+	{fieldLabel name="enableAnnouncements" key="manager.setup.additionalContent.enableAnnouncements"}
 </p>
 
 <p>
 	<input type="checkbox" name="enableAnnouncementsHomepage" id="enableAnnouncementsHomepage" value="1" onclick="toggleEnableAnnouncementsHomepage(this.form)"{if $enableAnnouncementsHomepage} checked="checked"{/if} />&nbsp;
-	<label for="enableAnnouncementsHomepage">{translate key="manager.setup.additionalContent.enableAnnouncementsHomepage1"}</label>
+	{fieldLabel name="enableAnnouncementsHomepage" key="manager.setup.additionalContent.enableAnnouncementsHomepage1"}
 	<select name="numAnnouncementsHomepage" size="1" class="selectMenu" {if not $enableAnnouncementsHomepage}disabled="disabled"{/if}>
 		{section name="numAnnouncementsHomepageOptions" start=1 loop=11}
 		<option value="{$smarty.section.numAnnouncementsHomepageOptions.index}"{if $numAnnouncementsHomepage eq $smarty.section.numAnnouncementsHomepageOptions.index or ($smarty.section.numAnnouncementsHomepageOptions.index eq 1 and not $numAnnouncementsHomepage)} selected="selected"{/if}>{$smarty.section.numAnnouncementsHomepageOptions.index}</option>
