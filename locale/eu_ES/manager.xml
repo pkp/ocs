@@ -409,7 +409,6 @@
 	<message key="manager.setup.aboutConference.aboutItemContent">Edukia</message>
 	<message key="manager.setup.aboutConference.addAboutItem">Gehitu "Kongresuari buruz" elementua</message>
 	<message key="manager.setup.aboutConference.addItemtoAboutConference">Gehitu "Kongresuari buruz" orrian agertzeko elementua</message>
-	<message key="manager.setup.aboutConference.archiveAccessPolicy.description">Ondorengo ezarpenek kontrolatzen dute kongresuko artxiboetarako sarbidea. Ezarpen gehiago, 2.5 atalean.</message>
 	<message key="manager.setup.aboutConference.brief">Kongresuari buruz</message>
 	<message key="manager.setup.aboutConference.comments">Irakurleen iruzkinak</message>
 	<message key="manager.setup.aboutConference.comments.allowAnonymous">Iruzkin anonimoak onartzen dira.</message>

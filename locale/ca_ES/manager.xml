@@ -298,7 +298,6 @@
 	<message key="manager.setup.aboutConference.addAboutItem">Afegir element a "Quant a"</message>
 	<message key="manager.setup.aboutConference.addItemtoAboutConference">Afegir element per a que aparegui a "Quant a aquesta Conferència/Congrés"</message>
 	<message key="manager.setup.aboutConference.archiveAccessPolicy">Arxiu que conté la política d'accés</message>
-	<message key="manager.setup.aboutConference.archiveAccessPolicy.description">S'ha guardat la següent configuració per al control d'accés a la Conferència/Congrés creada. Veure secció 2.4 per a opcions addicionals.</message>
 	<message key="manager.setup.aboutConference.brief">Quant a</message>
 	<message key="manager.setup.aboutConference.comments">Comentaris dels lectors</message>
 	<message key="manager.setup.aboutConference.comments.allowAnonymous">Es permeten els comentaris Anònims.</message>

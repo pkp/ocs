@@ -303,7 +303,6 @@
 	<message key="manager.setup.aboutConference.addAboutItem">Ajouter à propos de l'élément</message>
 	<message key="manager.setup.aboutConference.addItemtoAboutConference">Ajouter un élément à apparaître dans "A propos de la Conférence"</message>
 	<message key="manager.setup.aboutConference.archiveAccessPolicy">Politique d'accès aux Archives</message>
-	<message key="manager.setup.aboutConference.archiveAccessPolicy.description">Les paramètres suivants contrôlent l'accès aux archives de la conférence. Allez dans la section 2.4 pour plus de paramètres.</message>
 	<message key="manager.setup.aboutConference.brief">A propos</message>
 	<message key="manager.setup.aboutConference.comments">Commentaires de lecteurs</message>
 	<message key="manager.setup.aboutConference.comments.allowAnonymous">Les commentaires anonymes sont autorisés.</message>

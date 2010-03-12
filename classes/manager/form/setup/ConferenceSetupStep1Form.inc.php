@@ -34,6 +34,7 @@ class ConferenceSetupStep1Form extends ConferenceSetupForm {
 				'enableComments' => 'bool',
 				'commentsRequireRegistration' => 'bool',
 				'commentsAllowAnonymous' => 'bool',
+				'paperAccess' => 'int',
 				'archiveAccessPolicy' => 'string',
 				'copyrightNotice' => 'string',
 				'copyrightNoticeAgree' => 'bool',
@@ -53,7 +54,7 @@ class ConferenceSetupStep1Form extends ConferenceSetupForm {
 	 * @return array
 	 */
 	function getLocaleFieldNames() {
-		return array('title', 'description', 'archiveAccessPolicy', 'copyrightNotice', 'privacyStatement', 'customAboutItems');
+		return array('title', 'description', 'archiveAccessPolicy', 'copyrightNotice', 'privacyStatement', 'customAboutItems', 'contactAffiliation');
 	}
 }
 

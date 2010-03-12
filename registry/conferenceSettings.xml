@@ -41,6 +41,10 @@
 		<value>{translate key="default.conferenceSettings.privacyStatement"}</value>
 	</setting>
 	<setting type="string" locale="1">
+		<name>archiveAccessPolicy</name>
+		<value>{translate key="default.conferenceSettings.archiveAccessPolicy"}</value>
+	</setting>
+	<setting type="string" locale="1">
 		<name>authorSelfArchivePolicy</name>
 		<value>{translate key="default.conferenceSettings.authorSelfArchivePolicy"}</value>
 	</setting>

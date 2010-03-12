@@ -485,8 +485,9 @@
 	<message key="manager.setup.aboutConference.aboutItemContent">Content</message>
 	<message key="manager.setup.aboutConference.addAboutItem">Add About Item</message>
 	<message key="manager.setup.aboutConference.addItemtoAboutConference">Add Item to Appear in "About the Conference"</message>
+	<message key="manager.setup.aboutConference.accessPolicy">Access Policy</message>
 	<message key="manager.setup.aboutConference.archiveAccessPolicy">Archive Access Policy</message>
-	<message key="manager.setup.aboutConference.archiveAccessPolicy.description">The following settings control access to the conference archives. See section 2.5 for additional settings.</message>
+	<message key="manager.setup.aboutConference.archiveAccessPolicy.description">The following settings control access to the conference archives.</message>
 	<message key="manager.setup.aboutConference.brief">About</message>
 	<message key="manager.setup.aboutConference.comments">Reader Comments</message>
 	<message key="manager.setup.aboutConference.comments.allowAnonymous">Anonymous commenting is permitted.</message>
@@ -497,7 +498,7 @@
 	<message key="manager.setup.aboutConference.copyrightNotice">Copyright Notice</message>
 	<message key="manager.setup.aboutConference.copyrightNoticeAgree">Require authors to agree to Copyright Notice as part of the submission process.</message>
 	<message key="manager.setup.aboutConference.copyrightNotice.description"><![CDATA[The Copyright Notice will also appear in the metadata accompanying posted conference materials and as a statement that authors need to agree to on submitting to the conference. The Public Knowledge Project recommends the use of a <a href="http://creativecommons.org">Creative Commons</a> license, and provides a sample Copyright Notice below.]]></message>
-	<message key="manager.setup.aboutConference.description">Conference description, principal contact, copyright notice, etc.</message>
+	<message key="manager.setup.aboutConference.description">Conference description, principal contact, copyright notice, access policy, etc.</message>
 	<message key="manager.setup.aboutConference.postCreativeCommons">Post the Creative Commons license logo on the conference website.</message>
 	<message key="manager.setup.aboutConference.principalContact">Principal Contact for Conference Website</message>
 	<message key="manager.setup.aboutConference.privacyStatement">Privacy Statement</message>
@@ -512,7 +513,7 @@
 	<message key="manager.setup.additionalContent.announcementsIntroductionDescription">Enter any additional information that should be displayed to readers on the Announcements page.</message>
 	<message key="manager.setup.additionalContent.archiveAccess">Access to Conference Presentations</message>
 	<message key="manager.setup.additionalContent.archiveAccess.accountRequired">Require visitors to sign up with the website.</message>
-	<message key="manager.setup.additionalContent.archiveAccess.description">The date for allowing access to presentations is set in Conference Timeline, while access to archived conferences is controlled by the Conference Manager in Conference Setup.</message>
+	<message key="manager.setup.additionalContent.accessPolicy.description">This policy applies to current conference presentations posted on the website.</message>
 	<message key="manager.setup.additionalContent.archiveAccess.open">Provide open access to all visitors to the website.</message>
 	<message key="manager.setup.additionalContent.archiveAccess.registrationRequired">Require registration to attend the conference.</message>
 	<message key="manager.setup.additionalContent.brief">Additional Content</message>

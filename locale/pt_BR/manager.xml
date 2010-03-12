@@ -367,7 +367,6 @@
 	<message key="manager.setup.aboutConference.addAboutItem">Incluir Item no Sobre</message>
 	<message key="manager.setup.aboutConference.addItemtoAboutConference">Incluir item no Sobre</message>
 	<message key="manager.setup.aboutConference.archiveAccessPolicy">Política de Acesso aos Arquivos</message>
-	<message key="manager.setup.aboutConference.archiveAccessPolicy.description">Os itens a seguir definem os controles de acesso ao conteúdo publicado da conferência. Veja o item 2.4 para configurações adicionais.</message>
 	<message key="manager.setup.aboutConference.brief">Sobre</message>
 	<message key="manager.setup.aboutConference.comments">Comentários dos Leitores</message>
 	<message key="manager.setup.aboutConference.comments.allowAnonymous">Permitir publicação anônima a qualquer pessoa.</message>

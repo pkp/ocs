@@ -361,7 +361,6 @@
 	<message key="manager.setup.aboutConference.addAboutItem">&#220;ber-Objekt hinzuf&#252;gen</message>
 	<message key="manager.setup.aboutConference.addItemtoAboutConference">F&#252;gen Sie Objekte, die in &quot;&#220;ber die Konferenz&quot; angezeigt werden sollen, hinzu.</message>
 	<message key="manager.setup.aboutConference.archiveAccessPolicy">Zugangsregelung Archiv</message>
-	<message key="manager.setup.aboutConference.archiveAccessPolicy.description">Die folgenden Einstellungen regeln den Zugang zu den Konferenzarchiven. Gehen Sie zu Abschnitt 2.4. f&#252;r weitere Einstellungen.</message>
 	<message key="manager.setup.aboutConference.brief">Über die Konferenz</message>
 	<message key="manager.setup.aboutConference.comments">Leserkommentare</message>
 	<message key="manager.setup.aboutConference.comments.allowAnonymous">Anonyme Kommentierung ist erlaubt.</message>

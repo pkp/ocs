@@ -92,7 +92,25 @@
 </div>
 <div class="separator"></div>
 <div id="archiveAccessPolicyInfo">
-<h3>1.5 {translate key="manager.setup.aboutConference.archiveAccessPolicy"}</h3>
+<h3>1.5 {translate key="manager.setup.aboutConference.accessPolicy"}</h3>
+
+<p>{translate key="manager.setup.additionalContent.accessPolicy.description"}</p>
+
+<table width="100%" class="data">
+	<tr valign="top">
+		<td width="5%" class="label"><input type="radio" name="paperAccess" id="paperAccess-1" value="{$smarty.const.PAPER_ACCESS_OPEN}" {if $paperAccess == PAPER_ACCESS_OPEN || $paperAccess == ""} checked="checked"{/if} /></td>
+		<td width="95%" class="value">{fieldLabel name="paperAccess-1" key="manager.setup.additionalContent.archiveAccess.open"}</td>
+	</tr>
+	<tr valign="top">
+		<td class="label"><input type="radio" name="paperAccess" id="paperAccess-2" value="{$smarty.const.PAPER_ACCESS_ACCOUNT_REQUIRED}" {if $paperAccess == PAPER_ACCESS_ACCOUNT_REQUIRED} checked="checked"{/if} /></td>
+		<td class="value">{fieldLabel name="paperAccess-2" key="manager.setup.additionalContent.archiveAccess.accountRequired"}</td>
+	</tr>
+	<tr valign="top">
+		<td class="label"><input type="radio" name="paperAccess" id="paperAccess-3" value="{$smarty.const.PAPER_ACCESS_REGISTRATION_REQUIRED}" {if $paperAccess == PAPER_ACCESS_REGISTRATION_REQUIRED} checked="checked"{/if} /></td>
+		<td class="value">{fieldLabel name="paperAccess-3" key="manager.setup.additionalContent.archiveAccess.registrationRequired"}</td>
+	</tr>
+</table>
+
 <p>{translate key="manager.setup.aboutConference.archiveAccessPolicy.description"}</p>
 
 <table width="100%" class="data">

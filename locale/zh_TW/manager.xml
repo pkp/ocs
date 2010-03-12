@@ -328,7 +328,6 @@
 	<message key="manager.setup.aboutConference.addAboutItem">增加有關項目</message>
 	<message key="manager.setup.aboutConference.addItemtoAboutConference">增加項目並顯示於"關於研討會"內</message>
 	<message key="manager.setup.aboutConference.archiveAccessPolicy">檔案存取方針</message>
-	<message key="manager.setup.aboutConference.archiveAccessPolicy.description">以下為至研討會檔案設定控制路徑。參考部分2.4之附加設置。</message>
 	<message key="manager.setup.aboutConference.brief">關於</message>
 	<message key="manager.setup.aboutConference.comments">讀者建議</message>
 	<message key="manager.setup.aboutConference.comments.allowAnonymous">匿名建議是被允許的。</message>

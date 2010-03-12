@@ -370,7 +370,6 @@
 	<message key="manager.setup.aboutConference.addAboutItem">Aggiungi un elemento</message>
 	<message key="manager.setup.aboutConference.addItemtoAboutConference">Aggiungi un elemento per visualizzarlo in "Informazioni generali"</message>
 	<message key="manager.setup.aboutConference.archiveAccessPolicy">Modalit&#x00E0; di accesso all'archivio</message>
-	<message key="manager.setup.aboutConference.archiveAccessPolicy.description">Le seguenti personalizzazioni controllano l'accesso agli archivi del convegno. Vedi la sezione 2.4 per personalizzazioni aggiuntive.</message>
 	<message key="manager.setup.aboutConference.brief">Informazioni generali</message>
 	<message key="manager.setup.aboutConference.comments">Commenti del lettore</message>
 	<message key="manager.setup.aboutConference.comments.allowAnonymous">Sono permessi commenti anonimi.</message>

@@ -296,7 +296,6 @@
 	<message key="manager.setup.aboutConference.addAboutItem">Añadir elemento en "Acerca de"</message>
 	<message key="manager.setup.aboutConference.addItemtoAboutConference">Añadir elemento para que aparezca en "Acerca de esta Conferencia/Congreso"</message>
 	<message key="manager.setup.aboutConference.archiveAccessPolicy">Fichero que contiene la política de acceso</message>
-	<message key="manager.setup.aboutConference.archiveAccessPolicy.description">Se ha guardado la siguiente configuración para el control de acceso a la Conferencia/Congreso creada. Ver sección 2.4 para opciones adicionales.</message>
 	<message key="manager.setup.aboutConference.brief">Acerca de</message>
 	<message key="manager.setup.aboutConference.comments">Comentarios de los lectores</message>
 	<message key="manager.setup.aboutConference.comments.allowAnonymous">Se permiten los comentarios Anónimos.</message>
