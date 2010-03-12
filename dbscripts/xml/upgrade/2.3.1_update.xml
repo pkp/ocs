@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE data SYSTEM "../../../lib/pkp/dtd/xmlData.dtd">
+
+<!--
+  * 2.3.1_preupdate.xml
+  *
+  * Copyright (c) 2000-2010 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * 2.3.1 database updates XML file, run prior schema sync.
+  *
+  -->
+
+<data>
+	<!-- Bug #5009: Clarify submission acceptance emails -->
+	<sql>
+		<query>INSERT INTO email_templates_default (email_key, can_edit, can_disable) VALUES ('SUBMISSION_PAPER_INVITE', 1, 0)</query>
+		<query>INSERT INTO email_templates_default_data (locale, email_key, subject, body, description) VALUES ('en_US', 'SUBMISSION_PAPER_INVITE', 'Editorial Decision on Abstract', '{$authorName}:
+
+Congratulations, your abstract {$paperTitle} has been accepted for presentation at {$conferenceTitle} which is being held {$conferenceDate} at {$locationCity}. You may now submit your paper for furthe
+r review.
+
+Thank you and looking forward to your participation in this event.
+{$editorialContactSignature}', 'This email is sent by a Track Director to a submission''s Author to notify them that a decision has been reached in regard to an abstract and invite them to submit a paper for subsequent review.')</query>
+	</sql>
+</data>

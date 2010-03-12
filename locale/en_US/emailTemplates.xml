@@ -335,7 +335,7 @@ Please confirm your ability to complete this vital contribution to the work of t
 		<subject>Editorial Decision on Abstract</subject>
 		<body>{$authorName}:
 
-Congratulations, your submission {$paperTitle} has been accepted for presentation at {$conferenceTitle} which is being held {$conferenceDate} at {$locationCity}. 
+Congratulations, your abstract {$paperTitle} has been accepted for presentation at {$conferenceTitle} which is being held {$conferenceDate} at {$locationCity}. 
 
 Thank you and looking forward to your participation in this event.
 {$editorialContactSignature}</body>
@@ -390,6 +390,16 @@ Thank you and looking forward to your participation in this event.
 
 {$editorialContactSignature}</body>
 		<description>This email is sent by a Track Director to a submission's Author to notify them that a decision has been reached in regard to a submission.</description>
+	</email_text>
+	<email_text key="SUBMISSION_PAPER_INVITE">
+		<subject>Editorial Decision on Abstract</subject>
+		<body>{$authorName}:
+
+Congratulations, your abstract {$paperTitle} has been accepted for presentation at {$conferenceTitle} which is being held {$conferenceDate} at {$locationCity}. You may now submit your paper for further review.
+
+Thank you and looking forward to your participation in this event.
+{$editorialContactSignature}</body>
+		<description>This email is sent by a Track Director to a submission's Author to notify them that a decision has been reached in regard to an abstract and invite them to submit a paper for subsequent review.</description>
 	</email_text>
 	<email_text key="REGISTRATION_NOTIFY">
 		<subject>Registration Notification</subject>

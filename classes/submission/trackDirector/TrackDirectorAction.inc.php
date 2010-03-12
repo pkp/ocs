@@ -1433,6 +1433,7 @@ import('file.PaperFileManager');
 		$schedConf =& Request::getSchedConf();
 
 		$templateName = null;
+		$reviewMode = $trackDirectorSubmission->getReviewMode();
 		$stages = $trackDirectorSubmission->getDecisions();
 		if (is_array($stages)) {
 			$isAbstract = array_pop(array_keys($stages)) == REVIEW_STAGE_ABSTRACT;
@@ -1445,7 +1446,7 @@ import('file.PaperFileManager');
 		if (isset($decisions) && is_array($decisions)) $lastDecision = array_pop($decisions);
 		if (isset($lastDecision) && is_array($lastDecision)) switch ($lastDecision['decision']) {
 			case SUBMISSION_DIRECTOR_DECISION_INVITE:
-				$templateName = 'SUBMISSION_ABSTRACT_ACCEPT';
+				$templateName = ($reviewMode==REVIEW_MODE_BOTH_SEQUENTIAL?'SUBMISSION_PAPER_INVITE':'SUBMISSION_ABSTRACT_ACCEPT');
 				break;
 			case SUBMISSION_DIRECTOR_DECISION_ACCEPT:
 				$templateName = 'SUBMISSION_PAPER_ACCEPT';
