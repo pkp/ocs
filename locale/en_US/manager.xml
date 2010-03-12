@@ -341,11 +341,12 @@
 	<message key="manager.schedConfSetup.schedConfSetup">Scheduled Conference Setup</message>
 	<message key="manager.schedConfSetup.stepsToSchedConf">These steps are designed to set up a scheduled instance of the conference. Once a conference is set up, it is copied to the next instance of the conference, and can be edited by the conference directors.</message>
 	<message key="manager.schedConfSetup.submissions">Submissions</message>
-	<message key="manager.schedConfSetup.submissions.abstractsAlone">Abstract</message>
 	<message key="manager.schedConfSetup.submissions.acceptSupplementaryReviewMaterials">Supplementary files can be submitted with abstracts and presentations.</message>
 	<message key="manager.schedConfSetup.submissions.addChecklistItem">Add Checklist Item</message>
-	<message key="manager.schedConfSetup.submissions.bothSequential">Abstract followed by proposal</message>
-	<message key="manager.schedConfSetup.submissions.bothTogether">Abstract and proposal together</message>
+	<message key="manager.schedConfSetup.submissions.abstractsAlone">Abstract (Abstract submission only; no file upload)</message>
+	<message key="manager.schedConfSetup.submissions.presentationsAlone">Full proposal (File upload only; no abstract submitted)</message>
+	<message key="manager.schedConfSetup.submissions.bothTogether">Abstract and proposal together (Abstract and file upload submitted together)</message>
+	<message key="manager.schedConfSetup.submissions.bothSequential">Abstract followed by proposal (2 rounds of review required; first for abstract, second for proposal)</message>
 	<message key="manager.schedConfSetup.submissions.callForPapers">Call for Papers (CFP)</message>
 	<message key="manager.schedConfSetup.submissions.cfpMessage">CFP message</message>
 	<message key="manager.schedConfSetup.submissions.cfpMessageDescription"><![CDATA[This information is displayed in the "call-for-papers" link on this conference's home page.]]></message>
@@ -373,7 +374,6 @@
 	<message key="manager.schedConfSetup.submissions.pageDescription">Submission process and types, call for papers, guidelines, indexing, and identification.</message>
 	<message key="manager.schedConfSetup.submissions.preparationChecklist">Submission Preparation Checklist</message>
 	<message key="manager.schedConfSetup.submissions.preparationChecklist.description">On making a submission to the conference, authors are required to check off items on the Submission Preparation Checklist. The checklist also appears in the Author Guidelines. The list below can be edited. All items on the list must be checked by the author before submission will be accepted.</message>
-	<message key="manager.schedConfSetup.submissions.presentationsAlone">Full proposal</message>
 	<message key="manager.schedConfSetup.submissions.authorGuidelines">Author Guidelines</message>
 	<message key="manager.schedConfSetup.submissions.authorGuidelinesDescription"><![CDATA[Set out for authors bibliographic and formatting standards for submitting materials to the conference, possibly with examples. If supplementary files are permitted, suggest types (e.g., data-sets, research instruments, etc.) which authors should be encouraged to upload to enhance readers' engagement with their work.]]></message>
 	<message key="manager.schedConfSetup.submissions.previewAbstracts">Post abstracts once the abstract review has been completed</message>
