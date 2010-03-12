@@ -90,7 +90,7 @@ class TemplateManager extends PKPTemplateManager {
 				$this->assign('enableAnnouncements', $conference->getSetting('enableAnnouncements'));
 
 				$this->assign('pageFooter', $conference->getLocalizedSetting('conferencePageFooter'));
-				$this->assign('postCreativeCommons', $conference->getSetting('postCreativeCommons'));
+				$this->assign('displayCreativeCommons', $conference->getSetting('postCreativeCommons'));
 
 				if (isset($schedConf)) {
 
