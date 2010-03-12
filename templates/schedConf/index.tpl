@@ -45,7 +45,7 @@
 <div id="homepageImage"><img src="{$publicConferenceFilesDir}/{$homepageImage.uploadName|escape}" width="{$homepageImage.width}" height="{$homepageImage.height}" {if $homepageImageAltText != ''}alt="{$homepageImageAltText|escape}"{else}alt="{translate key="common.conferenceHomepageImage.altText"}"{/if} /></div>
 {/if}
 
-{if $schedConfPostOverview || $schedConfShowCFP || $schedConfShowSubmissionLink 
+{if $schedConfPostOverview || $schedConfShowCFP
 			|| $schedConfPostPolicies || $schedConfShowProgram ||  $schedConfPostPresentations || $schedConfPostSchedule 
 			|| $schedConfPostPayment  || $schedConfPostAccommodation || $schedConfPostSupporters  || $schedConfPostTimeline}
 <h3>{translate key="schedConf.contents"}</h3>
@@ -54,9 +54,6 @@
 	{if $schedConfPostOverview}<li>&#187; <a href="{url page="schedConf" op="overview"}">{translate key="schedConf.overview"}</a></li>{/if}
 	{if $schedConfShowCFP}
 		<li>&#187; <a href="{url page="schedConf" op="cfp"}">{translate key="schedConf.cfp"}</a>{if $submissionsOpenDate} ({$submissionsOpenDate|date_format:$dateFormatLong} - {$submissionsCloseDate|date_format:$dateFormatLong}){/if}</li>
-	{/if}
-	{if $schedConfShowSubmissionLink}
-		<li>&#187; <a href="{url page="author" op="submit" requiresAuthor="1"}">{translate key="schedConf.proposalSubmission"}</a></li>
 	{/if}
 	{if $schedConfPostTrackPolicies}<li>&#187; <a href="{url page="schedConf" op="trackPolicies"}">{translate key="schedConf.trackPolicies"}</a></li>{/if}
 	{if $schedConfShowProgram}<li>&#187; <a href="{url page="schedConf" op="program"}">{translate key="schedConf.program"}</a></li>{/if}

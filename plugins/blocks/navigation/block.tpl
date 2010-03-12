@@ -30,7 +30,7 @@
 		
 		<br />
 	
-		{if $currentSchedConf && ($schedConfPostOverview || $schedConfShowCFP || $schedConfShowSubmissionLink 
+		{if $currentSchedConf && ($schedConfPostOverview || $schedConfShowCFP
 			|| $schedConfPostPolicies || $schedConfShowProgram ||  $schedConfPostPresentations || $schedConfPostSchedule 
 			|| $schedConfPostPayment  || $schedConfPostAccommodation || $schedConfPostSupporters  || $schedConfPostTimeline)}
 		<span class="blockSubtitle">{translate key="schedConf.contents"}</span>
@@ -39,9 +39,6 @@
 			{if $schedConfPostOverview}<li>&#187; <a href="{url page="schedConf" op="overview"}">{translate key="schedConf.overview"}</a></li>{/if}
 			{if $schedConfShowCFP}
 				<li>&#187; <a href="{url page="schedConf" op="cfp"}">{translate key="schedConf.cfp"}</a>{if $submissionsOpenDate} ({$submissionsOpenDate|date_format:$dateFormatLong} - {$submissionsCloseDate|date_format:$dateFormatLong}){/if}</li>
-			{/if}
-			{if $schedConfShowSubmissionLink}
-				<li>&#187; <a href="{url page="author" op="submit" requiresAuthor="1"}">{translate key="schedConf.proposalSubmission"}</a></li>
 			{/if}
 			{if $schedConfPostTrackPolicies}<li>&#187; <a href="{url page="schedConf" op="trackPolicies"}">{translate key="schedConf.trackPolicies"}</a></li>{/if}
 			{if $schedConfShowProgram}<li>&#187; <a href="{url page="schedConf" op="program"}">{translate key="schedConf.program"}</a></li>{/if}

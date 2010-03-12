@@ -135,9 +135,6 @@ class TemplateManager extends PKPTemplateManager {
 					$submissionsOpenDate = $schedConf->getSetting('submissionsOpenDate');
 					$postSubmission = $schedConf->getSetting('postProposalSubmission');
 					$this->assign('submissionsOpenDate', $submissionsOpenDate);
-					if ($postSubmission && $currentTime > $submissionsOpenDate && $currentTime < $submissionsCloseDate) {
-						$this->assign('schedConfShowSubmissionLink', true);
-					}
 
 					import('payment.ocs.OCSPaymentManager');
 					$paymentManager =& OCSPaymentManager::getManager();
