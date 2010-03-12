@@ -9,7 +9,7 @@
  * @class StatisticsHandler
  * @ingroup pages_manager
  *
- * @brief Handle requests for statistics functions. 
+ * @brief Handle requests for statistics functions.
  */
 
 //$Id$
@@ -37,10 +37,6 @@ class StatisticsHandler extends ManagerHandler {
 
 		$templateMgr =& TemplateManager::getManager();
 
-		$statisticsYear = Request::getUserVar('statisticsYear');
-		if (empty($statisticsYear)) $statisticsYear = date('Y');
-		$templateMgr->assign('statisticsYear', $statisticsYear);
-
 		$trackIds = $schedConf->getSetting('statisticsTrackIds');
 		if (!is_array($trackIds)) $trackIds = array();
 		$templateMgr->assign('trackIds', $trackIds);
@@ -49,36 +45,24 @@ class StatisticsHandler extends ManagerHandler {
 			$templateMgr->assign($name, $schedConf->getSetting($name));
 		}
 
-		$fromDate = mktime(0, 0, 0, 1, 1, $statisticsYear);
-		$toDate = mktime(23, 59, 59, 12, 31, $statisticsYear);
-
 		$schedConfStatisticsDao =& DAORegistry::getDAO('SchedConfStatisticsDAO');
-		$paperStatistics = $schedConfStatisticsDao->getPaperStatistics($schedConf->getId(), null, $fromDate, $toDate);
+		$paperStatistics = $schedConfStatisticsDao->getPaperStatistics($schedConf->getId(), null);
 		$templateMgr->assign('paperStatistics', $paperStatistics);
 
-		$limitedPaperStatistics = $schedConfStatisticsDao->getPaperStatistics($schedConf->getId(), $trackIds, $fromDate, $toDate);
+		$limitedPaperStatistics = $schedConfStatisticsDao->getPaperStatistics($schedConf->getId(), $trackIds);
 		$templateMgr->assign('limitedPaperStatistics', $limitedPaperStatistics);
-
-		$limitedPaperStatistics = $schedConfStatisticsDao->getPaperStatistics($schedConf->getId(), $trackIds, $fromDate, $toDate);
-		$templateMgr->assign('paperStatistics', $paperStatistics);
 
 		$trackDao =& DAORegistry::getDAO('TrackDAO');
 		$tracks =& $trackDao->getSchedConfTracks($schedConf->getId());
 		$templateMgr->assign('tracks', $tracks->toArray());
 
-		$reviewerStatistics = $schedConfStatisticsDao->getReviewerStatistics($schedConf->getId(), $trackIds, $fromDate, $toDate);
+		$reviewerStatistics = $schedConfStatisticsDao->getReviewerStatistics($schedConf->getId(), $trackIds);
 		$templateMgr->assign('reviewerStatistics', $reviewerStatistics);
 
-		$allUserStatistics = $schedConfStatisticsDao->getUserStatistics($schedConf->getId(), null, $toDate);
-		$templateMgr->assign('allUserStatistics', $allUserStatistics);
-
-		$userStatistics = $schedConfStatisticsDao->getUserStatistics($schedConf->getId(), $fromDate, $toDate);
+		$userStatistics = $schedConfStatisticsDao->getUserStatistics($schedConf->getId());
 		$templateMgr->assign('userStatistics', $userStatistics);
 
-		$allRegistrationStatistics = $schedConfStatisticsDao->getRegistrationStatistics($schedConf->getId(), null, $toDate);
-		$templateMgr->assign('allRegistrationStatistics', $allRegistrationStatistics);
-
-		$registrationStatistics = $schedConfStatisticsDao->getRegistrationStatistics($schedConf->getId(), $fromDate, $toDate);
+		$registrationStatistics = $schedConfStatisticsDao->getRegistrationStatistics($schedConf->getId());
 		$templateMgr->assign('registrationStatistics', $registrationStatistics);
 
 		$reportPlugins =& PluginRegistry::loadCategory('reports');

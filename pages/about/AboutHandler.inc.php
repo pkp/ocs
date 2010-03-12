@@ -9,7 +9,7 @@
  * @class AboutHandler
  * @ingroup pages_director
  *
- * @brief Handle requests for director functions. 
+ * @brief Handle requests for director functions.
  *
  */
 
@@ -57,7 +57,7 @@ class AboutHandler extends Handler {
 				if (isset($settings[$name])) {
 					$templateMgr->assign('publicStatisticsEnabled', true);
 					break;
-				} 
+				}
 			}
 
 			if (isset($customAboutItems[Locale::getLocale()])) $templateMgr->assign('customAboutItems', $customAboutItems[Locale::getLocale()]);
@@ -439,10 +439,6 @@ class AboutHandler extends Handler {
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('helpTopicId','user.about');
 
-		$statisticsYear = Request::getUserVar('statisticsYear');
-		if (empty($statisticsYear)) $statisticsYear = date('Y');
-		$templateMgr->assign('statisticsYear', $statisticsYear);
-
 		$trackIds = $schedConf->getSetting('statisticsTrackIds');
 		if (!is_array($trackIds)) $trackIds = array();
 		$templateMgr->assign('trackIds', $trackIds);
@@ -450,36 +446,25 @@ class AboutHandler extends Handler {
 		foreach (AboutHandler::getPublicStatisticsNames() as $name) {
 			$templateMgr->assign($name, $schedConf->getSetting($name));
 		}
-		$fromDate = mktime(0, 0, 0, 1, 1, $statisticsYear);
-		$toDate = mktime(23, 59, 59, 12, 31, $statisticsYear);
 
 		$schedConfStatisticsDao =& DAORegistry::getDAO('SchedConfStatisticsDAO');
-		$paperStatistics = $schedConfStatisticsDao->getPaperStatistics($schedConf->getId(), null, $fromDate, $toDate);
+		$paperStatistics = $schedConfStatisticsDao->getPaperStatistics($schedConf->getId(), null);
 		$templateMgr->assign('paperStatistics', $paperStatistics);
 
-		$limitedPaperStatistics = $schedConfStatisticsDao->getPaperStatistics($schedConf->getId(), $trackIds, $fromDate, $toDate);
+		$limitedPaperStatistics = $schedConfStatisticsDao->getPaperStatistics($schedConf->getId(), $trackIds);
 		$templateMgr->assign('limitedPaperStatistics', $limitedPaperStatistics);
-
-		$limitedPaperStatistics = $schedConfStatisticsDao->getPaperStatistics($schedConf->getId(), $trackIds, $fromDate, $toDate);
-		$templateMgr->assign('paperStatistics', $paperStatistics);
 
 		$trackDao =& DAORegistry::getDAO('TrackDAO');
 		$tracks =& $trackDao->getSchedConfTracks($schedConf->getId());
 		$templateMgr->assign('tracks', $tracks->toArray());
 
-		$reviewerStatistics = $schedConfStatisticsDao->getReviewerStatistics($schedConf->getId(), $trackIds, $fromDate, $toDate);
+		$reviewerStatistics = $schedConfStatisticsDao->getReviewerStatistics($schedConf->getId(), $trackIds);
 		$templateMgr->assign('reviewerStatistics', $reviewerStatistics);
 
-		$allUserStatistics = $schedConfStatisticsDao->getUserStatistics($schedConf->getId(), null, $toDate);
-		$templateMgr->assign('allUserStatistics', $allUserStatistics);
-
-		$userStatistics = $schedConfStatisticsDao->getUserStatistics($schedConf->getId(), $fromDate, $toDate);
+		$userStatistics = $schedConfStatisticsDao->getUserStatistics($schedConf->getId());
 		$templateMgr->assign('userStatistics', $userStatistics);
 
-		$allRegistrationStatistics = $schedConfStatisticsDao->getRegistrationStatistics($schedConf->getId(), null, $toDate);
-		$templateMgr->assign('allRegistrationStatistics', $allRegistrationStatistics);
-
-		$registrationStatistics = $schedConfStatisticsDao->getRegistrationStatistics($schedConf->getId(), $fromDate, $toDate);
+		$registrationStatistics = $schedConfStatisticsDao->getRegistrationStatistics($schedConf->getId());
 		$templateMgr->assign('registrationStatistics', $registrationStatistics);
 
 		$templateMgr->display('about/statistics.tpl');
@@ -490,7 +475,6 @@ class AboutHandler extends Handler {
 		import ('pages.manager.StatisticsHandler');
 		return StatisticsHandler::getPublicStatisticsNames();
 	}
-
 }
 
 ?>
