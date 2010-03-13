@@ -26,7 +26,7 @@
 	</tr>
 {iterate from=reviewForms item=reviewForm name=reviewForms}
 	<tr valign="top">
-		<td>{$reviewForm->getReviewFormTitle()|escape}</td>
+		<td>{$reviewForm->getLocalizedTitle()|escape}</td>
 		<td class="nowrap">
 			{if $assignedReviewFormId == $reviewForm->getId()}{translate key="common.alreadyAssigned"}{else}<a href="{url op="selectReviewForm" path=$paperId|to_array:$reviewId:$reviewForm->getId()}" class="action">{translate key="common.assign"}</a>{/if}&nbsp;|&nbsp;<a href="{url op="previewReviewForm" path=$reviewId|to_array:$reviewForm->getId()}" class="action">{translate key="common.preview"}</a>
 	</tr>

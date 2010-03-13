@@ -197,7 +197,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		}
 
 		// get conference published review form titles
-		$reviewFormTitles =& $reviewFormDao->getConferenceReviewFormTitles($conference->getId(), 1);
+		$reviewFormTitles =& $reviewFormDao->getTitlesByAssocId(ASSOC_TYPE_CONFERENCE, $conference->getId(), 1);
 
 		$reviewFormResponseDao =& DAORegistry::getDAO('ReviewFormResponseDAO');
 		$reviewFormResponses = array();
@@ -209,7 +209,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 			foreach ($submission->getReviewAssignments($stage) as $reviewAssignment) {
 				$reviewForm =& $reviewFormDao->getReviewForm($reviewAssignment->getReviewFormId());
 				if ($reviewForm) {
-					$reviewFormTitles[$reviewForm->getId()] = $reviewForm->getReviewFormTitle();
+					$reviewFormTitles[$reviewForm->getId()] = $reviewForm->getLocalizedTitle();
 				}
 				unset($reviewForm);
 				$reviewFormResponses[$reviewAssignment->getId()] = $reviewFormResponseDao->reviewFormResponseExists($reviewAssignment->getId());
@@ -930,7 +930,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 
 		$conference =& Request::getConference();
 		$reviewFormDao =& DAORegistry::getDAO('ReviewFormDAO');
-		$reviewForm =& $reviewFormDao->getReviewForm($reviewFormId, $conference->getId());
+		$reviewForm =& $reviewFormDao->getReviewForm($reviewFormId, ASSOC_TYPE_CONFERENCE, $conference->getId());
 		$reviewFormElementDao =& DAORegistry::getDAO('ReviewFormElementDAO');
 		$reviewFormElements =& $reviewFormElementDao->getReviewFormElements($reviewFormId);
 		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
@@ -982,7 +982,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 			$conference =& Request::getConference();
 			$rangeInfo =& Handler::getRangeInfo('reviewForms');
 			$reviewFormDao =& DAORegistry::getDAO('ReviewFormDAO');
-			$reviewForms =& $reviewFormDao->getConferenceActiveReviewForms($conference->getId(), $rangeInfo);
+			$reviewForms =& $reviewFormDao->getActiveByAssocId(ASSOC_TYPE_CONFERENCE, $conference->getId(), $rangeInfo);
 			$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
 			$reviewAssignment =& $reviewAssignmentDao->getReviewAssignmentById($reviewId);
 

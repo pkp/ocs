@@ -204,7 +204,7 @@ class TrackDirectorAction extends Action {
 			$trackId = $trackDirectorSubmission->getTrackId();
 			$track =& $trackDao->getTrack($trackId, $conferenceId);
 			if ($track && ($reviewFormId = (int) $track->getReviewFormId())) {
-				if ($reviewFormDao->reviewFormExists($reviewFormId, $conferenceId)) {
+				if ($reviewFormDao->reviewFormExists($reviewFormId, ASSOC_TYPE_CONFERENCE, $conferenceId)) {
 					$reviewAssignment->setReviewFormId($reviewFormId);
 				}
 			}
@@ -786,7 +786,7 @@ class TrackDirectorAction extends Action {
 			$reviewFormResponseDao =& DAORegistry::getDAO('ReviewFormResponseDAO');
 			$responses = $reviewFormResponseDao->getReviewReviewFormResponseValues($reviewId);
 			if (!empty($responses)) {
-				$reviewFormResponseDao->deleteReviewFormResponseByReviewId($reviewId);
+				$reviewFormResponseDao->deleteByReviewId($reviewId);
 			}
 			$reviewAssignment->setReviewFormId(null);
 			$reviewAssignmentDao->updateReviewAssignment($reviewAssignment);
@@ -812,7 +812,7 @@ class TrackDirectorAction extends Action {
 				$reviewFormResponseDao =& DAORegistry::getDAO('ReviewFormResponseDAO');
 				$responses = $reviewFormResponseDao->getReviewReviewFormResponseValues($reviewId);
 				if (!empty($responses)) {
-					$reviewFormResponseDao->deleteReviewFormResponseByReviewId($reviewId);
+					$reviewFormResponseDao->deleteByReviewId($reviewId);
 				}
 				$reviewAssignment->setReviewFormId($reviewFormId);
 				$reviewAssignmentDao->updateReviewAssignment($reviewAssignment);
@@ -1541,11 +1541,11 @@ import('file.PaperFileManager');
 									$body .= Locale::translate('submission.comments.importPeerReviews.reviewerLetter', array('reviewerLetter' => chr(ord('A') + $reviewIndexes[$reviewAssignment->getId()]))) . "\n\n";
 								}
 								foreach ($reviewFormElements as $reviewFormElement) {
-									$body .= strip_tags($reviewFormElement->getReviewFormElementQuestion()) . ": \n";
+									$body .= strip_tags($reviewFormElement->getLocalizedQuestion()) . ": \n";
 									$reviewFormResponse = $reviewFormResponseDao->getReviewFormResponse($reviewId, $reviewFormElement->getId());
 			
 									if ($reviewFormResponse) {
-										$possibleResponses = $reviewFormElement->getReviewFormElementPossibleResponses();
+										$possibleResponses = $reviewFormElement->getLocalizedPossibleResponses();
 										if (in_array($reviewFormElement->getElementType(), $reviewFormElement->getMultipleResponsesElementTypes())) {
 											if ($reviewFormElement->getElementType() == REVIEW_FORM_ELEMENT_TYPE_CHECKBOXES) {
 												foreach ($reviewFormResponse->getValue() as $value) {
