@@ -49,6 +49,28 @@ class PaymentHandler extends Handler {
 
 		$paymentMethodPlugin->handle($args);
 	}
+
+	/**
+	 * Display a landing page for a received registration payment.
+	 */
+	function landing($args) {
+		$this->validate();
+		$this->setupTemplate();
+
+		$user =& Request::getUser();
+		$schedConf =& Request::getSchedConf();
+		if (!$user || !$schedConf) Request::redirect(null, null, 'index');
+
+		$registrationDao =& DAORegistry::getDAO('RegistrationDAO');
+		$registrationId = $registrationDao->getRegistrationIdByUser($user->getId(), $schedConf->getId());
+		$registration =& $registrationDao->getRegistration($registrationId);
+
+		$templateMgr =& TemplateManager::getManager();
+		$templateMgr->assign('message', ($registration && $registration->getDatePaid()) ? 'schedConf.registration.landingPaid' : 'schedConf.registration.landingUnpaid');
+		$templateMgr->assign('backLink', Request::url(null, null, 'index'));
+		$templateMgr->assign('backLinkLabel', 'common.continue');
+		$templateMgr->display('common/message.tpl');
+	}
 }
 
 ?>

@@ -114,7 +114,7 @@ class ManualPaymentPlugin extends PaymethodPlugin {
 					'currentUrl' => Request::url(null, null, null, 'payment', 'plugin', array('notify', $queuedPaymentId)),
 					'pageTitle' => 'plugins.paymethod.manual.paymentNotification',
 					'message' => 'plugins.paymethod.manual.notificationSent',
-					'backLink' => $queuedPayment->getRequestUrl(),
+					'backLink' => Request::url(null, null, 'index'),
 					'backLinkLabel' => 'common.continue'
 				));
 				$templateMgr->display('common/message.tpl');

@@ -34,7 +34,7 @@ class OCSPaymentManager extends PaymentManager {
 		$payment->setConferenceId($conferenceId);
 		$payment->setSchedConfId($schedConfId);
 		$payment->setType($type);
-		$payment->setRequestUrl(Request::url(null, null, 'index')); // Only one type for now
+		$payment->setRequestUrl(Request::url(null, null, 'payment', 'landing')); // Only one type for now: registration
 		return $payment;
 	}
 

@@ -21,6 +21,7 @@
 
 switch ($op) {
 	case 'plugin':
+	case 'landing':
 		define('HANDLER_CLASS', 'PaymentHandler');
 		import('pages.payment.PaymentHandler');
 		break;

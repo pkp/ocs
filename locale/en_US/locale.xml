@@ -297,6 +297,9 @@
 	<message key="schedConf.registration.createAccount.description"><![CDATA[You are not currently logged in. In order to register for this conference, you will need an account. If you already have one, <a href="{$loginUrl}">click here</a> to log in; otherwise, fill in the information below in order to create a new account.]]></message>
 	<message key="schedConf.registration.options">Registration Options</message>
 
+	<message key="schedConf.registration.landingPaid">Thank you for your payment! You will be contacted if any additional information is required.</message>
+	<message key="schedConf.registration.landingPaid">Thank you for registering! You will be contacted for further information on payment.</message>
+
 	<!-- User -->
 	<message key="user.showAllConferences">Show My Conferences</message>
 	<message key="user.createAccount">Create</message>
