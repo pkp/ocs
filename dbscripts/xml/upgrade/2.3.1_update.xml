@@ -28,4 +28,8 @@ Thank you and looking forward to your participation in this event.
 	<sql>
 		<query>UPDATE review_forms SET assoc_type = 256</query><!-- ASSOC_TYPE_CONFERENCE -->
 	</sql>
+	<!-- Bug #4888: add "included" flag to review form elements -->
+	<sql>
+		<query>UPDATE review_form_elements SET included = 1</query>
+	</sql>
 </data>
