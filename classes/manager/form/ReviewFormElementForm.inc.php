@@ -76,10 +76,14 @@ class ReviewFormElementForm extends Form {
 
 			if ($reviewFormElement == null) {
 				$this->reviewFormElementId = null;
+				$this->_data = array(
+					'included' => 1
+				);
 			} else {
 				$this->_data = array(
 					'question' => $reviewFormElement->getQuestion(null), // Localized
 					'required' => $reviewFormElement->getRequired(),
+					'included' => $reviewFormElement->getIncluded(),
 					'elementType' => $reviewFormElement->getElementType(),
 					'possibleResponses' => $reviewFormElement->getPossibleResponses(null) //Localized
 				);
@@ -91,7 +95,7 @@ class ReviewFormElementForm extends Form {
 	 * Assign form data to user-submitted data.
 	 */
 	function readInputData() {
-		$this->readUserVars(array('question', 'required', 'elementType', 'possibleResponses'));
+		$this->readUserVars(array('question', 'required', 'included', 'elementType', 'possibleResponses'));
 	}
 
 	/**
@@ -112,6 +116,7 @@ class ReviewFormElementForm extends Form {
 
 		$reviewFormElement->setQuestion($this->getData('question'), null); // Localized
 		$reviewFormElement->setRequired($this->getData('required') ? 1 : 0);
+		$reviewFormElement->setIncluded($this->getData('included') ? 1 : 0);
 		$reviewFormElement->setElementType($this->getData('elementType'));
 
 		if (in_array($this->getData('elementType'), ReviewFormElement::getMultipleResponsesElementTypes())) {

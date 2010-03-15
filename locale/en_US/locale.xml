@@ -59,6 +59,7 @@
 	<message key="manager.reviewFormElements.copyTo">Copy to:</message>
 	<message key="manager.reviewFormElements.question">Item</message>
 	<message key="manager.reviewFormElements.required">Reviewers required to complete item</message>
+	<message key="manager.reviewFormElements.included">Included in message to author</message>
 	<message key="manager.reviewFormElements.elementType">Item type</message>
 	<message key="manager.reviewFormElements.possibleResponse">Selection</message>
 	<message key="manager.reviewFormElements.addResponseItem">Add selection</message>
