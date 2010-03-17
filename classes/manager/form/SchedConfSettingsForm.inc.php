@@ -66,7 +66,7 @@ class SchedConfSettingsForm extends Form {
 					'conferenceId' => $schedConf->getConferenceId(),
 					'title' => $schedConf->getTitle(null), // Localized
 					'schedConfPath' => $schedConf->getPath(),
-					'acronym' => $schedConf->getSchedConfAcronym(null) // Localized
+					'acronym' => $schedConf->getAcronym(null) // Localized
 				);
 			} else {
 				$this->schedConfId = null;
