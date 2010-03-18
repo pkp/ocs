@@ -91,8 +91,9 @@ class AdminConferenceHandler extends AdminHandler {
 		if ($settingsForm->validate()) {
 			PluginRegistry::loadCategory('blocks');
 			$settingsForm->execute();
+			import('notification.Notification');
+			Notification::createTrivialNotification('common.changesSaved');
 			Request::redirect(null, null, null, 'conferences');
-
 		} else {
 			$settingsForm->display();
 		}

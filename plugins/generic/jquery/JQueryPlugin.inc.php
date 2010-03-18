@@ -19,7 +19,6 @@ import('classes.plugins.GenericPlugin');
 
 define('JQUERY_INSTALL_PATH', 'lib' . DIRECTORY_SEPARATOR . 'pkp' . DIRECTORY_SEPARATOR . 'js' . DIRECTORY_SEPARATOR . 'lib' . DIRECTORY_SEPARATOR . 'jquery');
 define('JQUERY_JS_PATH', JQUERY_INSTALL_PATH . DIRECTORY_SEPARATOR . 'jquery.min.js');
-define('JQUERY_SCRIPTS_DIR', 'plugins' . DIRECTORY_SEPARATOR . 'generic' . DIRECTORY_SEPARATOR . 'jquery' . DIRECTORY_SEPARATOR . 'scripts');
 
 class JQueryPlugin extends GenericPlugin {
 	/**
@@ -33,7 +32,12 @@ class JQueryPlugin extends GenericPlugin {
 		if (parent::register($category, $path)) {
 			$this->addLocaleData();
 			if ($this->isJQueryInstalled() && $this->getEnabled()) {
-				HookRegistry::register('TemplateManager::display',array(&$this, 'callback'));
+				HookRegistry::register('TemplateManager::display', array(&$this, 'displayCallback'));
+				$user =& Request::getUser();
+				if ($user) HookRegistry::register('Templates::Common::Footer::PageFooter', array(&$this, 'footerCallback'));
+				$templateMgr =& TemplateManager::getManager();
+				$templateMgr->addStyleSheet(Request::getBaseUrl() . '/lib/pkp/styles/jqueryUi.css');
+				$templateMgr->addStyleSheet(Request::getBaseUrl() . '/lib/pkp/styles/jquery.pnotify.default.css');
 			}
 			return true;
 		}
@@ -73,7 +77,7 @@ class JQueryPlugin extends GenericPlugin {
 	 * @return array
 	 */
 	function getEnabledScripts($page, $op) {
-		$scripts = null;
+		$scripts = array();
 		switch ("$page/$op") {
 			case 'admin/conferences':
 			case 'manager/schedConfs':
@@ -86,12 +90,12 @@ class JQueryPlugin extends GenericPlugin {
 			case 'rtadmin/contexts':
 			case 'rtadmin/searches':
 			case 'registrationManager/registrationTypes':
-				$scripts = array(
-					'jquery.tablednd_0_5.js',
-					'tablednd.js'
-				);
+				$scripts[] = 'plugins/generic/jquery/scripts/jquery.tablednd_0_5.js';
+				$scripts[] = 'plugins/generic/jquery/scripts/tablednd.js';
 				break;
 		}
+		$user =& Request::getUser();
+		if ($user) $scripts[] = 'lib/pkp/js/jquery.pnotify.js';
 		return $scripts;
 	}
 
@@ -101,11 +105,11 @@ class JQueryPlugin extends GenericPlugin {
 	 * @param $args array
 	 * @return boolean
 	 */
-	function callback($hookName, $args) {
+	function displayCallback($hookName, $args) {
 		$page = Request::getRequestedPage();
 		$op = Request::getRequestedOp();
 		$scripts = JQueryPlugin::getEnabledScripts($page, $op);
-		if(is_null($scripts)) return null;
+		if(empty($scripts)) return null;
 
 		$templateManager =& $args[0];
 		$additionalHeadData = $templateManager->get_template_vars('additionalHeadData');
@@ -126,6 +130,34 @@ class JQueryPlugin extends GenericPlugin {
 		$templateManager->assign('additionalHeadData', $additionalHeadData."\n".$jQueryScript);
 	}
 
+	function jsEscape($string) {
+		return strtr($string, array('\\'=>'\\\\',"'"=>"\\'",'"'=>'\\"',"\r"=>'\\r',"\n"=>'\\n','</'=>'<\/'));
+	}
+
+	/**
+	 * Footer callback to load and display notifications
+	 */
+	function footerCallback($hookName, $args) {
+		$output =& $args[2];
+		$notificationDao =& DAORegistry::getDAO('NotificationDAO');
+		$user =& Request::getUser();
+		$notificationsMarkup = '';
+
+		$notifications =& $notificationDao->getNotificationsByUserId($user->getId(), NOTIFICATION_LEVEL_TRIVIAL);
+		while ($notification =& $notifications->next()) {
+			$notificationsMarkup .= '$.pnotify({pnotify_title: \'' . $this->jsEscape(Locale::translate('notification.notification')) . '\', pnotify_text: \'';
+			if ($notification->getIsLocalized()) $notificationsMarkup .= $this->jsEscape(Locale::translate($notification->getContents(), array('param' => $notification->getParam())));
+			else $notificationsMarkup .= $this->jsEscape($notification->getContents());
+			$notificationsMarkup .= '\'});';
+			$notificationDao->deleteNotificationById($notification->getId());
+			unset($notification);
+		}
+		if (!empty($notificationsMarkup)) $notificationsMarkup = "<script type=\"text/javascript\">$notificationsMarkup</script>\n";
+
+		$output .= $notificationsMarkup;
+		return false;
+	}
+
 	/**
 	 * Add scripts contained in scripts/ subdirectory to a string to be returned to callback func.
 	 * @param baseUrl string
@@ -138,8 +170,8 @@ class JQueryPlugin extends GenericPlugin {
 		$returner = '';
 
 		foreach ($scripts as $script) {
-			if(file_exists(Core::getBaseDir() . DIRECTORY_SEPARATOR . JQUERY_SCRIPTS_DIR . DIRECTORY_SEPARATOR . $script)) {
-				$returner .= $scriptOpen . $baseUrl . '/plugins/generic/jquery/scripts/' . $script . $scriptClose . "\n";
+			if(file_exists(Core::getBaseDir() . DIRECTORY_SEPARATOR . $script)) {
+				$returner .= $scriptOpen . $baseUrl . '/' . $script . $scriptClose . "\n";
 			}
 		}
 		return $returner;
