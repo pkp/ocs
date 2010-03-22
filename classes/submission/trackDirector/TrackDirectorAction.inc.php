@@ -1353,12 +1353,15 @@ import('file.PaperFileManager');
 			$commentForm->execute();
 			
 			// Send a notification to associated users
-			import('notification.Notification');
+			import('notification.NotificationManager');
+			$notificationManager = new NotificationManager();
 			$notificationUsers = $paper->getAssociatedUserIds();
 			foreach ($notificationUsers as $userRole) {
 				$url = Request::url(null, null, $userRole['role'], 'submissionReview', $paper->getId(), null, 'peerReview');
-				Notification::createNotification($userRole['id'], "notification.type.reviewerComment",
-					$paper->getLocalizedTitle(), $url, 1, NOTIFICATION_TYPE_REVIEWER_COMMENT);
+				$notificationManager->createNotification(
+					$userRole['id'], 'notification.type.reviewerComment',
+					$paper->getLocalizedTitle(), $url, 1, NOTIFICATION_TYPE_REVIEWER_COMMENT
+				);
 			}
 
 			if ($emailComment) {
@@ -1403,12 +1406,15 @@ import('file.PaperFileManager');
 			$commentForm->execute();
 
 			// Send a notification to associated users
-			import('notification.Notification');
+			import('notification.NotificationManager');
+			$notificationManager = new NotificationManager();
 			$notificationUsers = $paper->getAssociatedUserIds(true, false);
 			foreach ($notificationUsers as $userRole) {
 				$url = Request::url(null, null, $userRole['role'], 'submissionReview', $paper->getId(), null, 'directorDecision');
-				Notification::createNotification($userRole['id'], "notification.type.directorDecisionComment",
-					$paper->getLocalizedTitle(), $url, 1, NOTIFICATION_TYPE_DIRECTOR_DECISION_COMMENT);
+				$notificationManager->createNotification(
+					$userRole['id'], 'notification.type.directorDecisionComment',
+					$paper->getLocalizedTitle(), $url, 1, NOTIFICATION_TYPE_DIRECTOR_DECISION_COMMENT
+				);
 			}
 				
 			if ($emailComment) {

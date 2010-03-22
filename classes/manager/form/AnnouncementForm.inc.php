@@ -105,7 +105,8 @@ class AnnouncementForm extends PKPAnnouncementForm {
 		$conferenceId = $conference->getId();
 		
 		// Send a notification to associated users
-		import('notification.Notification');
+		import('notification.NotificationManager');
+		$notificationManager = new NotificationManager();
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
 		$notificationUsers = array();
 		$allUsers = $roleDao->getUsersByConferenceId($conferenceId);
@@ -127,12 +128,17 @@ class AnnouncementForm extends PKPAnnouncementForm {
 		}
 
 		foreach ($notificationUsers as $userRole) {
-			Notification::createNotification($userRole['id'], "notification.type.newAnnouncement",
-				null, $url, 1, NOTIFICATION_TYPE_NEW_ANNOUNCEMENT);
+			$notificationManager->createNotification(
+				$userRole['id'], 'notification.type.newAnnouncement',
+				null, $url, 1, NOTIFICATION_TYPE_NEW_ANNOUNCEMENT
+			);
 		}
-		$notificationDao =& DAORegistry::getDAO('NotificationDAO');
-		$notificationDao->sendToMailingList(Notification::createNotification(0, "notification.type.newAnnouncement",
-				null, $url, 1, NOTIFICATION_TYPE_NEW_ANNOUNCEMENT));
+		$notificationManager->sendToMailingList(
+			$notificationManager->createNotification(
+				0, 'notification.type.newAnnouncement',
+				null, $url, 1, NOTIFICATION_TYPE_NEW_ANNOUNCEMENT
+			)
+		);
 	}
 }
 

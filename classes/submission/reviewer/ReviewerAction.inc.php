@@ -307,12 +307,15 @@ class ReviewerAction extends Action {
 				$commentForm->execute();
 				
 				// Send a notification to associated users
-				import('notification.Notification');
+				import('notification.NotificationManager');
+				$notificationManager = new NotificationManager();
 				$notificationUsers = $paper->getAssociatedUserIds();
 				foreach ($notificationUsers as $userRole) {
 					$url = Request::url(null, null, $userRole['role'], 'submissionReview', $paper->getId(), null, 'peerReview');
-					Notification::createNotification($userRole['id'], "notification.type.reviewerComment",
-						$paper->getLocalizedTitle(), $url, 1, NOTIFICATION_TYPE_REVIEWER_COMMENT);
+					$notificationManager->createNotification(
+						$userRole['id'], 'notification.type.reviewerComment',
+						$paper->getLocalizedTitle(), $url, 1, NOTIFICATION_TYPE_REVIEWER_COMMENT
+					);
 				}
 
 
@@ -358,7 +361,8 @@ class ReviewerAction extends Action {
 				$reviewForm->execute();
 				
 				// Send a notification to associated users
-				import('notification.Notification');
+				import('notification.NotificationManager');
+				$notificationManager = new NotificationManager();
 				$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
 				$reviewAssignment = $reviewAssignmentDao->getReviewAssignmentById($reviewId);
 				$paperId = $reviewAssignment->getPaperId();
@@ -367,8 +371,10 @@ class ReviewerAction extends Action {
 				$notificationUsers = $paper->getAssociatedUserIds();
 				foreach ($notificationUsers as $userRole) {
 					$url = Request::url(null, null, $userRole['role'], 'submissionReview', $paper->getId(), null, 'peerReview');
-					Notification::createNotification($userRole['id'], "notification.type.reviewerFormComment",
-						$paper->getLocalizedTitle(), $url, 1, NOTIFICATION_TYPE_REVIEWER_FORM_COMMENT);
+					$notificationManager->createNotification(
+						$userRole['id'], 'notification.type.reviewerFormComment',
+						$paper->getLocalizedTitle(), $url, 1, NOTIFICATION_TYPE_REVIEWER_FORM_COMMENT
+					);
 				}
 
 			} else {

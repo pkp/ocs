@@ -1142,14 +1142,17 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 			$submitForm->execute();
 
 			// Send a notification to associated users
-			import('notification.Notification');
+			import('notification.NotificationManager');
+			$notificationManager = new NotificationManager();
 			$paperDao =& DAORegistry::getDAO('PaperDAO');
 			$paper =& $paperDao->getPaper($paperId);
 			$notificationUsers = $paper->getAssociatedUserIds(true, false);
 			foreach ($notificationUsers as $userRole) {
 				$url = Request::url(null, null, $userRole['role'], 'submissionReview', $paper->getId(), null, 'layout');
-				Notification::createNotification($userRole['id'], "notification.type.suppFileModified",
-					$paper->getLocalizedTitle(), $url, 1, NOTIFICATION_TYPE_SUPP_FILE_MODIFIED);
+				$notificationManager->createNotification(
+					$userRole['id'], 'notification.type.suppFileModified',
+					$paper->getLocalizedTitle(), $url, 1, NOTIFICATION_TYPE_SUPP_FILE_MODIFIED
+				);
 			}
 
 			Request::redirect(null, null, null, 'submissionReview', $paperId);
@@ -1352,14 +1355,17 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 			$submitForm->execute();
 
 			// Send a notification to associated users
-			import('notification.Notification');
+			import('notification.NotificationManager');
+			$notificationManager = new NotificationManager();
 			$paperDao =& DAORegistry::getDAO('PaperDAO');
 			$paper =& $paperDao->getPaper($paperId);
 			$notificationUsers = $paper->getAssociatedUserIds(true, false);
 			foreach ($notificationUsers as $userRole) {
 				$url = Request::url(null, null, $userRole['role'], 'submissionReview', $paper->getId(), null, 'layout');
-				Notification::createNotification($userRole['id'], "notification.type.galleyModified",
-					$paper->getLocalizedTitle(), $url, 1, NOTIFICATION_TYPE_GALLEY_MODIFIED);
+				$notificationManager->createNotification(
+					$userRole['id'], 'notification.type.galleyModified',
+					$paper->getLocalizedTitle(), $url, 1, NOTIFICATION_TYPE_GALLEY_MODIFIED
+				);
 			}
 
 			if (Request::getUserVar('uploadImage')) {

@@ -123,14 +123,17 @@ class CommentHandler extends Handler {
 				$commentForm->execute();
 
 				// Send a notification to associated users
-				import('notification.Notification');
+				import('notification.NotificationManager');
+				$notificationManager = new NotificationManager();
 				$paperDAO =& DAORegistry::getDAO('PaperDAO');
 				$paper =& $paperDAO->getPaper($paperId);
 				$notificationUsers = $paper->getAssociatedUserIds();
 				foreach ($notificationUsers as $userRole) {
 					$url = Request::url(null, null, null, 'view', array($paperId, $galleyId, $parentId));
-					Notification::createNotification($userRole['id'], "notification.type.userComment",
-						$paper->getLocalizedTitle(), $url, 1, NOTIFICATION_TYPE_USER_COMMENT);
+					$notificationManager->createNotification(
+						$userRole['id'], 'notification.type.userComment',
+						$paper->getLocalizedTitle(), $url, 1, NOTIFICATION_TYPE_USER_COMMENT
+					);
 				}
 
 				Request::redirect(null, null, null, 'view', array($paperId, $galleyId, $parentId), array('refresh' => 1));

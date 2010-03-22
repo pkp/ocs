@@ -186,7 +186,8 @@ class SubmitHandler extends AuthorHandler {
 					($step == 5 )) {
 
 				// Send a notification to associated users
-				import('notification.Notification');
+				import('notification.NotificationManager');
+				$notificationManager = new NotificationManager();
 				$roleDao =& DAORegistry::getDAO('RoleDAO');
 				$notificationUsers = array();
 				$conferenceManagers = $roleDao->getUsersByRoleId(ROLE_ID_CONFERENCE_MANAGER);
@@ -199,8 +200,10 @@ class SubmitHandler extends AuthorHandler {
 
 				foreach ($notificationUsers as $userRole) {
 					$url = Request::url(null, null, 'director', 'submission', $paperId);
-					Notification::createNotification($userRole['id'], "notification.type.paperSubmitted",
-						$paper->getLocalizedTitle(), $url, 1, NOTIFICATION_TYPE_PAPER_SUBMITTED);
+					$notificationManager->createNotification(
+						$userRole['id'], 'notification.type.paperSubmitted',
+						$paper->getLocalizedTitle(), $url, 1, NOTIFICATION_TYPE_PAPER_SUBMITTED
+					);
 				}
 
 				$templateMgr =& TemplateManager::getManager();
