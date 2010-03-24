@@ -332,7 +332,7 @@ function moveAuthor(dir, authorIndex) {
 <div class="separator"></div>
 
 {if $currentSchedConf->getSetting('metaCitations')}
-<div id="citations">
+<div id="metaCitations">
 <h3>{translate key="submission.citations"}</h3>
 
 <p>{translate key="author.submit.submissionCitations"}</p>
