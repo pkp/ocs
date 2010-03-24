@@ -83,7 +83,7 @@ class AdminSettingsHandler extends AdminHandler {
 			$settingsForm->execute();
 			import('notification.NotificationManager');
 			$notificationManager = new NotificationManager();
-			$notificationManager->createTrivialNotification('common.changesSaved');
+			$notificationManager->createTrivialNotification('notification.notification', 'common.changesSaved');
 			Request::redirect(null, null, null, 'index');
 		}
 		$settingsForm->display();
