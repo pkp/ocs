@@ -426,13 +426,12 @@ class RegistrationDAO extends DAO {
 	 */
 	function &getRegisteredUserCount($schedConfId, $paid = true) {
 		$result =& $this->retrieve(
-			'SELECT COUNT(*) AS user_count
+			'SELECT COUNT(DISTINCT u.user_id) AS user_count
 			FROM	users u,
 				registrations r
 			WHERE	u.user_id = r.user_id AND
 				r.sched_conf_id = ?
-				' . ($paid?' AND r.date_paid IS NOT NULL':'') . '
-			GROUP BY u.user_id',
+				' . ($paid?' AND r.date_paid IS NOT NULL':''),
 			(int) $schedConfId
 		);
 
