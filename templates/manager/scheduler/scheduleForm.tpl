@@ -155,7 +155,7 @@ function sortBy(sortName) {
 			<em>{$publishedPaper->getAuthorString()|escape}</em>
 		</td>
 		<td width="4%"><input id="paper{$publishedPaper->getId()|escape}RoomExists" type="checkbox" {if $publishedPaper->getRoomId()}checked="checked" {/if}name="paper{$publishedPaper->getId()|escape}RoomExists" onchange="changeLocation({$publishedPaper->getId()|escape});" /></td>
-		<td width="9%">{fieldLabel name="paper`$publishedPaper->getId()`RoomExists" key="manager.scheduler.location"}</td>
+		<td width="9%">{fieldLabel name="paper"|concat:$publishedPaper->getId():"RoomExists" key="manager.scheduler.location"}</td>
 		<td width="33%">
 			<select id="paper{$publishedPaper->getId()}Room" name="paper{$publishedPaper->getId()}Room" onchange="document.schedule.paper{$publishedPaper->getId()|escape}RoomExists.checked = true; changeLocation({$publishedPaper->getId()|escape});" class="selectMenu">
 				{foreach from=$buildingsAndRooms key=buildingId item=buildingEntry}
@@ -170,7 +170,7 @@ function sortBy(sortName) {
 {if $enableTimeBlocks}
 	<tr>
 		<td><input type="checkbox" {if $startTime}checked="checked" {/if}id="paper{$publishedPaper->getId()|escape}TimeBlockExists" name="paper{$publishedPaper->getId()|escape}TimeBlockExists" onchange="changeTimeBlock({$publishedPaper->getId()|escape});" /></td>
-		<td>{fieldLabel name="paper`$publishedPaper->getId()`TimeBlockExists" key="common.date"}</td>
+		<td>{fieldLabel name="paper"|concat:$publishedPaper->getId():"TimeBlockExists" key="common.date"}</td>
 		<td>
 			{* Kludge: Determine whether or not this is a
 			 * non-existent time block, and disable if needed.
@@ -196,19 +196,19 @@ function sortBy(sortName) {
 {else}{* $enableTimeBlocks *}
 	<tr>
 		<td><input type="checkbox" {if $startTime}checked="checked" {/if}id="paper{$publishedPaper->getId()|escape}DateExists" name="paper{$publishedPaper->getId()|escape}DateExists" onchange="changeDate({$publishedPaper->getId()|escape});" /></td>
-		<td>{fieldLabel name="paper`$publishedPaper->getId()`DateExists" key="common.date"}</td>
-		<td>{html_select_date prefix="paper`$publishedPaper->getId()`Date" all_extra="class=\"selectMenu\" onchange=\"checkScheduled(`$publishedPaper->getId()`); changeDate(`$publishedPaper->getId()`);\"" time=$startTime|default:$defaultStartTime start_year=$firstYear end_year=$lastYear}</td>
+		<td>{fieldLabel name="paper"|concat:$publishedPaper->getId():"DateExists" key="common.date"}</td>
+		<td>{html_select_date prefix="paper"|concat:$publishedPaper->getId():"Date" all_extra="class=\"selectMenu\" onchange=\"checkScheduled("|concat:$publishedPaper->getId():"); changeDate(":$publishedPaper->getId():");\"" time=$startTime|default:$defaultStartTime start_year=$firstYear end_year=$lastYear}</td>
 	</tr>
 	<tr>
 		<td>&nbsp;</td>
-		<td>{fieldLabel name="paper`$publishedPaper->getId()`StartTime" key="manager.scheduler.startTime"}</td>
-		<td id="{"paper`$publishedPaper->getId()`StartTime"}">{html_select_time prefix="paper`$publishedPaper->getId()`StartTime" all_extra="class=\"selectMenu\" onchange=\"checkScheduled(`$publishedPaper->getId()`); changeTime(`$publishedPaper->getId()`);\"" display_seconds=false display_meridian=true use_24_hours=false time=$startTime|default:$defaultStartTime}</td>
+		<td>{fieldLabel name="paper"|concat:$publishedPaper->getId():"StartTime" key="manager.scheduler.startTime"}</td>
+		<td id="{"paper"|concat:$publishedPaper->getId():"StartTime"}">{html_select_time prefix="paper"|concat:$publishedPaper->getId():"StartTime" all_extra="class=\"selectMenu\" onchange=\"checkScheduled("|concat:$publishedPaper->getId():"); changeTime(":$publishedPaper->getId():");\"" display_seconds=false display_meridian=true use_24_hours=false time=$startTime|default:$defaultStartTime}</td>
 	</tr>
 	<tr>
 		<td>&nbsp;</td>
-		<td>{fieldLabel name="paper`$publishedPaper->getId()`EndTime" key="manager.scheduler.endTime"}</td>
-		<td id="{"paper`$publishedPaper->getId()`EndTime"}">
-			{html_select_time prefix="paper`$publishedPaper->getId()`EndTime" all_extra="class=\"selectMenu\" onchange=\"checkScheduled(`$publishedPaper->getId()`); changeTime(`$publishedPaper->getId()`);\"" display_seconds=false display_meridian=true use_24_hours=false time=$endTime|default:$defaultStartTime}
+		<td>{fieldLabel name="paper"|concat:$publishedPaper->getId():"EndTime" key="manager.scheduler.endTime"}</td>
+		<td id="{"paper"|concat:$publishedPaper->getId():"EndTime"}">
+			{html_select_time prefix="paper"|concat:$publishedPaper->getId():"EndTime" all_extra="class=\"selectMenu\" onchange=\"checkScheduled("|concat:$publishedPaper->getId():"); changeTime(":$publishedPaper->getId():");\"" display_seconds=false display_meridian=true use_24_hours=false time=$endTime|default:$defaultStartTime}
 		</td>
 	</tr>
 {/if}{* $enableTimeBlocks *}

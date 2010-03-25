@@ -64,7 +64,7 @@
 		<td class="label">{translate key="submission.submitter"}</td>
 		<td colspan="2" class="value">
 			{assign var="submitter" value=$submission->getUser()}
-			{assign var=emailString value="`$submitter->getFullName()` <`$submitter->getEmail()`>"}
+			{assign var=emailString value=$submitter->getFullName()|to_array:" <":$submitter->getEmail():">"}
 			{url|assign:"url" page="user" op="email" to=$emailString|to_array redirectUrl=$currentUrl subject=$submission->getLocalizedTitle|strip_tags paperId=$submission->getPaperId()}
 			{$submitter->getFullName()|escape} {icon name="mail" url=$url}
 		</td>
@@ -82,7 +82,7 @@
 		{assign var="editAssignments" value=$submission->getEditAssignments()}
 		<td width="80%" colspan="2" class="data">
 			{foreach from=$editAssignments item=editAssignment}
-				{assign var=emailString value="`$editAssignment->getDirectorFullName()` <`$editAssignment->getDirectorEmail()`>"}
+				{assign var=emailString value=$editAssignment->getDirectorFullName()|to_array:" <":$editAssignment->getDirectorEmail():">"}
 				{url|assign:"url" page="user" op="email" to=$emailString|to_array redirectUrl=$currentUrl subject=$submission->getLocalizedTitle|strip_tags paperId=$submission->getPaperId()}
 				{$editAssignment->getDirectorFullName()|escape} {icon name="mail" url=$url}
 				({if $editAssignment->getIsDirector()}{translate key="user.role.director"}{else}{translate key="user.role.trackDirector"}{/if})

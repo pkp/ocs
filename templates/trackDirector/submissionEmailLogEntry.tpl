@@ -51,13 +51,13 @@
 	</tr>
 	<tr valign="top">
 		<td class="label">{translate key="common.type"}</td>
-		<td class="value">{translate key=`$logEntry->getAssocTypeLongString()`}</td>
+		<td class="value">{translate key=$logEntry->getAssocTypeLongString()}</td>
 	</tr>
 	<tr valign="top">
 		<td class="label">{translate key="email.sender"}</td>
 		<td class="value">
 			{if $logEntry->getSenderFullName()}
-				{assign var=emailString value="`$logEntry->getSenderFullName()` <`$logEntry->getSenderEmail()`>"}
+				{assign var=emailString value=$logEntry->getSenderFullName()|concat:" <":$logEntry->getSenderEmail():">"}
 				{url|assign:"url" page="user" op="email" to=$emailString|to_array redirectUrl=$currentUrl subject=$logEntry->getSubject() body=$logEntry->getBody() paperId=$submission->getPaperId()}
 				{$logEntry->getSenderFullName()|escape} {icon name="mail" url=$url}
 			{else}

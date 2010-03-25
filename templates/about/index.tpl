@@ -18,7 +18,7 @@
 	<h3>{translate key="about.currentConferences"}</h3>
 	<ul class="plain">
 		{iterate from=currentSchedConfs item=schedConf}
-			<li>&#187; <a href="{url schedConf="`$schedConf->getPath()`"}">{$schedConf->getFullTitle()}</a></li>
+			<li>&#187; <a href="{url schedConf=$schedConf->getPath()}">{$schedConf->getFullTitle()}</a></li>
 		{/iterate}
 	</ul>
 {/if}
@@ -43,7 +43,7 @@
 	{if $conferenceSettings.enableLockss && $currentConference->getLocalizedSetting('lockssLicense') != ''}<li>&#187; <a href="{url op="editorialPolicies" anchor="archiving"}">{translate key="about.archiving"}</a></li>{/if}
 	{if $showAboutSchedConf && $schedConfPaymentsEnabled}<li>&#187; <a href="{url op="registration"}">{translate key="about.registration"}</a></li>{/if}
 	{foreach key=key from=$customAboutItems item=customAboutItem}
-		{if $customAboutItem.title!=''}<li>&#187; <a href="{url op="editorialPolicies" anchor=custom`$key`}">{$customAboutItem.title|escape}</a></li>{/if}
+		{if $customAboutItem.title!=''}<li>&#187; <a href="{url op="editorialPolicies" anchor=custom-$key}">{$customAboutItem.title|escape}</a></li>{/if}
 	{/foreach}
 	{call_hook name="Templates::About::Index::Policies"}
 </ul>

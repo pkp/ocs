@@ -18,7 +18,7 @@
 		<form method="post" action="{url op="recordDecision" path=$stage}">
 			<input type="hidden" name="paperId" value="{$submission->getPaperId()}" />
 			<select name="decision" size="1" class="selectMenu"{if not $allowRecommendation} disabled="disabled"{/if}>
-				{assign var=availableDirectorDecisionOptions value=`$submission->getDirectorDecisionOptions($currentSchedConf,$stage)`}
+				{assign var=availableDirectorDecisionOptions value=$submission->getDirectorDecisionOptions($currentSchedConf,$stage)}
 				{html_options_translate options=$availableDirectorDecisionOptions selected=$lastDecision}
 			</select>
 			<input type="submit" onclick="return confirm('{translate|escape:"jsparam" key="director.submissionReview.confirmDecision"}')" name="submit" value="{translate key="director.paper.recordDecision"}" {if not $allowRecommendation}disabled="disabled"{/if} class="button" />

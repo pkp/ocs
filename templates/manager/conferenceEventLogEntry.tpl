@@ -30,7 +30,7 @@
 	</tr>
 	<tr valign="top">
 		<td class="label">{translate key="event.logLevel"}</td>
-		<td class="value">{translate key=`$logEntry->getLogLevelString()`}</td>
+		<td class="value">{translate key=$logEntry->getLogLevelString()}</td>
 	</tr>
 	<tr valign="top">
 		<td class="label">{translate key="common.type"}</td>
@@ -39,7 +39,7 @@
 	<tr valign="top">
 		<td class="label">{translate key="common.user"}</td>
 		<td class="value">
-			{assign var=emailString value="`$logEntry->getUserFullName()` <`$logEntry->getUserEmail()`>"}
+			{assign var=emailString value=$logEntry->getUserFullName()|to_array:" <":$logEntry->getUserEmail():">"}
 			{translate|assign:"bodyContent" key=$logEntry->getMessage() params=$logEntry->getEntryParams()}
 			{translate|assign:"titleTrans" key=$logEntry->getEventTitle()}
 			{if $logEntry->getIsTranslated()}

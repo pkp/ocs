@@ -69,7 +69,7 @@ function confirmSubmissionCheck() {
 			<td class="label">{translate key="reviewer.paper.submissionDirector"}</td>
 			<td class="value">
 	{/if}
-			{assign var=emailString value="`$editAssignment->getDirectorFullName()` <`$editAssignment->getDirectorEmail()`>"}
+			{assign var=emailString value=$editAssignment->getDirectorFullName()|concat:" <":$editAssignment->getDirectorEmail():">"}
 			{url|assign:"url" page="user" op="email" to=$emailString|to_array redirectUrl=$currentUrl subject=$submission->getLocalizedTitle()|strip_tags paperId=$paperId}
 			{$editAssignment->getDirectorFullName()|escape} {icon name="mail" url=$url}
 			({if $editAssignment->getIsDirector()}{translate key="user.role.director"}{else}{translate key="user.role.trackDirector"}{/if})

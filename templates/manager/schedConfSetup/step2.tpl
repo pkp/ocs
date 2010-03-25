@@ -92,13 +92,13 @@
 		<input type="hidden" name="paperTypes[{$paperTypeId|escape}][seq]" value="{$paperTypeNumber}" />
 		<tr valign="top">
 			<td rowspan="4" width="5%">{$paperTypeNumber}.</td>
-			<td width="15%" class="label">{fieldLabel name="paperTypeName-`$paperTypeId`" key="common.title"}</td>
+			<td width="15%" class="label">{fieldLabel name="paperTypeName-"|concat:$paperTypeId key="common.title"}</td>
 			<td width="80%" colspan="2" class="value">
 				<input type="text" size="40" class="textField" name="paperTypes[{$paperTypeId|escape}][name][{$formLocale|escape}]" id="paperTypeName-{$paperTypeId|escape}" value="{$paperType.name[$formLocale]|escape}" />
 			</td>
 		</tr>
 		<tr valign="top">
-			<td class="label">{fieldLabel name="paperTypeDescription-`$paperTypeId`" key="common.description"}</td>
+			<td class="label">{fieldLabel name="paperTypeDescription-"|concat:$paperTypeId key="common.description"}</td>
 			<td class="value" colspan="2">
 				<textarea cols="40" rows="4" class="textArea" name="paperTypes[{$paperTypeId|escape}][description][{$formLocale|escape}]" id="paperTypeDescription-{$paperTypeId|escape}">{$paperType.description[$formLocale]|escape}</textarea>
 			</td>
@@ -106,11 +106,11 @@
 		<tr valign="top">
 			<td class="label">&nbsp;</td>
 			<td width="35%" class="value">
-				{fieldLabel name="paperTypeAbstractLength-`$paperTypeId`" key="manager.schedConfSetup.submissions.typeOfSubmission.abstractLength"}&nbsp;
+				{fieldLabel name="paperTypeAbstractLength-"|concat:$paperTypeId key="manager.schedConfSetup.submissions.typeOfSubmission.abstractLength"}&nbsp;
 				<input type="text" size="5" class="textField" name="paperTypes[{$paperTypeId|escape}][abstractLength]" id="paperTypeAbstractLength-{$paperTypeId|escape}" value="{$paperType.abstractLength|escape}" />
 			</td>
 			<td width="45%" class="value">
-				{fieldLabel name="paperTypeLength-`$paperTypeId`" key="manager.schedConfSetup.submissions.typeOfSubmission.length"}&nbsp;
+				{fieldLabel name="paperTypeLength-"|concat:$paperTypeId key="manager.schedConfSetup.submissions.typeOfSubmission.length"}&nbsp;
 				<input type="text" size="5" class="textField" name="paperTypes[{$paperTypeId|escape}][length]" id="paperTypeLength-{$paperTypeId|escape}" value="{$paperType.length|escape}" />
 			</td>
 		</tr>

@@ -90,7 +90,7 @@
 		<td>{$logEntry->getLogLevel()}</td>
 		<td>{$logEntry->getAssocTypeString()|escape}</td>
 		<td>
-			{assign var=emailString value="`$logEntry->getUserFullName()` <`$logEntry->getUserEmail()`>"}
+			{assign var=emailString value=$logEntry->getUserFullName()|concat:" <":$logEntry->getUserEmail():">"}
 			{translate|assign:"bodyContent" key=$logEntry->getMessage() params=$logEntry->getEntryParams()}
 			{translate|assign:"titleTrans" key=$logEntry->getEventTitle()}
 			{if $logEntry->getIsTranslated()}
