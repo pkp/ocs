@@ -21,20 +21,20 @@ class PluginSettingsDAO extends DAO {
 		if (!isset($settingCache)) {
 			$settingCache = array();
 		}
-		if (!isset($this->settingCache[$conferenceId])) {
-			$this->settingCache[$conferenceId] = array();
+		if (!isset($settingCache[$conferenceId])) {
+			$settingCache[$conferenceId] = array();
 		}
-		if (!isset($this->settingCache[$conferenceId][$schedConfId])) {
-			$this->settingCache[$conferenceId][$schedConfId] = array();
+		if (!isset($settingCache[$conferenceId][$schedConfId])) {
+			$settingCache[$conferenceId][$schedConfId] = array();
 		}
-		if (!isset($this->settingCache[$conferenceId][$schedConfId][$pluginName])) {
+		if (!isset($settingCache[$conferenceId][$schedConfId][$pluginName])) {
 			$cacheManager =& CacheManager::getManager();
-			$this->settingCache[$conferenceId][$schedConfId][$pluginName] = $cacheManager->getCache(
+			$settingCache[$conferenceId][$schedConfId][$pluginName] = $cacheManager->getCache(
 				'pluginSettings-' . ((int) $conferenceId) . '-' . ((int) $schedConfId), $pluginName,
 				array($this, '_cacheMiss')
 			);
 		}
-		return $this->settingCache[$conferenceId][$schedConfId][$pluginName];
+		return $settingCache[$conferenceId][$schedConfId][$pluginName];
 	}
 
 	/**
