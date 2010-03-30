@@ -33,7 +33,7 @@
 <body>
 
 <div id="container">
-<div id="main" style="width: 150px; font-size: 0.7em; padding-top: 1.5em; padding-left: 1em">
+<div id="main">
 
 <h5>{$conference->getConferenceTitle()|escape}<br />{$schedConf->getSchedConfTitle()|escape}</h5>
 
