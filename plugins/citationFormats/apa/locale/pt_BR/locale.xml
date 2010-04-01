@@ -11,10 +11,10 @@
   *
   * $Id$
   -->
- 
+
 <locale name="pt_BR" full_name="Português (Brasil)">
 	<message key="plugins.citationFormats.apa.displayName">Plugin Formato de Citação APA</message>
 	<message key="plugins.citationFormats.apa.citationFormatName">APA</message>
 	<message key="plugins.citationFormats.apa.description">Este plugin implementa o formato de citação APA.</message>
-	<message key="plugins.citationFormats.apa.retrieved"><![CDATA[Acesso em {$retrievedDate}, disponível em <a href="{$url}" target="_new">{$url}</a>]]></message>
+	<message key="plugins.citationFormats.apa.retrieved"><![CDATA[Acesso em <a href="{$url}" target="_new">{$url}</a>]]></message>
 </locale>

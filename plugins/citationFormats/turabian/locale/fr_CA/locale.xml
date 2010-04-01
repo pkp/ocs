@@ -11,9 +11,10 @@
   *
   * $Id$
   -->
- 
+
 <locale name="fr_CA" full_name="Français (Canada)">
 	<message key="plugins.citationFormats.turabian.displayName">Plugiciel du format de référence bibliographique Turabian</message>
 	<message key="plugins.citationFormats.turabian.citationFormatName">Turabian</message>
 	<message key="plugins.citationFormats.turabian.description">Ce plugiciel implémente le format de référence bibliographique Turabian.</message>
+	<message key="plugins.citationFormats.turabian.retrieved"><![CDATA[Disponible à l'adresse&nbsp;: <a href="{$url}" target="_new">{$url}</a>.]]></message>
 </locale>

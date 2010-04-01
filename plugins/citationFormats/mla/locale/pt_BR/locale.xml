@@ -11,9 +11,10 @@
   *
   * $Id$
   -->
- 
+
 <locale name="pt_BR" full_name="Português (Brasil)">
 	<message key="plugins.citationFormats.mla.displayName">Formato de Citação MLA</message>
 	<message key="plugins.citationFormats.mla.citationFormatName">MLA</message>
 	<message key="plugins.citationFormats.mla.description">Este plugin implementa o formato de citação MLA.</message>
+	<message key="plugins.citationFormats.mla.noPages">n. pág.</message>
 </locale>

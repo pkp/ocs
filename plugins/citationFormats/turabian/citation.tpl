@@ -18,5 +18,5 @@
 	{$author->getLastName()|escape}, {$firstName|escape}{if $i==$authorCount-2}, {translate key="rt.context.and"} {elseif $i<$authorCount-1}, {else}.{/if}
 {/foreach}
 
-"{$paper->getLocalizedTitle()|strip_unsafe_html}" <em>{$conference->getConferenceTitle()|escape}</em> [{translate key="rt.captureCite.online"}],  ({$paper->getDatePublished()|date_format:'%e %B %Y'|trim})
+"{$paper->getLocalizedTitle()|strip_unsafe_html}" <em>{$conference->getConferenceTitle()|escape} {$paper->getDatePublished()|date_format:'%Y'|trim}</em>. {translate key="plugins.citationFormats.turabian.retrieved" url=$paperUrl}
 </div>

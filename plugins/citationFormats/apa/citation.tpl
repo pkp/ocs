@@ -18,7 +18,7 @@
 {/foreach}
 
 ({$paper->getDatePublished()|date_format:'%Y'}).
-{$apaCapitalized|strip_unsafe_html}.
-<em>{$conference->getConferenceTitle()|escape}</em>.
-{translate key="plugins.citationFormats.apa.retrieved" retrievedDate=$smarty.now|date_format:$dateFormatShort url=$paperUrl}
+{$apaCapitalized|strip_unsafe_html}. {translate key="search.inField"}
+<em>{$conference->getConferenceTitle()|escape}</em>{if $paper->getPages()} (pp. {$paper->getPages()}){/if}.
+{translate key="plugins.citationFormats.apa.retrieved" url=$paperUrl}
 </div>

@@ -16,4 +16,5 @@
 	<message key="plugins.citationFormats.mla.displayName">Plugiciel du format de référence bibliographique MLA</message>
 	<message key="plugins.citationFormats.mla.citationFormatName">MLA</message>
 	<message key="plugins.citationFormats.mla.description">Ce plugiciel implémente le format de référence bibliographique MLA.</message>
+	<message key="plugins.citationFormats.mla.noPages">n. pag.</message>
 </locale>
