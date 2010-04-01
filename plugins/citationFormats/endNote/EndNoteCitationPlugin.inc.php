@@ -45,13 +45,15 @@ class EndNoteCitationPlugin extends CitationPlugin {
 	}
 
 	/**
-	 * Return a custom-formatted citation.
+	 * Display a custom-formatted citation.
 	 * @param $paper object
+	 * @param $conference object
+	 * @param $schedConf object
 	 */
-	function cite(&$paper) {
+	function displayCitation(&$paper, &$conference, &$schedConf) {
 		header('Content-Disposition: attachment; filename="' . $paper->getId() . '-endNote.enw"');
-		$templateMgr =& TemplateManager::getManager();
-		$templateMgr->display($this->getTemplatePath() . '/citation.tpl', 'application/x-endnote-refer');
+		header('Content-Type: application/x-endnote-refer');
+		echo parent::fetchCitation($paper, $conference, $schedConf);
 	}
 }
 

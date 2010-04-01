@@ -8,7 +8,6 @@
  *
  * $Id$
  *}
-<div id="citation">
 {if $galleyId}
 {url|assign:"paperUrl" page="paper" op="view" path=$paperId|to_array:$galleyId}
 {else}
@@ -25,4 +24,3 @@ Y2  - {$paper->getDatePublished()|date_format:"%Y"}
 KW  - {$paper->getLocalizedSubject()|replace:';':','|escape}
 N2  - {$paper->getLocalizedAbstract()|strip_tags|replace:"\n":" "|replace:"\r":" "}
 UR  - {$paperUrl}
-</div>

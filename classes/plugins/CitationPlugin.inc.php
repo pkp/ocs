@@ -58,7 +58,7 @@ class CitationPlugin extends Plugin {
 	 * Used by the cite function to embed an HTML citation in the
 	 * templates/rt/captureCite.tpl template, which ships with OCS.
 	 */
-	function displayCitation($hookName, $args) {
+	function displayCitationHook($hookName, $args) {
 		$params =& $args[0];
 		$templateMgr =& $args[1];
 		$output =& $args[2];
@@ -68,16 +68,37 @@ class CitationPlugin extends Plugin {
 	}
 
 	/**
-	 * Return an HTML-formatted citation. Default implementation displays
+	 * Display an HTML-formatted citation. Default implementation displays
 	 * an HTML-based citation using the citation.tpl template in the plugin
 	 * path.
 	 * @param $paper object
+	 * @param $conference object
+	 * @param $schedConf object
 	 */
-	function cite(&$paper) {
-		HookRegistry::register('Template::RT::CaptureCite', array(&$this, 'displayCitation'));
+	function displayCitation(&$paper, &$conference, &$schedConf) {
+		HookRegistry::register('Template::RT::CaptureCite', array(&$this, 'displayCitationHook'));
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign_by_ref('citationPlugin', $this);
+		$templateMgr->assign('paper', $paper);
+		$templateMgr->assign('conference', $conference);
+		$templateMgr->assign('schedConf', $schedConf);
 		$templateMgr->display('rt/captureCite.tpl');
 	}
+
+	/**
+	 * Return an HTML-formatted citation.
+	 * @param $paper object
+	 * @param $conference object
+	 * @param $schedConf object
+	 */
+	function fetchCitation(&$paper, &$conference, &$schedConf) {
+		$templateMgr =& TemplateManager::getManager();
+		$templateMgr->assign_by_ref('citationPlugin', $this);
+		$templateMgr->assign('paper', $paper);
+		$templateMgr->assign('conference', $conference);
+		$templateMgr->assign('schedConf', $schedConf);
+		return $templateMgr->fetch($this->getTemplatePath() . '/citation.tpl');
+	}
 }
+
 ?>

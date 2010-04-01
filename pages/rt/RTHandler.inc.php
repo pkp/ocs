@@ -220,12 +220,6 @@ class RTHandler extends PaperHandler {
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('paperId', $paperId);
 		$templateMgr->assign('galleyId', $galleyId);
-		$templateMgr->assign_by_ref('conferenceRt', $conferenceRt);
-		$templateMgr->assign_by_ref('conference', $conference);
-		$templateMgr->assign_by_ref('schedConf', $schedConf);
-		$templateMgr->assign_by_ref('paper', $paper);
-
-		$templateMgr->assign_by_ref('conferenceSettings', $conference->getSettings());
 
 		$citationPlugins =& PluginRegistry::loadCategory('citationFormats');
 		uasort($citationPlugins, create_function('$a, $b', 'return strcmp($a->getDisplayName(), $b->getDisplayName());'));
@@ -237,7 +231,7 @@ class RTHandler extends PaperHandler {
 			// No citation type chosen; choose a default off the top of the list.
 			$citationPlugin = $citationPlugins[array_shift(array_keys($citationPlugins))];
 		}
-		$citationPlugin->cite($paper);
+		$citationPlugin->displayCitation($paper, $conference, $schedConf);
 	}
 
 	/**
