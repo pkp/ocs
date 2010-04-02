@@ -31,7 +31,7 @@ class JQueryPlugin extends GenericPlugin {
 	function register($category, $path) {
 		if (parent::register($category, $path)) {
 			$this->addLocaleData();
-			if ($this->isJQueryInstalled() && $this->getEnabled()) {
+			if ($this->isJQueryInstalled()) {
 				HookRegistry::register('TemplateManager::display', array(&$this, 'displayCallback'));
 				$user =& Request::getUser();
 				if ($user) HookRegistry::register('Templates::Common::Footer::PageFooter', array(&$this, 'footerCallback'));
@@ -42,24 +42,6 @@ class JQueryPlugin extends GenericPlugin {
 			return true;
 		}
 		return false;
-	}
-
-	/**
-	 * Get the name of the settings file to be installed on new conference
-	 * creation.
-	 * @return string
-	 */
-	function getNewConferencePluginSettingsFile() {
-		return $this->getPluginPath() . '/settings.xml';
-	}
-
-	/**
-	 * Get the name of the settings file to be installed site-wide when
-	 * OCS is installed.
-	 * @return string
-	 */
-	function getInstallSitePluginSettingsFile() {
-		return $this->getPluginPath() . '/settings.xml';
 	}
 
 	/**
@@ -145,7 +127,10 @@ class JQueryPlugin extends GenericPlugin {
 
 		$notifications =& $notificationDao->getNotificationsByUserId($user->getId(), NOTIFICATION_LEVEL_TRIVIAL);
 		while ($notification =& $notifications->next()) {
-			$notificationsMarkup .= '$.pnotify({pnotify_title: \'' . $this->jsEscape(Locale::translate('notification.notification')) . '\', pnotify_text: \'';
+			$notificationTitle = $notification->getTitle();
+			if ($notification->getIsLocalized() && !empty($notificationTitle)) $notificationTitle = Locale::translate($notificationTitle);
+			if (empty($notificationTitle)) $notificationTitle = Locale::translate('notification.notification');
+			$notificationsMarkup .= '$.pnotify({pnotify_title: \'' . $this->jsEscape($notificationTitle) . '\', pnotify_text: \'';
 			if ($notification->getIsLocalized()) $notificationsMarkup .= $this->jsEscape(Locale::translate($notification->getContents(), array('param' => $notification->getParam())));
 			else $notificationsMarkup .= $this->jsEscape($notification->getContents());
 			$notificationsMarkup .= '\'});';
@@ -208,51 +193,6 @@ class JQueryPlugin extends GenericPlugin {
 	 */
 	function isJQueryInstalled() {
 		return file_exists(JQUERY_JS_PATH);
-	}
-
-	/**
-	 * Check whether or not this plugin is enabled
-	 * @return boolean
-	 */
-	function getEnabled() {
-		$conference =& Request::getConference();
-		$conferenceId = $conference?$conference->getId():0;
-		return $this->getSetting($conferenceId, 0, 'enabled');
-	}
-
-	/**
-	 * Get a list of available management verbs for this plugin
-	 * @return array
-	 */
-	function getManagementVerbs() {
-		$verbs = array();
-		if ($this->isJQueryInstalled()) $verbs[] = array(
-			($this->getEnabled()?'disable':'enable'),
-			Locale::translate($this->getEnabled()?'manager.plugins.disable':'manager.plugins.enable')
-		);
-		return $verbs;
-	}
-
-	/**
-	 * Execute a management verb on this plugin
-	 * @param $verb string
-	 * @param $args array
-	 * @return boolean
-	 */
-	function manage($verb, $args, &$message) {
-		$conference =& Request::getConference();
-		$conferenceId = $conference?$conference->getId():0;
-		switch ($verb) {
-			case 'enable':
-				$this->updateSetting($conferenceId, 0, 'enabled', true);
-				$message = Locale::translate('plugins.generic.jquery.enabled');
-				break;
-			case 'disable':
-				$this->updateSetting($conferenceId, 0, 'enabled', false);
-				$message = Locale::translate('plugins.generic.jquery.disabled');
-				break;
-		}
-		return false;
 	}
 }
 

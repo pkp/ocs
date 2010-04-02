@@ -51,15 +51,15 @@ class AdminLanguagesHandler extends AdminHandler {
 
 	/**
 	 * Update language settings.
+	 * @param $args array
+	 * @param $request object
 	 */
-	function saveLanguageSettings() {
+	function saveLanguageSettings($args, &$request) {
 		$this->validate();
-		$this->setupTemplate(true);
+		$site =& $request->getSite();
 
-		$site =& Request::getSite();
-
-		$primaryLocale = Request::getUserVar('primaryLocale');
-		$supportedLocales = Request::getUserVar('supportedLocales');
+		$primaryLocale = $request->getUserVar('primaryLocale');
+		$supportedLocales = $request->getUserVar('supportedLocales');
 
 		if (Locale::isLocaleValid($primaryLocale)) {
 			$site->setPrimaryLocale($primaryLocale);
@@ -83,15 +83,11 @@ class AdminLanguagesHandler extends AdminHandler {
 
 		AdminLanguagesHandler::removeLocalesFromConferences();
 
-		$templateMgr =& TemplateManager::getManager();
-		$templateMgr->assign(array(
-			'currentUrl' => Request::url(null, null, null, 'languages'),
-			'pageTitle' => 'common.languages',
-			'message' => 'common.changesSaved',
-			'backLink' => Request::url(null, null, ROLE_PATH_SITE_ADMIN),
-			'backLinkLabel' => 'admin.siteAdmin'
-		));
-		$templateMgr->display('common/message.tpl');
+		import('notification.NotificationManager');
+		$notificationManager = new NotificationManager();
+		$notificationManager->createTrivialNotification('notification.notification', 'common.changesSaved');
+
+		$request->redirect(null, null, null, 'index');
 	}
 
 	/**
