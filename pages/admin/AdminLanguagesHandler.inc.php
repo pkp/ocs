@@ -26,12 +26,14 @@ class AdminLanguagesHandler extends AdminHandler {
 
 	/**
 	 * Display form to modify site language settings.
+	 * @param $args array
+	 * @param $request object
 	 */
-	function languages() {
+	function languages($args, &$request) {
 		$this->validate();
 		$this->setupTemplate(true);
 
-		$site =& Request::getSite();
+		$site =& $request->getSite();
 
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('localeNames', Locale::getAllLocales());
@@ -81,7 +83,7 @@ class AdminLanguagesHandler extends AdminHandler {
 		$siteDao =& DAORegistry::getDAO('SiteDAO');
 		$siteDao->updateObject($site);
 
-		AdminLanguagesHandler::removeLocalesFromConferences();
+		$this->_removeLocalesFromConferences($request);
 
 		import('notification.NotificationManager');
 		$notificationManager = new NotificationManager();
@@ -92,12 +94,14 @@ class AdminLanguagesHandler extends AdminHandler {
 
 	/**
 	 * Install a new locale.
+	 * @param $args array
+	 * @param $request object
 	 */
-	function installLocale() {
+	function installLocale($args, &$request) {
 		$this->validate();
 
-		$site =& Request::getSite();
-		$installLocale = Request::getUserVar('installLocale');
+		$site =& $request->getSite();
+		$installLocale = $request->getUserVar('installLocale');
 
 		if (isset($installLocale) && is_array($installLocale)) {
 			$installedLocales = $site->getInstalledLocales();
@@ -114,17 +118,19 @@ class AdminLanguagesHandler extends AdminHandler {
 			$siteDao->updateObject($site);
 		}
 
-		Request::redirect(null, null, null, 'languages');
+		$request->redirect(null, null, null, 'languages');
 	}
 
 	/**
 	 * Uninstall a locale
+	 * @param $args array
+	 * @param $request object
 	 */
-	function uninstallLocale() {
+	function uninstallLocale($args, &$request) {
 		$this->validate();
 
-		$site =& Request::getSite();
-		$locale = Request::getUserVar('locale');
+		$site =& $request->getSite();
+		$locale = $request->getUserVar('locale');
 
 		if (isset($locale) && !empty($locale) && $locale != $site->getPrimaryLocale()) {
 			$installedLocales = $site->getInstalledLocales();
@@ -138,35 +144,38 @@ class AdminLanguagesHandler extends AdminHandler {
 				$siteDao =& DAORegistry::getDAO('SiteDAO');
 				$siteDao->updateObject($site);
 
-				AdminLanguagesHandler::removeLocalesFromConferences();
+				$this->_removeLocalesFromConferences($request);
 				Locale::uninstallLocale($locale);
 			}
 		}
 
-		Request::redirect(null, null, null, 'languages');
+		$request->redirect(null, null, null, 'languages');
 	}
 
 	/**
 	 * Reload data for an installed locale.
+	 * @param $args array
+	 * @param $request object
 	 */
-	function reloadLocale() {
+	function reloadLocale($args, &$request) {
 		$this->validate();
 
-		$site =& Request::getSite();
-		$locale = Request::getUserVar('locale');
+		$site =& $request->getSite();
+		$locale = $request->getUserVar('locale');
 
 		if (in_array($locale, $site->getInstalledLocales())) {
 			Locale::reloadLocale($locale);
 		}
 
-		Request::redirect(null, null, null, 'languages');
+		$request->redirect(null, null, null, 'languages');
 	}
 
 	/**
 	 * Helper function to remove unsupported locales from conferences.
+	 * @param $request object
 	 */
-	function removeLocalesFromConferences() {
-		$site =& Request::getSite();
+	function _removeLocalesFromConferences(&$request) {
+		$site =& $request->getSite();
 		$siteSupportedLocales = $site->getSupportedLocales();
 
 		$conferenceDao =& DAORegistry::getDAO('ConferenceDAO');
