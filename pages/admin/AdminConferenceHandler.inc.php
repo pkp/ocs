@@ -74,17 +74,19 @@ class AdminConferenceHandler extends AdminHandler {
 
 	/**
 	 * Save changes to a conference's settings.
+	 * @param $args array
+	 * @param $request object
 	 */
-	function updateConference() {
+	function updateConference($args, &$request) {
 		$this->validate();
 		$this->setupTemplate(true);
 
 		import('admin.form.ConferenceSiteSettingsForm');
 
 		if (checkPhpVersion('5.0.0')) { // WARNING: This form needs $this in constructor
-			$settingsForm = new ConferenceSiteSettingsForm(Request::getUserVar('conferenceId'));
+			$settingsForm = new ConferenceSiteSettingsForm($request->getUserVar('conferenceId'));
 		} else {
-			$settingsForm =& new ConferenceSiteSettingsForm(Request::getUserVar('conferenceId'));
+			$settingsForm =& new ConferenceSiteSettingsForm($request->getUserVar('conferenceId'));
 		}
 		$settingsForm->readInputData();
 
@@ -94,7 +96,7 @@ class AdminConferenceHandler extends AdminHandler {
 			import('notification.NotificationManager');
 			$notificationManager = new NotificationManager();
 			$notificationManager->createTrivialNotification('notification.notification', 'common.changesSaved');
-			Request::redirect(null, null, null, 'conferences');
+			$request->redirect(null, null, null, 'conferences');
 		} else {
 			$settingsForm->display();
 		}
@@ -126,26 +128,28 @@ class AdminConferenceHandler extends AdminHandler {
 			}
 		}
 
-		Request::redirect(null, null, null, 'conferences');
+		$request->redirect(null, null, null, 'conferences');
 	}
 
 	/**
 	 * Change the sequence of a conference on the site index page.
+	 * @param $args array
+	 * @param $request object
 	 */
-	function moveConference() {
+	function moveConference($args, &$request) {
 		$this->validate();
 
 		$conferenceDao =& DAORegistry::getDAO('ConferenceDAO');
-		$conference =& $conferenceDao->getConference(Request::getUserVar('id'));
+		$conference =& $conferenceDao->getConference($request->getUserVar('id'));
 
 		if ($conference != null) {
-			$direction = Request::getUserVar('d');
+			$direction = $request->getUserVar('d');
 			if ($direction != null) {
 				// moving with up or down arrow
 				$conference->setSequence($conference->getSequence() + ($direction == 'u' ? -1.5 : 1.5));
 			} else {
 				// Dragging and dropping onto another conference
-				$prevId = Request::getUserVar('prevId');
+				$prevId = $request->getUserVar('prevId');
 				if ($prevId == null)
 					$prevSeq = 0;
 				else {
@@ -162,7 +166,7 @@ class AdminConferenceHandler extends AdminHandler {
 		// In the case of a drag and drop move, the display has been
 		// updated on the client side, so no reload is necessary.
 		if ($direction != null) {
-			Request::redirect(null, null, null, 'conferences');
+			$request->redirect(null, null, null, 'conferences');
 		}
 	}
 
@@ -182,8 +186,10 @@ class AdminConferenceHandler extends AdminHandler {
 
 	/**
 	 * Import data from an OCS 1.x conference.
+	 * @param $args array
+	 * @param $request object
 	 */
-	function doImportOCS1() {
+	function doImportOCS1($args, &$request) {
 		$this->validate();
 		$this->setupTemplate(true);
 
@@ -202,13 +208,12 @@ class AdminConferenceHandler extends AdminHandler {
 				$templateMgr->assign('errors', $errors);
 				$templateMgr->display('admin/importConflicts.tpl');
 			} else {
-				Request::redirect(null, null, null, 'editConference', $conferenceId);
+				$request->redirect(null, null, null, 'editConference', $conferenceId);
 			}
 		} else {
 			$importForm->display();
 		}
 	}
-
 }
 
 ?>

@@ -71,7 +71,7 @@ class TinyMCEPlugin extends GenericPlugin {
 			case 'admin/settings':
 			case 'admin/saveSettings':
 				$fields[] = 'intro';
-				$fields[] = 'about';
+				$fields[] = 'aboutField';
 				break;
 			case 'admin/createConference':
 			case 'admin/updateConference':
