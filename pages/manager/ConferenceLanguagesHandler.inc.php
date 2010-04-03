@@ -40,8 +40,10 @@ class ConferenceLanguagesHandler extends ManagerHandler {
 
 	/**
 	 * Save changes to language settings.
+	 * @param $args array
+	 * @param $request object
 	 */
-	function saveLanguageSettings() {
+	function saveLanguageSettings($args, &$request) {
 		$this->validate();
 		$this->setupTemplate(true);
 
@@ -52,52 +54,54 @@ class ConferenceLanguagesHandler extends ManagerHandler {
 
 		if ($settingsForm->validate()) {
 			$settingsForm->execute();
-
-			$templateMgr =& TemplateManager::getManager();
-			$templateMgr->assign(array(
-				'currentUrl' => Request::url(null, null, null, 'languages'),
-				'pageTitle' => 'common.languages',
-				'message' => 'common.changesSaved',
-				'backLink' => Request::url(null, null, Request::getRequestedPage()),
-				'backLinkLabel' => 'manager.conferenceSiteManagement'
-			));
-			$templateMgr->display('common/message.tpl');
-
+			import('notification.NotificationManager');
+			$notificationManager = new NotificationManager();
+			$notificationManager->createTrivialNotification('notification.notification', 'common.changesSaved');
+			$request->redirect(null, null, null, 'index');
 		} else {
 			$settingsForm->display();
 		}
 	}
 
-	function reloadLocalizedDefaultSettings() {
+	/**
+	 * Reload the default localized settings for this conference
+	 * @param $args array
+	 * @param $request object
+	 */
+	function reloadLocalizedDefaultSettings($args, &$request) {
 		// make sure the locale is valid
-		$locale = Request::getUserVar('localeToLoad');
+		$locale = $request->getUserVar('localeToLoad');
 		if ( !Locale::isLocaleValid($locale) ) {
-			Request::redirect(null, null, null, 'languages');
+			$request->redirect(null, null, null, 'languages');
 		}
 
 		$this->validate();
 		$this->setupTemplate(true);
 					
-		$conference =& Request::getConference();
+		$conference =& $request->getConference();
 		$conferenceSettingsDao =& DAORegistry::getDAO('ConferenceSettingsDAO');
-		$conferenceSettingsDao->reloadLocalizedDefaultSettings($conference->getId(), 'registry/conferenceSettings.xml', array(
-				'indexUrl' => Request::getIndexUrl(),
+		$conferenceSettingsDao->reloadLocalizedDefaultSettings(
+			$conference->getId(), 'registry/conferenceSettings.xml',
+			array(
+				'indexUrl' => $request->getIndexUrl(),
 				'conferencePath' => $conference->getData('path'),
 				'primaryLocale' => $conference->getPrimaryLocale(),
 				'conferenceName' => $conference->getTitle($conference->getPrimaryLocale())
 			),
-			$locale);
+			$locale
+		);
 
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign(array(
-			'currentUrl' => Request::url(null, null, null, 'languages'),
+			'currentUrl' => $request->url(null, null, null, 'languages'),
 			'pageTitle' => 'common.languages',
 			'message' => 'common.changesSaved',
-			'backLink' => Request::url(null, null, Request::getRequestedPage()),
+			'backLink' => $request->url(null, null, $request->getRequestedPage()),
 			'backLinkLabel' => 'manager.conferenceSiteManagement'
 		));
 		$templateMgr->display('common/message.tpl');
 	}
 
 }
+
 ?>
