@@ -17,18 +17,18 @@
 
 <script type="text/javascript">
 <!--
-
 {literal}
-function changePaymentMethod() {
-	document.paymentSettingsForm.action="{/literal}{url op="paymentSettings"}{literal}";
-		document.paymentSettingsForm.submit();
-	}
-
-	{/literal}
+$(document).ready(function() {
+	$('.paymentOption').click(function() {
+		$("#paymentSettingsForm").attr("action","{/literal}{url op="paymentSettings"}{literal}");
+		$("#paymentSettingsForm").submit();
+	});
+});
+{/literal}
 // -->
 </script>
 
-<form method="post" name="paymentSettingsForm" action="{url op="savePaymentSettings"}">
+<form method="post" id="paymentSettingsForm" name="paymentSettingsForm" action="{url op="savePaymentSettings"}">
 
 <p>{translate key="manager.payment.form.description"}</p>
 
@@ -39,7 +39,7 @@ function changePaymentMethod() {
 			{assign var=pluginIndex value=1}
 			<h4>{translate key="manager.payment.form.method"}</h4>
 			{foreach from=$paymentMethodPlugins item=plugin}
-				&nbsp;<input type="radio" name="paymentMethodPluginName" id="paymentMethodPluginName-{$pluginIndex|escape}" value="{$plugin->getName()|escape}" onchange="changePaymentMethod();" {if $paymentMethodPluginName == $plugin->getName()}checked="checked" {/if}/>&nbsp;<label for="paymentMethodPluginName-{$pluginIndex|escape}">{$plugin->getDisplayName()|escape}</label><br/>
+				&nbsp;<input type="radio" class="paymentOption" name="paymentMethodPluginName" id="paymentMethodPluginName-{$pluginIndex|escape}" value="{$plugin->getName()|escape}" {if $paymentMethodPluginName == $plugin->getName()}checked="checked" {/if}/>&nbsp;<label for="paymentMethodPluginName-{$pluginIndex|escape}">{$plugin->getDisplayName()|escape}</label><br/>
 				<p>{$plugin->getDescription()}</p>
 				{assign var=pluginIndex value=$pluginIndex+1}
 			{/foreach}
