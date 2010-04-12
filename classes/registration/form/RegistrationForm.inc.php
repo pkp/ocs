@@ -144,7 +144,8 @@ class RegistrationForm extends Form {
 
 		// If registration type requires it, membership is provided
 		$registrationTypeDao =& DAORegistry::getDAO('RegistrationTypeDAO');
-		$needMembership = $registrationTypeDao->getRegistrationTypeMembership($this->getData('typeId'));
+		$registrationType =& $registrationTypeDao->getRegistrationType($this->getData('typeId'));
+		$needMembership = $registrationType->getMembership();
 
 		if ($needMembership) { 
 			$this->addCheck(new FormValidator($this, 'membership', 'required', 'manager.registration.form.membershipRequired'));
@@ -152,8 +153,9 @@ class RegistrationForm extends Form {
 
 		// If registration type requires it, domain and/or IP range is provided
 		$isInstitutional = $registrationTypeDao->getRegistrationTypeInstitutional($this->getData('typeId'));
+		$isOnline = $registrationType->getAccess() != REGISTRATION_TYPE_ACCESS_PHYSICAL ? true : false;
 
-		if ($isInstitutional) { 
+		if ($isInstitutional && $isOnline) { 
 			$this->addCheck(new FormValidatorCustom($this, 'domain', 'required', 'manager.registration.form.domainIPRangeRequired', create_function('$domain, $ipRange', 'return $domain != \'\' || $ipRange != \'\' ? true : false;'), array($this->getData('ipRange'))));
 		}
 
