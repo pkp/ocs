@@ -53,7 +53,7 @@
 		{/foreach}
 	</ol>
 	</div>
-{/if}
+{/if}{* $submissionChecklist *}
 
 {if $copyrightNotice != ''}
 	<div class="separator">&nbsp;</div>
