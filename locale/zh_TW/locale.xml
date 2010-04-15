@@ -808,7 +808,7 @@ Active 為目前被考慮或進行中的審查稿件數量。]]></message>
 	<message key="installer.ocsUpgrade">OCS 升級</message>
 	<message key="installer.installationInstructions"><![CDATA[<h4>OCS 版本 {$version}</h4>
 
-<p>感謝您下載公共知識專案 (the Public Knowledge Project) 所發展的 <strong>Open Conference Systems</strong> 系統。在您繼續之前請詳讀包含在本軟體內的 <a href="{$baseUrl}/docs/README">README</a> 檔案。如您需要更多有關於公共知識專案與其所發展的軟體，請訪問 <a href="http://pkp.sfu.ca/" target="_blank">PKP 網站</a>。如果您有關於Open Conference Systems 的錯誤回報或者需要技術援者，請造訪  <a href="http://pkp.sfu.ca/support/forum">支援論壇</a> 或者PKP 的線上 <a href="http://pkp.sfu.ca/bugzilla/" target="_blank">錯誤回報系統</a>。您也可以選擇寄送電子郵件給本團隊 <a href="mailto:pkp-support@sfu.ca">pkp-support@sfu.ca</a>.</p>
+<p>感謝您下載公共知識專案 (the Public Knowledge Project) 所發展的 <strong>Open Conference Systems</strong> 系統。在您繼續之前請詳讀包含在本軟體內的 <a href="{$baseUrl}/docs/README">README</a> 檔案。如您需要更多有關於公共知識專案與其所發展的軟體，請訪問 <a href="http://pkp.sfu.ca/" target="_blank">PKP 網站</a>。如果您有關於Open Conference Systems 的錯誤回報或者需要技術援者，請造訪  <a href="http://pkp.sfu.ca/support/forum">支援論壇</a> 或者PKP 的線上 <a href="http://pkp.sfu.ca/bugzilla/" target="_blank">錯誤回報系統</a>。您也可以選擇寄送電子郵件給本團隊 <a href="mailto:pkp.contact@gmail.com">pkp.contact@gmail.com</a>.</p>
 
 <h4>升級</h4>
 
@@ -850,7 +850,7 @@ Active 為目前被考慮或進行中的審查稿件數量。]]></message>
 <p>選擇 <strong>手動安裝</strong> 用來顯示 SQL 的指令，以運用手動方式建立 OCS 的資料庫與基本資料。本程序有助於用來檢查安裝時的錯誤，特別是安裝在不支援的作業平台中時。注意，此選項並不會主動建立任何的資料庫與資料表。 </p>]]></message>
 	<message key="installer.upgradeInstructions"><![CDATA[<h4>OCS 版本 {$version}</h4>
 
-<p>感謝您下載 Public Knowledge Project 所發展的 <strong>Open Conference Systems</strong>。在您進行下列的程序之前，請閱讀包含在檔案中的 <a href="{$baseUrl}/docs/README">讀我 (README)</a> 與 <a href="{$baseUrl}/docs/UPGRADE">升級 (UPGRADE)</a>檔案。如需更多有關 Public Knowledge Project 與相關軟體的資訊，請造訪 <a href="http://pkp.sfu.ca/" target="_blank">PKP 網站</a>。如果您有任何的錯誤要回報，或是需要技術支援，請參閱 <a href="http://pkp.sfu.ca/support/forum">支援論壇</a> 或者造訪 PKP 的線上 <a href="http://pkp.sfu.ca/bugzilla/" target="_blank">錯誤回報系統</a>。您也可以透過電子郵件與本團隊連絡 <a href="mailto:pkp-support@sfu.ca">pkp-support@sfu.ca</a>。</p>
+<p>感謝您下載 Public Knowledge Project 所發展的 <strong>Open Conference Systems</strong>。在您進行下列的程序之前，請閱讀包含在檔案中的 <a href="{$baseUrl}/docs/README">讀我 (README)</a> 與 <a href="{$baseUrl}/docs/UPGRADE">升級 (UPGRADE)</a>檔案。如需更多有關 Public Knowledge Project 與相關軟體的資訊，請造訪 <a href="http://pkp.sfu.ca/" target="_blank">PKP 網站</a>。如果您有任何的錯誤要回報，或是需要技術支援，請參閱 <a href="http://pkp.sfu.ca/support/forum">支援論壇</a> 或者造訪 PKP 的線上 <a href="http://pkp.sfu.ca/bugzilla/" target="_blank">錯誤回報系統</a>。您也可以透過電子郵件與本團隊連絡 <a href="mailto:pkp.contact@gmail.com">pkp.contact@gmail.com</a>。</p>
 <p>本團隊 <strong>強烈建議</strong> 您在進行下列的程序之前，備份您的資料庫、檔案資料與 OCS 所安裝的資料匣。</p>
 <p>如果您是在 <a href="http://www.php.net/features.safe-mode" target="_blank">PHP 安全模式</a> 下進行，請確認 php.ini 中最長執行時間的設，因為有關此類時間的設定 (例如 Apache's "Timeout" 指今) 可能會影響升級程序，而導致中斷。</p>]]></message>
 	<message key="installer.localeSettingsInstructions"><![CDATA[如要取得完整的 Unicode (UTF-8) 支援，請選擇 UTF-8 作為所有字元的設定值。注意，要支援此設定必使用 MySQL >= 4.1.1 或者 PostgreSQL >= 7.1 版本的資料庫。同時也請注意，要得到全面性的 Unicode 支援，必需使用 PHP >= 4.3.0 同時結合 <a href="http://www.php.net/mbstring" target="_blank">mbstring</a> 庫的版本 (一般的 PHP 安裝時的預設值)。如您的伺服器未使用此編碼方式，可能會產生問題。
