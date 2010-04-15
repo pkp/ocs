@@ -513,14 +513,15 @@ class PublishedPaperDAO extends DAO {
 		$paperIds = array();
 
 		$result =& $this->retrieveCached(
-			'SELECT	a.paper_id AS pub_id
+			'SELECT	p.paper_id AS pub_id
 			FROM	published_papers pa,
-				papers a
-				' . ($conferenceId?'LEFT JOIN sched_confs e ON e.sched_conf_id = a.sched_conf_id':'') . '
-			WHERE	pa.paper_id = a.paper_id
-				' . ($conferenceId?'AND e.conference_id = ?':'') . '
-				' . ($schedConfId?'AND a.sched_conf_id = ?':'') . '
-			ORDER BY a.sched_conf_id',
+				papers p
+				' . ($conferenceId?'LEFT JOIN sched_confs e ON e.sched_conf_id = p.sched_conf_id':'') . '
+			WHERE	pa.paper_id = p.paper_id
+				AND p.status = ' . STATUS_PUBLISHED .
+				($conferenceId?' AND e.conference_id = ?':'') .
+				($schedConfId?' AND p.sched_conf_id = ?':'') .
+			' ORDER BY p.sched_conf_id',
 			$params
 		);
 
