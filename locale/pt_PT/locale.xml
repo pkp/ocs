@@ -262,6 +262,7 @@
 	<message key="user.role.managers">Administradores da Conferência</message>
 	<message key="user.role.directors">Presidente Comissão Organizadora</message>
 	<message key="user.role.trackDirectors">Coordenadores Painel</message>
+	<!--
 	 * LOG - This section contains entries related to log entries.
 	 *
 	-->

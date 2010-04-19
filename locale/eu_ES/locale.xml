@@ -314,6 +314,7 @@ mesedez, "Kongresuari buruz" orriko kontaktu nagusiarekin.</message>
 	<message key="user.role.managers">Kongresu-kudeatzaileak</message>
 	<message key="user.role.directors">Zuzendariak</message>
 	<message key="user.role.trackDirectors">Ataleko zuzendariak</message>
+	<!--
 	 * LOG - This section contains entries related to log entries.
 	 *
 	-->
@@ -417,6 +418,8 @@ Kontuan izan OAI interfazea desgaitu daitekeela gune honetarako, OCS sistema-kon
 	<message key="plugins.categories.citationFormats.description">Aipamen-formatuen pluginen bidez, erabiltzaileek hainbat formatu izango dituzte aipamenak ikusteko.</message>
  
 	<!-- Files Browser -->
+	<!--
+	     ***
 	     *** Generic setup locale keys
 	     ***
 	-->
@@ -426,7 +429,8 @@ Kontuan izan OAI interfazea desgaitu daitekeela gune honetarako, OCS sistema-kon
 			<p>Nahi duzunean itzuli ahal izango zara sei orri hauetara "Erabiltzailearen hasierako orria > Kongresuaren kudeatzailea > Konfigurazioa" hautatuta.</p>
 			<p>Kongresu programatuak kudeatzeko, hautatu "Erabiltzailearen hasierako orria > Kongresuaren kudeatzailea > Konfigurazioa".</p>
 	]]></message>
-
+	<!--
+	     ***
 	     *** Website Management (a.k.a. Conference Setup)
 	     ***
 	-->
@@ -844,14 +848,6 @@ Balidazioak huts egin dezake bilaketa egiteko inprimaki-datuak bidaltzea eskatze
 hautatuta antzeko lankidetzan aurkeztutako lanak bilatzeko, edo bilatu banaka, izen bakarra hautatuta. Baliabideari 
 buruzko informazio gehiago ikusteko, sakatu KONGRESUARI BURUZ. Garrantziaren arabera eta eduki osoa edo zati bat 
 atzitzeko sarrera librearen (doakoaren) arabera hautatu dira baliabideak.</message>
-	 * MISC - Entries that do not belong in the other sections.
-	 *
-	-->
-	<!-- Icons: Default "alt" text -->
-	<!-- Debug messages -->
-	 * DEFAULT - Default settings for setup items.
-	 *
-	-->
 	<message key="manager.reviewFormElements.included">Egilearentzako mezuan erantsia</message>
 	<message key="navigation.browseByAuthor">Egilearena</message>
 	<message key="navigation.infoForAuthors">Egileentzat</message>
