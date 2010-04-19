@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * plugins/citationFormats/abnt/locale/es_ES/locale.xml
+  *
+  * Copyright (c) 2000-2010 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for this citation plugin in es_ES.
+  *
+  * $Id$
+  -->
+ 
+<locale name="es_ES" full_name="Español (España)">
+	<message key="plugins.citationFormats.abnt.displayName">Plugin de formato de citas ABNT</message>
+	<message key="plugins.citationFormats.abnt.citationFormatName">ABNT</message>
+	<message key="plugins.citationFormats.abnt.description">Este plugin implementa el format de cita ABNT.</message>
+	<message key="plugins.citationFormat.abnt.location">Norte América</message>
+	<message key="plugins.citationFormats.abnt.retrieved"><![CDATA[Disponible en: <a href="{$url}" target="_new">{$url}</a>. Fecha de consulta: {$retrievedDate}]]></message>
+</locale>

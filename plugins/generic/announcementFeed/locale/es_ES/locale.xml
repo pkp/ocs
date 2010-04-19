@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * plugins/generic/announcementFeed/locale/es_ES/locale.xml
+  *
+  * Copyright (c) 2000-2010 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the es_ES locale.
+  *
+  * $Id$
+  -->
+ 
+<locale name="es_ES" full_name="Español (España)">
+	<message key="plugins.generic.announcementfeed.displayName">Plugin Agragedor de Anuncios</message>
+	<message key="plugins.generic.announcementfeed.description">Este plugin produce agregadores web RSS/Atom para los anuncios de la conferencia.</message>
+
+	<message key="plugins.generic.announcementfeed.settings">Configuración</message>
+	<message key="plugins.generic.announcementfeed.settings.all">Mostrar los enlaces a los feeds en todas las páginas de la conferencia.</message>
+	<message key="plugins.generic.announcementfeed.settings.homepage">Mostrar los enlaces a los feeds únicamente en la página de inicio y en la de anuncios.</message>
+	<message key="plugins.generic.announcementfeed.settings.announcement">Mostrar los enlaces a los feeds únicamente en la página de los anuncios de la conferencia.</message>
+	<message key="plugins.generic.announcementfeed.settings.recentAnnouncements1">Limitar el feed a</message>
+	<message key="plugins.generic.announcementfeed.settings.recentAnnouncements2">anuncios más recientes.</message>
+	<message key="plugins.generic.announcementfeed.settings.recentItemsRequired">Escriba un número positivo para anuncios recientes.</message>
+	<message key="plugins.generic.announcementfeed.atom.altText">Logotipo del Atom</message>
+	<message key="plugins.generic.announcementfeed.rss1.altText">Logotipo del RSS1</message>
+	<message key="plugins.generic.announcementfeed.rss2.altText">Logotipo del RSS2</message>	
+	<message key="plugins.generic.announcementfeed.enabled">El Plugin de Feeds de Anuncios ha sido habilitado.</message>
+	<message key="plugins.generic.announcementfeed.disabled">El Plugin de Feeds de Anuncios ha sido deshabilitado.</message>
+</locale>

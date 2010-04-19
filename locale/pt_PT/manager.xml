@@ -14,26 +14,26 @@
 
 <locale name="pt_PT" full_name = "Português (Portugal)">
 	<message key="manager.accommodation">Alojamento</message>
-	<message key="manager.accommodation.form.accommodationFiles">Arquivos</message>
-	<message key="manager.accommodation.form.accommodationFiles.description">Utilize esta secção para enviar um ou mais arquivos para os inscritos e participantes em potencial, como mapas, formulários, entre outros.</message>
+	<message key="manager.accommodation.form.accommodationFiles">Ficheiros</message>
+	<message key="manager.accommodation.form.accommodationFiles.description">Utilize esta secção para enviar um ou mais ficheiros para os inscritos e potenciais participantes, como mapas, formulários, entre outros.</message>
 	<message key="manager.accommodation.form.accommodationText">Descrição do Alojamento</message>
 	<message key="manager.accommodation.form.accommodationText.description">Descreva os alojamentos da conferência no campo a seguir.</message>
-	<message key="manager.accommodation.form.description">Adicionar informações sobre alojamentos, transporte e outros assuntos relativos à logística aqui. Vários arquivos, incluindo informações como mapas, direções e formulários, podem ser enviados.</message>
+	<message key="manager.accommodation.form.description">Adicionar informações sobre alojamentos, transporte e outros assuntos relativos à logística aqui. Vários arquivos, incluindo informações como mapas, direcções e formulários, podem ser enviados.</message>
 	<message key="manager.announcements.form.schedConfId">Conferência Calendarizada</message>
 	<message key="manager.announcements.schedConf">Conferência Calendarizada</message>
-	<message key="manager.conferenceEventLog">Log de Eventos</message>
+	<message key="manager.conferenceEventLog">Histórico de Eventos</message>
 	<message key="manager.conferenceSiteManagement">Administração da Página da Conferência</message>
 	<message key="manager.currentConferences">Conferências Actuais</message>
 	<message key="manager.emails.confirmResetAll">Deseja realmente restaurar todos os e-mails para o padrão original para esta conferência? Todas as personalizações serão perdidas.</message>
 	<message key="manager.files.note">Aviso: o Navegador de Arquivos é uma ferramenta avançada que permite visualização e manipulação directa de documentos e directórios associados à conferência.</message>
 	<message key="manager.groups">Comissão Organizadora</message>
 	<message key="manager.groups.create">Criar Tìtulo de cargo para Comissão Organizadora</message>
-	<message key="manager.groups.disableBoard">O sistema publicará a lista de acordo com as suas atribuições de papéis, definidos pelo sistema (Presidente Comissão Organizadora, Cooordenador de Painel, Avaliador, etc.)</message>
+	<message key="manager.groups.disableBoard">O sistema publicará a lista de acordo com as suas atribuições de papéis, definidos pelo sistema (Presidente Comissão Organizadora, Coordenador de Painel, Avaliador, etc.)</message>
 	<message key="manager.groups.enableBoard">O Administrador Geral criará os títulos dos cargos e incluirá as pessoas em cada grupo.</message>
 	<message key="manager.groups.enableBoard.description"><![CDATA[Para a área de <a href="{$aboutOrganizingTeamUrl}">Comissão Organizadora</a> em Sobre a Conferência:]]></message>
 	<message key="manager.groups.noneCreated">Nenhum cargo para Comissão Organizadora criado.</message>
 	<message key="manager.importExport.noPlugins">Nenhum plugin de Importar/Exportar Dados instalado.</message>
-	<message key="manager.languages.languageInstructions"><![CDATA[O sistema pode estar disponível para utilizadores em vários idiomas. O sistema também pode operar como parcialmente multilíngüe, proporcionando a opção de troca de idioma em cada página, e permitindo que algumas informações sejam incluídas em no máximo dois idiomas a mais.<br /><br />Caso o idioma desejado não esteja disponível, solicite ao administrador do portal a sua instalação através da interface de administração. Para informações sobre instalação de novos idiomas, consulte a documentação do sistema.]]></message>
+	<message key="manager.languages.languageInstructions"><![CDATA[O sistema pode estar disponível para utilizadores em vários idiomas. O sistema também pode operar como parcialmente multilingue, proporcionando a opção de troca de idioma em cada página, e permitindo que algumas informações sejam incluídas em no máximo dois idiomas a mais.<br /><br />Caso o idioma desejado não esteja disponível, solicite ao administrador do portal a sua instalação através da interface de administração. Para informações sobre instalação de novos idiomas, consulte a documentação do sistema.]]></message>
 	<message key="manager.languages.noneAvailable">Nenhum idioma adicional disponível. Informe o administrador do portal para inclusão de idiomas adicionais à conferência.</message>
 	<message key="manager.languages.primaryLocaleInstructions">Idioma padrão do sistema.</message>
 	<message key="manager.managementPages">Administração Geral</message>
@@ -121,8 +121,6 @@
 	<message key="manager.registrationPolicies.openAccessNotificationDisabled"><![CDATA[<strong>Aviso:</strong> Para activar esta opção, o administrador do sistema deverá activar a opção <tt>scheduled_tasks</tt> no arquivo de configuração do sistema. Configurações adicionais no servidor podem ser necessárias para o funcionamento correto da opção (que pode não ser possível em todos os servidores!), como indicado na documentação do sistema.]]></message>
 	<message key="manager.registrationPolicies.openAccessOptions">Opções de Acesso Livre para Conferências com Inscrições</message>
 	<message key="manager.registrationPolicies.openAccessOptionsDescription">Conferências com Inscrições podem oferecer "Acesso Livre adiado" e/ou "auto-arquivamento pelo autor" (o que aumenta a leitura e citação do conteúdo!). As políticas escolhidas serão exibidas em Sobre a Conferência.</message>
-	<message key="manager.registrationPolicies.presenterSelfArchive">Política de Auto-arquivamento pelo Autor</message>
-	<message key="manager.registrationPolicies.presenterSelfArchiveDescription">A política a seguir será exibida no Sobre a Conferência.</message>
 	<message key="manager.registrationPolicies.registrationAdditionalInformation">Informações sobre Inscrições</message>
 	<message key="manager.registrationPolicies.registrationAdditionalInformationDescription">Os Tipos de Inscrições e a estrutura de valores é exibida automaticamente na página Inscrições, em  Sobre a Conferência, junto com o nome do Gestor de Inscrições e as formas de contacto. Outras informações para inscritos, como as formas de pagamento ou auxílio a participantes de países em desenvolvimento, por exemplo, podem ser incluídas aqui.</message>
 	<message key="manager.registrationPolicies.registrationContact">Gestor de Inscrições</message>
@@ -182,40 +180,6 @@
 	<message key="manager.registrationTypes.year">ano</message>
 	<message key="manager.registrationTypes.years">anos</message>
 	<message key="manager.registration.user">Utilizador</message>
-	<message key="manager.reviewFormElement.changeType">Aviso: A alteração dos elementos de uma avaliação por formulário de um tipo de escolha múltipla para um tipo de pergunta aberta implicará a eliminação das opções de escolha múltipla.</message>
-	<message key="manager.reviewFormElements">Ites do Formulário</message>
-	<message key="manager.reviewFormElements.addResponseItem">Adicionar selecção</message>
-	<message key="manager.reviewFormElements.checkboxes">Caixas de verificação (pode seleccionar uma ou mais)</message>
-	<message key="manager.reviewFormElements.chooseType">Seleccionar o tipo de item</message>
-	<message key="manager.reviewFormElements.confirmDelete">Tem a certeza que pretende eliminar um elemento da avaliação por formulário publicada?</message>
-	<message key="manager.reviewFormElements.copyTo">Copiar para:</message>
-	<message key="manager.reviewFormElements.create">Criar Novo Item</message>
-	<message key="manager.reviewFormElements.dropdownbox">Caixa Drop-down</message>
-	<message key="manager.reviewFormElements.edit">Editar Item do Formulário</message>
-	<message key="manager.reviewFormElements.elementType">Tipo de item</message>
-	<message key="manager.reviewFormElements.form.elementTypeRequired">É necessário um item para o item do formulário.</message>
-	<message key="manager.reviewFormElements.form.questionRequired">É necessário uma questão para o item do formulário.</message>
-	<message key="manager.reviewFormElements.noneCreated">Nenhuns itens do formulário foram criados.</message>
-	<message key="manager.reviewFormElements.possibleResponse">Selecção</message>
-	<message key="manager.reviewFormElements.question">Item</message>
-	<message key="manager.reviewFormElements.radiobuttons">Botões(apenas pode seleccionar um)</message>
-	<message key="manager.reviewFormElements.required">Os Avaliadores necessários para completar o item</message>
-	<message key="manager.reviewFormElements.smalltextfield">Caixa de texto simples</message>
-	<message key="manager.reviewFormElements.textarea">Caixa de texto ampliada</message>
-	<message key="manager.reviewFormElements.textfield">Caixa de linhas simples</message>
-	<message key="manager.reviewForms">Avaliar Formulários</message>
-	<message key="manager.reviewForms.completed">Concluído</message>
-	<message key="manager.reviewForms.confirmDeleteUnpublished">Tem a certeza que pretende eliminar esta avaliação por formulário não publicada?</message>
-	<message key="manager.reviewForms.create">Criar Avaliação por Formulário</message>
-	<message key="manager.reviewForms.description">Descrição e Instruções</message>
-	<message key="manager.reviewForms.edit">Avaliação por Formulário</message>
-	<message key="manager.reviewForms.form.titleRequired">É necessário um título para esta avaliação por formulário.</message>
-	<message key="manager.reviewForms.inReview">Em Avaliação</message>
-	<message key="manager.reviewForms.list.description">A avaliação por pares dos formulários criada aqui será apresentada aos avaliadores em ordem a completarem-na, em vez do formulário padrão que consiste em duas caixas de texto abertas, a primeira "para autor e editor" e a segunda "para o editor" As avaliações por formulário podem ser designadas para um painel específico da conferência e os editores terão a opção de seleccionar qual o formulário a ser usado para a atribuição da avaliação. Em todos os casos, os editores terão a opçao de incluir as avaliações na correspondência que trocam com o autor.</message>
-	<message key="manager.reviewForms.noneChosen">Nenhum / Avaliação por Formulário Livre</message>
-	<message key="manager.reviewForms.noneCreated">Nenhuma avaliação por formulário foi criada.</message>
-	<message key="manager.reviewForms.preview">Pré-visualizar Formulário</message>
-	<message key="manager.reviewForms.title">Título</message>
 	<message key="manager.schedConfManagement">Administração de Conferências Calendarizadas</message>
 	<message key="manager.schedConfs">Conferências Calendarizadas</message>
 	<message key="manager.schedConfs.confirmDelete">Deseja eliminar permantemente esta conferência calendarizada e todo o seu conteúdo?</message>
@@ -257,7 +221,6 @@
 	<message key="manager.schedConfSetup.review.automatedReminders">E-mails automatizados serão enviados ao avaliador (o editor também pode enviar lembretes ao avaliador)</message>
 	<message key="manager.schedConfSetup.review.automatedRemindersDisabled"><![CDATA[<strong>Nota:</strong> Para activar estas opções, o administrador do sistema deve activar  a opção <tt>scheduled_tasks</tt> no arquivo de configuração. Configurações adicionais no servidor podem ser necessárias para dar suporte a esta funcionalidade (podendo não estar disponível em todos os servidores), conforme documentação do sistema.]]></message>
 	<message key="manager.schedConfSetup.review.directorDecision">Decisão do Presidente Comissão Organizadora</message>
-	<message key="manager.schedConfSetup.review.notifyAllPresentersOnDecision">Ao utilizar o e-mail Notificar Autor, inclua os endereços de e-mail de todos os co-autores para submissões com mais de um autor, não apenas o autor que submeteu o trabalho.</message>
 	<message key="manager.schedConfSetup.review.numWeeksPerReview1">Permitir aos avaliadores</message>
 	<message key="manager.schedConfSetup.review.numWeeksPerReview2">semanas para concluir a avaliação.</message>
 	<message key="manager.schedConfSetup.review.onQuality">poderão classificar avaliadores numa escala de cinco pontos após cada avaliação.</message>
@@ -281,8 +244,6 @@
 	<message key="manager.schedConfSetup.submissions.abstractsAlone">Resumo</message>
 	<message key="manager.schedConfSetup.submissions.acceptSupplementaryReviewMaterials">Documentos suplementares podem ser enviados junto com resumos e apresentações.</message>
 	<message key="manager.schedConfSetup.submissions.addChecklistItem">Adicionar Item de Verificação</message>
-	<message key="manager.schedConfSetup.submissions.allowIndividualSubmissions">Activar apresentações individuais, enviadas por autores</message>
-	<message key="manager.schedConfSetup.submissions.allowPanelSubmissions">Activar sessões de apresentação múltipla, enviadas pelos coordenadores dos painéis.</message>
 	<message key="manager.schedConfSetup.submissions.bothSequential">Resumo seguido de apresentação</message>
 	<message key="manager.schedConfSetup.submissions.bothTogether">Resumo e proposta</message>
 	<message key="manager.schedConfSetup.submissions.callForPapers">Call for Papers (CPS)</message>
@@ -303,8 +264,6 @@
 	<message key="manager.schedConfSetup.submissions.disciplineProvideExamples">Indique exemplos de áreas do conhecimento relevantes para esta conferência</message>
 	<message key="manager.schedConfSetup.submissions.enablePublicPaperId">Identificadores Personalizados serão utilizados para identificar artigos publicados.</message>
 	<message key="manager.schedConfSetup.submissions.enablePublicSuppFileId">Identificadores personalizados serão utilizados para identificar documentos suplementares da submissão.</message>
-	<message key="manager.schedConfSetup.submissions.forPresentersToIndexTheirWork">Indexação da Submissão</message>
-	<message key="manager.schedConfSetup.submissions.forPresentersToIndexTheirWorkDescription"><![CDATA[O sistema adopta o Protocolo para Recolha de Metadados do <a href="http://www.openarchives.org/" target="_blank">Open Archives Initiative</a>, que é um padrão emergente para proporcionar acesso com base na indexação a recursos eletrónicos de pesquisa em escala global. Os autores farão uso de um padrão similar para Adicionar os metadados da submissão. O Administrador Geral da conferência deverá escolher as categorias para indexação e apresentar aos autores exemplos relevantes para auxiliá-los na indexação, separando os termos com ponto-e-vírgula (Ex.: termo1; termo2). Os termos deverão ser indicados como exemplos, utilizando as expressões "Ex." ou "Por exemplo,".]]></message>
 	<message key="manager.schedConfSetup.submissions.notifications.copyPrimaryContact">Contacto Principal da Conferência</message>
 	<message key="manager.schedConfSetup.submissions.notifications.copySpecifiedAddress">Este endereço</message>
 	<message key="manager.schedConfSetup.submissions.notifications.description">Enviar cópia da mensagem de notificação de submissão para:</message>
@@ -313,8 +272,6 @@
 	<message key="manager.schedConfSetup.submissions.preparationChecklist">Normas de Submissão</message>
 	<message key="manager.schedConfSetup.submissions.preparationChecklist.description">Ao submeter um trabalho para a conferência, os autores devem ler, aceitar e marcar como realizados cada Item de Verificação nas Normas de Submissão, antes de proceder. A lista de Itens de Verificação também é apresentada em Diretrizes para Autores, na secção Sobre a Conferência. A lista pode ser modificada, porém todos os itens requerem a marcação dos autores para procederem à submissão.</message>
 	<message key="manager.schedConfSetup.submissions.presentationsAlone">Proposta Completa</message>
-	<message key="manager.schedConfSetup.submissions.presenterGuidelines">Directrizes para Autores</message>
-	<message key="manager.schedConfSetup.submissions.presenterGuidelinesDescription">Definição dos padrões bibliográficos e padrões de formatação de texto da conferência. Recomenda-se oferecer exemplos. É importante também identificar os tipos apropriados de Documentos Suplementares (Ex.: conjuntos de dados, instrumentos de pesquisas, entre outros) que os autores deveriam ser estimulados a enviar, além do documento de submissão, para aumentar o interesse dos leitores com o trabalho.</message>
 	<message key="manager.schedConfSetup.submissions.previewAbstracts">Publicar abstracts assim que avaliação do abstract for concluída</message>
 	<message key="manager.schedConfSetup.submissions.publicIdentifier">Identificação do Conteúdo da Conferência</message>
 	<message key="manager.schedConfSetup.submissions.subjectClassification">Classificação de Assunto</message>
@@ -430,7 +387,6 @@
 	<message key="manager.setup.additionalContent.announcementsIntroductionDescription">Insira um texto introdutório, ou qualquer informação desejada, a ser exibida aos leitores na página de Anúncios.</message>
 	<message key="manager.setup.additionalContent.archiveAccess">Acesso a Apresentações</message>
 	<message key="manager.setup.additionalContent.archiveAccess.accountRequired">Exigir registo para aceder ao portal.</message>
-	<message key="manager.setup.additionalContent.archiveAccess.description">A data de acesso às apresentações é definida no Cronograma da Conferência, enquanto que o acesso aos arquivos é definido pelo Administrador, em Configuração da Conferência.</message>
 	<message key="manager.setup.additionalContent.archiveAccess.open">Oferecer acesso livre a qualquer utilizador</message>
 	<message key="manager.setup.additionalContent.archiveAccess.registrationRequired">Exigir inscrição para participar da conferência</message>
 	<message key="manager.setup.additionalContent.brief">Conteúdo Adicional</message>
@@ -442,7 +398,6 @@
 	<message key="manager.setup.additionalContent.homepageImage">Imagem de Capa para Página Inicial</message>
 	<message key="manager.setup.additionalContent.information">Informações para os utilizadores</message>
 	<message key="manager.setup.additionalContent.information.description">Na secção "Informação" da barra lateral da página apresenta-se uma breve descrição da conferência para potenciais autores e leitores.</message>
-	<message key="manager.setup.additionalContent.information.forPresenters">Para Autores</message>
 	<message key="manager.setup.additionalContent.information.forReaders">Para Leitores</message>
 	<message key="manager.setup.additionalContent.redirect">Redirecionamento de Conferência Calendarizada.</message>
 	<message key="manager.setup.additionalContent.redirect.description">Ao seleccionar a seguinte Conferência Calendarizada, é possível redireccionar utilizadores que visitam o sistema directamente à página da Conferência. Isto é útil quando a conferência possui apenas uma única Conferência Calendarizada, por exemplo.</message>
@@ -533,7 +488,6 @@
 	<message key="manager.timeline">Cronograma da Conferência</message>
 	<message key="manager.timeline.closeComments">Fechar comentários (activar Ferramentas de Leitura)</message>
 	<message key="manager.timeline.closeComments.plain">Fechar Comentários</message>
-	<message key="manager.timeline.closeRegPresenter">Inscrição de autores fechada</message>
 	<message key="manager.timeline.closeRegReviewer">Inscrição de Avaliadores fechada</message>
 	<message key="manager.timeline.closeReviewProcess">Processo de Avaliação fechado</message>
 	<message key="manager.timeline.conference">Conferência</message>
@@ -543,13 +497,11 @@
 	<message key="manager.timeline.form.conferenceEndDateBeforeConferenceStart">A data de fim deve ser posterior à data de abertura da Conferência.</message>
 	<message key="manager.timeline.form.conferenceStartBeforeSiteStart">A data de "Lançar/Tornar Público" deve ser antes da data de abertura da Conferência.</message>
 	<message key="manager.timeline.form.conferenceStartDateBeforeSubmissionsClose">A conferência não pode iniciar antes do encerramento das submissões.</message>
-	<message key="manager.timeline.form.regPresenterCloseDateBeforeRegPresenterOpenDate">A data de abertura de inscrições de autores deve ser anterior à data de encerramento de inscrições de autores.</message>
 	<message key="manager.timeline.form.regReviewerCloseDateBeforeRegReviewerOpenDate">A data de abertura de inscrições de avaliadores deve ser anterior à data de encerramento de inscrições de avaliadores.</message>
 	<message key="manager.timeline.form.siteEndBeforeLastDay">A data de "Arquivar" deve ser após o último dia da conferência.</message>
 	<message key="manager.timeline.form.siteEndDateBeforeConferenceStart">A conferência não pode ser arquivada antes da sua data de abertura.</message>
 	<message key="manager.timeline.form.siteEndDateBeforeSiteStart">A data de "Lançar/Tornar Público" deve ser antes da data de "Arquivar".</message>
 	<message key="manager.timeline.form.submissionsCloseBeforeCFP">A Call for Papers para submissões deve ser publicada antes do encerramento das submissões.</message>
-	<message key="manager.timeline.openRegPresenter">Inscrição de autores aberta</message>
 	<message key="manager.timeline.openRegReviewer">Inscrição de Avaliadores aberta</message>
 	<message key="manager.timeline.overrideDates">Sobrescrever mensagem de erro</message>
 	<message key="manager.timeline.postAbstracts">Resumos Aceites</message>

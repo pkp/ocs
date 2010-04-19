@@ -71,5 +71,10 @@ ez datozen parametroak:</message>
 	<message key="plugins.generic.translator.deleteKey">Ezabatu gako hau</message>
 	<message key="plugins.generic.translator.deleteEmail">Ezabatu mezu elektroniko hau</message>
 	<message key="plugins.generic.translator.saveBeforeContinuing">Ziurtatu orri honetan egindako aldaketa guztiak gordeta daudela; galdu egingo dira bestela. Jarraitu nahi duzu? Jarraitzen baduzu, gorde gabeko aldaketak galdu egingo dira.</message>
+	<message key="plugins.generic.translator.enabled">Itzulpen-plugin-a gaitu da.</message>
+	<message key="plugins.generic.translator.disabled">Itzulpen-plugin-a ezgaitu da.</message>
+	<message key="plugins.generic.translator.tarMissing">Plugin honen esportaze-funtzioa desaktibatu egin da, konfiguratutako tar bitarra ez delako aurkitu sisteman. Egiaztatu tar programa instalatuta dagoela eta, ondoren, konfiguratu tar bitarraren bide-izena config.inc.php's [cli] atalean!</message>
+	<message key="plugins.generic.translator.fileNotWriteable">Fitxategi lokal honetan ezin da idatzi zerbitzariaren arabera. Egindako aldaketak ez dira gordeko.</message>
+	<message key="plugins.generic.translator.filesNotWriteable">Fitxategi lokal hauetan ezin da idatzi zerbitzariaren arabera. Egindako aldaketak ez dira gordeko.</message>
 </locale>
 

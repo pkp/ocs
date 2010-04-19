@@ -69,4 +69,9 @@ Se remite a la versión en inglés como versión por defecto.</message>
 	<message key="plugins.generic.translator.deleteEmail">Delete this email</message>
 	<message key="plugins.generic.translator.saveBeforeContinuing">Be sure to save any changes made on this page before continuing or they will be lost. Do you wish to continue? If so, any unsaved changes will be lost.</message>
 	<message key="plugins.generic.translator.localeKey.description">Políticas respecto al proceso de evaluación, instrucciones para autores y acceso.</message>
+	<message key="plugins.generic.translator.enabled">El plugin de Traducción ha sido habilitado.</message>
+	<message key="plugins.generic.translator.disabled">El plugin de Traducción ha sido deshabilitado.</message>
+	<message key="plugins.generic.translator.fileNotWriteable">Este fichero de traducciones no es escribible por el servidor. Los cambios no se guardarán.</message>
+	<message key="plugins.generic.translator.filesNotWriteable">Estos ficheros de traducciones no son escribibles por el servidor. Los cambios no se guardarán.</message>
+	<message key="plugins.generic.translator.tarMissing">La función de exportación de este plugin ha sido desactivada por que el binario tar no se puede encontrar en este sistema. Por favor, asegúrese de que tiene el programa instalado y luego de configurar la ruta de acceso al binario en la sección [cli] de config.inc.php !</message>
 </locale>

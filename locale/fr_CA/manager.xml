@@ -395,7 +395,6 @@
 	<message key="manager.setup.additionalContent.announcementsIntroductionDescription">Entrer toute information supplémentaire qui devrait être transmise aux lecteurs dans la page des annonces.</message>
 	<message key="manager.setup.additionalContent.archiveAccess">Accéder aux présentations de la conférence</message>
 	<message key="manager.setup.additionalContent.archiveAccess.accountRequired">Exiger la connexion des visiteurs au site Web.</message>
-	<message key="manager.setup.additionalContent.archiveAccess.description">La date permettant l'accès aux présentations est définie dans l'Horaire de la conférence, alors que l'accès aux archives de la conférence est contrôlé dans les Options de la conférence par le gestionnaire de conférence.</message>
 	<message key="manager.setup.additionalContent.archiveAccess.open">Fournir un accès libre à tous les visiteurs du site Web.</message>
 	<message key="manager.setup.additionalContent.archiveAccess.registrationRequired">Exiger l'inscription comme participant à la conférence.</message>
 	<message key="manager.setup.additionalContent.brief">Contenu supplémentaire</message>
@@ -687,4 +686,7 @@
 	<message key="manager.tracks.disableComments">Désactiver les commentaires de lecteurs pour cette section.</message>
 	<message key="manager.tracks.wordCount">Nombre de mots</message>
 	<message key="manager.tracks.wordCountInstructions"><![CDATA[Limiter le nombre de mots des résumés pour cette section (0 pour aucune limite)&#x00A0;:]]></message>
+	<message key="manager.setup.aboutConference.accessPolicy">Politique d'accès</message>
+	<message key="manager.setup.aboutConference.archiveAccessPolicy.description">Les paramètres suivants contrôlent l'accès aux archives de la conférence.</message>
+	<message key="manager.setup.additionalContent.accessPolicy.description">Cette politique s'applique aux présentations de la conférence en cours publiées dans le site Web.</message>
 </locale>

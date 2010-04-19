@@ -15,4 +15,12 @@
 	<message key="plugins.paymethod.manual.displayName">Pagamento Manual</message>
 	<message key="plugins.paymethod.manual.description">O Pagamento deve ser enviado fora do Sistema e requer que o Administrador valide-o antes de activar o registo. O conteúdo dos campos de Informação de Registo na Gestão das Políticas de Registo será visualizado pelos utilizadores, ao se registarem, e deve fornecer informações sobre como proceder no envio do registo manual.</message>
 	<message key="plugins.paymethod.manual">Pagamento do Registo</message>
+	<message key="plugins.paymethod.manual.settings">Configurações Pagamento Manual</message>
+	<message key="plugins.paymethod.manual.settings.instructions">Instruções</message>
+	<message key="plugins.paymethod.manual.settings.manualInstructions">Instruções Pagamento Livre para utilizadores que seleccionaram o pagamento livre</message>
+	<message key="plugins.paymethod.manual.sendNotificationOfPayment">Enviar notificação do pagamento</message>
+	<message key="plugins.paymethod.manual.paymentNotification">Notificação Pagamento</message>
+	<message key="plugins.paymethod.manual.notificationSent">Notificação pagamento enviada</message>
+	<message key="plugins.paymethod.manual.purchase.title">Título</message>
+	<message key="plugins.paymethod.manual.purchase.fee">Taxa</message>
 </locale>

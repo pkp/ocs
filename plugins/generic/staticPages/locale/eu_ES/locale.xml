@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * plugins/generic/staticPages/locale/eu_ES/locale.xml
+  *
+  * Copyright (c) 2000-2010 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the Basque locale.
+  *
+  -->
+ 
+<locale name="eu_ES" full_name="Basque">
+	<message key="plugins.generic.staticPages.displayName"></message>
+	<message key="plugins.generic.staticPages.description"></message>
+	<message key="plugins.generic.staticPages.pageTitle"></message>
+	<message key="plugins.generic.staticPages.content"></message>
+
+	<message key="plugins.generic.staticPages.path"></message>
+	<message key="plugins.generic.staticPages.requirement.tinymce"></message>
+
+	<message key="plugins.generic.staticPages.editAddContent"></message>
+
+	<message key="plugins.generic.staticPages.addStaticPage"></message>
+	<message key="plugins.generic.staticPages.addNewPage"></message>
+	<message key="plugins.generic.staticPages.editStaticPage"></message>	
+
+	<message key="plugins.generic.staticPages.settingInstructions"></message>
+	<message key="plugins.generic.staticPages.editInstructions"></message>
+	<message key="plugins.generic.staticPages.viewInstructions"></message>
+	<message key="plugins.generic.staticPages.duplicatePath"></message>
+	
+	<message key="plugins.generic.staticPages.pageSaved"></message>
+	<message key="plugins.generic.staticPages.pageDeleted"></message>
+	
+	<message key="plugins.generic.staticPages.noneExist"></message>
+</locale>

@@ -14,6 +14,6 @@
  
 <locale name="pt_BR" full_name="Português (Brasil)">
 	<message key="plugins.block.information.displayName">Bloco de Informações</message>
-	<message key="plugins.block.information.description">Este plugin oferece um link na barra desejada para informações</message>
+	<message key="plugins.block.information.description">Este plugin oferece um link na barra lateral para informações</message>
 	<message key="plugins.block.information.link">Informação</message>
 </locale>

@@ -62,4 +62,5 @@
 	<message key="admin.conferences.transcode">Bihurtu lanen metadatuak ISO8859-1etik.</message>
 	<message key="admin.conferences.form.importPathRequired">Inportatzeko bidea zehaztu behar da.</message>
 	<message key="admin.conferences.importErrors">Inportazioak huts egin du.</message>
+	<message key="admin.locale.maybeIncomplete">Markatutako lokalak osatu gabe egon daitezke.</message>
 </locale>

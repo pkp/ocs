@@ -15,5 +15,13 @@
 	<message key="plugins.paymethod.manual.displayName">Eskuzko ordainketa</message>
 	<message key="plugins.paymethod.manual.description">Aldizkariaren edo Kongresuaren Kudeatzaileak eskuz erregistratuko du erabiltzailearen ordainketa.</message>
 	<message key="plugins.paymethod.manual">Izen-ematearen ordainketa</message>
+	<message key="plugins.paymethod.manual.settings">Eskuzko ordainketaren ezarpenak</message>
+	<message key="plugins.paymethod.manual.settings.instructions">Argibideak</message>
+	<message key="plugins.paymethod.manual.settings.manualInstructions">Saria ordaintzeko argibideak, eskuzko ordainketa hautatu duten erabiltzaileentzat</message>
+	<message key="plugins.paymethod.manual.sendNotificationOfPayment">Bidali ordainketa-jakinarazpena</message>
+	<message key="plugins.paymethod.manual.paymentNotification">Ordainketa-jakinarazpena</message>
+	<message key="plugins.paymethod.manual.notificationSent">Ordainketa-jakinarazpena bidalia</message>
+	<message key="plugins.paymethod.manual.purchase.title">Titulua</message>
+	<message key="plugins.paymethod.manual.purchase.fee">Ordainsaria</message>
 </locale>
 

@@ -42,7 +42,7 @@ São aceitos os formatos a seguir:
 	<message key="plugins.importexport.native.selectPaper">Selecionar Submissão</message>
 
 	<message key="plugins.importexport.native.import.papers">Importar Submissões</message>
-	<message key="plugins.importexport.native.import.papers.description">O arquivo a ser importado contém uma ou mais submissões. É necessário definir a modalidade que receberá essas submissões; caso não deseje importar todas para a mesma modalidade, pode-se separar os arquivos em arquivos XML separados ou movê-las para as modalidades respectivas após a importação.</message>
+	<message key="plugins.importexport.native.import.papers.description">O arquivo a ser importado contém uma ou mais submissões. É necessário definir a modalidade que receberá essas submissões; caso não deseje importar todas para a mesma modalidade, pode-se separá-las em arquivos XML distintos ou movê-las para as modalidades respectivas após a importação.</message>
 
 	<message key="plugins.importexport.native.import">Importar Dados</message>
 	<message key="plugins.importexport.native.import.description"><![CDATA[Este plugin permite a importação de dados baseado na DTD (Document Type Definition) do native.dtd. Nodos raíz suportados são &lt;paper&gt; e &lt;papers&gt;.]]></message>
@@ -52,11 +52,11 @@ São aceitos os formatos a seguir:
 
 	<message key="plugins.importexport.native.cliError">ERRO:</message>
 	<message key="plugins.importexport.native.error.unknownUser">O usuário especificado, "{$userName}", não existe.</message>
-	<message key="plugins.importexport.native.error.unknownConference">A conferência especificada ou caminho da conferência agendada, "{$conferencePath}" ou "{$schedConfPath}" (respectively), não existe.</message>
+	<message key="plugins.importexport.native.error.unknownConference">A conferência especificada ou caminho da conferência agendada, "{$conferencePath}" ou "{$schedConfPath}" (respectivamente), não existe.</message>
 	<message key="plugins.importexport.native.export.error.couldNotWrite">Não foi possível escrever no arquivo "{$fileName}".</message>
 	<message key="plugins.importexport.native.export.error.trackNotFound">Nenhuma modalidade encontrada com o identificador "{$trackIdentifier}".</message>
 	<message key="plugins.importexport.native.export.error.paperNotFound">Nenhuma submissão encontrada com o ID "{$paperId}".</message>
-	<message key="plugins.importexport.native.import.error.unsupportedRoot">Este plugin não suporta o nodo raíz "{$rootName}". Ceritifique-se de que o arquivo está de acordo com a especificação e tente novamente.</message>
+	<message key="plugins.importexport.native.import.error.unsupportedRoot">Este plugin não suporta o nodo raíz "{$rootName}". Certifique-se de que o arquivo está de acordo com a especificação e tente novamente.</message>
 
 	<message key="plugins.importexport.native.import.error.invalidBooleanValue">Um valor booleano "{$value}" foi especificado. Utilize "true" ou "false".</message>
 	<message key="plugins.importexport.native.import.error.invalidDate">Uma data inválida "{$value}" foi especificada.</message>
@@ -76,8 +76,8 @@ São aceitos os formatos a seguir:
 	<message key="plugins.importexport.native.import.error.trackIdentifyTypeLocaleUnsupported">O tipo de identificação ("{$trackIdentifyType}") da modalidade foi informado em idioma ("{$locale}") não suportado por esta conferência.</message>
 	<message key="plugins.importexport.native.import.error.trackPolicyLocaleUnsupported">A política ("{$trackPolicy}") da modalidade foi informada em idioma ("{$locale}") não suportado por esta conferência.</message>
 
-	<message key="plugins.importexport.native.import.error.trackTitleMismatch">O título da modalidade "{$track1Title}" e o título da modalidade "{$track2Title}" são idênticos a conferências distintas existentes.</message>
-	<message key="plugins.importexport.native.import.error.trackTitleMatch">O título da modalidade "{$trackTitle}" é idêntico ao da modalidade existente na conferência, mas outro título informado para esta modalidade não foi encontrado com nenhum outro título da modalidade existente na conferência.</message>
+	<message key="plugins.importexport.native.import.error.trackTitleMismatch">O título da modalidade "{$track1Title}" e o título da modalidade "{$track2Title}" combinam com as modalidades distintas existentes.</message>
+	<message key="plugins.importexport.native.import.error.trackTitleMatch">O título da modalidade "{$trackTitle}" é idêntico ao da modalidade existente na conferência, mas outro título da modalidade não combina com nenhum outro título da modalidade existente.</message>
 	<message key="plugins.importexport.native.import.error.trackAbbrevMismatch">A abreviação "{$track1Abbrev}" da modalidade e a abreviação "{$track2Abbrev}" da modalidade são idênticas em modalidades diferentes existentes na conferência.</message>
 	<message key="plugins.importexport.native.import.error.trackAbbrevMatch">A abreviação "{$trackAbbrev}" é idêntica à de uma modalidade existente, porém outra abreviação desta modalidade não foi encontrada na modalidade existente na conferência.</message>
 
@@ -91,7 +91,7 @@ São aceitos os formatos a seguir:
 	<message key="plugins.importexport.native.import.error.paperSponsorLocaleUnsupported">Um patrocinador foi informado para a submissão "{$paperTitle}" em idioma ("{$locale}") não suportado por esta conferência.</message>
 
 	<message key="plugins.importexport.native.import.error.paperAuthorCompetingInterestsLocaleUnsupported">Um conflito de interesses foi informado para o autor "{$authorFullName}" da submissão "{$paperTitle}" em idioma ("{$locale}") não suportado por esta conferência.</message>
-	<message key="plugins.importexport.native.import.error.paperAuthorBiographyLocaleUnsupported">A biografia do "{$authorFullName}" da submissão "{$paperTitle}" foi informada em idioma ("{$locale}") não suportado por esta conferência.</message>
+	<message key="plugins.importexport.native.import.error.paperAuthorBiographyLocaleUnsupported">A biografia de "{$authorFullName}" da submissão "{$paperTitle}" foi informada em idioma ("{$locale}") não suportado por esta conferência.</message>
 
 	<message key="plugins.importexport.native.import.error.galleyLocaleUnsupported">A composição final da submissão "{$paperTitle}" foi informada em idioma ("{$locale}") não suportado por esta conferência.</message>
 
@@ -107,5 +107,5 @@ São aceitos os formatos a seguir:
 	<message key="plugins.importexport.native.import.success">Dados importados com sucesso</message>
 	<message key="plugins.importexport.native.import.success.description">Dados importados com sucesso. Itens importados com sucesso listados a seguir.</message>
 
-	<message key="plugins.importexport.native.error.uploadFailed">O envio de arquivos falhou; verifique se o envio de arquivos está habilitado no servidr e que o arquivo não é maior que o permitido nas configurações do PHP e do servidor.</message>
+	<message key="plugins.importexport.native.error.uploadFailed">O envio de arquivos falhou; verifique se o envio de arquivos está habilitado no servidor e que o arquivo não é maior que o permitido nas configurações do PHP e do servidor.</message>
 </locale>

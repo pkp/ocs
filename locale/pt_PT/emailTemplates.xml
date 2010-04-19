@@ -101,7 +101,7 @@ Obrigado novamente pela sua importante participação neste processo.
 		<description>Este e-mail informa os avaliadores de uma submissão que o processo de revisão foi finalizado. Inclui informações sobre o artigo e a decisão tomada e agradece aos avaliadores pelas suas contribuições</description>
 	</email_text>
 	<email_text key="DIRECTOR_ASSIGN">
-		<subject>Tarefa designada pelo Director</subject>
+		<subject>Tarefa designada pelo Presidente da Comissão Organizadora</subject>
 		<body>{$editorialContactName}:
 
 A submissão, "{$paperTitle}," ao evento: {$conferenceName} foi-lhe designada e permitirá que a consulte como se fosse um coordenador de painel por todo o processo editorial.
@@ -111,7 +111,7 @@ Nome do utilizador: {$directorUsername}
 
 Obrigado,
 {$editorialContactSignature}</body>
-		<description>Este e-mail informa o coordenador de painel que o Director designou a tarefa de supervisionar uma submissão através do processo de edição. Contém informações sobre a submissão e como aceder ao portal da conferência</description>
+		<description>Este e-mail informa o coordenador de painel que o Presidente da Comissão Organizadora designou a tarefa de supervisionar uma submissão através do processo de edição. Contém informações sobre a submissão e como aceder ao portal da conferência</description>
 	</email_text>
 	<email_text key="REVIEW_REQUEST">
 		<subject>Pedido de Revisão</subject>

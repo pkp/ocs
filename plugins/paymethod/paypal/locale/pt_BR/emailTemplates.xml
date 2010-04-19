@@ -13,7 +13,7 @@
 <email_texts locale="pt_BR">
 	<email_text key="PAYPAL_INVESTIGATE_PAYMENT">
 		<subject>Atividade incomum no PayPal</subject>
-		<body>O Open Conference Systems encontrou atividade incomum relacionada com o suporte ao pagamento via to PayPal, da conferência {$schedConfName}. Esta atividade pode exigir investigação mais profunda ou intervenção manual.
+		<body>O Open Conference Systems encontrou atividade incomum relacionada com o suporte ao pagamento via PayPal, da conferência {$schedConfName}. Esta atividade pode exigir investigação mais profunda ou intervenção manual.
 			
 Esta mensagem foi gerada automaticamente pelo plugin PayPal do Open Conference Systems.
 
@@ -25,5 +25,6 @@ Informações adicionais (caso fornecidas):
 
 Variáveis do Servidor:
 {$serverVars}</body>
+		<description></description>
 	</email_text>
 </email_texts>

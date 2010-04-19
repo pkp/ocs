@@ -33,7 +33,6 @@
 	<message key="director.notifyUsers.interestedUsers">Kongresu honetako eguneratzeak jaso nahi dituzten erabiltzaileei ({$count} erabiltzaile)</message>
 	<message key="director.notifyUsers.includeToc">Sartu kongresu honetako aurkezpenak</message>
 	<message key="director.notifyUsers.allReaders">Irakurle guztiei ({$count} erabiltzaile)</message>
-	<message key="director.notifyUsers.allPresenters">Argitaratutako aurkezle guztiei ({$count} erabiltzaile)</message>
 	<message key="director.notifyUsers.allPaidRegistrants">Ordaindu duten izen-emaile guztiei ({$count} erabiltzaile)</message>
 	<message key="director.notifyUsers.allRegistrants">Izen-emaile guztiei ({$count} erabiltzaile)</message>
 	<message key="director.navigation.management">Kudeaketa</message>
@@ -72,7 +71,6 @@
 	<message key="director.paper.requestedByDate">Entregatzeko data</message>
 	<message key="director.paper.dueDateFormat">Formatua: UUUU-HH-EE</message>
 	<message key="director.paper.numberOfWeeks">Aste kopurua</message>
-	<message key="director.paper.showPresenter">Utzi egileari fitxategia ikusten</message>
 	<message key="director.paper.rateReviewer">Baloratu Ebaluatzailea</message>
 	<message key="director.paper.reviewerRating.veryGood">5 Oso ona</message>
 	<message key="director.paper.reviewerRating.good">4</message>
@@ -107,4 +105,6 @@
 	<message key="director.submissions.lastCompleted">Azkeneko bukatua</message>
 	<message key="director.submissions.assignedTo">Honi esleitua</message>
 	<message key="director.submissions.inTrack">Atala</message>
+	<message key="director.notifyUsers.allAuthors">Argitaratutako aurkezle guztiak ({$count} erabiltzaileak)</message>
+	<message key="director.paper.showAuthor">Baimendu egilea fitxategia ikusteko</message>
 </locale>

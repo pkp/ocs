@@ -16,7 +16,7 @@
 	<message key="plugins.generic.customLocale.name">Plugin de Customização de Idioma</message>
 	<message key="plugins.generic.customLocale.description">Este plugin permite a customização do idioma da interface padrão do sistema.</message>
 
-	<message key="plugins.generic.customLocale.longDescription">Esta página lista todos os idiomas atualmente instalados na revista.</message>
+	<message key="plugins.generic.customLocale.longDescription">Esta página lista todos os idiomas atualmente instalados na conferência.</message>
 	<message key="plugins.generic.customLocale.localeDescription">Esta página lista todos os arquivos disponíveis para o idioma selecionado.</message>
 	<message key="plugins.generic.customLocale.fileDescription">Informe o texto no campo correspondente. Deixe o campo em branco para utilizar a tradução original.</message>
 	<message key="plugins.generic.customLocale.localeName">Nome da Tradução</message>

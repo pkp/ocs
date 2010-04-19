@@ -13,11 +13,12 @@
 <email_texts locale="pt_BR">
 	<email_text key="MANUAL_PAYMENT_NOTIFICATION">
 		<subject>Notificação de pagamento manual</subject>
-		<body>É necessário realizar o processamento de um pagamento manual conferência {$schedConfName}, realizada pelo usuário {$userFullName} (login "{$userName}").
+		<body>É necessário realizar o processamento de um pagamento manual para participar da conferência {$schedConfName}, encaminhada pelo usuário {$userFullName} (login "{$userName}").
 
 O item adquirido é "{$itemName}".
-O custo é {$itemCost} ({$itemCurrencyCode}).
+O valor é de {$itemCost} ({$itemCurrencyCode}).
 
 Esta mensagem foi gerada pelo Plugin de Pagamento Manual do OCS.</body>
+		<description></description>
 	</email_text>
 </email_texts>

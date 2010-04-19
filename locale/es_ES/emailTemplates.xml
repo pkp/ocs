@@ -376,7 +376,7 @@ Si tiene cualquier pregunta o duda, por favor póngase en contacto con nosotros.
 			Este e-mail informa que a un ponente que el Gestor ha creado un registro para el/ella. Facilita la URL de las conferencias así como instrucciones de acceso.</description>
 	</email_text>
 	<email_text key="OPEN_ACCESS_NOTIFY">
-		<subject>Número ya disponible en "Open Access"</subject>
+		<subject>Número ya disponible en Acceso Abierto  (Open Access)</subject>
 		<body>Estimado/a ponente:
 
 {$conferenceName} pone a disposición en Open Access el siguiente número. Le invitamos a consultar los contenidos y a visitar nuestro sitio web ({$conferenceUrl}) donde podrá acceder a los trabajos y documentos de interés.
@@ -385,5 +385,50 @@ Gracias por seguir interesado en nuestro trabajo,
 
 {$editorialContactSignature}</body>
 		<description>Este e-mail se envía a ponentes registrados	que han solicitado recibir información por e-mail cuando un número se publique en Open Access</description>
+	</email_text>
+	<email_text key="NOTIFICATION">
+		<subject>Nueva notificación desde {$siteTitle}</subject>
+		<body>Tienes una nueva notificación desde {$siteTitle}:
+
+{$notificationContents}
+
+Enlace: {$url}
+
+{$principalContactSignature}</body>
+	</email_text>
+	<email_text key="NOTIFICATION_MAILLIST">
+		<subject></subject>
+		<body></body>
+		<description></description>
+	</email_text>
+	<email_text key="NOTIFICATION_MAILLIST_WELCOME">
+		<subject></subject>
+		<body></body>
+		<description></description>
+	</email_text>
+	<email_text key="NOTIFICATION_MAILLIST_PASSWORD">
+		<subject></subject>
+		<body></body>
+		<description></description>
+	</email_text>
+	<email_text key="USER_VALIDATE">
+		<subject></subject>
+		<body></body>
+		<description></description>
+	</email_text>
+	<email_text key="REVIEW_REQUEST">
+		<subject></subject>
+		<body></body>
+		<description></description>
+	</email_text>
+	<email_text key="SUBMISSION_PAPER_INVITE">
+		<subject></subject>
+		<body></body>
+		<description></description>
+	</email_text>
+	<email_text key="MANUAL_PAYMENT_RECEIVED">
+		<subject></subject>
+		<body></body>
+		<description></description>
 	</email_text>
 </email_texts>

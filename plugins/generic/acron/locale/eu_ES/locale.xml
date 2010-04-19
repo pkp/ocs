@@ -17,5 +17,7 @@
 	<message key="plugins.generic.acron.description"><![CDATA[Plugin honen xedea OCSk 'cron' eta atazak programatzeko antzeko tresnekiko duen dependentzia murriztea da.]]></message>
 
 	<message key="plugins.generic.acron.reload">Birkargatu ataza programatuak</message>
+	<message key="plugins.generic.acron.enabled">Acron plugin-a gaitu da.</message>
+	<message key="plugins.generic.acron.disabled">Acron plugin-a ezgaitu da.</message>
 </locale>
 

@@ -12,31 +12,31 @@
   -->
 <email_texts locale="pt_BR">
 	<email_text key="PASSWORD_RESET_CONFIRM">
-		<subject>Confirmação de Redefinição de Senha</subject>
-		<body>Recebemos uma requisição de redefinição da sua senha para o portal {$siteTitle}.
+		<subject>Confirmação de alteração de senha</subject>
+		<body>Recebemos uma solicitação de alteração da sua senha para o portal {$siteTitle}.
 
-Se você não efetuou esta requisição, por favor ignore este e-mail e sua senha não será alterada. Se deseja redefinir sua senha, clique no endereço abaixo.
+Se você não efetuou esta solicitação, por favor ignore este e-mail e sua senha não será alterada. Se deseja alterar sua senha, clique no endereço abaixo.
 
-Redefinir minha senha: {$url}
+Alterar minha senha: {$url}
 
 {$principalContactSignature}</body>
-		<description>Este e-mail é enviado aos usuários inscritos quando eles esqueceram sua senha e não conseguem efetuar o login. Ele envia um endereço para que eles possam redefinir sua senha.</description>
+		<description>Este e-mail é enviado aos usuários inscritos quando eles esqueceram sua senha e não conseguem efetuar o login. Ele envia um endereço para que eles possam alterar sua senha.</description>
 	</email_text>
 	<email_text key="PASSWORD_RESET">
-		<subject>Senha Redefinida</subject>
-		<body>Sua senha foi redefinida com sucesso para o portal {$siteTitle}. Por favor, guarde o nome de usuário e senha, eles são necessários em todas as interações com o sistema para a conferência.
+		<subject>Senha alterada</subject>
+		<body>Sua senha foi redefinida com sucesso para o portal {$siteTitle}. Por favor, guarde login e senha, pois são necessários em todas as interações com o sistema da conferência.
 
-Seu nome de usuário: {$username}
+Seu login: {$username}
 Sua senha: {$password}
 
 {$principalContactSignature}</body>
 		<description>Este e-mail é enviado aos usuários inscritos quando eles redefinem sua senha, ao efetuarem, com sucesso, o processo descrito no e-mail PASSWORD_RESET_CONFIRM.</description>
 	</email_text>
 	<email_text key="USER_REGISTER">
-		<subject>Inscrição de Novo Usuário</subject>
-		<body>Obrigado por sua inscrição no evento: {$conferenceName}. Por favor, anote seus dados abaixo, eles serão necessários em todas as interações com o sistema para essa conferência.
+		<subject>Inscrição de novo usuário</subject>
+		<body>Obrigado por sua inscrição no evento: {$conferenceName}. Por favor, anote seus dados abaixo, pois serão necessários em todas as interações com o sistema da conferência.
 
-Usuário: {$username}
+Login: {$username}
 Senha: {$password}
 
 Obrigado,
@@ -44,15 +44,16 @@ Obrigado,
 		<description>Este e-mail é enviado aos usuários recém inscritos dando boas vindas ao sistema e lhes informando seus dados de usuário e senha.</description>
 	</email_text>
 	<email_text key="SUBMISSION_ACK">
-		<subject>Aviso de recebimento de Submissão</subject>
+		<subject>Aviso de recebimento de submissão</subject>
 		<body>{$authorName}:
 
-Obrigado por sua submissão, "{$paperTitle}" ao evento: {$conferenceName}. Com o nosso sistema de gestão de conferências on-line, você será capaz de acompanhar o progresso de sua submissão, através processo editorial ao acessar o portal da conferência:
+Obrigado por sua submissão, "{$paperTitle}" ao evento: {$conferenceName}. Com o nosso sistema de gestão de conferências online, você poderá acompanhar o progresso de sua submissão através do processo editorial, ao acessar o portal da conferência:
 
 URL da submissão: {$submissionUrl}
-Nome de usuário: {$authorUsername}
+Login: {$authorUsername}
 
-Quaisquer dúvidas, por favor entre em contato. Obrigado por considerar esta conferência um local para o seu trabalho.
+Quaisquer dúvidas, por favor entre em contato. 
+Obrigado por considerar esta conferência um local para publicar seu trabalho.
 
 {$editorialContactSignature}</body>
 		<description>Este e-mail, quando ativo, é enviado automaticamente para o autor quando ele(a) completa o processo de submeter um artigo ou resumo "Abstract" à conferência. Ele fornece informações sobre o acompanhamento do processo de submissão  e agradece ao autor pela submissão.</description>
@@ -61,38 +62,39 @@ Quaisquer dúvidas, por favor entre em contato. Obrigado por considerar esta con
 		<subject>Aviso de recebimento de arquivo de submissão</subject>
 		<body>{$authorName}:
 
-Obrigado por enviar sua apresentação, "{$paperTitle}" ao evento: {$conferenceName}. Com o nosso sistema de gestão de conferências on-line, você será capaz de acompanhar o progresso de sua submissão, através processo editorial ao acessar o portal da conferência:
+Obrigado por enviar sua apresentação, "{$paperTitle}" ao evento: {$conferenceName}. Com o nosso sistema de gestão de conferências online, você poderá acompanhar o progresso de sua submissão através processo editorial, ao acessar o portal da conferência:
 
 URL da submissão: {$submissionUrl}
-Nome de usuário: {$authorUsername}
+Login: {$authorUsername}
 
-Quaisquer dúvidas, por favor entre em contato. Obrigado por considerar esta conferência um local para o seu trabalho.
+Quaisquer dúvidas, por favor entre em contato. 
+Obrigado por considerar esta conferência um local para o seu trabalho.
 
 {$editorialContactSignature}</body>
 		<description>Este e-mail, quando ativo, é enviado automaticamente para o autor quando ele(a) completa o processo de submeter um artigo ou resumo "Abstract" à conferência. Ele fornece informações sobre o acompanhamento do processo de submissão  e agradece ao autor pela submissão.</description>
 	</email_text>
 	<email_text key="SUBMISSION_UNSUITABLE">
 		<subject>Submissão não apropriada</subject>
-		<body>{$authorName}:
+		<body>{$authorName},
 
-Após uma revisão inicial de "{$paperTitle}", ficou claro que a submissão não é direcionada ao escopo e foco do evento: {$conferenceName}. Recomendo que consulte a descrição desta conferência no menu "Sobre", assim como outras conferência anteriores, para aprender mais sobre os trabalhos que aceitamos. Considere efetuar sua submissão deste artigo ou resumo "abstract" a outra conferência mais apropriada.
-
+Uma revisão inicial de "{$paperTitle}" determinou que a submissão não se enquadra no escopo e foco do evento {$conferenceName}. Recomendo que consulte a descrição desta conferência no menu "Sobre", assim como outras conferência anteriores, para saber mais sobre os tipos de trabalho aceitos. Considere efetuar a submissão deste artigo ou resumo a outra conferência em consonância com o trabalho.
 
 {$editorialContactSignature}</body>
-		<description/>
+		<description></description>
 	</email_text>
 	<email_text key="SUBMISSION_COMMENT">
 		<subject>Comentário da Submissão</subject>
-		<body>{$name}:
+		<body>{$name},
 
-{$commentName} adicionou um comentário à sua submissão, "{$paperTitle}" no evento: {$conferenceName}:
+{$commentName} adicionou um comentário à sua submissão, "{$paperTitle}" no evento {$conferenceName}:
 
 {$comments}</body>
 		<description>Este e-mail notifica várias pessoas envolvidas no processo de editoração de uma submissão que recebeu num novo comentário</description>
 	</email_text>
 	<email_text key="SUBMISSION_DECISION_REVIEWERS">
 		<subject>Decisão sobre "{$paperTitle}"</subject>
-		<body>Como um dos revisores da submissão, "{$paperTitle}," ao evento: {$conferenceName}, Estou lhe enviando as revisões e decisões editorias enviadas ao palestrante desta parte.
+		<body>Como um dos revisores da submissão "{$paperTitle}," encaminhada ao evento {$conferenceName}, estou enviando as avaliações e decisões editoriais enviadas ao autor, após a conclusão do processo de avaliação.
+
 Obrigado novamente por sua importante participação neste processo.
  
 {$editorialContactSignature}
@@ -102,32 +104,35 @@ Obrigado novamente por sua importante participação neste processo.
 	</email_text>
 	<email_text key="DIRECTOR_ASSIGN">
 		<subject>Tarefa designada pelo Diretor</subject>
-		<body>{$editorialContactName}:
+		<body>{$editorialContactName},
 
-A submissão, "{$paperTitle}," do evento: {$conferenceName} foi designada a você e permitirá que a veja como se fosse um Diretor de Modalidade por todo o processo editorial.
+A submissão "{$paperTitle}", encaminhada ao evento {$conferenceName}, lhe foi designada para que a acompanhe durante o processo editorial, de acordo com seu papel de Diretor de Modalidade.
 
 URL da submissão: {$submissionUrl}
-Nome do usuário: {$directorUsername}
+Login: {$directorUsername}
 
-Obrigado,
+Obrigado!
+
+Atenciosamente,
 {$editorialContactSignature}</body>
 		<description>Este e-mail informa a um Diretor de Modalidade que o Diretor designou a tarefa de supervisionar uma submissão através do processo de editoração. Ele contém informações sobre a submissão e como acessar o portal da conferência</description>
 	</email_text>
 	<email_text key="REVIEW_REQUEST">
-		<subject>Pedido de Avaliação</subject>
-		<body>{$reviewerName}:
+		<subject>Solicitação de avaliação</subject>
+		<body>{$reviewerName},
 
-Acreditamos que seria um excelente avaliador para a proposta, "{$paperTitle}," a qual foi submetida para {$conferenceName}. O extrato da submissão está inserido abaixo, esperamos que considere o convite dessa importante tarefa.
+Acreditamos que seria um excelente avaliador para a submissão "{$paperTitle}," submetida para a conferência {$conferenceName}. O extrato da submissão está inserido abaixo, e esperamos que considere aceitar o convite para assumir essa importante tarefa.
 
-Por favor, entre no site da conferência até {$weekLaterDate} para aceitar, ou não, o convite de avaliação. Use o mesmo Site para acessar a subimissão, registrar a avaliação e recomendações. O endereço do site é: {$conferenceUrl}
+Por favor, entre no site da conferência até {$weekLaterDate} para aceitar ou não o convite de avaliação. Use o mesmo site para acessar a submissão, registrar sua avaliação e recomendações. 
+O endereço do site é: {$conferenceUrl}
 
-A alaviação precisa ser feita até {$reviewDueDate}.
+O prazo para concluir a avaliação e até {$reviewDueDate}.
 
-Caso não possua um usuário (email)  e senha de acesso ao site da conferência, pode-se utilizar esse link para trocar a senha (que será enviada para o seu email) : {$passwordResetUrl} 
+Caso não possua seu login e senha de acesso ao site da conferência, faça uso deste link para trocar a senha (que será enviada para o seu email) : {$passwordResetUrl} 
 
-Endereço de submissão {$submissionReviewUrl}
+URL da submissão {$submissionReviewUrl}
 
-Grato por considerar nosso pedido.
+Agradecemos considerar nossa solicitação.
 
 {$editorialContactSignature}
 
@@ -140,18 +145,19 @@ Resumo
 		<description>Este email do diretor de modalidades para o avaliador para que aceite ou não a tarefa de avaliar uma submissão. Fornece informações sobre a submissão como: um pequeno resumo, a data final para a avaliação e como acessar a submissão .</description>
 	</email_text>
 	<email_text key="REVIEW_REQUEST_ONECLICK">
-		<subject>pedido de avaliação</subject>
+		<subject>Solicitação de avaliação</subject>
 		<body>{$reviewerName}:
 
-Acreditamos que seria um excelente avaliador para a proposta, "{$paperTitle}," a qual foi submetida para {$conferenceName}. O extrato da submissão está inserido abaixo, esperamos que considere o convite dessa importante tarefa.
+Acreditamos que seria um excelente avaliador para a proposta "{$paperTitle}", submetida para a conferência {$conferenceName}. O extrato da submissão está inserido abaixo, e esperamos que considere aceitar o convite para assumir essa importante tarefa.
 
-Por favor, entre no site da conferência até {$weekLaterDate} para aceitar, ou não, o convite de avaliação. Use o mesmo Site para acessar a subimissão, registrar a avaliação e recomendações. O endereço do site é: {$conferenceUrl}
+Por favor, entre no site da conferência até {$weekLaterDate} para aceitar ou não o convite de avaliação. Use o mesmo site para acessar a submissão, registrar sua avaliação e recomendações. 
+O endereço do site é: {$conferenceUrl}
 
-A avaliação precisa ser feita até {$reviewDueDate}.
+O prazo para concluir a avaliação é até {$reviewDueDate}.
 
-Endereço de submissão {$submissionReviewUrl}
+URL da submissão {$submissionReviewUrl}
 
-Grato por considerar nosso pedido.
+Agradecemos considerar nossa solicitação.
 
 {$editorialContactSignature}
 
@@ -164,151 +170,165 @@ Resumo
 		<description>Este email do diretor de modalidades para o avaliador para que aceite ou não a tarefa de avaliar uma submissão. Fornece informações sobre a submissão como: um pequeno resumo, a data final para a avaliação e como acessar a submissão. Esta mensagem é utilizada quando o  processo de avaliação padrão é selecionado na configuração da conferência, passo 2 e o acesso ao avaliador one-click está disponível.</description>
 	</email_text>
 	<email_text key="REVIEW_CANCEL">
-		<subject>Pedido de avaliação cancelada</subject>
-		<body>{$reviewerName}:
+		<subject>Solicitação de avaliação cancelada</subject>
+		<body>{$reviewerName},
 
-Decidimos, neste ponto, cancelar nosso pedido de avaliação para a submissão:  "{$paperTitle}," para a  {$conferenceName}. Pedimos sinceras desculpas pelo incoveniente, que por acaso causamos. Esperamos poder contar com sua ajuda nessa ou em outra conferência. 
+Infelizmente decidimos cancelar nossa solicitação de avaliação para a submissão "{$paperTitle}," enviada à conferência {$conferenceName}. Pedimos sinceras desculpas pelo inconveniente que o cancelamento possa causar. 
 
-Caso tenha aulma dúvida, por favor entre em contato.
+Esperamos poder contar com sua ajuda nessa ou em outra conferência. 
+
+?Em caso de dúvidas, entre em contato.
 
 {$editorialContactSignature}</body>
 		<description>Este email é enviado do diretor de modalidade para o avaliador que possui uma avaliação de uma submissão em progresso, para notificá-lo que a avaliação pode ser cancelada.</description>
 	</email_text>
 	<email_text key="REVIEW_CONFIRM">
-		<subject>Disponível para Avaliar</subject>
-		<body>{$editorialContactName}:
+		<subject>Disponível para avaliar</subject>
+		<body>{$editorialContactName},
 
-Estou disponível e disposto a avaliar a submissão: "{$paperTitle}," para a  {$conferenceName}. Obrigado por lembrar-se de mim. Espero ter a avaliação completa até: {$reviewDueDate}, podendo ser antes.
+Estou disponível e disposto a avaliar a submissão "{$paperTitle}", enviada à conferência {$conferenceName}. Agradeço lembrar-se de mim e confiar no meu conhecimento para assumir esta importante tarefa. Espero concluir a avaliação antes do prazo definido, {$reviewDueDate}.
 
 {$reviewerName}</body>
 		<description>Este email é enviado para o diretor de modalidade em resposta ao pedido de avaliação para avisá-lo que o pedido de avaliação foi aceito e será terminado na data especificada.</description>
 	</email_text>
 	<email_text key="REVIEW_CONFIRM_ACK">
-		<subject>Pedido de Avaliação Aceito</subject>
-		<body>{$reviewerName}:
+		<subject>Solicitação de avaliação aceito</subject>
+		<body>{$reviewerName},
 
-Grato por aceitar avaliar a  "{$paperTitle}" para a {$conferenceName} até {$reviewDueDate}.
+Agradecemos por aceitar assumir a avaliação da submissão "{$paperTitle}", encaminhada à conferência {$conferenceName}, até o prazo de {$reviewDueDate}.
 
 {$editorialContactSignature}</body>
 		<description>Este email é enviado do diretor de modalidades para o avaliador, afim do conhecimento de sua aceitação de avaliação ou encorajá-lo para completar a avaliação.</description>
 	</email_text>
 	<email_text key="REVIEW_DECLINE">
-		<subject>indisponível para avaliar</subject>
-		<body>{$editorialContactName}:
+		<subject>Indisponível para avaliar</subject>
+		<body>{$editorialContactName},
 
-Temo que, nesse momento, esteja indisponível para avaliar a submissão, "{$paperTitle}," para a  {$conferenceName}. Agradeço a lembrança e Espero poder ajudar em outra oportunidade.
+Temo que, neste momento, esteja indisponível para avaliar a submissão "{$paperTitle}," enviada à conferência {$conferenceName}. Agradeço lembrar-se de mim e confiar no meu conhecimento para assumir esta importante tarefa. Espero estar disponível em outra oportunidade.
 
 {$reviewerName}</body>
 		<description>This email is sent by a Reviewer to the Track Director in response to a review request to notify the Track Director that the review request has been declined.</description>
 	</email_text>
 	<email_text key="REVIEW_COMPLETE">
-		<subject>Avaliação completada</subject>
-		<body>{$editorialContactName}:
+		<subject>Avaliação concluída</subject>
+		<body>{$editorialContactName},
 
-Completei a avaliação de  "{$paperTitle}" para {$conferenceName}, e submeti as recomendações: "{$recommendation}."
+Concluí a avaliação de "{$paperTitle}", enviada à conferência {$conferenceName}, e encaminho minha recomendação: "{$recommendation}."
 
 {$reviewerName}</body>
 		<description>This email is sent by a Reviewer to the Track Director to notify them that a review has been completed and the comments and recommendations have been recorded on the conference web site.</description>
 	</email_text>
 	<email_text key="REVIEW_ACK">
-		<subject>Reconhecimento pela avaliação</subject>
-		<body>{$reviewerName}:
+		<subject>Agradecimento pela conclusão da avaliação</subject>
+		<body>{$reviewerName},
 
-Obrigado por completar a avaliação da submissão, "{$paperTitle}," para{$conferenceName}. Apreciamos sua contribuição para a qualidade dos trabalhos produzindos.
+Agradecemos por ter concluído a avaliação da submissão "{$paperTitle}", enviada à conferência {$conferenceName}. Apreciamos sua importante contribuição para garantir a qualidade dos trabalhos que publicamos.
 
 {$editorialContactSignature}</body>
 		<description>Este emial é enviado pelo diretor de modalidades para confirmar o recebimento da avaliação completa e agradecer ao avaliador por sua contribuição.</description>
 	</email_text>
 	<email_text key="REVIEW_REMIND">
-		<subject>Lembrança sobre a avaliação</subject>
-		<body>{$reviewerName}:
+		<subject>Lembrete de avaliação pendente</subject>
+		<body>{$reviewerName},
 
-Esta mensagem é apenas para lembrá-lo do pedido de avaliação para a submissão, "{$paperTitle}," para {$conferenceName}. Esperamos que tenha avaliado até {$reviewDueDate}, e seria muito bom recebermos sua resposta o quanto antes.
+Esta mensagem é apenas para lembrá-lo da solicitação de avaliação de "{$paperTitle}," enviado à conferência {$conferenceName}. Esperamos que tenha concluído os trabalhos até {$reviewDueDate}, e seria importante recebermos sua resposta o quanto antes.
 
-Caso não tenha usuário e senha para o site do evento, use esse link para trocar a senha (será enviado uma mensagem para o usuário - Email). {$passwordResetUrl}
+Caso não tenha seu login e senha para acessar o sistema, use o link a seguir para alterar a senha (que será enviada por e-mail junto com seu login). {$passwordResetUrl}
 
-Link da submissão: {$submissionReviewUrl}
+URL da submissão: {$submissionReviewUrl}
 
-Por favor confirme sua disponibilidade para completar essa importante contribuição  para o trabalho do evento. Esparamos notícias.
+Confirme sua disponibilidade para concluir sua importante contribuição para garantir a qualidade dos trabalhos do evento.
+
+Não hesite em entrar em contato, em caso de dúvidas ou problemas.
 
 {$editorialContactSignature}</body>
 		<description>Este email é enviado pelo diretor de moddalidades para lembrar o avaliador da data de entrega da avaliação.</description>
 	</email_text>
 	<email_text key="REVIEW_REMIND_ONECLICK">
-		<subject>Lembrança sobre a avaliação</subject>
-		<body>{$reviewerName}:
+		<subject>Lembrete de avaliação pendente</subject>
+		<body>{$reviewerName},
 
-Esta mensagem é apenas para lembrá-lo do pedido de avaliação para a submissão, "{$paperTitle}," para {$conferenceName}. Esperamos que tenha avaliado até {$reviewDueDate}, e seria muito bom recebermos sua resposta o quanto antes.
+Esta mensagem é apenas para lembrá-lo da solicitação de avaliação de "{$paperTitle}," enviado à conferência {$conferenceName}. Esperamos que tenha concluído os trabalhos até {$reviewDueDate}, e seria importante recebermos sua resposta o quanto antes.
 
-link da submissão: {$submissionReviewUrl}
+URL da submissão: {$submissionReviewUrl}
 
-Por favor confirme sua disponibilidade para completar essa importante contribuição  para o trabalho do evento. Esparamos notícias.
+Confirme sua disponibilidade para concluir sua importante contribuição para garantir a qualidade dos trabalhos do evento.
+
+Não hesite em entrar em contato, em caso de dúvidas ou problemas.
 
 {$editorialContactSignature}</body>
 		<description>Este email é enviado pelo diretor de modalidades para lembrar o avaliador da data limite.</description>
 	</email_text>
 	<email_text key="REVIEW_REMIND_AUTO">
-		<subject>lembrança automatizada sobre a avaliação</subject>
-		<body>{$reviewerName}:
+		<subject>Lembrete automático de avaliação pendente</subject>
+		<body>{$reviewerName},
 
-Esta mensagem é apenas para lembrá-lo do pedido de avaliação para a submissão, "{$paperTitle}," para {$conferenceName}. Esperamos que tenha avaliado até {$reviewDueDate}, este email foi gerado automaticamente e enviado passando a data. e seria muito bom recebermos sua resposta o quanto antes.
+Esta mensagem é apenas para lembrá-lo da solicitação de avaliação de "{$paperTitle}," enviado à conferência {$conferenceName}. Esperamos que tenha concluído os trabalhos até {$reviewDueDate}. Esta mensagem automática foi enviada pois o prazo expirou, e seria importante recebermos sua resposta o quanto antes.
 
-Caso não tenha usuário e senha para o site do evento, use esse link para trocar a senha (será enviado uma mensagem para o usuário - Email). {$passwordResetUrl}
+Caso não tenha seu login e senha para acessar o sistema, use o link a seguir para alterar a senha (que será enviada por e-mail junto com seu login). {$passwordResetUrl}
 
-link da submissão: {$submissionReviewUrl}
+URL da submissão: {$submissionReviewUrl}
 
-Por favor confirme sua disponibilidade para completar essa importante contribuição  para o trabalho do evento. Esparamos notícias.
+Confirme sua disponibilidade para concluir sua importante contribuição para garantir a qualidade dos trabalhos do evento.
+
+Não hesite em entrar em contato, em caso de dúvidas ou problemas.
 
 {$editorialContactSignature}</body>
 		<description>Este email é enviado automaticamente, quando um avaliador ultrapassa uma data  (Veja: opções de avaliação sob Configuração da conferência, passo 2) e o acesso do avaliador ao one-click está indisponível. tarefas esquematizadas Scheduled  devem estar disponíveis e configuradas (veja o arquivo de configuração do site).</description>
 	</email_text>
 	<email_text key="REVIEW_REMIND_AUTO_ONECLICK">
-		<subject>lembrança automatizada sobre a avaliação</subject>
-		<body>{$reviewerName}:
+		<subject>Lembrete automático de avaliação pendente</subject>
+		<body>{$reviewerName},
 
-Esta mensagem é apenas para lembrá-lo do pedido de avaliação para a submissão, "{$paperTitle}," para {$conferenceName}. Esperamos que tenha avaliado até {$reviewDueDate}, este email foi gerado automaticamente e enviado passando a data. e seria muito bom recebermos sua resposta o quanto antes.
-Submission URL: {$submissionReviewUrl}
+Esta mensagem é apenas para lembrá-lo da solicitação de avaliação de "{$paperTitle}," enviado à conferência {$conferenceName}. Esperamos que tenha concluído os trabalhos até {$reviewDueDate}. Esta mensagem automática foi enviada pois o prazo expirou, e seria importante recebermos sua resposta o quanto antes.
 
-Por favor confirme sua disponibilidade para completar essa importante contribuição  para o trabalho do evento. Esparamos notícias.
+URL da submissão: {$submissionReviewUrl}
+
+Confirme sua disponibilidade para concluir sua importante contribuição para garantir a qualidade dos trabalhos do evento.
+
+Não hesite em entrar em contato, em caso de dúvidas ou problemas.
 
 {$editorialContactSignature}</body>
 		<description>Este email é enviado automaticamente, quando um avaliador ultrapassa uma data  (Veja: opções de avaliação sob Configuração da conferência, passo 2) e o acesso do avaliador ao one-click está indisponível. tarefas esquematizadas Scheduled  devem estar disponíveis e configuradas (veja o arquivo de configuração do site).</description>
 	</email_text>
 	<email_text key="SUBMISSION_ABSTRACT_ACCEPT">
-		<subject>Decisão Editorial</subject>
-		<body>{$authorName}:
+		<subject>Decisão editorial</subject>
+		<body>{$authorName},
 
-Parabéns, o resumo de seu documento {$paperTitle} foi aceito para ser apresentado na(o) {$conferenceTitle} que acontecerá {$conferenceDate} em {$locationCity}. 
+Parabéns, o resumo de seu documento {$paperTitle} foi aceito para ser apresentado na conferência {$conferenceTitle} que acontecerá no dia {$conferenceDate}, em {$locationCity}. 
 
-Obrigado e aguardamos sua participação no evento.
+Agradecemos considerar esta conferência para publicar seus trabalhos e aguardamos sua presença no evento.
+
 {$editorialContactSignature}</body>
 		<description>Este email é enviado pelo Diretor de Modalidade ao autor da submissão para notifica-lo de sua decisão em relação a ela.</description>
 	</email_text>
 	<email_text key="SUBMISSION_ABSTRACT_DECLINE">
-		<subject>Decisão Editorial</subject>
-		<body>{$authorName}:
+		<subject>Decisão editorial</subject>
+		<body>{$authorName},
 
-Completamos a revisão do resumo de seu documento "{$paperTitle}." O resultado foi ...
+Concluímos a avaliação do resumo da submissão"{$paperTitle}." 
+
+O resultado é ...
 
 {$editorialContactSignature}</body>
 		<description>Este email é enviado pelo Diretor de Modalidade ao autor da submissão para notifica-lo de sua decisão em relação a ela.</description>
 	</email_text>
 	<email_text key="SUBMISSION_ABSTRACT_REVISE">
-		<subject>Decisão Editorial</subject>
-		<body>{$authorName}:
+		<subject>Decisão editorial</subject>
+		<body>{$authorName},
 
-Após cuidadosa revisão do resumo de seu documento, "{$paperTitle}" nós o aceitaremos para ser apresentado na(o) {$conferenceTitle} desde que as seguintes modificações sejam realizadas.
+Após cuidadosa avaliação da sua submissão, o documento "{$paperTitle}" será considerado para publicação na conferência {$conferenceTitle} desde que as seguintes alterações sejam realizadas.
 
-Obrigado e aguardamos sua participação no evento.
+Agradecemos a atenção dispensada e aguardamos sua participação no evento.
 
 {$editorialContactSignature}</body>
 		<description>Este email é enviado pelo Diretor de Modalidade ao autor da submissão para notifica-lo de sua decisão em relação a ela.</description>
 	</email_text>
 	<email_text key="SUBMISSION_PAPER_ACCEPT">
 		<subject>Decisão Editorial</subject>
-		<body>{$authorName}:
+		<body>{$authorName},
 
-Parabéns, o seu documento {$paperTitle} foi aceito para ser apresentado na(o) {$conferenceTitle} que acontecerá {$conferenceDate} em {$locationCity}. 
+Parabéns, o seu documento {$paperTitle} foi aceito para ser apresentado na conferência {$conferenceTitle} que acontecerá no dia {$conferenceDate}, em {$locationCity}. 
 
 Obrigado e aguardamos sua participação no evento.
 {$editorialContactSignature}</body>
@@ -316,37 +336,39 @@ Obrigado e aguardamos sua participação no evento.
 	</email_text>
 	<email_text key="SUBMISSION_PAPER_DECLINE">
 		<subject>Decisão Editorial</subject>
-		<body>{$authorName}:
+		<body>{$authorName},
 
-Completamos a revisão de seu documento "{$paperTitle}." O resultado foi ...
+Concluímos a avaliação do documento "{$paperTitle}." 
+
+O resultado foi ...
 
 {$editorialContactSignature}</body>
 		<description>Este email é enviado pelo Diretor de Modalidade ao autor da submissão para notifica-lo de sua decisão em relação a ela.</description>
 	</email_text>
 	<email_text key="SUBMISSION_PAPER_REVISE">
 		<subject>Decisão Editorial</subject>
-		<body>{$authorName}:
+		<body>{$authorName},
 
-Após cuidadosa revisão de seu documento, "{$paperTitle}" nós o aceitaremos para ser apresentado na(o) {$conferenceTitle} desde que as seguintes modificações sejam realizadas.
+Após cuidadosa avaliação de sua submissão, o documento "{$paperTitle}" sera aceito para ser apresentado na conferência {$conferenceTitle}, desde que as seguintes alterações sejam realizadas.
 
-Obrigado e aguardamos sua participação no evento.
+Agradecemos a atenção dispensada e aguardamos sua participação no evento.
 
 {$editorialContactSignature}</body>
 		<description>Este email é enviado pelo Diretor de Modalidade ao autor da submissão para notifica-lo de sua decisão em relação a ela.</description>
 	</email_text>
 	<email_text key="REGISTRATION_NOTIFY">
-		<subject>Notificação de Inscrição</subject>
-		<body>{$registrantName}:
+		<subject>Notificação de inscrição</subject>
+		<body>{$registrantName},
 
-Voce esta inscrito em nosso sistema para a(o) {$conferenceName}, com o seguinte registro:
+Você se inscreveu em nosso sistema para o evento {$conferenceName}, com os seguintes dados: 
 
 {$registrationType}
 
-Para acessar o conteúdo disponível somente à inscritos, acesse o sistema com seu login, "{$username}".
+Para acessar o conteúdo disponível somente à usuários cadastrados, acesse o sistema com seu login, "{$username}".
 
-Após acessar o sistema, voce poderá alterar seu perfil e senha a qualquer tempo.
+Após acessar o sistema, poderá alterar seu perfil e senha a qualquer tempo.
 
-Se voce tiver uma inscrição institucional, não será necessario aos usuários da instituição se logarem, uma vez que as requisições para o conteúdo restrito serão automaticamente autenticadas pelo sistema.
+Caso seja uma inscrição institucional, não será necessário aos usuários da instituição se logarem, uma vez que as requisições para o conteúdo restrito serão automaticamente autenticadas pelo sistema.
 
 Em caso de dúvidas, ente em contato.
 
@@ -354,22 +376,22 @@ Em caso de dúvidas, ente em contato.
 		<description>Este email notifica o leitor que o gerente criou um registro para ele. Informa também  a URL da conferencia bem como instruções de acesso.</description>
 	</email_text>
 	<email_text key="OPEN_ACCESS_NOTIFY">
-		<subject>Acesso Liberado</subject>
-		<body>Leitores:
+		<subject>Conferência de Acesso Livre</subject>
+		<body>Prezados Leitores,
 
-{$conferenceName} liberou o acesso de novos itens. Convidamos a ler o sumário e visitar nosso portal ({$conferenceUrl}) para acessar os documentos e itens de seu interesse.
+Informamos que a conferência {$conferenceName} publicou no formato de acesso livre uma nova edição. Convidamos a ler o sumário e visitar nosso portal ({$conferenceUrl}) para acesso aos documentos e itens de seu interesse.
 
-Agradecemos o interesse em nosso trabalho,
+Agradecemos seu apoio e interesse constantes em nosso trabalho.
+
 {$editorialContactSignature}</body>
 		<description>Este email é enviado a leitores inscritos que tenham solicitado receber aviso quando novos itens estão disponíveis ao acesso.</description>
 	</email_text>
 	<email_text key="USER_VALIDATE">
 		<subject>Validação de Cadastro</subject>
-		<body>{$userFullName}
+		<body>{$userFullName},
 
-Seu cadastro foi criado, sob o nome  {$conferenceName}.
-No entanto, para poder usá-lo, é necessário validar seu e-mail.
-Para validar seu e-mail, basta clicar no link a seguir:
+Seu cadastro foi criado na conferência {$conferenceName}, mas antes que possa usufruir do mesmo, é necessário validá-lo.
+Para isto, basta clicar no link de ativação de cadastro a seguir:
 
 {$activateUrl}
 
@@ -386,6 +408,7 @@ Atenciosamente,
 Link: {$url}
 
 {$principalContactSignature}</body>
+		<description></description>
 	</email_text>
 	<email_text key="NOTIFICATION_MAILLIST">
 		<subject>Nova notificação de {$siteTitle}</subject>
@@ -399,6 +422,7 @@ Link: {$url}
 Caso deseje não receber mais estas notificações, acesse {$unsubscribeLink} e informe seu e-mail e senha para cancelar a assinatura.
 
 {$principalContactSignature}</body>
+		<description></description>
 	</email_text>
 	<email_text key="NOTIFICATION_MAILLIST_WELCOME">
 		<subject>Bem-vindo a lista de mensagens de {$siteTitle}</subject>
@@ -406,11 +430,12 @@ Caso deseje não receber mais estas notificações, acesse {$unsubscribeLink} e 
 
 Clique no link a seguir para confirmar a solicitação e incluir seu e-mail na lista de mensagens: {$confirmLink}
 
-Caso deseje não receber mais as notificações, acesse {$unsubscribeLink} e informe seu e-mail e senha para cancelar o serviço.
+Caso não deseje receber mais as notificações, acesse {$unsubscribeLink} e informe seu e-mail e senha para cancelar o serviço.
 
 Sua senha para desabilitar as notificações é: {$password}
 
 {$principalContactSignature}</body>
+		<description></description>
 	</email_text>
 	<email_text key="NOTIFICATION_MAILLIST_PASSWORD">
 		<subject>Informações de cadastro na lista de mensagens de {$siteTitle}</subject>
@@ -422,13 +447,26 @@ Caso não deseje mais receber as notificações, acesse {$unsubscribeLink} e inf
 	</email_text>
 	<email_text key="MANUAL_PAYMENT_RECEIVED">
 		<subject>Pagaemento recebido para a conferência {$conferenceName}</subject>
-		<body>{$registrantName}:
+		<body>{$registrantName},
 
-Recebemos o pagemento para a conferência {$conferenceName} e sua inscrição foi atualizada.
+Recebemos o pagamento para a conferência {$conferenceName} e sua inscrição foi atualizada.
 
-Em caso de dúvidas, entre em contato através deste e-mail
+Em caso de dúvidas, entre em contato através deste e-mail.
 
 {$registrationContactSignature}</body>
+		<description></description>
+	</email_text>
+	<email_text key="SUBMISSION_PAPER_INVITE">
+		<subject>Decisão editorial</subject>
+		<body>{$authorName},
+
+Informamos que o resumo do documento {$paperTitle} foi aceito para ser apresentado na conferência {$conferenceTitle}, que ocorrerá no dia {$conferenceDate}, em {$locationCity}. 
+
+Envie agora o texto completo para avaliação.
+
+Agradecemos seu interesse em publicar seu trabalho na nossa conferência e aguardamos sua presença no nosso evento.
+
+{$editorialContactSignature}</body>
 		<description></description>
 	</email_text>
 </email_texts>

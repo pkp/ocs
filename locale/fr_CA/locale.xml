@@ -793,7 +793,6 @@ La validation peut échouer dans le cas d'adresses URL dont les données de form
 	<message key="common.pageHeader.altText">Image de l'en-tête de la page</message>
 	<message key="common.homePageHeader.altText">Image de l'en-tête de la page d'accueil</message>
 	<message key="common.conferenceHomepageImage.altText">Image de la page d'accueil de la conférence</message>
-	<message key="paper.citations">Références</message>
 	<message key="paper.comments.trackDefault">Par défaut</message>
 	<message key="paper.comments.disable">Désactiver</message>
 	<message key="paper.comments.enable">Activer</message>
@@ -829,4 +828,6 @@ La validation peut échouer dans le cas d'adresses URL dont les données de form
 	<message key="notification.type.submissions">Événements de soumission</message>
 	<message key="notification.type.suppFileModified">Le (ou les) fichier(s) supplémentaire(s) de "{$param}" a (ont) été modifié(s).</message>
 	<message key="notification.type.userComment">Un lecteur a fait un commentaire sur "{$param}"</message>
+	<message key="manager.reviewFormElements.included">Inclus dans le message à l'auteur</message>
+	<message key="schedConf.registration.landingPaid">Merci de vous être inscrit! Vous serez contactez pour des informations supplémentaires concernant le paiement.</message>
 </locale>

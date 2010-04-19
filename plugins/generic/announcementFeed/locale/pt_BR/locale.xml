@@ -19,7 +19,7 @@
 	<message key="plugins.generic.announcementfeed.settings">Configurações</message>
 	<message key="plugins.generic.announcementfeed.settings.all">Exibir links em todas as páginas.</message>
 	<message key="plugins.generic.announcementfeed.settings.homepage">Exibir links somente nas páginas inicial e de notícias.</message>
-	<message key="plugins.generic.announcementfeed.settings.announcement">Exibir links somente na de notícias.</message>
+	<message key="plugins.generic.announcementfeed.settings.announcement">Exibir links somente na página de notícias.</message>
 	<message key="plugins.generic.announcementfeed.settings.recentAnnouncements1">Limitar canal a</message>
 	<message key="plugins.generic.announcementfeed.settings.recentAnnouncements2">notícias mais recentes.</message>
 	<message key="plugins.generic.announcementfeed.settings.recentItemsRequired">Informe um número positivo válido para a quantidade de notícias.</message>

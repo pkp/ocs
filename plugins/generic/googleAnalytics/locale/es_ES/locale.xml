@@ -27,4 +27,9 @@
 	<message key="plugins.generic.googleAnalytics.manager.settings.googleAnalyticsSiteIdRequired">Por favor, intoduzca un número de cuenta.</message>
 
 	<message key="plugins.generic.googleAnalytics.manager.settings.ga"><![CDATA[Los autores envían trabajos a esta conferencia a través de esta web mediante un proceso por pasos  en el que se deposita el material oportuno (algunos eventos permiten al autor depositar tambien ficheros suplementarios, tales como  hojas de datos). Si encuentra dificultad durante el proceso y necesita ayuda,  contacte con <a href="mailto:{$supportEmail}">{$supportName}</a> por email o teléfono {$supportPhone}.]]></message>
+	<message key="plugins.generic.googleAnalytics.enabled">El plugin para Google Analytics ha sido habilitado.</message>
+	<message key="plugins.generic.sgoogleAnalyticsehl.disabled">El plugin para Google Analytics ha sido deshabilitado.</message>
+	<message key="plugins.generic.googleAnalytics.manager.settings.trackingCode">Código de seguimiento</message>
+	<message key="plugins.generic.googleAnalytics.manager.settings.trackingCodeRequired">Por favor, seleccione un código de seguimiento para su uso.</message>
+	<message key="plugins.generic.googleAnalytics.manager.settings.urchin">Código de seguimiento antiguo (urchin.js)</message>
 </locale>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE email_texts SYSTEM "../../../../../lib/pkp/dtd/emailTemplateData.dtd">
+<!--
+  * plugins/paymethod/paypal/locale/eu_ES/emailTemplateData.xml
+  *
+  * Copyright (c) 2000-2010 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localized email templates XML file.
+  *
+  * $Id$
+  -->
+<email_texts locale="eu_ES">
+	<email_text key="PAYPAL_INVESTIGATE_PAYMENT">
+		<subject>Ezohiko PayPal jarduera</subject>
+		<body>Open Conference Systems-ek {$schedConfName} ekitaldirako PayPAl ordainketarekin zerikusia duen ezohiko jarduera aurkitu du. Jarduera horrek azterketa sakonagoa edo eskuzko interbentzio behar dezake.
+
+Post elektroniko hau Open Conference Systems-eko PayPal pluginak sortua da.
+
+Eskaerari erantzuteko informazio osoa:
+{$postInfo}
+
+Informazio osagarria (baldin badago
+{$additionalInfo}
+
+Zerbitzariaren aldagaiak:
+{$serverVars}</body>
+	</email_text>
+</email_texts>

@@ -93,10 +93,7 @@
 	<message key="navigation.current">Conferências actuais</message>
 	<message key="navigation.otherConferences">Outras Conferências</message>
 	<message key="navigation.browseByConference">Por Conferência</message>
-	<message key="navigation.browseByPresenter">Por Autor</message>
-	<message key="navigation.infoForPresenters">Para Autores</message>
 	<message key="navigation.infoForReviewers">Para Avaliadores</message>
-	<message key="navigation.infoForPresenters.long">Informações para Autores</message>
 	<message key="navigation.infoForReviewers.long">Informações para Avaliadores</message>
 	<!-- Paper Queues -->
 	<message key="common.queue.long.submissionsUnassigned">Não designado</message>
@@ -125,15 +122,10 @@
 	<message key="track.title">Título da Painel</message>
 	<message key="track.abbreviation">Abreviatura</message>
 	<message key="track.abbreviation.example">(Por exemplo, Papers=PAP)</message>
-	<message key="track.default.title">Papers</message>
-	<message key="track.default.abbrev">PAP</message>
-	<message key="track.default.policy"></message>
-
 	<!-- Common Paper Terms -->
 	<message key="paper.papers">Submissões</message>
 	<message key="paper.submissionId">ID da Submissão</message>
 	<message key="paper.title">Título</message>
-	<message key="paper.presenters">Autor(es)</message>
 	<message key="paper.conferenceTrack">Painel</message>
 	<message key="paper.file">Documento</message>
 	<message key="paper.suppFile">Documento Suplementar</message>
@@ -179,18 +171,9 @@
 	<message key="submission.directorDecision">Decisão do Presidente Comissão Organizadora</message>
 	<message key="submission.stage">Fase {$stage}</message>
 	<message key="submission.directorReview">Avaliação do Presidente Comissão Organizadora</message>
-	<message key="submission.notifyPresenter">Notificar Autor</message>
 	<message key="submission.notifyDirector">Notificar Presidente Comissão Organizadora</message>
-	<message key="submission.directorPresenterRecord">Registo de mensagens para Presidente Comissão Organizadora/Autor</message>
 	<message key="submission.directorVersion">Versão do Presidente Comissão Organizadora</message>
-	<message key="submission.presentersRevisedVersion">Versão revista do Autor</message>
-	<message key="submission.presenterVersion">Versão do Autor</message>
 	<message key="submission.layout.description">Este passo opcional pode ser utilizado para converter as submissões para outros formatos antes ou depois de serem encaminhadas para Apresentações.</message>
-
-	<message key="submission.paperType">Tipo da Submissão</message>
-	<message key="submission.paperType.single">Apresentação Individual</message>
-	<message key="submission.paperType.panel">Apresentação de Painel</message>
-
 
 	<message key="submissions.track">Painel</message>
 	<message key="submissions.queuedAbstractReview">Resumo em Avaliação</message>
@@ -250,7 +233,6 @@
 	<message key="schedConf.registration.failed">A sua inscrição falhou. Por favor tente novamente.</message>
 	<message key="schedConf.registration.type">Tipo de Inscrição</message>
 	<message key="schedConf.registration.cost">Custo</message>
-	<message key="schedConf.registration.noneAvailable">Nenhum tipo de inscrição disponível.</message>
 	<message key="schedConf.registration.register">Inscrever</message>
 	<message key="schedConf.registration.typeCloses">(Encerramento {$closingDate})</message>
 	<message key="schedConf.registration.typeClosed">(Inscrições Encerradas {$closingDate})</message>
@@ -277,21 +259,14 @@
 	<message key="user.role.manager">Administrador Geral</message>
 	<message key="user.role.director">Presidente Comissão Organizadora</message>
 	<message key="user.role.trackDirector">Coordendador Painel</message>
-	<message key="user.role.presenter">Autor</message>
-
 	<message key="user.role.managers">Administradores da Conferência</message>
 	<message key="user.role.directors">Presidente Comissão Organizadora</message>
 	<message key="user.role.trackDirectors">Coordenadores Painel</message>
-	<message key="user.role.presenters">Autores</message>
-
-	<!--
-	 *
 	 * LOG - This section contains entries related to log entries.
 	 *
 	-->
 	
 	<message key="event.logType.paper">Documento</message>
-	<message key="event.logType.presenter">Autor</message>
 	<message key="event.logType.director">Presidente Comissão Organizadora</message>
 	<message key="event.logType.review">Avaliação</message>
 	<message key="event.logType.conference">Conferência</message>
@@ -311,10 +286,6 @@
 	<message key="submission.event.general.abstractSubmitted">Resumo Enviado</message>
 	<message key="submission.event.general.presentationSubmitted">Apresentação Enviada</message>
 	<message key="submission.event.general.paperPublished">Documento publicado</message>
-
-	<message key="submission.event.presenter.presenterRevision">Versão revista do Autor enviada</message>
-
-	<message key="submission.event.general.presenterRevision">Versão revista do Autor actualizada</message>
 
 	<message key="submission.event.director.directorAssigned">Presidente Comissão Organizadora designado à submissão</message>
 	<message key="submission.event.director.directorUnassigned">Presidente Comissão Organizadora não desigando desde a submissão</message>
@@ -388,16 +359,9 @@ Note que a interface OAI pode ser desactivada para este portal nas configuraçõ
 	<message key="conference.history.noLogEntries">Nenhuma entrada de log.</message>
 
 	<!-- Scheduled Conference Management -->
-	<message key="manager.schedConfs.form.createInstructions">Uma instância calendarizada da Conferência é criada ao fornecer o título (caso seja uma conferência anual, o nome da conferência e o ano, por exemplo) e a URL. O seu registo será de Presidente da Comissão Organizadora da Conferência e poderá designar outros Presidentes, que poderão administrar os detalhes do evento, começando pelo calendarização da conferência em 
-Cronograma da Conferência.</message>
-	<message key="manager.schedConfs.form.pathAlphaNumeric">O caminho pode conter apenas caracteres alfanuméricos, sublinhado, hífens,
-e deve começar e terminar com um caractere alfanumérico.</message>
-
 	<!-- Program settings -->
 
 	<!-- Conference Management -->
-	<message key="manager.registrationOptions">Opções de Inscrição</message>
-
 	<!-- Statistics & Reports -->
 
 	<!-- Plugin Management -->
@@ -460,9 +424,6 @@ Caso o administrador do portal já tenha registado o portal do Colectador do PKP
 
 
 	<!-- Scheduled Conference Setup Step 1 -->
-	<message key="manager.schedConfSetup.details.sponsors.noteDescription">Este texto será exibido por baixo de "Patrocinadores" e por cima da lista do nomes dos patrocinadores e urls sob "Comissão Organizadora" na página "Sobre".</message>
-	<message key="manager.schedConfSetup.details.contributors.noteDescription">Este texto será exibido por baixo de "Entidades Patrocinadoras" e por cima da lista dos nomes das entidades patrocinadoras e urls sob "Comissão Organizadora" na página "Sobre".</message>
-
 	<!-- Scheduled Conference Setup Step 2 -->
 	<message key="manager.schedConfSetup.submissions.subjectClassificationDescription"><![CDATA[A conferência utiliza um sistema de classificação de assunto disponível na web.<br />
 Título do sistema de classificação]]></message>
@@ -474,24 +435,6 @@ Título do sistema de classificação]]></message>
 
 	<!-- Track Management -->
 	<!-- Timeline management -->
-	<message key="manager.timeline.scheduleEvents">Calendarização de Eventos</message>
-	<message key="manager.timeline.include">Afixar no Cronograma da Conferência</message>
-	<message key="manager.timeline.postDate">Data Publicação</message>
-
-	
-
-
-	
-	<message key="manager.timeline.postOverview">Incluir na lista de Perspectiva Geral da Informações sobre a Conferência</message>
-	<message key="manager.timeline.postCFP">Incluir CFP na lista de Informação sobre a Conferência</message>
-	<message key="manager.timeline.postProposalSubmission">Incluir Proposta de Submissão na lista de Informações sobre a Conferência</message>
-	<message key="manager.timeline.postTrackPolicies">Incluir as Políticas de Painel na lista de Informações sobre a Conferência</message>
-	<message key="manager.timeline.postProgram">Incluir Programa na lista de Informações sobre a Conferência</message>
-	<message key="manager.timeline.postAccommodation">Incluir Alojamento na lista de Informações sobre a Conferência</message>
-	<message key="manager.timeline.postSupporters">Incluir Patrocinadores na lista de Informações sobre a Conferência</message>
-	<message key="manager.timeline.postRegistration">Incluir Inscrição na lista de Informações sobre a Conferência</message>	
-
-
 	<!-- Import/Export -->
 
 	<!-- Groups / Organizing Team -->
@@ -502,8 +445,6 @@ Título do sistema de classificação]]></message>
 	<message key="manager.people.confirmDisable">Desactivar este utilizador? Esta acção impossibilitará o utilizador de aceder ao sistema.
 
 Pode ser incluído o motivo para desactivar a conta.</message>
-	<message key="manager.people.enrollUserAsDescription">O sistema permite o registado de utilizadores sem função. Papéis podem ser atribuídos ou removidos a qualquer momento após a criação do registo.
-O utilizador só poderá ser encontrado na lista Todos os Utilizadores.</message>
 	<message key="manager.people.noAdministrativeRights"><![CDATA[Você não possui direitos administrativos sobre este utilizador porque:
 		<ul>
 			<li>O utilizador é o administrador do sistema</li>
@@ -520,46 +461,7 @@ O utilizador só poderá ser encontrado na lista Todos os Utilizadores.</message
 	<!-- Registration Type Management -->
 	
 	<!-- Registration Option Management -->
-	<message key="manager.registrationOptions.description">As Opções de Inscrição são itens adicionais que podem adicionados a um registo, tal como os tickets de uma refeição. O preçáro das Opções de Inscrição são definidas como parte integrante de cada Tipo de Inscrição.</message>
-	<message key="manager.registrationOptions.costs">Custos das Opções de Inscrição</message>
-	<message key="manager.registrationOptions.createTitle">Criar</message>
-	<message key="manager.registrationOptions.create">Criar Opção de Nova Inscrição</message>
-	<message key="manager.registrationOptions.confirmDelete">Aviso! Ao eliminar esta opção afectará todas as inscrições em uso. Tem a certeza que pretende continuar e eliminar esta opção de inscrição?</message>
-	<message key="manager.registrationOptions.noneCreated">Não foram criadas nenhumas opções de inscrição.</message>
-	<message key="manager.registrationOptions.name">Opção de Inscrição</message>
-	<message key="manager.registrationOptions.cost">Custo</message>
-	<message key="manager.registrationOptions.costSetInRegistrationType">O custo para todas as opções de inscrições tem de ser definidos para cada tipo de inscrição.</message>		
-	<message key="manager.registrationOptions.currency">Moeda</message>
-	<message key="manager.registrationOptions.openDate">Disponível a Partir De</message>
-	<message key="manager.registrationOptions.closeDate">Disponível Até</message>
-	<message key="manager.registrationOptions.registrationOptionCreatedSuccessfully">Criada com sucesso a opção de inscrição.</message>
-	<message key="manager.registrationOptions.editTitle">Editar</message>
-	<message key="manager.registrationOptions.edit">Edita Opção de Inscrição</message>
-	<message key="manager.registrationOptions.form.optionNameRequired">É necessário um nome para a opção de inscrição.</message>
-	<message key="manager.registrationOptions.form.optionNameExists">Já existe um nome com esta opção de inscrição.</message>
-	<message key="manager.registrationOptions.form.costRequired">É necessário nomear um custo.</message>
-	<message key="manager.registrationOptions.form.costNumeric">O custo tem de ser positivo e em valor numérico.</message>
-	<message key="manager.registrationOptions.form.currencyRequired">É necessário nomear a moeda.</message>
-	<message key="manager.registrationOptions.form.currencyValid">Seleccione uma moeda válida.</message>
-	<message key="manager.registrationOptions.form.membershipValid">Use a  (checkbox) fornecida.</message>
-	<message key="manager.registrationOptions.form.notPublicValid">Use a caixa de verificação (checkbox) fornecida.</message>
-	<message key="manager.registrationOptions.form.optionName">Nome</message>
-	<message key="manager.registrationOptions.form.description">Descrição</message>
-	<message key="manager.registrationOptions.form.cost">Custo</message>
-	<message key="manager.registrationOptions.form.costInstructions">Insira um valor numérico(e.g., 40 ou 40.00). Não insira outro tipo de texto (e.g., $).</message>
-	<message key="manager.registrationOptions.form.code">Código</message>
-	<message key="manager.registrationOptions.form.code.instructions">Insira uma código (e.g., 1234) se a inscrição nesta opção for restrita aos utilizadores a quem foi enviado uma senha durante o processo de inscrição (tal como os apresentadores convidados que podem efectuar a sua inscrição sem qualquer encargo).</message>
-	<message key="manager.registrationOptions.form.currency">Moeda</message>
-	<message key="manager.registrationOptions.form.openDate">Aberto para Inscrições</message>
-	<message key="manager.registrationOptions.form.closeDate">Encerrado para Inscrições</message>
-	<message key="manager.registrationOptions.form.notPublic">Não disponibilizar publicamente esta opção de inscrição.</message>
-	<message key="manager.registrationOptions.form.saveAndCreateAnotherOption">Guardar e Criar Outra</message>
-	<message key="manager.registrationOptions.form.closeBeforeOpen">A data de abertura para esta opção de inscrição tem de figurar antes da data de encerramento.</message>
-
 	<!-- Registration Management -->
-	<message key="manager.registration.selectRegistrant.desc">Registration access privileges are automatically granted to the conference's Conference Directors, Directors, and Track Directors.
-Administradores Gerais, Presidentes da Comissão e Coordenadores de Painel terão acesso automático ao conteúdo para Inscritos.</message>
-
 	<!-- Announcement Type Management -->
 
 	<!-- Announcements Management -->
@@ -578,8 +480,6 @@ com sinal positivo (+) indicando avaliação em curso.]]></message>
 
 
 	<!-- Track Director -->
-	<message key="trackDirector.presenter.confirmRenotify">Notificar autor novamente reiniciará a tarefa. Deseja realmente notificar o autor?</message>
-
 	<message key="trackDirector.regrets.breadcrumb">Histórico da Avaliação</message>
 	<message key="trackDirector.regrets.title">#{$paperId} Histórico da Avaliação</message>
 	<message key="trackDirector.regrets">Histórico da Avaliação</message>
@@ -633,26 +533,12 @@ com sinal positivo (+) indicando avaliação em curso.]]></message>
 	<message key="reviewer.paper.ensuringBlindReview">Assegurando uma Avaliação Cega segura</message>
 
 	<!-- Presenter -->
-	<message key="presenter.submit.supplementaryFilesAbstractOnly">3. Envio somente de Documentos Suplementares</message>
-
-	<message key="presenter.submissions.queuedAbstractReviewRevisions">Abstract em Avaliação: Avaliações Exigidas</message>
-	<message key="presenter.submissions.queuedPaperReviewRevisions">Paper em Avaliação: Avaliações Exigidas</message>
-
 	<!-- Paper Submission Step 1 -->
 
 
 	<!-- Paper Submission Step 2 -->
 
 	<!-- Paper Submission Step 3 -->
-	<message key="presenter.submit.uploadInstructions"><![CDATA[Para transferir um manuscrito para a conferência, execute os seguintes passos:
-<ol>
-<li>Nesta página, clique em Procurar (Browse, se o idioma do navegador for inglês , ou Escolher Arquivo), abrindo uma janela de seleção Esoclha Arquivo (Enviar Arquivo) para localizar o documento no dísco rígido do seu computador.</li>
-<li>Localize o documento desejado e selecione-o.</li>
-<li>Clique em Abrir na janela, que colocará o nome do documento no campo respectivo do formulário de envio.</li>
-<li>Clique em Transferir, para enviar o documento do seu computador para o servidor de hospedagem da conferência. O sistema dará um novo nome ao documento seguindo os padrões definidos pela conferência.</li>
-<li>Uma vez transferido, clique em Guardar e Continuar no final da página.</li>
-</ol>]]></message>
-
 	<!-- Paper Submission Step 4 -->
 
 	<!-- Paper Submission Step 4a: Supplementary Files -->
@@ -674,13 +560,8 @@ com sinal positivo (+) indicando avaliação em curso.]]></message>
 	<!-- Submission Email Log -->
 
 	<!-- Submission Comments -->
-	<message key="submission.comments.directorPresenterCorrespondence">Comentários Presidente Comissão Organizadora/Autor</message>
-	<message key="submission.comments.canShareWithPresenter">Para autor e editor</message>
-	<message key="submission.comments.cannotShareWithPresenter">Para Presidente Comissão Organizadora</message>
 	<message key="submission.comments.blindCcReviewers">Após o envio, apresentar uma cópia carbono (BCC) da decisão editorial para editar e encaminhar aos avaliadores.</message>
-	<message key="submission.comments.forPresenterDirector">Para autor e Presidente Comissão Organizadora</message>
 	<message key="submission.comments.forDirector">Para Presidente Comissão Organizadora</message>
-	<message key="submission.comments.saveAndEmailPresenter">Guardar e enviar e-mail ao autor</message>
 	<message key="submission.comments.saveAndEmailDirector">Guardar e enviar e-mail ao Presidente Comissão Organizadora</message>
 
 	<!-- Login -->
@@ -711,22 +592,13 @@ com sinal positivo (+) indicando avaliação em curso.]]></message>
 	<message key="user.account.form.passwordLengthTooShort">Senha digitada não contém o mínimo de caracteres.</message>
 	<message key="user.account.readerDescription">Receber notificação via e-mail da publicação de apresentações.</message>
 	<message key="user.account.openAccessNotificationDescription">Receber notificação via e-mail quando a conferências se tornar de Acesso Livre.</message>
-	<message key="user.account.presenterDescription">Permitido submeter à conferência.</message>
 	<message key="user.account.reviewerDescriptionNoInterests">Disponível para realizar avaliação por pares das submissões a esta conferência.</message>
 	<message key="user.account.reviewerDescription">Disponível para realizar avaliação por pares das submissões a esta conferência. Identifique a área de interesse para avaliação (áreas de interesse e metodologias de pesquisa).</message>
-	<message key="user.account.presenterRegistrationMessage">Embora possua um registo no portal, não possui o papel de autor nesta conferência.</message>
-
-
-
 	<!-- Search -->
-	<message key="search.browsePresenterIndex">Índice de Palestrantes</message>
 	<message key="search.searchFor">Pesquisar termo</message>
 	<message key="search.inField">no campo</message>
-	<message key="search.presenter">Autor</message>
 	<message key="search.withinConference">na conferência</message>
 	<message key="search.allConferences">Todas as conferências</message>
-	<message key="search.presenterIndex">Índice de Autores</message>
-	<message key="search.presenterDetails">Perfil do Autor</message>
 	<message key="search.syntaxInstructions"><![CDATA[Dicas para pesquisa: <ul>
 <li>Os termos são indiferentes a maiúsculas ou minúsculas</li>
 <li>Palavras comuns são ignoradas</li>
@@ -778,7 +650,6 @@ com sinal positivo (+) indicando avaliação em curso.]]></message>
 	<message key="about.conferenceContact">Contacto da Conferência</message>
 	<message key="about.aboutTheConference">Sobre a Conferência</message>
 	<message key="about.organizingTeam">Comissão Organizadora</message>
-	<message key="about.editorialPolicies">Políticas Editoriais</message>
 	<message key="about.submissions">Submissões</message>
 	<message key="about.sponsors">Patrocinadores</message>
 	<message key="about.contributors">Entidades Patrocinadoras</message>
@@ -788,7 +659,6 @@ com sinal positivo (+) indicando avaliação em curso.]]></message>
 	<message key="about.onlineSubmissions.needAccount">Não possui Login/Senha?</message>
 	<message key="about.onlineSubmissions.registration">Inscrições</message>
 	<message key="about.onlineSubmissions.registrationRequired">A Inscrição, preenchendo o registo para criar o seu login e senha, é obrigatória para submissão de documentos online e verificar a etapa de submissões.</message>
-	<message key="about.presenterGuidelines">Directrizes para Autores</message>
 	<message key="about.submissionPreparationChecklist">Itens de Verificação para Submissão</message>
 	<message key="about.copyrightNotice">Declaração de Direito Autoral</message>
 	<message key="about.privacyStatement">Política de Privacidade</message>
@@ -796,7 +666,6 @@ com sinal positivo (+) indicando avaliação em curso.]]></message>
 	<message key="about.openAccessPolicy">Política de Acesso Livre</message>
 	<message key="about.archiveAccessPolicy">Política de Acesso aos Arquivos</message>
 	<message key="about.delayedOpenAccess">Acesso Livre Adiado</message>
-	<message key="about.presenterSelfArchive">Auto-arquivamento pelo Autor</message>
 	<message key="about.archiving">Arquivamento</message>
 	<message key="about.registration">Inscrições</message>
 	<message key="about.registrationContact">Contacto para Inscrições</message>
@@ -875,8 +744,6 @@ O servidor actualmente tem suporte a mbstring: <strong>{$supportsMBString}</stro
 	<message key="installer.additionalLocalesInstructions">Seleccione qualquer idioma adicional para incluir no sistema. Os idiomas estarão disponíveis para todas as conferências hospedadas. Idiomas adicionais também podem ser instalados a qualquer tempo através da interface web de administração.</message>
 	<message key="installer.filesDirInstructions">Insira o caminho físico completo para um directório existente no servidor onde serão armazenados os documentos submetidos. Este directório não deve possuir acesso directo via web. Verifique se o directório existe e se possui permissões de escrita antes da instalação. Os caminhos no Windows devem utilizar a barra delimitadora para frente, ex.: "C:/myconference/files".</message>
 	<message key="installer.databaseSettingsInstructions">O sistema exige acesso a uma base de dados SQL para armazenar os dados. Veja os requisitos do sistema para a lista de bases de dados suportadas. Nos campos a seguir, informe as configurações para conexão com a base de dados.</message>
-	<message key="installer.installOCS">Instalar o sistema</message>
-	<message key="installer.upgradeOCS">Actualizar o sistema</message>
 	<message key="installer.reinstallAfterDatabaseError"><![CDATA[<strong>AVISO:</strong> em caso de erro durante a instalação da base de dados poder ser necessário eliminar a base de dados ou as tabelas antes de executar novamente a instalação.]]></message>
 	<message key="installer.overwriteConfigFileInstructions"><![CDATA[<h4>IMPORTANTE!</h4>
 <p>A instalação não conseguiu sobrescrever o documento de configuração. Antes de usar o sistema, edite o documento <tt>config.inc.php</tt> num editor de texto e substitua todo o conteúdo pelo texto no campo abaixo.</p>]]></message>
@@ -892,9 +759,6 @@ O servidor actualmente tem suporte a mbstring: <strong>{$supportsMBString}</stro
 	<!-- Paper Logs -->
 	<message key="log.default.abstractPeriodExpired">O período para o resumo da submissão {$paperId} permanecer incompleta expirou. Submissão arquivada.</message>
 	<message key="log.default.paperPeriodExpired">O período para a submissão {$paperId} permanecer incompleta expirou. Submissão arquivada.</message>
-	<message key="log.presenter.abstractSubmitted">{$presenterName} submeteu um novo resumo, ID {$submissionId}.</message>
-	<message key="log.presenter.presentationSubmitted">{$presenterName} submeteu um novo documento, ID {$submissionId}.</message>
-	<message key="log.presenter.documentRevised">{$presenterName} avaliou o documento {$paperId}. O novo ID é {$fileId}.</message>
 	<message key="log.review.reviewerAssigned">{$reviewerName} foi designado para avaliar a submissão {$paperId} na rodada {$stage}.</message>
 	<message key="log.review.reviewerUnassigned">{$reviewerName} foi eliminado da avaliação da submissão {$paperId} na rodada {$stage}.</message>
 	<message key="log.review.reviewInitiated">A fase {$stage} de avaliação por {$reviewerName} designado à submissão {$paperId} foi iniciado.</message>
@@ -934,8 +798,6 @@ O servidor actualmente tem suporte a mbstring: <strong>{$supportsMBString}</stro
 	<message key="log.timeline.endDateChanged">Data de conclusão da conferência {$oldEndDate} alterada para {$newEndDate}.</message>
 	<message key="log.timeline.regReviewerOpenDateChanged">Data de abertura de inscrição de avaliadores {$oldRegReviewerOpenDate} alterada para {$newRegReviewerOpenDate}.</message>
 	<message key="log.timeline.regReviewerCloseDateChanged">Data de encerramento da inscrição de avaliadores {$oldRegReviewerCloseDate} alterada para {$newRegReviewerCloseDate}.</message>
-	<message key="log.timeline.regPresenterOpenDateChanged">Data de abertura de inscrição de autores {$oldRegAuthorOpenDate} alterada para {$newRegAuthorOpenDate}.</message>
-	<message key="log.timeline.regPresenterCloseDateChanged">Data de encerramento de inscrição de autores {$oldRegAuthorCloseDate} alterada para {$newRegAuthorCloseDate}.</message>
 	<message key="log.timeline.showCFPDateChanged">A data de exibição da Call for Papers (CPS) {$oldShowCFPDate} alterada para {$newShowCFPDate}.</message>
 	<message key="log.timeline.submissionsOpenDateChanged">Data de abertura de submissões {$oldSubmissionsOpenDate} alterada para {$newSubmissionsOpenDate}</message>
 	<message key="log.timeline.submissionsCloseDateChanged">Data de encerramento das submissões {$oldSubmissionsCloseDate} alterada para {$newSubmissionsCloseDate}</message>
@@ -960,10 +822,7 @@ O servidor actualmente tem suporte a mbstring: <strong>{$supportsMBString}</stro
 
 	<message key="rt.admin.options">Ferramentas Opcionais</message>
 
-	<message key="rt.admin.settings.presenterBio">Biografia do Autor(Exibe a biografia do autor alimentada no sistema)</message>
 	<message key="rt.admin.settings.addComment">Adicionar comentários (Permite a publicação de comentários dos leitores, administrados pelo Editor da Conferência).Comentários dos Leitores deve estar activado em Configuração da Conferência</message>
-	<message key="rt.admin.settings.emailPresenter">E-mail ao autor (Abre uma opção para comunicação direta com o autor)</message>
-
 	<!-- RT Versions -->
 
 	<!-- RT Contexts -->
@@ -978,15 +837,9 @@ A validação pode falhar em URLs para pesquisa que requeiram dados via o métod
 
 
 
-	<message key="rt.presenterBio">Biografia do Autor</message>
-
-	<message key="rt.metadata.dublinCore.primaryPresenter">Autor</message>
-
-	<message key="rt.metadata.pkp.primaryPresenter">Nome do Autor, afiliação institucional, país</message>
 	<message key="rt.metadata.pkp.peerReviewed">Documento Avaliado por pares</message>
 
 
-	<message key="rt.emailPresenter">E-mail ao autor</message>
 	<message key="rt.thisConference">Pesquisar na conferência</message>
 
 	<message key="rt.comments.commentsClosed">† Comentários encerrados em {$closeCommentsDate}</message>
@@ -1008,37 +861,8 @@ A validação pode falhar em URLs para pesquisa que requeiram dados via o métod
 	 * DEFAULT - Default settings for setup items.
 	 *
 	-->
-	<message key="default.conferenceSettings.copyrightNotice"><![CDATA[Autores que submetem trabalhos a esta conferência aceitam os seguintes termos:<br/>
-<strong>a)</strong>&nbsp;Autores retêm os direitos de autoria do trabalho, enquanto permitem à conferência disponibilizar o trabalho não publicado sob uma licença <a href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution License</a>, que permite o livre acesso, uso e divulgação/compartilhamento do trabalho, com indicação de autoria e sua apresentação inicial nesta conferência.<br/>
-<strong>b)</strong>&nbsp;Autores são autorizados a abrir mão dos termos da licença Creative Commons e assumir outros arranjos contratuais separados para a distribuição não-exclusiva e subseqüênte publicação do trabalho (ex.: publicar uma versão revista numa conferência, armazenar em repositório institucional, ou publicar como capítulo de um livro), com indicação de sua apresentação inicial nesta conferência.<br/>
-<strong>c)</strong>&nbsp;Autores são estimulados a publicar e distribuir o seu trabalho online (ex.: em repositórios institucionais ou na sua página pessoal) a qualquer ponto antes e após a conferência.]]></message>
-
-	<message key="default.schedConfSettings.checklist.notPreviouslyPublished">A contribuição é original e inédita, e não está sendo avaliada para publicação por outra conferência; caso contrário, justificar em "Comentários ao Presidente Comissão Organizadora"</message>
-	<message key="default.schedConfSettings.checklist.fileFormat">Os arquivos para submissão estão em formato Microsoft Word, OpenOffice ou RTF.</message>
-	<message key="default.schedConfSettings.checklist.addressesLinked"><![CDATA[Todos os endereços de páginas na Internet (URLs), incluídas no texto (Ex.: <a href="http://pkp.sfu.ca">http://pkp.sfu.ca</a>) estão activos e prontos para clicar.]]></message>
-	<message key="default.schedConfSettings.checklist.submissionAppearance">O texto está em espaço 1,5 usa uma fonte de 12-pontos; emprega itálico em vez de sublinhar (excepto em endereços URL); com figuras e tabelas inseridas no texto, e não no seu final.</message>
-	<message key="default.schedConfSettings.checklist.anonymous">Caso a proposta seja avaliada por pares, os nomes dos autores serão removidos do documento, com o uso de "o Autor" e ano na bibliografia e notas de rodapé, em vez de nome do autor, título do documento, etc.</message>
-	<message key="default.schedConfSettings.checklist.personalInformationRemoved">Ao submeter uma proposta para ser avaliado por pares, todos os documentos do Microsoft Office (incluindo Documentos Suplementares) deverão ser guardados acedendo ao menu Arquivo a opção Guardar Como; em seguida clicando em Ferramentas (ou Opções no Mac); em seguida clicando em Segurança; escolhendo "Remover informações pessoais das propriedades do arquivo ao guardar"; finalizar clicando Guardar.</message>
-	<message key="default.conferenceSettings.privacyStatement">Os nomes e endereços fornecidos nesta conferência serão usados exclusivamente para os serviços prestados por esta conferência, não sendo disponibilizados para outras finalidades ou a terceiros.</message>
-	<message key="default.conferenceSettings.presenterSelfArchivePolicy">Autores têm permissão e são estimulados a submeter artigos adicionais ou portais institucionais, antes e após a publicação (sempre oferecendo uma indexação detalhada referenciando o local da publicação do artigo).</message>
-	<message key="default.conferenceSettings.emailSignature">________________________________________________________________________
-{$conferenceName}
-{$conferenceUrl}</message>
-	<message key="default.conferenceSettings.forReaders"><![CDATA[Estimulamos os leitores a se registarem para receber as notificações de publicação dos documentos a esta conferência. Recomendamos a leitura do conteúdo em <a href="{$aboutUrl}">Sobre a Conferência</a> para conhecer as políticas, além de visitar a <a href="{$conferenceUrl}">Página inicial da Conferência</a> para informações e novidades sobre futuras conferências.]]></message>
-	<message key="default.conferenceSettings.forPresenters"><![CDATA[Deseja enviar contribuições à conferência? Convidamos todos a conferir a página <a href="{$aboutUrl}">Sobre a Conferência</a> para conhecer as políticas, além de visitar a <a href="{$conferenceUrl}">Página inicial da Conferência</a> para informações e novidades sobre futuras conferências.]]></message>
-	<message key="default.conferenceSettings.lockssLicense"><![CDATA[Esta conferência utiliza o sistema LOCKSS para criar um sistema de arquivo distribuído entre as bibliotecas participantes e permite às mesmas criar arquivos permanentes da conferência para a preservação e restauração. <a href="http://lockss.stanford.edu/">Saiba mais...</a>]]></message>
-
-	<message key="default.schedConfSettings.emailSignature">________________________________________________________________________
-{$conferenceName} {$schedConfName}
-{$schedConfUrl}</message>
-	<message key="default.schedConfSettings.checklist.bibliographicRequirements"><![CDATA[O texto segue os padrões de estilo e requisitos bibliográficos descritos em <a href="{$presenterGuidelinesUrl}">Normas de Submissão</a>, disponível em Sobre a Conferência.]]></message>
-	<message key="default.schedConfSettings.forReaders"><![CDATA[Estimulamos os leitores a se registarem para receber as notificações de publicação dos documentos a esta conferência. Clique em <a href="{$accountUrl}">Registo</a> no menu do sistema. Esta lista permite aos organizadores oferecer um mínimo de suporte ou acesso ao conteúdo. Conheça a <a href="{$privacyStatementUrl}">Declaração de Privacidade</a> que assegura aos leitores e utilizadores a privacidade dos seus nomes e endereços de e-mail, sendo utilizados apenas para esta conferência.]]></message>
-	<message key="default.schedConfSettings.forPresenters"><![CDATA[Deseja enviar contribuições à conferência? Convidamos todos a conferir a página <a href="{$aboutUrl}">Sobre a Conferência</a> para conhecer as políticas dos painéis, bem como as <a href="{$presenterGuidelinesUrl}">Normas de Submissão</a>. Os autores devem <a href="{$accountUrl}">registar-se</a> no sistema antes de iniciar o processo de submissão, ou <a href="{$loginUrl}">aceder ao sistema</a> e iniciar o processo de submissão, caso já possuam um registo.]]></message>
-
 	<message key="common.time">Hora</message>
 	<message key="common.sortBy">Ordenar por...</message>
-	<message key="email.compose.tooSoon">Tentativa de envio de mensagem muito próxima do envio de mensagem anterior.
-Aguarde alguns minutos antes de enviar outra mensagem.</message>
 	<message key="schedConf.accommodation">Alojamentos</message>
 	<message key="schedConf.schedule.title">Calendarização</message>
 	<message key="schedConf.accommodation.title">Alojamentos</message>
@@ -1066,4 +890,46 @@ Aguarde alguns minutos antes de enviar outra mensagem.</message>
 	<message key="about.delayedOpenAccessDescription">O conteúdo desta conferência estará disponível para acesso livre em {$delayedOpenAccessDuration} mês(es) após a publicação do conteúdo da conferência calendarizada.</message>
 	<message key="log.timeline.postScheduleDateChanged">A data de publicação de calendarização foi alterada de {$oldPostScheduleDate} para {$newPostScheduleDate}.</message>
 	<message key="log.timeline.postScheduleChanged">A configuração "publicação da calendarização" foi alterada de {$oldPostSchedule} para {$newPostSchedule}.</message>
+	<message key="common.copy">Copiar</message>
+	<message key="common.preview">Pré-visualizar</message>
+	<message key="common.activate">Activar</message>
+	<message key="common.deactivate">Desactivar</message>
+	<message key="manager.reviewForms">Formulários Revisão</message>
+	<message key="manager.reviewForms.noneChosen">Nenhum / Formulário Revisão Livre</message>
+	<message key="manager.reviewForms.noneCreated">Não foram criados nenhum formulário de revisão.</message>
+	<message key="manager.reviewForms.create">Criar Formulário de Revisão</message>
+	<message key="manager.reviewForms.edit">Formulário de Revisão</message>
+	<message key="manager.reviewForms.title">Título</message>
+	<message key="manager.reviewForms.description">Descrição e Instruções</message>
+	<message key="manager.reviewForms.preview">Pré-visualizar Formulário</message>
+	<message key="manager.reviewForms.completed">Concluído</message>
+	<message key="manager.reviewForms.inReview">Em Revisão</message>
+	<message key="manager.reviewForms.confirmDeleteUnpublished">Tem a certeza que pretende eliminar este formulário de revisão não publicado?</message>
+	<message key="manager.reviewForms.form.titleRequired">É requerido um título no formulário de revisão.</message>
+	<message key="manager.reviewFormElements">Itens do Formulário</message>
+	<message key="manager.reviewFormElements.create">Criar Novo Item</message>
+	<message key="manager.reviewFormElements.edit">Editar Item Formulário</message>
+	<message key="manager.reviewFormElements.noneCreated">Não foram criados nenhum item do formulário.</message>
+	<message key="manager.reviewFormElements.confirmDelete">Tem a certeza que pretende eliminar um elemento do formulário de revisão publicado?</message>
+	<message key="manager.reviewFormElements.copyTo">Copiar para:</message>
+	<message key="manager.reviewFormElements.question">Item</message>
+	<message key="manager.reviewForms.list.description">Os formulários de avaliação pelos pares criados aqui estarão disponíveis aos avaliadores para preenchimento, em vez do formulário padrão que consiste em duas caixas de texto de comentários com comentários exclusivos para o autor e outra para o  Editor e o Autor. Formulários de avaliação podem ser designados a seções específicas, e os editores poderão escolher qual formulário utilizar no momento da avaliação. em todos os casos, os editores poderão incluir as avaliações nas correspondências com o autor.</message>
+	<message key="manager.reviewFormElements.required">Campo de avaliação obrigatório</message>
+	<message key="manager.reviewFormElements.included">Incluído em mensagem ao autor</message>
+	<message key="manager.reviewFormElements.elementType">Tipo de campo</message>
+	<message key="manager.reviewFormElements.possibleResponse">Reposta possível</message>
+	<message key="manager.reviewFormElements.addResponseItem">Incluir reposta possível</message>
+	<message key="manager.reviewFormElements.chooseType">Escolher o tipo de campo</message>
+	<message key="manager.reviewFormElement.changeType">Aviso: Alterar o tipo de campo de um formulário de avaliação de múltipla escolha para campo aberto resultará na exclusão das opções de múltipla escolha.</message>
+	<message key="manager.reviewFormElements.form.questionRequired">Uma pergunta para o campo do formulário é obrigatória.</message>
+	<message key="manager.reviewFormElements.form.elementTypeRequired">O tipo do campo do formulário é obrigatório.</message>
+	<message key="manager.reviewFormElements.smalltextfield">Campo de texto pequeno</message>
+	<message key="manager.reviewFormElements.textfield">Campo de texto de uma linha</message>
+	<message key="manager.reviewFormElements.textarea">Campo de texto longo</message>
+	<message key="manager.reviewFormElements.checkboxes">Checkbox (campo de seleção de múltiplas escolhas)</message>
+	<message key="manager.reviewFormElements.radiobuttons">Botão de rádio (campo de seleção de escolha única entre várias opções)</message>
+	<message key="manager.reviewFormElements.dropdownbox">Campo de menu de opções</message>
+	<message key="navigation.browseByAuthor">por Autor</message>
+	<message key="navigation.infoForAuthors">para Autores</message>
+	<message key="navigation.infoForAuthors.long">Informações para Autores</message>
 </locale>

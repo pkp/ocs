@@ -443,7 +443,7 @@ Note that if your site administrator has already registered this site with the P
 <a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">Click here</a> and enter <span class="highlight">{$siteUrl}</span> under <strong>Site URL</strong>, and <span class="highlight">{$oaiUrl}</span> under <strong>Base URL for OAI Archive</strong>.]]></message>
 
 	<!-- Scheduled Conference Setup Step 2 -->
-	<message key="manager.schedConfSetup.submissions.subjectClassificationDescription"><![CDATA[[Conference will use a subject classification system available on the web.<br />
+	<message key="manager.schedConfSetup.submissions.subjectClassificationDescription"><![CDATA[Conference will use a subject classification system available on the web.<br />
 Title of classification system]]></message>
 
 	<!-- People Management -->
@@ -831,7 +831,7 @@ Your server currently supports mbstring: <strong>{$supportsMBString}</strong>]]>
 
 	<message key="rt.admin.options">Optional Tools</message>
 
-	<message key="rt.admin.settings.addComment">Add comment (enables readers to post comments, which Conference Directors can delete). Reader Comments must be enabled in Website Management, section 1.5).</message>
+	<message key="rt.admin.settings.addComment">Add comment (enables readers to post comments, which Conference Directors can delete). Reader Comments must be enabled in Website Management, section 1.5.</message>
 
 	<message key="rt.admin.validateUrls.description"><![CDATA[Possibly invalid URLs for search sites are displayed below.<br/>
 You should manually verify any URLs marked as invalid, as this test is not 100% accurate.<br/>

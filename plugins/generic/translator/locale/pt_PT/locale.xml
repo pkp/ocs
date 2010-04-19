@@ -68,4 +68,9 @@
 	<message key="plugins.generic.translator.deleteEmail">Excluir e-mail</message>
 	<message key="plugins.generic.translator.saveBeforeContinuing">Certifique-se de guardar qualquer alteração efectuada nesta página antes de continuar ou estas serão perdidas. Deseja continuar? Se sim, quaisquer alteração não guardada será perdida.</message>
 	<message key="plugins.generic.translator.localeKey.description">Uma chave completa de tradução a ser pesquisada.</message>
+	<message key="plugins.generic.translator.enabled">O Plugin de Tradução foi activado.</message>
+	<message key="plugins.generic.translator.disabled">O Plugin de Tradução foi desactivado.</message>
+	<message key="plugins.generic.translator.tarMissing">A funcionalidade de exportação deste plugin foi desactivada porque não é possível localizar o binário TAR de configuração no sistema. Certifique-se que possui o programa TAR instalado e configure o caminho para o binário TAR em config.inc.php's[cli] section</message>
+	<message key="plugins.generic.translator.fileNotWriteable">Não é permitida a escrita neste ficheiro local no servidor. Quaisquer alterações não serão guardadas.</message>
+	<message key="plugins.generic.translator.filesNotWriteable">Não é permitida a escrita nestes ficheiros locais no servidor. Quaisquer alterações não serão guardadas.</message>
 </locale>

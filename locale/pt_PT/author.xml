@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * locale/pt_PT/author.xml
+  *
+  * Copyright (c) 2000-2010 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the pt_PT locale.
+  *
+  -->
+
+<locale name="pt_PT" full_name = "Português (Portugal)">
+	<message key="author.submit">Nova Submissão</message>
+	<message key="author.track">Submissões Activas</message>
+	<message key="author.submit.startHere">Inicie aqui o processo de submissão de paper a esta conferência</message>
+	<message key="author.submit.startHereLink">Passo Um do processo de submissão</message>
+	<message key="author.submit.step1">Passo 1. Iniciando a Submissão</message>
+	<message key="author.submit.step3">Step 3. Entering the Submission's Metadata</message>
+	<message key="author.submit.step3AbstOnly">Passo 2. Inserindo os Metadados da Submisssão</message>
+	<message key="author.submit.step2">Passo 2. Enviar a Submissão</message>
+	<message key="author.submit.step4">Passo 4. Enviar Ficheiros Suplementares</message>
+	<message key="author.submit.step4a">Passo 4a. Adicionar um Ficheiro Suplementar</message>
+	<message key="author.submit.step5">Passo 5. Confirmar a Submisssão</message>
+	<message key="author.submit.step5SkipSupp">Step 4. Confirming the Submission</message>
+	<message key="author.submit.start">1. Iniciar</message>
+	<message key="author.submit.metadata">3. Inserir Metadados</message>
+	<message key="author.submit.metadataOnly">2. Inserir Metadados</message>
+	<message key="author.submit.upload">2. Carregar Submisssão</message>
+	<message key="author.submit.uploadOnly">3. Carregar Submissão</message>
+	<message key="author.submit.supplementaryFiles">4. Carregar Ficheiros Suplementares</message>
+	<message key="author.submit.supplementaryFilesAbstractOnly">3. Carregar Ficheiros Suplementares</message>
+	<message key="author.submit.supplementaryFilesInfoAbstractOnly">Passo 3a. Carregar Ficheiros Suplementares</message>
+	<message key="author.submit.confirmation">5. Confirmação</message>
+	<message key="author.submit.confirmationSkipSupp">4. Confirmação</message>
+	<message key="author.submit.cancelSubmission">Pode concluir este processo de submissão mais tarde seleccionado Submissões Activas na área pessoal do Autor.</message>
+	<message key="author.submit.notAcceptingYet">Esta conferência ainda não iniciou a recepção de submissões.</message>
+	<message key="author.submit.notAccepting">Esta conferência não está a aceitar submissões.</message>
+	<message key="author.submit.submissionDeadlinePassed">As submissões a esta conferência foram encerradas em {$closedDate}.</message>
+	<message key="author.submit.authorRegistrationClosed">O registo de autores está fechado para esta conferência.</message>
+	<message key="author.submissions.queuedAbstractReviewRevisions">Abstract em Revisão: Revisões Requeridas</message>
+	<message key="author.submissions.queuedPaperReviewRevisions">Paper em Revisão: Revisões Requeridas</message>
+	<message key="author.submissions.confirmDelete">Tem a certeza que pretende eliminar esta submissão incompleta?</message>
+	<message key="author.submissions.viewStatus">Ver Estado</message>
+	<message key="author.submissions.noSubmissions">Nenhuma submisssão.</message>
+	<message key="author.submit.howToSubmit"><![CDATA[Encontrou problemas? Contacto <a href="mailto:{$supportEmail}">{$supportName}</a> para assistência ({$supportPhone}).]]></message>
+	<message key="author.submit.howToSubmitNoPhone"><![CDATA[Encontrou problemas? Contacto <a href="mailto:{$supportEmail}">{$supportName}</a> para assistência.]]></message>
+	<message key="author.submit.conferenceTrack">Acompanhamento da Conferência</message>
+	<message key="author.submit.conferenceTrackDescription"><![CDATA[Seleccionar o acompanhamento apropriado para esta submissao (see <a href="{$aboutUrl}" target="_new">Políticas de Acompanhamento</a>).]]></message>
+	<message key="author.submit.selectTrack">Seleccione um acompanhamento...</message>
+	<message key="author.submit.submissionChecklist">Lista Verificação de Submissões</message>
+	<message key="author.submit.submissionChecklistDescription">Indicar se esta submissão está pronta para ser admitida a esta conferência desmarcando os seguintes (comentários ao presidente da comissão organizadora da conferência podem ser adicionados em baixo).</message>
+	<message key="author.submit.verifyChecklist">Tem de confirmar que todos os itens da lista de verificação estão satisfeitos antes de prosseguir.</message>
+	<message key="author.submit.copyrightNoticeAgree">Os autores concordam com os termos deste Aviso de Copyright, que será aplicado a esta submissão se e quando for publicada por esta conferência (comentários ao presidente da comissão organizadora da conferência podem ser adicionados em baixo).</message>
+	<message key="author.submit.copyrightNoticeAgreeRequired">Tem de concordar com os termos do Aviso de Copyright antes de prosseguir.</message>
+	<message key="author.submit.commentsForDirector">Comentários ao Presidente da Comissão Organizadora</message>
+	<message key="author.submit.comments">Insira texto (opcional)</message>
+	<message key="author.submit.form.authorRequired">É requerido pelo menos um autor.</message>
+	<message key="author.submit.form.authorRequiredFields">É requerido o primeiro nome, último apelido, e endereço de email de cada autor.</message>
+	<message key="author.submit.form.trackRequired">Seleccione um acompanhamento adequado da conferência para a sua submissão.</message>
+	<message key="author.submit.form.abstractRequired">Insira um abstract para a sua submissão.</message>
+	<message key="author.submit.privacyStatement">Declaração de Privacidade da Conferência</message>
+	<message key="author.submit.reorderInstructions">Reordenar os autores de forma a que sejam listados na publicação.</message>
+	<message key="author.submit.reorder">Reordenar o nome do autor</message>
+	<message key="author.submit.selectPrincipalContact">Contacto principal para correspondência editorial.</message>
+	<message key="author.submit.addAuthor">Adicionar Autor</message>
+	<message key="author.submit.deleteAuthor">Eliminar Autor</message>
+	<message key="author.submit.submissionIndexingDescription">Fornecer termos para indexar a submissão; termos separados com ponto e vírgula (term1; term2; term3).</message>
+	<message key="author.submit.submissionSupportingAgencies">Entidades Financiadores</message>
+	<message key="author.submit.submissionSupportingAgenciesDescription">Identificar entidades que patrocinaram ou suportaram o trabalho apresentado nesta submissão.</message>
+	<message key="author.submit.subjectClassInstructions">Usar o sistema de classificação de hyperlinks para seleccionar os termos de classificação e, se adequado, números.</message>
+	<message key="author.submit.languageInstructions"><![CDATA[English=en; French=fr; Spanish=es. <a href="http://www.loc.gov/standards/iso639-2/php/code_list.php" target="_blank">Códigos Adicionais</a>.]]></message>
+	<message key="presenter.submit.form.authorRequired">At least one author is required.</message>
+	<message key="presenter.submit.form.authorRequiredFields">É requerido o primeiro nome, último apelido, e endereço de email de cada autor.</message>
+	<message key="author.submit.form.titleRequired">Insira o título do paper.</message>
+	<message key="author.submit.form.wordCountAlert">Excedeu o limite máximo de palavras para os abstracts neste acompanhamento da conferência.</message>
+	<message key="author.submit.submissionFile">Ficheiro Submissão</message>
+	<message key="author.submit.uploadSubmissionFile">Carregar ficheiro submissão</message>
+	<message key="author.submit.replaceSubmissionFile">Substituir ficheiro submissão</message>
+	<message key="author.submit.noSubmissionFile">Nenhum ficheiro submissão carregado.</message>
+	<message key="author.submit.noSubmissionConfirm">Tem a certeza que pretende posseguir sem carregar um ficheiro de submissão?</message>
+	<message key="author.submit.supplementaryFilesInstructions">Este passo opcional permite que sejam adicionados Ficheiros Suplementares a uma submissão. Os ficheiros, os quais podem ser em qualquer formato, podem incluir (a) instrumentos de pesquisa, (b) configuração de dados, que  estão em conformidade com os termos da ética da investigação (c) fontes que de outro modo não estaria disponível aos leitores, (d) figuras e tabelas que não podem ser integrada no próprio texto, ou outros materiais que adicionam à contribuição do trabalho.</message>
+	<message key="author.submit.supplementaryFiles.saveToUpload">Clicar Guardar para carregar ficheiro (após o qual os ficheiros adicionais podem se carregados).</message>
+	<message key="author.submit.forgottenSubmitSuppFile">Tem a certeza que pretende prosseguir sem carregar o ficheiro suplementar seleccionado?</message>
+	<message key="author.submit.noSupplementaryFiles">Não foram adicionados ficheiros suplementares a esta submissão.</message>
+	<message key="author.submit.backToSupplementaryFiles">Voltar aos Ficheiros Suplementares</message>
+	<message key="author.submit.confirmDeleteSuppFile">Tem certeza que pretende eliminar este ficheiro suplementar?</message>
+	<message key="author.submit.uploadSuppFile">Carregar ficheiro suplementar</message>
+	<message key="author.submit.addSupplementaryFile">Adicionar um Ficheiro Suplementar</message>
+	<message key="author.submit.editSupplementaryFile">Editar um Ficheiro Suplementar</message>
+	<message key="author.submit.supplementaryFileData">Metadados do Ficheiro Suplementar</message>
+	<message key="author.submit.supplementaryFileDataDescription">Para indexar material suplementar, forneça os seguintes metadados para o ficheiro suplementar carregado.</message>
+	<message key="author.submit.supplementaryFileUpload">Ficheiro Suplementar</message>
+	<message key="author.submit.suppFile.createrOrOwner">Criador (ou proprietário) do ficheiro</message>
+	<message key="author.submit.suppFile.researchInstrument">Instrumento de Investigação</message>
+	<message key="author.submit.suppFile.researchMaterials">Materiais de Investigação</message>
+	<message key="author.submit.suppFile.researchResults">Research Results</message>
+	<message key="author.submit.suppFile.transcripts">Transcrições</message>
+	<message key="author.submit.suppFile.dataAnalysis">Análise de Dados</message>
+	<message key="author.submit.suppFile.dataSet">Configurações de Dados</message>
+	<message key="author.submit.suppFile.sourceText">Fonte do Texto</message>
+	<message key="author.submit.suppFile.briefDescription">Brief description</message>
+	<message key="author.submit.suppFile.contributorOrSponsor">Entidades Patrocinadoras</message>
+	<message key="author.submit.suppFile.availableToPeers">Apresente um ficheiro aos revisores (sem metadados), de forma a não comprometer a revisão cega.</message>
+	<message key="author.submit.suppFile.publisherDescription">Usar somente com materiais formalmente publicados.</message>
+	<message key="author.submit.suppFile.dateDescription">Data quando os dados foram recolhidos ou instrumento criado.</message>
+	<message key="author.submit.suppFile.sourceDescription">Nome do estudo ou outro ponto de origem.</message>
+	<message key="author.submit.suppFile.specifyOtherType">Especifique outro</message>
+	<message key="author.submit.suppFile.noFile">Nenhum ficheiro submissão carregado.</message>
+	<message key="author.submit.suppFile.form.titleRequired">Insira o titulo do ficheiro suplementar.</message>
+	<message key="author.submit.suppFile.form.subjectRequired">Insira um assunto.</message>
+	<message key="author.submit.suppFile.form.descriptionRequired">Insira uma descrição.</message>
+	<message key="author.suppFile.suppFilePublicIdentificationExists">A identificação do ficheiro suplementar público já existe.</message>
+	<message key="author.suppFile.publicSuppFileIdentifier">Identificador público do ficheiro suplementar</message>
+	<message key="author.submit.addSubmissionFile">Adicionar um Ficheiro Suplementar</message>
+	<message key="author.submit.submissionFileUpload">Ficheiro Suplementar</message>
+	<message key="author.submit.confirmationDescription">Para submeter o manuscrito a {$conferenceTitle} clicar Concluir Submissão. O contacto principal da submissão receber um agradecimento por email e poderá consultar o progresso da submissão através do processo editorial autenticando-se no site. Obrigado pelo interesse manifestado em publicar na {$conferenceTitle}.</message>
+	<message key="author.submit.noFiles">Nenhuns ficheiros foram anexados a esta submissão.</message>
+	<message key="author.submit.filesSummary">Sumário do Ficheiro</message>
+	<message key="author.submit.finishSubmission">Concluir Submissão</message>
+	<message key="author.submit.submissionComplete">Submissão completa. Obrigado por submeter o seu trabalho a {$conferenceTitle}.</message>
+	<message key="author.submit.expedite"><![CDATA[Se esta submissão está num formato que já se encontra publicado, sem revisão ou edição de trabalho anterior, pode ser enviado directamente para a página dos Proceedings através <a href="{$expediteUrl}" class="action">Clicando aqui</a>. (Nota: Apenas a comissão organizadora da conferência tem esta opção para as suas submissões.)]]></message>
+	<message key="author.paper.uploadAuthorVersion">Carregar Versão do Autor</message>
+	<message key="presenter.submit.authorSubmitLoginMessage">É necessário uma conta de utilizador para submeter propostas a esta conferência. Isto permite à comissão organizadora acompanhar as suas submissões e contactá-lo quando o estado da sua submissão for alterado, ou é solicitada informação adicional sobre si.</message>
+</locale>

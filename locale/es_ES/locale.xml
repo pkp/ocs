@@ -39,21 +39,19 @@
 	<message key="common.timeZone">Zona horaria</message>
 	<message key="common.ellipsis">...</message>
 	<message key="common.path">Ruta</message>
-	<message key="common.dateTimeSeparator">Caracter separador de la fecha</message>
-	<message key="common.ccLicense"><![CDATA[
-		<a target="_new" rel="license" href="http://creativecommons.org/licenses/by/3.0/">
+	<message key="common.dateTimeSeparator">a las</message>
+	<message key="common.ccLicense"><![CDATA[<a target="_new" rel="license" href="http://creativecommons.org/licenses/by/3.0/">
 			<img alt="Creative Commons License" style="border-width:0" src="{$ccLicenseImageUrl}"/>
 		</a>
 		<br/>
-		Este <span xmlns:dc="http://purl.org/dc/elements/1.1/" href="http://purl.org/dc/dcmitype/Text" rel="dc:type">trabajo</span> se distribuye con la licencia <a rel="license" target="_new" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0  License</a>.
-	]]></message>
+		Este <span xmlns:dc="http://purl.org/dc/elements/1.1/" href="http://purl.org/dc/dcmitype/Text" rel="dc:type">trabajo</span> se distribuye con la licencia <a rel="license" target="_new" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0  License</a>.]]></message>
 	
 	<!-- Review Forms -->
 	<message key="manager.reviewForms">Formularios Revisión</message>
 	<message key="manager.reviewForms.noneChosen">Ninguno / Revisión libre</message>
 	<message key="manager.reviewForms.noneCreated">No se han creado formularios de revisión.</message>
 	<message key="manager.reviewForms.create">Crear Formulario Revisión</message>
-	<message key="manager.reviewForms.edit">Formulario Revisión</message>
+	<message key="manager.reviewForms.edit">Formulario de Revisión</message>
 	<message key="manager.reviewForms.title">Título</message>
 	<message key="manager.reviewForms.description">Descripción e Instrucciones</message>
 	<message key="manager.reviewForms.preview">Previsualizar Formulario</message>
@@ -922,7 +920,6 @@ La validacion de URLs  puede fallar si requieren el envío de datos.]]></message
 	<message key="common.pageHeader.altText">Atención: Cambiar el formulario de revisión afectará todas las respuestas que los revisores han realizado usando este formulario. ¿Está seguro que desea continuar?</message>
 	<message key="common.homePageHeader.altText">Su cuenta no está asociada con ninguna conferencia. Por favor, elija una conferencia:</message>
 	<message key="common.conferenceHomepageImage.altText">Su cuenta no posee ningún rol en esta conferencia. Por favor selecciona una acción a continuación:</message>
-	<message key="paper.citations">Usted no tiene permisos para ver este trabajo. Si tiene una cuenta para el sitio web de esta conferencia, quizás necesite iniciar sesión para ver el contenido</message>
 	<message key="paper.comments.trackDefault">Imagen del encabezado de la página de Inicio</message>
 	<message key="paper.comments.disable">Imagen de la página de Inicio de la conferencia</message>
 	<message key="paper.comments.enable">Referencias</message>
@@ -986,4 +983,6 @@ La validacion de URLs  puede fallar si requieren el envío de datos.]]></message
 	<message key="log.timeline.postScheduleDateChanged">La fecha de envío ha cambiado del  {$oldPostScheduleDate} al {$newPostScheduleDate}.</message>
 	<message key="log.timeline.postScheduleChanged">La configuración de "envío de agenda" ha cambiado de {$oldPostSchedule} a {$newPostSchedule}.</message>
 	<message key="notification.type.reviewerFormComment">Se ha enviado un formulario de revisión para "{$param}".</message>
+	<message key="manager.reviewFormElements.included">Incluido en el mensaje al autor</message>
+	<message key="schedConf.registration.landingPaid">Gracias por registrarse, contactaremos con usted para obtener más información sobre el pago.</message>
 </locale>

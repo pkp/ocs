@@ -431,4 +431,13 @@ Si vous avez des questions, n'hésitez pas à me contacter.
 {$registrationContactSignature}</body>
 		<description>Ce courriel avise un lecteur inscrit que le Gestionnaire a créé une inscription pour eux. Ça fournit l'URL de la conférence en même temps que les directives d'accès.</description>
 	</email_text>
+	<email_text key="SUBMISSION_PAPER_INVITE">
+		<subject>Décision éditoriale concernant le Résumé</subject>
+		<body>{$authorName}:
+
+Félicitations, votre résumé {$paperTitle} a été accepté comme présentation à {$conferenceTitle} qui aura lieu le {$conferenceDate} à {$locationCity}. Vous pouvez maintenant soumettre votre communication pour fins d'évaluation.
+
+En vous remerciant et dans l'attente de votre participation à cet événement.
+{$editorialContactSignature}</body>
+	</email_text>
 </email_texts>

@@ -14,5 +14,5 @@
  
 <locale name="pt_BR" full_name="Português (Brasil)">
 	<message key="plugins.block.help.displayName">Bloco Ajuda</message>
-	<message key="plugins.block.help.description">Este plugin oferece um link na barra desejada para ajuda.</message>
+	<message key="plugins.block.help.description">Este plugin oferece um link na barra desejada para a ajuda.</message>
 </locale>

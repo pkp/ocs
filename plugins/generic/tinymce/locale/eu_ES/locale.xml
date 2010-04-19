@@ -21,5 +21,7 @@ erabiltzeko.]]></message>
 OCS testu-areetan <a href="http://tinymce.moxiecode.com" target="_new">TinyMCE</a> editorearekin erabiltzeko. 
 <strong>TinyMCE ez dago instalatuta; instala ezazu {$tinyMcePath} direktorioan.</strong>]]></message>
 	<message key="plugins.generic.tinymce.settings">Ezarpenak</message>
+	<message key="plugins.generic.tinymce.enabled">TinyMCE plugin-a gaitu da.</message>
+	<message key="plugins.generic.tinymce.disabled">TinyMCE plugin-a ezgaitu da.</message>
 </locale>
 

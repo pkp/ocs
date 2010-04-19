@@ -14,7 +14,7 @@
  
 <locale name="en_US" full_name="U.S. English">
 	<message key="plugins.generic.customBlockManager.displayName">Adminsitraçaõ de Blocos Customizados</message>
-	<message key="plugins.generic.customBlockManager.description">This Plugin lets you manage custom sidebar blocks.  You can edit the blocks in the settings of each plugin that you create here.</message>	
+	<message key="plugins.generic.customBlockManager.description">Este Plugin permite gerenciar blocos laterais personalizados. Edite os blocos nas configurações de cada plugin que criar aqui.</message>	
 	<message key="plugin.generic.customBlockManager.introduction"><![CDATA[Use este plugin para incluir ou excluir plugins de bloco customizados.  Edite os conteúdos através dos <a href="{$systemPluginsUrl}">Plugins do Sistema</a> (na seção Pluigns de Bloco).  Para incluir seu plugin no local desejado, nas barras laterais, acesse <a href="{$setupStep4}">Passo 4 da Configuração</a>.]]></message>
 	<message key="plugins.generic.customBlockManager.settings">Configurações</message>
 	<message key="plugins.generic.customBlockManager.blockName">Nome do bloco</message>	

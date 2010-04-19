@@ -30,4 +30,5 @@
 	<message key="plugins.generic.phpmv.manager.settings.phpmvSiteIdRequired">Por favor, escriba un número de perfil del sitio.</message>
 
 	<message key="plugins.generic.phpmv.disabled">Escoja entre los términos utilizados en el sistema de clasificación (ver hipervínculos) las palabras clave y, si fuera necesario números. Use el sistema de clasificación del enlace para seleccionar los términos de clasificación y, si es necesario, números.</message>
+	<message key="plugins.generic.phpmv.enabled">El plugin phpMyVisites ha sido habilitado.</message>
 </locale>

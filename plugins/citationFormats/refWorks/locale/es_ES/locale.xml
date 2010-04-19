@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * plugins/citationFormats/refWorks/locale/es_ES/locale.xml
+  *
+  * Copyright (c) 2000-2010 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for this citation plugin in es_ES.
+  *
+  * $Id$
+  -->
+ 
+<locale name="es_ES" full_name="Español (España)">
+	<message key="plugins.citationFormats.refWorks.displayName">Plugin de formato de cita RefWorks</message>
+	<message key="plugins.citationFormats.refWorks.citationFormatName">RefWorks</message>
+	<message key="plugins.citationFormats.refWorks.description">Este plugin implementa el format de cita RefWorks.</message>
+	<message key="plugins.citationFormats.refWorks.export">Exportar a RefWorks</message>
+</locale>

@@ -384,4 +384,57 @@ Galderaren bat baduzu, jar zaitez harremanetan nirekin, mesedez.
 {$registrationContactSignature}</body>
 		<description>Mezu honek izena eman duen irakurleari jakinarazten dio Kudeatzaileak inskripzioa egin diola. Kongresuaren URLa eta kongresuan sartzeko argibideak ematen ditu.</description>
 	</email_text>
+	<email_text key="NOTIFICATION">
+		<subject>{$siteTitle}ren jakinarazpen berria</subject>
+		<body>{$siteTitle}ren jakinarazpen berri bat duzu:
+
+{$notificationContents}
+
+Esteka: {$url}
+
+{$principalContactSignature}</body>
+	</email_text>
+	<email_text key="NOTIFICATION_MAILLIST">
+		<subject>{$siteTitle}ren jakinarazpen berria</subject>
+		<body>{$siteTitle}ren jakinarazpen berria duzu:
+--
+{$notificationContents}
+
+Esteka: {$url}
+--
+
+Jakinarazpenak jasotzeari utzi nahi badiozu, joan {$unsubscribeLink} helbidera eta idatzi zure posta elektronikoko helbidea eta pasahitza.
+
+
+{$principalContactSignature}</body>
+	</email_text>
+	<email_text key="NOTIFICATION_MAILLIST_WELCOME">
+		<subject>Ongi etorria {$siteTitle} posta-zerrendara!</subject>
+		<body>{$siteTitle} gunetik jakinarazpenak jasotzeko sinatu duzu.
+
+Egin klik esteka honetan zure eskaera baieztatzeko eta gehitu zure posta elektronikoko helbidea posta-zerrendan: {$confirmLink}
+
+Jakinarazpenak jasotzeari utzi nahi badiozu, joan {$unsubscribeLink} helbidera eta sartu zure posta elektronikoko helbidea eta pasahitza.
+
+Hau da jakinarazpenak desgaitzeko pasahitza: {$password}
+
+{$principalContactSignature}</body>
+	</email_text>
+	<email_text key="NOTIFICATION_MAILLIST_PASSWORD">
+		<subject>{$siteTitle} guneko jakinarazpenen posta-zerrendari buruzko informazioa</subject>
+		<body>Hau da jakinarazpenak desgaitzeko pasahitz berria: {$password}
+
+Jakinarazpenak jasotzeari utzi nahi badiozu, joan {$unsubscribeLink} helbidera eta sartu zure posta elektronikoko helbidea eta pasahitza.
+
+{$principalContactSignature}</body>
+	</email_text>
+	<email_text key="SUBMISSION_PAPER_INVITE">
+		<subject>Laburpenari buruzko erabaki editoriala</subject>
+		<body>{$authorName}:
+
+Zorionak, {$paperTitle} lanaren laburpena {$conferenceTitle} ekitaldian aurkezteko onartua izan da. Ekitaldiaren data: {$conferenceDate}. Tokia: {$locationCity}. Zure lana bidaltzea eskertuko genizuke, sakonago aztertzeko.
+
+Mila esker. Zure parte-hartzearen zain geratzen gara.
+{$editorialContactSignature}</body>
+	</email_text>
 </email_texts>

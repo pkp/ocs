@@ -14,7 +14,7 @@
  
 <locale name="pt_BR" full_name="Português (Brasil)">
 	<message key="plugins.block.user.displayName">Bloco Usuário</message>
-	<message key="plugins.block.user.description">Este plugin oferece uma barra lateral com ferramentas do cadastro do usuário (ex.: entrar no sistema, sair do sistema, acesso perfil, etc).</message>
+	<message key="plugins.block.user.description">Este plugin oferece uma barra lateral com ferramentas do cadastro do usuário (ex.: entrar no sistema, sair do sistema, acesso ao perfil, etc).</message>
 	<message key="plugins.block.user.loggedInAs">Você está logado como...</message>
 	<message key="plugins.block.user.myConferences">Minhas Conferências</message>
 	<message key="plugins.block.user.myProfile">Meu Perfil</message>

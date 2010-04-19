@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * plugins/blocks/fontSize/locale/es_ES/locale.xml
+  *
+  * Copyright (c) 2000-2010 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the es_ES locale.
+  *
+  * $Id$
+  -->
+ 
+<locale name="es_ES" full_name="Español (España)">
+	<message key="plugins.block.fontSize.displayName">Bloque de tamaño de letra</message>
+	<message key="plugins.block.fontSize.description">Este plugin provee de un selector de tamaño de letra.</message>
+	<message key="plugins.block.fontSize.title">Tamaño de letra</message>
+	<message key="plugins.block.fontSize.small">Pequeño</message>
+	<message key="plugins.block.fontSize.medium">Mediano</message>
+	<message key="plugins.block.fontSize.large">Grande</message>
+</locale>

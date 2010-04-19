@@ -25,7 +25,7 @@
 
 	<!-- PayPal -->
 	<message key="plugins.paymethod.paypal">Pagamento via PayPal</message>
-	<message key="plugins.paymethod.paypal.description"><![CDATA[Aceitará todos os principais cartões de crédito, assim como eChecks; não necessita de conta de membro no PayPal dos participantes, mas requer que os organizadores da conferência criem uma <a href="http://www.paypal.com" target="_new"> Conta de Negócios do PayPal</a>]]></message>
+	<message key="plugins.paymethod.paypal.description"><![CDATA[Aceitará todos os principais cartões de crédito, assim como eChecks; não necessita de conta de membro no PayPal dos participantes, mas requer que os organizadores da conferência criem uma <a href="http://www.paypal.com" target="_new">Conta de Negócios do PayPal</a>]]></message>
 	<message key="plugins.paymethod.paypal.warning">Ao clicar em Continue, você será direcionado ao portal do PayPal. Após efetuar o pagamento via PayPal você pode clicar no botão “Return to Merchant” para retornar a este portal.</message>
 	<message key="plugins.paymethod.paypal.purchase.amount">Quantia</message>
 	<message key="plugins.paymethod.paypal.purchase.description">Descrição</message>

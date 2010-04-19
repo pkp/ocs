@@ -54,4 +54,13 @@
 	<message key="admin.conferences.transcode">Codificación de documentos de metadatos de ISO8859-1</message>
 	<message key="admin.conferences.form.importPathRequired"> La ruta de importación es obligatoria.</message>
 	<message key="admin.conferences.importErrors">La importación no se ha completado con éxito</message>
+	<message key="admin.mergerUsers.noneEnrolled">No hay usuarios matriculados</message>
+	<message key="admin.locale.maybeIncomplete">Las locales marcadas pueden estar incompletas.</message>
+	<message key="admin.conferences.importRegistrations">Importar suscripciones</message>
+	<message key="admin.mergeUsers">Combinar Usuarios</message>
+	<message key="admin.mergeUsers.mergeUser">Combinar Usuario</message>
+	<message key="admin.mergeUsers.into.description">Seleccione un usuario al que atribuir las presentaciones,asignaciones,ediciones,etc. del usuario anterior.</message>
+	<message key="admin.mergeUsers.from.description">Seleccione un usuario (o varios) para fundirse en otra cuenta de usuario (por ejemplo, cuando alguien tiene dos cuentas de usuario). La cuenta(s) seleccionadas en primer lugar serán borradas y cualquier presentación, asignación, etc, se atribuirán a la segunda cuenta.</message>
+	<message key="admin.mergeUsers.allUsers">Todos los usuarios registrados</message>
+	<message key="admin.mergeUsers.confirm">¿Estás seguro de que quiere combinar las {$oldAccountCount} cuenta(s) seleccionada(s) en la cuenta con el usuario "{$newUsername}"? La(s) {$oldAccountCount} cuenta(s) de usuario seleccionadas no existirán después. Esta acción no es reversible.</message>
 </locale>

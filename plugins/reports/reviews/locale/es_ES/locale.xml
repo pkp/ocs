@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * plugins/reports/reviews/locale/es_ES/locale.xml
+  *
+  * Copyright (c) 2000-2010 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the es_ES locale.
+  *
+  * $Id$
+  -->
+
+<locale name="es_ES" full_name="Español (España)">
+	<message key="plugins.reports.reviews.displayName">Revisar informe</message>
+	<message key="plugins.reports.reviews.description">Este plugin implementa un informe CSV que contiene una lista de asignaciones de revisiones para una conferencia.</message>
+	<message key="plugins.reports.reviews.reviewerId">ID de revisor</message>
+	<message key="plugins.reports.reviews.reviewer">Revisor</message>
+	<message key="plugins.reports.reviews.dateAssigned">Fecha asignada</message>
+	<message key="plugins.reports.reviews.dateNotified">Fecha notificada</message>
+	<message key="plugins.reports.reviews.dateConfirmed">Fecha confirmada</message>
+	<message key="plugins.reports.reviews.dateCompleted">Fecha completada</message>
+	<message key="plugins.reports.reviews.dateReminded">Fecha recordada</message>
+</locale>
+

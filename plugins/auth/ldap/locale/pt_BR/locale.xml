@@ -21,9 +21,9 @@
 	<message key="plugins.auth.ldap.settings.hostname">Hostname do Servidor</message>
 	<message key="plugins.auth.ldap.settings.hostname.description">Ex., "ldap.example.com", ou "ldaps://ldap.example.com" (para usar SSL)</message>
 	<message key="plugins.auth.ldap.settings.port">Porta do Servidor</message>
-	<message key="plugins.auth.ldap.settings.port.description">Opcional. Padrão para 389 (LDAP) ou 636 (LDAP sobre SSL)</message>
+	<message key="plugins.auth.ldap.settings.port.description">Opcional. Padrão é 389 (LDAP) ou 636 (LDAP sobre SSL)</message>
 	<message key="plugins.auth.ldap.settings.basedn">Base DN</message>
-	<message key="plugins.auth.ldap.settings.basedn.description">Ex., "ou=pessoa,dc=exemplo,dc=com"</message>
+	<message key="plugins.auth.ldap.settings.basedn.description">Ex.: "ou=pessoa,dc=exemplo,dc=com"</message>
 	<message key="plugins.auth.ldap.settings.managerdn">Gerenciador DN</message>
 	<message key="plugins.auth.ldap.settings.managerdn.description">Ex., "cn=Gerenciador,dc=exemplo,dc=com"</message>
 	<message key="plugins.auth.ldap.settings.managerpwd">Senha do Gerenciador</message>
@@ -33,7 +33,7 @@
 	<message key="plugins.auth.ldap.settings.pwhash">Criptografia de Senha</message>
 	<message key="plugins.auth.ldap.settings.pwhash.description"><![CDATA[Formato Hash para senhas gravadas no servidor. Recomendável SSHA (requer PHP >= 4.3.0).]]></message>
 	<message key="plugins.auth.ldap.settings.saslopt">Opções SASL  (opcional)</message>
-	<message key="plugins.auth.ldap.settings.sasl"><![CDATA[Usar SASL ao invés de autenticação simples (requer PHP >= 5)]]></message>
+	<message key="plugins.auth.ldap.settings.sasl"><![CDATA[Usar SASL em vez de autenticação simples (requer PHP >= 5)]]></message>
 	<message key="plugins.auth.ldap.settings.saslmech">Mecanismo SASL</message>
 	<message key="plugins.auth.ldap.settings.saslmech.description">Ex., "DIGEST-MD5"</message>
 	<message key="plugins.auth.ldap.settings.saslrealm">Domínio</message>

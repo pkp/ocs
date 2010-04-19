@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE email_texts SYSTEM "../../../../../lib/pkp/dtd/emailTemplateData.dtd">
+<!--
+  * plugins/paymethod/manual/locale/eu_ES/emailTemplateData.xml
+  *
+  * Copyright (c) 2000-2010 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localized email templates XML file.
+  *
+  * $Id$
+  -->
+<email_texts locale="eu_ES">
+	<email_text key="MANUAL_PAYMENT_NOTIFICATION">
+		<subject>Eskuzko ordainketaren jakinarazpena</subject>
+		<body>Eskuzko ordainketa beharrezkoa da {$schedConfName} ekitaldirako, {$userFullName} erabiltzailearentzat (erabiltzaile-izena "{$userName}").
+
+Ordaindutako elementua: "{$itemName}".
+Prezioa: {$itemCost} ({$itemCurrencyCode}).
+
+Posta elektroniko hau Open Conference Systems-en eskuzko ordainketarako pluginak sortua da.</body>
+	</email_text>
+</email_texts>

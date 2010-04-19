@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * plugins/generic/customLocale/locale/es_ES/locale.xml
+  *
+  * Copyright (c) 2000-2010 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the es_ES locale.
+  *
+  * $Id$
+  -->
+ 
+<locale name="es_ES" full_name="Español (España)">
+	<message key="plugins.generic.customLocale.name">Plugin de localización de textos</message>
+	<message key="plugins.generic.customLocale.description">Este plugin permite la personalización del texto de la interfaz de usuario por defecto usada por OCS.</message>	
+	<message key="plugins.generic.customLocale.enabled">El Plugin de personalización de textos ha sido habilitado.</message>
+	<message key="plugins.generic.customLocale.disabled">El Plugin de personalización de textos ha sido deshabilitado.</message>
+
+	<message key="plugins.generic.customLocale.longDescription">Esta página lista todas las localizaciones instaladas para la conferencia.</message>
+	<message key="plugins.generic.customLocale.localeDescription">Esta página lista todos los ficheros disponibles para la conferencia seleccionada.</message>
+	<message key="plugins.generic.customLocale.fileDescription">Introduce texto en el campo de texto personalizado correspondiente. Deja el capo de texto personalizado en blanco si desea que se use el texto por defecto de OCS.</message>
+	<message key="plugins.generic.customLocale.localeName">Nombre para la personalización</message>
+	<message key="plugins.generic.customLocale.localeKey">Clave</message>
+	<message key="plugins.generic.customLocale.localeKey.description">Introduzca una clave para buscar.</message>
+	<message key="plugins.generic.customLocale.localeKeyValue">Valor</message>
+	<message key="plugins.generic.customLocale.customize">Personalizar</message>
+	<message key="plugins.generic.customLocale.availableLocales">Localizaciones disponibles</message>
+
+	<message key="plugins.generic.customLocale.locale">{$locale} Localización</message>
+	<message key="plugins.generic.customLocale.localeFiles">Ficheros de localización</message>
+	<message key="plugins.generic.customLocale.file.filename">Nombre de fichero</message>
+	<message key="plugins.generic.customLocale.file.edit">Editándo {$filename}</message>
+	<message key="plugins.generic.customLocale.file.reference">Texto por defecto</message>
+	<message key="plugins.generic.customLocale.file.custom">Texto personalizado</message>
+</locale>

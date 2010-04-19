@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * plugins/citationFormats/mla/locale/es_ES/locale.xml
+  *
+  * Copyright (c) 2000-2010 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for this citation plugin in es_ES.
+  *
+  * $Id$
+  -->
+ 
+<locale name="es_ES" full_name="Español (España)">
+	<message key="plugins.citationFormats.mla.displayName">Plugin de formato de cita MLA</message>
+	<message key="plugins.citationFormats.mla.citationFormatName">MLA</message>
+	<message key="plugins.citationFormats.mla.description">Este plugin implementa el format de cita MLA.</message>
+</locale>
