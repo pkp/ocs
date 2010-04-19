@@ -35,7 +35,7 @@
 		<data file="dbscripts/xml/upgrade/2.3.0_preupdate.xml" />
 	</upgrade>
 
-	<upgrade minversion="2.0.0.0" maxversion="2.3.0.0">
+	<upgrade minversion="2.1.2.0" maxversion="2.3.0.0">
 		<!-- 2.x to 2.3.1 -->
 		<data file="dbscripts/xml/upgrade/2.3.1_preupdate.xml" />
 	</upgrade>
