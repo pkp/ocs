@@ -116,8 +116,13 @@ debug = Off
 ; - file: Use file-based caching; configured below
 ; - none: Use no caching. This may be extremely slow.
 ; This setting affects locale data, conference settings, and plugin settings.
-
 cache = file
+
+; Choose the type of object data caching to use. Options are:
+; - memcache: Use the memcache server configured below
+; - xcache: Use the xcache variable store
+; - none: Use no caching.
+object_cache = none
 
 ; Enable memcache support
 memcache_hostname = localhost
