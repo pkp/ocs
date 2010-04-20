@@ -165,7 +165,7 @@
 
 	<table width="100%" class="data">
 		<tr valign="top">
-			<td width="20%" class="label">{translate key="paper.citations"}</td>
+			<td width="20%" class="label">{translate key="submission.citations"}</td>
 			<td width="80%" class="value">{$submission->getCitations()|strip_unsafe_html|nl2br|default:"&mdash;"}</td>
 		</tr>
 	</table>
