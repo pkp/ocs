@@ -39,7 +39,7 @@
 	<tr valign="top">
 		<td class="label">{translate key="common.user"}</td>
 		<td class="value">
-			{assign var=emailString value=$logEntry->getUserFullName()|to_array:" <":$logEntry->getUserEmail():">"}
+			{assign var=emailString value=$logEntry->getUserFullName()|concat:" <":$logEntry->getUserEmail():">"}
 			{translate|assign:"bodyContent" key=$logEntry->getMessage() params=$logEntry->getEntryParams()}
 			{translate|assign:"titleTrans" key=$logEntry->getEventTitle()}
 			{if $logEntry->getIsTranslated()}
