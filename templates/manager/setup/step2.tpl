@@ -60,7 +60,7 @@
 {if $homepageImage[$formLocale]}
 {translate key="common.fileName"}: {$homepageImage[$formLocale].name} {$homepageImage[$formLocale].dateUploaded|date_format:$datetimeFormatShort} <input type="submit" name="deleteHomepageImage" value="{translate key="common.delete"}" class="button" />
 <br />
-<img src="{$publicConferenceFilesDir}/{$homepageImage[$formLocale].uploadName}" width="{$homepageImage[$formLocale].width}" height="{$homepageImage[$formLocale].height}" style="border: 0;" alt="{translate key="common.conferenceHomepageImage.altText"}" />
+<img src="{$publicFilesDir}/{$homepageImage[$formLocale].uploadName}" width="{$homepageImage[$formLocale].width}" height="{$homepageImage[$formLocale].height}" style="border: 0;" alt="{translate key="common.conferenceHomepageImage.altText"}" />
 <br />
 <table width="100%" class="data">
 	<tr valign="top">

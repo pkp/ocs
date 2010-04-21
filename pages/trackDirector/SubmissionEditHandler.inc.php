@@ -1481,7 +1481,10 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 	 */
 	function uploadSuppFile($fileName = null, $stage = null) {
 		$paperId = Request::getUserVar('paperId');
-		list($conference, $schedConf, $submission) = $this->validate($paperId);
+		$this->validate($paperId);
+		$conference =& Request::getConference();
+		$schedConf =& Request::getSchedConf();
+		$submission =& $this->submission;
 
 		import('submission.form.SuppFileForm');
 

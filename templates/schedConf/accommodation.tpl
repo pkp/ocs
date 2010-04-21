@@ -21,7 +21,7 @@
  <div id="accommodationFiles">
 {foreach from=$accommodationFiles item=accommodationFile}
 	<div>
-		<a class="file" href="{$publicFilesDir}/{$accommodationFile.uploadName}" target="_blank">{$accommodationFile.title|default:$accommodationFile.name|escape}</a>
+		<a class="file" href="{$publicSchedConfFilesDir}/{$accommodationFile.uploadName}" target="_blank">{$accommodationFile.title|default:$accommodationFile.name|escape}</a>
 	</div>
 {/foreach}
 <div>

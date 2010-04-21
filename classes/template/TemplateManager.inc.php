@@ -75,8 +75,7 @@ class TemplateManager extends PKPTemplateManager {
 				$navMenuItems =& $conference->getLocalizedSetting('navItems');
 				$this->assign_by_ref('navMenuItems', $navMenuItems);
 
-				$this->assign('publicConferenceFilesDir', Request::getBaseUrl() . '/' . PublicFileManager::getConferenceFilesPath($conference->getId()));
-
+				$this->assign('publicFilesDir', Request::getBaseUrl() . '/' . PublicFileManager::getConferenceFilesPath($conference->getId()));
 				$this->assign('displayPageHeaderTitle', $conference->getPageHeaderTitle());
 				$this->assign('displayPageHeaderLogo', $conference->getPageHeaderLogo());
 				$this->assign('displayPageHeaderTitleAltText', $conference->getLocalizedSetting('pageHeaderTitleImageAltText'));
@@ -95,7 +94,7 @@ class TemplateManager extends PKPTemplateManager {
 				if (isset($schedConf)) {
 
 					// This will be needed if inheriting public conference files from the scheduled conference.
-					$this->assign('publicFilesDir', Request::getBaseUrl() . '/' . PublicFileManager::getSchedConfFilesPath($schedConf->getId()));
+					$this->assign('publicSchedConfFilesDir', Request::getBaseUrl() . '/' . PublicFileManager::getSchedConfFilesPath($schedConf->getId()));
 					$this->assign('primaryLocale', $conference->getSetting('primaryLocale'));
 					$this->assign('alternateLocales', $conference->getPrimaryLocale());
 
@@ -140,9 +139,6 @@ class TemplateManager extends PKPTemplateManager {
 					$paymentManager =& OCSPaymentManager::getManager();
 					$this->assign('schedConfPaymentsEnabled', $paymentManager->isConfigured());
 
-				} else {
-
-					$this->assign('publicFilesDir', Request::getBaseUrl() . '/' . PublicFileManager::getConferenceFilesPath($conference->getId()));
 				}
 
 				// Assign conference stylesheet and footer
@@ -167,7 +163,6 @@ class TemplateManager extends PKPTemplateManager {
 				$displayPageHeaderTitle = $site->getLocalizedPageHeaderTitle();
 				$this->assign('displayPageHeaderTitle', $displayPageHeaderTitle);
 				if (isset($displayPageHeaderTitle['altText'])) $this->assign('displayPageHeaderTitleAltText', $displayPageHeaderTitle['altText']);
-
 				$this->assign('publicFilesDir', Request::getBaseUrl() . '/' . PublicFileManager::getSiteFilesPath());
 			}
 		}
