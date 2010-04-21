@@ -16,8 +16,8 @@
 {include file="common/header.tpl"}
 {/strip}
 
-{foreach from=$tracks item=track}{if !$track->getHideAbout()}
-	<div id="track">
+{foreach from=$tracks key=trackKey item=track}{if !$track->getHideAbout()}
+	<div id="track{$trackKey|escape}">
 	<h4>{$track->getLocalizedTitle()}</h4>
 	{if strlen($track->getLocalizedPolicy()) > 0}
 		<p>{$track->getLocalizedPolicy()|nl2br}</p>
@@ -43,6 +43,6 @@
 			<td width="50%">{if $track->getMetaReviewed()}{icon name="checked"}{else}{icon name="unchecked"}{/if} {translate key="manager.tracks.peerReviewed"}</td>
 		</tr>
 	</table>
-{/if}</div>{/foreach}
+</div>{/if}{/foreach}
 
 {include file="common/footer.tpl"}
