@@ -106,7 +106,7 @@ class AdminConferenceHandler extends AdminHandler {
 	 * Delete a conference.
 	 * @param $args array first parameter is the ID of the conference to delete
 	 */
-	function deleteConference($args) {
+	function deleteConference($args, &$request) {
 		$this->validate();
 
 		$conferenceDao =& DAORegistry::getDAO('ConferenceDAO');
