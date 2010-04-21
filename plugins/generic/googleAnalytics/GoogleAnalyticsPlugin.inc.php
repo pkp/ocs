@@ -208,7 +208,7 @@ class GoogleAnalyticsPlugin extends GenericPlugin {
 			case 'disable':
 				$this->setEnabled(false);
 				$returner = false;
-				$message = Locale::translate('plugins.generic.googleAnalytics.disabled');
+				$message = Locale::translate('plugins.generic.sgoogleAnalyticsehl.disabled'); // Typo is intentional to match locale files (#5350)
 				break;
 			case 'settings':
 				if ($this->getEnabled()) {

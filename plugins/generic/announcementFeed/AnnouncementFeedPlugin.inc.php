@@ -168,12 +168,12 @@ class AnnouncementFeedPlugin extends GenericPlugin {
 				break;
 			case 'enable':
 				$this->updateSetting($conference->getId(), 0, 'enabled', true);
-				$message = Locale::translate('plugins.generic.announcementFeed.enabled');
+				$message = Locale::translate('plugins.generic.announcementfeed.enabled');
 				$returner = false;
 				break;
 			case 'disable':
 				$this->updateSetting($conference->getId(), 0, 'enabled', false);
-				$message = Locale::translate('plugins.generic.announcementFeed.enabled');
+				$message = Locale::translate('plugins.generic.announcementfeed.enabled');
 				$returner = false;
 				break;	
 		}

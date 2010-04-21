@@ -200,12 +200,12 @@ class PhpMyVisitesPlugin extends GenericPlugin {
 			case 'enable':
 				$this->setEnabled(true);
 				$returner = false;
-				$message = Locale::translate('plugins.generic.phpMyVisites.enabled');
+				$message = Locale::translate('plugins.generic.phpmv.enabled');
 				break;
 			case 'disable':
 				$this->setEnabled(false);
 				$returner = false;
-				$message = Locale::translate('plugins.generic.phpMyvisites.disabled');
+				$message = Locale::translate('plugins.generic.phpmv.disabled');
 				break;
 			case 'settings':
 				if ($this->getEnabled()) {
