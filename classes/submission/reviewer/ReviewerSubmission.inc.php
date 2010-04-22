@@ -73,22 +73,6 @@ class ReviewerSubmission extends Paper {
 	}
 
 	/**
-	 * Get ID of paper.
-	 * @return int
-	 */
-	function getPaperId() {
-		return $this->getData('paperId');
-	}
-
-	/**
-	 * Set ID of paper.
-	 * @param $paperId int
-	 */
-	function setPaperId($paperId) {
-		return $this->setData('paperId', $paperId);
-	}
-
-	/**
 	 * Get ID of reviewer.
 	 * @return int
 	 */
