@@ -97,17 +97,7 @@ class JQueryPlugin extends GenericPlugin {
 		$additionalHeadData = $templateManager->get_template_vars('additionalHeadData');
 		$baseUrl = $templateManager->get_template_vars('baseUrl');
 
-		if(Config::getVar('general', 'enable_cdn')) {
-			$jQueryScript = '<script src="http://www.google.com/jsapi"></script>
-			<script>
-				google.load("jquery", "1");
-				google.load("jqueryui", "1");
-			</script>';
-		} else {
-			$jQueryScript = '<script type="text/javascript" src="' . Request::getBaseUrl() . '/lib/pkp/js/lib/jquery/jquery.min.js"></script>
-			<script type="text/javascript" src="' . Request::getBaseUrl() . '/lib/pkp/js/lib/jquery/plugins/jqueryUi.min.js"></script>';
-		}
-		$jQueryScript .= "\n" . JQueryPlugin::addScripts($baseUrl, $scripts);
+		$jQueryScript = JQueryPlugin::addScripts($baseUrl, $scripts);
 
 		$templateManager->assign('additionalHeadData', $additionalHeadData."\n".$jQueryScript);
 	}

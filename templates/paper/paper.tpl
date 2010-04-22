@@ -13,10 +13,8 @@
 	<div id="topBar">
 		<div id="paperFontSize">
 			{translate key="paper.fontSize"}:&nbsp;
-			<a href="#" onclick="setFontSize('{translate|escape:"jsparam" key="paper.fontSize.small.altText"}');" class="icon">{icon path="lib/pkp/templates/images/icons/" name="font_small"}</a>&nbsp;
-			<a href="#" onclick="setFontSize('{translate|escape:"jsparam" key="paper.fontSize.medium.altText"}');" class="icon">{icon path="lib/pkp/templates/images/icons/" name="font_medium"}</a>&nbsp;
-			<a href="#" onclick="setFontSize('{translate|escape:"jsparam" key="paper.fontSize.large.altText"}');" class="icon">{icon path="lib/pkp/templates/images/icons/" name="font_large"}</a>
-		</div>
+			<div id="sizer"></div>
+			</div>
 	</div>
 {if $galley}
 	{if $galley->isHTMLGalley()}

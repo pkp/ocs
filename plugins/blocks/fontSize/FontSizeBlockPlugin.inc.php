@@ -24,7 +24,7 @@ class FontSizeBlockPlugin extends BlockPlugin {
 		if ($success) {
 			$this->addLocaleData();
 			$templateMgr =& TemplateManager::getManager();
-			$templateMgr->assign('fontIconPath', 'lib/pkp/templates/images/icons');
+			$templateMgr->assign('baseUrl', Request::getBasePath() . '/');
 			$additionalHeadData = $templateMgr->get_template_vars('additionalHeadData');
 
 			// Add font sizer js and css if not already in header

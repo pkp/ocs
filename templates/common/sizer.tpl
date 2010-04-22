@@ -10,9 +10,10 @@
  *}
 
 	<!-- Add javascript required for font sizer -->
-	<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/sizer.js" ></script>
-
-	<!-- Add stylesheets for the font sizer -->
-	<link rel="alternate stylesheet" title="{translate key="icon.font_small.alt"}" href="{$baseUrl}/styles/fontSmall.css" type="text/css" />
-	<link rel="stylesheet" title="{translate key="icon.font_medium.alt"}" href="{$baseUrl}/styles/fontMedium.css" type="text/css" />
-	<link rel="alternate stylesheet" title="{translate key="icon.font_large.alt"}" href="{$baseUrl}/styles/fontLarge.css" type="text/css" />
+	<script type="text/javascript" src="{$baseUrl}lib/pkp/js/jquery.cookie.js"></script>	
+	<script type="text/javascript" src="{$baseUrl}lib/pkp/js/fontController.js" ></script>
+	<script type="text/javascript">{literal}
+		$(function(){
+			fontSize("#sizer", "body", 9, 16, 32, "{/literal}{$baseUrl}{literal}"); // Initialize the font sizer
+		});
+	{/literal}</script>
