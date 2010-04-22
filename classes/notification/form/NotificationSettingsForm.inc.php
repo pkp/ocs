@@ -33,7 +33,8 @@ class NotificationSettingsForm extends PKPNotificationSettingsForm {
 	 */
 	function readInputData() {
 		$this->readUserVars(
-			array('notificationPaperSubmitted',
+			array(
+				'notificationPaperSubmitted',
 				'notificationMetadataModified',
 				'notificationSuppFileModified',
 				'notificationGalleyModified',
@@ -52,7 +53,8 @@ class NotificationSettingsForm extends PKPNotificationSettingsForm {
 				'emailNotificationReviewerFormComment',
 				'emailNotificationDirectorDecisionComment', 
 				'emailNotificationUserComment',
-				'emailNotificationNewAnnouncement')
+				'emailNotificationNewAnnouncement'
+			)
 		);
 	}
 	
