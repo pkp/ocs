@@ -41,7 +41,7 @@
 				{/foreach}
 			{elseif $reviewFormElement->getElementType() == REVIEW_FORM_ELEMENT_TYPE_RADIO_BUTTONS}
 				{assign var=possibleResponses value=$reviewFormElement->getLocalizedPossibleResponses()}
-				{foreach name=responses from=$possibleResponses key=responseId item=getLocalizedPossibleResponses}
+				{foreach name=responses from=$possibleResponses key=responseId item=responseItem}
 					<input {if $disabled}disabled="disabled" {/if}type="radio"  name="reviewFormResponses[{$elementId}]" id="reviewFormResponses-{$elementId}-{$smarty.foreach.responses.iteration}" value="{$smarty.foreach.responses.iteration}"{if $smarty.foreach.responses.iteration == $reviewFormResponses[$elementId]} checked="checked"{/if}/><label for="reviewFormResponses-{$elementId}-{$smarty.foreach.responses.iteration}">{$responseItem.content}</label><br/>
 				{/foreach}
 			{elseif $reviewFormElement->getElementType() == REVIEW_FORM_ELEMENT_TYPE_DROP_DOWN_BOX}
