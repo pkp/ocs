@@ -138,10 +138,11 @@ class ReviewAssignmentDAO extends DAO {
 	function &getReviewAssignmentsByPaperId($paperId, $stage = null) {
 		$reviewAssignments = array();
 
-		$args = array_diff(array($paperId, $stage), array(null));
+		$args = array((int) $paperId);
+		if ($stage) $args[] = (int) $stage;
 
 		$result =& $this->retrieve('
-			SELECT r.*,
+			SELECT	r.*,
 				r2.review_revision,
 				a.review_file_id,
 				u.first_name,
@@ -153,7 +154,8 @@ class ReviewAssignmentDAO extends DAO {
 			WHERE r.paper_id = ? '
 				. ($stage ? ' AND r.stage = ?':'')
 			. ' ORDER BY ' . ($stage?'':' stage,') . 'review_id',
-			((count($args)==1)?array_shift($args):$args));
+			$args
+		);
 
 		while (!$result->EOF) {
 			$reviewAssignments[] =& $this->_returnReviewAssignmentFromRow($result->GetRowAssoc(false));

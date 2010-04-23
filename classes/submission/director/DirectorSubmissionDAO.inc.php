@@ -102,6 +102,16 @@ class DirectorSubmissionDAO extends DAO {
 			$directorSubmission->setDecisions($this->getDirectorDecisions($row['paper_id'], $i), $i);
 		}
 
+		// Review Rounds
+		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
+		for ($i = REVIEW_STAGE_ABSTRACT; $i <= $directorSubmission->getCurrentStage(); $i++) {
+			$reviewAssignments =& $reviewAssignmentDao->getReviewAssignmentsByPaperId($directorSubmission->getId(), $i);
+			if (!empty($reviewAssignments)) {
+				$directorSubmission->setReviewAssignments($reviewAssignments, $i);
+			}
+			unset($reviewAssignments);
+		}
+
 		HookRegistry::call('DirectorSubmissionDAO::_returnDirectorSubmissionFromRow', array(&$directorSubmission, &$row));
 
 		return $directorSubmission;
