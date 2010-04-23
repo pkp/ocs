@@ -1215,8 +1215,8 @@ import('file.PaperFileManager');
 
 		if (!HookRegistry::call('TrackDirectorAction::addSubmissionNote', array(&$paperId, &$paperNote))) {
 			$paperFileManager = new PaperFileManager($paperId);
-			if ($paperFileManager->uploadError('upload')) return false;
 			if ($paperFileManager->uploadedFileExists('upload')) {
+				if ($paperFileManager->uploadError('upload')) return false;
 				$fileId = $paperFileManager->uploadSubmissionNoteFile('upload');
 			} else {
 				$fileId = 0;
