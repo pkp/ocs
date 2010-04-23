@@ -43,8 +43,8 @@ class ManagerHandler extends Handler {
 		$schedConfs =& $schedConfDao->getSchedConfsByConferenceId($conference->getId());
 		$templateMgr->assign_by_ref('schedConfs', $schedConfs);
 
-		$announcementsEnabled = $conference->getSetting('enableAnnouncements');
-		$templateMgr->assign('announcementsEnabled', $announcementsEnabled);
+		$templateMgr->assign('announcementsEnabled', $conference->getSetting('enableAnnouncements'));
+		$templateMgr->assign('loggingEnabled', $conference->getSetting('conferenceEventLog'));
 
 		$templateMgr->assign('helpTopicId','conference.index');
 		$templateMgr->display(ROLE_PATH_CONFERENCE_MANAGER . '/index.tpl');

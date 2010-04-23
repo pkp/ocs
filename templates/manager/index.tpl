@@ -28,7 +28,9 @@
 	<li>&#187; <a href="{url page="rtadmin"}">{translate key="manager.readingTools"}</a></li>
 	<li>&#187; <a href="{url op="files"}">{translate key="manager.filesBrowser"}</a></li>
 	<li>&#187; <a href="{url op="languages"}">{translate key="common.languages"}</a></li>
-	<li>&#187; <a href="{url op="conferenceEventLog" clearPageContext=1}">{translate key="manager.conferenceEventLog"}</a></li>
+	{if $loggingEnabled}
+		<li>&#187; <a href="{url op="conferenceEventLog" clearPageContext=1}">{translate key="manager.conferenceEventLog"}</a></li>
+	{/if}
 	<li>&#187; <a href="{url op="plugins"}">{translate key="manager.plugins"}</a></li>
 	{call_hook name="Templates::Manager::Index::ManagementPages"}
 </ul>
