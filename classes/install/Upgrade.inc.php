@@ -430,6 +430,7 @@ class Upgrade extends Installer {
 	function changePresenterInUserEmailTemplates() {
 		$emailTemplateDAO =& DAORegistry::getDAO('EmailTemplateDAO');
 
+		// Reset email templates
 		$result =& $emailTemplateDAO->retrieve('SELECT email_key, locale, body, subject FROM email_templates_data');
 		while (!$result->EOF) {
 			$row = $result->GetRowAssoc(false);
@@ -444,6 +445,23 @@ class Upgrade extends Installer {
 		}
 		$result->Close();
 		unset($result);
+		
+		// Reset default email templates
+		$result =& $emailTemplateDAO->retrieve('SELECT email_key, locale, body, subject FROM email_templates_default_data');
+		while (!$result->EOF) {
+			$row = $result->GetRowAssoc(false);
+
+			$newBody = str_replace('{$presenterName}', '{$authorName}', $row['body']);
+			$newBody = str_replace('{$presenterUsername}', '{$authorUsername}', $newBody);
+			$newSubject = str_replace('{$presenterName}', '{$authorName}', $row['subject']);
+			$newSubject = str_replace('{$presenterUsername}', '{$authorUsername}', $newSubject);
+
+			$emailTemplateDAO->update('UPDATE email_templates_default_data SET body = ?, subject = ? WHERE email_key = ? AND locale = ?', array($newBody, $newSubject, $row['email_key'], $row['locale']));
+			$result->MoveNext();
+		}
+		$result->Close();
+		unset($result);
+
 
 		return true;
 	}

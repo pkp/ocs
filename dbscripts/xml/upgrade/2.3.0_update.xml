@@ -15,8 +15,6 @@
 	<!-- Bug #3859: presenter to author rename -->
 	<sql>
 		<!-- Need to clear out the instances of $presenterName and $presenterUsername -->
-		<query>DELETE FROM email_templates_default_data</query>
-		
 		<query>UPDATE conference_settings SET setting_name = 'authorSelfArchivePolicy' WHERE setting_name = 'presenterSelfArchivePolicy'</query>
 		<query>UPDATE conference_settings SET setting_name = 'authorInformation' WHERE setting_name = 'presenterInformation'</query>
 		<query>UPDATE conference_settings SET setting_name = 'rtAuthorBio' WHERE setting_name = 'rtPresenterBio'</query>
@@ -34,6 +32,42 @@ If you have any questions, please feel free to contact me.
 {$registrationContactSignature}', 'This email is sent to a user after their payment has been registered in the system.')</query>
 	</sql>
 
+	<sql><!-- 3859: Insert Notification Emails of payment being received -->
+		<query>INSERT INTO email_templates_default (email_key, can_edit, can_disable) VALUES ('NOTIFICATION', 1, 0)</query>
+		<query>INSERT INTO email_templates_default (email_key, can_edit, can_disable) VALUES ('NOTIFICATION_MAILLIST', 1, 0)</query>
+		<query>INSERT INTO email_templates_default (email_key, can_edit, can_disable) VALUES ('NOTIFICATION_MAILLIST_WELCOME', 1, 0)</query>
+		<query>INSERT INTO email_templates_default (email_key, can_edit, can_disable) VALUES ('NOTIFICATION_MAILLIST_PASSWORD', 1, 0)</query>
+		<query>INSERT INTO email_templates_default_data (locale, email_key, subject, body, description) VALUES ('en_US', 'NOTIFICATION', 'New notification from {$siteTitle}', 'You have a new notification from {$siteTitle}:
+
+{$notificationContents}
+
+Link: {$url}
+
+{$principalContactSignature}', 'The email is sent to registered users that have selected to have this type of notification emailed to them.')</query>
+		<query>INSERT INTO email_templates_default_data (locale, email_key, subject, body, description) VALUES ('en_US', 'NOTIFICATION_MAILLIST', 'New notification from {$siteTitle}', 'You have signed up to receive notifications from {$siteTitle}.
+			
+Please click on this link to confirm your request and add your email address to the mailing list: {$confirmLink}
+
+If you wish to stop receiving notification emails, please go to {$unsubscribeLink} and enter your email address and password.
+
+Your password for disabling notification emails is: {$password}
+
+{$principalContactSignature}', 'This email is sent to unregistered users on the notification mailing list.')</query>
+		<query>INSERT INTO email_templates_default_data (locale, email_key, subject, body, description) VALUES ('en_US', 'NOTIFICATION_MAILLIST_WELCOME', 'Welcome to the the {$siteTitle} mailing list!', 'You have signed up to receive notifications from {$siteTitle}.
+			
+Please click on this link to confirm your request and add your email address to the mailing list: {$confirmLink}
+
+If you wish to stop receiving notification emails, please go to {$unsubscribeLink} and enter your email address and password.
+
+Your password for disabling notification emails is: {$password}
+
+{$principalContactSignature}', 'This email is sent to an unregistered user who just registered with the notification mailing list.')</query>
+		<query>INSERT INTO email_templates_default_data (locale, email_key, subject, body, description) VALUES ('en_US', 'NOTIFICATION_MAILLIST_PASSWORD', 'Your notification mailing list information for {$siteTitle}', 'Your new password for disabling notification emails is: {$password}
+
+If you wish to stop receiving notification emails, please go to {$unsubscribeLink} and enter your email address and password.
+
+{$principalContactSignature}', 'This email is sent to an unregistered user on the notification mailing list when they indicate that they have forgotten their password or are unable to login. It provides a URL they can follow to reset their password.')</query>
+	</sql>
 	<!-- Bug #4664: abstract announcements -->
 	<sql>
 		<query>UPDATE announcement_types SET assoc_type = 256</query><!-- ASSOC_TYPE_CONFERENCE -->
