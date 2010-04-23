@@ -29,9 +29,12 @@ class PaperLog {
 			// Invalid paper
 			return false;
 		}
+		$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
+		$schedConf =& $schedConfDao->getSchedConf($schedConfId);
+		$conferenceId = $schedConf->getConferenceId();
 
-		$settingsDao =& DAORegistry::getDAO('SchedConfSettingsDAO');
-		if (!$settingsDao->getSetting($schedConfId, 'paperEventLog', true)) {
+		$settingsDao =& DAORegistry::getDAO('ConferenceSettingsDAO');
+		if (!$settingsDao->getSetting($conferenceId, 'paperEventLog')) {
 			// Event logging is disabled
 			return false;
 		}
