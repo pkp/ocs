@@ -20,7 +20,7 @@
 {literal}
 $(document).ready(function() {
 	$('.paymentOption').click(function() {
-		$("#paymentSettingsForm").attr("action","{/literal}{url op="paymentSettings"}{literal}");
+		$("#paymentSettingsForm").attr("action","{/literal}{url|escape:"javascript" op="paymentSettings" escape=false}{literal}");
 		$("#paymentSettingsForm").submit();
 	});
 });
