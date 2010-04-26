@@ -22,6 +22,8 @@
 		<query>UPDATE conference_settings SET setting_name = 'authorGuidelines' WHERE setting_name = 'presenterGuidelines'</query>
 	</sql>
 	<sql><!-- 3503: Notify registrant of payment being received -->
+		<query>DELETE FROM email_templates_default WHERE email_key = 'MANUAL_PAYMENT_RECEIVED'</query>
+		<query>DELETE FROM email_templates_default_data WHERE email_key = 'MANUAL_PAYMENT_RECEIVED'</query>
 		<query>INSERT INTO email_templates_default (email_key, can_edit, can_disable) VALUES ('MANUAL_PAYMENT_RECEIVED', 1, 0)</query>
 		<query>INSERT INTO email_templates_default_data (locale, email_key, subject, body, description) VALUES ('en_US', 'MANUAL_PAYMENT_RECEIVED', 'Your payment for {$conferenceName} has been received', '{$registrantName}:
 
