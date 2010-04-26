@@ -1,6 +1,6 @@
-OCS 2.3 Release Notes
-CVS tag: ojs-2_3_0-0
-Release date: Jan 18, 2010
+OCS 2.3.1 Release Notes
+CVS tag: ojs-2_3_1-0
+Release date: Apr 26, 2010
 =================================
 
 Configuration Changes
@@ -9,68 +9,136 @@ Configuration Changes
 See config.TEMPLATE.inc.php for a description and examples of all supported
 configuration parameters.
 
+general.enable_cdn: Enable or disable the use of a Content Delivery Network
+	for supported JavaScript libraries
+
+cli.xslt_command: Configure support for an external XSLT processor
+
+cache.object_cache: Configure optional object cache support (e.g. APC or XCache)
+
 New Features
 ------------
-	#3555# Add fixed due dates for reviews
-	#4083# "Abstract and Proposal Together" workflow more review flexibility
-	#4543# Back-ports from ABC (scheduler enhancements)
-	#4218# add Manual Payment Instructions to Manual Payment Plugin
-	#4535# If a single SchedConf exists, redirect there instead of the Conf
-	#4200# Include paper ID on export
-	#4839# Add Google Scholar functionality to OCS
-	#4884# Add Basque (eu_ES) locale
-	#4306# include a la carte (registration options) items in payment descr
-	#4260# Allow for customization of conference schedule listing
-	#4441# add word limit option for abstracts
-	#4474# put static pages and custom block manager plugins into CVS 
+	#3683# Add TinyMCE support to reviewer comments
+	#5315# Upgrade TinyMCE and paste plugin to latest versions
+	#5100# Add support for accent stripping in built-in search index
+	#5140# Alter OAI support to use modification date
+	#5148# Add UTF8-aware ucfirst function to String class
+	#5166# Change default config to add "tr" call to strip control chars
+	#5204# Add reviewer gossip field
+	#5206# Make the user "affiliation" field required on sign-up.
+	#5234# Add support for a JQuery-based notification system
+	#4757# Upgrade jQuery version to 1.3.2
+	#4869# add option to set default review form
+	#5009# clarify submission acceptance emails
 
 Bug Fixes
 ---------
-	#3860# when registering a new user, user block does not show logged in
-	#3884# deleting schedConf deletes announcements for the conference
-	#3997# Item added shows up as "Editorial Policies"
-	#3859# rename presenter back to author everywhere
-	#4481# Abstract followed by presentation workflow issues
-	#3108# Default settings not loaded for new locales when added 
-	#4994# Return value of new by reference is deprecated
-	#4054# '0' or 'free' registrations still call paypal
-	#4086# Refactor submission types to use Controlled Vocabulary structure
-	#4551# Schedule may not integrate display of special events and sessions
-	#4555# Suppress building display in scheduler if only one building
-	#4701# Director's empty "Accepted" presentations list missing headsep
-	#4710# Locale key help.ojsHelp in help pages
-	#4741# Go To URL link in Notifications produces error
-	#4743# Editing User Created Email Not Possible
-	#4752# Step 1 of Submission fails to complete, Session Type problem
-	#4783# Creating New Reviewer - Gender Missing
-	#4791# Add CDN, USD, and EUR to top of currency list
-	#4793# Registry path is hard coded when creating a new conference
-	#4794# Reviewer cannot save review comments
-	#4829# Adding/Deleting profile image removes TinyMCE
-	#4830# step 1.7 Add Item to Appear in "About the Conference" and TinyMCE
-	#4840# Missing () in calls to funcs in TD peerReview.tpl
-	#4841# Free registrations report error, but user is registered
-	#4850# Author Notification error
-	#4856# Designating a Principal Contact results in double listing
-	#4872# Adding Form Radio Buttons reset page position / TinyMCE
-	#4975# Timeline error messages don't link to date entries they relate to
-	#4988# OAI not working with path_info_disabled
-	#4990# URL escaping and validation problems
-	#4998# Conference creation and editing and path_info disabled
-	#4999# Scheduled conference creation and editing with path_info disabled
-	#5002# Remove dead "expedite" code
-	#5012# XSS scripting flaw in director paper notes (and elsewhere)
+	#4984# Manual payment notification sent after Paypal payment
+	#5153# Untranslated keys on payment pages
+	#5296# Radio option toggle broken in IE8
+	#4363# ADOdb patch: Fix for bug 2343 (null / not null columns)
+	#4373# ADOdb patch: Incorrect double number format in postgres7 driver
+	#4374# Smarty patch: Improved truncate modifier
+	#4375# Smarty patch: Expand object method calls within backticks
+	#5090# Incorrect path (ojs instead of ocs) in Notification.inc.php
+	#5149# SchedConf::getLocalizedTitle not yet renamed
+	#5104# Prepare jQuery plug-in for additional scripts/plug-ins
+	#5218# Validator refactoring not 100% PHP4 compatible
+	#5249# array_clean should be renamed, clean meta-data before adding
+	#5304# Create infrastructure for plug-ins in the PKP library
+	#5107# confirm() JS function should be renamed to avoid NS conflict
+	#4358# Resolve incompatibilities with upstream Smarty
+	#4359# ADOdb patch: Added variable to record number of queries executed
+	#4360# ADOdb patch: Fix RenameColumnSQL() in ADOdb data dictionary
+	#4361# ADOdb patch: Add character encoding support
+	#4362# ADOdb patch: Support DBMS that cannot alter columns
+	#4365# ADOdb patch: Add Column Default in datadict-postgres.inc.php
+	#4367# ADOdb patch: Postgres 7.3 and earlier doesn't support SERIAL
+	#5216# DBResultRange.inc.php setCount method input variable missing
+	#5137# size attribute for smarty form tags does not work
+	#5281# Review Form Submission Error
+	#4039# Fix breadcrumb / POST form URL problems
+	#4737# Role data slow to load
+	#4924# Add option to ok/hide keys of suspicious key length
+	#5064# Manual Payments fatal error
+	#5065# Notification block not enabled on install
 	#5067# XML validation and fixes
+	#5068# Missing locale load in translator plugin
 	#5069# Typo in translator handler: referencEmails
-	#4847# Add tar configuration parameter to config.inc.php
-	#5019# Postgres upgrades fail on paper_presenters table
-	#4159# Re-order author submission steps
-	#4160# Remove unused column "status" from article_files / paper_files
-	#4455# Saving track settings fails on setting track's review form ID
-	#4644# Issues with registration and information block
-	#4735# Text on screen change for 2.1 Scheduled Conference Redirect
-	#4747# Papers and Registrant Plugins not displaying on Report Plugins
-	#4785# Suggest Username doesn't work
-	#4787# Reviewer cannot access submission
-	#4843# "Registration Options" section appearing when it shouldn't
-	#5007# Review Forms are not available when creating track
+	#5073# Static pages plugin breaks locale key retrieval
+	#5074# Return value assigned as reference in SearchHandler.inc.php
+	#5080# Update copyright dates
+	#5092# fatal error in SubscriptionForm.inc.php
+	#5097# $result in hook call missing initialization
+	#5098# Citation format template citation.tpl incorrect call to getTitle
+	#5099# Calls to missing function getSchedConfIdentification
+	#5116# Enrollment searching not working for Conference Manager
+	#5127# Registrant report reference warning
+	#5129# Wrong count of reviews done
+	#5130# 2.3 upgrade script refers to wrong release notes filename
+	#5134# Upgrade script does not run 2.3.0_preupdate.xml for 2.1.2<OCS<2.3
+	#5169# Director -> Presentations sort arrows broken
+	#5183# User agent needs length check in sessions table
+	#5189# Assigned Track Directors don't appear in 2nd Sched Conf Policies
+	#5203# Strip tags from article titles in meta tags
+	#5205# Increase size of reviewer interests field
+	#5207# Make the paper / article report sort on paper / article ID.
+	#5212# Fix page layout for Reading Tools (too wide)
+	#5214# Correct and validate setup pages
+	#5217# Comment comment_title too short; can lead to DB error
+	#5246# Error messages on translation check
+	#5254# Div name id clash: citations
+	#5264# PluginSettingsDAO uses undeclared $this->settingsCache
+	#5271# Form language default incorrect when current locale not supported
+	#5276# Fix RT display layout
+	#5283# Error message on translation check
+	#5284# Citation formats not working
+	#5323# OCS 2.3.1 Translation Updates
+	#5325# OCS updates to 2.3.1 from <2.1.2 shouldn't assume review_forms
+	#5326# Provide a working default for object_cache in config.inc.php
+	#5327# Fix warning message on upgrade (foreach)
+	#5144# User listings break when using upstream Smarty
+	#5003# Fix APA citation extraction plugin
+	#4184# consider extending statistics page to cover per-schedConf
+	#4604# Issues with displaying CC License
+	#4789# Add Submission Option Descriptions
+	#4844# Paypal return to OCS returns to schedConf index rather than rcpt
+	#4980# Consider removing Proposal Submission link
+	#4985# Standard review forms lose formatting on import
+	#5062# Create a "Thank you for your payment" landing page
+	#5118# PageRouter::url does not respect config.inc.php base_url[path]
+	#5124# port Review Forms to WAL
+	#5167# Scheduled Conference redirect not working properly
+	#5187# Announcement Types unassociated after upgrade
+	#5199# Longer titles not allowed in reviewers form
+	#5224# acronym gets cut off when editing scheduled conference
+	#5225# Suggest Username only provide first initial
+	#5226# Selecting Reviewer results in db error message
+	#5227# Registering results in blank page
+	#5232# Notify Users' registrants count is incorrect
+	#5241# No User Signature Import
+	#5250# Add index to review_assignments review_form_id column
+	#5251# User Export XML doctype root incorrect
+	#5280# E-mail attachment losing extension
+	#5292# Native importexport plugin doesn't work via command line
+	#5313# Papers mistakenly marked "Complete" still appear in Paper export
+	#5327# Fix warning message on upgrade (foreach)
+	#5336# Page titles aligned center when both sidebars used.
+	#5339# Locale key "paper.citations" missing
+	#5341# Notification Setting checkboxes won't stay (un)checked
+	#5344# Public conference files (e.g. logo step 3) have moved
+	#5347# Director upload of supplementary Layout file fails
+	#5350# miscellaneous plugin enabled/disabled message keys not appearing
+	#5359# Payment method change doesn't work with path_info_disabled
+	#5360# Review information disappearing after upgrade
+	#5364# Conference / Sched Conf mismatch in OAI set specifiers
+	#5334# Merge user function fails on call to NotificationStatusDAO
+	#5340# Validation problems on Track Policies page
+	#5342# Clicking Reviewer's Review icon results in unexpected page
+	#5343# Warning on Review Forms "Preview" page
+	#5345# Notice on deleting conference causes blank page
+	#5349# Reading Tool font size way too large
+	#5351# pnotify text appearing larger than expected
+	#5354# Director can only make one note per submission
+	#5355# Submission Event Log not tracking anything
+	#5356# Event Log & Submission History page remains accessible
