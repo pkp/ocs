@@ -158,6 +158,7 @@ class OAIDAO extends DAO {
 	/**
 	 * Return set of OAI records matching specified parameters.
 	 * @param $conferenceId int
+	 * @param $schedConfId int
 	 * @param $trackId int
 	 * @parma $from int timestamp
 	 * @parma $until int timestamp
@@ -166,12 +167,15 @@ class OAIDAO extends DAO {
 	 * @param $total int
 	 * @return array OAIRecord
 	 */
-	function &getRecords($conferenceId, $trackId, $from, $until, $offset, $limit, &$total) {
+	function &getRecords($conferenceId, $schedConfId, $trackId, $from, $until, $offset, $limit, &$total) {
 		$records = array();
 
 		$params = array();
 		if (isset($conferenceId)) {
 			array_push($params, (int) $conferenceId);
+		}
+		if (isset($schedConfId)) {
+			array_push($params, (int) $schedConfId);
 		}
 		if (isset($trackId)) {
 			array_push($params, (int) $trackId);
@@ -190,6 +194,7 @@ class OAIDAO extends DAO {
 				p.sched_conf_id = s.sched_conf_id AND
 				s.conference_id = c.conference_id'
 			. (isset($conferenceId) ? ' AND c.conference_id = ?' : '')
+			. (isset($schedConfId) ? ' AND s.sched_conf_id = ?' : '')
 			. (isset($trackId) ? ' AND p.track_id = ?' : '')
 			. (isset($from) ? ' AND p.last_modified >= ' . $this->datetimeToDB($from) : '')
 			. (isset($until) ? ' AND p.last_modified <= ' . $this->datetimeToDB($until) : ''),
@@ -214,6 +219,7 @@ class OAIDAO extends DAO {
 	/**
 	 * Return set of OAI identifiers matching specified parameters.
 	 * @param $conferenceId int
+	 * @param $schedConfId int
 	 * @param $trackId int
 	 * @parma $from int timestamp
 	 * @parma $until int timestamp
@@ -222,12 +228,15 @@ class OAIDAO extends DAO {
 	 * @param $total int
 	 * @return array OAIIdentifier
 	 */
-	function &getIdentifiers($conferenceId, $trackId, $from, $until, $offset, $limit, &$total) {
+	function &getIdentifiers($conferenceId, $schedConfId, $trackId, $from, $until, $offset, $limit, &$total) {
 		$records = array();
 
 		$params = array();
 		if (isset($conferenceId)) {
 			array_push($params, (int) $conferenceId);
+		}
+		if (isset($schedConfId)) {
+			array_push($params, (int) $schedConfId);
 		}
 		if (isset($trackId)) {
 			array_push($params, (int) $trackId);
@@ -249,6 +258,7 @@ class OAIDAO extends DAO {
 				p.sched_conf_id = s.sched_conf_id AND
 				s.conference_id = c.conference_id'
 			. (isset($conferenceId) ? ' AND c.conference_id = ?' : '')
+			. (isset($schedConfId) ? ' AND s.sched_conf_id = ?' : '')
 			. (isset($trackId) ? ' AND p.track_id = ?' : '')
 			. (isset($from) ? ' AND p.last_modified >= ' . $this->datetimeToDB($from) : '')
 			. (isset($until) ? ' AND p.last_modified <= ' . $this->datetimeToDB($until) : ''),
@@ -343,7 +353,7 @@ class OAIDAO extends DAO {
 		// FIXME Use public ID in OAI identifier?
 		$record->identifier = $this->oai->paperIdToIdentifier($row['paper_id']);
 		$record->datestamp = OAIUtils::UTCDate(strtotime($this->datetimeFromDB($row['last_modified'])));
-		$record->sets = array($conference->getPath() . ':' . $track->getLocalizedAbbrev());
+		$record->sets = array($conference->getPath() . ':' . $schedConf->getPath() . ':' . $track->getLocalizedAbbrev());
 
 		return $record;
 	}
@@ -361,7 +371,7 @@ class OAIDAO extends DAO {
 
 		$record->identifier = $this->oai->paperIdToIdentifier($row['paper_id']);
 		$record->datestamp = OAIUtils::UTCDate(strtotime($this->datetimeFromDB($row['last_modified'])));
-		$record->sets = array($conference->getPath() . ':' . $track->getLocalizedAbbrev());
+		$record->sets = array($conference->getPath() . ':' . $schedConf->getPath() . ':' . $track->getLocalizedAbbrev());
 
 		return $record;
 	}
@@ -460,7 +470,9 @@ class OAIDAO extends DAO {
 
 			$tracks =& $this->trackDao->getConferenceTracks($conference->getId());
 			foreach ($tracks->toArray() as $track) {
-				array_push($sets, new OAISet($abbrev . ':' . $track->getLocalizedAbbrev(), $track->getTrackTitle(), ''));
+				$schedConf =& $this->getSchedConf($track->getSchedConfId());
+				array_push($sets, new OAISet($abbrev . ':' . $schedConf->getPath() . ':' . $track->getLocalizedAbbrev(), $track->getTrackTitle(), ''));
+				unset($schedConf);
 			}
 		}
 
@@ -472,25 +484,33 @@ class OAIDAO extends DAO {
 	}
 
 	/**
-	 * Return the conference ID and track ID corresponding to a conference/track pairing.
+	 * Return the conference ID and track ID corresponding to a conference/sched conf/track group.
 	 * @param $conferenceSpec string
+	 * @param $schedConfSpec string
 	 * @param $trackSpec string
 	 * @param $restrictConferenceId int
 	 * @return array (int, int)
 	 */
-	function getSetConferenceTrackId($conferenceSpec, $trackSpec, $restrictConferenceId = null) {
+	function getSetConferenceTrackId($conferenceSpec, $schedConfSpec, $trackSpec, $restrictConferenceId = null) {
 		$conferenceId = null;
+		$schedConfId = null;
 
 		$conference =& $this->conferenceDao->getConferenceByPath($conferenceSpec);
 		if (!isset($conference) || (isset($restrictConferenceId) && $conference->getId() != $restrictConferenceId)) {
-			return array(0, 0);
+			return array(0, 0, 0);
 		}
 
 		$conferenceId = $conference->getId();
 		$trackId = null;
 
+		if (isset($schedConfSpec)) {
+			$schedConf =& $this->schedConfDao->getSchedConfByPath($schedConfSpec, $conferenceId);
+			if (!$schedConf) return array(0, 0, 0);
+		}
+
 		if (isset($trackSpec)) {
-			$track =& $this->trackDao->getTrackByAbbrev($trackSpec, $conference->getId());
+			if (!$schedConf) return array(0, 0, 0);
+			$track =& $this->trackDao->getTrackByAbbrev($trackSpec, $schedConf->getId());
 			if (isset($track)) {
 				$trackId = $track->getId();
 			} else {
@@ -498,7 +518,7 @@ class OAIDAO extends DAO {
 			}
 		}
 
-		return array($conferenceId, $trackId);
+		return array($conferenceId, $schedConfId, $trackId);
 	}
 }
 

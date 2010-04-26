@@ -90,12 +90,12 @@ class ConferenceOAI extends OAI {
 		if (count($tmpArray) == 1) {
 			list($conferenceSpec) = $tmpArray;
 			$trackSpec = null;
-		} else if (count($tmpArray) == 2) {
-			list($conferenceSpec, $trackSpec) = $tmpArray;
+		} else if (count($tmpArray) == 3) {
+			list($conferenceSpec, $schedConfSpec, $trackSpec) = $tmpArray;
 		} else {
 			return array(0, 0);
 		}
-		return $this->dao->getSetConferenceTrackId($conferenceSpec, $trackSpec, $this->conferenceId);
+		return $this->dao->getSetConferenceTrackId($conferenceSpec, $schedConfSpec, $trackSpec, $this->conferenceId);
 	}
 
 
@@ -161,13 +161,14 @@ class ConferenceOAI extends OAI {
 	 * @see OAI#records
 	 */
 	function &records($metadataPrefix, $from, $until, $set, $offset, $limit, &$total) {
-		$trackId = null;
 		if (isset($set)) {
-			list($conferenceId, $trackId) = $this->setSpecToTrackId($set);
+			list($conferenceId, $schedConfId, $trackId) = $this->setSpecToTrackId($set);
 		} else {
 			$conferenceId = $this->conferenceId;
+			$trackId = null;
+			$schedConfId = null;
 		}
-		$records =& $this->dao->getRecords($conferenceId, $trackId, $from, $until, $offset, $limit, $total);
+		$records =& $this->dao->getRecords($conferenceId, $schedConfId, $trackId, $from, $until, $offset, $limit, $total);
 		return $records;
 	}
 
@@ -177,11 +178,11 @@ class ConferenceOAI extends OAI {
 	function &identifiers($metadataPrefix, $from, $until, $set, $offset, $limit, &$total) {
 		$trackId = null;
 		if (isset($set)) {
-			list($conferenceId, $trackId) = $this->setSpecToTrackId($set);
+			list($conferenceId, $schedConfId, $trackId) = $this->setSpecToTrackId($set);
 		} else {
 			$conferenceId = $this->conferenceId;
 		}
-		$records =& $this->dao->getIdentifiers($conferenceId, $trackId, $from, $until, $offset, $limit, $total);
+		$records =& $this->dao->getIdentifiers($conferenceId, $schedConfId, $trackId, $from, $until, $offset, $limit, $total);
 		return $records;
 	}
 

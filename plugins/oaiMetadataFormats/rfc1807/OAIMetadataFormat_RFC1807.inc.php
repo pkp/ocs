@@ -80,7 +80,7 @@ class OAIMetadataFormat_RFC1807 extends OAIMetadataFormat {
 		$relation = array();
 		foreach ($paper->getSuppFiles() as $suppFile) {
 			// FIXME replace with correct URL
-			$relation[] = Request::url($conference->getPath(), $schedConf->getPath(), 'paper', 'download', array($paperId, $suppFile->getFileId()));
+			$relation[] = Request::url($conference->getPath(), $schedConf->getPath(), 'paper', 'download', array($paper->getId(), $suppFile->getFileId()));
 		}
 
 		$url = Request::url($conference->getPath(), $schedConf->getPath(), 'paper', 'view', array($paper->getBestPaperId()));

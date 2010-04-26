@@ -80,7 +80,7 @@ class OAIMetadataFormat_DC extends OAIMetadataFormat {
 		$relation = array();
 		foreach ($paper->getSuppFiles() as $suppFile) {
 			// FIXME replace with correct URL
-			$relation[] = Request::url($conference->getPath(), $schedConf->getPath(), 'paper', 'download', array($paperId, $suppFile->getFileId()));
+			$relation[] = Request::url($conference->getPath(), $schedConf->getPath(), 'paper', 'download', array($paper->getId(), $suppFile->getFileId()));
 		}
 
 		$response = "<oai_dc:dc\n" .
