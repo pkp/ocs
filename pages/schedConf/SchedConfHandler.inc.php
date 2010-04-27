@@ -198,10 +198,18 @@ class SchedConfHandler extends Handler {
 		$conference =& Request::getConference();
 		$schedConf =& Request::getSchedConf();
 
-		$paymentManager =& OCSPaymentManager::getManager();
-		if (!$paymentManager->isConfigured()) Request::redirect(null, null, 'index');
-
 		$templateMgr =& TemplateManager::getManager();
+		$paymentManager =& OCSPaymentManager::getManager();
+		if (!$paymentManager->isConfigured()) {
+			// If the system isn't fully configured, display a message and block
+			// the user from going further.
+			$templateMgr->assign('message', 'schedConf.registration.paymentNotConfigured');
+			$templateMgr->assign('backLinkLabel', 'common.back');
+			$templateMgr->assign('backLink', Request::url(null, null, 'index'));
+			Locale::requireComponents(array(LOCALE_COMPONENT_APPLICATION_COMMON));
+			return $templateMgr->display('common/message.tpl');
+		}
+
 		$templateMgr->assign('pageHierarchy', array(
 			array(Request::url(null, 'index', 'index'), $conference->getConferenceTitle(), true),
 			array(Request::url(null, null, 'index'), $schedConf->getSchedConfTitle(), true)));
