@@ -98,7 +98,7 @@ class TrackDirectorHandler extends Handler {
 				null,
 				null,
 				null,
-				$rangeInfo,
+				$sort=='status'?null:$rangeInfo,
 				$sort,
 				$sortDirection
 			);
