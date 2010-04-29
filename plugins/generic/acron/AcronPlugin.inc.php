@@ -26,7 +26,6 @@ import('classes.plugins.GenericPlugin');
 // TODO: Error handling. If a scheduled task encounters an error...?
 
 class AcronPlugin extends GenericPlugin {
-
 	function isSitePlugin() {
 		// This is a site-wide plugin.
 		return true;
@@ -35,8 +34,6 @@ class AcronPlugin extends GenericPlugin {
 	function register($category, $path) {
 		if (!Config::getVar('general', 'installed')) return false;
 		if (parent::register($category, $path)) {
-
-			$this->addLocaleData();
 			$this->parseCrontab();
 
 			HookRegistry::register('LoadHandler',array(&$this, 'callback'));
@@ -47,8 +44,7 @@ class AcronPlugin extends GenericPlugin {
 	}
 
 	function callback($hookName, $args) {
-		$isEnabled = $this->getSetting(0, 0, 'enabled');
-		if($isEnabled) {
+		if($this->getEnabled()) {
 			$taskDao =& DAORegistry::getDao('ScheduledTaskDAO');
 
 			// Grab the scheduled scheduled conference tree
@@ -141,7 +137,7 @@ class AcronPlugin extends GenericPlugin {
 		$xmlParser->destroy();
 
 		// Store the object.
-		$this->updateSetting(0, 0, 'crontab', $tasks, 'object');		
+		$this->updateSetting(0, 0, 'crontab', $tasks, 'object');
 	}
 
 	/**
@@ -254,10 +250,6 @@ class AcronPlugin extends GenericPlugin {
 		return ($value >= $min && $value <= $max);
 	}
 
-	function getName() {
-		return 'AcronPlugin';
-	}
-
 	function getDisplayName() {
 		return Locale::translate('plugins.generic.acron.name');
 	}
@@ -267,17 +259,13 @@ class AcronPlugin extends GenericPlugin {
 	}
 
 	function getManagementVerbs() {
-		$isEnabled = $this->getSetting(0, 0, 'enabled');
-
 		$verbs = array();
-		$verbs[] = array(
-			($isEnabled?'disable':'enable'),
-			Locale::translate($isEnabled?'manager.plugins.disable':'manager.plugins.enable')
-		);
-		$verbs[] = array(
-			'reload', Locale::translate('plugins.generic.acron.reload')
-		);
-		return $verbs;
+		if ($this->getEnabled()) {
+			$verbs[] = array(
+				'reload', Locale::translate('plugins.generic.acron.reload')
+			);
+		}
+		return parent::getManagementVerbs($verbs);
 	}
 
  	/*
@@ -288,19 +276,16 @@ class AcronPlugin extends GenericPlugin {
  	 * @return boolean
  	 */
 	function manage($verb, $args, &$message) {
+		if (!parent::manage($verb, $args, $message)) return false;
 		switch ($verb) {
-			case 'enable':
-				$this->updateSetting(0, 0, 'enabled', true);
-				$message = Locale::translate('plugins.generic.acron.enabled');
-				break;
-			case 'disable':
-				$this->updateSetting(0, 0, 'enabled', false);
-				$message = Locale::translate('plugins.generic.acron.disabled');
-				break;
 			case 'reload':
 				$this->parseCrontab();
+				return false;
+			default:
+				// Unknown management verb
+				assert(false);
+				return false;
 		}
-		return false;
 	}
 }
 ?>

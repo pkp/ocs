@@ -32,6 +32,4 @@
 	<message key="plugins.generic.customLocale.file.edit">Editing {$filename}</message>
 	<message key="plugins.generic.customLocale.file.reference">Default Text</message>
 	<message key="plugins.generic.customLocale.file.custom">Custom Text</message>
-	<message key="plugins.generic.customLocale.enabled">Il plugin Localizzazione è stato abilitato.</message>
-	<message key="plugins.generic.customLocale.disabled">Il plugin Localizzazione è stato disabilitato.</message>
 </locale>

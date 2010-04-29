@@ -25,15 +25,6 @@ class AnnouncementFeedBlockPlugin extends BlockPlugin {
 	}
 
 	/**
-	 * Get the name of this plugin. The name must be unique within
-	 * its category.
-	 * @return String name of plugin
-	 */
-	function getName() {
-		return 'AnnouncementFeedBlockPlugin';
-	}
-
-	/**
 	 * Get the display name of this plugin.
 	 * @return String
 	 */
@@ -46,14 +37,6 @@ class AnnouncementFeedBlockPlugin extends BlockPlugin {
 	 */
 	function getDescription() {
 		return Locale::translate('plugins.generic.announcementfeed.description');
-	}
-
-	/**
-	 * Get the supported contexts (e.g. BLOCK_CONTEXT_...) for this block.
-	 * @return array
-	 */
-	function getSupportedContexts() {
-		return array(BLOCK_CONTEXT_LEFT_SIDEBAR, BLOCK_CONTEXT_RIGHT_SIDEBAR);
 	}
 
 	/**
@@ -101,13 +84,13 @@ class AnnouncementFeedBlockPlugin extends BlockPlugin {
 
 		if (!$conference) return '';
 
-		if (!$conference->getSetting('enableAnnouncements')) return ''; 
+		if (!$conference->getSetting('enableAnnouncements')) return '';
 
 		$plugin =& $this->getAnnouncementFeedPlugin();
 		$displayPage = $plugin->getSetting($conference->getId(), 0, 'displayPage');
 		$requestedPage = Request::getRequestedPage();
 
-		if (($displayPage == 'all') || ($displayPage == 'homepage' && (empty($requestedPage) || $requestedPage == 'index' || $requestedPage == 'announcement')) || ($displayPage == $requestedPage)) { 
+		if (($displayPage == 'all') || ($displayPage == 'homepage' && (empty($requestedPage) || $requestedPage == 'index' || $requestedPage == 'announcement')) || ($displayPage == $requestedPage)) {
 			return parent::getContents($templateMgr);
 		} else {
 			return '';

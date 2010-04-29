@@ -18,6 +18,4 @@
 	<message key="plugins.generic.tinymce.descriptionDisabled"><![CDATA[This plugin enables WYSIWYG editing of OCS textareas using the <a href="http://tinymce.moxiecode.com" target="_new">TinyMCE</a> content editor. <strong>TinyMCE is not currently installed; please install it in {$tinyMcePath}.</strong>]]></message>
 
 	<message key="plugins.generic.tinymce.settings">Settings</message>
-	<message key="plugins.generic.tinymce.enabled">The TinyMCE Plugin has been enabled.</message>
-	<message key="plugins.generic.tinymce.disabled">The TinyMCE Plugin has been disabled.</message>	
 </locale>

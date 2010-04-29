@@ -68,8 +68,6 @@
 	<message key="plugins.generic.translator.deleteEmail">Cancella questa email</message>
 	<message key="plugins.generic.translator.saveBeforeContinuing">Assicurati di salvare ogni cambiamento fatto in questa pagina prima di continuare o saranno persi. Vuoi continuare? Se sì, ogni modifica non salvata verrà persa.</message>
 	<message key="plugins.generic.translator.localeKey.description">Inserisci una chiave intera della lingua per ricercarla.</message>
-	<message key="plugins.generic.translator.enabled">Il plugin Traduzioni è stato abilitato.</message>
-	<message key="plugins.generic.translator.disabled">Il plugin Traduzioni è stato disabilitato.</message>
 	<message key="plugins.generic.translator.fileNotWriteable">Questo file non è scrivibile. Nessuna modifica è stata salvata</message>
 	<message key="plugins.generic.translator.filesNotWriteable">Questi file non sono scrivibili. Le tue modifiche non sono state salvate.</message>
 	<message key="plugins.generic.translator.tarMissing">The export function of this plugin has been deactivated because the configured tar binary cannot be found on this system. Please make sure that you have the tar program installed and then configure the path to the tar binary in config.inc.php's [cli] section!</message>

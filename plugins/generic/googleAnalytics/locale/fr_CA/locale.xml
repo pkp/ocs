@@ -30,6 +30,4 @@
 	<message key="plugins.generic.googleAnalytics.manager.settings.trackingCodeRequired">Prière de sélectionner un code de suivi.</message>
 	<message key="plugins.generic.googleAnalytics.manager.settings.urchin">Code suivi existants (urchin.js)</message>
 	<message key="plugins.generic.googleAnalytics.manager.settings.ga">Nouveau code de suivi (ga.js)</message>
-	<message key="plugins.generic.googleAnalytics.enabled">Le plugiciel Google Analytics a été activé.</message>
-	<message key="plugins.generic.sgoogleAnalyticsehl.disabled">Le plugiciel Google Analytics a été désactivé.</message>
 </locale>

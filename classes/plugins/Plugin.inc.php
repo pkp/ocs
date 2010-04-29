@@ -12,8 +12,6 @@
  * @brief Abstract class for plugins
  */
 
-// $Id$
-
 
 import('plugins.PKPPlugin');
 
@@ -25,12 +23,26 @@ class Plugin extends PKPPlugin {
 		parent::PKPPlugin();
 	}
 
+	/**
+	 * Backwards compatible convenience version of
+	 * the generic getContextSpecificSetting() method.
+	 *
+	 * @see PKPPlugin::getContextSpecificSetting()
+	 *
+	 * @param $conferenceId
+	 * @param $schedConfId
+	 * @param $name
+	 */
 	function getSetting($conferenceId, $schedConfId, $name) {
-		return parent::getSetting(array($conferenceId, $schedConfId), $name);
+		return $this->getContextSpecificSetting(array($conferenceId, $schedConfId), $name);
 	}
 
 	/**
-	 * Update a plugin setting.
+	 * Backwards compatible convenience version of
+	 * the generic updateContextSpecificSetting() method.
+	 *
+	 * @see PKPPlugin::updateContextSpecificSetting()
+	 *
 	 * @param $conferenceId int
 	 * @param $schedConfId int
 	 * @param $name string The name of the setting
@@ -38,13 +50,14 @@ class Plugin extends PKPPlugin {
 	 * @param $type string optional
 	 */
 	function updateSetting($conferenceId, $schedConfId, $name, $value, $type = null) {
-		parent::updateSetting(array($conferenceId, $schedConfId), $name, $value, $type);
+		$this->updateContextSpecificSetting(array($conferenceId, $schedConfId), $name, $value, $type);
 	}
 
 	/**
 	 * Get the filename of the settings data for this plugin to install
 	 * when a conference is created (i.e. conference-level plugin settings).
 	 * Subclasses using default settings should override this.
+	 *
 	 * @return string
 	 */
 	function getContextSpecificPluginSettingsFile() {
@@ -56,7 +69,11 @@ class Plugin extends PKPPlugin {
 	/**
 	 * For backwards compatibility only.
 	 *
-	 * New plug-ins should override getContextSpecificPluginSettingsFile
+	 * New plug-ins should override getContextSpecificPluginSettingsFile()
+	 *
+	 * @see PKPPlugin::getContextSpecificPluginSettingsFile()
+	 *
+	 * @return string
 	 */
 	function getNewConferencePluginSettingsFile() {
 		return null;

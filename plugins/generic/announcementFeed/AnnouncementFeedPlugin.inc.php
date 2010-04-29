@@ -23,18 +23,9 @@ class AnnouncementFeedPlugin extends GenericPlugin {
 				HookRegistry::register('TemplateManager::display',array(&$this, 'callbackAddLinks'));
 				HookRegistry::register('PluginRegistry::loadCategory', array(&$this, 'callbackLoadCategory'));
 			}
-			$this->addLocaleData();
 			return true;
 		}
 		return false;
-	}
-
-	/**
-	 * Get the symbolic name of this plugin
-	 * @return string
-	 */
-	function getName() {
-		return 'AnnouncementFeedPlugin';
 	}
 
 	/**
@@ -51,16 +42,6 @@ class AnnouncementFeedPlugin extends GenericPlugin {
 	 */
 	function getDescription() {
 		return Locale::translate('plugins.generic.announcementfeed.description');
-	}   
-
-	/**
-	 * Check whether or not this plugin is enabled
-	 * @return boolean
-	 */
-	function getEnabled() {
-		$conference =& Request::getConference();
-		$conferenceId = $conference?$conference->getId():0;
-		return $this->getSetting($conferenceId, 0, 'enabled');
 	}
 
 	/**
@@ -95,7 +76,7 @@ class AnnouncementFeedPlugin extends GenericPlugin {
 			$displayPage = $currentConference ? $this->getSetting($currentConference->getId(), 0, 'displayPage') : null;
 			$requestedPage = Request::getRequestedPage();
 
-			if ( $announcementsEnabled && (($displayPage == 'all') || ($displayPage == 'homepage' && (empty($requestedPage) || $requestedPage == 'index' || $requestedPage == 'announcement')) || ($displayPage == $requestedPage)) ) { 
+			if ( $announcementsEnabled && (($displayPage == 'all') || ($displayPage == 'homepage' && (empty($requestedPage) || $requestedPage == 'index' || $requestedPage == 'announcement')) || ($displayPage == $requestedPage)) ) {
 
 				// if we have a conference selected, append feed meta-links into the header
 				$additionalHeadData = $templateManager->get_template_vars('additionalHeadData');
@@ -117,21 +98,9 @@ class AnnouncementFeedPlugin extends GenericPlugin {
 	function getManagementVerbs() {
 		$verbs = array();
 		if ($this->getEnabled()) {
-			$verbs[] = array(
-				'disable',
-				Locale::translate('manager.plugins.disable')
-			);
-			$verbs[] = array(
-				'settings',
-				Locale::translate('plugins.generic.announcementfeed.settings')
-			);
-		} else {
-			$verbs[] = array(
-				'enable',
-				Locale::translate('manager.plugins.enable')
-			);
+			$verbs[] = array('settings', Locale::translate('plugins.generic.announcementfeed.settings'));
 		}
-		return $verbs;
+		return parent::getManagementVerbs($verbs);
 	}
 
  	/*
@@ -142,13 +111,14 @@ class AnnouncementFeedPlugin extends GenericPlugin {
  	 * @return boolean
  	 */
 	function manage($verb, $args, &$message) {
-		$returner = true;
-		$conference =& Request::getConference();
+		if (!parent::manage($verb, $args, $message)) return false;
 
 		switch ($verb) {
 			case 'settings':
 				$templateMgr =& TemplateManager::getManager();
 				$templateMgr->register_function('plugin_url', array(&$this, 'smartyPluginUrl'));
+
+				$conference =& Request::getConference();
 
 				$this->import('SettingsForm');
 				$form = new SettingsForm($this, $conference->getId());
@@ -157,7 +127,7 @@ class AnnouncementFeedPlugin extends GenericPlugin {
 					$form->readInputData();
 					if ($form->validate()) {
 						$form->execute();
-						$returner = false;
+						return false;
 					} else {
 						$form->display();
 					}
@@ -165,19 +135,12 @@ class AnnouncementFeedPlugin extends GenericPlugin {
 					$form->initData();
 					$form->display();
 				}
-				break;
-			case 'enable':
-				$this->updateSetting($conference->getId(), 0, 'enabled', true);
-				$message = Locale::translate('plugins.generic.announcementfeed.enabled');
-				$returner = false;
-				break;
-			case 'disable':
-				$this->updateSetting($conference->getId(), 0, 'enabled', false);
-				$message = Locale::translate('plugins.generic.announcementfeed.enabled');
-				$returner = false;
-				break;	
+				return true;
+			default:
+				// Unknown management verb
+				assert(false);
+				return false;
 		}
-		return $returner;		
 	}
 }
 

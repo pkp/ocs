@@ -9,37 +9,31 @@
  * @class CustomBlockManagerPlugin
  *
  * Plugin to let users add and delete sidebar blocks
- * 
+ *
  */
 
 import('classes.plugins.GenericPlugin');
 
 class CustomBlockManagerPlugin extends GenericPlugin {
-
-	function getName() {
-		return 'CustomBlockManagerPlugin';
-	}
-
 	function getDisplayName() {
 		return Locale::translate('plugins.generic.customBlockManager.displayName');
 	}
 
 	function getDescription() {
 		return Locale::translate('plugins.generic.customBlockManager.description');
-	}   
+	}
 
 	function register($category, $path) {
 		if (!Config::getVar('general', 'installed')) return false;
-		if (parent::register($category, $path)) {	
+		if (parent::register($category, $path)) {
 			if ( $this->getEnabled() ) {
-				HookRegistry::register('PluginRegistry::loadCategory', array(&$this, 'callbackLoadCategory'));				
+				HookRegistry::register('PluginRegistry::loadCategory', array(&$this, 'callbackLoadCategory'));
 			}
-			$this->addLocaleData();
 			return true;
 		}
 		return false;
 	}
-	
+
 	/**
 	 * Register as a block plugin, even though this is a generic plugin.
 	 * This will allow the plugin to behave as a block plugin, i.e. to
@@ -53,16 +47,16 @@ class CustomBlockManagerPlugin extends GenericPlugin {
 		switch ($category) {
 			case 'blocks':
 				$this->import('CustomBlockPlugin');
-				
+
 				$conference =& Request::getConference();
 				if ( !$conference ) return false;
-				
+
 				$blocks = $this->getSetting($conference->getId(), 0, 'blocks');
 				if ( !is_array($blocks) ) break;
 				$i= 0;
 				foreach ( $blocks as $block ) {
 					$blockPlugin = new CustomBlockPlugin($block);
-					
+
 					//default the block to being enabled
 					if ( $blockPlugin->getEnabled() !== false) {
 						$blockPlugin->setEnabled(true);
@@ -72,30 +66,12 @@ class CustomBlockManagerPlugin extends GenericPlugin {
 						$blockPlugin->setBlockContext(BLOCK_CONTEXT_RIGHT_SIDEBAR);
 					}
 					$plugins[$blockPlugin->getSeq()][$blockPlugin->getPluginPath() . $i] =& $blockPlugin;
-					
+
 					$i++;
 				}
 				break;
 		}
 		return false;
-	}	
-
-	/**
-	 * Determine whether or not this plugin is enabled.
-	 */
-	function getEnabled() {
-		$conference =& Request::getConference();
- 		$conferenceId = $conference?$conference->getId():0;
-		return $this->getSetting($conferenceId, 0, 'enabled');
-	}
-
-	/**
-	 * Set the enabled/disabled state of this plugin
-	 */
-	function setEnabled($enabled) {
- 		$conference =& Request::getConference();
- 		$conferenceId = $conference?$conference->getId():0;
- 		$this->updateSetting($conferenceId, 0, 'enabled', $enabled);
 	}
 
 	/**
@@ -104,53 +80,34 @@ class CustomBlockManagerPlugin extends GenericPlugin {
 	function getManagementVerbs() {
 		$verbs = array();
 		if ($this->getEnabled()) {
-			$verbs[] = array(
-				'disable',
-				Locale::translate('manager.plugins.disable')
-			);
-			$verbs[] = array(
-				'settings',
-				Locale::translate('plugins.generic.customBlockManager.settings')
-			);			
-		} else {
-			$verbs[] = array(
-				'enable',
-				Locale::translate('manager.plugins.enable')
-			);
+			$verbs[] = array('settings', Locale::translate('plugins.generic.customBlockManager.settings'));
 		}
-		return $verbs;
+		return parent::getManagementVerbs($verbs);
 	}
 
 	/**
 	 * Perform management functions
 	 */
-	function manage($verb, $args) {
-		$returner = true;
-
-		$templateMgr =& TemplateManager::getManager();
-		$templateMgr->register_function('plugin_url', array(&$this, 'smartyPluginUrl'));
-
-		$pageCrumbs = array(
-			array(
-				Request::url(null, null, 'user'),
-				'navigation.user'
-			),
-			array(
-				Request::url(null, null, 'manager'),
-				'user.role.manager'
-			)
-		);
-		
-		$conference =& Request::getConference();
-		
+	function manage($verb, $args, &$message) {
+		if (!parent::manage($verb, $args, $message)) return false;
 		switch ($verb) {
-			case 'enable':
-				$this->setEnabled(true);
-				break;
-			case 'disable':
-				$this->setEnabled(false);
-				break;
 			case 'settings':
+				$templateMgr =& TemplateManager::getManager();
+				$templateMgr->register_function('plugin_url', array(&$this, 'smartyPluginUrl'));
+
+				$pageCrumbs = array(
+					array(
+						Request::url(null, null, 'user'),
+						'navigation.user'
+					),
+					array(
+						Request::url(null, null, 'manager'),
+						'user.role.manager'
+					)
+				);
+
+				$conference =& Request::getConference();
+
 				$pageCrumbs[] = array(
 					Request::url(null, null, 'manager', 'plugins'),
 					Locale::translate('manager.plugins'),
@@ -161,7 +118,7 @@ class CustomBlockManagerPlugin extends GenericPlugin {
 				$this->import('SettingsForm');
 				$form = new SettingsForm($this, $conference->getId());
 				$form->readInputData();
-				
+
 				if (Request::getUserVar('addBlock')) {
 					// Add a block
 					$editData = true;
@@ -198,10 +155,12 @@ class CustomBlockManagerPlugin extends GenericPlugin {
 					$form->display();
 					exit;
 				}
-				$returner = true;
-				break;
-			}
-			$returner = false;				
+				return true;
+			default:
+				// Unknown management verb
+				assert(false);
+				return false;
+		}
 	}
 }
 

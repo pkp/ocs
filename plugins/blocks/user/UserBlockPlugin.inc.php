@@ -20,27 +20,9 @@ class UserBlockPlugin extends BlockPlugin {
 	function register($category, $path) {
 		$success = parent::register($category, $path);
 		if ($success) {
-			$this->addLocaleData();
 			Locale::requireComponents(array(LOCALE_COMPONENT_PKP_USER));
 		}
 		return $success;
-	}
-
-	/**
-	 * Get the supported contexts (e.g. BLOCK_CONTEXT_...) for this block.
-	 * @return array
-	 */
-	function getSupportedContexts() {
-		return array(BLOCK_CONTEXT_LEFT_SIDEBAR, BLOCK_CONTEXT_RIGHT_SIDEBAR);
-	}
-
-	/**
-	 * Get the name of this plugin. The name must be unique within
-	 * its category.
-	 * @return String name of plugin
-	 */
-	function getName() {
-		return 'UserBlockPlugin';
 	}
 
 	/**
@@ -55,7 +37,7 @@ class UserBlockPlugin extends BlockPlugin {
 	 * Install default settings on conference creation.
 	 * @return string
 	 */
-	function getNewConferencePluginSettingsFile() {
+	function getContextSpecificPluginSettingsFile() {
 		return $this->getPluginPath() . '/settings.xml';
 	}
 

@@ -16,11 +16,6 @@
 import('classes.plugins.GenericPlugin');
 
 class StaticPagesPlugin extends GenericPlugin {
-
-	function getName() {
-		return 'StaticPagesPlugin';
-	}
-
 	function getDisplayName() {
 		return Locale::translate('plugins.generic.staticPages.displayName');
 	}
@@ -49,7 +44,6 @@ class StaticPagesPlugin extends GenericPlugin {
 	 */
 	function register($category, $path) {
 		if (parent::register($category, $path)) {
-			$this->addLocaleData();
 			if ($this->getEnabled()) {
 				$this->import('StaticPagesDAO');
 				if (checkPhpVersion('5.0.0')) { // WARNING: see http://pkp.sfu.ca/wiki/index.php/Information_for_Developers#Use_of_.24this_in_the_constructur
@@ -84,55 +78,21 @@ class StaticPagesPlugin extends GenericPlugin {
 	}
 
 	/**
-	 * Determine whether or not this plugin is enabled.
-	 */
-	function getEnabled() {
-		$conference =& Request::getConference();
-		$conferenceId = $conference?$conference->getId():0;
-		return $this->getSetting($conferenceId, 0, 'enabled');
-	}
-
-	/**
-	 * Set the enabled/disabled state of this plugin
-	 */
-	function setEnabled($enabled) {
-		$conference =& Request::getConference();
-		$conferenceId = $conference?$conference->getId():0;
-		$this->updateSetting($conferenceId, 0, 'enabled', $enabled);
-
-		return true;
-	}
-
-	/**
 	 * Display verbs for the management interface.
 	 */
 	function getManagementVerbs() {
 		$verbs = array();
-		if ($this->getEnabled()) {
-			$verbs[] = array(
-				'disable',
-				Locale::translate('manager.plugins.disable')
-			);
-			if ( $this->isTinyMCEInstalled() ) {
-				$verbs[] = array(
-					'settings',
-					Locale::translate('plugins.generic.staticPages.editAddContent')
-				);
-			}
-		} else {
-			$verbs[] = array(
-				'enable',
-				Locale::translate('manager.plugins.enable')
-			);
+		if ($this->getEnabled() && $this->isTinyMCEInstalled()) {
+			$verbs[] = array('settings', Locale::translate('plugins.generic.staticPages.editAddContent'));
 		}
-		return $verbs;
+		return parent::getManagementVerbs($verbs);
 	}
 
 	/**
 	 * Perform management functions
 	 */
-	function manage($verb, $args) {
-		$returner = true;
+	function manage($verb, $args, &$message) {
+		if (!parent::manage($verb, $args, $message)) return false;
 
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->register_function('plugin_url', array(&$this, 'smartyPluginUrl'));
@@ -159,7 +119,7 @@ class StaticPagesPlugin extends GenericPlugin {
 				$templateMgr->assign('pageHierarchy', $pageCrumbs);
 				$form->initData();
 				$form->display();
-				break;
+				return true;
 			case 'edit':
 			case 'add':
 				$conference =& Request::getConference();
@@ -183,8 +143,7 @@ class StaticPagesPlugin extends GenericPlugin {
 				);
 				$templateMgr->assign('pageHierarchy', $pageCrumbs);
 				$form->display();
-				$returner = true;
-				break;
+				return true;
 			case 'save':
 				$conference =& Request::getConference();
 
@@ -214,8 +173,7 @@ class StaticPagesPlugin extends GenericPlugin {
 					}
 				}
 				Request::redirect(null, null, null, 'manager', 'plugins');
-				$returner = true;
-				break;
+				return false;
 			case 'delete':
 				$conference =& Request::getConference();
 				$staticPageId = isset($args[0])?(int) $args[0]:null;
@@ -232,19 +190,12 @@ class StaticPagesPlugin extends GenericPlugin {
 
 				$templateMgr->assign('pageHierarchy', $pageCrumbs);
 				$templateMgr->display('common/message.tpl');
-				$returner = true;
-				break;
-			case 'enable':
-				$this->setEnabled(true);
-				$returner = false;
-				break;
-			case 'disable':
-				$this->setEnabled(false);
-				$returner = false;
-				break;
+				return true;
+			default:
+				// Unknown management verb
+				assert(false);
+				return false;
 		}
-
-		return $returner;
 	}
 
 	/**
