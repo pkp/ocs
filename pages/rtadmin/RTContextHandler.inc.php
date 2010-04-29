@@ -24,7 +24,7 @@ class RTContextHandler extends RTAdminHandler {
 	function RTContextHandler() {
 		parent::RTAdminHandler();
 	}
-	
+
 	function createContext($args) {
 		$this->validate();
 
@@ -62,6 +62,8 @@ class RTContextHandler extends RTAdminHandler {
 			$this->setupTemplate(true, $version);
 
 			$templateMgr =& TemplateManager::getManager();
+			$templateMgr->addJavaScript('lib/pkp/js/jquery.tablednd_0_5.js');
+			$templateMgr->addJavaScript('lib/pkp/js/tablednd.js');
 
 			$templateMgr->assign_by_ref('version', $version);
 

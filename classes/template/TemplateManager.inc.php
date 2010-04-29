@@ -25,9 +25,21 @@ class TemplateManager extends PKPTemplateManager {
 	/**
 	 * Constructor.
 	 * Initialize template engine and assign basic template variables.
+	 * @param $request PKPRequest FIXME: is optional for backwards compatibility only - make mandatory
 	 */
-	function TemplateManager() {
-		parent::PKPTemplateManager();
+	function TemplateManager($request = null) {
+		// FIXME: for backwards compatibility only - remove
+		if (!isset($request)) {
+			if (Config::getVar('debug', 'deprecation_warnings')) trigger_error('Deprecated function call.');
+			$request =& Registry::get('request');
+		}
+		assert(is_a($request, 'PKPRequest'));
+
+		parent::PKPTemplateManager($request);
+
+		// Retrieve the router
+		$router =& $request->getRouter();
+		assert(is_a($router, 'PKPRouter'));
 
 		if (!defined('SESSION_DISABLE_INIT')) {
 			/**
@@ -36,18 +48,18 @@ class TemplateManager extends PKPTemplateManager {
 			 * installer pages).
 			 */
 
-			$conference =& Request::getConference();
-			$schedConf =& Request::getSchedConf();
-			$site =& Request::getSite();
+			$conference =& $router->getContext($request, 1);
+			$schedConf =& $router->getContext($request, 2);
+			$site =& $request->getSite();
 			$this->assign('siteTitle', $site->getLocalizedTitle());
 
-			$siteFilesDir = Request::getBaseUrl() . '/' . PublicFileManager::getSiteFilesPath();
+			$siteFilesDir = $request->getBaseUrl() . '/' . PublicFileManager::getSiteFilesPath();
 			$this->assign('sitePublicFilesDir', $siteFilesDir);
 
 			$this->assign('homeContext', array('conference' => 'index', 'schedConf' => 'index'));
 
 			$siteStyleFilename = PublicFileManager::getSiteFilesPath() . '/' . $site->getSiteStyleFilename();
-			if (file_exists($siteStyleFilename)) $this->addStyleSheet(Request::getBaseUrl() . '/' . $siteStyleFilename);
+			if (file_exists($siteStyleFilename)) $this->addStyleSheet($request->getBaseUrl() . '/' . $siteStyleFilename);
 
 			if (isset($conference)) {
 				$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
@@ -75,13 +87,13 @@ class TemplateManager extends PKPTemplateManager {
 				$navMenuItems =& $conference->getLocalizedSetting('navItems');
 				$this->assign_by_ref('navMenuItems', $navMenuItems);
 
-				$this->assign('publicFilesDir', Request::getBaseUrl() . '/' . PublicFileManager::getConferenceFilesPath($conference->getId()));
+				$this->assign('publicFilesDir', $request->getBaseUrl() . '/' . PublicFileManager::getConferenceFilesPath($conference->getId()));
 				$this->assign('displayPageHeaderTitle', $conference->getPageHeaderTitle());
 				$this->assign('displayPageHeaderLogo', $conference->getPageHeaderLogo());
 				$this->assign('displayPageHeaderTitleAltText', $conference->getLocalizedSetting('pageHeaderTitleImageAltText'));
 				$this->assign('displayPageHeaderLogoAltText', $conference->getLocalizedSetting('pageHeaderLogoImageAltText'));
 				$this->assign('displayFavicon', $conference->getLocalizedFavicon());
-				$this->assign('faviconDir', Request::getBaseUrl() . '/' . PublicFileManager::getConferenceFilesPath($conference->getId()));
+				$this->assign('faviconDir', $request->getBaseUrl() . '/' . PublicFileManager::getConferenceFilesPath($conference->getId()));
 				$this->assign('alternatePageHeader', $conference->getLocalizedSetting('conferencePageHeader'));
 				$this->assign('metaSearchDescription', $conference->getLocalizedSetting('searchDescription'));
 				$this->assign('metaSearchKeywords', $conference->getLocalizedSetting('searchKeywords'));
@@ -94,7 +106,7 @@ class TemplateManager extends PKPTemplateManager {
 				if (isset($schedConf)) {
 
 					// This will be needed if inheriting public conference files from the scheduled conference.
-					$this->assign('publicSchedConfFilesDir', Request::getBaseUrl() . '/' . PublicFileManager::getSchedConfFilesPath($schedConf->getId()));
+					$this->assign('publicSchedConfFilesDir', $request->getBaseUrl() . '/' . PublicFileManager::getSchedConfFilesPath($schedConf->getId()));
 					$this->assign('primaryLocale', $conference->getSetting('primaryLocale'));
 					$this->assign('alternateLocales', $conference->getPrimaryLocale());
 
@@ -144,7 +156,7 @@ class TemplateManager extends PKPTemplateManager {
 				// Assign conference stylesheet and footer
 				$conferenceStyleSheet = $conference->getSetting('conferenceStyleSheet');
 				if ($conferenceStyleSheet) {
-					$this->addStyleSheet(Request::getBaseUrl() .
+					$this->addStyleSheet($request->getBaseUrl() .
 					'/' .	PublicFileManager::getConferenceFilesPath($conference->getId()) .
 					'/' . $conferenceStyleSheet['uploadName']);
 				}
@@ -153,7 +165,7 @@ class TemplateManager extends PKPTemplateManager {
 				if($schedConf) {
 					$schedConfStyleSheet = $schedConf->getSetting('schedConfStyleSheet');
 					if ($schedConfStyleSheet) {
-						$this->addStyleSheet(Request::getBaseUrl() .
+						$this->addStyleSheet($request->getBaseUrl() .
 						'/' .	PublicFileManager::getSchedConfFilesPath($schedConf->getId()) .
 						'/' . $schedConfStyleSheet['uploadName']);
 					}
@@ -163,8 +175,12 @@ class TemplateManager extends PKPTemplateManager {
 				$displayPageHeaderTitle = $site->getLocalizedPageHeaderTitle();
 				$this->assign('displayPageHeaderTitle', $displayPageHeaderTitle);
 				if (isset($displayPageHeaderTitle['altText'])) $this->assign('displayPageHeaderTitleAltText', $displayPageHeaderTitle['altText']);
-				$this->assign('publicFilesDir', Request::getBaseUrl() . '/' . PublicFileManager::getSiteFilesPath());
+				$this->assign('publicFilesDir', $request->getBaseUrl() . '/' . PublicFileManager::getSiteFilesPath());
 			}
+
+			// Add java script for notifications
+			$user =& $request->getUser();
+			if ($user) $this->addJavaScript('lib/pkp/js/jquery.pnotify.js');
 		}
 	}
 

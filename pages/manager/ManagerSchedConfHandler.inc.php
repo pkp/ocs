@@ -9,7 +9,7 @@
  * @class ManagerSchedConfHandler
  * @ingroup pages_manager
  *
- * @brief Handle requests for scheduled conference management in site administration. 
+ * @brief Handle requests for scheduled conference management in site administration.
  */
 
 //$Id$
@@ -45,6 +45,8 @@ class ManagerSchedConfHandler extends ManagerHandler {
 		}
 
 		$templateMgr =& TemplateManager::getManager();
+		$templateMgr->addJavaScript('lib/pkp/js/jquery.tablednd_0_5.js');
+		$templateMgr->addJavaScript('lib/pkp/js/tablednd.js');
 		$templateMgr->assign_by_ref('schedConfs', $schedConfs);
 		$templateMgr->assign_by_ref('conference', $conference);
 		$templateMgr->assign('helpTopicId', 'conference.generalManagement.scheduledConferences');

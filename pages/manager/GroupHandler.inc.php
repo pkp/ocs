@@ -9,7 +9,7 @@
  * @class GroupHandler
  * @ingroup pages_manager
  *
- * @brief Handle requests for organizing team management functions. 
+ * @brief Handle requests for organizing team management functions.
  */
 
 //$Id$
@@ -19,13 +19,13 @@ import('pages.manager.ManagerHandler');
 class GroupHandler extends ManagerHandler {
 	/** group associated with the request **/
 	var $group;
-	
+
 	/** user associated with the request **/
 	var $user;
-	
+
 	/** group membership associated with the request **/
 	var $groupMembership;
-		
+
 	/**
 	 * Constructor
 	 **/
@@ -54,6 +54,8 @@ class GroupHandler extends ManagerHandler {
 		}
 
 		$templateMgr =& TemplateManager::getManager();
+		$templateMgr->addJavaScript('lib/pkp/js/jquery.tablednd_0_5.js');
+		$templateMgr->addJavaScript('lib/pkp/js/tablednd.js');
 		$templateMgr->assign_by_ref('groups', $groups);
 		$templateMgr->assign('boardEnabled', $schedConf->getSetting('boardEnabled'));
 		$templateMgr->display('manager/groups/groups.tpl');
@@ -67,8 +69,8 @@ class GroupHandler extends ManagerHandler {
 		$groupId = isset($args[0])?(int)$args[0]:0;
 		$this->validate($groupId);
 		$schedConf =& Request::getSchedConf();
-		$group =& $this->group;		
-		
+		$group =& $this->group;
+
 		$groupDao =& DAORegistry::getDAO('GroupDAO');
 		$groupDao->deleteObject($group);
 		$groupDao->resequenceGroups(ASSOC_TYPE_SCHED_CONF, $schedConf->getId());
@@ -86,11 +88,11 @@ class GroupHandler extends ManagerHandler {
 		$group =& $this->group;
 		$groupDao =& DAORegistry::getDAO('GroupDAO');
 		$direction = Request::getUserVar('d');
-		
+
 		if ($direction != null) {
 			// moving with up or down arrow
 			$group->setSequence($group->getSequence() + ($direction == 'u' ? -1.5 : 1.5));
-			
+
 		} else {
 			// Dragging and dropping
 			$prevId = Request::getUserVar('prevId');
@@ -204,7 +206,7 @@ class GroupHandler extends ManagerHandler {
 		$groupId = isset($args[0])?(int)$args[0]:0;
 		$this->validate($groupId);
 		$group =& $this->group;
-		
+
 		$rangeInfo =& Handler::getRangeInfo('membership', array($groupId));
 
 		$this->setupTemplate($group, true);
@@ -217,6 +219,8 @@ class GroupHandler extends ManagerHandler {
 			unset($memberships);
 		}
 		$templateMgr =& TemplateManager::getManager();
+		$templateMgr->addJavaScript('lib/pkp/js/jquery.tablednd_0_5.js');
+		$templateMgr->addJavaScript('lib/pkp/js/tablednd.js');
 		$templateMgr->assign_by_ref('memberships', $memberships);
 		$templateMgr->assign_by_ref('group', $group);
 		$templateMgr->display('manager/groups/memberships.tpl');
