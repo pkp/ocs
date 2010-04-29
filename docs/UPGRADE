@@ -32,10 +32,10 @@ Obtaining the latest OCS code
 -----------------------------
 
 The OCS source code is available in three forms: as patches against older
-releases of OCS, from an anonymous CVS repository, and as a complete
+releases of OCS, from read-only github access, and as a complete
 standalone package.
 
-Patching or updating from CVS is the recommended approach if you have made local
+Patching or updating from github is the recommended approach if you have made local
 modifications to the system.
 
 1. Patch
@@ -70,17 +70,22 @@ manually added after applying the patch, search the patch file for lines like:
 can be found in the distribution archive.
 
 
-2. CVS
+2. git
 
-If your instance of OCS was checked out from the PKP anonymous CVS repository
-(see docs/README-CVS), you can update the OCS code using a CVS client.
+If your instance of OCS was checked out from github (see docs/README-GIT),
+you can update the OCS code using a git client.
 
-To update the OCS code from a CVS check-out, run the following command from
+To update the OCS code from a git clone, run the following command from
 your OCS directory:
 
-    $ cvs update -r TAG
+    $ git rebase --onto <new-release-tag> <previous-release-tag>
 
-"TAG" should be replaced with the CVS tag corresponding to the new release.
+This assumes that you have made local changes and committed them on top of
+the old release tag. The command will take your custom changes and apply
+them on top of the new release. This may cause merge conflicts which have to
+be resolved in the usual way, e.g. using a merge tool like kdiff3.
+
+"TAG" should be replaced with the git tag corresponding to the new release.
 OCS release version tags are of the form "ocs-MAJOR_MINOR_REVSION-BUILD".
 For example, the tag for the initial release of OCS 2.0.0 is "ocs-2_0_0-0".
 
