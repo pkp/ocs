@@ -77,12 +77,12 @@
 		<code function="updateReviewDeadlineSettings" />
 		<code function="cleanImageAlts" />
 		<code function="cleanTitles" />
-		<code function="addPluginVersions" />
 		<note file="docs/release-notes/README-2.3" />
 	</upgrade>
 
 	<upgrade minversion="2.0.0.0" maxversion="2.3.1.9">
 		<data file="dbscripts/xml/upgrade/2.3.1_update.xml" />
+		<code function="addPluginVersions" />
 		<note file="docs/release-notes/README-2.3.1" />
 	</upgrade>
 </install>

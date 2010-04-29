@@ -105,7 +105,9 @@
 	<message key="manager.plugins.upgradeSuccessful">Successfully upgraded to version</message>
 	<message key="manager.plugins.uploadError">Error uploading file</message>
 	<message key="manager.plugins.uploadPluginDir">Select plugin file</message>
-	<message key="manager.plugins.versionFileNotFound">Version.xml not found in plugin directory</message>
+	<message key="manager.plugins.versionFileNotFound">version.xml not found in plugin directory</message>
+	<message key="manager.plugins.versionFileInvalid">version.xml in plugin directory contains invalid data.</message>
+	<message key="manager.plugins.tarCommandNotFound">The tar command is not available. Please correctly configure it in your "confic.inc.php".</message>
 	<message key="manager.program">Program</message>
 	<message key="manager.program.form.description">When the conference program is ready to be presented to users, upload it here or enter it as plain text.</message>
 	<message key="manager.program.form.programFile">Program File</message>

@@ -598,7 +598,7 @@ class Upgrade extends Installer {
 
 		return true;
 	}
-	
+
 	/**
 	 * For 2.3 upgrade: Add clean titles for every article title so sorting by title ignores punctuation.
 	 * @return boolean
@@ -616,8 +616,8 @@ class Upgrade extends Installer {
 		}
 		$result->Close();
 		unset($result);
-		
-		
+
+
 		return true;
 	}
 
@@ -652,13 +652,13 @@ class Upgrade extends Installer {
 		}
 		return true;
 	}
-	
+
 	/**
 	 * For 2.3 upgrade:  Add initial plugin data to versions table
 	 * @return boolean
 	 */
 	function addPluginVersions() {
-		$versionDao =& DAORegistry::getDAO('VersionDAO'); 
+		$versionDao =& DAORegistry::getDAO('VersionDAO');
 		import('site.VersionCheck');
 		$categories = PluginRegistry::getCategories();
 		foreach ($categories as $category) {
@@ -666,27 +666,20 @@ class Upgrade extends Installer {
 			$plugins = PluginRegistry::getPlugins($category);
 			if (is_array($plugins)) foreach ($plugins as $plugin) {
 				$versionFile = $plugin->getPluginPath() . '/version.xml';
-				
+
 				if (FileManager::fileExists($versionFile)) {
 					$versionInfo =& VersionCheck::parseVersionXML($versionFile);
-					$pluginVersion = $versionInfo['version'];		
-					$pluginVersion->setCurrent(1);
-					$versionDao->insertVersion($pluginVersion);
+					$pluginVersion = $versionInfo['version'];
 				}  else {
-					$pluginVersion = new Version();
-					$pluginVersion->setMajor(1);
-					$pluginVersion->setMinor(0);
-					$pluginVersion->setRevision(0);
-					$pluginVersion->setBuild(0);
-					$pluginVersion->setDateInstalled(Core::getCurrentDate());
-					$pluginVersion->setCurrent(1);
-					$pluginVersion->setProductType('plugins.' . $category);
-					$pluginVersion->setProduct(basename($plugin->getPluginPath()));
-					$versionDao->insertVersion($pluginVersion);
+					$pluginVersion = new Version(
+						1, 0, 0, 0, Core::getCurrentDate(), 1,
+						'plugins.'.$category, basename($plugin->getPluginPath()), '', 0
+					);
 				}
+				$versionDao->insertVersion($pluginVersion, true);
 			}
 		}
-		
+
 		return true;
 	}
 }
