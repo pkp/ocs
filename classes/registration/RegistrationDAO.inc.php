@@ -687,6 +687,7 @@ class RegistrationDAO extends DAO {
 			case 'type': return 'r.type_id';
 			case 'registered': return 'r.date_registered';
 			case 'paid': return 'r.date_paid';
+			case 'id': return 'r.registration_id';
 			default: return null;
 		}
 	}
