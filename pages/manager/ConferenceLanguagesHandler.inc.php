@@ -91,17 +91,12 @@ class ConferenceLanguagesHandler extends ManagerHandler {
 			$locale
 		);
 
-		$templateMgr =& TemplateManager::getManager();
-		$templateMgr->assign(array(
-			'currentUrl' => $request->url(null, null, null, 'languages'),
-			'pageTitle' => 'common.languages',
-			'message' => 'common.changesSaved',
-			'backLink' => $request->url(null, null, $request->getRequestedPage()),
-			'backLinkLabel' => 'manager.conferenceSiteManagement'
-		));
-		$templateMgr->display('common/message.tpl');
+		// Display a notification
+		import('notification.NotificationManager');
+		$notificationManager = new NotificationManager();
+		$notificationManager->createTrivialNotification('notification.notification', 'common.changesSaved');
+		$request->redirect(null, null, null, 'languages');
 	}
-
 }
 
 ?>
