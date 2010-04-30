@@ -40,7 +40,7 @@ class OAIMetadataFormat_DC extends OAIMetadataFormat {
 		// Get author names
 		$creator = array();
 		foreach ($paper->getAuthors() as $author) {
-			$authorName = $author->getFullName();
+			$authorName = $author->getFullName(true);
 			$affiliation = $author->getAffiliation();
 			if (!empty($affiliation)) {
 				$authorName .= '; ' . $affiliation;

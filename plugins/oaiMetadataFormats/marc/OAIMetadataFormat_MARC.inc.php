@@ -37,7 +37,7 @@ class OAIMetadataFormat_MARC extends OAIMetadataFormat {
 		// Get author names
 		$creators = array();
 		foreach ($paper->getAuthors() as $author) {
-			$authorName = $author->getFullName();
+			$authorName = $author->getFullName(true);
 			$affiliation = $author->getAffiliation();
 			if (!empty($affiliation)) {
 				$authorName .= '; ' . $affiliation;
