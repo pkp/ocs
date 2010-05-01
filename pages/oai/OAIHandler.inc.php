@@ -9,7 +9,7 @@
  * @class OAIHandler
  * @ingroup pages_oai
  *
- * @brief Handle OAI protocol requests. 
+ * @brief Handle OAI protocol requests.
  */
 
 //$Id$
@@ -30,7 +30,7 @@ class OAIHandler extends Handler {
 
 	function index() {
 		$this->validate();
-		PluginRegistry::loadCategory('oaiMetadataFormats', true);
+		PluginRegistry::loadCategory('oaiMetadataFormats');
 
 		$oai = new ConferenceOAI(new OAIConfig(Request::getRequestUrl(), Config::getVar('oai', 'repository_id')));
 		$oai->execute();

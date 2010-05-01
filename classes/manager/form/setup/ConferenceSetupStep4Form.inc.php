@@ -32,7 +32,7 @@ class ConferenceSetupStep4Form extends ConferenceSetupForm {
 	function display() {
 		$conference =& Request::getConference();
 
-		$allThemes =& PluginRegistry::loadCategory('themes', true);
+		$allThemes =& PluginRegistry::loadCategory('themes');
 		$conferenceThemes = array();
 		foreach ($allThemes as $key => $junk) {
 			$plugin =& $allThemes[$key]; // by ref

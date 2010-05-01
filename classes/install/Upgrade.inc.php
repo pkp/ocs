@@ -445,7 +445,7 @@ class Upgrade extends Installer {
 		}
 		$result->Close();
 		unset($result);
-		
+
 		// Reset default email templates
 		$result =& $emailTemplateDAO->retrieve('SELECT email_key, locale, body, subject FROM email_templates_default_data');
 		while (!$result->EOF) {
@@ -662,7 +662,7 @@ class Upgrade extends Installer {
 		import('site.VersionCheck');
 		$categories = PluginRegistry::getCategories();
 		foreach ($categories as $category) {
-			PluginRegistry::loadCategory($category, true);
+			PluginRegistry::loadCategory($category);
 			$plugins = PluginRegistry::getPlugins($category);
 			if (is_array($plugins)) foreach ($plugins as $plugin) {
 				$versionFile = $plugin->getPluginPath() . '/version.xml';
