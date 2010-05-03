@@ -14,7 +14,7 @@
 
 //$Id$
 
-import('handler.Handler');
+import('classes.handler.Handler');
 
 class ManagerHandler extends Handler {	
 	/**
@@ -69,7 +69,7 @@ class ManagerHandler extends Handler {
 		$site =& Request::getSite();
 		$user =& Request::getUser();
 
-		import('mail.MailTemplate');
+		import('classes.mail.MailTemplate');
 		$email = new MailTemplate(Request::getUserVar('template'), Request::getUserVar('locale'));
 
 		if (Request::getUserVar('send') && !$email->hasErrors()) {

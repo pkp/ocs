@@ -17,7 +17,7 @@
 // $Id$
 
 
-import ('conference.Track');
+import ('classes.conference.Track');
 
 class TrackDAO extends DAO {
 	/**

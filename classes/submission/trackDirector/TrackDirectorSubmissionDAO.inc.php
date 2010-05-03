@@ -17,12 +17,12 @@
 // $Id$
 
 
-import('submission.trackDirector.TrackDirectorSubmission');
+import('classes.submission.trackDirector.TrackDirectorSubmission');
 
 // Bring in director decision constants
-import('submission.common.Action');
-import('submission.author.AuthorSubmission');
-import('submission.reviewer.ReviewerSubmission');
+import('classes.submission.common.Action');
+import('classes.submission.author.AuthorSubmission');
+import('classes.submission.reviewer.ReviewerSubmission');
 
 class TrackDirectorSubmissionDAO extends DAO {
 	var $paperDao;

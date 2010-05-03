@@ -23,7 +23,7 @@ define('REGISTRATION_EXPIRY_REMINDER_AFTER_MONTHS_MAX', '12');
 define('REGISTRATION_EXPIRY_REMINDER_AFTER_WEEKS_MIN', '0');
 define('REGISTRATION_EXPIRY_REMINDER_AFTER_WEEKS_MAX', '3');
 
-import('form.Form');
+import('lib.pkp.classes.form.Form');
 
 
 class RegistrationPolicyForm extends Form {

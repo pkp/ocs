@@ -15,7 +15,7 @@
 //$Id$
 
 
-import('form.Form');
+import('lib.pkp.classes.form.Form');
 
 class ProfileForm extends Form {
 
@@ -51,7 +51,7 @@ class ProfileForm extends Form {
 		$profileImage = $user->getSetting('profileImage');
 		if (!$profileImage) return false;
 
-		import('file.PublicFileManager');
+		import('classes.file.PublicFileManager');
 		$fileManager = new PublicFileManager();
 		if ($fileManager->removeSiteFile($profileImage['uploadName'])) {
 			return $user->updateSetting('profileImage', null);
@@ -61,7 +61,7 @@ class ProfileForm extends Form {
 	}
 
 	function uploadProfileImage() {
-		import('file.PublicFileManager');
+		import('classes.file.PublicFileManager');
 		$fileManager = new PublicFileManager();
 
 		$user =& $this->user;
@@ -139,7 +139,7 @@ class ProfileForm extends Form {
 			$roles =& $roleDao->getRolesByUserId($user->getId(), $schedConf->getId());
 			$roleNames = array();
 			foreach ($roles as $role) $roleNames[$role->getRolePath()] = $role->getRoleName();
-			import('schedConf.SchedConfAction');
+			import('classes.schedConf.SchedConfAction');
 			$templateMgr->assign('allowRegReviewer', SchedConfAction::allowRegReviewer($schedConf));
 			$templateMgr->assign('allowRegAuthor', SchedConfAction::allowRegAuthor($schedConf));
 			$templateMgr->assign('allowRegReader', SchedConfAction::allowRegReader($schedConf));
@@ -270,7 +270,7 @@ class ProfileForm extends Form {
 		// Roles
 		$schedConf =& Request::getSchedConf();
 		if ($schedConf) {
-			import('schedConf.SchedConfAction');
+			import('classes.schedConf.SchedConfAction');
 			$role = new Role();
 			$role->setUserId($user->getId());
 			$role->setConferenceId($schedConf->getConferenceId());

@@ -20,7 +20,7 @@
 // $Id$
 
 
-import('form.Form');
+import('lib.pkp.classes.form.Form');
 
 class AccommodationSettingsForm extends Form {
 
@@ -40,7 +40,7 @@ class AccommodationSettingsForm extends Form {
 	 * Display the form.
 	 */
 	function display() {
-		import('file.PublicFileManager');
+		import('classes.file.PublicFileManager');
 		$schedConf =& Request::getSchedConf();
 
 		$templateMgr =& TemplateManager::getManager();

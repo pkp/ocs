@@ -16,7 +16,7 @@
  
 //$Id$
 
-import('form.Form');
+import('lib.pkp.classes.form.Form');
 
 class PayPalSettingsForm extends Form {
 	/** @var $schedConfId int */

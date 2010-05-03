@@ -16,7 +16,7 @@
 // $Id$
 
 
-import('submission.common.Action');
+import('classes.submission.common.Action');
 
 class AuthorAction extends Action {
 
@@ -36,7 +36,7 @@ class AuthorAction extends Action {
 	 * @param $authorSubmission object
 	 */
 	function designateReviewVersion($authorSubmission) {
-		import('file.PaperFileManager');
+		import('classes.file.PaperFileManager');
 		$paperFileManager = new PaperFileManager($authorSubmission->getPaperId());
 		$authorSubmissionDao =& DAORegistry::getDAO('AuthorSubmissionDAO');
 
@@ -68,7 +68,7 @@ class AuthorAction extends Action {
 	 * @param $revisionId int
 	 */
 	function deletePaperFile($paper, $fileId, $revisionId) {
-		import('file.PaperFileManager');
+		import('classes.file.PaperFileManager');
 
 		$paperFileManager = new PaperFileManager($paper->getId());
 		$paperFileDao =& DAORegistry::getDAO('PaperFileDAO');
@@ -97,7 +97,7 @@ class AuthorAction extends Action {
 	 * @param $authorSubmission object
 	 */
 	function uploadRevisedVersion($authorSubmission) {
-		import('file.PaperFileManager');
+		import('classes.file.PaperFileManager');
 		$paperFileManager = new PaperFileManager($authorSubmission->getPaperId());
 		$authorSubmissionDao =& DAORegistry::getDAO('AuthorSubmissionDAO');
 
@@ -118,8 +118,8 @@ class AuthorAction extends Action {
 
 		// Add log entry
 		$user =& Request::getUser();
-		import('paper.log.PaperLog');
-		import('paper.log.PaperEventLogEntry');
+		import('classes.paper.log.PaperLog');
+		import('classes.paper.log.PaperEventLogEntry');
 		PaperLog::logEvent($authorSubmission->getPaperId(), PAPER_LOG_AUTHOR_REVISION, LOG_TYPE_AUTHOR, $user->getId(), 'log.author.documentRevised', array('authorName' => $user->getFullName(), 'fileId' => $fileId, 'paperId' => $authorSubmission->getPaperId()));
 	}
 
@@ -133,7 +133,7 @@ class AuthorAction extends Action {
 	 */
 	function viewDirectorDecisionComments($paper) {
 		if (!HookRegistry::call('AuthorAction::viewDirectorDecisionComments', array(&$paper))) {
-			import("submission.form.comment.DirectorDecisionCommentForm");
+			import('classes.submission.form.comment.DirectorDecisionCommentForm');
 
 			$commentForm = new DirectorDecisionCommentForm($paper, ROLE_ID_AUTHOR);
 			$commentForm->initData();
@@ -152,7 +152,7 @@ class AuthorAction extends Action {
 		$schedConf =& Request::getSchedConf();
 
 		$user =& Request::getUser();
-		import('mail.PaperMailTemplate');
+		import('classes.mail.PaperMailTemplate');
 		$email = new PaperMailTemplate($authorSubmission);
 
 		$editAssignments = $authorSubmission->getEditAssignments();

@@ -18,7 +18,7 @@
 
 //$Id$
 
-import('form.Form');
+import('lib.pkp.classes.form.Form');
 
 class ScheduleForm extends Form {
 	/** @var $schedConf object */
@@ -126,7 +126,7 @@ class ScheduleForm extends Form {
 		$templateMgr->assign('helpTopicId', 'conference.currentConferences.buildings');
 		$schedConf =& Request::getSchedConf();
 
-		import('manager.form.TimelineForm');
+		import('classes.manager.form.TimelineForm');
 		list($earliestDate, $latestDate) = TimelineForm::getOutsideDates($schedConf);
 		$templateMgr->assign('firstYear', strftime('%Y', $earliestDate));
 		$templateMgr->assign('lastYear', strftime('%Y', $latestDate));

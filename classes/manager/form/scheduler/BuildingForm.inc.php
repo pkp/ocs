@@ -14,7 +14,7 @@
 
 //$Id$
 
-import('form.Form');
+import('lib.pkp.classes.form.Form');
 
 class BuildingForm extends Form {
 	/** @var buildingId int the ID of the building being edited */

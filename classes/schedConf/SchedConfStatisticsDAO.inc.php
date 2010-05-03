@@ -32,7 +32,7 @@ class SchedConfStatisticsDAO extends DAO {
 	 */
 	function getPaperStatistics($schedConfId, $trackIds = null, $dateStart = null, $dateEnd = null) {
 		// Bring in status constants
-		import('paper.Paper');
+		import('classes.paper.Paper');
 
 		$params = array($schedConfId);
 		if (!empty($trackIds)) {
@@ -105,7 +105,7 @@ class SchedConfStatisticsDAO extends DAO {
 					}
 				}
 
-				import('submission.common.Action');
+				import('classes.submission.common.Action');
 				switch ($row['decision']) {
 					case SUBMISSION_DIRECTOR_DECISION_ACCEPT:
 						$returner['submissionsAccept']++;

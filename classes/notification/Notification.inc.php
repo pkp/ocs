@@ -27,8 +27,8 @@ define('NOTIFICATION_TYPE_SUBMISSION_COMMENT', 			0x1000008);
 define('NOTIFICATION_TYPE_SUPP_FILE_MODIFIED', 			0x1000009);
 define('NOTIFICATION_TYPE_USER_COMMENT', 			0x1000010);
 
-import('notification.PKPNotification');
-import('notification.NotificationDAO');
+import('lib.pkp.classes.notification.PKPNotification');
+import('lib.pkp.classes.notification.NotificationDAO');
 
 class Notification extends PKPNotification {
 
@@ -79,7 +79,7 @@ class Notification extends PKPNotification {
 	 * @param $template string The mail template to use
 	 */
 	function sendMailingListEmail($email, $password, $template) {
-		import('mail.MailTemplate');
+		import('classes.mail.MailTemplate');
 		$conference = Request::getConference();
 		$site = Request::getSite();
 
@@ -108,7 +108,7 @@ class Notification extends PKPNotification {
 	 */
 	function getSubscriptionSettings() {
 		$conference = Request::getConference();
-		import('payment.ocs.OCSPaymentManager');
+		import('classes.payment.ocs.OCSPaymentManager');
 		$paymentManager =& OCSPaymentManager::getManager();
 
 		$settings = array(

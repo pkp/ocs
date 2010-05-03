@@ -14,7 +14,7 @@
 
 //$Id$
 
-import('xml.XMLCustomWriter');
+import('lib.pkp.classes.xml.XMLCustomWriter');
 
 class NativeExportDom {
 	function &generateTrackDom(&$doc, &$schedConf, &$track) {
@@ -205,7 +205,7 @@ class NativeExportDom {
 	function &generateGalleyDom(&$doc, &$schedConf, &$paper, &$galley) {
 		$isHtml = $galley->isHTMLGalley();
 
-		import('file.PaperFileManager');
+		import('classes.file.PaperFileManager');
 		$paperFileManager = new PaperFileManager($paper->getId());
 		$paperFileDao =& DAORegistry::getDAO('PaperFileDAO');
 
@@ -331,7 +331,7 @@ class NativeExportDom {
 			unset($sourceNode);
 		}
 		
-		import('file.PaperFileManager');
+		import('classes.file.PaperFileManager');
 		$paperFileManager = new PaperFileManager($paper->getId());
 		$fileNode =& XMLCustomWriter::createElement($doc, 'file');
 		XMLCustomWriter::appendChild($root, $fileNode);

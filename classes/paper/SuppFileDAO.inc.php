@@ -15,7 +15,7 @@
 
 //$Id$
 
-import('paper.SuppFile');
+import('classes.paper.SuppFile');
 
 class SuppFileDAO extends DAO {
 	/**

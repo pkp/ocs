@@ -15,7 +15,7 @@
 
 //$Id$
 
-import('paper.PaperNote');
+import('classes.paper.PaperNote');
 
 class PaperNoteDAO extends DAO {
 	/**

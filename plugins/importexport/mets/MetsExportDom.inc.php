@@ -14,7 +14,7 @@
 
 //$Id$
 
-import('xml.XMLCustomWriter');
+import('lib.pkp.classes.xml.XMLCustomWriter');
 
 class MetsExportDom {
 
@@ -415,7 +415,7 @@ class MetsExportDom {
 	 */
 	function generatePaperFileDom(&$doc, &$root, &$paper, &$paperFile, &$conference, &$schedConf) {
 		import('classes.file.PublicFileManager');
-		import('classes.file.FileManager');
+		import('lib.pkp.classes.file.FileManager');
 		$contentWrapper =& Request::getUserVar('contentWrapper');
 		$mfile =& XMLCustomWriter::createElement($doc, 'METS:file');
 		$filePath  = MetsExportDom::getPublicFilePath($paperFile , '/public/');
@@ -449,7 +449,7 @@ class MetsExportDom {
 	 */
 	function generatePaperSuppFileDom(&$doc, &$root, &$paper, &$paperFile, &$conference, &$schedConf) {
 		import('classes.file.PublicFileManager');
-		import('classes.file.FileManager');
+		import('lib.pkp.classes.file.FileManager');
 		$contentWrapper =& Request::getUserVar('contentWrapper');
 		$mfile =& XMLCustomWriter::createElement($doc, 'METS:file');
 		$filePath  = MetsExportDom::getPublicFilePath($paperFile , '/supp/');;

@@ -15,7 +15,7 @@
 
 //$Id$
 
-import('scheduler.Building');
+import('classes.scheduler.Building');
 
 class BuildingDAO extends DAO {
 	/**

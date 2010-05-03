@@ -14,7 +14,7 @@
  * $Id$
  */
 
-import('classes.plugins.GenericPlugin');
+import('lib.pkp.classes.plugins.GenericPlugin');
 
 class GoogleAnalyticsPlugin extends GenericPlugin {
 	/**

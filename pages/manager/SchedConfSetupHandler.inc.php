@@ -38,7 +38,7 @@ class SchedConfSetupHandler extends ManagerHandler {
 		if ($step >= 1 && $step <= 3) {
 
 			$formClass = "SchedConfSetupStep{$step}Form";
-			import("manager.form.schedConfSetup.$formClass");
+			import("classes.manager.form.schedConfSetup.$formClass");
 
 			$setupForm = new $formClass();
 			if ($setupForm->isLocaleResubmit()) {
@@ -69,7 +69,7 @@ class SchedConfSetupHandler extends ManagerHandler {
 			$this->setupTemplate(true);
 
 			$formClass = "SchedConfSetupStep{$step}Form";
-			import("manager.form.schedConfSetup.$formClass");
+			import("classes.manager.form.schedConfSetup.$formClass");
 
 			$setupForm = new $formClass();
 			$setupForm->readInputData();

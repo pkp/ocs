@@ -14,7 +14,7 @@
 
 //$Id$
 
-import("manager.form.setup.ConferenceSetupForm");
+import('classes.manager.form.setup.ConferenceSetupForm');
 
 class ConferenceSetupStep4Form extends ConferenceSetupForm {
 	/**
@@ -80,7 +80,7 @@ class ConferenceSetupStep4Form extends ConferenceSetupForm {
 		$conference =& Request::getConference();
 		$settingsDao =& DAORegistry::getDAO('ConferenceSettingsDAO');
 
-		import('file.PublicFileManager');
+		import('classes.file.PublicFileManager');
 		$fileManager = new PublicFileManager();
 		if ($fileManager->uploadError($settingName)) return false;
 		if ($fileManager->uploadedFileExists($settingName)) {

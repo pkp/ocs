@@ -104,13 +104,13 @@ class EmailHandler extends UserHandler {
 			if ($paper && $paper->getSchedConfId() !== $schedConf->getId()) $hasAccess = false;
 
 			if ($hasAccess) {
-				import('mail.PaperMailTemplate');
+				import('classes.mail.PaperMailTemplate');
 				$email = new PaperMailTemplate($paperDao->getPaper($paperId));
 			}
 		}
 
 		if ($email === null) {
-			import('mail.MailTemplate');
+			import('classes.mail.MailTemplate');
 			$email = new MailTemplate();
 		}
 

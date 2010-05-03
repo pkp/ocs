@@ -16,7 +16,7 @@
 
 require(dirname(__FILE__) . '/bootstrap.inc.php');
 
-import('site.ImportOCS1');
+import('classes.site.ImportOCS1');
 
 class migrate extends CommandLineTool {
 

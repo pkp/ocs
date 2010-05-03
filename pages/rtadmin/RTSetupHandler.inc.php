@@ -14,7 +14,7 @@
 
 //$Id$
 
-import('rt.ocs.ConferenceRTAdmin');
+import('classes.rt.ocs.ConferenceRTAdmin');
 import('pages.rtadmin.RTAdminHandler');
 
 class RTSetupHandler extends RTAdminHandler {

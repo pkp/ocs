@@ -16,7 +16,7 @@
 // $Id$
 
 
-import('scheduledTask.ScheduledTask');
+import('lib.pkp.classes.scheduledTask.ScheduledTask');
 
 class ReviewReminder extends ScheduledTask {
 
@@ -35,7 +35,7 @@ class ReviewReminder extends ScheduledTask {
 		$reviewer =& $userDao->getUser($reviewAssignment->getReviewerId());
 		if (!isset($reviewer)) return false;
 
-		import('mail.PaperMailTemplate');
+		import('classes.mail.PaperMailTemplate');
 
 		$reviewerAccessKeysEnabled = $schedConf->getSetting('reviewerAccessKeysEnabled');
 
@@ -55,7 +55,7 @@ class ReviewReminder extends ScheduledTask {
 
 		$urlParams = array();
 		if ($reviewerAccessKeysEnabled) {
-			import('security.AccessKeyManager');
+			import('lib.pkp.classes.security.AccessKeyManager');
 			$accessKeyManager = new AccessKeyManager();
 
 			// Key lifetime is the typical review period plus four weeks

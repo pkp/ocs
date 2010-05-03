@@ -16,7 +16,7 @@
 // $Id$
 
 
-import('handler.Handler');
+import('classes.handler.Handler');
 
 class UserHandler extends Handler {
 	/**
@@ -124,7 +124,7 @@ class UserHandler extends Handler {
 
 			$schedConf =& Request::getSchedConf();
 			if ($schedConf) {
-				import('schedConf.SchedConfAction');
+				import('classes.schedConf.SchedConfAction');
 				$templateMgr->assign('allowRegAuthor', SchedConfAction::allowRegAuthor($schedConf));
 				$templateMgr->assign('allowRegReviewer', SchedConfAction::allowRegReviewer($schedConf));
 				$templateMgr->assign('submissionsOpen', SchedConfAction::submissionsOpen($schedConf));
@@ -233,7 +233,7 @@ class UserHandler extends Handler {
 		$this->validate();
 		$schedConf =& Request::getSchedConf();
 		
-		import('schedConf.SchedConfAction');
+		import('classes.schedConf.SchedConfAction');
 		$user =& Request::getUser();
 		if (!$user) Request::redirect(null, null, 'index');
 
@@ -319,7 +319,7 @@ class UserHandler extends Handler {
 
 	function viewCaptcha($args) {
 		$captchaId = (int) array_shift($args);
-		import('captcha.CaptchaManager');
+		import('lib.pkp.classes.captcha.CaptchaManager');
 		$captchaManager = new CaptchaManager();
 		if ($captchaManager->isEnabled()) {
 			$captchaDao =& DAORegistry::getDAO('CaptchaDAO');

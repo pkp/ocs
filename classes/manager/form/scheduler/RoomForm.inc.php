@@ -14,7 +14,7 @@
 
 //$Id$
 
-import('form.Form');
+import('lib.pkp.classes.form.Form');
 
 class RoomForm extends Form {
 	/** @var roomId int the ID of the room being edited */

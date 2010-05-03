@@ -15,7 +15,7 @@
 
 //$Id$
 
-import('oai.OAI');
+import('lib.pkp.classes.oai.OAI');
 
 class OAIDAO extends DAO {
 

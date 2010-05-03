@@ -15,7 +15,7 @@
 
 //$Id$
 
-import('payment.QueuedPayment');
+import('lib.pkp.classes.payment.QueuedPayment');
 
 class OCSQueuedPayment extends QueuedPayment {
 	var $conferenceId;

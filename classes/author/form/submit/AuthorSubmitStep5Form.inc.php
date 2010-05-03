@@ -14,7 +14,7 @@
 
 //$Id$
 
-import("author.form.submit.AuthorSubmitForm");
+import('classes.author.form.submit.AuthorSubmitForm');
 
 class AuthorSubmitStep5Form extends AuthorSubmitForm {
 
@@ -88,8 +88,8 @@ class AuthorSubmitStep5Form extends AuthorSubmitForm {
 
 		$this->confirmSubmission($paper, $user, $schedConf, $conference, $reviewMode == REVIEW_MODE_BOTH_SEQUENTIAL?'SUBMISSION_UPLOAD_ACK':'SUBMISSION_ACK');
 
-		import('paper.log.PaperLog');
-		import('paper.log.PaperEventLogEntry');
+		import('classes.paper.log.PaperLog');
+		import('classes.paper.log.PaperEventLogEntry');
 		PaperLog::logEvent($this->paperId, PAPER_LOG_PRESENTATION_SUBMIT, LOG_TYPE_AUTHOR, $user->getId(), 'log.author.presentationSubmitted', array('submissionId' => $paper->getId(), 'authorName' => $user->getFullName()));
 
 		return $this->paperId;

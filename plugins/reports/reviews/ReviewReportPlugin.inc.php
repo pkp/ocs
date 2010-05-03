@@ -82,7 +82,7 @@ class ReviewReportPlugin extends ReportPlugin {
 			REVIEW_MODE_BOTH_SIMULTANEOUS => Locale::translate('manager.schedConfSetup.submissions.bothTogether')
 		);
 
-		import('submission.reviewAssignment.ReviewAssignment');
+		import('classes.submission.reviewAssignment.ReviewAssignment');
 		$recommendations = ReviewAssignment::getReviewerRecommendationOptions();
 
 		$columns = array(

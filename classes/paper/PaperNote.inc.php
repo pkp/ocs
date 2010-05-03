@@ -15,7 +15,7 @@
 
 //$Id$
 
-import('paper.PaperFile');
+import('classes.paper.PaperFile');
 
 class PaperNote extends PaperFile {
 

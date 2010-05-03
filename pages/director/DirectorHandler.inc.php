@@ -16,7 +16,7 @@
 // $Id$
 
 
-import('trackDirector.TrackDirectorHandler');
+import('pages.trackDirector.TrackDirectorHandler');
 
 define('DIRECTOR_TRACK_HOME', 0);
 define('DIRECTOR_TRACK_SUBMISSIONS', 1);
@@ -25,8 +25,8 @@ define('DIRECTOR_TRACK_SUBMISSIONS', 1);
 define('FILTER_DIRECTOR_ALL', 0);
 define('FILTER_DIRECTOR_ME', 1);
 
-import ('submission.director.DirectorAction');
-import('handler.validation.HandlerValidatorRoles');
+import ('classes.submission.director.DirectorAction');
+import('lib.pkp.classes.handler.validation.HandlerValidatorRoles');
 
 class DirectorHandler extends TrackDirectorHandler {
 	/**
@@ -174,7 +174,7 @@ class DirectorHandler extends TrackDirectorHandler {
 				$submissionsArray = array_reverse($submissionsArray);
 			}
 			// Convert submission array back to an ItemIterator class
-			import('core.ArrayItemIterator');
+			import('lib.pkp.classes.core.ArrayItemIterator');
 			$submissions =& ArrayItemIterator::fromRangeInfo($submissionsArray, $rangeInfo);
 		}
 
@@ -362,7 +362,7 @@ class DirectorHandler extends TrackDirectorHandler {
 		if ($paper->getSchedConfId() == $schedConf->getId() && ($status == STATUS_DECLINED || $status == STATUS_ARCHIVED
 			|| ($progress != 0 && ($stage == REVIEW_STAGE_ABSTRACT || ($stage == REVIEW_STAGE_PRESENTATION && $progress < 3))))) {
 			// Delete paper files
-			import('file.PaperFileManager');
+			import('classes.file.PaperFileManager');
 			$paperFileManager = new PaperFileManager($paperId);
 			$paperFileManager->deletePaperTree();
 
@@ -413,7 +413,7 @@ class DirectorHandler extends TrackDirectorHandler {
 		$user =& Request::getUser();
 		$templateMgr =& TemplateManager::getManager();
 
-		import('mail.MassMail');
+		import('lib.pkp.classes.mail.MassMail');
 		$email = new MassMail('PUBLISH_NOTIFY');
 
 		if (Request::getUserVar('send') && !$email->hasErrors()) {
@@ -521,7 +521,7 @@ class DirectorHandler extends TrackDirectorHandler {
 			$pageHierarchy[] = array(Request::url(null, null, 'director', 'submissions'), 'paper.submissions');
 		}
 
-		import('submission.trackDirector.TrackDirectorAction');
+		import('classes.submission.trackDirector.TrackDirectorAction');
 		$submissionCrumb = TrackDirectorAction::submissionBreadcrumb($paperId, $parentPage, 'director');
 		if (isset($submissionCrumb)) {
 			$pageHierarchy = array_merge($pageHierarchy, $submissionCrumb);

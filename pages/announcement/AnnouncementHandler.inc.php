@@ -15,8 +15,8 @@
 //$Id$
 
 
-import('announcement.PKPAnnouncementHandler');
-import('handler.validation.HandlerValidatorConference');
+import('lib.pkp.pages.announcement.PKPAnnouncementHandler');
+import('classes.handler.validation.HandlerValidatorConference');
 
 class AnnouncementHandler extends PKPAnnouncementHandler {
 	/**

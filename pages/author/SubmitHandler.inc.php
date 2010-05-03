@@ -59,7 +59,7 @@ class SubmitHandler extends AuthorHandler {
 		$paper =& $this->paper;
 
 		$formClass = "AuthorSubmitStep{$step}Form";
-		import("author.form.submit.$formClass");
+		import("classes.author.form.submit.$formClass");
 
 		$submitForm = new $formClass($paper);
 		if ($submitForm->isLocaleResubmit()) {
@@ -84,7 +84,7 @@ class SubmitHandler extends AuthorHandler {
 		$paper =& $this->paper;
 
 		$formClass = "AuthorSubmitStep{$step}Form";
-		import("author.form.submit.$formClass");
+		import("classes.author.form.submit.$formClass");
 
 		$submitForm = new $formClass($paper);
 		$submitForm->readInputData();
@@ -186,7 +186,7 @@ class SubmitHandler extends AuthorHandler {
 					($step == 5 )) {
 
 				// Send a notification to associated users
-				import('notification.NotificationManager');
+				import('lib.pkp.classes.notification.NotificationManager');
 				$notificationManager = new NotificationManager();
 				$roleDao =& DAORegistry::getDAO('RoleDAO');
 				$notificationUsers = array();
@@ -237,13 +237,13 @@ class SubmitHandler extends AuthorHandler {
 		$this->setupTemplate(true);
 		$schedConf =& Request::getSchedConf();
 
-		import('file.FileManager');
+		import('lib.pkp.classes.file.FileManager');
 		$fileManager = new FileManager();
 		if ($fileManager->uploadError('uploadSuppFile')) return false;
 
 		if (!$schedConf->getSetting('acceptSupplementaryReviewMaterials')) return false;
 
-		import('author.form.submit.AuthorSubmitSuppFileForm');
+		import('classes.author.form.submit.AuthorSubmitSuppFileForm');
 		$submitForm = new AuthorSubmitSuppFileForm($paper);
 		$submitForm->setData('title', Locale::translate('common.untitled'));
 		return $submitForm->execute();
@@ -265,7 +265,7 @@ class SubmitHandler extends AuthorHandler {
 
 		if (!$schedConf->getSetting('acceptSupplementaryReviewMaterials')) Request::redirect(null, null, 'index');
 
-		import("author.form.submit.AuthorSubmitSuppFileForm");
+		import('classes.author.form.submit.AuthorSubmitSuppFileForm');
 		$submitForm = new AuthorSubmitSuppFileForm($paper, $suppFileId);
 
 		if ($submitForm->isLocaleResubmit()) {
@@ -292,11 +292,11 @@ class SubmitHandler extends AuthorHandler {
 
 		if (!$schedConf->getSetting('acceptSupplementaryReviewMaterials')) Request::redirect(null, null, 'index');
 
-		import('author.form.submit.AuthorSubmitSuppFileForm');
+		import('classes.author.form.submit.AuthorSubmitSuppFileForm');
 		$submitForm = new AuthorSubmitSuppFileForm($paper, $suppFileId);
 		$submitForm->readInputData();
 
-		import('file.FileManager');
+		import('lib.pkp.classes.file.FileManager');
 		$fileManager = new FileManager();
 		if ($fileManager->uploadError('uploadSuppFile') && $suppFileId == 0) {
 			$submitForm->addError('uploadSubmissionFile', Locale::translate('common.uploadFailed'));
@@ -315,7 +315,7 @@ class SubmitHandler extends AuthorHandler {
 	 * @param $args array, the first parameter is the supplementary file to delete
 	 */
 	function deleteSubmitSuppFile($args) {
-		import("file.PaperFileManager");
+		import('classes.file.PaperFileManager');
 
 		$paperId = Request::getUserVar('paperId');
 		$suppFileId = isset($args[0]) ? (int) $args[0] : 0;
@@ -376,7 +376,7 @@ class SubmitHandler extends AuthorHandler {
 			// If the paper does not exist, require that the
 			// submission window be open or that this user be a
 			// director or track director.
-			import('schedConf.SchedConfAction');
+			import('classes.schedConf.SchedConfAction');
 			$schedConf =& Request::getSchedConf();
 			if (!$schedConf || (!SchedConfAction::submissionsOpen($schedConf) && !Validation::isDirector($schedConf->getConferenceId(), $schedConf->getId()) && !Validation::isTrackDirector($schedConf->getConferenceId()))) {
 				Request::redirect(null, null, 'author', 'index');

@@ -18,7 +18,7 @@
 
 //$Id$
 
-import('form.Form');
+import('lib.pkp.classes.form.Form');
 
 class RegistrationForm extends Form {
 
@@ -208,7 +208,7 @@ class RegistrationForm extends Form {
 				'registrationContactSignature' => $registrationContactSignature 
 			);
 
-			import('mail.MailTemplate');
+			import('classes.mail.MailTemplate');
 			$mail = new MailTemplate('MANUAL_PAYMENT_RECEIVED');
 			$mail->setFrom($registrationEmail, $registrationName);
 			$mail->assignParams($paramArray);
@@ -258,7 +258,7 @@ class RegistrationForm extends Form {
 				'registrationContactSignature' => $registrationContactSignature 
 			);
 
-			import('mail.MailTemplate');
+			import('classes.mail.MailTemplate');
 			$mail = new MailTemplate('REGISTRATION_NOTIFY', null, null, null, null, false);
 			$mail->setFrom($registrationEmail, $registrationName);
 			$mail->assignParams($paramArray);

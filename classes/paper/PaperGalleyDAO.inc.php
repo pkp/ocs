@@ -15,8 +15,8 @@
 
 //$Id$
 
-import('paper.PaperGalley');
-import('paper.PaperHTMLGalley');
+import('classes.paper.PaperGalley');
+import('classes.paper.PaperHTMLGalley');
 
 class PaperGalleyDAO extends DAO {
 	/** Helper file DAOs. */

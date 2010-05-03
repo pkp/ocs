@@ -15,7 +15,7 @@
 
 //$Id$
 
-import('paper.PublishedPaper');
+import('classes.paper.PublishedPaper');
 
 define('PAPER_SORT_ORDER_NATURAL', 0);
 define('PAPER_SORT_ORDER_TIME', 1);

@@ -24,7 +24,7 @@
 
 //$Id$
 
-import('file.FileManager');
+import('lib.pkp.classes.file.FileManager');
 
 /* File type suffixes */
 define('PAPER_FILE_SUBMISSION',	'SM');

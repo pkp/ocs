@@ -24,7 +24,7 @@
 //$Id$
 
 
-import('core.PKPRequest');
+import('lib.pkp.classes.core.PKPRequest');
 
 class Request extends PKPRequest {
 	/**

@@ -17,8 +17,8 @@
 //$Id$
 
 
-import('registration.Registration');
-import('registration.RegistrationType');
+import('classes.registration.Registration');
+import('classes.registration.RegistrationType');
 
 define('REGISTRATION_DATE_REGISTERED',	0x01);
 define('REGISTRATION_DATE_PAID',	0x02);

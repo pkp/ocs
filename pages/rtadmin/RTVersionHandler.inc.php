@@ -14,7 +14,7 @@
 
 //$Id$
 
-import('rt.ocs.ConferenceRTAdmin');
+import('classes.rt.ocs.ConferenceRTAdmin');
 import('pages.rtadmin.RTAdminHandler');
 
 class RTVersionHandler extends RTAdminHandler {
@@ -32,7 +32,7 @@ class RTVersionHandler extends RTAdminHandler {
 
 		$conference = Request::getConference();
 
-		import('rt.ocs.form.VersionForm');
+		import('classes.rt.ocs.form.VersionForm');
 		$versionForm = new VersionForm(null, $conference->getId());
 
 		if (isset($args[0]) && $args[0]=='save') {
@@ -120,7 +120,7 @@ class RTVersionHandler extends RTAdminHandler {
 		$version =& $rtDao->getVersion($versionId, $conference->getId());
 
 		if (isset($version)) {
-			import('rt.ocs.form.VersionForm');
+			import('classes.rt.ocs.form.VersionForm');
 			$this->setupTemplate(true, $version);
 			$versionForm = new VersionForm($versionId, $conference->getId());
 			$versionForm->initData();
@@ -152,7 +152,7 @@ class RTVersionHandler extends RTAdminHandler {
 		$version =& $rtDao->getVersion($versionId, $conference->getId());
 
 		if (isset($version)) {
-			import('rt.ocs.form.VersionForm');
+			import('classes.rt.ocs.form.VersionForm');
 			$versionForm = new VersionForm($versionId, $conference->getId());
 			$versionForm->readInputData();
 			$versionForm->execute();

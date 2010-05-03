@@ -20,8 +20,8 @@
 
 //$Id$
 
-import('oai.OAI');
-import('oai.ocs.OAIDAO');
+import('lib.pkp.classes.oai.OAI');
+import('classes.oai.ocs.OAIDAO');
 
 class ConferenceOAI extends OAI {
 	/** @var $site Site associated site object */

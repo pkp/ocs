@@ -14,7 +14,7 @@
 
 //$Id$
 
-import('paper.PaperGalley');
+import('classes.paper.PaperGalley');
 
 class PaperHTMLGalley extends PaperGalley {
 
@@ -40,7 +40,7 @@ class PaperHTMLGalley extends PaperGalley {
 	 * @return string
 	 */
 	function getHTMLContents() {
-		import('file.PaperFileManager');
+		import('classes.file.PaperFileManager');
 		$fileManager = new PaperFileManager($this->getPaperId());
 		$contents = $fileManager->readFile($this->getFileId());
 
@@ -163,14 +163,14 @@ class PaperHTMLGalley extends PaperGalley {
 				break;
 			case 'sitepublic':
 					array_shift($urlParts);
-					import ('file.PublicFileManager');
+					import ('classes.file.PublicFileManager');
 					$publicFileManager = new PublicFileManager();
 					$url = Request::getBaseUrl() . '/' . $publicFileManager->getSiteFilesPath() . '/' . implode('/', $urlParts) . ($anchor?'#' . $anchor:'');
 				break;
 			case 'public':
 					array_shift($urlParts);
 					$schedConf =& Request::getSchedConf();
-					import ('file.PublicFileManager');
+					import ('classes.file.PublicFileManager');
 					$publicFileManager = new PublicFileManager();
 					$url = Request::getBaseUrl() . '/' . $publicFileManager->getSchedConfFilesPath($schedConf->getId()) . '/' . implode('/', $urlParts) . ($anchor?'#' . $anchor:'');
 				break;

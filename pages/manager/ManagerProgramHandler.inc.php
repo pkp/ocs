@@ -34,7 +34,7 @@ class ManagerProgramHandler extends ManagerHandler {
 		$schedConf =& Request::getSchedConf();
 		if (!$schedConf) Request::redirect (null, null, 'index');
 
-		import('manager.form.ProgramSettingsForm');
+		import('classes.manager.form.ProgramSettingsForm');
 
 		$settingsForm = new ProgramSettingsForm();
 		if ($settingsForm->isLocaleResubmit()) {
@@ -55,7 +55,7 @@ class ManagerProgramHandler extends ManagerHandler {
 		$schedConf =& Request::getSchedConf();
 		if (!$schedConf) Request::redirect (null, null, 'index');
 
-		import('manager.form.ProgramSettingsForm');
+		import('classes.manager.form.ProgramSettingsForm');
 
 		$settingsForm = new ProgramSettingsForm();
 		$settingsForm->readInputData();

@@ -16,9 +16,9 @@
 // $Id$
 
 
-import('schedConf.SchedConfAction');
-import('payment.ocs.OCSPaymentManager');
-import('handler.Handler');
+import('classes.schedConf.SchedConfAction');
+import('classes.payment.ocs.OCSPaymentManager');
+import('classes.handler.Handler');
 
 class SchedConfHandler extends Handler {
 	/**
@@ -137,7 +137,7 @@ class SchedConfHandler extends Handler {
 			array(Request::url(null, null, 'index'), $schedConf->getSchedConfTitle(), true)));
 		SchedConfHandler::setupTemplate($conference,$schedConf);
 		Locale::requireComponents(array(LOCALE_COMPONENT_OCS_MANAGER)); // FIXME: For timeline constants
-		import('manager.form.TimelineForm');
+		import('classes.manager.form.TimelineForm');
 		if (checkPhpVersion('5.0.0')) { // WARNING: This form needs $this in constructor
 			$timelineForm = new TimelineForm(false, true);
 		} else {
@@ -221,7 +221,7 @@ class SchedConfHandler extends Handler {
 			// This user has already registered.
 			$registration =& $registrationDao->getRegistration($registrationId);
 
-			import('payment.ocs.OCSPaymentManager');
+			import('classes.payment.ocs.OCSPaymentManager');
 			$paymentManager =& OCSPaymentManager::getManager();
 
 			if (!$paymentManager->isConfigured() || !$registration || $registration->getDatePaid()) {
@@ -237,7 +237,7 @@ class SchedConfHandler extends Handler {
 		$typeId = (int) Request::getUserVar('registrationTypeId');
 		if ($typeId) {
 			// A registration type has been chosen
-			import('registration.form.UserRegistrationForm');
+			import('classes.registration.form.UserRegistrationForm');
 
 			if (checkPhpVersion('5.0.0')) { // WARNING: This form needs $this in constructor
 				$form = new UserRegistrationForm($typeId);
@@ -292,7 +292,7 @@ class SchedConfHandler extends Handler {
 			array(Request::url(null, null, 'index'), $schedConf->getSchedConfTitle(), true)));
 		SchedConfHandler::setupTemplate($conference,$schedConf);
 
-		import('registration.form.UserRegistrationForm');
+		import('classes.registration.form.UserRegistrationForm');
 		$typeId = (int) Request::getUserVar('registrationTypeId');
 		if (checkPhpVersion('5.0.0')) { // WARNING: This form needs $this in constructor
 			$form = new UserRegistrationForm($typeId);
@@ -477,7 +477,7 @@ class SchedConfHandler extends Handler {
 		$conference =& Request::getConference();
 		$schedConf =& Request::getSchedConf();
 
-		import('schedConf.SchedConfAction');
+		import('classes.schedConf.SchedConfAction');
 
 		$mayViewProceedings = SchedConfAction::mayViewProceedings($schedConf);
 		$mayViewPapers = SchedConfAction::mayViewPapers($schedConf, $conference);
@@ -569,7 +569,7 @@ class SchedConfHandler extends Handler {
 		}
 
 		if ($styleFileName = $schedConf->getStyleFileName()) {
-			import('file.PublicFileManager');
+			import('classes.file.PublicFileManager');
 			$publicFileManager = new PublicFileManager();
 			$templateMgr->addStyleSheet(
 				Request::getBaseUrl() . '/' . $publicFileManager->getConferenceFilesPath($conference->getId()) . '/' . $styleFileName

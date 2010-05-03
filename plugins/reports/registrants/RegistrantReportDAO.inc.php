@@ -17,7 +17,7 @@
 // $Id$
 
 
-import('db.DBRowIterator');
+import('lib.pkp.classes.db.DBRowIterator');
 
 class RegistrantReportDAO extends DAO {
 	/**

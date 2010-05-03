@@ -57,7 +57,7 @@ class ManagerSchedConfHandler extends ManagerHandler {
 	 * Display form to create a new scheduled conference.
 	 */
 	function createSchedConf() {
-		import('schedConf.SchedConf');
+		import('classes.schedConf.SchedConf');
 		$schedConf = Request::getSchedConf();
 		$conference = Request::getConference();
 
@@ -84,7 +84,7 @@ class ManagerSchedConfHandler extends ManagerHandler {
 		$this->validate();
 		$this->setupTemplate(true);
 
-		import('manager.form.SchedConfSettingsForm');
+		import('classes.manager.form.SchedConfSettingsForm');
 
 		if (checkPhpVersion('5.0.0')) { // WARNING: This form needs $this in constructor
 			$settingsForm = new SchedConfSettingsForm($args);
@@ -106,7 +106,7 @@ class ManagerSchedConfHandler extends ManagerHandler {
 		$this->validate();
 		$this->setupTemplate(true);
 
-		import('manager.form.SchedConfSettingsForm');
+		import('classes.manager.form.SchedConfSettingsForm');
 
 		if (checkPhpVersion('5.0.0')) { // WARNING: This form needs $this in constructor
 			$settingsForm = new SchedConfSettingsForm(
@@ -142,14 +142,14 @@ class ManagerSchedConfHandler extends ManagerHandler {
 			$schedConf =& $schedConfDao->getSchedConf($schedConfId);
 
 			// Look up the scheduled conference path before we delete the scheduled conference.
-			import('file.PublicFileManager');
+			import('classes.file.PublicFileManager');
 			$publicFileManager = new PublicFileManager();
 			$schedConfFilesPath = $publicFileManager->getSchedConfFilesPath($schedConfId);
 
 			if ($schedConfDao->deleteSchedConfById($schedConfId)) {
 				// Delete scheduled conference file tree
 				// FIXME move this somewhere better.
-				import('file.FileManager');
+				import('lib.pkp.classes.file.FileManager');
 				$fileManager = new FileManager();
 				$schedConfPath = Config::getVar('files', 'files_dir') . '/conferences/' . $schedConf->getConferenceId() . '/schedConfs/' . $schedConfId;
 				$fileManager->rmtree($schedConfPath);

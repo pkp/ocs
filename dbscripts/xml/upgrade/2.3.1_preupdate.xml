@@ -16,4 +16,8 @@
 	<sql>
 		<rename table="review_forms" column="conference_id" to="assoc_id" />
 	</sql>
+	<!-- Bug #5268: Performance optimization: lazy load for plug-ins -->
+	<sql>
+		<query>DELETE FROM versions WHERE product_type = 'plugins.generic' AND product = 'jquery'</query>
+	</sql>
 </data>

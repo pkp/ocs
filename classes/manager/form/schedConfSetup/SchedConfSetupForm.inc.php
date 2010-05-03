@@ -14,8 +14,8 @@
 
 //$Id$
 
-import("manager.form.schedConfSetup.SchedConfSetupForm");
-import('form.Form');
+import('classes.manager.form.schedConfSetup.SchedConfSetupForm');
+import('lib.pkp.classes.form.Form');
 
 class SchedConfSetupForm extends Form {
 	var $step;

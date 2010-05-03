@@ -15,7 +15,7 @@
 
 //$Id$
 
-import ('paper.log.PaperEmailLogEntry');
+import ('classes.paper.log.PaperEmailLogEntry');
 
 class PaperEmailLogDAO extends DAO {
 	/**

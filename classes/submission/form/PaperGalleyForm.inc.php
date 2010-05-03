@@ -14,7 +14,7 @@
 
 //$Id$
 
-import('form.Form');
+import('lib.pkp.classes.form.Form');
 
 class PaperGalleyForm extends Form {
 	/** @var int the ID of the paper */
@@ -110,7 +110,7 @@ class PaperGalleyForm extends Form {
 	 * @return int the galley ID
 	 */
 	function execute($fileName = null) {
-		import('file.PaperFileManager');
+		import('classes.file.PaperFileManager');
 		$paperFileManager = new PaperFileManager($this->paperId);
 		$galleyDao =& DAORegistry::getDAO('PaperGalleyDAO');
 
@@ -129,7 +129,7 @@ class PaperGalleyForm extends Form {
 				}
 
 				// Update file search index
-				import('search.PaperSearchIndex');
+				import('classes.search.PaperSearchIndex');
 				PaperSearchIndex::updateFileIndex($this->paperId, PAPER_SEARCH_GALLEY_FILE, $galley->getFileId());
 			}
 
@@ -158,7 +158,7 @@ class PaperGalleyForm extends Form {
 				$fileId = $paperFileManager->uploadPublicFile($fileName);
 
 				// Update file search index
-				import('search.PaperSearchIndex');
+				import('classes.search.PaperSearchIndex');
 				PaperSearchIndex::updateFileIndex($this->paperId, PAPER_SEARCH_GALLEY_FILE, $fileId);
 			} else {
 				$fileId = 0;
@@ -216,7 +216,7 @@ class PaperGalleyForm extends Form {
 	 * @param $imageName string file input key
 	 */
 	function uploadImage() {
-		import('file.PaperFileManager');
+		import('classes.file.PaperFileManager');
 		$fileManager = new PaperFileManager($this->paperId);
 		$galleyDao =& DAORegistry::getDAO('PaperGalleyDAO');
 
@@ -245,7 +245,7 @@ class PaperGalleyForm extends Form {
 	 * @param $imageId int the file ID of the image
 	 */
 	function deleteImage($imageId) {
-		import('file.PaperFileManager');
+		import('classes.file.PaperFileManager');
 		$fileManager = new PaperFileManager($this->paperId);
 		$galleyDao =& DAORegistry::getDAO('PaperGalleyDAO');
 

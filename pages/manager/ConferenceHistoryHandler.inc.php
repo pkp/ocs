@@ -50,7 +50,7 @@ class ConferenceHistoryHandler extends ManagerHandler {
 		} else {
 			$rangeInfo =& Handler::getRangeInfo('eventLogEntries', array());
 
-			import('conference.log.ConferenceLog');
+			import('classes.conference.log.ConferenceLog');
 			while (true) {
 				$eventLogEntries =& ConferenceLog::getEventLogEntries($conference->getId(), null, $rangeInfo);
 				if ($eventLogEntries->isInBounds()) break;

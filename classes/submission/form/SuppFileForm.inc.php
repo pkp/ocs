@@ -14,7 +14,7 @@
 
 //$Id$
 
-import('form.Form');
+import('lib.pkp.classes.form.Form');
 
 class SuppFileForm extends Form {
 	/** @var int the ID of the supplementary file */
@@ -176,7 +176,7 @@ class SuppFileForm extends Form {
 	 * @return int the supplementary file ID
 	 */
 	function execute($fileName = null) {
-		import("file.PaperFileManager");
+		import('classes.file.PaperFileManager');
 		$paperFileManager = new PaperFileManager($this->paper->getPaperId());
 		$suppFileDao =& DAORegistry::getDAO('SuppFileDAO');
 
@@ -188,7 +188,7 @@ class SuppFileForm extends Form {
 			// Upload file, if file selected.
 			if ($paperFileManager->uploadedFileExists($fileName)) {
 				$paperFileManager->uploadSuppFile($fileName, $suppFile->getFileId());
-				import('search.PaperSearchIndex');
+				import('classes.search.PaperSearchIndex');
 				PaperSearchIndex::updateFileIndex($this->paper->getPaperId(), PAPER_SEARCH_SUPPLEMENTARY_FILE, $suppFile->getFileId());
 			}
 
@@ -203,7 +203,7 @@ class SuppFileForm extends Form {
 			// Upload file, if file selected.
 			if ($paperFileManager->uploadedFileExists($fileName)) {
 				$fileId = $paperFileManager->uploadSuppFile($fileName);
-				import('search.PaperSearchIndex');
+				import('classes.search.PaperSearchIndex');
 				PaperSearchIndex::updateFileIndex($this->paper->getPaperId(), PAPER_SEARCH_SUPPLEMENTARY_FILE, $fileId);
 			} else {
 				$fileId = 0;

@@ -16,7 +16,7 @@
 //$Id$
 
 
-import('controlledVocab.ControlledVocabEntry');
+import('lib.pkp.classes.controlledVocab.ControlledVocabEntry');
 
 class PaperTypeEntry extends ControlledVocabEntry {
 	//

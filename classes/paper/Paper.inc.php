@@ -49,7 +49,7 @@ define ('COMMENTS_TRACK_DEFAULT', 0);
 define ('COMMENTS_DISABLE', 1);
 define ('COMMENTS_ENABLE', 2);
 
-import('submission.Submission');
+import('lib.pkp.classes.submission.Submission');
 
 class Paper extends Submission {
 	/**

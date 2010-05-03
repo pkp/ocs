@@ -15,7 +15,7 @@
 
 //$Id$
 
-import('scheduler.SpecialEvent');
+import('classes.scheduler.SpecialEvent');
 
 class SpecialEventDAO extends DAO {
 	/**

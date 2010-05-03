@@ -117,7 +117,7 @@ class PaperReportPlugin extends ReportPlugin {
 		$fp = fopen('php://output', 'wt');
 		String::fputcsv($fp, array_values($columns));
 
-		import('paper.Paper'); // Bring in getStatusMap function
+		import('classes.paper.Paper'); // Bring in getStatusMap function
 		$statusMap =& Paper::getStatusMap();
 
 		$controlledVocabDao =& DAORegistry::getDAO('ControlledVocabDAO');

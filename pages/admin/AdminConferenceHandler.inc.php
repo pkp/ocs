@@ -59,7 +59,7 @@ class AdminConferenceHandler extends AdminHandler {
 		$this->validate();
 		$this->setupTemplate(true);
 
-		import('admin.form.ConferenceSiteSettingsForm');
+		import('classes.admin.form.ConferenceSiteSettingsForm');
 
 		if (checkPhpVersion('5.0.0')) { // WARNING: This form needs $this in constructor
 			$settingsForm = new ConferenceSiteSettingsForm(!isset($args) || empty($args) ? null : $args[0]);
@@ -83,7 +83,7 @@ class AdminConferenceHandler extends AdminHandler {
 		$this->validate();
 		$this->setupTemplate(true);
 
-		import('admin.form.ConferenceSiteSettingsForm');
+		import('classes.admin.form.ConferenceSiteSettingsForm');
 
 		if (checkPhpVersion('5.0.0')) { // WARNING: This form needs $this in constructor
 			$settingsForm = new ConferenceSiteSettingsForm($request->getUserVar('conferenceId'));
@@ -95,7 +95,7 @@ class AdminConferenceHandler extends AdminHandler {
 		if ($settingsForm->validate()) {
 			PluginRegistry::loadCategory('blocks');
 			$settingsForm->execute();
-			import('notification.NotificationManager');
+			import('lib.pkp.classes.notification.NotificationManager');
 			$notificationManager = new NotificationManager();
 			$notificationManager->createTrivialNotification('notification.notification', 'common.changesSaved');
 			$request->redirect(null, null, null, 'conferences');
@@ -118,13 +118,13 @@ class AdminConferenceHandler extends AdminHandler {
 			if ($conferenceDao->deleteConferenceById($conferenceId)) {
 				// Delete conference file tree
 				// FIXME move this somewhere better.
-				import('file.FileManager');
+				import('lib.pkp.classes.file.FileManager');
 				$fileManager = new FileManager();
 
 				$conferencePath = Config::getVar('files', 'files_dir') . '/conferences/' . $conferenceId;
 				$fileManager->rmtree($conferencePath);
 
-				import('file.PublicFileManager');
+				import('classes.file.PublicFileManager');
 				$publicFileManager = new PublicFileManager();
 				$publicFileManager->rmtree($publicFileManager->getConferenceFilesPath($conferenceId));
 			}
@@ -179,7 +179,7 @@ class AdminConferenceHandler extends AdminHandler {
 		$this->validate();
 		$this->setupTemplate(true);
 
-		import('admin.form.ImportOCS1Form');
+		import('classes.admin.form.ImportOCS1Form');
 
 		$importForm = new ImportOCS1Form();
 		$importForm->initData();
@@ -195,7 +195,7 @@ class AdminConferenceHandler extends AdminHandler {
 		$this->validate();
 		$this->setupTemplate(true);
 
-		import('admin.form.ImportOCS1Form');
+		import('classes.admin.form.ImportOCS1Form');
 
 		$importForm = new ImportOCS1Form();
 		$importForm->readInputData();

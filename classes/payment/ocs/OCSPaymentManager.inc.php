@@ -15,8 +15,8 @@
 
 //$Id$
 
-import('payment.ocs.OCSQueuedPayment');
-import('payment.PaymentManager');
+import('classes.payment.ocs.OCSQueuedPayment');
+import('lib.pkp.classes.payment.PaymentManager');
 
 define('QUEUED_PAYMENT_TYPE_REGISTRATION',	0x000000001);
 

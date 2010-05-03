@@ -14,7 +14,7 @@
 
 //$Id$
 
-import('form.Form');
+import('lib.pkp.classes.form.Form');
 
 class RegistrationTypeForm extends Form {
 	/** @var typeId int the ID of the registration type being edited */

@@ -14,7 +14,7 @@
 
 //$Id$
 
-import('form.Form');
+import('lib.pkp.classes.form.Form');
 
 class TimelineForm extends Form {
 
@@ -231,8 +231,8 @@ class TimelineForm extends Form {
 		$schedConfDao =& DAORegistry::getDao('SchedConfDAO');
 		$schedConf =& Request::getSchedConf();
 
-		import('conference.log.ConferenceLog');
-		import('conference.log.ConferenceEventLogEntry');
+		import('classes.conference.log.ConferenceLog');
+		import('classes.conference.log.ConferenceEventLogEntry');
 
 		//
 		// Don't log these, since they aren't particularly nefarious.

@@ -18,8 +18,8 @@
 
 //$Id$
 
-import('rt.RT');
-import('rt.ocs.RTDAO');
+import('lib.pkp.classes.rt.RT');
+import('classes.rt.ocs.RTDAO');
 
 class ConferenceRT extends RT {
 	var $conferenceId;

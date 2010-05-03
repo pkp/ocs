@@ -14,7 +14,7 @@
 
 //$Id$
 
-import('form.Form');
+import('lib.pkp.classes.form.Form');
 
 class MetadataForm extends Form {
 	/** @var Paper current paper */
@@ -246,7 +246,7 @@ class MetadataForm extends Form {
 		$paperDao->updatePaper($paper);
 
 		// Update search index
-		import('search.PaperSearchIndex');
+		import('classes.search.PaperSearchIndex');
 		PaperSearchIndex::indexPaperMetadata($paper);
 
 		return $paper->getId();

@@ -85,7 +85,7 @@ class AdminLanguagesHandler extends AdminHandler {
 
 		$this->_removeLocalesFromConferences($request);
 
-		import('notification.NotificationManager');
+		import('lib.pkp.classes.notification.NotificationManager');
 		$notificationManager = new NotificationManager();
 		$notificationManager->createTrivialNotification('notification.notification', 'common.changesSaved');
 

@@ -15,7 +15,7 @@
  * $Id$
  */
 
-import('scheduler.TimeBlock');
+import('classes.scheduler.TimeBlock');
 
 class TimeBlockDAO extends DAO {
 	/**

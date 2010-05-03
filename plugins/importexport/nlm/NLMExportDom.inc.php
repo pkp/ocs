@@ -15,7 +15,7 @@
 
 //$Id$
 
-import('xml.XMLCustomWriter');
+import('lib.pkp.classes.xml.XMLCustomWriter');
 
 define('NLM_DTD_URL', 'http://www.nlm.nih.gov/databases/dtd/nlmmeetingabstractinput_060101.dtd');
 define('NLM_DTD_ID', '-//NLM/DTD MeetingAbstract, 1st  January, 2006//EN');

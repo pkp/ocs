@@ -11,7 +11,7 @@
  * @brief Class to validate that a conference exists
  */
 
-import('handler.validation.HandlerValidator');
+import('lib.pkp.classes.handler.validation.HandlerValidator');
 
 class HandlerValidatorConference extends HandlerValidator {
 	/**

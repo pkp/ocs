@@ -31,7 +31,7 @@ class TimelineHandler extends ManagerHandler {
 		$this->validate();
 		$this->setupTemplate(true);
 
-		import('manager.form.TimelineForm');
+		import('classes.manager.form.TimelineForm');
 
 		if (checkPhpVersion('5.0.0')) { // WARNING: This form needs $this in constructor
 			$timelineForm = new TimelineForm(Request::getUserVar('overrideDates'));
@@ -47,7 +47,7 @@ class TimelineHandler extends ManagerHandler {
 		$this->validate();
 		$this->setupTemplate(true);
 
-		import('manager.form.TimelineForm');
+		import('classes.manager.form.TimelineForm');
 
 		if (checkPhpVersion('5.0.0')) { // WARNING: This form needs $this in constructor
 			$timelineForm = new TimelineForm(Request::getUserVar('overrideDates'));

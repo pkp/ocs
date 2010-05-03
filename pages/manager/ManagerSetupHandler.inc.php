@@ -38,7 +38,7 @@ class ManagerSetupHandler extends ManagerHandler {
 		if ($step >= 1 && $step <= 6) {
 
 			$formClass = "ConferenceSetupStep{$step}Form";
-			import("manager.form.setup.$formClass");
+			import("classes.manager.form.setup.$formClass");
 
 			$setupForm = new $formClass();
 			if ($setupForm->isLocaleResubmit()) {
@@ -69,7 +69,7 @@ class ManagerSetupHandler extends ManagerHandler {
 			$this->setupTemplate(true);
 
 			$formClass = "ConferenceSetupStep{$step}Form";
-			import("manager.form.setup.$formClass");
+			import("classes.manager.form.setup.$formClass");
 
 			$setupForm = new $formClass();
 			$setupForm->readInputData();

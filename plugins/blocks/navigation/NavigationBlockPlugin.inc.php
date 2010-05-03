@@ -14,7 +14,7 @@
 
 //$Id$
 
-import('plugins.BlockPlugin');
+import('lib.pkp.classes.plugins.BlockPlugin');
 
 class NavigationBlockPlugin extends BlockPlugin {
 	/**

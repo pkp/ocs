@@ -14,7 +14,7 @@
 
 //$Id$
 
-import('submission.trackDirector.TrackDirectorAction');
+import('classes.submission.trackDirector.TrackDirectorAction');
 
 class DirectorAction extends TrackDirectorAction {
 
@@ -46,7 +46,7 @@ class DirectorAction extends TrackDirectorAction {
 		$trackDirector =& $userDao->getUser($trackDirectorId);
 		if (!isset($trackDirector)) return true;
 
-		import('mail.PaperMailTemplate');
+		import('classes.mail.PaperMailTemplate');
 		$email = new PaperMailTemplate($directorSubmission, 'DIRECTOR_ASSIGN');
 
 		if ($user->getId() === $trackDirectorId || !$email->isEnabled() || ($send && !$email->hasErrors())) {
@@ -71,8 +71,8 @@ class DirectorAction extends TrackDirectorAction {
 			$directorSubmissionDao->updateDirectorSubmission($directorSubmission);
 
 			// Add log
-			import('paper.log.PaperLog');
-			import('paper.log.PaperEventLogEntry');
+			import('classes.paper.log.PaperLog');
+			import('classes.paper.log.PaperEventLogEntry');
 			PaperLog::logEvent($paperId, PAPER_LOG_DIRECTOR_ASSIGN, LOG_TYPE_DIRECTOR, $trackDirectorId, 'log.director.directorAssigned', array('directorName' => $trackDirector->getFullName(), 'paperId' => $paperId));
 			return true;
 		} else {

@@ -16,12 +16,12 @@
 // $Id$
 
 
-import('rt.RT');
+import('lib.pkp.classes.rt.RT');
 
-import('rt.ocs.RTDAO');
-import('rt.ocs.ConferenceRT');
+import('classes.rt.ocs.RTDAO');
+import('classes.rt.ocs.ConferenceRT');
 
-import('paper.PaperHandler');
+import('pages.paper.PaperHandler');
 
 class RTHandler extends PaperHandler {
 	/**
@@ -297,7 +297,7 @@ class RTHandler extends PaperHandler {
 			$request->redirect(null, null, $router->getRequestedPage($request));
 		}
 
-		import('mail.MailTemplate');
+		import('classes.mail.MailTemplate');
 		$email = new MailTemplate('EMAIL_LINK');
 
 		if ($request->getUserVar('send') && !$email->hasErrors()) {
@@ -346,7 +346,7 @@ class RTHandler extends PaperHandler {
 			$request->redirect(null, null, $router->getRequestedPage($request));
 		}
 
-		import('mail.MailTemplate');
+		import('classes.mail.MailTemplate');
 		$email = new MailTemplate();
 
 		if ($request->getUserVar('send') && !$email->hasErrors()) {

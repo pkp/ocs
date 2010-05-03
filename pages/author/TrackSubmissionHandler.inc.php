@@ -39,7 +39,7 @@ class TrackSubmissionHandler extends AuthorHandler {
 
 		// If the submission is incomplete, allow the author to delete it.
 		if ($authorSubmission->getSubmissionProgress()!=0) {
-			import('file.PaperFileManager');
+			import('classes.file.PaperFileManager');
 			$paperFileManager = new PaperFileManager($paperId);
 			$paperFileManager->deletePaperTree();
 
@@ -128,7 +128,7 @@ class TrackSubmissionHandler extends AuthorHandler {
 	 * Display specific details of an author's submission.
 	 */
 	function submissionReview($args) {
-		import('paper.Paper'); // for REVIEW_PROGRESS constants
+		import('classes.paper.Paper'); // for REVIEW_PROGRESS constants
 		$user =& Request::getUser();
 		$paperId = isset($args[0]) ? (int) $args[0] : 0;
 
@@ -196,7 +196,7 @@ class TrackSubmissionHandler extends AuthorHandler {
 		$authorSubmission =& $this->submission;
 		$this->setupTemplate(true, $paperId, 'summary');
 		
-		import('submission.form.SuppFileForm');
+		import('classes.submission.form.SuppFileForm');
 
 		$submitForm = new SuppFileForm($authorSubmission);
 
@@ -245,7 +245,7 @@ class TrackSubmissionHandler extends AuthorHandler {
 
 		$this->setupTemplate(true, $paperId, 'summary');
 
-		import('submission.form.SuppFileForm');
+		import('classes.submission.form.SuppFileForm');
 
 		$submitForm = new SuppFileForm($authorSubmission, $suppFileId);
 
@@ -289,7 +289,7 @@ class TrackSubmissionHandler extends AuthorHandler {
 
 		$suppFileId = isset($args[0]) ? (int) $args[0] : 0;
 
-		import('submission.form.SuppFileForm');
+		import('classes.submission.form.SuppFileForm');
 
 		$submitForm = new SuppFileForm($authorSubmission, $suppFileId);
 		$submitForm->readInputData();

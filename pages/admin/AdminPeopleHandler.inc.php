@@ -40,7 +40,7 @@ class AdminPeopleHandler extends AdminHandler {
 		$newUserId = Request::getUserVar('newUserId');
 
 		if (!empty($oldUserIds) && !empty($newUserId)) {
-			import('user.UserAction');
+			import('classes.user.UserAction');
 			foreach ($oldUserIds as $oldUserId) {
 				UserAction::mergeUsers($oldUserId, $newUserId);
 			}

@@ -13,7 +13,7 @@
  *
  */
 
-import('form.Form');
+import('lib.pkp.classes.form.Form');
 
 class ReviewFormElementForm extends Form {
 
@@ -59,7 +59,7 @@ class ReviewFormElementForm extends Form {
 		$templateMgr->assign_by_ref('multipleResponsesElementTypes', ReviewFormElement::getMultipleResponsesElementTypes());
 		// in order to be able to search for an element in the array in the javascript function 'togglePossibleResponses':
 		$templateMgr->assign('multipleResponsesElementTypesString', ';'.implode(';', ReviewFormElement::getMultipleResponsesElementTypes()).';');
-		import('reviewForm.ReviewFormElement');
+		import('lib.pkp.classes.reviewForm.ReviewFormElement');
 		$templateMgr->assign_by_ref('reviewFormElementTypeOptions', ReviewFormElement::getReviewFormElementTypeOptions());
 		$templateMgr->assign('helpTopicId','conference.managementPages.reviewForms');
 		parent::display();

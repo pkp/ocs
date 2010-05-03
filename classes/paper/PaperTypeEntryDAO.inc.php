@@ -15,8 +15,8 @@
 
 //$Id$
 
-import('paper.PaperTypeEntry');
-import('controlledVocab.ControlledVocabEntryDAO');
+import('classes.paper.PaperTypeEntry');
+import('lib.pkp.classes.controlledVocab.ControlledVocabEntryDAO');
 
 class PaperTypeEntryDAO extends ControlledVocabEntryDAO {
 	/**

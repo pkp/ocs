@@ -15,8 +15,8 @@
 
 //$Id$
 
-import('mail.MailTemplate');
-import('paper.log.PaperEmailLogEntry'); // Bring in log constants
+import('classes.mail.MailTemplate');
+import('classes.paper.log.PaperEmailLogEntry'); // Bring in log constants
 
 class PaperMailTemplate extends MailTemplate {
 
@@ -132,8 +132,8 @@ class PaperMailTemplate extends MailTemplate {
 	 * Save the email in the paper email log.
 	 */
 	function log() {
-		import('paper.log.PaperEmailLogEntry');
-		import('paper.log.PaperLog');
+		import('classes.paper.log.PaperEmailLogEntry');
+		import('classes.paper.log.PaperLog');
 		$entry = new PaperEmailLogEntry();
 
 		// Log data

@@ -15,7 +15,7 @@
 
 //$Id$
 
-import('registration.RegistrationType');
+import('classes.registration.RegistrationType');
 
 class RegistrationTypeDAO extends DAO {
 	/**

@@ -15,7 +15,7 @@
 
 //$Id$
 
-import('submission.trackDirector.TrackDirectorSubmission');
+import('classes.submission.trackDirector.TrackDirectorSubmission');
 
 class DirectorSubmission extends TrackDirectorSubmission {
 

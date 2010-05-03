@@ -14,8 +14,8 @@
 
 //$Id$
 
-import('db.DBDataXMLParser');
-import('form.Form');
+import('lib.pkp.classes.db.DBDataXMLParser');
+import('lib.pkp.classes.form.Form');
 
 class ConferenceSiteSettingsForm extends Form {
 
@@ -141,7 +141,7 @@ class ConferenceSiteSettingsForm extends Form {
 			}
 
 			// Make the file directories for the conference
-			import('file.FileManager');
+			import('lib.pkp.classes.file.FileManager');
 			FileManager::mkdir(Config::getVar('files', 'files_dir') . '/conferences/' . $conferenceId);
 			FileManager::mkdir(Config::getVar('files', 'files_dir') . '/conferences/' . $conferenceId . '/schedConfs');
 			FileManager::mkdir(Config::getVar('files', 'public_files_dir') . '/conferences/' . $conferenceId);
@@ -163,7 +163,7 @@ class ConferenceSiteSettingsForm extends Form {
 			));
 
 			// Install the default RT versions.
-			import('rt.ocs.ConferenceRTAdmin');
+			import('classes.rt.ocs.ConferenceRTAdmin');
 			$conferenceRtAdmin = new ConferenceRTAdmin($conferenceId);
 			$conferenceRtAdmin->restoreVersions(false);
 		}

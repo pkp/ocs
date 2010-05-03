@@ -85,7 +85,7 @@ class ManualPaymentPlugin extends PaymethodPlugin {
 		$op = isset($args[0])?$args[0]:null;
 		$queuedPaymentId = isset($args[1])?((int) $args[1]):0;
 
-		import('payment.ocs.OCSPaymentManager');
+		import('classes.payment.ocs.OCSPaymentManager');
 		$ocsPaymentManager =& OCSPaymentManager::getManager();
 		$queuedPayment =& $ocsPaymentManager->getQueuedPayment($queuedPaymentId);
 		// if the queued payment doesn't exist, redirect away from payments
@@ -93,7 +93,7 @@ class ManualPaymentPlugin extends PaymethodPlugin {
 
 		switch ( $op ) {
 			case 'notify':
-				import('mail.MailTemplate');
+				import('classes.mail.MailTemplate');
 				Locale::requireComponents(array(LOCALE_COMPONENT_APPLICATION_COMMON));
 				$contactName = $schedConf->getSetting('registrationName');
 				$contactEmail = $schedConf->getSetting('registrationEmail');

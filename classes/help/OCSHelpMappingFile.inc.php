@@ -14,7 +14,7 @@
 
 //$Id$
 
-import('help.HelpMappingFile');
+import('lib.pkp.classes.help.HelpMappingFile');
 
 class OCSHelpMappingFile extends HelpMappingFile {
 	/**

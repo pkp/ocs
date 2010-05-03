@@ -19,8 +19,8 @@
 // Filter track
 define('FILTER_TRACK_ALL', 0);
 
-import('submission.trackDirector.TrackDirectorAction');
-import('handler.Handler');
+import('classes.submission.trackDirector.TrackDirectorAction');
+import('classes.handler.Handler');
 
 class TrackDirectorHandler extends Handler {
 	/**
@@ -117,7 +117,7 @@ class TrackDirectorHandler extends Handler {
 				$submissionsArray = array_reverse($submissionsArray);
 			}
 			// Convert submission array back to an ItemIterator class
-			import('core.ArrayItemIterator');
+			import('lib.pkp.classes.core.ArrayItemIterator');
 			$submissions =& ArrayItemIterator::fromRangeInfo($submissionsArray, $rangeInfo);
 		}
 
@@ -212,7 +212,7 @@ class TrackDirectorHandler extends Handler {
 			$pageHierarchy[] = array(Request::url(null, null, $isDirector?'director':'trackDirector'), $isDirector?'user.role.director':'user.role.trackDirector');
 		}
 
-		import('submission.trackDirector.TrackDirectorAction');
+		import('classes.submission.trackDirector.TrackDirectorAction');
 		$submissionCrumb = TrackDirectorAction::submissionBreadcrumb($paperId, $parentPage, 'trackDirector');
 		if (isset($submissionCrumb)) {
 			$pageHierarchy = array_merge($pageHierarchy, $submissionCrumb);
@@ -226,7 +226,7 @@ class TrackDirectorHandler extends Handler {
 	 * @param $args (type)
 	 */
 	function instructions($args) {
-		import('submission.common.Action');
+		import('classes.submission.common.Action');
 		if (!isset($args[0]) || !Action::instructions($args[0])) {
 			Request::redirect(null, null, Request::getRequestedPage());
 		}

@@ -15,7 +15,7 @@
 
 //$Id$
 
-import('db.SettingsDAO');
+import('classes.db.SettingsDAO');
 class ConferenceSettingsDAO extends SettingsDAO {
 	function &_getCache($conferenceId) {
 		static $settingCache;

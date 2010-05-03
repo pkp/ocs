@@ -14,7 +14,7 @@
 
 //$Id$
 
-import('classes.plugins.GenericPlugin');
+import('lib.pkp.classes.plugins.GenericPlugin');
 
 // TODO: Rather than parsing the crontab on each request (which is slow and
 // dumb), decide when earliest possible run for each scheduled conference is, and store that

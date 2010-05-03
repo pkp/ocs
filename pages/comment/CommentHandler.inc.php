@@ -16,9 +16,9 @@
 // $Id$
 
 
-import('rt.ocs.RTDAO');
-import('rt.ocs.ConferenceRT');
-import('handler.Handler');
+import('classes.rt.ocs.RTDAO');
+import('classes.rt.ocs.ConferenceRT');
+import('classes.handler.Handler');
 
 class CommentHandler extends Handler {
 	/** the paper associated with the comment **/
@@ -113,7 +113,7 @@ class CommentHandler extends Handler {
 		if (!$enableComments) Request::redirect(null, null, 'index');
 		if ($commentsRequireRegistration && !Request::getUser()) Validation::redirectLogin();
 
-		import('comment.form.CommentForm');
+		import('classes.comment.form.CommentForm');
 		$commentForm = new CommentForm(null, $paperId, $galleyId, isset($parent)?$parentId:null);
 		$commentForm->initData();
 
@@ -123,7 +123,7 @@ class CommentHandler extends Handler {
 				$commentForm->execute();
 
 				// Send a notification to associated users
-				import('notification.NotificationManager');
+				import('lib.pkp.classes.notification.NotificationManager');
 				$notificationManager = new NotificationManager();
 				$paperDAO =& DAORegistry::getDAO('PaperDAO');
 				$paper =& $paperDAO->getPaper($paperId);

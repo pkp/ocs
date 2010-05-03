@@ -15,7 +15,7 @@
 
 //$Id$
 
-import('paper.Paper');
+import('classes.paper.Paper');
 
 class TrackDirectorSubmission extends Paper {
 

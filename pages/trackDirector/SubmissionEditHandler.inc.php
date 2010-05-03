@@ -68,7 +68,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		$trackDao =& DAORegistry::getDAO('TrackDAO');
 		$templateMgr->assign_by_ref('tracks', $trackDao->getTrackTitles($schedConf->getId()));
 		if ($enableComments) {
-			import('paper.Paper');
+			import('classes.paper.Paper');
 			$templateMgr->assign('commentsStatus', $submission->getCommentsStatus());
 			$templateMgr->assign_by_ref('commentsStatusOptions', Paper::getCommentsStatusOptions());
 		}
@@ -127,7 +127,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		$templateMgr->assign_by_ref('directorDecisionOptions', TrackDirectorSubmission::getDirectorDecisionOptions());
 		$templateMgr->assign('rateReviewerOnQuality', $schedConf->getSetting('rateReviewerOnQuality'));
 
-		import('submission.reviewAssignment.ReviewAssignment');
+		import('classes.submission.reviewAssignment.ReviewAssignment');
 		$templateMgr->assign_by_ref('reviewerRatingOptions', ReviewAssignment::getReviewerRatingOptions());
 		$templateMgr->assign_by_ref('reviewerRecommendationOptions', ReviewAssignment::getReviewerRecommendationOptions());
 
@@ -186,7 +186,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		}
 
 		// Parse the list of email logs and populate the array.
-		import('paper.log.PaperLog');
+		import('classes.paper.log.PaperLog');
 		$emailLogEntries =& PaperLog::getEmailLogEntries($paperId);
 		foreach ($emailLogEntries->toArray() as $emailLog) {
 			if ($emailLog->getEventType() == PAPER_EMAIL_REVIEW_NOTIFY_REVIEWER) {
@@ -241,7 +241,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 			$templateMgr->assign('isFinalReview', true);
 		}
 
-		import('submission.reviewAssignment.ReviewAssignment');
+		import('classes.submission.reviewAssignment.ReviewAssignment');
 		$templateMgr->assign_by_ref('reviewerRecommendationOptions', ReviewAssignment::getReviewerRecommendationOptions());
 		$templateMgr->assign_by_ref('reviewerRatingOptions', ReviewAssignment::getReviewerRatingOptions());
 
@@ -281,7 +281,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 			unset($submissionNotes);
 		}
 
-		import('paper.log.PaperLog');
+		import('classes.paper.log.PaperLog');
 
 		$rangeInfo =& Handler::getRangeInfo('eventLogEntries', array($paperId));
 		while (true) {
@@ -496,7 +496,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		$submission =& $this->submission;
 
 
-		import('trackDirector.form.CreateReviewerForm');
+		import('classes.trackDirector.form.CreateReviewerForm');
 		$createReviewerForm = new CreateReviewerForm($paperId);
 		Locale::requireComponents(array(LOCALE_COMPONENT_PKP_MANAGER));
 		$this->setupTemplate(true, $paperId);
@@ -842,7 +842,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 			$templateMgr->assign('paperId', $paperId);
 			$templateMgr->assign('reviewId', $reviewId);
 
-			import('submission.reviewAssignment.ReviewAssignment');
+			import('classes.submission.reviewAssignment.ReviewAssignment');
 			$templateMgr->assign_by_ref('reviewerRecommendationOptions', ReviewAssignment::getReviewerRecommendationOptions());
 
 			$templateMgr->display('trackDirector/reviewerRecommendation.tpl');
@@ -1018,7 +1018,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 	//
 
 	function directorReview($args) {
-		import('paper.Paper');
+		import('classes.paper.Paper');
 
 		$stage = (isset($args[0]) ? $args[0] : REVIEW_STAGE_ABSTRACT);
 		$paperId = Request::getUserVar('paperId');
@@ -1066,7 +1066,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		$submission =& $this->submission;
 		$this->setupTemplate(true, $paperId, 'summary');
 
-		import('submission.form.SuppFileForm');
+		import('classes.submission.form.SuppFileForm');
 
 		$submitForm = new SuppFileForm($submission);
 
@@ -1089,7 +1089,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		$submission =& $this->submission;
 		$this->setupTemplate(true, $paperId, 'summary');
 
-		import('submission.form.SuppFileForm');
+		import('classes.submission.form.SuppFileForm');
 
 		$submitForm = new SuppFileForm($submission, $suppFileId);
 
@@ -1133,7 +1133,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 
 		$suppFileId = isset($args[0]) ? (int) $args[0] : 0;
 
-		import('submission.form.SuppFileForm');
+		import('classes.submission.form.SuppFileForm');
 
 		$submitForm = new SuppFileForm($submission, $suppFileId);
 		$submitForm->readInputData();
@@ -1142,7 +1142,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 			$submitForm->execute();
 
 			// Send a notification to associated users
-			import('notification.NotificationManager');
+			import('lib.pkp.classes.notification.NotificationManager');
 			$notificationManager = new NotificationManager();
 			$paperDao =& DAORegistry::getDAO('PaperDAO');
 			$paper =& $paperDao->getPaper($paperId);
@@ -1249,7 +1249,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		$layoutFileType = Request::getUserVar('layoutFileType');
 		$stage = (int) Request::getUserVar('stage');
 
-		import('file.FileManager');
+		import('lib.pkp.classes.file.FileManager');
 		$fileManager = new FileManager();
 		if ($fileManager->uploadError('layoutFile')) {
 			$templateMgr =& TemplateManager::getManager();
@@ -1301,7 +1301,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		$submission =& $this->submission;
 
 
-		import('submission.form.PaperGalleyForm');
+		import('classes.submission.form.PaperGalleyForm');
 
 		$galleyForm = new PaperGalleyForm($paperId);
 		$galleyId = $galleyForm->execute($fileName);
@@ -1322,7 +1322,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 
 		$this->setupTemplate(true, $paperId, 'review');
 
-		import('submission.form.PaperGalleyForm');
+		import('classes.submission.form.PaperGalleyForm');
 
 		$submitForm = new PaperGalleyForm($paperId, $galleyId, $stage);
 
@@ -1346,7 +1346,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		$this->setupTemplate(true, $paperId, 'editing');
 		$submission =& $this->submission;
 
-		import('submission.form.PaperGalleyForm');
+		import('classes.submission.form.PaperGalleyForm');
 
 		$submitForm = new PaperGalleyForm($paperId, $galleyId, $stage);
 		$submitForm->readInputData();
@@ -1355,7 +1355,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 			$submitForm->execute();
 
 			// Send a notification to associated users
-			import('notification.NotificationManager');
+			import('lib.pkp.classes.notification.NotificationManager');
 			$notificationManager = new NotificationManager();
 			$paperDao =& DAORegistry::getDAO('PaperDAO');
 			$paper =& $paperDao->getPaper($paperId);
@@ -1454,7 +1454,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		$galleyDao =& DAORegistry::getDAO('PaperGalleyDAO');
 		$galley =& $galleyDao->getGalley($galleyId, $paperId);
 
-		import('file.PaperFileManager'); // FIXME
+		import('classes.file.PaperFileManager'); // FIXME
 
 		if (isset($galley)) {
 			if ($galley->isHTMLGalley()) {
@@ -1486,7 +1486,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		$schedConf =& Request::getSchedConf();
 		$submission =& $this->submission;
 
-		import('submission.form.SuppFileForm');
+		import('classes.submission.form.SuppFileForm');
 
 		$suppFileForm = new SuppFileForm($submission);
 		$suppFileForm->setData('title', Locale::translate('common.untitled'));
@@ -1541,7 +1541,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		} else {
 			$rangeInfo =& Handler::getRangeInfo('eventLogEntries', array($paperId));
 
-			import('paper.log.PaperLog');
+			import('classes.paper.log.PaperLog');
 			while (true) {
 				$eventLogEntries =& PaperLog::getEventLogEntries($paperId, $rangeInfo);
 				if ($eventLogEntries->isInBounds()) break;
@@ -1634,7 +1634,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		} else {
 			$rangeInfo =& Handler::getRangeInfo('emailLogEntries', array($paperId));
 
-			import('paper.log.PaperLog');
+			import('classes.paper.log.PaperLog');
 			while (true) {
 				$emailLogEntries =& PaperLog::getEmailLogEntries($paperId, $rangeInfo);
 				if ($emailLogEntries->isInBounds()) break;

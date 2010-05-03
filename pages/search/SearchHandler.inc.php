@@ -15,8 +15,8 @@
 
 // $Id$
 
-import('search.PaperSearch');
-import('handler.Handler');
+import('classes.search.PaperSearch');
+import('classes.handler.Handler');
 
 class SearchHandler extends Handler {
 	/**
@@ -110,7 +110,7 @@ class SearchHandler extends Handler {
 				$schedConfId = $paper->getSchedConfId();
 
 				if (!isset($schedConfs[$schedConfId])) {
-					import('schedConf.SchedConfAction');
+					import('classes.schedConf.SchedConfAction');
 					$schedConf =& $schedConfDao->getSchedConf($schedConfId);
 					$schedConfs[$schedConfId] =& $schedConf;
 					$schedConfsUnavailable[$schedConfId] = !SchedConfAction::mayViewProceedings($schedConf);
@@ -176,7 +176,7 @@ class SearchHandler extends Handler {
 
 		$conference =& Request::getConference();
 		$schedConf =& Request::getSchedConf();
-		import('schedConf.SchedConfAction');
+		import('classes.schedConf.SchedConfAction');
 
 		$publishedPaperDao =& DAORegistry::getDAO('PublishedPaperDAO');
 		$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
@@ -211,7 +211,7 @@ class SearchHandler extends Handler {
 
 		$totalResults = count($paperIds);
 		$paperIds = array_slice($paperIds, $rangeInfo->getCount() * ($rangeInfo->getPage()-1), $rangeInfo->getCount());
-		import('core.VirtualArrayIterator');
+		import('lib.pkp.classes.core.VirtualArrayIterator');
 		$results = new VirtualArrayIterator(PaperSearch::formatResults($paperIds), $totalResults, $rangeInfo->getPage(), $rangeInfo->getCount());
 
 		$templateMgr =& TemplateManager::getManager();

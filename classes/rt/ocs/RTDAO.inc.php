@@ -15,7 +15,7 @@
 
 //$Id$
 
-import('rt.ocs.ConferenceRT');
+import('classes.rt.ocs.ConferenceRT');
 
 class RTDAO extends DAO {
 	//

@@ -14,7 +14,7 @@
 
 //$Id$
 
-import('rt.ocs.ConferenceRTAdmin');
+import('classes.rt.ocs.ConferenceRTAdmin');
 import('pages.rtadmin.RTAdminHandler');
 
 class RTSearchHandler extends RTAdminHandler {
@@ -37,7 +37,7 @@ class RTSearchHandler extends RTAdminHandler {
 		$contextId = isset($args[1])?$args[1]:0;
 		$context =& $rtDao->getContext($contextId);
 
-		import('rt.ocs.form.SearchForm');
+		import('classes.rt.ocs.form.SearchForm');
 		$searchForm = new SearchForm(null, $contextId, $versionId);
 
 		if (isset($args[2]) && $args[2]=='save') {
@@ -73,7 +73,7 @@ class RTSearchHandler extends RTAdminHandler {
 
 			$templateMgr->assign_by_ref('version', $version);
 			$templateMgr->assign_by_ref('context', $context);
-			import('core.ArrayItemIterator');
+			import('lib.pkp.classes.core.ArrayItemIterator');
 			$templateMgr->assign_by_ref('searches', new ArrayItemIterator($context->getSearches(), $rangeInfo->getPage(), $rangeInfo->getCount()));
 
 			$templateMgr->assign('helpTopicId', 'conference.generalManagement.readingTools.contexts');
@@ -96,7 +96,7 @@ class RTSearchHandler extends RTAdminHandler {
 		$search =& $rtDao->getSearch($searchId);
 
 		if (isset($version) && isset($context) && isset($search) && $context->getVersionId() == $version->getVersionId() && $search->getContextId() == $context->getContextId()) {
-			import('rt.ocs.form.SearchForm');
+			import('classes.rt.ocs.form.SearchForm');
 			$this->setupTemplate(true, $version, $context, $search);
 			$searchForm = new SearchForm($searchId, $contextId, $versionId);
 			$searchForm->initData();
@@ -141,7 +141,7 @@ class RTSearchHandler extends RTAdminHandler {
 		$search =& $rtDao->getSearch($searchId);
 
 		if (isset($version) && isset($context) && isset($search) && $context->getVersionId() == $version->getVersionId() && $search->getContextId() == $context->getContextId()) {
-			import('rt.ocs.form.SearchForm');
+			import('classes.rt.ocs.form.SearchForm');
 			$searchForm = new SearchForm($searchId, $contextId, $versionId);
 			$searchForm->readInputData();
 			$searchForm->execute();

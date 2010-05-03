@@ -17,7 +17,7 @@
  * @brief Basic class describing a announcement.
  *
  */
-import('announcement.PKPAnnouncement');
+import('lib.pkp.classes.announcement.PKPAnnouncement');
 
 class Announcement extends PKPAnnouncement {
 }

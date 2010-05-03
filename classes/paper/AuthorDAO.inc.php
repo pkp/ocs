@@ -15,8 +15,8 @@
 
 //$Id$
 
-import('paper.Author');
-import('paper.Paper');
+import('classes.paper.Author');
+import('classes.paper.Paper');
 
 class AuthorDAO extends DAO {
 	/**

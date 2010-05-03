@@ -40,7 +40,7 @@ class EmailHandler extends ManagerHandler {
 			$conference->getId()
 		);
 
-		import('core.ArrayItemIterator');
+		import('lib.pkp.classes.core.ArrayItemIterator');
 		if ($rangeInfo && $rangeInfo->isValid()) {
 			while (true) {
 				$emailTemplates = new ArrayItemIterator($emailTemplatesArray, $rangeInfo->getPage(), $rangeInfo->getCount());
@@ -91,7 +91,7 @@ class EmailHandler extends ManagerHandler {
 
 		$emailKey = !isset($args) || empty($args) ? null : $args[0];
 
-		import('manager.form.EmailTemplateForm');
+		import('classes.manager.form.EmailTemplateForm');
 
 		$emailTemplateForm = new EmailTemplateForm($emailKey, $conference);
 		$emailTemplateForm->initData();
@@ -105,7 +105,7 @@ class EmailHandler extends ManagerHandler {
 		$this->validate();
 		$this->setupTemplate(true);
 
-		import('manager.form.EmailTemplateForm');
+		import('classes.manager.form.EmailTemplateForm');
 
 		$emailKey = Request::getUserVar('emailKey');
 

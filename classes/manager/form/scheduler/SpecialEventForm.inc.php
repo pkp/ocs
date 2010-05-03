@@ -14,7 +14,7 @@
 
 //$Id$
 
-import('form.Form');
+import('lib.pkp.classes.form.Form');
 
 class SpecialEventForm extends Form {
 	/** @var specialEventId int the ID of the specialEvent being edited */
@@ -60,13 +60,13 @@ class SpecialEventForm extends Form {
 		$templateMgr->assign('specialEventId', $this->specialEventId);
 		$templateMgr->assign('helpTopicId', 'conference.currentConferences.specialEvents');
 
-		import('manager.form.TimelineForm');
+		import('classes.manager.form.TimelineForm');
 		list($earliestDate, $latestDate) = TimelineForm::getOutsideDates($schedConf);
 		$templateMgr->assign('firstYear', strftime('%Y', $earliestDate));
 		$templateMgr->assign('lastYear', strftime('%Y', $latestDate));
 
 		// Get a good default start time
-		import('manager.form.scheduler.ScheduleForm');
+		import('classes.manager.form.scheduler.ScheduleForm');
 		$defaultStartTime = ScheduleForm::getDefaultStartTime();
 		$templateMgr->assign('defaultStartTime', $defaultStartTime);
 

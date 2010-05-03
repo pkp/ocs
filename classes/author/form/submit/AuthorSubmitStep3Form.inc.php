@@ -14,7 +14,7 @@
 
 //$Id$
 
-import("author.form.submit.AuthorSubmitForm");
+import('classes.author.form.submit.AuthorSubmitForm');
 
 class AuthorSubmitStep3Form extends AuthorSubmitForm {
 	/**
@@ -265,8 +265,8 @@ class AuthorSubmitStep3Form extends AuthorSubmitForm {
 		// Log the submission, even though it may not be "complete"
 		// at this step. This is important because we don't otherwise
 		// capture changes in review process.
-		import('paper.log.PaperLog');
-		import('paper.log.PaperEventLogEntry');
+		import('classes.paper.log.PaperLog');
+		import('classes.paper.log.PaperEventLogEntry');
 		PaperLog::logEvent($this->paperId, PAPER_LOG_ABSTRACT_SUBMIT, LOG_TYPE_AUTHOR, $user->getId(), 'log.author.abstractSubmitted', array('submissionId' => $paper->getId(), 'authorName' => $user->getFullName()));
 		return $this->paperId;
 	}

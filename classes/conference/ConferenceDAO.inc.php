@@ -15,7 +15,7 @@
 
 //$Id$
 
-import ('conference.Conference');
+import ('classes.conference.Conference');
 
 class ConferenceDAO extends DAO {
 	/**

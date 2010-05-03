@@ -17,8 +17,8 @@
 
 define('SESSION_DISABLE_INIT', 1); // FIXME?
 
-import('oai.ocs.ConferenceOAI');
-import('handler.Handler');
+import('classes.oai.ocs.ConferenceOAI');
+import('classes.handler.Handler');
 
 class OAIHandler extends Handler {
 	/**

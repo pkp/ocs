@@ -107,7 +107,7 @@ class AnnouncementFeedGatewayPlugin extends GatewayPlugin {
 			$schedConfId = 0;
 		}
 		if ($limitRecentItems && $recentItems > 0) {
-			import('db.DBResultRange');
+			import('lib.pkp.classes.db.DBResultRange');
 			$rangeInfo = new DBResultRange($recentItems, 1);
 			$announcements =& $announcementDao->getAnnouncementsNotExpiredByConferenceId($conferenceId, $schedConfId, $rangeInfo);
 		} else {

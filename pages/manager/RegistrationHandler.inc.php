@@ -153,7 +153,7 @@ class RegistrationHandler extends ManagerHandler {
 
 		// Ensure registration is valid and for this scheduled conference
 		if (($registrationId != null && $registrationDao->getRegistrationSchedConfId($registrationId) == $schedConf->getId()) || ($registrationId == null && $userId)) {
-			import('registration.form.RegistrationForm');
+			import('classes.registration.form.RegistrationForm');
 
 			$templateMgr =& TemplateManager::getManager();
 			$templateMgr->append('pageHierarchy', array(Request::url(null, null, 'manager', 'registration'), 'manager.registration'));
@@ -257,7 +257,7 @@ class RegistrationHandler extends ManagerHandler {
 		$this->validate();
 		$this->setupTemplate();
 
-		import('registration.form.RegistrationForm');
+		import('classes.registration.form.RegistrationForm');
 
 		$schedConf =& Request::getSchedConf();
 		$registrationId = Request::getUserVar('registrationId') == null ? null : (int) Request::getUserVar('registrationId');
@@ -383,7 +383,7 @@ class RegistrationHandler extends ManagerHandler {
 		// Ensure registration type is valid and for this scheduled conference.
 		if (($registrationTypeId != null && $registrationTypeDao->getRegistrationTypeSchedConfId($registrationTypeId) == $schedConf->getId()) || $registrationTypeId == null) {
 
-			import('registration.form.RegistrationTypeForm');
+			import('classes.registration.form.RegistrationTypeForm');
 
 			$templateMgr =& TemplateManager::getManager();
 			$templateMgr->append('pageHierarchy', array(Request::url(null, null, 'manager', 'registrationTypes'), 'manager.registrationTypes'));
@@ -426,7 +426,7 @@ class RegistrationHandler extends ManagerHandler {
 		$this->validate();
 		$this->setupTemplate(true);
 
-		import('registration.form.RegistrationTypeForm');
+		import('classes.registration.form.RegistrationTypeForm');
 
 		$schedConf =& Request::getSchedConf();
 		$registrationTypeId = Request::getUserVar('typeId') == null ? null : (int) Request::getUserVar('typeId');
@@ -561,7 +561,7 @@ class RegistrationHandler extends ManagerHandler {
 		// Ensure registration option is valid and for this scheduled conference.
 		if (($registrationOptionId != null && $registrationOptionDao->getRegistrationOptionSchedConfId($registrationOptionId) == $schedConf->getId()) || $registrationOptionId == null) {
 
-			import('registration.form.RegistrationOptionForm');
+			import('classes.registration.form.RegistrationOptionForm');
 
 			$templateMgr =& TemplateManager::getManager();
 			$templateMgr->append('pageHierarchy', array(Request::url(null, null, 'manager', 'registrationOptions'), 'manager.registrationOptions'));
@@ -603,7 +603,7 @@ class RegistrationHandler extends ManagerHandler {
 		$this->validate();
 		$this->setupTemplate(true);
 
-		import('registration.form.RegistrationOptionForm');
+		import('classes.registration.form.RegistrationOptionForm');
 
 		$schedConf =& Request::getSchedConf();
 		$registrationOptionId = Request::getUserVar('optionId') == null ? null : (int) Request::getUserVar('optionId');
@@ -666,7 +666,7 @@ class RegistrationHandler extends ManagerHandler {
 		$this->validate();
 		$this->setupTemplate(true);
 
-		import('registration.form.RegistrationPolicyForm');
+		import('classes.registration.form.RegistrationPolicyForm');
 
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('helpTopicId', 'conference.currentConferences.registration');
@@ -690,7 +690,7 @@ class RegistrationHandler extends ManagerHandler {
 	function saveRegistrationPolicies($args = array()) {
 		$this->validate();
 
-		import('registration.form.RegistrationPolicyForm');
+		import('classes.registration.form.RegistrationPolicyForm');
 
 		$registrationPolicyForm = new RegistrationPolicyForm();
 		$registrationPolicyForm->readInputData();

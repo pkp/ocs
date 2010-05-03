@@ -14,7 +14,7 @@
 
 //$Id$
 
-import('form.Form');
+import('lib.pkp.classes.form.Form');
 
 class ProgramSettingsForm extends Form {
 
@@ -39,7 +39,7 @@ class ProgramSettingsForm extends Form {
 	 * Display the form.
 	 */
 	function display() {
-		import('file.PublicFileManager');
+		import('classes.file.PublicFileManager');
 		$site =& Request::getSite();
 		$schedConf =& Request::getSchedConf();
 
@@ -102,7 +102,7 @@ class ProgramSettingsForm extends Form {
 	function uploadProgram($settingName, $locale) {
 		$schedConf =& Request::getSchedConf();
 
-		import('file.PublicFileManager');
+		import('classes.file.PublicFileManager');
 		$fileManager = new PublicFileManager();
 		if ($fileManager->uploadError($settingName)) return false;
 		if ($fileManager->uploadedFileExists($settingName)) {
@@ -138,7 +138,7 @@ class ProgramSettingsForm extends Form {
 		$settingsDao =& DAORegistry::getDAO('SchedConfSettingsDAO');
 		$setting = $schedConf->getSetting($settingName);
 
-		import('file.PublicFileManager');
+		import('classes.file.PublicFileManager');
 		$fileManager = new PublicFileManager();
 		if ($fileManager->removeSchedConfFile($schedConf->getId(), $locale !== null ? $setting[$locale]['uploadName'] : $setting['uploadName'] )) {
 			return $settingsDao->deleteSetting($schedConf->getId(), $settingName, $locale);

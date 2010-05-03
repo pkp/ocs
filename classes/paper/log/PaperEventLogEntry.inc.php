@@ -19,7 +19,7 @@
 
 //$Id$
 
-import('log.EventLogConstants');
+import('classes.log.EventLogConstants');
 
 // Log entry event types. All types must be defined here
 define('PAPER_LOG_DEFAULT', 0);

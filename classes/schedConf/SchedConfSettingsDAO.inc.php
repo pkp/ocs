@@ -16,7 +16,7 @@
 // $Id$
 
 
-import('db.SettingsDAO');
+import('classes.db.SettingsDAO');
 class SchedConfSettingsDAO extends SettingsDAO {
 	function &_getCache($schedConfId) {
 		static $settingCache;

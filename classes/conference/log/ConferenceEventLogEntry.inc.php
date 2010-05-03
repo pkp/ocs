@@ -15,7 +15,7 @@
 
 //$Id$
 
-import('log.EventLogConstants');
+import('classes.log.EventLogConstants');
 
 // Log entry event types. All types must be defined here
 define('CONFERENCE_LOG_DEFAULT', 0);

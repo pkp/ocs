@@ -20,7 +20,7 @@
 // $Id$
 
 
-import('form.Form');
+import('lib.pkp.classes.form.Form');
 
 class CreateReviewerForm extends Form {
 	/** @var int The paper this form is for */
@@ -183,7 +183,7 @@ class CreateReviewerForm extends Form {
 
 		if ($sendNotify) {
 			// Send welcome email to user
-			import('mail.MailTemplate');
+			import('classes.mail.MailTemplate');
 			$mail = new MailTemplate('USER_REGISTER');
 			$mail->setFrom($schedConf->getSetting('contactEmail'), $schedConf->getSetting('contactName'));
 			$mail->assignParams(array('username' => $this->getData('username'), 'password' => $password));

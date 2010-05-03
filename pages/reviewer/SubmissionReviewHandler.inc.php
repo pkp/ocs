@@ -71,7 +71,7 @@ class SubmissionReviewHandler extends ReviewerHandler {
 		else
 			$templateMgr->assign('reviewerInstruction3', 'reviewer.paper.downloadSubmissionSubmission');
 
-		import('submission.reviewAssignment.ReviewAssignment');
+		import('classes.submission.reviewAssignment.ReviewAssignment');
 		$templateMgr->assign_by_ref('reviewerRecommendationOptions', ReviewAssignment::getReviewerRecommendationOptions());
 
 		$controlledVocabDao =& DAORegistry::getDAO('ControlledVocabDAO');

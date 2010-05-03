@@ -37,7 +37,7 @@ class CreateAccountHandler extends UserHandler {
 		if ($conference != null && $schedConf != null) {
 
 			// We're trying to create an account for a specific scheduled conference
-			import('user.form.CreateAccountForm');
+			import('classes.user.form.CreateAccountForm');
 
 			if (checkPhpVersion('5.0.0')) { // WARNING: This form needs $this in constructor
 				$regForm = new CreateAccountForm();
@@ -85,7 +85,7 @@ class CreateAccountHandler extends UserHandler {
 	function createAccount() {
 		$this->validate();
 		$this->setupTemplate(true);
-		import('user.form.CreateAccountForm');
+		import('classes.user.form.CreateAccountForm');
 
 		if (checkPhpVersion('5.0.0')) { // WARNING: This form needs $this in constructor
 			$regForm = new CreateAccountForm();
@@ -147,7 +147,7 @@ class CreateAccountHandler extends UserHandler {
 		if (!$user) Request::redirect(null, 'login');
 
 		// Checks user & token
-		import('security.AccessKeyManager');
+		import('lib.pkp.classes.security.AccessKeyManager');
 		$accessKeyManager = new AccessKeyManager();
 		$accessKeyHash = AccessKeyManager::generateKeyHash($accessKeyCode);
 		$accessKey =& $accessKeyManager->validateKey(

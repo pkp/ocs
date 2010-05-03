@@ -103,7 +103,7 @@ class SchedulerHandler extends ManagerHandler {
 
 		// Ensure building is valid and for this conference
 		if (($buildingId != null && $buildingDao->getBuildingSchedConfId($buildingId) == $schedConf->getId()) || ($buildingId == null)) {
-			import('manager.form.scheduler.BuildingForm');
+			import('classes.manager.form.scheduler.BuildingForm');
 
 			$templateMgr =& TemplateManager::getManager();
 			$templateMgr->append('pageHierarchy', array(Request::url(null, null, 'manager', 'buildings'), 'manager.scheduler.buildings'));
@@ -141,7 +141,7 @@ class SchedulerHandler extends ManagerHandler {
 		$this->validate();
 		$this->setupTemplate(true);
 
-		import('manager.form.scheduler.BuildingForm');
+		import('classes.manager.form.scheduler.BuildingForm');
 
 		$schedConf =& Request::getSchedConf();
 		$buildingId = Request::getUserVar('buildingId') == null ? null : (int) Request::getUserVar('buildingId');
@@ -267,7 +267,7 @@ class SchedulerHandler extends ManagerHandler {
 				$room && $room->getBuildingId() == $building->getId()
 			))
 		) {
-			import('manager.form.scheduler.RoomForm');
+			import('classes.manager.form.scheduler.RoomForm');
 
 			$templateMgr =& TemplateManager::getManager();
 			$templateMgr->append('pageHierarchy', array(Request::url(null, null, 'manager', 'rooms', array($building->getId())), 'manager.scheduler.rooms'));
@@ -305,7 +305,7 @@ class SchedulerHandler extends ManagerHandler {
 		$this->validate();
 		$this->setupTemplate(true);
 
-		import('manager.form.scheduler.RoomForm');
+		import('classes.manager.form.scheduler.RoomForm');
 
 		$schedConf =& Request::getSchedConf();
 		$roomId = Request::getUserVar('roomId') == null ? null : (int) Request::getUserVar('roomId');
@@ -411,7 +411,7 @@ class SchedulerHandler extends ManagerHandler {
 
 		// Ensure special event is valid and for this conference
 		if (($specialEventId != null && $specialEventDao->getSpecialEventSchedConfId($specialEventId) == $schedConf->getId()) || ($specialEventId == null)) {
-			import('manager.form.scheduler.SpecialEventForm');
+			import('classes.manager.form.scheduler.SpecialEventForm');
 
 			$templateMgr =& TemplateManager::getManager();
 			$templateMgr->append('pageHierarchy', array(Request::url(null, null, 'manager', 'specialEvents'), 'manager.scheduler.specialEvents'));
@@ -453,7 +453,7 @@ class SchedulerHandler extends ManagerHandler {
 		$this->validate();
 		$this->setupTemplate(true);
 
-		import('manager.form.scheduler.SpecialEventForm');
+		import('classes.manager.form.scheduler.SpecialEventForm');
 
 		$schedConf =& Request::getSchedConf();
 		$specialEventId = Request::getUserVar('specialEventId') == null ? null : (int) Request::getUserVar('specialEventId');
@@ -503,7 +503,7 @@ class SchedulerHandler extends ManagerHandler {
 
 		$schedConf =& Request::getSchedConf();
 
-		import('manager.form.scheduler.ScheduleForm');
+		import('classes.manager.form.scheduler.ScheduleForm');
 		$scheduleForm = new ScheduleForm();
 
 		$scheduleForm->initData();
@@ -519,7 +519,7 @@ class SchedulerHandler extends ManagerHandler {
 
 		$schedConf =& Request::getSchedConf();
 
-		import('manager.form.scheduler.ScheduleForm');
+		import('classes.manager.form.scheduler.ScheduleForm');
 		$scheduleForm = new ScheduleForm();
 
 		$scheduleForm->readInputData();
@@ -538,7 +538,7 @@ class SchedulerHandler extends ManagerHandler {
 		$this->validate();
 		$this->setupTemplate(true);
 
-		import('manager.form.scheduler.ScheduleLayoutForm');
+		import('classes.manager.form.scheduler.ScheduleLayoutForm');
 		$scheduleLayoutForm = new ScheduleLayoutForm();
 
 		$scheduleLayoutForm->initData();
@@ -554,7 +554,7 @@ class SchedulerHandler extends ManagerHandler {
 
 		$schedConf =& Request::getSchedConf();
 
-		import('manager.form.scheduler.ScheduleLayoutForm');
+		import('classes.manager.form.scheduler.ScheduleLayoutForm');
 		$scheduleLayoutForm = new ScheduleLayoutForm();
 
 		$scheduleLayoutForm->readInputData();
@@ -629,7 +629,7 @@ class SchedulerHandler extends ManagerHandler {
 
 		// Ensure time block is valid and for this conference
 		if (($timeBlockId != null && $timeBlockDao->getTimeBlockSchedConfId($timeBlockId) == $schedConf->getId()) || ($timeBlockId == null)) {
-			import('manager.form.scheduler.TimeBlockForm');
+			import('classes.manager.form.scheduler.TimeBlockForm');
 
 			$templateMgr =& TemplateManager::getManager();
 			$templateMgr->append('pageHierarchy', array(Request::url(null, null, 'manager', 'timeBlocks'), 'manager.scheduler.timeBlocks'));
@@ -664,7 +664,7 @@ class SchedulerHandler extends ManagerHandler {
 		parent::validate();
 		SchedulerHandler::setupTemplate(true);
 
-		import('manager.form.scheduler.TimeBlockForm');
+		import('classes.manager.form.scheduler.TimeBlockForm');
 
 		$schedConf =& Request::getSchedConf();
 		$timeBlockId = Request::getUserVar('timeBlockId') == null ? null : (int) Request::getUserVar('timeBlockId');

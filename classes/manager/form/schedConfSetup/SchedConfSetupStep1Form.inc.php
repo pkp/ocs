@@ -18,7 +18,7 @@
 
 //$Id$
 
-import("manager.form.schedConfSetup.SchedConfSetupForm");
+import('classes.manager.form.schedConfSetup.SchedConfSetupForm');
 
 class SchedConfSetupStep1Form extends SchedConfSetupForm {
 

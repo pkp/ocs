@@ -14,7 +14,7 @@
 
 //$Id$
 
-import("submission.form.comment.CommentForm");
+import('classes.submission.form.comment.CommentForm');
 
 class PeerReviewCommentForm extends CommentForm {
 

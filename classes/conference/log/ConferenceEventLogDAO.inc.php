@@ -19,7 +19,7 @@
 
 //$Id$
 
-import ('conference.log.ConferenceEventLogEntry');
+import ('classes.conference.log.ConferenceEventLogEntry');
 
 class ConferenceEventLogDAO extends DAO {
 

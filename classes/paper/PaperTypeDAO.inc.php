@@ -16,7 +16,7 @@
 //$Id$
 
 
-import('controlledVocab.ControlledVocabDAO');
+import('lib.pkp.classes.controlledVocab.ControlledVocabDAO');
 
 define('PAPER_TYPE_SYMBOLIC', 'paperType');
 

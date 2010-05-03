@@ -15,8 +15,8 @@
  * $Id$
  */
 
-import('submission.director.DirectorSubmission');
-import('submission.author.AuthorSubmission'); // Bring in director decision constants
+import('classes.submission.director.DirectorSubmission');
+import('classes.submission.author.AuthorSubmission'); // Bring in director decision constants
 
 define('DIRECTOR_SUBMISSION_SORT_ORDER_NATURAL',	0x00000001);
 define('DIRECTOR_SUBMISSION_SORT_ORDER_PUBLISHED',	0x00000002);

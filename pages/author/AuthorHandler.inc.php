@@ -16,11 +16,11 @@
 // $Id$
 
 
-import ('submission.author.AuthorAction');
-import('handler.Handler');
-import('handler.validation.HandlerValidatorConference');
-import('handler.validation.HandlerValidatorSchedConf');
-import('handler.validation.HandlerValidatorRoles');
+import ('classes.submission.author.AuthorAction');
+import('classes.handler.Handler');
+import('classes.handler.validation.HandlerValidatorConference');
+import('classes.handler.validation.HandlerValidatorSchedConf');
+import('lib.pkp.classes.handler.validation.HandlerValidatorRoles');
 
 class AuthorHandler extends Handler {
 	/**
@@ -75,7 +75,7 @@ class AuthorHandler extends Handler {
 			usort ($submissionsArray, $compare);
 			
 			// Convert submission array back to an ItemIterator class
-			import('core.ArrayItemIterator');
+			import('lib.pkp.classes.core.ArrayItemIterator');
 			$submissions =& ArrayItemIterator::fromRangeInfo($submissionsArray, $rangeInfo);
 		} else {
 			$submissions = $authorSubmissionDao->getAuthorSubmissions($user->getId(), $schedConf->getId(), $active, $rangeInfo, $sort, $sortDirection);
@@ -129,7 +129,7 @@ class AuthorHandler extends Handler {
 		$pageHierarchy = $subclass ? array(array(Request::url(null, null, 'user'), 'navigation.user'), array(Request::url(null, null, 'author'), 'user.role.author'), array(Request::url(null, null, 'author'), 'paper.submissions'))
 			: array(array(Request::url(null, null, 'user'), 'navigation.user'), array(Request::url(null, null, 'author'), 'user.role.author'));
 
-		import('submission.trackDirector.TrackDirectorAction');
+		import('classes.submission.trackDirector.TrackDirectorAction');
 		$submissionCrumb = TrackDirectorAction::submissionBreadcrumb($paperId, $parentPage, 'author');
 		if (isset($submissionCrumb)) {
 			$pageHierarchy = array_merge($pageHierarchy, $submissionCrumb);

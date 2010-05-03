@@ -18,8 +18,8 @@
 
 //$Id$
 
-import("manager.form.setup.ConferenceSetupForm");
-import('form.Form');
+import('classes.manager.form.setup.ConferenceSetupForm');
+import('lib.pkp.classes.form.Form');
 
 class ConferenceSetupForm extends Form {
 	var $step;
@@ -94,7 +94,7 @@ class ConferenceSetupForm extends Form {
 		$settingsDao =& DAORegistry::getDAO('ConferenceSettingsDAO');
 		$faviconTypes = array('.ico', '.png', '.gif');
 
-		import('file.PublicFileManager');
+		import('classes.file.PublicFileManager');
 		$fileManager = new PublicFileManager();
 		if ($fileManager->uploadError($settingName)) return false;
 		if ($fileManager->uploadedFileExists($settingName)) {
@@ -139,7 +139,7 @@ class ConferenceSetupForm extends Form {
 		$settingsDao =& DAORegistry::getDAO('ConferenceSettingsDAO');
 		$setting = $settingsDao->getSetting($conference->getId(), $settingName);
 
-		import('file.PublicFileManager');
+		import('classes.file.PublicFileManager');
 		$fileManager = new PublicFileManager();
 		if ($fileManager->removeConferenceFile($conference->getId(), $locale !== null ? $setting[$locale]['uploadName'] : $setting['uploadName'] )) {
 			$returner = $settingsDao->deleteSetting($conference->getId(), $settingName, $locale);

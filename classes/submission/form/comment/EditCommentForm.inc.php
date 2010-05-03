@@ -14,7 +14,7 @@
 
 //$Id$
 
-import('form.Form');
+import('lib.pkp.classes.form.Form');
 
 class EditCommentForm extends Form {
 
@@ -183,7 +183,7 @@ class EditCommentForm extends Form {
 	 * @param $recipients array of recipients (email address => name)
 	 */
 	function email($recipients) {
-		import('mail.PaperMailTemplate');
+		import('classes.mail.PaperMailTemplate');
 		$email = new PaperMailTemplate($this->paper, 'SUBMISSION_COMMENT');
 
 		foreach ($recipients as $emailAddress => $name) {

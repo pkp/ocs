@@ -34,7 +34,7 @@ class ManagerAccommodationHandler extends ManagerHandler {
 		$schedConf =& Request::getSchedConf();
 		if (!$schedConf) Request::redirect (null, null, 'index');
 
-		import('manager.form.AccommodationSettingsForm');
+		import('classes.manager.form.AccommodationSettingsForm');
 
 		$settingsForm = new AccommodationSettingsForm();
 		if ($settingsForm->isLocaleResubmit()) {
@@ -55,7 +55,7 @@ class ManagerAccommodationHandler extends ManagerHandler {
 		$schedConf =& Request::getSchedConf();
 		if (!$schedConf) Request::redirect (null, null, 'index');
 
-		import('manager.form.AccommodationSettingsForm');
+		import('classes.manager.form.AccommodationSettingsForm');
 
 		$settingsForm = new AccommodationSettingsForm();
 		$settingsForm->readInputData();
@@ -70,7 +70,7 @@ class ManagerAccommodationHandler extends ManagerHandler {
 				$thisFileKey = $key + 1;
 			}
 
-			import('file.PublicFileManager');
+			import('classes.file.PublicFileManager');
 			$fileManager = new PublicFileManager();
 			$success = !$fileManager->uploadError('accommodationFile');
 			if ($success && $success = $fileManager->uploadedFileExists('accommodationFile')) {
@@ -104,7 +104,7 @@ class ManagerAccommodationHandler extends ManagerHandler {
 				}
 			}
 			if ($deleteKey !== null) {
-				import('file.PublicFileManager');
+				import('classes.file.PublicFileManager');
 				$fileManager = new PublicFileManager();
 				if ($fileManager->removeSchedConfFile($schedConf->getId(), $accommodationFiles[$formLocale][$deleteKey]['uploadName'])) {
 					unset($accommodationFiles[$formLocale][$deleteKey]);

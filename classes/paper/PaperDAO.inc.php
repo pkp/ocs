@@ -16,7 +16,7 @@
 // $Id$
 
 
-import('paper.Paper');
+import('classes.paper.Paper');
 
 class PaperDAO extends DAO {
 	var $authorDao;
@@ -363,7 +363,7 @@ class PaperDAO extends DAO {
 		$suppFileDao->deleteSuppFilesByPaper($paperId);
 
 		// Delete paper files -- first from the filesystem, then from the database
-		import('file.PaperFileManager');
+		import('classes.file.PaperFileManager');
 		$paperFileDao =& DAORegistry::getDAO('PaperFileDAO');
 		$paperFiles =& $paperFileDao->getPaperFilesByPaper($paperId);
 

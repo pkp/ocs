@@ -20,7 +20,7 @@
 // $Id$
 
 
-import('scheduledTask.ScheduledTask');
+import('lib.pkp.classes.scheduledTask.ScheduledTask');
 
 class RegistrationExpiryReminder extends ScheduledTask {
 
@@ -73,7 +73,7 @@ class RegistrationExpiryReminder extends ScheduledTask {
 			'registrationContactSignature' => $registrationContactSignature 
 		);
 
-		import('mail.MailTemplate');
+		import('classes.mail.MailTemplate');
 		$mail = new MailTemplate($emailKey);
 		$mail->setFrom($registrationEmail, $registrationName);
 		$mail->addRecipient($user->getEmail(), $user->getFullName());

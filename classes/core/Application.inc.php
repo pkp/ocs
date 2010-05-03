@@ -17,7 +17,7 @@
 // $Id$
 
 
-import('core.PKPApplication');
+import('lib.pkp.classes.core.PKPApplication');
 
 define('PHP_REQUIRED_VERSION', '4.2.0');
 
@@ -78,57 +78,57 @@ class Application extends PKPApplication {
 	 */
 	function getDAOMap() {
 		return array_merge(parent::getDAOMap(), array(
-			'AnnouncementDAO' => 'announcement.AnnouncementDAO',
-			'AnnouncementTypeDAO' => 'announcement.AnnouncementTypeDAO',
-			'BuildingDAO' => 'scheduler.BuildingDAO',
-			'CommentDAO' => 'comment.CommentDAO',
-			'ConferenceDAO' => 'conference.ConferenceDAO',
-			'ConferenceEventLogDAO' => 'conference.log.ConferenceEventLogDAO',
-			'ConferenceSettingsDAO' => 'conference.ConferenceSettingsDAO',
-			'DirectorSubmissionDAO' => 'submission.director.DirectorSubmissionDAO',
-			'EditAssignmentDAO' => 'submission.editAssignment.EditAssignmentDAO',
-			'EmailTemplateDAO' => 'mail.EmailTemplateDAO',
-			'GroupDAO' => 'group.GroupDAO',
-			'GroupMembershipDAO' => 'group.GroupMembershipDAO',
-			'OAIDAO' => 'oai.ocs.OAIDAO',
-			'PaperCommentDAO' => 'paper.PaperCommentDAO',
-			'PaperDAO' => 'paper.PaperDAO',
-			'PaperEmailLogDAO' => 'paper.log.PaperEmailLogDAO',
-			'PaperEventLogDAO' => 'paper.log.PaperEventLogDAO',
-			'PaperFileDAO' => 'paper.PaperFileDAO',
-			'PaperGalleyDAO' => 'paper.PaperGalleyDAO',
-			'PaperNoteDAO' => 'paper.PaperNoteDAO',
-			'PaperSearchDAO' => 'search.PaperSearchDAO',
-			'PaperTypeDAO' => 'paper.PaperTypeDAO',
-			'PaperTypeEntryDAO' => 'paper.PaperTypeEntryDAO',
-			'PluginSettingsDAO' => 'plugins.PluginSettingsDAO',
-			'AuthorDAO' => 'paper.AuthorDAO',
-			'AuthorSubmissionDAO' => 'submission.author.AuthorSubmissionDAO',
-			'PublishedPaperDAO' => 'paper.PublishedPaperDAO',
-			'QueuedPaymentDAO' => 'payment.QueuedPaymentDAO',
-			'RoleDAO' => 'security.RoleDAO',
-			'RegistrationDAO' => 'registration.RegistrationDAO',
-			'RegistrationTypeDAO' => 'registration.RegistrationTypeDAO',
-			'RegistrationOptionDAO' => 'registration.RegistrationOptionDAO',
-			'ReviewAssignmentDAO' => 'submission.reviewAssignment.ReviewAssignmentDAO',
-			'ReviewerSubmissionDAO' => 'submission.reviewer.ReviewerSubmissionDAO',
-			'ReviewFormDAO' => 'reviewForm.ReviewFormDAO',
-			'ReviewFormElementDAO' => 'reviewForm.ReviewFormElementDAO',
-			'ReviewFormResponseDAO' => 'reviewForm.ReviewFormResponseDAO',
-			'RoomDAO' => 'scheduler.RoomDAO',
-			'RTDAO' => 'rt.ocs.RTDAO',
-			'ScheduledTaskDAO' => 'scheduledTask.ScheduledTaskDAO',
-			'SchedConfDAO' => 'schedConf.SchedConfDAO',
-			'SchedConfSettingsDAO' => 'schedConf.SchedConfSettingsDAO',
-			'SchedConfStatisticsDAO' => 'schedConf.SchedConfStatisticsDAO',
-			'SpecialEventDAO' => 'scheduler.SpecialEventDAO',
-			'SuppFileDAO' => 'paper.SuppFileDAO',
-			'TimeBlockDAO' => 'scheduler.TimeBlockDAO',
-			'TrackDAO' => 'conference.TrackDAO',
-			'TrackDirectorsDAO' => 'conference.TrackDirectorsDAO',
-			'TrackDirectorSubmissionDAO' => 'submission.trackDirector.TrackDirectorSubmissionDAO',
-			'UserDAO' => 'user.UserDAO',
-			'UserSettingsDAO' => 'user.UserSettingsDAO'
+			'AnnouncementDAO' => 'classes.announcement.AnnouncementDAO',
+			'AnnouncementTypeDAO' => 'classes.announcement.AnnouncementTypeDAO',
+			'BuildingDAO' => 'classes.scheduler.BuildingDAO',
+			'CommentDAO' => 'classes.comment.CommentDAO',
+			'ConferenceDAO' => 'classes.conference.ConferenceDAO',
+			'ConferenceEventLogDAO' => 'classes.conference.log.ConferenceEventLogDAO',
+			'ConferenceSettingsDAO' => 'classes.conference.ConferenceSettingsDAO',
+			'DirectorSubmissionDAO' => 'classes.submission.director.DirectorSubmissionDAO',
+			'EditAssignmentDAO' => 'classes.submission.editAssignment.EditAssignmentDAO',
+			'EmailTemplateDAO' => 'classes.mail.EmailTemplateDAO',
+			'GroupDAO' => 'lib.pkp.classes.group.GroupDAO',
+			'GroupMembershipDAO' => 'lib.pkp.classes.group.GroupMembershipDAO',
+			'OAIDAO' => 'classes.oai.ocs.OAIDAO',
+			'PaperCommentDAO' => 'classes.paper.PaperCommentDAO',
+			'PaperDAO' => 'classes.paper.PaperDAO',
+			'PaperEmailLogDAO' => 'classes.paper.log.PaperEmailLogDAO',
+			'PaperEventLogDAO' => 'classes.paper.log.PaperEventLogDAO',
+			'PaperFileDAO' => 'classes.paper.PaperFileDAO',
+			'PaperGalleyDAO' => 'classes.paper.PaperGalleyDAO',
+			'PaperNoteDAO' => 'classes.paper.PaperNoteDAO',
+			'PaperSearchDAO' => 'classes.search.PaperSearchDAO',
+			'PaperTypeDAO' => 'classes.paper.PaperTypeDAO',
+			'PaperTypeEntryDAO' => 'classes.paper.PaperTypeEntryDAO',
+			'PluginSettingsDAO' => 'classes.plugins.PluginSettingsDAO',
+			'AuthorDAO' => 'classes.paper.AuthorDAO',
+			'AuthorSubmissionDAO' => 'classes.submission.author.AuthorSubmissionDAO',
+			'PublishedPaperDAO' => 'classes.paper.PublishedPaperDAO',
+			'QueuedPaymentDAO' => 'lib.pkp.classes.payment.QueuedPaymentDAO',
+			'RoleDAO' => 'classes.security.RoleDAO',
+			'RegistrationDAO' => 'classes.registration.RegistrationDAO',
+			'RegistrationTypeDAO' => 'classes.registration.RegistrationTypeDAO',
+			'RegistrationOptionDAO' => 'classes.registration.RegistrationOptionDAO',
+			'ReviewAssignmentDAO' => 'classes.submission.reviewAssignment.ReviewAssignmentDAO',
+			'ReviewerSubmissionDAO' => 'classes.submission.reviewer.ReviewerSubmissionDAO',
+			'ReviewFormDAO' => 'lib.pkp.classes.reviewForm.ReviewFormDAO',
+			'ReviewFormElementDAO' => 'lib.pkp.classes.reviewForm.ReviewFormElementDAO',
+			'ReviewFormResponseDAO' => 'lib.pkp.classes.reviewForm.ReviewFormResponseDAO',
+			'RoomDAO' => 'classes.scheduler.RoomDAO',
+			'RTDAO' => 'classes.rt.ocs.RTDAO',
+			'ScheduledTaskDAO' => 'lib.pkp.classes.scheduledTask.ScheduledTaskDAO',
+			'SchedConfDAO' => 'classes.schedConf.SchedConfDAO',
+			'SchedConfSettingsDAO' => 'classes.schedConf.SchedConfSettingsDAO',
+			'SchedConfStatisticsDAO' => 'classes.schedConf.SchedConfStatisticsDAO',
+			'SpecialEventDAO' => 'classes.scheduler.SpecialEventDAO',
+			'SuppFileDAO' => 'classes.paper.SuppFileDAO',
+			'TimeBlockDAO' => 'classes.scheduler.TimeBlockDAO',
+			'TrackDAO' => 'classes.conference.TrackDAO',
+			'TrackDirectorsDAO' => 'classes.conference.TrackDirectorsDAO',
+			'TrackDirectorSubmissionDAO' => 'classes.submission.trackDirector.TrackDirectorSubmissionDAO',
+			'UserDAO' => 'classes.user.UserDAO',
+			'UserSettingsDAO' => 'classes.user.UserSettingsDAO'
 		));
 	}
 
@@ -155,7 +155,7 @@ class Application extends PKPApplication {
 	 * @return object
 	 */
 	function &instantiateHelp() {
-		import('help.Help');
+		import('classes.help.Help');
 		$help = new Help();
 		return $help;
 	}

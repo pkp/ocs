@@ -34,7 +34,7 @@ class ManagerPaymentHandler extends ManagerHandler {
 		$schedConf =& Request::getSchedConf();
 		if (!$schedConf) Request::redirect (null, null, 'index');
 
-		import('manager.form.PaymentSettingsForm');
+		import('classes.manager.form.PaymentSettingsForm');
 
 		$settingsForm = new PaymentSettingsForm();
 		$settingsForm->initData();
@@ -51,7 +51,7 @@ class ManagerPaymentHandler extends ManagerHandler {
 		$schedConf =& Request::getSchedConf();
 		if (!$schedConf) Request::redirect (null, null, 'index');
 
-		import('manager.form.PaymentSettingsForm');
+		import('classes.manager.form.PaymentSettingsForm');
 
 		$settingsForm = new PaymentSettingsForm();
 		$settingsForm->readInputData();

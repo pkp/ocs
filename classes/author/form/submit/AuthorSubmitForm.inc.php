@@ -20,7 +20,7 @@
 // $Id$
 
 
-import('form.Form');
+import('lib.pkp.classes.form.Form');
 
 class AuthorSubmitForm extends Form {
 
@@ -91,12 +91,12 @@ class AuthorSubmitForm extends Form {
 
 	function confirmSubmission(&$paper, &$user, &$schedConf, &$conference, $mailTemplate = 'SUBMISSION_ACK') {
 		// Update search index
-		import('search.PaperSearchIndex');
+		import('classes.search.PaperSearchIndex');
 		PaperSearchIndex::indexPaperMetadata($paper);
 		PaperSearchIndex::indexPaperFiles($paper);
 
 		// Send author notification email
-		import('mail.PaperMailTemplate');
+		import('classes.mail.PaperMailTemplate');
 		$mail = new PaperMailTemplate($paper, $mailTemplate, null, null, null, null, false);
 		$mail->setFrom($schedConf->getSetting('contactEmail'), $schedConf->getSetting('contactName'));
 		if ($mail->isEnabled()) {

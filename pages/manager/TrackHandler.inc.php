@@ -63,7 +63,7 @@ class TrackHandler extends ManagerHandler {
 		$this->validate();
 		$this->setupTemplate(true);
 
-		import('manager.form.TrackForm');
+		import('classes.manager.form.TrackForm');
 
 		$trackForm = new TrackForm(!isset($args) || empty($args) ? null : $args[0]);
 		if ($trackForm->isLocaleResubmit()) {
@@ -81,7 +81,7 @@ class TrackHandler extends ManagerHandler {
 		parent::validate();
 		$this->setupTemplate(true);
 
-		import('manager.form.TrackForm');
+		import('classes.manager.form.TrackForm');
 
 		$trackForm = new TrackForm(Request::getUserVar('trackId'));
 		$trackForm->readInputData();

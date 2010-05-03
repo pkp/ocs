@@ -14,8 +14,8 @@
 
 //$Id$
 
-import('site.ImportOCS1');
-import('form.Form');
+import('classes.site.ImportOCS1');
+import('lib.pkp.classes.form.Form');
 
 class ImportOCS1Form extends Form {
 

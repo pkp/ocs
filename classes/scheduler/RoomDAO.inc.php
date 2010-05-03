@@ -15,7 +15,7 @@
 
 //$Id$
 
-import('scheduler.Room');
+import('classes.scheduler.Room');
 
 class RoomDAO extends DAO {
 	/**

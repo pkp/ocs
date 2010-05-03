@@ -15,7 +15,7 @@
 
 //$Id$
 
-import ('schedConf.SchedConf');
+import ('classes.schedConf.SchedConf');
 
 class SchedConfDAO extends DAO {
 	/**

@@ -31,7 +31,7 @@ class Action {
 	 */
 	function viewMetadata($paper, $roleId) {
 		if (!HookRegistry::call('Action::viewMetadata', array(&$paper, &$roleId))) {
-			import("submission.form.MetadataForm");
+			import('classes.submission.form.MetadataForm');
 			$metadataForm = new MetadataForm($paper, $roleId);
 			if ($metadataForm->getCanEdit() && $metadataForm->isLocaleResubmit()) {
 				$metadataForm->readInputData();
@@ -48,7 +48,7 @@ class Action {
 	 */
 	function saveMetadata($paper) {
 		if (!HookRegistry::call('Action::saveMetadata', array(&$paper))) {
-			import("submission.form.MetadataForm");
+			import('classes.submission.form.MetadataForm');
 			$metadataForm = new MetadataForm($paper);
 			$metadataForm->readInputData();
 
@@ -121,7 +121,7 @@ class Action {
 				$metadataForm->execute();
 				
 				// Send a notification to associated users
-				import('notification.NotificationManager');
+				import('lib.pkp.classes.notification.NotificationManager');
 				$notificationManager = new NotificationManager();
 				$notificationUsers = $paper->getAssociatedUserIds();
 				foreach ($notificationUsers as $userRole) {
@@ -135,8 +135,8 @@ class Action {
 
 				// Add log entry
 				$user =& Request::getUser();
-				import('paper.log.PaperLog');
-				import('paper.log.PaperEventLogEntry');
+				import('classes.paper.log.PaperLog');
+				import('classes.paper.log.PaperEventLogEntry');
 				PaperLog::logEvent($paper->getId(), PAPER_LOG_METADATA_UPDATE, LOG_TYPE_DEFAULT, 0, 'log.director.metadataModified', array('directorName' => $user->getFullName()));
 
 				return true;
@@ -151,7 +151,7 @@ class Action {
 	 * @param $revision int
 	 */
 	function downloadFile($paperId, $fileId, $revision = null) {
-		import('file.PaperFileManager');
+		import('classes.file.PaperFileManager');
 		$paperFileManager = new PaperFileManager($paperId);
 		return $paperFileManager->downloadFile($fileId, $revision);
 	}
@@ -163,7 +163,7 @@ class Action {
 	 * @param $revision int
 	 */
 	function viewFile($paperId, $fileId, $revision = null) {
-		import('file.PaperFileManager');
+		import('classes.file.PaperFileManager');
 		$paperFileManager = new PaperFileManager($paperId);
 		return $paperFileManager->viewFile($fileId, $revision);
 	}
@@ -174,7 +174,7 @@ class Action {
 	 */
 	function editComment($paper, $comment) {
 		if (!HookRegistry::call('Action::editComment', array(&$paper, &$comment))) {
-			import("submission.form.comment.EditCommentForm");
+			import('classes.submission.form.comment.EditCommentForm');
 
 			$commentForm = new EditCommentForm($paper, $comment);
 			$commentForm->initData();
@@ -188,7 +188,7 @@ class Action {
 	 */
 	function saveComment($paper, &$comment, $emailComment) {
 		if (!HookRegistry::call('Action::saveComment', array(&$paper, &$comment, &$emailComment))) {
-			import("submission.form.comment.EditCommentForm");
+			import('classes.submission.form.comment.EditCommentForm');
 
 			$commentForm = new EditCommentForm($paper, $comment);
 			$commentForm->readInputData();
@@ -197,7 +197,7 @@ class Action {
 				$commentForm->execute();
 				
 				// Send a notification to associated users
-				import('notification.NotificationManager');
+				import('lib.pkp.classes.notification.NotificationManager');
 				$notificationManager = new NotificationManager();
 				$notificationUsers = $paper->getAssociatedUserIds(true, false);
 				foreach ($notificationUsers as $userRole) {

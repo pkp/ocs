@@ -16,31 +16,31 @@
 // $Id$
 
 
-import('user.User');
-import('conference.Conference');
-import('conference.Track');
-import('security.Role');
-import('registration.Registration');
-import('registration.RegistrationType');
-import('currency.Currency');
-import('paper.Paper');
-import('paper.PaperComment');
-import('paper.PaperFile');
-import('paper.PaperGalley');
-import('paper.PaperHTMLGalley');
-import('paper.PaperNote');
-import('paper.Author');
-import('paper.PublishedPaper');
-import('paper.SuppFile');
-import('submission.common/Action');
-import('submission.author.AuthorSubmission');
-import('submission.reviewer.ReviewerSubmission');
-import('submission.editAssignment.EditAssignment');
-import('submission.reviewAssignment.ReviewAssignment');
-import('comment.Comment');
-import('file.PaperFileManager');
-import('file.PublicFileManager');
-import('search.PaperSearchIndex');
+import('classes.user.User');
+import('classes.conference.Conference');
+import('classes.conference.Track');
+import('classes.security.Role');
+import('classes.registration.Registration');
+import('classes.registration.RegistrationType');
+import('lib.pkp.classes.currency.Currency');
+import('classes.paper.Paper');
+import('classes.paper.PaperComment');
+import('classes.paper.PaperFile');
+import('classes.paper.PaperGalley');
+import('classes.paper.PaperHTMLGalley');
+import('classes.paper.PaperNote');
+import('classes.paper.Author');
+import('classes.paper.PublishedPaper');
+import('classes.paper.SuppFile');
+import('classes.submission.common.Action');
+import('classes.submission.author.AuthorSubmission');
+import('classes.submission.reviewer.ReviewerSubmission');
+import('classes.submission.editAssignment.EditAssignment');
+import('classes.submission.reviewAssignment.ReviewAssignment');
+import('classes.comment.Comment');
+import('classes.file.PaperFileManager');
+import('classes.file.PublicFileManager');
+import('classes.search.PaperSearchIndex');
 
 
 class ImportOCS1 {
@@ -240,7 +240,7 @@ class ImportOCS1 {
 			}
 
 			// Install the default RT versions.
-			import('rt.ocs.ConferenceRTAdmin');
+			import('classes.rt.ocs.ConferenceRTAdmin');
 			$conferenceRtAdmin = new ConferenceRTAdmin($this->conferenceId);
 			$conferenceRtAdmin->restoreVersions(false);
 
@@ -426,7 +426,7 @@ class ImportOCS1 {
 				$userDao->insertUser($user);
 
 				if ($this->hasOption('emailUsers')) {
-					import('mail.MailTemplate');
+					import('classes.mail.MailTemplate');
 					$mail = new MailTemplate('USER_REGISTER');
 
 					$mail->setFrom($schedConf->getSetting('contactEmail'), $schedConf->getSetting('contactName'));
@@ -523,8 +523,8 @@ class ImportOCS1 {
 			printf("Importing reviewers\n");
 		}
 
-		import('file.PaperFileManager');
-		import('search.PaperSearchIndex');
+		import('classes.file.PaperFileManager');
+		import('classes.search.PaperSearchIndex');
 
 		$userDao =& DAORegistry::getDAO('UserDAO');
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
@@ -559,7 +559,7 @@ class ImportOCS1 {
 				$user->setPassword(Validation::encryptCredentials($user->getUsername(), $password));
 
 				if ($this->hasOption('emailUsers')) {
-					import('mail.MailTemplate');
+					import('classes.mail.MailTemplate');
 					$mail = new MailTemplate('USER_REGISTER');
 
 					$mail->setFrom($schedConf->getSetting('contactEmail'), $schedConf->getSetting('contactName'));
@@ -608,8 +608,8 @@ class ImportOCS1 {
 			printf("Importing papers\n");
 		}
 
-		import('file.PaperFileManager');
-		import('search.PaperSearchIndex');
+		import('classes.file.PaperFileManager');
+		import('classes.search.PaperSearchIndex');
 
 		$userDao =& DAORegistry::getDAO('UserDAO');
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
@@ -648,7 +648,7 @@ class ImportOCS1 {
 				$user->setPassword(Validation::encryptCredentials($user->getUsername(), $password));
 
 				if ($this->hasOption('emailUsers')) {
-					import('mail.MailTemplate');
+					import('classes.mail.MailTemplate');
 					$mail = new MailTemplate('USER_REGISTER');
 
 					$mail->setFrom($schedConf->getSetting('contactEmail'), $schedConf->getSetting('contactName'));

@@ -14,8 +14,8 @@
 
 //$Id$
 
-import('db.DBDataXMLParser');
-import('form.Form');
+import('lib.pkp.classes.db.DBDataXMLParser');
+import('lib.pkp.classes.form.Form');
 
 class SchedConfSettingsForm extends Form {
 
@@ -136,7 +136,7 @@ class SchedConfSettingsForm extends Form {
 			$schedConfDao->resequenceSchedConfs($this->getData('conferenceId'));
 
 			// Make the file directories for the scheduled conference
-			import('file.FileManager');
+			import('lib.pkp.classes.file.FileManager');
 			$conferenceId = $schedConf->getConferenceId();
 			$privateBasePath = Config::getVar('files','files_dir') . '/conferences/' . $conferenceId . '/schedConfs/' . $schedConfId;
 			$publicBasePath = Config::getVar('files','public_files_dir') . '/conferences/' . $conferenceId . '/schedConfs/' . $schedConfId;

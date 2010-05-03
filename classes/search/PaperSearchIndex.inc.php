@@ -15,10 +15,10 @@
 
 //$Id$
 
-import('search.SearchFileParser');
-import('search.SearchHTMLParser');
-import('search.SearchHelperParser');
-import('search.PaperSearch');
+import('lib.pkp.classes.search.SearchFileParser');
+import('lib.pkp.classes.search.SearchHTMLParser');
+import('lib.pkp.classes.search.SearchHelperParser');
+import('classes.search.PaperSearch');
 
 // Words are truncated to at most this length
 define('SEARCH_KEYWORD_MAX_LENGTH', 40);
@@ -62,7 +62,7 @@ class PaperSearchIndex {
 	 * @param $fileId int
 	 */
 	function updateFileIndex($paperId, $type, $fileId) {
-		import('file.PaperFileManager');
+		import('classes.file.PaperFileManager');
 		$fileMgr = new PaperFileManager($paperId);
 		$file =& $fileMgr->getFile($fileId);
 

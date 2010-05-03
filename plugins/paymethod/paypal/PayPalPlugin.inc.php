@@ -108,7 +108,7 @@ class PayPalPlugin extends PaymethodPlugin {
 		if (!$schedConf) return parent::handle($args);
 
 		// Just in case we need to contact someone
-		import('mail.MailTemplate');
+		import('classes.mail.MailTemplate');
 		$contactName = $schedConf->getSetting('contactName');
 		$contactEmail = $schedConf->getSetting('contactEmail');
 		$mail = new MailTemplate('PAYPAL_INVESTIGATE_PAYMENT');
@@ -166,7 +166,7 @@ class PayPalPlugin extends PaymethodPlugin {
 							);
 							$queuedPaymentId = Request::getUserVar('custom');
 
-							import('payment.ocs.OCSPaymentManager');
+							import('classes.payment.ocs.OCSPaymentManager');
 							$ocsPaymentManager =& OCSPaymentManager::getManager();
 
 							// Verify the cost and user details as per PayPal spec.
@@ -229,7 +229,7 @@ class PayPalPlugin extends PaymethodPlugin {
 									'registrationContactSignature' => $registrationContactSignature 
 								);
 						
-								import('mail.MailTemplate');
+								import('classes.mail.MailTemplate');
 								$mail = new MailTemplate('MANUAL_PAYMENT_RECEIVED');
 								$mail->setFrom($registrationEmail, $registrationName);
 								$mail->assignParams($paramArray);

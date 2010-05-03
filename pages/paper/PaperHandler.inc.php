@@ -16,9 +16,9 @@
 // $Id$
 
 
-import('rt.ocs.RTDAO');
-import('rt.ocs.ConferenceRT');
-import('handler.Handler');
+import('classes.rt.ocs.RTDAO');
+import('classes.rt.ocs.ConferenceRT');
+import('classes.handler.Handler');
 
 class PaperHandler extends Handler {
 	/** the paper associated with this request **/
@@ -184,7 +184,7 @@ class PaperHandler extends Handler {
 		if (!$galley) {
 			// Get the registration status if displaying the abstract;
 			// if access is open, we can display links to the full text.
-			import('schedConf.SchedConfAction');
+			import('classes.schedConf.SchedConfAction');
 			$templateMgr->assign('mayViewPaper', SchedConfAction::mayViewPapers($schedConf, $conference));
 			$templateMgr->assign('registeredUser', SchedConfAction::registeredUser($schedConf));
 			$templateMgr->assign('registeredDomain', SchedConfAction::registeredDomain($schedConf));
@@ -346,7 +346,7 @@ class PaperHandler extends Handler {
 		}
 
 		// reuse track director's view file function
-		import('submission.trackDirector.TrackDirectorAction');
+		import('classes.submission.trackDirector.TrackDirectorAction');
 		TrackDirectorAction::viewFile($paper->getId(), $fileId);
 	}
 
@@ -367,7 +367,7 @@ class PaperHandler extends Handler {
 		$galleyDao->incrementViews($galleyId);
 
 		if ($paper && $galley) {
-			import('file.PaperFileManager');
+			import('classes.file.PaperFileManager');
 			$paperFileManager = new PaperFileManager($paper->getId());
 			$paperFileManager->downloadFile($galley->getFileId());
 		}
@@ -396,7 +396,7 @@ class PaperHandler extends Handler {
 		}
 
 		if ($paper && $suppFile) {
-			import('file.PaperFileManager');
+			import('classes.file.PaperFileManager');
 			$paperFileManager = new PaperFileManager($paper->getId());
 			if ($suppFile->isInlineable()) {
 				$paperFileManager->viewFile($suppFile->getFileId());
@@ -448,7 +448,7 @@ class PaperHandler extends Handler {
 				Validation::redirectLogin();
 			}
 
-			import('schedConf.SchedConfAction');
+			import('classes.schedConf.SchedConfAction');
 			$mayViewPaper = SchedConfAction::mayViewPapers($schedConf, $conference);
 
 			if (

@@ -31,7 +31,7 @@ class FilesHandler extends ManagerHandler {
 		$this->validate();
 		$this->setupTemplate(true);
 
-		import('file.FileManager');
+		import('lib.pkp.classes.file.FileManager');
 
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('pageHierarchy', array(array(Request::url(null, null, 'manager'), 'manager.conferenceSiteManagement')));
@@ -84,7 +84,7 @@ class FilesHandler extends ManagerHandler {
 		FilesHandler::parseDirArg($args, $currentDir, $parentDir);
 		$currentPath = FilesHandler::getRealFilesDir($currentDir);
 
-		import('file.FileManager');
+		import('lib.pkp.classes.file.FileManager');
 		$fileMgr = new FileManager();
 		if ($success = $fileMgr->uploadedFileExists('file')) {
 			$destPath = $currentPath . '/' . FilesHandler::cleanFileName($fileMgr->getUploadedFileName('file'));
@@ -117,7 +117,7 @@ class FilesHandler extends ManagerHandler {
 			$currentPath = FilesHandler::getRealFilesDir($currentDir);
 			$newDir = $currentPath . '/' . FilesHandler::cleanFileName($dirName);
 
-			import('file.FileManager');
+			import('lib.pkp.classes.file.FileManager');
 			$fileMgr = new FileManager();
 			@$fileMgr->mkdir($newDir);
 		}
@@ -131,7 +131,7 @@ class FilesHandler extends ManagerHandler {
 		FilesHandler::parseDirArg($args, $currentDir, $parentDir);
 		$currentPath = FilesHandler::getRealFilesDir($currentDir);
 
-		import('file.FileManager');
+		import('lib.pkp.classes.file.FileManager');
 		$fileMgr = new FileManager();
 
 		if (@is_file($currentPath)) {

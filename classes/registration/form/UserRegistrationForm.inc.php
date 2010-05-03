@@ -14,7 +14,7 @@
 
 //$Id$
 
-import('form.Form');
+import('lib.pkp.classes.form.Form');
 
 define('REGISTRATION_SUCCESSFUL',	1);
 define('REGISTRATION_FAILED',		2);
@@ -41,7 +41,7 @@ class UserRegistrationForm extends Form {
 
 		$this->addCheck(new FormValidatorCustom($this, 'registrationTypeId', 'required', 'manager.registration.form.typeIdValid', create_function('$registrationTypeId, $schedConfId, $typeId', '$registrationTypeDao =& DAORegistry::getDAO(\'RegistrationTypeDAO\'); return $registrationTypeDao->openRegistrationTypeExistsByTypeId($typeId, $schedConfId);'), array($schedConf->getId(), $typeId)));
 
-		import('captcha.CaptchaManager');
+		import('lib.pkp.classes.captcha.CaptchaManager');
 		$captchaManager = new CaptchaManager();
 		$this->captchaEnabled = ($captchaManager->isEnabled() && Config::getVar('captcha', 'captcha_on_register'))?true:false;
 
@@ -106,7 +106,7 @@ class UserRegistrationForm extends Form {
 		}
 
 		if ($this->captchaEnabled) {
-			import('captcha.CaptchaManager');
+			import('lib.pkp.classes.captcha.CaptchaManager');
 			$captchaManager = new CaptchaManager();
 			$captcha =& $captchaManager->createCaptcha();
 			if ($captcha) {
@@ -229,7 +229,7 @@ class UserRegistrationForm extends Form {
 			// Make sure subsequent requests to Request::getUser work
 			Validation::login($this->getData('username'), $this->getData('password'), $reason);
 
-			import('user.form.CreateAccountForm');
+			import('classes.user.form.CreateAccountForm');
 			CreateAccountForm::sendConfirmationEmail($user, $this->getData('password'), true);
 		}
 
@@ -240,12 +240,12 @@ class UserRegistrationForm extends Form {
 			Request::redirect('index');
 		}
 
-		import('payment.ocs.OCSPaymentManager');
+		import('classes.payment.ocs.OCSPaymentManager');
 		$paymentManager =& OCSPaymentManager::getManager();
 
 		if (!$paymentManager->isConfigured()) return REGISTRATION_NO_PAYMENT;
 
-		import('registration.Registration');
+		import('classes.registration.Registration');
 		$registration = new Registration();
 
 		$registration->setSchedConfId($schedConf->getId());

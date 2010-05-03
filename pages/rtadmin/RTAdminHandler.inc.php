@@ -16,8 +16,8 @@
 // $Id$
 
 
-import('rt.ocs.ConferenceRTAdmin');
-import('handler.Handler');
+import('classes.rt.ocs.ConferenceRTAdmin');
+import('classes.handler.Handler');
 
 class RTAdminHandler extends Handler {
 	/**
@@ -100,7 +100,7 @@ class RTAdminHandler extends Handler {
 		if ($version) {
 			// Validate the URLs for a single version
 			$versions = array(&$version);
-			import('core.ArrayItemIterator');
+			import('lib.pkp.classes.core.ArrayItemIterator');
 			$versions = new ArrayItemIterator($versions, 1, 1);
 		} else {
 			// Validate all URLs for this conference

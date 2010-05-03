@@ -15,7 +15,7 @@
 
 //$Id$
 
-import('search.PaperSearch');
+import('classes.search.PaperSearch');
 
 class PaperSearchDAO extends DAO {
 	/**
@@ -61,7 +61,7 @@ class PaperSearchDAO extends DAO {
 	 * @return array of results (associative arrays)
 	 */
 	function &getPhraseResults(&$conference, $phrase, $publishedFrom = null, $publishedTo = null, $type = null, $limit = 500, $cacheHours = 24) {
-		import('db.DBRowIterator');
+		import('lib.pkp.classes.db.DBRowIterator');
 		if (empty($phrase)) {
 			$results = false;
 			$returner = new DBRowIterator($results);

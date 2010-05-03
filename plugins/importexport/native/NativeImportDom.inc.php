@@ -14,7 +14,7 @@
 
 //$Id$
 
-import('xml.XMLCustomWriter');
+import('lib.pkp.classes.xml.XMLCustomWriter');
 
 class NativeImportDom {
 	function importPapers(&$conference, &$schedConf, &$nodes, &$track, &$papers, &$errors, &$user, $isCommandLine) {
@@ -387,8 +387,8 @@ class NativeImportDom {
 		$dependentItems[] = array('paper', $paper);
 
 		// Log the import in the paper event log.
-		import('paper.log.PaperLog');
-		import('paper.log.PaperEventLogEntry');
+		import('classes.paper.log.PaperLog');
+		import('classes.paper.log.PaperEventLogEntry');
 		PaperLog::logEvent(
 			$paper->getId(),
 			PAPER_LOG_PAPER_IMPORT,
@@ -422,7 +422,7 @@ class NativeImportDom {
 		$publishedPaperDao->resequencePublishedPapers($track->getId(), $schedConf->getId());
 
 		/* --- Galleys (html or otherwise handled simultaneously) --- */
-		import('file.PaperFileManager');
+		import('classes.file.PaperFileManager');
 		$paperFileManager = new PaperFileManager($paper->getId());
 
 		/* --- Handle galleys --- */
@@ -454,7 +454,7 @@ class NativeImportDom {
 		if ($hasErrors) return false;
 
 		// Index the inserted paper.
-		import('search.PaperSearchIndex');
+		import('classes.search.PaperSearchIndex');
 		PaperSearchIndex::indexPaperMetadata($paper);
 		PaperSearchIndex::indexPaperFiles($paper);
 

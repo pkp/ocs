@@ -20,7 +20,7 @@
 // $Id$
 
 
-import('form.Form');
+import('lib.pkp.classes.form.Form');
 
 class CreateAccountForm extends Form {
 	/** @var boolean user is already registered with another conference */
@@ -40,7 +40,7 @@ class CreateAccountForm extends Form {
 
 		$this->existingUser = Request::getUserVar('existingUser') ? 1 : 0;
 
-		import('captcha.CaptchaManager');
+		import('lib.pkp.classes.captcha.CaptchaManager');
 		$captchaManager = new CaptchaManager();
 		$this->captchaEnabled = ($captchaManager->isEnabled() && Config::getVar('captcha', 'captcha_on_register'))?true:false;
 
@@ -90,7 +90,7 @@ class CreateAccountForm extends Form {
 		$schedConf =& Request::getSchedConf();
 
 		if ($this->captchaEnabled) {
-			import('captcha.CaptchaManager');
+			import('lib.pkp.classes.captcha.CaptchaManager');
 			$captchaManager = new CaptchaManager();
 			$captcha =& $captchaManager->createCaptcha();
 			if ($captcha) {
@@ -103,7 +103,7 @@ class CreateAccountForm extends Form {
 		$countries =& $countryDao->getCountries();
 		$templateMgr->assign_by_ref('countries', $countries);
 
-		import('schedConf.SchedConfAction');
+		import('classes.schedConf.SchedConfAction');
 		
 		$userDao =& DAORegistry::getDAO('UserDAO');
 		$templateMgr->assign('genderOptions', $userDao->getGenderOptions());
@@ -177,10 +177,10 @@ class CreateAccountForm extends Form {
 	 */
 	function sendConfirmationEmail($user, $password, $sendPassword) {
 		$schedConf =& Request::getSchedConf();
-		import('mail.MailTemplate');
+		import('classes.mail.MailTemplate');
 		if (Config::getVar('email', 'require_validation')) {
 			// Create an access key
-			import('security.AccessKeyManager');
+			import('lib.pkp.classes.security.AccessKeyManager');
 			$accessKeyManager = new AccessKeyManager();
 			$accessKey = $accessKeyManager->createKey('RegisterContext', $user->getId(), null, Config::getVar('email', 'validation_timeout'));
 
@@ -294,7 +294,7 @@ class CreateAccountForm extends Form {
 		// Roles users are allowed to register themselves in
 		$allowedRoles = array('reader' => 'createAsReader', 'author' => 'createAsAuthor', 'reviewer' => 'createAsReviewer');
 
-		import('schedConf.SchedConfAction');
+		import('classes.schedConf.SchedConfAction');
 		if (!SchedConfAction::allowRegReader($schedConf)) {
 			unset($allowedRoles['reader']);
 		}

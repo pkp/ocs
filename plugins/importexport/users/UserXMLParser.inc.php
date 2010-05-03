@@ -15,7 +15,7 @@
 
 //$Id$
 
-import('xml.XMLParser');
+import('lib.pkp.classes.xml.XMLParser');
 
 class UserXMLParser {
 
@@ -193,7 +193,7 @@ class UserXMLParser {
 
 		if ($sendNotify) {
 			// Set up mail template to send to added users
-			import('mail.MailTemplate');
+			import('classes.mail.MailTemplate');
 			$mail = new MailTemplate('USER_REGISTER');
 
 			$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
@@ -374,7 +374,7 @@ class UserXMLParser {
 /**
  * Helper class representing a user imported from a user data file.
  */
-import('user.User');
+import('classes.user.User');
 class ImportedUser extends User {
 
 	/** @var array Roles of this user */

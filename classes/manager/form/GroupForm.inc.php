@@ -14,7 +14,7 @@
 
 //$Id$
 
-import('form.Form');
+import('lib.pkp.classes.form.Form');
 
 class GroupForm extends Form {
 	/** @var groupId int the ID of the group being edited */

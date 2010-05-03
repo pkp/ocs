@@ -14,7 +14,7 @@
 
 //$Id$
 
-import("manager.form.setup.ConferenceSetupForm");
+import('classes.manager.form.setup.ConferenceSetupForm');
 
 class ConferenceSetupStep6Form extends ConferenceSetupForm {
 

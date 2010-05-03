@@ -14,8 +14,8 @@
 
 // $Id$
 
-import("manager.form.setup.ConferenceSetupForm");
-import('schedConf.SchedConf');
+import('classes.manager.form.setup.ConferenceSetupForm');
+import('classes.schedConf.SchedConf');
 
 class ConferenceSetupStep2Form extends ConferenceSetupForm {
 	/**
