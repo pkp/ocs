@@ -59,9 +59,9 @@ class TrackDirectorAction extends Action {
 	 * Records a director's submission decision.
 	 * @param $trackDirectorSubmission object
 	 * @param $decision int
-	 * @param $stage int
+	 * @param $round int
 	 */
-	function recordDecision($trackDirectorSubmission, $decision, $stage) {
+	function recordDecision($trackDirectorSubmission, $decision, $round) {
 		$editAssignments =& $trackDirectorSubmission->getEditAssignments();
 		if (empty($editAssignments)) return;
 
@@ -83,7 +83,7 @@ class TrackDirectorAction extends Action {
 				$trackDirectorSubmission->stampStatusModified();
 			}
 
-			$trackDirectorSubmission->addDecision($directorDecision, $stage);
+			$trackDirectorSubmission->addDecision($directorDecision, $round);
 			$decisions = TrackDirectorSubmission::getDirectorDecisionOptions();
 			// Add log
 			import('classes.paper.log.PaperLog');
@@ -99,7 +99,7 @@ class TrackDirectorAction extends Action {
 					'directorName' => $user->getFullName(),
 					'paperId' => $trackDirectorSubmission->getPaperId(),
 					'decision' => Locale::translate($decisions[$decision]),
-					'round' => ($stage == REVIEW_STAGE_ABSTRACT?'submission.abstractReview':'submission.paperReview')
+					'round' => ($round == REVIEW_ROUND_ABSTRACT?'submission.abstractReview':'submission.paperReview')
 				)
 			);
 		}
@@ -115,7 +115,7 @@ class TrackDirectorAction extends Action {
 	}
 
 	/**
-	 * After a decision has been recorded, bumps the paper to the next stage.
+	 * After a decision has been recorded, bumps the paper to the next round.
 	 * If the submission requires completion, it's sent back to the author.
 	 * If not, review is complete, and the paper can be released.
 	 * @param $schedConf object
@@ -126,15 +126,15 @@ class TrackDirectorAction extends Action {
 		$schedConf =& Request::getSchedConf();
 
 		if($trackDirectorSubmission->getReviewMode() == REVIEW_MODE_BOTH_SEQUENTIAL) {
-			// two-stage submission; paper required
+			// two-round submission; paper required
 			// The submission is incomplete, and needs the author to submit
-			// more materials (potentially for another stage of reviews)
+			// more materials (potentially for another round of reviews)
 
-			if($trackDirectorSubmission->getCurrentStage() == REVIEW_STAGE_ABSTRACT) {
+			if($trackDirectorSubmission->getCurrentRound() == REVIEW_ROUND_ABSTRACT) {
 
 				// We've just completed reviewing the abstract. Prepare for presentation
 				// review process.
-				$trackDirectorSubmission->setCurrentStage(REVIEW_STAGE_PRESENTATION);
+				$trackDirectorSubmission->setCurrentRound(REVIEW_ROUND_PRESENTATION);
 
 				// The paper itself needs to be collected. Flag it so the author
 				// may complete it.
@@ -144,11 +144,11 @@ class TrackDirectorAction extends Action {
 				// Q: should the director be given this option explicitly?
 
 				// Now, reassign all reviewers that submitted a review for the last
-				// stage of reviews.
-				foreach ($trackDirectorSubmission->getReviewAssignments(REVIEW_STAGE_ABSTRACT) as $reviewAssignment) {
+				// round of reviews.
+				foreach ($trackDirectorSubmission->getReviewAssignments(REVIEW_ROUND_ABSTRACT) as $reviewAssignment) {
 					if ($reviewAssignment->getRecommendation() !== null && $reviewAssignment->getRecommendation() !== '') {
 						// This reviewer submitted a review; reassign them
-						TrackDirectorAction::addReviewer($trackDirectorSubmission, $reviewAssignment->getReviewerId(), REVIEW_STAGE_PRESENTATION);
+						TrackDirectorAction::addReviewer($trackDirectorSubmission, $reviewAssignment->getReviewerId(), REVIEW_ROUND_PRESENTATION);
 					}
 				}
 			}
@@ -167,9 +167,9 @@ class TrackDirectorAction extends Action {
 	 * Assigns a reviewer to a submission.
 	 * @param $trackDirectorSubmission object
 	 * @param $reviewerId int
-	 * @param $stage int
+	 * @param $round int
 	 */
-	function addReviewer($trackDirectorSubmission, $reviewerId, $stage) {
+	function addReviewer($trackDirectorSubmission, $reviewerId, $round) {
 		$trackDirectorSubmissionDao =& DAORegistry::getDAO('TrackDirectorSubmissionDAO');
 		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
 		$userDao =& DAORegistry::getDAO('UserDAO');
@@ -179,11 +179,11 @@ class TrackDirectorAction extends Action {
 
 		// Check to see if the requested reviewer is not already
 		// assigned to review this paper.
-		if ($stage == null) {
-			$stage = $trackDirectorSubmission->getCurrentStage();
+		if ($round == null) {
+			$round = $trackDirectorSubmission->getCurrentRound();
 		}
 
-		$assigned = $trackDirectorSubmissionDao->reviewerExists($trackDirectorSubmission->getPaperId(), $reviewerId, $stage);
+		$assigned = $trackDirectorSubmissionDao->reviewerExists($trackDirectorSubmission->getPaperId(), $reviewerId, $round);
 
 		// Only add the reviewer if he has not already
 		// been assigned to review this paper.
@@ -191,7 +191,7 @@ class TrackDirectorAction extends Action {
 			$reviewAssignment = new ReviewAssignment();
 			$reviewAssignment->setReviewerId($reviewerId);
 			$reviewAssignment->setDateAssigned(Core::getCurrentDate());
-			$reviewAssignment->setStage($stage);
+			$reviewAssignment->setRound($round);
 
 			// Assign review form automatically if needed
 			$schedConfId = $trackDirectorSubmission->getSchedConfId();
@@ -212,7 +212,7 @@ class TrackDirectorAction extends Action {
 			$trackDirectorSubmission->addReviewAssignment($reviewAssignment);
 			$trackDirectorSubmissionDao->updateTrackDirectorSubmission($trackDirectorSubmission);
 
-			$reviewAssignment = $reviewAssignmentDao->getReviewAssignment($trackDirectorSubmission->getPaperId(), $reviewerId, $stage);
+			$reviewAssignment = $reviewAssignmentDao->getReviewAssignment($trackDirectorSubmission->getPaperId(), $reviewerId, $round);
 
 			$schedConf =& Request::getSchedConf();
 			if ($schedConf->getSetting('reviewDeadlineType') != null) {
@@ -225,7 +225,7 @@ class TrackDirectorAction extends Action {
 			// Add log
 			import('classes.paper.log.PaperLog');
 			import('classes.paper.log.PaperEventLogEntry');
-			PaperLog::logEvent($trackDirectorSubmission->getPaperId(), PAPER_LOG_REVIEW_ASSIGN, LOG_TYPE_REVIEW, $reviewAssignment->getId(), 'log.review.reviewerAssigned', array('reviewerName' => $reviewer->getFullName(), 'paperId' => $trackDirectorSubmission->getPaperId(), 'stage' => $stage));
+			PaperLog::logEvent($trackDirectorSubmission->getPaperId(), PAPER_LOG_REVIEW_ASSIGN, LOG_TYPE_REVIEW, $reviewAssignment->getId(), 'log.review.reviewerAssigned', array('reviewerName' => $reviewer->getFullName(), 'paperId' => $trackDirectorSubmission->getPaperId(), 'stage' => $round));
 		}
 	}
 
@@ -242,7 +242,7 @@ class TrackDirectorAction extends Action {
 
 		$reviewAssignment =& $reviewAssignmentDao->getReviewAssignmentById($reviewId);
 
-		if (isset($reviewAssignment) && $reviewAssignment->getPaperId() == $trackDirectorSubmission->getPaperId() && !HookRegistry::call('TrackDirectorAction::clearReview', array(&$trackDirectorSubmission, $reviewAssignment))) {
+		if (isset($reviewAssignment) && $reviewAssignment->getSubmissionId() == $trackDirectorSubmission->getPaperId() && !HookRegistry::call('TrackDirectorAction::clearReview', array(&$trackDirectorSubmission, $reviewAssignment))) {
 			$reviewer =& $userDao->getUser($reviewAssignment->getReviewerId());
 			if (!isset($reviewer)) return false;
 			$trackDirectorSubmission->removeReviewAssignment($reviewId);
@@ -251,7 +251,7 @@ class TrackDirectorAction extends Action {
 			// Add log
 			import('classes.paper.log.PaperLog');
 			import('classes.paper.log.PaperEventLogEntry');
-			PaperLog::logEvent($trackDirectorSubmission->getPaperId(), PAPER_LOG_REVIEW_CLEAR, LOG_TYPE_REVIEW, $reviewAssignment->getId(), 'log.review.reviewCleared', array('reviewerName' => $reviewer->getFullName(), 'paperId' => $trackDirectorSubmission->getPaperId(), 'stage' => $reviewAssignment->getStage()));
+			PaperLog::logEvent($trackDirectorSubmission->getPaperId(), PAPER_LOG_REVIEW_CLEAR, LOG_TYPE_REVIEW, $reviewAssignment->getId(), 'log.review.reviewCleared', array('reviewerName' => $reviewer->getFullName(), 'paperId' => $trackDirectorSubmission->getPaperId(), 'stage' => $reviewAssignment->getRound()));
 		}		
 	}
 
@@ -288,7 +288,7 @@ class TrackDirectorAction extends Action {
 			$email->setAddressFieldsEnabled(false);
 		}
 
-		if ($reviewAssignment->getPaperId() == $trackDirectorSubmission->getPaperId()) {
+		if ($reviewAssignment->getSubmissionId() == $trackDirectorSubmission->getPaperId()) {
 			$reviewer =& $userDao->getUser($reviewAssignment->getReviewerId());
 			if (!isset($reviewer)) return true;
 
@@ -386,7 +386,7 @@ class TrackDirectorAction extends Action {
 		$reviewer =& $userDao->getUser($reviewAssignment->getReviewerId());
 		if (!isset($reviewer)) return true;
 
-		if ($reviewAssignment->getPaperId() == $trackDirectorSubmission->getPaperId()) {
+		if ($reviewAssignment->getSubmissionId() == $trackDirectorSubmission->getPaperId()) {
 			// Only cancel the review if it is currently not cancelled but has previously
 			// been initiated, and has not been completed.
 			if ($reviewAssignment->getDateNotified() != null && !$reviewAssignment->getCancelled() && ($reviewAssignment->getDateCompleted() == null || $reviewAssignment->getDeclined())) {
@@ -409,7 +409,7 @@ class TrackDirectorAction extends Action {
 					// Add log
 					import('classes.paper.log.PaperLog');
 					import('classes.paper.log.PaperEventLogEntry');
-					PaperLog::logEvent($trackDirectorSubmission->getPaperId(), PAPER_LOG_REVIEW_CANCEL, LOG_TYPE_REVIEW, $reviewAssignment->getId(), 'log.review.reviewCancelled', array('reviewerName' => $reviewer->getFullName(), 'paperId' => $trackDirectorSubmission->getPaperId(), 'stage' => $reviewAssignment->getStage()));
+					PaperLog::logEvent($trackDirectorSubmission->getPaperId(), PAPER_LOG_REVIEW_CANCEL, LOG_TYPE_REVIEW, $reviewAssignment->getId(), 'log.review.reviewCancelled', array('reviewerName' => $reviewer->getFullName(), 'paperId' => $trackDirectorSubmission->getPaperId(), 'stage' => $reviewAssignment->getRound()));
 				} else {
 					if (!Request::getUserVar('continued')) {
 						$email->addRecipient($reviewer->getEmail(), $reviewer->getFullName());
@@ -495,7 +495,7 @@ class TrackDirectorAction extends Action {
 			$reviewAssignment->setReminderWasAutomatic(0);
 			$reviewAssignmentDao->updateReviewAssignment($reviewAssignment);
 			return true;
-		} elseif ($reviewAssignment->getPaperId() == $trackDirectorSubmission->getPaperId()) {
+		} elseif ($reviewAssignment->getSubmissionId() == $trackDirectorSubmission->getPaperId()) {
 			$reviewer =& $userDao->getUser($reviewAssignment->getReviewerId());
 
 			if (!Request::getUserVar('continued')) {
@@ -551,7 +551,7 @@ class TrackDirectorAction extends Action {
 		import('classes.mail.PaperMailTemplate');
 		$email = new PaperMailTemplate($trackDirectorSubmission, 'REVIEW_ACK');
 
-		if ($reviewAssignment->getPaperId() == $trackDirectorSubmission->getPaperId()) {
+		if ($reviewAssignment->getSubmissionId() == $trackDirectorSubmission->getPaperId()) {
 			$reviewer =& $userDao->getUser($reviewAssignment->getReviewerId());
 			if (!isset($reviewer)) return true;
 
@@ -597,7 +597,7 @@ class TrackDirectorAction extends Action {
 		$reviewer =& $userDao->getUser($reviewAssignment->getReviewerId());
 		if (!isset($reviewer)) return false;
 
-		if ($reviewAssignment->getPaperId() == $paperId && !HookRegistry::call('TrackDirectorAction::rateReviewer', array(&$reviewAssignment, &$reviewer, &$quality))) {
+		if ($reviewAssignment->getSubmissionId() == $paperId && !HookRegistry::call('TrackDirectorAction::rateReviewer', array(&$reviewAssignment, &$reviewer, &$quality))) {
 			// Ensure that the value for quality
 			// is between 1 and 5.
 			if ($quality != null && ($quality >= 1 && $quality <= 5)) {
@@ -612,7 +612,7 @@ class TrackDirectorAction extends Action {
 			// Add log
 			import('classes.paper.log.PaperLog');
 			import('classes.paper.log.PaperEventLogEntry');
-			PaperLog::logEvent($paperId, PAPER_LOG_REVIEW_RATE, LOG_TYPE_REVIEW, $reviewAssignment->getId(), 'log.review.reviewerRated', array('reviewerName' => $reviewer->getFullName(), 'paperId' => $paperId, 'stage' => $reviewAssignment->getStage()));
+			PaperLog::logEvent($paperId, PAPER_LOG_REVIEW_RATE, LOG_TYPE_REVIEW, $reviewAssignment->getId(), 'log.review.reviewerRated', array('reviewerName' => $reviewer->getFullName(), 'paperId' => $paperId, 'stage' => $reviewAssignment->getRound()));
 		}
 	}
 
@@ -629,7 +629,7 @@ class TrackDirectorAction extends Action {
 		$reviewAssignment =& $reviewAssignmentDao->getReviewAssignmentById($reviewId);
 		$paperFile =& $paperFileDao->getPaperFile($fileId, $revision);
 
-		if ($reviewAssignment->getPaperId() == $paperId && $reviewAssignment->getReviewerFileId() == $fileId && !HookRegistry::call('TrackDirectorAction::makeReviewerFileViewable', array(&$reviewAssignment, &$paperFile, &$viewable))) {
+		if ($reviewAssignment->getSubmissionId() == $paperId && $reviewAssignment->getReviewerFileId() == $fileId && !HookRegistry::call('TrackDirectorAction::makeReviewerFileViewable', array(&$reviewAssignment, &$paperFile, &$viewable))) {
 			$paperFile->setViewable($viewable);
 			$paperFileDao->updatePaperFile($paperFile);				
 		}
@@ -652,7 +652,7 @@ class TrackDirectorAction extends Action {
 		$reviewer =& $userDao->getUser($reviewAssignment->getReviewerId());
 		if (!isset($reviewer)) return false;
 
-		if ($reviewAssignment->getPaperId() == $paperId && !HookRegistry::call('TrackDirectorAction::setDueDate', array(&$reviewAssignment, &$reviewer, &$dueDate, &$numWeeks))) {
+		if ($reviewAssignment->getSubmissionId() == $paperId && !HookRegistry::call('TrackDirectorAction::setDueDate', array(&$reviewAssignment, &$reviewer, &$dueDate, &$numWeeks))) {
 			$today = getDate();
 			$todayTimestamp = mktime(0, 0, 0, $today['mon'], $today['mday'], $today['year']);
 			if ($dueDate != null) {
@@ -688,7 +688,7 @@ class TrackDirectorAction extends Action {
 						'reviewerName' => $reviewer->getFullName(),
 						'dueDate' => strftime(Config::getVar('general', 'date_format_short'), strtotime($reviewAssignment->getDateDue())),
 						'paperId' => $paperId,
-						'stage' => $reviewAssignment->getStage()
+						'stage' => $reviewAssignment->getRound()
 					)
 				);
 			} // $logChange
@@ -752,7 +752,7 @@ class TrackDirectorAction extends Action {
 		$reviewAssignment =& $reviewAssignmentDao->getReviewAssignmentById($reviewId);
 		$reviewer =& $userDao->getUser($reviewAssignment->getReviewerId(), true);
 
-		if ($reviewAssignment->getPaperId() == $paperId && !HookRegistry::call('TrackDirectorAction::setReviewerRecommendation', array(&$reviewAssignment, &$reviewer, &$recommendation, &$acceptOption))) {
+		if ($reviewAssignment->getSubmissionId() == $paperId && !HookRegistry::call('TrackDirectorAction::setReviewerRecommendation', array(&$reviewAssignment, &$reviewer, &$recommendation, &$acceptOption))) {
 			$reviewAssignment->setRecommendation($recommendation);
 
 			$nowDate = Core::getCurrentDate();
@@ -767,7 +767,7 @@ class TrackDirectorAction extends Action {
 			// Add log
 			import('classes.paper.log.PaperLog');
 			import('classes.paper.log.PaperEventLogEntry');
-			PaperLog::logEvent($paperId, PAPER_LOG_REVIEW_RECOMMENDATION_BY_PROXY, LOG_TYPE_REVIEW, $reviewAssignment->getId(), 'log.review.reviewRecommendationSetByProxy', array('directorName' => $user->getFullName(), 'reviewerName' => $reviewer->getFullName(), 'paperId' => $paperId, 'stage' => $reviewAssignment->getStage()));
+			PaperLog::logEvent($paperId, PAPER_LOG_REVIEW_RECOMMENDATION_BY_PROXY, LOG_TYPE_REVIEW, $reviewAssignment->getId(), 'log.review.reviewRecommendationSetByProxy', array('directorName' => $user->getFullName(), 'reviewerName' => $reviewer->getFullName(), 'paperId' => $paperId, 'stage' => $reviewAssignment->getRound()));
 		}
 	}	 
 
@@ -782,7 +782,7 @@ class TrackDirectorAction extends Action {
 
 		if (HookRegistry::call('TrackDirectorAction::clearReviewForm', array(&$trackDirectorSubmission, &$reviewAssignment, &$reviewId))) return $reviewId;
 
-		if (isset($reviewAssignment) && $reviewAssignment->getPaperId() == $trackDirectorSubmission->getPaperId()) {
+		if (isset($reviewAssignment) && $reviewAssignment->getSubmissionId() == $trackDirectorSubmission->getPaperId()) {
 			$reviewFormResponseDao =& DAORegistry::getDAO('ReviewFormResponseDAO');
 			$responses = $reviewFormResponseDao->getReviewReviewFormResponseValues($reviewId);
 			if (!empty($responses)) {
@@ -805,7 +805,7 @@ class TrackDirectorAction extends Action {
 
 		if (HookRegistry::call('TrackDirectorAction::addReviewForm', array(&$trackDirectorSubmission, &$reviewAssignment, &$reviewId, &$reviewFormId))) return $reviewFormId;
 
-		if (isset($reviewAssignment) && $reviewAssignment->getPaperId() == $trackDirectorSubmission->getPaperId()) {
+		if (isset($reviewAssignment) && $reviewAssignment->getSubmissionId() == $trackDirectorSubmission->getPaperId()) {
 			// Only add the review form if it has not already
 			// been assigned to the review.
 			if ($reviewAssignment->getReviewFormId() != $reviewFormId) {
@@ -831,7 +831,7 @@ class TrackDirectorAction extends Action {
 
 		if (HookRegistry::call('TrackDirectorAction::viewReviewFormResponse', array(&$trackDirectorSubmission, &$reviewAssignment, &$reviewId))) return $reviewId;
 
-		if (isset($reviewAssignment) && $reviewAssignment->getPaperId() == $trackDirectorSubmission->getPaperId()) {
+		if (isset($reviewAssignment) && $reviewAssignment->getSubmissionId() == $trackDirectorSubmission->getPaperId()) {
 			$reviewFormId = $reviewAssignment->getReviewFormId();
 			if ($reviewFormId != null) {
 				import('classes.submission.form.ReviewFormResponseForm');
@@ -1440,14 +1440,14 @@ import('classes.file.PaperFileManager');
 
 		$templateName = null;
 		$reviewMode = $trackDirectorSubmission->getReviewMode();
-		$stages = $trackDirectorSubmission->getDecisions();
-		if (is_array($stages)) {
-			$isAbstract = array_pop(array_keys($stages)) == REVIEW_STAGE_ABSTRACT;
+		$rounds = $trackDirectorSubmission->getDecisions();
+		if (is_array($rounds)) {
+			$isAbstract = array_pop(array_keys($rounds)) == REVIEW_ROUND_ABSTRACT;
 		}
-		if (isset($stages) && is_array($stages)) {
-			$decisions = array_pop($stages);
+		if (isset($rounds) && is_array($rounds)) {
+			$decisions = array_pop($rounds);
 			// If this round has no decision, revert to prior round
-			if (empty($decisions)) $decisions = array_pop($stages);
+			if (empty($decisions)) $decisions = array_pop($rounds);
 		}
 		if (isset($decisions) && is_array($decisions)) $lastDecision = array_pop($decisions);
 		if (isset($lastDecision) && is_array($lastDecision)) switch ($lastDecision['decision']) {
@@ -1507,9 +1507,9 @@ import('classes.file.PaperFileManager');
 			} elseif (Request::getUserVar('importPeerReviews')) {
 				$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
 				$hasBody = false;
-				for ($stage = $trackDirectorSubmission->getCurrentStage(); $stage == REVIEW_STAGE_ABSTRACT || $stage == REVIEW_STAGE_PRESENTATION; $stage--) {
-					$reviewAssignments =& $reviewAssignmentDao->getReviewAssignmentsByPaperId($trackDirectorSubmission->getPaperId(), $stage);
-					$reviewIndexes =& $reviewAssignmentDao->getReviewIndexesForStage($trackDirectorSubmission->getPaperId(), $stage);
+				for ($round = $trackDirectorSubmission->getCurrentRound(); $round == REVIEW_ROUND_ABSTRACT || $round == REVIEW_ROUND_PRESENTATION; $round--) {
+					$reviewAssignments =& $reviewAssignmentDao->getReviewAssignmentsByPaperId($trackDirectorSubmission->getPaperId(), $round);
+					$reviewIndexes =& $reviewAssignmentDao->getReviewIndexesForRound($trackDirectorSubmission->getPaperId(), $round);
 
 					$body = '';
 					foreach ($reviewAssignments as $reviewAssignment) {
@@ -1600,7 +1600,7 @@ import('classes.file.PaperFileManager');
 		$conference =& Request::getConference();
 
 		$comments =& $commentDao->getPaperComments($paper->getId(), COMMENT_TYPE_DIRECTOR_DECISION);
-		$reviewAssignments =& $reviewAssignmentDao->getReviewAssignmentsByPaperId($paper->getId(), $paper->getCurrentStage());
+		$reviewAssignments =& $reviewAssignmentDao->getReviewAssignmentsByPaperId($paper->getId(), $paper->getCurrentRound());
 
 		$commentsText = "";
 		foreach ($comments as $comment) {
@@ -1665,15 +1665,15 @@ import('classes.file.PaperFileManager');
 			import('classes.paper.log.PaperEventLogEntry');
 
 			$entry = new PaperEventLogEntry();
-			$entry->setPaperId($reviewAssignment->getPaperId());
+			$entry->setPaperId($reviewAssignment->getSubmissionId());
 			$entry->setUserId($user->getId());
 			$entry->setDateLogged(Core::getCurrentDate());
 			$entry->setEventType(PAPER_LOG_REVIEW_ACCEPT_BY_PROXY);
-			$entry->setLogMessage('log.review.reviewAcceptedByProxy', array('reviewerName' => $reviewer->getFullName(), 'paperId' => $reviewAssignment->getPaperId(), 'stage' => $reviewAssignment->getStage(), 'userName' => $user->getFullName()));
+			$entry->setLogMessage('log.review.reviewAcceptedByProxy', array('reviewerName' => $reviewer->getFullName(), 'paperId' => $reviewAssignment->getSubmissionId(), 'stage' => $reviewAssignment->getRound(), 'userName' => $user->getFullName()));
 			$entry->setAssocType(LOG_TYPE_REVIEW);
 			$entry->setAssocId($reviewAssignment->getId());
 
-			PaperLog::logEventEntry($reviewAssignment->getPaperId(), $entry);
+			PaperLog::logEventEntry($reviewAssignment->getSubmissionId(), $entry);
 		}
 	}
 
@@ -1693,7 +1693,7 @@ import('classes.file.PaperFileManager');
 
 		// Upload the review file.
 		import('classes.file.PaperFileManager');
-		$paperFileManager = new PaperFileManager($reviewAssignment->getPaperId());
+		$paperFileManager = new PaperFileManager($reviewAssignment->getSubmissionId());
 		// Only upload the file if the reviewer has yet to submit a recommendation
 		if (($reviewAssignment->getRecommendation() === null || $reviewAssignment->getRecommendation() === '') && !$reviewAssignment->getCancelled()) {
 			$fileName = 'upload';
@@ -1724,15 +1724,15 @@ import('classes.file.PaperFileManager');
 			import('classes.paper.log.PaperEventLogEntry');
 
 			$entry = new PaperEventLogEntry();
-			$entry->setPaperId($reviewAssignment->getPaperId());
+			$entry->setPaperId($reviewAssignment->getSubmissionId());
 			$entry->setUserId($user->getId());
 			$entry->setDateLogged(Core::getCurrentDate());
 			$entry->setEventType(PAPER_LOG_REVIEW_FILE_BY_PROXY);
-			$entry->setLogMessage('log.review.reviewFileByProxy', array('reviewerName' => $reviewer->getFullName(), 'paperId' => $reviewAssignment->getPaperId(), 'stage' => $reviewAssignment->getStage(), 'userName' => $user->getFullName()));
+			$entry->setLogMessage('log.review.reviewFileByProxy', array('reviewerName' => $reviewer->getFullName(), 'paperId' => $reviewAssignment->getSubmissionId(), 'stage' => $reviewAssignment->getRound(), 'userName' => $user->getFullName()));
 			$entry->setAssocType(LOG_TYPE_REVIEW);
 			$entry->setAssocId($reviewAssignment->getId());
 
-			PaperLog::logEventEntry($reviewAssignment->getPaperId(), $entry);
+			PaperLog::logEventEntry($reviewAssignment->getSubmissionId(), $entry);
 		}
 	}
 

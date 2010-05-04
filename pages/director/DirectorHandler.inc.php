@@ -197,8 +197,8 @@ class DirectorHandler extends TrackDirectorHandler {
 			$templateMgr->assign($param, Request::getUserVar($param));
 
 		$templateMgr->assign('reviewType', Array(
-			REVIEW_STAGE_ABSTRACT => Locale::translate('submission.abstract'),
-			REVIEW_STAGE_PRESENTATION => Locale::translate('submission.paper')
+			REVIEW_ROUND_ABSTRACT => Locale::translate('submission.abstract'),
+			REVIEW_ROUND_PRESENTATION => Locale::translate('submission.paper')
 		));
 
 		$templateMgr->assign('fieldOptions', Array(
@@ -357,10 +357,10 @@ class DirectorHandler extends TrackDirectorHandler {
 
 		$status = $paper->getStatus();
 		$progress = $paper->getSubmissionProgress();
-		$stage = $paper->getCurrentStage();
+		$round = $paper->getCurrentRound();
 
 		if ($paper->getSchedConfId() == $schedConf->getId() && ($status == STATUS_DECLINED || $status == STATUS_ARCHIVED
-			|| ($progress != 0 && ($stage == REVIEW_STAGE_ABSTRACT || ($stage == REVIEW_STAGE_PRESENTATION && $progress < 3))))) {
+			|| ($progress != 0 && ($round == REVIEW_ROUND_ABSTRACT || ($round == REVIEW_ROUND_PRESENTATION && $progress < 3))))) {
 			// Delete paper files
 			import('classes.file.PaperFileManager');
 			$paperFileManager = new PaperFileManager($paperId);

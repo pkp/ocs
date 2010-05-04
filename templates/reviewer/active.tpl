@@ -34,7 +34,7 @@
 		<td class="nowrap">{$submission->getDateDue()|date_format:$dateFormatTrunc}</td>
 		{if $submission->getReviewMode() == REVIEW_MODE_BOTH_SEQUENTIAL}
 			<td>
-				{if $submission->getCurrentStage()==REVIEW_STAGE_ABSTRACT}{* Reviewing abstract *}
+				{if $submission->getCurrentRound()==REVIEW_ROUND_ABSTRACT}{* Reviewing abstract *}
 					{translate key="submission.abstract"}
 				{else}
 					{translate key="submission.paper"}

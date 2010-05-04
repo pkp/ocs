@@ -44,7 +44,7 @@ class ReviewReportDAO extends DAO {
 		$commentsReturner = new DBRowIterator($result);
 
 		$result =& $this->retrieve(
-			'SELECT	r.stage AS reviewStage,
+			'SELECT	r.round AS reviewRound,
 				COALESCE(psl.setting_value, pspl.setting_value) AS paper,
 				p.paper_id AS paperId,
 				u.user_id AS reviewerId,
@@ -61,7 +61,7 @@ class ReviewReportDAO extends DAO {
 				(r.cancelled=1) AS cancelled,
 				r.recommendation AS recommendation
 			FROM	review_assignments r
-				LEFT JOIN papers p ON r.paper_id=p.paper_id
+				LEFT JOIN papers p ON (r.submission_id = p.paper_id)
 				LEFT JOIN paper_settings psl ON (p.paper_id=psl.paper_id AND psl.locale=? AND psl.setting_name=?)
 				LEFT JOIN paper_settings pspl ON (p.paper_id=pspl.paper_id AND pspl.locale=? AND pspl.setting_name=?),
 				users u

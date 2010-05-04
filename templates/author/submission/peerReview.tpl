@@ -13,18 +13,18 @@
 <h3>{translate key="submission.peerReview"}</h3>
 
 {assign var=start value="A"|ord}
-{assign var=authorFiles value=$submission->getAuthorFileRevisions($stage)}
-{assign var="directorFiles" value=$submission->getDirectorFileRevisions($stage)}
-{assign var="viewableFiles" value=$authorViewableFilesByStage[$stage]}
+{assign var=authorFiles value=$submission->getAuthorFileRevisions($round)}
+{assign var="directorFiles" value=$submission->getDirectorFileRevisions($round)}
+{assign var="viewableFiles" value=$authorViewableFilesByRound[$round]}
 
 <table class="data" width="100%">
-	{if $stage == REVIEW_STAGE_PRESENTATION}
+	{if $round == REVIEW_ROUND_PRESENTATION}
 		<tr valign="top">
 			<td class="label" width="20%">
 				{translate key="submission.reviewVersion"}
 			</td>
 			<td class="value" width="80%">
-				{assign var="reviewFile" value=$reviewFilesByStage[$stage]}
+				{assign var="reviewFile" value=$reviewFilesByRound[$round]}
 				{if $reviewFile}
 					<a href="{url op="downloadFile" path=$submission->getPaperId()|to_array:$reviewFile->getFileId():$reviewFile->getRevision()}" class="file">{$reviewFile->getFileName()|escape}</a>&nbsp;&nbsp;{$reviewFile->getDateModified()|date_format:$dateFormatShort}
 				{else}
@@ -38,8 +38,8 @@
 			{translate key="submission.initiated"}
 		</td>
 		<td class="value" width="80%">
-			{if $reviewEarliestNotificationByStage[$stage]}
-				{$reviewEarliestNotificationByStage[$stage]|date_format:$dateFormatShort}
+			{if $reviewEarliestNotificationByRound[$round]}
+				{$reviewEarliestNotificationByRound[$round]|date_format:$dateFormatShort}
 			{else}
 				&mdash;
 			{/if}
@@ -50,8 +50,8 @@
 			{translate key="submission.lastModified"}
 		</td>
 		<td class="value" width="80%">
-			{if $reviewModifiedByStage[$stage]}
-				{$reviewModifiedByStage[$stage]|date_format:$dateFormatShort}
+			{if $reviewModifiedByRound[$round]}
+				{$reviewModifiedByRound[$round]|date_format:$dateFormatShort}
 			{else}
 				&mdash;
 			{/if}
@@ -85,7 +85,7 @@
 			{/foreach}
 		</td>
 	</tr>
-	{if $stage == REVIEW_STAGE_PRESENTATION}
+	{if $round == REVIEW_ROUND_PRESENTATION}
 		<tr valign="top">
 			<td class="label" width="20%">
 				{translate key="submission.authorVersion"}

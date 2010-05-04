@@ -79,18 +79,18 @@ class TrackSubmissionHandler extends AuthorHandler {
 		$submission =& $this->submission;
 		$this->setupTemplate(true, $paperId);
 
-		$stage = (isset($args[1]) ? (int) $args[1] : 1);
+		$round = (isset($args[1]) ? (int) $args[1] : 1);
 		$reviewMode = $submission->getReviewMode();
 		switch ($reviewMode) {
 			case REVIEW_MODE_ABSTRACTS_ALONE:
-				$stage = REVIEW_STAGE_ABSTRACT;
+				$round = REVIEW_ROUND_ABSTRACT;
 				break;
 			case REVIEW_MODE_BOTH_SIMULTANEOUS:
 			case REVIEW_MODE_PRESENTATIONS_ALONE:
-				$stage = REVIEW_STAGE_PRESENTATION;
+				$round = REVIEW_ROUND_PRESENTATION;
 				break;
 			case REVIEW_MODE_BOTH_SEQUENTIAL:
-				if ($stage != REVIEW_STAGE_ABSTRACT && $stage != REVIEW_STAGE_PRESENTATION) $stage = $submission->getCurrentStage();
+				if ($round != REVIEW_ROUND_ABSTRACT && $round != REVIEW_ROUND_PRESENTATION) $round = $submission->getCurrentRound();
 				break;
 		}
 
@@ -106,8 +106,8 @@ class TrackSubmissionHandler extends AuthorHandler {
 
 		$templateMgr->assign_by_ref('submission', $submission);
 		$templateMgr->assign_by_ref('publishedPaper', $publishedPaper);
-		$templateMgr->assign_by_ref('reviewAssignments', $submission->getReviewAssignments($stage));
-		$templateMgr->assign('stage', $stage);
+		$templateMgr->assign_by_ref('reviewAssignments', $submission->getReviewAssignments($round));
+		$templateMgr->assign('round', $round);
 		$templateMgr->assign_by_ref('submissionFile', $submission->getSubmissionFile());
 		$templateMgr->assign_by_ref('revisedFile', $submission->getRevisedFile());
 		$templateMgr->assign_by_ref('suppFiles', $submission->getSuppFiles());
@@ -137,38 +137,38 @@ class TrackSubmissionHandler extends AuthorHandler {
 		$this->setupTemplate(true, $paperId);
 		Locale::requireComponents(array(LOCALE_COMPONENT_OCS_DIRECTOR)); // FIXME?
 
-		$stage = (isset($args[1]) ? (int) $args[1] : 1);
+		$round = (isset($args[1]) ? (int) $args[1] : 1);
 		$reviewMode = $authorSubmission->getReviewMode();
 		switch ($reviewMode) {
 			case REVIEW_MODE_ABSTRACTS_ALONE:
-				$stage = REVIEW_STAGE_ABSTRACT;
+				$round = REVIEW_ROUND_ABSTRACT;
 				break;
 			case REVIEW_MODE_BOTH_SIMULTANEOUS:
 			case REVIEW_MODE_PRESENTATIONS_ALONE:
-				$stage = REVIEW_STAGE_PRESENTATION;
+				$round = REVIEW_ROUND_PRESENTATION;
 				break;
 			case REVIEW_MODE_BOTH_SEQUENTIAL:
-				if ($stage != REVIEW_STAGE_ABSTRACT && $stage != REVIEW_STAGE_PRESENTATION) $stage = $submission->getCurrentStage();
+				if ($round != REVIEW_ROUND_ABSTRACT && $round != REVIEW_ROUND_PRESENTATION) $round = $submission->getCurrentRound();
 				break;
 		}
 
 		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
-		$reviewModifiedByStage = $reviewAssignmentDao->getLastModifiedByStage($paperId);
-		$reviewEarliestNotificationByStage = $reviewAssignmentDao->getEarliestNotificationByStage($paperId);
-		$reviewFilesByStage =& $reviewAssignmentDao->getReviewFilesByStage($paperId);
-		$authorViewableFilesByStage =& $reviewAssignmentDao->getAuthorViewableFilesByStage($paperId);
+		$reviewModifiedByRound = $reviewAssignmentDao->getLastModifiedByRound($paperId);
+		$reviewEarliestNotificationByRound = $reviewAssignmentDao->getEarliestNotificationByRound($paperId);
+		$reviewFilesByRound =& $reviewAssignmentDao->getReviewFilesByRound($paperId);
+		$authorViewableFilesByRound =& $reviewAssignmentDao->getAuthorViewableFilesByRound($paperId);
 
-		$directorDecisions = $authorSubmission->getDecisions($authorSubmission->getCurrentStage());
+		$directorDecisions = $authorSubmission->getDecisions($authorSubmission->getCurrentRound());
 		$lastDecision = count($directorDecisions) >= 1 ? $directorDecisions[count($directorDecisions) - 1] : null;
 
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign_by_ref('submission', $authorSubmission);
-		$templateMgr->assign_by_ref('reviewAssignments', $authorSubmission->getReviewAssignments($stage));
-		$templateMgr->assign('stage', $stage);
-		$templateMgr->assign_by_ref('reviewFilesByStage', $reviewFilesByStage);
-		$templateMgr->assign_by_ref('authorViewableFilesByStage', $authorViewableFilesByStage);
-		$templateMgr->assign_by_ref('reviewModifiedByStage', $reviewModifiedByStage);
-		$templateMgr->assign('reviewEarliestNotificationByStage', $reviewEarliestNotificationByStage);
+		$templateMgr->assign_by_ref('reviewAssignments', $authorSubmission->getReviewAssignments($round));
+		$templateMgr->assign('round', $round);
+		$templateMgr->assign_by_ref('reviewFilesByRound', $reviewFilesByRound);
+		$templateMgr->assign_by_ref('authorViewableFilesByRound', $authorViewableFilesByRound);
+		$templateMgr->assign_by_ref('reviewModifiedByRound', $reviewModifiedByRound);
+		$templateMgr->assign('reviewEarliestNotificationByRound', $reviewEarliestNotificationByRound);
 		$templateMgr->assign_by_ref('submissionFile', $authorSubmission->getSubmissionFile());
 		$templateMgr->assign_by_ref('revisedFile', $authorSubmission->getRevisedFile());
 		$templateMgr->assign_by_ref('suppFiles', $authorSubmission->getSuppFiles());

@@ -73,15 +73,15 @@ class ReviewerAction extends Action {
 				import('classes.paper.log.PaperEventLogEntry');
 
 				$entry = new PaperEventLogEntry();
-				$entry->setPaperId($reviewAssignment->getPaperId());
+				$entry->setPaperId($reviewAssignment->getSubmissionId());
 				$entry->setUserId($reviewer->getId());
 				$entry->setDateLogged(Core::getCurrentDate());
 				$entry->setEventType($decline?PAPER_LOG_REVIEW_DECLINE:PAPER_LOG_REVIEW_ACCEPT);
-				$entry->setLogMessage($decline?'log.review.reviewDeclined':'log.review.reviewAccepted', array('reviewerName' => $reviewer->getFullName(), 'paperId' => $reviewAssignment->getPaperId(), 'stage' => $reviewAssignment->getStage()));
+				$entry->setLogMessage($decline?'log.review.reviewDeclined':'log.review.reviewAccepted', array('reviewerName' => $reviewer->getFullName(), 'paperId' => $reviewAssignment->getSubmissionId(), 'stage' => $reviewAssignment->getRound()));
 				$entry->setAssocType(LOG_TYPE_REVIEW);
 				$entry->setAssocId($reviewAssignment->getId());
 
-				PaperLog::logEventEntry($reviewAssignment->getPaperId(), $entry);
+				PaperLog::logEventEntry($reviewAssignment->getSubmissionId(), $entry);
 
 				return true;
 			} else {
@@ -158,15 +158,15 @@ class ReviewerAction extends Action {
 				import('classes.paper.log.PaperEventLogEntry');
 
 				$entry = new PaperEventLogEntry();
-				$entry->setPaperId($reviewAssignment->getPaperId());
+				$entry->setPaperId($reviewAssignment->getSubmissionId());
 				$entry->setUserId($reviewer->getId());
 				$entry->setDateLogged(Core::getCurrentDate());
 				$entry->setEventType(PAPER_LOG_REVIEW_RECOMMENDATION);
-				$entry->setLogMessage('log.review.reviewRecommendationSet', array('reviewerName' => $reviewer->getFullName(), 'paperId' => $reviewAssignment->getPaperId(), 'stage' => $reviewAssignment->getStage()));
+				$entry->setLogMessage('log.review.reviewRecommendationSet', array('reviewerName' => $reviewer->getFullName(), 'paperId' => $reviewAssignment->getSubmissionId(), 'stage' => $reviewAssignment->getRound()));
 				$entry->setAssocType(LOG_TYPE_REVIEW);
 				$entry->setAssocId($reviewAssignment->getId());
 
-				PaperLog::logEventEntry($reviewAssignment->getPaperId(), $entry);
+				PaperLog::logEventEntry($reviewAssignment->getSubmissionId(), $entry);
 			} else {
 				if (!Request::getUserVar('continued')) {
 					$assignedDirectors = $email->toAssignedDirectors($reviewerSubmission->getPaperId());
@@ -209,7 +209,7 @@ class ReviewerAction extends Action {
 		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');		
 		$reviewAssignment =& $reviewAssignmentDao->getReviewAssignmentById($reviewId);
 
-		$paperFileManager = new PaperFileManager($reviewAssignment->getPaperId());
+		$paperFileManager = new PaperFileManager($reviewAssignment->getSubmissionId());
 
 		// Only upload the file if the reviewer has yet to submit a recommendation
 		if (!(($reviewAssignment->getRecommendation() === null || $reviewAssignment->getRecommendation() === '') && !$reviewAssignment->getCancelled())) return false;
@@ -238,7 +238,7 @@ class ReviewerAction extends Action {
 		$reviewer =& $userDao->getUser($reviewAssignment->getReviewerId());
 
 		$entry = new PaperEventLogEntry();
-		$entry->setPaperId($reviewAssignment->getPaperId());
+		$entry->setPaperId($reviewAssignment->getSubmissionId());
 		$entry->setUserId($reviewer->getId());
 		$entry->setDateLogged(Core::getCurrentDate());
 		$entry->setEventType(PAPER_LOG_REVIEW_FILE);
@@ -246,7 +246,7 @@ class ReviewerAction extends Action {
 		$entry->setAssocType(LOG_TYPE_REVIEW);
 		$entry->setAssocId($reviewAssignment->getId());
 
-		PaperLog::logEventEntry($reviewAssignment->getPaperId(), $entry);
+		PaperLog::logEventEntry($reviewAssignment->getSubmissionId(), $entry);
 		return true;
 	}
 
@@ -264,7 +264,7 @@ class ReviewerAction extends Action {
 		$reviewAssignment =& $reviewAssignmentDao->getReviewAssignmentById($reviewId);
 
 		if (!HookRegistry::call('ReviewerAction::deleteReviewerVersion', array(&$reviewAssignment, &$fileId, &$revision))) {
-			$paperFileManager = new PaperFileManager($reviewAssignment->getPaperId());
+			$paperFileManager = new PaperFileManager($reviewAssignment->getSubmissionId());
 			$paperFileManager->deleteFile($fileId, $revision);
 		}
 	}
@@ -365,7 +365,7 @@ class ReviewerAction extends Action {
 				$notificationManager = new NotificationManager();
 				$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
 				$reviewAssignment = $reviewAssignmentDao->getReviewAssignmentById($reviewId);
-				$paperId = $reviewAssignment->getPaperId();
+				$paperId = $reviewAssignment->getSubmissionId();
 				$paperDao =& DAORegistry::getDAO('PaperDAO'); 
 				$paper =& $paperDao->getPaper($paperId);
 				$notificationUsers = $paper->getAssociatedUserIds();

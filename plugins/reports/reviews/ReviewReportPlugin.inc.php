@@ -86,7 +86,7 @@ class ReviewReportPlugin extends ReportPlugin {
 		$recommendations = ReviewAssignment::getReviewerRecommendationOptions();
 
 		$columns = array(
-			'reviewstage' => Locale::translate('submissions.reviewType'),
+			'reviewRound' => Locale::translate('submissions.reviewType'),
 			'paper' => Locale::translate('paper.papers'),
 			'paperid' => Locale::translate('paper.submissionId'),
 			'reviewerid' => Locale::translate('plugins.reports.reviews.reviewerId'),
@@ -118,7 +118,7 @@ class ReviewReportPlugin extends ReportPlugin {
 						$yesNoIndex = $yesNoIndex == "f" ? 0 : 1;
 					}
 					$columns[$index] = $yesnoMessages[$yesNoIndex];
-				} elseif ($index == "reviewstage") {
+				} elseif ($index == 'reviewRound') {
 					$columns[$index] = $reviewTypes[$row[$index]];
 				} elseif ($index == "recommendation") {
 					$columns[$index] = (!isset($row[$index])) ? Locale::translate('common.none') : Locale::translate($recommendations[$row[$index]]);

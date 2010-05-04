@@ -35,9 +35,14 @@
 		<data file="dbscripts/xml/upgrade/2.3.0_preupdate.xml" />
 	</upgrade>
 
-	<!-- 2.x to 2.3.1 -->
+	<!-- 2.1.2+ to 2.3.1 -->
 	<upgrade minversion="2.1.2.0" maxversion="2.3.0.0">
 		<data file="dbscripts/xml/upgrade/2.3.1_preupdate.xml" />
+	</upgrade>
+
+	<!-- 2.x to 2.3.2 -->
+	<upgrade minversion="2.0.0.0" maxversion="2.3.1.0">
+		<data file="dbscripts/xml/upgrade/2.3.2_preupdate.xml" />
 	</upgrade>
 
 	<!-- PKP schema components -->
@@ -47,6 +52,7 @@
 	<schema file="lib/pkp/xml/schema/controlledVocab.xml" />
 	<schema file="lib/pkp/xml/schema/scheduledTasks.xml" />
 	<schema file="lib/pkp/xml/schema/temporaryFiles.xml" />
+	<schema file="lib/pkp/xml/schema/reviews.xml" />
 	<schema file="lib/pkp/xml/schema/reviewForms.xml" />
 
 	<upgrade minversion="2.0.0.0" maxversion="2.1.9.0">
@@ -80,9 +86,14 @@
 		<note file="docs/release-notes/README-2.3" />
 	</upgrade>
 
-	<upgrade minversion="2.0.0.0" maxversion="2.3.1.9">
+	<upgrade minversion="2.0.0.0" maxversion="2.3.0.1">
 		<data file="dbscripts/xml/upgrade/2.3.1_update.xml" />
 		<code function="addPluginVersions" />
 		<note file="docs/release-notes/README-2.3.1" />
+	</upgrade>
+
+	<upgrade minversion="2.0.0.0" maxversion="2.3.1.9">
+		<data file="dbscripts/xml/upgrade/2.3.2_update.xml" />
+		<note file="docs/release-notes/README-2.3.2" />
 	</upgrade>
 </install>

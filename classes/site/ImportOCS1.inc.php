@@ -720,7 +720,7 @@ class ImportOCS1 {
 			$paper->setDateStatusModified($row['timestamp']);
 
 			// $paper->setTypeConst($row['present_format'] == 'multiple' ? SUBMISSION_TYPE_PANEL : SUBMISSION_TYPE_SINGLE); FIXME
-			$paper->setCurrentStage(REVIEW_STAGE_ABSTRACT);
+			$paper->setCurrentRound(REVIEW_ROUND_ABSTRACT);
 			$paper->setSubmissionProgress(0);
 			$paper->setPages('');
 
@@ -876,8 +876,8 @@ class ImportOCS1 {
 
 			$reviewAssignment = new ReviewAssignment();
 			$reviewAssignment->setReviewerId($reviewerId);
-			$reviewAssignment->setPaperId($paperId);
-			$reviewAssignment->setStage(REVIEW_STAGE_ABSTRACT); // Won't always be accurate
+			$reviewAssignment->setSubmissionId($paperId);
+			$reviewAssignment->setRound(REVIEW_ROUND_ABSTRACT); // Won't always be accurate
 			$reviewAssignment->setDateAssigned($row['timestamp']);
 			$reviewAssignment->setDateNotified($row['timestamp']);
 			$reviewAssignment->setDateConfirmed($row['timestamp']);

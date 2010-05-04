@@ -108,23 +108,23 @@ class ReviewerSubmission extends Paper {
 	 * Get director decisions.
 	 * @return array
 	 */
-	function getDecisions($stage = null) {
-		if ($stage == null)
+	function getDecisions($round = null) {
+		if ($round == null)
 			return $this->directorDecisions;
 
-		if(!isset($this->directorDecisions[$stage]))
+		if(!isset($this->directorDecisions[$round]))
 			return null;
 
-		return $this->directorDecisions[$stage];
+		return $this->directorDecisions[$round];
 	}
 
 	/**
 	 * Set director decisions.
 	 * @param $directorDecisions array
-	 * @param $stage int
+	 * @param $round int
 	 */
-	function setDecisions($directorDecisions, $stage) {
-		return $this->directorDecisions[$stage] = $directorDecisions;
+	function setDecisions($directorDecisions, $round) {
+		return $this->directorDecisions[$round] = $directorDecisions;
 	}
 
 	/**
@@ -321,19 +321,37 @@ class ReviewerSubmission extends Paper {
 
 
 	/**
-	 * Get stage.
+	 * Get round.
 	 * @return int
 	 */
-	function getStage() {
-		return $this->getData('stage');
+	function getRound() {
+		return $this->getData('round');
 	}
 
 	/**
-	 * Set stage.
-	 * @param $stage int
+	 * Set round.
+	 * @param $round int
+	 */
+	function setRound($round) {
+		return $this->setData('round', $round);
+	}
+
+	/**
+	 * Get stage. DEPRECATED.
+	 * @return int
+	 */
+	function getStage() {
+		if (Config::getVar('debug', 'deprecation_warnings')) trigger_error('Deprecated function.');
+		return $this->getRound();
+	}
+
+	/**
+	 * Set stage. DEPRECATED.
+	 * @param $round int
 	 */
 	function setStage($stage) {
-		return $this->setData('stage', $stage);
+		if (Config::getVar('debug', 'deprecation_warnings')) trigger_error('Deprecated function.');
+		return $this->setRound($stage);
 	}
 
 	/**

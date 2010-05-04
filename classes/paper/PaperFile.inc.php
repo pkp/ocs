@@ -155,19 +155,37 @@ class PaperFile extends DataObject {
 	}
 
 	/**
-	 * Get review stage of the file.
+	 * Get review round of the file.
 	 * @ return int
 	 */
-	function getStage() {
-		return $this->getData('stage');
+	function getRound() {
+		return $this->getData('round');
 	}
 
 	/**
-	 * Set stage of the file.
-	 * @param $stage string
+	 * Set round of the file.
+	 * @param $round string
+	 */
+	function setRound($round) {
+		return $this->setData('round', $round);
+	}
+
+	/**
+	 * Get stage. DEPRECATED.
+	 * @return int
+	 */
+	function getStage() {
+		if (Config::getVar('debug', 'deprecation_warnings')) trigger_error('Deprecated function.');
+		return $this->getRound();
+	}
+
+	/**
+	 * Set stage. DEPRECATED.
+	 * @param $stage int
 	 */
 	function setStage($stage) {
-		return $this->setData('stage', $stage);
+		if (Config::getVar('debug', 'deprecation_warnings')) trigger_error('Deprecated function.');
+		return $this->setRound($stage);
 	}
 
 	/**

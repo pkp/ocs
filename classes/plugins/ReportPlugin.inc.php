@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @file ReportPlugin.inc.php
+ * @file classes/plugins/ReportPlugin.inc.php
  *
  * Copyright (c) 2000-2010 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
@@ -12,7 +12,10 @@
  * @brief Abstract class for report plugins
  */
 
-//$Id$
+// $Id$
+
+
+import('classes.plugins.Plugin');
 
 class ReportPlugin extends Plugin {
 	function ReportPlugin() {

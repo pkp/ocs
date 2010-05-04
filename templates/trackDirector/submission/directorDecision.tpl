@@ -15,10 +15,10 @@
 <tr valign="top">
 	<td class="label" width="20%">{translate key="director.paper.selectDecision"}</td>
 	<td width="80%" class="value" colspan="2">
-		<form method="post" action="{url op="recordDecision" path=$stage}">
+		<form method="post" action="{url op="recordDecision" path=$round}">
 			<input type="hidden" name="paperId" value="{$submission->getPaperId()}" />
 			<select name="decision" size="1" class="selectMenu"{if not $allowRecommendation} disabled="disabled"{/if}>
-				{assign var=availableDirectorDecisionOptions value=$submission->getDirectorDecisionOptions($currentSchedConf,$stage)}
+				{assign var=availableDirectorDecisionOptions value=$submission->getDirectorDecisionOptions($currentSchedConf,$round)}
 				{html_options_translate options=$availableDirectorDecisionOptions selected=$lastDecision}
 			</select>
 			<input type="submit" onclick="return confirm('{translate|escape:"jsparam" key="director.submissionReview.confirmDecision"}')" name="submit" value="{translate key="director.paper.recordDecision"}" {if not $allowRecommendation}disabled="disabled"{/if} class="button" />
@@ -60,10 +60,10 @@
 </tr>
 </table>
 </div>
-<form method="post" action="{url op="directorReview" path=$stage}" enctype="multipart/form-data">
+<form method="post" action="{url op="directorReview" path=$round}" enctype="multipart/form-data">
 <input type="hidden" name="paperId" value="{$submission->getPaperId()}" />
-{assign var=authorFiles value=$submission->getAuthorFileRevisions($stage)}
-{assign var=directorFiles value=$submission->getDirectorFileRevisions($stage)}
+{assign var=authorFiles value=$submission->getAuthorFileRevisions($round)}
+{assign var=directorFiles value=$submission->getDirectorFileRevisions($round)}
 {assign var=reviewFile value=$submission->getReviewFile()}
 {assign var="authorRevisionExists" value=false}
 {assign var="directorRevisionExists" value=false}

@@ -23,7 +23,7 @@
 
 {iterate from=submissions item=submission}
 	{assign var="paperId" value=$submission->getPaperId()}
-	{assign var="currentStage" value=$submission->getCurrentStage()}
+	{assign var="currentRound" value=$submission->getCurrentRound()}
 	{assign var="submissionProgress" value=$submission->getSubmissionProgress()}
 	{assign var="status" value=$submission->getSubmissionStatus()}
 
@@ -38,7 +38,7 @@
 				{if $status == STATUS_QUEUED_UNASSIGNED}{translate key="submissions.queuedUnassigned"}
 				{elseif $status == STATUS_QUEUED_REVIEW}
 					{assign var=decision value=$submission->getMostRecentDecision()}
-					{if $currentStage==REVIEW_STAGE_PRESENTATION}
+					{if $currentRound==REVIEW_ROUND_PRESENTATION}
 						<a href="{url op="submissionReview" path=$paperId|to_array}" class="action">
 							{if $decision == $smarty.const.SUBMISSION_DIRECTOR_DECISION_PENDING_REVISIONS}{translate key="author.submissions.queuedPaperReviewRevisions"}
 							{else}{translate key="submissions.queuedPaperReview"}
@@ -60,7 +60,7 @@
 			{url|assign:"submitUrl" op="submit" path=$submission->getSubmissionProgress() paperId=$paperId}
 			<td><a href="{$submitUrl}" class="action">{if $submission->getLocalizedTitle()}{$submission->getLocalizedTitle()|strip_unsafe_html|truncate:60:"..."}{else}{translate key="common.untitled"}{/if}</a></td>
 			<td align="right">
-				{if $currentStage == REVIEW_STAGE_ABSTRACT || ($currentStage == REVIEW_STAGE_PRESENTATION && $submissionProgress < 2)}
+				{if $currentRound == REVIEW_ROUND_ABSTRACT || ($currentRound == REVIEW_ROUND_PRESENTATION && $submissionProgress < 2)}
 					{translate key="submissions.incomplete"}
 					<br />
 					<a href="{url op="deleteSubmission" path=$paperId}" class="action" onclick="return confirm('{translate|escape:"jsparam" key="author.submissions.confirmDelete"}')">

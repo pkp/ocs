@@ -250,7 +250,7 @@ class NativeImportDom {
 		$paper->setTrackId($track->getId());
 		$paper->setStatus(STATUS_PUBLISHED);
 		$paper->setSubmissionProgress(0);
-		$paper->setCurrentStage(REVIEW_STAGE_ABSTRACT);
+		$paper->setCurrentRound(REVIEW_ROUND_ABSTRACT);
 		$paper->setReviewMode(REVIEW_MODE_ABSTRACTS_ALONE);
 		$paper->setDateSubmitted(Core::getCurrentDate());
 		$paper->stampStatusModified();

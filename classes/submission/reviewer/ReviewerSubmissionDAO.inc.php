@@ -59,10 +59,10 @@ class ReviewerSubmissionDAO extends DAO {
 				COALESCE(ttl.setting_value, ttpl.setting_value) AS track_title,
 				COALESCE(tal.setting_value, tapl.setting_value) AS track_abbrev
 			FROM	papers p
-				LEFT JOIN review_assignments r ON (p.paper_id = r.paper_id)
+				LEFT JOIN review_assignments r ON (p.paper_id = r.submission_id)
 				LEFT JOIN tracks t ON (t.track_id = p.track_id)
 				LEFT JOIN users u ON (r.reviewer_id = u.user_id)
-				LEFT JOIN review_stages r2 ON (p.paper_id = r2.paper_id AND r.stage = r2.stage)
+				LEFT JOIN review_rounds r2 ON (p.paper_id = r2.submission_id AND r.round = r2.round)
 				LEFT JOIN track_settings ttpl ON (t.track_id = ttpl.track_id AND ttpl.setting_name = ? AND ttpl.locale = ?)
 				LEFT JOIN track_settings ttl ON (t.track_id = ttl.track_id AND ttl.setting_name = ? AND ttl.locale = ?)
 				LEFT JOIN track_settings tapl ON (t.track_id = tapl.track_id AND tapl.setting_name = ? AND tapl.locale = ?)
@@ -116,7 +116,7 @@ class ReviewerSubmissionDAO extends DAO {
 		$reviewerSubmission->setMostRecentPeerReviewComment($this->paperCommentDao->getMostRecentPaperComment($row['paper_id'], COMMENT_TYPE_PEER_REVIEW, $row['review_id']));
 
 		// Director Decisions
-		for ($i = 1; $i <= $row['current_stage']; $i++) {
+		for ($i = 1; $i <= $row['current_round']; $i++) {
 			$reviewerSubmission->setDecisions($this->getDirectorDecisions($row['paper_id'], $i), $i);
 		}
 
@@ -136,7 +136,7 @@ class ReviewerSubmissionDAO extends DAO {
 		$reviewerSubmission->setCancelled($row['cancelled']==1?1:0);
 		$reviewerSubmission->setReviewerFileId($row['reviewer_file_id']);
 		$reviewerSubmission->setQuality($row['quality']);
-		$reviewerSubmission->setStage($row['stage']);
+		$reviewerSubmission->setRound($row['round']);
 		$reviewerSubmission->setReviewFileId($row['review_file_id']);
 		$reviewerSubmission->setReviewRevision($row['review_revision']);
 
@@ -157,7 +157,7 @@ class ReviewerSubmissionDAO extends DAO {
 			sprintf('UPDATE review_assignments
 				SET	paper_id = ?,
 					reviewer_id = ?,
-					stage = ?,
+					round = ?,
 					recommendation = ?,
 					declined = ?,
 					replaced = ?,
@@ -175,7 +175,7 @@ class ReviewerSubmissionDAO extends DAO {
 			array(
 				$reviewerSubmission->getPaperId(),
 				$reviewerSubmission->getReviewerId(),
-				$reviewerSubmission->getStage(),
+				$reviewerSubmission->getRound(),
 				$reviewerSubmission->getRecommendation(),
 				$reviewerSubmission->getDeclined(),
 				$reviewerSubmission->getReplaced(),
@@ -206,10 +206,10 @@ class ReviewerSubmissionDAO extends DAO {
 				COALESCE(ttl.setting_value, ttpl.setting_value) AS track_title,
 				COALESCE(tal.setting_value, tapl.setting_value) AS track_abbrev
 			FROM papers p
-				LEFT JOIN review_assignments r ON (p.paper_id = r.paper_id)
+				LEFT JOIN review_assignments r ON (p.paper_id = r.submission_id)
 				LEFT JOIN tracks t ON (t.track_id = p.track_id)
 				LEFT JOIN users u ON (r.reviewer_id = u.user_id)
-				LEFT JOIN review_stages r2 ON (r.paper_id = r2.paper_id AND r.stage = r2.stage)
+				LEFT JOIN review_rounds r2 ON (r.submission_id = r2.submission_id AND r.round = r2.round)
 				LEFT JOIN track_settings ttpl ON (t.track_id = ttpl.track_id AND ttpl.setting_name = ? AND ttpl.locale = ?)
 				LEFT JOIN track_settings ttl ON (t.track_id = ttl.track_id AND ttl.setting_name = ? AND ttl.locale = ?)
 				LEFT JOIN track_settings tapl ON (t.track_id = tapl.track_id AND tapl.setting_name = ? AND tapl.locale = ?)
@@ -254,10 +254,10 @@ class ReviewerSubmissionDAO extends DAO {
 		$sql = '
 			SELECT r.date_completed, r.declined, r.cancelled
 			FROM papers a
-				LEFT JOIN review_assignments r ON (a.paper_id = r.paper_id)
+				LEFT JOIN review_assignments r ON (a.paper_id = r.submission_id)
 				LEFT JOIN tracks t ON (t.track_id = a.track_id)
 				LEFT JOIN users u ON (r.reviewer_id = u.user_id)
-				LEFT JOIN review_stages r2 ON (r.paper_id = r2.paper_id AND r.stage = r2.stage)
+				LEFT JOIN review_rounds r2 ON (r.submission_id = r2.submission_id AND r.round = r2.round)
 			WHERE a.sched_conf_id = ? AND r.reviewer_id = ? AND r.date_notified IS NOT NULL';
 
 		$result =& $this->retrieve($sql, array($schedConfId, $reviewerId));
@@ -278,23 +278,23 @@ class ReviewerSubmissionDAO extends DAO {
 	}
 
 	/**
-	 * Get the director decisions for a review stage of a paper.
+	 * Get the director decisions for a review round of a paper.
 	 * @param $paperId int
-	 * @param $stage int
+	 * @param $round int
 	 */
-	function getDirectorDecisions($paperId, $stage = null) {
+	function getDirectorDecisions($paperId, $round = null) {
 		$decisions = array();
 
 		$args = array($paperId);
-		if($stage) {
-			$args[] = $stage;
+		if($round) {
+			$args[] = $round;
 		}
 
 		$result =& $this->retrieve('
 			SELECT edit_decision_id, director_id, decision, date_decided
 			FROM edit_decisions
 			WHERE paper_id = ?'
-				. ($stage?' AND stage = ?':'')
+				. ($round?' AND round = ?':'')
 			. ' ORDER BY edit_decision_id ASC',
 			count($args)==1?shift($args):$args);
 

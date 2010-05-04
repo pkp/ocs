@@ -73,11 +73,11 @@ class AuthorSubmitForm extends Form {
 
 		// Determine which submission steps should be shown
 
-		$progress = isset($this->paper) ? $this->paper->getCurrentStage() : REVIEW_STAGE_ABSTRACT;
+		$progress = isset($this->paper) ? $this->paper->getCurrentRound() : REVIEW_ROUND_ABSTRACT;
 		$reviewMode = isset($this->paper)?$this->paper->getReviewMode():$schedConf->getSetting('reviewMode');
 
-		$showAbstractSteps = $progress == REVIEW_STAGE_ABSTRACT || $reviewMode != REVIEW_MODE_BOTH_SEQUENTIAL;
-		$showPaperSteps = $progress == REVIEW_STAGE_PRESENTATION || $reviewMode == REVIEW_MODE_BOTH_SIMULTANEOUS || $reviewMode == REVIEW_MODE_PRESENTATIONS_ALONE;
+		$showAbstractSteps = $progress == REVIEW_ROUND_ABSTRACT || $reviewMode != REVIEW_MODE_BOTH_SEQUENTIAL;
+		$showPaperSteps = $progress == REVIEW_ROUND_PRESENTATION || $reviewMode == REVIEW_MODE_BOTH_SIMULTANEOUS || $reviewMode == REVIEW_MODE_PRESENTATIONS_ALONE;
 
 		$templateMgr->assign('showAbstractSteps', $showAbstractSteps);
 		$templateMgr->assign('showPaperSteps', $showPaperSteps);

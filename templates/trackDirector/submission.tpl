@@ -17,10 +17,10 @@
 <ul class="menu">
 	<li class="current"><a href="{url op="submission" path=$submission->getPaperId()}">{translate key="submission.summary"}</a></li>
 	{if $submission->getReviewMode() == REVIEW_MODE_BOTH_SEQUENTIAL}
-		<li><a href="{url op="submissionReview" path=$submission->getPaperId()|to_array:$smarty.const.REVIEW_STAGE_ABSTRACT}">
+		<li><a href="{url op="submissionReview" path=$submission->getPaperId()|to_array:$smarty.const.REVIEW_ROUND_ABSTRACT}">
 			{translate key="submission.abstractReview"}</a>
 		</li>
-		<li><a href="{url op="submissionReview" path=$submission->getPaperId()|to_array:$smarty.const.REVIEW_STAGE_PRESENTATION}">
+		<li><a href="{url op="submissionReview" path=$submission->getPaperId()|to_array:$smarty.const.REVIEW_ROUND_PRESENTATION}">
 			{translate key="submission.paperReview"}</a>
 		</li>
 	{else}

@@ -65,18 +65,18 @@ class AuthorSubmission extends Paper {
 	 * @param $reviewAssignment ReviewAssignment
 	 */
 	function addReviewAssignment($reviewAssignment) {
-		if ($reviewAssignment->getPaperId() == null) {
-			$reviewAssignment->setPaperId($this->getPaperId());
+		if ($reviewAssignment->getSubmissionId() == null) {
+			$reviewAssignment->setSubmissionId($this->getPaperId());
 		}
 
-		$stage = $reviewAssignment->getStage();
+		$round = $reviewAssignment->getRound();
 
-		if(!isset($this->reviewAssignments[$stage]))
-			$this->reviewAssignments[$stage] = array();
+		if(!isset($this->reviewAssignments[$round]))
+			$this->reviewAssignments[$round] = array();
 
-		$this->reviewAssignments[$stage][] = $reviewAssignment;
+		$this->reviewAssignments[$round][] = $reviewAssignment;
 
-		return $this->reviewAssignments[$stage];
+		return $this->reviewAssignments[$round];
 	}
 
 	/**
@@ -107,22 +107,22 @@ class AuthorSubmission extends Paper {
 	 * Get review assignments for this paper.
 	 * @return array ReviewAssignments
 	 */
-	function getReviewAssignments($stage) {
-		if($stage == null)
+	function getReviewAssignments($round) {
+		if($round == null)
 			return $this->reviewAssignments;
 
-		if(!isset($this->reviewAssignments[$stage]))
+		if(!isset($this->reviewAssignments[$round]))
 			return null;
 
-		return $this->reviewAssignments[$stage];
+		return $this->reviewAssignments[$round];
 	}
 
 	/**
 	 * Set review assignments for this paper.
 	 * @param $reviewAssignments array ReviewAssignments
 	 */
-	function setReviewAssignments($reviewAssignments, $stage) {
-		return $this->reviewAssignments[$stage] = $reviewAssignments;
+	function setReviewAssignments($reviewAssignments, $round) {
+		return $this->reviewAssignments[$round] = $reviewAssignments;
 	}
 
 	//
@@ -133,23 +133,23 @@ class AuthorSubmission extends Paper {
 	 * Get director decisions.
 	 * @return array
 	 */
-	function getDecisions($stage = null) {
-		if ($stage == null)
+	function getDecisions($round = null) {
+		if ($round == null)
 			return $this->directorDecisions;
 
-		if(!isset($this->directorDecisions[$stage]))
+		if(!isset($this->directorDecisions[$round]))
 			return null;
 
-		return $this->directorDecisions[$stage];
+		return $this->directorDecisions[$round];
 	}
 
 	/**
 	 * Set director decisions.
 	 * @param $directorDecisions array
-	 * @param $stage int
+	 * @param $round int
 	 */
-	function setDecisions($directorDecisions, $stage) {
-		return $this->directorDecisions[$stage] = $directorDecisions;
+	function setDecisions($directorDecisions, $round) {
+		return $this->directorDecisions[$round] = $directorDecisions;
 	}
 
 	/**
@@ -284,11 +284,11 @@ class AuthorSubmission extends Paper {
 	 * Get all author file revisions.
 	 * @return array PaperFiles
 	 */
-	function getAuthorFileRevisions($stage = null) {
-		if ($stage == null) {
+	function getAuthorFileRevisions($round = null) {
+		if ($round == null) {
 			return $this->authorFileRevisions;
 		} else {
-			return $this->authorFileRevisions[$stage];
+			return $this->authorFileRevisions[$round];
 		}
 	}
 
@@ -296,19 +296,19 @@ class AuthorSubmission extends Paper {
 	 * Set all author file revisions.
 	 * @param $authorFileRevisions array PaperFiles
 	 */
-	function setAuthorFileRevisions($authorFileRevisions, $stage) {
-		return $this->authorFileRevisions[$stage] = $authorFileRevisions;
+	function setAuthorFileRevisions($authorFileRevisions, $round) {
+		return $this->authorFileRevisions[$round] = $authorFileRevisions;
 	}
 
 	/**
 	 * Get all director file revisions.
 	 * @return array PaperFiles
 	 */
-	function getDirectorFileRevisions($stage = null) {
-		if ($stage == null) {
+	function getDirectorFileRevisions($round = null) {
+		if ($round == null) {
 			return $this->directorFileRevisions;
 		} else {
-			return $this->directorFileRevisions[$stage];
+			return $this->directorFileRevisions[$round];
 		}
 	}
 
@@ -316,8 +316,8 @@ class AuthorSubmission extends Paper {
 	 * Set all director file revisions.
 	 * @param $directorFileRevisions array PaperFiles
 	 */
-	function setDirectorFileRevisions($directorFileRevisions, $stage) {
-		return $this->directorFileRevisions[$stage] = $directorFileRevisions;
+	function setDirectorFileRevisions($directorFileRevisions, $round) {
+		return $this->directorFileRevisions[$round] = $directorFileRevisions;
 	}
 
 	/**

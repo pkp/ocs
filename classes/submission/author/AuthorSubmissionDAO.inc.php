@@ -104,12 +104,12 @@ class AuthorSubmissionDAO extends DAO {
 		$authorSubmission->setEditAssignments($editAssignments->toArray());
 
 		// Director Decisions
-		for ($i = 1; $i <= $row['current_stage']; $i++) {
+		for ($i = 1; $i <= $row['current_round']; $i++) {
 			$authorSubmission->setDecisions($this->getDirectorDecisions($row['paper_id'], $i), $i);
 		}
 
 		// Review Assignments
-		for ($i = 1; $i <= $row['current_stage']; $i++)
+		for ($i = 1; $i <= $row['current_round']; $i++)
 			$authorSubmission->setReviewAssignments($this->reviewAssignmentDao->getReviewAssignmentsByPaperId($row['paper_id'], $i), $i);
 
 		// Comments
@@ -119,10 +119,10 @@ class AuthorSubmissionDAO extends DAO {
 		$authorSubmission->setSubmissionFile($this->paperFileDao->getPaperFile($row['submission_file_id']));
 		$authorSubmission->setRevisedFile($this->paperFileDao->getPaperFile($row['revised_file_id']));
 		$authorSubmission->setSuppFiles($this->suppFileDao->getSuppFilesByPaper($row['paper_id']));
-		for ($i = 1; $i <= $row['current_stage']; $i++) {
+		for ($i = 1; $i <= $row['current_round']; $i++) {
 			$authorSubmission->setAuthorFileRevisions($this->paperFileDao->getPaperFileRevisions($row['revised_file_id'], $i), $i);
 		}
-		for ($i = 1; $i <= $row['current_stage']; $i++) {
+		for ($i = 1; $i <= $row['current_round']; $i++) {
 			$authorSubmission->setDirectorFileRevisions($this->paperFileDao->getPaperFileRevisions($row['director_file_id'], $i), $i);
 		}
 		$authorSubmission->setLayoutFile($this->paperFileDao->getPaperFile($row['layout_file_id']));
@@ -254,22 +254,22 @@ class AuthorSubmissionDAO extends DAO {
 	//
 
 	/**
-	 * Get the director decisions for a review stage of a paper.
+	 * Get the director decisions for a review round of a paper.
 	 * @param $paperId int
-	 * @param $stage int
+	 * @param $round int
 	 */
-	function getDirectorDecisions($paperId, $stage = null) {
+	function getDirectorDecisions($paperId, $round = null) {
 		$decisions = array();
 		$args = array($paperId);
-		if($stage) {
-			$args[] = $stage;
+		if($round) {
+			$args[] = $round;
 		}
 
 		$result =& $this->retrieve(
 			'SELECT edit_decision_id, director_id, decision, date_decided
 			FROM edit_decisions
 			WHERE paper_id = ? ' .
-			($stage?' AND stage = ?':'') .
+			($round?' AND round = ?':'') .
 			' ORDER BY date_decided ASC',
 			(count($args)==1?shift($args):$args)
 		);

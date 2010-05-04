@@ -20,7 +20,7 @@
 			{elseif $status == STATUS_QUEUED_UNASSIGNED}{translate key="submissions.queuedUnassigned"}
 			{elseif $status == STATUS_QUEUED_EDITING}{translate key="submissions.queuedEditing"}
 			{elseif $status == STATUS_QUEUED_REVIEW}
-				{if $submission->getCurrentStage()==REVIEW_STAGE_PRESENTATION}
+				{if $submission->getCurrentRound()==REVIEW_ROUND_PRESENTATION}
 					{translate key="submissions.queuedPaperReview"}
 				{else}
 					{translate key="submissions.queuedAbstractReview"}

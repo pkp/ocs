@@ -141,8 +141,8 @@ class TrackDirectorHandler extends Handler {
 			$templateMgr->assign($param, Request::getUserVar($param));
 
 		$templateMgr->assign('reviewType', Array(
-			REVIEW_STAGE_ABSTRACT => Locale::translate('submission.abstract'),
-			REVIEW_STAGE_PRESENTATION => Locale::translate('submission.paper')
+			REVIEW_ROUND_ABSTRACT => Locale::translate('submission.abstract'),
+			REVIEW_ROUND_PRESENTATION => Locale::translate('submission.paper')
 		));
 
 		$templateMgr->assign('fieldOptions', Array(

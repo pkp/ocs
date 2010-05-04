@@ -129,12 +129,12 @@ class AuthorSubmitStep1Form extends AuthorSubmitForm {
 				case REVIEW_MODE_ABSTRACTS_ALONE:
 				case REVIEW_MODE_BOTH_SEQUENTIAL:
 					$this->paper->setSubmissionProgress($this->step + 2);
-					$this->paper->setCurrentStage(REVIEW_STAGE_ABSTRACT);
+					$this->paper->setCurrentRound(REVIEW_ROUND_ABSTRACT);
 					break;
 				case REVIEW_MODE_PRESENTATIONS_ALONE:
 				case REVIEW_MODE_BOTH_SIMULTANEOUS:
 					$this->paper->setSubmissionProgress($this->step + 1);
-					$this->paper->setCurrentStage(REVIEW_STAGE_PRESENTATION);
+					$this->paper->setCurrentRound(REVIEW_ROUND_PRESENTATION);
 					break;
 			}
 

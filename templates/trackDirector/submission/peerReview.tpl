@@ -67,7 +67,7 @@
 				<td width="80%" class="nodata">{translate key="common.none"}</td>
 			{/if}
 		</tr>
-		{if not $isStageDisabled}
+		{if not $isRoundDisabled}
 		<tr valign="top">
 			<td colspan="2">
 				<form method="post" action="{url op="uploadReviewVersion"}" enctype="multipart/form-data">
@@ -111,11 +111,11 @@
 
 <div id="peerReview">
 
-{if ($stage == REVIEW_STAGE_PRESENTATION && $submission->getCurrentStage() != REVIEW_STAGE_PRESENTATION)}
-	{assign var="isStageDisabled" value=true}
+{if ($round == REVIEW_ROUND_PRESENTATION && $submission->getCurrentRound() != REVIEW_ROUND_PRESENTATION)}
+	{assign var="isRoundDisabled" value=true}
 {/if}
 
-{if $isStageDisabled}
+{if $isRoundDisabled}
 	<table class="data" width="100%">
 		<tr valign="middle">
 			<td><h3>{translate key="submission.peerReview"}</h3></td>
@@ -130,9 +130,9 @@
 			<td width="30%">
 				{if $submission->getReviewMode() == $smarty.const.REVIEW_MODE_BOTH_SIMULTANEOUS}
 					<h3>{translate key="submission.review"}</h3>
-				{elseif $stage == REVIEW_STAGE_ABSTRACT}
+				{elseif $round == REVIEW_ROUND_ABSTRACT}
 					<h3>{translate key="submission.abstractReview"}</h3>
-				{else}{* REVIEW_STAGE_PRESENTATION *}
+				{else}{* REVIEW_ROUND_PRESENTATION *}
 					<h3>{translate key="submission.paperReview"}</h3>
 				{/if}
 			</td>
@@ -221,7 +221,7 @@
 							{if $reviewAssignment->getDeclined()}
 								{translate key="trackDirector.regrets"}
 							{else}
-								<a href="{url op="setDueDate" path=$reviewAssignment->getPaperId()|to_array:$reviewAssignment->getId()}">{if $reviewAssignment->getDateDue()}{$reviewAssignment->getDateDue()|date_format:$dateFormatShort}{else}&mdash;{/if}</a>
+								<a href="{url op="setDueDate" path=$reviewAssignment->getSubmissionId()|to_array:$reviewAssignment->getId()}">{if $reviewAssignment->getDateDue()}{$reviewAssignment->getDateDue()|date_format:$dateFormatShort}{else}&mdash;{/if}</a>
 							{/if}
 						</td>
 						<td>

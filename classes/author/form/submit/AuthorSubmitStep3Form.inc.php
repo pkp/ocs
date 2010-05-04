@@ -203,12 +203,12 @@ class AuthorSubmitStep3Form extends AuthorSubmitForm {
 				else $paper->setSubmissionProgress($this->step + 1);
 				// The line below is necessary to ensure that
 				// the paper upload goes in with the correct
-				// stage number (i.e. paper).
-				$paper->setCurrentStage(REVIEW_STAGE_PRESENTATION);
+				// round number (i.e. paper).
+				$paper->setCurrentRound(REVIEW_ROUND_PRESENTATION);
 			} else {
 				$paper->setDateSubmitted(Core::getCurrentDate());
 				$paper->stampStatusModified();
-				$paper->setCurrentStage(REVIEW_STAGE_ABSTRACT);
+				$paper->setCurrentRound(REVIEW_ROUND_ABSTRACT);
 				$this->assignDirectors($paper);
 
 				if ($schedConf->getSetting('acceptSupplementaryReviewMaterials')) {

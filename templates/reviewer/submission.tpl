@@ -13,7 +13,7 @@
 {strip}
 {assign var="paperId" value=$submission->getPaperId()}
 {assign var="reviewId" value=$reviewAssignment->getId()}
-{if $reviewAssignment->getStage() == REVIEW_STAGE_ABSTRACT}
+{if $reviewAssignment->getRound() == REVIEW_ROUND_ABSTRACT}
 	{translate|assign:"pageTitleTranslated" key="submission.page.abstractReview" id=$paperId}
 	{assign var="pageCrumbTitle" value="submission.abstractReview"}
 {else}
@@ -168,7 +168,7 @@ function confirmSubmissionCheck() {
 	<td>
 		<table width="100%" class="data">
 			{if ($confirmedStatus and not $declined) or not $schedConf->getSetting('restrictReviewerFileAccess')}
-				{if $reviewAssignment->getStage() == REVIEW_STAGE_ABSTRACT}
+				{if $reviewAssignment->getRound() == REVIEW_ROUND_ABSTRACT}
 					<tr valign="top">
 						<td width="30%" class="label">
 							{translate key="submission.abstract"}

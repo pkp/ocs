@@ -59,7 +59,7 @@ class AuthorSubmitStep5Form extends AuthorSubmitForm {
 
 		// We've collected the paper now -- bump the review progress
 		if ($this->paper->getSubmissionFileId() != null) {
-			$paper->setCurrentStage(REVIEW_STAGE_PRESENTATION);
+			$paper->setCurrentRound(REVIEW_ROUND_PRESENTATION);
 		}
 
 		$paperDao->updatePaper($paper);
@@ -72,7 +72,7 @@ class AuthorSubmitStep5Form extends AuthorSubmitForm {
 
 		// Update any review assignments so they may access the file
 		$authorSubmission =& $authorSubmissionDao->getAuthorSubmission($paper->getId());
-		$reviewAssignments =& $reviewAssignmentDao->getReviewAssignmentsByPaperId($paper->getId(), REVIEW_STAGE_PRESENTATION);
+		$reviewAssignments =& $reviewAssignmentDao->getReviewAssignmentsByPaperId($paper->getId(), REVIEW_ROUND_PRESENTATION);
 		foreach($reviewAssignments as $reviewAssignment) {
 			$reviewAssignment->setReviewFileId($authorSubmission->getReviewFileId());
 			$reviewAssignmentDao->updateReviewAssignment($reviewAssignment);

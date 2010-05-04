@@ -46,8 +46,8 @@
 				&mdash;
 			{else}
 			{* Display the most recent director decision *}
-			{assign var=stage value=$submission->getStage()}
-			{assign var=decisions value=$submission->getDecisions($stage)}
+			{assign var=round value=$submission->getRound()}
+			{assign var=decisions value=$submission->getDecisions($round)}
 			{foreach from=$decisions item=decision name=lastDecisionFinder}
 				{if $smarty.foreach.lastDecisionFinder.last and $decision.decision == SUBMISSION_DIRECTOR_DECISION_ACCEPT}
 					{translate key="director.paper.decision.accept"}

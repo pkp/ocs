@@ -98,13 +98,13 @@ class DirectorSubmissionDAO extends DAO {
 		$directorSubmission->setEditAssignments($editAssignments->toArray());
 
 		// Director Decisions
-		for ($i = 1; $i <= $row['current_stage']; $i++) {
+		for ($i = 1; $i <= $row['current_round']; $i++) {
 			$directorSubmission->setDecisions($this->getDirectorDecisions($row['paper_id'], $i), $i);
 		}
 
 		// Review Rounds
 		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
-		for ($i = REVIEW_STAGE_ABSTRACT; $i <= $directorSubmission->getCurrentStage(); $i++) {
+		for ($i = REVIEW_ROUND_ABSTRACT; $i <= $directorSubmission->getCurrentRound(); $i++) {
 			$reviewAssignments =& $reviewAssignmentDao->getReviewAssignmentsByPaperId($directorSubmission->getId(), $i);
 			if (!empty($reviewAssignments)) {
 				$directorSubmission->setReviewAssignments($reviewAssignments, $i);
@@ -245,7 +245,7 @@ class DirectorSubmissionDAO extends DAO {
 				LEFT JOIN tracks t ON (t.track_id = p.track_id)
 				LEFT JOIN edit_assignments e ON (e.paper_id = p.paper_id)
 				LEFT JOIN users ed ON (e.director_id = ed.user_id)
-				LEFT JOIN review_assignments ra ON (ra.paper_id = p.paper_id)
+				LEFT JOIN review_assignments ra ON (ra.submission_id = p.paper_id)
 				LEFT JOIN users re ON (re.user_id = ra.reviewer_id AND cancelled = 0)
 				LEFT JOIN track_settings ttpl ON (t.track_id = ttpl.track_id AND ttpl.setting_name = ? AND ttpl.locale = ?)
 				LEFT JOIN track_settings ttl ON (t.track_id = ttl.track_id AND ttl.setting_name = ? AND ttl.locale = ?)
@@ -458,15 +458,15 @@ class DirectorSubmissionDAO extends DAO {
 	//
 
 	/**
-	 * Get the director decisions for a review stage of a paper.
+	 * Get the director decisions for a review round of a paper.
 	 * @param $paperId int
-	 * @param $stage int
+	 * @param $round int
 	 */
-	function getDirectorDecisions($paperId, $stage = null) {
+	function getDirectorDecisions($paperId, $round = null) {
 		$decisions = array();
 		$args = array($paperId);
-		if($stage) {
-			$args[] = $stage;
+		if($round) {
+			$args[] = $round;
 		}
 
 		$result =& $this->retrieve(
@@ -476,7 +476,7 @@ class DirectorSubmissionDAO extends DAO {
 				date_decided
 			FROM	edit_decisions
 			WHERE	paper_id = ? ' .
-			($stage?' AND stage = ?':'') .
+			($round?' AND round = ?':'') .
 			' ORDER BY date_decided ASC',
 			(count($args)==1?shift($args):$args)
 		);

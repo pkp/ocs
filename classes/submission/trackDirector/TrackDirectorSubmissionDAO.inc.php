@@ -68,7 +68,7 @@ class TrackDirectorSubmissionDAO extends DAO {
 				COALESCE(tal.setting_value, tapl.setting_value) AS track_abbrev
 			FROM	papers p
 				LEFT JOIN tracks t ON (t.track_id = p.track_id)
-				LEFT JOIN review_stages r2 ON (p.paper_id = r2.paper_id AND p.current_stage = r2.stage)
+				LEFT JOIN review_rounds r2 ON (p.paper_id = r2.submission_id AND p.current_round = r2.round)
 				LEFT JOIN track_settings ttpl ON (t.track_id = ttpl.track_id AND ttpl.setting_name = ? AND ttpl.locale = ?)
 				LEFT JOIN track_settings ttl ON (t.track_id = ttl.track_id AND ttl.setting_name = ? AND ttl.locale = ?)
 				LEFT JOIN track_settings tapl ON (t.track_id = tapl.track_id AND tapl.setting_name = ? AND tapl.locale = ?)
@@ -114,7 +114,7 @@ class TrackDirectorSubmissionDAO extends DAO {
 		$trackDirectorSubmission->setEditAssignments($editAssignments->toArray());
 
 		// Director Decisions
-		for ($i = 1; $i <= $row['current_stage']; $i++) {
+		for ($i = 1; $i <= $row['current_round']; $i++) {
 			$trackDirectorSubmission->setDecisions($this->getDirectorDecisions($row['paper_id'], $i), $i);
 		}
 
@@ -129,16 +129,16 @@ class TrackDirectorSubmissionDAO extends DAO {
 		$trackDirectorSubmission->setDirectorFile($this->paperFileDao->getPaperFile($row['director_file_id']));
 		$trackDirectorSubmission->setLayoutFile($this->paperFileDao->getPaperFile($row['layout_file_id']));
 
-		for ($i = 1; $i <= $row['current_stage']; $i++) {
+		for ($i = 1; $i <= $row['current_round']; $i++) {
 			$trackDirectorSubmission->setDirectorFileRevisions($this->paperFileDao->getPaperFileRevisions($row['director_file_id'], $i), $i);
 			$trackDirectorSubmission->setAuthorFileRevisions($this->paperFileDao->getPaperFileRevisions($row['revised_file_id'], $i), $i);
 		}
 
-		// Review Stages
+		// Review Rounds
 		$trackDirectorSubmission->setReviewRevision($row['review_revision']);
 
 		// Review Assignments
-		for ($i = 1; $i <= $row['current_stage']; $i++)
+		for ($i = 1; $i <= $row['current_round']; $i++)
 			$trackDirectorSubmission->setReviewAssignments($this->reviewAssignmentDao->getReviewAssignmentsByPaperId($row['paper_id'], $i), $i);
 
 		$trackDirectorSubmission->setGalleys($this->galleyDao->getGalleysByPaper($row['paper_id']));
@@ -164,7 +164,7 @@ class TrackDirectorSubmissionDAO extends DAO {
 		}
 
 		// Update director decisions; hacked necessarily to iterate by reference.
-		foreach (array(REVIEW_STAGE_ABSTRACT, REVIEW_STAGE_PRESENTATION) as $i) {
+		foreach (array(REVIEW_ROUND_ABSTRACT, REVIEW_ROUND_PRESENTATION) as $i) {
 			$directorDecisions = $trackDirectorSubmission->getDecisions($i);
 			$insertedDecision = false;
 			if (is_array($directorDecisions)) {
@@ -173,7 +173,7 @@ class TrackDirectorSubmissionDAO extends DAO {
 					if ($directorDecision['editDecisionId'] == null) {
 						$this->update(
 							sprintf('INSERT INTO edit_decisions
-								(paper_id, stage, director_id, decision, date_decided)
+								(paper_id, round, director_id, decision, date_decided)
 								VALUES (?, ?, ?, ?, %s)',
 									$this->datetimeToDB($directorDecision['dateDecided'])),
 							array($trackDirectorSubmission->getPaperId(),
@@ -193,29 +193,29 @@ class TrackDirectorSubmissionDAO extends DAO {
 				$trackDirectorSubmission->setDecisions($directorDecisions, $i);
 			}
 		}
-		if ($this->reviewStageExists($trackDirectorSubmission->getPaperId(), $trackDirectorSubmission->getCurrentStage())) {
+		if ($this->reviewRoundExists($trackDirectorSubmission->getPaperId(), $trackDirectorSubmission->getCurrentRound())) {
 			$this->update(
-				'UPDATE	review_stages
+				'UPDATE	review_rounds
 				SET	review_revision = ?
 				WHERE	paper_id = ? AND
-					stage = ?',
+					round = ?',
 				array(
 					$trackDirectorSubmission->getReviewRevision(),
 					$trackDirectorSubmission->getPaperId(),
-					$trackDirectorSubmission->getCurrentStage()
+					$trackDirectorSubmission->getCurrentRound()
 				)
 			);
 		} elseif ($trackDirectorSubmission->getReviewRevision()!=null) {
-			$this->createReviewStage(
+			$this->createReviewRound(
 				$trackDirectorSubmission->getPaperId(),
-				$trackDirectorSubmission->getCurrentStage() === null ? 1 : $trackDirectorSubmission->getCurrentStage(),
+				$trackDirectorSubmission->getCurrentRound() === null ? 1 : $trackDirectorSubmission->getCurrentRound(),
 				$trackDirectorSubmission->getReviewRevision()
 			);
 		}
 
 		// update review assignments
-		foreach ($trackDirectorSubmission->getReviewAssignments(null) as $stageReviewAssignments) {
-			foreach ($stageReviewAssignments as $reviewAssignment) {
+		foreach ($trackDirectorSubmission->getReviewAssignments(null) as $roundReviewAssignments) {
+			foreach ($roundReviewAssignments as $reviewAssignment) {
 				if ($reviewAssignment->getId() > 0) {
 					$this->reviewAssignmentDao->updateReviewAssignment($reviewAssignment);
 				} else {
@@ -239,7 +239,7 @@ class TrackDirectorSubmissionDAO extends DAO {
 			$paper->setTrackId($trackDirectorSubmission->getTrackId());
 			$paper->setData('sessionType', $trackDirectorSubmission->getData('sessionType'));
 			$paper->setTrackId($trackDirectorSubmission->getTrackId());
-			$paper->setCurrentStage($trackDirectorSubmission->getCurrentStage());
+			$paper->setCurrentRound($trackDirectorSubmission->getCurrentRound());
 			$paper->setReviewFileId($trackDirectorSubmission->getReviewFileId());
 			$paper->setLayoutFileId($trackDirectorSubmission->getLayoutFileId());
 			$paper->setDirectorFileId($trackDirectorSubmission->getDirectorFileId());
@@ -256,12 +256,17 @@ class TrackDirectorSubmissionDAO extends DAO {
 	}
 
 	function createReviewStage($paperId, $stage, $reviewRevision) {
+		if (Config::getVar('debug', 'deprecation_warnings')) trigger_error('Deprecated function.');
+		return $this->createReviewRound($paperId, $stage, $reviewRevision);
+	}
+
+	function createReviewRound($paperId, $round, $reviewRevision) {
 		$this->update(
-			'INSERT INTO review_stages
-				(paper_id, stage, review_revision)
+			'INSERT INTO review_rounds
+				(submission_id, round, review_revision)
 			VALUES
 				(?, ?, ?)',
-			array($paperId, $stage, $reviewRevision)
+			array($paperId, $round, $reviewRevision)
 		);
 	}
 
@@ -362,7 +367,7 @@ class TrackDirectorSubmissionDAO extends DAO {
 				LEFT JOIN edit_assignments e ON (e.paper_id = p.paper_id)
 				LEFT JOIN users ed ON (e.director_id = ed.user_id)
 				LEFT JOIN tracks t ON (t.track_id = p.track_id)
-				LEFT JOIN review_stages r2 ON (p.paper_id = r2.paper_id and p.current_stage = r2.stage)
+				LEFT JOIN review_rounds r2 ON (p.paper_id = r2.submission_id and p.current_round = r2.round)
 				LEFT JOIN track_settings ttpl ON (t.track_id = ttpl.track_id AND ttpl.setting_name = ? AND ttpl.locale = ?)
 				LEFT JOIN track_settings ttl ON (t.track_id = ttl.track_id AND ttl.setting_name = ? AND ttl.locale = ?)
 				LEFT JOIN track_settings tapl ON (t.track_id = tapl.track_id AND tapl.setting_name = ? AND tapl.locale = ?)
@@ -498,11 +503,11 @@ class TrackDirectorSubmissionDAO extends DAO {
 				LEFT JOIN edit_assignments e ON (p.paper_id = e.paper_id)
 				LEFT JOIN edit_decisions d ON (p.paper_id = d.paper_id)
 				LEFT JOIN edit_decisions d2 ON (p.paper_id = d2.paper_id AND d.edit_decision_id < d2.edit_decision_id)
-			WHERE	p.sched_conf_id = ?
-				AND e.director_id = ?
-				AND p.status = ' . STATUS_QUEUED . '
-				AND d2.edit_decision_id IS NULL
-				AND d.decision = ' . SUBMISSION_DIRECTOR_DECISION_ACCEPT,
+			WHERE	p.sched_conf_id = ? AND
+				e.director_id = ? AND
+				p.status = ' . STATUS_QUEUED . ' AND
+				d2.edit_decision_id IS NULL AND
+				d.decision = ' . SUBMISSION_DIRECTOR_DECISION_ACCEPT,
 			array((int) $schedConfId, (int) $trackDirectorId)
 		);
 		$submissionsCount[1] = $result->Fields('editing_count');
@@ -525,35 +530,41 @@ class TrackDirectorSubmissionDAO extends DAO {
 		);
 	}
 
+	function deleteReviewStagesByPaper($paperId) {
+		if (Config::getVar('debug', 'deprecation_warnings')) trigger_error('Deprecated function.');
+		return $this->deleteReviewRoundsByPaper($paperId);
+	}
+
 	/**
-	 * Delete review stages by paper.
+	 * Delete review rounds by paper.
 	 * @param $paperId int
 	 */
-	function deleteReviewStagesByPaper($paperId) {
+	function deleteReviewRoundsByPaper($paperId) {
 		return $this->update(
-			'DELETE FROM review_stages WHERE paper_id = ?',
+			'DELETE FROM review_rounds WHERE submission_id = ?',
 			$paperId
 		);
 	}
 
 	/**
-	 * Get the director decisions for a review stage of a paper.
+	 * Get the director decisions for a review round of a paper.
 	 * @param $paperId int
-	 * @param $stage int
+	 * @param $round int
 	 */
-	function getDirectorDecisions($paperId, $stage) {
+	function getDirectorDecisions($paperId, $round) {
 		$decisions = array();
 
 		$params = array($paperId);
-		if($stage != null) $params[] = $stage;
+		if($round != null) $params[] = $round;
 
-		$result =& $this->retrieve('
-			SELECT edit_decision_id, director_id, decision, date_decided
-				FROM edit_decisions
-				WHERE paper_id = ?'
-					. ($stage == NULL ? '' : ' AND stage = ?')
-				. ' ORDER BY edit_decision_id ASC',
-				count($params) == 1 ? shift($params) : $params);
+		$result =& $this->retrieve(
+			'SELECT	edit_decision_id, director_id, decision, date_decided
+			FROM	edit_decisions
+			WHERE	paper_id = ?'
+			. ($round == NULL ? '' : ' AND round = ?')
+			. ' ORDER BY edit_decision_id ASC',
+			count($params) == 1 ? shift($params) : $params
+		);
 
 		while (!$result->EOF) {
 			$decisions[] = array(
@@ -570,14 +581,19 @@ class TrackDirectorSubmissionDAO extends DAO {
 		return $decisions;
 	}
 
+	function getMaxReviewStage($paperId) {
+		if (Config::getVar('debug', 'deprecation_warnings')) trigger_error('Deprecated function.');
+		return $this->getMaxReviewRound($paperId);
+	}
+
 	/**
-	 * Get the highest review stage.
+	 * Get the highest review round.
 	 * @param $paperId int
 	 * @return int
 	 */
-	function getMaxReviewStage($paperId) {
+	function getMaxReviewRound($paperId) {
 		$result =& $this->retrieve(
-			'SELECT MAX(stage) FROM review_stages WHERE paper_id = ?', array($paperId)
+			'SELECT MAX(round) FROM review_rounds WHERE submission_id = ?', array($paperId)
 		);
 		$returner = isset($result->fields[0]) ? $result->fields[0] : 0;
 
@@ -587,15 +603,20 @@ class TrackDirectorSubmissionDAO extends DAO {
 		return $returner;
 	}
 
+	function reviewStageExists($paperId, $stage) {
+		if (Config::getVar('debug', 'deprecation_warnings')) trigger_error('Deprecated function.');
+		return $this->reviewRoundExists($paperId, $stage);
+	}
+
 	/**
-	 * Check if a review stage exists for a specified paper.
+	 * Check if a review round exists for a specified paper.
 	 * @param $paperId int
-	 * @param $stage int
+	 * @param $round int
 	 * @return boolean
 	 */
-	function reviewStageExists($paperId, $stage) {
+	function reviewRoundExists($paperId, $round) {
 		$result =& $this->retrieve(
-			'SELECT COUNT(*) FROM review_stages WHERE paper_id = ? AND stage = ?', array($paperId, $stage)
+			'SELECT COUNT(*) FROM review_rounds WHERE submission_id = ? AND round = ?', array($paperId, $round)
 		);
 		$returner = isset($result->fields[0]) && $result->fields[0] == 1 ? true : false;
 
@@ -611,15 +632,15 @@ class TrackDirectorSubmissionDAO extends DAO {
 	 * @param $reviewerId int
 	 * @return boolean
 	 */
-	function reviewerExists($paperId, $reviewerId, $stage) {
-		$result =& $this->retrieve('
-			SELECT COUNT(*)
-			FROM review_assignments
-			WHERE paper_id = ?
-				AND reviewer_id = ?
-				AND stage = ?
-				AND cancelled = 0',
-			array($paperId, $reviewerId, $stage)
+	function reviewerExists($paperId, $reviewerId, $round) {
+		$result =& $this->retrieve(
+			'SELECT	COUNT(*)
+			FROM	review_assignments
+			WHERE	submission_id = ? AND
+				reviewer_id = ? AND
+				round = ? AND
+				cancelled = 0',
+			array($paperId, $reviewerId, $round)
 		);
 		$returner = isset($result->fields[0]) && $result->fields[0] == 1 ? true : false;
 
@@ -630,13 +651,13 @@ class TrackDirectorSubmissionDAO extends DAO {
 	}
 
 	/**
-	 * Retrieve a list of all reviewers along with information about their current status with respect to a paper's current stage.
+	 * Retrieve a list of all reviewers along with information about their current status with respect to a paper's current round.
 	 * @param $schedConfId int
 	 * @param $paperId int
 	 * @return DAOResultFactory containing matching Users
 	 */
-	function &getReviewersForPaper($schedConfId, $paperId, $stage, $searchType = null, $search = null, $searchMatch = null, $rangeInfo = null, $sortBy = null, $sortDirection = SORT_DIRECTION_ASC) {
-		$paramArray = array($paperId, $stage, 'interests', $schedConfId, RoleDAO::getRoleIdFromPath('reviewer'));
+	function &getReviewersForPaper($schedConfId, $paperId, $round, $searchType = null, $search = null, $searchMatch = null, $rangeInfo = null, $sortBy = null, $sortDirection = SORT_DIRECTION_ASC) {
+		$paramArray = array($paperId, $round, 'interests', $schedConfId, RoleDAO::getRoleIdFromPath('reviewer'));
 		$searchSql = '';
 
 		$searchTypeMap = array(
@@ -689,7 +710,7 @@ class TrackDirectorSubmissionDAO extends DAO {
 				LEFT JOIN review_assignments a ON (a.reviewer_id = u.user_id)
 				LEFT JOIN review_assignments ac ON (ac.reviewer_id = u.user_id AND ac.date_completed IS NOT NULL)
 				LEFT JOIN review_assignments ai ON (ai.reviewer_id = u.user_id AND ai.date_completed IS NULL)
-				LEFT JOIN review_assignments ar ON (ar.reviewer_id = u.user_id AND ar.cancelled = 0 AND ar.paper_id = ? AND ar.stage = ?)
+				LEFT JOIN review_assignments ar ON (ar.reviewer_id = u.user_id AND ar.cancelled = 0 AND ar.submission_id = ? AND ar.round = ?)
 				LEFT JOIN user_settings s ON (u.user_id = s.user_id AND s.setting_name = ?)
 				LEFT JOIN roles r ON (r.user_id = u.user_id)
 			WHERE	u.user_id = r.user_id AND
@@ -745,7 +766,15 @@ class TrackDirectorSubmissionDAO extends DAO {
 		$statistics = Array();
 
 		// Get counts of completed submissions
-		$result =& $this->retrieve('SELECT ra.reviewer_id AS reviewer_id, MAX(ra.date_notified) AS last_notified FROM review_assignments ra, papers p WHERE ra.paper_id = p.paper_id AND p.sched_conf_id = ? GROUP BY ra.reviewer_id', $schedConfId);
+		$result =& $this->retrieve(
+			'SELECT	r.reviewer_id, MAX(r.date_notified) AS last_notified
+			FROM	review_assignments r,
+				papers p
+			WHERE	r.submission_id = p.paper_id AND
+				p.sched_conf_id = ?
+			GROUP BY r.reviewer_id',
+			(int) $schedConfId
+		);
 		while (!$result->EOF) {
 			$row = $result->GetRowAssoc(false);
 			if (!isset($statistics[$row['reviewer_id']])) $statistics[$row['reviewer_id']] = array();
@@ -757,7 +786,18 @@ class TrackDirectorSubmissionDAO extends DAO {
 		unset($result);
 
 		// Get completion status
-		$result =& $this->retrieve('SELECT r.reviewer_id AS reviewer_id, COUNT(*) AS incomplete FROM review_assignments r, papers p WHERE r.paper_id = p.paper_id AND r.date_notified IS NOT NULL AND r.date_completed IS NULL AND r.cancelled = 0 AND p.sched_conf_id = ? GROUP BY r.reviewer_id', $schedConfId);
+		$result =& $this->retrieve(
+			'SELECT	r.reviewer_id, COUNT(*) AS incomplete
+			FROM	review_assignments r,
+				papers p
+			WHERE	r.submission_id = p.paper_id AND
+				r.date_notified IS NOT NULL AND
+				r.date_completed IS NULL AND
+				r.cancelled = 0 AND
+				p.sched_conf_id = ?
+			GROUP BY r.reviewer_id',
+			(int) $schedConfId
+		);
 		while (!$result->EOF) {
 			$row = $result->GetRowAssoc(false);
 			if (!isset($statistics[$row['reviewer_id']])) $statistics[$row['reviewer_id']] = array();
@@ -769,7 +809,16 @@ class TrackDirectorSubmissionDAO extends DAO {
 		unset($result);
 
 		// Calculate time taken for completed reviews
-		$result =& $this->retrieve('SELECT r.reviewer_id, r.date_notified, r.date_completed FROM review_assignments r, papers p WHERE r.paper_id = p.paper_id AND r.date_notified IS NOT NULL AND r.date_completed IS NOT NULL AND p.sched_conf_id = ?', $schedConfId);
+		$result =& $this->retrieve(
+			'SELECT	r.reviewer_id, r.date_notified, r.date_completed
+			FROM	review_assignments r,
+				papers p
+			WHERE	r.submission_id = p.paper_id AND
+				r.date_notified IS NOT NULL AND
+				r.date_completed IS NOT NULL AND
+				p.sched_conf_id = ?',
+			(int) $schedConfId
+		);
 		while (!$result->EOF) {
 			$row = $result->GetRowAssoc(false);
 			if (!isset($statistics[$row['reviewer_id']])) $statistics[$row['reviewer_id']] = array();

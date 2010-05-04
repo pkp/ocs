@@ -33,8 +33,10 @@ define ('STATUS_QUEUED_REVIEW', 6);
 define ('STATUS_QUEUED_EDITING', 7);
 define ('STATUS_INCOMPLETE', 8);
 
-define ('REVIEW_STAGE_ABSTRACT', 1);
-define ('REVIEW_STAGE_PRESENTATION', 2);
+define ('REVIEW_ROUND_ABSTRACT', 1);
+define ('REVIEW_ROUND_PRESENTATION', 2);
+define ('REVIEW_STAGE_ABSTRACT', 1);		// DEPRECATED
+define ('REVIEW_STAGE_PRESENTATION', 2);	// DEPRECATED
 
 /* These constants are used as search fields for the various submission lists */
 define('SUBMISSION_FIELD_AUTHOR', 1);
@@ -369,19 +371,37 @@ class Paper extends Submission {
 	}
 
 	/**
-	 * Get current stage.
+	 * Get current round.
 	 * @return int
 	 */
-	function getCurrentStage() {
-		return $this->getData('currentStage');
+	function getCurrentRound() {
+		return $this->getData('currentRound');
 	}
 
 	/**
-	 * Set current stage.
-	 * @param $currentStage int
+	 * Set current round.
+	 * @param $currentRound int
 	 */
-	function setCurrentStage($currentStage) {
-		return $this->setData('currentStage', $currentStage);
+	function setCurrentRound($currentRound) {
+		return $this->setData('currentRound', $currentRound);
+	}
+
+	/**
+	 * Get current stage. DEPRECATED.
+	 * @return int
+	 */
+	function getCurrentStage() {
+		if (Config::getVar('debug', 'deprecation_warnings')) trigger_error('Deprecated function.');
+		return $this->getCurrentRound();
+	}
+
+	/**
+	 * Set current stage. DEPRECATED.
+	 * @param $stage int
+	 */
+	function setCurrentStage($stage) {
+		if (Config::getVar('debug', 'deprecation_warnings')) trigger_error('Deprecated function.');
+		return $this->setCurrentRound($stage);
 	}
 
 	/**

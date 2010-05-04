@@ -304,7 +304,7 @@ class SchedConfStatisticsDAO extends DAO {
 				review_assignments r
 				LEFT JOIN users u ON (u.user_id = r.reviewer_id)
 			WHERE	a.sched_conf_id = ? AND
-				r.paper_id = a.paper_id AND
+				r.submission_id = a.paper_id AND
 				af.paper_id = a.paper_id AND
 				af.file_id = a.review_file_id AND
 				af.revision = 1' .

@@ -56,7 +56,7 @@ class AuthorAction extends Action {
 					unset($schedConf);
 					$schedConf =& $schedConfDao->getSchedConf($authorSubmission->getSchedConfId());
 				}
-				$trackDirectorSubmissionDao->createReviewStage($authorSubmission->getPaperId(), REVIEW_STAGE_PRESENTATION, 1);
+				$trackDirectorSubmissionDao->createReviewRound($authorSubmission->getPaperId(), REVIEW_ROUND_PRESENTATION, 1);
 			}
 		}
 	}
@@ -81,8 +81,8 @@ class AuthorAction extends Action {
 		// Ensure that this is actually an author file.
 		if (isset($paperFile)) {
 			HookRegistry::call('AuthorAction::deletePaperFile', array(&$paperFile, &$authorRevisions));
-			foreach ($authorRevisions as $stage) {
-				foreach ($stage as $revision) {
+			foreach ($authorRevisions as $round) {
+				foreach ($round as $revision) {
 					if ($revision->getFileId() == $paperFile->getFileId() &&
 						$revision->getRevision() == $paperFile->getRevision()) {
 						$paperFileManager->deleteFile($paperFile->getFileId(), $paperFile->getRevision());
@@ -235,8 +235,8 @@ class AuthorAction extends Action {
 			$canDownload = true;
 		} else {
 			// Check reviewer files
-			foreach ($submission->getReviewAssignments(null) as $stageReviewAssignments) {
-				foreach ($stageReviewAssignments as $reviewAssignment) {
+			foreach ($submission->getReviewAssignments(null) as $roundReviewAssignments) {
+				foreach ($roundReviewAssignments as $reviewAssignment) {
 					if ($reviewAssignment->getReviewerFileId() == $fileId) {
 						$paperFileDao =& DAORegistry::getDAO('PaperFileDAO');
 
@@ -265,14 +265,14 @@ class AuthorAction extends Action {
 
 			// Check current review version
 			$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
-			$reviewFilesByStage =& $reviewAssignmentDao->getReviewFilesByStage($paper->getId());
-			$reviewFile = @$reviewFilesByStage[$paper->getCurrentStage()];
+			$reviewFilesByRound =& $reviewAssignmentDao->getReviewFilesByRound($paper->getId());
+			$reviewFile = @$reviewFilesByRound[$paper->getCurrentRound()];
 			if ($reviewFile && $fileId == $reviewFile->getFileId()) {
 				$canDownload = true;
 			}
 
 			// Check director version
-			$directorFiles = $submission->getDirectorFileRevisions($paper->getCurrentStage());
+			$directorFiles = $submission->getDirectorFileRevisions($paper->getCurrentRound());
 			if (is_array($directorFiles)) foreach ($directorFiles as $directorFile) {
 				if ($directorFile->getFileId() == $fileId) {
 					$canDownload = true;
@@ -308,9 +308,9 @@ class AuthorAction extends Action {
 		// Archived or declined submissions can never be edited.
 		if ($authorSubmission->getStatus() == STATUS_ARCHIVED || $authorSubmission->getStatus() == STATUS_DECLINED) return false;
 
-		// If the last recorded editorial decision on the current stage
+		// If the last recorded editorial decision on the current round
 		// was "Revisions Required", the author may edit the submission.
-		$decisions = $authorSubmission->getDecisions($authorSubmission->getCurrentStage());
+		$decisions = $authorSubmission->getDecisions($authorSubmission->getCurrentRound());
 		$decision = array_shift($decisions);
 		if ($decision == SUBMISSION_DIRECTOR_DECISION_PENDING_REVISIONS) return true;
 

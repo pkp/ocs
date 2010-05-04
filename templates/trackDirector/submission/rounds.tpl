@@ -1,14 +1,14 @@
 {**
- * stages.tpl
+ * rounds.tpl
  *
  * Copyright (c) 2000-2010 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * Subtemplate displaying past stages for a submission.
+ * Subtemplate displaying past rounds for a submission.
  *
  * $Id$
  *}
-<div id="stages">
+<div id="rounds">
 <div id="regretsAndCancels">
 <h3>{translate|escape key="trackDirector.regrets.regretsAndCancels"}</h3>
 
@@ -38,7 +38,7 @@
 				{translate key="common.cancelled"}
 			{/if}
 		</td>
-		<td>{$cancelOrRegret->getStage()}</td>
+		<td>{$cancelOrRegret->getRound()}</td>
 	</tr>
 	<tr>
 		<td colspan="4" class="{if $smarty.foreach.cancelsAndRegrets.last}end{/if}separator">&nbsp;</td>
@@ -53,23 +53,23 @@
 {/foreach}
 </table>
 </div>
-{assign var=numStages value=$reviewAssignmentStages|@count}
-{section name=stage loop=$numStages}
-{assign var=stage value=$smarty.section.stage.index}
-{assign var=stagePlusOne value=$stage+1}
-{assign var=stageAssignments value=$reviewAssignmentStages[$stagePlusOne]}
-{assign var=stageDecisions value=$directorDecisions[$stagePlusOne]}
+{assign var=numRounds value=$reviewAssignmentRounds|@count}
+{section name=round loop=$numRounds}
+{assign var=round value=$smarty.section.round.index}
+{assign var=roundPlusOne value=$round+1}
+{assign var=roundAssignments value=$reviewAssignmentRounds[$roundPlusOne]}
+{assign var=roundDecisions value=$directorDecisions[$roundPlusOne]}
 
-{if $submission->getCurrentStage() != $stagePlusOne}
-<div id="reviewStage">
-<h4>{translate key="trackDirector.regrets.reviewStage" stage=$stagePlusOne}</h4>
+{if $submission->getCurrentRound() != $roundPlusOne}
+<div id="reviewRound">
+<h4>{translate key="trackDirector.regrets.reviewRound" round=$roundPlusOne}</h4>
 
-{if $stage != REVIEW_STAGE_ABSTRACT}
+{if $round != REVIEW_ROUND_ABSTRACT}
 <table width="100%" class="data">
 	<tr valign="top">
 		<td class="label" width="20%">{translate key="submission.reviewVersion"}</td>
 		<td class="value" width="80%">
-			{assign var="reviewFile" value=$reviewFilesByStage[$stagePlusOne]}
+			{assign var="reviewFile" value=$reviewFilesByRound[$roundPlusOne]}
 			{if $reviewFile}
 				<a href="{url op="downloadFile" path=$submission->getPaperId()|to_array:$reviewFile->getFileId():$reviewFile->getRevision()}" class="file">{$reviewFile->getFileName()|escape}</a>&nbsp;&nbsp;{$reviewFile->getDateModified()|date_format:$dateFormatShort}
 			{else}
@@ -83,7 +83,7 @@
 
 {assign var="start" value="A"|ord}
 
-{foreach from=$stageAssignments item=reviewAssignment key=reviewKey}
+{foreach from=$roundAssignments item=reviewAssignment key=reviewKey}
 {assign var="reviewId" value=$reviewAssignment->getId()}
 
 {if !$reviewAssignment->getCancelled()}
@@ -192,17 +192,17 @@
 {/foreach}
 
 <div class="separator"></div>
-<div id="decisionStage">
-<h4>{translate key="trackDirector.regrets.decisionStage" stage=$stagePlusOne}</h4>
+<div id="decisionRound">
+<h4>{translate key="trackDirector.regrets.decisionRound" round=$roundPlusOne}</h4>
 
-{assign var=authorFiles value=$submission->getAuthorFileRevisions($stagePlusOne)}
-{assign var=directorFiles value=$submission->getDirectorFileRevisions($stagePlusOne)}
+{assign var=authorFiles value=$submission->getAuthorFileRevisions($roundPlusOne)}
+{assign var=directorFiles value=$submission->getDirectorFileRevisions($roundPlusOne)}
 
 <table class="data" width="100%">
 	<tr valign="top">
 		<td class="label" width="20%">{translate key="director.paper.decision"}</td>
 		<td class="value" width="80%">
-			{foreach from=$stageDecisions item=directorDecision key=decisionKey}
+			{foreach from=$roundDecisions item=directorDecision key=decisionKey}
 				{if $decisionKey neq 0} | {/if}
 				{assign var="decision" value=$directorDecision.decision}
 				{translate key=$directorDecisionOptions.$decision} {$directorDecision.dateDecided|date_format:$dateFormatShort}
@@ -258,5 +258,5 @@
 
 {/if} {* End check to see that this is actually a past review, not the current one *}
 
-{/section} {* End section to loop through all stages *}
+{/section} {* End section to loop through all rounds *}
 </div>

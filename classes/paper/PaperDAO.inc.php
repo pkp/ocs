@@ -142,7 +142,7 @@ class PaperDAO extends DAO {
 		$paper->setStatus($row['status']);
 		$paper->setSubmissionProgress($row['submission_progress']);
 		$paper->setReviewMode($row['review_mode']);
-		$paper->setCurrentStage($row['current_stage']);
+		$paper->setCurrentRound($row['current_round']);
 		$paper->setSubmissionFileId($row['submission_file_id']);
 		$paper->setRevisedFileId($row['revised_file_id']);
 		$paper->setReviewFileId($row['review_file_id']);
@@ -184,7 +184,7 @@ class PaperDAO extends DAO {
 				 status,
 				 submission_progress,
 				 review_mode,
-				 current_stage,
+				 current_round,
 				 submission_file_id,
 				 revised_file_id,
 				 review_file_id,
@@ -205,7 +205,7 @@ class PaperDAO extends DAO {
 				$paper->getStatus() === null ? STATUS_QUEUED : $paper->getStatus(),
 				$paper->getSubmissionProgress() === null ? 1 : $paper->getSubmissionProgress(),
 				$paper->getReviewMode(),
-				$paper->getCurrentStage(),
+				$paper->getCurrentRound(),
 				$paper->getSubmissionFileId(),
 				$paper->getRevisedFileId(),
 				$paper->getReviewFileId(),
@@ -254,7 +254,7 @@ class PaperDAO extends DAO {
 					status = ?,
 					submission_progress = ?,
 					review_mode = ?,
-					current_stage = ?,
+					current_round = ?,
 					submission_file_id = ?,
 					revised_file_id = ?,
 					review_file_id = ?,
@@ -273,7 +273,7 @@ class PaperDAO extends DAO {
 				$paper->getStatus(),
 				$paper->getSubmissionProgress(),
 				$paper->getReviewMode(),
-				$paper->getCurrentStage(),
+				$paper->getCurrentRound(),
 				$paper->getSubmissionFileId(),
 				$paper->getRevisedFileId(),
 				$paper->getReviewFileId(),
@@ -333,7 +333,7 @@ class PaperDAO extends DAO {
 
 		$trackDirectorSubmissionDao =& DAORegistry::getDAO('TrackDirectorSubmissionDAO');
 		$trackDirectorSubmissionDao->deleteDecisionsByPaper($paperId);
-		$trackDirectorSubmissionDao->deleteReviewStagesByPaper($paperId);
+		$trackDirectorSubmissionDao->deleteReviewRoundsByPaper($paperId);
 
 		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
 		$reviewAssignmentDao->deleteReviewAssignmentsByPaper($paperId);

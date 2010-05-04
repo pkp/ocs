@@ -106,8 +106,8 @@ class ReviewReminder extends ScheduledTask {
 		$incompleteAssignments =& $reviewAssignmentDao->getIncompleteReviewAssignments();
 		foreach ($incompleteAssignments as $reviewAssignment) {
 			// Fetch the Paper and the Sched Conf if necessary.
-			if ($paper == null || $paper->getId() != $reviewAssignment->getPaperId()) {
-				$paper =& $paperDao->getPaper($reviewAssignment->getPaperId());
+			if ($paper == null || $paper->getId() != $reviewAssignment->getSubmissionId()) {
+				$paper =& $paperDao->getPaper($reviewAssignment->getSubmissionId());
 				if ($schedConf == null || $schedConf->getId() != $paper->getSchedConfId()) {
 					$schedConf =& $schedConfDao->getSchedConf($paper->getSchedConfId());
 
