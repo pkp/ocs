@@ -139,7 +139,7 @@ class TrackDirectorSubmissionDAO extends DAO {
 
 		// Review Assignments
 		for ($i = 1; $i <= $row['current_round']; $i++)
-			$trackDirectorSubmission->setReviewAssignments($this->reviewAssignmentDao->getReviewAssignmentsByPaperId($row['paper_id'], $i), $i);
+			$trackDirectorSubmission->setReviewAssignments($this->reviewAssignmentDao->getBySubmissionId($row['paper_id'], $i), $i);
 
 		$trackDirectorSubmission->setGalleys($this->galleyDao->getGalleysByPaper($row['paper_id']));
 

@@ -110,7 +110,7 @@ class AuthorSubmissionDAO extends DAO {
 
 		// Review Assignments
 		for ($i = 1; $i <= $row['current_round']; $i++)
-			$authorSubmission->setReviewAssignments($this->reviewAssignmentDao->getReviewAssignmentsByPaperId($row['paper_id'], $i), $i);
+			$authorSubmission->setReviewAssignments($this->reviewAssignmentDao->getBySubmissionId($row['paper_id'], $i), $i);
 
 		// Comments
 		$authorSubmission->setMostRecentDirectorDecisionComment($this->paperCommentDao->getMostRecentPaperComment($row['paper_id'], COMMENT_TYPE_DIRECTOR_DECISION, $row['paper_id']));

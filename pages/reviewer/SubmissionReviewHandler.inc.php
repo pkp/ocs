@@ -39,7 +39,7 @@ class SubmissionReviewHandler extends ReviewerHandler {
 		$schedConf =& Request::getSchedConf();
 		
 		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
-		$reviewAssignment = $reviewAssignmentDao->getReviewAssignmentById($reviewId);
+		$reviewAssignment = $reviewAssignmentDao->getById($reviewId);
 		
 		$reviewFormResponseDao =& DAORegistry::getDAO('ReviewFormResponseDAO');
 
@@ -202,7 +202,7 @@ class SubmissionReviewHandler extends ReviewerHandler {
 		$this->validate($reviewId);
 
 		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
-		$reviewAssignment =& $reviewAssignmentDao->getReviewAssignmentById($reviewId);
+		$reviewAssignment =& $reviewAssignmentDao->getById($reviewId);
 		$reviewFormId = $reviewAssignment->getReviewFormId();
 		if ($reviewFormId != null) {
 			ReviewerAction::editReviewFormResponse($reviewId, $reviewFormId);		

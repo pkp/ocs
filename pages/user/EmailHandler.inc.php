@@ -96,7 +96,7 @@ class EmailHandler extends UserHandler {
 			if (Validation::isDirector()) $hasAccess = true;
 			// 3. User is reviewer
 			$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
-			foreach ($reviewAssignmentDao->getReviewAssignmentsByPaperId($paperId) as $reviewAssignment) {
+			foreach ($reviewAssignmentDao->getBySubmissionId($paperId) as $reviewAssignment) {
 				if ($reviewAssignment->getReviewerId() === $user->getId()) $hasAccess = true;
 			}
 

@@ -791,7 +791,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 			$this->setupTemplate(true, $paperId, 'review');
 
 			$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
-			$reviewAssignment = $reviewAssignmentDao->getReviewAssignmentById($reviewId);
+			$reviewAssignment = $reviewAssignmentDao->getById($reviewId);
 
 			$settings = $schedConf->getSettings();
 
@@ -934,7 +934,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		$reviewFormElementDao =& DAORegistry::getDAO('ReviewFormElementDAO');
 		$reviewFormElements =& $reviewFormElementDao->getReviewFormElements($reviewFormId);
 		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
-		$reviewAssignment =& $reviewAssignmentDao->getReviewAssignmentById($reviewId);
+		$reviewAssignment =& $reviewAssignmentDao->getById($reviewId);
 
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('pageTitle', 'manager.reviewForms.preview');
@@ -984,7 +984,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 			$reviewFormDao =& DAORegistry::getDAO('ReviewFormDAO');
 			$reviewForms =& $reviewFormDao->getActiveByAssocId(ASSOC_TYPE_CONFERENCE, $conference->getId(), $rangeInfo);
 			$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
-			$reviewAssignment =& $reviewAssignmentDao->getReviewAssignmentById($reviewId);
+			$reviewAssignment =& $reviewAssignmentDao->getById($reviewId);
 
 			$this->setupTemplate(true, $paperId, 'review');
 			$templateMgr =& TemplateManager::getManager();
