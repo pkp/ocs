@@ -326,7 +326,7 @@ class PaperDAO extends DAO {
 		$publishedPaperDao->deletePublishedPaperByPaperId($paperId);
 
 		$commentDao =& DAORegistry::getDAO('CommentDAO');
-		$commentDao->deleteCommentsByPaper($paperId);
+		$commentDao->deleteBySubmissionId($paperId);
 
 		$paperNoteDao =& DAORegistry::getDAO('PaperNoteDAO');
 		$paperNoteDao->clearAllPaperNotes($paperId);

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE data SYSTEM "../../../lib/pkp/dtd/xmlData.dtd">
+
+<!--
+  * 2.3.2_preupdate.xml
+  *
+  * Copyright (c) 2000-2010 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * 2.3.2 database updates XML file, run prior schema sync.
+  *
+  -->
+
+<data>
+	<!-- Bug #5386: port review assignments to pkp-lib -->
+	<sql>
+		<rename table="review_assignments" column="paper_id" to="submission_id" />
+		<rename table="review_rounds" column="paper_id" to="submission_id" />
+		<rename table="papers" column="current_stage" to="current_round" />
+		<rename table="paper_files" column="stage" to="round" />
+		<rename table="edit_decisions" column="stage" to="round" />
+		<rename table="review_stages" to="review_rounds" />
+		<rename table="review_rounds" column="stage" to="round" />
+	</sql>
+	<!-- Bug #5397: port "comments" into pkp-lib -->
+	<sql>
+		<rename table="comments" column="paper_id" to="submission_id" />
+	</sql>
+</data>

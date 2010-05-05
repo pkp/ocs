@@ -48,12 +48,12 @@ class CommentHandler extends Handler {
 		$userId = isset($user)?$user->getId():null;
 
 		$commentDao =& DAORegistry::getDAO('CommentDAO');
-		$comment =& $commentDao->getComment($commentId, $paperId, 2);
+		$comment =& $commentDao->getById($commentId, $paperId, 2);
 
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
 		$isManager = Validation::isConferenceManager($conference->getId());
 
-		if (!$comment) $comments =& $commentDao->getRootCommentsByPaperId($paperId, 1);
+		if (!$comment) $comments =& $commentDao->getRootCommentsBySubmissionId($paperId, 1);
 		else $comments =& $comment->getChildren();
 
 		$this->setupTemplate($paper, $galleyId, $comment);
@@ -62,7 +62,7 @@ class CommentHandler extends Handler {
 		if (Request::getUserVar('refresh')) $templateMgr->setCacheability(CACHEABILITY_NO_CACHE);
 		if ($comment) {
 			$templateMgr->assign_by_ref('comment', $comment);
-			$templateMgr->assign_by_ref('parent', $commentDao->getComment($comment->getParentCommentId(), $paperId));
+			$templateMgr->assign_by_ref('parent', $commentDao->getById($comment->getParentCommentId(), $paperId));
 		}
 		$templateMgr->assign_by_ref('comments', $comments);
 		$templateMgr->assign('paperId', $paperId);
@@ -91,7 +91,7 @@ class CommentHandler extends Handler {
 		$this->validate($paperId);
 		$paper =& $this->paper;
 
-		$parent =& $commentDao->getComment($parentId, $paperId);
+		$parent =& $commentDao->getById($parentId, $paperId);
 		if (isset($parent) && $parent->getPaperId() != $paperId) {
 			Request::redirect(null, null, null, 'view', array($paperId, $galleyId));
 		}
@@ -161,7 +161,7 @@ class CommentHandler extends Handler {
 			Request::redirect(null, null, 'index');
 		}
 
-		$comment =& $commentDao->getComment($commentId, $paperId, PAPER_COMMENT_RECURSE_ALL);
+		$comment =& $commentDao->getById($commentId, $paperId, SUBMISSION_COMMENT_RECURSE_ALL);
 		if ($comment)$commentDao->deleteComment($comment);
 
 		Request::redirect(null, null, null, 'view', array($paperId, $galleyId), array('refresh' => 1));

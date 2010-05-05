@@ -81,7 +81,7 @@ class Application extends PKPApplication {
 			'AnnouncementDAO' => 'classes.announcement.AnnouncementDAO',
 			'AnnouncementTypeDAO' => 'classes.announcement.AnnouncementTypeDAO',
 			'BuildingDAO' => 'classes.scheduler.BuildingDAO',
-			'CommentDAO' => 'classes.comment.CommentDAO',
+			'CommentDAO' => 'lib.pkp.classes.comment.CommentDAO',
 			'ConferenceDAO' => 'classes.conference.ConferenceDAO',
 			'ConferenceEventLogDAO' => 'classes.conference.log.ConferenceEventLogDAO',
 			'ConferenceSettingsDAO' => 'classes.conference.ConferenceSettingsDAO',

@@ -173,7 +173,7 @@ class PaperHandler extends Handler {
 		$commentsAllowAnonymous = $conference->getSetting('commentsAllowAnonymous');
 
 		if ($enableComments && $paper->getEnableComments()) {
-			$comments =& $commentDao->getRootCommentsByPaperId($paper->getId());
+			$comments =& $commentDao->getRootCommentsBySubmissionId($paper->getId());
 		}
 
 		$paperGalleyDao =& DAORegistry::getDAO('PaperGalleyDAO');
