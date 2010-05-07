@@ -12,7 +12,10 @@
  * @brief Abstract class for citation plugins
  */
 
-//$Id$
+// $Id$
+
+
+import('classes.plugins.Plugin');
 
 class CitationPlugin extends Plugin {
 	function CitationPlugin() {

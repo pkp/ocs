@@ -12,7 +12,10 @@
  * @brief Abstract class for gateway plugins
  */
 
-//$Id$
+// $Id$
+
+
+import('classes.plugins.Plugin');
 
 class GatewayPlugin extends Plugin {
 	function GatewayPlugin() {

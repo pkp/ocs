@@ -15,9 +15,10 @@
  * TODO Support importing user accounts from the authentication source into OCS.
  */
 
-//$Id$
+// $Id$
 
 define('AUTH_PLUGIN_CATEGORY', 'auth');
+import('classes.plugins.Plugin');
 
 class AuthPlugin extends Plugin {
 

@@ -12,7 +12,10 @@
  * @brief Abstract class for theme plugins
  */
 
-//$Id$
+// $Id$
+
+
+import('classes.plugins.Plugin');
 
 class ThemePlugin extends Plugin {
 	function ThemePlugin() {
