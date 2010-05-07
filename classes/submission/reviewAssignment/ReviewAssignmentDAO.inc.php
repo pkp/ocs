@@ -345,7 +345,7 @@ class ReviewAssignmentDAO extends PKPReviewAssignmentDAO {
 		$reviewAssignment->setReviewFileId($reviewFileId);
 
 		// Files
-		$reviewAssignment->setReviewFile($this->paperFileDao->getPaperFile($row[$reviewFileId], $row['review_revision']));
+		$reviewAssignment->setReviewFile($this->paperFileDao->getPaperFile($reviewFileId, $row['review_revision']));
 		$reviewAssignment->setReviewerFile($this->paperFileDao->getPaperFile($row['reviewer_file_id']));
 		$reviewAssignment->setReviewerFileRevisions($this->paperFileDao->getPaperFileRevisions($row['reviewer_file_id']));
 
