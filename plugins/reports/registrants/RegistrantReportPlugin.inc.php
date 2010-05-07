@@ -58,7 +58,7 @@ class RegistrantReportPlugin extends ReportPlugin {
 		Locale::requireComponents(array(LOCALE_COMPONENT_APPLICATION_COMMON, LOCALE_COMPONENT_PKP_USER, LOCALE_COMPONENT_OCS_MANAGER));
 
 		header('content-type: text/comma-separated-values');
-		header('content-disposition: attachment; filename=report.csv');
+		header('content-disposition: attachment; filename=registrants-' . date('Ymd') . '.csv');
 
 		$registrantReportDao =& DAORegistry::getDAO('RegistrantReportDAO');
 		list($registrants, $registrantOptions) = $registrantReportDao->getRegistrantReport(

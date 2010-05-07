@@ -58,7 +58,7 @@ class ReviewReportPlugin extends ReportPlugin {
 		Locale::requireComponents(array(LOCALE_COMPONENT_APPLICATION_COMMON, LOCALE_COMPONENT_PKP_USER, LOCALE_COMPONENT_PKP_SUBMISSION, LOCALE_COMPONENT_OCS_MANAGER));
 
 		header('content-type: text/comma-separated-values');
-		header('content-disposition: attachment; filename=report.csv');
+		header('content-disposition: attachment; filename=reviews-' . date('Ymd') . '.csv');
 
 		$reviewReportDao =& DAORegistry::getDAO('ReviewReportDAO');
 		list($commentsIterator, $reviewsIterator) = $reviewReportDao->getReviewReport($schedConf->getId());

@@ -58,7 +58,7 @@ class PaperReportPlugin extends ReportPlugin {
 		Locale::requireComponents(array(LOCALE_COMPONENT_APPLICATION_COMMON, LOCALE_COMPONENT_PKP_SUBMISSION, LOCALE_COMPONENT_PKP_USER, LOCALE_COMPONENT_OCS_MANAGER));
 
 		header('content-type: text/comma-separated-values');
-		header('content-disposition: attachment; filename=report.csv');
+		header('content-disposition: attachment; filename=papers-' . date('Ymd') . '.csv');
 
 		$paperReportDao =& DAORegistry::getDAO('PaperReportDAO');
 		list($papersIterator, $authorsIterator, $decisionsIteratorsArray) = $paperReportDao->getPaperReport(
