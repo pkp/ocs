@@ -38,7 +38,7 @@ class PluginHandler extends ManagerHandler {
 			// get the plugins in that category only.
 			$mainPage = false;
 			$plugins =& PluginRegistry::loadCategory($category);
-
+			
 			$this->setupTemplate(false);
 			$templateMgr->assign('pageTitle', 'plugins.categories.' . $category);
 			$templateMgr->assign('pageHierarchy', PluginHandler::setBreadcrumbs(true));
@@ -52,14 +52,14 @@ class PluginHandler extends ManagerHandler {
 					$plugins = array_merge($plugins, PluginRegistry::loadCategory($category));
 				}
 			}
-
+			
 			$this->setupTemplate(true);
 			$templateMgr->assign('pageTitle', 'manager.plugins.pluginManagement');
 			$templateMgr->assign('pageHierarchy', PluginHandler::setBreadcrumbs(false));
 		}
 
 
-
+		
 		$templateMgr->assign_by_ref('plugins', $plugins);
 		$templateMgr->assign_by_ref('categories', $categories);
 		$templateMgr->assign('mainPage', $mainPage);
@@ -76,7 +76,7 @@ class PluginHandler extends ManagerHandler {
 	 */
 	function plugin($args, &$request) {
 		$category = array_shift($args);
-		$plugin = String::strtolower(array_shift($args));
+		$plugin = array_shift($args);
 		$verb = array_shift($args);
 
 		$this->validate();
@@ -93,7 +93,7 @@ class PluginHandler extends ManagerHandler {
 			$request->redirect(null, null, null, 'plugins', array($category));
 		}
 	}
-
+	
 	/**
 	 * Set the page's breadcrumbs
 	 * @param $subclass boolean
@@ -112,7 +112,7 @@ class PluginHandler extends ManagerHandler {
 				false
 			)
 		);
-
+		
 		if ($subclass) {
 			$pageCrumbs[] = array(
 				Request::url(null, null, 'manager', 'plugins'),
