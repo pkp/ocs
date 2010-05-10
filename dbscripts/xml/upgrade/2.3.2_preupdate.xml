@@ -15,15 +15,19 @@
 	<!-- Bug #5386: port review assignments to pkp-lib -->
 	<sql>
 		<rename table="review_assignments" column="paper_id" to="submission_id" />
-		<rename table="review_rounds" column="paper_id" to="submission_id" />
 		<rename table="papers" column="current_stage" to="current_round" />
 		<rename table="paper_files" column="stage" to="round" />
 		<rename table="edit_decisions" column="stage" to="round" />
 		<rename table="review_stages" to="review_rounds" />
 		<rename table="review_rounds" column="stage" to="round" />
+		<rename table="review_rounds" column="paper_id" to="submission_id" />
 	</sql>
 	<!-- Bug #5397: port "comments" into pkp-lib -->
 	<sql>
 		<rename table="comments" column="paper_id" to="submission_id" />
+	</sql>
+	<!-- Bug #5268: Performance optimization: lazy load for plug-ins -->
+	<sql>
+		<query>DELETE FROM versions WHERE product_type = 'plugins.generic' AND product = 'jquery'</query>
 	</sql>
 </data>
