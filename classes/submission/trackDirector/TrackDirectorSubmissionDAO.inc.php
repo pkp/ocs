@@ -713,6 +713,7 @@ class TrackDirectorSubmissionDAO extends DAO {
 				LEFT JOIN review_assignments ar ON (ar.reviewer_id = u.user_id AND ar.cancelled = 0 AND ar.submission_id = ? AND ar.round = ?)
 				LEFT JOIN user_settings s ON (u.user_id = s.user_id AND s.setting_name = ?)
 				LEFT JOIN roles r ON (r.user_id = u.user_id)
+				LEFT JOIN papers p ON (a.submission_id = p.paper_id)
 			WHERE	u.user_id = r.user_id AND
 				r.sched_conf_id = ? AND
 				r.role_id = ? ' . $searchSql . 'GROUP BY u.user_id, u.last_name, ar.review_id' .
