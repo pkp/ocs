@@ -414,7 +414,8 @@ class RegistrationDAO extends DAO {
 			$dbResultRange
 		);
 
-		$returner = new DAOResultFactory($result, $this->userDao, '_returnUserFromRowWithData');
+		$userDao =& DAORegistry::getDAO('UserDAO');
+		$returner = new DAOResultFactory($result, $userDao, '_returnUserFromRowWithData');
 		return $returner;
 	}
 
