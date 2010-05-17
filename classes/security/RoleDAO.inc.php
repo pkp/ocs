@@ -327,7 +327,7 @@ class RoleDAO extends DAO {
 		}
 
 		$searchSql .= ($sortBy?(' ORDER BY ' . $this->getSortMapping($sortBy) . ' ' . $this->getDirectionMapping($sortDirection)) : '');
-		
+
 		$result =& $this->retrieveRange(
 
 			'SELECT DISTINCT u.* FROM users AS u LEFT JOIN user_settings s ON (u.user_id = s.user_id AND s.setting_name = ?), roles AS r WHERE u.user_id = r.user_id AND r.sched_conf_id = ? ' . $searchSql,
@@ -549,7 +549,7 @@ class RoleDAO extends DAO {
 				return null;
 		}
 	}
-	
+
 	/**
 	 * Map a column heading value to a database value for sorting
 	 * @param string
@@ -560,10 +560,10 @@ class RoleDAO extends DAO {
 			case 'username': return 'u.username';
 			case 'name': return 'u.last_name';
 			case 'email': return 'u.email';
+			case 'id': return 'u.user_id';
 			default: return null;
 		}
 	}
-
 }
 
 ?>
