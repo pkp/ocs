@@ -414,7 +414,8 @@ class RegistrationDAO extends DAO {
 			$dbResultRange
 		);
 
-		$returner = new DAOResultFactory($result, $this->userDao, '_returnUserFromRowWithData');
+		$userDao =& DAORegistry::getDAO('UserDAO');
+		$returner = new DAOResultFactory($result, $userDao, '_returnUserFromRowWithData');
 		return $returner;
 	}
 
@@ -687,6 +688,7 @@ class RegistrationDAO extends DAO {
 			case 'type': return 'r.type_id';
 			case 'registered': return 'r.date_registered';
 			case 'paid': return 'r.date_paid';
+			case 'id': return 'r.registration_id';
 			default: return null;
 		}
 	}
