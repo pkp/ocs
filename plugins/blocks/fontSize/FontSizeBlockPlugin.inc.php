@@ -19,22 +19,6 @@
 import('plugins.BlockPlugin');
 
 class FontSizeBlockPlugin extends BlockPlugin {
-	function register($category, $path) {
-		$success = parent::register($category, $path);
-		if ($success) {
-			$this->addLocaleData();
-			$templateMgr =& TemplateManager::getManager();
-			$templateMgr->assign('baseUrl', Request::getBasePath() . '/');
-			$additionalHeadData = $templateMgr->get_template_vars('additionalHeadData');
-
-			// Add font sizer js and css if not already in header
-			if (strpos(strtolower($additionalHeadData), 'sizer.js') === false) {
-				$additionalHeadData .= $templateMgr->fetch('common/sizer.tpl');
-				$templateMgr->assign('additionalHeadData', $additionalHeadData);
-			}
-		}
-		return $success;
-	}
 
 	/**
 	 * Determine whether the plugin is enabled. Overrides parent so that
