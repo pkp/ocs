@@ -93,7 +93,7 @@ class ReviewFormResponseForm extends Form {
 	function execute() {
 		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
 		$reviewAssignment =& $reviewAssignmentDao->getReviewAssignmentById($this->reviewId);
-		$reviewAssignmentDao->updateObject($reviewAssignment);
+		$reviewAssignmentDao->updateReviewAssignment($reviewAssignment);
 
 		$reviewFormResponseDao =& DAORegistry::getDAO('ReviewFormResponseDAO');
 
