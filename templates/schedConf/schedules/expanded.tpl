@@ -73,7 +73,7 @@
 			{/if}
 			<h3>{$startTime|date_format:$dateFormatShort}</h3>
 		{/if}
-		{if $lastStartTime|date_format:$datetimeFormatShort != $startTime|date_format:$datetimeFormatShort}
+		{if $lastStartTime|date_format:$datetimeFormatShort != $startTime|date_format:$datetimeFormatShort || ($showEndTime && $lastEndTime|date_format:$datetimeFormatShort != $endTime|date_format:$datetimeFormatShort)}
 			{if $needsUlClose}
 				</ul>
 				{assign var=needsUlClose value=0}
@@ -100,6 +100,7 @@
 			</li>
 		{/if}
 		{assign var=lastStartTime value=$startTime}
+		{assign var=lastEndTime value=$endTime}
 	{/foreach}
 {/foreach}
 {if $needsUlClose}
