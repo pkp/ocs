@@ -61,7 +61,7 @@ OCS codebase and the PKP library to be distributed with it):
 
 6. Build the OCS package and patch files:
 
-    sh tools/buildpkg.sh <VERSION> <TAG> <PATCH_DIR>
+    sh tools/buildpkg.sh <VERSION> <TAGNAME>-<BRANCHNAME> <PATCH_DIR>
     
     (<PATCH_DIR> is the path to a directory containing previous OCS release
      packages against which to build patches)

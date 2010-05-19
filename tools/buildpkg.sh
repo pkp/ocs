@@ -16,12 +16,12 @@
 GITREP=git://github.com/pkp/ocs.git
 
 if [ -z "$1" ]; then
-	echo "Usage: $0 <version> [<tag>] [<patch_dir>]";
+	echo "Usage: $0 <version> [<tagname>-<branchname>] [<patch_dir>]";
 	exit 1;
 fi
 
 VERSION=$1
-TAG=${2-official/master}
+TAG=$2
 PATCHDIR=${3-}
 PREFIX=ocs
 BUILD=$PREFIX-$VERSION
