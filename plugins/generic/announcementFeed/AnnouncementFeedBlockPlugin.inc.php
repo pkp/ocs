@@ -17,6 +17,15 @@
 import('lib.pkp.classes.plugins.BlockPlugin');
 
 class AnnouncementFeedBlockPlugin extends BlockPlugin {
+	var $parentPluginName;
+
+	/**
+	 * Constructor
+	 */
+	function AnnouncementFeedBlockPlugin($parentPluginName) {
+		$this->parentPluginName = $parentPluginName;
+	}
+
 	/**
 	 * Hide this plugin from the management interface (it's subsidiary)
 	 */
@@ -52,7 +61,7 @@ class AnnouncementFeedBlockPlugin extends BlockPlugin {
 	 * @return object
 	 */
 	function &getAnnouncementFeedPlugin() {
-		$plugin =& PluginRegistry::getPlugin('generic', 'AnnouncementFeedPlugin');
+		$plugin =& PluginRegistry::getPlugin('generic', $this->parentPluginName);
 		return $plugin;
 	}
 

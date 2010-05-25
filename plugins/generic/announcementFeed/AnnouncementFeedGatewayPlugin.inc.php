@@ -17,20 +17,20 @@
 import('classes.plugins.GatewayPlugin');
 
 class AnnouncementFeedGatewayPlugin extends GatewayPlugin {
+	var $parentPluginName;
+
+	/**
+	 * Constructor
+	 */
+	function AnnouncementFeedGatewayPlugin($parentPluginName) {
+		$this->parentPluginName = $parentPluginName;
+	}
+
 	/**
 	 * Hide this plugin from the management interface (it's subsidiary)
 	 */
 	function getHideManagement() {
 		return true;
-	}
-
-	/**
-	 * Get the name of this plugin. The name must be unique within
-	 * its category.
-	 * @return String name of plugin
-	 */
-	function getName() {
-		return 'AnnouncementFeedGatewayPlugin';
 	}
 
 	function getDisplayName() {
@@ -46,7 +46,7 @@ class AnnouncementFeedGatewayPlugin extends GatewayPlugin {
 	 * @return object
 	 */
 	function &getAnnouncementFeedPlugin() {
-		$plugin =& PluginRegistry::getPlugin('generic', 'AnnouncementFeedPlugin');
+		$plugin =& PluginRegistry::getPlugin('generic', $this->parentPluginName);
 		return $plugin;
 	}
 
