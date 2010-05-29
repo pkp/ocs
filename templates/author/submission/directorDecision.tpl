@@ -43,6 +43,13 @@
 			{/if}
 		</td>
 	</tr>
+{**
+ If files are allowed in this round:
+	1) Review mode supports files (i.e. not "abstracts alone"),
+	2) If review mode is "both sequential", we're not looking at the abstract round, and
+	3) If the current round of the submission is not the abstract round
+ *}
+{if $submission->getReviewMode() != REVIEW_MODE_ABSTRACTS_ALONE && ($submission->getReviewMode() != REVIEW_MODE_BOTH_SEQUENTIAL || $round != REVIEW_ROUND_ABSTRACT) && $submission->getCurrentRound() != REVIEW_ROUND_ABSTRACT}
 	<tr valign="top">
 		<td class="label" width="20%">
 			{translate key="submission.directorVersion"}
@@ -85,6 +92,7 @@
 
 		</td>
 	</tr>
+{/if}{* If files are allowed in this round *}
 </table>
 </div>
 <div class="separator"></div>
