@@ -270,16 +270,9 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		$this->setupTemplate(true, $paperId);
 
 		// submission notes
-		$paperNoteDao =& DAORegistry::getDAO('PaperNoteDAO');
+		$noteDao =& DAORegistry::getDAO('NoteDAO');
 
-		$rangeInfo =& Handler::getRangeInfo('submissionNotes', array($paperId));
-		while (true) {
-			$submissionNotes =& $paperNoteDao->getPaperNotes($paperId, $rangeInfo);
-			unset($rangeInfo);
-			if ($submissionNotes->isInBounds()) break;
-			$rangeInfo =& $submissionNotes->getLastPageRangeInfo();
-			unset($submissionNotes);
-		}
+		$submissionNotes =& $noteDao->getByAssoc(ASSOC_TYPE_PAPER, $paperId);
 
 		import('classes.paper.log.PaperLog');
 
@@ -1759,11 +1752,11 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		$this->setupTemplate(true, $paperId, 'history');
 		$submission =& $this->submission;
 
-		$paperNoteDao =& DAORegistry::getDAO('PaperNoteDAO');
+		$noteDao =& DAORegistry::getDAO('NoteDAO');
 
 		// submission note edit
 		if ($noteViewType == 'edit') {
-			$paperNote = $paperNoteDao->getPaperNoteById($noteId);
+			$note = $noteDao->getById($noteId);
 		}
 
 		$templateMgr =& TemplateManager::getManager();
@@ -1771,21 +1764,14 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		$templateMgr->assign('paperId', $paperId);
 		$templateMgr->assign_by_ref('submission', $submission);
 		$templateMgr->assign('noteViewType', $noteViewType);
-		if (isset($paperNote)) {
-			$templateMgr->assign_by_ref('paperNote', $paperNote);
+		if (isset($note)) {
+			$templateMgr->assign_by_ref('paperNote', $note);
 		}
 
 		if ($noteViewType == 'edit' || $noteViewType == 'add') {
 			$templateMgr->assign('showBackLink', true);
 		} else {
-			$rangeInfo =& Handler::getRangeInfo('submissionNotes', array($paperId));
-			while (true) {
-				$submissionNotes =& $paperNoteDao->getPaperNotes($paperId, $rangeInfo);
-				if ($submissionNotes->isInBounds()) break;
-				unset($rangeInfo);
-				$rangeInfo =& $submissionNotes->getLastPageRangeInfo();
-				unset($submissionNotes);
-			}
+			$submissionNotes =& $noteDao->getByAssoc(ASSOC_TYPE_PAPER, $paperId);
 			$templateMgr->assign_by_ref('submissionNotes', $submissionNotes);
 		}
 

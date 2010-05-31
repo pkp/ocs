@@ -1202,18 +1202,21 @@ import('classes.file.PaperFileManager');
 	function addSubmissionNote($paperId) {
 		import('classes.file.PaperFileManager');
 
-		$paperNoteDao =& DAORegistry::getDAO('PaperNoteDAO');
+		$noteDao =& DAORegistry::getDAO('NoteDAO');
 		$user =& Request::getUser();
+		$conference =& Request::getConference();
 
-		$paperNote = new PaperNote();
-		$paperNote->setPaperId($paperId);
-		$paperNote->setUserId($user->getId());
-		$paperNote->setDateCreated(Core::getCurrentDate());
-		$paperNote->setDateModified(Core::getCurrentDate());
-		$paperNote->setTitle(Request::getUserVar('title'));
-		$paperNote->setNote(Request::getUserVar('note'));
+		$note = $noteDao->newDataObject();
+		$note->setAssocType(ASSOC_TYPE_PAPER);
+		$note->setAssocId($paperId);
+		$note->setUserId($user->getId());
+		$note->setContextId($conference->getId());
+		$note->setDateCreated(Core::getCurrentDate());
+		$note->setDateModified(Core::getCurrentDate());
+		$note->setTitle(Request::getUserVar('title'));
+		$note->setContents(Request::getUserVar('note'));
 
-		if (!HookRegistry::call('TrackDirectorAction::addSubmissionNote', array(&$paperId, &$paperNote))) {
+		if (!HookRegistry::call('TrackDirectorAction::addSubmissionNote', array(&$paperId, &$note))) {
 			$paperFileManager = new PaperFileManager($paperId);
 			if ($paperFileManager->uploadedFileExists('upload')) {
 				if ($paperFileManager->uploadError('upload')) return false;
@@ -1222,9 +1225,9 @@ import('classes.file.PaperFileManager');
 				$fileId = 0;
 			}
 
-			$paperNote->setFileId($fileId);
+			$note->setFileId($fileId);
 
-			$paperNoteDao->insertPaperNote($paperNote);
+			$noteDao->insertObject($note);
 		}
 	}
 
@@ -1245,8 +1248,8 @@ import('classes.file.PaperFileManager');
 			$paperFileManager->deleteFile($fileId);
 		}
 
-		$paperNoteDao =& DAORegistry::getDAO('PaperNoteDAO');
-		$paperNoteDao->deletePaperNoteById($noteId);
+		$noteDao =& DAORegistry::getDAO('NoteDAO');
+		$noteDao->deleteById($noteId);
 	}
 
 	/**
@@ -1256,38 +1259,41 @@ import('classes.file.PaperFileManager');
 	function updateSubmissionNote($paperId) {
 		import('classes.file.PaperFileManager');
 
-		$paperNoteDao =& DAORegistry::getDAO('PaperNoteDAO');
+		$noteDao =& DAORegistry::getDAO('NoteDAO');
+
 		$user =& Request::getUser();
+		$conference =& Request::getConference();
 
-		$paperNote = new PaperNote();
-		$paperNote->setNoteId(Request::getUserVar('noteId'));
-		$paperNote->setPaperId($paperId);
-		$paperNote->setUserId($user->getId());
-		$paperNote->setDateModified(Core::getCurrentDate());
-		$paperNote->setTitle(Request::getUserVar('title'));
-		$paperNote->setNote(Request::getUserVar('note'));
-		$paperNote->setFileId(Request::getUserVar('fileId'));
+		$note = new Note();
+		$note->setId(Request::getUserVar('noteId'));
+		$note->setAssocType(ASSOC_TYPE_PAPER);
+		$note->setAssocId($paperId);
+		$note->setUserId($user->getId());
+		$note->setDateModified(Core::getCurrentDate());
+		$note->setContextId($conference->getId());
+		$note->setTitle(Request::getUserVar('title'));
+		$note->setContents(Request::getUserVar('note'));
+		$note->setFileId(Request::getUserVar('fileId'));
 
-		if (HookRegistry::call('TrackDirectorAction::updateSubmissionNote', array(&$paperId, &$paperNote))) return;
+		if (HookRegistry::call('SectionEditorAction::updateSubmissionNote', array(&$paperId, &$note))) return;
 
 		$paperFileManager = new PaperFileManager($paperId);
 
-		if ($paperFileManager->uploadError('upload')) return false;
 		// if there is a new file being uploaded
 		if ($paperFileManager->uploadedFileExists('upload')) {
 			// Attach the new file to the note, overwriting existing file if necessary
-			$fileId = $paperFileManager->uploadSubmissionNoteFile('upload', $paperNote->getFileId(), true);
-			$paperNote->setFileId($fileId);
+			$fileId = $paperFileManager->uploadSubmissionNoteFile('upload', $note->getFileId(), true);
+			$note->setFileId($fileId);
 
 		} else {
 			if (Request::getUserVar('removeUploadedFile')) {
 				$paperFileManager = new PaperFileManager($paperId);
-				$paperFileManager->deleteFile($paperNote->getFileId());
-				$paperNote->setFileId(0);
+				$paperFileManager->deleteFile($note->getFileId());
+				$note->setFileId(0);
 			}
 		}
 
-		$paperNoteDao->updatePaperNote($paperNote);
+		$noteDao->updateObject($note);
 	}
 
 	/**
@@ -1299,9 +1305,9 @@ import('classes.file.PaperFileManager');
 
 		import('classes.file.PaperFileManager');
 
-		$paperNoteDao =& DAORegistry::getDAO('PaperNoteDAO');
+		$noteDao =& DAORegistry::getDAO('NoteDAO');
 
-		$fileIds = $paperNoteDao->getAllPaperNoteFileIds($paperId);
+		$fileIds = $noteDao->getAllFileIds(ASSOC_TYPE_PAPER, $paperId);
 
 		if (!empty($fileIds)) {
 			$paperFileDao =& DAORegistry::getDAO('PaperFileDAO');
@@ -1312,7 +1318,7 @@ import('classes.file.PaperFileManager');
 			}			
 		}
 
-		$paperNoteDao->clearAllPaperNotes($paperId);
+		$noteDao->deleteByAssoc(ASSOC_TYPE_PAPER, $paperId);
 
 	}
 

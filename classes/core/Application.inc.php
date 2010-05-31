@@ -23,6 +23,7 @@ define('PHP_REQUIRED_VERSION', '4.2.0');
 
 define('ASSOC_TYPE_CONFERENCE',	0x0000100);
 define('ASSOC_TYPE_SCHED_CONF',	0x0000101);
+define('ASSOC_TYPE_PAPER',	0x0000102);
 
 define('CONTEXT_CONFERENCE', 1);
 define('CONTEXT_SCHED_CONF', 2);
@@ -90,6 +91,7 @@ class Application extends PKPApplication {
 			'EmailTemplateDAO' => 'classes.mail.EmailTemplateDAO',
 			'GroupDAO' => 'lib.pkp.classes.group.GroupDAO',
 			'GroupMembershipDAO' => 'lib.pkp.classes.group.GroupMembershipDAO',
+			'NoteDAO' => 'classes.note.NoteDAO',
 			'OAIDAO' => 'classes.oai.ocs.OAIDAO',
 			'PaperCommentDAO' => 'classes.paper.PaperCommentDAO',
 			'PaperDAO' => 'classes.paper.PaperDAO',
@@ -97,7 +99,7 @@ class Application extends PKPApplication {
 			'PaperEventLogDAO' => 'classes.paper.log.PaperEventLogDAO',
 			'PaperFileDAO' => 'classes.paper.PaperFileDAO',
 			'PaperGalleyDAO' => 'classes.paper.PaperGalleyDAO',
-			'PaperNoteDAO' => 'classes.paper.PaperNoteDAO',
+			'PaperNoteDAO' => 'classes.paper.PaperNoteDAO', // DEPRECATED
 			'PaperSearchDAO' => 'classes.search.PaperSearchDAO',
 			'PaperTypeDAO' => 'classes.paper.PaperTypeDAO',
 			'PaperTypeEntryDAO' => 'classes.paper.PaperTypeEntryDAO',

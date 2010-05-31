@@ -30,4 +30,10 @@
 	<sql>
 		<query>DELETE FROM versions WHERE product_type = 'plugins.generic' AND product = 'jquery'</query>
 	</sql>
+	<!-- Bug #5440: port submission notes to PKP "notes" -->
+	<sql>
+		<rename table="article_notes" to="notes" />
+		<rename table="article_notes" column="article_id" to="assoc_id" />
+		<rename table="article_notes" column="note" to="contents" />
+	</sql>
 </data>

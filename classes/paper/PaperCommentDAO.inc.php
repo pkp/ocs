@@ -162,8 +162,8 @@ class PaperCommentDAO extends DAO {
 
 	/**
 	 * inserts a new paper comment into paper_comments table
-	 * @param PaperNote object
-	 * @return Paper Note Id int
+	 * @param PaperComment object
+	 * @return Paper Comment Id int
 	 */
 	function insertPaperComment(&$paperComment) {
 		$this->update(
