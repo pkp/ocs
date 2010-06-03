@@ -19,6 +19,20 @@
 import('plugins.BlockPlugin');
 
 class FontSizeBlockPlugin extends BlockPlugin {
+	/**
+	 * Called as a plugin is registered to the registry
+	 * @param $category String Name of category plugin was registered to
+	 * @return boolean True iff plugin initialized successfully; if false,
+	 * 	the plugin will not be registered.
+	 */
+	function register($category, $path) {
+		$success = parent::register($category, $path);
+		if ($success) {
+			$this->addLocaleData();
+		}
+		return $success;
+	}
+
 
 	/**
 	 * Determine whether the plugin is enabled. Overrides parent so that
