@@ -61,7 +61,7 @@ class CreateReviewerForm extends Form {
 	/**
 	 * Display the form.
 	 */
-	function display() {
+	function display(&$args, &$request) {
 		$templateMgr =& TemplateManager::getManager();
 		$site =& Request::getSite();
 		$templateMgr->assign('paperId', $this->paperId);
@@ -74,6 +74,9 @@ class CreateReviewerForm extends Form {
 		$countryDao =& DAORegistry::getDAO('CountryDAO');
 		$countries =& $countryDao->getCountries();
 		$templateMgr->assign_by_ref('countries', $countries);
+		
+		$interestDao =& DAORegistry::getDAO('InterestsDAO');
+		$templateMgr->assign('existingInterests', implode(",", $interestDao->getAllUniqueInterests()));
 
 		parent::display();
 	}
@@ -172,6 +175,13 @@ class CreateReviewerForm extends Form {
 		$user->setDateRegistered(Core::getCurrentDate());
 		$userId = $userDao->insertUser($user);
 
+		// Add reviewer interests to interests table
+		$interestDao =& DAORegistry::getDAO('InterestsDAO');
+		$interests = Request::getUserVar('interests');
+		if (empty($interests)) $interests = array();
+		elseif (!is_array($interests)) $interests = array($interests);
+		$interestDao->insertInterests($interests, $userId, true);
+		
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
 		$schedConf =& Request::getSchedConf();
 		$role = new Role();

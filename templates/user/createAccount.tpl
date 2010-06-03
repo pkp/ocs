@@ -13,6 +13,17 @@
 {include file="common/header.tpl"}
 {/strip}
 
+{literal}
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("#interests").tagit({
+			availableTags: [{/literal}{$existingInterests}{literal}]
+			{/literal}{if $currentInterests}{literal}, currentTags: [{/literal}{$currentInterests}]{/if}{literal}
+		});
+	});
+</script>
+{/literal}
+
 <form name="createAccount" method="post" action="{url op="createAccount"}">
 
 <p>{translate key="user.account.completeForm"}</p>
@@ -201,7 +212,7 @@
 		{if $allowRegAuthor || $allowRegAuthor === null}
 			<input type="checkbox" name="createAsAuthor" id="createAsAuthor" value="1"{if $createAsAuthor} checked="checked"{/if} /> <label for="createAsAuthor">{translate key="user.role.author"}</label>: {translate key="user.account.authorDescription"}<br />
 		{/if}
-		{if $allowRegReviewer || $allowRegReviewer === null}<input type="checkbox" name="createAsReviewer" id="createAsReviewer" value="1"{if $createAsReviewer} checked="checked"{/if} /> <label for="createAsReviewer">{translate key="user.role.reviewer"}</label>: {if $existingUser}{translate key="user.account.reviewerDescriptionNoInterests"}{else}{translate key="user.account.reviewerDescription"} <input type="text" name="interests[{$formLocale|escape}]" value="{$interests[$formLocale]|escape}" size="20" maxlength="255" class="textField" />{/if}
+		{if $allowRegReviewer || $allowRegReviewer === null}<input type="checkbox" name="createAsReviewer" id="createAsReviewer" value="1"{if $createAsReviewer} checked="checked"{/if} /> <label for="createAsReviewer">{translate key="user.role.reviewer"}</label>: {if $existingUser}{translate key="user.account.reviewerDescriptionNoInterests"}{else}{translate key="user.account.reviewerDescription"} <ul id="interests"></ul>{/if}
 		{/if}
 	</td>
 </tr>

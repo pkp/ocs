@@ -585,7 +585,8 @@ current password.<br /><br />Enter your email address below to reset your passwo
 	<message key="user.account.openAccessNotificationDescription">Notified by email when a conference is made open access.</message>
 	<message key="user.account.authorDescription">Able to submit items to the conference.</message>
 	<message key="user.account.reviewerDescriptionNoInterests">Willing to conduct peer review of submissions to the conference.</message>
-	<message key="user.account.reviewerDescription">Willing to conduct peer review of submissions to the conference. Identify reviewing interests (substantive areas and research methods).</message>
+	<message key="user.account.reviewerDescription">Willing to conduct peer review of submissions to the conference.</message>
+	<message key="user.account.reviewerInterests">Identify reviewing interests (substantive areas and research methods).</message>
 	<message key="user.account.authorRegistrationMessage">Although you have a user account on this site, you are not currently a author in this conference.</message>
 
 

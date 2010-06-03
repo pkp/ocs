@@ -481,7 +481,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 	/**
 	 * Create a new user as a reviewer.
 	 */
-	function createReviewer($args) {
+	function createReviewer(&$args, &$request) {
 		$paperId = isset($args[0]) ? (int) $args[0] : 0;
 		$this->validate($paperId, TRACK_DIRECTOR_ACCESS_REVIEW);
 		$conference =& Request::getConference();
@@ -501,7 +501,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 				$newUserId = $createReviewerForm->execute();
 				Request::redirect(null, null, null, 'selectReviewer', array($paperId, $newUserId));
 			} else {
-				$createReviewerForm->display();
+				$createReviewerForm->display($args, $request);
 			}
 		} else {
 			// Display the "create user" form.
@@ -510,7 +510,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 			} else {
 				$createReviewerForm->initData();
 			}
-			$createReviewerForm->display();
+			$createReviewerForm->display($args, $request);
 		}
 
 	}

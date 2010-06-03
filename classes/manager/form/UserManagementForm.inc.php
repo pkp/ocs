@@ -116,7 +116,7 @@ class UserManagementForm extends Form {
 	/**
 	 * Initialize form data from current user profile.
 	 */
-	function initData() {
+	function initData(&$args, &$request) {
 		if (isset($this->userId)) {
 			$userDao =& DAORegistry::getDAO('UserDAO');
 			$user =& $userDao->getUser($this->userId);
@@ -139,7 +139,8 @@ class UserManagementForm extends Form {
 					'mailingAddress' => $user->getMailingAddress(),
 					'country' => $user->getCountry(),
 					'biography' => $user->getBiography(null), // Localized
-					'interests' => $user->getInterests(null), // Localized
+					'existingInterests' => implode(",", $interestDao->getAllUniqueInterests()),
+					'currentInterests' => implode(",", $interestDao->getInterests($user->getId())),
 					'gossip' => $user->getGossip(null), // Localized
 					'signature' => $user->getSignature(null), // Localized
 					'userLocales' => $user->getLocales()
@@ -240,7 +241,6 @@ class UserManagementForm extends Form {
 		$user->setMailingAddress($this->getData('mailingAddress'));
 		$user->setCountry($this->getData('country'));
 		$user->setBiography($this->getData('biography'), null); // Localized
-		$user->setInterests($this->getData('interests'), null); // Localized
 		$user->setGossip($this->getData('gossip'), null); // Localized
 		$user->setSignature($this->getData('signature'), null); // Localized
 		$user->setMustChangePassword($this->getData('mustChangePassword') ? 1 : 0);
@@ -263,10 +263,11 @@ class UserManagementForm extends Form {
 		}
 
 		if ($user->getId() != null) {
+			$userId = $user->getId();
 			if ($this->getData('password') !== '') {
 				if (isset($auth)) {
 					$auth->doSetUserPassword($user->getUsername(), $this->getData('password'));
-					$user->setPassword(Validation::encryptCredentials($user->getId(), Validation::generatePassword())); // Used for PW reset hash only
+					$user->setPassword(Validation::encryptCredentials($userId, Validation::generatePassword())); // Used for PW reset hash only
 				} else {
 					$user->setPassword(Validation::encryptCredentials($user->getUsername(), $this->getData('password')));
 				}
@@ -317,6 +318,13 @@ class UserManagementForm extends Form {
 					}
 				}
 			}
+			
+			// Add reviewer interests to interests table
+			$interestDao =& DAORegistry::getDAO('InterestsDAO');
+			$interests = Request::getUserVar('interests');
+			if (empty($interests)) $interests = array();
+			elseif (!is_array($interests)) $interests = array($interests);
+			$interestDao->insertInterests($interests, $userId, true);
 
 			if ($sendNotify) {
 				// Send welcome email to user
