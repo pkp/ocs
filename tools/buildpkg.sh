@@ -8,7 +8,7 @@
 #
 # Script to create an OCS package for distribution.
 #
-# Usage: buildpkg.sh <version> [<tag>]
+# Usage: buildpkg.sh <version> [<tag>-<branch>]
 #
 # $Id$
 #
@@ -16,12 +16,12 @@
 GITREP=git://github.com/pkp/ocs.git
 
 if [ -z "$1" ]; then
-	echo "Usage: $0 <version> [<tag>] [<patch_dir>]";
+	echo "Usage: $0 <version> [<tag>-<branch>] [<patch_dir>]";
 	exit 1;
 fi
 
 VERSION=$1
-TAG=${2-origin/master}
+TAG=$2
 PATCHDIR=${3-}
 PREFIX=ocs
 BUILD=$PREFIX-$VERSION
