@@ -205,7 +205,7 @@ class PublishedPaperDAO extends DAO {
 				COALESCE(tal.setting_value, tapl.setting_value) AS track_abbrev,
 				t.seq AS track_seq,
 				pa.seq
-			FROM	paper_authors pp,
+			FROM	authors pp,
 				papers p
 				LEFT JOIN published_papers pa ON (p.paper_id = pa.paper_id)
 				LEFT JOIN paper_settings ptl ON (p.paper_id = ptl.paper_id AND ptl.setting_name = ? AND ptl.locale = ?)
@@ -220,7 +220,7 @@ class PublishedPaperDAO extends DAO {
 					(p.status = ' . STATUS_PUBLISHED . ' AND pa.paper_id IS NOT NULL)' .
 					($previewAbstracts ? 'OR (p.review_mode <> ' . REVIEW_MODE_BOTH_SIMULTANEOUS . ' AND p.status = ' . STATUS_QUEUED . ' AND p.current_round = ' . REVIEW_ROUND_PRESENTATION . ')':'') . '
 				)
-				AND pp.paper_id = p.paper_id
+				AND pp.submission_id = p.paper_id
 				' . ($trackId?'AND p.track_id = ?' : ''). '
 				' . $searchSql . '
 			ORDER BY track_seq ASC, pa.seq ASC', $params
@@ -719,7 +719,13 @@ class PublishedPaperDAO extends DAO {
 	function getPublishedPaperAuthors($schedConfId) {
 		$authors = array();
 		$result =& $this->retrieve(
-			'SELECT aa.* FROM paper_authors aa, published_papers pa WHERE aa.paper_id = pa.paper_id AND pa.sched_conf_id = ? ORDER BY pa.sched_conf_id', $schedConfId
+			'SELECT aa.*
+			FROM	authors aa,
+				published_papers pa
+			WHERE	aa.submission_id = pa.paper_id AND
+				pa.sched_conf_id = ?
+			ORDER BY pa.sched_conf_id',
+			(int) $schedConfId
 		);
 
 		while (!$result->EOF) {

@@ -211,7 +211,7 @@ class AuthorSubmissionDAO extends DAO {
 				COALESCE(ttl.setting_value, ttpl.setting_value) AS track_title,
 				COALESCE(tal.setting_value, tapl.setting_value) AS track_abbrev
 			FROM	papers p
-				LEFT JOIN paper_authors pa ON (pa.paper_id = p.paper_id AND pa.primary_contact = 1)
+				LEFT JOIN authors pa ON (pa.submission_id = p.paper_id AND pa.primary_contact = 1)
 				LEFT JOIN paper_settings pptl ON (p.paper_id = pptl.paper_id AND pptl.setting_name = ? AND pptl.locale = ?)
 				LEFT JOIN paper_settings ptl ON (p.paper_id = ptl.paper_id AND ptl.setting_name = ? AND ptl.locale = ?)
 				LEFT JOIN tracks t ON (t.track_id = p.track_id)

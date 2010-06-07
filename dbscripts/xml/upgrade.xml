@@ -54,6 +54,7 @@
 	<schema file="lib/pkp/xml/schema/temporaryFiles.xml" />
 	<schema file="lib/pkp/xml/schema/reviews.xml" />
 	<schema file="lib/pkp/xml/schema/reviewForms.xml" />
+	<schema file="lib/pkp/xml/schema/submissions.xml" />
 
 	<upgrade minversion="2.0.0.0" maxversion="2.1.9.0">
 		<!--

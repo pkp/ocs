@@ -25,7 +25,7 @@
 	{if $author->getCountry()}<br/>{$author->getCountryLocalized()|escape}{/if}
 </p>
 
-<p>{$author->getAuthorBiography()|strip_unsafe_html|nl2br}</p>
+<p>{$author->getLocalizedBiography()|strip_unsafe_html|nl2br}</p>
 </author>
 {if !$smarty.foreach.authors.last}<div class="separator"></div>{/if}
 

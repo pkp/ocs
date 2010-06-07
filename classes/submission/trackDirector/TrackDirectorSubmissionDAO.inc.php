@@ -362,8 +362,8 @@ class TrackDirectorSubmissionDAO extends DAO {
 				COALESCE(ttl.setting_value, ttpl.setting_value) AS track_title,
 				COALESCE(tal.setting_value, tapl.setting_value) AS track_abbrev
 			FROM	papers p
-				INNER JOIN paper_authors pa ON (pa.paper_id = p.paper_id)
-				LEFT JOIN paper_authors pap ON (pap.paper_id = p.paper_id AND pap.primary_contact = 1)
+				LEFT JOIN authors pa ON (pa.submission_id = p.paper_id)
+				LEFT JOIN authors pap ON (pap.submission_id = p.paper_id AND pap.primary_contact = 1)
 				LEFT JOIN edit_assignments e ON (e.paper_id = p.paper_id)
 				LEFT JOIN users ed ON (e.director_id = ed.user_id)
 				LEFT JOIN tracks t ON (t.track_id = p.track_id)

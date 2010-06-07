@@ -114,10 +114,10 @@ class PaperReportDAO extends DAO {
 					pa.country AS country,
 					pa.url AS url,
 					COALESCE(pasl.setting_value, pas.setting_value) AS biography
-				FROM	paper_authors pa
-					LEFT JOIN papers p ON pa.paper_id=p.paper_id
-					LEFT JOIN paper_author_settings pas ON (pa.author_id=pas.author_id AND pas.setting_name = ? AND pas.locale = ?)
-					LEFT JOIN paper_author_settings pasl ON (pa.author_id=pasl.author_id AND pasl.setting_name = ? AND pasl.locale = ?)
+				FROM	authors pa
+					LEFT JOIN papers p ON (pa.submission_id = p.paper_id)
+					LEFT JOIN author_settings pas ON (pa.author_id = pas.author_id AND pas.setting_name = ? AND pas.locale = ?)
+					LEFT JOIN author_settings pasl ON (pa.author_id = pasl.author_id AND pasl.setting_name = ? AND pasl.locale = ?)
 				WHERE	p.sched_conf_id = ? AND
 					p.paper_id = ?',
 				array(
