@@ -151,17 +151,6 @@ class AuthorDAO extends PKPAuthorDAO {
 	}
 
 	/**
-	 * Retrieve the IDs of all authors for a submission.
-	 * @param $submissionId int
-	 * @return array int ordered by sequence
-	 */
-	function &getAuthorIdsByPaper($submissionId) {
-		if (Config::getVar('debug', 'deprecation_warnings')) trigger_error('Deprecated function.');
-		$returner =& $this->getAuthorIdsBySubmissionId($submissionId);
-		return $returner;
-	}
-
-	/**
 	 * Get a new data object
 	 * @return DataObject
 	 */

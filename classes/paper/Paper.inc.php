@@ -66,8 +66,8 @@ class Paper extends Submission {
 	 * @param $author Author
 	 */
 	function addAuthor($author) {
-		if ($author->getPaperId() == null) {
-			$author->setPaperId($this->getId());
+		if ($author->getSubmissionId() == null) {
+			$author->setSubmissionId($this->getId());
 		}
 		parent::addAuthor($author);
 	}
