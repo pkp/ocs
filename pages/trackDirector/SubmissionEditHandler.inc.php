@@ -850,6 +850,10 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		parent::validate();
 		$this->setupTemplate(true);
 
+		// For manager.people at top of user profile		
+		Locale::requireComponents(array(LOCALE_COMPONENT_PKP_MANAGER));
+
+
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('currentUrl', Request::url(null, null, null, Request::getRequestedPage()));
 
