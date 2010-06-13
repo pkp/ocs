@@ -27,7 +27,7 @@ class StaticPagesHandler extends Handler {
 			$conferenceId = $conference->getId();
 			$path = $args[0];
 
-			$staticPagesPlugin =& PluginRegistry::getPlugin('generic', 'StaticPagesPlugin');
+			$staticPagesPlugin =& PluginRegistry::getPlugin('generic', STATIC_PAGES_PLUGIN_NAME);
 			$templateMgr =& TemplateManager::getManager();
 
 			$staticPagesDAO =& DAORegistry::getDAO('StaticPagesDAO');
