@@ -100,7 +100,7 @@ class AnnouncementForm extends PKPAnnouncementForm {
 	 * Save announcement. 
 	 */
 	function execute() {
-		parent::execute();
+		$announcement = parent::execute();
 		$conference =& Request::getConference();
 		$conferenceId = $conference->getId();
 		
@@ -119,12 +119,12 @@ class AnnouncementForm extends PKPAnnouncementForm {
 		$schedConfId = $this->getData('schedConfId');
 		if ($schedConfId == 0) {
 			// Associated with the conference as a whole.
-			$url = Request::url(null, 'index', 'announcement', 'view', array(1));
+			$url = Request::url(null, 'index', 'announcement', 'view', array($announcement->getId()));
 		} else {
 			// Associated with a sched conf -- determine its path.
 			$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
 			$schedConf =& $schedConfDao->getSchedConf($schedConfId);
-			$url = Request::url(null, $schedConf->getPath(), 'announcement', 'view', array(1));
+			$url = Request::url(null, $schedConf->getPath(), 'announcement', 'view', array($announcement->getId()));
 		}
 
 		foreach ($notificationUsers as $userRole) {
