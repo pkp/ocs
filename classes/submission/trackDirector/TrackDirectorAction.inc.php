@@ -335,14 +335,13 @@ class TrackDirectorAction extends Action {
 						$reviewDueDate = strftime(Config::getVar('general', 'date_format_short'), strtotime($reviewAssignment->getDateDue()));
 					} else {
 						if ($schedConf->getSetting('reviewDeadlineType') == REVIEW_DEADLINE_TYPE_ABSOLUTE) {
-							$reviewDeadlineDate = strtotime($schedConf->getSetting('numWeeksPerReviewAbsolute'));
-							$daysDiff = ($reviewDeadlineDate - strtotime(date("Y-m-d"))) / (60 * 60 * 24);
-							$numWeeks = max(round($daysDiff / 7), 2);
+							$reviewDeadlineDate = $schedConf->getSetting('numWeeksPerReviewAbsolute');
+							$reviewDueDate = strftime(Config::getVar('general', 'date_format_short'), $reviewDeadlineDate);
 						} elseif ($schedConf->getSetting('reviewDeadlineType') == REVIEW_DEADLINE_TYPE_RELATIVE) {
 							$numWeeks = max((int) $schedConf->getSetting('numWeeksPerReviewRelative'), 2);
+							$reviewDueDate = strftime(Config::getVar('general', 'date_format_short'), strtotime('+' . $numWeeks . ' week'));
 						}
 						
-						$reviewDueDate = strftime(Config::getVar('general', 'date_format_short'), strtotime('+' . $numWeeks . ' week'));
 					}
 
 					$submissionUrl = Request::url(null, null, 'reviewer', 'submission', $reviewId, $reviewerAccessKeysEnabled?array('key' => 'ACCESS_KEY'):array());
