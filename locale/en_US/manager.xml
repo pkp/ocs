@@ -8,8 +8,6 @@
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
   *
   * Localization strings for the en_US (English) locale.
-  *
-  * $Id$
   -->
 
 <locale name="en_US" full_name = "English">
@@ -82,11 +80,11 @@
 	<message key="manager.people.mergeUsers.from.description">Select a user to merge into another user account (e.g., when someone has two user accounts). The account selected first will be deleted and its submissions, assignments, etc. will be attributed to the second account.</message>
 	<message key="manager.people.mergeUsers.into.description">Select a user to whom to attribute the previous users' authorships, editing assignments, etc.</message>
 	<message key="manager.people.syncUserDescription">Enrollment synchronization will enroll all users enrolled in the specified role in the specified conference into the same role in this conference. This function allows a common set of users (e.g., Reviewers) to be synchronized between conferences.</message>
-	<message key="manager.plugins.copyError">Plugin was not successfully copied</message>
+	<message key="manager.plugins.copyError">Plugin was not successfully copied. This may be a permissions problem. Please make sure that the web server is able to write to the plugins directory (including subdirectories) but don't forget to secure it again later.</message>
 	<message key="manager.plugins.delete">Delete Plugin</message>
 	<message key="manager.plugins.deleteConfirm">Are you sure you wish to delete this plugin from the system?</message>
 	<message key="manager.plugins.deleteDescription">By clicking delete, you will delete the plugin from the server's file system.</message>
-	<message key="manager.plugins.deleteError">Plugin could not be deleted from the file system</message>
+	<message key="manager.plugins.deleteError">Plugin could not be deleted from the file system. This may be a permissions problem. Please make sure that the web server is able to write to the plugins directory (including subdirectories) but don't forget to secure it again later.</message>
 	<message key="manager.plugins.deleteSuccess">Plugin successfuly deleted</message>
 	<message key="manager.plugins.description">This page allows the Conference Manager to review and potentially configure the plugins that are currently installed. Plugins are divided into categories, according to their function. The categories are listed below, and within each category, its current set of plugins.</message>
 	<message key="manager.plugins.doesNotExist">Plugin does not exist</message>
@@ -97,17 +95,18 @@
 	<message key="manager.plugins.installedVersionOlder">Plugin already exists, and is older or equal to the installed version</message>
 	<message key="manager.plugins.installFailed">Installation failed</message>
 	<message key="manager.plugins.installSuccessful">Successfully installed version</message>
+	<message key="manager.plugins.invalidPluginArchive">The uploaded plugin archive does not contain a folder that corresponds to the plugin name.</message>
 	<message key="manager.plugins.pleaseInstall">Plugin does not exist.  Please Install instead</message>
 	<message key="manager.plugins.pleaseUpgrade">Plugin already exists, but is newer than installed version.  Please upgrade instead</message>
+	<message key="manager.plugins.tarCommandNotFound">The tar command is not available. Please correctly configure it in your "confic.inc.php".</message>
 	<message key="manager.plugins.upgrade">Upgrade Plugin</message>
 	<message key="manager.plugins.upgradeDescription">This form allows you to upgrade a plugin.  Please ensure the plugin is compressed as a .tar.gz file.</message>
 	<message key="manager.plugins.upgradeFailed">Upgrade failed</message>
 	<message key="manager.plugins.upgradeSuccessful">Successfully upgraded to version</message>
 	<message key="manager.plugins.uploadError">Error uploading file</message>
 	<message key="manager.plugins.uploadPluginDir">Select plugin file</message>
-	<message key="manager.plugins.versionFileNotFound">version.xml not found in plugin directory</message>
 	<message key="manager.plugins.versionFileInvalid">version.xml in plugin directory contains invalid data.</message>
-	<message key="manager.plugins.tarCommandNotFound">The tar command is not available. Please correctly configure it in your "config.inc.php".</message>
+	<message key="manager.plugins.versionFileNotFound">version.xml not found in plugin directory</message>
 	<message key="manager.program">Program</message>
 	<message key="manager.program.form.description">When the conference program is ready to be presented to users, upload it here or enter it as plain text.</message>
 	<message key="manager.program.form.programFile">Program File</message>
