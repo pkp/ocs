@@ -55,7 +55,7 @@ class CreateReviewerForm extends Form {
 	}
 
 	function getLocaleFieldNames() {
-		return array('biography', 'interests', 'gossip');
+		return array('biography', 'interestsKeywords', 'gossip');
 	}
 
 	/**
@@ -100,7 +100,7 @@ class CreateReviewerForm extends Form {
 			'mailingAddress',
 			'country',
 			'biography',
-			'interests',
+			'interestsKeywords',
 			'gossip',
 			'userLocales',
 			'sendNotify',
@@ -139,7 +139,7 @@ class CreateReviewerForm extends Form {
 		$user->setMailingAddress($this->getData('mailingAddress'));
 		$user->setCountry($this->getData('country'));
 		$user->setBiography($this->getData('biography'), null); // Localized
-		$user->setInterests($this->getData('interests'), null); // Localized
+		$user->setInterests($this->getData('interestsKeywords'), null); // Localized
 		$user->setGossip($this->getData('gossip'), null); // Localized
 		$user->setMustChangePassword($this->getData('mustChangePassword') ? 1 : 0);
 
@@ -177,7 +177,7 @@ class CreateReviewerForm extends Form {
 
 		// Add reviewer interests to interests table
 		$interestDao =& DAORegistry::getDAO('InterestDAO');
-		$interests = Request::getUserVar('interests');
+		$interests = Request::getUserVar('interestsKeywords');
 		if (empty($interests)) $interests = array();
 		elseif (!is_array($interests)) $interests = array($interests);
 		$interestDao->insertInterests($interests, $userId, true);

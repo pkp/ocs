@@ -201,7 +201,7 @@ class UserRegistrationForm extends Form {
 			$user->setFax($this->getData('fax'));
 			$user->setMailingAddress($this->getData('mailingAddress'));
 			$user->setBiography($this->getData('biography'), null); // Localized
-			$user->setInterests($this->getData('interests'), null); // Localized
+			$user->setInterests($this->getData('interestsKeywords'), null); // Localized
 			$user->setDateRegistered(Core::getCurrentDate());
 			$user->setCountry($this->getData('country'));
 
