@@ -684,6 +684,7 @@ class ImportOCS1 {
 			// Bring in the basic entry for the paper
 			$paper = new Paper();
 			$paper->setUserId($userId);
+			$paper->setLocale(Locale::getPrimaryLocale());
 			$paper->setSchedConfId($schedConfId);
 
 			$oldTrackId = $row['primary_track_id'];

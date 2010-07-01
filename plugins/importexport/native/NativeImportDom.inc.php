@@ -245,6 +245,7 @@ class NativeImportDom {
 		$paperDao =& DAORegistry::getDAO('PaperDAO');
 
 		$paper = new Paper();
+		$paper->setLocale(Locale::getLocale()); // FIXME in bug #5543
 		$paper->setSchedConfId($schedConf->getId());
 		$paper->setUserId($user->getId());
 		$paper->setTrackId($track->getId());

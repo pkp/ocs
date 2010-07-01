@@ -63,15 +63,14 @@ class ReviewReportDAO extends DAO {
 			FROM	review_assignments r
 				LEFT JOIN papers p ON (r.submission_id = p.paper_id)
 				LEFT JOIN paper_settings psl ON (p.paper_id=psl.paper_id AND psl.locale=? AND psl.setting_name=?)
-				LEFT JOIN paper_settings pspl ON (p.paper_id=pspl.paper_id AND pspl.locale=? AND pspl.setting_name=?),
+				LEFT JOIN paper_settings pspl ON (p.paper_id=pspl.paper_id AND pspl.locale=p.locale AND pspl.setting_name=?),
 				users u
 			WHERE	u.user_id=r.reviewer_id AND p.sched_conf_id= ?
 			ORDER BY paper',
 			array(
-				$locale,
+				$locale, // Paper title (current locale)
 				'title',
-				$primaryLocale,
-				'title',
+				'title', // Paper title (paper locale)
 				$schedConfId
 			)
 		);

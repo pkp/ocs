@@ -16,4 +16,13 @@
 	<sql>
 		<query>UPDATE notes SET assoc_type = 257</query><!-- ASSOC_TYPE_ARTICLE -->
 	</sql>
+	<!-- Bug #5543: Implement multilingual specification -->
+	<sql>
+		<query driver="mysql">
+			UPDATE papers p, conferences c, sched_confs sc SET p.locale = c.primary_locale WHERE p.sched_conf_id = sc.sched_conf_id AND sc.conference_id = c.conference_id
+		</query>
+		<query driver="postgres7">
+			UPDATE papers SET locale = c.primary_locale FROM sched_confs sc, conferences c WHERE papers.sched_conf_id = sc.sched_conf_id AND sc.conference_id = c.conference_id
+		</query>
+	</sql>
 </data>

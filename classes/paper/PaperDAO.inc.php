@@ -122,6 +122,7 @@ class PaperDAO extends DAO {
 		$conferenceId = $schedConf->getConferenceId();
 
 		$paper->setId($row['paper_id']);
+		$paper->setLocale($row['locale']);
 		$paper->setUserId($row['user_id']);
 		$paper->setSchedConfId($row['sched_conf_id']);
 		$paper->setTrackId($row['track_id']);
@@ -166,36 +167,38 @@ class PaperDAO extends DAO {
 	function insertPaper(&$paper) {
 		$paper->stampModified();
 		$this->update(
-			sprintf('INSERT INTO papers
-				(user_id,
-				 sched_conf_id,
-				 track_id,
-				 language,
-				 comments_to_dr,
-				 citations,
-				 date_submitted,
-				 date_status_modified,
-				 last_modified,
-				 date_reminded,
-				 start_time,
-				 end_time,
-				 date_to_presentations,
-				 date_to_archive,
-				 status,
-				 submission_progress,
-				 review_mode,
-				 current_round,
-				 submission_file_id,
-				 revised_file_id,
-				 review_file_id,
-				 layout_file_id,
-				 director_file_id,
-				 pages,
-				 comments_status)
-				VALUES
-				(?, ?, ?, ?, ?, ?, %s, %s, %s, %s, %s, %s, %s, %s, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
+			sprintf('INSERT INTO papers (
+				locale,
+				user_id,
+				sched_conf_id,
+				track_id,
+				language,
+				comments_to_dr,
+				citations,
+				date_submitted,
+				date_status_modified,
+				last_modified,
+				date_reminded,
+				start_time,
+				end_time,
+				date_to_presentations,
+				date_to_archive,
+				status,
+				submission_progress,
+				review_mode,
+				current_round,
+				submission_file_id,
+				revised_file_id,
+				review_file_id,
+				layout_file_id,
+				director_file_id,
+				pages,
+				comments_status
+				) VALUES
+				(?, ?, ?, ?, ?, ?, ?, %s, %s, %s, %s, %s, %s, %s, %s, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
 				$this->datetimeToDB($paper->getDateSubmitted()), $this->datetimeToDB($paper->getDateStatusModified()), $this->datetimeToDB($paper->getLastModified()), $this->datetimeToDB($paper->getDateReminded()), $this->datetimeToDB($paper->getStartTime()), $this->datetimeToDB($paper->getEndTime()), $this->datetimeToDB($paper->getDateToPresentations()), $this->datetimeToDB($paper->getDateToArchive())),
 			array(
+				$paper->getLocale(),
 				$paper->getUserId(),
 				$paper->getSchedConfId(),
 				$paper->getTrackId(),

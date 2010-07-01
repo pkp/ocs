@@ -205,14 +205,14 @@ class AuthorSubmissionDAO extends DAO {
 		$locale = Locale::getLocale();
 		$result =& $this->retrieveRange(
 			'SELECT	p.*,
-				COALESCE(ptl.setting_value, pptl.setting_value) AS submission_title,
+				COALESCE(ptl.setting_value, ptpl.setting_value) AS submission_title,
 				pa.last_name AS author_name,
 				(SELECT SUM(g.views) FROM paper_galleys g WHERE (g.paper_id = p.paper_id AND g.locale = ?)) AS galley_views,
 				COALESCE(ttl.setting_value, ttpl.setting_value) AS track_title,
 				COALESCE(tal.setting_value, tapl.setting_value) AS track_abbrev
 			FROM	papers p
 				LEFT JOIN authors pa ON (pa.submission_id = p.paper_id AND pa.primary_contact = 1)
-				LEFT JOIN paper_settings pptl ON (p.paper_id = pptl.paper_id AND pptl.setting_name = ? AND pptl.locale = ?)
+				LEFT JOIN paper_settings ptpl ON (p.paper_id = ptpl.paper_id AND ptpl.setting_name = ? AND ptpl.locale = p.locale)
 				LEFT JOIN paper_settings ptl ON (p.paper_id = ptl.paper_id AND ptl.setting_name = ? AND ptl.locale = ?)
 				LEFT JOIN tracks t ON (t.track_id = p.track_id)
 				LEFT JOIN track_settings ttpl ON (t.track_id = ttpl.track_id AND ttpl.setting_name = ? AND ttpl.locale = ?)
@@ -226,18 +226,16 @@ class AuthorSubmissionDAO extends DAO {
 				)) .
 				($sortBy?(' ORDER BY ' . $this->getSortMapping($sortBy) . ' ' . $this->getDirectionMapping($sortDirection)) : ''),
 			array(
+				'cleanTitle', // Paper title (paper locale)
+				'cleanTitle', // Paper title (current locale)
 				$locale,
-				'cleanTitle',
+				'title', // Track title (primary locale)
 				$primaryLocale,
-				'cleanTitle',
+				'title', // Track title (current locale)
 				$locale,
-				'title',
+				'abbrev', // Track abbrev (primary locale)
 				$primaryLocale,
-				'title',
-				$locale,
-				'abbrev',
-				$primaryLocale,
-				'abbrev',
+				'abbrev', // Track abbrev (current locale)
 				$locale,
 				$schedConfId,
 				$authorId

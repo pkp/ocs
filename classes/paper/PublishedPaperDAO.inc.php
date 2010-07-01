@@ -164,17 +164,16 @@ class PublishedPaperDAO extends DAO {
 		$publishedPapers = array();
 
 		$params = array(
-			'title', // Paper title
-			$primaryLocale,
-			'title', // Paper title
+			'title', // Paper title (current locale)
 			$locale,
-			'title', // Track title
+			'title', // Paper title (paper locale)
+			'title', // Track title (primary locale)
 			$primaryLocale,
-			'title', // Track title
+			'title', // Track title (current locale)
 			$locale,
-			'abbrev',
+			'abbrev', // Track abbrev (primary locale)
 			$primaryLocale,
-			'abbrev',
+			'abbrev', // Track abbrev (current locale)
 			$locale,
 			$schedConfId
 		);
@@ -209,7 +208,7 @@ class PublishedPaperDAO extends DAO {
 				papers p
 				LEFT JOIN published_papers pa ON (p.paper_id = pa.paper_id)
 				LEFT JOIN paper_settings ptl ON (p.paper_id = ptl.paper_id AND ptl.setting_name = ? AND ptl.locale = ?)
-				LEFT JOIN paper_settings ptpl ON (p.paper_id = ptpl.paper_id AND ptpl.setting_name = ? AND ptpl.locale = ?)
+				LEFT JOIN paper_settings ptpl ON (p.paper_id = ptpl.paper_id AND ptpl.setting_name = ? AND ptpl.locale = p.locale)
 				LEFT JOIN tracks t ON t.track_id = p.track_id
 				LEFT JOIN track_settings ttpl ON (t.track_id = ttpl.track_id AND ttpl.setting_name = ? AND ttpl.locale = ?)
 				LEFT JOIN track_settings ttl ON (t.track_id = ttl.track_id AND ttl.setting_name = ? AND ttl.locale = ?)
@@ -461,8 +460,7 @@ class PublishedPaperDAO extends DAO {
 		$params = array(
 			'cleanTitle',
 			Locale::getLocale(),
-			'cleanTitle',
-			Locale::getPrimaryLocale()
+			'cleanTitle'
 		);
 		if ($conferenceId) $params[] = $conferenceId;
 		if ($schedConfId) $params[] = $schedConfId;
@@ -476,7 +474,7 @@ class PublishedPaperDAO extends DAO {
 				papers p
 				' . ($conferenceId?'LEFT JOIN sched_confs sc ON sc.sched_conf_id = p.sched_conf_id':'') . '
 				LEFT JOIN paper_settings ptl ON (ptl.setting_name = ? AND ptl.paper_id = p.paper_id AND ptl.locale = ?)
-				LEFT JOIN paper_settings ptpl ON (ptpl.setting_name = ? AND ptpl.paper_id = p.paper_id AND ptpl.locale = ?)
+				LEFT JOIN paper_settings ptpl ON (ptpl.setting_name = ? AND ptpl.paper_id = p.paper_id AND ptpl.locale = p.locale)
 			WHERE	pp.paper_id = p.paper_id AND
 				p.status = ' . STATUS_PUBLISHED . '
 				' . ($schedConfId?'AND p.sched_conf_id = ?':'') . '

@@ -116,6 +116,7 @@ class AuthorSubmitStep1Form extends AuthorSubmitForm {
 			$user =& Request::getUser();
 
 			$this->paper = new Paper();
+			$this->paper->setLocale(Locale::getLocale()); // FIXME in bug #5543
 			$this->paper->setUserId($user->getId());
 			$this->paper->setSchedConfId($schedConf->getId());
 			$this->paper->setTrackId($this->getData('trackId'));

@@ -181,17 +181,16 @@ class DirectorSubmissionDAO extends DAO {
 		$primaryLocale = Locale::getPrimaryLocale();
 		$locale = Locale::getLocale();
 		$params = array(
-			'title', // Track title
+			'title', // Track title (primary locale)
 			$primaryLocale,
-			'title',
+			'title', // Track title (current locale)
 			$locale,
-			'abbrev', // Track abbrev
+			'abbrev', // Track abbrev (primary locale)
 			$primaryLocale,
-			'abbrev',
+			'abbrev', // Track abbrev (current locale)
 			$locale,
-			'cleanTitle', // Paper title
-			$primaryLocale,
-			'cleanTitle', // Paper title
+			'cleanTitle', // Paper title (paper locale)
+			'cleanTitle', // Paper title (current locale)
 			$locale,
 			$schedConfId
 		);
@@ -233,7 +232,7 @@ class DirectorSubmissionDAO extends DAO {
 
 		$sql = 'SELECT DISTINCT
 				p.*,
-				COALESCE(ptl.setting_value, pptl.setting_value) AS submission_title,
+				COALESCE(ptl.setting_value, ptpl.setting_value) AS submission_title,
 				pap.last_name AS author_name,
 				t.seq, pp.seq,
 				COALESCE(ttl.setting_value, ttpl.setting_value) AS track_title,
@@ -251,8 +250,8 @@ class DirectorSubmissionDAO extends DAO {
 				LEFT JOIN track_settings ttl ON (t.track_id = ttl.track_id AND ttl.setting_name = ? AND ttl.locale = ?)
 				LEFT JOIN track_settings tapl ON (t.track_id = tapl.track_id AND tapl.setting_name = ? AND tapl.locale = ?)
 				LEFT JOIN track_settings tal ON (t.track_id = tal.track_id AND tal.setting_name = ? AND tal.locale = ?)
-				LEFT JOIN paper_settings pptl ON (p.paper_id = pptl.paper_id AND pptl.setting_name = ? AND pptl.locale = ?)
-				LEFT JOIN paper_settings ptl ON (p.paper_id = ptl.paper_id AND ptl.setting_name = ? AND pptl.locale = ?)
+				LEFT JOIN paper_settings ptpl ON (p.paper_id = ptpl.paper_id AND ptpl.setting_name = ? AND ptpl.locale = ?)
+				LEFT JOIN paper_settings ptl ON (p.paper_id = ptl.paper_id AND ptl.setting_name = ? AND ptpl.locale = ?)
 				LEFT JOIN edit_assignments ea ON (p.paper_id = ea.paper_id)
 				LEFT JOIN edit_assignments ea2 ON (p.paper_id = ea2.paper_id AND ea.edit_id < ea2.edit_id)
 			WHERE	p.sched_conf_id = ?

@@ -43,26 +43,24 @@ class PaperReportDAO extends DAO {
 				p.language AS language
 			FROM	papers p
 				LEFT JOIN published_papers pp ON (p.paper_id = pp.paper_id)
-				LEFT JOIN paper_settings pspl1 ON (pspl1.paper_id=p.paper_id AND pspl1.setting_name = ? AND pspl1.locale = ?)
+				LEFT JOIN paper_settings pspl1 ON (pspl1.paper_id=p.paper_id AND pspl1.setting_name = ? AND pspl1.locale = p.locale)
 				LEFT JOIN paper_settings psl1 ON (psl1.paper_id=p.paper_id AND psl1.setting_name = ? AND psl1.locale = ?)
-				LEFT JOIN paper_settings pspl2 ON (pspl2.paper_id=p.paper_id AND pspl2.setting_name = ? AND pspl2.locale = ?)
+				LEFT JOIN paper_settings pspl2 ON (pspl2.paper_id=p.paper_id AND pspl2.setting_name = ? AND pspl2.locale = p.locale)
 				LEFT JOIN paper_settings psl2 ON (psl2.paper_id=p.paper_id AND psl2.setting_name = ? AND psl2.locale = ?)
 				LEFT JOIN track_settings tpl ON (tpl.track_id=p.track_id AND tpl.setting_name = ? AND tpl.locale = ?)
 				LEFT JOIN track_settings tl ON (tl.track_id=p.track_id AND tl.setting_name = ? AND tl.locale = ?)
 			WHERE	p.sched_conf_id = ?
 			ORDER BY p.paper_id',
 			array(
-				'title',
-				$primaryLocale,
-				'title',
+				'title', // Paper title (paper locale)
+				'title', // Paper title (current locale)
 				$locale,
-				'abstract',
-				$primaryLocale,
-				'abstract',
+				'abstract', // Paper abstract (paper locale)
+				'abstract', // Paper abstract (current locale)
 				$locale,
-				'title',
+				'title', // Track title (primary locale)
 				$primaryLocale,
-				'title',
+				'title', // Track title (current locale)
 				$locale,
 				$schedConfId
 			)
