@@ -26,6 +26,7 @@
 {else}
 
 <form name="submit" method="post" action="{url op="saveSubmit" path=$submitStep}" onsubmit="return checkSubmissionChecklist()">
+{include file="common/formErrors.tpl"}
 {if $paperId}<input type="hidden" name="paperId" value="{$paperId|escape}" />{/if}
 
 {if count($trackOptions) == 2}{* Only one track: don't display the selection dropdown *}
@@ -48,6 +49,30 @@
 
 	<div class="separator"></div>
 {/if}{* count($trackOptions) == 2 *}
+
+{if count($supportedSubmissionLocaleNames) == 1}
+	{* There is only one supported submission locale; choose it invisibly *}
+	{foreach from=$supportedSubmissionLocaleNames item=locale}
+		<input type="hidden" name="locale" value="{$locale|escape}" />
+	{/foreach}
+{else}
+	{* There are several submission locales available; allow choice *}
+	<div id="submissionLocale">
+ 
+	<h3>{translate key="author.submit.submissionLocale"}</h3>
+	<p>{translate key="author.submit.submissionLocaleDescription"}</p>
+ 
+	<table class="data" width="100%">
+		<tr valign="top">       
+			<td width="20%" class="label">{fieldLabel name="locale" required="true" key="paper.language"}</td>
+			<td width="80%" class="value"><select name="locale" id="locale" size="1" class="selectMenu">{html_options options=$supportedSubmissionLocaleNames selected=$locale}</select></td>
+		</tr>
+	</table>
+ 
+	<div class="separator"></div>
+ 
+	</div>{* submissionLocale *}
+{/if}{* count($supportedSubmissionLocaleNames) == 1 *}
 
 {if is_array($sessionTypes) && count($sessionTypes) != 0}
 	{if count($sessionTypes) == 1}

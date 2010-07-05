@@ -49,6 +49,8 @@
 	<message key="author.submit.conferenceTrack">Conference Track</message>
 	<message key="author.submit.conferenceTrackDescription"><![CDATA[Select the appropriate track for this submission (see <a href="{$aboutUrl}" target="_new">Track Policies</a>).]]></message>
 	<message key="author.submit.selectTrack">Please select a track...</message>
+	<message key="author.submit.submissionLocale">Submission Language</message>
+	<message key="author.submit.submissionLocaleDescription">This conference accepts submissions in several languages. Choose the primary language of the submission from the pulldown below.</message>
 	<message key="author.submit.submissionChecklist">Submission Checklist</message>
 	<message key="author.submit.submissionChecklistDescription">Indicate that this submission is ready to be considered by this conference by checking off the following (comments to the director can be added below).</message>
 	<message key="author.submit.verifyChecklist">You must make sure all items in the submission checklist are satisfied before continuing.</message>
@@ -60,6 +62,7 @@
 	<message key="author.submit.form.authorRequiredFields">The first name, last name, and email address of each author is required.</message>
 	<message key="author.submit.form.trackRequired">Please select an appropriate conference track for this submission.</message>
 	<message key="author.submit.form.abstractRequired">Please enter an abstract for your submission.</message>
+	<message key="author.submit.form.localeRequired">Please select a submission language.</message>
 	<message key="author.submit.privacyStatement">Conference's Privacy Statement</message>
 	<message key="author.submit.reorderInstructions">Reorder authors to appear in the order they will be listed on publication.</message>
 	<message key="author.submit.reorder">Reorder author's name</message>

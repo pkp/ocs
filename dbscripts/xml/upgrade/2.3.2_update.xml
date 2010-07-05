@@ -24,5 +24,9 @@
 		<query driver="postgres7">
 			UPDATE papers SET locale = c.primary_locale FROM sched_confs sc, conferences c WHERE papers.sched_conf_id = sc.sched_conf_id AND sc.conference_id = c.conference_id
 		</query>
+		<!-- Use the current set of form locales as a default for supported submission locales -->
+		<query>
+			INSERT INTO conference_settings (conference_id, locale, setting_name, setting_value, setting_type) SELECT conference_id, locale, 'supportedSubmissionLocales', setting_value, setting_type FROM conference_settings WHERE setting_name = 'supportedFormLocales'
+		</query>
 	</sql>
 </data>

@@ -24,12 +24,14 @@ class AuthorSubmitStep1Form extends AuthorSubmitForm {
 	function AuthorSubmitStep1Form($paper = null) {
 		parent::AuthorSubmitForm($paper, 1);
 
+		$conference =& Request::getConference();
 		$schedConf =& Request::getSchedConf();
 
 		// Validation checks for this form
 		$this->addCheck(new FormValidator($this, 'trackId', 'required', 'author.submit.form.trackRequired'));
 		$this->addCheck(new FormValidatorCustom($this, 'trackId', 'required', 'author.submit.form.trackRequired', array(DAORegistry::getDAO('TrackDAO'), 'trackExists'), array($schedConf->getId())));
 		$this->addCheck(new FormValidatorControlledVocab($this, 'sessionType', 'optional', 'author.submit.form.sessionTypeRequired', 'paperType', ASSOC_TYPE_SCHED_CONF, $schedConf->getId()));
+		$this->addCheck(new FormValidatorInSet($this, 'locale', 'required', 'author.submit.form.localeRequired', $conference->getSetting('supportedSubmissionLocales')));
 	}
 
 	/**
@@ -62,6 +64,17 @@ class AuthorSubmitStep1Form extends AuthorSubmitForm {
 		$sessionTypes = $paperTypeDao->getPaperTypes($schedConf->getId());
 		$templateMgr->assign('sessionTypes', $sessionTypes->toArray());
 
+		// Provide available submission languages. (Convert the array
+		// of locale symbolic names xx_XX into an associative array
+		// of symbolic names => readable names.)
+		$templateMgr->assign(
+			'supportedSubmissionLocaleNames',
+			array_flip(array_intersect(
+				array_flip(Locale::getAllLocales()),
+				$conference->getSetting('supportedSubmissionLocales')
+			))
+		);
+
 		parent::display();
 	}
 
@@ -72,9 +85,29 @@ class AuthorSubmitStep1Form extends AuthorSubmitForm {
 		if (isset($this->paper)) {
 			$this->_data = array(
 				'trackId' => $this->paper->getTrackId(),
+				'locale' => $this->article->getLocale(),
 				'sessionType' => $this->paper->getData('sessionType'),
 				'commentsToDirector' => $this->paper->getCommentsToDirector()
 			);
+		} else {
+			$conference =& Request::getConference();
+			$supportedSubmissionLocales = $conference->getSetting('supportedSubmissionLocales');
+			// Try these locales in order until we find one that's
+			// supported to use as a default.
+			$tryLocales = array(
+				$this->getFormLocale(), // Current form locale
+				Locale::getLocale(), // Current UI locale
+				$conference->getPrimaryLocale(), // Conference locale
+				$supportedSubmissionLocales[array_shift(array_keys($supportedSubmissionLocales))] // Fallback: first one on the list
+			);
+			$this->_data = array();
+			foreach ($tryLocales as $locale) {
+				if (in_array($locale, $supportedSubmissionLocales)) {
+					// Found a default to use
+					$this->_data['locale'] = $locale;
+					break;
+				}
+			}
 		}
 	}
 
@@ -82,7 +115,7 @@ class AuthorSubmitStep1Form extends AuthorSubmitForm {
 	 * Assign form data to user-submitted data.
 	 */
 	function readInputData() {
-		$this->readUserVars(array('submissionChecklist', 'copyrightNoticeAgree', 'trackId', 'commentsToDirector', 'sessionType'));
+		$this->readUserVars(array('locale', 'submissionChecklist', 'copyrightNoticeAgree', 'trackId', 'commentsToDirector', 'sessionType'));
 	}
 
 	/**
@@ -116,7 +149,7 @@ class AuthorSubmitStep1Form extends AuthorSubmitForm {
 			$user =& Request::getUser();
 
 			$this->paper = new Paper();
-			$this->paper->setLocale(Locale::getLocale()); // FIXME in bug #5543
+			$this->paper->setLocale($this->getData('locale'));
 			$this->paper->setUserId($user->getId());
 			$this->paper->setSchedConfId($schedConf->getId());
 			$this->paper->setTrackId($this->getData('trackId'));
