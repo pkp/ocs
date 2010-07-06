@@ -129,6 +129,7 @@ class AuthorSubmitStep1Form extends AuthorSubmitForm {
 			$reviewMode = $this->paper->getReviewMode();
 			// Update existing paper
 			$this->paper->setTrackId($this->getData('trackId'));
+			$this->article->setLocale($this->getData('locale'));
 			$this->paper->setCommentsToDirector($this->getData('commentsToDirector'));
 			$this->paper->setData('sessionType', $this->getData('sessionType'));
 			if ($this->paper->getSubmissionProgress() <= $this->step) {
