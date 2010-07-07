@@ -1552,7 +1552,7 @@ import('classes.file.PaperFileManager');
 									$body .= Locale::translate('submission.comments.importPeerReviews.reviewerLetter', array('reviewerLetter' => chr(ord('A') + $reviewIndexes[$reviewAssignment->getId()]))) . "\n\n";
 								}
 								foreach ($reviewFormElements as $reviewFormElement) if ($reviewFormElement->getIncluded()) {
-									$body .= strip_tags($reviewFormElement->getLocalizedQuestion()) . ": \n";
+									$body .= strip_tags(String::html2utf($reviewFormElement->getLocalizedQuestion())) . ": \n";
 									$reviewFormResponse = $reviewFormResponseDao->getReviewFormResponse($reviewId, $reviewFormElement->getId());
 			
 									if ($reviewFormResponse) {
