@@ -282,6 +282,7 @@ class UserXMLParser {
 				// Send email notification to user as if user just registered themselves			
 				$mail->addRecipient($user->getEmail(), $user->getFullName());
 				$mail->sendWithParams(array(
+					'conferenceName' => $conference->getTitle($conference->getPrimaryLocale()),
 					'username' => $user->getUsername(),
 					'password' => $user->getUnencryptedPassword() ==  null ? '-' : $user->getUnencryptedPassword(),
 					'userFullName' => $user->getFullName()
