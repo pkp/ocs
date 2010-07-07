@@ -27,7 +27,8 @@ class EmailTemplateDAO extends PKPEmailTemplateDAO {
 	 * @return BaseEmailTemplate
 	 */
 	function &getBaseEmailTemplate($emailKey, $conferenceId) {
-		return parent::getBaseEmailTemplate($emailKey, ASSOC_TYPE_CONFERENCE, $conferenceId);
+		$returner =& parent::getBaseEmailTemplate($emailKey, ASSOC_TYPE_CONFERENCE, $conferenceId);
+		return $returner;
 	}
 
 	/**
@@ -37,7 +38,8 @@ class EmailTemplateDAO extends PKPEmailTemplateDAO {
 	 * @return LocaleEmailTemplate
 	 */
 	function &getLocaleEmailTemplate($emailKey, $conferenceId) {
-		return parent::getLocaleEmailTemplate($emailKey, ASSOC_TYPE_CONFERENCE, $conferenceId);
+		$returner =& parent::getLocaleEmailTemplate($emailKey, ASSOC_TYPE_CONFERENCE, $conferenceId);
+		return $returner;
 	}
 
 	/**
@@ -69,7 +71,8 @@ class EmailTemplateDAO extends PKPEmailTemplateDAO {
 	 * @return array Email templates
 	 */
 	function &getEmailTemplates($locale, $conferenceId, $rangeInfo = null) {
-		return parent::getEmailTemplates($locale, ASSOC_TYPE_CONFERENCE, $conferenceId, $rangeInfo);
+		$returner =& parent::getEmailTemplates($locale, ASSOC_TYPE_CONFERENCE, $conferenceId, $rangeInfo);
+		return $returner;
 	}
 
 	/**
