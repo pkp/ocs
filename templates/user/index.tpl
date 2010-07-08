@@ -46,7 +46,7 @@
 		<div id="schedConf-{$conference->getPath()|escape}-{$schedConf->getPath()|escape}">
 		{assign var="schedConfId" value=$schedConf->getId()}
 		{assign var="schedConfPath" value=$schedConf->getPath()}
-		<h5><a href="{url conference=$conference->getPath() schedConf=$schedConf->getPath() page="index"}">{$schedConf->getSchedConfTitle()|escape}</a></h5>
+		<h5><a href="{url conference=$conference->getPath() schedConf=$schedConf->getPath() page="index"}">{$schedConf->getLocalizedTitle()|escape}</a></h5>
 
 		<table width="100%" class="info">
 			{if $isValid.Director.$conferenceId.$schedConfId}
@@ -136,7 +136,7 @@
 			{if !empty($allSchedConfs[$conferenceId])}
 			<ul class="plain">
 			{foreach from=$allSchedConfs[$conferenceId] item=thisSchedConf key=schedConfId}
-				<li>&#187; <a href="{url conference=$thisConference->getPath() schedConf=$thisSchedConf->getPath() page="user" op="index"}">{$thisSchedConf->getSchedConfTitle()|escape}</a></li>
+				<li>&#187; <a href="{url conference=$thisConference->getPath() schedConf=$thisSchedConf->getPath() page="user" op="index"}">{$thisSchedConf->getLocalizedTitle()|escape}</a></li>
 			{/foreach}
 			</ul>
 			{/if}{* !empty($allSchedConfs[$conferenceId]) *}

@@ -94,7 +94,7 @@ class AboutHandler extends Handler {
 
 		$pageHierarchy = array();
 		if ($conference) $pageHierarchy[] = array(Request::url(null, 'index', 'index'), $conference->getConferenceTitle(), true);
-		if ($schedConf) $pageHierarchy[] = array(Request::url(null, null, 'index'), $schedConf->getSchedConfTitle(), true);
+		if ($schedConf) $pageHierarchy[] = array(Request::url(null, null, 'index'), $schedConf->getLocalizedTitle(), true);
 		if ($subclass) $pageHierarchy[] = array(Request::url(null, null, 'about'), 'about.aboutTheConference');
 		$templateMgr->assign('pageHierarchy', $pageHierarchy);
 	}

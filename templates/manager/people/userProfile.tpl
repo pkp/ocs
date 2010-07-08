@@ -123,23 +123,46 @@
 <div class="separator"></div>
 <div id="enrollment">
 <h4>{translate key="manager.people.enrollment"}</h4>
-<ul>
 {section name=role loop=$userRoles}
+	{assign var=roleConferenceId value=$userRoles[role]->getConferenceId()}
+	{assign var=roleSchedConfId value=$userRoles[role]->getSchedConfId()}
+	{if $isSiteAdmin && ($lastConferenceId != $roleConferenceId || $lastSchedConfId != $roleSchedConfId)}
+		{if $notFirstRole}
+			</ul>
+		{/if}
+		{if $roleConferenceId != $lastConferenceId}
+			<h3>{$conferenceTitles[$roleConferenceId]}</h3>
+			{assign var=notFirstRole value=0}
+		{/if}
+		{if $roleSchedConfId != $lastSchedConfId}
+			<h4>{$schedConfTitles[$roleSchedConfId]}</h4>
+			{assign var=notFirstRole value=0}
+		{/if}
+		{assign var=lastConferenceId value=$roleConferenceId}
+		{assign var=lastSchedConfId value=$roleSchedConfId}
+	{/if}
+	{if !$notFirstRole}
+		<ul>
+		{assign var=notFirstRole value=1}
+	{/if}
 	<li>
 		{translate key=$userRoles[role]->getRoleName()}
-		{if ($isConferenceManagement) ||
-				($isSchedConfManagement && $userRoles[role]->getRolePath() != 'manager')}
+		{if $userRoles[role]->getRoleId() != $smarty.const.ROLE_ID_SITE_ADMIN}
 			<a href="{url 
-					op="unEnroll"
-					path=$userRoles[role]->getRoleId()
-					userId=$user->getId()}"
-					onclick="return confirm('{translate|escape:"jsparam" key="manager.people.confirmUnenroll"}')"
-					class="action">
+				op="unEnroll"
+				path=$userRoles[role]->getRoleId()
+				userId=$user->getId()
+				conferenceId=$userRoles[role]->getConferenceId()
+				schedConfId=$userRoles[role]->getSchedConfId()}"
+				onclick="return confirm('{translate|escape:"jsparam" key="manager.people.confirmUnenroll"}')"
+				class="action">
 				{translate key="manager.people.unenroll"}
 			</a>
 		{/if}
 	</li>
 {/section}
-</ul>
+{if !$notFirstRole}
+	</ul>
+{/if}
 </div>
 {include file="common/footer.tpl"}

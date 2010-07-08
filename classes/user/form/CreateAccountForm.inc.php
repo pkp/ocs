@@ -116,7 +116,7 @@ class CreateAccountForm extends Form {
 		$templateMgr->assign('source', Request::getUserVar('source'));
 		$templateMgr->assign('pageHierarchy', array(
 			array(Request::url(null, 'index', 'index'), $conference->getConferenceTitle(), true),
-			array(Request::url(null, null, 'index'), $schedConf->getSchedConfTitle(), true)));
+			array(Request::url(null, null, 'index'), $schedConf->getLocalizedTitle(), true)));
 
 		$site =& Request::getSite();
 		$templateMgr->assign('availableLocales', $site->getSupportedLocaleNames());

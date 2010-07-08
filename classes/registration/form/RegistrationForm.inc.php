@@ -196,7 +196,7 @@ class RegistrationForm extends Form {
 		if ($this->getData('notifyPaymentEmail')) {
 			$userDao =& DAORegistry::getDAO('UserDAO');
 
-			$schedConfName = $schedConf->getSchedConfTitle();
+			$schedConfName = $schedConf->getLocalizedTitle();
 			$schedConfId = $schedConf->getId();
 			$user =& $userDao->getUser($this->getData('userId'));
 
@@ -243,7 +243,7 @@ class RegistrationForm extends Form {
 			$userDao =& DAORegistry::getDAO('UserDAO');
 			$registrationTypeDao =& DAORegistry::getDAO('RegistrationTypeDAO');
 
-			$schedConfName = $schedConf->getSchedConfTitle();
+			$schedConfName = $schedConf->getLocalizedTitle();
 			$schedConfId = $schedConf->getId();
 			$user =& $userDao->getUser($this->getData('userId'));
 			$registrationType =& $registrationTypeDao->getRegistrationType($this->getData('typeId'));

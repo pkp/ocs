@@ -135,8 +135,13 @@ function sortSearch(heading, direction) {
 		</td>
 		<td align="right">
 			{if $roleId}
-			<a href="{url op="unEnroll" path=$roleId userId=$user->getId()}" onclick="return confirm('{translate|escape:"jsparam" key="manager.people.confirmUnenroll"}')" class="action">{translate key="manager.people.unenroll"}</a>&nbsp;|
-			{/if}
+				{if $currentSchedConf}
+					{assign var=currentSchedConfId value=$currentSchedConf->getId()}
+				{else}
+					{assign var=currentSchedConfId value=0}
+				{/if}
+				<a href="{url op="unEnroll" path=$roleId userId=$user->getId() conferenceId=$currentConference->getId() schedConfId=$currentSchedConfId}" onclick="return confirm('{translate|escape:"jsparam" key="manager.people.confirmUnenroll"}')" class="action">{translate key="manager.people.unenroll"}</a>&nbsp;|
+			{/if}{* $roleId *}
 			<a href="{url op="editUser" path=$user->getId()}" class="action">{translate key="common.edit"}</a>
 			{if $thisUser->getId() != $user->getId()}
 				|&nbsp;<a href="{url page="login" op="signInAsUser" path=$user->getId()}" class="action">{translate key="manager.people.signInAs"}</a>

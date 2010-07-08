@@ -1,7 +1,7 @@
 {$body}
 
 {$conference->getConferenceTitle()}
-{$schedConf->getSchedConfTitle()}
+{$schedConf->getLocalizedTitle()}
 {translate key="schedConf.presentations"}
 {url page="schedConf" op="view" path=$schedConf->getId()}
 

@@ -17,7 +17,7 @@
     
 	<channel rdf:about="{if $schedConf}{$schedConf->getUrl()|escape}{else}{$conference->getUrl()|escape}{/if}">
 		{* required elements *}
-		<title>{if $schedConf}{$schedConf->getSchedConfTitle()|escape:"html"|strip}{else}{$conference->getConferenceTitle()|escape:"html"|strip}{/if}: {translate key="announcement.announcements"}</title>
+		<title>{if $schedConf}{$schedConf->getLocalizedTitle()|escape:"html"|strip}{else}{$conference->getConferenceTitle()|escape:"html"|strip}{/if}: {translate key="announcement.announcements"}</title>
 		<link>{if $schedConf}{$schedConf->getUrl()|escape}{else}{$conference->getUrl()|escape}{/if}</link>
 		{if $schedConf && $schedConf->getSchedConfIntroduction()}
 			{assign var="description" value=$schedConf->getSchedConfIntroduction()}
@@ -50,7 +50,7 @@
 		{if $announcement->getLocalizedDescription()}
 		<description>{$announcement->getLocalizedDescription()|strip|escape:"html"}</description>
 		{/if}
-		<dc:creator>{if $schedConf}{$schedConf->getSchedConfTitle()|escape:"html"|strip}{else}{$conference->getConferenceTitle()|escape:"html"|strip}{/if}</dc:creator>
+		<dc:creator>{if $schedConf}{$schedConf->getLocalizedTitle()|escape:"html"|strip}{else}{$conference->getConferenceTitle()|escape:"html"|strip}{/if}</dc:creator>
 		<dc:date>{$announcement->getDatePosted()|date_format:"%Y-%m-%d"}</dc:date>
 	</item>
 {/foreach}

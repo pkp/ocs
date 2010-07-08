@@ -282,18 +282,20 @@ class PeopleHandler extends ManagerHandler {
 	/**
 	 * Unenroll a user from a role.
 	 */
-	function unEnroll($args) {
-		$roleId = isset($args[0])?$args[0]:0;
+	function unEnroll($args, $request) {
+		$roleId = (int) array_shift($args);
+		$userId = (int) $request->getUserVar('userId');
+		$conferenceId = (int) $request->getUserVar('conferenceId');
+		$schedConfId = (int) $request->getUserVar('schedConfId');
+		$conference =& Request::getConference();
+
 		$this->validate();
 
-		$conference =& Request::getConference();
-		$isConferenceManager = Validation::isConferenceManager($conference->getId()) || Validation::isSiteAdmin();
-		$roleDao =& DAORegistry::getDAO('RoleDAO');
+		$isSiteAdmin = Validation::isSiteAdmin();
 
-		// Don't allow scheduled conference managers to unenroll scheduled conference managers or
-		// conference managers. FIXME is this still relevant?
-		if ($roleId != ROLE_ID_SITE_ADMIN && $isConferenceManager) {
-			$roleDao->deleteRoleByUserId(Request::getUserVar('userId'), $conference->getId(), $roleId);
+		if ($roleId != ROLE_ID_SITE_ADMIN && ($isSiteAdmin || $conferenceId == $conference->getId())) {
+			$roleDao =& DAORegistry::getDAO('RoleDAO');
+			$roleDao->deleteRoleByUserId($userId, $conferenceId, $roleId, $schedConfId);
 		}
 
 		Request::redirect(null, null, null, 'people', $roleDao->getRolePath($roleId) . 's');
@@ -708,7 +710,6 @@ class PeopleHandler extends ManagerHandler {
 			$user = $userDao->getUserByUsername($userId);
 		}
 
-
 		if ($user == null) {
 			// Non-existent user requested
 			$templateMgr->assign('pageTitle', 'manager.people');
@@ -716,12 +717,25 @@ class PeopleHandler extends ManagerHandler {
 			$templateMgr->assign('backLink', Request::url(null, null, null, 'people', 'all'));
 			$templateMgr->assign('backLinkLabel', 'manager.people.allUsers');
 			$templateMgr->display('common/error.tpl');
-
 		} else {
 			$site =& Request::getSite();
 			$conference =& Request::getConference();
+
+			$isSiteAdmin = !Validation::isSiteAdmin();
+			$templateMgr->assign('isSiteAdmin', $isSiteAdmin);
+
 			$roleDao =& DAORegistry::getDAO('RoleDAO');
 			$roles =& $roleDao->getRolesByUserId($user->getId(), $conference->getId());
+			if ($isSiteAdmin) {
+				// We'll be displaying all roles, so get ready to display
+				// conference names other than the current journal.
+				$conferenceDao =& DAORegistry::getDAO('ConferenceDAO');
+				$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
+				$conferenceTitles =& $conferenceDao->getConferenceTitles();
+				$schedConfTitles =& $schedConfDao->getSchedConfTitles();
+				$templateMgr->assign_by_ref('conferenceTitles', $conferenceTitles);
+				$templateMgr->assign_by_ref('schedConfTitles', $schedConfTitles);
+			}
 
 			$countryDao =& DAORegistry::getDAO('CountryDAO');
 			$country = null;
@@ -729,9 +743,6 @@ class PeopleHandler extends ManagerHandler {
 				$country = $countryDao->getCountry($user->getCountry());
 			}
 			$templateMgr->assign('country', $country);
-
-			$templateMgr->assign('isSchedConfManagement', Request::getSchedConf() ? true : false);
-			$templateMgr->assign('isConferenceManagement', Request::getSchedConf() ? false : true);
 
 			$templateMgr->assign_by_ref('user', $user);
 			$templateMgr->assign_by_ref('userRoles', $roles);

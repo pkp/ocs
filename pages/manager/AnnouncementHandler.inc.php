@@ -35,7 +35,7 @@ class AnnouncementHandler extends PKPAnnouncementHandler {
 			$schedConfs =& $schedConfDao->getSchedConfsByConferenceId($conference->getId());
 			$schedConfNames = array(0 => Locale::translate('common.all'));
 			foreach($schedConfs->toArray() as $schedConf) {
-				$schedConfNames[$schedConf->getId()] = $schedConf->getSchedConfTitle();
+				$schedConfNames[$schedConf->getId()] = $schedConf->getLocalizedTitle();
 			}
 
 			$templateMgr->assign_by_ref('schedConfNames', $schedConfNames);

@@ -74,7 +74,7 @@ class PaperHTMLGalley extends PaperGalley {
 		$site =& Request::getSite();
 
 		$paramArray = array(
-			'confTitle' => $schedConf->getSchedConfTitle(),
+			'confTitle' => $schedConf->getLocalizedTitle(),
 			'siteTitle' => $site->getLocalizedTitle(),
 			'currentUrl' => Request::getRequestUrl()
 		);

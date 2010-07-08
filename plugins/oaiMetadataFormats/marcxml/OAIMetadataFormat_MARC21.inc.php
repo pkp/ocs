@@ -28,7 +28,7 @@ class OAIMetadataFormat_MARC21 extends OAIMetadataFormat {
 		$galleys =& $record->getData('galleys');
 
 		// Add page information to sources
-		$source = $conference->getConferenceTitle() . '; ' . $schedConf->getSchedConfTitle();
+		$source = $conference->getConferenceTitle() . '; ' . $schedConf->getLocalizedTitle();
 		if ($paper->getPages() != '') {
 			$source .= '; ' . $paper->getPages();
 		}

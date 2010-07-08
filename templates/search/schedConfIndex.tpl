@@ -27,7 +27,7 @@
 			{foreach from=$schedConfIndex[$conferenceId] item=schedConf}
 				{assign var=introduction value=$schedConf->getLocalizedSetting('introduction')}
 				<li>
-					<h4>{$schedConf->getSchedConfTitle()|escape}</h4>
+					<h4>{$schedConf->getLocalizedTitle()|escape}</h4>
 					{if $schedConf->getSetting('startDate')}{$schedConf->getSetting('startDate')|date_format:$dateFormatLong} &ndash; {$schedConf->getSetting('endDate')|date_format:$dateFormatLong}{/if}
 					{if !empty($introduction)}
 						<p>{$introduction|nl2br}</p>

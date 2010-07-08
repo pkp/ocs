@@ -14,7 +14,7 @@
  * the conference title, but the page title doesn't.
  *}
 {strip}
-{assign var="pageCrumbTitleTranslated" value=$schedConf->getSchedConfTitle()}
+{assign var="pageCrumbTitleTranslated" value=$schedConf->getLocalizedTitle()}
 {assign var="pageTitleTranslated" value=$schedConf->getFullTitle()}
 {include file="common/header.tpl"}
 {/strip}

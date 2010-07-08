@@ -55,7 +55,7 @@
 	<td width="80%" class="value"><select name="schedConfId" id="schedConfId" class="selectMenu">
 		<option value="0">{translate key="common.all"}</option>
 		{iterate from=schedConfs item=schedConf}
-		<option value="{$schedConf->getId()}"{if $schedConfId == $schedConf->getId()} selected="selected"{/if}>{$schedConf->getSchedConfTitle()|escape}</option>
+		<option value="{$schedConf->getId()}"{if $schedConfId == $schedConf->getId()} selected="selected"{/if}>{$schedConf->getLocalizedTitle()|escape}</option>
 		{/iterate} 
 	</select></td>
 </tr>

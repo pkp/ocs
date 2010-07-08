@@ -80,7 +80,7 @@ class SchedConfHandler extends Handler {
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('pageHierarchy', array(
 			array(Request::url(null, 'index', 'index'), $conference->getConferenceTitle(), true),
-			array(Request::url(null, null, 'index'), $schedConf->getSchedConfTitle(), true)));
+			array(Request::url(null, null, 'index'), $schedConf->getLocalizedTitle(), true)));
 		SchedConfHandler::setupTemplate($conference,$schedConf);
 
 		$trackDao =& DAORegistry::getDAO('TrackDAO');
@@ -112,7 +112,7 @@ class SchedConfHandler extends Handler {
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('pageHierarchy', array(
 			array(Request::url(null, 'index', 'index'), $conference->getConferenceTitle(), true),
-			array(Request::url(null, null, 'index'), $schedConf->getSchedConfTitle(), true)));
+			array(Request::url(null, null, 'index'), $schedConf->getLocalizedTitle(), true)));
 		SchedConfHandler::setupTemplate($conference,$schedConf);
 
 		$templateMgr->assign('overview', $schedConf->getLocalizedSetting('overview'));
@@ -134,7 +134,7 @@ class SchedConfHandler extends Handler {
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('pageHierarchy', array(
 			array(Request::url(null, 'index', 'index'), $conference->getConferenceTitle(), true),
-			array(Request::url(null, null, 'index'), $schedConf->getSchedConfTitle(), true)));
+			array(Request::url(null, null, 'index'), $schedConf->getLocalizedTitle(), true)));
 		SchedConfHandler::setupTemplate($conference,$schedConf);
 		Locale::requireComponents(array(LOCALE_COMPONENT_OCS_MANAGER)); // FIXME: For timeline constants
 		import('classes.manager.form.TimelineForm');
@@ -160,7 +160,7 @@ class SchedConfHandler extends Handler {
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('pageHierarchy', array(
 			array(Request::url(null, 'index', 'index'), $conference->getConferenceTitle(), true),
-			array(Request::url(null, null, 'index'), $schedConf->getSchedConfTitle(), true)));
+			array(Request::url(null, null, 'index'), $schedConf->getLocalizedTitle(), true)));
 		SchedConfHandler::setupTemplate($conference,$schedConf);
 		Locale::requireComponents(array(LOCALE_COMPONENT_OCS_AUTHOR));
 
@@ -212,7 +212,7 @@ class SchedConfHandler extends Handler {
 
 		$templateMgr->assign('pageHierarchy', array(
 			array(Request::url(null, 'index', 'index'), $conference->getConferenceTitle(), true),
-			array(Request::url(null, null, 'index'), $schedConf->getSchedConfTitle(), true)));
+			array(Request::url(null, null, 'index'), $schedConf->getLocalizedTitle(), true)));
 		SchedConfHandler::setupTemplate($conference,$schedConf);
 
 		$user =& Request::getUser();
@@ -289,7 +289,7 @@ class SchedConfHandler extends Handler {
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('pageHierarchy', array(
 			array(Request::url(null, 'index', 'index'), $conference->getConferenceTitle(), true),
-			array(Request::url(null, null, 'index'), $schedConf->getSchedConfTitle(), true)));
+			array(Request::url(null, null, 'index'), $schedConf->getLocalizedTitle(), true)));
 		SchedConfHandler::setupTemplate($conference,$schedConf);
 
 		import('classes.registration.form.UserRegistrationForm');
@@ -344,7 +344,7 @@ class SchedConfHandler extends Handler {
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('pageHierarchy', array(
 			array(Request::url(null, 'index', 'index'), $conference->getConferenceTitle(), true),
-			array(Request::url(null, null, 'index'), $schedConf->getSchedConfTitle(), true)));
+			array(Request::url(null, null, 'index'), $schedConf->getLocalizedTitle(), true)));
 		SchedConfHandler::setupTemplate($conference,$schedConf);
 
 		$templateMgr->assign('program', $schedConf->getSetting('program', Locale::getLocale()));
@@ -369,7 +369,7 @@ class SchedConfHandler extends Handler {
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('pageHierarchy', array(
 			array(Request::url(null, 'index', 'index'), $conference->getConferenceTitle(), true),
-			array(Request::url(null, null, 'index'), $schedConf->getSchedConfTitle(), true)));
+			array(Request::url(null, null, 'index'), $schedConf->getLocalizedTitle(), true)));
 		SchedConfHandler::setupTemplate($conference, $schedConf);
 
 		$buildingDao =& DAORegistry::getDAO('BuildingDAO');
@@ -458,7 +458,7 @@ class SchedConfHandler extends Handler {
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('pageHierarchy', array(
 			array(Request::url(null, 'index', 'index'), $conference->getConferenceTitle(), true),
-			array(Request::url(null, null, 'index'), $schedConf->getSchedConfTitle(), true)));
+			array(Request::url(null, null, 'index'), $schedConf->getLocalizedTitle(), true)));
 		SchedConfHandler::setupTemplate($conference,$schedConf);
 
 		$templateMgr->assign('accommodationDescription', $schedConf->getLocalizedSetting('accommodationDescription'));
@@ -488,7 +488,7 @@ class SchedConfHandler extends Handler {
 
 		$templateMgr->assign('pageHierarchy', array(
 			array(Request::url(null, 'index', 'index'), $conference->getConferenceTitle(), true),
-			array(Request::url(null, null, 'index'), $schedConf->getSchedConfTitle(), true)));
+			array(Request::url(null, null, 'index'), $schedConf->getLocalizedTitle(), true)));
 		$templateMgr->assign('helpTopicId', 'editorial.trackDirectorsRole.presentations');
 		$templateMgr->assign_by_ref('schedConf', $schedConf);
 

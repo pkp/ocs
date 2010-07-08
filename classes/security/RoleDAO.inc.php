@@ -118,14 +118,17 @@ class RoleDAO extends DAO {
 		$roles = array();
 		$params = array();
 
-		$params[] = $userId;
-		if(isset($conferenceId)) $params[] = $conferenceId;
-		if(isset($schedConfId)) $params[] = $schedConfId;
+		$params[] = (int) $userId;
+		if(isset($conferenceId)) $params[] = (int) $conferenceId;
+		if(isset($schedConfId)) $params[] = (int) $schedConfId;
 
-		$result =& $this->retrieve('SELECT * FROM roles WHERE user_id = ?' .
-				(isset($conferenceId) ? ' AND conference_id = ?' : '') .
-				(isset($schedConfId) ? ' AND sched_conf_id = ?' : ''),
-			(count($params) == 1 ? array_shift($params) : $params));
+		$result =& $this->retrieve(
+			'SELECT * FROM roles WHERE user_id = ?' .
+			(isset($conferenceId) ? ' AND conference_id = ?' : '') .
+			(isset($schedConfId) ? ' AND sched_conf_id = ?' : '') .
+			' ORDER BY conference_id, sched_conf_id',
+			$params
+		);
 
 		while (!$result->EOF) {
 			$roles[] =& $this->_returnRoleFromRow($result->GetRowAssoc(false));

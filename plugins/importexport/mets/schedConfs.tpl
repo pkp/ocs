@@ -104,7 +104,7 @@ function SubmitIfAnyIsChecked() {
 	{iterate from=schedConfs item=schedConf}
 	<tr valign="top">
 		<td><input type="checkbox" name="SchedConfId[]" value="{$schedConf->getId()}"/></td>
-		<td>{$schedConf->getSchedConfTitle()}</td>
+		<td>{$schedConf->getLocalizedTitle()}</td>
 		<td>{$schedConf->getStartDate()|date_format:$dateFormatShort} - {$schedConf->getEndDate()|date_format:$dateFormatShort}</td>
 		<td align="right"><a href="{plugin_url path="exportschedConf"|to_array:$schedConf->getId()}" class="action">{translate key="common.export"}</a></td>
 	</tr>

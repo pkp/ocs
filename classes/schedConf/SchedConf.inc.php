@@ -243,7 +243,7 @@ class SchedConf extends DataObject {
 	 * @return string
 	 */
 	function getFullTitle() {
-		return $this->getSchedConfTitle();
+		return $this->getLocalizedTitle();
 	}
 
 

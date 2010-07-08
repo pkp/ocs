@@ -313,7 +313,7 @@ class RTHandler extends PaperHandler {
 				$email->setSubject('[' . $schedConf->getLocalizedSetting('acronym') . '] ' . strip_tags($paper->getLocalizedTitle()));
 				$email->assignParams(array(
 					'paperTitle' => strip_tags($paper->getLocalizedTitle()),
-					'schedConf' => $schedConf->getSchedConfTitle(),
+					'schedConf' => $schedConf->getLocalizedTitle(),
 					'authorName' => $primaryAuthor->getFullName(),
 					'paperUrl' => $router->url($request, null, null, 'paper', 'view', array($paper->getBestPaperId()))
 				));

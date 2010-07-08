@@ -80,7 +80,7 @@
 <div id="breadcrumb">
 	<a href="{url page="index"}" target="_parent">{translate key="navigation.home"}</a> &gt;
 	<a href="{url schedConf=""}" target="_parent">{$conference->getConferenceTitle()|escape}</a> &gt;
-	<a href="{url page="index"}" target="_parent">{$schedConf->getSchedConfTitle()|escape}</a> &gt;
+	<a href="{url page="index"}" target="_parent">{$schedConf->getLocalizedTitle()|escape}</a> &gt;
 	<a href="{url page="schedConf" op="presentations"}" target="_parent">{$track->getLocalizedTitle()|escape}</a> &gt;
 	<a href="{url page="paper" op="view" path=$paperId|to_array:$galleyId}" class="current" target="_parent">{$paper->getFirstAuthor(true)|escape}</a>
 </div>
