@@ -41,6 +41,7 @@
 	<br/>
 {/if}
 
+<div id="recipients">
 <h3>{translate key="email.recipients"}</h3>
 <table id="recipients" class="data" width="100%">
 <tr valign="top">
@@ -88,6 +89,7 @@
 	</td>
 </tr>
 </table>
+</div>{* recipients *}
 
 <br/>
 

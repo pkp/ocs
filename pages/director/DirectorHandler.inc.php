@@ -427,7 +427,7 @@ class DirectorHandler extends TrackDirectorHandler {
 					$recipients =& $registrationDao->getRegisteredUsers($schedConfId, false);
 					break;
 				case 'allAuthors':
-					$recipients =& $authorDao->getAuthorsAlphabetizedBySchedConf($schedConfId);
+					$recipients =& $authorDao->getAuthorsAlphabetizedBySchedConf($schedConfId, null, null, true);
 					break;
 				case 'allUsers':
 					$recipients =& $roleDao->getUsersBySchedConfId($schedConfId);
@@ -479,7 +479,7 @@ class DirectorHandler extends TrackDirectorHandler {
 			}
 
 			// FIXME: There should be a better way of doing this.
-			$authors =& $authorDao->getAuthorsAlphabetizedBySchedConf($schedConfId);
+			$authors =& $authorDao->getAuthorsAlphabetizedBySchedConf($schedConfId, null, null, true);
 			$authorCount = $authors->getCount();
 
 			$email->displayEditForm(
