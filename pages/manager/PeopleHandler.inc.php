@@ -721,7 +721,7 @@ class PeopleHandler extends ManagerHandler {
 			$site =& Request::getSite();
 			$conference =& Request::getConference();
 
-			$isSiteAdmin = !Validation::isSiteAdmin();
+			$isSiteAdmin = Validation::isSiteAdmin();
 			$templateMgr->assign('isSiteAdmin', $isSiteAdmin);
 
 			$roleDao =& DAORegistry::getDAO('RoleDAO');
