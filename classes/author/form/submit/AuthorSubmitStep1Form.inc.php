@@ -33,7 +33,7 @@ class AuthorSubmitStep1Form extends AuthorSubmitForm {
 		$this->addCheck(new FormValidatorControlledVocab($this, 'sessionType', 'optional', 'author.submit.form.sessionTypeRequired', 'paperType', ASSOC_TYPE_SCHED_CONF, $schedConf->getId()));
 
 		$supportedSubmissionLocales = $conference->getSetting('supportedSubmissionLocales');
-		if (!is_array($supportedSubmissionLocales) || count($supportedSubmissionLocales) < 1) $supportedSubmissionLocales = array($conference->getPrimaryLocale);
+		if (!is_array($supportedSubmissionLocales) || count($supportedSubmissionLocales) < 1) $supportedSubmissionLocales = array($conference->getPrimaryLocale());
 		$this->addCheck(new FormValidatorInSet($this, 'locale', 'required', 'author.submit.form.localeRequired', $supportedSubmissionLocales));
 	}
 
@@ -70,11 +70,13 @@ class AuthorSubmitStep1Form extends AuthorSubmitForm {
 		// Provide available submission languages. (Convert the array
 		// of locale symbolic names xx_XX into an associative array
 		// of symbolic names => readable names.)
+		$supportedSubmissionLocales = $conference->getSetting('supportedSubmissionLocales');
+		if (empty($supportedSubmissionLocales)) $supportedSubmissionLocales = array($conference->getPrimaryLocale());
 		$templateMgr->assign(
 			'supportedSubmissionLocaleNames',
 			array_flip(array_intersect(
 				array_flip(Locale::getAllLocales()),
-				$conference->getSetting('supportedSubmissionLocales')
+				$supportedSubmissionLocales
 			))
 		);
 
