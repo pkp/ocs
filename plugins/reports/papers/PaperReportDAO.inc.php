@@ -108,20 +108,26 @@ class PaperReportDAO extends DAO {
 					pa.middle_name AS mname,
 					pa.last_name AS lname,
 					pa.email AS email,
-					pa.affiliation AS affiliation,
 					pa.country AS country,
 					pa.url AS url,
-					COALESCE(pasl.setting_value, pas.setting_value) AS biography
+					COALESCE(pasl.setting_value, pas.setting_value) AS biography,
+					COALESCE(paasl.setting_value, paas.setting_value) AS affiliation
 				FROM	authors pa
 					LEFT JOIN papers p ON (pa.submission_id = p.paper_id)
 					LEFT JOIN author_settings pas ON (pa.author_id = pas.author_id AND pas.setting_name = ? AND pas.locale = ?)
 					LEFT JOIN author_settings pasl ON (pa.author_id = pasl.author_id AND pasl.setting_name = ? AND pasl.locale = ?)
+					LEFT JOIN author_settings paas ON (pa.author_id = paas.author_id AND paas.setting_name = ? AND paas.locale = ?)
+					LEFT JOIN author_settings paasl ON (pa.author_id = paasl.author_id AND paasl.setting_name = ? AND paasl.locale = ?)
 				WHERE	p.sched_conf_id = ? AND
 					p.paper_id = ?',
 				array(
 					'biography',
 					$primaryLocale,
 					'biography',
+					$locale,
+					'affiliation',
+					$primaryLocale,
+					'affiliation',
 					$locale,
 					$schedConfId,
 					$paper->getId()

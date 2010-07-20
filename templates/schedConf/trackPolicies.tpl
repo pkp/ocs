@@ -31,7 +31,7 @@
 				{translate key="user.role.directors"}
 				<ul class="plain">
 				{/if}
-				<li>{$trackDirector->getFirstName()|escape} {$trackDirector->getLastName()|escape}{if strlen($trackDirector->getAffiliation()) > 0}, {$trackDirector->getAffiliation()|escape}{/if}</li>
+				<li>{$trackDirector->getFirstName()|escape} {$trackDirector->getLastName()|escape}{if $trackDirector->getLocalizedAffiliation()}, {$trackDirector->getLocalizedAffiliation()|escape}{/if}</li>
 			{/foreach}
 		{/if}
 	{/foreach}

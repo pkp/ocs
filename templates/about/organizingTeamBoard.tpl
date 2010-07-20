@@ -21,7 +21,7 @@
 	<ol class="organizingTeam">
 		{foreach from=$members item=member}
 			{assign var=user value=$member->getUser()}
-			<li><a href="javascript:openRTWindow('{url op="organizingTeamBio" path=$user->getId()}')">{$user->getFullName()|escape}</a>{if $user->getAffiliation()}, {$user->getAffiliation()|escape}{/if}{if $user->getCountry()}{assign var=countryCode value=$user->getCountry()}{assign var=country value=$countries.$countryCode}, {$country|escape}{/if}</li>
+			<li><a href="javascript:openRTWindow('{url op="organizingTeamBio" path=$user->getId()}')">{$user->getFullName()|escape}</a>{if $user->getLocalizedAffiliation()}, {$user->getLocalizedAffiliation()|escape}{/if}{if $user->getCountry()}{assign var=countryCode value=$user->getCountry()}{assign var=country value=$countries.$countryCode}, {$country|escape}{/if}</li>
 		{/foreach}{* $members *}
 	</ol>
 {/foreach}{* $groups *}

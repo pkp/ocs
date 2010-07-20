@@ -635,7 +635,7 @@ class ImportOCS1 {
 				$user->setUsername(Core::cleanVar($row['login']));
 				$user->setFirstName(Core::cleanVar($row['first_name']));
 				$user->setLastName(Core::cleanVar($row['surname']));
-				$user->setAffiliation(Core::cleanVar($row['affiliation']));
+				$user->setAffiliation(Core::cleanVar($row['affiliation']), Locale::getLocale());
 				$user->setEmail(Core::cleanVar($row['email']));
 				$user->setUrl(Core::cleanVar($row['url']));
 				$user->setBiography(Core::cleanVar($row['bio']), Locale::getLocale());
@@ -739,7 +739,7 @@ class ImportOCS1 {
 				$author->setEmail($email);
 				$author->setFirstName($firstNames[$key]);
 				$author->setLastName($lastNames[$key]);
-				$author->setAffiliation($affiliations[$key]);
+				$author->setAffiliation($affiliations[$key], Locale::getLocale());
 				@$author->setUrl($urls[$key]); // Suppress warnings from inconsistent OCS 1.x data
 				$author->setPrimaryContact($key == 0 ? 1 : 0);
 

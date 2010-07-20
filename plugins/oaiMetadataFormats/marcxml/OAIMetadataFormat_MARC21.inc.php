@@ -37,7 +37,7 @@ class OAIMetadataFormat_MARC21 extends OAIMetadataFormat {
 		$creators = array();
 		foreach ($paper->getAuthors() as $author) {
 			$authorName = $author->getFullName(true);
-			$affiliation = $author->getAffiliation();
+			$affiliation = $author->getLocalizedAffiliation();
 			if (!empty($affiliation)) {
 				$authorName .= '; ' . $affiliation;
 			}

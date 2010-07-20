@@ -95,6 +95,7 @@ The following formats are accepted:
 
 	<message key="plugins.importexport.native.import.error.paperAuthorCompetingInterestsLocaleUnsupported">An author competing interest was provided for the author "{$authorFullName}" of the paper "{$paperTitle}" in a locale ("{$locale}") that this conference does not support.</message>
 	<message key="plugins.importexport.native.import.error.paperAuthorBiographyLocaleUnsupported">An author biography was provided for the author "{$authorFullName}" of the paper "{$paperTitle}" in a locale ("{$locale}") that this conference does not support.</message>
+	<message key="plugins.importexport.native.import.error.paperAuthorAffiliationLocaleUnsupported">An author affiliation was provided for the author "{$authorFullName}" of the paper "{$paperTitle}" in a locale ("{$locale}") that this conference does not support.</message>
 
 	<message key="plugins.importexport.native.import.error.galleyLocaleUnsupported">A galley of the paper "{$paperTitle}" was provided in a locale ("{$locale}") that this conference does not support.</message>
 

@@ -238,7 +238,7 @@ class CreateAccountForm extends Form {
 			$user->setInitials($this->getData('initials'));
 			$user->setLastName($this->getData('lastName'));
 			$user->setGender($this->getData('gender'));
-			$user->setAffiliation($this->getData('affiliation'));
+			$user->setAffiliation($this->getData('affiliation'), null); // Localized
 			$user->setSignature($this->getData('signature'), null); // Localized
 			$user->setEmail($this->getData('email'));
 			$user->setUrl($this->getData('userUrl'));

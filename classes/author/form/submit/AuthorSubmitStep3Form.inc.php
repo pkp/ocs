@@ -78,7 +78,7 @@ class AuthorSubmitStep3Form extends AuthorSubmitForm {
 						'firstName' => $authors[$i]->getFirstName(),
 						'middleName' => $authors[$i]->getMiddleName(),
 						'lastName' => $authors[$i]->getLastName(),
-						'affiliation' => $authors[$i]->getAffiliation(),
+						'affiliation' => $authors[$i]->getAffiliation(null),
 						'country' => $authors[$i]->getCountry(),
 						'email' => $authors[$i]->getEmail(),
 						'url' => $authors[$i]->getUrl(),
@@ -238,7 +238,7 @@ class AuthorSubmitStep3Form extends AuthorSubmitForm {
 				$author->setFirstName($authors[$i]['firstName']);
 				$author->setMiddleName($authors[$i]['middleName']);
 				$author->setLastName($authors[$i]['lastName']);
-				$author->setAffiliation($authors[$i]['affiliation']);
+				$author->setAffiliation($authors[$i]['affiliation'], null); // Localized
 				$author->setCountry($authors[$i]['country']);
 				$author->setEmail($authors[$i]['email']);
 				$author->setUrl($authors[$i]['url']);

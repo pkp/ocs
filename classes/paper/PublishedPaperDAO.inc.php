@@ -715,15 +715,24 @@ class PublishedPaperDAO extends DAO {
 	 * @return $authors array Author Objects
 	 */
 	function getPublishedPaperAuthors($schedConfId) {
+		$primaryLocale = Locale::getPrimaryLocale();
+		$locale = Locale::getLocale();
+
 		$authors = array();
 		$result =& $this->retrieve(
-			'SELECT aa.*
-			FROM	authors aa,
-				published_papers pa
-			WHERE	aa.submission_id = pa.paper_id AND
-				pa.sched_conf_id = ?
-			ORDER BY pa.sched_conf_id',
-			(int) $schedConfId
+			'SELECT	aa.*,
+				aspl.setting_value AS affiliation_pl,
+				asl.setting_value AS affiliation_l
+			FROM	authors aa
+				LEFT JOIN published_papers pa ON (pa.paper_id = aa.submission_id)
+				LEFT JOIN author_settings aspl ON (aspl.author_id = aa.author_id AND aspl.setting_name = ? AND aspl.locale = ?)
+				LEFT JOIN author_settings asl ON (asl.author_id = aa.author_id AND asl.setting_name = ? AND asl.locale = ?)
+			WHERE	pa.sched_conf_id = ?',
+			array(
+				'affiliation', $primaryLocale,
+				'affiliation', $locale,
+				(int) $schedConfId
+			)
 		);
 
 		while (!$result->EOF) {
@@ -734,7 +743,8 @@ class PublishedPaperDAO extends DAO {
 			$author->setFirstName($row['first_name']);
 			$author->setMiddleName($row['middle_name']);
 			$author->setLastName($row['last_name']);
-			$author->setAffiliation($row['affiliation']);
+			$author->setAffiliation($row['affiliation_pl'], $primaryLocale);
+			$author->setAffiliation($row['affiliation_l'], $locale);
 			$author->setEmail($row['email']);
 			$author->setBiography($row['biography']);
 			$author->setPrimaryContact($row['primary_contact']);
