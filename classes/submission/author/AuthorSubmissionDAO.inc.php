@@ -226,6 +226,7 @@ class AuthorSubmissionDAO extends DAO {
 				)) .
 				($sortBy?(' ORDER BY ' . $this->getSortMapping($sortBy) . ' ' . $this->getDirectionMapping($sortDirection)) : ''),
 			array(
+				$locale,
 				'cleanTitle', // Paper title (paper locale)
 				'cleanTitle', // Paper title (current locale)
 				$locale,
