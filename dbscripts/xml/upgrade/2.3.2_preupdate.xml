@@ -33,8 +33,8 @@
 	<!-- Bug #5440: port submission notes to PKP "notes" -->
 	<sql>
 		<rename table="article_notes" to="notes" />
-		<rename table="article_notes" column="article_id" to="assoc_id" />
-		<rename table="article_notes" column="note" to="contents" />
+		<rename table="notes" column="article_id" to="assoc_id" />
+		<rename table="notes" column="note" to="contents" />
 	</sql>
 	<!-- Bug #5490: port authors into pkp-lib -->
 	<sql>
@@ -45,8 +45,18 @@
 	<!-- Bug #5550: make affiliations localized -->
 	<sql>
 		<query>
+			<!-- Make the process idempotent -->
+			DELETE FROM author_settings WHERE setting_name = 'affiliation'
+		</query>
+		<query>
 			INSERT INTO author_settings (author_id, setting_name, setting_type, setting_value, locale) SELECT aa.author_id, 'affiliation', 'string', aa.affiliation, c.primary_locale FROM authors aa, papers a, sched_confs sc, conferences c WHERE aa.submission_id = a.paper_id AND a.sched_conf_id = sc.sched_conf_id AND sc.conference_id = c.conference_id
 		</query>
+		<query>
+			<!-- Make the process idempotent -->
+			DELETE FROM user_settings WHERE setting_name = 'affiliation'
+		</query>
+		<query>
+			INSERT INTO user_settings (user_id, setting_name, setting_type, setting_value, locale) SELECT u.user_id, 'affiliation', 'string', u.affiliation, s.primary_locale FROM users u, site s
+		</query>
 	</sql>
-
 </data>
