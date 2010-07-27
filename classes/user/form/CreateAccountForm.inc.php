@@ -63,6 +63,7 @@ class CreateAccountForm extends Form {
 			$this->addCheck(new FormValidator($this, 'lastName', 'required', 'user.profile.form.lastNameRequired'));
 			$this->addCheck(new FormValidatorUrl($this, 'userUrl', 'optional', 'user.profile.form.urlInvalid'));
 			$this->addCheck(new FormValidatorEmail($this, 'email', 'required', 'user.profile.form.emailRequired'));
++			$this->addCheck(new FormValidatorCustom($this, 'email', 'required', 'user.register.form.emailsDoNotMatch', create_function('$email,$form', 'return $email == $form->getData(\'confirmEmail\');'), array(&$this)));
 			$this->addCheck(new FormValidator($this, 'affiliation', 'required', 'user.profile.form.affiliationRequired'));
 			$this->addCheck(new FormValidatorCustom($this, 'email', 'required', 'user.account.form.emailExists', array(DAORegistry::getDAO('UserDAO'), 'userExistsByEmail'), array(), true));
 			if ($this->captchaEnabled) {
@@ -152,7 +153,7 @@ class CreateAccountForm extends Form {
 			'username', 'password', 'password2',
 			'salutation', 'firstName', 'middleName', 'lastName',
 			'gender', 'initials', 'country',
-			'affiliation', 'email', 'userUrl', 'phone', 'fax', 'signature',
+			'affiliation', 'email', 'confirmEmail', 'userUrl', 'phone', 'fax', 'signature',
 			'mailingAddress', 'biography', 'interestsKeywords', 'userLocales',
 			'createAsReader', 'openAccessNotification', 'createAsAuthor',
 			'createAsReviewer', 'existingUser', 'sendPassword'
