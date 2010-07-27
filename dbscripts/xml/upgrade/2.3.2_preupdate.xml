@@ -32,7 +32,7 @@
 	</sql>
 	<!-- Bug #5440: port submission notes to PKP "notes" -->
 	<sql>
-		<rename table="article_notes" to="notes" />
+		<rename table="paper_notes" to="notes" />
 		<rename table="notes" column="article_id" to="assoc_id" />
 		<rename table="notes" column="note" to="contents" />
 	</sql>
