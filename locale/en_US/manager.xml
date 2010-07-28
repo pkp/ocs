@@ -25,6 +25,7 @@
 	<message key="manager.emails.confirmResetAll">Are you sure you want to reset all email templates in this conference? You will lose any customizations you have made.</message>
 	<message key="manager.files.note">Note: The Files Browser is an advanced feature that allows the files and directories associated with a conference to be viewed and manipulated directly.</message>
 	<message key="manager.groups">Organizing Team</message>
+	<message key="manager.groups.publishEmails">Publish member email addresses</message>
 	<message key="manager.groups.create">Create Organizing Team Title</message>
 	<message key="manager.groups.disableBoard">The system will generate a list of people under their assigned roles (Conference Director, Reviewer, etc.)</message>
 	<message key="manager.groups.enableBoard">The Conference Manager will create organizing team titles, and add the appropriate people under each title.</message>

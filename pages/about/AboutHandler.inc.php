@@ -257,9 +257,12 @@ class AboutHandler extends Handler {
 					$user =& $potentialUser;
 			}
 
+			// Currently we always publish emails in this mode.
+			$publishEmail = true;
 		} else {
 			$groupDao =& DAORegistry::getDAO('GroupDAO');
 			$groupMembershipDao =& DAORegistry::getDAO('GroupMembershipDAO');
+			$publishEmail = false;
 
 			$allGroups =& $groupDao->getGroups(ASSOC_TYPE_SCHED_CONF, $schedConfId);
 			while ($group =& $allGroups->next()) {
@@ -268,8 +271,10 @@ class AboutHandler extends Handler {
 				while ($membership =& $allMemberships->next()) {
 					if (!$membership->getAboutDisplayed()) continue;
 					$potentialUser =& $membership->getUser();
-					if ($potentialUser->getId() == $userId)
+					if ($potentialUser->getId() == $userId) {
+						if ($group->getPublishEmail()) $publishEmail = true;
 						$user = $potentialUser;
+					}
 				}
 			}
 		}
@@ -283,6 +288,7 @@ class AboutHandler extends Handler {
 		}
 
 		$templateMgr->assign_by_ref('user', $user);
+		$templateMgr->assign_by_ref('publishEmail', $publishEmail);
 		$templateMgr->display('about/organizingTeamBio.tpl');
 	}
 

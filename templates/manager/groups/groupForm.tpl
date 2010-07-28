@@ -46,6 +46,13 @@
 		<td width="20%" class="label">{fieldLabel name="title" required="true" key="manager.groups.title"}</td>
 		<td width="80%" class="value"><input type="text" name="title[{$formLocale|escape}]" value="{$title[$formLocale]|escape}" size="35" maxlength="80" id="title" class="textField" /></td>
 	</tr>
+	<tr valign="top">
+		<td width="20%" class="label">&nbsp;</td>
+		<td width="80%" class="value">
+			<input type="checkbox" name="publishEmail" value="1" {if $publishEmail}checked="checked" {/if} id="publishEmail" />&nbsp;
+			{fieldLabel name="publishEmail" key="manager.groups.publishEmails"}
+		</td>
+	</tr>
 </table>
 
 <p><input type="submit" value="{translate key="common.save"}" class="button defaultButton" /> <input type="button" value="{translate key="common.cancel"}" class="button" onclick="document.location.href='{url op="groups"}'" /></p>
