@@ -171,6 +171,10 @@ class ConferenceSiteSettingsForm extends Form {
 		$conference->updateSetting('title', $this->getData('title'), 'string', true);
 		$conference->updateSetting('description', $this->getData('description'), 'string', true);
 
+
+		// Make sure all plugins are loaded for settings preload
+		PluginRegistry::loadAllPlugins();
+
 		HookRegistry::call('ConferenceSiteSettingsForm::execute', array(&$this, &$conference));
 	}
 }
