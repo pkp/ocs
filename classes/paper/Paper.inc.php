@@ -18,8 +18,6 @@
  *
  */
 
-// $Id$
-
 
 // Submission status constants
 define('STATUS_ARCHIVED', 0);
@@ -59,6 +57,13 @@ class Paper extends Submission {
 	 */
 	function Paper() {
 		parent::Submission();
+	}
+
+	/**
+	 * @see Submission::getAssocType()
+	 */
+	function getAssocType() {
+		return ASSOC_TYPE_PAPER;
 	}
 
 	/**
