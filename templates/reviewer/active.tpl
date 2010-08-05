@@ -14,7 +14,7 @@
 	<tr><td colspan="6" class="headseparator">&nbsp;</td></tr>
 	<tr class="heading" valign="bottom">
 		<td width="7%">{translate key="common.id"}</td>
-		<td width="7%"><span class="disabled">MM-DD</span><br />{translate key="common.assigned"}</td>
+		<td width="7%"><span class="disabled">{translate key="submission.date.mmdd"}</span><br />{translate key="common.assigned"}</td>
 		<td width="8%">{translate key="submissions.track"}</td>
 		<td width="60%">{translate key="paper.title"}</td>
 		<td width="8%">{translate key="submission.due"}</td>
