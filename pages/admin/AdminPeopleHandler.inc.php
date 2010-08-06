@@ -109,11 +109,6 @@ class AdminPeopleHandler extends AdminHandler {
 		$templateMgr->assign('search', $search);
 		$templateMgr->assign('searchInitial', Request::getUserVar('searchInitial'));
 
-		if ($roleId == ROLE_ID_REVIEWER) {
-			$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
-			$templateMgr->assign('rateReviewerOnQuality', $conference->getSetting('rateReviewerOnQuality'));
-			$templateMgr->assign('qualityRatings', $conference->getSetting('rateReviewerOnQuality') ? $reviewAssignmentDao->getAverageQualityRatings($conference->getId()) : null);
-		}
 		$templateMgr->assign('fieldOptions', Array(
 			USER_FIELD_FIRSTNAME => 'user.firstName',
 			USER_FIELD_LASTNAME => 'user.lastName',
