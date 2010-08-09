@@ -26,25 +26,26 @@ class GatewayHandler extends Handler {
 		parent::Handler();
 	}
 
-	function index() {
-		Request::redirect(null, 'index');
+	function index($args, $request) {
+		$request->redirect(null, null, 'index');
 	}
 
 	/**
 	 * Handle requests for gateway plugins.
 	 */
-	function plugin($args) {
+	function plugin($args, $request) {
 		$this->validate();
 		$pluginName = array_shift($args);
 
 		$plugins =& PluginRegistry::loadCategory('gateways');
 		if (isset($pluginName) && isset($plugins[$pluginName])) {
 			$plugin =& $plugins[$pluginName];
-			if (!$plugin->fetch($args)) {
-				Request::redirect(null, 'index');
+			if (!$plugin->fetch($args, $request)) {
+				$request->redirect(null, null, 'index');
 			}
+		} else {
+			$request->redirect(null, null, 'index');
 		}
-		else Request::redirect(null, 'index');
 	}
 }
 
