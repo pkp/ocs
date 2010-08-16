@@ -9,10 +9,8 @@
  * @class AnnouncementHandler
  * @ingroup pages_announcement
  *
- * @brief Handle requests for public announcement functions. 
+ * @brief Handle requests for public announcement functions.
  */
-
-//$Id$
 
 
 import('lib.pkp.pages.announcement.PKPAnnouncementHandler');
@@ -28,11 +26,17 @@ class AnnouncementHandler extends PKPAnnouncementHandler {
 		$this->addCheck(new HandlerValidatorConference($this));
 	}
 
+	/**
+	 * @see PKPAnnouncementHandler::_getAnnouncementsEnabled()
+	 */
 	function _getAnnouncementsEnabled() {
 		$conference =& Request::getConference();
 		return $conference->getSetting('enableAnnouncements');
 	}
 
+	/**
+	 * @see PKPAnnouncementHandler::_getAnnouncements()
+	 */
 	function &_getAnnouncements($rangeInfo = null) {
 		$conference =& Request::getConference();
 		$schedConf =& Request::getSchedConf();
@@ -40,26 +44,30 @@ class AnnouncementHandler extends PKPAnnouncementHandler {
 		$announcementDao =& DAORegistry::getDAO('AnnouncementDAO');
 		if($schedConf) {
 			$announcements =& $announcementDao->getAnnouncementsNotExpiredByConferenceId($conference->getId(), $schedConf->getId(), $rangeInfo);
-			$announcementsIntroduction = $schedConf->getLocalizedSetting('announcementsIntroduction');
 		} else {
 			$announcements =& $announcementDao->getAnnouncementsNotExpiredByAssocId(ASSOC_TYPE_CONFERENCE, $conference->getId(), $rangeInfo);
-			$announcementsIntroduction = $conference->getLocalizedSetting('announcementsIntroduction');
 		}
 
 		return $announcements;
 	}
-	
+
+	/**
+	 * @see PKPAnnouncementHandler::_getAnnouncementsIntroduction()
+	 */
 	function _getAnnouncementsIntroduction() {
 		$conference =& Request::getConference();
 		$schedConf =& Request::getSchedConf();
-		
+
 		if($schedConf) {
 			return $schedConf->getLocalizedSetting('announcementsIntroduction');
 		} else {
 			return $conference->getLocalizedSetting('announcementsIntroduction');
 		}
 	}
-		
+
+	/**
+	 * @see PKPAnnouncementHandler::_announcementIsValid()
+	 */
 	function _announcementIsValid($announcementId) {
 		if ($announcementId == null) return false;
 
@@ -72,7 +80,7 @@ class AnnouncementHandler extends PKPAnnouncementHandler {
 					$announcementDao->getAnnouncementAssocId($announcementId) == $conference->getId()
 				);
 			case ASSOC_TYPE_SCHED_CONF:
-				$schedConf =& Request::getSchedConf(); 
+				$schedConf =& Request::getSchedConf();
 				return (
 					$schedConf &&
 					$announcementDao->getAnnouncementAssocId($announcementId) == $schedConf->getId()
