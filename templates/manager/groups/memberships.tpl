@@ -1,3 +1,5 @@
+<!-- templates/manager/groups/memberships.tpl -->
+
 {**
  * memberships.tpl
  *
@@ -70,3 +72,6 @@ $(document).ready(function() { setupTableDND("#dragTable", {/literal}"{url op=mo
 </div>
 
 {include file="common/footer.tpl"}
+
+<!-- / templates/manager/groups/memberships.tpl -->
+

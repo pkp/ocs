@@ -1,3 +1,5 @@
+<!-- templates/trackDirector/selectReviewer.tpl -->
+
 {**
  * selectReviewer.tpl
  *
@@ -121,3 +123,6 @@ function sortSearch(heading, direction) {
 <p>{translate key="director.paper.selectReviewerNotes"}</p>
 </div>
 {include file="common/footer.tpl"}
+
+<!-- / templates/trackDirector/selectReviewer.tpl -->
+

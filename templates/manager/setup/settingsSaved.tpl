@@ -1,3 +1,5 @@
+<!-- templates/manager/setup/settingsSaved.tpl -->
+
 {**
  * stepSaved.tpl
  *
@@ -38,3 +40,6 @@
 {/if}
 
 {include file="common/footer.tpl"}
+
+<!-- / templates/manager/setup/settingsSaved.tpl -->
+

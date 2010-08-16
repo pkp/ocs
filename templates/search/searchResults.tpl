@@ -1,3 +1,5 @@
+<!-- templates/search/searchResults.tpl -->
+
 {**
  * searchResults.tpl
  *
@@ -119,3 +121,6 @@ function ensureKeyword() {
 {translate key="search.syntaxInstructions"}
 </div>
 {include file="common/footer.tpl"}
+
+<!-- / templates/search/searchResults.tpl -->
+

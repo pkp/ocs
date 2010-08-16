@@ -1,3 +1,5 @@
+<!-- templates/author/submit/complete.tpl -->
+
 {**
  * complete.tpl
  *
@@ -18,3 +20,6 @@
 <p>&#187; <a href="{url page="author"}">{translate key="author.track"}</a></p>
 </div>
 {include file="common/footer.tpl"}
+
+<!-- / templates/author/submit/complete.tpl -->
+

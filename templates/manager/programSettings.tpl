@@ -1,3 +1,5 @@
+<!-- templates/manager/programSettings.tpl -->
+
 {**
  * programSettings.tpl
  *
@@ -71,3 +73,6 @@
 </form>
 
 {include file="common/footer.tpl"}
+
+<!-- / templates/manager/programSettings.tpl -->
+

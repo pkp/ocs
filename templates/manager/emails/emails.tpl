@@ -1,3 +1,5 @@
+<!-- templates/manager/emails/emails.tpl -->
+
 {**
  * emails.tpl
  *
@@ -71,3 +73,6 @@
 <a href="{url op="resetAllEmails"}" onclick="return confirm('{translate|escape:"jsparam" key="manager.emails.confirmResetAll"}')" class="action">{translate key="manager.emails.resetAll"}</a>
 
 {include file="common/footer.tpl"}
+
+<!-- / templates/manager/emails/emails.tpl -->
+

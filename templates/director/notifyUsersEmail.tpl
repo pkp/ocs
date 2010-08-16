@@ -1,3 +1,5 @@
+<!-- templates/director/notifyUsersEmail.tpl -->
+
 {$body}
 
 {$conference->getConferenceTitle()}
@@ -18,3 +20,6 @@
 
 {/foreach}
 {literal}{$templateSignature}{/literal}
+
+<!-- / templates/director/notifyUsersEmail.tpl -->
+

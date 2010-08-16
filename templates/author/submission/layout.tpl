@@ -1,3 +1,5 @@
+<!-- templates/author/submission/layout.tpl -->
+
 {**
  * layout.tpl
  *
@@ -53,3 +55,6 @@
 	</tr>
 </table>
 </div>	
+
+<!-- / templates/author/submission/layout.tpl -->
+

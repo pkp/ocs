@@ -1,3 +1,5 @@
+<!-- templates/paper/dublincore.tpl -->
+
 {**
  * dublincore.tpl
  *
@@ -70,3 +72,6 @@
 {/foreach}
 	<meta name="DC.Type" content="Text.Proceedings"/>
 	<meta name="DC.Type.paperType" content="{$paper->getTrackTitle()|strip_tags|escape}"/>	
+
+<!-- / templates/paper/dublincore.tpl -->
+

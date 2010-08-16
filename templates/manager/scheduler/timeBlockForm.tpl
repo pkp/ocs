@@ -1,3 +1,5 @@
+<!-- templates/manager/scheduler/timeBlockForm.tpl -->
+
 {**
  * templates/manager/scheduler/timeBlockForm.tpl
  *
@@ -65,3 +67,6 @@
 <p><span class="formRequired">{translate key="common.requiredField"}</span></p>
 
 {include file="common/footer.tpl"}
+
+<!-- / templates/manager/scheduler/timeBlockForm.tpl -->
+

@@ -1,3 +1,5 @@
+<!-- templates/manager/reviewForms/reviewFormElements.tpl -->
+
 {**
  * reviewFormElements.tpl
  *
@@ -87,3 +89,6 @@ function toggleChecked() {
 <a class="action" href="{url op="createReviewFormElement" path=$reviewFormId}">{translate key="manager.reviewFormElements.create"}</a>
 </div>
 {include file="common/footer.tpl"}
+
+<!-- / templates/manager/reviewForms/reviewFormElements.tpl -->
+

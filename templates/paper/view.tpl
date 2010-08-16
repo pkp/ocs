@@ -1,3 +1,5 @@
+<!-- templates/paper/view.tpl -->
+
 {**
  * view.tpl
  *
@@ -57,3 +59,6 @@
 </noframes>
 </frameset>
 </html>
+
+<!-- / templates/paper/view.tpl -->
+

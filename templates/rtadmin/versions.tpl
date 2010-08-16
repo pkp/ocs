@@ -1,3 +1,5 @@
+<!-- templates/rtadmin/versions.tpl -->
+
 {**
  * versions.tpl
  *
@@ -60,3 +62,6 @@
 </div>
 
 {include file="common/footer.tpl"}
+
+<!-- / templates/rtadmin/versions.tpl -->
+

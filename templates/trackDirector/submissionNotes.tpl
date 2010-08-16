@@ -1,3 +1,5 @@
+<!-- templates/trackDirector/submissionNotes.tpl -->
+
 {**
  * submissionNotes.tpl
  *
@@ -178,3 +180,6 @@
 {/if}
 </div>
 {include file="common/footer.tpl"}
+
+<!-- / templates/trackDirector/submissionNotes.tpl -->
+

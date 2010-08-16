@@ -1,3 +1,5 @@
+<!-- templates/help/view.tpl -->
+
 {**
  * view.tpl
  *
@@ -12,3 +14,6 @@
 {translate|assign:applicationHelpTranslated key="help.ocsHelp"}
 {include file="core:help/view.tpl"}
 {/strip}
+
+<!-- / templates/help/view.tpl -->
+

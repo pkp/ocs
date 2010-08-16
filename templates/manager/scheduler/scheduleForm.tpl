@@ -1,3 +1,5 @@
+<!-- templates/manager/scheduler/scheduleForm.tpl -->
+
 {**
  * scheduleForm.tpl
  *
@@ -242,3 +244,6 @@ function sortBy(sortName) {
 <p><span class="formRequired">{translate key="common.requiredField"}</span></p>
 
 {include file="common/footer.tpl"}
+
+<!-- / templates/manager/scheduler/scheduleForm.tpl -->
+

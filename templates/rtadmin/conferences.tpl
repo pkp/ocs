@@ -1,3 +1,5 @@
+<!-- templates/rtadmin/conferences.tpl -->
+
 {**
  * conferences.tpl
  *
@@ -22,3 +24,6 @@
 </ul>
 </div>
 {include file="common/footer.tpl"}
+
+<!-- / templates/rtadmin/conferences.tpl -->
+

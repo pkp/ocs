@@ -1,3 +1,5 @@
+<!-- templates/information/information.tpl -->
+
 {**
  * information.tpl
  *
@@ -23,3 +25,6 @@
 {/if}
 
 {include file="common/footer.tpl"}
+
+<!-- / templates/information/information.tpl -->
+

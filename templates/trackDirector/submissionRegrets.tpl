@@ -1,3 +1,5 @@
+<!-- templates/trackDirector/submissionRegrets.tpl -->
+
 {**
  * submissionRegrets.tpl
  *
@@ -38,3 +40,6 @@
 {include file="trackDirector/submission/rounds.tpl"}
 
 {include file="common/footer.tpl"}
+
+<!-- / templates/trackDirector/submissionRegrets.tpl -->
+

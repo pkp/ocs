@@ -1,3 +1,5 @@
+<!-- templates/trackDirector/submission/status.tpl -->
+
 {**
  * status.tpl
  *
@@ -54,3 +56,6 @@
 {/if}
 </table>
 </div>
+
+<!-- / templates/trackDirector/submission/status.tpl -->
+

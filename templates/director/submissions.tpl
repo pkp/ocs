@@ -1,3 +1,5 @@
+<!-- templates/director/submissions.tpl -->
+
 {**
  * submissions.tpl
  *
@@ -66,3 +68,6 @@ function sortSearch(heading, direction) {
 {/if}
 
 {include file="common/footer.tpl"}
+
+<!-- / templates/director/submissions.tpl -->
+

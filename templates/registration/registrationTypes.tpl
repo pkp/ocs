@@ -1,3 +1,5 @@
+<!-- templates/registration/registrationTypes.tpl -->
+
 {**
  * registrationTypes.tpl
  *
@@ -62,3 +64,6 @@
 <a href="{url op="createRegistrationType"}" class="action">{translate key="manager.registrationTypes.create"}</a>
 </div>
 {include file="common/footer.tpl"}
+
+<!-- / templates/registration/registrationTypes.tpl -->
+

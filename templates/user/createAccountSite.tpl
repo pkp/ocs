@@ -1,3 +1,5 @@
+<!-- templates/user/createAccountSite.tpl -->
+
 {**
  * createAccountSite.tpl
  *
@@ -30,3 +32,6 @@
 {/if}
 </div>
 {include file="common/footer.tpl"}
+
+<!-- / templates/user/createAccountSite.tpl -->
+

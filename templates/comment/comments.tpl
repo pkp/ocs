@@ -1,3 +1,5 @@
+<!-- templates/comment/comments.tpl -->
+
 {**
  * comments.tpl
  *
@@ -164,3 +166,6 @@
 {/if}
 
 {include file="common/footer.tpl"}
+
+<!-- / templates/comment/comments.tpl -->
+

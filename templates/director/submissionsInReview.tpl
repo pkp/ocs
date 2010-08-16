@@ -1,3 +1,5 @@
+<!-- templates/director/submissionsInReview.tpl -->
+
 {**
  * submissionsInReview.tpl
  *
@@ -111,3 +113,6 @@
 {/if}
 </table>
 </div>
+
+<!-- / templates/director/submissionsInReview.tpl -->
+

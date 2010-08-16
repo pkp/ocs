@@ -1,3 +1,5 @@
+<!-- templates/director/selectTrackDirector.tpl -->
+
 {**
  * selectTrackDirector.tpl
  *
@@ -84,3 +86,6 @@
 </table>
 </div>
 {include file="common/footer.tpl"}
+
+<!-- / templates/director/selectTrackDirector.tpl -->
+

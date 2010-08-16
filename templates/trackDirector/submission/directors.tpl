@@ -1,3 +1,5 @@
+<!-- templates/trackDirector/submission/directors.tpl -->
+
 {**
  * directors.tpl
  *
@@ -44,3 +46,6 @@
 	{if !$selfAssigned}|&nbsp;<a href="{url op="assignDirector" path="director" directorId=$userId paperId=$submission->getPaperId()}" class="action">{translate key="common.addSelf"}</a>{/if}
 {/if}
 </div>
+
+<!-- / templates/trackDirector/submission/directors.tpl -->
+

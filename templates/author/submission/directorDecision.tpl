@@ -1,3 +1,5 @@
+<!-- templates/author/submission/directorDecision.tpl -->
+
 {**
  * peerReview.tpl
  *
@@ -98,4 +100,7 @@
 <div class="separator"></div>
 
 {include file="author/submission/layout.tpl"}
+
+
+<!-- / templates/author/submission/directorDecision.tpl -->
 

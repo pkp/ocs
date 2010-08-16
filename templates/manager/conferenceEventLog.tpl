@@ -1,3 +1,5 @@
+<!-- templates/manager/conferenceEventLog.tpl -->
+
 {**
  * conferenceEventLog.tpl
  *
@@ -78,3 +80,6 @@
 <a href="{url op="clearConferenceEventLog"}" class="action" onclick="return confirm('{translate|escape:"jsparam" key="conference.event.confirmClearLog"}')">{translate key="conference.history.clearLog"}</a>
 </div>
 {include file="common/footer.tpl"}
+
+<!-- / templates/manager/conferenceEventLog.tpl -->
+

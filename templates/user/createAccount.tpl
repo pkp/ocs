@@ -1,3 +1,5 @@
+<!-- templates/user/createAccount.tpl -->
+
 {**
  * createAccount.tpl
  *
@@ -236,3 +238,6 @@
 </form>
 
 {include file="common/footer.tpl"}
+
+<!-- / templates/user/createAccount.tpl -->
+

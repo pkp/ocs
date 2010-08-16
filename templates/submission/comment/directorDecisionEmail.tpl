@@ -1,3 +1,5 @@
+<!-- templates/submission/comment/directorDecisionEmail.tpl -->
+
 {**
  * directorDecisionEmail.tpl
  *
@@ -173,3 +175,6 @@ function deleteAttachment(fileId) {
 </form>
 
 {include file="common/footer.tpl"}
+
+<!-- / templates/submission/comment/directorDecisionEmail.tpl -->
+

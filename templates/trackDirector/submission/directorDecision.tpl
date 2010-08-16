@@ -1,3 +1,5 @@
+<!-- templates/trackDirector/submission/directorDecision.tpl -->
+
 {**
  * directorDecision.tpl
  *
@@ -168,4 +170,7 @@
 
 	{include file="trackDirector/submission/layout.tpl"}
 {/if}
+
+
+<!-- / templates/trackDirector/submission/directorDecision.tpl -->
 

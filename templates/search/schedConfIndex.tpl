@@ -1,3 +1,5 @@
+<!-- templates/search/schedConfIndex.tpl -->
+
 {**
  * titleIndex.tpl
  *
@@ -40,3 +42,6 @@
 {/foreach}
 
 {include file="common/footer.tpl"}
+
+<!-- / templates/search/schedConfIndex.tpl -->
+

@@ -1,3 +1,5 @@
+<!-- templates/registration/registrationOptions.tpl -->
+
 {**
  * registrationOptions.tpl
  *
@@ -58,3 +60,6 @@
 <a href="{url op="createRegistrationOption"}" class="action">{translate key="manager.registrationOptions.create"}</a>
 </div>
 {include file="common/footer.tpl"}
+
+<!-- / templates/registration/registrationOptions.tpl -->
+

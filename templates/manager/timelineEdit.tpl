@@ -1,3 +1,5 @@
+<!-- templates/manager/timelineEdit.tpl -->
+
 {**
  * timelineForm.tpl
  *
@@ -320,3 +322,6 @@
 </form>
 
 {include file="common/footer.tpl"}
+
+<!-- / templates/manager/timelineEdit.tpl -->
+

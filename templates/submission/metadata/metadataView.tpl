@@ -1,3 +1,5 @@
+<!-- templates/submission/metadata/metadataView.tpl -->
+
 {**
  * metadataView.tpl
  *
@@ -157,3 +159,6 @@
 </table>
 
 {include file="common/footer.tpl"}
+
+<!-- / templates/submission/metadata/metadataView.tpl -->
+

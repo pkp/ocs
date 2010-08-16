@@ -1,3 +1,5 @@
+<!-- templates/paper/pdfInterstitial.tpl -->
+
 {**
  * pdfInterstitial.tpl
  *
@@ -48,3 +50,6 @@
 </div>
 </body>
 </html>
+
+<!-- / templates/paper/pdfInterstitial.tpl -->
+

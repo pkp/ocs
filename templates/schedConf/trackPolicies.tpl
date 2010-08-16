@@ -1,3 +1,5 @@
+<!-- templates/schedConf/trackPolicies.tpl -->
+
 {**
  * trackPolicies.tpl
  *
@@ -46,3 +48,6 @@
 </div>{/if}{/foreach}
 
 {include file="common/footer.tpl"}
+
+<!-- / templates/schedConf/trackPolicies.tpl -->
+

@@ -1,3 +1,5 @@
+<!-- templates/rt/printerFriendly.tpl -->
+
 {**
  * printerFriendly.tpl
  *
@@ -65,3 +67,6 @@
 
 </body>
 </html>
+
+<!-- / templates/rt/printerFriendly.tpl -->
+

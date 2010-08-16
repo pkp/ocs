@@ -1,3 +1,5 @@
+<!-- templates/about/registration.tpl -->
+
 {**
  * registration.tpl
  *
@@ -70,3 +72,6 @@
 </p>
 </div>
 {include file="common/footer.tpl"}
+
+<!-- / templates/about/registration.tpl -->
+

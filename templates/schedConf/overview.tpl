@@ -1,3 +1,5 @@
+<!-- templates/schedConf/overview.tpl -->
+
 {**
  * overview.tpl
  *
@@ -16,3 +18,6 @@
 <div>{$overview|nl2br}</div>
 
 {include file="common/footer.tpl"}
+
+<!-- / templates/schedConf/overview.tpl -->
+

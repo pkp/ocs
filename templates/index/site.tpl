@@ -1,3 +1,5 @@
+<!-- templates/index/site.tpl -->
+
 {**
  * site.tpl
  *
@@ -32,3 +34,6 @@
 {/iterate}
 
 {include file="common/footer.tpl"}
+
+<!-- / templates/index/site.tpl -->
+

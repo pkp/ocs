@@ -1,3 +1,5 @@
+<!-- templates/schedConf/papers.tpl -->
+
 {**
  * papers.tpl
  *
@@ -74,4 +76,7 @@
 {/if}
 
 {include file="common/footer.tpl"}
+
+
+<!-- / templates/schedConf/papers.tpl -->
 

@@ -1,3 +1,5 @@
+<!-- templates/paper/footer.tpl -->
+
 {**
  * footer.tpl
  *
@@ -45,3 +47,6 @@
 
 </body>
 </html>
+
+<!-- / templates/paper/footer.tpl -->
+

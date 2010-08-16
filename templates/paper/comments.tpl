@@ -1,3 +1,5 @@
+<!-- templates/paper/comments.tpl -->
+
 {**
  * comments.tpl
  *
@@ -57,3 +59,5 @@
 	<a class="action" href="{url page="comment" op="add" path=$paper->getId()|to_array:$galleyId}" target="_parent">{translate key="rt.addComment"}</a>
 {/if}
 </div>
+<!-- / templates/paper/comments.tpl -->
+

@@ -1,3 +1,5 @@
+<!-- templates/admin/importConflicts.tpl -->
+
 {**
  * importConflicts.tpl
  *
@@ -38,3 +40,6 @@
 <p>&#187; <a href="{url op="editConference" path=$conferenceId}">{translate key="admin.conferences.importOCS1.editMigratedConference"}</a></p>
 
 {include file="common/footer.tpl"}
+
+<!-- / templates/admin/importConflicts.tpl -->
+

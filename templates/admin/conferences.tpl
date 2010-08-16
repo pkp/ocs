@@ -1,3 +1,5 @@
+<!-- templates/admin/conferences.tpl -->
+
 {**
  * conferences.tpl
  *
@@ -63,3 +65,6 @@ $(document).ready(function() { setupTableDND("#adminConferences", "moveConferenc
 <p><a href="{url op="createConference"}" class="action">{translate key="admin.conferences.create"}</a> | <a href="{url op="importOCS1"}" class="action">{translate key="admin.conferences.importOCS1"}</a></p>
 </div>
 {include file="common/footer.tpl"}
+
+<!-- / templates/admin/conferences.tpl -->
+

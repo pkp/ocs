@@ -1,3 +1,5 @@
+<!-- templates/common/footer.tpl -->
+
 {**
  * footer.tpl
  *
@@ -10,3 +12,6 @@
 {strip}
 {include file="core:common/footer.tpl"}
 {/strip}
+
+<!-- / templates/common/footer.tpl -->
+

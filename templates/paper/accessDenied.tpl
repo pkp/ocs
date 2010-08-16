@@ -1,3 +1,5 @@
+<!-- templates/paper/accessDenied.tpl -->
+
 {**
  * accessDenied.tpl
  *
@@ -22,3 +24,6 @@
 </div>
 
 {include file="common/footer.tpl"}
+
+<!-- / templates/paper/accessDenied.tpl -->
+

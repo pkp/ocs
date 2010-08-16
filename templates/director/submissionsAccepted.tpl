@@ -1,3 +1,5 @@
+<!-- templates/director/submissionsAccepted.tpl -->
+
 {**
  * submissionsArchives.tpl
  *
@@ -81,3 +83,6 @@
 {/if}
 </table>
 </div>
+
+<!-- / templates/director/submissionsAccepted.tpl -->
+

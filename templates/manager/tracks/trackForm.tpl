@@ -1,3 +1,5 @@
+<!-- templates/manager/tracks/trackForm.tpl -->
+
 {**
  * trackForm.tpl
  *
@@ -215,3 +217,6 @@
 
 <p><span class="formRequired">{translate key="common.requiredField"}</span></p>
 {include file="common/footer.tpl"}
+
+<!-- / templates/manager/tracks/trackForm.tpl -->
+

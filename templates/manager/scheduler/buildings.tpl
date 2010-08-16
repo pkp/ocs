@@ -1,3 +1,5 @@
+<!-- templates/manager/scheduler/buildings.tpl -->
+
 {**
  * buildings.tpl
  *
@@ -57,3 +59,6 @@
 <a href="{url op="createBuilding"}" class="action">{translate key="manager.scheduler.building.create"}</a>
 </div>
 {include file="common/footer.tpl"}
+
+<!-- / templates/manager/scheduler/buildings.tpl -->
+

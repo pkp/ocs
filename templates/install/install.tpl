@@ -1,3 +1,5 @@
+<!-- templates/install/install.tpl -->
+
 {**
  * install.tpl
  *
@@ -243,3 +245,6 @@
 </form>
 
 {include file="common/footer.tpl"}
+
+<!-- / templates/install/install.tpl -->
+

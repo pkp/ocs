@@ -1,3 +1,5 @@
+<!-- templates/about/editorialPolicies.tpl -->
+
 {**
  * editorialPolicies.tpl
  *
@@ -92,3 +94,6 @@
 {/foreach}
 
 {include file="common/footer.tpl"}
+
+<!-- / templates/about/editorialPolicies.tpl -->
+

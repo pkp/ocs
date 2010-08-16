@@ -1,3 +1,5 @@
+<!-- templates/manager/schedConfSetup/index.tpl -->
+
 {**
  * index.tpl
  *
@@ -34,3 +36,6 @@
 </ol>
 
 {include file="common/footer.tpl"}
+
+<!-- / templates/manager/schedConfSetup/index.tpl -->
+

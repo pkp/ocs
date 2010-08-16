@@ -1,3 +1,5 @@
+<!-- templates/manager/scheduler/scheduleLayoutForm.tpl -->
+
 {**
  * scheduleLayoutForm.tpl
  *
@@ -76,3 +78,6 @@
 </form>
 </div>
 {include file="common/footer.tpl"}
+
+<!-- / templates/manager/scheduler/scheduleLayoutForm.tpl -->
+

@@ -1,3 +1,5 @@
+<!-- templates/manager/timelineView.tpl -->
+
 {**
  * timelineForm.tpl
  *
@@ -167,3 +169,6 @@
 {/if}
 
 {include file="common/footer.tpl"}
+
+<!-- / templates/manager/timelineView.tpl -->
+

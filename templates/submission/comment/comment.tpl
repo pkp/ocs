@@ -1,3 +1,5 @@
+<!-- templates/submission/comment/comment.tpl -->
+
 {**
  * comment.tpl
  *
@@ -75,3 +77,6 @@
 {/if}
 </div>
 {include file="submission/comment/footer.tpl"}
+
+<!-- / templates/submission/comment/comment.tpl -->
+

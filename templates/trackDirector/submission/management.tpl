@@ -1,3 +1,5 @@
+<!-- templates/trackDirector/submission/management.tpl -->
+
 {**
  * management.tpl
  *
@@ -102,3 +104,6 @@
 	{/if}
 </table>
 </div>
+
+<!-- / templates/trackDirector/submission/management.tpl -->
+

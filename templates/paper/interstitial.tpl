@@ -1,3 +1,5 @@
+<!-- templates/paper/interstitial.tpl -->
+
 {**
  * interstitial.tpl
  *
@@ -47,3 +49,6 @@
 </div>
 </body>
 </html>
+
+<!-- / templates/paper/interstitial.tpl -->
+

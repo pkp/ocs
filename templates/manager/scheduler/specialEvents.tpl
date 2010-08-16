@@ -1,3 +1,5 @@
+<!-- templates/manager/scheduler/specialEvents.tpl -->
+
 {**
  * specialEvents.tpl
  *
@@ -63,3 +65,6 @@
 </div>
 
 {include file="common/footer.tpl"}
+
+<!-- / templates/manager/scheduler/specialEvents.tpl -->
+

@@ -1,3 +1,5 @@
+<!-- templates/about/organizingTeamBio.tpl -->
+
 {**
  * organizingTeamBio.tpl
  *
@@ -95,3 +97,6 @@
 </div><!-- container -->
 </body>
 </html>
+
+<!-- / templates/about/organizingTeamBio.tpl -->
+

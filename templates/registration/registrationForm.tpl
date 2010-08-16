@@ -1,3 +1,5 @@
+<!-- templates/registration/registrationForm.tpl -->
+
 {**
  * registrationForm.tpl
  *
@@ -136,3 +138,6 @@
 <p><span class="formRequired">{translate key="common.requiredField"}</span></p>
 
 {include file="common/footer.tpl"}
+
+<!-- / templates/registration/registrationForm.tpl -->
+

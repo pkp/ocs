@@ -1,3 +1,5 @@
+<!-- templates/manager/groups/groups.tpl -->
+
 {**
  * groups.tpl
  *
@@ -77,3 +79,6 @@ $(document).ready(function() { setupTableDND("#dragTable", "moveGroup"); });
 <a href="{url op="createGroup"}" class="action">{translate key="manager.groups.create"}</a>
 </div>
 {include file="common/footer.tpl"}
+
+<!-- / templates/manager/groups/groups.tpl -->
+

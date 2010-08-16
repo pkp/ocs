@@ -1,3 +1,5 @@
+<!-- templates/author/submit/submitHeader.tpl -->
+
 {**
  * submitHeader.tpl
  *
@@ -78,3 +80,6 @@
 	{/if}
 
 </ul>
+
+<!-- / templates/author/submit/submitHeader.tpl -->
+

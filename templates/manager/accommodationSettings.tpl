@@ -1,3 +1,5 @@
+<!-- templates/manager/accommodationSettings.tpl -->
+
 {**
  * accommodationSettings.tpl
  *
@@ -75,3 +77,6 @@
 </form>
 
 {include file="common/footer.tpl"}
+
+<!-- / templates/manager/accommodationSettings.tpl -->
+

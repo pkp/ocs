@@ -1,3 +1,5 @@
+<!-- templates/trackDirector/submission/rounds.tpl -->
+
 {**
  * rounds.tpl
  *
@@ -260,3 +262,6 @@
 
 {/section} {* End section to loop through all rounds *}
 </div>
+
+<!-- / templates/trackDirector/submission/rounds.tpl -->
+

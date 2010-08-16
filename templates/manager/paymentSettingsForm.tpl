@@ -1,3 +1,5 @@
+<!-- templates/manager/paymentSettingsForm.tpl -->
+
 {**
  * paymentSettingsForm.tpl
  *
@@ -55,3 +57,6 @@ $(document).ready(function() {
 </form>
 
 {include file="common/footer.tpl"}
+
+<!-- / templates/manager/paymentSettingsForm.tpl -->
+

@@ -1,3 +1,5 @@
+<!-- templates/trackDirector/submission/layout.tpl -->
+
 {**
  * layout.tpl
  *
@@ -92,3 +94,6 @@
 	<input type="submit" value="{translate key="common.upload"}" class="button" />
 </form>
 </div>
+
+<!-- / templates/trackDirector/submission/layout.tpl -->
+

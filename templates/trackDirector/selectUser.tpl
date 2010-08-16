@@ -1,3 +1,5 @@
+<!-- templates/trackDirector/selectUser.tpl -->
+
 {**
  * selectUser.tpl
  *
@@ -73,3 +75,6 @@
 {/if}
 </div>
 {include file="common/footer.tpl"}
+
+<!-- / templates/trackDirector/selectUser.tpl -->
+

@@ -1,3 +1,5 @@
+<!-- templates/manager/conferenceEventLogEntry.tpl -->
+
 {**
  * conferenceEventLogEntry.tpl
  *
@@ -70,3 +72,6 @@
 <a class="action" href="{url op="conferenceEventLog"}">{translate key="conference.event.backToEventLog"}</a>
 </div>
 {include file="common/footer.tpl"}
+
+<!-- / templates/manager/conferenceEventLogEntry.tpl -->
+

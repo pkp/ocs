@@ -1,3 +1,5 @@
+<!-- templates/rt/rt.tpl -->
+
 {**
  * rt.tpl
  *
@@ -167,3 +169,6 @@
 </body>
 
 </html>
+
+<!-- / templates/rt/rt.tpl -->
+

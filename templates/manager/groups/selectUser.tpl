@@ -1,3 +1,5 @@
+<!-- templates/manager/groups/selectUser.tpl -->
+
 {**
  * selectUser.tpl
  *
@@ -62,3 +64,6 @@
 {/if}
 </div>
 {include file="common/footer.tpl"}
+
+<!-- / templates/manager/groups/selectUser.tpl -->
+

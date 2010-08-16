@@ -1,3 +1,5 @@
+<!-- templates/schedConf/accommodation.tpl -->
+
 {**
  * accommodation.tpl
  *
@@ -26,3 +28,6 @@
 {/foreach}
 <div>
 {include file="common/footer.tpl"}
+
+<!-- / templates/schedConf/accommodation.tpl -->
+

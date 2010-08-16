@@ -1,3 +1,5 @@
+<!-- templates/schedConf/schedules/expanded.tpl -->
+
 {**
  * expanded.tpl
  *
@@ -108,3 +110,6 @@
 {/if}
 </div>
 {include file="common/footer.tpl"}
+
+<!-- / templates/schedConf/schedules/expanded.tpl -->
+

@@ -1,3 +1,5 @@
+<!-- templates/trackDirector/submissionHistory.tpl -->
+
 {**
  * submissionHistory.tpl
  *
@@ -239,3 +241,6 @@
 <a class="action" href="{url op="clearAllSubmissionNotes" paperId=$submission->getPaperId()}" onclick="return confirm('{translate|escape:"jsparam" key="submission.notes.confirmDeleteAll"}')">{translate key="submission.notes.clearAllNotes"}</a>
 </div>
 {include file="common/footer.tpl"}
+
+<!-- / templates/trackDirector/submissionHistory.tpl -->
+

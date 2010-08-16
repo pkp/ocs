@@ -1,3 +1,5 @@
+<!-- templates/schedConf/cfp.tpl -->
+
 {**
  * cfp.tpl
  *
@@ -32,3 +34,6 @@
 {/if}
 </div>
 {include file="common/footer.tpl"}
+
+<!-- / templates/schedConf/cfp.tpl -->
+

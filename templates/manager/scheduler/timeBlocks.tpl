@@ -1,3 +1,5 @@
+<!-- templates/manager/scheduler/timeBlocks.tpl -->
+
 {**
  * templates/manager/scheduler/timeBlocks.tpl
  *
@@ -72,3 +74,6 @@
 <a href="{url op="createTimeBlock"}" class="action">{translate key="manager.scheduler.timeBlock.create"}</a>
 
 {include file="common/footer.tpl"}
+
+<!-- / templates/manager/scheduler/timeBlocks.tpl -->
+

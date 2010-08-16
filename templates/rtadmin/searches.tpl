@@ -1,3 +1,5 @@
+<!-- templates/rtadmin/searches.tpl -->
+
 {**
  * searches.tpl
  *
@@ -54,3 +56,6 @@
 <a href="{url op="createSearch" path=$version->getVersionId()|to_array:$context->getContextId()}" class="action">{translate key="rt.admin.searches.createSearch"}</a><br/>
 </div>
 {include file="common/footer.tpl"}
+
+<!-- / templates/rtadmin/searches.tpl -->
+

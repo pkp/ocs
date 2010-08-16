@@ -1,3 +1,5 @@
+<!-- templates/manager/people/enrollment.tpl -->
+
 {**
  * enrollment.tpl
  *
@@ -184,3 +186,6 @@ function sortSearch(heading, direction) {
 <a href="{if $roleId}{url op="createUser" roleId=$roleId source=$enrollmentUrl}{else}{url op="createUser" source=$enrollmentUrl}{/if}" class="action">{translate key="manager.people.createUser"}</a>{if $currentSchedConf} | <a href="{url op="enrollSyncSelect" path=$rolePath}" class="action">{translate key="manager.people.enrollSync"}</a>{/if}
 
 {include file="common/footer.tpl"}
+
+<!-- / templates/manager/people/enrollment.tpl -->
+

@@ -1,3 +1,5 @@
+<!-- templates/registration/registrations.tpl -->
+
 {**
  * registrations.tpl
  *
@@ -117,3 +119,6 @@ function sortSearch(heading, direction) {
 <a href="{url op="selectRegistrant"}" class="action">{translate key="manager.registration.create"}</a>
 </div>
 {include file="common/footer.tpl"}
+
+<!-- / templates/registration/registrations.tpl -->
+

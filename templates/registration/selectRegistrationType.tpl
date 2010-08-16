@@ -1,3 +1,5 @@
+<!-- templates/registration/selectRegistrationType.tpl -->
+
 {**
  * selectRegistrationType.tpl
  *
@@ -105,3 +107,6 @@
 </form>
 
 {include file="common/footer.tpl"}
+
+<!-- / templates/registration/selectRegistrationType.tpl -->
+

@@ -1,3 +1,5 @@
+<!-- templates/trackDirector/userProfile.tpl -->
+
 {**
  * userProfile.tpl
  *
@@ -110,3 +112,6 @@
 </table>
 
 {include file="common/footer.tpl"}
+
+<!-- / templates/trackDirector/userProfile.tpl -->
+

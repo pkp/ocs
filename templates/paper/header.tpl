@@ -1,3 +1,5 @@
+<!-- templates/paper/header.tpl -->
+
 {**
  * header.tpl
  *
@@ -86,3 +88,6 @@
 </div>
 
 <div id="content">
+
+<!-- / templates/paper/header.tpl -->
+
