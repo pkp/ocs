@@ -64,7 +64,7 @@ class PaperMailTemplate extends MailTemplate {
 		$paramArray['conferenceName'] = strip_tags($conference->getConferenceTitle());
 		$paramArray['schedConfName'] = strip_tags($schedConf->getLocalizedTitle());
 		$paramArray['trackName'] = strip_tags($paper->getTrackTitle());
-		$paramArray['paperAbstract'] = strip_tags($paper->getLocalizedAbstract());
+		$paramArray['paperAbstract'] = String::html2text($paper->getLocalizedAbstract());
 		$paramArray['authorString'] = strip_tags($paper->getAuthorString());
 
 		parent::assignParams($paramArray);
