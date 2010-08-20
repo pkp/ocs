@@ -31,6 +31,15 @@ class TrackDirectorHandler extends Handler {
 	}
 
 	/**
+	 * Synonym for "index". WARNING: This is used by some of the requests
+	 * shared between Director and Track Director, i.e. completePaper,
+	 * which assumes the same URLs are used by both roles.
+	 */
+	function submissions($args, &$request) {
+		$this->index($args, $request);
+	}	
+
+	/**
 	 * Display track director index page.
 	 */
 	function index($args) {

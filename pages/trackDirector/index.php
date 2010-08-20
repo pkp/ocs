@@ -121,6 +121,7 @@ switch ($op) {
 		import('pages.trackDirector.SubmissionCommentsHandler');
 		break;
 	case 'index':
+	case 'submissions':
 	case 'instructions':
 		define('HANDLER_CLASS', 'TrackDirectorHandler');
 		import('pages.trackDirector.TrackDirectorHandler');
