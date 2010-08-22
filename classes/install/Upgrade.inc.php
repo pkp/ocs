@@ -672,7 +672,7 @@ class Upgrade extends Installer {
 				}  else {
 					$pluginVersion = new Version(
 						1, 0, 0, 0, Core::getCurrentDate(), 1,
-						'plugins.'.$category, basename($plugin->getPluginPath()), '', 0
+						'plugins.'.$category, basename($plugin->getPluginPath()), '', 0, $plugin->isSitePlugin()
 					);
 				}
 				$versionDao->insertVersion($pluginVersion, true);
