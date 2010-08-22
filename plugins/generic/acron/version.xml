@@ -10,8 +10,10 @@
   * Plugin version information.
   -->
 <version>
-	<application>endNote</application>
-	<type>plugins.citationFormats</type>
+	<application>acron</application>
+	<type>plugins.generic</type>
 	<release>1.0.0.0</release>
 	<date>2009-07-13</date>
+	<lazy-load>1</lazy-load>
+	<class>AcronPlugin</class>
 </version>
