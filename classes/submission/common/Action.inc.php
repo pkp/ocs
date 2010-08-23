@@ -1,9 +1,9 @@
 <?php
 
 /**
- * @defgroup submission
+ * @defgroup submission_common
  */
- 
+
 /**
  * @file Action.inc.php
  *
@@ -11,12 +11,11 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class Action
- * @ingroup submission
+ * @ingroup submission_common
  *
- * @brief Action class.
+ * @brief Application-specific submission actions.
  */
 
-//$Id$
 
 /* These constants correspond to editing decision "decision codes". */
 define('SUBMISSION_DIRECTOR_DECISION_INVITE', 1);
@@ -24,7 +23,19 @@ define('SUBMISSION_DIRECTOR_DECISION_ACCEPT', 2);
 define('SUBMISSION_DIRECTOR_DECISION_PENDING_REVISIONS', 3);
 define('SUBMISSION_DIRECTOR_DECISION_DECLINE', 4);
 
-class Action {
+import('lib.pkp.classes.submission.common.PKPAction');
+
+class Action extends PKPAction {
+	/**
+	 * Constructor.
+	 */
+	function Action() {
+		parent::PKPAction();
+	}
+
+	//
+	// Actions.
+	//
 	/**
 	 * View metadata of a paper.
 	 * @param $paper object
@@ -119,7 +130,7 @@ class Action {
 					return $metadataForm->display();
 				}
 				$metadataForm->execute();
-				
+
 				// Send a notification to associated users
 				import('lib.pkp.classes.notification.NotificationManager');
 				$notificationManager = new NotificationManager();
@@ -195,7 +206,7 @@ class Action {
 
 			if ($commentForm->validate()) {
 				$commentForm->execute();
-				
+
 				// Send a notification to associated users
 				import('lib.pkp.classes.notification.NotificationManager');
 				$notificationManager = new NotificationManager();
