@@ -158,7 +158,7 @@
 		<td class="instruct">{translate key="user.account.passwordLengthRestriction" length=$minPasswordLength}</td>
 	</tr>
 	<tr valign="top">
-		<td class="label">{fieldLabel name="password2" required="true" key="user.account.repeatPassword"}</td>
+		<td class="label">{fieldLabel name="password2" required="true" key="user.repeatPassword"}</td>
 		<td class="value"><input type="password" name="password2" id="password2" value="{$password2|escape}" size="20" maxlength="32" class="textField" /></td>
 	</tr>
 
