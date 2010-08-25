@@ -245,16 +245,18 @@ class AboutHandler extends Handler {
 
 		$user = null;
 		if (!isset($settings['boardEnabled']) || $settings['boardEnabled'] != true) {
-			$directors =& $roleDao->getUsersByRoleId(ROLE_ID_DIRECTOR, $conference->getId());
-			while ($potentialUser =& $directors->next()) {
-				if ($potentialUser->getId() == $userId)
-					$user =& $potentialUser;
-			}
-
-			$trackDirectors =& $roleDao->getUsersByRoleId(ROLE_ID_TRACK_DIRECTOR, $conference->getId());
-			while ($potentialUser =& $trackDirectors->next()) {
-				if ($potentialUser->getId() == $userId)
-					$user =& $potentialUser;
+			$roles =& $roleDao->getRolesByUserId($userId, $conference->getId());
+			$acceptableRoles = array(
+				ROLE_ID_DIRECTOR,
+				ROLE_ID_TRACK_DIRECTOR
+			);
+			foreach ($roles as $role) {
+				$roleId = $role->getRoleId();
+				if (in_array($roleId, $acceptableRoles)) {
+					$userDao =& DAORegistry::getDAO('UserDAO');
+					$user =& $userDao->getUser($userId);
+					break;
+				}
 			}
 
 			// Currently we always publish emails in this mode.
