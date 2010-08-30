@@ -1,5 +1,3 @@
-<!-- templates/rtadmin/exportXml.tpl -->
-
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE version SYSTEM "{$baseUrl}/rt/rt-version.dtd">
 
@@ -36,6 +34,3 @@
 	</context>
 {/foreach}
 </version>
-
-<!-- / templates/rtadmin/exportXml.tpl -->
-

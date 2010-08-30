@@ -1,5 +1,3 @@
-<!-- templates/registration/openAccessNotifyEmail.tpl -->
-
 {translate key="email.multipart"}
 
 --{$mimeBoundary}
@@ -83,6 +81,3 @@ Content-Transfer-Encoding: quoted-printable
 </html>
 
 --{$mimeBoundary}--
-
-<!-- / templates/registration/openAccessNotifyEmail.tpl -->
-
