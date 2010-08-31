@@ -134,14 +134,13 @@ class CreateAccountForm extends Form {
 	/**
 	 * Initialize default data.
 	 */
-	function initData(&$args, &$request) {
+	function initData() {
 		$this->setData('createAsReader', 1);
 		if (Request::getUserVar('requiresAuthor')) $this->setData('createAsAuthor', 1);
 		$this->setData('existingUser', $this->existingUser);
 		$this->setData('userLocales', array());
 		$this->setData('sendPassword', 1);
 		$interestDao =& DAORegistry::getDAO('InterestDAO');
-		$context = $request->getContext();
 		$this->setData('existingInterests', implode(",", $interestDao->getAllUniqueInterests()));
 	}
 
