@@ -74,9 +74,9 @@ class SubmitHandler extends AuthorHandler {
 	 * Save a submission step.
 	 * @param $args array first parameter is the step being saved
 	 */
-	function saveSubmit($args) {
+	function saveSubmit($args, $request) {
 		$step = isset($args[0]) ? (int) $args[0] : 0;
-		$paperId = Request::getUserVar('paperId');
+		$paperId = $request->getUserVar('paperId');
 
 		$this->validate($paperId, $step);
 		$this->setupTemplate(true);
@@ -94,7 +94,7 @@ class SubmitHandler extends AuthorHandler {
 			// Check for any special cases before trying to save
 			switch ($step) {
 				case 2:
-					if (Request::getUserVar('uploadSubmissionFile')) {
+					if ($request->getUserVar('uploadSubmissionFile')) {
 						if (!$submitForm->uploadSubmissionFile('submissionFile')) {
 							$submitForm->addError('uploadSubmissionFile', Locale::translate('common.uploadFailed'));
 						}
@@ -103,14 +103,14 @@ class SubmitHandler extends AuthorHandler {
 					break;
 
 				case 3:
-					if (Request::getUserVar('addAuthor')) {
+					if ($request->getUserVar('addAuthor')) {
 						// Add a sponsor
 						$editData = true;
 						$authors = $submitForm->getData('authors');
 						array_push($authors, array());
 						$submitForm->setData('authors', $authors);
 
-					} else if (($delAuthor = Request::getUserVar('delAuthor')) && count($delAuthor) == 1) {
+					} else if (($delAuthor = $request->getUserVar('delAuthor')) && count($delAuthor) == 1) {
 						// Delete an author
 						$editData = true;
 						list($delAuthor) = array_keys($delAuthor);
@@ -128,12 +128,12 @@ class SubmitHandler extends AuthorHandler {
 							$submitForm->setData('primaryContact', 0);
 						}
 
-					} else if (Request::getUserVar('moveAuthor')) {
+					} else if ($request->getUserVar('moveAuthor')) {
 						// Move an author up/down
 						$editData = true;
-						$moveAuthorDir = Request::getUserVar('moveAuthorDir');
+						$moveAuthorDir = $request->getUserVar('moveAuthorDir');
 						$moveAuthorDir = $moveAuthorDir == 'u' ? 'u' : 'd';
-						$moveAuthorIndex = (int) Request::getUserVar('moveAuthorIndex');
+						$moveAuthorIndex = (int) $request->getUserVar('moveAuthorIndex');
 						$authors = $submitForm->getData('authors');
 
 						if (!(($moveAuthorDir == 'u' && $moveAuthorIndex <= 0) || ($moveAuthorDir == 'd' && $moveAuthorIndex >= count($authors) - 1))) {
@@ -162,9 +162,9 @@ class SubmitHandler extends AuthorHandler {
 					break;
 
 				case 4:
-					if (Request::getUserVar('submitUploadSuppFile')) {
+					if ($request->getUserVar('submitUploadSuppFile')) {
 						if ($suppFileId = SubmitHandler::submitUploadSuppFile(array(), $request)) {
-							Request::redirect(null, null, null, 'submitSuppFile', $suppFileId, array('paperId' => $paperId));
+							$request->redirect(null, null, null, 'submitSuppFile', $suppFileId, array('paperId' => $paperId));
 						} else {
 							$submitForm->addError('uploadSubmissionFile', Locale::translate('common.uploadFailed'));
 						}
@@ -175,8 +175,8 @@ class SubmitHandler extends AuthorHandler {
 
 		if (!isset($editData) && $submitForm->validate()) {
 			$paperId = $submitForm->execute();
-			$conference =& Request::getConference();
-			$schedConf =& Request::getSchedConf();
+			$conference =& $request->getConference();
+			$schedConf =& $request->getSchedConf();
 
 			// For the "abstract only" or sequential review models, nothing else needs
 			// to be collected beyond page 2.
@@ -212,14 +212,14 @@ class SubmitHandler extends AuthorHandler {
 				$templateMgr->assign('helpTopicId','submission.index');
 				$templateMgr->display('author/submit/complete.tpl');
 			} elseif ($step == 3 && !$schedConf->getSetting('acceptSupplementaryReviewMaterials')) {
-				Request::redirect(null, null, null, 'submit', 5, array('paperId' => $paperId));
+				$request->redirect(null, null, null, 'submit', 5, array('paperId' => $paperId));
 			} elseif ($step == 1 && ($reviewMode == REVIEW_MODE_ABSTRACTS_ALONE || $reviewMode == REVIEW_MODE_BOTH_SEQUENTIAL)) {
-				Request::redirect(null, null, null, 'submit', 3, array('paperId' => $paperId));
+				$request->redirect(null, null, null, 'submit', 3, array('paperId' => $paperId));
  			} elseif ($step == 2 && $reviewMode == REVIEW_MODE_BOTH_SEQUENTIAL) {
  				$nextStep = $schedConf->getSetting('acceptSupplementaryReviewMaterials') ? 4:5;
-				Request::redirect(null, null, null, 'submit', $nextStep, array('paperId' => $paperId));
+				$request->redirect(null, null, null, 'submit', $nextStep, array('paperId' => $paperId));
  			} else {
-				Request::redirect(null, null, null, 'submit', $step+1, array('paperId' => $paperId));
+				$request->redirect(null, null, null, 'submit', $step+1, array('paperId' => $paperId));
 			}
 
 		} else {
