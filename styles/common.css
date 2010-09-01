@@ -311,6 +311,11 @@ td.notificationFunction {
 	margin-left: 8px;
 }
 
+a.smallFont:hover {
+	background: url(../lib/pkp/templates/images/icons/font-down.png);
+	color: none;
+}
+
 .defaultFont {
 	/*if you want to hide the default font button, use display:none */
 	background: url(../lib/pkp/templates/images/icons/font-default.png);
@@ -324,6 +329,11 @@ td.notificationFunction {
 
 }
 
+a.defaultFont:hover {
+	background: url(../lib/pkp/templates/images/icons/font-default.png);
+	color: none;
+}
+
 .largeFont {
 	background: url(../lib/pkp/templates/images/icons/font-up.png);
 	outline: none;
@@ -332,6 +342,11 @@ td.notificationFunction {
 	float: left;
 	width: 20px;
 	height: 23px;
+}
+
+a.largeFont:hover {
+	background: url(../lib/pkp/templates/images/icons/font-up.png);
+	color: none;
 }
 
 
