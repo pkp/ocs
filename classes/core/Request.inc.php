@@ -21,14 +21,13 @@
  *                 ditto for <sched_conf_id>
  */
 
-//$Id$
-
 
 import('lib.pkp.classes.core.PKPRequest');
 
 class Request extends PKPRequest {
 	/**
-	 * Redirect to the specified page within OCS. Shorthand for a common call to Request::redirect(Request::url(...)).
+	 * Redirect to the specified page within OCS.
+	 * Shorthand for a common call to $request->redirect($dispatcher->url($request, ROUTE_PAGE, ...)).
 	 * @param $conferencePath string The path of the conference to redirect to.
 	 * @param $schedConfPath string The path of the conference to redirect to.
 	 * @param $page string The name of the op to redirect to.
@@ -38,8 +37,7 @@ class Request extends PKPRequest {
 	 * @param $anchor string Name of desired anchor on the target page
 	 */
 	function redirect($conferencePath = null, $schedConfPath = null, $page = null, $op = null, $path = null, $params = null, $anchor = null) {
-		$_this =& PKPRequest::_checkThis();
-		$_this->redirectUrl($_this->url($conferencePath, $schedConfPath, $page, $op, $path, $params, $anchor));
+		parent::redirect(array($conferencePath, $schedConfPath), $page, $op, $path, $params, $anchor);
 	}
 
 	/**
