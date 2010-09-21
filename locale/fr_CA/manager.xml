@@ -685,7 +685,7 @@
 	<message key="manager.timeline.scheduleEvents">Calendrier des événements</message>
 	<message key="manager.tracks.disableComments">Désactiver les commentaires de lecteurs pour cette section.</message>
 	<message key="manager.tracks.wordCount">Nombre de mots</message>
-	<message key="manager.tracks.wordCountInstructions"><![CDATA[Limiter le nombre de mots des résumés pour cette section (0 pour aucune limite)&#x00A0;:]]></message>
+	<message key="manager.tracks.wordCountInstructions"><![CDATA[Limiter le nombre de mots des résumés pour cette section (0 pour aucune limite) :]]></message>
 	<message key="manager.setup.aboutConference.accessPolicy">Politique d'accès</message>
 	<message key="manager.setup.aboutConference.archiveAccessPolicy.description">Les paramètres suivants contrôlent l'accès aux archives de la conférence.</message>
 	<message key="manager.setup.additionalContent.accessPolicy.description">Cette politique s'applique aux présentations de la conférence en cours publiées dans le site Web.</message>
