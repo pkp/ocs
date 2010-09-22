@@ -1,5 +1,3 @@
-<!-- templates/schedConf/program.tpl -->
-
 {**
  * program.tpl
  *
@@ -30,6 +28,4 @@
 <div>{$program|nl2br}</div>
 
 {include file="common/footer.tpl"}
-
-<!-- / templates/schedConf/program.tpl -->
 

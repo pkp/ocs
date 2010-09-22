@@ -49,5 +49,3 @@
 </body>
 </html>
 
-<!-- / templates/paper/interstitial.tpl -->
-

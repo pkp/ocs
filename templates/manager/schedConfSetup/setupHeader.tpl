@@ -1,5 +1,3 @@
-<!-- templates/manager/schedConfSetup/setupHeader.tpl -->
-
 {**
  * setupHeader.tpl
  *
@@ -23,6 +21,4 @@
 	<li id="step3" {if $setupStep == 3} class="current"{/if}><a href="{url op="schedConfSetup" path="3"}">3. {translate key="manager.schedConfSetup.review"}</a></li>
 </ul>
 
-
-<!-- / templates/manager/schedConfSetup/setupHeader.tpl -->
 

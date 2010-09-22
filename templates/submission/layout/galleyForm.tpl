@@ -1,5 +1,3 @@
-<!-- templates/submission/layout/galleyForm.tpl -->
-
 {**
  * galleyForm.tpl
  *
@@ -167,6 +165,4 @@
 </form>
 
 {include file="common/footer.tpl"}
-
-<!-- / templates/submission/layout/galleyForm.tpl -->
 

@@ -59,5 +59,3 @@
 </frameset>
 </html>
 
-<!-- / templates/paper/view.tpl -->
-

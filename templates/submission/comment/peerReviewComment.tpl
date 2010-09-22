@@ -1,5 +1,3 @@
-<!-- templates/submission/comment/peerReviewComment.tpl -->
-
 {**
  * comment.tpl
  *
@@ -97,6 +95,4 @@
 {/if}
 
 {include file="submission/comment/footer.tpl"}
-
-<!-- / templates/submission/comment/peerReviewComment.tpl -->
 

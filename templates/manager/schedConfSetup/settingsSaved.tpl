@@ -1,5 +1,3 @@
-<!-- templates/manager/schedConfSetup/settingsSaved.tpl -->
-
 {**
  * stepSaved.tpl
  *
@@ -31,6 +29,4 @@
 {/if}
 
 {include file="common/footer.tpl"}
-
-<!-- / templates/manager/schedConfSetup/settingsSaved.tpl -->
 

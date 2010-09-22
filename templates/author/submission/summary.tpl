@@ -1,5 +1,3 @@
-<!-- templates/author/submission/summary.tpl -->
-
 {**
  * summary.tpl
  *
@@ -45,6 +43,4 @@
 	</tr>
 </table>
 </div>
-
-<!-- / templates/author/submission/summary.tpl -->
 

@@ -1,5 +1,3 @@
-<!-- templates/author/submission/peerReview.tpl -->
-
 {**
  * peerReview.tpl
  *
@@ -103,6 +101,4 @@
 	{/if}
 </table>
 </div>
-
-<!-- / templates/author/submission/peerReview.tpl -->
 

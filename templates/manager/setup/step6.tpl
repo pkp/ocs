@@ -1,5 +1,3 @@
-<!-- templates/manager/setup/step6.tpl -->
-
 {**
  * step6.tpl
  *
@@ -71,6 +69,4 @@
 </form>
 
 {include file="common/footer.tpl"}
-
-<!-- / templates/manager/setup/step6.tpl -->
 

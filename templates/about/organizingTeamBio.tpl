@@ -97,5 +97,3 @@
 </body>
 </html>
 
-<!-- / templates/about/organizingTeamBio.tpl -->
-

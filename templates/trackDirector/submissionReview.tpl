@@ -1,5 +1,3 @@
-<!-- templates/trackDirector/submissionReview.tpl -->
-
 {**
  * submissionReview.tpl
  *
@@ -48,6 +46,4 @@
 {include file="trackDirector/submission/directorDecision.tpl"}
 
 {include file="common/footer.tpl"}
-
-<!-- / templates/trackDirector/submissionReview.tpl -->
 

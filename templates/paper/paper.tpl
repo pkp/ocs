@@ -1,5 +1,3 @@
-<!-- templates/paper/paper.tpl -->
-
 {**
  * paper.tpl
  *
@@ -87,6 +85,4 @@
 {include file="paper/comments.tpl"}
 
 {include file="paper/footer.tpl"}
-
-<!-- / templates/paper/paper.tpl -->
 

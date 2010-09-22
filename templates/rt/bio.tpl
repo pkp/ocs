@@ -1,5 +1,3 @@
-<!-- templates/rt/bio.tpl -->
-
 {**
  * bio.tpl
  *
@@ -35,6 +33,4 @@
 </div>
 
 {include file="rt/footer.tpl"}
-
-<!-- / templates/rt/bio.tpl -->
 

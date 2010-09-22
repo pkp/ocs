@@ -50,5 +50,3 @@
 </body>
 </html>
 
-<!-- / templates/paper/pdfInterstitial.tpl -->
-

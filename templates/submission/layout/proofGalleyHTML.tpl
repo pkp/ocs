@@ -32,5 +32,3 @@
 </body>
 </html>
 
-<!-- / templates/submission/layout/proofGalleyHTML.tpl -->
-

@@ -1,5 +1,3 @@
-<!-- templates/author/submit/submitSidebar.tpl -->
-
 {**
  * submitSidebar.tpl
  *
@@ -11,6 +9,4 @@
  * $Id$
  *}
 {* Empty for now *}
-
-<!-- / templates/author/submit/submitSidebar.tpl -->
 

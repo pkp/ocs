@@ -1,5 +1,3 @@
-<!-- templates/author/submission/management.tpl -->
-
 {**
  * management.tpl
  *
@@ -108,6 +106,4 @@
 	{/if}
 </table>
 </div>
-
-<!-- / templates/author/submission/management.tpl -->
 

@@ -1,5 +1,3 @@
-<!-- templates/user/changePassword.tpl -->
-
 {**
  * changePassword.tpl
  *
@@ -46,6 +44,4 @@
 </form>
 
 {include file="common/footer.tpl"}
-
-<!-- / templates/user/changePassword.tpl -->
 

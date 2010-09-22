@@ -1,5 +1,3 @@
-<!-- templates/manager/schedConfSetup/step2.tpl -->
-
 {**
  * step3.tpl
  *
@@ -416,6 +414,4 @@
 </form>
 
 {include file="common/footer.tpl"}
-
-<!-- / templates/manager/schedConfSetup/step2.tpl -->
 

@@ -1,5 +1,3 @@
-<!-- templates/about/organizingTeam.tpl -->
-
 {**
  * organizingTeam.tpl
  *
@@ -46,6 +44,4 @@
 {include file="about/conferenceSponsorship.tpl"}
 
 {include file="common/footer.tpl"}
-
-<!-- / templates/about/organizingTeam.tpl -->
 

@@ -1,5 +1,3 @@
-<!-- templates/manager/schedConfs.tpl -->
-
 {**
  * schedConfs.tpl
  *
@@ -71,6 +69,4 @@ $(document).ready(function() { setupTableDND("#adminSchedConfs", "moveSchedConf"
 <p><a href="{url op="createSchedConf"}" class="action">{translate key="manager.schedConfs.create"}</a></p>
 </div>
 {include file="common/footer.tpl"}
-
-<!-- / templates/manager/schedConfs.tpl -->
 

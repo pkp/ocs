@@ -1,5 +1,3 @@
-<!-- templates/trackDirector/submission/peerReview.tpl -->
-
 {**
  * peerReview.tpl
  *
@@ -353,6 +351,4 @@
 	{/foreach}
 {/if}
 </div>
-
-<!-- / templates/trackDirector/submission/peerReview.tpl -->
 

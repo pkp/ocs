@@ -1,5 +1,3 @@
-<!-- templates/conference/index.tpl -->
-
 {**
  * index.tpl
  *
@@ -59,6 +57,4 @@
 {/if}
 </div>
 {include file="common/footer.tpl"}
-
-<!-- / templates/conference/index.tpl -->
 

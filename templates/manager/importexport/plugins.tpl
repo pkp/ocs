@@ -1,5 +1,3 @@
-<!-- templates/manager/importexport/plugins.tpl -->
-
 {**
  * plugins.tpl
  *
@@ -24,6 +22,4 @@
 </ul>
 
 {include file="common/footer.tpl"}
-
-<!-- / templates/manager/importexport/plugins.tpl -->
 

@@ -1,5 +1,3 @@
-<!-- templates/trackDirector/submissionEventLog.tpl -->
-
 {**
  * submissionEventLog.tpl
  *
@@ -105,6 +103,4 @@
 {/if}
 </div>
 {include file="common/footer.tpl"}
-
-<!-- / templates/trackDirector/submissionEventLog.tpl -->
 

@@ -1,5 +1,3 @@
-<!-- templates/manager/people/userProfile.tpl -->
-
 {**
  * userProfile.tpl
  *
@@ -168,6 +166,4 @@
 {/if}
 </div>
 {include file="common/footer.tpl"}
-
-<!-- / templates/manager/people/userProfile.tpl -->
 

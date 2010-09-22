@@ -1,5 +1,3 @@
-<!-- templates/trackDirector/submission/complete.tpl -->
-
 {**
  * complete.tpl
  *
@@ -20,6 +18,4 @@
 	<input name="remove" {if $submission->getStatus() != STATUS_PUBLISHED}disabled="disabled" {/if}type="submit" value="{translate key="common.remove"}" class="button" />
 </form>
 </div>
-
-<!-- / templates/trackDirector/submission/complete.tpl -->
 

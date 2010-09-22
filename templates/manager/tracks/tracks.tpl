@@ -1,5 +1,3 @@
-<!-- templates/manager/tracks/tracks.tpl -->
-
 {**
  * tracks.tpl
  *
@@ -60,6 +58,4 @@
 <a class="action" href="{url op="createTrack"}">{translate key="manager.tracks.create"}</a>
 </div>
 {include file="common/footer.tpl"}
-
-<!-- / templates/manager/tracks/tracks.tpl -->
 

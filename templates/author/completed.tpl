@@ -1,5 +1,3 @@
-<!-- templates/author/completed.tpl -->
-
 {**
  * completed.tpl
  *
@@ -58,6 +56,4 @@
 {/if}
 </table>
 </div>
-
-<!-- / templates/author/completed.tpl -->
 

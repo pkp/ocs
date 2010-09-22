@@ -1,5 +1,3 @@
-<!-- templates/trackDirector/submissionEmailLogEntry.tpl -->
-
 {**
  * submissionEmailLogEntry.tpl
  *
@@ -102,6 +100,4 @@
 <a href="{url op="submissionEmailLog" path=$submission->getPaperId()}" class="action">{translate key="submission.email.backToEmailLog"}</a>
 </div>
 {include file="common/footer.tpl"}
-
-<!-- / templates/trackDirector/submissionEmailLogEntry.tpl -->
 

@@ -1,5 +1,3 @@
-<!-- templates/manager/scheduler/rooms.tpl -->
-
 {**
  * rooms.tpl
  *
@@ -64,6 +62,4 @@
 <a href="{url op="createRoom" path=$buildingId}" class="action">{translate key="manager.scheduler.room.create"}</a>
 </div>
 {include file="common/footer.tpl"}
-
-<!-- / templates/manager/scheduler/rooms.tpl -->
 

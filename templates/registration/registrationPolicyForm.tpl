@@ -1,5 +1,3 @@
-<!-- templates/registration/registrationPolicyForm.tpl -->
-
 {**
  * registrationPolicyForm.tpl
  *
@@ -174,6 +172,4 @@
 </form>
 
 {include file="common/footer.tpl"}
-
-<!-- / templates/registration/registrationPolicyForm.tpl -->
 

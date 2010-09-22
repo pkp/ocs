@@ -1,5 +1,3 @@
-<!-- templates/manager/setup/index.tpl -->
-
 {**
  * index.tpl
  *
@@ -51,6 +49,4 @@
 </ol>
 
 {include file="common/footer.tpl"}
-
-<!-- / templates/manager/setup/index.tpl -->
 

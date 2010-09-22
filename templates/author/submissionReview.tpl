@@ -1,5 +1,3 @@
-<!-- templates/author/submissionReview.tpl -->
-
 {**
  * submissionReview.tpl
  *
@@ -50,6 +48,4 @@
 {include file="author/submission/directorDecision.tpl"}
 
 {include file="common/footer.tpl"}
-
-<!-- / templates/author/submissionReview.tpl -->
 

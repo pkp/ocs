@@ -1,5 +1,3 @@
-<!-- templates/user/login.tpl -->
-
 {**
  * login.tpl
  *
@@ -16,5 +14,3 @@
 {assign var="registerLocaleKey" value="user.login.createAccount"}
 {include file="core:user/login.tpl"}
 {/strip}
-<!-- / templates/user/login.tpl -->
-

@@ -1,5 +1,3 @@
-<!-- templates/admin/conferenceSettings.tpl -->
-
 {**
  * conferenceSettings.tpl
  *
@@ -75,6 +73,4 @@
 <p><span class="formRequired">{translate key="common.requiredField"}</span></p>
 </div>
 {include file="common/footer.tpl"}
-
-<!-- / templates/admin/conferenceSettings.tpl -->
 

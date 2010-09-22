@@ -1,5 +1,3 @@
-<!-- templates/trackDirector/reviewerRecommendation.tpl -->
-
 {**
  * setDueDate.tpl
  *
@@ -36,6 +34,4 @@
 </form>
 
 {include file="common/footer.tpl"}
-
-<!-- / templates/trackDirector/reviewerRecommendation.tpl -->
 

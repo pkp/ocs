@@ -1,5 +1,3 @@
-<!-- templates/author/submission/directorDecision.tpl -->
-
 {**
  * peerReview.tpl
  *
@@ -101,6 +99,4 @@
 
 {include file="author/submission/layout.tpl"}
 
-
-<!-- / templates/author/submission/directorDecision.tpl -->
 

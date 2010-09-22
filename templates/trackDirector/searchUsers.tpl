@@ -1,5 +1,3 @@
-<!-- templates/trackDirector/searchUsers.tpl -->
-
 {**
  * searchUsers.tpl
  *
@@ -77,6 +75,4 @@
 {/if}
 
 {include file="common/footer.tpl"}
-
-<!-- / templates/trackDirector/searchUsers.tpl -->
 

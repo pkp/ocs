@@ -1,5 +1,3 @@
-<!-- templates/manager/scheduler/index.tpl -->
-
 {**
  * index.tpl
  *
@@ -44,6 +42,4 @@
 </ul>
 </div>
 {include file="common/footer.tpl"}
-
-<!-- / templates/manager/scheduler/index.tpl -->
 

@@ -55,5 +55,3 @@
 <div id="content">
 
 
-<!-- / templates/submission/comment/header.tpl -->
-

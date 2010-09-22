@@ -38,5 +38,3 @@
 </body>
 </html>
 
-<!-- / templates/submission/layout/proofGalleyTop.tpl -->
-

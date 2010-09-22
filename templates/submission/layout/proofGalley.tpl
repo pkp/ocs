@@ -46,5 +46,3 @@
 </frameset>
 </html>
 
-<!-- / templates/submission/layout/proofGalley.tpl -->
-

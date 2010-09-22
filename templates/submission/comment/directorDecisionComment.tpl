@@ -1,5 +1,3 @@
-<!-- templates/submission/comment/directorDecisionComment.tpl -->
-
 {**
  * directorDecisionComment.tpl
  *
@@ -78,6 +76,4 @@
 {/if}
 
 {include file="submission/comment/footer.tpl"}
-
-<!-- / templates/submission/comment/directorDecisionComment.tpl -->
 

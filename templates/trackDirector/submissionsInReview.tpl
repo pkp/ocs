@@ -1,5 +1,3 @@
-<!-- templates/trackDirector/submissionsInReview.tpl -->
-
 {**
  * submissionsInReview.tpl
  *
@@ -101,6 +99,4 @@
 {/if}
 </table>
 </div>
-
-<!-- / templates/trackDirector/submissionsInReview.tpl -->
 

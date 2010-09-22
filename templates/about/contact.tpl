@@ -1,5 +1,3 @@
-<!-- templates/about/contact.tpl -->
-
 {**
  * contact.tpl
  *
@@ -69,6 +67,4 @@
 {/if}
 </div>
 {include file="common/footer.tpl"}
-
-<!-- / templates/about/contact.tpl -->
 

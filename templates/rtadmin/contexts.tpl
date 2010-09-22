@@ -1,5 +1,3 @@
-<!-- templates/rtadmin/contexts.tpl -->
-
 {**
  * contexts.tpl
  *
@@ -56,6 +54,4 @@
 <a href="{url op="createContext" path=$version->getVersionId()}" class="action">{translate key="rt.admin.contexts.createContext"}</a><br/>
 </div>
 {include file="common/footer.tpl"}
-
-<!-- / templates/rtadmin/contexts.tpl -->
 

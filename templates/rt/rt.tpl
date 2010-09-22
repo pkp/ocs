@@ -169,5 +169,3 @@
 
 </html>
 
-<!-- / templates/rt/rt.tpl -->
-

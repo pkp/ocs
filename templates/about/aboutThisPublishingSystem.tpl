@@ -1,5 +1,3 @@
-<!-- templates/about/aboutThisPublishingSystem.tpl -->
-
 {**
  * aboutThisPublishingSystem.tpl
  *
@@ -30,6 +28,4 @@
 </p>
 </div>
 {include file="common/footer.tpl"}
-
-<!-- / templates/about/aboutThisPublishingSystem.tpl -->
 

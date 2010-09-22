@@ -1,5 +1,3 @@
-<!-- templates/trackDirector/submission/summary.tpl -->
-
 {**
  * summary.tpl
  *
@@ -45,6 +43,4 @@
 	</tr>
 </table>
 </div>
-
-<!-- / templates/trackDirector/submission/summary.tpl -->
 

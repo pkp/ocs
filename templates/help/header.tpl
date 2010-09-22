@@ -1,5 +1,3 @@
-<!-- templates/help/header.tpl -->
-
 {**
  * header.tpl
  *
@@ -12,6 +10,4 @@
 {translate|assign:applicationHelpTranslated key="help.ocsHelp"}
 {include file="core:help/header.tpl"}
 {/strip}
-
-<!-- / templates/help/header.tpl -->
 

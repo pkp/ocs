@@ -1,5 +1,3 @@
-<!-- templates/user/createAccountConference.tpl -->
-
 {**
  * createAccountConference.tpl
  *
@@ -32,6 +30,4 @@
 {/if}
 </div>
 {include file="common/footer.tpl"}
-
-<!-- / templates/user/createAccountConference.tpl -->
 

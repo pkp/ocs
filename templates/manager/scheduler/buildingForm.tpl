@@ -1,5 +1,3 @@
-<!-- templates/manager/scheduler/buildingForm.tpl -->
-
 {**
  * buildingForm.tpl
  *
@@ -72,6 +70,4 @@
 <p><span class="formRequired">{translate key="common.requiredField"}</span></p>
 </div>
 {include file="common/footer.tpl"}
-
-<!-- / templates/manager/scheduler/buildingForm.tpl -->
 

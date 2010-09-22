@@ -1,5 +1,3 @@
-<!-- templates/schedConf/papers.tpl -->
-
 {**
  * papers.tpl
  *
@@ -77,6 +75,4 @@
 
 {include file="common/footer.tpl"}
 
-
-<!-- / templates/schedConf/papers.tpl -->
 

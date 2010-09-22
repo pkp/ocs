@@ -1,5 +1,3 @@
-<!-- templates/rtadmin/index.tpl -->
-
 {**
  * index.tpl
  *
@@ -35,6 +33,4 @@
 </ul>
 </div>
 {include file="common/footer.tpl"}
-
-<!-- / templates/rtadmin/index.tpl -->
 

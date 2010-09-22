@@ -1,5 +1,3 @@
-<!-- templates/schedConf/schedules/compact.tpl -->
-
 {**
  * compact.tpl
  *
@@ -111,6 +109,4 @@
 
 </div>
 {include file="common/footer.tpl"}
-
-<!-- / templates/schedConf/schedules/compact.tpl -->
 

@@ -97,5 +97,3 @@
 
 <div id="content">
 
-<!-- / templates/paper/header.tpl -->
-

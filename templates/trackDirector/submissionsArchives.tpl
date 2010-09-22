@@ -1,5 +1,3 @@
-<!-- templates/trackDirector/submissionsArchives.tpl -->
-
 {**
  * submissionsArchives.tpl
  *
@@ -61,6 +59,4 @@
 {/if}
 </table>
 </div>
-
-<!-- / templates/trackDirector/submissionsArchives.tpl -->
 

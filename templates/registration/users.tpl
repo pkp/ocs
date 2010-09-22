@@ -1,5 +1,3 @@
-<!-- templates/registration/users.tpl -->
-
 {**
  * users.tpl
  *
@@ -79,6 +77,4 @@
 </table>
 </div>
 {include file="common/footer.tpl"}
-
-<!-- / templates/registration/users.tpl -->
 

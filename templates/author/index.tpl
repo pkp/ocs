@@ -1,5 +1,3 @@
-<!-- templates/author/index.tpl -->
-
 {**
  * index.tpl
  *
@@ -36,6 +34,4 @@
 {/if}
 
 {include file="common/footer.tpl"}
-
-<!-- / templates/author/index.tpl -->
 

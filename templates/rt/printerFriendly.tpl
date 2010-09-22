@@ -67,5 +67,3 @@
 </body>
 </html>
 
-<!-- / templates/rt/printerFriendly.tpl -->
-

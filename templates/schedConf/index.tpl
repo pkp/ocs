@@ -1,5 +1,3 @@
-<!-- templates/schedConf/index.tpl -->
-
 {**
  * index.tpl
  *
@@ -70,6 +68,4 @@
 {$additionalHomeContent}
 
 {include file="common/footer.tpl"}
-
-<!-- / templates/schedConf/index.tpl -->
 

@@ -1,5 +1,3 @@
-<!-- templates/paper/googlescholar.tpl -->
-
 {**
  * googlescholar.tpl
  *
@@ -23,6 +21,4 @@
 	<meta name="citation_fulltext_html_url" content="{url page="paper" op="view" path=$paper->getBestPaperId($currentConference)|to_array:$dc_galley->getGalleyId()}"/>
 {/if}
 {/foreach}
-
-<!-- / templates/paper/googlescholar.tpl -->
 

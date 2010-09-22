@@ -1,5 +1,3 @@
-<!-- templates/about/conferenceSponsorship.tpl -->
-
 {**
  * conferenceSponsorship.tpl
  *
@@ -63,6 +61,4 @@
 </ul>
 {/if}
 </div>
-
-<!-- / templates/about/conferenceSponsorship.tpl -->
 
