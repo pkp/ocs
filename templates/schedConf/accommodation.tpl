@@ -18,12 +18,12 @@
 {if !empty($accommodationFiles)}
 	<div class="separator"></div>
 {/if}
- <div id="accommodationFiles">
+<div id="accommodationFiles">
 {foreach from=$accommodationFiles item=accommodationFile}
 	<div>
 		<a class="file" href="{$publicSchedConfFilesDir}/{$accommodationFile.uploadName}" target="_blank">{$accommodationFile.title|default:$accommodationFile.name|escape}</a>
 	</div>
 {/foreach}
-<div>
+</div>
 {include file="common/footer.tpl"}
 
