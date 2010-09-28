@@ -230,13 +230,12 @@ class UserHandler extends Handler {
 	function become($args) {
 		$this->addCheck(new HandlerValidatorConference($this));
 		$this->addCheck(new HandlerValidatorSchedConf($this));
-		$this->validate();
-		$schedConf =& Request::getSchedConf();
-		
-		import('classes.schedConf.SchedConfAction');
-		$user =& Request::getUser();
-		if (!$user) Request::redirect(null, null, 'index');
+		$this->validate(true);
 
+		$schedConf =& Request::getSchedConf();
+		$user =& Request::getUser();
+
+		import('classes.schedConf.SchedConfAction');
 		$schedConfAction = new SchedConfAction();
 
 		switch (array_shift($args)) {
