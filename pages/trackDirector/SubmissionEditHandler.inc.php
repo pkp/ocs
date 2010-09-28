@@ -481,7 +481,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 	/**
 	 * Create a new user as a reviewer.
 	 */
-	function createReviewer(&$args, &$request) {
+	function createReviewer($args, &$request) {
 		$paperId = isset($args[0]) ? (int) $args[0] : 0;
 		$this->validate($paperId, TRACK_DIRECTOR_ACCESS_REVIEW);
 		$conference =& Request::getConference();
