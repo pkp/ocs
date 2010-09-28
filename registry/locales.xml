@@ -10,22 +10,20 @@
   *
   * This file lists all locales available to the system.
   * (i.e., existing under the locales/ directory)
-  *
-  * $Id$
   -->
 
 <!DOCTYPE locales SYSTEM "../lib/pkp/dtd/locales.dtd">
 
 <locales>
-	<locale key="ca_ES" complete="false" name="Català (Espanya)"/>
-	<locale key="de_DE" complete="false" name="Deutsch"/>
-	<locale key="en_US" name="English"/>	
-	<locale key="es_AR" complete="false" name="Español (Argentina)"/>	
-	<locale key="es_ES" name="Español (España)"/>
-	<locale key="eu_ES" complete="false" name="Basque" />
-	<locale key="fr_CA" name="Français (Canada)"/>
-	<locale key="it_IT" complete="false" name="Italiano"/>
-	<locale key="pt_BR" name="Português (Brasil)"/>
-	<locale key="pt_PT" complete="false" name="Português (Portugal)"/>
-	<locale key="zh_TW" complete="false" name="正體中文"/>
+	<locale key="ca_ES" complete="false" name="Català (Espanya)" iso639-2b="cat" />
+	<locale key="de_DE" complete="false" name="Deutsch" iso639-2b="ger" />
+	<locale key="en_US" name="English" iso639-2b="eng" />
+	<locale key="es_AR" complete="false" name="Español (Argentina)" iso639-2b="spa" />	
+	<locale key="es_ES" name="Español (España)" iso639-2b="spa" />
+	<locale key="eu_ES" complete="false" name="Basque" iso639-2b="baq" />
+	<locale key="fr_CA" name="Français (Canada)" iso639-2b="fre" />
+	<locale key="it_IT" complete="false" name="Italiano" iso639-2b="ita" />
+	<locale key="pt_BR" name="Português (Brasil)" iso639-2b="por" />
+	<locale key="pt_PT" complete="false" name="Português (Portugal)" iso639-2b="por" />
+	<locale key="zh_TW" complete="false" name="正體中文" iso639-2b="chi" />
 </locales>
