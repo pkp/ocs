@@ -108,6 +108,8 @@ class Notification extends PKPNotification {
 	 */
 	function getSubscriptionSettings() {
 		$conference = Request::getConference();
+		if (!$conference) return array();
+
 		import('classes.payment.ocs.OCSPaymentManager');
 		$paymentManager =& OCSPaymentManager::getManager();
 
