@@ -74,9 +74,13 @@ class CreateReviewerForm extends Form {
 		$countryDao =& DAORegistry::getDAO('CountryDAO');
 		$countries =& $countryDao->getCountries();
 		$templateMgr->assign_by_ref('countries', $countries);
-		
+
 		$interestDao =& DAORegistry::getDAO('InterestDAO');
-		$templateMgr->assign('existingInterests', implode(",", $interestDao->getAllUniqueInterests()));
+		// Get all available interests to populate the autocomplete with
+		if ($interestDao->getAllUniqueInterests()) {
+			$existingInterests = $interestDao->getAllUniqueInterests();
+		} else $existingInterests = null;
+		$templateMgr->assign('existingInterests', $existingInterests);
 
 		parent::display();
 	}
@@ -175,15 +179,21 @@ class CreateReviewerForm extends Form {
 		$user->setDateRegistered(Core::getCurrentDate());
 		$userId = $userDao->insertUser($user);
 
-		// Add reviewer interests to interests table
+		// Add reviewing interests to interests table
 		$interestDao =& DAORegistry::getDAO('InterestDAO');
 		$interests = Request::getUserVar('interestsKeywords');
-		$interestsTextOnly = explode(",", str_replace("\"", "", Request::getUserVar('interests'))); // If JS is disabled, this will be the control to read
-		if (isset($interestsTextOnly) && !isset($interests)) $interests = $interestsTextOnly;
-		if (empty($interests))  $interests = array();
-		elseif (!is_array($interests)) $interests = array($interests);
-		$interestDao->insertInterests($interests, $userId, true);
-		
+		$interestTextOnly = Request::getUserVar('interests');
+		if(!empty($interestsTextOnly)) {
+			// If JS is disabled, this will be the input to read
+			$interestsTextOnly = explode(",", $interestTextOnly);
+		} else $interestsTextOnly = null;
+		if ($interestsTextOnly && !isset($interests)) {
+			$interests = $interestsTextOnly;
+		} elseif (isset($interests) && !is_array($interests)) {
+			$interests = array($interests);
+		}
+		$interestDao->insertInterests($interests, $user->getId(), true);
+
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
 		$schedConf =& Request::getSchedConf();
 		$role = new Role();

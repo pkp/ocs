@@ -105,7 +105,7 @@ class CreateAccountForm extends Form {
 		$templateMgr->assign_by_ref('countries', $countries);
 
 		import('classes.schedConf.SchedConfAction');
-		
+
 		$userDao =& DAORegistry::getDAO('UserDAO');
 		$templateMgr->assign('genderOptions', $userDao->getGenderOptions());
 
@@ -122,7 +122,7 @@ class CreateAccountForm extends Form {
 		$site =& Request::getSite();
 		$templateMgr->assign('availableLocales', $site->getSupportedLocaleNames());
 
-		$templateMgr->assign('helpTopicId', 'conference.users.index');		
+		$templateMgr->assign('helpTopicId', 'conference.users.index');
 		parent::display();
 	}
 
@@ -141,7 +141,11 @@ class CreateAccountForm extends Form {
 		$this->setData('userLocales', array());
 		$this->setData('sendPassword', 1);
 		$interestDao =& DAORegistry::getDAO('InterestDAO');
-		$this->setData('existingInterests', implode(",", $interestDao->getAllUniqueInterests()));
+		// Get all available interests to populate the autocomplete with
+		if ($interestDao->getAllUniqueInterests()) {
+			$existingInterests = $interestDao->getAllUniqueInterests();
+		} else $existingInterests = null;
+		$this->setData('existingInterests', $existingInterests);
 	}
 
 	/**
@@ -246,9 +250,23 @@ class CreateAccountForm extends Form {
 			$user->setFax($this->getData('fax'));
 			$user->setMailingAddress($this->getData('mailingAddress'));
 			$user->setBiography($this->getData('biography'), null); // Localized
-			$user->setInterests($this->getData('interestsKeywords'), null); // Localized
 			$user->setDateRegistered(Core::getCurrentDate());
 			$user->setCountry($this->getData('country'));
+
+			// Add reviewing interests to interests table
+			$interestDao =& DAORegistry::getDAO('InterestDAO');
+			$interests = Request::getUserVar('interestsKeywords');
+			$interestTextOnly = Request::getUserVar('interests');
+			if(!empty($interestsTextOnly)) {
+				// If JS is disabled, this will be the input to read
+				$interestsTextOnly = explode(",", $interestTextOnly);
+			} else $interestsTextOnly = null;
+			if ($interestsTextOnly && !isset($interests)) {
+				$interests = $interestsTextOnly;
+			} elseif (isset($interests) && !is_array($interests)) {
+				$interests = array($interests);
+			}
+			$interestDao->insertInterests($interests, $user->getId(), true);
 
 			$site =& Request::getSite();
 			$availableLocales = $site->getSupportedLocales();
