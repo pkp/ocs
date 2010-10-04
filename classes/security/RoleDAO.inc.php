@@ -158,7 +158,7 @@ class RoleDAO extends DAO {
 
 		$users = array();
 
-		$paramArray = array('interests');
+		$paramArray = array('interest');
 		if (isset($roleId)) $paramArray[] = (int) $roleId;
 		if (isset($conferenceId)) $paramArray[] = (int) $conferenceId;
 		if (isset($schedConfId)) $paramArray[] = (int) $schedConfId;
@@ -174,7 +174,7 @@ class RoleDAO extends DAO {
 			USER_FIELD_LASTNAME => 'u.last_name',
 			USER_FIELD_USERNAME => 'u.username',
 			USER_FIELD_EMAIL => 'u.email',
-			USER_FIELD_INTERESTS => 's.setting_value'
+			USER_FIELD_INTERESTS => 'cves.setting_value'
 		);
 
 		if (!empty($search) && isset($searchTypeMap[$searchType])) {
@@ -207,7 +207,10 @@ class RoleDAO extends DAO {
 		$searchSql .= ($sortBy?(' ORDER BY ' . $this->getSortMapping($sortBy) . ' ' . $this->getDirectionMapping($sortDirection)) : '');
 
 		$result =& $this->retrieveRange(
-			'SELECT DISTINCT u.* FROM users AS u LEFT JOIN user_settings s ON (u.user_id = s.user_id AND s.setting_name = ?), roles AS r WHERE u.user_id = r.user_id ' .
+			'SELECT DISTINCT u.* FROM users AS u LEFT JOIN controlled_vocabs cv ON (cv.assoc_id = u.user_id AND cv.symbolic = ?)
+				LEFT JOIN controlled_vocab_entries cve ON (cve.controlled_vocab_id = cv.controlled_vocab_id)
+				LEFT JOIN controlled_vocab_entry_settings cves ON (cves.controlled_vocab_entry_id = cve.controlled_vocab_entry_id),
+				roles AS r WHERE u.user_id = r.user_id ' .
 				(isset($roleId)?'AND r.role_id = ?':'') .
 				(isset($conferenceId) ? ' AND r.conference_id = ?' : '') .
 				(isset($schedConfId) ? ' AND r.sched_conf_id = ?' : '') .
@@ -232,7 +235,7 @@ class RoleDAO extends DAO {
 	function &getUsersByConferenceId($conferenceId, $searchType = null, $search = null, $searchMatch = null, $dbResultRange = null, $sortBy = null, $sortDirection = SORT_DIRECTION_ASC) {
 		$users = array();
 
-		$paramArray = array('interests', (int) $conferenceId);
+		$paramArray = array('interest', (int) $conferenceId);
 		$searchSql = '';
 
 		$searchTypeMap = array(
@@ -240,7 +243,7 @@ class RoleDAO extends DAO {
 			USER_FIELD_LASTNAME => 'u.last_name',
 			USER_FIELD_USERNAME => 'u.username',
 			USER_FIELD_EMAIL => 'u.email',
-			USER_FIELD_INTERESTS => 's.setting_value'
+			USER_FIELD_INTERESTS => 'cves.setting_value'
 		);
 
 		if (!empty($search) && isset($searchTypeMap[$searchType])) {
@@ -274,7 +277,10 @@ class RoleDAO extends DAO {
 
 		$result =& $this->retrieveRange(
 
-			'SELECT DISTINCT u.* FROM users AS u LEFT JOIN user_settings s ON (u.user_id = s.user_id AND s.setting_name = ?), roles AS r WHERE u.user_id = r.user_id AND r.conference_id = ? ' . $searchSql,
+			'SELECT DISTINCT u.* FROM users AS u LEFT JOIN controlled_vocabs cv ON (cv.assoc_id = u.user_id AND cv.symbolic = ?)
+				LEFT JOIN controlled_vocab_entries cve ON (cve.controlled_vocab_id = cv.controlled_vocab_id)
+				LEFT JOIN controlled_vocab_entry_settings cves ON (cves.controlled_vocab_entry_id = cve.controlled_vocab_entry_id),
+				roles AS r WHERE u.user_id = r.user_id AND r.conference_id = ? ' . $searchSql,
 			$paramArray,
 			$dbResultRange
 		);
@@ -295,7 +301,7 @@ class RoleDAO extends DAO {
 	function &getUsersBySchedConfId($schedConfId, $searchType = null, $search = null, $searchMatch = null, $dbResultRange = null, $sortBy = null, $sortDirection = SORT_DIRECTION_ASC) {
 		$users = array();
 
-		$paramArray = array('interests', (int) $schedConfId);
+		$paramArray = array('interest', (int) $schedConfId);
 		$searchSql = '';
 
 		if (!empty($search)) switch ($searchType) {
@@ -333,7 +339,10 @@ class RoleDAO extends DAO {
 
 		$result =& $this->retrieveRange(
 
-			'SELECT DISTINCT u.* FROM users AS u LEFT JOIN user_settings s ON (u.user_id = s.user_id AND s.setting_name = ?), roles AS r WHERE u.user_id = r.user_id AND r.sched_conf_id = ? ' . $searchSql,
+			'SELECT DISTINCT u.* FROM users AS u LEFT JOIN controlled_vocabs cv ON (cv.assoc_id = u.user_id AND cv.symbolic = ?)
+				LEFT JOIN controlled_vocab_entries cve ON (cve.controlled_vocab_id = cv.controlled_vocab_id)
+				LEFT JOIN controlled_vocab_entry_settings cves ON (cves.controlled_vocab_entry_id = cve.controlled_vocab_entry_id),
+				roles AS r WHERE u.user_id = r.user_id AND r.sched_conf_id = ? ' . $searchSql,
 			$paramArray,
 			$dbResultRange
 		);

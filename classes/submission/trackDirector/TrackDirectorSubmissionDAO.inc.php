@@ -657,7 +657,7 @@ class TrackDirectorSubmissionDAO extends DAO {
 	 * @return DAOResultFactory containing matching Users
 	 */
 	function &getReviewersForPaper($schedConfId, $paperId, $round, $searchType = null, $search = null, $searchMatch = null, $rangeInfo = null, $sortBy = null, $sortDirection = SORT_DIRECTION_ASC) {
-		$paramArray = array($paperId, $round, 'interests', $schedConfId, RoleDAO::getRoleIdFromPath('reviewer'));
+		$paramArray = array($paperId, $round, 'interest', $schedConfId, RoleDAO::getRoleIdFromPath('reviewer'));
 		$searchSql = '';
 
 		$searchTypeMap = array(
@@ -665,7 +665,7 @@ class TrackDirectorSubmissionDAO extends DAO {
 			USER_FIELD_LASTNAME => 'u.last_name',
 			USER_FIELD_USERNAME => 'u.username',
 			USER_FIELD_EMAIL => 'u.email',
-			USER_FIELD_INTERESTS => 's.setting_value'
+			USER_FIELD_INTERESTS => 'cves.setting_value'
 		);
 
 		if (!empty($search) && isset($searchTypeMap[$searchType])) {
@@ -711,9 +711,11 @@ class TrackDirectorSubmissionDAO extends DAO {
 				LEFT JOIN review_assignments ac ON (ac.reviewer_id = u.user_id AND ac.date_completed IS NOT NULL)
 				LEFT JOIN review_assignments ai ON (ai.reviewer_id = u.user_id AND ai.date_completed IS NULL)
 				LEFT JOIN review_assignments ar ON (ar.reviewer_id = u.user_id AND ar.cancelled = 0 AND ar.submission_id = ? AND ar.round = ?)
-				LEFT JOIN user_settings s ON (u.user_id = s.user_id AND s.setting_name = ?)
 				LEFT JOIN roles r ON (r.user_id = u.user_id)
 				LEFT JOIN papers p ON (a.submission_id = p.paper_id)
+				LEFT JOIN controlled_vocabs cv ON (cv.assoc_id = u.user_id AND cv.symbolic = ?)
+				LEFT JOIN controlled_vocab_entries cve ON (cve.controlled_vocab_id = cv.controlled_vocab_id)
+				LEFT JOIN controlled_vocab_entry_settings cves ON (cves.controlled_vocab_entry_id = cve.controlled_vocab_entry_id)
 			WHERE	u.user_id = r.user_id AND
 				r.sched_conf_id = ? AND
 				r.role_id = ? ' . $searchSql . 'GROUP BY u.user_id, u.last_name, ar.review_id' .

@@ -120,7 +120,7 @@ class DirectorSubmissionDAO extends DAO {
 	/**
 	 * Insert a new DirectorSubmission.
 	 * @param $directorSubmission DirectorSubmission
-	 */	
+	 */
 	function insertDirectorSubmission(&$directorSubmission) {
 		$this->update(
 			sprintf('INSERT INTO edit_assignments
@@ -518,7 +518,7 @@ class DirectorSubmissionDAO extends DAO {
 		$users = array();
 
 		$paramArray = array(
-			'interests',
+			'interest',
 			$paperId,
 			$schedConfId,
 			$roleId
@@ -531,7 +531,7 @@ class DirectorSubmissionDAO extends DAO {
 			USER_FIELD_LASTNAME => 'u.last_name',
 			USER_FIELD_USERNAME => 'u.username',
 			USER_FIELD_EMAIL => 'u.email',
-			USER_FIELD_INTERESTS => 's.setting_value'
+			USER_FIELD_INTERESTS => 'cves.setting_value'
 		);
 
 		if (!empty($search) && isset($searchTypeMap[$searchType])) {
@@ -567,7 +567,9 @@ class DirectorSubmissionDAO extends DAO {
 				u.*
 			FROM	users u
 				LEFT JOIN roles r ON (r.user_id = u.user_id)
-				LEFT JOIN user_settings s ON (u.user_id = s.user_id AND s.setting_name = ?)
+				LEFT JOIN controlled_vocabs cv ON (cv.assoc_id = u.user_id AND cv.symbolic = ?)
+				LEFT JOIN controlled_vocab_entries cve ON (cve.controlled_vocab_id = cv.controlled_vocab_id)
+				LEFT JOIN controlled_vocab_entry_settings cves ON (cves.controlled_vocab_entry_id = cve.controlled_vocab_entry_id)
 				LEFT JOIN edit_assignments e ON (e.director_id = u.user_id AND e.paper_id = ?)
 			WHERE	r.sched_conf_id = ? AND
 				r.role_id = ? AND
@@ -588,7 +590,7 @@ class DirectorSubmissionDAO extends DAO {
 	function getInsertEditId() {
 		return $this->getInsertId('edit_assignments', 'edit_id');
 	}
-	
+
 	/**
 	 * Map a column heading value to a database value for sorting
 	 * @param string
@@ -601,7 +603,7 @@ class DirectorSubmissionDAO extends DAO {
 			case 'track': return 'track_abbrev';
 			case 'authors': return 'author_name';
 			case 'title': return 'submission_title';
-			case 'active': return 'p.submission_progress';		
+			case 'active': return 'p.submission_progress';
 			case 'subLayout': return 'layout_completed';
 			case 'status': return 'p.status';
 			case 'seq': return 'pp.seq';
