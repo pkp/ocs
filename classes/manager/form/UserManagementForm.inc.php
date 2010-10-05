@@ -150,7 +150,7 @@ class UserManagementForm extends Form {
 					'country' => $user->getCountry(),
 					'biography' => $user->getBiography(null), // Localized
 					'existingInterests' => $existingInterests,
-					'currentInterests' => $currentInterests,
+					'interestsKeywords' => $currentInterests,
 					'gossip' => $user->getGossip(null), // Localized
 					'signature' => $user->getSignature(null), // Localized
 					'userLocales' => $user->getLocales()
@@ -328,21 +328,6 @@ class UserManagementForm extends Form {
 					}
 				}
 			}
-			
-			// Add reviewing interests to interests table
-			$interestDao =& DAORegistry::getDAO('InterestDAO');
-			$interests = Request::getUserVar('interestsKeywords');
-			$interestTextOnly = Request::getUserVar('interests');
-			if(!empty($interestsTextOnly)) {
-				// If JS is disabled, this will be the input to read
-				$interestsTextOnly = explode(",", $interestTextOnly);
-			} else $interestsTextOnly = null;
-			if ($interestsTextOnly && !isset($interests)) {
-				$interests = $interestsTextOnly;
-			} elseif (isset($interests) && !is_array($interests)) {
-				$interests = array($interests);
-			}
-			$interestDao->insertInterests($interests, $user->getId(), true);
 
 			if ($sendNotify) {
 				// Send welcome email to user
@@ -361,6 +346,21 @@ class UserManagementForm extends Form {
 				$mail->send();
 			}
 		}
+
+		// Add reviewing interests to interests table
+		$interestDao =& DAORegistry::getDAO('InterestDAO');
+		$interests = Request::getUserVar('interestsKeywords');
+		$interestTextOnly = Request::getUserVar('interests');
+		if(!empty($interestsTextOnly)) {
+			// If JS is disabled, this will be the input to read
+			$interestsTextOnly = explode(",", $interestTextOnly);
+		} else $interestsTextOnly = null;
+		if ($interestsTextOnly && !isset($interests)) {
+			$interests = $interestsTextOnly;
+		} elseif (isset($interests) && !is_array($interests)) {
+			$interests = array($interests);
+		}
+		$interestDao->insertInterests($interests, $userId, true);
 	}
 }
 
