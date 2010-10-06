@@ -18,6 +18,15 @@
 
 import('lib.pkp.classes.submission.SubmissionFile');
 
+/* File type IDs */
+define('PAPER_FILE_SUBMISSION', 0x000001);
+define('PAPER_FILE_REVIEW',     0x000002);
+define('PAPER_FILE_DIRECTOR',   0x000003);
+define('PAPER_FILE_LAYOUT',     0x000004);
+define('PAPER_FILE_PUBLIC',     0x000005);
+define('PAPER_FILE_SUPP',       0x000006);
+define('PAPER_FILE_NOTE',       0x000007);
+
 class PaperFile extends SubmissionFile {
 
 	/**

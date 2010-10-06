@@ -25,15 +25,7 @@
 //$Id$
 
 import('lib.pkp.classes.file.FileManager');
-
-/* File type suffixes */
-define('PAPER_FILE_SUBMISSION',	'SM');
-define('PAPER_FILE_REVIEW',		'RV');
-define('PAPER_FILE_DIRECTOR',		'DR');
-define('PAPER_FILE_LAYOUT',		'LE');
-define('PAPER_FILE_PUBLIC',		'PB');
-define('PAPER_FILE_SUPP',		'SP');
-define('PAPER_FILE_NOTE',		'NT');
+import('classes.paper.PaperFile');
 
 class PaperFileManager extends FileManager {
 
@@ -124,7 +116,7 @@ class PaperFileManager extends FileManager {
 	 */
 	function uploadLayoutFile($fileName, $fileId = null, $overwrite = true) {
 		return $this->handleUpload($fileName, PAPER_FILE_LAYOUT, $fileId, $overwrite);
-	}	
+	}
 
 	/**
 	 * Upload a supp file.
@@ -135,7 +127,7 @@ class PaperFileManager extends FileManager {
 	 */
 	function uploadSuppFile($fileName, $fileId = null, $overwrite = true) {
 		return $this->handleUpload($fileName, PAPER_FILE_SUPP, $fileId, $overwrite);
-	}	
+	}
 
 	/**
 	 * Upload a public file.
@@ -146,7 +138,7 @@ class PaperFileManager extends FileManager {
 	 */
 	function uploadPublicFile($fileName, $fileId = null, $overwrite = true) {
 		return $this->handleUpload($fileName, PAPER_FILE_PUBLIC, $fileId, $overwrite);
-	}	
+	}
 
 	/**
 	 * Upload a note file.
@@ -225,7 +217,7 @@ class PaperFileManager extends FileManager {
 
 		if (isset($paperFile)) {
 			$fileType = $paperFile->getFileType();
-			$filePath = $this->filesDir . $paperFile->getType() . '/' . $paperFile->getFileName();
+			$filePath = $this->filesDir . $this->typeToPath($paperFile->getType()) . '/' . $paperFile->getFileName();
 
 			return parent::readFile($filePath, $output);
 
@@ -256,7 +248,7 @@ class PaperFileManager extends FileManager {
 		}
 
 		foreach ($files as $f) {
-			parent::deleteFile($this->filesDir . $f->getType() . '/' . $f->getFileName());
+			parent::deleteFile($this->filesDir . $this->typeToPath($f->getType()) . '/' . $f->getFileName());
 		}
 
 		$paperFileDao->deletePaperFileById($fileId, $revision);
@@ -282,7 +274,7 @@ class PaperFileManager extends FileManager {
 		$paperFile =& $this->getFile($fileId, $revision);
 		if (isset($paperFile)) {
 			$fileType = $paperFile->getFileType();
-			$filePath = $this->filesDir . $paperFile->getType() . '/' . $paperFile->getFileName();
+			$filePath = $this->filesDir . $this->typeToPath($paperFile->getType()) . '/' . $paperFile->getFileName();
 
 			return parent::downloadFile($filePath, $fileType, $inline);
 
@@ -348,6 +340,23 @@ class PaperFileManager extends FileManager {
 		}
 	}
 
+  /**
+   * Return type abbreviation associated with a type code (used for naming files).
+   * @param $type string
+   * @return string
+   */
+  function typeToAbbrev($type) {
+		switch ($type) {
+			case PAPER_FILE_REVIEW: return 'RV';
+			case PAPER_FILE_DIRECTOR: return 'DR';
+			case PAPER_FILE_LAYOUT: return 'LE';
+			case PAPER_FILE_PUBLIC: return 'PB';
+			case PAPER_FILE_SUPP: return 'SP';
+			case PAPER_FILE_NOTE: return 'NT';
+			case PAPER_FILE_SUBMISSION: default: return 'SM';
+		}
+	}
+
 	/**
 	 * Copies an existing PaperFile and renames it.
 	 * @param $sourceFileId int
@@ -367,7 +376,7 @@ class PaperFileManager extends FileManager {
 			$revision = $currentRevision + 1;
 		} else {
 			$revision = 1;
-		}	
+		}
 
 		$sourcePaperFile = $paperFileDao->getPaperFile($sourceFileId, $sourceRevision, $this->paperId);
 
@@ -375,7 +384,7 @@ class PaperFileManager extends FileManager {
 			return false;
 		}
 
-		$sourceDir = $this->filesDir . $sourcePaperFile->getType() . '/';
+		$sourceDir = $this->filesDir . $this->typeToPath($sourcePaperFile->getType()) . '/';
 
 		if ($destFileId != null) {
 			$paperFile->setFileId($destFileId);
@@ -385,7 +394,7 @@ class PaperFileManager extends FileManager {
 		$paperFile->setFileType($sourcePaperFile->getFileType());
 		$paperFile->setFileSize($sourcePaperFile->getFileSize());
 		$paperFile->setOriginalFileName(PaperFileManager::truncateFileName($sourcePaperFile->getFileName(), 127));
-		$paperFile->setType($destTypePath);
+		$paperFile->setType($destType);
 		$paperFile->setDateUploaded(Core::getCurrentDate());
 		$paperFile->setDateModified(Core::getCurrentDate());
 		$paperFile->setRound($this->paper->getCurrentRound());
@@ -395,7 +404,7 @@ class PaperFileManager extends FileManager {
 
 		// Rename the file.
 		$fileExtension = $this->parseFileExtension($sourcePaperFile->getFileName());
-		$newFileName = $this->paperId.'-'.$fileId.'-'.$revision.'-'.$destType.'.'.$fileExtension;
+		$newFileName = $this->paperId.'-'.$fileId.'-'.$revision.'-'.$this->typeToAbbrev($destType).'.'.$fileExtension;
 
 		if (!$this->fileExists($destDir, 'dir')) {
 			// Try to create destination directory
@@ -455,8 +464,8 @@ class PaperFileManager extends FileManager {
 	 * @param $originalName The name of the original file
 	 */
 	function generateFilename(&$paperFile, $type, $originalName) {
-		$extension = $this->parseFileExtension($originalName);			
-		$newFileName = $paperFile->getPaperId().'-'.$paperFile->getFileId().'-'.$paperFile->getRevision().'-'.$type.'.'.$extension;
+		$extension = $this->parseFileExtension($originalName);
+		$newFileName = $paperFile->getPaperId().'-'.$paperFile->getFileId().'-'.$paperFile->getRevision().'-'.$this->typeToAbbrev($type).'.'.$extension;
 		$paperFile->setFileName($newFileName);
 		return $newFileName;
 	}
@@ -494,7 +503,7 @@ class PaperFileManager extends FileManager {
 		$paperFile->setFileType($_FILES[$fileName]['type']);
 		$paperFile->setFileSize($_FILES[$fileName]['size']);
 		$paperFile->setOriginalFileName(PaperFileManager::truncateFileName($_FILES[$fileName]['name'], 127));
-		$paperFile->setType($typePath);
+		$paperFile->setType($type);
 		$paperFile->setRound($this->paper->getCurrentRound());
 
 		$newFileName = $this->generateFilename($paperFile, $type, $this->getUploadedFileName($fileName));
@@ -547,7 +556,7 @@ class PaperFileManager extends FileManager {
 		$paperFile->setFileType($mimeType);
 		$paperFile->setFileSize(strlen($contents));
 		$paperFile->setOriginalFileName(PaperFileManager::truncateFileName($fileName, 127));
-		$paperFile->setType($typePath);
+		$paperFile->setType($type);
 		$paperFile->setRound($this->paper->getCurrentRound());
 
 		$newFileName = $this->generateFilename($paperFile, $type, $fileName);
@@ -598,7 +607,7 @@ class PaperFileManager extends FileManager {
 
 		$paperFile->setFileType($mimeType);
 		$paperFile->setOriginalFileName(PaperFileManager::truncateFileName(basename($url), 127));
-		$paperFile->setType($typePath);
+		$paperFile->setType($type);
 		$paperFile->setRound($this->paper->getCurrentRound());
 
 		$newFileName = $this->generateFilename($paperFile, $type, $paperFile->getOriginalFileName());
