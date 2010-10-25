@@ -518,6 +518,7 @@ class DirectorSubmissionDAO extends DAO {
 		$users = array();
 
 		$paramArray = array(
+			ASSOC_TYPE_USER,
 			'interest',
 			$paperId,
 			$schedConfId,
@@ -567,7 +568,7 @@ class DirectorSubmissionDAO extends DAO {
 				u.*
 			FROM	users u
 				LEFT JOIN roles r ON (r.user_id = u.user_id)
-				LEFT JOIN controlled_vocabs cv ON (cv.assoc_id = u.user_id AND cv.symbolic = ?)
+				LEFT JOIN controlled_vocabs cv ON (cv.assoc_type = ? AND cv.assoc_id = u.user_id AND cv.symbolic = ?)
 				LEFT JOIN controlled_vocab_entries cve ON (cve.controlled_vocab_id = cv.controlled_vocab_id)
 				LEFT JOIN controlled_vocab_entry_settings cves ON (cves.controlled_vocab_entry_id = cve.controlled_vocab_entry_id)
 				LEFT JOIN edit_assignments e ON (e.director_id = u.user_id AND e.paper_id = ?)

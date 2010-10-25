@@ -158,7 +158,7 @@ class RoleDAO extends DAO {
 
 		$users = array();
 
-		$paramArray = array('interest');
+		$paramArray = array(ASSOC_TYPE_USER, 'interest');
 		if (isset($roleId)) $paramArray[] = (int) $roleId;
 		if (isset($conferenceId)) $paramArray[] = (int) $conferenceId;
 		if (isset($schedConfId)) $paramArray[] = (int) $schedConfId;
@@ -207,7 +207,7 @@ class RoleDAO extends DAO {
 		$searchSql .= ($sortBy?(' ORDER BY ' . $this->getSortMapping($sortBy) . ' ' . $this->getDirectionMapping($sortDirection)) : '');
 
 		$result =& $this->retrieveRange(
-			'SELECT DISTINCT u.* FROM users AS u LEFT JOIN controlled_vocabs cv ON (cv.assoc_id = u.user_id AND cv.symbolic = ?)
+			'SELECT DISTINCT u.* FROM users AS u LEFT JOIN controlled_vocabs cv ON (cv.assoc_type = ? AND cv.assoc_id = u.user_id AND cv.symbolic = ?)
 				LEFT JOIN controlled_vocab_entries cve ON (cve.controlled_vocab_id = cv.controlled_vocab_id)
 				LEFT JOIN controlled_vocab_entry_settings cves ON (cves.controlled_vocab_entry_id = cve.controlled_vocab_entry_id),
 				roles AS r WHERE u.user_id = r.user_id ' .
@@ -235,7 +235,7 @@ class RoleDAO extends DAO {
 	function &getUsersByConferenceId($conferenceId, $searchType = null, $search = null, $searchMatch = null, $dbResultRange = null, $sortBy = null, $sortDirection = SORT_DIRECTION_ASC) {
 		$users = array();
 
-		$paramArray = array('interest', (int) $conferenceId);
+		$paramArray = array(ASSOC_TYPE_USER, 'interest', (int) $conferenceId);
 		$searchSql = '';
 
 		$searchTypeMap = array(
@@ -277,7 +277,7 @@ class RoleDAO extends DAO {
 
 		$result =& $this->retrieveRange(
 
-			'SELECT DISTINCT u.* FROM users AS u LEFT JOIN controlled_vocabs cv ON (cv.assoc_id = u.user_id AND cv.symbolic = ?)
+			'SELECT DISTINCT u.* FROM users AS u LEFT JOIN controlled_vocabs cv ON (cv.assoc_type = ? AND cv.assoc_id = u.user_id AND cv.symbolic = ?)
 				LEFT JOIN controlled_vocab_entries cve ON (cve.controlled_vocab_id = cv.controlled_vocab_id)
 				LEFT JOIN controlled_vocab_entry_settings cves ON (cves.controlled_vocab_entry_id = cve.controlled_vocab_entry_id),
 				roles AS r WHERE u.user_id = r.user_id AND r.conference_id = ? ' . $searchSql,
@@ -301,7 +301,7 @@ class RoleDAO extends DAO {
 	function &getUsersBySchedConfId($schedConfId, $searchType = null, $search = null, $searchMatch = null, $dbResultRange = null, $sortBy = null, $sortDirection = SORT_DIRECTION_ASC) {
 		$users = array();
 
-		$paramArray = array('interest', (int) $schedConfId);
+		$paramArray = array(ASSOC_TYPE_USER, 'interest', (int) $schedConfId);
 		$searchSql = '';
 
 		if (!empty($search)) switch ($searchType) {
@@ -339,7 +339,7 @@ class RoleDAO extends DAO {
 
 		$result =& $this->retrieveRange(
 
-			'SELECT DISTINCT u.* FROM users AS u LEFT JOIN controlled_vocabs cv ON (cv.assoc_id = u.user_id AND cv.symbolic = ?)
+			'SELECT DISTINCT u.* FROM users AS u LEFT JOIN controlled_vocabs cv ON (cv.assoc_type = ? AND cv.assoc_id = u.user_id AND cv.symbolic = ?)
 				LEFT JOIN controlled_vocab_entries cve ON (cve.controlled_vocab_id = cv.controlled_vocab_id)
 				LEFT JOIN controlled_vocab_entry_settings cves ON (cves.controlled_vocab_entry_id = cve.controlled_vocab_entry_id),
 				roles AS r WHERE u.user_id = r.user_id AND r.sched_conf_id = ? ' . $searchSql,
