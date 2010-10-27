@@ -34,12 +34,12 @@ class ReviewerHandler extends Handler {
 	/**
 	 * Display reviewer index page.
 	 */
-	function index($args) {
-		$this->validate();
-		$this->setupTemplate();
+	function index($args, $request) {
+		$this->validate($request);
+		$this->setupTemplate($request);
 
-		$schedConf =& Request::getSchedConf();
-		$user =& Request::getUser();
+		$schedConf =& $request->getSchedConf();
+		$user =& $request->getUser();
 		$reviewerSubmissionDao =& DAORegistry::getDAO('ReviewerSubmissionDAO');
 		$rangeInfo = Handler::getRangeInfo('submissions');
 
@@ -75,8 +75,8 @@ class ReviewerHandler extends Handler {
 	 * @param $newKey string The new key name, if one was supplied; otherwise, the existing one (if it exists) is used
 	 * @return object Valid user object if the key was valid; otherwise NULL.
 	 */
-	function &validateAccessKey($userId, $reviewId, $newKey = null) {
-		$schedConf =& Request::getSchedConf();
+	function &_validateAccessKey($request, $userId, $reviewId, $newKey = null) {
+		$schedConf =& $request->getSchedConf();
 		if (!$schedConf || !$schedConf->getSetting('reviewerAccessKeysEnabled')) {
 			$accessKey = false;
 			return $accessKey;
@@ -87,7 +87,7 @@ class ReviewerHandler extends Handler {
 		import('lib.pkp.classes.security.AccessKeyManager');
 		$accessKeyManager = new AccessKeyManager();
 
-		$session =& Request::getSession();
+		$session =& $request->getSession();
 		// Check to see if a new access key is being used.
 		if (!empty($newKey)) {
 			if (Validation::isLoggedIn()) {
@@ -121,15 +121,15 @@ class ReviewerHandler extends Handler {
 	 * Setup common template variables.
 	 * @param $subclass boolean set to true if caller is below this handler in the hierarchy
 	 */
-	function setupTemplate($subclass = false, $paperId = 0, $reviewId = 0) {
+	function setupTemplate($request, $subclass = false, $paperId = 0, $reviewId = 0) {
 		parent::setupTemplate();
 		Locale::requireComponents(array(LOCALE_COMPONENT_PKP_SUBMISSION));
 		$templateMgr =& TemplateManager::getManager();
-		$pageHierarchy = $subclass ? array(array(Request::url(null, null, 'user'), 'navigation.user'), array(Request::url(null, null, 'reviewer'), 'user.role.reviewer'))
-				: array(array(Request::url(null, null, 'user'), 'navigation.user'), array(Request::url(null, null, 'reviewer'), 'user.role.reviewer'));
+		$pageHierarchy = $subclass ? array(array($request->url(null, null, 'user'), 'navigation.user'), array($request->url(null, null, 'reviewer'), 'user.role.reviewer'))
+				: array(array($request->url(null, null, 'user'), 'navigation.user'), array($request->url(null, null, 'reviewer'), 'user.role.reviewer'));
 
 		if ($paperId && $reviewId) {
-			$pageHierarchy[] = array(Request::url(null, null, 'reviewer', 'submission', $reviewId), "#$paperId", true);
+			$pageHierarchy[] = array($request->url(null, null, 'reviewer', 'submission', $reviewId), "#$paperId", true);
 		}
 		$templateMgr->assign('pageHierarchy', $pageHierarchy);
 	}

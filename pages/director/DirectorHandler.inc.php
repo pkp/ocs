@@ -43,13 +43,12 @@ class DirectorHandler extends TrackDirectorHandler {
 	/**
 	 * Displays the director role selection page.
 	 */
-
-	function index($args) {
-		$this->validate();
-		$this->setupTemplate(DIRECTOR_TRACK_HOME);
+	function index($args, $request) {
+		$this->validate($request);
+		$this->setupTemplate($request, DIRECTOR_TRACK_HOME);
 
 		$templateMgr =& TemplateManager::getManager();
-		$schedConf =& Request::getSchedConf();
+		$schedConf =& $request->getSchedConf();
 		$directorSubmissionDao =& DAORegistry::getDAO('DirectorSubmissionDAO');
 		$submissionsCount =& $directorSubmissionDao->getDirectorSubmissionsCount($schedConf->getId());
 		$templateMgr->assign('submissionsCount', $submissionsCount);
@@ -60,13 +59,13 @@ class DirectorHandler extends TrackDirectorHandler {
 	/**
 	 * Display director submission queue pages.
 	 */
-	function submissions($args) {
-		$this->validate();
-		$this->setupTemplate(DIRECTOR_TRACK_SUBMISSIONS);
+	function submissions($args, $request) {
+		$this->validate($request);
+		$this->setupTemplate($request, DIRECTOR_TRACK_SUBMISSIONS);
 
-		$schedConf =& Request::getSchedConf();
+		$schedConf =& $request->getSchedConf();
 		$schedConfId = $schedConf->getId();
-		$user =& Request::getUser();
+		$user =& $request->getUser();
 
 		$directorSubmissionDao =& DAORegistry::getDAO('DirectorSubmissionDAO');
 		$trackDao =& DAORegistry::getDAO('TrackDAO');
@@ -84,12 +83,12 @@ class DirectorHandler extends TrackDirectorHandler {
 		) + $tracks;
 
 		// Get the user's search conditions, if any
-		$searchField = Request::getUserVar('searchField');
-		$searchMatch = Request::getUserVar('searchMatch');
-		$search = Request::getUserVar('search');
+		$searchField = $request->getUserVar('searchField');
+		$searchMatch = $request->getUserVar('searchMatch');
+		$search = $request->getUserVar('search');
 
-		$sort = Request::getUserVar('sort');
-		$sortDirection = Request::getUserVar('sortDirection');
+		$sort = $request->getUserVar('sort');
+		$sortDirection = $request->getUserVar('sortDirection');
 
 		switch($page) {
 			case 'submissionsUnassigned':
@@ -114,7 +113,7 @@ class DirectorHandler extends TrackDirectorHandler {
 				$sort = isset($sort) ? $sort : 'id';
 		}
 
-		$filterDirector = Request::getUserVar('filterDirector');
+		$filterDirector = $request->getUserVar('filterDirector');
 		if ($filterDirector != '' && array_key_exists($filterDirector, $filterDirectorOptions)) {
 			$user->updateSetting('filterDirector', $filterDirector, 'int', $schedConfId);
 		} else {
@@ -131,7 +130,7 @@ class DirectorHandler extends TrackDirectorHandler {
 			$directorId = FILTER_DIRECTOR_ALL;
 		}
 
-		$filterTrack = Request::getUserVar('filterTrack');
+		$filterTrack = $request->getUserVar('filterTrack');
 		if ($filterTrack != '' && array_key_exists($filterTrack, $filterTrackOptions)) {
 			$user->updateSetting('filterTrack', $filterTrack, 'int', $schedConfId);
 		} else {
@@ -194,7 +193,7 @@ class DirectorHandler extends TrackDirectorHandler {
 			'searchField', 'searchMatch', 'search'
 		);
 		foreach ($duplicateParameters as $param)
-			$templateMgr->assign($param, Request::getUserVar($param));
+			$templateMgr->assign($param, $request->getUserVar($param));
 
 		$templateMgr->assign('reviewType', Array(
 			REVIEW_ROUND_ABSTRACT => Locale::translate('submission.abstract'),
@@ -217,10 +216,10 @@ class DirectorHandler extends TrackDirectorHandler {
 	/**
 	 * Delete the specified edit assignment.
 	 */
-	function deleteEditAssignment($args) {
-		$this->validate();
+	function deleteEditAssignment($args, $request) {
+		$this->validate($request);
 
-		$schedConf =& Request::getSchedConf();
+		$schedConf =& $request->getSchedConf();
 		$editId = (int) (isset($args[0])?$args[0]:0);
 
 		$editAssignmentDao =& DAORegistry::getDAO('EditAssignmentDAO');
@@ -232,23 +231,23 @@ class DirectorHandler extends TrackDirectorHandler {
 
 			if ($paper && $paper->getSchedConfId() === $schedConf->getId()) {
 				$editAssignmentDao->deleteEditAssignmentById($editAssignment->getEditId());
-				Request::redirect(null, null, null, 'submission', $paper->getId());
+				$request->redirect(null, null, null, 'submission', $paper->getId());
 			}
 		}
 
-		Request::redirect(null, null, null, 'submissions');
+		$request->redirect(null, null, null, 'submissions');
 	}
 
 	/**
 	 * Assigns the selected director to the submission.
 	 */
-	function assignDirector($args) {
-		$this->validate();
+	function assignDirector($args, $request) {
+		$this->validate($request);
 		Locale::requireComponents(array(LOCALE_COMPONENT_PKP_MANAGER)); // manager.people.noneEnrolled
 
-		$schedConf =& Request::getSchedConf();
-		$paperId = Request::getUserVar('paperId');
-		$directorId = Request::getUserVar('directorId');
+		$schedConf =& $request->getSchedConf();
+		$paperId = $request->getUserVar('paperId');
+		$directorId = $request->getUserVar('directorId');
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
 
 		$isDirector = $roleDao->roleExists($schedConf->getConferenceId(), $schedConf->getId(), $directorId, ROLE_ID_DIRECTOR) || $roleDao->roleExists($schedConf->getConferenceId(), 0, $directorId, ROLE_ID_DIRECTOR);
@@ -260,23 +259,23 @@ class DirectorHandler extends TrackDirectorHandler {
 			// has been done, send the email and store the director
 			// selection.
 
-			$this->setupTemplate(DIRECTOR_TRACK_SUBMISSIONS, $paperId, 'summary');
+			$this->setupTemplate($request, DIRECTOR_TRACK_SUBMISSIONS, $paperId, 'summary');
 
 			// FIXME: Prompt for due date.
-			if (DirectorAction::assignDirector($paperId, $directorId, $isDirector, Request::getUserVar('send'))) {
-				Request::redirect(null, null, null, 'submission', $paperId);
+			if (DirectorAction::assignDirector($paperId, $directorId, $isDirector, $request->getUserVar('send'))) {
+				$request->redirect(null, null, null, 'submission', $paperId);
 			}
 		} else {
 			// Allow the user to choose a track director or director.
-			$this->setupTemplate(DIRECTOR_TRACK_SUBMISSIONS, $paperId, 'summary');
+			$this->setupTemplate($request, DIRECTOR_TRACK_SUBMISSIONS, $paperId, 'summary');
 
 			$searchType = null;
 			$searchMatch = null;
-			$search = Request::getUserVar('search');
-			$searchInitial = Request::getUserVar('searchInitial');
+			$search = $request->getUserVar('search');
+			$searchInitial = $request->getUserVar('searchInitial');
 			if (!empty($search)) {
-				$searchType = Request::getUserVar('searchField');
-				$searchMatch = Request::getUserVar('searchMatch');
+				$searchType = $request->getUserVar('searchField');
+				$searchMatch = $request->getUserVar('searchMatch');
 
 			} elseif (!empty($searchInitial)) {
 				$searchInitial = String::strtoupper($searchInitial);
@@ -329,7 +328,7 @@ class DirectorHandler extends TrackDirectorHandler {
 			$templateMgr->assign('searchField', $searchType);
 			$templateMgr->assign('searchMatch', $searchMatch);
 			$templateMgr->assign('search', $search);
-			$templateMgr->assign('searchInitial', Request::getUserVar('searchInitial'));
+			$templateMgr->assign('searchInitial', $request->getUserVar('searchInitial'));
 
 			$templateMgr->assign('fieldOptions', Array(
 				USER_FIELD_FIRSTNAME => 'user.firstName',
@@ -346,11 +345,11 @@ class DirectorHandler extends TrackDirectorHandler {
 	/**
 	 * Delete a submission.
 	 */
-	function deleteSubmission($args) {
+	function deleteSubmission($args, $request) {
 		$paperId = isset($args[0]) ? (int) $args[0] : 0;
-		$this->validate();
+		$this->validate($request);
 
-		$schedConf =& Request::getSchedConf();
+		$schedConf =& $request->getSchedConf();
 
 		$paperDao =& DAORegistry::getDAO('PaperDAO');
 		$paper =& $paperDao->getPaper($paperId);
@@ -370,56 +369,56 @@ class DirectorHandler extends TrackDirectorHandler {
 			$paperDao->deletePaperById($paperId);
 		}
 
-		Request::redirect(null, null, null, 'submissions', 'submissionsArchives');
+		$request->redirect(null, null, null, 'submissions', 'submissionsArchives');
 	}
 
 	/**
 	 * Change the sequence of the papers.
 	 */
-	function movePaper($args) {
-		$paperId = Request::getUserVar('paperId');
-		$schedConf =& Request::getSchedConf();
-		$this->validate();
+	function movePaper($args, $request) {
+		$paperId = $request->getUserVar('paperId');
+		$schedConf =& $request->getSchedConf();
+		$this->validate($request);
 
 		$publishedPaperDao =& DAORegistry::getDAO('PublishedPaperDAO');
 		$publishedPaper =& $publishedPaperDao->getPublishedPaperByPaperId($paperId);
 
 		if ($publishedPaper != null && $publishedPaper->getSchedConfId() == $schedConf->getId()) {
-			$publishedPaper->setSeq($publishedPaper->getSeq() + (Request::getUserVar('d') == 'u' ? -1.5 : 1.5));
+			$publishedPaper->setSeq($publishedPaper->getSeq() + ($request->getUserVar('d') == 'u' ? -1.5 : 1.5));
 			$publishedPaperDao->updatePublishedPaper($publishedPaper);
 			$publishedPaperDao->resequencePublishedPapers($publishedPaper->getTrackId(), $schedConf->getId());
 		}
 
-		Request::redirect(null, null, null, 'submissions', 'submissionsAccepted');
+		$request->redirect(null, null, null, 'submissions', 'submissionsAccepted');
 	}
 
 	/**
 	 * Allows directors to write emails to users associated with the conference.
 	 */
-	function notifyUsers($args) {
-		$this->validate();
-		$this->setupTemplate(DIRECTOR_TRACK_HOME);
+	function notifyUsers($args, $request) {
+		$this->validate($request);
+		$this->setupTemplate($request, DIRECTOR_TRACK_HOME);
 
 		$userDao =& DAORegistry::getDAO('UserDAO');
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
 		$authorDao =& DAORegistry::getDAO('AuthorDAO');
 		$registrationDao =& DAORegistry::getDAO('RegistrationDAO');
 
-		$conference =& Request::getConference();
+		$conference =& $request->getConference();
 		$conferenceId = $conference->getId();
-		$schedConf =& Request::getSchedConf();
+		$schedConf =& $request->getSchedConf();
 		$schedConfId = $schedConf->getId();
 
-		$user =& Request::getUser();
+		$user =& $request->getUser();
 		$templateMgr =& TemplateManager::getManager();
 
 		import('lib.pkp.classes.mail.MassMail');
 		$email = new MassMail('PUBLISH_NOTIFY');
 
-		if (Request::getUserVar('send') && !$email->hasErrors()) {
+		if ($request->getUserVar('send') && !$email->hasErrors()) {
 			$email->addRecipient($user->getEmail(), $user->getFullName());
 
-			switch (Request::getUserVar('whichUsers')) {
+			switch ($request->getUserVar('whichUsers')) {
 				case 'allPaidRegistrants':
 					$recipients =& $registrationDao->getRegisteredUsers($schedConfId);
 					break;
@@ -447,7 +446,7 @@ class DirectorHandler extends TrackDirectorHandler {
 				unset($recipient);
 			}
 
-			if (Request::getUserVar('includeToc')=='1') {
+			if ($request->getUserVar('includeToc')=='1') {
 				$publishedPaperDao =& DAORegistry::getDAO('PublishedPaperDAO');
 				$publishedPapers =& $publishedPaperDao->getPublishedPapersInTracks($schedConfId);
 
@@ -470,9 +469,9 @@ class DirectorHandler extends TrackDirectorHandler {
 
 			$templateMgr->assign('message', 'common.inProgress');
 			$templateMgr->display('common/progress.tpl');
-			echo '<script type="text/javascript">window.location = "' . Request::url(null, null, 'director') . '";</script>';
+			echo '<script type="text/javascript">window.location = "' . $request->url(null, null, 'director') . '";</script>';
 		} else {
-			if (!Request::getUserVar('continued')) {
+			if (!$request->getUserVar('continued')) {
 				$email->assignParams(array(
 					'editorialContactSignature' => $user->getContactSignature()
 				));
@@ -483,7 +482,7 @@ class DirectorHandler extends TrackDirectorHandler {
 			$authorCount = $authors->getCount();
 
 			$email->displayEditForm(
-				Request::url(null, null, null, 'notifyUsers'),
+				$request->url(null, null, null, 'notifyUsers'),
 				array(),
 				'director/notifyUsers.tpl',
 				array(
@@ -501,24 +500,24 @@ class DirectorHandler extends TrackDirectorHandler {
 	 * Setup common template variables.
 	 * @param $level int set to 0 if caller is at the same level as this handler in the hierarchy; otherwise the number of levels below this handler
 	 */
-	function setupTemplate($level = DIRECTOR_TRACK_HOME, $paperId = 0, $parentPage = null) {
-		parent::setupTemplate();
+	function setupTemplate($request, $level = DIRECTOR_TRACK_HOME, $paperId = 0, $parentPage = null) {
+		parent::setupTemplate($request);
 		$templateMgr =& TemplateManager::getManager();
 
-		$conference =& Request::getConference();
-		$schedConf =& Request::getSchedConf();
+		$conference =& $request->getConference();
+		$schedConf =& $request->getSchedConf();
 		$pageHierarchy = array();
 
 		if ($schedConf) {
-			$pageHierarchy[] = array(Request::url(null, null, 'index'), $schedConf->getFullTitle(), true);
+			$pageHierarchy[] = array($request->url(null, null, 'index'), $schedConf->getFullTitle(), true);
 		} elseif ($conference) {
-			$pageHierarchy[] = array(Request::url(null, 'index', 'index'), $conference->getConferenceTitle(), true);
+			$pageHierarchy[] = array($request->url(null, 'index', 'index'), $conference->getConferenceTitle(), true);
 		}
 
-		$pageHierarchy[] = array(Request::url(null, null, 'user'), 'navigation.user');
+		$pageHierarchy[] = array($request->url(null, null, 'user'), 'navigation.user');
 		if ($level==DIRECTOR_TRACK_SUBMISSIONS) {
-			$pageHierarchy[] = array(Request::url(null, null, 'director'), 'user.role.director');
-			$pageHierarchy[] = array(Request::url(null, null, 'director', 'submissions'), 'paper.submissions');
+			$pageHierarchy[] = array($request->url(null, null, 'director'), 'user.role.director');
+			$pageHierarchy[] = array($request->url(null, null, 'director', 'submissions'), 'paper.submissions');
 		}
 
 		import('classes.submission.trackDirector.TrackDirectorAction');

@@ -30,12 +30,12 @@ class TrackSubmissionHandler extends AuthorHandler {
 	/**
 	 * Delete a submission.
 	 */
-	function deleteSubmission($args) {
-		$paperId = isset($args[0]) ? (int) $args[0] : 0;
-		$this->validate($paperId, null, true);
+	function deleteSubmission($args, $request) {
+		$paperId = (int) array_shift($args);
+		$this->validate($request, $paperId, null, true);
 		$authorSubmission =& $this->submission;
 
-		$this->setupTemplate(true);
+		$this->setupTemplate($request, true);
 
 		// If the submission is incomplete, allow the author to delete it.
 		if ($authorSubmission->getSubmissionProgress()!=0) {
@@ -44,42 +44,44 @@ class TrackSubmissionHandler extends AuthorHandler {
 			$paperFileManager->deletePaperTree();
 
 			$paperDao =& DAORegistry::getDAO('PaperDAO');
-			$paperDao->deletePaperById($args[0]);
+			$paperDao->deletePaperById($paperId);
 		}
 
-		Request::redirect(null, null, null, 'index');
+		$request->redirect(null, null, null, 'index');
 	}
 
 	/**
 	 * Delete an author version file.
 	 * @param $args array ($paperId, $fileId)
 	 */
-	function deletePaperFile($args) {
-		$paperId = isset($args[0]) ? (int) $args[0] : 0;
-		$fileId = isset($args[1]) ? (int) $args[1] : 0;
-		$revisionId = isset($args[2]) ? (int) $args[2] : 0;
+	function deletePaperFile($args, $request) {
+		$paperId = (int) array_shift($args);
+		$fileId = (int) array_shift($args);
+		$revisionId = (int) array_shift($args);
 
-		$this->validate($paperId, true);
+		$this->validate($request, $paperId, true);
 		$authorSubmission =& $this->submission;
 				
 		AuthorAction::deletePaperFile($authorSubmission, $fileId, $revisionId);
 
-		Request::redirect(null, null, null, 'submissionReview', $paperId);
+		$request->redirect(null, null, null, 'submissionReview', $paperId);
 	}
 
 	/**
 	 * Display a summary of the status of an author's submission.
 	 */
-	function submission($args) {
-		$user =& Request::getUser();
-		$paperId = isset($args[0]) ? (int) $args[0] : 0;
-		$schedConf =& Request::getSchedConf();
+	function submission($args, $request) {
+		$user =& $request->getUser();
+		$paperId = (int) array_shift($args);
+		$schedConf =& $request->getSchedConf();
 
-		$this->validate($paperId);
+		$this->validate($request, $paperId);
 		$submission =& $this->submission;
-		$this->setupTemplate(true, $paperId);
+		$this->setupTemplate($request, true, $paperId);
 
-		$round = (isset($args[1]) ? (int) $args[1] : 1);
+		$round = (int) array_shift($args);
+		if (!$round) $round = 1;
+
 		$reviewMode = $submission->getReviewMode();
 		switch ($reviewMode) {
 			case REVIEW_MODE_ABSTRACTS_ALONE:
@@ -127,17 +129,18 @@ class TrackSubmissionHandler extends AuthorHandler {
 	/**
 	 * Display specific details of an author's submission.
 	 */
-	function submissionReview($args) {
+	function submissionReview($args, $request) {
 		import('classes.paper.Paper'); // for REVIEW_PROGRESS constants
-		$user =& Request::getUser();
-		$paperId = isset($args[0]) ? (int) $args[0] : 0;
+		$user =& $request->getUser();
+		$paperId = (int) array_shift($args);
+		$round = (int) array_shift($args);
+		if (!$round) $round = 1;
 
-		$this->validate($paperId);
+		$this->validate($request, $paperId);
 		$authorSubmission =& $this->submission;
-		$this->setupTemplate(true, $paperId);
+		$this->setupTemplate($request, true, $paperId);
 		Locale::requireComponents(array(LOCALE_COMPONENT_OCS_DIRECTOR)); // FIXME?
 
-		$round = (isset($args[1]) ? (int) $args[1] : 1);
 		$reviewMode = $authorSubmission->getReviewMode();
 		switch ($reviewMode) {
 			case REVIEW_MODE_ABSTRACTS_ALONE:
@@ -190,11 +193,11 @@ class TrackSubmissionHandler extends AuthorHandler {
 	 * Add a supplementary file.
 	 * @param $args array ($paperId)
 	 */
-	function addSuppFile($args) {
-		$paperId = isset($args[0]) ? (int) $args[0] : 0;
-		$this->validate($paperId, true);
+	function addSuppFile($args, $request) {
+		$paperId = (int) array_shift($args);
+		$this->validate($request, $paperId, true);
 		$authorSubmission =& $this->submission;
-		$this->setupTemplate(true, $paperId, 'summary');
+		$this->setupTemplate($request, true, $paperId, 'summary');
 		
 		import('classes.submission.form.SuppFileForm');
 
@@ -212,19 +215,19 @@ class TrackSubmissionHandler extends AuthorHandler {
 	 * View a supplementary file.
 	 * @param $args array ($paperId, $suppFileId)
 	 */
-	function viewSuppFile($args) {
-		$paperId = isset($args[0]) ? (int) $args[0] : 0;
-		$suppFileId = isset($args[1]) ? (int) $args[1] : 0;
-		$this->validate($paperId);
+	function viewSuppFile($args, $request) {
+		$paperId = (int) array_shift($args);
+		$suppFileId = (int) array_shift($args);
+		$this->validate($request, $paperId);
 
-		$this->setupTemplate(true, $paperId, 'summary');
+		$this->setupTemplate($request, true, $paperId, 'summary');
 
 		// View supplementary file only
 		$suppFileDao =& DAORegistry::getDAO('SuppFileDAO');
 		$suppFile =& $suppFileDao->getSuppFile($suppFileId, $paperId);
 
 		if (!isset($suppFile)) {
-			Request::redirect(null, null, null, 'submission', $paperId);
+			$request->redirect(null, null, null, 'submission', $paperId);
 		}
 
 		$templateMgr =& TemplateManager::getManager();
@@ -237,13 +240,13 @@ class TrackSubmissionHandler extends AuthorHandler {
 	 * Edit a supplementary file.
 	 * @param $args array ($paperId, $suppFileId)
 	 */
-	function editSuppFile($args) {
-		$paperId = isset($args[0]) ? (int) $args[0] : 0;
-		$suppFileId = isset($args[1]) ? (int) $args[1] : 0;
-		$this->validate($paperId, true);
+	function editSuppFile($args, $request) {
+		$paperId = (int) array_shift($args);
+		$suppFileId = (int) array_shift($args);
+		$this->validate($request, $paperId, true);
 		$authorSubmission =& $this->submission;
 
-		$this->setupTemplate(true, $paperId, 'summary');
+		$this->setupTemplate($request, true, $paperId, 'summary');
 
 		import('classes.submission.form.SuppFileForm');
 
@@ -261,33 +264,33 @@ class TrackSubmissionHandler extends AuthorHandler {
 	 * Set reviewer visibility for a supplementary file.
 	 * @param $args array ($suppFileId)
 	 */
-	function setSuppFileVisibility($args) {
-		$paperId = Request::getUserVar('paperId');
-		$this->validate($paperId, true);
+	function setSuppFileVisibility($args, $request) {
+		$paperId = (int) $request->getUserVar('paperId');
+		$this->validate($request, $paperId, true);
 		$authorSubmission =& $this->submission;
 
-		$suppFileId = Request::getUserVar('fileId');
+		$suppFileId = $request->getUserVar('fileId');
 		$suppFileDao =& DAORegistry::getDAO('SuppFileDAO');
 		$suppFile = $suppFileDao->getSuppFile($suppFileId, $paperId);
 
 		if (isset($suppFile) && $suppFile != null) {
-			$suppFile->setShowReviewers(Request::getUserVar('hide')==1?0:1);
+			$suppFile->setShowReviewers($request->getUserVar('hide')==1?0:1);
 			$suppFileDao->updateSuppFile($suppFile);
 		}
-		Request::redirect(null, null, null, 'submissionReview', $paperId);
+		$request->redirect(null, null, null, 'submissionReview', $paperId);
 	}
 
 	/**
 	 * Save a supplementary file.
 	 * @param $args array ($suppFileId)
 	 */
-	function saveSuppFile($args) {
-		$paperId = Request::getUserVar('paperId');
-		$this->validate($paperId, true);
+	function saveSuppFile($args, $request) {
+		$paperId = $request->getUserVar('paperId');
+		$this->validate($request, $paperId, true);
 		$authorSubmission =& $this->submission;
-		parent::setupTemplate(true, $paperId, 'summary');
+		parent::setupTemplate($request, true, $paperId, 'summary');
 
-		$suppFileId = isset($args[0]) ? (int) $args[0] : 0;
+		$suppFileId = (int) array_shift($args);
 
 		import('classes.submission.form.SuppFileForm');
 
@@ -296,7 +299,7 @@ class TrackSubmissionHandler extends AuthorHandler {
 
 		if ($submitForm->validate()) {
 			$submitForm->execute();
-			Request::redirect(null, null, null, 'submission', $paperId);
+			$request->redirect(null, null, null, 'submission', $paperId);
 		} else {
 			$submitForm->display();
 		}
@@ -305,34 +308,34 @@ class TrackSubmissionHandler extends AuthorHandler {
 	/**
 	 * Upload the author's revised version of a paper.
 	 */
-	function uploadRevisedVersion() {
-		$paperId = Request::getUserVar('paperId');
-		$this->validate($paperId, true);
+	function uploadRevisedVersion($args, $request) {
+		$paperId = (int) $request->getUserVar('paperId');
+		$this->validate($request, $paperId, true);
 		$submission =& $this->submission;
 
 		AuthorAction::uploadRevisedVersion($submission);
 
-		Request::redirect(null, null, null, 'submissionReview', $paperId);
+		$request->redirect(null, null, null, 'submissionReview', $paperId);
 	}
 
-	function viewMetadata($args) {
-		$paperId = isset($args[0]) ? (int) $args[0] : 0;
-		$this->validate($paperId);
+	function viewMetadata($args, $request) {
+		$paperId = (int) array_shift($args);
+		$this->validate($request, $paperId);
 		$submission =& $this->submission;
 
-		$this->setupTemplate(true, $paperId, 'summary');
+		$this->setupTemplate($request, true, $paperId, 'summary');
 
 		AuthorAction::viewMetadata($submission, ROLE_ID_AUTHOR);
 	}
 
-	function saveMetadata() {
-		$paperId = Request::getUserVar('paperId');
-		$this->validate($paperId, true);
+	function saveMetadata($args, $request) {
+		$paperId = (int) $request->getUserVar('paperId');
+		$this->validate($request, $paperId, true);
 		$submission =& $this->submission;
-		$this->setupTemplate(true, $paperId);
+		$this->setupTemplate($request, true, $paperId);
 
 		if(AuthorAction::saveMetadata($submission)) {
-			Request::redirect(null, null, null, 'submission', $paperId);
+			$request->redirect(null, null, null, 'submission', $paperId);
 		}
 	}
 
@@ -344,16 +347,17 @@ class TrackSubmissionHandler extends AuthorHandler {
 	 * Download a file.
 	 * @param $args array ($paperId, $fileId, [$revision])
 	 */
-	function downloadFile($args) {
-		$paperId = isset($args[0]) ? $args[0] : 0;
-		$fileId = isset($args[1]) ? $args[1] : 0;
-		$revision = isset($args[2]) ? $args[2] : null;
+	function downloadFile($args, $request) {
+		$paperId = (int) array_shift($args);
+		$fileId = (int) array_shift($args);
+		$revision = (int) array_shift($args);
+		if (!$revision) $revision = null;
 
-		$this->validate($paperId);
+		$this->validate($request, $paperId);
 		$submission =& $this->submission;
 				
 		if (!AuthorAction::downloadAuthorFile($submission, $fileId, $revision)) {
-			Request::redirect(null, null, null, 'submission', $paperId);
+			$request->redirect(null, null, null, 'submission', $paperId);
 		}
 	}
 
@@ -361,13 +365,30 @@ class TrackSubmissionHandler extends AuthorHandler {
 	 * Download a file.
 	 * @param $args array ($paperId, $fileId, [$revision])
 	 */
-	function download($args) {
-		$paperId = isset($args[0]) ? $args[0] : 0;
-		$fileId = isset($args[1]) ? $args[1] : 0;
-		$revision = isset($args[2]) ? $args[2] : null;
+	function download($args, $request) {
+		$paperId = (int) array_shift($args);
+		$fileId = (int) array_shift($args);
+		$revision = (int) array_shift($args);
+		if (!$revision) $revision = null;
 
-		$this->validate($paperId);
+		$this->validate($request, $paperId);
 		Action::downloadFile($paperId, $fileId, $revision);
+	}
+
+	/**
+	 * View a file (inlines file).
+	 * @param $args array ($paperId, $fileId, [$revision])
+	 */
+	function viewFile($args, $request) {
+		$paperId = (int) array_shift($args);
+		$fileId = (int) array_shift($args);
+		$revision = (int) array_shift($args);
+		if (!$revision) $revision = null;
+
+		$this->validate($request, $paperId);
+		if (!AuthorAction::viewFile($paperId, $fileId, $revision)) {
+			$request->redirect(null, null, null, 'submission', $paperId);
+		}
 	}
 
 	//
@@ -384,14 +405,14 @@ class TrackSubmissionHandler extends AuthorHandler {
 	 * @param $isDeleting boolean True iff user is deleting a paper, and is not
 	 *	  coming from an old URL (e.g. submission ack email)
 	 */
-	function validate($paperId, $requiresEditAccess = false, $isDeleting = false) {
+	function validate($request, $paperId, $requiresEditAccess = false, $isDeleting = false) {
 		parent::validate();
 
 		$authorSubmissionDao =& DAORegistry::getDAO('AuthorSubmissionDAO');
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
-		$conference =& Request::getConference();
-		$schedConf =& Request::getSchedConf();
-		$user =& Request::getUser();
+		$conference =& $request->getConference();
+		$schedConf =& $request->getSchedConf();
+		$user =& $request->getUser();
 
 		$isValid = true;
 
@@ -412,7 +433,7 @@ class TrackSubmissionHandler extends AuthorHandler {
 			// ack email. If OCS is awaiting the completion of the submission,
 			// send them to the submit page.
 			if ($authorSubmission->getSubmissionProgress() != 0) {
-				Request::redirect(
+				$request->redirect(
 					null, null, null, 'submit',
 					array($authorSubmission->getSubmissionProgress()),
 					array('paperId' => $authorSubmission->getPaperId())
@@ -425,26 +446,11 @@ class TrackSubmissionHandler extends AuthorHandler {
 		}
 
 		if (!$isValid) {
-			Request::redirect(null, null, Request::getRequestedPage());
+			$request->redirect(null, null, $request->getRequestedPage());
 		}
 
 		$this->submission =& $authorSubmission;
 		return true;
-	}
-
-	/**
-	 * View a file (inlines file).
-	 * @param $args array ($paperId, $fileId, [$revision])
-	 */
-	function viewFile($args) {
-		$paperId = isset($args[0]) ? $args[0] : 0;
-		$fileId = isset($args[1]) ? $args[1] : 0;
-		$revision = isset($args[2]) ? $args[2] : null;
-
-		$this->validate($paperId);
-		if (!AuthorAction::viewFile($paperId, $fileId, $revision)) {
-			Request::redirect(null, null, null, 'submission', $paperId);
-		}
 	}
 }
 

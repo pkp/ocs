@@ -42,18 +42,18 @@ class TrackDirectorHandler extends Handler {
 	/**
 	 * Display track director index page.
 	 */
-	function index($args) {
-		$this->validate();
-		$this->setupTemplate();
+	function index($args, $request) {
+		$this->validate($request);
+		$this->setupTemplate($request);
 
-		$schedConf =& Request::getSchedConf();
+		$schedConf =& $request->getSchedConf();
 		$schedConfId = $schedConf->getId();
-		$user =& Request::getUser();
+		$user =& $request->getUser();
 
 		// Get the user's search conditions, if any
-		$searchField = Request::getUserVar('searchField');
-		$searchMatch = Request::getUserVar('searchMatch');
-		$search = Request::getUserVar('search');
+		$searchField = $request->getUserVar('searchField');
+		$searchMatch = $request->getUserVar('searchMatch');
+		$search = $request->getUserVar('search');
 
 		$trackDao =& DAORegistry::getDAO('TrackDAO');
 		$trackDirectorSubmissionDao =& DAORegistry::getDAO('TrackDirectorSubmissionDAO');
@@ -61,9 +61,9 @@ class TrackDirectorHandler extends Handler {
 		$page = isset($args[0]) ? $args[0] : '';
 		$tracks =& $trackDao->getTrackTitles($schedConfId);
 		
-		$sort = Request::getUserVar('sort');
+		$sort = $request->getUserVar('sort');
 		$sort = isset($sort) ? $sort : 'id';
-		$sortDirection = Request::getUserVar('sortDirection');
+		$sortDirection = $request->getUserVar('sortDirection');
 
 		$filterTrackOptions = array(
 			FILTER_TRACK_ALL => Locale::Translate('director.allTracks')
@@ -84,7 +84,7 @@ class TrackDirectorHandler extends Handler {
 				$helpTopicId = 'editorial.trackDirectorsRole.review';
 		}
 
-		$filterTrack = Request::getUserVar('filterTrack');
+		$filterTrack = $request->getUserVar('filterTrack');
 		if ($filterTrack != '' && array_key_exists($filterTrack, $filterTrackOptions)) {
 			$user->updateSetting('filterTrack', $filterTrack, 'int', $schedConfId);
 		} else {
@@ -135,7 +135,7 @@ class TrackDirectorHandler extends Handler {
 		$templateMgr->assign('trackOptions', $filterTrackOptions);
 		$templateMgr->assign('filterTrack', $filterTrack);
 		$templateMgr->assign_by_ref('submissions', $submissions);
-		$templateMgr->assign('track', Request::getUserVar('track'));
+		$templateMgr->assign('track', $request->getUserVar('track'));
 		$templateMgr->assign('pageToDisplay', $page);
 		$templateMgr->assign('trackDirector', $user->getFullName());
 		$templateMgr->assign('yearOffsetFuture', SCHED_CONF_DATE_YEAR_OFFSET_FUTURE);
@@ -147,7 +147,7 @@ class TrackDirectorHandler extends Handler {
 			'searchField', 'searchMatch', 'search'
 		);
 		foreach ($duplicateParameters as $param)
-			$templateMgr->assign($param, Request::getUserVar($param));
+			$templateMgr->assign($param, $request->getUserVar($param));
 
 		$templateMgr->assign('reviewType', Array(
 			REVIEW_ROUND_ABSTRACT => Locale::translate('submission.abstract'),
@@ -167,12 +167,12 @@ class TrackDirectorHandler extends Handler {
 	 * Validate that user is a track director in the selected conference.
 	 * Redirects to user index page if not properly authenticated.
 	 */
-	function validate() {
+	function validate($request) {
 		parent::validate();
-		$conference =& Request::getConference();
-		$schedConf =& Request::getSchedConf();
+		$conference =& $request->getConference();
+		$schedConf =& $request->getSchedConf();
 
-		$page = Request::getRequestedPage();
+		$page = $request->getRequestedPage();
 
 		if (!isset($conference) || !isset($schedConf)) {
 			Validation::redirectLogin();
@@ -191,34 +191,34 @@ class TrackDirectorHandler extends Handler {
 	 * Setup common template variables.
 	 * @param $subclass boolean set to true if caller is below this handler in the hierarchy
 	 */
-	function setupTemplate($subclass = false, $paperId = 0, $parentPage = null) {
+	function setupTemplate($request, $subclass = false, $paperId = 0, $parentPage = null) {
 		parent::setupTemplate();
 		Locale::requireComponents(array(LOCALE_COMPONENT_OCS_DIRECTOR, LOCALE_COMPONENT_PKP_SUBMISSION, LOCALE_COMPONENT_OCS_AUTHOR));
 		$templateMgr =& TemplateManager::getManager();
 		$isDirector = Validation::isDirector();
 		$pageHierarchy = array();
 
-		$conference =& Request::getConference();
-		$schedConf =& Request::getSchedConf();
+		$conference =& $request->getConference();
+		$schedConf =& $request->getSchedConf();
 
 		if ($schedConf) {
-			$pageHierarchy[] = array(Request::url(null, null, 'index'), $schedConf->getFullTitle(), true);
+			$pageHierarchy[] = array($request->url(null, null, 'index'), $schedConf->getFullTitle(), true);
 		} elseif ($conference) {
-			$pageHierarchy[] = array(Request::url(null, 'index', 'index'), $conference->getConferenceTitle(), true);
+			$pageHierarchy[] = array($request->url(null, 'index', 'index'), $conference->getConferenceTitle(), true);
 		}
 
-		if (Request::getRequestedPage() == 'director') {
+		if ($request->getRequestedPage() == 'director') {
 			$templateMgr->assign('helpTopicId', 'editorial.directorsRole');
 
 		} else {
 			$templateMgr->assign('helpTopicId', 'editorial.trackDirectorsRole');
 		}
-		$pageHierarchy[] = array(Request::url(null, null, 'user'), 'navigation.user');
+		$pageHierarchy[] = array($request->url(null, null, 'user'), 'navigation.user');
 		if ($subclass) {
-			$pageHierarchy[] = array(Request::url(null, null, $isDirector?'director':'trackDirector'), $isDirector?'user.role.director':'user.role.trackDirector');
-			$pageHierarchy[] = array(Request::url(null, null, 'trackDirector'), 'paper.submissions');
+			$pageHierarchy[] = array($request->url(null, null, $isDirector?'director':'trackDirector'), $isDirector?'user.role.director':'user.role.trackDirector');
+			$pageHierarchy[] = array($request->url(null, null, 'trackDirector'), 'paper.submissions');
 		} else {
-			$pageHierarchy[] = array(Request::url(null, null, $isDirector?'director':'trackDirector'), $isDirector?'user.role.director':'user.role.trackDirector');
+			$pageHierarchy[] = array($request->url(null, null, $isDirector?'director':'trackDirector'), $isDirector?'user.role.director':'user.role.trackDirector');
 		}
 
 		import('classes.submission.trackDirector.TrackDirectorAction');
@@ -232,12 +232,13 @@ class TrackDirectorHandler extends Handler {
 
 	/**
 	 * Display submission management instructions.
-	 * @param $args (type)
+	 * @param $args array
+	 * @param $request object
 	 */
-	function instructions($args) {
+	function instructions($args, $request) {
 		import('classes.submission.common.Action');
 		if (!isset($args[0]) || !Action::instructions($args[0])) {
-			Request::redirect(null, null, Request::getRequestedPage());
+			$request->redirect(null, null, $request->getRequestedPage());
 		}
 	}
 

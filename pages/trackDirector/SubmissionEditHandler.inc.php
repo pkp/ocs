@@ -32,18 +32,18 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		parent::TrackDirectorHandler();
 	}
 	
-	function submission($args) {
-		$paperId = isset($args[0]) ? (int) $args[0] : 0;
-		$this->validate($paperId);
-		$conference =& Request::getConference();
-		$schedConf =& Request::getSchedConf();
+	function submission($args, $request) {
+		$paperId = (int) array_shift($args);
+		$this->validate($request, $paperId);
+		$conference =& $request->getConference();
+		$schedConf =& $request->getSchedConf();
 		$submission =& $this->submission;
-		$this->setupTemplate(true, $paperId);
+		$this->setupTemplate($request, true, $paperId);
 
 		// FIXME? For comments.readerComments under Status
 		Locale::requireComponents(array(LOCALE_COMPONENT_PKP_READER));
 
-		$user =& Request::getUser();
+		$user =& $request->getUser();
 
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
 		$isDirector = $roleDao->roleExists($conference->getId(), $schedConf->getId(), $user->getId(), ROLE_ID_DIRECTOR);
@@ -91,13 +91,13 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		$templateMgr->display('trackDirector/submission.tpl');
 	}
 
-	function submissionRegrets($args) {
-		$paperId = isset($args[0]) ? (int) $args[0] : 0;
-		$this->validate($paperId);
-		$conference =& Request::getConference();
-		$schedConf =& Request::getSchedConf();
+	function submissionRegrets($args, $request) {
+		$paperId = (int) array_shift($args);
+		$this->validate($request, $paperId);
+		$conference =& $request->getConference();
+		$schedConf =& $request->getSchedConf();
 		$submission =& $this->submission;
-		$this->setupTemplate(true, $paperId, 'review');
+		$this->setupTemplate($request, true, $paperId, 'review');
 
 		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
 		$cancelsAndRegrets = $reviewAssignmentDao->getCancelsAndRegrets($paperId);
@@ -134,15 +134,15 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		$templateMgr->display('trackDirector/submissionRegrets.tpl');
 	}
 
-	function submissionReview($args) {
-		$paperId = (isset($args[0]) ? $args[0] : null);
+	function submissionReview($args, $request) {
+		$paperId = (int) array_shift($args);
 
-		$this->validate($paperId, TRACK_DIRECTOR_ACCESS_REVIEW);
-		$conference =& Request::getConference();
-		$schedConf =& Request::getSchedConf();
+		$this->validate($request, $paperId, TRACK_DIRECTOR_ACCESS_REVIEW);
+		$conference =& $request->getConference();
+		$schedConf =& $request->getSchedConf();
 		$submission =& $this->submission;
 		
-		$round = (isset($args[1]) ? (int) $args[1] : null);
+		$round = (int) array_shift($args);
 		$reviewMode = $submission->getReviewMode();
 		switch ($reviewMode) {
 			case REVIEW_MODE_ABSTRACTS_ALONE:
@@ -157,7 +157,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 				break;
 		}
 
-		$this->setupTemplate(true, $paperId);
+		$this->setupTemplate($request, true, $paperId);
 
 		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
 		$reviewFormDao =& DAORegistry::getDAO('ReviewFormDAO');
@@ -260,14 +260,14 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 	/**
 	 * View submission history
 	 */
-	function submissionHistory($args) {
-		$paperId = isset($args[0]) ? (int) $args[0] : 0;
-		$this->validate($paperId);
-		$conference =& Request::getConference();
-		$schedConf =& Request::getSchedConf();
+	function submissionHistory($args, $request) {
+		$paperId = (int) array_shift($args);
+		$this->validate($request, $paperId);
+		$conference =& $request->getConference();
+		$schedConf =& $request->getSchedConf();
 		$submission =& $this->submission;
 
-		$this->setupTemplate(true, $paperId);
+		$this->setupTemplate($request, true, $paperId);
 
 		// submission notes
 		$noteDao =& DAORegistry::getDAO('NoteDAO');
@@ -310,42 +310,42 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 	/**
 	 * Change the track a submission is currently in.
 	 */
-	function changeTrack() {
-		$paperId = Request::getUserVar('paperId');
-		$this->validate($paperId);
-		$conference =& Request::getConference();
-		$schedConf =& Request::getSchedConf();
+	function changeTrack($args, $request) {
+		$paperId = $request->getUserVar('paperId');
+		$this->validate($request, $paperId);
+		$conference =& $request->getConference();
+		$schedConf =& $request->getSchedConf();
 		$submission =& $this->submission;
 
-		$trackId = Request::getUserVar('trackId');
+		$trackId = $request->getUserVar('trackId');
 
 		TrackDirectorAction::changeTrack($submission, $trackId);
 
-		Request::redirect(null, null, null, 'submission', $paperId);
+		$request->redirect(null, null, null, 'submission', $paperId);
 	}
 
 	/**
 	 * Change the session type for a submission.
 	 */
-	function changeSessionType() {
-		$paperId = Request::getUserVar('paperId');
-		$this->validate($paperId);
-		$conference =& Request::getConference();
-		$schedConf =& Request::getSchedConf();
+	function changeSessionType($args, $request) {
+		$paperId = $request->getUserVar('paperId');
+		$this->validate($request, $paperId);
+		$conference =& $request->getConference();
+		$schedConf =& $request->getSchedConf();
 		$submission =& $this->submission;
-		$sessionType = Request::getUserVar('sessionType');
+		$sessionType = $request->getUserVar('sessionType');
 		TrackDirectorAction::changeSessionType($submission, $sessionType);
-		Request::redirect(null, null, null, 'submission', $paperId);
+		$request->redirect(null, null, null, 'submission', $paperId);
 	}
 
-	function recordDecision($args) {
-		$paperId = (int) Request::getUserVar('paperId');
-		$decision = (int) Request::getUserVar('decision');
+	function recordDecision($args, $request) {
+		$paperId = (int) $request->getUserVar('paperId');
+		$decision = (int) $request->getUserVar('decision');
 		$round = (int) array_shift($args);
 
-		$this->validate($paperId, TRACK_DIRECTOR_ACCESS_REVIEW);
-		$conference =& Request::getConference();
-		$schedConf =& Request::getSchedConf();
+		$this->validate($request, $paperId, TRACK_DIRECTOR_ACCESS_REVIEW);
+		$conference =& $request->getConference();
+		$schedConf =& $request->getSchedConf();
 		$submission =& $this->submission;
 
 		// If the director changes the decision on the first round,
@@ -375,62 +375,63 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 			}
 		}
 
-		Request::redirect(null, null, null, 'submissionReview', array($paperId, $round));
+		$request->redirect(null, null, null, 'submissionReview', array($paperId, $round));
 	}
 
-	function completePaper($args) {
-		$paperId = Request::getUserVar('paperId');
-		$this->validate($paperId, TRACK_DIRECTOR_ACCESS_EDIT);
-		$conference =& Request::getConference();
-		$schedConf =& Request::getSchedConf();
+	function completePaper($args, $request) {
+		$paperId = $request->getUserVar('paperId');
+		$this->validate($request, $paperId, TRACK_DIRECTOR_ACCESS_EDIT);
+		$conference =& $request->getConference();
+		$schedConf =& $request->getSchedConf();
 		$submission =& $this->submission;
 
-		if (Request::getUserVar('complete')) $complete = true;
-		elseif (Request::getUserVar('remove')) $complete = false;
-		else Request::redirect(null, null, null, 'index');
+		if ($request->getUserVar('complete')) $complete = true;
+		elseif ($request->getUserVar('remove')) $complete = false;
+		else $request->redirect(null, null, null, 'index');
 
 		TrackDirectorAction::completePaper($submission, $complete);
 
-		Request::redirect(null, null, null, 'submissions', array($complete?'submissionsAccepted':'submissionsInReview'));
+		$request->redirect(null, null, null, 'submissions', array($complete?'submissionsAccepted':'submissionsInReview'));
 	}
 
 	//
 	// Peer Review
 	//
 
-	function selectReviewer($args) {
-		$paperId = isset($args[0]) ? (int) $args[0] : 0;
-		$this->validate($paperId, TRACK_DIRECTOR_ACCESS_REVIEW);
-		$conference =& Request::getConference();
-		$schedConf =& Request::getSchedConf();
+	function selectReviewer($args, $request) {
+		$paperId = (int) array_shift($args);
+		$reviewerId = (int) array_shift($args);
+		$this->validate($request, $paperId, TRACK_DIRECTOR_ACCESS_REVIEW);
+		$conference =& $request->getConference();
+		$schedConf =& $request->getSchedConf();
 		$submission =& $this->submission;
 
 		Locale::requireComponents(array(LOCALE_COMPONENT_PKP_MANAGER)); // manager.people.noneEnrolled FIXME?
 
-		$sort = Request::getUserVar('sort');
+		$sort = $request->getUserVar('sort');
 		$sort = isset($sort) ? $sort : 'name';
-		$sortDirection = Request::getUserVar('sortDirection');
+		$sortDirection = $request->getUserVar('sortDirection');
 
 		$trackDirectorSubmissionDao =& DAORegistry::getDAO('TrackDirectorSubmissionDAO');
 
-		if (isset($args[1]) && $args[1] != null) {
+		if ($reviewerId) {
 			// Assign reviewer to paper
-			TrackDirectorAction::addReviewer($submission, (int) $args[1], $submission->getCurrentRound());
-			Request::redirect(null, null, null, 'submissionReview', $paperId);
+			TrackDirectorAction::addReviewer($submission, $reviewerId, $submission->getCurrentRound());
+			$request->redirect(null, null, null, 'submissionReview', $paperId);
 
 			// FIXME: Prompt for due date.
 		} else {
-			$this->setupTemplate(true, $paperId, 'review');
+			$this->setupTemplate($request, true, $paperId, 'review');
 
 			$trackDirectorSubmissionDao =& DAORegistry::getDAO('TrackDirectorSubmissionDAO');
 
 			$searchType = null;
 			$searchMatch = null;
-			$search = $searchQuery = Request::getUserVar('search');
-			$searchInitial = Request::getUserVar('searchInitial');
+			$search = $searchQuery = $request->getUserVar('search');
+			$searchInitial = $request->getUserVar('searchInitial');
 			if (!empty($search)) {
-				$searchType = Request::getUserVar('searchField');
-				$searchMatch = Request::getUserVar('searchMatch');
+				$searchType = $request->getUserVar('searchField');
+				$searchMatch = $request->getUserVar('searchMatch');
 
 			} elseif (!empty($searchInitial)) {
 				$searchInitial = String::strtoupper($searchInitial);
@@ -454,7 +455,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 			$templateMgr->assign('searchField', $searchType);
 			$templateMgr->assign('searchMatch', $searchMatch);
 			$templateMgr->assign('search', $searchQuery);
-			$templateMgr->assign('searchInitial', Request::getUserVar('searchInitial'));
+			$templateMgr->assign('searchInitial', $request->getUserVar('searchInitial'));
 
 			$templateMgr->assign_by_ref('reviewers', $reviewers);
 			$templateMgr->assign('paperId', $paperId);
@@ -482,24 +483,24 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 	 * Create a new user as a reviewer.
 	 */
 	function createReviewer($args, &$request) {
-		$paperId = isset($args[0]) ? (int) $args[0] : 0;
-		$this->validate($paperId, TRACK_DIRECTOR_ACCESS_REVIEW);
-		$conference =& Request::getConference();
-		$schedConf =& Request::getSchedConf();
+		$paperId = (int) array_shift($args);
+		$this->validate($request, $paperId, TRACK_DIRECTOR_ACCESS_REVIEW);
+		$conference =& $request->getConference();
+		$schedConf =& $request->getSchedConf();
 		$submission =& $this->submission;
 
 
 		import('classes.trackDirector.form.CreateReviewerForm');
 		$createReviewerForm = new CreateReviewerForm($paperId);
 		Locale::requireComponents(array(LOCALE_COMPONENT_PKP_MANAGER));
-		$this->setupTemplate(true, $paperId);
+		$this->setupTemplate($request, true, $paperId);
 
 		if (isset($args[1]) && $args[1] === 'create') {
 			$createReviewerForm->readInputData();
 			if ($createReviewerForm->validate()) {
 				// Create a user and enroll them as a reviewer.
 				$newUserId = $createReviewerForm->execute();
-				Request::redirect(null, null, null, 'selectReviewer', array($paperId, $newUserId));
+				$request->redirect(null, null, null, 'selectReviewer', array($paperId, $newUserId));
 			} else {
 				$createReviewerForm->display($args, $request);
 			}
@@ -512,18 +513,17 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 			}
 			$createReviewerForm->display($args, $request);
 		}
-
 	}
 
 	/**
 	 * Get a suggested username, making sure it's not
 	 * already used by the system. (Poor-man's AJAX.)
 	 */
-	function suggestUsername() {
-		parent::validate();
+	function suggestUsername($args, $request) {
+		$this->validate($request);
 		$suggestion = Validation::suggestUsername(
-			Request::getUserVar('firstName'),
-			Request::getUserVar('lastName')
+			$request->getUserVar('firstName'),
+			$request->getUserVar('lastName')
 		);
 		echo $suggestion;
 	}
@@ -531,30 +531,30 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 	/**
 	 * Search for users to enroll as reviewers.
 	 */
-	function enrollSearch($args) {
-		$paperId = isset($args[0]) ? (int) $args[0] : 0;
-		$this->validate($paperId, TRACK_DIRECTOR_ACCESS_REVIEW);
+	function enrollSearch($args, $request) {
+		$paperId = (int) array_shift($args);
+		$this->validate($request, $paperId, TRACK_DIRECTOR_ACCESS_REVIEW);
 		Locale::requireComponents(array(LOCALE_COMPONENT_PKP_MANAGER)); // manager.people.enrollment, manager.people.enroll
-		$conference =& Request::getConference();
-		$schedConf =& Request::getSchedConf();
+		$conference =& $request->getConference();
+		$schedConf =& $request->getSchedConf();
 		$submission =& $this->submission;
 
 
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
 		$roleId = $roleDao->getRoleIdFromPath('reviewer');
 
-		$user =& Request::getUser();
+		$user =& $request->getUser();
 
 		$templateMgr =& TemplateManager::getManager();
-		$this->setupTemplate(true);
+		$this->setupTemplate($request, true);
 
 		$searchType = null;
 		$searchMatch = null;
-		$search = $searchQuery = Request::getUserVar('search');
-		$searchInitial = Request::getUserVar('searchInitial');
+		$search = $searchQuery = $request->getUserVar('search');
+		$searchInitial = $request->getUserVar('searchInitial');
 		if (!empty($search)) {
-			$searchType = Request::getUserVar('searchField');
-			$searchMatch = Request::getUserVar('searchMatch');
+			$searchType = $request->getUserVar('searchField');
+			$searchMatch = $request->getUserVar('searchMatch');
 
 		} elseif (!empty($searchInitial)) {
 			$searchInitial = String::strtoupper($searchInitial);
@@ -575,10 +575,10 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		$templateMgr->assign('searchField', $searchType);
 		$templateMgr->assign('searchMatch', $searchMatch);
 		$templateMgr->assign('search', $searchQuery);
-		$templateMgr->assign('searchInitial', Request::getUserVar('searchInitial'));
+		$templateMgr->assign('searchInitial', $request->getUserVar('searchInitial'));
 
 		$templateMgr->assign('paperId', $paperId);
-		$templateMgr->assign('fieldOptions', Array(
+		$templateMgr->assign('fieldOptions', array(
 			USER_FIELD_INTERESTS => 'user.interests',
 			USER_FIELD_FIRSTNAME => 'user.firstName',
 			USER_FIELD_LASTNAME => 'user.lastName',
@@ -593,19 +593,18 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		$templateMgr->display('trackDirector/searchUsers.tpl');
 	}
 
-	function enroll($args) {
-		$paperId = isset($args[0]) ? (int) $args[0] : 0;
-		$this->validate($paperId, TRACK_DIRECTOR_ACCESS_REVIEW);
-		$conference =& Request::getConference();
-		$schedConf =& Request::getSchedConf();
+	function enroll($args, $request) {
+		$paperId = (int) array_shift($args);
+		$this->validate($request, $paperId, TRACK_DIRECTOR_ACCESS_REVIEW);
+		$conference =& $request->getConference();
+		$schedConf =& $request->getSchedConf();
 		$submission =& $this->submission;
-
 
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
 		$roleId = $roleDao->getRoleIdFromPath('reviewer');
 
-		$users = Request::getUserVar('users');
-		if (!is_array($users) && Request::getUserVar('userId') != null) $users = array(Request::getUserVar('userId'));
+		$users = $request->getUserVar('users');
+		if (!is_array($users) && $request->getUserVar('userId') != null) $users = array($request->getUserVar('userId'));
 
 		// Enroll reviewer
 		for ($i=0; $i<count($users); $i++) {
@@ -619,169 +618,161 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 				$roleDao->insertRole($role);
 			}
 		}
-		Request::redirect(null, null, null, 'selectReviewer', $paperId);
+		$request->redirect(null, null, null, 'selectReviewer', $paperId);
 	}
 
-	function notifyReviewer($args = array()) {
-		$paperId = Request::getUserVar('paperId');
-		$this->validate($paperId, TRACK_DIRECTOR_ACCESS_REVIEW);
-		$conference =& Request::getConference();
-		$schedConf =& Request::getSchedConf();
+	function notifyReviewer($args, $request) {
+		$paperId = $request->getUserVar('paperId');
+		$this->validate($request, $paperId, TRACK_DIRECTOR_ACCESS_REVIEW);
+		$conference =& $request->getConference();
+		$schedConf =& $request->getSchedConf();
 		$submission =& $this->submission;
 
+		$reviewId = $request->getUserVar('reviewId');
 
-		$reviewId = Request::getUserVar('reviewId');
-
-		$send = Request::getUserVar('send')?true:false;
-		$this->setupTemplate(true, $paperId, 'review');
+		$send = $request->getUserVar('send')?true:false;
+		$this->setupTemplate($request, true, $paperId, 'review');
 
 		if (TrackDirectorAction::notifyReviewer($submission, $reviewId, $send)) {
-			Request::redirect(null, null, null, 'submissionReview', $paperId);
+			$request->redirect(null, null, null, 'submissionReview', $paperId);
 		}
 	}
 
-	function clearReview($args) {
-		$paperId = isset($args[0])?$args[0]:0;
-		$this->validate($paperId, TRACK_DIRECTOR_ACCESS_REVIEW);
-		$conference =& Request::getConference();
-		$schedConf =& Request::getSchedConf();
+	function clearReview($args, $request) {
+		$paperId = (int) array_shift($args);
+		$reviewId = (int) array_shift($args);
+		$this->validate($request, $paperId, TRACK_DIRECTOR_ACCESS_REVIEW);
+		$conference =& $request->getConference();
+		$schedConf =& $request->getSchedConf();
 		$submission =& $this->submission;
-
-
-		$reviewId = $args[1];
 
 		TrackDirectorAction::clearReview($submission, $reviewId);
 
-		Request::redirect(null, null, null, 'submissionReview', $paperId);
+		$request->redirect(null, null, null, 'submissionReview', $paperId);
 	}
 
-	function cancelReview($args) {
-		$paperId = Request::getUserVar('paperId');
-		$this->validate($paperId, TRACK_DIRECTOR_ACCESS_REVIEW);
-		$conference =& Request::getConference();
-		$schedConf =& Request::getSchedConf();
+	function cancelReview($args, $request) {
+		$paperId = (int) $request->getUserVar('paperId');
+		$reviewId = (int) $request->getUserVar('reviewId');
+
+		$this->validate($request, $paperId, TRACK_DIRECTOR_ACCESS_REVIEW);
+		$conference =& $request->getConference();
+		$schedConf =& $request->getSchedConf();
 		$submission =& $this->submission;
 
-		$reviewId = Request::getUserVar('reviewId');
-
-		$send = Request::getUserVar('send')?true:false;
-		$this->setupTemplate(true, $paperId, 'review');
+		$send = $request->getUserVar('send')?true:false;
+		$this->setupTemplate($request, true, $paperId, 'review');
 
 		if (TrackDirectorAction::cancelReview($submission, $reviewId, $send)) {
-			Request::redirect(null, null, null, 'submissionReview', $paperId);
+			$request->redirect(null, null, null, 'submissionReview', $paperId);
 		}
 	}
 
-	function remindReviewer($args = null) {
-		$paperId = Request::getUserVar('paperId');
-		$this->validate($paperId, TRACK_DIRECTOR_ACCESS_REVIEW);
-		$conference =& Request::getConference();
-		$schedConf =& Request::getSchedConf();
+	function remindReviewer($args, $request) {
+		$paperId = (int) $request->getUserVar('paperId');
+		$reviewId = (int) $request->getUserVar('reviewId');
+
+		$this->validate($request, $paperId, TRACK_DIRECTOR_ACCESS_REVIEW);
+		$conference =& $request->getConference();
+		$schedConf =& $request->getSchedConf();
 		$submission =& $this->submission;
 
-		$reviewId = Request::getUserVar('reviewId');
-		$this->setupTemplate(true, $paperId, 'review');
+		$this->setupTemplate($request, true, $paperId, 'review');
 
-		if (TrackDirectorAction::remindReviewer($submission, $reviewId, Request::getUserVar('send'))) {
-			Request::redirect(null, null, null, 'submissionReview', $paperId);
+		if (TrackDirectorAction::remindReviewer($submission, $reviewId, $request->getUserVar('send'))) {
+			$request->redirect(null, null, null, 'submissionReview', $paperId);
 		}
 	}
 
-	function thankReviewer($args = array()) {
-		$paperId = Request::getUserVar('paperId');
-		$this->validate($paperId, TRACK_DIRECTOR_ACCESS_REVIEW);
-		$conference =& Request::getConference();
-		$schedConf =& Request::getSchedConf();
+	function thankReviewer($args, $request) {
+		$paperId = (int) $request->getUserVar('paperId');
+		$reviewId = (int) $request->getUserVar('reviewId');
+
+		$this->validate($request, $paperId, TRACK_DIRECTOR_ACCESS_REVIEW);
+		$conference =& $request->getConference();
+		$schedConf =& $request->getSchedConf();
 		$submission =& $this->submission;
 
-		$reviewId = Request::getUserVar('reviewId');
-
-		$send = Request::getUserVar('send')?true:false;
-		$this->setupTemplate(true, $paperId, 'review');
+		$send = $request->getUserVar('send')?true:false;
+		$this->setupTemplate($request, true, $paperId, 'review');
 
 		if (TrackDirectorAction::thankReviewer($submission, $reviewId, $send)) {
-			Request::redirect(null, null, null, 'submissionReview', $paperId);
+			$request->redirect(null, null, null, 'submissionReview', $paperId);
 		}
 	}
 
-	function rateReviewer() {
-		$paperId = Request::getUserVar('paperId');
-		$this->validate($paperId, TRACK_DIRECTOR_ACCESS_REVIEW);
-		$conference =& Request::getConference();
-		$schedConf =& Request::getSchedConf();
+	function rateReviewer($args, $request) {
+		$paperId = (int) $request->getUserVar('paperId');
+		$reviewId = (int) $request->getUserVar('reviewId');
+		$quality = (int) $request->getUserVar('quality');
+		$this->validate($request, $paperId, TRACK_DIRECTOR_ACCESS_REVIEW);
+		$conference =& $request->getConference();
+		$schedConf =& $request->getSchedConf();
 		$submission =& $this->submission;
 
-		$this->setupTemplate(true, $paperId, 'review');
-
-		$reviewId = Request::getUserVar('reviewId');
-		$quality = Request::getUserVar('quality');
-
+		$this->setupTemplate($request, true, $paperId, 'review');
 		TrackDirectorAction::rateReviewer($paperId, $reviewId, $quality);
-
-		Request::redirect(null, null, null, 'submissionReview', $paperId);
+		$request->redirect(null, null, null, 'submissionReview', $paperId);
 	}
 
-	function confirmReviewForReviewer($args) {
-		$paperId = (int) isset($args[0])?$args[0]:0;
-		$accept = Request::getUserVar('accept')?true:false;
-		$this->validate($paperId, TRACK_DIRECTOR_ACCESS_REVIEW);
-		$conference =& Request::getConference();
-		$schedConf =& Request::getSchedConf();
+	function confirmReviewForReviewer($args, $request) {
+		$paperId = (int) array_shift($args);
+		$reviewId = (int) array_shift($args);
+		$accept = $request->getUserVar('accept')?true:false;
+		$this->validate($request, $paperId, TRACK_DIRECTOR_ACCESS_REVIEW);
+		$conference =& $request->getConference();
+		$schedConf =& $request->getSchedConf();
 		$submission =& $this->submission;
-
-		$reviewId = (int) isset($args[1])?$args[1]:0;
 
 		TrackDirectorAction::confirmReviewForReviewer($reviewId);
-		Request::redirect(null, null, null, 'submissionReview', $paperId);
+		$request->redirect(null, null, null, 'submissionReview', $paperId);
 	}
 
-	function uploadReviewForReviewer($args) {
-		$paperId = (int) Request::getUserVar('paperId');
-		$this->validate($paperId, TRACK_DIRECTOR_ACCESS_REVIEW);
-		$conference =& Request::getConference();
-		$schedConf =& Request::getSchedConf();
+	function uploadReviewForReviewer($args, $request) {
+		$paperId = (int) $request->getUserVar('paperId');
+		$reviewId = (int) $request->getUserVar('reviewId');
+		$this->validate($request, $paperId, TRACK_DIRECTOR_ACCESS_REVIEW);
+		$conference =& $request->getConference();
+		$schedConf =& $request->getSchedConf();
 		$submission =& $this->submission;
-
-		$reviewId = (int) Request::getUserVar('reviewId');
 
 		TrackDirectorAction::uploadReviewForReviewer($reviewId);
-		Request::redirect(null, null, null, 'submissionReview', $paperId);
+		$request->redirect(null, null, null, 'submissionReview', $paperId);
 	}
 
-	function makeReviewerFileViewable() {
-		$paperId = Request::getUserVar('paperId');
-		$this->validate($paperId, TRACK_DIRECTOR_ACCESS_REVIEW);
-		$conference =& Request::getConference();
-		$schedConf =& Request::getSchedConf();
-		$submission =& $this->submission;
+	function makeReviewerFileViewable($args, $request) {
+		$paperId = (int) $request->getUserVar('paperId');
+		$reviewId = (int) $request->getUserVar('reviewId');
+		$fileId = (int) $request->getUserVar('fileId');
+		$revision = (int) $request->getUserVar('revision');
+		$viewable = (int) $request->getUserVar('viewable');
 
-		$reviewId = Request::getUserVar('reviewId');
-		$fileId = Request::getUserVar('fileId');
-		$revision = Request::getUserVar('revision');
-		$viewable = Request::getUserVar('viewable');
+		$this->validate($request, $paperId, TRACK_DIRECTOR_ACCESS_REVIEW);
+		$conference =& $request->getConference();
+		$schedConf =& $request->getSchedConf();
+		$submission =& $this->submission;
 
 		TrackDirectorAction::makeReviewerFileViewable($paperId, $reviewId, $fileId, $revision, $viewable);
 
-		Request::redirect(null, null, null, 'submissionReview', $paperId);
+		$request->redirect(null, null, null, 'submissionReview', $paperId);
 	}
 
-	function setDueDate($args) {
-		$paperId = isset($args[0]) ? (int) $args[0] : 0;
-		$this->validate($paperId, TRACK_DIRECTOR_ACCESS_REVIEW);
-		$conference =& Request::getConference();
-		$schedConf =& Request::getSchedConf();
+	function setDueDate($args, $request) {
+		$paperId = (int) array_shift($args);
+		$reviewId = (int) array_shift($args);
+		$this->validate($request, $paperId, TRACK_DIRECTOR_ACCESS_REVIEW);
+		$conference =& $request->getConference();
+		$schedConf =& $request->getSchedConf();
 		$submission =& $this->submission;
 
-		$reviewId = isset($args[1]) ? $args[1] : 0;
-		$dueDate = Request::getUserVar('dueDate');
-		$numWeeks = Request::getUserVar('numWeeks');
+		$dueDate = $request->getUserVar('dueDate');
+		$numWeeks = $request->getUserVar('numWeeks');
 
 		if ($dueDate != null || $numWeeks != null) {
 			TrackDirectorAction::setDueDate($paperId, $reviewId, $dueDate, $numWeeks);
-			Request::redirect(null, null, null, 'submissionReview', $paperId);
-
+			$request->redirect(null, null, null, 'submissionReview', $paperId);
 		} else {
-			$this->setupTemplate(true, $paperId, 'review');
+			$this->setupTemplate($request, true, $paperId, 'review');
 
 			$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
 			$reviewAssignment = $reviewAssignmentDao->getById($reviewId);
@@ -813,22 +804,20 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		}
 	}
 
-	function enterReviewerRecommendation($args) {
-		$paperId = Request::getUserVar('paperId');
-		$this->validate($paperId, TRACK_DIRECTOR_ACCESS_REVIEW);
-		$conference =& Request::getConference();
-		$schedConf =& Request::getSchedConf();
+	function enterReviewerRecommendation($args, $request) {
+		$paperId = (int) $request->getUserVar('paperId');
+		$reviewId = (int) $request->getUserVar('reviewId');
+		$recommendation = (int) $request->getUserVar('recommendation');
+		$this->validate($request, $paperId, TRACK_DIRECTOR_ACCESS_REVIEW);
+		$conference =& $request->getConference();
+		$schedConf =& $request->getSchedConf();
 		$submission =& $this->submission;
-
-		$reviewId = Request::getUserVar('reviewId');
-
-		$recommendation = Request::getUserVar('recommendation');
 
 		if ($recommendation != null) {
 			TrackDirectorAction::setReviewerRecommendation($paperId, $reviewId, $recommendation, SUBMISSION_REVIEWER_RECOMMENDATION_ACCEPT);
-			Request::redirect(null, null, null, 'submissionReview', $paperId);
+			$request->redirect(null, null, null, 'submissionReview', $paperId);
 		} else {
-			$this->setupTemplate(true, $paperId, 'review');
+			$this->setupTemplate($request, true, $paperId, 'review');
 
 			$templateMgr =& TemplateManager::getManager();
 
@@ -846,19 +835,20 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 	 * Display a user's profile.
 	 * @param $args array first parameter is the ID or username of the user to display
 	 */
-	function userProfile($args) {
-		parent::validate();
-		$this->setupTemplate(true);
+	function userProfile($args, $request) {
+		$userId = array_shift($args);
+
+		$this->validate($request);
+		$this->setupTemplate($request, true);
 
 		// For manager.people at top of user profile		
 		Locale::requireComponents(array(LOCALE_COMPONENT_PKP_MANAGER));
 
 
 		$templateMgr =& TemplateManager::getManager();
-		$templateMgr->assign('currentUrl', Request::url(null, null, null, Request::getRequestedPage()));
+		$templateMgr->assign('currentUrl', $request->url(null, null, null, $request->getRequestedPage()));
 
 		$userDao =& DAORegistry::getDAO('UserDAO');
-		$userId = isset($args[0]) ? $args[0] : 0;
 		if (is_numeric($userId)) {
 			$userId = (int) $userId;
 			$user = $userDao->getUser($userId);
@@ -866,15 +856,13 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 			$user = $userDao->getUserByUsername($userId);
 		}
 
-
 		if ($user == null) {
 			// Non-existent user requested
 			$templateMgr->assign('pageTitle', 'manager.people');
 			$templateMgr->assign('errorMsg', 'manager.people.invalidUser');
 			$templateMgr->display('common/error.tpl');
-
 		} else {
-			$site =& Request::getSite();
+			$site =& $request->getSite();
 
 			$countryDao =& DAORegistry::getDAO('CountryDAO');
 			$country = null;
@@ -890,23 +878,23 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		}
 	}
 
-	function viewMetadata($args) {
-		$paperId = isset($args[0]) ? (int) $args[0] : 0;
-		$this->validate($paperId);
+	function viewMetadata($args, $request) {
+		$paperId = (int) array_shift($args);
+		$this->validate($request, $paperId);
 		$submission =& $this->submission;
-		$this->setupTemplate(true, $paperId, 'summary');
+		$this->setupTemplate($request, true, $paperId, 'summary');
 
 		TrackDirectorAction::viewMetadata($submission, ROLE_ID_TRACK_DIRECTOR);
 	}
 
-	function saveMetadata() {
-		$paperId = Request::getUserVar('paperId');
-		$this->validate($paperId);
+	function saveMetadata($args, $request) {
+		$paperId = (int) $request->getUserVar('paperId');
+		$this->validate($request, $paperId);
 		$submission =& $this->submission;
-		$this->setupTemplate(true, $paperId, 'summary');
+		$this->setupTemplate($request, true, $paperId, 'summary');
 
 		if (TrackDirectorAction::saveMetadata($submission)) {
-			Request::redirect(null, null, null, 'submission', $paperId);
+			$request->redirect(null, null, null, 'submission', $paperId);
 		}
 	}
 
@@ -918,14 +906,14 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 	 * Preview a review form.
 	 * @param $args array ($reviewId, $reviewFormId)
 	 */
-	function previewReviewForm($args) {
-		parent::validate();
-		$this->setupTemplate(true);
+	function previewReviewForm($args, $request) {
+		$this->validate($request);
+		$this->setupTemplate($request, true);
 
-		$reviewId = isset($args[0]) ? (int) $args[0] : null;
-		$reviewFormId = isset($args[1]) ? (int)$args[1] : null;
+		$reviewId = (int) array_shift($args);
+		$reviewFormId = (int) array_shift($args);
 
-		$conference =& Request::getConference();
+		$conference =& $request->getConference();
 		$reviewFormDao =& DAORegistry::getDAO('ReviewFormDAO');
 		$reviewForm =& $reviewFormDao->getReviewForm($reviewFormId, ASSOC_TYPE_CONFERENCE, $conference->getId());
 		$reviewFormElementDao =& DAORegistry::getDAO('ReviewFormElementDAO');
@@ -947,43 +935,44 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 	 * Clear a review form, i.e. remove review form assignment to the review.
 	 * @param $args array ($paperId, $reviewId)
 	 */
-	function clearReviewForm($args) {
-		$paperId = isset($args[0]) ? (int) $args[0] : 0;
-		$reviewId = isset($args[1]) ? (int) $args[1] : null;
-		$this->validate($paperId, TRACK_DIRECTOR_ACCESS_REVIEW);
+	function clearReviewForm($args, $request) {
+		$paperId = (int) array_shift($args);
+		$reviewId = (int) array_shift($args);
+
+		$this->validate($request, $paperId, TRACK_DIRECTOR_ACCESS_REVIEW);
 		$submission =& $this->submission;
 		
 		TrackDirectorAction::clearReviewForm($submission, $reviewId);
 
-		Request::redirect(null, null, null, 'submissionReview', $paperId);
+		$request->redirect(null, null, null, 'submissionReview', $paperId);
 	}
 
 	/**
 	 * Select a review form
 	 * @param $args array ($paperId, $reviewId, $reviewFormId)
 	 */
-	function selectReviewForm($args) {
-		$paperId = isset($args[0]) ? (int) $args[0] : 0;
-		$this->validate($paperId, TRACK_DIRECTOR_ACCESS_REVIEW);
-		$conference =& Request::getConference();
-		$schedConf =& Request::getSchedConf();
-		$submission =& $this->submission;
+	function selectReviewForm($args, $request) {
+		$paperId = (int) array_shift($args);
+		$reviewId = (int) array_shift($args);
+		$reviewFormId = (int) array_shift($args);
 
-		$reviewId = isset($args[1]) ? (int) $args[1] : null;
-		$reviewFormId = isset($args[2]) ? (int) $args[2] : null;
+		$this->validate($request, $paperId, TRACK_DIRECTOR_ACCESS_REVIEW);
+		$conference =& $request->getConference();
+		$schedConf =& $request->getSchedConf();
+		$submission =& $this->submission;
 
 		if ($reviewFormId != null) {
 			TrackDirectorAction::addReviewForm($submission, $reviewId, $reviewFormId);
-			Request::redirect(null, null, null, 'submissionReview', $paperId);
+			$request->redirect(null, null, null, 'submissionReview', $paperId);
 		} else {
-			$conference =& Request::getConference();
+			$conference =& $request->getConference();
 			$rangeInfo =& Handler::getRangeInfo('reviewForms');
 			$reviewFormDao =& DAORegistry::getDAO('ReviewFormDAO');
 			$reviewForms =& $reviewFormDao->getActiveByAssocId(ASSOC_TYPE_CONFERENCE, $conference->getId(), $rangeInfo);
 			$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
 			$reviewAssignment =& $reviewAssignmentDao->getById($reviewId);
 
-			$this->setupTemplate(true, $paperId, 'review');
+			$this->setupTemplate($request, true, $paperId, 'review');
 			$templateMgr =& TemplateManager::getManager();
 
 			$templateMgr->assign('paperId', $paperId);
@@ -999,13 +988,13 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 	 * View review form response.
 	 * @param $args array ($paperId, $reviewId)
 	 */
-	function viewReviewFormResponse($args) {
-		$paperId = isset($args[0]) ? (int) $args[0] : 0;
-		$this->validate($paperId, TRACK_DIRECTOR_ACCESS_REVIEW);
-		$submission =& $this->submission;
-		$this->setupTemplate(true, $paperId, 'summary');
+	function viewReviewFormResponse($args, $request) {
+		$paperId = (int) array_shift($args);
+		$reviewId = (int) array_shift($args);
 
-		$reviewId = isset($args[1]) ? (int) $args[1] : null;
+		$this->validate($request, $paperId, TRACK_DIRECTOR_ACCESS_REVIEW);
+		$submission =& $this->submission;
+		$this->setupTemplate($request, true, $paperId, 'summary');
 
 		TrackDirectorAction::viewReviewFormResponse($submission, $reviewId);
 	}
@@ -1014,54 +1003,53 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 	// Director Review
 	//
 
-	function directorReview($args) {
+	function directorReview($args, $request) {
 		import('classes.paper.Paper');
-
-		$round = (isset($args[0]) ? $args[0] : REVIEW_ROUND_ABSTRACT);
-		$paperId = Request::getUserVar('paperId');
-		$this->validate($paperId, TRACK_DIRECTOR_ACCESS_REVIEW);
+		$round = (int) array_shift($args);
+		if (!$round) $round = REVIEW_ROUND_ABSTRACT;
+		$paperId = (int) $request->getUserVar('paperId');
+		$this->validate($request, $paperId, TRACK_DIRECTOR_ACCESS_REVIEW);
 		$submission =& $this->submission;
 
 		$redirectArgs = array($paperId, $round);
 
 		// If the Upload button was pressed.
-		if (Request::getUserVar('submit')) {
+		if ($request->getUserVar('submit')) {
 			TrackDirectorAction::uploadDirectorVersion($submission);
-		} elseif (Request::getUserVar('setEditingFile')) {
+		} elseif ($request->getUserVar('setEditingFile')) {
 			// If the Send To Editing button was pressed
-			$file = explode(',', Request::getUserVar('directorDecisionFile'));
+			$file = explode(',', $request->getUserVar('directorDecisionFile'));
 			$submission->stampDateToPresentations();
 			$trackDirectorSubmissionDao =& DAORegistry::getDAO('TrackDirectorSubmissionDAO');
 			$trackDirectorSubmissionDao->updateTrackDirectorSubmission($submission);
 
 			if (isset($file[0]) && isset($file[1])) {
-				TrackDirectorAction::setEditingFile($submission, $file[0], $file[1], Request::getUserVar('createGalley'));
+				TrackDirectorAction::setEditingFile($submission, $file[0], $file[1], $request->getUserVar('createGalley'));
 			}
-
 		}
 
-		Request::redirect(null, null, null, 'submissionReview', $redirectArgs);
+		$request->redirect(null, null, null, 'submissionReview', $redirectArgs);
 	}
 
-	function uploadReviewVersion() {
-		$paperId = Request::getUserVar('paperId');
-		$this->validate($paperId, TRACK_DIRECTOR_ACCESS_REVIEW);
+	function uploadReviewVersion($args, $request) {
+		$paperId = (int) $request->getUserVar('paperId');
+		$this->validate($request, $paperId, TRACK_DIRECTOR_ACCESS_REVIEW);
 		$submission =& $this->submission;
 
 		TrackDirectorAction::uploadReviewVersion($submission);
 
-		Request::redirect(null, null, null, 'submissionReview', $paperId);
+		$request->redirect(null, null, null, 'submissionReview', $paperId);
 	}
 
 	/**
 	 * Add a supplementary file.
 	 * @param $args array ($paperId)
 	 */
-	function addSuppFile($args) {
-		$paperId = isset($args[0]) ? (int) $args[0] : 0;
-		$this->validate($paperId);
+	function addSuppFile($args, $request) {
+		$paperId = (int) array_shift($args);
+		$this->validate($request, $paperId);
 		$submission =& $this->submission;
-		$this->setupTemplate(true, $paperId, 'summary');
+		$this->setupTemplate($request, true, $paperId, 'summary');
 
 		import('classes.submission.form.SuppFileForm');
 
@@ -1079,12 +1067,12 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 	 * Edit a supplementary file.
 	 * @param $args array ($paperId, $suppFileId)
 	 */
-	function editSuppFile($args) {
-		$paperId = isset($args[0]) ? (int) $args[0] : 0;
-		$suppFileId = isset($args[1]) ? (int) $args[1] : 0;
-		$this->validate($paperId);
+	function editSuppFile($args, $request) {
+		$paperId = (int) array_shift($request);
+		$suppFileId = (int) array_shift($args);
+		$this->validate($request, $paperId);
 		$submission =& $this->submission;
-		$this->setupTemplate(true, $paperId, 'summary');
+		$this->setupTemplate($request, true, $paperId, 'summary');
 
 		import('classes.submission.form.SuppFileForm');
 
@@ -1102,33 +1090,32 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 	 * Set reviewer visibility for a supplementary file.
 	 * @param $args array ($suppFileId)
 	 */
-	function setSuppFileVisibility($args) {
-		$paperId = Request::getUserVar('paperId');
-		$this->validate($paperId);
+	function setSuppFileVisibility($args, $request) {
+		$paperId = (int) $request->getUserVar('paperId');
+		$this->validate($request, $paperId);
 		$submission =& $this->submission;
 
-		$suppFileId = Request::getUserVar('fileId');
+		$suppFileId = $request->getUserVar('fileId');
 		$suppFileDao =& DAORegistry::getDAO('SuppFileDAO');
 		$suppFile = $suppFileDao->getSuppFile($suppFileId, $paperId);
 
 		if (isset($suppFile) && $suppFile != null) {
-			$suppFile->setShowReviewers(Request::getUserVar('show')==1?1:0);
+			$suppFile->setShowReviewers($request->getUserVar('show')==1?1:0);
 			$suppFileDao->updateSuppFile($suppFile);
 		}
-		Request::redirect(null, null, null, 'submissionReview', $paperId);
+		$request->redirect(null, null, null, 'submissionReview', $paperId);
 	}
 
 	/**
 	 * Save a supplementary file.
 	 * @param $args array ($suppFileId)
 	 */
-	function saveSuppFile($args) {
-		$paperId = Request::getUserVar('paperId');
-		$this->validate($paperId);
-		$this->setupTemplate(true, $paperId, 'summary');
+	function saveSuppFile($args, $request) {
+		$paperId = $request->getUserVar('paperId');
+		$suppFileId = (int) array_shift($args);
+		$this->validate($request, $paperId);
+		$this->setupTemplate($request, true, $paperId, 'summary');
 		$submission =& $this->submission;
-
-		$suppFileId = isset($args[0]) ? (int) $args[0] : 0;
 
 		import('classes.submission.form.SuppFileForm');
 
@@ -1145,14 +1132,14 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 			$paper =& $paperDao->getPaper($paperId);
 			$notificationUsers = $paper->getAssociatedUserIds(true, false);
 			foreach ($notificationUsers as $userRole) {
-				$url = Request::url(null, null, $userRole['role'], 'submissionReview', $paper->getId(), null, 'layout');
+				$url = $request->url(null, null, $userRole['role'], 'submissionReview', $paper->getId(), null, 'layout');
 				$notificationManager->createNotification(
 					$userRole['id'], 'notification.type.suppFileModified',
 					$paper->getLocalizedTitle(), $url, 1, NOTIFICATION_TYPE_SUPP_FILE_MODIFIED
 				);
 			}
 
-			Request::redirect(null, null, null, 'submissionReview', $paperId);
+			$request->redirect(null, null, null, 'submissionReview', $paperId);
 		} else {
 			$submitForm->display();
 		}
@@ -1162,63 +1149,63 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 	 * Delete a director version file.
 	 * @param $args array ($paperId, $fileId)
 	 */
-	function deletePaperFile($args) {
-		$paperId = isset($args[0]) ? (int) $args[0] : 0;
-		$fileId = isset($args[1]) ? (int) $args[1] : 0;
-		$revisionId = isset($args[2]) ? (int) $args[2] : 0;
+	function deletePaperFile($args, $request) {
+		$paperId = (int) array_shift($args);
+		$fileId = (int) array_shift($args);
+		$revisionId = (int) array_shift($args);
 
-		$this->validate($paperId, TRACK_DIRECTOR_ACCESS_REVIEW);
+		$this->validate($request, $paperId, TRACK_DIRECTOR_ACCESS_REVIEW);
 		$submission =& $this->submission;
 		TrackDirectorAction::deletePaperFile($submission, $fileId, $revisionId);
 
-		Request::redirect(null, null, null, 'submissionReview', $paperId);
+		$request->redirect(null, null, null, 'submissionReview', $paperId);
 	}
 
 	/**
 	 * Delete a supplementary file.
 	 * @param $args array ($paperId, $suppFileId)
 	 */
-	function deleteSuppFile($args) {
-		$paperId = isset($args[0]) ? (int) $args[0] : 0;
-		$suppFileId = isset($args[1]) ? (int) $args[1] : 0;
-		$this->validate($paperId);
+	function deleteSuppFile($args, $request) {
+		$paperId = (int) array_shift($args);
+		$suppFileId = (int) array_shift($args);
+		$this->validate($request, $paperId);
 		$submission =& $this->submission;
 
 		TrackDirectorAction::deleteSuppFile($submission, $suppFileId);
 
-		Request::redirect(null, null, null, 'submissionReview', $paperId);
+		$request->redirect(null, null, null, 'submissionReview', $paperId);
 	}
 
-	function archiveSubmission($args) {
-		$paperId = isset($args[0]) ? (int) $args[0] : 0;
-		$this->validate($paperId);
+	function archiveSubmission($args, $request) {
+		$paperId = (int) array_shift($args);
+		$this->validate($request, $paperId);
 		$submission =& $this->submission;
 
 		TrackDirectorAction::archiveSubmission($submission);
 
-		Request::redirect(null, null, null, 'submission', $paperId);
+		$request->redirect(null, null, null, 'submission', $paperId);
 	}
 
-	function restoreToQueue($args) {
-		$paperId = isset($args[0]) ? (int) $args[0] : 0;
-		$this->validate($paperId);
+	function restoreToQueue($args, $request) {
+		$paperId = (int) array_shift($args);
+		$this->validate($request, $paperId);
 		$submission =& $this->submission;
 		
 		TrackDirectorAction::restoreToQueue($submission);
 
-		Request::redirect(null, null, null, 'submission', $paperId);
+		$request->redirect(null, null, null, 'submission', $paperId);
 	}
 
-	function unsuitableSubmission($args) {
-		$paperId = Request::getUserVar('paperId');
-		$this->validate($paperId);
+	function unsuitableSubmission($args, $request) {
+		$paperId = (int) $request->getUserVar('paperId');
+		$this->validate($request, $paperId);
 		$submission =& $this->submission;
 		
-		$send = Request::getUserVar('send')?true:false;
-		$this->setupTemplate(true, $paperId, 'summary');
+		$send = $request->getUserVar('send')?true:false;
+		$this->setupTemplate($request, true, $paperId, 'summary');
 
 		if (TrackDirectorAction::unsuitableSubmission($submission, $send)) {
-			Request::redirect(null, null, null, 'submission', $paperId);
+			$request->redirect(null, null, null, 'submission', $paperId);
 		}
 	}
 
@@ -1226,12 +1213,12 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 	 * Set RT comments status for paper.
 	 * @param $args array ($paperId)
 	 */
-	function updateCommentsStatus($args) {
-		$paperId = isset($args[0]) ? (int) $args[0] : 0;
-		$this->validate($paperId);
+	function updateCommentsStatus($args, $request) {
+		$paperId = (int) array_shift($args);
+		$this->validate($request, $paperId);
 		$submission =& $this->submission;
-		TrackDirectorAction::updateCommentsStatus($submission, Request::getUserVar('commentsStatus'));
-		Request::redirect(null, null, null, 'submission', $paperId);
+		TrackDirectorAction::updateCommentsStatus($submission, $request->getUserVar('commentsStatus'));
+		$request->redirect(null, null, null, 'submission', $paperId);
 	}
 
 
@@ -1242,30 +1229,30 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 	/**
 	 * Upload a layout file (either layout version, galley, or supp. file).
 	 */
-	function uploadLayoutFile() {
-		$layoutFileType = Request::getUserVar('layoutFileType');
-		$round = (int) Request::getUserVar('round');
+	function uploadLayoutFile($args, $request) {
+		$layoutFileType = $request->getUserVar('layoutFileType');
+		$round = (int) $request->getUserVar('round');
 
 		import('lib.pkp.classes.file.FileManager');
 		$fileManager = new FileManager();
 		if ($fileManager->uploadError('layoutFile')) {
 			$templateMgr =& TemplateManager::getManager();
-			$this->setupTemplate(true);
+			$this->setupTemplate($request, true);
 			$templateMgr->assign('pageTitle', 'submission.review');
 			$templateMgr->assign('message', 'common.uploadFailed');
-			$templateMgr->assign('backLink', Request::url(null, null, null, 'submissionReview', array(Request::getUserVar('paperId'))));
+			$templateMgr->assign('backLink', $request->url(null, null, null, 'submissionReview', array($request->getUserVar('paperId'))));
 			$templateMgr->assign('backLinkLabel', 'submission.review');
 			return $templateMgr->display('common/message.tpl');
 		}
 		
 		if ($layoutFileType == 'galley') {
-			$this->uploadGalley('layoutFile', $round);
+			$this->_uploadGalley($request, 'layoutFile', $round);
 
 		} else if ($layoutFileType == 'supp') {
-			$this->uploadSuppFile('layoutFile', $round);
+			$this->_uploadSuppFile($request, 'layoutFile', $round);
 
 		} else {
-			Request::redirect(null, null, null, 'submission', Request::getUserVar('paperId'));
+			$request->redirect(null, null, null, 'submission', $request->getUserVar('paperId'));
 		}
 	}
 
@@ -1273,18 +1260,18 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 	 * Delete a paper image.
 	 * @param $args array ($paperId, $fileId)
 	 */
-	function deletePaperImage($args) {
-		$paperId = isset($args[0]) ? (int) $args[0] : 0;
-		$galleyId = isset($args[1]) ? (int) $args[1] : 0;
-		$fileId = isset($args[2]) ? (int) $args[2] : 0;
-		$revisionId = isset($args[3]) ? (int) $args[3] : 0;
+	function deletePaperImage($args, $request) {
+		$paperId = (int) array_shift($args);
+		$galleyId = (int) array_shift($args);
+		$fileId = (int) array_shift($args);
+		$revisionId = (int) array_shift($args);
 
-		$this->validate($paperId, TRACK_DIRECTOR_ACCESS_EDIT);
+		$this->validate($request, $paperId, TRACK_DIRECTOR_ACCESS_EDIT);
 		$submission =& $this->submission;
 
 		TrackDirectorAction::deletePaperImage($submission, $fileId, $revisionId);
 
-		Request::redirect(null, null, 'editGalley', array($paperId, $galleyId));
+		$request->redirect(null, null, 'editGalley', array($paperId, $galleyId));
 	}
 
 	/**
@@ -1292,9 +1279,9 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 	 * @param $fileName string
 	 * @param $round int
 	 */
-	function uploadGalley($fileName = null, $round = null) {
-		$paperId = Request::getUserVar('paperId');
-		$this->validate($paperId, TRACK_DIRECTOR_ACCESS_EDIT);
+	function _uploadGalley($request, $fileName = null, $round = null) {
+		$paperId = $request->getUserVar('paperId');
+		$this->validate($request, $paperId, TRACK_DIRECTOR_ACCESS_EDIT);
 		$submission =& $this->submission;
 
 
@@ -1303,21 +1290,21 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		$galleyForm = new PaperGalleyForm($paperId);
 		$galleyId = $galleyForm->execute($fileName);
 
-		Request::redirect(null, null, null, 'editGalley', array($paperId, $galleyId, $round));
+		$request->redirect(null, null, null, 'editGalley', array($paperId, $galleyId, $round));
 	}
 
 	/**
 	 * Edit a galley.
 	 * @param $args array ($paperId, $galleyId)
 	 */
-	function editGalley($args) {
+	function editGalley($args, $request) {
 		$paperId = (int) array_shift($args);
 		$galleyId = (int) array_shift($args);
 		$round = (int) array_shift($args);
-		$this->validate($paperId, TRACK_DIRECTOR_ACCESS_EDIT);
+		$this->validate($request, $paperId, TRACK_DIRECTOR_ACCESS_EDIT);
 		$submission =& $this->submission;
 
-		$this->setupTemplate(true, $paperId, 'review');
+		$this->setupTemplate($request, true, $paperId, 'review');
 
 		import('classes.submission.form.PaperGalleyForm');
 
@@ -1335,12 +1322,12 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 	 * Save changes to a galley.
 	 * @param $args array ($paperId, $galleyId)
 	 */
-	function saveGalley($args) {
+	function saveGalley($args, $request) {
 		$paperId = (int) array_shift($args);
 		$galleyId = (int) array_shift($args);
 		$round = (int) array_shift($args);
-		$this->validate($paperId, TRACK_DIRECTOR_ACCESS_EDIT);
-		$this->setupTemplate(true, $paperId, 'editing');
+		$this->validate($request, $paperId, TRACK_DIRECTOR_ACCESS_EDIT);
+		$this->setupTemplate($request, true, $paperId, 'editing');
 		$submission =& $this->submission;
 
 		import('classes.submission.form.PaperGalleyForm');
@@ -1358,22 +1345,22 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 			$paper =& $paperDao->getPaper($paperId);
 			$notificationUsers = $paper->getAssociatedUserIds(true, false);
 			foreach ($notificationUsers as $userRole) {
-				$url = Request::url(null, null, $userRole['role'], 'submissionReview', $paper->getId(), null, 'layout');
+				$url = $request->url(null, null, $userRole['role'], 'submissionReview', $paper->getId(), null, 'layout');
 				$notificationManager->createNotification(
 					$userRole['id'], 'notification.type.galleyModified',
 					$paper->getLocalizedTitle(), $url, 1, NOTIFICATION_TYPE_GALLEY_MODIFIED
 				);
 			}
 
-			if (Request::getUserVar('uploadImage')) {
+			if ($request->getUserVar('uploadImage')) {
 				$submitForm->uploadImage();
-				Request::redirect(null, null, null, 'editGalley', array($paperId, $galleyId, $round));
-			} else if(($deleteImage = Request::getUserVar('deleteImage')) && count($deleteImage) == 1) {
+				$request->redirect(null, null, null, 'editGalley', array($paperId, $galleyId, $round));
+			} else if(($deleteImage = $request->getUserVar('deleteImage')) && count($deleteImage) == 1) {
 				list($imageId) = array_keys($deleteImage);
 				$submitForm->deleteImage($imageId);
-				Request::redirect(null, null, null, 'editGalley', array($paperId, $galleyId, $round));
+				$request->redirect(null, null, null, 'editGalley', array($paperId, $galleyId, $round));
 			}
-			Request::redirect(null, null, null, 'submissionReview', array($paperId, $round));
+			$request->redirect(null, null, null, 'submissionReview', array($paperId, $round));
 		} else {
 			$submitForm->display();
 		}
@@ -1382,40 +1369,40 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 	/**
 	 * Change the sequence order of a galley.
 	 */
-	function orderGalley() {
-		$paperId = Request::getUserVar('paperId');
-		$this->validate($paperId, TRACK_DIRECTOR_ACCESS_EDIT);
+	function orderGalley($args, $request) {
+		$paperId = (int) $request->getUserVar('paperId');
+		$this->validate($request, $paperId, TRACK_DIRECTOR_ACCESS_EDIT);
 		$submission =& $this->submission;
 
 
-		TrackDirectorAction::orderGalley($submission, Request::getUserVar('galleyId'), Request::getUserVar('d'));
+		TrackDirectorAction::orderGalley($submission, $request->getUserVar('galleyId'), $request->getUserVar('d'));
 
-		Request::redirect(null, null, null, 'submissionReview', $paperId);
+		$request->redirect(null, null, null, 'submissionReview', $paperId);
 	}
 
 	/**
 	 * Delete a galley file.
 	 * @param $args array ($paperId, $galleyId)
 	 */
-	function deleteGalley($args) {
-		$paperId = isset($args[0]) ? (int) $args[0] : 0;
-		$galleyId = isset($args[1]) ? (int) $args[1] : 0;
-		$this->validate($paperId, TRACK_DIRECTOR_ACCESS_EDIT);
+	function deleteGalley($args, $request) {
+		$paperId = (int) array_shift($args);
+		$galleyId = (int) array_shift($args);
+		$this->validate($request, $paperId, TRACK_DIRECTOR_ACCESS_EDIT);
 		$submission =& $this->submission;
 
 		TrackDirectorAction::deleteGalley($submission, $galleyId);
 
-		Request::redirect(null, null, null, 'submissionReview', $paperId);
+		$request->redirect(null, null, null, 'submissionReview', $paperId);
 	}
 
 	/**
 	 * Proof / "preview" a galley.
 	 * @param $args array ($paperId, $galleyId)
 	 */
-	function proofGalley($args) {
-		$paperId = isset($args[0]) ? (int) $args[0] : 0;
-		$galleyId = isset($args[1]) ? (int) $args[1] : 0;
-		$this->validate($paperId, TRACK_DIRECTOR_ACCESS_EDIT);
+	function proofGalley($args, $request) {
+		$paperId = (int) array_shift($args);
+		$galleyId = (int) array_shift($args);
+		$this->validate($request, $paperId, TRACK_DIRECTOR_ACCESS_EDIT);
 
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('paperId', $paperId);
@@ -1427,10 +1414,10 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 	 * Proof galley (shows frame header).
 	 * @param $args array ($paperId, $galleyId)
 	 */
-	function proofGalleyTop($args) {
-		$paperId = isset($args[0]) ? (int) $args[0] : 0;
-		$galleyId = isset($args[1]) ? (int) $args[1] : 0;
-		$this->validate($paperId, TRACK_DIRECTOR_ACCESS_EDIT);
+	function proofGalleyTop($args, $request) {
+		$paperId = (int) array_shift($args);
+		$galleyId = (int) array_shift($args);
+		$this->validate($request, $paperId, TRACK_DIRECTOR_ACCESS_EDIT);
 
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('paperId', $paperId);
@@ -1443,10 +1430,10 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 	 * Proof galley (outputs file contents).
 	 * @param $args array ($paperId, $galleyId)
 	 */
-	function proofGalleyFile($args) {
-		$paperId = isset($args[0]) ? (int) $args[0] : 0;
-		$galleyId = isset($args[1]) ? (int) $args[1] : 0;
-		$this->validate($paperId, TRACK_DIRECTOR_ACCESS_EDIT);
+	function proofGalleyFile($args, $request) {
+		$paperId = (int) array_shift($args);
+		$galleyId = (int) array_shift($args);
+		$this->validate($request, $paperId, TRACK_DIRECTOR_ACCESS_EDIT);
 
 		$galleyDao =& DAORegistry::getDAO('PaperGalleyDAO');
 		$galley =& $galleyDao->getGalley($galleyId, $paperId);
@@ -1458,7 +1445,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 				$templateMgr =& TemplateManager::getManager();
 				$templateMgr->assign_by_ref('galley', $galley);
 				if ($galley->isHTMLGalley() && $styleFile =& $galley->getStyleFile()) {
-					$templateMgr->addStyleSheet(Request::url(null, null, 'paper', 'viewFile', array(
+					$templateMgr->addStyleSheet($request->url(null, null, 'paper', 'viewFile', array(
 						$paperId, $galleyId, $styleFile->getFileId()
 					)));
 				}
@@ -1476,11 +1463,11 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 	 * @param $fileName string
 	 * @param $round int
 	 */
-	function uploadSuppFile($fileName = null, $round = null) {
-		$paperId = Request::getUserVar('paperId');
-		$this->validate($paperId);
-		$conference =& Request::getConference();
-		$schedConf =& Request::getSchedConf();
+	function _uploadSuppFile($request, $fileName = null, $round = null) {
+		$paperId = (int) $request->getUserVar('paperId');
+		$this->validate($request, $paperId);
+		$conference =& $request->getConference();
+		$schedConf =& $request->getSchedConf();
 		$submission =& $this->submission;
 
 		import('classes.submission.form.SuppFileForm');
@@ -1489,20 +1476,20 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		$suppFileForm->setData('title', array($submission->getLocale() => Locale::translate('common.untitled')));
 		$suppFileId = $suppFileForm->execute($fileName);
 
-		Request::redirect(null, null, null, 'editSuppFile', array($paperId, $suppFileId));
+		$request->redirect(null, null, null, 'editSuppFile', array($paperId, $suppFileId));
 	}
 
 	/**
 	 * Change the sequence order of a supplementary file.
 	 */
-	function orderSuppFile() {
-		$paperId = Request::getUserVar('paperId');
-		$this->validate($paperId);
+	function orderSuppFile($args, $request) {
+		$paperId = (int) $request->getUserVar('paperId');
+		$this->validate($request, $paperId);
 		$submission =& $this->submission;
 
-		TrackDirectorAction::orderSuppFile($submission, Request::getUserVar('suppFileId'), Request::getUserVar('d'));
+		TrackDirectorAction::orderSuppFile($submission, $request->getUserVar('suppFileId'), $request->getUserVar('d'));
 
-		Request::redirect(null, null, null, 'submissionReview', $paperId);
+		$request->redirect(null, null, null, 'submissionReview', $paperId);
 	}
 
 
@@ -1513,13 +1500,13 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 	/**
 	 * View submission event log.
 	 */
-	function submissionEventLog($args) {
-		$paperId = isset($args[0]) ? (int) $args[0] : 0;
-		$logId = isset($args[1]) ? (int) $args[1] : 0;
-		$this->validate($paperId);
+	function submissionEventLog($args, $request) {
+		$paperId = (int) array_shift($args);
+		$logId = (int) array_shift($args);
+		$this->validate($request, $paperId);
 		$submission =& $this->submission;
 
-		$this->setupTemplate(true, $paperId, 'history');
+		$this->setupTemplate($request, true, $paperId, 'history');
 
 		$templateMgr =& TemplateManager::getManager();
 
@@ -1552,67 +1539,35 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 	}
 
 	/**
-	 * View submission event log by record type.
-	 */
-	function submissionEventLogType($args) {
-		$paperId = isset($args[0]) ? (int) $args[0] : 0;
-		$assocType = isset($args[1]) ? (int) $args[1] : null;
-		$assocId = isset($args[2]) ? (int) $args[2] : null;
-		$this->validate($paperId);
-		$submission =& $this->submission;
-
-		$this->setupTemplate(true, $paperId, 'history');
-
-		$rangeInfo =& Handler::getRangeInfo('eventLogEntries', array($paperId, $assocType, $assocId));
-		$logDao =& DAORegistry::getDAO('PaperEventLogDAO');
-		while (true) {
-			$eventLogEntries =& $logDao->getPaperLogEntriesByAssoc($paperId, $assocType, $assocId, $rangeInfo);
-			if ($eventLogEntries->isInBounds()) break;
-			unset($rangeInfo);
-			$rangeInfo =& $eventLogEntries->getLastPageRangeInfo();
-			unset($eventLogEntries);
-		}
-
-		$templateMgr =& TemplateManager::getManager();
-
-		$templateMgr->assign('showBackLink', true);
-		$templateMgr->assign('isDirector', Validation::isDirector());
-		$templateMgr->assign_by_ref('submission', $submission);
-		$templateMgr->assign_by_ref('eventLogEntries', $eventLogEntries);
-		$templateMgr->display('trackDirector/submissionEventLog.tpl');
-	}
-
-	/**
 	 * Clear submission event log entries.
 	 */
-	function clearSubmissionEventLog($args) {
-		$paperId = isset($args[0]) ? (int) $args[0] : 0;
-		$logId = isset($args[1]) ? (int) $args[1] : 0;
-		$this->validate($paperId);
+	function clearSubmissionEventLog($args, $request) {
+		$paperId = (int) array_shift($args);
+		$logId = (int) array_shift($args);
+		$this->validate($request, $paperId);
 		$submission =& $this->submission;
 
 		$logDao =& DAORegistry::getDAO('PaperEventLogDAO');
 
 		if ($logId) {
 			$logDao->deleteLogEntry($logId, $paperId);
-
 		} else {
 			$logDao->deletePaperLogEntries($paperId);
 		}
 
-		Request::redirect(null, null, null, 'submissionEventLog', $paperId);
+		$request->redirect(null, null, null, 'submissionEventLog', $paperId);
 	}
 
 	/**
 	 * View submission email log.
 	 */
-	function submissionEmailLog($args) {
-		$paperId = isset($args[0]) ? (int) $args[0] : 0;
-		$logId = isset($args[1]) ? (int) $args[1] : 0;
-		$this->validate($paperId);
+	function submissionEmailLog($args, $request) {
+		$paperId = (int) array_shift($args);
+		$logId = (int) array_shift($args);
+		$this->validate($request, $paperId);
 		$submission =& $this->submission;
 		
-		$this->setupTemplate(true, $paperId, 'history');
+		$this->setupTemplate($request, true, $paperId, 'history');
 
 		$templateMgr =& TemplateManager::getManager();
 
@@ -1645,53 +1600,22 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 	}
 
 	/**
-	 * View submission email log by record type.
-	 */
-	function submissionEmailLogType($args) {
-		$paperId = isset($args[0]) ? (int) $args[0] : 0;
-		$assocType = isset($args[1]) ? (int) $args[1] : null;
-		$assocId = isset($args[2]) ? (int) $args[2] : null;
-		$this->validate($paperId);
-		$submission =& $this->submission;
-		$this->setupTemplate(true, $paperId, 'history');
-
-		$rangeInfo =& Handler::getRangeInfo('eventLogEntries', array($paperId, $assocType, $assocId));
-		$logDao =& DAORegistry::getDAO('PaperEmailLogDAO');
-		while (true) {
-			$emailLogEntries =& $logDao->getPaperLogEntriesByAssoc($paperId, $assocType, $assocId, $rangeInfo);
-			if ($emailLogEntries->isInBounds()) break;
-			unset($rangeInfo);
-			$rangeInfo =& $emailLogEntries->getLastPageRangeInfo();
-			unset($emailLogEntries);
-		}
-
-		$templateMgr =& TemplateManager::getManager();
-
-		$templateMgr->assign('showBackLink', true);
-		$templateMgr->assign('isDirector', Validation::isDirector());
-		$templateMgr->assign_by_ref('submission', $submission);
-		$templateMgr->assign_by_ref('emailLogEntries', $emailLogEntries);
-		$templateMgr->display('trackDirector/submissionEmailLog.tpl');
-	}
-
-	/**
 	 * Clear submission email log entries.
 	 */
-	function clearSubmissionEmailLog($args) {
-		$paperId = isset($args[0]) ? (int) $args[0] : 0;
-		$logId = isset($args[1]) ? (int) $args[1] : 0;
-		$this->validate($paperId);
+	function clearSubmissionEmailLog($args, $request) {
+		$paperId = (int) array_shift($args);
+		$logId = (int) array_shift($args);
+		$this->validate($request, $paperId);
 
 		$logDao =& DAORegistry::getDAO('PaperEmailLogDAO');
 
 		if ($logId) {
 			$logDao->deleteLogEntry($logId, $paperId);
-
 		} else {
 			$logDao->deletePaperLogEntries($paperId);
 		}
 
-		Request::redirect(null, null, null, 'submissionEmailLog', $paperId);
+		$request->redirect(null, null, null, 'submissionEmailLog', $paperId);
 	}
 
 	// Submission Notes Functions
@@ -1700,60 +1624,60 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 	 * Creates a submission note.
 	 * Redirects to submission notes list
 	 */
-	function addSubmissionNote() {
-		$paperId = Request::getUserVar('paperId');
-		$this->validate($paperId);
+	function addSubmissionNote($args, $request) {
+		$paperId = (int) $request->getUserVar('paperId');
+		$this->validate($request, $paperId);
 
 		TrackDirectorAction::addSubmissionNote($paperId);
-		Request::redirect(null, null, null, 'submissionNotes', $paperId);
+		$request->redirect(null, null, null, 'submissionNotes', $paperId);
 	}
 
 	/**
 	 * Removes a submission note.
 	 * Redirects to submission notes list
 	 */
-	function removeSubmissionNote() {
-		$paperId = Request::getUserVar('paperId');
-		$this->validate($paperId);
+	function removeSubmissionNote($args, $request) {
+		$paperId = (int) $request->getUserVar('paperId');
+		$this->validate($request, $paperId);
 
 		TrackDirectorAction::removeSubmissionNote($paperId);
-		Request::redirect(null, null, null, 'submissionNotes', $paperId);
+		$request->redirect(null, null, null, 'submissionNotes', $paperId);
 	}
 
 	/**
 	 * Updates a submission note.
 	 * Redirects to submission notes list
 	 */
-	function updateSubmissionNote() {
-		$paperId = Request::getUserVar('paperId');
-		$this->validate($paperId);
+	function updateSubmissionNote($args, $request) {
+		$paperId = (int) $request->getUserVar('paperId');
+		$this->validate($request, $paperId);
 
 		TrackDirectorAction::updateSubmissionNote($paperId);
-		Request::redirect(null, null, null, 'submissionNotes', $paperId);
+		$request->redirect(null, null, null, 'submissionNotes', $paperId);
 	}
 
 	/**
 	 * Clear all submission notes.
 	 * Redirects to submission notes list
 	 */
-	function clearAllSubmissionNotes() {
-		$paperId = Request::getUserVar('paperId');
-		$this->validate($paperId);
+	function clearAllSubmissionNotes($args, $request) {
+		$paperId = (int) $request->getUserVar('paperId');
+		$this->validate($request, $paperId);
 
 		TrackDirectorAction::clearAllSubmissionNotes($paperId);
-		Request::redirect(null, null, null, 'submissionNotes', $paperId);
+		$request->redirect(null, null, null, 'submissionNotes', $paperId);
 	}
 
 	/**
 	 * View submission notes.
 	 */
-	function submissionNotes($args) {
-		$paperId = isset($args[0]) ? (int) $args[0] : 0;
-		$noteViewType = isset($args[1]) ? $args[1] : '';
-		$noteId = isset($args[2]) ? (int) $args[2] : 0;
+	function submissionNotes($args, $request) {
+		$paperId = (int) array_shift($args);
+		$noteViewType = array_shift($args);
+		$noteId = (int) array_shift($args);
 
-		$this->validate($paperId);
-		$this->setupTemplate(true, $paperId, 'history');
+		$this->validate($request, $paperId);
+		$this->setupTemplate($request, true, $paperId, 'history');
 		$submission =& $this->submission;
 
 		$noteDao =& DAORegistry::getDAO('NoteDAO');
@@ -1791,14 +1715,14 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 	 * Download a file.
 	 * @param $args array ($paperId, $fileId, [$revision])
 	 */
-	function downloadFile($args) {
-		$paperId = isset($args[0]) ? $args[0] : 0;
-		$fileId = isset($args[1]) ? $args[1] : 0;
-		$revision = isset($args[2]) ? $args[2] : null;
+	function downloadFile($args, $request) {
+		$paperId = (int) array_shift($args);
+		$fileId = (int) array_shift($args);
+		$revision = (int) array_shift($args);
 
-		$this->validate($paperId);
+		$this->validate($request, $paperId);
 		if (!TrackDirectorAction::downloadFile($paperId, $fileId, $revision)) {
-			Request::redirect(null, null, null, 'submission', $paperId);
+			$request->redirect(null, null, null, 'submission', $paperId);
 		}
 	}
 
@@ -1806,14 +1730,14 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 	 * View a file (inlines file).
 	 * @param $args array ($paperId, $fileId, [$revision])
 	 */
-	function viewFile($args) {
-		$paperId = isset($args[0]) ? $args[0] : 0;
-		$fileId = isset($args[1]) ? $args[1] : 0;
-		$revision = isset($args[2]) ? $args[2] : null;
+	function viewFile($args, $request) {
+		$paperId = (int) array_shift($args);
+		$fileId = (int) array_shift($args);
+		$revision = (int) array_shift($args);
 
-		$this->validate($paperId);
+		$this->validate($request, $paperId);
 		if (!TrackDirectorAction::viewFile($paperId, $fileId, $revision)) {
-			Request::redirect(null, null, null, 'submission', $paperId);
+			$request->redirect(null, null, null, 'submission', $paperId);
 		}
 	}
 
@@ -1829,15 +1753,15 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 	 * @param $paperId int Paper ID to validate
 	 * @param $access int Optional name of access level required -- see TRACK_DIRECTOR_ACCESS_... constants
 	 */
-	function validate($paperId, $access = null) {
-		parent::validate();
+	function validate($request, $paperId, $access = null) {
+		parent::validate($request);
 
 		$isValid = true;
 
 		$trackDirectorSubmissionDao =& DAORegistry::getDAO('TrackDirectorSubmissionDAO');
-		$conference =& Request::getConference();
-		$schedConf =& Request::getSchedConf();
-		$user =& Request::getUser();
+		$conference =& $request->getConference();
+		$schedConf =& $request->getSchedConf();
+		$user =& $request->getUser();
 
 		$trackDirectorSubmission =& $trackDirectorSubmissionDao->getTrackDirectorSubmission($paperId);
 
@@ -1864,7 +1788,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		}
 
 		if (!$isValid) {
-			Request::redirect(null, null, null, Request::getRequestedPage());
+			$request->redirect(null, null, null, $request->getRequestedPage());
 		}
 
 		// If necessary, note the current date and time as the "underway" date/time
@@ -1881,4 +1805,5 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		return true;
 	}
 }
+
 ?>

@@ -30,14 +30,14 @@ class SubmissionCommentsHandler extends AuthorHandler {
 	/**
 	 * View director decision comments.
 	 */
-	function viewDirectorDecisionComments($args) {
-		$this->validate();
-		$this->setupTemplate(true);
+	function viewDirectorDecisionComments($args, $request) {
+		$this->validate($request);
+		$this->setupTemplate($request, true);
 
-		$paperId = $args[0];
+		$paperId = (int) array_shift($args);
 
 		$trackSubmissionHandler = new TrackSubmissionHandler();
-		$trackSubmissionHandler->validate($paperId);
+		$trackSubmissionHandler->validate($request, $paperId);
 		$authorSubmission =& $trackSubmissionHandler->submission;
 		AuthorAction::viewDirectorDecisionComments($authorSubmission);
 	}
@@ -45,38 +45,38 @@ class SubmissionCommentsHandler extends AuthorHandler {
 	/**
 	 * Email a director decision comment.
 	 */
-	function emailDirectorDecisionComment() {
-		$paperId = (int) Request::getUserVar('paperId');
+	function emailDirectorDecisionComment($args, $request) {
+		$paperId = (int) $request->getUserVar('paperId');
 		$trackSubmissionHandler = new TrackSubmissionHandler();
-		$trackSubmissionHandler->validate($paperId);
+		$trackSubmissionHandler->validate($request, $paperId);
 		$submission =& $trackSubmissionHandler->submission;
 
-		$this->setupTemplate(true);		
-		if (AuthorAction::emailDirectorDecisionComment($submission, Request::getUserVar('send'))) {
-			Request::redirect(null, null, null, 'submissionReview', array($paperId));
+		$this->setupTemplate($request, true);
+		if (AuthorAction::emailDirectorDecisionComment($submission, $request->getUserVar('send'))) {
+			$request->redirect(null, null, null, 'submissionReview', array($paperId));
 		}
 	}
 
 	/**
 	 * Edit comment.
 	 */
-	function editComment($args) {
-		$paperId = $args[0];
-		$commentId = $args[1];
+	function editComment($args, $request) {
+		$paperId = (int) array_shift($args);
+		$commentId = (int) array_shift($args);
 
 		$this->addCheck(new HandlerValidatorSubmissionComment($this, $commentId));
-		$this->validate();
+		$this->validate($request);
 		$comment =& $this->comment;
 		
-		$this->setupTemplate(true);
+		$this->setupTemplate($request, true);
 		
 		$trackSubmissionHandler = new TrackSubmissionHandler();
-		$trackSubmissionHandler->validate($paperId);
+		$trackSubmissionHandler->validate($request, $paperId);
 		$authorSubmission =& $trackSubmissionHandler->submission;
 
 		if ($comment->getCommentType() == COMMENT_TYPE_DIRECTOR_DECISION) {
 			// Cannot edit a director decision comment.
-			Request::redirect(null, null, Request::getRequestedPage());
+			$request->redirect(null, null, $request->getRequestedPage());
 		}
 
 		AuthorAction::editComment($authorSubmission, $comment);
@@ -86,26 +86,26 @@ class SubmissionCommentsHandler extends AuthorHandler {
 	/**
 	 * Save comment.
 	 */
-	function saveComment() {
-		$paperId = Request::getUserVar('paperId');
-		$commentId = Request::getUserVar('commentId');
+	function saveComment($args, $request) {
+		$paperId = (int) $request->getUserVar('paperId');
+		$commentId = (int) $request->getUserVar('commentId');
 
 		// If the user pressed the "Save and email" button, then email the comment.
-		$emailComment = Request::getUserVar('saveAndEmail') != null ? true : false;
+		$emailComment = $request->getUserVar('saveAndEmail') != null ? true : false;
 
 		$this->addCheck(new HandlerValidatorSubmissionComment($this, $commentId));
-		$this->validate();
+		$this->validate($request);
 		$comment =& $this->comment;
 		
-		$this->setupTemplate(true);
+		$this->setupTemplate($request, true);
 		
 		$trackSubmissionHandler = new TrackSubmissionHandler();
-		$trackSubmissionHandler->validate($paperId);
+		$trackSubmissionHandler->validate($request, $paperId);
 		$authorSubmission =& $trackSubmissionHandler->submission;
 
 		if ($comment->getCommentType() == COMMENT_TYPE_DIRECTOR_DECISION) {
 			// Cannot edit a director decision comment.
-			Request::redirect(null, null, Request::getRequestedPage());
+			$request->redirect(null, null, $request->getRequestedPage());
 		}
 
 		AuthorAction::saveComment($authorSubmission, $comment, $emailComment);
@@ -115,32 +115,33 @@ class SubmissionCommentsHandler extends AuthorHandler {
 
 		// Redirect back to initial comments page
 		if ($comment->getCommentType() == COMMENT_TYPE_DIRECTOR_DECISION) {
-			Request::redirect(null, null, null, 'viewDirectorDecisionComments', $paperId);
+			$request->redirect(null, null, null, 'viewDirectorDecisionComments', $paperId);
 		}
 	}
 
 	/**
 	 * Delete comment.
 	 */
-	function deleteComment($args) {
-		$paperId = $args[0];
-		$commentId = $args[1];
+	function deleteComment($args, $request) {
+		$paperId = (int) array_shift($args);
+		$commentId = (int) array_shift($args);
 
 		$this->addCheck(new HandlerValidatorSubmissionComment($this, $commentId));
-		$this->validate();
+		$this->validate($request);
 		$comment =& $this->comment;
 		
-		$this->setupTemplate(true);
+		$this->setupTemplate($request, true);
 		
 		$trackSubmissionHandler = new TrackSubmissionHandler();
-		$trackSubmissionHandler->validate($paperId);
+		$trackSubmissionHandler->validate($request, $paperId);
 		$authorSubmission =& $trackSubmissionHandler->submission;
 		AuthorAction::deleteComment($commentId);
 
 		// Redirect back to initial comments page
 		if ($comment->getCommentType() == COMMENT_TYPE_DIRECTOR_DECISION) {
-			Request::redirect(null, null, null, 'viewDirectorDecisionComments', $paperId);
+			$request->redirect(null, null, null, 'viewDirectorDecisionComments', $paperId);
 		}
 	}
 }
+
 ?>

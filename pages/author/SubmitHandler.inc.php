@@ -32,29 +32,29 @@ class SubmitHandler extends AuthorHandler {
 	 * Displays author index page if a valid step is not specified.
 	 * @param $args array optional, if set the first parameter is the step to display
 	 */
-	function submit($args) {
-		$user =& Request::getUser();
-		$schedConf =& Request::getSchedConf();
+	function submit($args, $request) {
+		$user =& $request->getUser();
+		$schedConf =& $request->getSchedConf();
 		if ($user && $schedConf && !Validation::isAuthor()) {
 			// The user is logged in but not a author. If
 			// possible, enroll them as a author automatically.
-			Request::redirect(
+			$request->redirect(
 				null, null,
 				'user', 'become',
 				array('author'),
 				array(
-					'source' => Request::url(
+					'source' => $request->url(
 						null, null, 'author', 'submit'
 					)
 				)
 			);
 		}
 
-		$step = isset($args[0]) ? (int) $args[0] : 1;
-		$paperId = Request::getUserVar('paperId');
+		$step = (int) array_shift($args);
+		$paperId = $request->getUserVar('paperId');
 
-		$this->validate($paperId, $step);
-		$this->setupTemplate(true);
+		$this->validate($request, $paperId, $step);
+		$this->setupTemplate($request, true);
 
 		$paper =& $this->paper;
 
@@ -75,11 +75,11 @@ class SubmitHandler extends AuthorHandler {
 	 * @param $args array first parameter is the step being saved
 	 */
 	function saveSubmit($args, $request) {
-		$step = isset($args[0]) ? (int) $args[0] : 0;
-		$paperId = $request->getUserVar('paperId');
+		$step = (int) array_shift($args);
+		$paperId = (int) $request->getUserVar('paperId');
 
-		$this->validate($paperId, $step);
-		$this->setupTemplate(true);
+		$this->validate($request, $paperId, $step);
+		$this->setupTemplate($request, true);
 
 		$paper =& $this->paper;
 
@@ -199,7 +199,7 @@ class SubmitHandler extends AuthorHandler {
 				}
 
 				foreach ($notificationUsers as $userRole) {
-					$url = Request::url(null, null, 'director', 'submission', $paperId);
+					$url = $request->url(null, null, 'director', 'submission', $paperId);
 					$notificationManager->createNotification(
 						$userRole['id'], 'notification.type.paperSubmitted',
 						$paper->getLocalizedTitle(), $url, 1, NOTIFICATION_TYPE_PAPER_SUBMITTED
@@ -231,11 +231,11 @@ class SubmitHandler extends AuthorHandler {
 	 * Create new supplementary file with a uploaded file.
 	 */
 	function submitUploadSuppFile($args, $request) {
-		$paperId = $request->getUserVar('paperId');
-		$this->validate($paperId, 4);
+		$paperId = (int) $request->getUserVar('paperId');
+		$this->validate($request, $paperId, 4);
 		$paper =& $this->paper;
-		$this->setupTemplate(true);
-		$schedConf =& Request::getSchedConf();
+		$this->setupTemplate($request, true);
+		$schedConf =& $request->getSchedConf();
 
 		import('lib.pkp.classes.file.FileManager');
 		$fileManager = new FileManager();
@@ -253,17 +253,17 @@ class SubmitHandler extends AuthorHandler {
 	 * Display supplementary file submission form.
 	 * @param $args array optional, if set the first parameter is the supplementary file to edit
 	 */
-	function submitSuppFile($args) {
-		$paperId = Request::getUserVar('paperId');
-		$suppFileId = isset($args[0]) ? (int) $args[0] : 0;
+	function submitSuppFile($args, $request) {
+		$paperId = $request->getUserVar('paperId');
+		$suppFileId = (int) array_shift($args);
 
-		$this->validate($paperId, 4);
-		$this->setupTemplate(true);
+		$this->validate($request, $paperId, 4);
+		$this->setupTemplate($request, true);
 
 		$paper =& $this->paper;
-		$schedConf =& Request::getSchedConf();
+		$schedConf =& $request->getSchedConf();
 
-		if (!$schedConf->getSetting('acceptSupplementaryReviewMaterials')) Request::redirect(null, null, 'index');
+		if (!$schedConf->getSetting('acceptSupplementaryReviewMaterials')) $request->redirect(null, null, 'index');
 
 		import('classes.author.form.submit.AuthorSubmitSuppFileForm');
 		$submitForm = new AuthorSubmitSuppFileForm($paper, $suppFileId);
@@ -280,17 +280,17 @@ class SubmitHandler extends AuthorHandler {
 	 * Save a supplementary file.
 	 * @param $args array optional, if set the first parameter is the supplementary file to update
 	 */
-	function saveSubmitSuppFile($args) {
-		$paperId = Request::getUserVar('paperId');
-		$suppFileId = isset($args[0]) ? (int) $args[0] : 0;
+	function saveSubmitSuppFile($args, $request) {
+		$paperId = (int) $request->getUserVar('paperId');
+		$suppFileId = (int) array_shift($args);
 
-		$this->validate($paperId, 4);
-		$this->setupTemplate(true);
+		$this->validate($request, $paperId, 4);
+		$this->setupTemplate($request, true);
 
-		$schedConf =& Request::getSchedConf();
+		$schedConf =& $request->getSchedConf();
 		$paper =& $this->paper;
 
-		if (!$schedConf->getSetting('acceptSupplementaryReviewMaterials')) Request::redirect(null, null, 'index');
+		if (!$schedConf->getSetting('acceptSupplementaryReviewMaterials')) $request->redirect(null, null, 'index');
 
 		import('classes.author.form.submit.AuthorSubmitSuppFileForm');
 		$submitForm = new AuthorSubmitSuppFileForm($paper, $suppFileId);
@@ -304,7 +304,7 @@ class SubmitHandler extends AuthorHandler {
 
 		if ($submitForm->validate()) {
 			$submitForm->execute();
-			Request::redirect(null, null, null, 'submit', '4', array('paperId' => $paperId));
+			$request->redirect(null, null, null, 'submit', '4', array('paperId' => $paperId));
 		} else {
 			$submitForm->display();
 		}
@@ -314,19 +314,19 @@ class SubmitHandler extends AuthorHandler {
 	 * Delete a supplementary file.
 	 * @param $args array, the first parameter is the supplementary file to delete
 	 */
-	function deleteSubmitSuppFile($args) {
+	function deleteSubmitSuppFile($args, $request) {
 		import('classes.file.PaperFileManager');
 
-		$paperId = Request::getUserVar('paperId');
-		$suppFileId = isset($args[0]) ? (int) $args[0] : 0;
+		$paperId = (int) $request->getUserVar('paperId');
+		$suppFileId = (int) array_shift($args);
 
-		$this->validate($paperId, 4);
-		$this->setupTemplate(true);
+		$this->validate($request, $paperId, 4);
+		$this->setupTemplate($request, true);
 
-		$schedConf =& Request::getSchedConf();
+		$schedConf =& $request->getSchedConf();
 		$paper =& $this->paper;
 
-		if (!$schedConf->getSetting('acceptSupplementaryReviewMaterials')) Request::redirect(null, null, 'index');
+		if (!$schedConf->getSetting('acceptSupplementaryReviewMaterials')) $request->redirect(null, null, 'index');
 
 		$suppFileDao =& DAORegistry::getDAO('SuppFileDAO');
 		$suppFile = $suppFileDao->getSuppFile($suppFileId, $paperId);
@@ -337,49 +337,49 @@ class SubmitHandler extends AuthorHandler {
 			$paperFileManager->deleteFile($suppFile->getFileId());
 		}
 
-		Request::redirect(null, null, null, 'submit', '4', array('paperId' => $paperId));
+		$request->redirect(null, null, null, 'submit', '4', array('paperId' => $paperId));
 	}
 
 	/**
 	 * Validation check for submission.
 	 * Checks that paper ID is valid, if specified.
+	 * @param $request object
 	 * @param $paperId int
 	 * @param $step int
 	 */
-	function validate($paperId = null, $step = false) {
+	function validate($request, $paperId = null, $step = false) {
 		parent::validate();
 
-		$conference =& Request::getConference();
-		$schedConf =& Request::getSchedConf();
+		$conference =& $request->getConference();
+		$schedConf =& $request->getSchedConf();
 
 		$paperDao =& DAORegistry::getDAO('PaperDAO');
-		$user =& Request::getUser();
+		$user =& $request->getUser();
 
 		if ($step !== false && ($step < 1 || $step > 5 || (!isset($paperId) && $step != 1))) {
-			Request::redirect(null, null, null, 'submit', array(1));
+			$request->redirect(null, null, null, 'submit', array(1));
 		}
 
 		$paper = null;
 
-		if (isset($paperId)) {
+		if ($paperId) {
 			// Check that paper exists for this conference and user and that submission is incomplete
 			$paper =& $paperDao->getPaper((int) $paperId);
 			if (!$paper || $paper->getUserId() !== $user->getId() || $paper->getSchedConfId() !== $schedConf->getId()) {
-				Request::redirect(null, null, null, 'submit');
+				$request->redirect(null, null, null, 'submit');
 			}
 
 			if($step !== false && $step > $paper->getSubmissionProgress()) {
-				Request::redirect(null, null, null, 'submit');
+				$request->redirect(null, null, null, 'submit');
 			}
-
 		} else {
 			// If the paper does not exist, require that the
 			// submission window be open or that this user be a
 			// director or track director.
 			import('classes.schedConf.SchedConfAction');
-			$schedConf =& Request::getSchedConf();
+			$schedConf =& $request->getSchedConf();
 			if (!$schedConf || (!SchedConfAction::submissionsOpen($schedConf) && !Validation::isDirector($schedConf->getConferenceId(), $schedConf->getId()) && !Validation::isTrackDirector($schedConf->getConferenceId()))) {
-				Request::redirect(null, null, 'author', 'index');
+				$request->redirect(null, null, 'author', 'index');
 			}
 		}
 

@@ -30,15 +30,15 @@ class SubmissionCommentsHandler extends TrackDirectorHandler {
 	/**
 	 * View peer review comments.
 	 */
-	function viewPeerReviewComments($args) {
-		parent::validate();
-		$this->setupTemplate(true);
+	function viewPeerReviewComments($args, $request) {
+		$this->validate($request);
+		$this->setupTemplate($request, true);
 
 		$paperId = $args[0];
 		$reviewId = $args[1];
 
 		$submissionEditHandler = new SubmissionEditHandler();
-		$submissionEditHandler->validate($paperId);
+		$submissionEditHandler->validate($request, $paperId);
 		$paperDao =& DAORegistry::getDAO('PaperDAO');
 		$submission =& $paperDao->getPaper($paperId);
 		
@@ -48,18 +48,18 @@ class SubmissionCommentsHandler extends TrackDirectorHandler {
 	/**
 	 * Post peer review comments.
 	 */
-	function postPeerReviewComment() {
-		parent::validate();
-		$this->setupTemplate(true);
+	function postPeerReviewComment($args, $request) {
+		$this->validate($request);
+		$this->setupTemplate($request, true);
 
-		$paperId = Request::getUserVar('paperId');
-		$reviewId = Request::getUserVar('reviewId');
+		$paperId = $request->getUserVar('paperId');
+		$reviewId = $request->getUserVar('reviewId');
 
 		// If the user pressed the "Save and email" button, then email the comment.
-		$emailComment = Request::getUserVar('saveAndEmail') != null ? true : false;
+		$emailComment = $request->getUserVar('saveAndEmail') != null ? true : false;
 
 		$submissionEditHandler = new SubmissionEditHandler();
-		$submissionEditHandler->validate($paperId);
+		$submissionEditHandler->validate($request, $paperId);
 		$paperDao =& DAORegistry::getDAO('PaperDAO');
 		$submission =& $paperDao->getPaper($paperId);
 
@@ -71,14 +71,14 @@ class SubmissionCommentsHandler extends TrackDirectorHandler {
 	/**
 	 * View director decision comments.
 	 */
-	function viewDirectorDecisionComments($args) {
-		parent::validate();
-		$this->setupTemplate(true);
+	function viewDirectorDecisionComments($args, $request) {
+		$this->validate($request);
+		$this->setupTemplate($request, true);
 
-		$paperId = $args[0];
+		$paperId = (int) array_shift($args);
 
 		$submissionEditHandler = new SubmissionEditHandler();
-		$submissionEditHandler->validate($paperId);
+		$submissionEditHandler->validate($request, $paperId);
 		$paperDao =& DAORegistry::getDAO('PaperDAO');
 		$submission =& $paperDao->getPaper($paperId);
 		
@@ -88,17 +88,17 @@ class SubmissionCommentsHandler extends TrackDirectorHandler {
 	/**
 	 * Post peer review comments.
 	 */
-	function postDirectorDecisionComment() {
-		parent::validate();
-		$this->setupTemplate(true);
+	function postDirectorDecisionComment($args, $request) {
+		$paperId = (int) $request->getUserVar('paperId');
 
-		$paperId = Request::getUserVar('paperId');
+		$this->validate($request);
+		$this->setupTemplate($request, true);
 
 		// If the user pressed the "Save and email" button, then email the comment.
-		$emailComment = Request::getUserVar('saveAndEmail') != null ? true : false;
+		$emailComment = $request->getUserVar('saveAndEmail') != null ? true : false;
 
 		$submissionEditHandler = new SubmissionEditHandler();
-		$submissionEditHandler->validate($paperId);
+		$submissionEditHandler->validate($request, $paperId);
 		$paperDao =& DAORegistry::getDAO('PaperDAO');
 		$submission =& $paperDao->getPaper($paperId);
 		
@@ -110,38 +110,38 @@ class SubmissionCommentsHandler extends TrackDirectorHandler {
 	/**
 	 * Blind CC the reviews to reviewers.
 	 */
-	function blindCcReviewsToReviewers($args = array()) {
-		$paperId = Request::getUserVar('paperId');
+	function blindCcReviewsToReviewers($args, $request) {
+		$paperId = $request->getUserVar('paperId');
 		$submissionEditHandler = new SubmissionEditHandler();
-		$submissionEditHandler->validate($paperId);
+		$submissionEditHandler->validate($request, $paperId);
 		$paperDao =& DAORegistry::getDAO('PaperDAO');
 		$submission =& $paperDao->getPaper($paperId);
 
-		$send = Request::getUserVar('send')?true:false;
-		$inhibitExistingEmail = Request::getUserVar('blindCcReviewers')?true:false;
+		$send = $request->getUserVar('send')?true:false;
+		$inhibitExistingEmail = $request->getUserVar('blindCcReviewers')?true:false;
 
-		if (!$send) parent::setupTemplate(true, $paperId, 'review');
+		if (!$send) $this->setupTemplate($request, true, $paperId, 'review');
 		if (TrackDirectorAction::blindCcReviewsToReviewers($submission, $send, $inhibitExistingEmail)) {
-			Request::redirect(null, null, null, 'submissionReview', $paperId);
+			$request->redirect(null, null, null, 'submissionReview', $paperId);
 		}
 	}
 
 	/**
 	 * Email a director decision comment.
 	 */
-	function emailDirectorDecisionComment() {
-		$paperId = (int) Request::getUserVar('paperId');
+	function emailDirectorDecisionComment($args, $request) {
+		$paperId = (int) $request->getUserVar('paperId');
 		$submissionEditHandler = new SubmissionEditHandler();
-		$submissionEditHandler->validate($paperId);
+		$submissionEditHandler->validate($request, $paperId);
 		$trackDirectorSubmissionDao =& DAORegistry::getDAO('TrackDirectorSubmissionDAO');
 		$submission =& $trackDirectorSubmissionDao->getTrackDirectorSubmission($paperId);
 
-		parent::setupTemplate(true);		
-		if (TrackDirectorAction::emailDirectorDecisionComment($submission, Request::getUserVar('send'))) {
-			if (Request::getUserVar('blindCcReviewers')) {
-				$this->blindCcReviewsToReviewers();
+		$this->setupTemplate($request, true);
+		if (TrackDirectorAction::emailDirectorDecisionComment($submission, $request->getUserVar('send'))) {
+			if ($request->getUserVar('blindCcReviewers')) {
+				$this->blindCcReviewsToReviewers(array(), $request);
 			} else {
-				Request::redirect(null, null, null, 'submissionReview', array($paperId));
+				$request->redirect(null, null, null, 'submissionReview', array($paperId));
 			}
 		}
 	}
@@ -149,54 +149,53 @@ class SubmissionCommentsHandler extends TrackDirectorHandler {
 	/**
 	 * Edit comment.
 	 */
-	function editComment($args) {
-		$paperId = $args[0];
-		$commentId = $args[1];
+	function editComment($args, $request) {
+		$paperId = (int) array_shift($args);
+		$commentId = (int) array_shift($args);
 
 		$submissionEditHandler = new SubmissionEditHandler();
-		$submissionEditHandler->validate($paperId);
+		$submissionEditHandler->validate($request, $paperId);
 		$paperDao =& DAORegistry::getDAO('PaperDAO');
 		$submission =& $paperDao->getPaper($paperId);
 
 		$this->addCheck(new HandlerValidatorSubmissionComment($this, $commentId));
-		$this->validate();
+		$this->validate($request);
 		$comment =& $this->comment;
 		
-		$this->setupTemplate(true);
+		$this->setupTemplate($request, true);
 
 		if ($comment->getCommentType() == COMMENT_TYPE_DIRECTOR_DECISION) {
 			// Cannot edit a director decision comment.
-			Request::redirect(null, null, Request::getRequestedPage());
+			$request->redirect(null, null, $request->getRequestedPage());
 		}
 
 		TrackDirectorAction::editComment($submission, $comment);
-
 	}
 
 	/**
 	 * Save comment.
 	 */
-	function saveComment() {
-		$paperId = Request::getUserVar('paperId');
-		$commentId = Request::getUserVar('commentId');
+	function saveComment($args, $request) {
+		$paperId = (int) $request->getUserVar('paperId');
+		$commentId = (int) $request->getUserVar('commentId');
 
 		// If the user pressed the "Save and email" button, then email the comment.
-		$emailComment = Request::getUserVar('saveAndEmail') != null ? true : false;
+		$emailComment = $request->getUserVar('saveAndEmail') != null ? true : false;
 
 		$this->addCheck(new HandlerValidatorSubmissionComment($this, $commentId));
-		$this->validate();
+		$this->validate($request);
 		$comment =& $this->comment;
 
-		$this->setupTemplate(true);
+		$this->setupTemplate($request, true);
 		
 		$submissionEditHandler = new SubmissionEditHandler();
-		$submissionEditHandler->validate($paperId);
+		$submissionEditHandler->validate($request, $paperId);
 		$paperDao =& DAORegistry::getDAO('PaperDAO');
 		$submission =& $paperDao->getPaper($paperId);
 		
 		if ($comment->getCommentType() == COMMENT_TYPE_DIRECTOR_DECISION) {
 			// Cannot edit a director decision comment.
-			Request::redirect(null, null, Request::getRequestedPage());
+			$request->redirect(null, null, $request->getRequestedPage());
 		}
 
 		// Save the comment.
@@ -208,25 +207,25 @@ class SubmissionCommentsHandler extends TrackDirectorHandler {
 
 		// Redirect back to initial comments page
 		if ($comment->getCommentType() == COMMENT_TYPE_PEER_REVIEW) {
-			Request::redirect(null, null, null, 'viewPeerReviewComments', array($paperId, $comment->getAssocId()));
+			$request->redirect(null, null, null, 'viewPeerReviewComments', array($paperId, $comment->getAssocId()));
 		} else if ($comment->getCommentType() == COMMENT_TYPE_DIRECTOR_DECISION) {
-			Request::redirect(null, null, null, 'viewDirectorDecisionComments', $paperId);
+			$request->redirect(null, null, null, 'viewDirectorDecisionComments', $paperId);
 		}
 	}
 
 	/**
 	 * Delete comment.
 	 */
-	function deleteComment($args) {
-		$paperId = $args[0];
-		$commentId = $args[1];
+	function deleteComment($args, $request) {
+		$paperId = (int) array_shift($args);
+		$commentId = (int) array_shift($args);
 		
 		$this->addCheck(new HandlerValidatorSubmissionComment($this, $commentId));
-		$this->validate();
+		$this->validate($request);
 		$comment =& $this->comment;
 
 		$submissionEditHandler = new SubmissionEditHandler();
-		$submissionEditHandler->validate($paperId);
+		$submissionEditHandler->validate($request, $paperId);
 		$paperDao =& DAORegistry::getDAO('PaperDAO');
 		$submission =& $paperDao->getPaper($paperId);
 		
@@ -234,11 +233,11 @@ class SubmissionCommentsHandler extends TrackDirectorHandler {
 
 		// Redirect back to initial comments page
 		if ($comment->getCommentType() == COMMENT_TYPE_PEER_REVIEW) {
-			Request::redirect(null, null, null, 'viewPeerReviewComments', array($paperId, $comment->getAssocId()));
+			$request->redirect(null, null, null, 'viewPeerReviewComments', array($paperId, $comment->getAssocId()));
 		} else if ($comment->getCommentType() == COMMENT_TYPE_DIRECTOR_DECISION) {
-			Request::redirect(null, null, null, 'viewDirectorDecisionComments', $paperId);
+			$request->redirect(null, null, null, 'viewDirectorDecisionComments', $paperId);
 		}
-
 	}
 }
+
 ?>

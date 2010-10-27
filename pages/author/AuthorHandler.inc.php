@@ -37,18 +37,18 @@ class AuthorHandler extends Handler {
 	/**
 	 * Display conference author index page.
 	 */
-	function index($args) {
+	function index($args, $request) {
 		$this->validate();
-		$this->setupTemplate();
+		$this->setupTemplate($request);
 		
-		$conference =& Request::getConference();
-		$schedConf =& Request::getSchedConf();
+		$conference =& $request->getConference();
+		$schedConf =& $request->getSchedConf();
 
-		$user =& Request::getUser();
+		$user =& $request->getUser();
 		$rangeInfo =& Handler::getRangeInfo('submissions');
 		$authorSubmissionDao =& DAORegistry::getDAO('AuthorSubmissionDAO');
 
-		$page = isset($args[0]) ? $args[0] : '';
+		$page = array_shift($args);
 		switch($page) {
 			case 'completed':
 				$active = false;
@@ -58,9 +58,9 @@ class AuthorHandler extends Handler {
 				$active = true;
 		}
 		
-		$sort = Request::getUserVar('sort');
+		$sort = $request->getUserVar('sort');
 		$sort = isset($sort) ? $sort : 'id';
-		$sortDirection = Request::getUserVar('sortDirection');
+		$sortDirection = $request->getUserVar('sortDirection');
 
 		if ($sort == 'status') {
 			// FIXME Does not pass $rangeInfo else we only get partial results
@@ -116,7 +116,7 @@ class AuthorHandler extends Handler {
 	 * Setup common template variables.
 	 * @param $subclass boolean set to true if caller is below this handler in the hierarchy
 	 */
-	function setupTemplate($subclass = false, $paperId = 0, $parentPage = null) {
+	function setupTemplate($request, $subclass = false, $paperId = 0, $parentPage = null) {
 		parent::setupTemplate();
 		Locale::requireComponents(array(
 			LOCALE_COMPONENT_OCS_AUTHOR,
@@ -126,8 +126,8 @@ class AuthorHandler extends Handler {
 		));
 		$templateMgr =& TemplateManager::getManager();
 
-		$pageHierarchy = $subclass ? array(array(Request::url(null, null, 'user'), 'navigation.user'), array(Request::url(null, null, 'author'), 'user.role.author'), array(Request::url(null, null, 'author'), 'paper.submissions'))
-			: array(array(Request::url(null, null, 'user'), 'navigation.user'), array(Request::url(null, null, 'author'), 'user.role.author'));
+		$pageHierarchy = $subclass ? array(array($request->url(null, null, 'user'), 'navigation.user'), array($request->url(null, null, 'author'), 'user.role.author'), array($request->url(null, null, 'author'), 'paper.submissions'))
+			: array(array($request->url(null, null, 'user'), 'navigation.user'), array($request->url(null, null, 'author'), 'user.role.author'));
 
 		import('classes.submission.trackDirector.TrackDirectorAction');
 		$submissionCrumb = TrackDirectorAction::submissionBreadcrumb($paperId, $parentPage, 'author');
