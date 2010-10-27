@@ -26,7 +26,7 @@ class SitemapHandler extends Handler {
 	 */
 	function index() {
 		if (Request::getRequestedConferencePath() == 'index') {
-			$doc = SitemapHandler::createSitemapIndex();
+			$doc = SitemapHandler::_createSitemapIndex();
 			header("Content-Type: application/xml");
 			header("Cache-Control: private");
 			header("Content-Disposition: inline; filename=\"sitemap_index.xml\"");
@@ -34,14 +34,14 @@ class SitemapHandler extends Handler {
 		} else {
 			if(Request::getRequestedSchedConfPath() == 'index') {
 				// At conference level
-				$doc = SitemapHandler::createConfSitemap();
+				$doc = SitemapHandler::_createConfSitemap();
 				header("Content-Type: application/xml");
 				header("Cache-Control: private");
 				header("Content-Disposition: inline; filename=\"sitemap.xml\"");
 				XMLCustomWriter::printXML($doc);
 			} else {
 				// At scheduled conference level
-				$doc = SitemapHandler::createSchedConfSitemap();
+				$doc = SitemapHandler::_createSchedConfSitemap();
 				header("Content-Type: application/xml");
 				header("Cache-Control: private");
 				header("Content-Disposition: inline; filename=\"sitemap.xml\"");
@@ -54,7 +54,7 @@ class SitemapHandler extends Handler {
 	 * Construct a sitemap index listing each conference's individual sitemap
 	 * @return XMLNode
 	 */
-	function createSitemapIndex() {
+	function _createSitemapIndex() {
 		$conferenceDao =& DAORegistry::getDAO('ConferenceDAO');
 		$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
 		
@@ -88,7 +88,7 @@ class SitemapHandler extends Handler {
 	 * Construct a sitemap for a conference
 	 * @return XMLNode
 	 */
-	function createConfSitemap() {		
+	function _createConfSitemap() {		
 		$conference =& Request::getConference();
 		$conferenceId = $conference->getId();
 		
@@ -97,8 +97,8 @@ class SitemapHandler extends Handler {
 		XMLCustomWriter::setAttribute($root, 'xmlns', SITEMAP_XSD_URL);
 		
 		// Conf. Home 
-		XMLCustomWriter::appendChild($root, SitemapHandler::createUrlTree($doc, Request::url($conference->getPath(), 'index', 'index')));
-		XMLCustomWriter::appendChild($root, SitemapHandler::createUrlTree($doc, Request::url($conference->getPath(), 'index', 'schedConfs', 'archive')));
+		XMLCustomWriter::appendChild($root, SitemapHandler::_createUrlTree($doc, Request::url($conference->getPath(), 'index', 'index')));
+		XMLCustomWriter::appendChild($root, SitemapHandler::_createUrlTree($doc, Request::url($conference->getPath(), 'index', 'schedConfs', 'archive')));
 		
 		XMLCustomWriter::appendChild($doc, $root);
 		return $doc;
@@ -108,7 +108,7 @@ class SitemapHandler extends Handler {
 	 * Construct a sitemap for a scheduled conference
 	 * @return XMLNode
 	 */
-	function createSchedConfSitemap() {		
+	function _createSchedConfSitemap() {		
 		$publishedPaperDao =& DAORegistry::getDAO('PublishedPaperDAO');
 		$galleyDao =& DAORegistry::getDAO('PaperGalleyDAO');
 		
@@ -121,31 +121,31 @@ class SitemapHandler extends Handler {
 		XMLCustomWriter::setAttribute($root, 'xmlns', SITEMAP_XSD_URL);
 
 		// Sched. Conf. home
-		XMLCustomWriter::appendChild($root, SitemapHandler::createUrlTree($doc, Request::url($conference->getPath(), $schedConf->getPath())));
+		XMLCustomWriter::appendChild($root, SitemapHandler::_createUrlTree($doc, Request::url($conference->getPath(), $schedConf->getPath())));
 		// About page
-		XMLCustomWriter::appendChild($root, SitemapHandler::createUrlTree($doc, Request::url($conference->getPath(), $schedConf->getPath(), 'about')));
-		XMLCustomWriter::appendChild($root, SitemapHandler::createUrlTree($doc, Request::url($conference->getPath(), $schedConf->getPath(), 'about', 'submissions')));
-		XMLCustomWriter::appendChild($root, SitemapHandler::createUrlTree($doc, Request::url($conference->getPath(), $schedConf->getPath(), 'about', 'siteMap')));
-		XMLCustomWriter::appendChild($root, SitemapHandler::createUrlTree($doc, Request::url($conference->getPath(), $schedConf->getPath(), 'about', 'aboutThisPublishingSystem')));
+		XMLCustomWriter::appendChild($root, SitemapHandler::_createUrlTree($doc, Request::url($conference->getPath(), $schedConf->getPath(), 'about')));
+		XMLCustomWriter::appendChild($root, SitemapHandler::_createUrlTree($doc, Request::url($conference->getPath(), $schedConf->getPath(), 'about', 'submissions')));
+		XMLCustomWriter::appendChild($root, SitemapHandler::_createUrlTree($doc, Request::url($conference->getPath(), $schedConf->getPath(), 'about', 'siteMap')));
+		XMLCustomWriter::appendChild($root, SitemapHandler::_createUrlTree($doc, Request::url($conference->getPath(), $schedConf->getPath(), 'about', 'aboutThisPublishingSystem')));
 		// Search
-		XMLCustomWriter::appendChild($root, SitemapHandler::createUrlTree($doc, Request::url($conference->getPath(), $schedConf->getPath(), 'search')));
-		XMLCustomWriter::appendChild($root, SitemapHandler::createUrlTree($doc, Request::url($conference->getPath(), $schedConf->getPath(), 'search', 'authors')));
-		XMLCustomWriter::appendChild($root, SitemapHandler::createUrlTree($doc, Request::url($conference->getPath(), $schedConf->getPath(), 'search', 'titles')));
+		XMLCustomWriter::appendChild($root, SitemapHandler::_createUrlTree($doc, Request::url($conference->getPath(), $schedConf->getPath(), 'search')));
+		XMLCustomWriter::appendChild($root, SitemapHandler::_createUrlTree($doc, Request::url($conference->getPath(), $schedConf->getPath(), 'search', 'authors')));
+		XMLCustomWriter::appendChild($root, SitemapHandler::_createUrlTree($doc, Request::url($conference->getPath(), $schedConf->getPath(), 'search', 'titles')));
 		// Conference Information
-		XMLCustomWriter::appendChild($root, SitemapHandler::createUrlTree($doc, Request::url($conference->getPath(), $schedConf->getPath(), 'schedConf', 'overview')));
-		XMLCustomWriter::appendChild($root, SitemapHandler::createUrlTree($doc, Request::url($conference->getPath(), $schedConf->getPath(), 'schedConf', 'trackPolicies')));
-		XMLCustomWriter::appendChild($root, SitemapHandler::createUrlTree($doc, Request::url($conference->getPath(), $schedConf->getPath(), 'schedConf', 'presentations')));
-		XMLCustomWriter::appendChild($root, SitemapHandler::createUrlTree($doc, Request::url($conference->getPath(), $schedConf->getPath(), 'schedConf', 'accommodation')));
-		XMLCustomWriter::appendChild($root, SitemapHandler::createUrlTree($doc, Request::url($conference->getPath(), $schedConf->getPath(), 'schedConf', 'organizingTeam')));
+		XMLCustomWriter::appendChild($root, SitemapHandler::_createUrlTree($doc, Request::url($conference->getPath(), $schedConf->getPath(), 'schedConf', 'overview')));
+		XMLCustomWriter::appendChild($root, SitemapHandler::_createUrlTree($doc, Request::url($conference->getPath(), $schedConf->getPath(), 'schedConf', 'trackPolicies')));
+		XMLCustomWriter::appendChild($root, SitemapHandler::_createUrlTree($doc, Request::url($conference->getPath(), $schedConf->getPath(), 'schedConf', 'presentations')));
+		XMLCustomWriter::appendChild($root, SitemapHandler::_createUrlTree($doc, Request::url($conference->getPath(), $schedConf->getPath(), 'schedConf', 'accommodation')));
+		XMLCustomWriter::appendChild($root, SitemapHandler::_createUrlTree($doc, Request::url($conference->getPath(), $schedConf->getPath(), 'schedConf', 'organizingTeam')));
 		// Individual Papers
 		$publishedPapers =& $publishedPaperDao->getPublishedPapers($schedConf->getId());
 		while ($paper =& $publishedPapers->next()) {
 			// Abstract
-			XMLCustomWriter::appendChild($root, SitemapHandler::createUrlTree($doc, Request::url($conference->getPath(), $schedConf->getPath(), 'paper', 'view', $paper->getId())));
+			XMLCustomWriter::appendChild($root, SitemapHandler::_createUrlTree($doc, Request::url($conference->getPath(), $schedConf->getPath(), 'paper', 'view', $paper->getId())));
 			// Galley files
 			$galleys = $galleyDao->getGalleysByPaper($paper->getId());
 			foreach ($galleys as $galley) {
-				XMLCustomWriter::appendChild($root, SitemapHandler::createUrlTree($doc, Request::url($conference->getPath(), $schedConf->getPath(), 'paper', 'view', array($paper->getId(), $galley->getId()))));
+				XMLCustomWriter::appendChild($root, SitemapHandler::_createUrlTree($doc, Request::url($conference->getPath(), $schedConf->getPath(), 'paper', 'view', array($paper->getId(), $galley->getId()))));
 			}
 		}
 			
@@ -162,7 +162,7 @@ class SitemapHandler extends Handler {
 	 * @param $priority string Subjective priority assesment of page (optional) 
 	 * @return XMLNode
 	 */
-	function createUrlTree(&$doc, $loc, $lastmod = null, $changefreq = null, $priority = null) {		
+	function _createUrlTree(&$doc, $loc, $lastmod = null, $changefreq = null, $priority = null) {		
 		$url =& XMLCustomWriter::createElement($doc, 'url');
 		
 		XMLCustomWriter::createChildWithText($doc, $url, htmlentities('loc'), $loc, false);

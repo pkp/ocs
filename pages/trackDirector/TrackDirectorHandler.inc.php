@@ -139,7 +139,7 @@ class TrackDirectorHandler extends Handler {
 		$templateMgr->assign('pageToDisplay', $page);
 		$templateMgr->assign('trackDirector', $user->getFullName());
 		$templateMgr->assign('yearOffsetFuture', SCHED_CONF_DATE_YEAR_OFFSET_FUTURE);
-		$templateMgr->assign('durationOptions', $this->getDurationOptions());
+		$templateMgr->assign('durationOptions', $this->_getDurationOptions());
 		$templateMgr->assign('sort', $sort);
 		$templateMgr->assign('sortDirection', $sortDirection);
 		// Set search parameters
@@ -242,7 +242,7 @@ class TrackDirectorHandler extends Handler {
 		}
 	}
 
-	function getDurationOptions() {
+	function _getDurationOptions() {
 		return array(
 			60 * 10		=> '0:10',
 			60 * 60 * 0.25	=> '0:15',

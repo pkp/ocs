@@ -216,6 +216,8 @@ class SubmissionReviewHandler extends ReviewerHandler {
 		$reviewId = (int) array_shift($args);
 		$reviewFormId = (int) array_shift($args);
 
+		$this->validate($reviewId);
+
 		if (ReviewerAction::saveReviewFormResponse($reviewId, $reviewFormId)) {
 			$request->redirect(null, null, null, 'submission', $reviewId);
 		}

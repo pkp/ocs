@@ -53,7 +53,7 @@ class AboutHandler extends Handler {
 
 			$customAboutItems = $conference->getSetting('customAboutItems');
 
-			foreach (AboutHandler::getPublicStatisticsNames() as $name) {
+			foreach (AboutHandler::_getPublicStatisticsNames() as $name) {
 				if (isset($settings[$name])) {
 					$templateMgr->assign('publicStatisticsEnabled', true);
 					break;
@@ -451,7 +451,7 @@ class AboutHandler extends Handler {
 		if (!is_array($trackIds)) $trackIds = array();
 		$templateMgr->assign('trackIds', $trackIds);
 
-		foreach (AboutHandler::getPublicStatisticsNames() as $name) {
+		foreach (AboutHandler::_getPublicStatisticsNames() as $name) {
 			$templateMgr->assign($name, $schedConf->getSetting($name));
 		}
 
@@ -478,10 +478,10 @@ class AboutHandler extends Handler {
 		$templateMgr->display('about/statistics.tpl');
 	}
 
-	function getPublicStatisticsNames() {
+	function _getPublicStatisticsNames() {
 		import ('pages.manager.ManagerHandler');
 		import ('pages.manager.StatisticsHandler');
-		return StatisticsHandler::getPublicStatisticsNames();
+		return StatisticsHandler::_getPublicStatisticsNames();
 	}
 }
 

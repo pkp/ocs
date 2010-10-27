@@ -186,7 +186,7 @@ class DirectorHandler extends TrackDirectorHandler {
 		$templateMgr->assign('filterDirector', $filterDirector);
 		$templateMgr->assign('filterTrack', $filterTrack);
 		$templateMgr->assign('yearOffsetFuture', SCHED_CONF_DATE_YEAR_OFFSET_FUTURE);
-		$templateMgr->assign('durationOptions', TrackDirectorHandler::getDurationOptions());
+		$templateMgr->assign('durationOptions', TrackDirectorHandler::_getDurationOptions());
 
 		// Set search parameters
 		$duplicateParameters = array(

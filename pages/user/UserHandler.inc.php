@@ -72,9 +72,9 @@ class UserHandler extends Handler {
 				}
 
 				// Determine if conference setup is incomplete, to provide a message for JM
-				$setupIncomplete[$conferenceId] = $this->checkIncompleteSetup($conference);
+				$setupIncomplete[$conferenceId] = $this->_checkIncompleteSetup($conference);
 				
-				$this->getRoleDataForConference($userId, $conferenceId, $schedConfId, $submissionsCount, $isValid);
+				$this->_getRoleDataForConference($userId, $conferenceId, $schedConfId, $submissionsCount, $isValid);
 
 				// Second, scheduled conference-specific roles
 				// TODO: don't display scheduled conference roles if granted at conference level too?
@@ -85,7 +85,7 @@ class UserHandler extends Handler {
 					$schedConfRoles =& $roleDao->getRolesByUserId($userId, $conferenceId, $schedConfId);
 					if(!empty($schedConfRoles)) {
 						$schedConfsToDisplay[$conferenceId][$schedConfId] =& $schedConf;
-						$this->getRoleDataForConference($userId, $conferenceId, $schedConfId, $submissionsCount, $isValid);
+						$this->_getRoleDataForConference($userId, $conferenceId, $schedConfId, $submissionsCount, $isValid);
 					}
 					$allSchedConfs[$conference->getId()][$schedConf->getId()] =& $schedConf;
 					unset($schedConf);
@@ -108,14 +108,14 @@ class UserHandler extends Handler {
 			$conferenceId = $conference->getId();
 			$userConferences = array($conference);
 			
-			$this->getRoleDataForConference($userId, $conferenceId, 0, $submissionsCount, $isValid);
+			$this->_getRoleDataForConference($userId, $conferenceId, 0, $submissionsCount, $isValid);
 
 			$schedConfs =& $schedConfDao->getSchedConfsByConferenceId($conferenceId);
 			while($schedConf =& $schedConfs->next()) {
 				$schedConfId = $schedConf->getId();
 				$schedConfRoles =& $roleDao->getRolesByUserId($userId, $conferenceId, $schedConfId);
 				if(!empty($schedConfRoles)) {
-					$this->getRoleDataForConference($userId, $conferenceId, $schedConfId, $submissionsCount, $isValid);
+					$this->_getRoleDataForConference($userId, $conferenceId, $schedConfId, $submissionsCount, $isValid);
 					$schedConfsToDisplay[$conferenceId][$schedConfId] =& $schedConf;
 				}
 
@@ -151,7 +151,7 @@ class UserHandler extends Handler {
 	 * @param $isValid array reference
 	
 	 */
-	function getRoleDataForConference($userId, $conferenceId, $schedConfId, &$submissionsCount, &$isValid) {
+	function _getRoleDataForConference($userId, $conferenceId, $schedConfId, &$submissionsCount, &$isValid) {
 		if (Validation::isConferenceManager($conferenceId)) {
 			$conferenceDao =& DAORegistry::getDAO('ConferenceDAO');
 			$isValid["ConferenceManager"][$conferenceId][$schedConfId] = true;
@@ -183,7 +183,7 @@ class UserHandler extends Handler {
 	 * @param $conference Object 
 	 * @return boolean True iff setup is incomplete
 	 */
-	function checkIncompleteSetup($conference) {
+	function _checkIncompleteSetup($conference) {
 		if (
 			$conference->getSetting('contactEmail') == '' ||  
 			$conference->getSetting('contactName') == ''

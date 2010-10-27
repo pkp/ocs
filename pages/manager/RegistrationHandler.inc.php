@@ -64,13 +64,13 @@ class RegistrationHandler extends ManagerHandler {
 		$templateMgr->assign('helpTopicId', 'conference.currentConferences.registration');
 
 		// Set search parameters
-		foreach ($this->getSearchFormDuplicateParameters() as $param)
+		foreach ($this->_getSearchFormDuplicateParameters() as $param)
 			$templateMgr->assign($param, Request::getUserVar($param));
 
 		$templateMgr->assign('dateFrom', $fromDate);
 		$templateMgr->assign('dateTo', $toDate);
-		$templateMgr->assign('fieldOptions', $this->getSearchFieldOptions());
-		$templateMgr->assign('dateFieldOptions', $this->getDateFieldOptions());
+		$templateMgr->assign('fieldOptions', $this->_getSearchFieldOptions());
+		$templateMgr->assign('dateFieldOptions', $this->_getDateFieldOptions());
 		$templateMgr->assign('sort', $sort);
 		$templateMgr->assign('sortDirection', $sortDirection);
 
@@ -83,7 +83,7 @@ class RegistrationHandler extends ManagerHandler {
 	 * based on supplied user data).
 	 * @return array
 	 */
-	function getSearchFormDuplicateParameters() {
+	function _getSearchFormDuplicateParameters() {
 		return array(
 			'searchField', 'searchMatch', 'search',
 			'dateFromMonth', 'dateFromDay', 'dateFromYear',
@@ -96,7 +96,7 @@ class RegistrationHandler extends ManagerHandler {
 	 * Get the list of fields that can be searched by contents.
 	 * @return array
 	 */
-	function getSearchFieldOptions() {
+	function _getSearchFieldOptions() {
 		return array(
 			REGISTRATION_USER => 'manager.registration.user',
 			REGISTRATION_MEMBERSHIP => 'manager.registration.membership',
@@ -109,7 +109,7 @@ class RegistrationHandler extends ManagerHandler {
 	 * Get the list of date fields that can be searched.
 	 * @return array
 	 */
-	function getDateFieldOptions() {
+	function _getDateFieldOptions() {
 		return array(
 			REGISTRATION_DATE_REGISTERED => 'manager.registration.dateRegistered',
 			REGISTRATION_DATE_PAID => 'manager.registration.datePaid'

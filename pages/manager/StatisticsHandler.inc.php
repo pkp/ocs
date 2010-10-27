@@ -41,7 +41,7 @@ class StatisticsHandler extends ManagerHandler {
 		if (!is_array($trackIds)) $trackIds = array();
 		$templateMgr->assign('trackIds', $trackIds);
 
-		foreach (StatisticsHandler::getPublicStatisticsNames() as $name) {
+		foreach (StatisticsHandler::_getPublicStatisticsNames() as $name) {
 			$templateMgr->assign($name, $schedConf->getSetting($name));
 		}
 
@@ -92,7 +92,7 @@ class StatisticsHandler extends ManagerHandler {
 		Request::redirect(null, null, 'manager', 'statistics', null, array('statisticsYear' => Request::getUserVar('statisticsYear')));
 	}
 
-	function getPublicStatisticsNames() {
+	function _getPublicStatisticsNames() {
 		return array(
 			'statItemsPublished',
 			'statNumSubmissions',
@@ -113,7 +113,7 @@ class StatisticsHandler extends ManagerHandler {
 		$schedConf =& Request::getSchedConf();
 		if (!$schedConf) Request::redirect(null, 'index');
 
-		foreach (StatisticsHandler::getPublicStatisticsNames() as $name) {
+		foreach (StatisticsHandler::_getPublicStatisticsNames() as $name) {
 			$schedConf->updateSetting($name, Request::getUserVar($name)?true:false);
 		}
 		Request::redirect(null, null, 'manager', 'statistics', null, array('statisticsYear' => Request::getUserVar('statisticsYear')));

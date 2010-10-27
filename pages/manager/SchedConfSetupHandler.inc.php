@@ -120,7 +120,7 @@ class SchedConfSetupHandler extends ManagerHandler {
 							case 'movePaperTypeUp':
 							case 'movePaperTypeDown':
 								if (isset($setupForm->_data['paperTypes'][$paperTypeId]['seq'])) $setupForm->_data['paperTypes'][$paperTypeId]['seq'] += ($action == 'movePaperTypeUp'?-1.5:1.5);
-								uasort($setupForm->_data['paperTypes'], 'seqSortFunction');
+								uasort($setupForm->_data['paperTypes'], '_seqSortFunction');
 								break;
 							case 'deletePaperType':
 								unset($setupForm->_data['paperTypes'][$paperTypeId]);
@@ -195,7 +195,7 @@ class SchedConfSetupHandler extends ManagerHandler {
 	}
 }
 
-function seqSortFunction($a, $b) {
+function _seqSortFunction($a, $b) {
 	return 2*($a['seq'] - $b['seq']); // Must return integer
 }
 
