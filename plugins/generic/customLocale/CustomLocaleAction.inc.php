@@ -10,8 +10,6 @@
  * @class CustomLocaleAction
  *
  * Perform various tasks related to customization of locale strings.
- *
- * $Id$
  */
 
 class CustomLocaleAction {
@@ -24,7 +22,10 @@ class CustomLocaleAction {
 		foreach (array_keys($plugins) as $key) {
 			$plugin =& $plugins[$key];
 			$localeFile = $plugin->getLocaleFilename($locale);
-			if (!empty($localeFile)) $localeFiles[] = $localeFile;
+			if (!empty($localeFile)) {
+				if (is_scalar($localeFile)) $localeFiles[] = $localeFile;
+				if (is_array($localeFile)) $localeFiles = array_merge($localeFiles, $localeFile);
+			}
 			unset($plugin);
 		}
 		return $localeFiles;
