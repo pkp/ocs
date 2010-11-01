@@ -125,7 +125,7 @@
 	<message key="manager.registrationOptions.noneCreated">No registration options have been created.</message>
 	<message key="manager.registrationOptions.name">Registration option</message>
 	<message key="manager.registrationOptions.cost">Cost</message>
-	<message key="manager.registrationOptions.costSetInRegistrationType">The cost for all registration options must be set once in each registration type.</message>		
+	<message key="manager.registrationOptions.costSetInRegistrationType">The cost for all registration options must be set once in each registration type.</message>
 	<message key="manager.registrationOptions.currency">Currency</message>
 	<message key="manager.registrationOptions.openDate">Available From</message>
 	<message key="manager.registrationOptions.closeDate">Available Until</message>
@@ -442,7 +442,7 @@
 	<message key="manager.scheduler.layout.hideLocations">Hide the Conference locations list at the top of the schedule.</message>
 	<message key="manager.scheduler.layout.hideNav">Hide the navigation menu at the top of the schedule.</message>
 	<message key="manager.scheduler.layout.mergeSchedules">Event Display</message>
-	<message key="manager.scheduler.layout.mergeSchedulesDescription">Display special events within presentations (uncheck to display special events below presentations).</message>	
+	<message key="manager.scheduler.layout.mergeSchedulesDescription">Display special events within presentations (uncheck to display special events below presentations).</message>
 	<message key="manager.scheduler.layout.showAuthors">Show authors next to presentation titles.</message>
 	<message key="manager.scheduler.layout.showEndTime">Show the start and end time for every event (uncheck to show only start time).</message>
 	<message key="manager.scheduler.layout.style">Schedule Style</message>
@@ -550,7 +550,7 @@
 	<message key="manager.setup.indexing.registerConferenceForIndexing">Register Conference for Indexing (Metadata Harvesting)</message>
 	<message key="manager.setup.indexing.searchEngineIndexing">Search Engine Indexing</message>
 	<message key="manager.setup.indexing.searchEngineIndexing.description">To assist the users of search engines in discovering this conference, provide a brief description of the conference and relevant keywords (separated by semicolons).</message>
-	<message key="manager.setup.indexing.title">Step 6. Conference Indexing</message>
+	<message key="manager.setup.indexing.title">Step 5. Conference Indexing</message>
 	<message key="manager.setup.layout">Website Headers, Footers, Lists and Navigation Bar</message>
 	<message key="manager.setup.layout.addNavItem">Add Item</message>
 	<message key="manager.setup.layout.alternateHeader">Alternate Header</message>
@@ -588,11 +588,7 @@
 	<message key="manager.setup.loggingAndAuditing.brief">Logging &amp;amp; Auditing</message>
 	<message key="manager.setup.loggingAndAuditing.conferenceEventLogging">Conference event logging.</message>
 	<message key="manager.setup.loggingAndAuditing.description">Email logs, event logs, etc.</message>
-	<message key="manager.setup.loggingAndAuditing.pageDescription">Maintain a log of the following actions and materials for all conferences.</message>
-	<message key="manager.setup.loggingAndAuditing.submissionEmailLogging">Submission-related emails, recorded on submission's "History" page.</message>
-	<message key="manager.setup.loggingAndAuditing.submissionEventLogging">Submission-related actions, recorded on submission's "History" page.</message>
-	<message key="manager.setup.loggingAndAuditing.title">Step 5. Logging and Auditing</message>
-	<message key="manager.setup.stepsToConferenceSite">Six Steps to a Conference Web Site</message>
+	<message key="manager.setup.stepsToConferenceSite">Five Steps to a Conference Web Site</message>
 	<message key="manager.setup.style">Conference Style</message>
 	<message key="manager.setup.style.brief">Style</message>
 	<message key="manager.setup.style.conferenceStyleSheet.description">By default conferences and the site use a common style sheet (located in the "styles" subdirectory of the site). The default style rules can be overridden by choosing a theme and/or uploading a conference-specific cascading style sheet.</message>
@@ -653,7 +649,7 @@
 	<message key="manager.timeline.postPresentations">Include Presentations in Conference Information listing</message>
 	<message key="manager.timeline.postProgram">Include Program in Conference Information listing</message>
 	<message key="manager.timeline.postProposalSubmission">Include Proposal Submission in Conference Information listing</message>
-	<message key="manager.timeline.postRegistration">Include Registration in Conference Information listing</message>	
+	<message key="manager.timeline.postRegistration">Include Registration in Conference Information listing</message>
 	<message key="manager.timeline.postSchedule">Schedule (included in Conference Information listing)</message>
 	<message key="manager.timeline.postSupporters">Include Supporters in Conference Information listing</message>
 	<message key="manager.timeline.postTrackPolicies">Include Track Policies in Conference Information listing</message>

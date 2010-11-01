@@ -19,7 +19,6 @@
 	<li id="step2" {if $setupStep == 2} class="current"{/if}><a href="{url op="setup" path="2"}">2. {translate key="manager.setup.additionalContent.brief"}</a></li>
 	<li id="step3" {if $setupStep == 3} class="current"{/if}><a href="{url op="setup" path="3"}">3. {translate key="manager.setup.layout.brief"}</a></li>
 	<li id="step4" {if $setupStep == 4} class="current"{/if}><a href="{url op="setup" path="4"}">4. {translate key="manager.setup.style.brief"}</a></li>
-	<li id="step5" {if $setupStep == 5} class="current"{/if}><a href="{url op="setup" path="5"}">5. {translate key="manager.setup.loggingAndAuditing.brief"}</a></li>
-	<li id="step6" {if $setupStep == 6} class="current"{/if}><a href="{url op="setup" path="6"}">6. {translate key="manager.setup.indexing.brief"}</a></li>
+	<li id="step5" {if $setupStep == 5} class="current"{/if}><a href="{url op="setup" path="5"}">5. {translate key="manager.setup.indexing.brief"}</a></li>
 </ul>
 

@@ -9,24 +9,24 @@
  * @class ManagerHandler
  * @ingroup pages_manager
  *
- * @brief Handle requests for conference management functions. 
+ * @brief Handle requests for conference management functions.
  */
 
 //$Id$
 
 import('classes.handler.Handler');
 
-class ManagerHandler extends Handler {	
+class ManagerHandler extends Handler {
 	/**
 	 * Constructor
 	 **/
 	function ManagerHandler() {
 		parent::Handler();
 
-		$this->addCheck(new HandlerValidatorConference($this));		
+		$this->addCheck(new HandlerValidatorConference($this));
 		$this->addCheck(new HandlerValidatorRoles($this, true, null, null, array(ROLE_ID_SITE_ADMIN, ROLE_ID_CONFERENCE_MANAGER)));
 	}
-	
+
 	/**
 	 * Display conference management index page.
 	 */
@@ -35,7 +35,7 @@ class ManagerHandler extends Handler {
 		if (Request::getRequestedSchedConfPath() != 'index') Request::redirect(null, 'index', 'manager');
 		$this->validate();
 		$this->setupTemplate();
-		
+
 		$conference =& Request::getConference();
 		$templateMgr =& TemplateManager::getManager();
 
@@ -44,7 +44,6 @@ class ManagerHandler extends Handler {
 		$templateMgr->assign_by_ref('schedConfs', $schedConfs);
 
 		$templateMgr->assign('announcementsEnabled', $conference->getSetting('enableAnnouncements'));
-		$templateMgr->assign('loggingEnabled', $conference->getSetting('conferenceEventLog'));
 
 		$templateMgr->assign('helpTopicId','conference.index');
 		$templateMgr->display(ROLE_PATH_CONFERENCE_MANAGER . '/index.tpl');
@@ -57,7 +56,7 @@ class ManagerHandler extends Handler {
 	function email($args) {
 		$this->validate();
 		$this->setupTemplate(true);
-		
+
 		$conference =& Request::getConference();
 		$schedConf =& Request::getSchedConf();
 
@@ -97,7 +96,7 @@ class ManagerHandler extends Handler {
 			}
 			$email->displayEditForm(Request::url(null, null, null, 'email'), array(), 'manager/people/email.tpl');
 		}
-	}		
+	}
 
 	/**
 	 * Setup common template variables.

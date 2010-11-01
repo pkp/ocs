@@ -38,11 +38,6 @@ class ConferenceLog {
 		if($schedConfId != null)
 			$schedConf = $schedConfDao->getSchedConf($schedConfId);
 
-		if($conference && !$conference->getSetting('conferenceEventLog')) {
-			// Event logging is disabled
-			return false;
-		}
-
 		// Add the entry
 		$entry->setConferenceId($conferenceId);
 		$entry->setSchedConfId($schedConfId);

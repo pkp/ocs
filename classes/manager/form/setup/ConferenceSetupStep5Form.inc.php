@@ -17,6 +17,15 @@
 import('classes.manager.form.setup.ConferenceSetupForm');
 
 class ConferenceSetupStep5Form extends ConferenceSetupForm {
+
+	/**
+	 * Get the list of field names for which localized settings are used.
+	 * @return array
+	 */
+	function getLocaleFieldNames() {
+		return array('searchDescription', 'searchKeywords', 'customHeaders');
+	}
+
 	/**
 	 * Constructor.
 	 */
@@ -24,9 +33,9 @@ class ConferenceSetupStep5Form extends ConferenceSetupForm {
 		parent::ConferenceSetupForm(
 			5,
 			array(
-				'paperEventLog' => 'bool',
-				'paperEmailLog' => 'bool',
-				'conferenceEventLog' => 'bool'
+				'searchDescription' => 'string',
+				'searchKeywords' => 'string',
+				'customHeaders' => 'string'
 			)
 		);
 	}

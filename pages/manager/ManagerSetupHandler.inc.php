@@ -9,7 +9,7 @@
  * @class ManagerSetupHandler
  * @ingroup pages_manager
  *
- * @brief Handle requests for conference setup functions. 
+ * @brief Handle requests for conference setup functions.
  */
 
 //$Id$
@@ -35,7 +35,7 @@ class ManagerSetupHandler extends ManagerHandler {
 
 		$step = isset($args[0]) ? (int) $args[0] : 0;
 
-		if ($step >= 1 && $step <= 6) {
+		if ($step >= 1 && $step <= 5) {
 
 			$formClass = "ConferenceSetupStep{$step}Form";
 			import("classes.manager.form.setup.$formClass");
@@ -64,7 +64,7 @@ class ManagerSetupHandler extends ManagerHandler {
 
 		$step = isset($args[0]) ? (int) $args[0] : 0;
 
-		if ($step >= 1 && $step <= 6) {
+		if ($step >= 1 && $step <= 5) {
 
 			$this->setupTemplate(true);
 
@@ -109,7 +109,7 @@ class ManagerSetupHandler extends ManagerHandler {
 						$setupForm->deleteImage('homepageImage', $formLocale);
 					}
 					break;
-				case 3:	
+				case 3:
 					if (Request::getUserVar('uploadHomeHeaderTitleImage')) {
 						if ($setupForm->uploadImage('homeHeaderTitleImage', $formLocale)) {
 							$editData = true;
@@ -218,13 +218,13 @@ class ManagerSetupHandler extends ManagerHandler {
 
 		$step = isset($args[0]) ? (int) $args[0] : 0;
 
-		if ($step >= 1 && $step <= 6) {
+		if ($step >= 1 && $step <= 5) {
 			$this->setupTemplate(true);
 			$templateMgr =& TemplateManager::getManager();
 			$templateMgr->assign('setupStep', $step);
 			$templateMgr->assign('helpTopicId', 'conference.generalManagement.websiteManagement');
 
-			if($step == 6) {
+			if($step == 5) {
 				$conference =& Request::getConference();
 				$templateMgr->assign('showSetupHints',true);
 			}
