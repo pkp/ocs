@@ -9,7 +9,7 @@
  * @class SubmissionCommentsHandler
  * @ingroup pages_reviewer
  *
- * @brief Handle requests for submission comments. 
+ * @brief Handle requests for submission comments.
  */
 
 import('pages.reviewer.SubmissionReviewHandler');
@@ -17,7 +17,7 @@ import('pages.reviewer.SubmissionReviewHandler');
 class SubmissionCommentsHandler extends ReviewerHandler {
 	/** comment associated with the request **/
 	var $comment;
-	
+
 	/**
 	 * Constructor
 	 **/
@@ -36,7 +36,7 @@ class SubmissionCommentsHandler extends ReviewerHandler {
 		$submissionReviewHandler->validate($request, $reviewId);
 		$paperDao =& DAORegistry::getDAO('PaperDAO');
 		$submission =& $paperDao->getPaper($paperId);
-		
+
 		$user =& $request->getUser();
 
 		$this->setupTemplate($request, true);
@@ -84,7 +84,7 @@ class SubmissionCommentsHandler extends ReviewerHandler {
 		$this->addCheck(new HandlerValidatorSubmissionComment($this, $commentId, $user));
 		$this->validate($request);
 		$comment =& $this->comment;
-		
+
 		$this->setupTemplate($request, true);
 
 		ReviewerAction::editComment($submission, $comment, $reviewId);
@@ -108,7 +108,7 @@ class SubmissionCommentsHandler extends ReviewerHandler {
 		$this->addCheck(new HandlerValidatorSubmissionComment($this, $commentId, $user));
 		$this->validate($request);
 		$comment =& $this->comment;
-		
+
 		// If the user pressed the "Save and email" button, then email the comment.
 		$emailComment = $request->getUserVar('saveAndEmail') != null ? true : false;
 
@@ -133,15 +133,15 @@ class SubmissionCommentsHandler extends ReviewerHandler {
 		$paperId = (int) array_shift($args);
 		$commentId = (int) array_shift($args);
 		$reviewId = $request->getUserVar('reviewId');
-		
+
 		$this->setupTemplate($request, true);
-		
+
 		$submissionReviewHandler = new SubmissionReviewHandler();
 		$submissionReviewHandler->validate($request, $reviewId);
 		$user =& $submissionReviewHandler->user;
 
 		$this->addCheck(new HandlerValidatorSubmissionComment($this, $commentId, $user));
-		$this->validate($request, );
+		$this->validate(null, $request);
 		$comment =& $this->comment;
 		ReviewerAction::deleteComment($commentId, $user);
 
