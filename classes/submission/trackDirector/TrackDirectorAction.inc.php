@@ -79,7 +79,7 @@ class TrackDirectorAction extends Action {
 				$trackDirectorSubmission->setStatus(STATUS_DECLINED);
 				$trackDirectorSubmission->stampStatusModified();
 			} else {
-				$trackDirectorSubmission->setStatus(STATUS_QUEUED);		
+				$trackDirectorSubmission->setStatus(STATUS_QUEUED);
 				$trackDirectorSubmission->stampStatusModified();
 			}
 
@@ -252,7 +252,7 @@ class TrackDirectorAction extends Action {
 			import('classes.paper.log.PaperLog');
 			import('classes.paper.log.PaperEventLogEntry');
 			PaperLog::logEvent($trackDirectorSubmission->getPaperId(), PAPER_LOG_REVIEW_CLEAR, LOG_TYPE_REVIEW, $reviewAssignment->getId(), 'log.review.reviewCleared', array('reviewerName' => $reviewer->getFullName(), 'paperId' => $trackDirectorSubmission->getPaperId(), 'stage' => $reviewAssignment->getRound()));
-		}		
+		}
 	}
 
 	/**
@@ -341,7 +341,7 @@ class TrackDirectorAction extends Action {
 							$numWeeks = max((int) $schedConf->getSetting('numWeeksPerReviewRelative'), 2);
 							$reviewDueDate = strftime(Config::getVar('general', 'date_format_short'), strtotime('+' . $numWeeks . ' week'));
 						}
-						
+
 					}
 
 					$submissionUrl = Request::url(null, null, 'reviewer', 'submission', $reviewId, $reviewerAccessKeysEnabled?array('key' => 'ACCESS_KEY'):array());
@@ -424,7 +424,7 @@ class TrackDirectorAction extends Action {
 					$email->displayEditForm(Request::url(null, null, null, 'cancelReview', 'send'), array('reviewId' => $reviewId, 'paperId' => $trackDirectorSubmission->getPaperId()));
 					return false;
 				}
-			}				
+			}
 		}
 		return true;
 	}
@@ -633,7 +633,7 @@ class TrackDirectorAction extends Action {
 
 		if ($reviewAssignment->getSubmissionId() == $paperId && $reviewAssignment->getReviewerFileId() == $fileId && !HookRegistry::call('TrackDirectorAction::makeReviewerFileViewable', array(&$reviewAssignment, &$paperFile, &$viewable))) {
 			$paperFile->setViewable($viewable);
-			$paperFileDao->updatePaperFile($paperFile);				
+			$paperFileDao->updatePaperFile($paperFile);
 		}
 	}
 
@@ -771,7 +771,7 @@ class TrackDirectorAction extends Action {
 			import('classes.paper.log.PaperEventLogEntry');
 			PaperLog::logEvent($paperId, PAPER_LOG_REVIEW_RECOMMENDATION_BY_PROXY, LOG_TYPE_REVIEW, $reviewAssignment->getId(), 'log.review.reviewRecommendationSetByProxy', array('directorName' => $user->getFullName(), 'reviewerName' => $reviewer->getFullName(), 'paperId' => $paperId, 'stage' => $reviewAssignment->getRound()));
 		}
-	}	 
+	}
 
 	/**
 	 * Clear a review form
@@ -1317,7 +1317,7 @@ import('classes.file.PaperFileManager');
 
 			foreach ($fileIds as $fileId) {
 				$paperFileManager->deleteFile($fileId);
-			}			
+			}
 		}
 
 		$noteDao->deleteByAssoc(ASSOC_TYPE_PAPER, $paperId);
@@ -1359,7 +1359,7 @@ import('classes.file.PaperFileManager');
 
 		if ($commentForm->validate()) {
 			$commentForm->execute();
-			
+
 			// Send a notification to associated users
 			import('lib.pkp.classes.notification.NotificationManager');
 			$notificationManager = new NotificationManager();
@@ -1424,7 +1424,7 @@ import('classes.file.PaperFileManager');
 					$paper->getLocalizedTitle(), $url, 1, NOTIFICATION_TYPE_DIRECTOR_DECISION_COMMENT
 				);
 			}
-				
+
 			if ($emailComment) {
 				$commentForm->email();
 			}
@@ -1525,10 +1525,10 @@ import('classes.file.PaperFileManager');
 						if ($reviewAssignment->getDateCompleted() != null && !$reviewAssignment->getCancelled()) {
 							// Get the comments associated with this review assignment
 							$paperComments =& $paperCommentDao->getPaperComments($trackDirectorSubmission->getPaperId(), COMMENT_TYPE_PEER_REVIEW, $reviewAssignment->getId());
-							
+
 							if ($paperComments) {
 								$body .= "------------------------------------------------------\n";
-								$body .= Locale::translate('submission.comments.importPeerReviews.reviewerLetter', array('reviewerLetter' => chr(ord('A') + $reviewIndexes[$reviewAssignment->getId()]))) . "\n";
+								$body .= Locale::translate('submission.comments.importPeerReviews.reviewerLetter', array('reviewerLetter' => String::enumerateAlphabetically($reviewIndexes[$reviewAssignment->getReviewId()]))) . "\n";
 								if (is_array($paperComments)) {
 									foreach ($paperComments as $comment) {
 										// If the comment is viewable by the author, then add the comment.
@@ -1539,21 +1539,21 @@ import('classes.file.PaperFileManager');
 									}
 								}
 								$body .= "------------------------------------------------------\n\n";
-							} 
+							}
 							if ($reviewFormId = $reviewAssignment->getReviewFormId()){
 								$reviewId = $reviewAssignment->getId();
-								
+
 								$reviewFormResponseDao =& DAORegistry::getDAO('ReviewFormResponseDAO');
 								$reviewFormElementDao =& DAORegistry::getDAO('ReviewFormElementDAO');
 								$reviewFormElements =& $reviewFormElementDao->getReviewFormElements($reviewFormId);
 								if (!$paperComments) {
 									$body .= "------------------------------------------------------\n";
-									$body .= Locale::translate('submission.comments.importPeerReviews.reviewerLetter', array('reviewerLetter' => chr(ord('A') + $reviewIndexes[$reviewAssignment->getId()]))) . "\n\n";
+									$body .= Locale::translate('submission.comments.importPeerReviews.reviewerLetter', array('reviewerLetter' => String::enumerateAlphabetically($reviewIndexes[$reviewAssignment->getReviewId()]))) . "\n\n";
 								}
 								foreach ($reviewFormElements as $reviewFormElement) if ($reviewFormElement->getIncluded()) {
 									$body .= String::html2text($reviewFormElement->getLocalizedQuestion()) . ": \n";
 									$reviewFormResponse = $reviewFormResponseDao->getReviewFormResponse($reviewId, $reviewFormElement->getId());
-			
+
 									if ($reviewFormResponse) {
 										$possibleResponses = $reviewFormElement->getLocalizedPossibleResponses();
 										if (in_array($reviewFormElement->getElementType(), $reviewFormElement->getMultipleResponsesElementTypes())) {
@@ -1656,7 +1656,7 @@ import('classes.file.PaperFileManager');
 
 		if (HookRegistry::call('TrackDirectorAction::confirmReviewForReviewer', array(&$reviewAssignment, &$reviewer))) return;
 
-		// Only confirm the review for the reviewer if 
+		// Only confirm the review for the reviewer if
 		// he has not previously done so.
 		if ($reviewAssignment->getDateConfirmed() == null) {
 			$reviewAssignment->setDeclined(0);
@@ -1712,7 +1712,7 @@ import('classes.file.PaperFileManager');
 		}
 
 		if (isset($fileId) && $fileId != 0) {
-			// Only confirm the review for the reviewer if 
+			// Only confirm the review for the reviewer if
 			// he has not previously done so.
 			if ($reviewAssignment->getDateConfirmed() == null) {
 				$reviewAssignment->setDeclined(0);
