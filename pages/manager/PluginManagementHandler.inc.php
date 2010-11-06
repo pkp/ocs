@@ -362,6 +362,8 @@ class PluginManagementHandler extends ManagerHandler {
 			$pluginVersion->setCurrent(1);
 			$versionDao->insertVersion($pluginVersion, true);
 
+			$templateMgr->assign('category', $category);
+			$templateMgr->assign('plugin', $plugin);
 			$templateMgr->assign('message', array('manager.plugins.upgradeSuccessful', $pluginVersion->getVersionString()));
 			$templateMgr->assign('uploaded', true);
 			$templateMgr->assign('error', false);
@@ -402,7 +404,7 @@ class PluginManagementHandler extends ManagerHandler {
 				$templateMgr->assign('error', true);
 				$templateMgr->assign('message', 'manager.plugins.deleteError');
 			} else {
-				$versionDao->disableVersion($plugin);
+				$versionDao->disableVersion('plugins.'.$category, $plugin);
 				$templateMgr->assign('deleted', true);
 			}
 
