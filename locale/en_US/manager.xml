@@ -588,7 +588,7 @@
 	<message key="manager.setup.loggingAndAuditing.brief">Logging &amp;amp; Auditing</message>
 	<message key="manager.setup.loggingAndAuditing.conferenceEventLogging">Conference event logging.</message>
 	<message key="manager.setup.loggingAndAuditing.description">Email logs, event logs, etc.</message>
-	<message key="manager.setup.stepsToConferenceSite">Five Steps to a Conference Web Site</message>
+	<message key="manager.setup.stepsToConferenceSite">Six Steps to a Conference Web Site</message>
 	<message key="manager.setup.style">Conference Style</message>
 	<message key="manager.setup.style.brief">Style</message>
 	<message key="manager.setup.style.conferenceStyleSheet.description">By default conferences and the site use a common style sheet (located in the "styles" subdirectory of the site). The default style rules can be overridden by choosing a theme and/or uploading a conference-specific cascading style sheet.</message>
