@@ -13,7 +13,6 @@
  * @brief Operations for retrieving and modifying Role objects.
  */
 
-//$Id$
 
 import('classes.security.Role');
 
@@ -465,13 +464,30 @@ class RoleDAO extends DAO {
 	}
 
 	/**
+	 * Validation check to see if a user belongs to any group that has a given role
+	 * DEPRECATE: keeping around because HandlerValidatorRoles in pkp-lib uses
+	 * until we port user groups to OxS
 	 * Check if a role exists.
 	 * @param $conferenceId int
+	 * @param $schedConfId int
 	 * @param $userId int
 	 * @param $roleId int
 	 * @return boolean
 	 */
 	function roleExists($conferenceId, $schedConfId, $userId, $roleId) {
+		if (Config::getVar('debug', 'deprecation_warnings')) trigger_error('Deprecated function.');
+		return $this->userHasRole($conferenceId, $schedConfId, $userId, $roleId);
+	}
+
+	/**
+	 * Validation check to see if a user belongs to any group that has a given role
+	 * @param $conferenceId int
+	 * @param $schedConfId int
+	 * @param $userId int
+	 * @param $roleId int
+	 * @return boolean
+	 */
+	function userHasRole($conferenceId, $schedConfId, $userId, $roleId) {
 		$result =& $this->retrieve(
 			'SELECT COUNT(*) FROM roles WHERE conference_id = ? AND sched_conf_id = ? AND user_id = ? AND role_id = ?', array((int) $conferenceId, (int)$schedConfId, (int) $userId, (int) $roleId)
 		);
