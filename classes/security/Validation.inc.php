@@ -9,7 +9,7 @@
  * @class Validation
  * @ingroup security
  *
- * @brief Class providing user validation/authentication operations. 
+ * @brief Class providing user validation/authentication operations.
  */
 
 //$Id$
@@ -191,7 +191,7 @@ class Validation {
 		$user =& $session->getUser();
 
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
-		return $roleDao->roleExists($conferenceId, $schedConfId, $user->getId(), $roleId);
+		return $roleDao->userHasRole($conferenceId, $schedConfId, $user->getId(), $roleId);
 	}
 
 	/**
