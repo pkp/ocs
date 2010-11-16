@@ -160,6 +160,7 @@ class UserRegistrationForm extends Form {
 			$userVars[] = 'phone';
 			$userVars[] = 'fax';
 			$userVars[] = 'mailingAddress';
+			$userVars[] = 'billingAddress';
 			$userVars[] = 'country';
 			$userVars[] = 'biography';
 			$userVars[] = 'userLocales';
@@ -200,6 +201,7 @@ class UserRegistrationForm extends Form {
 			$user->setPhone($this->getData('phone'));
 			$user->setFax($this->getData('fax'));
 			$user->setMailingAddress($this->getData('mailingAddress'));
+			$user->setBillingAddress($this->getData('billingAddress'));
 			$user->setBiography($this->getData('biography'), null); // Localized
 			$user->setInterests($this->getData('interestsKeywords'), null); // Localized
 			$user->setDateRegistered(Core::getCurrentDate());

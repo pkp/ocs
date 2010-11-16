@@ -102,6 +102,7 @@ class CreateReviewerForm extends Form {
 			'phone',
 			'fax',
 			'mailingAddress',
+			'billingAddress',
 			'country',
 			'biography',
 			'interestsKeywords',
@@ -141,6 +142,7 @@ class CreateReviewerForm extends Form {
 		$user->setPhone($this->getData('phone'));
 		$user->setFax($this->getData('fax'));
 		$user->setMailingAddress($this->getData('mailingAddress'));
+		$user->setBillingAddress($this->getData('billingAddress'));
 		$user->setCountry($this->getData('country'));
 		$user->setBiography($this->getData('biography'), null); // Localized
 		$user->setInterests($this->getData('interestsKeywords'), null); // Localized

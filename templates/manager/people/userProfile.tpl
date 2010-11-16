@@ -96,6 +96,10 @@
 		<td class="value">{$user->getMailingAddress()|strip_unsafe_html|nl2br|default:"&mdash;"}</td>
 	</tr>
 	<tr valign="top">
+		<td class="label">{translate key="common.billingAddress"}</td>
+		<td class="value">{$user->getBillingAddress()|strip_unsafe_html|nl2br|default:"&mdash;"}</td>
+	</tr>
+	<tr valign="top">
 		<td class="label">{translate key="common.country"}</td>
 		<td class="value">{$country|escape|default:"&mdash;"}</td>
 	</tr>

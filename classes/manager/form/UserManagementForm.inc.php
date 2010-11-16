@@ -147,6 +147,7 @@ class UserManagementForm extends Form {
 					'phone' => $user->getPhone(),
 					'fax' => $user->getFax(),
 					'mailingAddress' => $user->getMailingAddress(),
+					'billingAddress' => $user->getBillingAddress(),
 					'country' => $user->getCountry(),
 					'biography' => $user->getBiography(null), // Localized
 					'existingInterests' => $existingInterests,
@@ -191,6 +192,7 @@ class UserManagementForm extends Form {
 			'phone',
 			'fax',
 			'mailingAddress',
+			'billingAddress',
 			'country',
 			'userUrl',
 			'biography',
@@ -249,6 +251,7 @@ class UserManagementForm extends Form {
 		$user->setPhone($this->getData('phone'));
 		$user->setFax($this->getData('fax'));
 		$user->setMailingAddress($this->getData('mailingAddress'));
+		$user->setBillingAddress($this->getData('billingAddress'));
 		$user->setCountry($this->getData('country'));
 		$user->setBiography($this->getData('biography'), null); // Localized
 		$user->setGossip($this->getData('gossip'), null); // Localized

@@ -77,7 +77,8 @@ class RegistrantReportPlugin extends ReportPlugin {
 			'email' => Locale::translate('user.email'),
 			'phone' => Locale::translate('user.phone'),
 			'fax' => Locale::translate('user.fax'),
-			'address' => Locale::translate('common.mailingAddress'),
+			'mailingAddress' => Locale::translate('common.mailingAddress'),
+			'billingAddress' => Locale::translate('common.billingAddress'),
 			'country' => Locale::translate('common.country'),
 			'type' => Locale::translate('manager.registration.registrationType')
 		);
