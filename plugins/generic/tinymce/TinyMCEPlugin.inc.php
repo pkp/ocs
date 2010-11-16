@@ -108,6 +108,10 @@ class TinyMCEPlugin extends GenericPlugin {
 				$fields[] = 'billingAddress';
 				$fields[] = 'biography';
 				break;
+			case 'schedConf/registration':
+				$fields[] = 'mailingAddress';
+				$fields[] = 'billingAddress';
+				break;
 			case 'manager/editReviewForm':
 			case 'manager/updateReviewForm':
 			case 'manager/createReviewForm':
