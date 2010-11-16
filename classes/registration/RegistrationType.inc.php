@@ -372,7 +372,8 @@ class RegistrationType extends DataObject {
 	 * @return string
 	 */
 	function getSummaryString() {
-		return $this->getRegistrationTypeName() . ' - ' . $this->getDurationYearsMonths() . ' - ' . sprintf('%.2f', $this->getCost()) . ' ' . $this->getCurrencyStringShort();
+		$durationYearsMonths = $this->getDurationYearsMonths();
+		return $this->getRegistrationTypeName() . (!empty($durationYearsMonths)?(' - ' . $durationYearsMonths):'') . ' - ' . sprintf('%.2f', $this->getCost()) . ' ' . $this->getCurrencyStringShort();
 	}
 }
 

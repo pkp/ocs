@@ -230,10 +230,21 @@ class RegistrationForm extends Form {
 		$registrationOptionIds = (array) $this->getData('registrationOptionIds');
 		$registrationOptionDao->deleteRegistrationOptionAssocByRegistrationId($this->registrationId);
 
+		$registrationTypeDao =& DAORegistry::getDAO('RegistrationTypeDAO');
+		$registrationType =& $registrationTypeDao->getRegistrationType($registration->getTypeId());
+
+		// Present the itemized costs in the notification email
+		$totalCost = $registrationType->getCost();
+		$registrationOptionCosts = $registrationTypeDao->getRegistrationOptionCosts($registration->getTypeId());
+		$registrationOptionText = '';
+
+		// Record registration options (and tally up itemized costs for the email)
 		while ($registrationOption =& $registrationOptions->next()) {
 			$optionId = (int) $registrationOption->getOptionId();
 			if (in_array($optionId, $registrationOptionIds)) {
 				$registrationOptionDao->insertRegistrationOptionAssoc($this->registrationId, $registrationOption->getOptionId());
+				$registrationOptionText .= $registrationOption->getRegistrationOptionName() . ' - ' . sprintf('%.2f', $registrationOptionCosts[$registrationOption->getOptionId()]) . ' ' . $registrationType->getCurrencyCodeAlpha() . "\n";
+				$totalCost += $registrationOptionCosts[$registrationOption->getOptionId()];
 			}
 			unset($registrationOption);
 		}
@@ -254,6 +265,8 @@ class RegistrationForm extends Form {
 				'registrantName' => $user->getFullName(),
 				'schedConfName' => $schedConfName,
 				'registrationType' => $registrationType->getSummaryString(),
+				'registrationOptions' => $registrationOptionText,
+				'totalCost' => $totalCost,
 				'username' => $user->getUsername(),
 				'registrationContactSignature' => $registrationContactSignature 
 			);

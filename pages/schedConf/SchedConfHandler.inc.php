@@ -301,7 +301,43 @@ class SchedConfHandler extends Handler {
 		}
 		$form->readInputData();
 		if ($form->validate()) {
-			if (($registrationError = $form->execute()) != REGISTRATION_SUCCESSFUL) {
+			if (($registrationError = $form->execute()) == REGISTRATION_SUCCESSFUL) {
+				$registration =& $form->getRegistration();
+
+				// Successful: Send an email.
+				import('mail.MailTemplate');
+				$mail = new MailTemplate('USER_REGISTRATION_NOTIFY');
+				$mail->setFrom($schedConf->getSetting('contactEmail'), $schedConf->getSetting('contactName'));
+				$registrationTypeDao =& DAORegistry::getDAO('RegistrationTypeDAO');
+				$registrationType =& $registrationTypeDao->getRegistrationType($typeId);
+
+				// Determine the registration options for inclusion
+				$registrationOptionText = '';
+				$totalCost = $registrationType->getCost();
+				$registrationOptionDao =& DAORegistry::getDAO('RegistrationOptionDAO');
+				$registrationOptionIterator =& $registrationOptionDao->getRegistrationOptionsBySchedConfId($schedConf->getId());
+				$registrationOptionCosts = $registrationTypeDao->getRegistrationOptionCosts($typeId);
+				$registrationOptionIds = $registrationOptionDao->getRegistrationOptions($registration->getRegistrationId());
+				while ($registrationOption =& $registrationOptionIterator->next()) {
+					if (in_array($registrationOption->getOptionId(), $registrationOptionIds)) {
+						$registrationOptionText .= $registrationOption->getRegistrationOptionName() . ' - ' . sprintf('%.2f', $registrationOptionCosts[$registrationOption->getOptionId()]) . ' ' . $registrationType->getCurrencyCodeAlpha() . "\n";
+						$totalCost += $registrationOptionCosts[$registrationOption->getOptionId()];
+					}
+					unset($registrationOption);
+				}
+
+				$mail->assignParams(array(
+					'registrantName' => $user->getFullName(),
+					'registrationType' => $registrationType->getSummaryString(),
+					'registrationOptions' => $registrationOptionText,
+					'totalCost' => sprintf('%.2f', $totalCost) . ' ' . $registrationType->getCurrencyCodeAlpha(),
+					'username' => $user->getUsername(),
+					'registrationContactSignature' => $schedConf->getSetting('registrationName')
+				));
+				$mail->addRecipient($user->getEmail(), $user->getFullName());
+				$mail->send();
+			} else {
+				// Not successful
 				$templateMgr->assign('isUserLoggedIn', Validation::isLoggedIn()); // In case a user was just created, make sure they appear logged in
 				if ($registrationError == REGISTRATION_FAILED) {
 					// User not created

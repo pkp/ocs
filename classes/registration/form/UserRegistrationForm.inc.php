@@ -28,6 +28,9 @@ class UserRegistrationForm extends Form {
 	/** @var $typeId int The registration type ID for this registration */
 	var $typeId;
 
+	/** @var $_registration object */
+	var $_registration;
+
 	/**
 	 * Constructor
 	 * @param $typeId int Registration type to use
@@ -293,7 +296,17 @@ class UserRegistrationForm extends Form {
 			$paymentManager->displayPaymentForm($queuedPaymentId, $queuedPayment);
 		}
 
+		$this->_registration =& $registration;
+
 		return REGISTRATION_SUCCESSFUL;
+	}
+
+	/**
+	 * After a successful registration, get the registration object.
+	 * @return object Registration
+	 */
+	function &getRegistration() {
+		return $this->_registration;
 	}
 }
 
