@@ -199,6 +199,14 @@
 </tr>
 	
 <tr valign="top">
+	<td class="label">{fieldLabel name="gender" key="user.gender"}</td>
+	<td class="value"><select name="gender" id="gender" size="1" class="selectMenu">
+			{html_options_translate options=$genderOptions selected=$gender}
+		</select>
+	</td>
+</tr>
+
+<tr valign="top">
 	<td class="label">{fieldLabel name="affiliation" key="user.affiliation" required="true"}</td>
 	<td class="value"><textarea id="affiliation" name="affiliation" rows="5" cols="40" class="textArea">{$affiliation|escape}</textarea></td>
 </tr>
