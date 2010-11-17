@@ -31,6 +31,9 @@ class UserRegistrationForm extends Form {
 	/** @var $_registration object */
 	var $_registration;
 
+	/** @var $_queuedPayment object */
+	var $_queuedPayment;
+
 	/**
 	 * Constructor
 	 * @param $typeId int Registration type to use
@@ -297,6 +300,7 @@ class UserRegistrationForm extends Form {
 		}
 
 		$this->_registration =& $registration;
+		$this->_queuedPayment =& $queuedPayment;
 
 		return REGISTRATION_SUCCESSFUL;
 	}
@@ -307,6 +311,14 @@ class UserRegistrationForm extends Form {
 	 */
 	function &getRegistration() {
 		return $this->_registration;
+	}
+
+	/**
+	 * After a successful registration, get the queued payment object.
+	 * @return object Registration
+	 */
+	function &getQueuedPayment() {
+		return $this->_queuedPayment;
 	}
 }
 

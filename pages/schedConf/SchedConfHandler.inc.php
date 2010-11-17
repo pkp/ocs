@@ -303,6 +303,7 @@ class SchedConfHandler extends Handler {
 		if ($form->validate()) {
 			if (($registrationError = $form->execute()) == REGISTRATION_SUCCESSFUL) {
 				$registration =& $form->getRegistration();
+				$queuedPayment =& $form->getQueuedPayment();
 
 				// Successful: Send an email.
 				import('mail.MailTemplate');
@@ -332,6 +333,8 @@ class SchedConfHandler extends Handler {
 					'registrationOptions' => $registrationOptionText,
 					'totalCost' => sprintf('%.2f', $totalCost) . ' ' . $registrationType->getCurrencyCodeAlpha(),
 					'username' => $user->getUsername(),
+					'specialRequests' => $registration->getSpecialRequests(),
+					'invoiceId' => $queuedPayment->getInvoiceId(),
 					'registrationContactSignature' => $schedConf->getSetting('registrationName')
 				));
 				$mail->addRecipient($user->getEmail(), $user->getFullName());
