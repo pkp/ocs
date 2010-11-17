@@ -23,22 +23,45 @@
 
 <form action="{$paypalFormUrl}" id="paypalPaymentForm" name="paypalPaymentForm" method="post" style="margin-bottom: 0px;">
 	{include file="common/formErrors.tpl"}
-	{if $params.amount}
-	<table class="data" width="100%">
-		<tr>
-			<td class="label" width="20%">{translate key="plugins.paymethod.paypal.purchase.amount"}</td>
-			<td class="value" width="80%"><strong>{$params.amount|string_format:"%.2f"}{if $params.currency_code} ({$params.currency_code|escape}){/if}</strong></td>			
-		</tr>
-	</table>
-	{/if}
-	{if $params.item_name}
-	<table class="data" width="100%">
-		<tr>
-			<td class="label" width="20%">{translate key="plugins.paymethod.paypal.purchase.description"}</td>
-			<td class="value" width="80%"><strong>{$params.item_name|escape}</strong></td>
-		</tr>
-	</table>
-	{/if}
+
+	{if $registration}
+		{assign var=totalCost value=$registrationType->getCost()}
+		<table class="data" width="100%">
+			<tr valign="top">
+				<td class="label" width="20%">{translate key="plugins.paymethod.paypal.purchase.description"}</td>
+				<td class="value" width="80%">
+					{$registrationType->getSummaryString()}
+					{foreach from=$registrationOptions item=registrationOption}
+						{assign var=registrationOptionId value=$registrationOption->getOptionId()}
+						{assign var=registrationOptionCost value=$registrationOptionCosts[$registrationOptionId]}
+						{if in_array($registrationOptionId, $registrationOptionIds)}
+							<br/>{$registrationOption->getRegistrationOptionName()} - {$registrationOptionCosts[$registrationOptionId]|string_format:"%.2f"} {$registrationType->getCurrencyCodeAlpha()}
+							{assign var=totalCost value=$totalCost+$registrationOptionCost}
+						{/if}
+					{/foreach}
+				</td>
+			</tr>
+			<tr valign="top">
+				<td class="label">{translate key="plugins.paymethod.paypal.purchase.total"}</td>
+				<td class="value"><strong>{$totalCost|string_format:"%.2f"} {$registrationType->getCurrencyCodeAlpha()}</strong></td>
+			</tr>
+			<tr valign="top">
+				<td class="label">{translate key="schedConf.registration.specialRequests"}</td>
+				<td class="value">{$registration->getSpecialRequests()|escape|default:"&mdash;"}</td>
+			</tr>
+		</table>
+	{else}{* $registration *}
+		<table class="data" width="100%">
+		        <tr valign="top">
+		                <td class="label" width="20%">{translate key="plugins.paymethod.paypal.purchase.amount"}</td>
+		                <td class="value" width="80%"><strong>{$params.amount|string_format:"%.2f"}{if $params.currency_code} ({$params.currency_code|escape}){/if}</strong></td>
+		        </tr>
+		        <tr valign="top">
+		                <td class="label">{translate key="plugins.paymethod.paypal.purchase.description"}</td>
+		                <td class="value"><strong>{$params.item_name|escape}</strong></td>
+		        </tr>
+		</table>
+	{/if}{* $registration *}
 
 	{foreach from=$params key="name" item="value"}
 		<input type="hidden" name="{$name|escape}" value="{$value|escape}" />

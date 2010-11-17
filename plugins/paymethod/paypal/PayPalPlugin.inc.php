@@ -94,6 +94,28 @@ class PayPalPlugin extends PaymethodPlugin {
 		);
 
 		$templateMgr =& TemplateManager::getManager();
+
+		switch ($queuedPayment->getType()) {
+			case QUEUED_PAYMENT_TYPE_REGISTRATION:
+				// Provide registration-specific details to template.
+				$registrationDao =& DAORegistry::getDAO('RegistrationDAO');
+				$registrationOptionDao =& DAORegistry::getDAO('RegistrationOptionDAO');
+				$registrationTypeDao =& DAORegistry::getDAO('RegistrationTypeDAO');
+
+				$registration =& $registrationDao->getRegistration($queuedPayment->getAssocId());
+				if (!$registration || $registration->getUserId() != $queuedPayment->getUserId() || $registration->getSchedConfId() != $queuedPayment->getSchedConfId()) break;
+
+				$registrationOptionIterator =& $registrationOptionDao->getRegistrationOptionsBySchedConfId($schedConf->getId());
+				$registrationOptionCosts = $registrationTypeDao->getRegistrationOptionCosts($registration->getTypeId());
+				$registrationOptionIds = $registrationOptionDao->getRegistrationOptions($registration->getRegistrationId());
+
+				$templateMgr->assign('registration', $registration);
+				$templateMgr->assign('registrationType', $registrationTypeDao->getRegistrationType($registration->getTypeId()));
+				$templateMgr->assign('registrationOptions', $registrationOptionIterator->toArray());
+				$templateMgr->assign('registrationOptionCosts', $registrationOptionCosts);
+				$templateMgr->assign('registrationOptionIds', $registrationOptionIds);
+		}
+
 		$templateMgr->assign('params', $params);
 		$templateMgr->assign('paypalFormUrl', $this->getSetting($schedConf->getConferenceId(), $schedConf->getId(), 'paypalurl'));
 		$templateMgr->display($this->getTemplatePath() . 'paymentForm.tpl');
