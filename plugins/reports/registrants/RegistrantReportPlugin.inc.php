@@ -67,6 +67,7 @@ class RegistrantReportPlugin extends ReportPlugin {
 		);
 				
 		$columns = array(
+			'registration_id' => Locale::translate('plugins.reports.registrants.registrationid'),
 			'userid' => Locale::translate('plugins.reports.registrants.userid'),
 			'uname' => Locale::translate('user.username'),
 			'fname' => Locale::translate('user.firstName'),

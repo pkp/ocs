@@ -58,7 +58,7 @@ class RegistrantReportDAO extends DAO {
 			WHERE
 				r.sched_conf_id= ?
 			ORDER BY
-				lname',
+				registration_id',
 			array(
 				$locale,
 				'name',
