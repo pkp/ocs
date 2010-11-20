@@ -11,6 +11,13 @@
 {assign var="pageTitle" value="schedConf.registration"}
 {include file="common/header.tpl"}
 
+{if $registration}
+	{* An unpaid registration already exists. Warn the user. *}
+	<div id="registrationWarning">
+		<p>{translate key="schedConf.registration.alreadyRegistered"}</p>
+	</div>
+{/if}
+
 <form action="{url op="registration"}" method="post">
 <div id="registrationType">
 <table class="listing" width="100%">
@@ -35,7 +42,7 @@
 			<td class="data">
 				{if strtotime($registrationType->getOpeningDate()) < time() && strtotime($registrationType->getClosingDate()) > time()}
 					{assign var="registrationMethodAvailable" value=1}
-					<input id="registrationType-{$typeId|escape}" type="radio" {if $isFirstRegistrationType}checked="checked" {/if}name="registrationTypeId" value="{$typeId|escape}" />
+					<input id="registrationType-{$typeId|escape}" type="radio" {if (!$registration && $isFirstRegistrationType) || ($registration && $registration->getTypeId() == $typeId)}checked="checked" {/if}name="registrationTypeId" value="{$typeId|escape}" />
 					<label for="registrationType-{$typeId|escape}"> {$registrationType->getCost()|string_format:"%.2f"} {$registrationType->getCurrencyCodeAlpha()|escape}</label>
 					{translate key="schedConf.registration.typeCloses" closingDate=$registrationType->getClosingDate()|date_format:$dateFormatShort}
 					{assign var="isFirstRegistrationType" value=false}

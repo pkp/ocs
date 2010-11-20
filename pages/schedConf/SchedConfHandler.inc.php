@@ -217,6 +217,7 @@ class SchedConfHandler extends Handler {
 
 		$user =& Request::getUser();
 		$registrationDao =& DAORegistry::getDAO('RegistrationDAO');
+		$registration = null;
 		if ($user && ($registrationId = $registrationDao->getRegistrationIdByUser($user->getId(), $schedConf->getId()))) {
 			// This user has already registered.
 			$registration =& $registrationDao->getRegistration($registrationId);
@@ -240,9 +241,9 @@ class SchedConfHandler extends Handler {
 			import('classes.registration.form.UserRegistrationForm');
 
 			if (checkPhpVersion('5.0.0')) { // WARNING: This form needs $this in constructor
-				$form = new UserRegistrationForm($typeId);
+				$form = new UserRegistrationForm($typeId, $registration);
 			} else {
-				$form =& new UserRegistrationForm($typeId);
+				$form =& new UserRegistrationForm($typeId, $registration);
 			}
 			if ($form->isLocaleResubmit()) {
 				$form->readInputData();
@@ -255,6 +256,7 @@ class SchedConfHandler extends Handler {
 			$registrationTypeDao =& DAORegistry::getDAO('RegistrationTypeDAO');
 			$registrationTypes =& $registrationTypeDao->getRegistrationTypesBySchedConfId($schedConf->getId());
 			$templateMgr->assign_by_ref('registrationTypes', $registrationTypes);
+			$templateMgr->assign('registration', $registration);
 			return $templateMgr->display('registration/selectRegistrationType.tpl');
 		}
 	}
@@ -274,15 +276,13 @@ class SchedConfHandler extends Handler {
 
 		$user =& Request::getUser();
 		$registrationDao =& DAORegistry::getDAO('RegistrationDAO');
+		$registration = null;
 		if ($user && ($registrationId = $registrationDao->getRegistrationIdByUser($user->getId(), $schedConf->getId()))) {
 			// This user has already registered.
 			$registration =& $registrationDao->getRegistration($registrationId);
 			if ( !$registration || $registration->getDatePaid() ) {
 				// And they have already paid. Redirect to a message explaining.
 				Request::redirect(null, null, null, 'registration');
-			} else {
-				// Allow them to resubmit the form to change type or pay again.
-				$registrationDao->deleteRegistrationById($registrationId);
 			}
 		}
 
@@ -295,9 +295,9 @@ class SchedConfHandler extends Handler {
 		import('classes.registration.form.UserRegistrationForm');
 		$typeId = (int) Request::getUserVar('registrationTypeId');
 		if (checkPhpVersion('5.0.0')) { // WARNING: This form needs $this in constructor
-			$form = new UserRegistrationForm($typeId);
+			$form = new UserRegistrationForm($typeId, $registration);
 		} else {
-			$form =& new UserRegistrationForm($typeId);
+			$form =& new UserRegistrationForm($typeId, $registration);
 		}
 		$form->readInputData();
 		if ($form->validate()) {

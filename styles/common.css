@@ -431,4 +431,8 @@ ul.tagit li:after, ul.tagit li div:after {
 	clear:none; 
 }
 
+#registrationWarning p {
+	color: #ff0000;
+}
+
 /* @end */

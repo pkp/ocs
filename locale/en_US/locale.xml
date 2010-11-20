@@ -271,7 +271,7 @@
 	<message key="schedConf.scheduler.locations">Conference Locations</message>
 
 	<!-- User self-registration form -->
-	<message key="schedConf.registration.alreadyRegistered">You are already registered for this conference, although payment has not yet been received. Please contact the principal contact in "About" if this is in error or you would like to change your registration.</message>
+	<message key="schedConf.registration.alreadyRegistered">You are already registered for this conference, although payment has not yet been received. If payment is already in progress, do not continue. Continuing will remove your existing registration and begin a new registration.</message>
 	<message key="schedConf.registration.alreadyRegisteredAndPaid">You are already registered for this conference and your registration has been paid. Please contact the principal contact in "About" if this is in error or you would like to change your registration.</message>
 	<message key="schedConf.registration.noPaymentMethodAvailable">Your registration has been recorded. If applicable, you will be contacted regarding payment.</message>
 	<message key="schedConf.registration.paymentNotConfigured">There is no payment method configured for this conference. Please contact the Conference Manager.</message>
@@ -282,6 +282,8 @@
 	<message key="schedConf.registration.cost">Cost</message>
 	<message key="schedConf.registrationTypes.noneAvailable">No registration types are available.</message>
 	<message key="schedConf.registrationOptions.noneAvailable">No registration options are available.</message>
+	<message key="schedConf.registrationOptions.removed">The registration option "{$option}" was previously chosen but has not been selected for the new registration.</message>
+	<message key="schedConf.registrationOptions.added">The registration option "{$option}" was not previously chosen but has been added to the new registration.</message>
 	<message key="schedConf.registration.register">Register</message>
 	<message key="schedConf.registration.typeCloses">(Closes {$closingDate})</message>
 	<message key="schedConf.registration.typeClosed">(Registration Closed {$closingDate})</message>

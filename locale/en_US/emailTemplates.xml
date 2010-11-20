@@ -446,6 +446,20 @@ Invoice ID: {$invoiceId}
 {$registrationContactSignature}</body>
 		<description>This email notifies a registered reader that the Manager has created a registration for them. It provides the conference's URL along with instructions for access.</description>
 	</email_text>
+	<email_text key="USER_REGISTRATION_CHANGE">
+		<subject>Registration Change</subject>
+		<body>{$managerName}:
+
+The registrant {$registrantName} (username {$username}) has replaced a registration that was previously in progress with a new registration.
+
+The old registration ID was {$registrationId}. The old registration type was {$oldRegistrationType}. The new registration type is {$newRegistrationType}.
+
+If any registration options differ, they will be listed here:
+{$differingOptions}
+
+{$registrationContactSignature}</body>
+		<description>This email notifies a registered reader that the Manager has created a registration for them. It provides the conference's URL along with instructions for access.</description>
+	</email_text>
 	<email_text key="OPEN_ACCESS_NOTIFY">
 		<subject>Issue Now Open Access</subject>
 		<body>Readers:

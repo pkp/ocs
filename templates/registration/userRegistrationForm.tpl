@@ -18,6 +18,13 @@
 
 {include file="common/formErrors.tpl"}
 
+{if $registration}
+	{* An unpaid registration already exists. Warn the user. *}
+	<div id="registrationWarning">
+		<p>{translate key="schedConf.registration.alreadyRegistered"}</p>
+	</div>
+{/if}
+
 {if count($formLocales) > 1 && !$existingUser}
 <div id="locales">
 <table class="data" width="100%">

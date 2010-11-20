@@ -37,11 +37,13 @@ class UserRegistrationForm extends Form {
 	/**
 	 * Constructor
 	 * @param $typeId int Registration type to use
+	 * @param $registration object optional registration option if one already exists
 	 */
-	function UserRegistrationForm($typeId) {
+	function UserRegistrationForm($typeId, $registration) {
 		$schedConf =& Request::getSchedConf();
 
 		$this->typeId = (int) $typeId;
+		$this->_registration = $registration;
 
 		parent::Form('registration/userRegistrationForm.tpl');
 
@@ -105,6 +107,7 @@ class UserRegistrationForm extends Form {
 		$registrationOptions =& $registrationOptionDao->getRegistrationOptionsBySchedConfId($schedConf->getId());
 		$templateMgr->assign_by_ref('registrationOptions', $registrationOptions);
 		$templateMgr->assign('registrationTypeId', $this->typeId);
+		$templateMgr->assign('registration', $this->_registration);
 
 		$templateMgr->assign('userLoggedIn', $user?true:false);
 		$templateMgr->assign('requestUri', $_SERVER['REQUEST_URI']);
@@ -123,26 +126,41 @@ class UserRegistrationForm extends Form {
 			}
 		}
 
+		// Provide countries to template
 		$countryDao =& DAORegistry::getDAO('CountryDAO');
 		$countries =& $countryDao->getCountries();
 		$templateMgr->assign_by_ref('countries', $countries);
 
+		// Provide registration option costs to template
 		$registrationTypeDao =& DAORegistry::getDAO('RegistrationTypeDAO');
 		$registrationOptionCosts = $registrationTypeDao->getRegistrationOptionCosts($this->typeId);
 		$templateMgr->assign('registrationOptionCosts', $registrationOptionCosts);
 
+		// Provide registration type to template
 		$registrationType =& $registrationTypeDao->getRegistrationType($this->typeId);
 		$templateMgr->assign_by_ref('registrationType', $registrationType);
 
 		$templateMgr->assign('minPasswordLength', $site->getMinPasswordLength());
-
 		$templateMgr->assign_by_ref('user', $user);
+
 		parent::display();
 	}
 
 	function getLocaleFieldNames() {
 		$userDao =& DAORegistry::getDAO('UserDAO');
 		return $userDao->getLocaleFieldNames();
+	}
+
+	function initData() {
+		parent::initData();
+
+		// Provide preselected registration options to template, if available
+		if ($this->_registration) {
+			$registration =& $this->_registration;
+			$registrationOptionDao =& DAORegistry::getDAO('RegistrationOptionDAO');
+			$registrationOptionIds = $registrationOptionDao->getRegistrationOptions($registration->getRegistrationId());
+			$this->_data['registrationOptionId'] = $registrationOptionIds;
+		}
 	}
 
 	/**
@@ -193,6 +211,8 @@ class UserRegistrationForm extends Form {
 	function execute() {
 		$schedConf =& Request::getSchedConf();
 		$user =& Request::getUser();
+
+		$registrationOptionIds = (array) $this->getData('registrationOptionId');
 
 		if (!$user) {
 			// New user
@@ -246,6 +266,7 @@ class UserRegistrationForm extends Form {
 		}
 
 		// Get the registration type
+		$registrationDao =& DAORegistry::getDAO('RegistrationDAO');
 		$registrationTypeDao =& DAORegistry::getDAO('RegistrationTypeDAO');
 		$registrationType =& $registrationTypeDao->getRegistrationType($this->getData('registrationTypeId'));
 		if (!$registrationType || $registrationType->getSchedConfId() != $schedConf->getId()) {
@@ -257,6 +278,48 @@ class UserRegistrationForm extends Form {
 
 		if (!$paymentManager->isConfigured()) return REGISTRATION_NO_PAYMENT;
 
+		if ($this->_registration) {
+			// An existing registration was already in place. Compare and notify someone.
+			$oldRegistration =& $this->_registration;
+			$oldRegistrationType =& $registrationTypeDao->getRegistrationType($oldRegistration->getTypeId());
+			unset($this->_registration);
+
+			import('mail.MailTemplate');
+			$mail = new MailTemplate('USER_REGISTRATION_CHANGE');
+			$mail->setFrom($schedConf->getSetting('registrationEmail'), $schedConf->getSetting('registrationName'));
+			$mail->addRecipient($schedConf->getSetting('registrationEmail'), $schedConf->getSetting('registrationName'));
+
+			$optionsDiffer = '';
+			$registrationOptionDao =& DAORegistry::getDAO('RegistrationOptionDAO');
+			$registrationOptionIterator =& $registrationOptionDao->getRegistrationOptionsBySchedConfId($schedConf->getId());
+			$oldRegistrationOptionIds = $registrationOptionDao->getRegistrationOptions($oldRegistration->getRegistrationId());
+			while ($registrationOption =& $registrationOptionIterator->next()) {
+				$optionId = $registrationOption->getOptionId();
+				$previouslyChosen = in_array($optionId, $oldRegistrationOptionIds);
+				$newlyChosen = in_array($optionId, $registrationOptionIds);
+				if ($previouslyChosen && !$newlyChosen) {
+					$optionsDiffer .= Locale::translate('schedConf.registrationOptions.removed', array('option' => $registrationOption->getRegistrationOptionName())) . "\n";
+				} elseif (!$previouslyChosen && $newlyChosen) {
+					$optionsDiffer .= Locale::translate('schedConf.registrationOptions.added', array('option' => $registrationOption->getRegistrationOptionName())) . "\n";
+				}
+				unset($registrationOption);
+			}
+
+			$mail->assignParams(array(
+				'managerName' => $schedConf->getSetting('registrationName'),
+				'registrationId' => $oldRegistration->getRegistrationId(),
+				'registrantName' => $user->getFullName(),
+				'oldRegistrationType' => $oldRegistrationType->getSummaryString(),
+				'newRegistrationType' => $registrationType->getSummaryString(),
+				'differingOptions' => $optionsDiffer,
+				'username' => $user->getUsername(),
+				'registrationContactSignature' => $schedConf->getSetting('registrationName')
+			));
+			$mail->send();
+
+			$registrationDao->deleteRegistrationById($oldRegistration->getRegistrationId());
+		}
+
 		import('classes.registration.Registration');
 		$registration = new Registration();
 
@@ -266,12 +329,10 @@ class UserRegistrationForm extends Form {
 		$registration->setSpecialRequests($this->getData('specialRequests') ? $this->getData('specialRequests') : null);
 		$registration->setDateRegistered(time());
 
-		$registrationDao =& DAORegistry::getDAO('RegistrationDAO');
 		$registrationId = $registrationDao->insertRegistration($registration);
 
 		$registrationOptionDao =& DAORegistry::getDAO('RegistrationOptionDAO');
 		$registrationOptions =& $registrationOptionDao->getRegistrationOptionsBySchedConfId($schedConf->getId());
-		$registrationOptionIds = (array) $this->getData('registrationOptionId');
 
 		$cost = $registrationType->getCost();
 		$registrationOptionCosts = $registrationTypeDao->getRegistrationOptionCosts($this->getData('registrationTypeId'));
