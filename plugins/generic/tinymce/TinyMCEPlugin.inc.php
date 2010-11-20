@@ -285,6 +285,7 @@ class TinyMCEPlugin extends GenericPlugin {
 			</script>
 			<script language="javascript" type="text/javascript">
 				tinyMCE.init({
+					entity_encoding : "raw",
 					plugins : "paste",
 					mode : "exact",
 					language : "' . String::substr(Locale::getLocale(), 0, 2) . '",
