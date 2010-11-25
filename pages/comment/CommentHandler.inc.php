@@ -90,7 +90,7 @@ class CommentHandler extends Handler {
 		$schedConf =& Request::getSchedConf();
 		$this->validate($paperId);
 		$paper =& $this->paper;
-
+		$commentDao =& DAORegistry::getDAO('CommentDAO');
 		$parent =& $commentDao->getById($parentId, $paperId);
 		if (isset($parent) && $parent->getPaperId() != $paperId) {
 			Request::redirect(null, null, null, 'view', array($paperId, $galleyId));
