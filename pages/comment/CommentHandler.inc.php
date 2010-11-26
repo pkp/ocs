@@ -92,7 +92,7 @@ class CommentHandler extends Handler {
 		$paper =& $this->paper;
 		$commentDao =& DAORegistry::getDAO('CommentDAO');
 		$parent =& $commentDao->getById($parentId, $paperId);
-		if (isset($parent) && $parent->getPaperId() != $paperId) {
+		if (isset($parent) && $parent->getSubmissionId() != $paperId) {
 			Request::redirect(null, null, null, 'view', array($paperId, $galleyId));
 		}
 
