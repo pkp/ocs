@@ -129,7 +129,7 @@ class PaperFileDAO extends DAO {
 			$result =& $this->retrieve(
 				'SELECT a.* FROM paper_files a WHERE file_id = ? AND revision >= ? AND revision <= ?',
 				array($fileId, $start, $end)
-			);		
+			);
 		}
 
 		while (!$result->EOF) {
@@ -209,7 +209,7 @@ class PaperFileDAO extends DAO {
 		$paperFile->setFileType($row['file_type']);
 		$paperFile->setFileSize($row['file_size']);
 		$paperFile->setOriginalFileName($row['original_file_name']);
-		$paperFile->setType($row['type']);
+		$paperFile->setFileStage($row['file_stage']);
 		$paperFile->setRound($row['round']);
 		$paperFile->setDateUploaded($this->datetimeFromDB($row['date_uploaded']));
 		$paperFile->setDateModified($this->datetimeFromDB($row['date_modified']));
@@ -222,7 +222,7 @@ class PaperFileDAO extends DAO {
 	 * Insert a new PaperFile.
 	 * @param $paperFile PaperFile
 	 * @return int
-	 */	
+	 */
 	function insertPaperFile(&$paperFile) {
 		$fileId = $paperFile->getFileId();
 		$params = array(
@@ -232,7 +232,7 @@ class PaperFileDAO extends DAO {
 			$paperFile->getFileType(),
 			$paperFile->getFileSize(),
 			$paperFile->getOriginalFileName(),
-			$paperFile->getType(),
+			$paperFile->getFileStage(),
 			(int) $paperFile->getRound(),
 			$paperFile->getViewable()
 		);
@@ -243,7 +243,7 @@ class PaperFileDAO extends DAO {
 
 		$this->update(
 			sprintf('INSERT INTO paper_files
-				(' . ($fileId ? 'file_id, ' : '') . 'revision, paper_id, file_name, file_type, file_size, original_file_name, type, round, date_uploaded, date_modified, viewable)
+				(' . ($fileId ? 'file_id, ' : '') . 'revision, paper_id, file_name, file_type, file_size, original_file_name, file_stage, round, date_uploaded, date_modified, viewable)
 				VALUES
 				(' . ($fileId ? '?, ' : '') . '?, ?, ?, ?, ?, ?, ?, ?, %s, %s, ?)',
 				$this->datetimeToDB($paperFile->getDateUploaded()), $this->datetimeToDB($paperFile->getDateModified())),
@@ -270,7 +270,7 @@ class PaperFileDAO extends DAO {
 					file_type = ?,
 					file_size = ?,
 					original_file_name = ?,
-					type = ?,
+					file_stage = ?,
 					round = ?,
 					date_uploaded = %s,
 					date_modified = %s,
@@ -283,7 +283,7 @@ class PaperFileDAO extends DAO {
 				$paperFile->getFileType(),
 				$paperFile->getFileSize(),
 				$paperFile->getOriginalFileName(),
-				$paperFile->getType(),
+				$paperFile->getFileStage(),
 				(int) $paperFile->getRound(),
 				$paperFile->getViewable(),
 				$paperFile->getFileId(),

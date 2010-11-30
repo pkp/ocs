@@ -26,4 +26,9 @@
 		<!-- Then, alter the column changing it to a BIGINT -->
 		<query>ALTER TABLE paper_files MODIFY type BIGINT(20)</query>
 	</sql>
+
+	<!-- Bug #6128: Change paper_files 'type' column to 'file_stage' -->
+	<sql>
+		<rename table="paper_files" column="type" to="file_stage" />
+	</sql>
 </data>

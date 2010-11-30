@@ -197,7 +197,7 @@ class TrackDirectorSubmissionDAO extends DAO {
 			$this->update(
 				'UPDATE	review_rounds
 				SET	review_revision = ?
-				WHERE	paper_id = ? AND
+				WHERE	submission_id = ? AND
 					round = ?',
 				array(
 					$trackDirectorSubmission->getReviewRevision(),
@@ -846,7 +846,7 @@ class TrackDirectorSubmissionDAO extends DAO {
 
 		return $statistics;
 	}
-	
+
 	/**
 	 * Map a column heading value to a database value for sorting
 	 * @param string
@@ -859,7 +859,7 @@ class TrackDirectorSubmissionDAO extends DAO {
 			case 'track': return 'track_abbrev';
 			case 'authors': return 'author_name';
 			case 'title': return 'submission_title';
-			case 'active': return 'incomplete';		
+			case 'active': return 'incomplete';
 			case 'reviewerName': return 'u.last_name';
 			case 'quality': return 'average_quality';
 			case 'done': return 'completed';

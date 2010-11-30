@@ -48,7 +48,7 @@ class PaperFile extends SubmissionFile {
 		$schedConf =& $schedConfDao->getSchedConf($paperId);
 
 		return Config::getVar('files', 'files_dir') . '/conferences/' . $schedConf->getConferenceId() . '/schedConfs/' . $paperId .
-		'/papers/' . $this->getPaperId() . '/' . $this->getType() . '/' . $this->getFileName();
+		'/papers/' . $this->getPaperId() . '/' . $this->getFileStage() . '/' . $this->getFileName();
 	}
 
 	//
