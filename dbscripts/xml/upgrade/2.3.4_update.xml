@@ -31,4 +31,10 @@
 	<sql>
 		<rename table="paper_files" column="type" to="file_stage" />
 	</sql>
+
+	<!-- Bug #6257: normalize plug-in names to lowercase
+	     NB: LOWER() is compatible with both MySQL and PostreSQL. -->
+	<sql>
+		<query>UPDATE plugin_settings SET plugin_name = LOWER(plugin_name);</query>
+	</sql>
 </data>

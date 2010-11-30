@@ -1,23 +1,23 @@
 <?php
 
 /**
- * @file PluginSettingsDAO.inc.php
+ * @file classes/plugins/PluginSettingsDAO.inc.php
  *
  * Copyright (c) 2000-2010 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class PluginSettingsDAO
  * @ingroup plugins
- * @see Plugin, PluginRegistry
+ * @see Plugin
  *
  * @brief Operations for retrieving and modifying plugin settings.
  */
 
-//$Id$
 
 class PluginSettingsDAO extends DAO {
 	function &_getCache($conferenceId, $schedConfId, $pluginName) {
 		static $settingCache;
+
 		if (!isset($settingCache)) {
 			$settingCache = array();
 		}
@@ -40,12 +40,16 @@ class PluginSettingsDAO extends DAO {
 	/**
 	 * Retrieve a plugin setting value.
 	 * @param $conferenceId int
-	 * @param $schedConfIf int
+	 * @param $schedConfId int
 	 * @param $pluginName string
 	 * @param $name
 	 * @return mixed
 	 */
 	function getSetting($conferenceId, $schedConfId, $pluginName, $name) {
+		// Normalize the plug-in name to lower case.
+		$pluginName = strtolower($pluginName);
+
+		// Retrieve the setting.
 		$cache =& $this->_getCache($conferenceId, $schedConfId, $pluginName);
 		return $cache->get($name);
 	}
@@ -66,17 +70,19 @@ class PluginSettingsDAO extends DAO {
 	/**
 	 * Retrieve and cache all settings for a plugin.
 	 * @param $conferenceId int
-	 * @param $schedConfIf int
+	 * @param $schedConfId int
 	 * @param $pluginName string
 	 * @return array
 	 */
 	function &getPluginSettings($conferenceId, $schedConfId, $pluginName) {
-		$pluginSettings[$pluginName] = array();
+		// Normalize plug-in name to lower case.
+		$pluginName = strtolower($pluginName);
 
 		$result =& $this->retrieve(
 			'SELECT setting_name, setting_value, setting_type FROM plugin_settings WHERE plugin_name = ? AND conference_id = ? AND sched_conf_id = ?', array($pluginName, $conferenceId, $schedConfId)
 		);
 
+		$pluginSettings[$pluginName] = array();
 		if ($result->RecordCount() == 0) {
 			$returner = null;
 			$result->Close();
@@ -92,6 +98,7 @@ class PluginSettingsDAO extends DAO {
 			$result->close();
 			unset($result);
 
+			// Update the cache.
 			$cache =& $this->_getCache($conferenceId, $schedConfId, $pluginName);
 			$cache->setEntireCache($pluginSettings[$pluginName]);
 
@@ -102,13 +109,16 @@ class PluginSettingsDAO extends DAO {
 	/**
 	 * Add/update a plugin setting.
 	 * @param $conferenceId int
-	 * @param $schedConfIf int
+	 * @param $schedConfId int
 	 * @param $pluginName string
 	 * @param $name string
 	 * @param $value mixed
 	 * @param $type string data type of the setting. If omitted, type will be guessed
 	 */
 	function updateSetting($conferenceId, $schedConfId, $pluginName, $name, $value, $type = null) {
+		// Normalize the plug-in name to lower case.
+		$pluginName = strtolower($pluginName);
+
 		$cache =& $this->_getCache($conferenceId, $schedConfId, $pluginName);
 		$cache->setCache($name, $value);
 
@@ -145,12 +155,14 @@ class PluginSettingsDAO extends DAO {
 	/**
 	 * Delete a plugin setting.
 	 * @param $conferenceId int
-	 * @param $schedConfIf int
 	 * @param $schedConfId int
 	 * @param $pluginName int
 	 * @param $name string
 	 */
 	function deleteSetting($conferenceId, $schedConfId, $pluginName, $name) {
+		// Normalize the plug-in name to lower case.
+		$pluginName = strtolower($pluginName);
+
 		$cache =& $this->_getCache($conferenceId, $schedConfId, $pluginName);
 		$cache->setCache($name, null);
 
@@ -163,29 +175,34 @@ class PluginSettingsDAO extends DAO {
 	/**
 	 * Delete all settings for a plugin.
 	 * @param $pluginName string
+	 * @param $conferenceId int
+	 * @param $schedConfId int
 	 */
 	function deleteSettingsByPlugin($pluginName, $conferenceId = null, $schedConfId = null) {
-		if ( $conferenceId && $schedConfId) { 
+		// Normalize the plug-in name to lower case.
+		$pluginName = strtolower($pluginName);
+
+		if ( $conferenceId && $schedConfId) {
 			$cache =& $this->_getCache($conferenceId, $schedConfId, $pluginName);
 			$cache->flush();
 
 			return $this->update(
-					'DELETE FROM plugin_settings WHERE plugin_name = ? AND conference_id = ? AND sched_conf_id = ?', 
+					'DELETE FROM plugin_settings WHERE plugin_name = ? AND conference_id = ? AND sched_conf_id = ?',
 					array($pluginName, $conferenceId, $schedConfId)
 			);
 		} else {
 			$cacheManager =& CacheManager::getManager();
-			// NB: this actually deletes all plugins' settings cache			
+			// NB: this actually deletes all plugins' settings cache
 			$cacheManager->flush('pluginSettings');
-			
+
 			$params = array($pluginName);
 			if ($conferenceId) $params[] = $conferenceId;
 
 			return $this->update(
-				'DELETE FROM plugin_settings WHERE plugin_name = ?' . (($conferenceId)?' AND conference_id = ?':''), 
+				'DELETE FROM plugin_settings WHERE plugin_name = ?' . (($conferenceId)?' AND conference_id = ?':''),
 				$params
 			);
-		}		
+		}
 	}
 
 	/**
