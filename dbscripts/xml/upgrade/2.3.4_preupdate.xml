@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE data SYSTEM "../../../lib/pkp/dtd/xmlData.dtd">
+
+<!--
+  * 2.3.4_preupdate.xml
+  *
+  * Copyright (c) 2000-2010 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * 2.3.4 database updates XML file, run prior to schema sync.
+  *
+  -->
+
+<data>
+	<!-- Bug #6128: Change paper_files 'type' column to 'file_stage' -->
+	<sql>
+		<rename table="paper_files" column="type" to="file_stage" />
+	</sql>
+	
+	<!-- Bug #5919: Re-implement submission 'type' column as int -->
+	<sql>
+		<!-- First, change all strings to their integer equivalents -->
+		<query>UPDATE paper_files SET file_stage = 1 WHERE file_stage = 'submission/original'</query><!-- PAPER_FILE_SUBMISSION -->
+		<query>UPDATE paper_files SET file_stage = 2 WHERE file_stage = 'submission/review'</query><!-- PAPER_FILE_REVIEW -->
+		<query>UPDATE paper_files SET file_stage = 3 WHERE file_stage = 'submission/director'</query><!-- PAPER_FILE_DIRECTOR -->
+		<query>UPDATE paper_files SET file_stage = 4 WHERE file_stage = 'submission/layout'</query><!-- PAPER_FILE_LAYOUT -->
+		<query>UPDATE paper_files SET file_stage = 5 WHERE file_stage = 'public'</query><!-- PAPER_FILE_PUBLIC -->
+		<query>UPDATE paper_files SET file_stage = 6 WHERE file_stage = 'supp'</query><!-- PAPER_FILE_SUPP -->
+		<query>UPDATE paper_files SET file_stage = 7 WHERE file_stage = 'note'</query><!-- PAPER_FILE_NOTE -->
+
+		<!-- Then, alter the column changing it to a BIGINT -->
+		<query>ALTER TABLE paper_files MODIFY file_stage BIGINT(20)</query>
+	</sql>
+</data>

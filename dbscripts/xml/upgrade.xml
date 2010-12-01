@@ -45,6 +45,11 @@
 		<data file="dbscripts/xml/upgrade/2.3.2_preupdate.xml" />
 		<data file="dbscripts/xml/upgrade/2.3.2_preaffiliations.xml" condition="return $installer->columnExists('users', 'affiliation') &amp;&amp; $installer->columnExists('authors', 'affiliation');" />
 	</upgrade>
+	
+	<upgrade minversion="2.0.0.0" maxversion="2.3.3.9">
+		<!-- 2.x to 2.3.4 -->
+		<data file="dbscripts/xml/upgrade/2.3.4_preupdate.xml" />
+	</upgrade>
 
 	<!-- PKP schema components -->
 	<schema file="lib/pkp/xml/schema/common.xml" />

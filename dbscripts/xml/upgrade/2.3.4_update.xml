@@ -2,36 +2,16 @@
 <!DOCTYPE data SYSTEM "../../../lib/pkp/dtd/xmlData.dtd">
 
 <!--
-  * 2.3.3_update.xml
+  * 2.3.4_update.xml
   *
   * Copyright (c) 2000-2010 John Willinsky
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
   *
-  * 2.3.3 database updates XML file.
+  * 2.3.4 database updates XML file.
   *
   -->
 
 <data>
-	<!-- Bug #5919: Re-implement submission 'type' column as int -->
-	<sql>
-		<!-- First, change all strings to their integer equivalents -->
-		<query>UPDATE paper_files SET type = 1 WHERE type = 'submission/original'</query><!-- PAPER_FILE_SUBMISSION -->
-		<query>UPDATE paper_files SET type = 2 WHERE type = 'submission/review'</query><!-- PAPER_FILE_REVIEW -->
-		<query>UPDATE paper_files SET type = 3 WHERE type = 'submission/director'</query><!-- PAPER_FILE_DIRECTOR -->
-		<query>UPDATE paper_files SET type = 4 WHERE type = 'submission/layout'</query><!-- PAPER_FILE_LAYOUT -->
-		<query>UPDATE paper_files SET type = 5 WHERE type = 'public'</query><!-- PAPER_FILE_PUBLIC -->
-		<query>UPDATE paper_files SET type = 6 WHERE type = 'supp'</query><!-- PAPER_FILE_SUPP -->
-		<query>UPDATE paper_files SET type = 7 WHERE type = 'note'</query><!-- PAPER_FILE_NOTE -->
-
-		<!-- Then, alter the column changing it to a BIGINT -->
-		<query>ALTER TABLE paper_files MODIFY type BIGINT(20)</query>
-	</sql>
-
-	<!-- Bug #6128: Change paper_files 'type' column to 'file_stage' -->
-	<sql>
-		<rename table="paper_files" column="type" to="file_stage" />
-	</sql>
-
 	<!-- Bug #6257: normalize plug-in names to lowercase
 	     NB: LOWER() is compatible with both MySQL and PostreSQL. -->
 	<sql>
