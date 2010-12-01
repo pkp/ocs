@@ -14,7 +14,8 @@
 <data>
 	<!-- Bug #5440: Migrate submission notes into PKP "notes" -->
 	<sql>
-		<query>UPDATE notes SET assoc_type = 257</query><!-- ASSOC_TYPE_ARTICLE -->
+		<query>UPDATE notes SET assoc_type = 258</query><!-- ASSOC_TYPE_PAPER -->
+		<query>UPDATE notes, papers, sched_confs SET notes.context_id = sched_confs.conference_id WHERE papers.paper_id = notes.assoc_id AND papers.sched_conf_id = sched_confs.sched_conf_id</query>
 	</sql>
 	<!-- Bug #5543: Implement multilingual specification -->
 	<sql>

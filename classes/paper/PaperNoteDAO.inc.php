@@ -66,8 +66,8 @@ class PaperNoteDAO extends NoteDAO {
 	function insertPaperNote(&$paperNote) {
 		if (Config::getVar('debug', 'deprecation_warnings')) trigger_error('Deprecated function');
 		$paperNote->setAssocType(ASSOC_TYPE_PAPER);
-		$journal =& Request::getJournal();
-		$paperNote->setContextId($journal->getId());
+		$conference =& Request::getConference();
+		$paperNote->setContextId($conference->getId());
 		return $this->insertObject($paperNote);
 	}
 
