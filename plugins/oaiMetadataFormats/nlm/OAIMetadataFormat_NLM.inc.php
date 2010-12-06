@@ -22,10 +22,6 @@ class OAIMetadataFormat_NLM extends OAIMetadataFormat {
 
 	/**
 	 * @see OAIMetadataFormat#toXml
-	 * TODO:
-	 *  <copyright-holder>
-	 *  In Isabelle's mapping document:
-	 *   Article order in the issue's Table of Contents
 	 */
 	function toXml(&$record, $format = null) {
 		$conference =& $record->getData('conference');
@@ -119,7 +115,7 @@ class OAIMetadataFormat_NLM extends OAIMetadataFormat {
 
 		// Include galley links
 		foreach ($paper->getGalleys() as $galley) {
-			$response .= "\t\t\t<self-uri content-type=\"" . htmlspecialchars(Core::cleanVar($galley->getFileType())) . "\" xlink:href=\"" . htmlspecialchars(Core::cleanVar(Request::url($conference->getPath(), $schedConf->getPath(), 'paper', 'view', array($article->getBestArticleId(), $galley->getId())))) . "\" />\n";
+			$response .= "\t\t\t<self-uri content-type=\"" . htmlspecialchars(Core::cleanVar($galley->getFileType())) . "\" xlink:href=\"" . htmlspecialchars(Core::cleanVar(Request::url($conference->getPath(), $schedConf->getPath(), 'paper', 'view', array($paper->getId(), $galley->getId())))) . "\" />\n";
 		}
 
 		// Include abstract(s)
