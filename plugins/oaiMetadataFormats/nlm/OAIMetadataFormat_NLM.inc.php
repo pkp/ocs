@@ -37,7 +37,15 @@ class OAIMetadataFormat_NLM extends OAIMetadataFormat {
 		$paperId = $paper->getId();
 
 		$primaryLocale = $conference->getPrimaryLocale();
-		$datePublished = strtotime($paper->getDatePublished());
+
+		// If possible, use the paper presentation date for the paper date fields.
+		// Otherwise, use the date published (i.e. the date it was marked "completed"
+		// in the workflow).
+		if ($datePublished = $paper->getStartTime()) {
+			$datePublished = strtotime($datePublished);
+		} else {
+			$datePublished = $paper->getDatePublished();
+		}
 
 		$response = "<article\n" .
 			"\txmlns=\"http://dtd.nlm.nih.gov/publishing/2.3\"\n" .
@@ -139,7 +147,20 @@ class OAIMetadataFormat_NLM extends OAIMetadataFormat {
 			$response .= "\t\t\t</kwd-group>\n";
 		}
 
+		$locationCity = $schedConf->getSetting('locationCity');
+		$locationCountry = $schedConf->getSetting('locationCountry');
+		if (empty($locationCity) && empty($locationCountry)) $confLoc = '';
+		elseif (empty($locationCity) && !empty($locationCountry)) $confLoc = $locationCountry;
+		elseif (empty($locationCountry)) $confLoc = $locationCity;
+		else $confLoc = "$locationCity, $locationCountry";
+
 		$response .=
+			"\t\t\t<conference>\n" .
+			"\t\t\t\t<conf-date>" . strftime('%Y-%m-%d', $schedConf->getSetting('startDate')) . "</conf-date>\n" .
+			"\t\t\t\t<conf-name>" . htmlspecialchars(Core::cleanVar($schedConf->getLocalizedTitle())) . "</conf-name>\n" .
+			"\t\t\t\t<conf-acronym>" . htmlspecialchars(Core::cleanVar($schedConf->getLocalizedAcronym())) . "</conf-acronym>\n" .
+			(!empty($confLoc)?"\t\t\t\t<conf-loc>" . htmlspecialchars(Core::cleanVar($confLoc)) . "</conf-loc>\n":'') .
+			"\t\t\t</conference>\n" .
 			"\t\t</article-meta>\n" .
 			"\t</front>\n";
 
