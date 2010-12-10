@@ -45,8 +45,8 @@ class ManagerSchedConfHandler extends ManagerHandler {
 		}
 
 		$templateMgr =& TemplateManager::getManager();
-		$templateMgr->addJavaScript('lib/pkp/js/jquery.tablednd_0_5.js');
-		$templateMgr->addJavaScript('lib/pkp/js/tablednd.js');
+		$templateMgr->addJavaScript('lib/pkp/js/lib/jquery/plugins/jquery.tablednd.js');
+		$templateMgr->addJavaScript('lib/pkp/js/functions/tablednd.js');
 		$templateMgr->assign_by_ref('schedConfs', $schedConfs);
 		$templateMgr->assign_by_ref('conference', $conference);
 		$templateMgr->assign('helpTopicId', 'conference.generalManagement.scheduledConferences');

@@ -54,8 +54,8 @@ class GroupHandler extends ManagerHandler {
 		}
 
 		$templateMgr =& TemplateManager::getManager();
-		$templateMgr->addJavaScript('lib/pkp/js/jquery.tablednd_0_5.js');
-		$templateMgr->addJavaScript('lib/pkp/js/tablednd.js');
+		$templateMgr->addJavaScript('lib/pkp/js/lib/jquery/plugins/jquery.tablednd.js');
+		$templateMgr->addJavaScript('lib/pkp/js/functions/tablednd.js');
 		$templateMgr->assign_by_ref('groups', $groups);
 		$templateMgr->assign('boardEnabled', $schedConf->getSetting('boardEnabled'));
 		$templateMgr->display('manager/groups/groups.tpl');
@@ -219,8 +219,8 @@ class GroupHandler extends ManagerHandler {
 			unset($memberships);
 		}
 		$templateMgr =& TemplateManager::getManager();
-		$templateMgr->addJavaScript('lib/pkp/js/jquery.tablednd_0_5.js');
-		$templateMgr->addJavaScript('lib/pkp/js/tablednd.js');
+		$templateMgr->addJavaScript('lib/pkp/js/lib/jquery/plugins/jquery.tablednd.js');
+		$templateMgr->addJavaScript('lib/pkp/js/functions/tablednd.js');
 		$templateMgr->assign_by_ref('memberships', $memberships);
 		$templateMgr->assign_by_ref('group', $group);
 		$templateMgr->display('manager/groups/memberships.tpl');

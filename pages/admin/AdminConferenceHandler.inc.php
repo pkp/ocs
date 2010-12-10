@@ -37,8 +37,8 @@ class AdminConferenceHandler extends AdminHandler {
 		$conferences =& $conferenceDao->getConferences($rangeInfo);
 
 		$templateMgr =& TemplateManager::getManager();
-		$templateMgr->addJavaScript('lib/pkp/js/jquery.tablednd_0_5.js');
-		$templateMgr->addJavaScript('lib/pkp/js/tablednd.js');
+		$templateMgr->addJavaScript('lib/pkp/js/lib/jquery/plugins/jquery.tablednd.js');
+		$templateMgr->addJavaScript('lib/pkp/js/functions/tablednd.js');
 		$templateMgr->assign_by_ref('conferences', $conferences);
 		$templateMgr->assign('helpTopicId', 'site.siteManagement');
 		$templateMgr->display('admin/conferences.tpl');

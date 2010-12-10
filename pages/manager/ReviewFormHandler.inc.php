@@ -37,8 +37,8 @@ class ReviewFormHandler extends ManagerHandler {
 		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
 
 		$templateMgr =& TemplateManager::getManager();
-		$templateMgr->addJavaScript('lib/pkp/js/jquery.tablednd_0_5.js');
-		$templateMgr->addJavaScript('lib/pkp/js/tablednd.js');
+		$templateMgr->addJavaScript('lib/pkp/js/lib/jquery/plugins/jquery.tablednd.js');
+		$templateMgr->addJavaScript('lib/pkp/js/functions/tablednd.js');
 		$templateMgr->assign_by_ref('reviewForms', $reviewForms);
 		$templateMgr->assign('helpTopicId','conference.managementPages.reviewForms');
 		$templateMgr->display('manager/reviewForms/reviewForms.tpl');
@@ -306,8 +306,8 @@ class ReviewFormHandler extends ManagerHandler {
 		$this->setupTemplate(true, $reviewForm);
 		$templateMgr =& TemplateManager::getManager();
 
-		$templateMgr->addJavaScript('lib/pkp/js/jquery.tablednd_0_5.js');
-		$templateMgr->addJavaScript('lib/pkp/js/tablednd.js');
+		$templateMgr->addJavaScript('lib/pkp/js/lib/jquery/plugins/jquery.tablednd.js');
+		$templateMgr->addJavaScript('lib/pkp/js/functions/tablednd.js');
 
 		$templateMgr->assign_by_ref('unusedReviewFormTitles', $unusedReviewFormTitles);
 		$templateMgr->assign_by_ref('reviewFormElements', $reviewFormElements);

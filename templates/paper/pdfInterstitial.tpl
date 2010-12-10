@@ -27,7 +27,7 @@
 		<link rel="stylesheet" href="{$cssUrl}" type="text/css" />
 	{/foreach}
 
-	<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/general.js"></script>
+	<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/functions/general.js"></script>
 	<meta http-equiv="refresh" content="2;URL={url op="viewFile" path=$paperId|to_array:$galley->getId()}"/>
 	{$additionalHeadData}
 </head>
