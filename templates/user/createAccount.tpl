@@ -18,9 +18,11 @@
 	$(document).ready(function(){
 		$("#interestsTextOnly").hide();
 		$("#interests").tagit({
-			{/literal}{if $existingInterests}{literal} availableTags: [{/literal}{foreach name=existingInterests from=$existingInterests item=interest}"{$interest|escape:"javascript"}"{if !$smarty.foreach.existingInterests.last}, {/if}{/foreach}{literal}],{/literal}{/if}
-			{if $interestsKeywords}{literal}currentTags: [{/literal}{foreach name=currentInterests from=$interestsKeywords item=interest}"{$interest|escape|escape:"javascript"}"{if !$smarty.foreach.currentInterests.last}, {/if}{/foreach}{literal}]{/literal}
-					  {else}{literal}currentTags: []{/literal}{/if}{literal}
+			{/literal}{if $existingInterests}{literal}
+			// This is the list of interests in the system used to populate the autocomplete
+			availableTags: [{/literal}{foreach name=existingInterests from=$existingInterests item=interest}"{$interest|escape|escape:'javascript'}"{if !$smarty.foreach.existingInterests.last}, {/if}{/foreach}{literal}],{/literal}{/if}
+			// There are no current interests for the user since they're just registering; Assign an empty list
+			currentTags: []
 		});
 	});
 </script>
@@ -178,7 +180,7 @@
 	<td class="label">{fieldLabel name="billingAddress" key="common.billingAddress"}</td>
 	<td class="value"><textarea name="billingAddress" id="billingAddress" rows="3" cols="40" class="textArea">{$billingAddress|escape}</textarea></td>
 </tr>
-	
+
 <tr valign="top">
 	<td class="label">{fieldLabel name="country" key="common.country"}</td>
 	<td class="value">
@@ -224,7 +226,7 @@
 		{if $allowRegAuthor || $allowRegAuthor === null}
 			<input type="checkbox" name="createAsAuthor" id="createAsAuthor" value="1"{if $createAsAuthor} checked="checked"{/if} /> <label for="createAsAuthor">{translate key="user.role.author"}</label>: {translate key="user.account.authorDescription"}<br />
 		{/if}
-		{if $allowRegReviewer || $allowRegReviewer === null}<input type="checkbox" name="createAsReviewer" id="createAsReviewer" value="1"{if $createAsReviewer} checked="checked"{/if} /> <label for="createAsReviewer">{translate key="user.role.reviewer"}</label>: {if $existingUser}{translate key="user.account.reviewerDescriptionNoInterests"}{else}{translate key="user.account.reviewerDescription"} <ul id="interests"></ul><textarea name="interests" id="interestsTextOnly" rows="5" cols="40" class="textArea">				{foreach name=currentInterests from=$interestsKeywords item=interest}{$interest|urldecode}{if !$smarty.foreach.currentInterests.last}, {/if}{/foreach}</textarea>{/if}
+		{if $allowRegReviewer || $allowRegReviewer === null}<input type="checkbox" name="createAsReviewer" id="createAsReviewer" value="1"{if $createAsReviewer} checked="checked"{/if} /> <label for="createAsReviewer">{translate key="user.role.reviewer"}</label>: {if $existingUser}{translate key="user.account.reviewerDescriptionNoInterests"}{else}{translate key="user.account.reviewerDescription"} <ul id="interests"><li></li></ul><textarea name="interests" id="interestsTextOnly" rows="5" cols="40" class="textArea">				{foreach name=currentInterests from=$interestsKeywords item=interest}{$interest|escape}{if !$smarty.foreach.currentInterests.last}, {/if}{/foreach}</textarea>{/if}
 		{/if}
 	</td>
 </tr>
