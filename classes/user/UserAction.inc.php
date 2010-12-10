@@ -134,7 +134,7 @@ class UserAction {
 
 		$roles =& $roleDao->getRolesByUserId($oldUserId);
 		foreach ($roles as $role) {
-			if (!$roleDao->roleExists($role->getConferenceId(), $role->getSchedConfId(), $newUserId, $role->getRoleId())) {
+			if (!$roleDao->userHasRole($role->getConferenceId(), $role->getSchedConfId(), $newUserId, $role->getRoleId())) {
 				$role->setUserId($newUserId);
 				$roleDao->insertRole($role);
 			}

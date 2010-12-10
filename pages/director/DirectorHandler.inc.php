@@ -250,8 +250,8 @@ class DirectorHandler extends TrackDirectorHandler {
 		$directorId = $request->getUserVar('directorId');
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
 
-		$isDirector = $roleDao->roleExists($schedConf->getConferenceId(), $schedConf->getId(), $directorId, ROLE_ID_DIRECTOR) || $roleDao->roleExists($schedConf->getConferenceId(), 0, $directorId, ROLE_ID_DIRECTOR);
-		$isTrackDirector = $roleDao->roleExists($schedConf->getConferenceId(), $schedConf->getId(), $directorId, ROLE_ID_TRACK_DIRECTOR) || $roleDao->roleExists($schedConf->getConferenceId(), 0, $directorId, ROLE_ID_TRACK_DIRECTOR);
+		$isDirector = $roleDao->userHasRole($schedConf->getConferenceId(), $schedConf->getId(), $directorId, ROLE_ID_DIRECTOR) || $roleDao->userHasRole($schedConf->getConferenceId(), 0, $directorId, ROLE_ID_DIRECTOR);
+		$isTrackDirector = $roleDao->userHasRole($schedConf->getConferenceId(), $schedConf->getId(), $directorId, ROLE_ID_TRACK_DIRECTOR) || $roleDao->userHasRole($schedConf->getConferenceId(), 0, $directorId, ROLE_ID_TRACK_DIRECTOR);
 
 		if (isset($directorId) && $directorId != null && ($isDirector || $isTrackDirector)) {
 			// A valid track director has already been chosen;

@@ -65,7 +65,7 @@ class RTAdminHandler extends Handler {
 			$allConferences =& $allConferences->toArray();
 
 			foreach ($allConferences as $conference) {
-				if ($roleDao->roleExists($conference->getId(), 0, $user->getId(), ROLE_ID_CONFERENCE_MANAGER)) {
+				if ($roleDao->userHasRole($conference->getId(), 0, $user->getId(), ROLE_ID_CONFERENCE_MANAGER)) {
 					$conferences[] = $conference;
 				}
 			}

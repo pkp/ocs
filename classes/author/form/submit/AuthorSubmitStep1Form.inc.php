@@ -56,10 +56,10 @@ class AuthorSubmitStep1Form extends AuthorSubmitForm {
 		// submissions. Otherwise, display only tracks they are allowed
 		// to submit to.
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
-		$isDirector = $roleDao->roleExists($conference->getId(), $schedConf->getId(), $user->getId(), ROLE_ID_DIRECTOR) ||
-			$roleDao->roleExists($conference->getId(), $schedConf->getId(), $user->getId(), ROLE_ID_TRACK_DIRECTOR) ||
-			$roleDao->roleExists($conference->getId(), 0, $user->getId(), ROLE_ID_DIRECTOR) ||
-			$roleDao->roleExists($conference->getId(), 0, $user->getId(), ROLE_ID_TRACK_DIRECTOR);
+		$isDirector = $roleDao->userHasRole($conference->getId(), $schedConf->getId(), $user->getId(), ROLE_ID_DIRECTOR) ||
+			$roleDao->userHasRole($conference->getId(), $schedConf->getId(), $user->getId(), ROLE_ID_TRACK_DIRECTOR) ||
+			$roleDao->userHasRole($conference->getId(), 0, $user->getId(), ROLE_ID_DIRECTOR) ||
+			$roleDao->userHasRole($conference->getId(), 0, $user->getId(), ROLE_ID_TRACK_DIRECTOR);
 
 		$templateMgr->assign('trackOptions', array('0' => Locale::translate('author.submit.selectTrack')) + $trackDao->getTrackTitles($schedConf->getId(), !$isDirector));
 

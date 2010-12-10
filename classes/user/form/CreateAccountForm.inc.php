@@ -330,14 +330,13 @@ class CreateAccountForm extends Form {
 
 		foreach ($allowedRoles as $k => $v) {
 			$roleId = $roleDao->getRoleIdFromPath($k);
-			if ($this->getData($v) && !$roleDao->roleExists($conference->getId(), $schedConf->getId(), $userId, $roleId)) {
+			if ($this->getData($v) && !$roleDao->userHasRole($conference->getId(), $schedConf->getId(), $userId, $roleId)) {
 				$role = new Role();
 				$role->setConferenceId($conference->getId());
 				$role->setSchedConfId($schedConf->getId());
 				$role->setUserId($userId);
 				$role->setRoleId($roleId);
 				$roleDao->insertRole($role);
-
 			}
 		}
 

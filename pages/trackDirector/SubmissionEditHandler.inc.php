@@ -46,7 +46,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		$user =& $request->getUser();
 
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
-		$isDirector = $roleDao->roleExists($conference->getId(), $schedConf->getId(), $user->getId(), ROLE_ID_DIRECTOR);
+		$isDirector = $roleDao->userHasRole($conference->getId(), $schedConf->getId(), $user->getId(), ROLE_ID_DIRECTOR);
 
 		$trackDao =& DAORegistry::getDAO('TrackDAO');
 		$track =& $trackDao->getTrack($submission->getTrackId());
@@ -608,7 +608,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 
 		// Enroll reviewer
 		for ($i=0; $i<count($users); $i++) {
-			if (!$roleDao->roleExists($schedConf->getConferenceId(), $schedConf->getId(), $users[$i], $roleId)) {
+			if (!$roleDao->userHasRole($schedConf->getConferenceId(), $schedConf->getId(), $users[$i], $roleId)) {
 				$role = new Role();
 				$role->setConferenceId($schedConf->getConferenceId());
 				$role->setSchedConfId($schedConf->getId());

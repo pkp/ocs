@@ -251,12 +251,12 @@ class PeopleHandler extends ManagerHandler {
 			$schedConfId = ($schedConf? $schedConf->getId() : 0);
 
 			for ($i=0; $i<count($users); $i++) {
-				if (!$roleDao->roleExists($conference->getId(), $schedConfId, $users[$i], $roleId)) {
+				if (!$roleDao->userHasRole($conference->getId(), $schedConfId, $users[$i], $roleId)) {
 					if ($schedConfId == 0) {
 						// In case they're enrolled in individual scheduled conferences and we want to enrol
 						// them in the whole conference, ensure they don't have multiple roles
 						$roleDao->deleteRoleByUserId($users[$i], $conference->getId(), $roleId);
-					} else if ($roleDao->roleExists($conference->getId(), 0, $users[$i], $roleId)) {
+					} else if ($roleDao->userHasRole($conference->getId(), 0, $users[$i], $roleId)) {
 						// If they're enrolled in the whole conference, this individual
 						// enrollment isn't valuable.
 						return;
@@ -356,7 +356,7 @@ class PeopleHandler extends ManagerHandler {
 				$role =& $roles->next();
 				$role->setConferenceId($conference->getId());
 				$role->setSchedConfId($schedConf->getId());
-				if ($role->getRolePath() != ROLE_PATH_SITE_ADMIN && !$roleDao->roleExists($role->getConferenceId(), $schedConf->getId(), $role->getUserId(), $role->getRoleId())) {
+				if ($role->getRolePath() != ROLE_PATH_SITE_ADMIN && !$roleDao->userHasRole($role->getConferenceId(), $schedConf->getId(), $role->getUserId(), $role->getRoleId())) {
 					$roleDao->insertRole($role);
 				}
 			}
