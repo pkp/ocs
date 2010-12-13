@@ -9,22 +9,22 @@
  * $Id$
  *}
 {strip}
-{translate|assign:"pageTitleTranslated" key="submission.page.summary" id=$submission->getPaperId()}
+{translate|assign:"pageTitleTranslated" key="submission.page.summary" id=$submission->getId()}
 {assign var="pageCrumbTitle" value="submission.summary"}
 {include file="common/header.tpl"}
 {/strip}
 
 <ul class="menu">
-	<li class="current"><a href="{url op="submission" path=$submission->getPaperId()}">{translate key="submission.summary"}</a></li>
+	<li class="current"><a href="{url op="submission" path=$submission->getId()}">{translate key="submission.summary"}</a></li>
 	{if $reviewMode == REVIEW_MODE_BOTH_SEQUENTIAL}
-		<li><a href="{url op="submissionReview" path=$submission->getPaperId()|to_array:$smarty.const.REVIEW_ROUND_ABSTRACT}">
+		<li><a href="{url op="submissionReview" path=$submission->getId()|to_array:$smarty.const.REVIEW_ROUND_ABSTRACT}">
 			{translate key="submission.abstractReview"}</a>
 		</li>
-		<li><a href="{url op="submissionReview" path=$submission->getPaperId()|to_array:$smarty.const.REVIEW_ROUND_PRESENTATION}">
+		<li><a href="{url op="submissionReview" path=$submission->getId()|to_array:$smarty.const.REVIEW_ROUND_PRESENTATION}">
 			{translate key="submission.paperReview"}</a>
 		</li>
 	{else}
-		<li><a href="{url op="submissionReview" path=$submission->getPaperId()}">{translate key="submission.review"}</a></li>
+		<li><a href="{url op="submissionReview" path=$submission->getId()}">{translate key="submission.review"}</a></li>
 	{/if}
 </ul>
 

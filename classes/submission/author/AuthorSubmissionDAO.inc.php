@@ -139,8 +139,8 @@ class AuthorSubmissionDAO extends DAO {
 	 */
 	function updateAuthorSubmission(&$authorSubmission) {
 		// Update paper
-		if ($authorSubmission->getPaperId()) {
-			$paper =& $this->paperDao->getPaper($authorSubmission->getPaperId());
+		if ($authorSubmission->getId()) {
+			$paper =& $this->paperDao->getPaper($authorSubmission->getId());
 
 			// Only update fields that an author can actually edit.
 			$paper->setRevisedFileId($authorSubmission->getRevisedFileId());

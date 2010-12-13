@@ -74,7 +74,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		}
 
 		$publishedPaperDao =& DAORegistry::getDAO('PublishedPaperDAO');
-		$publishedPaper =& $publishedPaperDao->getPublishedPaperByPaperId($submission->getPaperId());
+		$publishedPaper =& $publishedPaperDao->getPublishedPaperByPaperId($submission->getId());
 		if ($publishedPaper) {
 			$templateMgr->assign_by_ref('publishedPaper', $publishedPaper);
 		}

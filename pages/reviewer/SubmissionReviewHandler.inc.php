@@ -47,7 +47,7 @@ class SubmissionReviewHandler extends ReviewerHandler {
 			$confirmedStatus = 1;
 		}
 
-		$this->setupTemplate($request, true, $reviewerSubmission->getPaperId(), $reviewId);
+		$this->setupTemplate($request, true, $reviewerSubmission->getId(), $reviewId);
 
 		$templateMgr =& TemplateManager::getManager();
 

@@ -11,7 +11,7 @@
  * $Id$
  *}
 {strip}
-{assign var="paperId" value=$submission->getPaperId()}
+{assign var="paperId" value=$submission->getId()}
 {assign var="reviewId" value=$reviewAssignment->getId()}
 {if $reviewAssignment->getRound() == REVIEW_ROUND_ABSTRACT}
 	{translate|assign:"pageTitleTranslated" key="submission.page.abstractReview" id=$paperId}

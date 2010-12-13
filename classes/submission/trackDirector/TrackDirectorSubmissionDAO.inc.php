@@ -176,7 +176,7 @@ class TrackDirectorSubmissionDAO extends DAO {
 								(paper_id, round, director_id, decision, date_decided)
 								VALUES (?, ?, ?, ?, %s)',
 									$this->datetimeToDB($directorDecision['dateDecided'])),
-							array($trackDirectorSubmission->getPaperId(),
+							array($trackDirectorSubmission->getId(),
 								$i,
 								$directorDecision['directorId'],
 								$directorDecision['decision']
@@ -193,7 +193,7 @@ class TrackDirectorSubmissionDAO extends DAO {
 				$trackDirectorSubmission->setDecisions($directorDecisions, $i);
 			}
 		}
-		if ($this->reviewRoundExists($trackDirectorSubmission->getPaperId(), $trackDirectorSubmission->getCurrentRound())) {
+		if ($this->reviewRoundExists($trackDirectorSubmission->getId(), $trackDirectorSubmission->getCurrentRound())) {
 			$this->update(
 				'UPDATE	review_rounds
 				SET	review_revision = ?
@@ -201,13 +201,13 @@ class TrackDirectorSubmissionDAO extends DAO {
 					round = ?',
 				array(
 					$trackDirectorSubmission->getReviewRevision(),
-					$trackDirectorSubmission->getPaperId(),
+					$trackDirectorSubmission->getId(),
 					$trackDirectorSubmission->getCurrentRound()
 				)
 			);
 		} elseif ($trackDirectorSubmission->getReviewRevision()!=null) {
 			$this->createReviewRound(
-				$trackDirectorSubmission->getPaperId(),
+				$trackDirectorSubmission->getId(),
 				$trackDirectorSubmission->getCurrentRound() === null ? 1 : $trackDirectorSubmission->getCurrentRound(),
 				$trackDirectorSubmission->getReviewRevision()
 			);
@@ -231,9 +231,9 @@ class TrackDirectorSubmissionDAO extends DAO {
 		}
 
 		// Update paper
-		if ($trackDirectorSubmission->getPaperId()) {
+		if ($trackDirectorSubmission->getId()) {
 
-			$paper =& $this->paperDao->getPaper($trackDirectorSubmission->getPaperId());
+			$paper =& $this->paperDao->getPaper($trackDirectorSubmission->getId());
 
 			// Only update fields that can actually be edited.
 			$paper->setTrackId($trackDirectorSubmission->getTrackId());

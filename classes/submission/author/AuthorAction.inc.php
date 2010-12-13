@@ -37,7 +37,7 @@ class AuthorAction extends Action {
 	 */
 	function designateReviewVersion($authorSubmission) {
 		import('classes.file.PaperFileManager');
-		$paperFileManager = new PaperFileManager($authorSubmission->getPaperId());
+		$paperFileManager = new PaperFileManager($authorSubmission->getId());
 		$authorSubmissionDao =& DAORegistry::getDAO('AuthorSubmissionDAO');
 
 		if (!HookRegistry::call('AuthorAction::designateReviewVersion', array(&$authorSubmission))) {
@@ -56,7 +56,7 @@ class AuthorAction extends Action {
 					unset($schedConf);
 					$schedConf =& $schedConfDao->getSchedConf($authorSubmission->getSchedConfId());
 				}
-				$trackDirectorSubmissionDao->createReviewRound($authorSubmission->getPaperId(), REVIEW_ROUND_PRESENTATION, 1);
+				$trackDirectorSubmissionDao->createReviewRound($authorSubmission->getId(), REVIEW_ROUND_PRESENTATION, 1);
 			}
 		}
 	}
@@ -98,7 +98,7 @@ class AuthorAction extends Action {
 	 */
 	function uploadRevisedVersion($authorSubmission) {
 		import('classes.file.PaperFileManager');
-		$paperFileManager = new PaperFileManager($authorSubmission->getPaperId());
+		$paperFileManager = new PaperFileManager($authorSubmission->getId());
 		$authorSubmissionDao =& DAORegistry::getDAO('AuthorSubmissionDAO');
 
 		$fileName = 'upload';
@@ -120,7 +120,7 @@ class AuthorAction extends Action {
 		$user =& Request::getUser();
 		import('classes.paper.log.PaperLog');
 		import('classes.paper.log.PaperEventLogEntry');
-		PaperLog::logEvent($authorSubmission->getPaperId(), PAPER_LOG_AUTHOR_REVISION, LOG_TYPE_AUTHOR, $user->getId(), 'log.author.documentRevised', array('authorName' => $user->getFullName(), 'fileId' => $fileId, 'paperId' => $authorSubmission->getPaperId()));
+		PaperLog::logEvent($authorSubmission->getId(), PAPER_LOG_AUTHOR_REVISION, LOG_TYPE_AUTHOR, $user->getId(), 'log.author.documentRevised', array('authorName' => $user->getFullName(), 'fileId' => $fileId, 'paperId' => $authorSubmission->getId()));
 	}
 
 	//
@@ -169,13 +169,13 @@ class AuthorAction extends Action {
 			$paperComment = new PaperComment();
 			$paperComment->setCommentType(COMMENT_TYPE_DIRECTOR_DECISION);
 			$paperComment->setRoleId(ROLE_ID_AUTHOR);
-			$paperComment->setPaperId($authorSubmission->getPaperId());
+			$paperComment->setPaperId($authorSubmission->getId());
 			$paperComment->setAuthorId($authorSubmission->getUserId());
 			$paperComment->setCommentTitle($email->getSubject());
 			$paperComment->setComments($email->getBody());
 			$paperComment->setDatePosted(Core::getCurrentDate());
 			$paperComment->setViewable(true);
-			$paperComment->setAssocId($authorSubmission->getPaperId());
+			$paperComment->setAssocId($authorSubmission->getId());
 			$paperCommentDao->insertPaperComment($paperComment);
 
 			return true;
@@ -191,7 +191,7 @@ class AuthorAction extends Action {
 				}
 			}
 
-			$email->displayEditForm(Request::url(null, null, null, 'emailDirectorDecisionComment', 'send'), array('paperId' => $authorSubmission->getPaperId()), 'submission/comment/directorDecisionEmail.tpl');
+			$email->displayEditForm(Request::url(null, null, null, 'emailDirectorDecisionComment', 'send'), array('paperId' => $authorSubmission->getId()), 'submission/comment/directorDecisionEmail.tpl');
 
 			return false;
 		}

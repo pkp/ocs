@@ -10,25 +10,25 @@
  * $Id$
  *}
 {strip}
-{translate|assign:"pageTitleTranslated" key="trackDirector.regrets.title" paperId=$submission->getPaperId()}
+{translate|assign:"pageTitleTranslated" key="trackDirector.regrets.title" paperId=$submission->getId()}
 {assign var=pageTitleTranslated value=$pageTitleTranslated|escape}
 {assign var="pageCrumbTitle" value="trackDirector.regrets.breadcrumb"}
 {include file="common/header.tpl"}
 {/strip}
 
 <ul class="menu">
-	<li><a href="{url op="submission" path=$submission->getPaperId()}">{translate key="submission.summary"}</a></li>
+	<li><a href="{url op="submission" path=$submission->getId()}">{translate key="submission.summary"}</a></li>
 	{if $submission->getReviewMode() == REVIEW_MODE_BOTH_SEQUENTIAL}
-		<li><a href="{url op="submissionReview" path=$submission->getPaperId()}">
+		<li><a href="{url op="submissionReview" path=$submission->getId()}">
 			{translate key="submission.abstractReview"}</a>
 		</li>
-		<li><a href="{url op="submissionReview" path=$submission->getPaperId()}">
+		<li><a href="{url op="submissionReview" path=$submission->getId()}">
 			{translate key="submission.paperReview"}</a>
 		</li>
 	{else}
-		<li><a href="{url op="submissionReview" path=$submission->getPaperId()}">{translate key="submission.review"}</a></li>
+		<li><a href="{url op="submissionReview" path=$submission->getId()}">{translate key="submission.review"}</a></li>
 	{/if}
-	<li class="current"><a href="{url op="submissionHistory" path=$submission->getPaperId()}">{translate key="submission.history"}</a></li>
+	<li class="current"><a href="{url op="submissionHistory" path=$submission->getId()}">{translate key="submission.history"}</a></li>
 </ul>
 
 {include file="trackDirector/submission/summary.tpl"}

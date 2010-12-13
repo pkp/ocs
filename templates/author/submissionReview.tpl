@@ -11,28 +11,28 @@
 {strip}
 {if $submission->getReviewMode() == REVIEW_MODE_BOTH_SIMULTANEOUS}
 	{assign var="pageCrumbTitle" value="submission.review"}
-	{translate|assign:"pageTitleTranslated" key="submission.page.review" id=$submission->getPaperId()}
+	{translate|assign:"pageTitleTranslated" key="submission.page.review" id=$submission->getId()}
 {elseif $round==REVIEW_ROUND_ABSTRACT}
 	{assign var="pageCrumbTitle" value="submission.abstractReview"}
-	{translate|assign:"pageTitleTranslated" key="submission.page.abstractReview" id=$submission->getPaperId()}
+	{translate|assign:"pageTitleTranslated" key="submission.page.abstractReview" id=$submission->getId()}
 {else}{* REVIEW_ROUND_PRESENTATION *}
 	{assign var="pageCrumbTitle" value="submission.paperReview"}
-	{translate|assign:"pageTitleTranslated" key="submission.page.paperReview" id=$submission->getPaperId()}
+	{translate|assign:"pageTitleTranslated" key="submission.page.paperReview" id=$submission->getId()}
 {/if}
 {include file="common/header.tpl"}
 {/strip}
 
 <ul class="menu">
-	<li><a href="{url op="submission" path=$submission->getPaperId()}">{translate key="submission.summary"}</a></li>
+	<li><a href="{url op="submission" path=$submission->getId()}">{translate key="submission.summary"}</a></li>
 	{if $submission->getReviewMode() == REVIEW_MODE_BOTH_SEQUENTIAL}
-		<li {if $round==REVIEW_ROUND_ABSTRACT}class="current"{/if}><a href="{url op="submissionReview" path=$submission->getPaperId()|to_array:$smarty.const.REVIEW_ROUND_ABSTRACT}">
+		<li {if $round==REVIEW_ROUND_ABSTRACT}class="current"{/if}><a href="{url op="submissionReview" path=$submission->getId()|to_array:$smarty.const.REVIEW_ROUND_ABSTRACT}">
 			{translate key="submission.abstractReview"}</a>
 		</li>
-		<li {if $round==REVIEW_ROUND_PRESENTATION}class="current"{/if}><a href="{url op="submissionReview" path=$submission->getPaperId()|to_array:$smarty.const.REVIEW_ROUND_PRESENTATION}">
+		<li {if $round==REVIEW_ROUND_PRESENTATION}class="current"{/if}><a href="{url op="submissionReview" path=$submission->getId()|to_array:$smarty.const.REVIEW_ROUND_PRESENTATION}">
 			{translate key="submission.paperReview"}</a>
 		</li>
 	{else}
-		<li><a href="{url op="submissionReview" path=$submission->getPaperId()|to_array:$smarty.const.REVIEW_ROUND_ABSTRACT}">{translate key="submission.review"}</a></li>
+		<li><a href="{url op="submissionReview" path=$submission->getId()|to_array:$smarty.const.REVIEW_ROUND_ABSTRACT}">{translate key="submission.review"}</a></li>
 	{/if}
 </ul>
 

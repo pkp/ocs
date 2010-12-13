@@ -86,9 +86,9 @@ class ReviewerAction extends Action {
 				return true;
 			} else {
 				if (!Request::getUserVar('continued')) {
-					$reviewingTrackDirectors = $email->toAssignedTrackDirectors($reviewerSubmission->getPaperId());
-					if (!empty($reviewingTrackDirectors)) $assignedDirectors = $email->toAssignedDirectors($reviewerSubmission->getPaperId());
-					else $assignedDirectors = $email->toAssignedDirectors($reviewerSubmission->getPaperId());
+					$reviewingTrackDirectors = $email->toAssignedTrackDirectors($reviewerSubmission->getId());
+					if (!empty($reviewingTrackDirectors)) $assignedDirectors = $email->toAssignedDirectors($reviewerSubmission->getId());
+					else $assignedDirectors = $email->toAssignedDirectors($reviewerSubmission->getId());
 					if (empty($assignedDirectors) && empty($reviewingTrackDirectors)) {
 						$schedConf =& Request::getSchedConf();
 						$email->addRecipient($schedConf->getSetting('contactEmail'), $schedConf->getSetting('contactName'));
@@ -169,8 +169,8 @@ class ReviewerAction extends Action {
 				PaperLog::logEventEntry($reviewAssignment->getSubmissionId(), $entry);
 			} else {
 				if (!Request::getUserVar('continued')) {
-					$assignedDirectors = $email->toAssignedDirectors($reviewerSubmission->getPaperId());
-					$reviewingTrackDirectors = $email->toAssignedTrackDirectors($reviewerSubmission->getPaperId());
+					$assignedDirectors = $email->toAssignedDirectors($reviewerSubmission->getId());
+					$reviewingTrackDirectors = $email->toAssignedTrackDirectors($reviewerSubmission->getId());
 					if (empty($assignedDirectors) && empty($reviewingTrackDirectors)) {
 						$schedConf =& Request::getSchedConf();
 						$email->addRecipient($schedConf->getSetting('contactEmail'), $schedConf->getSetting('contactName'));

@@ -21,10 +21,10 @@
 	<tr><td colspan="5" class="headseparator">&nbsp;</td></tr>
 
 {iterate from=submissions item=submission}
-	{assign var="paperId" value=$submission->getPaperId()}
+	{assign var="paperId" value=$submission->getId()}
 	<input type="hidden" name="paperIds[]" value="{$paperId|escape}" />
 	<tr valign="top">
-		<td>{$submission->getPaperId()}</td>
+		<td>{$submission->getId()}</td>
 		<td>{$submission->getTrackAbbrev()|escape}</td>
 		<td>{$submission->getAuthorString(true)|truncate:40:"..."|escape}</td>
 		<td><a href="{url op="submissionReview" path=$paperId}" class="action">{$submission->getLocalizedTitle()|strip_unsafe_html|truncate:60:"..."}</a></td>

@@ -26,7 +26,7 @@
 			<td class="value" width="80%">
 				{assign var="reviewFile" value=$reviewFilesByRound[$round]}
 				{if $reviewFile}
-					<a href="{url op="downloadFile" path=$submission->getPaperId()|to_array:$reviewFile->getFileId():$reviewFile->getRevision()}" class="file">{$reviewFile->getFileName()|escape}</a>&nbsp;&nbsp;{$reviewFile->getDateModified()|date_format:$dateFormatShort}
+					<a href="{url op="downloadFile" path=$submission->getId()|to_array:$reviewFile->getFileId():$reviewFile->getRevision()}" class="file">{$reviewFile->getFileName()|escape}</a>&nbsp;&nbsp;{$reviewFile->getDateModified()|date_format:$dateFormatShort}
 				{else}
 					{translate key="common.none"}
 				{/if}
@@ -66,7 +66,7 @@
 				{foreach from=$reviewerFiles item=viewableFile key=key}
 					{assign var=thisReviewer value=$start+$reviewer|chr}
 					{translate key="user.role.reviewer"} {$thisReviewer|escape}
-					<a href="{url op="downloadFile" path=$submission->getPaperId()|to_array:$viewableFile->getFileId():$viewableFile->getRevision()}" class="file">{$viewableFile->getFileName()|escape}</a>&nbsp;&nbsp;{$viewableFile->getDateModified()|date_format:$dateFormatShort}<br />
+					<a href="{url op="downloadFile" path=$submission->getId()|to_array:$viewableFile->getFileId():$viewableFile->getRevision()}" class="file">{$viewableFile->getFileName()|escape}</a>&nbsp;&nbsp;{$viewableFile->getDateModified()|date_format:$dateFormatShort}<br />
 				{/foreach}
 			{foreachelse}
 				{translate key="common.none"}
@@ -79,7 +79,7 @@
 		</td>
 		<td class="value" width="80%">
 			{foreach from=$directorFiles item=directorFile key=key}
-				<a href="{url op="downloadFile" path=$submission->getPaperId()|to_array:$directorFile->getFileId():$directorFile->getRevision()}" class="file">{$directorFile->getFileName()|escape}</a>&nbsp;&nbsp;{$directorFile->getDateModified()|date_format:$dateFormatShort}<br />
+				<a href="{url op="downloadFile" path=$submission->getId()|to_array:$directorFile->getFileId():$directorFile->getRevision()}" class="file">{$directorFile->getFileName()|escape}</a>&nbsp;&nbsp;{$directorFile->getDateModified()|date_format:$dateFormatShort}<br />
 			{foreachelse}
 				{translate key="common.none"}
 			{/foreach}
@@ -92,7 +92,7 @@
 			</td>
 			<td class="value" width="80%">
 				{foreach from=$authorFiles item=authorFile key=key}
-					<a href="{url op="downloadFile" path=$submission->getPaperId()|to_array:$authorFile->getFileId():$authorFile->getRevision()}" class="file">{$authorFile->getFileName()|escape}</a>&nbsp;&nbsp;{$authorFile->getDateModified()|date_format:$dateFormatShort}<br />
+					<a href="{url op="downloadFile" path=$submission->getId()|to_array:$authorFile->getFileId():$authorFile->getRevision()}" class="file">{$authorFile->getFileName()|escape}</a>&nbsp;&nbsp;{$authorFile->getDateModified()|date_format:$dateFormatShort}<br />
 				{foreachelse}
 					{translate key="common.none"}
 				{/foreach}

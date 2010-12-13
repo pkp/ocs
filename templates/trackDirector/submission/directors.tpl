@@ -26,7 +26,7 @@
 			<td>{if $editAssignment->getIsDirector()}{translate key="user.role.director"}{else}{translate key="user.role.trackDirector"}{/if}</td>
 			<td>
 				{assign var=emailString value=$editAssignment->getDirectorFullName()|concat:" <":$editAssignment->getDirectorEmail():">"}
-				{url|assign:"url" page="user" op="email" redirectUrl=$currentUrl to=$emailString|to_array subject=$submission->getLocalizedTitle|strip_tags paperId=$submission->getPaperId()}
+				{url|assign:"url" page="user" op="email" redirectUrl=$currentUrl to=$emailString|to_array subject=$submission->getLocalizedTitle|strip_tags paperId=$submission->getId()}
 				{$editAssignment->getDirectorFullName()|escape} {icon name="mail" url=$url}
 			</td>
 			<td>{if $editAssignment->getDateNotified()}{$editAssignment->getDateNotified()|date_format:$dateFormatShort}{else}&mdash;{/if}</td>
@@ -39,9 +39,9 @@
 	{/foreach}
 </table>
 {if $isDirector}
-	<a href="{url op="assignDirector" path="trackDirector" paperId=$submission->getPaperId()}" class="action">{translate key="director.paper.assignTrackDirector"}</a>
-	|&nbsp;<a href="{url op="assignDirector" path="director" paperId=$submission->getPaperId()}" class="action">{translate key="director.paper.assignDirector"}</a>
-	{if !$selfAssigned}|&nbsp;<a href="{url op="assignDirector" path="director" directorId=$userId paperId=$submission->getPaperId()}" class="action">{translate key="common.addSelf"}</a>{/if}
+	<a href="{url op="assignDirector" path="trackDirector" paperId=$submission->getId()}" class="action">{translate key="director.paper.assignTrackDirector"}</a>
+	|&nbsp;<a href="{url op="assignDirector" path="director" paperId=$submission->getId()}" class="action">{translate key="director.paper.assignDirector"}</a>
+	{if !$selfAssigned}|&nbsp;<a href="{url op="assignDirector" path="director" directorId=$userId paperId=$submission->getId()}" class="action">{translate key="common.addSelf"}</a>{/if}
 {/if}
 </div>
 

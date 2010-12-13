@@ -97,7 +97,7 @@ class TrackSubmissionHandler extends AuthorHandler {
 		}
 
 		$publishedPaperDao =& DAORegistry::getDAO('PublishedPaperDAO');
-		$publishedPaper =& $publishedPaperDao->getPublishedPaperByPaperId($submission->getPaperId());
+		$publishedPaper =& $publishedPaperDao->getPublishedPaperByPaperId($submission->getId());
 
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('mayEditPaper', AuthorAction::mayEditPaper($submission));
@@ -119,7 +119,7 @@ class TrackSubmissionHandler extends AuthorHandler {
 
 		// FIXME: Author code should not use track director object
 		$trackDirectorSubmissionDao =& DAORegistry::getDAO('TrackDirectorSubmissionDAO');
-		$trackDirectorSubmission =& $trackDirectorSubmissionDao->getTrackDirectorSubmission($submission->getPaperId());
+		$trackDirectorSubmission =& $trackDirectorSubmissionDao->getTrackDirectorSubmission($submission->getId());
 		$templateMgr->assign_by_ref('directorDecisionOptions', $trackDirectorSubmission->getDirectorDecisionOptions());
 
 		$templateMgr->assign('helpTopicId','editorial.authorsRole');
@@ -179,7 +179,7 @@ class TrackSubmissionHandler extends AuthorHandler {
 
 		// FIXME: Author code should not use track director object
 		$trackDirectorSubmissionDao =& DAORegistry::getDAO('TrackDirectorSubmissionDAO');
-		$trackDirectorSubmission =& $trackDirectorSubmissionDao->getTrackDirectorSubmission($authorSubmission->getPaperId());
+		$trackDirectorSubmission =& $trackDirectorSubmissionDao->getTrackDirectorSubmission($authorSubmission->getId());
 		$templateMgr->assign_by_ref('directorDecisionOptions', $trackDirectorSubmission->getDirectorDecisionOptions());
 
 		// Determine whether or not certain features should be disabled (i.e. past deadline)
@@ -436,7 +436,7 @@ class TrackSubmissionHandler extends AuthorHandler {
 				$request->redirect(
 					null, null, null, 'submit',
 					array($authorSubmission->getSubmissionProgress()),
-					array('paperId' => $authorSubmission->getPaperId())
+					array('paperId' => $authorSubmission->getId())
 				);
 			}
 		}

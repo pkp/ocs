@@ -173,7 +173,7 @@ class ReviewerSubmissionDAO extends DAO {
 				WHERE review_id = ?',
 				$this->datetimeToDB($reviewerSubmission->getDateAssigned()), $this->datetimeToDB($reviewerSubmission->getDateNotified()), $this->datetimeToDB($reviewerSubmission->getDateConfirmed()), $this->datetimeToDB($reviewerSubmission->getDateCompleted()), $this->datetimeToDB($reviewerSubmission->getDateAcknowledged()), $this->datetimeToDB($reviewerSubmission->getDateDue())),
 			array(
-				$reviewerSubmission->getPaperId(),
+				$reviewerSubmission->getId(),
 				$reviewerSubmission->getReviewerId(),
 				$reviewerSubmission->getRound(),
 				$reviewerSubmission->getRecommendation(),

@@ -37,7 +37,7 @@
 		{assign var=lastTrackId value=$submission->getTrackId()}
 	</tr>
 
-	{assign var="paperId" value=$submission->getPaperId()}
+	{assign var="paperId" value=$submission->getId()}
 	<input type="hidden" name="paperIds[]" value="{$paperId|escape}" />
 	<tr valign="top">
 		<td>{$paperId|escape}</td>
@@ -45,8 +45,8 @@
 		<td>{$submission->getAuthorString(true)|truncate:40:"..."|escape}</td>
 		<td><a href="{url op="submissionReview" path=$paperId}" class="action">{$submission->getLocalizedTitle()|strip_unsafe_html|truncate:60:"..."}</a></td>
 		<td>
-			<a href="{url op="movePaper" d=u paperId=$submission->getPaperId()}" class="plain">&uarr;</a>
-			<a href="{url op="movePaper" d=d paperId=$submission->getPaperId()}" class="plain">&darr;</a>
+			<a href="{url op="movePaper" d=u paperId=$submission->getId()}" class="plain">&uarr;</a>
+			<a href="{url op="movePaper" d=d paperId=$submission->getId()}" class="plain">&darr;</a>
 		</td>
 		<td align="right">
 			{assign var="status" value=$submission->getStatus()}

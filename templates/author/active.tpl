@@ -22,7 +22,7 @@
 	<tr><td colspan="6" class="headseparator">&nbsp;</td></tr>
 
 {iterate from=submissions item=submission}
-	{assign var="paperId" value=$submission->getPaperId()}
+	{assign var="paperId" value=$submission->getId()}
 	{assign var="currentRound" value=$submission->getCurrentRound()}
 	{assign var="submissionProgress" value=$submission->getSubmissionProgress()}
 	{assign var="status" value=$submission->getSubmissionStatus()}

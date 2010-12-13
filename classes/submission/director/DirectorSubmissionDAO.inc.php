@@ -129,7 +129,7 @@ class DirectorSubmissionDAO extends DAO {
 				(?, ?, %s, %s, %s)',
 				$this->datetimeToDB($directorSubmission->getDateNotified()), $this->datetimeToDB($directorSubmission->getDateCompleted()), $this->datetimeToDB($directorSubmission->getDateAcknowledged())),
 			array(
-				$directorSubmission->getPaperId(),
+				$directorSubmission->getId(),
 				$directorSubmission->getDirectorId()
 			)
 		);
@@ -139,7 +139,7 @@ class DirectorSubmissionDAO extends DAO {
 		// Insert review assignments.
 		$reviewAssignments =& $directorSubmission->getReviewAssignments();
 		for ($i=0, $count=count($reviewAssignments); $i < $count; $i++) {
-			$reviewAssignments[$i]->setPaperId($directorSubmission->getPaperId());
+			$reviewAssignments[$i]->setPaperId($directorSubmission->getId());
 			$this->reviewAssignmentDao->insertReviewAssignment($reviewAssignments[$i]);
 		}
 

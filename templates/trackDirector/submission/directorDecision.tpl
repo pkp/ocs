@@ -16,7 +16,7 @@
 	<td class="label" width="20%">{translate key="director.paper.selectDecision"}</td>
 	<td width="80%" class="value" colspan="2">
 		<form method="post" action="{url op="recordDecision" path=$round}">
-			<input type="hidden" name="paperId" value="{$submission->getPaperId()}" />
+			<input type="hidden" name="paperId" value="{$submission->getId()}" />
 			<select name="decision" size="1" class="selectMenu"{if not $allowRecommendation} disabled="disabled"{/if}>
 				{assign var=availableDirectorDecisionOptions value=$submission->getDirectorDecisionOptions($currentSchedConf,$round)}
 				{html_options_translate options=$availableDirectorDecisionOptions selected=$lastDecision}
@@ -41,19 +41,19 @@
 <tr valign="top">
 	<td class="label">{translate key="submission.notifyAuthor"}</td>
 	<td class="value" colspan="2">
-		{url|assign:"notifyAuthorUrl" op="emailDirectorDecisionComment" paperId=$submission->getPaperId()}
+		{url|assign:"notifyAuthorUrl" op="emailDirectorDecisionComment" paperId=$submission->getId()}
 		{icon name="mail" url=$notifyAuthorUrl}
 		&nbsp;&nbsp;&nbsp;&nbsp;
 		{translate key="submission.directorAuthorRecord"}
 		{if $submission->getMostRecentDirectorDecisionComment()}
 			{assign var="comment" value=$submission->getMostRecentDirectorDecisionComment()}
-			<a href="javascript:openComments('{url op="viewDirectorDecisionComments" path=$submission->getPaperId() anchor=$comment->getId()}');" class="icon">{icon name="comment"}</a>&nbsp;&nbsp;{$comment->getDatePosted()|date_format:$dateFormatShort}
+			<a href="javascript:openComments('{url op="viewDirectorDecisionComments" path=$submission->getId() anchor=$comment->getId()}');" class="icon">{icon name="comment"}</a>&nbsp;&nbsp;{$comment->getDatePosted()|date_format:$dateFormatShort}
 		{else}
-			<a href="javascript:openComments('{url op="viewDirectorDecisionComments" path=$submission->getPaperId()}');" class="icon">{icon name="comment"}</a>{translate key="common.noComments"}
+			<a href="javascript:openComments('{url op="viewDirectorDecisionComments" path=$submission->getId()}');" class="icon">{icon name="comment"}</a>{translate key="common.noComments"}
 		{/if}
 		{if $lastDecision == SUBMISSION_DIRECTOR_DECISION_DECLINE}
 			<br />
-			{if $submission->getStatus() == STATUS_ARCHIVED}{translate key="submissions.archived"}{else}<a href="{url op="archiveSubmission" path=$submission->getPaperId()}" onclick="return window.confirm('{translate|escape:"jsparam" key="director.submissionReview.confirmToArchive"}')" class="action">{translate key="director.paper.sendToArchive"}</a>{/if}
+			{if $submission->getStatus() == STATUS_ARCHIVED}{translate key="submissions.archived"}{else}<a href="{url op="archiveSubmission" path=$submission->getId()}" onclick="return window.confirm('{translate|escape:"jsparam" key="director.submissionReview.confirmToArchive"}')" class="action">{translate key="director.paper.sendToArchive"}</a>{/if}
 			{if $submission->getDateToArchive()}{$submission->getDateToArchive()|date_format:$dateFormatShort}{/if}
 		{/if}
 	</td>
@@ -61,7 +61,7 @@
 </table>
 </div>
 <form method="post" action="{url op="directorReview" path=$round}" enctype="multipart/form-data">
-<input type="hidden" name="paperId" value="{$submission->getPaperId()}" />
+<input type="hidden" name="paperId" value="{$submission->getId()}" />
 {assign var=authorFiles value=$submission->getAuthorFileRevisions($round)}
 {assign var=directorFiles value=$submission->getDirectorFileRevisions($round)}
 {assign var=reviewFile value=$submission->getReviewFile()}
@@ -79,7 +79,7 @@
 						<input type="radio" name="directorDecisionFile" value="{$reviewFile->getFileId()},{$reviewFile->getRevision()}" />
 						{assign var="sendableVersionExists" value=true}
 					{/if}
-					<a href="{url op="downloadFile" path=$submission->getPaperId()|to_array:$reviewFile->getFileId():$reviewFile->getRevision()}" class="file">{$reviewFile->getFileName()|escape}</a>&nbsp;&nbsp;
+					<a href="{url op="downloadFile" path=$submission->getId()|to_array:$reviewFile->getFileId():$reviewFile->getRevision()}" class="file">{$reviewFile->getFileName()|escape}</a>&nbsp;&nbsp;
 					{$reviewFile->getDateModified()|date_format:$dateFormatShort}
 				</td>
 			</tr>
@@ -95,7 +95,7 @@
 						<input type="radio" name="directorDecisionFile" value="{$authorFile->getFileId()},{$authorFile->getRevision()}" />
 						{assign var="sendableVersionExists" value=true}
 					{/if}
-					<a href="{url op="downloadFile" path=$submission->getPaperId()|to_array:$authorFile->getFileId():$authorFile->getRevision()}" class="file">{$authorFile->getFileName()|escape}</a>&nbsp;&nbsp;
+					<a href="{url op="downloadFile" path=$submission->getId()|to_array:$authorFile->getFileId():$authorFile->getRevision()}" class="file">{$authorFile->getFileName()|escape}</a>&nbsp;&nbsp;
 						{$authorFile->getDateModified()|date_format:$dateFormatShort}
 				</td>
 			</tr>
@@ -116,10 +116,10 @@
 						<input type="radio" name="directorDecisionFile" value="{$directorFile->getFileId()},{$directorFile->getRevision()}" />
 						{assign var="sendableVersionExists" value=true}
 					{/if}
-					<a href="{url op="downloadFile" path=$submission->getPaperId()|to_array:$directorFile->getFileId():$directorFile->getRevision()}" class="file">{$directorFile->getFileName()|escape}</a>&nbsp;&nbsp;
+					<a href="{url op="downloadFile" path=$submission->getId()|to_array:$directorFile->getFileId():$directorFile->getRevision()}" class="file">{$directorFile->getFileName()|escape}</a>&nbsp;&nbsp;
 					{$directorFile->getDateModified()|date_format:$dateFormatShort}
 				</td>
-				<td width="30%" class="value"><a href="{url op="deletePaperFile" path=$submission->getPaperId()|to_array:$directorFile->getFileId():$directorFile->getRevision()}" class="action">{translate key="common.delete"}</a></td>
+				<td width="30%" class="value"><a href="{url op="deletePaperFile" path=$submission->getId()|to_array:$directorFile->getFileId():$directorFile->getRevision()}" class="action">{translate key="common.delete"}</a></td>
 			</tr>
 		{foreachelse}
 			<tr valign="top">
