@@ -26,11 +26,6 @@ class RegistrantReportPlugin extends ReportPlugin {
 	 */
 	function register($category, $path) {
 		$success = parent::register($category, $path);
-		if ($success) {
-			$this->import('RegistrantReportDAO');
-			$registrantReportDAO = new RegistrantReportDAO();
-			DAORegistry::registerDAO('RegistrantReportDAO', $registrantReportDAO);
-		}
 		$this->addLocaleData();
 		return $success;
 	}
@@ -57,37 +52,36 @@ class RegistrantReportPlugin extends ReportPlugin {
 		$schedConf =& Request::getSchedConf();
 		Locale::requireComponents(array(LOCALE_COMPONENT_APPLICATION_COMMON, LOCALE_COMPONENT_PKP_USER, LOCALE_COMPONENT_OCS_MANAGER));
 
-		header('content-type: text/comma-separated-values');
-		header('content-disposition: attachment; filename=registrants-' . date('Ymd') . '.csv');
+//		header('content-type: text/comma-separated-values');
+//		header('content-disposition: attachment; filename=registrants-' . date('Ymd') . '.csv');
 
-		$registrantReportDao =& DAORegistry::getDAO('RegistrantReportDAO');
-		list($registrants, $registrantOptions) = $registrantReportDao->getRegistrantReport(
-			$conference->getId(),
-			$schedConf->getId()
-		);
-				
+		$registrationDao =& DAORegistry::getDAO('RegistrationDAO');
+		$registrationOptionDao =& DAORegistry::getDAO('RegistrationOptionDAO');
+		$registrationTypeDao =& DAORegistry::getDAO('RegistrationTypeDAO');
+		$userDao =& DAORegistry::getDAO('UserDAO');
+
 		$columns = array(
-			'registration_id' => Locale::translate('plugins.reports.registrants.registrationid'),
-			'userid' => Locale::translate('plugins.reports.registrants.userid'),
-			'uname' => Locale::translate('user.username'),
-			'fname' => Locale::translate('user.firstName'),
-			'mname' => Locale::translate('user.middleName'),
-			'lname' => Locale::translate('user.lastName'),
-			'affiliation' => Locale::translate('user.affiliation'),
-			'url' => Locale::translate('user.url'),
-			'email' => Locale::translate('user.email'),
-			'phone' => Locale::translate('user.phone'),
-			'fax' => Locale::translate('user.fax'),
-			'mailingAddress' => Locale::translate('common.mailingAddress'),
-			'billingAddress' => Locale::translate('common.billingAddress'),
-			'country' => Locale::translate('common.country'),
-			'type' => Locale::translate('manager.registration.registrationType')
+			Locale::translate('plugins.reports.registrants.registrationid'),
+			Locale::translate('plugins.reports.registrants.userid'),
+			Locale::translate('user.username'),
+			Locale::translate('user.firstName'),
+			Locale::translate('user.middleName'),
+			Locale::translate('user.lastName'),
+			Locale::translate('user.affiliation'),
+			Locale::translate('user.url'),
+			Locale::translate('user.email'),
+			Locale::translate('user.phone'),
+			Locale::translate('user.fax'),
+			Locale::translate('common.mailingAddress'),
+			Locale::translate('common.billingAddress'),
+			Locale::translate('common.country'),
+			Locale::translate('manager.registration.registrationType')
 		);
 		
-		$registrationOptionDAO =& DAORegistry::getDAO('RegistrationOptionDAO');
-		$registrationOptions =& $registrationOptionDAO->getRegistrationOptionsBySchedConfId($schedConf->getId());
+		$registrationOptions =& $registrationOptionDao->getRegistrationOptionsBySchedConfId($schedConf->getId());
 		
-		// column name = 'option' + optionId => column value = name of the registration option
+		// 'option' + optionId => name of the registration option
+		$registrationOptionIds = array();
 		while ($registrationOption =& $registrationOptions->next()) {
 			$registrationOptionIds[] = $registrationOption->getOptionId();
 			$columns = array_merge($columns, array('option' . $registrationOption->getOptionId() => $registrationOption->getRegistrationOptionName()));
@@ -95,49 +89,77 @@ class RegistrantReportPlugin extends ReportPlugin {
 		} 
 		
 		$columns = array_merge($columns, array(
-			'regdate' => Locale::translate('manager.registration.dateRegistered'),
-			'paiddate' => Locale::translate('manager.registration.datePaid'),
-			'specialreq' => Locale::translate('schedConf.registration.specialRequests')
-			));
+			Locale::translate('manager.registration.dateRegistered'),
+			Locale::translate('manager.registration.datePaid'),
+			Locale::translate('schedConf.registration.specialRequests')
+		));
 
 
 		$fp = fopen('php://output', 'wt');
 		String::fputcsv($fp, array_values($columns));
 
-		while ($row =& $registrants->next()) {
-			if ( isset($registrantOptions[$row['registration_id']]) ) { 
-				$options = $this->mergeRegistrantOptions($registrationOptionIds, $registrantOptions[$row['registration_id']]);
-			} else {
-				$options = $this->mergeRegistrantOptions($registrationOptionIds);
+		$registrationOptionCosts = $registrationTypes = array();
+
+		$registrations =& $registrationDao->getRegistrationsBySchedConfId($schedConf->getId());
+		while ($registration =& $registrations->next()) {
+			$registrationId = $registration->getId();
+			$registrationTypeId = $registration->getTypeId();
+
+			// Get registration option costs, caching as we go.
+			if (!isset($registrationOptionCosts[$registrationTypeId])) {
+				$registrationOptionCosts[$registrationTypeId] = $registrationTypeDao->getRegistrationOptionCosts($registrationTypeId);
 			}
-			
-			foreach ($columns as $index => $junk) {
-				if (isset($row[$index])) {
-					$columns[$index] = $row[$index];
-				} else if (isset($options[$index])) {
-					$columns[$index] = $options[$index];
-				} else $columns[$index] = '';
+
+			// Get the registration type, caching as we go.
+			if (!isset($registrationTypes[$registrationTypeId])) {
+				$registrationTypes[$registrationTypeId] =& $registrationTypeDao->getRegistrationType($registrationTypeId);
 			}
+			$registrationType =& $registrationTypes[$registrationTypeId];
+
+			// Get registrant user object
+			$user =& $userDao->getUser($registration->getUserId());
+
+			$columns = array(
+				$registrationId,
+				$user->getId(),
+				$user->getUsername(),
+				$user->getFirstName(),
+				$user->getMiddleName(),
+				$user->getLastName(),
+				$user->getLocalizedAffiliation(),
+				$user->getUrl(),
+				$user->getEmail(),
+				$user->getPhone(),
+				$user->getFax(),
+				$user->getMailingAddress(),
+				$user->getBillingAddress(),
+				$user->getCountry(),
+				$registrationType->getRegistrationTypeName()
+			);
 			
+			// Get selected registration options; calculate costs
+			$totalCost = $registrationType->getCost();
+			$selectedOptionIds = $registrationOptionDao->getRegistrationOptions($registrationId);
+			foreach ($registrationOptionIds as $optionId) {
+				if (in_array($optionId, $selectedOptionIds)) {
+					$columns[] = Locale::translate('common.yes');
+					if (isset($registrationOptionCosts[$registrationTypeId][$optionId])) {
+						$totalCost += $registrationOptionCosts[$registrationTypeId][$optionId];
+					}
+				} else {
+					$columns[] = Locale::translate('common.no');
+				}
+			}
+
+			$columns[] = $registration->getDateRegistered();
+			$columns[] = $registration->getDatePaid();
+			$columns[] = $registration->getSpecialRequests();
+			$columns[] = sprintf('%.2f', $totalCost);
+
 			String::fputcsv($fp, $columns);
-			unset($row);
+			unset($registration, $registrationType, $user);
 		}
 		fclose($fp);
-	}
-
-	
-	/**
-	 * Make a single array of "Yes"/"No" for each option id
-	 * @param $registrationOptionIds array list of Option Ids for a given schedConfId
-	 * @param $registrantOptions array list of Option Ids for a given Registrant
-	 * @return array
-	 */
-	function mergeRegistrantOptions($registrationOptionIds, $registrantOptions = array()) {
-		$returner = array();
-		foreach ( $registrationOptionIds as $id ) { 
-			$returner['option'. $id] = ( in_array($id, $registrantOptions) )?Locale::translate('common.yes'):Locale::translate('common.no');
-		}
-		return $returner;
 	}
 }
 

@@ -241,10 +241,11 @@ class RegistrationForm extends Form {
 		// Record registration options (and tally up itemized costs for the email)
 		while ($registrationOption =& $registrationOptions->next()) {
 			$optionId = (int) $registrationOption->getOptionId();
+			$optionCost = isset($registrationOptionCosts[$optionId]) ? $registrationOptionCosts[$optionId] : 0;
 			if (in_array($optionId, $registrationOptionIds)) {
 				$registrationOptionDao->insertRegistrationOptionAssoc($this->registrationId, $registrationOption->getOptionId());
-				$registrationOptionText .= $registrationOption->getRegistrationOptionName() . ' - ' . sprintf('%.2f', $registrationOptionCosts[$registrationOption->getOptionId()]) . ' ' . $registrationType->getCurrencyCodeAlpha() . "\n";
-				$totalCost += $registrationOptionCosts[$registrationOption->getOptionId()];
+				$registrationOptionText .= $registrationOption->getRegistrationOptionName() . ' - ' . sprintf('%.2f', $optionCost) . ' ' . $registrationType->getCurrencyCodeAlpha() . "\n";
+				$totalCost += $optionCost;
 			}
 			unset($registrationOption);
 		}
