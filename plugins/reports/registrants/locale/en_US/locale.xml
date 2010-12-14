@@ -17,4 +17,5 @@
 	<message key="plugins.reports.registrants.description">This plugin implements a CSV report containing a list of registrants along with their registration information such as contact details, payment status, etc.</message>
 	<message key="plugins.reports.registrants.userid">User ID</message>
 	<message key="plugins.reports.registrants.registrationid">Registration ID</message>
+	<message key="plugins.reports.registrants.total">Total</message>
 </locale>

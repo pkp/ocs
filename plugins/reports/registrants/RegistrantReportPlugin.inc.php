@@ -52,8 +52,8 @@ class RegistrantReportPlugin extends ReportPlugin {
 		$schedConf =& Request::getSchedConf();
 		Locale::requireComponents(array(LOCALE_COMPONENT_APPLICATION_COMMON, LOCALE_COMPONENT_PKP_USER, LOCALE_COMPONENT_OCS_MANAGER));
 
-//		header('content-type: text/comma-separated-values');
-//		header('content-disposition: attachment; filename=registrants-' . date('Ymd') . '.csv');
+		header('content-type: text/comma-separated-values');
+		header('content-disposition: attachment; filename=registrants-' . date('Ymd') . '.csv');
 
 		$registrationDao =& DAORegistry::getDAO('RegistrationDAO');
 		$registrationOptionDao =& DAORegistry::getDAO('RegistrationOptionDAO');
@@ -91,7 +91,8 @@ class RegistrantReportPlugin extends ReportPlugin {
 		$columns = array_merge($columns, array(
 			Locale::translate('manager.registration.dateRegistered'),
 			Locale::translate('manager.registration.datePaid'),
-			Locale::translate('schedConf.registration.specialRequests')
+			Locale::translate('schedConf.registration.specialRequests'),
+			Locale::translate('plugins.reports.registrants.total')
 		));
 
 
