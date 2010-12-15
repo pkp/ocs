@@ -53,7 +53,7 @@ class SearchHandler extends Handler {
 
 		if (Request::getConference() == null) {
 			$conferenceDao =& DAORegistry::getDAO('ConferenceDAO');
-			$conferences =& $conferenceDao->getEnabledConferenceTitles();  //Enabled added
+			$conferences =& $conferenceDao->getConferenceTitles(true);  //Enabled added
 			$templateMgr->assign('siteSearch', true);
 			$templateMgr->assign('conferenceOptions', array('' => Locale::Translate('search.allConferences')) + $conferences);
 			$yearRange = $publishedPaperDao->getPaperYearRange(null);
@@ -229,13 +229,13 @@ class SearchHandler extends Handler {
 		$conferenceDao =& DAORegistry::getDAO('ConferenceDAO');
 		$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
 
-		$conferences =& $conferenceDao->getEnabledConferences();
+		$conferences =& $conferenceDao->getConferences(true);
 		$conferenceIndex = array();
 		$schedConfIndex = array();
 		while ($conference =& $conferences->next()) {
 			$conferenceId = $conference->getId();
 			$conferenceIndex[$conferenceId] =& $conference;
-			$schedConfsIterator =& $schedConfDao->getSchedConfsByConferenceId($conferenceId);
+			$schedConfsIterator =& $schedConfDao->getSchedConfs(true, $conferenceId);
 			$schedConfIndex[$conferenceId] =& $schedConfsIterator->toArray();
 			unset($schedConfsIterator);
 			unset($conference);

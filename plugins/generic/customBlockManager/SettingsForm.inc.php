@@ -73,14 +73,14 @@ class SettingsForm extends Form {
 		$plugin =& $this->plugin;
 		$conferenceId = $this->conferenceId;
 
-		$pluginSettingsDAO =& DAORegistry::getDAO('PluginSettingsDAO');
+		$pluginSettingsDao =& DAORegistry::getDAO('PluginSettingsDAO');
 
 		$deletedBlocks = explode(':',$this->getData('deletedBlocks'));
 		foreach ($deletedBlocks as $deletedBlock) {
-			$pluginSettingsDAO->deleteSetting($conferenceId, 0, $deletedBlock.'CustomBlockPlugin', 'enabled');
-			$pluginSettingsDAO->deleteSetting($conferenceId, 0, $deletedBlock.'CustomBlockPlugin', 'seq');
-			$pluginSettingsDAO->deleteSetting($conferenceId, 0, $deletedBlock.'CustomBlockPlugin', 'context');
-			$pluginSettingsDAO->deleteSetting($conferenceId, 0, $deletedBlock.'CustomBlockPlugin', 'blockContent');
+			$pluginSettingsDao->deleteSetting($conferenceId, 0, $deletedBlock.'CustomBlockPlugin', 'enabled');
+			$pluginSettingsDao->deleteSetting($conferenceId, 0, $deletedBlock.'CustomBlockPlugin', 'seq');
+			$pluginSettingsDao->deleteSetting($conferenceId, 0, $deletedBlock.'CustomBlockPlugin', 'context');
+			$pluginSettingsDao->deleteSetting($conferenceId, 0, $deletedBlock.'CustomBlockPlugin', 'blockContent');
 		}
 
 		//sort the blocks in alphabetical order

@@ -46,7 +46,7 @@ class AnnouncementForm extends PKPAnnouncementForm {
 
 		$conference =& Request::getConference();
 		$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
-		$schedConfs =& $schedConfDao->getSchedConfsByConferenceId($conference->getId());
+		$schedConfs =& $schedConfDao->getSchedConfs(false, $conference->getId());
 		$templateMgr->assign('schedConfs', $schedConfs);
 
 		parent::display();

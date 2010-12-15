@@ -78,7 +78,7 @@ class UserHandler extends Handler {
 
 				// Second, scheduled conference-specific roles
 				// TODO: don't display scheduled conference roles if granted at conference level too?
-				$schedConfs =& $schedConfDao->getSchedConfsByConferenceId($conferenceId);
+				$schedConfs =& $schedConfDao->getSchedConfs(false, $conferenceId);
 				while ($schedConf =& $schedConfs->next()) {
 					$schedConfId = $schedConf->getId();
 
@@ -110,7 +110,7 @@ class UserHandler extends Handler {
 			
 			$this->_getRoleDataForConference($userId, $conferenceId, 0, $submissionsCount, $isValid);
 
-			$schedConfs =& $schedConfDao->getSchedConfsByConferenceId($conferenceId);
+			$schedConfs =& $schedConfDao->getSchedConfs(false, $conferenceId);
 			while($schedConf =& $schedConfs->next()) {
 				$schedConfId = $schedConf->getId();
 				$schedConfRoles =& $roleDao->getRolesByUserId($userId, $conferenceId, $schedConfId);

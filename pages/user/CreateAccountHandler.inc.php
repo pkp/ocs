@@ -70,7 +70,7 @@ class CreateAccountHandler extends UserHandler {
 			// conference and we'll end up above after a redirect.
 
 			$conferencesDao =& DAORegistry::getDAO('ConferenceDAO');
-			$conferences =& $conferencesDao->getEnabledConferences();
+			$conferences =& $conferencesDao->getConferences(true);
 
 			$templateMgr =& TemplateManager::getManager();
 			$templateMgr->assign('source', Request::getUserVar('source'));

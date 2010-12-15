@@ -30,9 +30,9 @@ class AnnouncementHandler extends PKPAnnouncementHandler {
 		$templateMgr =& TemplateManager::getManager();		
 
  		$conference =& Request::getConference();
-		if ( $conference ) {
+		if ($conference) {
 			$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
-			$schedConfs =& $schedConfDao->getSchedConfsByConferenceId($conference->getId());
+			$schedConfs =& $schedConfDao->getSchedConfs(false, $conference->getId());
 			$schedConfNames = array(0 => Locale::translate('common.all'));
 			foreach($schedConfs->toArray() as $schedConf) {
 				$schedConfNames[$schedConf->getId()] = $schedConf->getLocalizedTitle();

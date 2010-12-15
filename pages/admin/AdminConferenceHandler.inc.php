@@ -34,7 +34,7 @@ class AdminConferenceHandler extends AdminHandler {
 		$rangeInfo = Handler::getRangeInfo('conferences');
 
 		$conferenceDao =& DAORegistry::getDAO('ConferenceDAO');
-		$conferences =& $conferenceDao->getConferences($rangeInfo);
+		$conferences =& $conferenceDao->getConferences(false, $rangeInfo);
 
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->addJavaScript('lib/pkp/js/lib/jquery/plugins/jquery.tablednd.js');

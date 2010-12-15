@@ -427,10 +427,10 @@ class Upgrade extends Installer {
 	 * For 2.3 update.  Go through all user email templates and change {$presenter to {$author
 	 */
 	function changePresenterInUserEmailTemplates() {
-		$emailTemplateDAO =& DAORegistry::getDAO('EmailTemplateDAO');
+		$emailTemplateDao =& DAORegistry::getDAO('EmailTemplateDAO');
 
 		// Reset email templates
-		$result =& $emailTemplateDAO->retrieve('SELECT email_key, locale, body, subject FROM email_templates_data');
+		$result =& $emailTemplateDao->retrieve('SELECT email_key, locale, body, subject FROM email_templates_data');
 		while (!$result->EOF) {
 			$row = $result->GetRowAssoc(false);
 
@@ -439,14 +439,14 @@ class Upgrade extends Installer {
 			$newSubject = str_replace('{$presenterName}', '{$authorName}', $row['subject']);
 			$newSubject = str_replace('{$presenterUsername}', '{$authorUsername}', $newSubject);
 
-			$emailTemplateDAO->update('UPDATE email_templates_data SET body = ?, subject = ? WHERE email_key = ? AND locale = ?', array($newBody, $newSubject, $row['email_key'], $row['locale']));
+			$emailTemplateDao->update('UPDATE email_templates_data SET body = ?, subject = ? WHERE email_key = ? AND locale = ?', array($newBody, $newSubject, $row['email_key'], $row['locale']));
 			$result->MoveNext();
 		}
 		$result->Close();
 		unset($result);
 
 		// Reset default email templates
-		$result =& $emailTemplateDAO->retrieve('SELECT email_key, locale, body, subject FROM email_templates_default_data');
+		$result =& $emailTemplateDao->retrieve('SELECT email_key, locale, body, subject FROM email_templates_default_data');
 		while (!$result->EOF) {
 			$row = $result->GetRowAssoc(false);
 
@@ -455,7 +455,7 @@ class Upgrade extends Installer {
 			$newSubject = str_replace('{$presenterName}', '{$authorName}', $row['subject']);
 			$newSubject = str_replace('{$presenterUsername}', '{$authorUsername}', $newSubject);
 
-			$emailTemplateDAO->update('UPDATE email_templates_default_data SET body = ?, subject = ? WHERE email_key = ? AND locale = ?', array($newBody, $newSubject, $row['email_key'], $row['locale']));
+			$emailTemplateDao->update('UPDATE email_templates_default_data SET body = ?, subject = ? WHERE email_key = ? AND locale = ?', array($newBody, $newSubject, $row['email_key'], $row['locale']));
 			$result->MoveNext();
 		}
 		$result->Close();
@@ -485,7 +485,7 @@ class Upgrade extends Installer {
 
 			foreach ($locales as $locale) Locale::requireComponents(array(LOCALE_COMPONENT_OCS_DEFAULT), $locale);
 
-			$schedConfs =& $schedConfDao->getSchedConfsByConferenceId($conference->getId());
+			$schedConfs =& $schedConfDao->getSchedConfs(false, $conference->getId());
 			while ($schedConf =& $schedConfs->next()) {
 				$allowIndividualSubmissions = $schedConf->getSetting('allowIndividualSubmissions');
 				$allowPanelSubmissions = $schedConf->getSetting('allowPanelSubmissions');

@@ -71,7 +71,7 @@ class AboutHandler extends Handler {
 			$about = $site->getLocalizedAbout();
 			$templateMgr->assign('about', $about);
 
-			$conferences =& $conferenceDao->getEnabledConferences(); //Enabled Added
+			$conferences =& $conferenceDao->getConferences(true);
 			$templateMgr->assign_by_ref('conferences', $conferences);
 			$templateMgr->display('about/site.tpl');
 		}
@@ -389,7 +389,7 @@ class AboutHandler extends Handler {
 
 		if ($user) {
 			$rolesByConference = array();
-			$conferences =& $conferenceDao->getEnabledConferences();
+			$conferences =& $conferenceDao->getConferences(true);
 			// Fetch the user's roles for each conference
 			foreach ($conferences->toArray() as $conference) {
 				$roles =& $roleDao->getRolesByUserId($user->getId(), $conference->getId());
@@ -399,7 +399,7 @@ class AboutHandler extends Handler {
 			}
 		}
 
-		$conferences =& $conferenceDao->getEnabledConferences();
+		$conferences =& $conferenceDao->getConferences(true);
 		$templateMgr->assign_by_ref('conferences', $conferences->toArray());
 		if (isset($rolesByConference)) {
 			$templateMgr->assign_by_ref('rolesByConference', $rolesByConference);

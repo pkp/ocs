@@ -19,12 +19,11 @@ import('classes.announcement.Announcement');
 import('lib.pkp.classes.announcement.PKPAnnouncementDAO');
 
 class AnnouncementDAO extends PKPAnnouncementDAO {
-
 	function &getAnnouncementsByConferenceId($conferenceId, $schedConfId = 0, $rangeInfo = null) {
 		$conferenceArgs = array(ASSOC_TYPE_CONFERENCE, $conferenceId);
 		if($schedConfId == -1) {
-			$schedConfDAO =& DAORegistry::getDAO('SchedConfDAO');
-			$schedConfs = $schedConfDAO->getSchedConfsByConferenceId($conferenceId);
+			$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
+			$schedConfs = $schedConfDao->getSchedConfs(false, $conferenceId);
 			$schedConfArgs = array();
 			while (!$schedConfs->eof()) {
 				$schedConf =& $schedConfs->next();			
@@ -53,8 +52,8 @@ class AnnouncementDAO extends PKPAnnouncementDAO {
 
 		$conferenceArgs = array(ASSOC_TYPE_CONFERENCE, $conferenceId);
 		if($schedConfId == -1) {
-			$schedConfDAO =& DAORegistry::getDAO('SchedConfDAO');
-			$schedConfs = $schedConfDAO->getSchedConfsByConferenceId($conferenceId);
+			$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
+			$schedConfs = $schedConfDao->getSchedConfs(false, $conferenceId);
 			$schedConfArgs = array();
 			while (!$schedConfs->eof()) {
 				$schedConf =& $schedConfs->next();			
@@ -83,8 +82,8 @@ class AnnouncementDAO extends PKPAnnouncementDAO {
 	function &getNumAnnouncementsNotExpiredByConferenceId($conferenceId, $schedConfId = 0, $numAnnouncements, $rangeInfo = null) {
 		$conferenceArgs = array(ASSOC_TYPE_CONFERENCE, $conferenceId);
 		if($schedConfId == -1) {
-			$schedConfDAO =& DAORegistry::getDAO('SchedConfDAO');
-			$schedConfs = $schedConfDAO->getSchedConfsByConferenceId($conferenceId);
+			$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
+			$schedConfs = $schedConfDao->getSchedConfs(false, $conferenceId);
 			$schedConfArgs = array();
 			while (!$schedConfs->eof()) {
 				$schedConf =& $schedConfs->next();			

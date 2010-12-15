@@ -62,14 +62,14 @@ class SitemapHandler extends Handler {
 		$root =& XMLCustomWriter::createElement($doc, 'sitemapindex');
 		XMLCustomWriter::setAttribute($root, 'xmlns', SITEMAP_XSD_URL);
 
-		$conferences =& $conferenceDao->getConferences();
+		$conferences =& $conferenceDao->getConferences(true);
 		while ($conference =& $conferences->next()) {
 			$sitemapUrl = Request::url($conference->getPath(), 'index', 'sitemap');
 			$sitemap =& XMLCustomWriter::createElement($doc, 'sitemap');
 			XMLCustomWriter::createChildWithText($doc, $sitemap, 'loc', $sitemapUrl, false);
 			XMLCustomWriter::appendChild($root, $sitemap);
 		
-			$schedConfs =& $schedConfDao->getSchedConfsByConferenceId($conference->getId());
+			$schedConfs =& $schedConfDao->getSchedConfs(true, $conference->getId());
 			while ($schedConf =& $schedConfs->next()) {
 				$sitemapUrl = Request::url($conference->getPath(), $schedConf->getPath(), 'sitemap');
 				$sitemap =& XMLCustomWriter::createElement($doc, 'sitemap');

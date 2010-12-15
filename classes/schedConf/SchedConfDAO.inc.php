@@ -149,12 +149,7 @@ class SchedConfDAO extends DAO {
 	 */
 	function &getSchedConfTitles($conferenceId = null) {
 		$schedConfs = array();
-		// FIXME: Deprecate one of the two following functions and use optional param
-		if ($conferenceId !== null) {
-			$schedConfIterator =& $this->getSchedConfsByConferenceId($conferenceId);
-		} else {
-			$schedConfIterator =& $this->getSchedConfs();
-		}
+		$schedConfIterator =& $this->getSchedConfs(false, $conferenceId);
 		while ($schedConf =& $schedConfIterator->next()) {
 			$schedConfs[$schedConf->getId()] = $schedConf->getLocalizedTitle();
 			unset($schedConf);
@@ -163,30 +158,11 @@ class SchedConfDAO extends DAO {
 	}
 
 	/**
-	 * Retrieves all scheduled conferences for a conference
-	 * @param $conferenceId
-	 * @param $rangeInfo object
-	 */
-	function &getSchedConfsByConferenceId($conferenceId, $rangeInfo = null) {
-		$result =& $this->retrieveRange(
-			'SELECT i.*
-			FROM sched_confs i
-				WHERE i.conference_id = ?
-				ORDER BY seq',
-			array($conferenceId),
-			$rangeInfo
-		);
-
-		$returner = new DAOResultFactory($result, $this, '_returnSchedConfFromRow');
-		return $returner;
-	}
-
-	/**
 	 * Delete all scheduled conferences by conference ID.
 	 * @param $schedConfId int
 	 */
 	function deleteSchedConfsByConferenceId($conferenceId) {
-		$schedConfs = $this->getSchedConfsByConferenceId($conferenceId);
+		$schedConfs = $this->getSchedConfs(false, $conferenceId);
 
 		while (!$schedConfs->eof()) {
 			$schedConf =& $schedConfs->next();
@@ -239,12 +215,23 @@ class SchedConfDAO extends DAO {
 
 	/**
 	 * Retrieve all scheduled conferences.
+	 * @param $enabledOnly boolean True iff only enabled sched confs wanted
+	 * @param $rangeInfo object optional
 	 * @return DAOResultFactory containing matching scheduled conferences
 	 */
-	function &getSchedConfs($rangeInfo = null) {
+	function &getSchedConfs($enabledOnly = false, $conferenceId = null, $rangeInfo = null) {
+		$params = array();
+		if ($conferenceId) $params[] = (int) $conferenceId;
+
 		$result =& $this->retrieveRange(
-			'SELECT * FROM sched_confs ORDER BY seq',
-			false, $rangeInfo
+			'SELECT	sc.*
+			FROM	sched_confs sc,
+				conferences c
+			WHERE	c.conference_id = sc.conference_id ' .
+			($enabledOnly?'AND c.enabled=1 ':'') .
+			($conferenceId?'AND c.conference_id=? ':'') .
+			'ORDER BY c.seq, sc.seq',
+			$params, $rangeInfo
 		);
 
 		$returner = new DAOResultFactory($result, $this, '_returnSchedConfFromRow');
@@ -257,16 +244,9 @@ class SchedConfDAO extends DAO {
 	 * @return array SchedConfs ordered by sequence
 	 */
 	function &getEnabledSchedConfs($conferenceId = null) {
-		$result =& $this->retrieve('
-			SELECT i.* FROM sched_confs i
-				LEFT JOIN conferences c ON (i.conference_id = c.conference_id)
-			WHERE c.enabled = 1'
-				. ($conferenceId?' AND i.conference_id = ?':'')
-			. ' ORDER BY c.seq, i.seq',
-			$conferenceId===null?false:$conferenceId);
-
-		$resultFactory = new DAOResultFactory($result, $this, '_returnSchedConfFromRow');
-		return $resultFactory;
+		if (Config::getVar('debug', 'deprecation_warnings')) trigger_error('Deprecated function.');
+		$returner =& $this->getSchedConfs(true, $conferenceId);
+		return $returner;
 	}
 
 	/**

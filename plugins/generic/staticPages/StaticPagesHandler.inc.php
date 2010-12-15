@@ -30,8 +30,8 @@ class StaticPagesHandler extends Handler {
 			$staticPagesPlugin =& PluginRegistry::getPlugin('generic', STATIC_PAGES_PLUGIN_NAME);
 			$templateMgr =& TemplateManager::getManager();
 
-			$staticPagesDAO =& DAORegistry::getDAO('StaticPagesDAO');
-			$staticPage = $staticPagesDAO->getStaticPageByPath($conferenceId, $path);
+			$staticPagesDao =& DAORegistry::getDAO('StaticPagesDAO');
+			$staticPage = $staticPagesDao->getStaticPageByPath($conferenceId, $path);
 
 			if ( !$staticPage ) {
 				Request::redirect(null, null, 'index');

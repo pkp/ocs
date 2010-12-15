@@ -39,7 +39,7 @@ class MetsExportDom {
 	 *  creates the METS:structMap element for a conference with multiple Scheduled Conferences referenced by their IDs
 	 */
 	function generateConfstructMapWithSchedConfsIdArray(&$doc, &$root, &$conference, &$schedConfIdArray) {
-		$schedConfDAO =& DAORegistry::getDAO('SchedConfDAO');
+		$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
 		$structMap =& XMLCustomWriter::createElement($doc, 'METS:structMap');
 		XMLCustomWriter::setAttribute($structMap, 'TYPE', 'logical');
 		$cDiv =& XMLCustomWriter::createElement($doc, 'METS:div');
@@ -48,7 +48,7 @@ class MetsExportDom {
 		XMLCustomWriter::setAttribute($cDiv, 'ADMID', 'A-'.$conference->getId());
 		$i = 0;
 		while ($i < sizeof($schedConfIdArray)) {
-			$schedConf =& $schedConfDAO->getSchedConf($schedConfIdArray[$i]);
+			$schedConf =& $schedConfDao->getSchedConf($schedConfIdArray[$i]);
 			MetsExportDom::generateSchedConfDiv($doc, $cDiv, $schedConf);
 			$i++;
 		}
@@ -79,8 +79,8 @@ class MetsExportDom {
 		XMLCustomWriter::setAttribute($sDiv, 'TYPE', 'conference');
 		XMLCustomWriter::setAttribute($sDiv, 'DMDID', 'SCHC-'.$schedConf->getId());
 		MetsExportDom::generateOverViewDiv($doc, $sDiv, $schedConf);
-		$publishedPaperDAO =& DAORegistry::getDAO('PublishedPaperDAO');
-		$publishedPapersIterator =& $publishedPaperDAO->getPublishedPapers($schedConf->getId());
+		$publishedPaperDao =& DAORegistry::getDAO('PublishedPaperDAO');
+		$publishedPapersIterator =& $publishedPaperDao->getPublishedPapers($schedConf->getId());
 		$publishedPaperArray =& $publishedPapersIterator->toArray();
 
 		$i = 0;
@@ -199,8 +199,8 @@ class MetsExportDom {
 		XMLCustomWriter::appendChild($mdWrap,$xmlData);
 		XMLCustomWriter::appendChild($root, $dmdSec);
 		MetsExportDom::generateOverViewDmdSecDom($doc, $root, $schedConf);
-		$publishedPaperDAO =& DAORegistry::getDAO('PublishedPaperDAO');
-		$publishedPapersIterator =& $publishedPaperDAO->getPublishedPapers($schedConf->getId());
+		$publishedPaperDao =& DAORegistry::getDAO('PublishedPaperDAO');
+		$publishedPapersIterator =& $publishedPaperDao->getPublishedPapers($schedConf->getId());
 		$publishedPaperArray =& $publishedPapersIterator->toArray();
 
 		$i = 0;
@@ -374,8 +374,8 @@ class MetsExportDom {
 	 *
 	 */
 	function generateSchedConfFileSecDom(&$doc, &$root, &$conference, &$schedConf) {
-		$publishedPaperDAO =& DAORegistry::getDAO('PublishedPaperDAO');
-		$publishedPapersIterator =& $publishedPaperDAO->getPublishedPapers($schedConf->getId());
+		$publishedPaperDao =& DAORegistry::getDAO('PublishedPaperDAO');
+		$publishedPapersIterator =& $publishedPaperDao->getPublishedPapers($schedConf->getId());
 		$publishedPaperArray =& $publishedPapersIterator->toArray();
 
 		$i = 0;

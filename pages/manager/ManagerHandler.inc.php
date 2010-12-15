@@ -40,7 +40,7 @@ class ManagerHandler extends Handler {
 		$templateMgr =& TemplateManager::getManager();
 
 		$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
-		$schedConfs =& $schedConfDao->getSchedConfsByConferenceId($conference->getId());
+		$schedConfs =& $schedConfDao->getSchedConfs(false, $conference->getId());
 		$templateMgr->assign_by_ref('schedConfs', $schedConfs);
 
 		$templateMgr->assign('announcementsEnabled', $conference->getSetting('enableAnnouncements'));

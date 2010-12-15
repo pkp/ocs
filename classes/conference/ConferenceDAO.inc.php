@@ -170,10 +170,14 @@ class ConferenceDAO extends DAO {
 	/**
 	 * Retrieve all conferences.
 	 * @return DAOResultFactory containing matching conferences
+	 * @param $enabledOnly boolean True if only enabled conferences wanted
+	 * @param $rangeInfo object optional
 	 */
-	function &getConferences($rangeInfo = null) {
+	function &getConferences($enabledOnly = false, $rangeInfo = null) {
 		$result =& $this->retrieveRange(
-			'SELECT * FROM conferences ORDER BY seq',
+			'SELECT c.* FROM conferences c ' .
+			($enabledOnly ? 'WHERE c.enabled = 1 ':'') .
+			'ORDER BY c.seq',
 			false, $rangeInfo
 		);
 
@@ -186,21 +190,19 @@ class ConferenceDAO extends DAO {
 	 * @return array Conferences ordered by sequence
 	 */
 	function &getEnabledConferences() {
-		$result =& $this->retrieve(
-			'SELECT * FROM conferences WHERE enabled=1 ORDER BY seq'
-		);
-
-		$resultFactory = new DAOResultFactory($result, $this, '_returnConferenceFromRow');
-		return $resultFactory;
+		if (Config::getVar('debug', 'deprecation_warnings')) trigger_error('Deprecated function.');
+		$returner =& $this->getConferences(true);
+		return $returner;
 	}
 
 	/**
 	 * Retrieve the IDs and titles of all conferences in an associative array.
+	 * @param $enabledOnly boolean optional
 	 * @return array
 	 */
-	function &getConferenceTitles() {
+	function &getConferenceTitles($enabledOnly = false) {
 		$conferences = array();
-		$conferenceIterator =& $this->getConferences();
+		$conferenceIterator =& $this->getConferences($enabledOnly);
 		while ($conference =& $conferenceIterator->next()) {
 			$conferences[$conference->getId()] = $conference->getConferenceTitle();
 			unset($conference);
@@ -213,13 +215,9 @@ class ConferenceDAO extends DAO {
 	 * @return array
 	 */
 	function &getEnabledConferenceTitles() {
-		$conferences = array();
-		$conferenceIterator =& $this->getEnabledConferences();
-		while ($conference =& $conferenceIterator->next()) {
-			$conferences[$conference->getId()] = $conference->getConferenceTitle();
-			unset($conference);
-		}
-		return $conferences;
+		if (Config::getVar('debug', 'deprecation_warnings')) trigger_error('Deprecated function.');
+		$titles =& $this->getConferenceTitles(true);
+		return $titles;
 	}
 
 	/**

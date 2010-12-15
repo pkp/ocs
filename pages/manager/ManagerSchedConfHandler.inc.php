@@ -37,7 +37,7 @@ class ManagerSchedConfHandler extends ManagerHandler {
 
 		$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
 		while (true) {
-			$schedConfs =& $schedConfDao->getSchedConfsByConferenceId($conference->getId(), $rangeInfo);
+			$schedConfs =& $schedConfDao->getSchedConfs(false, $conference->getId(), $rangeInfo);
 			if ($schedConfs->isInBounds()) break;
 			unset($rangeInfo);
 			$rangeInfo =& $schedConfs->getLastPageRangeInfo();
