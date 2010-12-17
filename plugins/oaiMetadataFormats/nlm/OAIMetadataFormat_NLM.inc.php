@@ -40,7 +40,7 @@ class OAIMetadataFormat_NLM extends OAIMetadataFormat {
 		if ($datePublished = $paper->getStartTime()) {
 			$datePublished = strtotime($datePublished);
 		} else {
-			$datePublished = $paper->getDatePublished();
+			$datePublished = strtotime($paper->getDatePublished());
 		}
 
 		$response = "<article\n" .
