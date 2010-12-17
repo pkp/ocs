@@ -55,7 +55,7 @@ class CustomBlockManagerPlugin extends GenericPlugin {
 				if ( !is_array($blocks) ) break;
 				$i= 0;
 				foreach ( $blocks as $block ) {
-					$blockPlugin = new CustomBlockPlugin($block);
+					$blockPlugin = new CustomBlockPlugin($block, $this->getName());
 
 					//default the block to being enabled
 					if ( $blockPlugin->getEnabled() !== false) {
@@ -123,7 +123,6 @@ class CustomBlockManagerPlugin extends GenericPlugin {
 				if (Request::getUserVar('addBlock')) {
 					// Add a block
 					$editData = true;
-					//$blocks = is_null($form->getData('blocks'))?array():$form->getData('blocks');
 					$blocks = $form->getData('blocks');
 					array_push($blocks, '');
 					$form->_data['blocks'] = $blocks;

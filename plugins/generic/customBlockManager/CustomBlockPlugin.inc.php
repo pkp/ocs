@@ -15,14 +15,25 @@
 import('lib.pkp.classes.plugins.BlockPlugin');
 
 class CustomBlockPlugin extends BlockPlugin {
+	var $parentPluginName;
+
 	var $blockName;
+
+	/**
+	 * Constructor
+	 */
+	function CustomBlockPlugin($blockName, $parentPluginName) {
+		$this->blockName = $blockName;
+		$this->parentPluginName = $parentPluginName;
+		parent::BlockPlugin();
+	}
 
 	/**
 	 * Get the management plugin
 	 * @return object
 	 */
 	function &getManagerPlugin() {
-		$plugin =& PluginRegistry::getPlugin('generic', 'CustomBlockManagerPlugin');
+		$plugin =& PluginRegistry::getPlugin('generic', $this->parentPluginName);
 		return $plugin;
 	}
 
@@ -131,7 +142,7 @@ class CustomBlockPlugin extends BlockPlugin {
 					$form->save();
 					$pageCrumbs[] = array(Request::url(null, 'manager', 'plugins'), 'manager.plugins');
 					$templateMgr->assign(array(
-						'currentUrl' => Request::url(null, null, null, array($this->getCategory(), $this->getName(), 'edit')),
+						'currentUrl' => Request::url(null, null, null, null, array($this->getCategory(), $this->getName(), 'edit')),
 						'pageTitleTranslated' => $this->getDisplayName(),
 						'pageHierarchy' => $pageCrumbs,
 						'message' => 'plugins.generic.customBlock.saved',
