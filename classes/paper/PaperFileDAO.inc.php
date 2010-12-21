@@ -345,7 +345,7 @@ class PaperFileDAO extends DAO {
 	 */
 	function isInlineable(&$paperFile) {
 		if (!isset($this->inlineableTypes)) {
-			$this->inlineableTypes = array_filter(file(Config::getVar('general', 'registry_dir') . '/inlineTypes.txt'), create_function('&$a', 'return ($a = trim($a)) && !empty($a) && $a[0] != \'#\';'));
+			$this->inlineableTypes = array_filter(file(Core::getBaseDir() . '/lib/pkp/registry/inlineTypes.txt'), create_function('&$a', 'return ($a = trim($a)) && !empty($a) && $a[0] != \'#\';'));
 		}
 		return in_array($paperFile->getFileType(), $this->inlineableTypes);
 	}

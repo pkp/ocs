@@ -141,7 +141,7 @@ class PaperSearchIndex {
 
 		if (!isset($searchStopwords)) {
 			// Load stopwords only once per request (FIXME Cache?)
-			$searchStopwords = array_count_values(array_filter(file(Config::getVar('general', 'registry_dir') . '/stopwords.txt'), create_function('&$a', 'return ($a = trim($a)) && !empty($a) && $a[0] != \'#\';')));
+			$searchStopwords = array_count_values(array_filter(file(Core::getBaseDir() . '/lib/pkp/registry/stopwords.txt'), create_function('&$a', 'return ($a = trim($a)) && !empty($a) && $a[0] != \'#\';')));
 			$searchStopwords[''] = 1;
 		}
 
