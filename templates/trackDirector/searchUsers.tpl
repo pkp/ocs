@@ -14,7 +14,7 @@
 {include file="common/header.tpl"}
 {/strip}
 
-<form name="submit" method="post" action="{url op="enrollSearch" path=$paperId}">
+<form id="submit" method="post" action="{url op="enrollSearch" path=$paperId}">
 	<select name="searchField" size="1" class="selectMenu">
 		{html_options_translate options=$fieldOptions selected=$searchField}
 	</select>

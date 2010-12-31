@@ -25,7 +25,7 @@
 	<p>{translate key="author.submit.notAccepting"}</p>
 {else}
 
-<form name="submit" method="post" action="{url op="saveSubmit" path=$submitStep}" onsubmit="return checkSubmissionChecklist()">
+<form id="submit" method="post" action="{url op="saveSubmit" path=$submitStep}" onsubmit="return checkSubmissionChecklist()">
 {include file="common/formErrors.tpl"}
 {if $paperId}<input type="hidden" name="paperId" value="{$paperId|escape}" />{/if}
 

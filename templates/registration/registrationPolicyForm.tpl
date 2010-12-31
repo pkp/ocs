@@ -21,7 +21,7 @@
 	<li><a href="{url op="registrationOptions"}">{translate key="manager.registrationOptions"}</a></li>
 </ul>
 
-<form name="registrationPolicies" method="post" action="{url op="saveRegistrationPolicies"}">
+<form id="registrationPolicies" method="post" action="{url op="saveRegistrationPolicies"}">
 {include file="common/formErrors.tpl"}
 
 	<script type="text/javascript">

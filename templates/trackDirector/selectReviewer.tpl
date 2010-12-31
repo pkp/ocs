@@ -26,7 +26,7 @@ function sortSearch(heading, direction) {
 </script> 
 
 <h3>{translate key="director.paper.selectReviewer"}</h3>
-<form name="submit" method="post" action="{url op="selectReviewer" path=$paperId}">
+<form id="submit" method="post" action="{url op="selectReviewer" path=$paperId}">
 	<input type="hidden" name="sort" value="id"/>
 	<input type="hidden" name="sortDirection" value="ASC"/>
 	<select name="searchField" size="1" class="selectMenu">

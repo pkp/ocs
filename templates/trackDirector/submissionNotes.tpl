@@ -75,7 +75,7 @@
 <div id="submissionNotes">	
 {if $noteViewType == "edit"}
 <h3>{translate key="submission.notes"}</h3>
-<form name="editNote" method="post" action="{url op="updateSubmissionNote"}" enctype="multipart/form-data">
+<form id="editNote" method="post" action="{url op="updateSubmissionNote"}" enctype="multipart/form-data">
 	<input type="hidden" name="paperId" value="{$paperNote->getPaperId()}" />
 	<input type="hidden" name="noteId" value="{$paperNote->getNoteId()}" />
 	<input type="hidden" name="fileId" value="{$paperNote->getFileId()}" />
@@ -108,7 +108,7 @@
 
 {elseif $noteViewType == "add"}
 	<h3>{translate key="submission.notes.addNewNote"}</h3>
-	<form name="addNote" method="post" action="{url op="addSubmissionNote"}" enctype="multipart/form-data">
+	<form id="addNote" method="post" action="{url op="addSubmissionNote"}" enctype="multipart/form-data">
 	<input type="hidden" name="paperId" value="{$paperId|escape}" />
 	<table width="100%" class="data">
 	<tr valign="top">

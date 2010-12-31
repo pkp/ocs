@@ -15,7 +15,7 @@
 
 {include file="common/formErrors.tpl"}
 
-<form name="programForm" method="post" action="{url op="saveProgramSettings"}" enctype="multipart/form-data">
+<form id="programForm" method="post" action="{url op="saveProgramSettings"}" enctype="multipart/form-data">
 
 <div id="programForm">
 <p>{translate key="manager.program.form.description"}</p>

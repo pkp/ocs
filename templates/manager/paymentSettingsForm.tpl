@@ -28,7 +28,7 @@ $(document).ready(function() {
 // -->
 </script>
 
-<form method="post" id="paymentSettingsForm" name="paymentSettingsForm" action="{url op="savePaymentSettings"}">
+<form method="post" id="paymentSettingsForm" action="{url op="savePaymentSettings"}">
 
 <p>{translate key="manager.payment.form.description"}</p>
 

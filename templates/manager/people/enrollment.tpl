@@ -17,7 +17,7 @@
 {include file="common/header.tpl"}
 {/strip}
 
-<form name="disableUser" method="post" action="{url op="disableUser"}">
+<form id="disableUser" method="post" action="{url op="disableUser"}">
 	<input type="hidden" name="reason" value=""/>
 	<input type="hidden" name="userId" value=""/>
 </form>
@@ -54,7 +54,7 @@ function sortSearch(heading, direction) {
 </script>
 
 <h3>{translate key=$roleName}</h3>
-<form name="submit" method="post" action="{url path=$roleSymbolic}">
+<form id="submit" method="post" action="{url path=$roleSymbolic}">
 	<input type="hidden" name="sort" value="id"/>
 	<input type="hidden" name="sortDirection" value="ASC"/>
 	<select name="roleSymbolic" class="selectMenu">
@@ -103,7 +103,7 @@ function sortSearch(heading, direction) {
 <p><a href="{url path="all"}" class="action">{translate key="manager.people.allUsers"}</a></p>
 {/if}
 
-<form name="people" action="{url page="user" op="email"}" method="post">
+<form id="people" action="{url page="user" op="email"}" method="post">
 <input type="hidden" name="redirectUrl" value="{url path=$roleSymbolic}"/>
 
 <div id="users">

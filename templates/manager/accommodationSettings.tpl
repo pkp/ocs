@@ -15,7 +15,7 @@
 
 {include file="common/formErrors.tpl"}
 
-<form name="accommodationForm" method="post" action="{url op="saveAccommodationSettings"}" enctype="multipart/form-data">
+<form id="accommodationForm" method="post" action="{url op="saveAccommodationSettings"}" enctype="multipart/form-data">
 
 <p>{translate key="manager.accommodation.form.description"}</p>
 <div id="accommodationFiles">

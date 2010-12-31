@@ -23,7 +23,7 @@
 
 <br/>
 
-<form name="specialEvent" method="post" action="{url op="updateSpecialEvent"}">
+<form id="specialEvent" method="post" action="{url op="updateSpecialEvent"}">
 {if $specialEventId}
 <input type="hidden" name="specialEventId" value="{$specialEventId|escape}" />
 {/if}

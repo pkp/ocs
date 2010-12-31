@@ -41,7 +41,7 @@ function SubmitIfAnyIsChecked() {
 	var elements = document.schedConfs.elements;
 	for (var i=0; i < elements.length; i++) {
 		if (elements[i].name == 'SchedConfId[]') {
-			if(elements[i].checked){ 
+			if(elements[i].checked){
                             document.schedConfs.submit();
                             return true;
                          }
@@ -54,7 +54,7 @@ function SubmitIfAnyIsChecked() {
 {/literal}
 </script>
 
-<form action="{plugin_url path="exportschedConf"}" method="post" name="schedConfs">
+<form action="{plugin_url path="exportschedConf"}" method="post" id="schedConfs">
 
 <h3>{translate key="plugins.importexport.METSExport.settings"}</h3>
 

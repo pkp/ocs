@@ -11,7 +11,7 @@
 {assign var="pageTitle" value="manager.schedConfSetup.details.title"}
 {include file="manager/schedConfSetup/setupHeader.tpl"}
 
-<form name="setupForm" method="post" action="{url op="saveSchedConfSetup" path="1"}">
+<form id="setupForm" method="post" action="{url op="saveSchedConfSetup" path="1"}">
 {include file="common/formErrors.tpl"}
 
 {if count($formLocales) > 1}

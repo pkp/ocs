@@ -28,7 +28,7 @@
 </script>
 {/literal}
 
-<form name="createAccount" method="post" action="{url op="createAccount"}">
+<form id="createAccount" method="post" action="{url op="createAccount"}">
 
 <p>{translate key="user.account.completeForm"}</p>
 

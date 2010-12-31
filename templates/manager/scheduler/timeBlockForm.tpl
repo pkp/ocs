@@ -23,7 +23,7 @@
 
 <br/>
 
-<form name="timeBlock" method="post" action="{url op="updateTimeBlock"}">
+<form id="timeBlock" method="post" action="{url op="updateTimeBlock"}">
 {if $timeBlockId}
 <input type="hidden" name="timeBlockId" value="{$timeBlockId|escape}" />
 {/if}

@@ -17,7 +17,7 @@
 
 <p><a href="{url op="submit" path=4 paperId=$paperId}">&lt;&lt; {translate key="author.submit.backToSupplementaryFiles"}</a></p>
 
-<form name="submit" method="post" action="{url op="saveSubmitSuppFile" path=$suppFileId}" enctype="multipart/form-data">
+<form id="submit" method="post" action="{url op="saveSubmitSuppFile" path=$suppFileId}" enctype="multipart/form-data">
 <input type="hidden" name="paperId" value="{$paperId|escape}" />
 {include file="common/formErrors.tpl"}
 

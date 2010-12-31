@@ -23,7 +23,7 @@
 
 <br/>
 
-<form name="groupForm" method="post" action="{url op="updateGroup"}">
+<form id="groupForm" method="post" action="{url op="updateGroup"}">
 {if $group}
 	<input type="hidden" name="groupId" value="{$group->getId()}"/>
 {/if}

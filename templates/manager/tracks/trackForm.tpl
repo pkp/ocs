@@ -14,7 +14,7 @@
 {include file="common/header.tpl"}
 {/strip}
 
-<form name="track" method="post" action="{url op="updateTrack"}" onsubmit="return saveSelectedDirectors()">
+<form id="track" method="post" action="{url op="updateTrack"}" onsubmit="return saveSelectedDirectors()">
 {if $trackId}
 <input type="hidden" name="trackId" value="{$trackId|escape}" />
 {/if}

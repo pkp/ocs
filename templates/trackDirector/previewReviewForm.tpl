@@ -50,7 +50,7 @@
 
 <br/>
 
-<form name="previewReviewForm" method="post" action="{url op="selectReviewForm" path=$paperId|to_array:$reviewId}">
+<form id="previewReviewForm" method="post" action="{url op="selectReviewForm" path=$paperId|to_array:$reviewId}">
 	<p><input type="submit" value="{translate key="common.close"}" class="button defaultButton" /></p>
 </form>
 

@@ -14,7 +14,7 @@
 {/strip}
 
 {if $mayViewProceedings}
-	<form method="post" name="submit" action="{url op="presentations"}">
+	<form method="post" id="submit" action="{url op="presentations"}">
 		<select name="searchField" size="1" class="selectMenu">
 			{html_options_translate options=$fieldOptions selected=$searchField}
 		</select>

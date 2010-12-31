@@ -15,7 +15,7 @@
 
 <br />
 <div id="conferenceSettings">
-<form name="conference" method="post" action="{url op="updateConference"}">
+<form id="conference" method="post" action="{url op="updateConference"}">
 {if $conferenceId}
 <input type="hidden" name="conferenceId" value="{$conferenceId|escape}" />
 {/if}

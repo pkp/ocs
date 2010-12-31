@@ -21,7 +21,7 @@
 
 <br/>
 
-<form name="announcementForm" method="post" action="{url op="updateAnnouncement"}">
+<form id="announcementForm" method="post" action="{url op="updateAnnouncement"}">
 {if $announcementId}
 <input type="hidden" name="announcementId" value="{$announcementId|escape}" />
 {/if}

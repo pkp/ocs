@@ -328,7 +328,7 @@ function confirmSubmissionCheck() {
 					<strong>{translate key=$reviewerRecommendationOptions.$recommendation}</strong>&nbsp;&nbsp;
 					{$submission->getDateCompleted()|date_format:$dateFormatShort}
 				{else}
-					<form name="recommendation" method="post" action="{url op="recordRecommendation"}">
+					<form id="recommendation" method="post" action="{url op="recordRecommendation"}">
 					<input type="hidden" name="reviewId" value="{$reviewId|escape}" />
 					<select name="recommendation" {if not $confirmedStatus or $declined or $submission->getCancelled() or (!$reviewFormResponseExists and !$reviewAssignment->getMostRecentPeerReviewComment() and !$uploadedFileExists)}disabled="disabled"{/if} class="selectMenu">
 						{html_options_translate options=$reviewerRecommendationOptions selected=''}

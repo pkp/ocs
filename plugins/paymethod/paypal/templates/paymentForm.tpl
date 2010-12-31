@@ -21,7 +21,7 @@
 
 <p>{translate key="plugins.paymethod.paypal.warning"}</p>
 
-<form action="{$paypalFormUrl}" id="paypalPaymentForm" name="paypalPaymentForm" method="post" style="margin-bottom: 0px;">
+<form action="{$paypalFormUrl}" id="paypalPaymentForm" method="post" style="margin-bottom: 0px;">
 	{include file="common/formErrors.tpl"}
 
 	{if $registration}

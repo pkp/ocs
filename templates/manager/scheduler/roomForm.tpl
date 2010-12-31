@@ -30,7 +30,7 @@
 
 <br/>
 
-<form name="room" method="post" action="{url op="updateRoom"}">
+<form id="room" method="post" action="{url op="updateRoom"}">
 {if $roomId}
 <input type="hidden" name="roomId" value="{$roomId|escape}" />
 {/if}

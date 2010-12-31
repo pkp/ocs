@@ -15,7 +15,7 @@
 
 <br />
 
-<form name="schedConf" method="post" action="{url op="updateSchedConf"}">
+<form id="schedConf" method="post" action="{url op="updateSchedConf"}">
 {if $schedConfId}
 <input type="hidden" name="schedConfId" value="{$schedConfId|escape}" />
 {/if}
