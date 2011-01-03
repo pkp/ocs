@@ -86,7 +86,7 @@ class Notification extends PKPNotification {
 		$params = array(
 			'password' => $password,
 			'siteTitle' => $conference->getConferenceTitle(),
-			'unsubscribeLink' => Request::url(null, 'notification', 'unsubscribeMailList')
+			'unsubscribeLink' => Request::url(null, null, 'notification', 'unsubscribeMailList')
 		);
 
 		if ($template == 'NOTIFICATION_MAILLIST_WELCOME') {
