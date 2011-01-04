@@ -202,28 +202,25 @@ class TrackDirectorHandler extends Handler {
 		$conference =& Request::getConference();
 		$schedConf =& Request::getSchedConf();
 
+		$templateMgr->assign('helpTopicId', $isDirector ? 'editorial.directorsRole' : 'editorial.trackDirectorsRole');
+
 		if ($schedConf) {
 			$pageHierarchy[] = array(Request::url(null, null, 'index'), $schedConf->getFullTitle(), true);
 		} elseif ($conference) {
 			$pageHierarchy[] = array(Request::url(null, 'index', 'index'), $conference->getConferenceTitle(), true);
 		}
 
-		if (Request::getRequestedPage() == 'director') {
-			$templateMgr->assign('helpTopicId', 'editorial.directorsRole');
+		$roleSymbolic = $isDirector ? 'director' : 'trackDirector';
+		$roleKey = $isDirector ? 'user.role.director' : 'user.role.trackDirector';
 
-		} else {
-			$templateMgr->assign('helpTopicId', 'editorial.trackDirectorsRole');
-		}
 		$pageHierarchy[] = array(Request::url(null, null, 'user'), 'navigation.user');
+		$pageHierarchy[] = array(Request::url(null, null, $roleSymbolic), $roleKey);
 		if ($subclass) {
-			$pageHierarchy[] = array(Request::url(null, null, $isDirector?'director':'trackDirector'), $isDirector?'user.role.director':'user.role.trackDirector');
-			$pageHierarchy[] = array(Request::url(null, null, 'trackDirector'), 'paper.submissions');
-		} else {
-			$pageHierarchy[] = array(Request::url(null, null, $isDirector?'director':'trackDirector'), $isDirector?'user.role.director':'user.role.trackDirector');
+			$pageHierarchy[] = array(Request::url(null, null, $roleSymbolic), 'paper.submissions');
 		}
 
 		import('submission.trackDirector.TrackDirectorAction');
-		$submissionCrumb = TrackDirectorAction::submissionBreadcrumb($paperId, $parentPage, 'trackDirector');
+		$submissionCrumb = TrackDirectorAction::submissionBreadcrumb($paperId, $parentPage, $roleSymbolic);
 		if (isset($submissionCrumb)) {
 			$pageHierarchy = array_merge($pageHierarchy, $submissionCrumb);
 		}
