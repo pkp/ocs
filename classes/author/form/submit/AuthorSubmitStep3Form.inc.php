@@ -39,7 +39,7 @@ class AuthorSubmitStep3Form extends AuthorSubmitForm {
 			$track = $trackDao->getTrack($paper->getTrackId());
 			$abstractWordCount = $track->getAbstractWordCount();
 			if (isset($abstractWordCount) && $abstractWordCount > 0) {
-				$this->addCheck(new FormValidatorCustom($this, 'abstract', 'required', 'author.submit.form.wordCountAlert', create_function('$abstract, $wordCount', 'foreach ($abstract as $localizedAbstract) {return count(explode(" ",$localizedAbstract)) < $wordCount; }'), array($abstractWordCount)));
+				$this->addCheck(new FormValidatorCustom($this, 'abstract', 'required', 'author.submit.form.wordCountAlert', create_function('$abstract, $wordCount', 'foreach ($abstract as $localizedAbstract) {return count(explode(" ",strip_tags($localizedAbstract))) < $wordCount; }'), array($abstractWordCount)));
 			}
 		}
 	}
