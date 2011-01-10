@@ -90,7 +90,7 @@ class AuthorSubmitStep1Form extends AuthorSubmitForm {
 		if (isset($this->paper)) {
 			$this->_data = array(
 				'trackId' => $this->paper->getTrackId(),
-				'locale' => $this->article->getLocale(),
+				'locale' => $this->paper->getLocale(),
 				'sessionType' => $this->paper->getData('sessionType'),
 				'commentsToDirector' => $this->paper->getCommentsToDirector()
 			);
@@ -134,7 +134,7 @@ class AuthorSubmitStep1Form extends AuthorSubmitForm {
 			$reviewMode = $this->paper->getReviewMode();
 			// Update existing paper
 			$this->paper->setTrackId($this->getData('trackId'));
-			$this->article->setLocale($this->getData('locale'));
+			$this->paper->setLocale($this->getData('locale'));
 			$this->paper->setCommentsToDirector($this->getData('commentsToDirector'));
 			$this->paper->setData('sessionType', $this->getData('sessionType'));
 			if ($this->paper->getSubmissionProgress() <= $this->step) {
