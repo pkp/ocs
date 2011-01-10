@@ -15,8 +15,8 @@
 {* For up/down/delete buttons for paper types, it's necessary to perform a
    form submit so that data is kept, but it's not desirable to use buttons
    from a UI perspective. Use two hidden form parameters instead. *}
-<input type="hidden" name="paperTypeAction" value="" />
-<input type="hidden" name="paperTypeId" value="" />
+<input type="hidden" id="paperTypeAction" name="paperTypeAction" value="" />
+<input type="hidden" id="paperTypeId" name="paperTypeId" value="" />
 {include file="common/formErrors.tpl"}
 
 {if count($formLocales) > 1}
@@ -44,7 +44,7 @@
 <table width="100%" class="data">
 	<tr valign="top">
 		<td width="5%" class="label">
-			<input type="radio" name="reviewMode" id="reviewMode-1" value="{$smarty.const.REVIEW_MODE_ABSTRACTS_ALONE}" {if $reviewMode == REVIEW_MODE_ABSTRACTS_ALONE}checked="checked"{/if} onclick="document.setupForm.previewAbstracts.disabled=true;" />
+			<input type="radio" name="reviewMode" id="reviewMode-1" value="{$smarty.const.REVIEW_MODE_ABSTRACTS_ALONE}" {if $reviewMode == REVIEW_MODE_ABSTRACTS_ALONE}checked="checked"{/if} onclick="document.getElementById('previewAbstracts').disabled=true;" />
 		</td>
 		<td width="95%" class="value">
 			{fieldLabel name="reviewMode-1" key="manager.schedConfSetup.submissions.abstractsAlone"}
@@ -52,7 +52,7 @@
 	</tr>
 	<tr valign="top">
 		<td class="label">
-			<input type="radio" name="reviewMode" id="reviewMode-2" value="{$smarty.const.REVIEW_MODE_PRESENTATIONS_ALONE}" {if $reviewMode == REVIEW_MODE_PRESENTATIONS_ALONE}checked="checked"{/if} onclick="document.setupForm.previewAbstracts.disabled=true;" />
+			<input type="radio" name="reviewMode" id="reviewMode-2" value="{$smarty.const.REVIEW_MODE_PRESENTATIONS_ALONE}" {if $reviewMode == REVIEW_MODE_PRESENTATIONS_ALONE}checked="checked"{/if} onclick="document.getElementById('previewAbstracts').disabled=true;" />
 		</td>
 		<td class="value">
 			{fieldLabel name="reviewMode-2" key="manager.schedConfSetup.submissions.presentationsAlone"}
@@ -60,7 +60,7 @@
 	</tr>
 	<tr valign="top">
 		<td class="label">
-			<input type="radio" name="reviewMode" id="reviewMode-3" value="{$smarty.const.REVIEW_MODE_BOTH_SIMULTANEOUS}" {if $reviewMode == REVIEW_MODE_BOTH_SIMULTANEOUS}checked="checked"{/if} onclick="document.setupForm.previewAbstracts.disabled=true;" />
+			<input type="radio" name="reviewMode" id="reviewMode-3" value="{$smarty.const.REVIEW_MODE_BOTH_SIMULTANEOUS}" {if $reviewMode == REVIEW_MODE_BOTH_SIMULTANEOUS}checked="checked"{/if} onclick="document.getElementById('previewAbstracts').disabled=true;" />
 		</td>
 		<td class="value">
 			{fieldLabel name="reviewMode-3" key="manager.schedConfSetup.submissions.bothTogether"}
@@ -68,7 +68,7 @@
 	</tr>
 	<tr valign="top">
 		<td class="label">
-			<input type="radio" name="reviewMode" id="reviewMode-4" value="{$smarty.const.REVIEW_MODE_BOTH_SEQUENTIAL}" {if $reviewMode == REVIEW_MODE_BOTH_SEQUENTIAL}checked="checked"{/if} onclick="document.setupForm.previewAbstracts.disabled=false;" />
+			<input type="radio" name="reviewMode" id="reviewMode-4" value="{$smarty.const.REVIEW_MODE_BOTH_SEQUENTIAL}" {if $reviewMode == REVIEW_MODE_BOTH_SEQUENTIAL}checked="checked"{/if} onclick="document.getElementById('previewAbstracts').disabled=false;" />
 		</td>
 		<td class="value">
 			{fieldLabel name="reviewMode-4" key="manager.schedConfSetup.submissions.bothSequential"}
@@ -118,9 +118,9 @@
 			<td class="label">&nbsp;</td>
 			<td colspan="2" class="label">
 				{strip}
-				<a onclick="document.setupForm.paperTypeAction.value='movePaperTypeUp'; document.setupForm.paperTypeId.value='{$paperTypeId|escape:"jsparam"}'; document.setupForm.submit();" href="#">&uarr;</a>&nbsp;
-				<a onclick="document.setupForm.paperTypeAction.value='movePaperTypeDown'; document.setupForm.paperTypeId.value='{$paperTypeId|escape:"jsparam"}'; document.setupForm.submit();" href="#">&darr;</a>&nbsp;|&nbsp;
-				<a onclick="document.setupForm.paperTypeAction.value='deletePaperType'; document.setupForm.paperTypeId.value='{$paperTypeId|escape:"jsparam"}'; document.setupForm.submit();" href="#" class="action">{translate key="common.delete"}</a>
+				<a onclick="document.getElementById('paperTypeAction').value='movePaperTypeUp'; document.getElementById('paperTypeId').value='{$paperTypeId|escape:"jsparam"}'; document.getElementById('setupForm').submit();" href="#">&uarr;</a>&nbsp;
+				<a onclick="document.getElementById('paperTypeAction').value='movePaperTypeDown'; document.getElementById('paperTypeId').value='{$paperTypeId|escape:"jsparam"}'; document.getElementById('setupForm').submit();" href="#">&darr;</a>&nbsp;|&nbsp;
+				<a onclick="document.getElementById('paperTypeAction').value='deletePaperType'; document.getElementById('paperTypeId').value='{$paperTypeId|escape:"jsparam"}'; document.getElementById('setupForm').submit();" href="#" class="action">{translate key="common.delete"}</a>
 				{/strip}
 			</td>
 		</tr>
@@ -129,7 +129,7 @@
 	<tr valign="top">
 		<td width="5%" class="label">&nbsp;</td>
 		<td width="95%" colspan="3" class="value">
-			<input type="button" onclick="document.setupForm.paperTypeAction.value='createPaperType'; document.setupForm.submit();" value="{translate key="manager.schedConfSetup.submissions.typeOfSubmission.create"}" />
+			<input type="button" onclick="document.getElementById('paperTypeAction').value='createPaperType'; document.getElementById('setupForm').submit();" value="{translate key="manager.schedConfSetup.submissions.typeOfSubmission.create"}" />
 		</td>
 	</tr>
 </table>
