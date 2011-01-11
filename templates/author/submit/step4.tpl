@@ -19,7 +19,7 @@
 {literal}
 <!--
 function confirmForgottenUpload() {
-	var fieldValue = document.submitForm.uploadSuppFile.value;
+	var fieldValue = document.getElementById('submitForm').uploadSuppFile.value;
 	if (fieldValue) {
 		return confirm("{/literal}{translate key="author.submit.forgottenSubmitSuppFile"}{literal}");
 	}

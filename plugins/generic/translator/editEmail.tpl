@@ -39,7 +39,7 @@
 <input type="submit" class="button defaultButton" value="{translate key="common.save"}" />
 <input type="button" class="button" value="{translate key="common.cancel"}" onclick="document.location.href='{url op="edit" path=$locale}'" />
 <input type="reset" class="button" value="{translate key="plugins.generic.translator.email.reset"}" onclick="return confirm('{translate|escape:"jsparam" key="plugins.generic.translator.email.resetConfirm"}')" />
-<input type="button" class="button" value="{translate key="plugins.generic.translator.email.resetToReference"}" onclick="if (confirm('{translate|escape:"jsparam" key="plugins.generic.translator.email.resetConfirm"}')) {literal}{document.editor.body.value = document.editor.referenceBody.value; document.editor.subject.value = document.editor.referenceSubject.value; document.editor.description.value = document.editor.referenceDescription.value;}{/literal}" />
+<input type="button" class="button" value="{translate key="plugins.generic.translator.email.resetToReference"}" onclick="if (confirm('{translate|escape:"jsparam" key="plugins.generic.translator.email.resetConfirm"}')) {literal}{document.getElementById('editor').body.value = document.getElementById('editor').referenceBody.value; document.getElementById('editor').subject.value = document.getElementById('editor').referenceSubject.value; document.getElementById('editor').description.value = document.getElementById('editor').referenceDescription.value;}{/literal}" />
 </form>
 
 {include file="common/footer.tpl"}

@@ -68,18 +68,18 @@ function jumpList(a, b) {
 
 function prepBlockFields() {
 	var i;
-	var theForm = document.setupForm;
- 
+	var theForm = document.getElementById('setupForm');
+
 	theForm.elements["blockSelectLeft"].value = "";
 	for (i=0; i<theForm.blockSelectLeftWidget.options.length; i++) {
 		theForm.blockSelectLeft.value += theForm.blockSelectLeftWidget.options[i].value + " ";
 	}
- 
+
 	theForm.blockSelectRight.value = "";
 	for (i=0; i<theForm.blockSelectRightWidget.options.length; i++) {
 		theForm.blockSelectRight.value += theForm.blockSelectRightWidget.options[i].value + " ";
 	}
- 
+
 	theForm.blockUnselected.value = "";
 	for (i=0; i<theForm.blockUnselectedWidget.options.length; i++) {
 		theForm.blockUnselected.value += theForm.blockUnselectedWidget.options[i].value + " ";
@@ -165,7 +165,7 @@ function prepBlockFields() {
 					<option value=""></option>
 				{/foreach}
 			</select>
-		</td> 
+		</td>
 		<td>
 			<input class="button defaultButton" style="width: 30px;" type="button" value="&larr;" onclick="jumpList(this.form.elements['blockSelectRightWidget'],this.form.elements['blockUnselectedWidget']);" /><br/>
 			<input class="button defaultButton" style="width: 30px;" type="button" value="&rarr;" onclick="jumpList(this.form.elements['blockUnselectedWidget'],this.form.elements['blockSelectRightWidget']);" />

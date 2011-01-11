@@ -18,14 +18,14 @@
 {literal}
 <!--
 function deleteAttachment(fileId) {
-	document.emailForm.deleteAttachment.value = fileId;
-	document.emailForm.submit();
+	document.getElementById('emailForm').deleteAttachment.value = fileId;
+	document.getElementById('emailForm').submit();
 }
 // -->
 {/literal}
 </script>
 
-<form method="post" name="emailForm" action="{$formActionUrl}"{if $attachmentsEnabled} enctype="multipart/form-data"{/if}>
+<form method="post" id="emailForm" action="{$formActionUrl}"{if $attachmentsEnabled} enctype="multipart/form-data"{/if}>
 <input type="hidden" name="continued" value="1"/>
 {if $hiddenFormParams}
 	{foreach from=$hiddenFormParams item=hiddenFormParam key=key}

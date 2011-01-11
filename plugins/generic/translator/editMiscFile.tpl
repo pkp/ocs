@@ -29,7 +29,7 @@
 <input type="submit" class="button defaultButton" value="{translate key="common.save"}" />
 <input type="button" class="button" value="{translate key="common.cancel"}" onclick="document.location.href='{url op="edit" path=$locale}'" />
 <input type="reset" class="button" value="{translate key="plugins.generic.translator.file.reset"}" onclick="return confirm('{translate|escape:"jsparam" key="plugins.generic.translator.file.resetConfirm"}')" />
-<input type="button" class="button" value="{translate key="plugins.generic.translator.file.resetToReference"}" onclick="if (confirm('{translate|escape:"jsparam" key="plugins.generic.translator.file.resetConfirm"}')) {literal}{document.editor.translationContents.value = document.editor.referenceContents.value}{/literal}" />
+<input type="button" class="button" value="{translate key="plugins.generic.translator.file.resetToReference"}" onclick="if (confirm('{translate|escape:"jsparam" key="plugins.generic.translator.file.resetConfirm"}')) {literal}{document.getElementById('editor').translationContents.value = document.getElementById('editor').referenceContents.value}{/literal}" />
 </form>
 
 {include file="common/footer.tpl"}

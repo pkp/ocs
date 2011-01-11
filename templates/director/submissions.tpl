@@ -17,13 +17,14 @@
 {literal}
 <!--
 function sortSearch(heading, direction) {
-  document.submit.sort.value = heading;
-  document.submit.sortDirection.value = direction;
-  document.submit.submit() ;
+	var submitForm = document.getElementById('submit');
+	submitForm.sort.value = heading;
+	submitForm.sortDirection.value = direction;
+	submitForm.submit();
 }
 // -->
 {/literal}
-</script> 
+</script>
 
 
 <ul class="menu">

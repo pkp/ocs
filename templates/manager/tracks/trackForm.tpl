@@ -27,11 +27,11 @@
 	// Move the currently selected item between two select menus
 	function moveSelectItem(currField, newField) {
 		var selectedIndex = currField.selectedIndex;
-		
+
 		if (selectedIndex == -1) {
 			return;
 		}
-		
+
 		var selectedOption = currField.options[selectedIndex];
 
 		// If "None" exists in new menu, delete it.
@@ -69,10 +69,11 @@
 			currField.selectedIndex = selectedIndex < (currField.options.length - 1) ? selectedIndex : (currField.options.length - 1);
 		}
 	}
-	
+
 	// Save IDs of selected directors in hidden field
 	function saveSelectedDirectors() {
-		var assigned = document.track.assigned;
+		var trackForm = document.getElementById('track');
+		var assigned = trackForm.assigned;
 		var assignedIds = '';
 		for (var i = 0; i < assigned.options.length; i++) {
 			if (assignedIds != '') {
@@ -80,9 +81,9 @@
 			}
 			assignedIds += assigned.options[i].value;
 		}
-		document.track.assignedDirectors.value = assignedIds;
-		
-		var unassigned = document.track.unassigned;
+		trackForm.assignedDirectors.value = assignedIds;
+
+		var unassigned = trackForm.unassigned;
 		var unassignedIds = '';
 		for (var i = 0; i < unassigned.options.length; i++) {
 			if (unassignedIds != '') {
@@ -90,8 +91,8 @@
 			}
 			unassignedIds += unassigned.options[i].value;
 		}
-		document.track.unassignedDirectors.value = unassignedIds;
-		
+		trackForm.unassignedDirectors.value = unassignedIds;
+
 		return true;
 	}
 // -->

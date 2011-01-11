@@ -41,7 +41,7 @@
 	<p>{translate key="author.submit.conferenceTrackDescription" aboutUrl=$url}</p>
 
 	<table class="data" width="100%">
-	<tr valign="top">	
+	<tr valign="top">
 		<td width="20%" class="label">{fieldLabel name="trackId" required="true" key="track.track"}</td>
 		<td width="80%" class="value"><select name="trackId" id="trackId" size="1" class="selectMenu">{html_options options=$trackOptions selected=$trackId}</select></td>
 	</tr>
@@ -58,19 +58,19 @@
 {else}
 	{* There are several submission locales available; allow choice *}
 	<div id="submissionLocale">
- 
+
 	<h3>{translate key="author.submit.submissionLocale"}</h3>
 	<p>{translate key="author.submit.submissionLocaleDescription"}</p>
- 
+
 	<table class="data" width="100%">
-		<tr valign="top">       
+		<tr valign="top">
 			<td width="20%" class="label">{fieldLabel name="locale" required="true" key="paper.language"}</td>
 			<td width="80%" class="value"><select name="locale" id="locale" size="1" class="selectMenu">{html_options options=$supportedSubmissionLocaleNames selected=$locale}</select></td>
 		</tr>
 	</table>
- 
+
 	<div class="separator"></div>
- 
+
 	</div>{* submissionLocale *}
 {/if}{* count($supportedSubmissionLocaleNames) == 1 *}
 
@@ -124,7 +124,7 @@
 {literal}
 <!--
 function checkSubmissionChecklist() {
-	var elements = document.submit.elements;
+	var elements = document.getElementById('submit').elements;
 	for (var i=0; i < elements.length; i++) {
 		if (elements[i].type == 'checkbox' && !elements[i].checked) {
 			if (elements[i].name.match('^checklist')) {

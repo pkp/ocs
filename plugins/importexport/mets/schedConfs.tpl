@@ -18,9 +18,9 @@
 {literal}
 <!--
 function selectAll() {
-        document.schedConfs.selButton.value = "Unselect All";
-        document.schedConfs.selButton.attributes["onclick"].value = "javascript:unSelectAll();";
-	var elements = document.schedConfs.elements;
+        document.getElementById('schedConfs').selButton.value = "Unselect All";
+        document.getElementById('schedConfs').selButton.attributes["onclick"].value = "javascript:unSelectAll();";
+	var elements = document.getElementById('schedConfs').elements;
 	for (var i=0; i < elements.length; i++) {
 		if (elements[i].name == 'SchedConfId[]') {
 			elements[i].checked = true;
@@ -28,9 +28,9 @@ function selectAll() {
 	}
 }
 function unSelectAll() {
-        document.schedConfs.selButton.value = "Select All";
-        document.schedConfs.selButton.attributes["onclick"].value  = "javascript:selectAll();";
-	var elements = document.schedConfs.elements;
+        document.getElementById('schedConfs').selButton.value = "Select All";
+        document.getElementById('schedConfs').selButton.attributes["onclick"].value  = "javascript:selectAll();";
+	var elements = document.getElementById('schedConfs').elements;
 	for (var i=0; i < elements.length; i++) {
 		if (elements[i].name == 'SchedConfId[]') {
 			elements[i].checked = false;
@@ -38,11 +38,11 @@ function unSelectAll() {
 	}
 }
 function SubmitIfAnyIsChecked() {
-	var elements = document.schedConfs.elements;
+	var elements = document.getElementById('schedConfs').elements;
 	for (var i=0; i < elements.length; i++) {
 		if (elements[i].name == 'SchedConfId[]') {
 			if(elements[i].checked){
-                            document.schedConfs.submit();
+                            document.getElementById('schedConfs').submit();
                             return true;
                          }
 		}

@@ -27,7 +27,7 @@
 {literal}
 <!--
 function confirmSubmissionCheck() {
-	if (document.recommendation.recommendation.value=='') {
+	if (document.getElementById('recommendation').recommendation.value=='') {
 		alert('{/literal}{translate|escape:"javascript" key="reviewer.paper.mustSelectDecision"}{literal}');
 		return false;
 	}
@@ -230,7 +230,7 @@ function confirmSubmissionCheck() {
 	<tr valign="top">
 		<td>&nbsp;</td>
 		<td>
-			{translate key="submission.reviewForm"} 
+			{translate key="submission.reviewForm"}
 			{if $confirmedStatus and not $declined}
 				<a href="{url op="editReviewFormResponse" path=$reviewId|to_array:$reviewAssignment->getReviewFormId()}" class="icon">{icon name="comment"}</a>
 			{else}
@@ -249,7 +249,7 @@ function confirmSubmissionCheck() {
 	<tr valign="top">
 		<td>&nbsp;</td>
 		<td>
-			{translate key="event.logType.review"} 
+			{translate key="event.logType.review"}
 			{if $confirmedStatus and not $declined}
 				<a href="javascript:openComments('{url op="viewPeerReviewComments" path=$paperId|to_array:$reviewId}');" class="icon">{icon name="comment"}</a>
 			{else}
@@ -334,9 +334,9 @@ function confirmSubmissionCheck() {
 						{html_options_translate options=$reviewerRecommendationOptions selected=''}
 					</select>&nbsp;&nbsp;&nbsp;&nbsp;
 					<input type="submit" name="submit" onclick="return confirmSubmissionCheck()" class="button" value="{translate key="reviewer.paper.submitReview"}" {if not $confirmedStatus or $declined or $submission->getCancelled() or (!$reviewFormResponseExists and !$reviewAssignment->getMostRecentPeerReviewComment() and !$uploadedFileExists)}disabled="disabled"{/if} />
-					</form>					
+					</form>
 				{/if}
-				</td>		
+				</td>
 			</tr>
 		</table>
 	</td>

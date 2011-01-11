@@ -23,22 +23,22 @@
 // a room has not been chosen for the presentation.
 function changeLocation(paperId) {
 	var checkVarName = "paper" + paperId + "RoomExists";
-	var isChecked = eval("document.schedule." + checkVarName + ".checked");
+	var isChecked = eval("document.getElementById('schedule')." + checkVarName + ".checked");
 
 	var roomIdVarName = "paper" + paperId + "Room";
-	var roomId = eval("document.schedule." + roomIdVarName + ".value");
+	var roomId = eval("document.getElementById('schedule')." + roomIdVarName + ".value");
 
 	if (!isChecked) {
 		roomId = 0;
 	}
 
-	document.schedule.changes.value += "\n" + paperId + " location " + roomId;
+	document.getElementById('schedule').changes.value += "\n" + paperId + " location " + roomId;
 }
 
 function checkScheduled(paperId) {
-	var isChecked = eval("document.schedule.paper" + paperId + "DateExists.checked");
+	var isChecked = eval("document.getElementById('schedule').paper" + paperId + "DateExists.checked");
 	if (!isChecked) {
-		eval("document.schedule.paper" + paperId + "DateExists.checked = true;");
+		eval("document.getElementById('schedule').paper" + paperId + "DateExists.checked = true;");
 		changeDate(paperId);
 	}
 }
@@ -48,9 +48,9 @@ function checkScheduled(paperId) {
 // date has not been chosen for the presentation.
 function changeDate(paperId) {
 	var checkVarName = "paper" + paperId + "DateExists";
-	var isChecked = eval("document.schedule." + checkVarName + ".checked");
+	var isChecked = eval("document.getElementById('schedule')." + checkVarName + ".checked");
 
-	var datePrefixName = "document.schedule.paper" + paperId + "Date";
+	var datePrefixName = "document.getElementById('schedule').paper" + paperId + "Date";
 	var paperMonth = eval(datePrefixName + "Month.value");
 	var paperDay = eval(datePrefixName + "Day.value");
 	var paperYear = eval(datePrefixName + "Year.value");
@@ -63,7 +63,7 @@ function changeDate(paperId) {
 		paperDate = "0";
 	}
 
-	document.schedule.changes.value += "\n" + paperId + " date " + paperDate;
+	document.getElementById('schedule').changes.value += "\n" + paperId + " date " + paperDate;
 }
 
 // Used to update the actions list when the time block of a paper is changed
@@ -71,44 +71,44 @@ function changeDate(paperId) {
 // a time block has not been chosen for the presentation.
 function changeTimeBlock(paperId) {
 	var checkVarName = "paper" + paperId + "TimeBlockExists";
-	var isChecked = eval("document.schedule." + checkVarName + ".checked");
+	var isChecked = eval("document.getElementById('schedule')." + checkVarName + ".checked");
 
 	var timeBlockIdVarName = "paper" + paperId + "TimeBlock";
-	var timeBlockId = eval("document.schedule." + timeBlockIdVarName + ".value");
+	var timeBlockId = eval("document.getElementById('schedule')." + timeBlockIdVarName + ".value");
 
 	if (!isChecked) {
 		timeBlockId = 0;
 	}
 
-	document.schedule.changes.value += "\n" + paperId + " timeBlock " + timeBlockId;
+	document.getElementById('schedule').changes.value += "\n" + paperId + " timeBlock " + timeBlockId;
 }
 
 // Used to update the actions list when the start or end time of a paper is
 // changed.
 function changeTime(paperId) {
-	var timePrefixName = "document.schedule.paper" + paperId + "StartTime";
+	var timePrefixName = "document.getElementById('schedule').paper" + paperId + "StartTime";
 	var paperHour = eval(timePrefixName + "Hour.value");
 	var paperMinute = eval(timePrefixName + "Minute.value");
 	var paperMeridian = eval(timePrefixName + "Meridian.value");
 
 	var paperTime = paperHour + ":" + paperMinute + ' ' + paperMeridian;
-	document.schedule.changes.value += "\n" + paperId + " startTime" + " " + paperTime;
+	document.getElementById('schedule').changes.value += "\n" + paperId + " startTime" + " " + paperTime;
 
-	var timePrefixName = "document.schedule.paper" + paperId + "EndTime";
+	var timePrefixName = "document.getElementById('schedule').paper" + paperId + "EndTime";
 	var paperHour = eval(timePrefixName + "Hour.value");
 	var paperMinute = eval(timePrefixName + "Minute.value");
 	var paperMeridian = eval(timePrefixName + "Meridian.value");
 
 	var paperTime = paperHour + ":" + paperMinute + ' ' + paperMeridian;
 
-	document.schedule.changes.value += "\n" + paperId + " endTime" + " " + paperTime;
+	document.getElementById('schedule').changes.value += "\n" + paperId + " endTime" + " " + paperTime;
 }
 
 // Used to sort the display by a certain piece of data
 function sortBy(sortName) {
-	document.schedule.sort.value = sortName;
-	document.schedule.action = "{/literal}{url op="schedule"}{literal}";
-	document.schedule.submit();
+	document.getElementById('schedule').sort.value = sortName;
+	document.getElementById('schedule').action = "{/literal}{url op="schedule"}{literal}";
+	document.getElementById('schedule').submit();
 }
 
 {/literal}
@@ -119,7 +119,7 @@ function sortBy(sortName) {
 {if $enableTimeBlocks}
 	<ul class="menu">
 		<li class="current"><a href="{url op="schedule"}">{translate key="manager.scheduler.schedule"}</a></li>
-		<li><a onclick="return (document.schedule.changes.value == ''?true:confirm('Are you sure you wish to leave the Scheduler? You will lose any changes you have made.'))" href="{url op="timeBlocks"}">{translate key="manager.scheduler.timeBlocks"}</a></li>
+		<li><a onclick="return (document.getElementById('schedule').changes.value == ''?true:confirm('Are you sure you wish to leave the Scheduler? You will lose any changes you have made.'))" href="{url op="timeBlocks"}">{translate key="manager.scheduler.timeBlocks"}</a></li>
 	</ul>
 {/if}{* $enableTimeBlocks *}
 
@@ -157,7 +157,7 @@ function sortBy(sortName) {
 		<td width="4%"><input id="paper{$publishedPaper->getId()|escape}RoomExists" type="checkbox" {if $publishedPaper->getRoomId()}checked="checked" {/if}name="paper{$publishedPaper->getId()|escape}RoomExists" onchange="changeLocation({$publishedPaper->getId()|escape});" /></td>
 		<td width="9%">{fieldLabel name="paper"|concat:$publishedPaper->getId():"RoomExists" key="manager.scheduler.location"}</td>
 		<td width="33%">
-			<select id="paper{$publishedPaper->getId()}Room" name="paper{$publishedPaper->getId()}Room" onchange="document.schedule.paper{$publishedPaper->getId()|escape}RoomExists.checked = true; changeLocation({$publishedPaper->getId()|escape});" class="selectMenu">
+			<select id="paper{$publishedPaper->getId()}Room" name="paper{$publishedPaper->getId()}Room" onchange="document.getElementById('schedule').paper{$publishedPaper->getId()|escape}RoomExists.checked = true; changeLocation({$publishedPaper->getId()|escape});" class="selectMenu">
 				{foreach from=$buildingsAndRooms key=buildingId item=buildingEntry}
 					<option disabled="disabled" value="">{$buildingEntry.building->getBuildingAbbrev()}</option>
 					{foreach from=$buildingEntry.rooms key=roomId item=room}
@@ -182,7 +182,7 @@ function sortBy(sortName) {
 				{/if}
 			{/foreach}
 
-			<select {if $startTime && !$timeBlockFound}disabled="disabled" {/if} id="paper{$publishedPaper->getId()}TimeBlock" name="paper{$publishedPaper->getId()}TimeBlock" onchange="document.schedule.paper{$publishedPaper->getId()|escape}TimeBlockExists.checked = true; changeTimeBlock({$publishedPaper->getId()|escape});" class="selectMenu">
+			<select {if $startTime && !$timeBlockFound}disabled="disabled" {/if} id="paper{$publishedPaper->getId()}TimeBlock" name="paper{$publishedPaper->getId()}TimeBlock" onchange="document.getElementById('schedule').paper{$publishedPaper->getId()|escape}TimeBlockExists.checked = true; changeTimeBlock({$publishedPaper->getId()|escape});" class="selectMenu">
 				{if $startTime && !$timeBlockFound}
 					{* Orphaned time without a time block *}
 					<option>{$startTime|date_format:$datetimeFormatShort} &mdash; {$endTime|date_format:$timeFormat}</option>

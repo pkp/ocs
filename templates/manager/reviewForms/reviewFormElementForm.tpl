@@ -15,13 +15,14 @@
 {literal}
 <!--
 function togglePossibleResponses(newValue, multipleResponsesElementTypesString) {
+	var reviewFormElementForm = document.getElementById('reviewFormElementForm');
 	if (multipleResponsesElementTypesString.indexOf(';'+newValue+';') != -1) {
-		document.reviewFormElementForm.addResponse.disabled=false;
+		reviewFormElementForm.addResponse.disabled=false;
 	} else {
-		if (document.reviewFormElementForm.addResponse.disabled == false) {
+		if (reviewFormElementForm.addResponse.disabled == false) {
 			alert({/literal}'{translate|escape:"jsparam" key="manager.reviewFormElement.changeType"}'{literal});
 		}
-		document.reviewFormElementForm.addResponse.disabled=true;
+		reviewFormElementForm.addResponse.disabled=true;
 	}
 }
 // -->
