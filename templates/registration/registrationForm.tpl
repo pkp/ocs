@@ -1,7 +1,7 @@
 {**
  * templates/registration/registrationForm.tpl
  *
- * Copyright (c) 2000-2010 John Willinsky
+ * Copyright (c) 2000-2011 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * Registration form under scheduled conference management.
