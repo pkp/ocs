@@ -75,6 +75,7 @@ class PayPalPlugin extends PaymethodPlugin {
 		$user =& Request::getUser();
 
 		$params = array(
+			'charset' => Config::getVar('i18n', 'client_charset'),
 			'business' => $this->getSetting($schedConf->getConferenceId(), $schedConf->getId(), 'selleraccount'),
 			'item_name' => $queuedPayment->getDescription(),
 			'amount' => $queuedPayment->getAmount(),
