@@ -8,8 +8,10 @@
  *
  * $Id$
  *}
-{if $showAbstractSteps}
-	{assign var="pageTitle" value="author.submit.supplementaryFilesAbstractOnly"}
+{if $showAbstractSteps && $currentSchedConf->getSetting('acceptSupplementaryReviewMaterials') && !$showPaperSteps}
+	{assign var="pageTitle" value="author.submit.step4AbstOnly"}
+{elseif $showAbstractSteps && $currentSchedConf->getSetting('acceptSupplementaryReviewMaterials')}
+	{assign var="pageTitle" value="author.submit.step4"}
 {else}
 	{assign var="pageTitle" value="author.submit.step4"}
 {/if}
