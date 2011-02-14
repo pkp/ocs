@@ -116,7 +116,7 @@ class TrackDirectorHandler extends Handler {
 			$rangeInfo =& $submissions->getLastPageRangeInfo();
 			unset($submissions);
 		}
-		
+
 		if ($sort == 'status') {
 			// Sort all submissions by status, which is too complex to do in the DB
 			$submissionsArray = $submissions->toArray();
@@ -128,6 +128,12 @@ class TrackDirectorHandler extends Handler {
 			// Convert submission array back to an ItemIterator class
 			import('lib.pkp.classes.core.ArrayItemIterator');
 			$submissions =& ArrayItemIterator::fromRangeInfo($submissionsArray, $rangeInfo);
+		}
+
+		// If only result is returned from a search, fast-forward to it
+		if ($search && $submissions && $submissions->getCount() == 1) {
+			$submission =& $submissions->next();
+			$request->redirect(null, null, null, 'submission', array($submission->getId()));
 		}
 
 		$templateMgr =& TemplateManager::getManager();
@@ -156,6 +162,7 @@ class TrackDirectorHandler extends Handler {
 
 		$templateMgr->assign('fieldOptions', Array(
 			SUBMISSION_FIELD_TITLE => 'paper.title',
+			SUBMISSION_FIELD_ID => 'paper.submissionId',
 			SUBMISSION_FIELD_AUTHOR => 'user.role.author',
 			SUBMISSION_FIELD_DIRECTOR => 'user.role.director'
 		));
