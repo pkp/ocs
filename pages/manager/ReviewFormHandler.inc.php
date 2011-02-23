@@ -40,6 +40,8 @@ class ReviewFormHandler extends ManagerHandler {
 		$templateMgr->addJavaScript('lib/pkp/js/lib/jquery/plugins/jquery.tablednd.js');
 		$templateMgr->addJavaScript('lib/pkp/js/functions/tablednd.js');
 		$templateMgr->assign_by_ref('reviewForms', $reviewForms);
+		$templateMgr->assign('completeCounts', $reviewFormDao->getUseCounts(ASSOC_TYPE_CONFERENCE, $conference->getId(), true));
+		$templateMgr->assign('incompleteCounts', $reviewFormDao->getUseCounts(ASSOC_TYPE_CONFERENCE, $conference->getId(), false));
 		$templateMgr->assign('helpTopicId','conference.managementPages.reviewForms');
 		$templateMgr->display('manager/reviewForms/reviewForms.tpl');
 	}
@@ -63,8 +65,10 @@ class ReviewFormHandler extends ManagerHandler {
 		$conference =& Request::getConference();
 		$reviewFormDao =& DAORegistry::getDAO('ReviewFormDAO');
 		$reviewForm =& $reviewFormDao->getReviewForm($reviewFormId, ASSOC_TYPE_CONFERENCE, $conference->getId());
+		$completeCounts = $reviewFormDao->getUseCounts(ASSOC_TYPE_CONFERENCE, $conference->getId(), true);
+		$incompleteCounts = $reviewFormDao->getUseCounts(ASSOC_TYPE_CONFERENCE, $conference->getId(), false);
 
-		if ($reviewFormId != null && (!isset($reviewForm) || $reviewForm->getCompleteCount() != 0 || $reviewForm->getIncompleteCount() != 0)) {
+		if ($reviewFormId != null && (!isset($reviewForm) || $completeCounts[$reviewFormId] != 0 || $incompleteCounts[$reviewFormId] != 0)) {
 			Request::redirect(null, null, null, 'reviewForms');
 		} else {
 			$this->setupTemplate(true, $reviewForm);
@@ -101,7 +105,9 @@ class ReviewFormHandler extends ManagerHandler {
 		$reviewFormDao =& DAORegistry::getDAO('ReviewFormDAO');
 		$reviewForm =& $reviewFormDao->getReviewForm($reviewFormId, ASSOC_TYPE_CONFERENCE, $conference->getId());
 
-		if ($reviewFormId != null && (!isset($reviewForm) || $reviewForm->getCompleteCount() != 0 || $reviewForm->getIncompleteCount() != 0)) {
+		$completeCounts = $reviewFormDao->getUseCounts(ASSOC_TYPE_CONFERENCE, $conference->getId(), true);
+		$incompleteCounts = $reviewFormDao->getUseCounts(ASSOC_TYPE_CONFERENCE, $conference->getId(), false);
+		if ($reviewFormId != null && (!isset($reviewForm) || $completeCounts[$reviewFormId] != 0 || $incompleteCounts[$reviewFormId] != 0)) {
 			Request::redirect(null, null, null, 'reviewForms');
 		}
 
@@ -144,7 +150,9 @@ class ReviewFormHandler extends ManagerHandler {
 			Request::redirect(null, null, null, 'reviewForms');
 		}
 
-		if ($reviewForm->getCompleteCount() != 0 || $reviewForm->getIncompleteCount() != 0) {
+		$completeCounts = $reviewFormDao->getUseCounts(ASSOC_TYPE_JOURNAL, $journal->getId(), true);
+		$incompleteCounts = $reviewFormDao->getUseCounts(ASSOC_TYPE_JOURNAL, $journal->getId(), false);
+		if ($completeCounts[$reviewFormId] != 0 || $incompleteCounts[$reviewFormId] != 0) {
 			$this->setupTemplate(true);
 		} else {
 			$this->setupTemplate(true, $reviewForm);
@@ -155,6 +163,8 @@ class ReviewFormHandler extends ManagerHandler {
 		$templateMgr->assign('pageTitle', 'manager.reviewForms.preview');
 		$templateMgr->assign_by_ref('reviewForm', $reviewForm);
 		$templateMgr->assign('reviewFormElements', $reviewFormElements);
+		$templateMgr->assign('completeCounts', $completeCounts);
+		$templateMgr->assign('incompleteCounts', $incompleteCounts);
 		$templateMgr->register_function('form_language_chooser', array('ReviewFormHandler', 'smartyFormLanguageChooser'));
 		$templateMgr->assign('helpTopicId','conference.managementPages.reviewForms');
 		$templateMgr->display('manager/reviewForms/previewReviewForm.tpl');
@@ -173,7 +183,9 @@ class ReviewFormHandler extends ManagerHandler {
 		$reviewFormDao =& DAORegistry::getDAO('ReviewFormDAO');
 		$reviewForm =& $reviewFormDao->getReviewForm($reviewFormId, ASSOC_TYPE_CONFERENCE, $conference->getId());
 
-		if (isset($reviewForm) && $reviewForm->getCompleteCount() == 0 && $reviewForm->getIncompleteCount() == 0) {
+		$completeCounts = $reviewFormDao->getUseCounts(ASSOC_TYPE_JOURNAL, $journal->getId(), true);
+		$incompleteCounts = $reviewFormDao->getUseCounts(ASSOC_TYPE_JOURNAL, $journal->getId(), false);
+		if (isset($reviewForm) && $completeCounts[$reviewFormId] == 0 && $incompleteCounts[$reviewFormId] == 0) {
 			$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
 			$reviewAssignments =& $reviewAssignmentDao->getByReviewFormId($reviewFormId);
 
@@ -292,8 +304,10 @@ class ReviewFormHandler extends ManagerHandler {
 		$conference =& Request::getConference();
 		$reviewFormDao =& DAORegistry::getDAO('ReviewFormDAO');
 		$reviewForm =& $reviewFormDao->getReviewForm($reviewFormId, ASSOC_TYPE_CONFERENCE, $conference->getId());
+		$completeCounts = $reviewFormDao->getUseCounts(ASSOC_TYPE_CONFERENCE, $conference->getId(), true);
+		$incompleteCounts = $reviewFormDao->getUseCounts(ASSOC_TYPE_CONFERENCE, $conference->getId(), false);
 
-		if (!isset($reviewForm) || $reviewForm->getCompleteCount() != 0 || $reviewForm->getIncompleteCount() != 0) {
+		if (!isset($reviewForm) || $completeCounts[$reviewFormId] != 0 || $incompleteCounts[$reviewFormId] != 0) {
 			Request::redirect(null, null, null, 'reviewForms');
 		}
 
@@ -339,8 +353,10 @@ class ReviewFormHandler extends ManagerHandler {
 		$reviewFormDao =& DAORegistry::getDAO('ReviewFormDAO');
 		$reviewForm =& $reviewFormDao->getReviewForm($reviewFormId, ASSOC_TYPE_CONFERENCE, $conference->getId());
 		$reviewFormElementDao =& DAORegistry::getDAO('ReviewFormElementDAO');
+		$completeCounts = $reviewFormDao->getUseCounts(ASSOC_TYPE_CONFERENCE, $conference->getId(), true);
+		$incompleteCounts = $reviewFormDao->getUseCounts(ASSOC_TYPE_CONFERENCE, $conference->getId(), false);
 
-		if (!isset($reviewForm) || $reviewForm->getCompleteCount() != 0 || $reviewForm->getIncompleteCount() != 0 || ($reviewFormElementId != null && !$reviewFormElementDao->reviewFormElementExists($reviewFormElementId, $reviewFormId))) {
+		if (!isset($reviewForm) || $completeCounts[$reviewFormId] != 0 || $incompleteCounts[$reviewFormId] != 0 || ($reviewFormElementId != null && !$reviewFormElementDao->reviewFormElementExists($reviewFormElementId, $reviewFormId))) {
 			Request::redirect(null, null, null, 'reviewFormElements', array($reviewFormId));
 		}
 

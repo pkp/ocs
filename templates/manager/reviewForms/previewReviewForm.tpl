@@ -11,11 +11,18 @@
 {assign var="pageCrumbTitle" value=$pageTitle}
 {include file="common/header.tpl"}
 
-{if $reviewForm->getCompleteCount()==0 && $reviewForm->getIncompleteCount()==0}
+{assign var=reviewFormId value=$reviewForm->getId()}
+{if $completeCounts[$reviewFormId]==0 && $incompleteCounts[$reviewFormId]==0}
+	{assign var=canEdit value=1}
+{else}
+	{assign var=canEdit value=0}
+{/if}
+
+{if $canEdit}
 	<ul class="menu">
-		<li><a href="{url op="editReviewForm" path=$reviewForm->getId()}">{translate key="manager.reviewForms.edit"}</a></li>
-		<li><a href="{url op="reviewFormElements" path=$reviewForm->getId()}">{translate key="manager.reviewFormElements"}</a></li>
-		<li class="current"><a href="{url op="previewReviewForm" path=$reviewForm->getId()}">{translate key="manager.reviewForms.preview"}</a></li>
+		<li><a href="{url op="editReviewForm" path=$reviewFormId}">{translate key="manager.reviewForms.edit"}</a></li>
+		<li><a href="{url op="reviewFormElements" path=$reviewFormId}">{translate key="manager.reviewFormElements"}</a></li>
+		<li class="current"><a href="{url op="previewReviewForm" path=$reviewFormId}">{translate key="manager.reviewForms.preview"}</a></li>
 	</ul>
 {/if}
 
@@ -62,7 +69,7 @@
 
 <br/>
 
-<form id="previewReviewForm" method="post" action="{if $reviewForm->getCompleteCount()!=0 || $reviewForm->getIncompleteCount()!=0}{url op="reviewForms"}{else}{url op="editReviewForm" path=$reviewForm->getId()}{/if}">
+<form id="previewReviewForm" method="post" action="{if !$canEdit}{url op="reviewForms"}{else}{url op="editReviewForm" path=$reviewFormId}{/if}">
 	<p><input type="submit" value="{translate key="common.close"}" class="button defaultButton" /></p>
 </form>
 
