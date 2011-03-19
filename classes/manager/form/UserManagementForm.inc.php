@@ -196,7 +196,7 @@ class UserManagementForm extends Form {
 			'country',
 			'userUrl',
 			'biography',
-			'interests'
+			'interests',
 			'interestsKeywords',
 			'gossip',
 			'signature',
