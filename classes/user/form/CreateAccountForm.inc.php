@@ -26,6 +26,9 @@ class CreateAccountForm extends Form {
 	/** @var boolean user is already registered with another conference */
 	var $existingUser;
 
+	/** @var boolean whether to use reCaptcha or the default captcha */
+	var $reCaptchaEnabled;
+
 	/** @var AuthPlugin default authentication source, if specified */
 	var $defaultAuth;
 
@@ -43,6 +46,9 @@ class CreateAccountForm extends Form {
 		import('lib.pkp.classes.captcha.CaptchaManager');
 		$captchaManager = new CaptchaManager();
 		$this->captchaEnabled = ($captchaManager->isEnabled() && Config::getVar('captcha', 'captcha_on_register'))?true:false;
+		if ($this->captchaEnabled) {
+			$this->reCaptchaEnabled = Config::getVar('captcha', 'recaptcha')?true:false;
+		}
 
 		// Validation checks for this form
 		$this->addCheck(new FormValidator($this, 'username', 'required', 'user.profile.form.usernameRequired'));
@@ -63,11 +69,15 @@ class CreateAccountForm extends Form {
 			$this->addCheck(new FormValidator($this, 'lastName', 'required', 'user.profile.form.lastNameRequired'));
 			$this->addCheck(new FormValidatorUrl($this, 'userUrl', 'optional', 'user.profile.form.urlInvalid'));
 			$this->addCheck(new FormValidatorEmail($this, 'email', 'required', 'user.profile.form.emailRequired'));
-+			$this->addCheck(new FormValidatorCustom($this, 'email', 'required', 'user.register.form.emailsDoNotMatch', create_function('$email,$form', 'return $email == $form->getData(\'confirmEmail\');'), array(&$this)));
+			$this->addCheck(new FormValidatorCustom($this, 'email', 'required', 'user.register.form.emailsDoNotMatch', create_function('$email,$form', 'return $email == $form->getData(\'confirmEmail\');'), array(&$this)));
 			$this->addCheck(new FormValidator($this, 'affiliation', 'required', 'user.profile.form.affiliationRequired'));
 			$this->addCheck(new FormValidatorCustom($this, 'email', 'required', 'user.account.form.emailExists', array(DAORegistry::getDAO('UserDAO'), 'userExistsByEmail'), array(), true));
 			if ($this->captchaEnabled) {
-				$this->addCheck(new FormValidatorCaptcha($this, 'captcha', 'captchaId', 'common.captchaField.badCaptcha'));
+				if ($this->reCaptchaEnabled) {
+					$this->addCheck(new FormValidatorReCaptcha($this, 'recaptcha_challenge_field', 'recaptcha_response_field', Request::getRemoteAddr(), 'common.captchaField.badCaptcha'));
+				} else {
+					$this->addCheck(new FormValidatorCaptcha($this, 'captcha', 'captchaId', 'common.captchaField.badCaptcha'));
+				}
 			}
 
 			$authDao =& DAORegistry::getDAO('AuthSourceDAO');
@@ -91,12 +101,22 @@ class CreateAccountForm extends Form {
 		$schedConf =& Request::getSchedConf();
 
 		if ($this->captchaEnabled) {
-			import('lib.pkp.classes.captcha.CaptchaManager');
-			$captchaManager = new CaptchaManager();
-			$captcha =& $captchaManager->createCaptcha();
-			if ($captcha) {
+			$templateMgr->assign('reCaptchaEnabled', $this->reCaptchaEnabled);
+			if ($this->reCaptchaEnabled) {
+				import('lib.pkp.lib.recaptcha.recaptchalib');
+				$publicKey = Config::getVar('captcha', 'recaptcha_public_key');
+				$useSSL = Config::getVar('security', 'force_ssl')?true:false;
+				$reCaptchaHtml = recaptcha_get_html($publicKey, null, $useSSL);
+				$templateMgr->assign('reCaptchaHtml', $reCaptchaHtml);
 				$templateMgr->assign('captchaEnabled', $this->captchaEnabled);
-				$this->setData('captchaId', $captcha->getId());
+			} else {
+				import('lib.pkp.classes.captcha.CaptchaManager');
+				$captchaManager = new CaptchaManager();
+				$captcha =& $captchaManager->createCaptcha();
+				if ($captcha) {
+					$templateMgr->assign('captchaEnabled', $this->captchaEnabled);
+					$this->setData('captchaId', $captcha->getId());
+				}
 			}
 		}
 
@@ -162,8 +182,13 @@ class CreateAccountForm extends Form {
 			'createAsReviewer', 'existingUser', 'sendPassword'
 		);
 		if ($this->captchaEnabled) {
-			$userVars[] = 'captchaId';
-			$userVars[] = 'captcha';
+			if ($this->reCaptchaEnabled) {
+				$userVars[] = 'recaptcha_challenge_field';
+				$userVars[] = 'recaptcha_response_field';
+			} else {
+				$userVars[] = 'captchaId';
+				$userVars[] = 'captcha';
+			}
 		}
 
 		$this->readUserVars($userVars);

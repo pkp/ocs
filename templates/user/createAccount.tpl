@@ -91,9 +91,14 @@
 	<td class="label">{fieldLabel name="password2" required="true" key="user.repeatPassword"}</td>
 	<td class="value"><input type="password" name="password2" id="password2" value="{$password2|escape}" size="20" maxlength="32" class="textField" /></td>
 </tr>
-
 {if $captchaEnabled}
 	<tr>
+		{if $reCaptchaEnabled}
+		<td class="label" valign="top">{fieldLabel name="recaptcha_challenge_field" required="true" key="common.captchaField"}</td>
+		<td class="value">
+			{$reCaptchaHtml}
+		</td>
+		{else}
 		<td class="label" valign="top">{fieldLabel name="captcha" required="true" key="common.captchaField"}</td>
 		<td class="value">
 			<img src="{url page="user" op="viewCaptcha" path=$captchaId}" alt="{translate key="common.captchaField.altText"}" /><br />
@@ -101,6 +106,7 @@
 			<input name="captcha" id="captcha" value="" size="20" maxlength="32" class="textField" />
 			<input type="hidden" name="captchaId" value="{$captchaId|escape:"quoted"}" />
 		</td>
+		{/if}
 	</tr>
 {/if}
 
