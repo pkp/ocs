@@ -228,7 +228,7 @@ class ProfileForm extends Form {
 			'timeZone',
 			'biography',
 			'interests',
-			'interestsKeywords'
+			'interestsKeywords',
 			'userLocales',
 			'readerRole',
 			'authorRole',
