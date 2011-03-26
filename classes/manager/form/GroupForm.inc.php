@@ -91,7 +91,7 @@ class GroupForm extends Form {
 		$schedConf =& Request::getSchedConf();
 
 		if (!isset($this->group)) {
-			$this->group = new Group();
+			$this->group = $groupDao->newDataObject();
 		}
 
 		$this->group->setAssocType(ASSOC_TYPE_SCHED_CONF);

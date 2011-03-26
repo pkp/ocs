@@ -100,7 +100,7 @@ class GroupHandler extends ManagerHandler {
 				$prevSeq = 0;
 			else {
 				$schedConf =& Request::getSchedConf();
-				$prevGroup =& $groupDao->getGroup($prevId, ASSOC_TYPE_SCHED_CONF, $schedConf->getId());
+				$prevGroup =& $groupDao->getById($prevId, ASSOC_TYPE_SCHED_CONF, $schedConf->getId());
 				$prevSeq = $prevGroup->getSequence();
 			}
 
@@ -130,7 +130,7 @@ class GroupHandler extends ManagerHandler {
 
 		if ($groupId !== null) {
 			$groupDao =& DAORegistry::getDAO('GroupDAO');
-			$group =& $groupDao->getGroup($groupId, ASSOC_TYPE_SCHED_CONF, $schedConf->getId());
+			$group =& $groupDao->getById($groupId, ASSOC_TYPE_SCHED_CONF, $schedConf->getId());
 			if (!$group) {
 				Request::redirect(null, null, null, 'groups');
 			}
@@ -411,7 +411,7 @@ class GroupHandler extends ManagerHandler {
 
 		if ($groupId !== null) {
 			$groupDao =& DAORegistry::getDAO('GroupDAO');
-			$group =& $groupDao->getGroup($groupId, ASSOC_TYPE_SCHED_CONF, $schedConf->getId());
+			$group =& $groupDao->getById($groupId, ASSOC_TYPE_SCHED_CONF, $schedConf->getId());
 
 			if (!$group) $passedValidation = false;
 			else $this->group =& $group;
