@@ -563,6 +563,9 @@
 		<index name="comments_paper_id">
 			<col>paper_id</col>
 		</index>
+		<index name="comments_parent_comment_id">
+			<col>parent_comment_id</col>
+		</index>
 	</table>
 
 	<!--
