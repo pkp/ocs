@@ -28,10 +28,10 @@ class PayPalPlugin extends PaymethodPlugin {
 
 	function getDescription() {
 		return Locale::translate('plugins.paymethod.paypal.description');
-	}   
+	}
 
 	function register($category, $path) {
-		if (parent::register($category, $path)) {			
+		if (parent::register($category, $path)) {
 			$this->addLocaleData();
 			$this->import('PayPalDAO');
 			$payPalDao = new PayPalDAO();
@@ -83,12 +83,12 @@ class PayPalPlugin extends PaymethodPlugin {
 			'no_note' => 1,
 			'no_shipping' => 1,
 			'currency_code' => $queuedPayment->getCurrencyCode(),
-			'lc' => String::substr(Locale::getLocale(), 3), 
+			'lc' => String::substr(Locale::getLocale(), 3),
 			'custom' => $queuedPaymentId,
-			'notify_url' => Request::url(null, null, 'payment', 'plugin', array($this->getName(), 'ipn')),  
+			'notify_url' => Request::url(null, null, 'payment', 'plugin', array($this->getName(), 'ipn')),
 			'return' => $queuedPayment->getRequestUrl(),
 			'cancel_return' => Request::url(null, null, 'payment', 'plugin', array($this->getName(), 'cancel')),
-			'first_name' => ($user)?$user->getFirstName():'',  
+			'first_name' => ($user)?$user->getFirstName():'',
 			'last_name' => ($user)?$user->getLastname():'',
 			'item_number' => 1,
 			'cmd' => '_xclick'
@@ -147,7 +147,7 @@ class PayPalPlugin extends PaymethodPlugin {
 				if (get_magic_quotes_gpc()) {
 					foreach ($_POST as $key => $value) $req .= '&' . urlencode(stripslashes($key)) . '=' . urlencode(stripslashes($value));
 				} else {
-					foreach ($_POST as $key => $value) $req .= '&' . urlencode($key) . '=' . urlencode($value);	
+					foreach ($_POST as $key => $value) $req .= '&' . urlencode($key) . '=' . urlencode($value);
 				}
 
 				// Create POST response
@@ -232,33 +232,34 @@ class PayPalPlugin extends PaymethodPlugin {
 							if ($ocsPaymentManager->fulfillQueuedPayment($queuedPaymentId, $queuedPayment)) {
 								// Send the registrant a notification that their payment was received
 								$schedConfSettingsDao =& DAORegistry::getDAO('SchedConfSettingsDAO');
-		
+
+								$schedConfId = $schedConf->getId();
 								$registrationName = $schedConfSettingsDao->getSetting($schedConfId, 'registrationName');
 								$registrationEmail = $schedConfSettingsDao->getSetting($schedConfId, 'registrationEmail');
 								$registrationPhone = $schedConfSettingsDao->getSetting($schedConfId, 'registrationPhone');
 								$registrationFax = $schedConfSettingsDao->getSetting($schedConfId, 'registrationFax');
 								$registrationMailingAddress = $schedConfSettingsDao->getSetting($schedConfId, 'registrationMailingAddress');
 								$registrationContactSignature = $registrationName;
-						
+
 								if ($registrationMailingAddress != '') $registrationContactSignature .= "\n" . $registrationMailingAddress;
 								if ($registrationPhone != '') $registrationContactSignature .= "\n" . Locale::Translate('user.phone') . ': ' . $registrationPhone;
 								if ($registrationFax != '')	$registrationContactSignature .= "\n" . Locale::Translate('user.fax') . ': ' . $registrationFax;
-						
+
 								$registrationContactSignature .= "\n" . Locale::Translate('user.email') . ': ' . $registrationEmail;
 
 								$paramArray = array(
 									'registrantName' => $contactName,
 									'schedConfName' => $schedConfName,
-									'registrationContactSignature' => $registrationContactSignature 
+									'registrationContactSignature' => $registrationContactSignature
 								);
-						
+
 								import('classes.mail.MailTemplate');
 								$mail = new MailTemplate('MANUAL_PAYMENT_RECEIVED');
 								$mail->setFrom($registrationEmail, $registrationName);
 								$mail->assignParams($paramArray);
 								$mail->addRecipient($contactEmail, $contactName);
 								$mail->send();
-								
+
 								exit();
 							}
 
