@@ -210,6 +210,13 @@ class PayPalPlugin extends PaymethodPlugin {
 								// Send the registrant a notification that their payment was received
 								$schedConfSettingsDao =& DAORegistry::getDAO('SchedConfSettingsDAO');
 
+								// Get registrant name and email
+								$userDao =& DAORegistry::getDAO('UserDAO');
+								$user =& $userDao->getUser($queuedPayment->getuserId());
+								$registrantName = $user->getFullName();
+								$registrantEmail = $user->getEmail();
+
+								// Get conference contact details
 								$schedConfId = $schedConf->getId();
 								$registrationName = $schedConfSettingsDao->getSetting($schedConfId, 'registrationName');
 								$registrationEmail = $schedConfSettingsDao->getSetting($schedConfId, 'registrationEmail');
@@ -225,8 +232,8 @@ class PayPalPlugin extends PaymethodPlugin {
 								$registrationContactSignature .= "\n" . Locale::Translate('user.email') . ': ' . $registrationEmail;
 
 								$paramArray = array(
-									'registrantName' => $contactName,
-									'schedConfName' => $schedConfName,
+									'registrantName' => $registrantName,
+									'conferenceName' => $schedConf->getFullTitle(),
 									'registrationContactSignature' => $registrationContactSignature
 								);
 
@@ -234,7 +241,7 @@ class PayPalPlugin extends PaymethodPlugin {
 								$mail = new MailTemplate('MANUAL_PAYMENT_RECEIVED');
 								$mail->setFrom($registrationEmail, $registrationName);
 								$mail->assignParams($paramArray);
-								$mail->addRecipient($contactEmail, $contactName);
+								$mail->addRecipient($registrantEmail, $registrantName);
 								$mail->send();
 
 								exit();
