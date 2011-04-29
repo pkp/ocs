@@ -111,7 +111,9 @@ class PaperReportPlugin extends ReportPlugin {
 			'end_time' => Locale::translate('manager.scheduler.endTime'),
 			'building' => Locale::translate('manager.scheduler.building'),
 			'room' => Locale::translate('manager.scheduler.room'),
-			'status' => Locale::translate('common.status')
+			'status' => Locale::translate('common.status'),
+			'paper_type' => Locale::translate('paper.sessionType'),
+			'comments' => Locale::translate('paper.commentsToDirector')
 		));
 
 		$fp = fopen('php://output', 'wt');
