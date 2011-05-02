@@ -179,7 +179,7 @@ class UserImportExportPlugin extends ImportExportPlugin {
 				$rolePaths = array();
 				foreach (Request::getUserVar('roles') as $rolePath) {
 					$roleId = $roleDao->getRoleIdFromPath($rolePath);
-					$thisRoleUsers =& $roleDao->getUsersByRoleId($roleId, $schedConf->getId());
+					$thisRoleUsers =& $roleDao->getUsersByRoleId($roleId, $schedConf->getConferenceId(), $schedConf->getId());
 					foreach ($thisRoleUsers->toArray() as $user) {
 						$users[$user->getId()] = $user;
 					}
