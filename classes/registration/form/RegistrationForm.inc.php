@@ -181,6 +181,7 @@ class RegistrationForm extends Form {
 
 		if (!isset($registration)) {
 			$registration = new Registration();
+			$registration->setDateRegistered(time());
 		}
 
 		$registration->setSchedConfId($schedConf->getId());
@@ -190,7 +191,6 @@ class RegistrationForm extends Form {
 		$registration->setDomain($this->getData('domain') ? $this->getData('domain') : null);
 		$registration->setIPRange($this->getData('ipRange') ? $this->getData('ipRange') : null);
 		$registration->setSpecialRequests($this->getData('specialRequests') ? $this->getData('specialRequests') : null);
-		$registration->setDateRegistered(time());
 
 		// Send an email to the registrant informing them that their payment was received
 		if ($this->getData('notifyPaymentEmail')) {
