@@ -191,8 +191,8 @@ class NativeExportDom {
 
 		$affiliations = $author->getAffiliation(null);
 		if (is_array($affiliations)) foreach ($affiliations as $locale => $affiliation) {
-			$n =& XMLCustomWriter::createChildWithText($doc, $root, 'affiliation', $affiliation, false);
-			XMLCustomWriter::setAttribute($n, 'locale', $locale);
+			$affiliationNode =& XMLCustomWriter::createChildWithText($doc, $root, 'affiliation', $affiliation, false);
+			if ($affiliationNode) XMLCustomWriter::setAttribute($affiliationNode, 'locale', $locale);
 			unset($n);
 		}
 
