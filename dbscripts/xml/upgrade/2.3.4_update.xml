@@ -17,4 +17,11 @@
 	<sql>
 		<query>UPDATE plugin_settings SET plugin_name = LOWER(plugin_name);</query>
 	</sql>
+	<!-- Bug #6187: Clarify submission acceptance emails -->
+	<sql>
+		<query>INSERT INTO email_templates_default (email_key, can_edit, can_disable, from_role_id, to_role_id) SELECT 'PAYPAL_PAYMENT_RECEIVED', can_edit, can_disable, from_role_id, to_role_id FROM email_templates_default WHERE email_key = 'MANUAL_PAYMENT_RECEIVED'</query>
+		<query>INSERT INTO email_templates_default_data (email_key, locale, subject, body, description) SELECT 'PAYPAL_PAYMENT_RECEIVED', locale, subject, body, description FROM email_templates_default_data WHERE email_key = 'MANUAL_PAYMENT_RECEIVED'</query>
+		<query>INSERT INTO email_templates (email_key, assoc_id, enabled, assoc_type) SELECT 'PAYPAL_PAYMENT_RECEIVED', assoc_id, enabled, assoc_type FROM email_templates WHERE email_key = 'MANUAL_PAYMENT_RECEIVED'</query>
+		<query>INSERT INTO email_templates_data (email_key, locale, assoc_id, subject, body, assoc_type) SELECT 'PAYPAL_PAYMENT_RECEIVED', locale, assoc_id, subject, body, assoc_type FROM email_templates_data WHERE email_key = 'MANUAL_PAYMENT_RECEIVED'</query>
+	</sql>
 </data>
