@@ -103,14 +103,6 @@ class OCSQueuedPayment extends QueuedPayment {
 
 	/**
 	 * Return a useful identifier for this payment for use in correspondence.
-	 * @return string
-	 */
-	function getInvoiceId() {
-		return $this->getSchedConfId() . '-' . $this->getUserId() . '-' . $this->getAssocId() . '-' . $this->getPaymentId();
-	}
-
-	/**
-	 * Return a useful identifier for this payment for use in correspondence.
 	 */
 	function getInvoiceId() {
 		return $this->getSchedConfId() . '-' . $this->getUserId() . '-' . $this->getAssocId() . '-' . $this->getPaymentId();
