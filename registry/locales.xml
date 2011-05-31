@@ -15,13 +15,13 @@
 <!DOCTYPE locales SYSTEM "../lib/pkp/dtd/locales.dtd">
 
 <locales>
-	<locale key="ca_ES" complete="false" name="Català (Espanya)" iso639-2b="cat" />
+	<locale key="ca_ES" complete="false" name="Català" iso639-2b="cat" />
 	<locale key="de_DE" complete="false" name="Deutsch" iso639-2b="ger" />
 	<locale key="en_US" name="English" iso639-2b="eng" />
 	<locale key="es_AR" complete="false" name="Español (Argentina)" iso639-2b="spa" />	
 	<locale key="es_ES" name="Español (España)" iso639-2b="spa" />
 	<locale key="eu_ES" complete="false" name="Basque" iso639-2b="baq" />
-	<locale key="fr_CA" name="Français (Canada)" iso639-2b="fre" />
+	<locale key="fr_CA" name="Français" iso639-2b="fre" />
 	<locale key="it_IT" complete="false" name="Italiano" iso639-2b="ita" />
 	<locale key="pt_BR" name="Português (Brasil)" iso639-2b="por" />
 	<locale key="pt_PT" complete="false" name="Português (Portugal)" iso639-2b="por" />
