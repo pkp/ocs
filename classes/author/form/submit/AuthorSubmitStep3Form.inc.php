@@ -225,7 +225,7 @@ class AuthorSubmitStep3Form extends AuthorSubmitForm {
 		for ($i=0, $count=count($authors); $i < $count; $i++) {
 			if ($authors[$i]['authorId'] > 0) {
 				// Update an existing author
-				$author =& $paper->getAuthor($authors[$i]['authorId']);
+				$author =& $authorDao->getAuthor($authors[$i]['authorId'], $paper->getId());
 				$isExistingAuthor = true;
 
 			} else {
@@ -235,6 +235,7 @@ class AuthorSubmitStep3Form extends AuthorSubmitForm {
 			}
 
 			if ($author != null) {
+				$author->setSubmissionId($paper->getId());
 				$author->setFirstName($authors[$i]['firstName']);
 				$author->setMiddleName($authors[$i]['middleName']);
 				$author->setLastName($authors[$i]['lastName']);
@@ -246,8 +247,10 @@ class AuthorSubmitStep3Form extends AuthorSubmitForm {
 				$author->setPrimaryContact($this->getData('primaryContact') == $i ? 1 : 0);
 				$author->setSequence($authors[$i]['seq']);
 
-				if ($isExistingAuthor == false) {
-					$paper->addAuthor($author);
+				if ($isExistingAuthor) {
+					$authorDao->updateAuthor($author);
+				} else {
+					$authorDao->insertAuthor($author);
 				}
 			}
 			unset($author);
@@ -256,7 +259,7 @@ class AuthorSubmitStep3Form extends AuthorSubmitForm {
 		// Remove deleted authors
 		$deletedAuthors = explode(':', $this->getData('deletedAuthors'));
 		for ($i=0, $count=count($deletedAuthors); $i < $count; $i++) {
-			$paper->removeAuthor($deletedAuthors[$i]);
+			$authorDao->deleteAuthorById($deletedAuthors[$i], $paper->getId());
 		}
 
 		// Save the paper

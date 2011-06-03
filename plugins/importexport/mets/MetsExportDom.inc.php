@@ -484,7 +484,7 @@ class MetsExportDom {
 	function generateAuthorsDom(&$doc, &$root, $paperID) {
 		$authorDAO =& DAORegistry::getDAO('AuthorDAO');
 		$i = 0;
-		$authorsArray =& $authorDAO->getAuthorsByPaper($paperID);
+		$authorsArray =& $authorDAO->getAuthorsBySubmissionId($paperID);
 		while ($i < sizeof($authorsArray)) {
 			$authorNode =  &MetsExportDom::generateAuthorDom($doc, $authorsArray[$i]);
 			XMLCustomWriter::appendChild($root, $authorNode);

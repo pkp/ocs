@@ -177,10 +177,16 @@ class AuthorSubmitStep1Form extends AuthorSubmitForm {
 					$this->paper->setCurrentRound(REVIEW_ROUND_PRESENTATION);
 					break;
 			}
+			$this->paper->setData('sessionType', $this->getData('sessionType'));
+
+			$paperDao->insertPaper($this->paper);
+			$this->paperId = $this->paper->getPaperId();
 
 			// Set user to initial author
+			$authorDao =& DAORegistry::getDAO('AuthorDAO'); /* @var $authorDao AuthorDAO */
 			$user =& Request::getUser();
 			$author = new Author();
+			$author->setSubmissionId($this->paperId);
 			$author->setFirstName($user->getFirstName());
 			$author->setMiddleName($user->getMiddleName());
 			$author->setLastName($user->getLastName());
@@ -190,12 +196,7 @@ class AuthorSubmitStep1Form extends AuthorSubmitForm {
 			$author->setUrl($user->getUrl());
 			$author->setBiography($user->getBiography(null), null);
 			$author->setPrimaryContact(1);
-			$this->paper->addAuthor($author);
-
-			$this->paper->setData('sessionType', $this->getData('sessionType'));
-
-			$paperDao->insertPaper($this->paper);
-			$this->paperId = $this->paper->getPaperId();
+			$authorDao->insertAuthor($author);
 		}
 
 		return $this->paperId;

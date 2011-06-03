@@ -152,8 +152,6 @@ class PaperDAO extends DAO {
 		$paper->setPages($row['pages']);
 		$paper->setCommentsStatus($row['comments_status']);
 
-		$paper->setAuthors($this->authorDao->getAuthorsByPaper($row['paper_id']));
-
 		$this->getDataObjectSettings('paper_settings', 'paper_id', $row['paper_id'], $paper);
 
 		HookRegistry::call('PaperDAO::_returnPaperFromRow', array(&$paper, &$row));
@@ -296,12 +294,6 @@ class PaperDAO extends DAO {
 			} else {
 				$this->authorDao->insertAuthor($authors[$i]);
 			}
-		}
-
-		// Remove deleted authors
-		$removedAuthors = $paper->getRemovedAuthors();
-		for ($i=0, $count=count($removedAuthors); $i < $count; $i++) {
-			$this->authorDao->deleteAuthorById($removedAuthors[$i], $paper->getId());
 		}
 
 		$this->updateLocaleFields($paper);
