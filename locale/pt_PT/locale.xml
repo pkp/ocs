@@ -409,11 +409,11 @@ Note que a interface OAI pode ser desactivada para este portal nas configuraçõ
 	<!-- Conference setup page 5 -->
 
 	<!-- Conference setup page 6 -->
-	<message key="manager.setup.indexing.registerConferenceForIndexing.description"><![CDATA[Para ter o conteúdo desta conferência indexado dentro de um sistema global de distribuição de bases de pesquisa, <a href="http://www.pkp.ubc.ca/harvester/add.php" target="_blank">registade</a> a URL da conferência no <a href="http://www.pkp.ubc.ca/harvester/" target="_blank">Colectador de Metadados</a> do Public Knowledge Project. Esta ferramenta recolhe os metadados de cada item indexado, possibilitando pesquisas colectivas e precisas entre os sites de pesquisa que utilizam o protocolo de recolha de metadados do <a href="http://www.openarchives.org/OAI/openarchivesprotocol.htm#Introduction" target="_blank">Open Archives Initiative, OAI-PMH</a>.
+	<message key="manager.setup.indexing.registerConferenceForIndexing.description"><![CDATA[Para ter o conteúdo desta conferência indexado dentro de um sistema global de distribuição de bases de pesquisa, <a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">registade</a> a URL da conferência no <a href="http://pkp.sfu.ca/harvester/" target="_blank">Colectador de Metadados</a> do Public Knowledge Project. Esta ferramenta recolhe os metadados de cada item indexado, possibilitando pesquisas colectivas e precisas entre os sites de pesquisa que utilizam o protocolo de recolha de metadados do <a href="http://www.openarchives.org/OAI/openarchivesprotocol.htm#Introduction" target="_blank">Open Archives Initiative, OAI-PMH</a>.
 <br /><br />
 Caso o administrador do portal já tenha registado o portal do Colectador do PKP, a conferência será automaticamente indexada, sem necessidade de registo individual.
 <br /><br />
-<a href="http://www.pkp.ubc.ca/harvester/add.php" target="_blank">Clique aqui</a> e insira <span class="highlight">{$siteUrl}</span> no campo <strong>Site URL</strong>, e <span class="highlight">{$oaiUrl}</span> no campo <strong>Base URL for OAI Archive</strong>.]]></message>
+<a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">Clique aqui</a> e insira <span class="highlight">{$siteUrl}</span> no campo <strong>Site URL</strong>, e <span class="highlight">{$oaiUrl}</span> no campo <strong>Base URL for OAI Archive</strong>.]]></message>
 
 	<!-- 
 	     ***
