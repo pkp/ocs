@@ -48,6 +48,15 @@
 	</div>
 	{/if}
 
+	{if $paper->getLocalizedSubject()}
+		<div id="paperSubject">
+		<h4>{translate key="paper.subject"}</h4>
+		<br />
+		<div>{$paper->getLocalizedSubject()|escape}</div>
+		<br />
+		</div>
+	{/if}
+
 	{if $paper->getCitations()}
 		<h4>{translate key="submission.citations"}</h4>
 		<br />
