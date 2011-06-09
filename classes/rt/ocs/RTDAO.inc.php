@@ -32,6 +32,7 @@ class RTDAO extends DAO {
 		$rt->setEnabled($conference->getSetting('rtEnabled')?true:false);
 		$rt->setVersion((int) $conference->getSetting('rtVersionId'));
 		$rt->setAbstract($conference->getSetting('rtAbstract')?true:false);
+		$rt->setViewReviewPolicy($conference->getSetting('rtViewReviewPolicy')?true:false);
 		$rt->setCaptureCite($conference->getSetting('rtCaptureCite')?true:false);
 		$rt->setViewMetadata($conference->getSetting('rtViewMetadata')?true:false);
 		$rt->setSupplementaryFiles($conference->getSetting('rtSupplementaryFiles')?true:false);
@@ -52,6 +53,7 @@ class RTDAO extends DAO {
 		$conference->updateSetting('rtEnabled', $rt->getEnabled(), 'bool');
 		$conference->updateSetting('rtVersionId', $rt->getVersion(), 'int');
 		$conference->updateSetting('rtAbstract', $rt->getAbstract(), 'bool');
+		$conference->updateSetting('rtViewReviewPolicy', $rt->getViewReviewPolicy(), 'bool');
 		$conference->updateSetting('rtCaptureCite', $rt->getCaptureCite(), 'bool');
 		$conference->updateSetting('rtViewMetadata', $rt->getViewMetadata(), 'bool');
 		$conference->updateSetting('rtSupplementaryFiles', $rt->getSupplementaryFiles(), 'bool');

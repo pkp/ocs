@@ -34,6 +34,10 @@
 		<td class="value" width="97%"><label for="abstract">{translate key="rt.admin.settings.abstract"}</label></td>
 	</tr>
 	<tr valign="top">
+		<td class="label"><input type="checkbox" name="viewReviewPolicy" id="viewReviewPolicy" value="1"{if $viewReviewPolicy} checked="checked"{/if} /></td>
+		<td class="value"><label for="viewReviewPolicy">{translate key="rt.admin.settings.viewReviewPolicy"}</label></td>
+	</tr>
+	<tr valign="top">
 		<td class="label"><input type="checkbox" name="authorBio" id="authorBio" {if $authorBio}checked="checked" {/if}/></td>
 		<td class="value"><label for="authorBio">{translate key="rt.admin.settings.authorBio"}</label></td>
 	</tr>

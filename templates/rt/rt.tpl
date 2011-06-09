@@ -55,7 +55,7 @@
 <div id="paperInfo" class="rtBlock">
 	<ul>
 		{if $conferenceRt->getAbstract() && $galley}<li><a href="{url page="paper" op="view" path=$paperId}" target="_parent">{translate key="paper.abstract"}</a></li>{/if}
-		<li><a href="{url page="about" op="editorialPolicies" anchor="peerReviewProcess"}" target="_parent">{translate key="rt.reviewPolicy"}</a></li>
+		{if $conferenceRt->getViewReviewPolicy()}<li><a href="{url page="about" op="editorialPolicies" anchor="peerReviewProcess"}" target="_parent">{translate key="rt.reviewPolicy"}</a></li>{/if}
 		{if $conferenceRt->getAuthorBio()}<li><a href="javascript:openRTWindow('{url page="rt" op="bio" path=$paperId|to_array:$galleyId}');">{translate key="rt.authorBio"}</a></li>{/if}
 		{if $conferenceRt->getCaptureCite()}<li><a href="javascript:openRTWindow('{url page="rt" op="captureCite" path=$paperId|to_array:$galleyId}');">{translate key="rt.captureCite"}</a></li>{/if}
 		{if $conferenceRt->getViewMetadata()}<li><a href="javascript:openRTWindow('{url page="rt" op="metadata" path=$paperId|to_array:$galleyId}');">{translate key="rt.viewMetadata"}</a></li>{/if}

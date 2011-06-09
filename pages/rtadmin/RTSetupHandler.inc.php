@@ -47,6 +47,7 @@ class RTSetupHandler extends RTAdminHandler {
 			$templateMgr->assign_by_ref('version', $rt->getVersion());
 			$templateMgr->assign('enabled', $rt->getEnabled());
 			$templateMgr->assign('abstract', $rt->getAbstract());
+			$templateMgr->assign('viewReviewPolicy', $rt->getviewReviewPolicy());
 			$templateMgr->assign('captureCite', $rt->getCaptureCite());
 			$templateMgr->assign('viewMetadata', $rt->getViewMetadata());
 			$templateMgr->assign('supplementaryFiles', $rt->getSupplementaryFiles());
@@ -78,6 +79,7 @@ class RTSetupHandler extends RTAdminHandler {
 			else $rt->setVersion(Request::getUserVar('version'));
 			$rt->setEnabled(Request::getUserVar('enabled')==true);
 			$rt->setAbstract(Request::getUserVar('abstract')==true);
+			$rt->setViewReviewPolicy(Request::getUserVar('viewReviewPolicy')==true);
 			$rt->setCaptureCite(Request::getUserVar('captureCite')==true);
 			$rt->setViewMetadata(Request::getUserVar('viewMetadata')==true);
 			$rt->setSupplementaryFiles(Request::getUserVar('supplementaryFiles')==true);
