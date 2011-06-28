@@ -89,7 +89,7 @@ The following formats are accepted:
 	<message key="plugins.importexport.native.import.error.paperSubjectLocaleUnsupported">An paper subject was provided for the paper "{$paperTitle}" in a locale ("{$locale}") that this conference does not support.</message>
 	<message key="plugins.importexport.native.import.error.paperSubjectClassLocaleUnsupported">An paper subject classification was provided for the paper "{$paperTitle}" in a locale ("{$locale}") that this conference does not support.</message>
 	<message key="plugins.importexport.native.import.error.paperCoverageGeoLocaleUnsupported">An paper geographical coverage was provided for the paper "{$paperTitle}" in a locale ("{$locale}") that this conference does not support.</message>
-	<message key="plugins.importexport.native.import.error.paperCoverageChronLocaleUnsupported">An paper geographical coverage was provided for the paper "{$paperTitle}" in a locale ("{$locale}") that this conference does not support.</message>
+	<message key="plugins.importexport.native.import.error.paperCoverageChronLocaleUnsupported">An paper chronological coverage was provided for the paper "{$paperTitle}" in a locale ("{$locale}") that this conference does not support.</message>
 	<message key="plugins.importexport.native.import.error.paperCoverageSampleLocaleUnsupported">An paper sample coverage was provided for the paper "{$paperTitle}" in a locale ("{$locale}") that this conference does not support.</message>
 	<message key="plugins.importexport.native.import.error.paperSponsorLocaleUnsupported">An paper sponsor was provided for the paper "{$paperTitle}" in a locale ("{$locale}") that this conference does not support.</message>
 
