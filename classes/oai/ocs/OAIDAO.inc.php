@@ -75,10 +75,14 @@ class OAIDAO extends DAO {
 		$result =& $this->retrieve(
 			'SELECT	MIN(p.last_modified)
 			FROM	papers p,
-				published_papers pp '
-			. (isset($conferenceId) ? ' LEFT JOIN sched_confs sc ON (pp.sched_conf_id = sc.sched_conf_id) ' : '') .
-			'WHERE	p.paper_id = pp.paper_id'
-			. (isset($conferenceId) ? ' AND sc.conference_id = ?' : ''),
+				published_papers pp,
+				sched_confs sc,
+				conferences c
+			WHERE	p.paper_id = pp.paper_id AND
+				p.sched_conf_id = sc.sched_conf_id AND
+				sc.conference_id = c.conference_id AND
+				c.enabled = 1'
+			. (isset($conferenceId) ? ' AND c.conference_id = ?' : ''),
 
 			isset($conferenceId) ? array((int) $conferenceId) : false
 		);
@@ -103,14 +107,20 @@ class OAIDAO extends DAO {
 	 * @return boolean
 	 */
 	function recordExists($paperId, $conferenceId = null) {
+		$params = array((int) $paperId);
+		if (isset($conferenceId)) $params[] = (int) $conferenceId;
 		$result =& $this->retrieve(
 			'SELECT COUNT(*)
-			FROM	published_papers pp'
-			. (isset($conferenceId) ? ', sched_confs s' : '')
-			. ' WHERE pp.paper_id = ?'
-			. (isset($conferenceId) ? ' AND s.conference_id = ? AND pp.sched_conf_id = s.sched_conf_id' : ''),
-
-			isset($conferenceId) ? array($paperId, $conferenceId) : $paperId
+			FROM	published_papers pp,
+				papers p,
+				sched_confs sc,
+				conferences c
+			WHERE	pp.paper_id = ? AND
+				pp.paper_id = p.paper_id AND
+				sc.sched_conf_id = p.sched_conf_id AND
+				c.conference_id = sc.conference_id'
+			. (isset($conferenceId) ? ' AND c.conference_id = ?' : ''),
+			$params
 		);
 
 		$returner = $result->fields[0] == 1;
@@ -137,8 +147,9 @@ class OAIDAO extends DAO {
 				LEFT JOIN tracks t ON t.track_id = p.track_id
 			WHERE	pp.paper_id = p.paper_id AND
 				c.conference_id = s.conference_id AND
-				s.sched_conf_id = p.sched_conf_id
-				AND pp.paper_id = ?'
+				s.sched_conf_id = p.sched_conf_id AND
+				c.enabled = 1 AND
+				pp.paper_id = ?'
 			. (isset($conferenceId) ? ' AND c.conference_id = ?' : ''),
 			isset($conferenceId) ? array((int) $paperId, (int) $conferenceId) : array((int) $paperId)
 		);
@@ -192,6 +203,7 @@ class OAIDAO extends DAO {
 				LEFT JOIN tracks t ON t.track_id = p.track_id
 			WHERE	pp.paper_id = p.paper_id AND
 				p.sched_conf_id = s.sched_conf_id AND
+				c.enabled = 1 AND
 				s.conference_id = c.conference_id'
 			. (isset($conferenceId) ? ' AND c.conference_id = ?' : '')
 			. (isset($schedConfId) ? ' AND s.sched_conf_id = ?' : '')
@@ -256,6 +268,7 @@ class OAIDAO extends DAO {
 				LEFT JOIN tracks t ON t.track_id = p.track_id
 			WHERE	pp.paper_id = p.paper_id AND
 				p.sched_conf_id = s.sched_conf_id AND
+				c.enabled = 1 AND
 				s.conference_id = c.conference_id'
 			. (isset($conferenceId) ? ' AND c.conference_id = ?' : '')
 			. (isset($schedConfId) ? ' AND s.sched_conf_id = ?' : '')
