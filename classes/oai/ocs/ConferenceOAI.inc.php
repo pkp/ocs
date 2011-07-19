@@ -121,6 +121,12 @@ class ConferenceOAI extends OAI {
 		$info->sampleIdentifier = $this->paperIdToIdentifier(1);
 		$info->earliestDatestamp = $this->dao->getEarliestDatestamp($this->conferenceId);
 
+		$info->toolkitTitle = 'Open Conference Systems';
+		$versionDao =& DAORegistry::getDAO('VersionDAO');
+		$currentVersion =& $versionDao->getCurrentVersion();
+		$info->toolkitVersion = $currentVersion->getVersionString();
+		$info->toolkitURL = 'http://pkp.sfu.ca/ocs/';
+			
 		return $info;
 	}
 
