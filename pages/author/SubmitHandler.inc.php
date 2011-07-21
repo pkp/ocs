@@ -245,7 +245,7 @@ class SubmitHandler extends AuthorHandler {
 
 		import('author.form.submit.AuthorSubmitSuppFileForm');
 		$submitForm = new AuthorSubmitSuppFileForm($paper);
-		$submitForm->setData('title', Locale::translate('common.untitled'));
+		$submitForm->setData('title', array(Locale::getLocale() => Locale::translate('common.untitled')));
 		return $submitForm->execute();
 	}
 

@@ -1489,7 +1489,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		import('submission.form.SuppFileForm');
 
 		$suppFileForm = new SuppFileForm($submission);
-		$suppFileForm->setData('title', Locale::translate('common.untitled'));
+		$suppFileForm->setData('title', array(Locale::getLocale() => Locale::translate('common.untitled')));
 		$suppFileId = $suppFileForm->execute($fileName);
 
 		Request::redirect(null, null, null, 'editSuppFile', array($paperId, $suppFileId));
