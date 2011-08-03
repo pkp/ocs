@@ -190,9 +190,9 @@ class SubmitHandler extends AuthorHandler {
 				$notificationManager = new NotificationManager();
 				$roleDao =& DAORegistry::getDAO('RoleDAO');
 				$notificationUsers = array();
-				$conferenceManagers = $roleDao->getUsersByRoleId(ROLE_ID_CONFERENCE_MANAGER);
+				$conferenceManagers = $roleDao->getUsersByRoleId(ROLE_ID_CONFERENCE_MANAGER, $conference->getId());
 				$allUsers = $conferenceManagers->toArray();
-				$directors = $roleDao->getUsersByRoleId(ROLE_ID_DIRECTOR);
+				$directors = $roleDao->getUsersByRoleId(ROLE_ID_DIRECTOR, $conference->getId(), $schedConf->getId());
 				array_merge($allUsers, $directors->toArray());
 				foreach ($allUsers as $user) {
 					$notificationUsers[] = array('id' => $user->getId());
