@@ -763,11 +763,7 @@ Para depositar un trabajo en esta conferencia, siga los siguientes pasos.
 	<li><tt>cache/_db</tt> permiso de escritura: {$writable_db_cache}</li>
 </ul>
 
-<p>2. Debe crearse un directorio con permisos de escritura para almacenar los ficheros de los trabajos (ver "Configuración de Ficheros" más abajo).</p>
-
-<h4>Manual de instalación</h4>
-
-<p>Seleccione <strong>Manual de Instalación</strong> para mostrar los pasos necesarios en SQL para crear el esquema de la base de datos del OCS y los valores iniciales para que la instalación de la base de datos  pueda hacerse manualmente. Esta opción es útil cuando se producen problemas durante la instalación, particularmente con plataformas que no la admiten. Tenga en cuenta que este método de instalación no creará la base de datos o ninguna otra tabla, aunque en el fichero de configuración todavía podrán escribirse las opciones indicadas para  la base de  base de datos.</p>]]></message>
+<p>2. Debe crearse un directorio con permisos de escritura para almacenar los ficheros de los trabajos (ver "Configuración de Ficheros" más abajo).</p>]]></message>
 	<message key="installer.upgradeInstructions"><![CDATA[<h4>OCS Version {$version}</h4>
 <p>Gracias por descargarse el  <strong>Open Conference Systems</strong> del Public Knowledge Project's. Antes de iniciar la instalación, por favor lea el fichero <a href="{$baseUrl}/docs/README">README</a> y <a href="{$baseUrl}/docs/UPGRADE">UPGRADE</a> incluidos en este paquete de software. Para mas información acerca del Public Knowledge Project y sus proyectos de software, por favor visite la web del <a href="http://pkp.sfu.ca/" target="_blank">PKP</a>. Si tiene alguna duda sobre el Open Conference Systems, diríjase al <a href="http://pkp.sfu.ca/support/forum">foro de discusión</a> o visite la web PKP's online <a href="http://pkp.sfu.ca/bugzilla/" target="_blank">incidencias del sistema</a>. A pesar de que el foro es el lugar recomendado para las consultas, también puede dirigirse al equipo desarrollador <a href="mailto:pkp.contact@gmail.com">pkp.contact@gmail.com</a>.</p>
 <p>Es <strong>altamente recomendable</strong> que haga una copia de seguridad de su base de datos, de los directorios, y del directorio de instalación del OCS antes de comenzar.</p>
@@ -783,8 +779,6 @@ Su servidor actualmente soporta mbstring: <strong>{$supportsMBString}</strong>]]
 	<message key="installer.reinstallAfterDatabaseError"><![CDATA[<strong>Atención:</strong> Si la instalación falla durante la instalación de la base de datos, necesitará retirar la base de datos del OCS o las tablas de la base antes de reinstalarla.]]></message>
 	<message key="installer.overwriteConfigFileInstructions"><![CDATA[<h4>¡IMPORTANTE!</h4>
 <p>El instalador no pudo sobrescribir automáticamente el fichero de configuración. Antes de usar el sistema, por favor abra el fichero <tt>config.inc.php</tt> con un editor de texto y reemplace su contenido con el del texto mencionado más abajo.</p>]]></message>
-	<message key="installer.manualSQLInstructions"><![CDATA[<h4>Manual de Instalación</h4>
-<p>Las órdenes SQL para crear el esquema de la base de datos del  OCS y los datos iniciales se dan más abajo. Tenga en cuenta que el sistema no podrá usarse hasta que esas órdenes no se hayan ejecutado manualmente. También tendrá que configurar manualmente <tt>config.inc.php</tt> el fichero de configuración.</p>]]></message>
 	<message key="installer.installationComplete"><![CDATA[<p>La instalación del OCS se ha realizado con éxito.</p>
 <p>Puede empezar a utilizar el sistema, <a href="{$loginUrl}">login</a> con el nombre de usuario y contraseña introducidos en la página anterior.</p>
 <p>Si desea recibir noticias y actualizaciones, <strong>por favor, regístrese en <a href="http://pkp.sfu.ca/ocs/register" target="_new">http://pkp.sfu.ca/ocs/register</a>.</strong> Si tiene alguna pregunta o comentarios, por favor vaya al <a href="http://pkp.sfu.ca/support/forum" target="_new">foro de discusión</a>.</p>]]></message>

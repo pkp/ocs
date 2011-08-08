@@ -840,11 +840,7 @@ Per a dipositar un treball en aquesta conferència, segueixi els següents passo
 	<li><tt>cache/_db</tt> permís d'escriptura: {$writable_db_cache}</li>
 </ul>
 
-<p>2. Ha de crear-se un directori amb permisos d'escriptura per a emmagatzemar els arxius dels treballs (veure "Configuració d'arxius" més abaix).</p>
-
-<h4>Manual d'instal·lació</h4>
-
-<p>Seleccioni <strong>Manual d'instal·lació</strong> per a mostrar els passos necessaris en SQL per a crear l'esquema de la base de dades de l'OCS i els valors inicials perquè la instal·lació de la base de dades pugui fer-se manualment. Aquesta opció és útil quan es produeixen problemes durant la instal·lació, particularment amb plataformes que no l'admeten. Tingui en compte que aquest mètode d'instal·lació no crearà la base de dades o cap altra taula, encara que en el fitxer de configuració encara podran escriure's les opcions indicades per a la base de base de dades.</p>]]></message>
+<p>2. Ha de crear-se un directori amb permisos d'escriptura per a emmagatzemar els arxius dels treballs (veure "Configuració d'arxius" més abaix).</p>]]></message>
 	<message key="installer.upgradeInstructions"><![CDATA[<h4>OCS Versió {$version}</h4>
 <p>Gràcies per descarregar-se l'<strong>Open Conference Systems</strong> del Public Knowledge Project's. Abans d'iniciar la instal·lació, per favor legeixi els arxius <a href="{$baseUrl}/docs/README">LLEGEIX-ME</a> i <a href="{$baseUrl}/docs/UPGRADE">ACTUALITZA</a> inclosos en aquest paquet de programari. Para mes informació sobre 'Public Knowledge Project' i els seus projectes de programari, per favor visiti la web del <a href="http://pkp.sfu.ca/" target="_blank">PKP</a>. Si té algun dubte sobre l''Open Conference Systems', dirigeixi's al <a href="http://pkp.sfu.ca/support/forum">fòrum de discussió</a> o visiti la web PKP online <a href="http://pkp.sfu.ca/bugzilla/" target="_blank">incidències del sistema</a>. A pesar que el fòrum és el lloc recomanat per a les consultes, també pot dirigir-se a l'equip desenvolupador <a href="mailto:pkp.contact@gmail.com">pkp.contact@gmail.com</a>.</p>
 <p>És <strong>del tot recomanable</strong> que faci una còpia de seguretat de la seva base de dades, dels directoris, i del directori d'instal·lació de l'OCS abans de començar.</p>
@@ -860,8 +856,6 @@ El seu servidor actualment suporta mbstring: <strong>{$supportsMBString}</strong
 	<message key="installer.reinstallAfterDatabaseError"><![CDATA[<b>Atenció:</b> Si la instal·lació falla durant la creació de la base de dades, necessitarà retirar la base de dades de l'OCS o les taules de la base abans de reinstal·lar-la .]]></message>
 	<message key="installer.overwriteConfigFileInstructions"><![CDATA[<h4>¡IMPORTANTE!</h4>
 <p>L'instal·lador no ha pogut sobreescriure automàticament l'arxiu de configuració. Abans d'usar el sistema, per favor obri l'arxiu <tt>config.inc.php</tt> amb un editor de text i reemplaci el seu contingut amb el del text esmentat més avall.</p>]]></message>
-	<message key="installer.manualSQLInstructions"><![CDATA[<h4>Manual d'instal·lació</h4>
-<p>Les ordres SQL per a crear l'esquema de la base de dades de l'OCS i les dades inicials es donen més baix. Tingui en compte que el sistema no podrà usar-se fins que aquestes ordres no s'hagin executat manualment. També haurà de configurar manualment l'arxiu de configuració <tt>config.inc.php</tt>.</p>]]></message>
 	<message key="installer.installationComplete"><![CDATA[<p>La instal·lació de l'OCS realizada amb éxit.</p>
 <p>Pot començar a utilitzar el sistema, <a href="{$loginUrl}">identificant-se</a> amb el nom d'usuari i contrasenya introduïts en la pàgina anterior.</p>
 <p>Si desitja rebre notícies i actualitzacions, <strong>per favor, registri's a <a href="http://pkp.sfu.ca/ocs/register" target="_new">http://pkp.sfu.ca/ocs/register</a>.</strong> Si té alguna pregunta o comentaris, per favor vagi al <a href="http://pkp.sfu.ca/support/forum" target="_new">fòrum de discussió</a>.</p>]]></message>

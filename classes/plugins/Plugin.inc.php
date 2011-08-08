@@ -100,11 +100,8 @@ class Plugin extends PKPPlugin {
 		$installer =& $args[0];
 		$result =& $args[1];
 
-		// Settings are only installed during automated installs. FIXME!
-		if (!$installer->getParam('manualInstall')) {
-			$pluginSettingsDao =& DAORegistry::getDAO('PluginSettingsDAO');
-			$pluginSettingsDao->installSettings(0, 0, $this->getName(), $this->getInstallSitePluginSettingsFile());
-		}
+		$pluginSettingsDao =& DAORegistry::getDAO('PluginSettingsDAO');
+		$pluginSettingsDao->installSettings(0, 0, $this->getName(), $this->getInstallSitePluginSettingsFile());
 
 		return false;
 	}
