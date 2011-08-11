@@ -62,7 +62,7 @@ class SchedConfSetupStep1Form extends SchedConfSetupForm {
 	 * @return array
 	 */
 	function getLocaleFieldNames() {
-		return array('introduction', 'overview', 'emailSignature', 'sponsorNote', 'contributorNote');
+		return array('introduction', 'contactAffiliation', 'overview', 'emailSignature', 'sponsorNote', 'contributorNote');
 	}
 
 	/**
