@@ -39,7 +39,7 @@ class NativeImportDom {
 
 	function importPaper(&$conference, &$schedConf, &$node, &$track, &$paper, &$errors, &$user, $isCommandLine) {
 		$dependentItems = array();
-		$result = NativeImportDom::handlePaperNode(&$conference, $schedConf, $node, $track, $paper, $publishedPaper, $errors, $user, $isCommandLine, $dependentItems);
+		$result = NativeImportDom::handlePaperNode($conference, $schedConf, $node, $track, $paper, $publishedPaper, $errors, $user, $isCommandLine, $dependentItems);
 		if (!$result) {
 			NativeImportDom::cleanupFailure ($dependentItems);
 		}
