@@ -173,6 +173,11 @@
 {/if}
 
 <tr valign="top">
+	<td class="label">{fieldLabel name="salutation" key="user.salutation"}</td>
+	<td class="value"><input type="text" name="salutation" id="salutation" value="{$salutation|escape}" size="20" maxlength="40" class="textField" /></td>
+</tr>
+
+<tr valign="top">
 	<td class="label">{fieldLabel name="firstName" required="true" key="user.firstName"}</td>
 	<td class="value"><input type="text" id="firstName" name="firstName" value="{$firstName|escape}" size="20" maxlength="40" class="textField" /></td>
 </tr>

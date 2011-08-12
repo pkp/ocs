@@ -57,6 +57,8 @@ class UserRegistrationForm extends Form {
 			$this->addCheck(new FormValidatorCustom($this, 'password', 'required', 'user.account.form.passwordsDoNotMatch', create_function('$password,$form', 'return $password == $form->getData(\'password2\');'), array(&$this)));
 			$this->addCheck(new FormValidator($this, 'firstName', 'required', 'user.profile.form.firstNameRequired'));
 			$this->addCheck(new FormValidator($this, 'lastName', 'required', 'user.profile.form.lastNameRequired'));
+			$this->addCheck(new FormValidator($this, 'country', 'required', 'user.profile.form.countryRequired'));
+			$this->addCheck(new FormValidator($this, 'mailingAddress', 'required', 'user.profile.form.mailingAddressRequired'));
 			$this->addCheck(new FormValidatorEmail($this, 'email', 'required', 'user.profile.form.emailRequired'));
 			$this->addCheck(new FormValidator($this, 'affiliation', 'required', 'user.profile.form.affiliationRequired'));
 			$this->addCheck(new FormValidatorCustom($this, 'email', 'required', 'user.account.form.emailExists', array(DAORegistry::getDAO('UserDAO'), 'userExistsByEmail'), array(), true));
@@ -146,6 +148,7 @@ class UserRegistrationForm extends Form {
 		$user =& Request::getUser();
 		if (!$user) {
 			$userVars[] = 'username';
+			$userVars[] = 'salutation';
 			$userVars[] = 'password';
 			$userVars[] = 'password2';
 			$userVars[] = 'firstName';
@@ -189,6 +192,7 @@ class UserRegistrationForm extends Form {
 			$user = new User();
 
 			$user->setUsername($this->getData('username'));
+			$user->setSalutation($this->getData('salutation'));
 			$user->setFirstName($this->getData('firstName'));
 			$user->setMiddleName($this->getData('middleName'));
 			$user->setInitials($this->getData('initials'));
