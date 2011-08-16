@@ -217,7 +217,9 @@ class TrackDirectorAction extends Action {
 			$schedConf =& Request::getSchedConf();
 			if ($schedConf->getSetting('reviewDeadlineType') != null) {
 				if ($schedConf->getSetting('reviewDeadlineType') == REVIEW_DEADLINE_TYPE_ABSOLUTE) {
-					TrackDirectorAction::setDueDate($trackDirectorSubmission->getId(), $reviewAssignment->getId(), $schedConf->getSetting('numWeeksPerReviewAbsolute'), null, false);
+					$reviewDeadlineDate = $schedConf->getSetting('numWeeksPerReviewAbsolute');
+					$reviewDueDate = strftime(Config::getVar('general', 'date_format_short'), $reviewDeadlineDate);
+					TrackDirectorAction::setDueDate($trackDirectorSubmission->getId(), $reviewAssignment->getId(), $reviewDueDate, null, false);
 				} elseif ($schedConf->getSetting('reviewDeadlineType') == REVIEW_DEADLINE_TYPE_RELATIVE) {
 					TrackDirectorAction::setDueDate($trackDirectorSubmission->getId(), $reviewAssignment->getId(), null, $schedConf->getSetting('numWeeksPerReviewRelative'), false);
 				}
