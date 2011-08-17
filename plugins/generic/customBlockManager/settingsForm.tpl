@@ -11,8 +11,8 @@
 {include file="common/header.tpl"}
 
 {url|assign:"sysPluginsUrl" page="manager" op="plugins"}
-{url|assign:"setup56" page="manager" op="setup" path="5"}
-{translate key="plugin.generic.customBlockManager.introduction" systemPluginsUrl=$sysPluginsUrl setupStep56=$setup56}
+{url|assign:"setup4" page="manager" op="setup" path="4"}
+{translate key="plugin.generic.customBlockManager.introduction" systemPluginsUrl=$sysPluginsUrl setupStep4=$setup4}
 
 <br />
 <br />
