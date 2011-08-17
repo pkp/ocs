@@ -30,8 +30,8 @@
 	{if !empty($conferenceSettings.contactTitle)}
 		{$conferenceSettings.contactTitle|escape}<br />
 	{/if}
-	{if !empty($conferenceSettings.contactAffiliation)}
-		{$conferenceSettings.contactAffiliation|escape}<br />
+	{if !empty($conferenceSettings.contactAffiliation.$currentLocale)}
+		{$conferenceSettings.contactAffiliation.$currentLocale|escape}<br />
 	{/if}
 	{if !empty($conferenceSettings.contactMailingAddress)}
 		{$conferenceSettings.contactMailingAddress|nl2br}<br />
