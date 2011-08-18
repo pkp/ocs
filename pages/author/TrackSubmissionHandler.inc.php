@@ -77,6 +77,18 @@ class TrackSubmissionHandler extends AuthorHandler {
 
 		$this->validate($paperId);
 		$submission =& $this->submission;
+
+		// The user may be coming in on an old URL e.g. from the submission
+		// ack email. If OCS is awaiting the completion of the submission,
+		// send them to the submit page.
+		if ($submission->getSubmissionProgress() != 0) {
+			Request::redirect(
+				null, null, null, 'submit',
+				array($submission->getSubmissionProgress()),
+				array('paperId' => $paperId)
+			);
+		}
+
 		$this->setupTemplate(true, $paperId);
 
 		$stage = (isset($args[1]) ? (int) $args[1] : 1);
@@ -381,8 +393,7 @@ class TrackSubmissionHandler extends AuthorHandler {
 	 * @param $requiresEditAccess boolean True means that the author must
 	 * 	  have edit access over the specified paper in order for
 	 * 	  validation to be successful.
-	 * @param $isDeleting boolean True iff user is deleting a paper, and is not
-	 *	  coming from an old URL (e.g. submission ack email)
+	 * @param $isDeleting boolean True iff user is deleting a paper
 	 */
 	function validate($paperId, $requiresEditAccess = false, $isDeleting = false) {
 		parent::validate();
@@ -404,19 +415,6 @@ class TrackSubmissionHandler extends AuthorHandler {
 		} else {
 			if ($authorSubmission->getUserId() != $user->getId()) {
 				$isValid = false;
-			}
-		}
-
-		if ($isValid && !$isDeleting) {
-			// The user may be coming in on an old URL e.g. from the submission
-			// ack email. If OCS is awaiting the completion of the submission,
-			// send them to the submit page.
-			if ($authorSubmission->getSubmissionProgress() != 0) {
-				Request::redirect(
-					null, null, null, 'submit',
-					array($authorSubmission->getSubmissionProgress()),
-					array('paperId' => $authorSubmission->getPaperId())
-				);
 			}
 		}
 
