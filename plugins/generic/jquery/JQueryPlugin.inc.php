@@ -38,6 +38,7 @@ class JQueryPlugin extends GenericPlugin {
 				$templateMgr =& TemplateManager::getManager();
 				$templateMgr->addStyleSheet(Request::getBaseUrl() . '/lib/pkp/styles/jqueryUi.css');
 				$templateMgr->addStyleSheet(Request::getBaseUrl() . '/lib/pkp/styles/jquery.pnotify.default.css');
+				$templateMgr->addStyleSheet(Request::getBaseUrl() . '/lib/pkp/styles/themes/default/pnotify.css');
 			}
 			return true;
 		}
@@ -123,6 +124,8 @@ class JQueryPlugin extends GenericPlugin {
 			$notificationsMarkup .= '$.pnotify({pnotify_title: \'' . $this->jsEscape($notificationTitle) . '\', pnotify_text: \'';
 			if ($notification->getIsLocalized()) $notificationsMarkup .= $this->jsEscape(Locale::translate($notification->getContents(), array('param' => $notification->getParam())));
 			else $notificationsMarkup .= $this->jsEscape($notification->getContents());
+			$notificationsMarkup .= '\', pnotify_addclass: \'' . $this->jsEscape($notification->getStyleClass());
+			$notificationsMarkup .= '\', pnotify_notice_icon: \'notifyIcon ' . $this->jsEscape($notification->getIconClass());
 			$notificationsMarkup .= '\'});';
 			$notificationDao->deleteNotificationById($notification->getId());
 			unset($notification);
