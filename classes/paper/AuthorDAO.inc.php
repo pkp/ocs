@@ -116,9 +116,11 @@ class AuthorDAO extends DAO {
 	 * scheduled conferences are returned.
 	 * @param $schedConfId int
 	 * @param $initial An initial the last names must begin with
+	 * @param $rangeInfo Range information
+	 * @param $includeEmail Whether or not to include the email in the select distinct
 	 * @return object ItemIterator Authors ordered by sequence
 	 */
-	function &getAuthorsAlphabetizedBySchedConf($schedConfId = null, $initial = null, $rangeInfo = null) {
+	function &getAuthorsAlphabetizedBySchedConf($schedConfId = null, $initial = null, $rangeInfo = null, $includeEmail = false) {
 		$params = array();
 
 		if (isset($schedConfId)) $params[] = $schedConfId;
@@ -133,8 +135,7 @@ class AuthorDAO extends DAO {
 			'SELECT	DISTINCT CAST(\'\' AS CHAR) AS url,
 				0 AS author_id,
 				0 AS paper_id,
-				CAST(\'\' AS CHAR) AS email,
-				CAST(\'\' AS CHAR) AS biography,
+				' . ($includeEmail?'aa.email AS email,':'CAST(\'\' AS CHAR) AS email,') . '
 				0 AS primary_contact,
 				0 AS seq,
 				aa.first_name AS first_name,

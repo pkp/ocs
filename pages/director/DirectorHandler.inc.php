@@ -426,7 +426,7 @@ class DirectorHandler extends TrackDirectorHandler {
 					$recipients =& $registrationDao->getRegisteredUsers($schedConfId, false);
 					break;
 				case 'allAuthors':
-					$recipients =& $authorDao->getAuthorsAlphabetizedBySchedConf($schedConfId);
+					$recipients =& $authorDao->getAuthorsAlphabetizedBySchedConf($schedConfId, null, null, true);
 					break;
 				case 'allUsers':
 					$recipients =& $roleDao->getUsersBySchedConfId($schedConfId);
