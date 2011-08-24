@@ -634,15 +634,13 @@ class TrackDirectorSubmissionDAO extends DAO {
 	}
 
 	/**
-	 * Retrieve a list of all reviewers along with information about their current status with respect to a paper's current stage.
+	 * Retrieve a list of all reviewers with respect to a submission's current round.
 	 * @param $schedConfId int
 	 * @param $paperId int
 	 * @return DAOResultFactory containing matching Users
 	 */
 	function &getReviewersForPaper($schedConfId, $paperId, $stage, $searchType = null, $search = null, $searchMatch = null, $rangeInfo = null, $sortBy = null, $sortDirection = SORT_DIRECTION_ASC) {
-		$paramArray = array($paperId, $stage, 'interests', $schedConfId, RoleDAO::getRoleIdFromPath('reviewer'));
-		$searchSql = '';
-
+		// Convert the field being searched for to a DB element to select on
 		$searchTypeMap = array(
 			USER_FIELD_FIRSTNAME => 'u.first_name',
 			USER_FIELD_LASTNAME => 'u.last_name',
@@ -651,6 +649,19 @@ class TrackDirectorSubmissionDAO extends DAO {
 			USER_FIELD_INTERESTS => 's.setting_value'
 		);
 
+		// Add the "interests" parameter only if the user searched for reviwer interests
+		$paramArray = array((int)$paperId, (int)$stage);
+		$joinInterests = false;
+		if($searchType == USER_FIELD_INTERESTS) {
+			$paramArray[] = "interests";
+			$joinInterests = true;
+		}
+
+		$paramArray[] = (int)$schedConfId;
+		$paramArray[] = ROLE_ID_REVIEWER;
+
+		// Generate the SQL used to filter the results based on what the user is searching for
+		$searchSql = '';
 		if (!empty($search) && isset($searchTypeMap[$searchType])) {
 			$fieldName = $searchTypeMap[$searchType];
 			switch ($searchMatch) {
@@ -679,28 +690,50 @@ class TrackDirectorSubmissionDAO extends DAO {
 				break;
 		}
 
+		// If we are sorting a column, we'll need to configure the additional join conditions
+		$sortSelect = '';
+		$joinComplete = $joinIncomplete = false;
+		$selectQuality = $selectLatest = $selectComplete = $selectAverage = $selectIncomplete = false;
+		if($sortBy) switch($sortBy) {
+		  case 'quality':
+			$selectQuality = true;
+			break;
+		  case 'latest':
+			$selectLatest = $joinComplete = true;
+			break;
+		  case 'done':
+			$selectComplete = $joinComplete = true;
+			break;
+		  case 'average':
+			$selectAverage = $joinComplete = true;
+			break;
+		  case 'active':
+			$selectIncomplete = $joinIncomplete = true;
+			break;
+		}
+
+		$sql = 'SELECT DISTINCT
+					u.user_id,
+					u.last_name,
+					ar.review_id ' .
+					($selectQuality ? ', AVG(ar.quality) AS average_quality ' : '') .
+					($selectLatest ? ', MAX(ac.date_notified) AS latest ' : '') .
+					($selectComplete ? ', COUNT(ac.review_id) AS completed ' : '') .
+					($selectAverage ? ', AVG(ac.date_completed-ac.date_notified) AS average ' : '') .
+					($selectIncomplete ? ', COUNT(ai.review_id) AS incomplete ' : '') .
+				'FROM roles r, users u
+					LEFT JOIN review_assignments ar ON (ar.reviewer_id = u.user_id AND ar.cancelled = 0 AND ar.paper_id = ? AND ar.stage = ?) ' .
+					($joinComplete ? 'LEFT JOIN review_assignments ac ON (ac.reviewer_id = u.user_id AND ac.date_completed IS NOT NULL) ' : '') .
+					($joinIncomplete ? 'LEFT JOIN review_assignments ai ON (ai.reviewer_id = u.user_id AND ai.date_completed IS NULL) ' : '') .
+					($joinInterests ? 'LEFT JOIN user_settings s ON (u.user_id = s.user_id AND s.setting_name = ?) ' : '') . 
+				'WHERE u.user_id = r.user_id AND
+					r.sched_conf_id = ? AND
+					r.role_id = ? ' . $searchSql . ' ' .
+				'GROUP BY u.user_id, u.last_name, ar.review_id ' .
+				($sortBy?(' ORDER BY ' . $this->getSortMapping($sortBy) . ' ' . $this->getDirectionMapping($sortDirection)) : '');
+
 		$result =& $this->retrieveRange(
-			'SELECT DISTINCT
-				u.user_id,
-				u.last_name,
-				ar.review_id,
-				AVG(a.quality) AS average_quality,
-				COUNT(ac.review_id) AS completed,
-				COUNT(ai.review_id) AS incomplete,
-				MAX(ac.date_notified) AS latest,
-				AVG(ac.date_completed-ac.date_notified) AS average
-			FROM	users u
-				LEFT JOIN review_assignments a ON (a.reviewer_id = u.user_id)
-				LEFT JOIN review_assignments ac ON (ac.reviewer_id = u.user_id AND ac.date_completed IS NOT NULL)
-				LEFT JOIN review_assignments ai ON (ai.reviewer_id = u.user_id AND ai.date_completed IS NULL)
-				LEFT JOIN review_assignments ar ON (ar.reviewer_id = u.user_id AND ar.cancelled = 0 AND ar.paper_id = ? AND ar.stage = ?)
-				LEFT JOIN user_settings s ON (u.user_id = s.user_id AND s.setting_name = ?)
-				LEFT JOIN roles r ON (r.user_id = u.user_id)
-			WHERE	u.user_id = r.user_id AND
-				r.sched_conf_id = ? AND
-				r.role_id = ? ' . $searchSql . 'GROUP BY u.user_id, u.last_name, ar.review_id' .
-			($sortBy?(' ORDER BY ' . $this->getSortMapping($sortBy) . ' ' . $this->getDirectionMapping($sortDirection)) : ''),
-			$paramArray, $rangeInfo
+			$sql,$paramArray, $rangeInfo
 		);
 
 		$returner = new DAOResultFactory($result, $this, '_returnReviewerUserFromRow');
@@ -748,7 +781,7 @@ class TrackDirectorSubmissionDAO extends DAO {
 	function getReviewerStatistics($schedConfId) {
 		$statistics = Array();
 
-		// Get counts of completed submissions
+		// Get latest review request date
 		$result =& $this->retrieve('SELECT ra.reviewer_id AS reviewer_id, MAX(ra.date_notified) AS last_notified FROM review_assignments ra, papers p WHERE ra.paper_id = p.paper_id AND p.sched_conf_id = ? GROUP BY ra.reviewer_id', $schedConfId);
 		while (!$result->EOF) {
 			$row = $result->GetRowAssoc(false);
