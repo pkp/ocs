@@ -57,7 +57,7 @@ class ReviewReportPlugin extends ReportPlugin {
 		$schedConf =& Request::getSchedConf();
 		Locale::requireComponents(array(LOCALE_COMPONENT_APPLICATION_COMMON, LOCALE_COMPONENT_PKP_USER, LOCALE_COMPONENT_PKP_SUBMISSION, LOCALE_COMPONENT_OCS_MANAGER));
 
-		header('content-type: text/comma-separated-values');
+		header('content-type: text/comma-separated-values; charset=utf-8');
 		header('content-disposition: attachment; filename=reviews-' . date('Ymd') . '.csv');
 
 		$reviewReportDao =& DAORegistry::getDAO('ReviewReportDAO');
@@ -107,7 +107,6 @@ class ReviewReportPlugin extends ReportPlugin {
 		$yesNoArray = array('declined', 'cancelled');
 
 		$fp = fopen('php://output', 'wt');
-		fwrite($fp, chr(0xEF).chr(0xBB).chr(0xBF)); // Write UTF-8 BOM
 		String::fputcsv($fp, array_values($columns));
 
 		while ($row =& $reviewsIterator->next()) {

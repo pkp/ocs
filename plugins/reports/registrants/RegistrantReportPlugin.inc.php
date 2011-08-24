@@ -52,7 +52,7 @@ class RegistrantReportPlugin extends ReportPlugin {
 		$schedConf =& Request::getSchedConf();
 		Locale::requireComponents(array(LOCALE_COMPONENT_APPLICATION_COMMON, LOCALE_COMPONENT_PKP_USER, LOCALE_COMPONENT_OCS_MANAGER));
 
-		header('content-type: text/comma-separated-values');
+		header('content-type: text/comma-separated-values; charset=utf-8');
 		header('content-disposition: attachment; filename=registrants-' . date('Ymd') . '.csv');
 
 		$registrationDao =& DAORegistry::getDAO('RegistrationDAO');
@@ -97,7 +97,6 @@ class RegistrantReportPlugin extends ReportPlugin {
 
 
 		$fp = fopen('php://output', 'wt');
-		fwrite($fp, chr(0xEF).chr(0xBB).chr(0xBF)); // Write UTF-8 BOM
 		String::fputcsv($fp, array_values($columns));
 
 		$registrationOptionCosts = $registrationTypes = array();
@@ -128,7 +127,7 @@ class RegistrantReportPlugin extends ReportPlugin {
 				$user->getFirstName(),
 				$user->getMiddleName(),
 				$user->getLastName(),
-				$user->getLocalizedAffiliation(),
+				html_entity_decode($user->getLocalizedAffiliation(), ENT_QUOTES, 'UTF-8'),
 				$user->getUrl(),
 				$user->getEmail(),
 				$user->getPhone(),
