@@ -97,6 +97,7 @@ class RegistrantReportPlugin extends ReportPlugin {
 
 
 		$fp = fopen('php://output', 'wt');
+		fwrite($fp, chr(0xEF).chr(0xBB).chr(0xBF)); // Write UTF-8 BOM
 		String::fputcsv($fp, array_values($columns));
 
 		$registrationOptionCosts = $registrationTypes = array();

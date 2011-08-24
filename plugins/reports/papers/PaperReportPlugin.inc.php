@@ -117,6 +117,7 @@ class PaperReportPlugin extends ReportPlugin {
 		));
 
 		$fp = fopen('php://output', 'wt');
+		fwrite($fp, chr(0xEF).chr(0xBB).chr(0xBF)); // Write UTF-8 BOM
 		String::fputcsv($fp, array_values($columns));
 
 		import('classes.paper.Paper'); // Bring in getStatusMap function
@@ -164,8 +165,8 @@ class PaperReportPlugin extends ReportPlugin {
 					}
 				} elseif ($index == 'status') {
 					$columns[$index] = Locale::translate($statusMap[$row[$index]]);
-				} elseif ($index == 'abstract') {
-					$columns[$index] = html_entity_decode(strip_tags($row[$index]));
+				} elseif ($index == 'abstract' || $index == 'title') {
+					$columns[$index] = html_entity_decode(strip_tags($row[$index]), ENT_QUOTES, 'UTF-8');
 				} elseif ($index == 'start_time' || $index == 'end_time') {
 					$columns[$index] = $row[$index];
 				} elseif ($index == 'building') {
@@ -183,7 +184,7 @@ class PaperReportPlugin extends ReportPlugin {
 					unset($room);
 				} elseif (strstr($index, 'biography') !== false) {
 					// "Convert" HTML to text for export
-					$columns[$index] = isset($authors[$index])?html_entity_decode(strip_tags($authors[$index])):'';
+					$columns[$index] = isset($authors[$index])?html_entity_decode(strip_tags($authors[$index]), ENT_QUOTES, 'UTF-8'):'';
 				} else {
 					if (isset($row[$index])) {
 						$columns[$index] = $row[$index];
