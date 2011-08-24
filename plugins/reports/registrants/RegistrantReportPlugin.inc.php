@@ -57,7 +57,7 @@ class RegistrantReportPlugin extends ReportPlugin {
 		$schedConf =& Request::getSchedConf();
 		Locale::requireComponents(array(LOCALE_COMPONENT_APPLICATION_COMMON, LOCALE_COMPONENT_PKP_USER, LOCALE_COMPONENT_OCS_MANAGER));
 
-		header('content-type: text/comma-separated-values');
+		header('content-type: text/comma-separated-values; charset=utf-8');
 		header('content-disposition: attachment; filename=report.csv');
 
 		$registrantReportDao =& DAORegistry::getDAO('RegistrantReportDAO');
@@ -100,7 +100,6 @@ class RegistrantReportPlugin extends ReportPlugin {
 
 
 		$fp = fopen('php://output', 'wt');
-		fwrite($fp, chr(0xEF).chr(0xBB).chr(0xBF)); // Write UTF-8 BOM
 		String::fputcsv($fp, array_values($columns));
 
 		while ($row =& $registrants->next()) {
@@ -112,7 +111,9 @@ class RegistrantReportPlugin extends ReportPlugin {
 			
 			foreach ($columns as $index => $junk) {
 				if (isset($row[$index])) {
-					$columns[$index] = $row[$index];
+					$columns[$index] = $index == 'affiliation'?
+						html_entity_decode(strip_tags($row[$index]), ENT_QUOTES, 'UTF-8'):
+						$row[$index];
 				} else if (isset($options[$index])) {
 					$columns[$index] = $options[$index];
 				} else $columns[$index] = '';

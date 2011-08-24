@@ -57,7 +57,7 @@ class PaperReportPlugin extends ReportPlugin {
 		$schedConf =& Request::getSchedConf();
 		Locale::requireComponents(array(LOCALE_COMPONENT_APPLICATION_COMMON, LOCALE_COMPONENT_PKP_SUBMISSION, LOCALE_COMPONENT_PKP_USER, LOCALE_COMPONENT_OCS_MANAGER));
 
-		header('content-type: text/comma-separated-values');
+		header('content-type: text/comma-separated-values; charset=utf-8');
 		header('content-disposition: attachment; filename=report.csv');
 
 		$paperReportDao =& DAORegistry::getDAO('PaperReportDAO');
@@ -163,7 +163,7 @@ class PaperReportPlugin extends ReportPlugin {
 					}
 				} elseif ($index == 'status') {
 					$columns[$index] = Locale::translate($statusMap[$row[$index]]);
-				} elseif ($index == 'abstract' || $index == 'title') {
+				} elseif ($index == 'abstract' || $index == 'title' || $index == 'affiliation') {
 					$columns[$index] = html_entity_decode(strip_tags($row[$index]), ENT_QUOTES, 'UTF-8');
 				} elseif ($index == 'start_time' || $index == 'end_time') {
 					$columns[$index] = $row[$index];
