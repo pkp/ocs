@@ -288,8 +288,8 @@ class TrackDirectorSubmissionDAO extends DAO {
 			$trackDirectorId
 		);
 
+		// set up the search filters based on what the user selected
 		$searchSql = '';
-
 		if (!empty($search)) switch ($searchField) {
 			case SUBMISSION_FIELD_TITLE:
 				if ($searchMatch === 'is') {
@@ -338,6 +338,7 @@ class TrackDirectorSubmissionDAO extends DAO {
 				break;
 		}
 
+		// filter on date range, if requested
 		if (!empty($dateFrom) || !empty($dateTo)) switch($dateField) {
 			case SUBMISSION_FIELD_DATE_SUBMITTED:
 				if (!empty($dateFrom)) {
@@ -347,6 +348,12 @@ class TrackDirectorSubmissionDAO extends DAO {
 					$searchSql .= ' AND p.date_submitted <= ' . $this->datetimeToDB($dateTo);
 				}
 				break;
+		}
+
+		// filter for post from only one specific track, if requested
+		if ($trackId) {
+			$params[] = $trackId;
+			$searchSql .= ' AND p.track_id = ?';
 		}
 
 		$sql = 'SELECT DISTINCT
@@ -371,14 +378,11 @@ class TrackDirectorSubmissionDAO extends DAO {
 				LEFT JOIN paper_settings pptl ON (p.paper_id = pptl.paper_id AND pptl.setting_name = ? AND pptl.locale = ?)
 			WHERE	p.sched_conf_id = ?
 				' . (!empty($additionalWhereSql)?" AND ($additionalWhereSql)":'') . '
-				AND e.director_id = ?';
+				AND e.director_id = ? ' .
+			$searchSql .
+			($sortBy?(' ORDER BY ' . $this->getSortMapping($sortBy) . ' ' . $this->getDirectionMapping($sortDirection)) : '');
 
-		if ($trackId) {
-			$params[] = $trackId;
-			$searchSql .= ' AND p.track_id = ?';
-		}
-
-		$result =& $this->retrieveRange($sql . ' ' . $searchSql . ($sortBy?(' ORDER BY ' . $this->getSortMapping($sortBy) . ' ' . $this->getDirectionMapping($sortDirection)) : ''),
+		$result =& $this->retrieveRange($sql,
 			$params,
 			$rangeInfo
 		);
@@ -807,12 +811,12 @@ class TrackDirectorSubmissionDAO extends DAO {
 			case 'track': return 'track_abbrev';
 			case 'authors': return 'author_name';
 			case 'title': return 'submission_title';
+			case 'status': return 'p.status';
 			case 'active': return 'incomplete';		
 			case 'reviewerName': return 'u.last_name';
 			case 'quality': return 'average_quality';
 			case 'done': return 'completed';
 			case 'latest': return 'latest';
-			case 'active': return 'active';
 			case 'average': return 'average';
 			case 'name': return 'u.last_name';
 			default: return null;
