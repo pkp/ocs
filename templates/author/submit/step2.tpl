@@ -8,7 +8,12 @@
  *
  * $Id$
  *}
-{assign var="pageTitle" value="author.submit.step2"}
+
+{if !$showAbstractSteps}
+	{assign var="pageTitle" value="author.submit.step2NoAbstracts"}
+{else}
+	{assign var="pageTitle" value="author.submit.step2"}
+{/if}
 {include file="author/submit/submitHeader.tpl"}
 
 <form method="post" action="{url op="saveSubmit" path=$submitStep}" enctype="multipart/form-data">

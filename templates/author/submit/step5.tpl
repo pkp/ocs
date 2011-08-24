@@ -8,10 +8,12 @@
  *
  * $Id$
  *}
-{if $currentSchedConf->getSetting('acceptSupplementaryReviewMaterials') && !$showAbstractSteps}
-{assign var="pageTitle" value="author.submit.step5"}
+{if $showAbstractSteps && $currentSchedConf->getSetting('acceptSupplementaryReviewMaterials') && !$showPaperSteps}
+	{assign var="pageTitle" value="author.submit.step5SkipSupp"}
+{elseif $currentSchedConf->getSetting('acceptSupplementaryReviewMaterials') && !$showAbstractSteps}
+	{assign var="pageTitle" value="author.submit.step5"}
 {else}
-{assign var="pageTitle" value="author.submit.step5SkipSupp"}
+	{assign var="pageTitle" value="author.submit.step5"}
 {/if}
 {include file="author/submit/submitHeader.tpl"}
 
