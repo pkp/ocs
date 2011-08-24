@@ -107,6 +107,7 @@ class ReviewReportPlugin extends ReportPlugin {
 		$yesNoArray = array('declined', 'cancelled');
 
 		$fp = fopen('php://output', 'wt');
+		fwrite($fp, chr(0xEF).chr(0xBB).chr(0xBF)); // Write UTF-8 BOM
 		String::fputcsv($fp, array_values($columns));
 
 		while ($row =& $reviewsIterator->next()) {
@@ -124,7 +125,7 @@ class ReviewReportPlugin extends ReportPlugin {
 					$columns[$index] = (!isset($row[$index])) ? Locale::translate('common.none') : Locale::translate($recommendations[$row[$index]]);
 				} elseif ($index == "comments") {
 					if (isset($comments[$row['paperid']][$row['reviewerid']])) {
-						$columns[$index] = html_entity_decode(strip_tags($comments[$row['paperid']][$row['reviewerid']]));
+						$columns[$index] = html_entity_decode(strip_tags($comments[$row['paperid']][$row['reviewerid']]), ENT_QUOTES, 'UTF-8');
 					} else {
 						$columns[$index] = "";
 					}
