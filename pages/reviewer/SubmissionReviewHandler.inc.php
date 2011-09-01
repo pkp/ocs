@@ -217,6 +217,7 @@ class SubmissionReviewHandler extends ReviewerHandler {
 		$reviewId = isset($args[0]) ? $args[0] : 0;
 		$reviewFormId = isset($args[1]) ? $args[1] : 0;
 
+		$this->validate($reviewId);
 		$this->setupTemplate(true);
 
 		if (ReviewerAction::saveReviewFormResponse($reviewId, $reviewFormId)) {
