@@ -695,21 +695,21 @@ class TrackDirectorSubmissionDAO extends DAO {
 		$joinComplete = $joinIncomplete = false;
 		$selectQuality = $selectLatest = $selectComplete = $selectAverage = $selectIncomplete = false;
 		if($sortBy) switch($sortBy) {
-		  case 'quality':
-			$selectQuality = true;
-			break;
-		  case 'latest':
-			$selectLatest = $joinComplete = true;
-			break;
-		  case 'done':
-			$selectComplete = $joinComplete = true;
-			break;
-		  case 'average':
-			$selectAverage = $joinComplete = true;
-			break;
-		  case 'active':
-			$selectIncomplete = $joinIncomplete = true;
-			break;
+			case 'quality':
+				$selectQuality = true;
+				break;
+			case 'latest':
+				$selectLatest = $joinComplete = true;
+				break;
+			case 'done':
+				$selectComplete = $joinComplete = true;
+				break;
+			case 'average':
+				$selectAverage = $joinComplete = true;
+				break;
+			case 'active':
+				$selectIncomplete = $joinIncomplete = true;
+				break;
 		}
 
 		$sql = 'SELECT DISTINCT
