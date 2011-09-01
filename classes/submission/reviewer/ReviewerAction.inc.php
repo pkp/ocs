@@ -355,6 +355,7 @@ class ReviewerAction extends Action {
 		if (!HookRegistry::call('ReviewerAction::saveReviewFormResponse', array($reviewId, $reviewFormId))) {
 			import('submission.form.ReviewFormResponseForm');
 
+			Locale::requireComponents(array(LOCALE_COMPONENT_APPLICATION_COMMON));
 			$reviewForm = new ReviewFormResponseForm($reviewId, $reviewFormId);
 			$reviewForm->readInputData();
 			if ($reviewForm->validate()) {
