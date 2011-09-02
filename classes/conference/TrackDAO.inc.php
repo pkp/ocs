@@ -338,12 +338,40 @@ class TrackDAO extends DAO {
 
 	/**
 	 * Retrieve all tracks for a scheduled conference.
+	 * @param $schedConfId int
+	 * @param $rangeInfo object optional
 	 * @return DAOResultFactory containing Tracks ordered by sequence
 	 */
 	function &getSchedConfTracks($schedConfId, $rangeInfo = null) {
 		$result =& $this->retrieveRange(
-			'SELECT * FROM tracks WHERE sched_conf_id = ? ORDER BY seq',
-			$schedConfId, $rangeInfo
+			'SELECT	*
+			FROM	tracks
+			WHERE	sched_conf_id = ?
+			ORDER BY seq',
+			(int) $schedConfId,
+			$rangeInfo
+		);
+
+		$returner = new DAOResultFactory($result, $this, '_returnTrackFromRow');
+		return $returner;
+	}
+
+	/**
+	 * Retrieve all tracks for a scheduled conference.
+	 * @param $conferenceId int
+	 * @param $rangeInfo object optional
+	 * @return DAOResultFactory containing Tracks ordered by sequence
+	 */
+	function &getConferenceTracks($conferenceId, $rangeInfo = null) {
+		$result =& $this->retrieveRange(
+			'SELECT	t.*
+			FROM	tracks t,
+				sched_confs sc
+			WHERE	t.sched_conf_id = sc.sched_conf_id AND
+				sc.conference_id = ?
+			ORDER BY sc.seq, t.seq',
+			(int) $conferenceId,
+			$rangeInfo
 		);
 
 		$returner = new DAOResultFactory($result, $this, '_returnTrackFromRow');
