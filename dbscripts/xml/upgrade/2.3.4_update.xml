@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE data SYSTEM "../../../lib/pkp/dtd/xmlData.dtd">
+
+<!--
+  * 2.3.4_update.xml
+  *
+  * Copyright (c) 2000-2010 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * 2.3.4 database updates XML file.
+  *
+  -->
+
+<data>
+	<!-- Bug #6876: PDF galleys not indexed for search -->
+	<sql>
+		<!-- Syntax for MySQL. -->
+		<query driver="mysql">
+			UPDATE paper_files SET file_type = 'application/pdf' WHERE original_file_name RLIKE 'pdf'
+		</query>
+
+		<!-- Syntax for PostgreSQL. -->
+		<query driver="postgres7">
+			UPDATE paper_files SET file_type = 'application/pdf' WHERE original_file_name ILIKE '%pdf'
+		</query>
+
+	</sql>
+</data>
