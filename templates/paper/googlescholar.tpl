@@ -12,7 +12,7 @@
 	<meta name="citation_conference_title" content="{$currentSchedConf->getFullTitle()|strip_tags|escape}"/>
 	<meta name="citation_authors" content="{foreach name="authors" from=$paper->getAuthors() item=author}{$author->getLastName()|escape}, {$author->getFirstName()|escape}{if $author->getMiddleName() != ""} {$author->getMiddleName()|escape}{/if}{if !$smarty.foreach.authors.last}; {/if}{/foreach}"/>
 	<meta name="citation_title" content="{$paper->getLocalizedTitle()|strip_tags|escape}"/>
-	<meta name="citation_date" content="{$paper->getDatePublished()|date_format:"%d/%m/%Y"}"/>
+	<meta name="citation_date" content="{$paper->getDatePublished()|date_format:"%Y/%m/%d"}"/>
 	<meta name="citation_abstract_html_url" content="{url page="paper" op="view" path=$paper->getBestPaperId($currentConference)}"/>
 {foreach from=$paper->getGalleys() item=dc_galley}
 {if $dc_galley->getFileType()=="application/pdf"}
