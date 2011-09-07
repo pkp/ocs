@@ -16,7 +16,7 @@
 	<meta name="citation_abstract_html_url" content="{url page="paper" op="view" path=$paper->getBestPaperId($currentConference)}"/>
 {foreach from=$paper->getGalleys() item=dc_galley}
 {if $dc_galley->getFileType()=="application/pdf"}
-	<meta name="citation_pdf_url" content="{url page="paper" op="view" path=$paper->getBestPaperId($currentConference)|to_array:$dc_galley->getGalleyId()}"/>
+	<meta name="citation_pdf_url" content="{url page="paper" op="download" path=$paper->getBestPaperId($currentConference)|to_array:$dc_galley->getGalleyId()}"/>
 {else}
 	<meta name="citation_fulltext_html_url" content="{url page="paper" op="view" path=$paper->getBestPaperId($currentConference)|to_array:$dc_galley->getGalleyId()}"/>
 {/if}
