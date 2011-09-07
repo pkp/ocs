@@ -500,7 +500,7 @@ class PaperFileManager extends FileManager {
 			$paperFile->setDateModified(Core::getCurrentDate());
 		}
 
-		$paperFile->setFileType($_FILES[$fileName]['type']);
+		$paperFile->setFileType($this->getUploadedFileType($fileName));
 		$paperFile->setFileSize($_FILES[$fileName]['size']);
 		$paperFile->setOriginalFileName(PaperFileManager::truncateFileName($_FILES[$fileName]['name'], 127));
 		$paperFile->setFileStage($fileStage);
