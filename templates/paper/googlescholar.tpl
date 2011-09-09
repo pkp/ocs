@@ -10,7 +10,12 @@
  *}
 	<meta name="gs_meta_revision" content="1.1" />
 	<meta name="citation_conference_title" content="{$currentSchedConf->getFullTitle()|strip_tags|escape}"/>
-	<meta name="citation_authors" content="{foreach name="authors" from=$paper->getAuthors() item=author}{$author->getLastName()|escape}, {$author->getFirstName()|escape}{if $author->getMiddleName() != ""} {$author->getMiddleName()|escape}{/if}{if !$smarty.foreach.authors.last}; {/if}{/foreach}"/>
+{foreach name="authors" from=$paper->getAuthors() item=author}
+	<meta name="citation_author" content="{$author->getFirstName()|escape}{if $author->getMiddleName() != ""} {$author->getMiddleName()|escape}{/if} {$author->getLastName()|escape}"/>
+{if $author->getAffiliation() != ""}
+	<meta name="citation_author_affiliation" content="{$author->getAffiliation()|escape}"/>
+{/if}
+{/foreach}
 	<meta name="citation_title" content="{$paper->getLocalizedTitle()|strip_tags|escape}"/>
 	<meta name="citation_date" content="{$paper->getDatePublished()|date_format:"%Y/%m/%d"}"/>
 	<meta name="citation_abstract_html_url" content="{url page="paper" op="view" path=$paper->getBestPaperId($currentConference)}"/>
