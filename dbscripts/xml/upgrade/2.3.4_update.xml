@@ -12,16 +12,64 @@
   -->
 
 <data>
-	<!-- Bug #6876: PDF galleys not indexed for search -->
+	<!-- Bug #6876: Galleys uploaded in Firefox not indexed for search -->
 	<sql>
 		<!-- Syntax for MySQL. -->
 		<query driver="mysql">
-			UPDATE paper_files SET file_type = 'application/pdf' WHERE original_file_name RLIKE 'pdf'
+			UPDATE paper_files SET file_type = 'application/pdf' WHERE original_file_name RLIKE '\\.pdf$'
+		</query>
+
+		<query driver="mysql">
+			UPDATE paper_files SET file_type = 'application/msword' WHERE original_file_name RLIKE '\\.doc$'
+		</query>
+
+		<query driver="mysql">
+			UPDATE paper_files SET file_type = 'application/vnd.ms-powerpoint' WHERE original_file_name RLIKE '\\.ppt$'
+		</query>
+
+		<query driver="mysql">
+			UPDATE paper_files SET file_type = 'application/vnd.ms-powerpoint' WHERE original_file_name RLIKE '\\.pps$'
+		</query>
+
+		<query driver="mysql">
+			UPDATE paper_files SET file_type = 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' WHERE original_file_name RLIKE '\\.docx$'
+		</query>
+
+		<query driver="mysql">
+			UPDATE paper_files SET file_type = 'application/vnd.openxmlformats-officedocument.presentationml.presentation' WHERE original_file_name RLIKE '\\.pptx$'
+		</query>
+
+		<query driver="mysql">
+			UPDATE paper_files SET file_type = 'application/vnd.openxmlformats-officedocument.presentationml.slideshow' WHERE original_file_name RLIKE '\\.ppsx$'
 		</query>
 
 		<!-- Syntax for PostgreSQL. -->
-		<query driver="postgres7">
-			UPDATE paper_files SET file_type = 'application/pdf' WHERE original_file_name ILIKE '%pdf'
+		<query driver="postgres">
+			UPDATE paper_files SET file_type = 'application/pdf' WHERE original_file_name ~* '.pdf$'
+		</query>
+
+		<query driver="postgres">
+			UPDATE paper_files SET file_type = 'application/msword' WHERE original_file_name ~* '.doc$'
+		</query>
+
+		<query driver="postgres">
+			UPDATE paper_files SET file_type = 'application/vnd.ms-powerpoint' WHERE original_file_name ~* '.ppt$'
+		</query>
+
+		<query driver="postgres">
+			UPDATE paper_files SET file_type = 'application/vnd.ms-powerpoint' WHERE original_file_name ~* '.pps$'
+		</query>
+
+		<query driver="postgres">
+			UPDATE paper_files SET file_type = 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' WHERE original_file_name ~* '.docx$'
+		</query>
+
+		<query driver="postgres">
+			UPDATE paper_files SET file_type = 'application/vnd.openxmlformats-officedocument.presentationml.presentation' WHERE original_file_name ~* '.pptx$'
+		</query>
+
+		<query driver="postgres">
+			UPDATE paper_files SET file_type = 'application/vnd.openxmlformats-officedocument.presentationml.slideshow' WHERE original_file_name ~* '.ppsx$'
 		</query>
 
 	</sql>
