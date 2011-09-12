@@ -21,15 +21,16 @@ class LoginHandler extends PKPLoginHandler {
 	/**
 	 * Sign in as another user.
 	 * @param $args array ($userId)
+	 * @param $request PKPRequest
 	 */
-	function signInAsUser($args) {
+	function signInAsUser($args, &$request) {
 		$this->addCheck(new HandlerValidatorConference($this));		
 		$this->addCheck(new HandlerValidatorRoles($this, true, null, null, array(ROLE_ID_SITE_ADMIN, ROLE_ID_CONFERENCE_MANAGER)));
 		$this->validate();
 
 		if (isset($args[0]) && !empty($args[0])) {
 			$userId = (int)$args[0];
-			$conference =& Request::getConference();
+			$conference =& $request->getConference();
 
 			if (!Validation::canAdminister($conference->getId(), $userId)) {
 				$this->setupTemplate();
@@ -38,14 +39,14 @@ class LoginHandler extends PKPLoginHandler {
 				$templateMgr =& TemplateManager::getManager();
 				$templateMgr->assign('pageTitle', 'manager.people');
 				$templateMgr->assign('errorMsg', 'manager.people.noAdministrativeRights');
-				$templateMgr->assign('backLink', Request::url(null, null, null, 'people', 'all'));
+				$templateMgr->assign('backLink', $request->url(null, null, null, 'people', 'all'));
 				$templateMgr->assign('backLinkLabel', 'manager.people.allUsers');
 				return $templateMgr->display('common/error.tpl');
 			}
 
 			$userDao =& DAORegistry::getDAO('UserDAO');
 			$newUser =& $userDao->getUser($userId);
-			$session =& Request::getSession();
+			$session =& $request->getSession();
 
 			// FIXME Support "stack" of signed-in-as user IDs?
 			if (isset($newUser) && $session->getUserId() != $newUser->getId()) {
@@ -53,19 +54,21 @@ class LoginHandler extends PKPLoginHandler {
 				$session->setSessionVar('userId', $userId);
 				$session->setUserId($userId);
 				$session->setSessionVar('username', $newUser->getUsername());
-				Request::redirect(null, null, 'user');
+				$request->redirect(null, null, 'user');
 			}
 		}
-		Request::redirect(null, null, Request::getRequestedPage());
+		$request->redirect(null, null, $request->getRequestedPage());
 	}
 
 	/**
 	 * Restore original user account after signing in as a user.
+	 * @param $args array
+	 * @param $request PKPRequest
 	 */
-	function signOutAsUser() {
+	function signOutAsUser($args, &$request) {
 		$this->validate();
 
-		$session =& Request::getSession();
+		$session =& $request->getSession();
 		$signedInAs = $session->getSessionVar('signedInAs');
 
 		if (isset($signedInAs) && !empty($signedInAs)) {
@@ -83,24 +86,26 @@ class LoginHandler extends PKPLoginHandler {
 			}
 		}
 
-		Request::redirect(null, 'user');
+		$request->redirect(null, 'user');
 	}
 
 	/**
 	 * Get the log in URL.
+	 * @param $request PKPRequest
 	 */
-	function _getLoginUrl() {
-		return Request::url(null, null, 'login', 'signIn');
+	function _getLoginUrl($request) {
+		return $request->url(null, null, 'login', 'signIn');
 	}
 
 	/**
 	 * Helper Function - set mail from address
-	 * @param MailTemplate $mail 
+	 * @param $request PKPRequest
+	 * @param $mail MailTemplate
 	 */
-	function _setMailFrom(&$mail) {
-		$site =& Request::getSite();
-		$conference =& Request::getConference();
-		$schedConf =& Request::getSchedConf();
+	function _setMailFrom($request, &$mail) {
+		$site =& $request->getSite();
+		$conference =& $request->getConference();
+		$schedConf =& $request->getSchedConf();
 		
 		// Set the sender to one of three different settings, based on context
 		if ($schedConf && $schedConf->getSetting('supportEmail')) {
