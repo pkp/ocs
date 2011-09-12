@@ -25,11 +25,13 @@ class AnnouncementHandler extends PKPAnnouncementHandler {
 	}
 	/**
 	 * Display a list of announcements for the current conference.
+	 * @param $args array
+	 * @param $request PKPRequest
 	 */
-	function announcements() {
+	function announcements($args, &$request) {
 		$templateMgr =& TemplateManager::getManager();		
 
- 		$conference =& Request::getConference();
+ 		$conference =& $request->getConference();
 		if ($conference) {
 			$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
 			$schedConfs =& $schedConfDao->getSchedConfs(false, $conference->getId());
@@ -43,29 +45,36 @@ class AnnouncementHandler extends PKPAnnouncementHandler {
 		
 		//TODO: move this assignment to the abstracted templates or generalize the key 
 		$templateMgr->assign('helpTopicId', 'conference.generalManagement.announcements');	
-		parent::announcements();
+		parent::announcements($args, $request);
 	}
 
 	/**
 	 * Display a list of announcement types for the current conference.
+	 * @see PKPAnnouncementHandler::announcementTypes
 	 */
-	function announcementTypes() {
+	function announcementTypes($args, &$request) {
 		$templateMgr =& TemplateManager::getManager();
 		//TODO: move this assignment to the abstracted templates or generalize the key 
 		$templateMgr->assign('helpTopicId', 'conference.generalManagement.announcements');
-		parent::announcementTypes();
+		parent::announcementTypes($args, $request);
 	}		
 
-	function &_getAnnouncements($rangeInfo = null) {
-		$conference =& Request::getConference();
+	/**
+	 * @see PKPAnnouncementHandler::_getAnnouncements
+	 */
+	function &_getAnnouncements($request, $rangeInfo = null) {
+		$conference =& $request->getConference();
 		$announcementDao =& DAORegistry::getDAO('AnnouncementDAO');
 		$announcements =& $announcementDao->getAnnouncementsByConferenceId($conference->getId(), -1, $rangeInfo);
 
 		return $announcements;
 	}
-	
-	function &_getAnnouncementTypes($rangeInfo = null) {
-		$conference =& Request::getConference();
+
+	/**
+	 * @see PKPAnnouncementHandler::_getAnnouncementTypes
+	 */
+	function &_getAnnouncementTypes($request, $rangeInfo = null) {
+		$conference =& $request->getConference();
 		$announcementTypeDao =& DAORegistry::getDAO('AnnouncementTypeDAO');
 		$announcements =& $announcementTypeDao->getAnnouncementTypesByAssocId(ASSOC_TYPE_CONFERENCE, $conference->getId(), $rangeInfo);
 
@@ -74,10 +83,11 @@ class AnnouncementHandler extends PKPAnnouncementHandler {
 
 	/**
 	 * Checks the announcement to see if it belongs to this conference or scheduled conference
+	 * @param $request PKPRequest
 	 * @param $announcementId int
 	 * return bool
 	 */	
-	function _announcementIsValid($announcementId) {
+	function _announcementIsValid($request, $announcementId) {
 		if ($announcementId == null) 
 			return true;
 
@@ -85,7 +95,7 @@ class AnnouncementHandler extends PKPAnnouncementHandler {
 		$announcement =& $announcementDao->getAnnouncement($announcementId);
 		if ( !$announcement ) return false;
 		
-		$conference =& Request::getConference();
+		$conference =& $request->getConference();
 		if ( $conference 
 			&& $announcement->getAssocType() == ASSOC_TYPE_CONFERENCE 
 			&& $announcement->getAssocId() == $conference->getId())
@@ -106,11 +116,12 @@ class AnnouncementHandler extends PKPAnnouncementHandler {
 
 	/**
 	 * Checks the announcement type to see if it belongs to this conference.  All announcement types are set at the conference level.
+	 * @param $request PKPRequest
 	 * @param $typeId int
 	 * return bool
 	 */
-	function _announcementTypeIsValid($typeId) {
-		$conference =& Request::getConference();
+	function _announcementTypeIsValid($request, $typeId) {
+		$conference =& $request->getConference();
 		$announcementTypeDao =& DAORegistry::getDAO('AnnouncementTypeDAO');
 		return (($typeId != null && $announcementTypeDao->getAnnouncementTypeAssocId($typeId) == $conference->getId()) || $typeId == null);
 	}

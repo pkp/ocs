@@ -29,17 +29,17 @@ class AnnouncementHandler extends PKPAnnouncementHandler {
 	/**
 	 * @see PKPAnnouncementHandler::_getAnnouncementsEnabled()
 	 */
-	function _getAnnouncementsEnabled() {
-		$conference =& Request::getConference();
+	function _getAnnouncementsEnabled($request) {
+		$conference =& $request->getConference();
 		return $conference->getSetting('enableAnnouncements');
 	}
 
 	/**
 	 * @see PKPAnnouncementHandler::_getAnnouncements()
 	 */
-	function &_getAnnouncements($rangeInfo = null) {
-		$conference =& Request::getConference();
-		$schedConf =& Request::getSchedConf();
+	function &_getAnnouncements($request, $rangeInfo = null) {
+		$conference =& $request->getConference();
+		$schedConf =& $request->getSchedConf();
 
 		$announcementDao =& DAORegistry::getDAO('AnnouncementDAO');
 		if($schedConf) {
@@ -54,9 +54,9 @@ class AnnouncementHandler extends PKPAnnouncementHandler {
 	/**
 	 * @see PKPAnnouncementHandler::_getAnnouncementsIntroduction()
 	 */
-	function _getAnnouncementsIntroduction() {
-		$conference =& Request::getConference();
-		$schedConf =& Request::getSchedConf();
+	function _getAnnouncementsIntroduction($request) {
+		$conference =& $request->getConference();
+		$schedConf =& $request->getSchedConf();
 
 		if($schedConf) {
 			return $schedConf->getLocalizedSetting('announcementsIntroduction');
@@ -68,19 +68,19 @@ class AnnouncementHandler extends PKPAnnouncementHandler {
 	/**
 	 * @see PKPAnnouncementHandler::_announcementIsValid()
 	 */
-	function _announcementIsValid($announcementId) {
+	function _announcementIsValid($request, $announcementId) {
 		if ($announcementId == null) return false;
 
 		$announcementDao =& DAORegistry::getDAO('AnnouncementDAO');
 		switch ($announcementDao->getAnnouncementAssocType($announcementId)) {
 			case ASSOC_TYPE_CONFERENCE:
-				$conference =& Request::getConference();
+				$conference =& $request->getConference();
 				return (
 					$conference &&
 					$announcementDao->getAnnouncementAssocId($announcementId) == $conference->getId()
 				);
 			case ASSOC_TYPE_SCHED_CONF:
-				$schedConf =& Request::getSchedConf();
+				$schedConf =& $request->getSchedConf();
 				return (
 					$schedConf &&
 					$announcementDao->getAnnouncementAssocId($announcementId) == $schedConf->getId()
