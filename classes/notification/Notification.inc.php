@@ -91,7 +91,7 @@ class Notification extends PKPNotification {
 
 		if ($template == 'NOTIFICATION_MAILLIST_WELCOME') {
 			$keyHash = md5($password);
-			$confirmLink = Request::url(null, 'notification', 'confirmMailListSubscription', array($keyHash, $email));
+			$confirmLink = Request::url(null, null, 'notification', 'confirmMailListSubscription', array($keyHash, $email));
 			$params["confirmLink"] = $confirmLink;
 		}
 
