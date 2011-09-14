@@ -70,7 +70,7 @@ class SchedConfAction {
 	 */
 	function mayViewSchedConf(&$schedConf) {
 		$conference =& $schedConf->getConference();
-		return $conference->getEnabled();
+		return $conference->getEnabled() || Validation::isSiteAdmin() || Validation::isConferenceManager($conference->getId()) || Validation::isDirector($conference->getId(), $schedConf->getId()) || Validation::isTrackDirector($conference->getId(), $schedConf->getId());
 	}
 
 	/**
