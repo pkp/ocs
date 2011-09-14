@@ -1,0 +1,42 @@
+--- a/classes/registration/form/UserRegistrationForm.inc.php	2010-11-12 12:25:29.000000000 -0300
++++ b/classes/registration/form/UserRegistrationForm.inc.php	2010-11-12 12:46:28.000000000 -0300
+@@ -57,6 +57,8 @@
+ 			$this->addCheck(new FormValidatorCustom($this, 'password', 'required', 'user.account.form.passwordsDoNotMatch', create_function('$password,$form', 'return $password == $form->getData(\'password2\');'), array(&$this)));
+ 			$this->addCheck(new FormValidator($this, 'firstName', 'required', 'user.profile.form.firstNameRequired'));
+ 			$this->addCheck(new FormValidator($this, 'lastName', 'required', 'user.profile.form.lastNameRequired'));
++			$this->addCheck(new FormValidator($this, 'country', 'required', 'user.profile.form.countryRequired'));
++			$this->addCheck(new FormValidator($this, 'mailingAddress', 'required', 'user.profile.form.mailingAddressRequired'));
+ 			$this->addCheck(new FormValidatorEmail($this, 'email', 'required', 'user.profile.form.emailRequired'));
+ 			$this->addCheck(new FormValidator($this, 'affiliation', 'required', 'user.profile.form.affiliationRequired'));
+ 			$this->addCheck(new FormValidatorCustom($this, 'email', 'required', 'user.account.form.emailExists', array(DAORegistry::getDAO('UserDAO'), 'userExistsByEmail'), array(), true));
+@@ -148,6 +150,7 @@
+ 		$user =& Request::getUser();
+ 		if (!$user) {
+ 			$userVars[] = 'username';
++			$userVars[] = 'salutation';
+ 			$userVars[] = 'password';
+ 			$userVars[] = 'password2';
+ 			$userVars[] = 'firstName';
+@@ -193,6 +196,7 @@
+ 			$user = new User();
+ 
+ 			$user->setUsername($this->getData('username'));
++			$user->setSalutation($this->getData('salutation'));
+ 			$user->setFirstName($this->getData('firstName'));
+ 			$user->setMiddleName($this->getData('middleName'));
+ 			$user->setInitials($this->getData('initials'));
+diff -u -r post-6161/templates/registration/userRegistrationForm.tpl pkp/templates/registration/userRegistrationForm.tpl
+--- a/templates/registration/userRegistrationForm.tpl	2010-11-12 12:25:29.000000000 -0300
++++ b/templates/registration/userRegistrationForm.tpl	2010-11-12 12:48:26.000000000 -0300
+@@ -179,6 +179,11 @@
+ {/if}
+ 
+ <tr valign="top">
++	<td class="label">{fieldLabel name="salutation" key="user.salutation"}</td>
++	<td class="value"><input type="text" name="salutation" id="salutation" value="{$salutation|escape}" size="20" maxlength="40" class="textField" /></td>
++</tr>
++
++<tr valign="top">
+ 	<td class="label">{fieldLabel name="firstName" required="true" key="user.firstName"}</td>
+ 	<td class="value"><input type="text" id="firstName" name="firstName" value="{$firstName|escape}" size="20" maxlength="40" class="textField" /></td>
+ </tr>
