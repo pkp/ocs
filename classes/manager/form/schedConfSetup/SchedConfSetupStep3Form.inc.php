@@ -12,9 +12,6 @@
  * @brief Form for Step 3 of scheduled conference setup.
  */
 
-define('REVIEW_YEAR_OFFSET_PAST',		'-10');
-define('REVIEW_YEAR_OFFSET_FUTURE',		'+10');
-
 import('classes.manager.form.schedConfSetup.SchedConfSetupForm');
 
 class SchedConfSetupStep3Form extends SchedConfSetupForm {
@@ -78,9 +75,6 @@ class SchedConfSetupStep3Form extends SchedConfSetupForm {
 
 		if (Config::getVar('general', 'scheduled_tasks'))
 			$templateMgr->assign('scheduledTasksEnabled', true);
-
-		$templateMgr->assign('reviewYearOffsetPast', REVIEW_YEAR_OFFSET_PAST);
-		$templateMgr->assign('reviewYearOffsetFuture', REVIEW_YEAR_OFFSET_FUTURE);
 
 		parent::display();
 	}
