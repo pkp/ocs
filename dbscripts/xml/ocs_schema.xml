@@ -1145,7 +1145,7 @@
 		</field>
 		<field name="code" type="C2" size="80" />
 		<field name="opening_date" type="D"/>
-		<field name="closing_date" type="D">
+		<field name="closing_date" type="T">
 			<NOTNULL/>
 		</field>
 		<field name="pub" type="I1">
