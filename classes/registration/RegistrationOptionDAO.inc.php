@@ -178,7 +178,7 @@ class RegistrationOptionDAO extends DAO {
 		$registrationOption->setSchedConfId($row['sched_conf_id']);
 		$registrationOption->setCode($row['code']);
 		$registrationOption->setOpeningDate($this->dateFromDB($row['opening_date']));
-		$registrationOption->setClosingDate($this->dateFromDB($row['closing_date']));
+		$registrationOption->setClosingDate($this->datetimeFromDB($row['closing_date']));
 		$registrationOption->setSequence($row['seq']);
 		$registrationOption->setPublic($row['pub']);
 
@@ -219,7 +219,7 @@ class RegistrationOptionDAO extends DAO {
 				VALUES
 				(?, %s, %s, ?, ?, ?)',
 				$this->dateToDB($registrationOption->getOpeningDate()),
-				$this->dateToDB($registrationOption->getClosingDate())
+				$this->datetimeToDB($registrationOption->getClosingDate())
 			), array(
 				(int) $registrationOption->getSchedConfId(),
 				(int) $registrationOption->getPublic(),
@@ -250,7 +250,7 @@ class RegistrationOptionDAO extends DAO {
 					code = ?
 				WHERE	option_id = ?',
 				$this->dateToDB($registrationOption->getOpeningDate()),
-				$this->dateToDB($registrationOption->getClosingDate())
+				$this->datetimeToDB($registrationOption->getClosingDate())
 			), array(
 				(int) $registrationOption->getSchedConfId(),
 				(int) $registrationOption->getPublic(),

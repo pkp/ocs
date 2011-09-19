@@ -234,7 +234,7 @@ class RegistrationTypeDAO extends DAO {
 		$registrationType->setCost($row['cost']);
 		$registrationType->setCurrencyCodeAlpha($row['currency_code_alpha']);
 		$registrationType->setOpeningDate($this->dateFromDB($row['opening_date']));
-		$registrationType->setClosingDate($this->dateFromDB($row['closing_date']));
+		$registrationType->setClosingDate($this->datetimeFromDB($row['closing_date']));
 		$registrationType->setExpiryDate($this->dateFromDB($row['expiry_date']));
 		$registrationType->setAccess($row['access']);
 		$registrationType->setInstitutional($row['institutional']);
