@@ -71,6 +71,5 @@
 		<query driver="postgres">
 			UPDATE paper_files SET file_type = 'application/vnd.openxmlformats-officedocument.presentationml.slideshow' WHERE original_file_name ~* '.ppsx$'
 		</query>
-
 	</sql>
 </data>

@@ -1,3 +1,225 @@
+commit fbad3b572c0127f678d24ee36259a26bcdb8fea7
+Author: michael-pkp <michael.pkp@gmail.com>
+Date:   Mon Sep 19 12:55:35 2011 -0700
+
+    *5324* Registration closes before end of day on the closing date
+
+commit 5b98cbf9cc59c748371d10a71c2ff5a3ec4219c4
+Author: michael-pkp <michael.pkp@gmail.com>
+Date:   Mon Sep 19 11:44:26 2011 -0700
+
+    *6888* Review Due Date can only be set up to 2011
+
+commit fcaaac39b6a0c985f63d0be4ffded682562dc67d
+Author: michael-pkp <michael.pkp@gmail.com>
+Date:   Mon Sep 19 11:42:37 2011 -0700
+
+    *6888* Review Due Date can only be set up to 2011
+
+commit 7195615e079bb9f58c201dbc4bed35f3a1f282c1
+Author: michael-pkp <michael.pkp@gmail.com>
+Date:   Mon Sep 19 11:15:16 2011 -0700
+
+    *6888* Review Due Date can only be set up to 2011
+
+commit 03dbc69372bdd16567e346a8398cbca6370161a0
+Author: michael-pkp <michael.pkp@gmail.com>
+Date:   Mon Sep 19 10:39:59 2011 -0700
+
+    *6891* Locale keys in Review Archive aren't properly displayed
+
+commit f346dbaee18df9f606d476c00906eea9670ee47b
+Author: Alec Smecher <alec@smecher.bc.ca>
+Date:   Thu Sep 15 19:48:15 2011 +0200
+
+    *6887* Fixed cancel button target
+
+commit 4311044842fc24403951dec8b4a3292304e11285
+Author: Alec Smecher <alec@smecher.bc.ca>
+Date:   Wed Nov 3 18:05:23 2010 -0300
+
+    *6120* Fixed config file typo
+
+commit 29c1dda6b4ce92ae3a2390a17b0629cf537fc6d8
+Author: Alec Smecher <alec@smecher.bc.ca>
+Date:   Wed Aug 4 13:48:24 2010 -0700
+
+    *5654* Fixed review due date default problem
+
+commit 1cb96866d9feb5bc06643a09e134b6183995b655
+Author: michael-pkp <michael.pkp@gmail.com>
+Date:   Wed Sep 14 16:54:36 2011 -0700
+
+    *6419* Sched Conf links are broken for conferences that are not yet enabled
+
+commit 30988de1f0f067bab503993e2e4e57f4f6259864
+Author: Alec Smecher <alec@smecher.bc.ca>
+Date:   Wed Jul 28 15:26:27 2010 -0700
+
+    *5637* Fixed plugin settings load on conference creation
+
+commit d68212095da56aa0bd2840ac431127fb03ba0b2e
+Author: michael-pkp <michael.pkp@gmail.com>
+Date:   Mon Nov 8 22:15:45 2010 -0800
+
+    *6148* Require CM input for uninitialized payment method form
+
+commit 1af3ef48c88cd8ae1180dd94b1ab6687813123f6
+Author: jmacgreg <jmacgreg@gmail.com>
+Date:   Wed Sep 14 14:18:46 2011 -0700
+
+    *6886* submission metadata template displaying raw HTML for affiliation
+
+commit 17c10a21c7bcdcef430d250afc00c2e65c99ea8a
+Author: michael-pkp <michael.pkp@gmail.com>
+Date:   Fri Nov 19 16:46:38 2010 -0800
+
+    *6080* TinyMCE converts to HTML entities
+
+commit 581be9210567ecf7d080e7a5fd3b3f9bd184d4f5
+Author: michael-pkp <michael.pkp@gmail.com>
+Date:   Wed Sep 14 11:27:57 2011 -0700
+
+    *6818* Update copyright dates
+
+commit 40730d3565c4f69940af7ec2ced39e2c4d5b0115
+Author: James MacGregor <jmacgreg@MERRICK.local>
+Date:   Tue Sep 21 13:55:04 2010 -0700
+
+    *5918* removing &#x00A0; from fr_CA entirely
+
+commit 0e62c1f1f93e44215a9d6f6c6a2de3504b87b2fe
+Author: Matthew Crider <mattcrider@gmail.com>
+Date:   Tue Sep 13 12:57:40 2011 -0700
+
+    *6262* Reversed erroneous fix with Notification mailing list email URL
+
+commit 5314cd50bd4d08fdd2a20792a73e1c1457fec215
+Author: Matthew Crider <mattcrider@gmail.com>
+Date:   Mon Sep 12 15:45:18 2011 -0700
+
+    *6262* Notification mailing list email contains incorrect confirmation URL
+
+commit 0f920bfb83c0b5e8c4adebd1d14d5163e524eae6
+Author: Matthew Crider <mattcrider@gmail.com>
+Date:   Mon Sep 12 15:23:56 2011 -0700
+
+    *5863* Fixed font-sizer plugin hover display issue
+
+commit c055f14b6ac65279ea63abca60aeb74bdc7b2917
+Author: jmacgreg <jmacgreg@gmail.com>
+Date:   Fri Sep 9 17:02:03 2011 -0700
+
+    *6877* separating and refining citation_author information for Google Scholar
+
+commit 3768ff54e7fb2d0c1e3d55b2125439e39b7d9a93
+Author: jmacgreg <jmacgreg@gmail.com>
+Date:   Fri Sep 9 16:46:38 2011 -0700
+
+    *6877* separating and refining citation_author information for Google Scholar
+
+commit 74879827587d508675503d3079db739f1c24d203
+Author: michael-pkp <michael.pkp@gmail.com>
+Date:   Fri Sep 9 15:41:13 2011 -0700
+
+    *6876* Galleys uploaded in Firefox not indexed for search
+
+commit ce5d8fbc052e36b40710264f1c04c948baa31c3a
+Author: michael-pkp <michael.pkp@gmail.com>
+Date:   Wed Sep 7 14:51:50 2011 -0700
+
+    *6874* Import papers select track key is untranslated
+
+commit ee865293da3790e14ca773e8bf30a6bb9adc62e4
+Author: michael-pkp <michael.pkp@gmail.com>
+Date:   Wed Sep 7 12:46:34 2011 -0700
+
+    *6876* PDF galleys not indexed for search
+
+commit 1bae4b11b82ec2983fba3ee4dd6610da773f9232
+Author: michael-pkp <michael.pkp@gmail.com>
+Date:   Wed Sep 7 11:47:07 2011 -0700
+
+    *6876* PDF galleys not indexed for search
+
+commit e413fc2abd9ef1bda7c6b03f8e29fa4e8f55cd63
+Author: jmacgreg <jmacgreg@gmail.com>
+Date:   Wed Sep 7 11:32:44 2011 -0700
+
+    *6797* citation_pdf_url should link directly to PDF file
+
+commit c9ae7e87b411a0c57826724c3beff3472c3fe0b6
+Author: jmacgreg <jmacgreg@gmail.com>
+Date:   Wed Sep 7 11:22:52 2011 -0700
+
+    *6796* change citation_date to YYYY/MM/DD
+
+commit e69c1c0a8c8e75eaabf093bd4f71a1b056b78c6a
+Author: Alec Smecher <alec@smecher.bc.ca>
+Date:   Fri Sep 2 13:13:34 2011 -0700
+
+    *6867* Fixed OAI ListSets missing func
+
+commit 5f9f816db5b4293d64d6e761eb8eb9ae45f2349e
+Author: michael-pkp <michael.pkp@gmail.com>
+Date:   Thu Sep 1 15:35:24 2011 -0700
+
+    *6866* Save review form not validated
+
+commit 2fa69109566c297d83e4527ba50eb84811430e87
+Author: michael-pkp <michael.pkp@gmail.com>
+Date:   Thu Sep 1 15:23:53 2011 -0700
+
+    *6865* Untranslated key in review form error message
+
+commit 56e4e098319539e5ef390ee7e9b16e7ff11d1cf5
+Author: michael-pkp <michael.pkp@gmail.com>
+Date:   Thu Sep 1 15:02:48 2011 -0700
+
+    *6865* Untranslated key in review form error message
+
+commit 5050ddbdf4ff7a8fa4cb63af53ce4fb2a5f6b4c4
+Author: Alec Smecher <alec@smecher.bc.ca>
+Date:   Wed Aug 31 17:26:07 2011 -0700
+
+    spacing
+
+commit f9d3917191d830fa9e5deba33d49f7219afd1647
+Author: Alec Smecher <alec@smecher.bc.ca>
+Date:   Wed Aug 31 17:21:01 2011 -0700
+
+    *6626* Removed bad fix
+
+commit f947acfa74b8e0dbae640ee43a195f6cb991bed9
+Author: jmacgreg <jmacgreg@gmail.com>
+Date:   Mon Sep 19 11:10:13 2011 -0700
+
+    *5595* update it_IT locale files
+
+commit 61d357e6740c152c3e83cfc07ebd6811d8e8d8b7
+Author: michael-pkp <michael.pkp@gmail.com>
+Date:   Wed Sep 14 11:23:59 2011 -0700
+
+    *6818* Update copyright dates
+
+commit 4159cef3bfe9052c5257eed83a14e11c5fa70c97
+Author: Matthew Crider <mattcrider@gmail.com>
+Date:   Tue Jun 21 16:57:48 2011 -0700
+
+    *6655* Fixed iBrowser errors, updated phpThumb iBrowser library
+
+commit bbf5701560e073a9320f1d866fe8aea826fa6787
+Author: Juan Pablo Alperin <juan@alperin.ca>
+Date:   Thu Aug 26 15:55:30 2010 -0500
+
+    *5818* added missing constructor to PKPPublicFileManager
+
+commit a8fbae1cabc6251069bc1e5792e9bf465aee09a6
+Author: michael-pkp <michael.pkp@gmail.com>
+Date:   Fri Sep 9 15:38:15 2011 -0700
+
+    *6876* Galleys uploaded in Firefox not indexed for search
+
 commit b221c91c0cd6f20113899a1b86225ea0f5187b0e
 Author: Alec Smecher <alec@smecher.bc.ca>
 Date:   Wed Aug 24 14:03:30 2011 -0700

@@ -1,21 +1,31 @@
 OCS 2.3.4 Release Notes
 GIT tag: ocs-2_3_4-0
-Release date: Aug 25, 2011
-==========================
+Release date: Sept 20, 2011
+===========================
 
 Bug Fixes
 ---------
 	#4780# Notify all published presenters doesn't send emails
 	#5280# E-mail attachment losing extension
+	#5324# Registration closes before end of day on the closing date
 	#5497# Review Due Date mm/dd/yyyy set function not working
 	#5503# Paper indexing issues
 	#5547# "No administrative rights" message is missing locale file loads
 	#5570# Call-time pass-by-reference in native import
+	#5595# update it_IT
+	#5637# Plugin settings not being installed for most plugins
+	#5654# If review due dates are unset, 12-25-1969 shown in some email templates
 	#5787# 404 when clicking Complete or Remove buttons
+	#5818# PKPPublicFileManager does not have constructor
 	#5843# PHP fatal error on Supplementary file upload
+	#5863# Font sizer plugin icons disappear when hovered over
 	#5883# Localization fixes from Ramon
+	#5918# ASCII-encoded nbsp appears in fr_CA
 	#5946# Typo in accommodation.tpl
 	#5984# Can't unsubscribe from Notification Mailing List
+	#6080# TinyMCE converts to HTML entities
+	#6120# wrong pdftotext and pstotext lines in the config file
+	#6148# Require CM input for uninitialized payment method form
 	#6186# Salutation missing from user registration form
 	#6248# Paper commenting add form broken
 	#6262# Notification mailing list email contains incorrect confirmation URL
@@ -29,6 +39,7 @@ Bug Fixes
 	#6392# Character encoding not included in PayPal transaction
 	#6397# Submission step numbering is wrong
 	#6418# scheduler link broken
+	#6419# Sched Conf links are broken for conferences that are not yet enabled
 	#6462# Submission file URLs don't work during submission process
 	#6481# Fatal errors when reviewers try to edit/delete comments
 	#6501# force_login_ssl doesn't respect source parameter for redirects on login
@@ -53,6 +64,7 @@ Bug Fixes
 	#6631# Notifications should use updated pnotify styling
 	#6637# Relax NOTNULL constraints for the purposes of upgrade
 	#6651# Locale keys manager.scheduler.building / manager.scheduler.room untranslated in paper view
+	#6655# Assertion Failed error with TinyMCE image upload interface
 	#6661# Section editor's delete edit assignment link leads to 404
 	#6665# Remove country names from locale list unless several regions provide the same language
 	#6669# Correct pkp.ubc.ca links in non-English languages
@@ -64,6 +76,18 @@ Bug Fixes
 	#6724# Unlocalized button in METS plugin
 	#6733# Prevent disabled journals from being exposed via OAI
 	#6779# Remove manual installer
+	#6796# Change citation_date to YYYY/MM/DD
+	#6797# citation_pdf_url should link directly to PDF file
 	#6802# New submission notifications not sent to editors
 	#6810# Command-line installer has untranslated keys
 	#6821# Work around PHP 5.1 reference bug
+	#6865# Untranslated key in review form error message
+	#6866# Save review form not validated
+	#6867# OAI ListSets uses missing function TrackDAO::getConferenceTracks
+	#6874# Import papers select track key is untranslated
+	#6876# Galleys uploaded in Firefox not indexed for search
+	#6877# separating and refining citation_author information for Google Scholar
+	#6886# submission metadata template displaying raw HTML for affiliation
+	#6887# "Cancel" button failure on Registrations>Enroll
+	#6888# Review Due Date can only be set up to 2011
+	#6891# Locale keys in Review Archive aren't properly displayed
