@@ -2,12 +2,12 @@
 <!DOCTYPE data SYSTEM "../../../lib/pkp/dtd/xmlData.dtd">
 
 <!--
-  * 2.3.2_preaffiliations.xml
+  * 2.4.0_preaffiliations.xml
   *
   * Copyright (c) 2000-2011 John Willinsky
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
   *
-  * 2.3.2 affiliations update XML file, run prior to schema sync.
+  * 2.4.0 affiliations update XML file, run prior to schema sync.
   *
   -->
 

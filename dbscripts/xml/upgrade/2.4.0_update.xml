@@ -17,11 +17,45 @@
 	<sql>
 		<query>UPDATE plugin_settings SET plugin_name = LOWER(plugin_name);</query>
 	</sql>
+
+	<!-- Bug #5268: Performance optimization: lazy load for plug-ins -->
+	<sql>
+		<query>UPDATE versions SET lazy_load = 0, product_class_name = '' WHERE product_type = 'core'</query>
+	</sql>
+
 	<!-- Bug #6187: Clarify submission acceptance emails -->
 	<sql>
 		<query>INSERT INTO email_templates_default (email_key, can_edit, can_disable, from_role_id, to_role_id) SELECT 'PAYPAL_PAYMENT_RECEIVED', can_edit, can_disable, from_role_id, to_role_id FROM email_templates_default WHERE email_key = 'MANUAL_PAYMENT_RECEIVED'</query>
 		<query>INSERT INTO email_templates_default_data (email_key, locale, subject, body, description) SELECT 'PAYPAL_PAYMENT_RECEIVED', locale, subject, body, description FROM email_templates_default_data WHERE email_key = 'MANUAL_PAYMENT_RECEIVED'</query>
 		<query>INSERT INTO email_templates (email_key, assoc_id, enabled, assoc_type) SELECT 'PAYPAL_PAYMENT_RECEIVED', assoc_id, enabled, assoc_type FROM email_templates WHERE email_key = 'MANUAL_PAYMENT_RECEIVED'</query>
 		<query>INSERT INTO email_templates_data (email_key, locale, assoc_id, subject, body, assoc_type) SELECT 'PAYPAL_PAYMENT_RECEIVED', locale, assoc_id, subject, body, assoc_type FROM email_templates_data WHERE email_key = 'MANUAL_PAYMENT_RECEIVED'</query>
+	</sql>
+
+	<!-- Bug #5440: Migrate submission notes into PKP "notes" -->
+	<sql>
+		<query>UPDATE notes SET assoc_type = 258</query><!-- ASSOC_TYPE_PAPER -->
+		<query>UPDATE notes, papers, sched_confs SET notes.context_id = sched_confs.conference_id WHERE papers.paper_id = notes.assoc_id AND papers.sched_conf_id = sched_confs.sched_conf_id</query>
+	</sql>
+
+	<!-- Bug #5543: Implement multilingual specification -->
+	<sql>
+		<query driver="mysql">
+			UPDATE papers p, conferences c, sched_confs sc SET p.locale = c.primary_locale WHERE p.sched_conf_id = sc.sched_conf_id AND sc.conference_id = c.conference_id
+		</query>
+		<query driver="postgres7">
+			UPDATE papers SET locale = c.primary_locale FROM sched_confs sc, conferences c WHERE papers.sched_conf_id = sc.sched_conf_id AND sc.conference_id = c.conference_id
+		</query>
+		<!-- Use the current set of form locales as a default for supported submission locales -->
+		<query>
+			DELETE FROM conference_settings WHERE setting_name = 'supportedSubmissionLocales'
+		</query>
+		<query>
+			INSERT INTO conference_settings (conference_id, locale, setting_name, setting_value, setting_type) SELECT conference_id, locale, 'supportedSubmissionLocales', setting_value, setting_type FROM conference_settings WHERE setting_name = 'supportedFormLocales'
+		</query>
+	</sql>
+
+	<!-- Bug #5522: Add a publish/do not publish flag for group emails -->
+	<sql>
+		<query>UPDATE groups SET publish_email = 1</query>
 	</sql>
 </data>

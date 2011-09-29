@@ -36,8 +36,4 @@ Thank you and looking forward to your participation in this event.
 	<sql>
 		<query>UPDATE notifications SET level = 2</query><!-- NOTIFICATION_LEVEL_NORMAL -->
 	</sql>
-	<!-- Bug #5268: Performance optimization: lazy load for plug-ins -->
-	<sql>
-		<query>UPDATE versions SET lazy_load = 0, product_class_name = '' WHERE product_type = 'core'</query>
-	</sql>
 </data>

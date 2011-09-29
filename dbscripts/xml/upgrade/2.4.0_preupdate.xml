@@ -31,4 +31,39 @@
 		<!-- Then, alter the column changing it to a BIGINT -->
 		<query>ALTER TABLE paper_files MODIFY file_stage BIGINT(20)</query>
 	</sql>
+
+	<!-- Bug #5386: port review assignments to pkp-lib -->
+	<sql>
+		<rename table="review_assignments" column="paper_id" to="submission_id" />
+		<rename table="papers" column="current_stage" to="current_round" />
+		<rename table="paper_files" column="stage" to="round" />
+		<rename table="edit_decisions" column="stage" to="round" />
+		<rename table="review_stages" to="review_rounds" />
+		<rename table="review_rounds" column="stage" to="round" />
+		<rename table="review_rounds" column="paper_id" to="submission_id" />
+	</sql>
+
+	<!-- Bug #5397: port "comments" into pkp-lib -->
+	<sql>
+		<rename table="comments" column="paper_id" to="submission_id" />
+	</sql>
+
+	<!-- Bug #5268: Performance optimization: lazy load for plug-ins -->
+	<sql>
+		<query>DELETE FROM versions WHERE product_type = 'plugins.generic' AND product = 'jquery'</query>
+	</sql>
+
+	<!-- Bug #5440: port submission notes to PKP "notes" -->
+	<sql>
+		<rename table="paper_notes" to="notes" />
+		<rename table="notes" column="paper_id" to="assoc_id" />
+		<rename table="notes" column="note" to="contents" />
+	</sql>
+
+	<!-- Bug #5490: port authors into pkp-lib -->
+	<sql>
+		<rename table="paper_author_settings" to="author_settings" />
+		<rename table="paper_authors" to="authors" />
+		<rename table="authors" column="paper_id" to="submission_id" />
+	</sql>
 </data>
