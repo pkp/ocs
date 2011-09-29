@@ -46,9 +46,9 @@
 		<data file="dbscripts/xml/upgrade/2.3.2_preaffiliations.xml" condition="return $installer->columnExists('users', 'affiliation') &amp;&amp; $installer->columnExists('authors', 'affiliation');" />
 	</upgrade>
 	
-	<upgrade minversion="2.0.0.0" maxversion="2.3.3.9">
-		<!-- 2.x to 2.3.4 -->
-		<data file="dbscripts/xml/upgrade/2.3.4_preupdate.xml" />
+	<upgrade minversion="2.0.0.0" maxversion="2.3.9.9">
+		<!-- 2.x to 2.4 -->
+		<data file="dbscripts/xml/upgrade/2.4.0_preupdate.xml" />
 	</upgrade>
 
 	<!-- PKP schema components -->
@@ -105,9 +105,19 @@
 		<note file="docs/release-notes/README-2.3.2" />
 	</upgrade>
 
-	<upgrade minversion="2.0.0.0" maxversion="2.3.3.1">
-		<code function="migrateReviewingInterests" />
+	<upgrade minversion="2.0.0.0" maxversion="2.3.2.9">
+		<note file="docs/release-notes/README-2.3.3" />
+	</upgrade>
+
+	<upgrade minversion="2.0.0.0" maxversion="2.3.3.9">
 		<data file="dbscripts/xml/upgrade/2.3.4_update.xml" />
+		<code function="rebuildSearchIndex" />
+		<note file="docs/release-notes/README-2.3.4" />
+	</upgrade>
+
+	<upgrade minversion="2.0.0.0" maxversion="2.3.9.9">
+		<code function="migrateReviewingInterests" />
+		<data file="dbscripts/xml/upgrade/2.4.0_update.xml" />
 	</upgrade>
 
 	<!-- update plugin configuration - should be done as the final upgrade task -->
