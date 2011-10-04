@@ -58,8 +58,6 @@
 <div id="schedule">
 <h3>{translate key="schedConf.schedule"}</h3>
 
-{/if}{* !empty($buildingsAndRooms) *}
-
 <table class="listing" width="100%">
 {assign var=lastStartTime value=0}
 {assign var=needsTdClose value=0}
@@ -106,7 +104,8 @@
 	</td>
 {/if}
 </table>
-
 </div>
+{/if}{* !empty($buildingsAndRooms) *}
+
 {include file="common/footer.tpl"}
 

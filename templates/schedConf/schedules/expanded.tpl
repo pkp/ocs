@@ -59,8 +59,6 @@
 <div id="schedule">
 <h3>{translate key="schedConf.schedule"}</h3>
 
-{/if}{* !empty($buildingsAndRooms) *}
-
 {assign var=lastStartTime value=0}
 {assign var=needsUlClose value=0}
 {foreach from=$itemsByTime item=list key=startTime}
@@ -107,5 +105,7 @@
 	</ul>
 {/if}
 </div>
+{/if}{* !empty($buildingsAndRooms) *}
+
 {include file="common/footer.tpl"}
 
