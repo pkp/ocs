@@ -14,7 +14,7 @@
 		<div id="paperFontSize">
 			{translate key="paper.fontSize"}:&nbsp;
 			<div id="sizer"></div>
-			</div>
+		</div>
 	</div>
 {if $galley}
 	{if $galley->isHTMLGalley()}
@@ -22,7 +22,7 @@
 	{/if}
 {else}
 
-	<div id="title">{$paper->getLocalizedTitle()|strip_unsafe_html}</h3></div>
+	<div id="title">{$paper->getLocalizedTitle()|strip_unsafe_html}</div>
 	<div id="author"><em>{$paper->getAuthorString()|escape}</em></div>
 	<br />
 
