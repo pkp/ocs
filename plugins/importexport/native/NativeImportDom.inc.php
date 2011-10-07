@@ -430,7 +430,7 @@ class NativeImportDom {
 		$hasErrors = false;
 		$galleyCount = 0;
 		for ($index=0; $index < count($paperNode->children); $index++) {
-			$node =& $paperNode->children[$index];
+			$node = $paperNode->children[$index];
 
 			if ($node->getName() == 'htmlgalley') $isHtml = true;
 			elseif ($node->getName() == 'galley') $isHtml = false;
