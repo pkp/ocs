@@ -240,6 +240,7 @@ class MetadataForm extends Form {
 				} else {
 					$authorDao->insertAuthor($author);
 				}
+				unset($author);
 			}
 		}
 
