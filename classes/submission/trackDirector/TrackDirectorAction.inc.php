@@ -216,14 +216,23 @@ class TrackDirectorAction extends Action {
 
 			$schedConf =& Request::getSchedConf();
 			if ($schedConf->getSetting('reviewDeadlineType') != null) {
+				$dueDateSet = true;
 				if ($schedConf->getSetting('reviewDeadlineType') == REVIEW_DEADLINE_TYPE_ABSOLUTE) {
 					$reviewDeadlineDate = $schedConf->getSetting('numWeeksPerReviewAbsolute');
 					$reviewDueDate = strftime(Config::getVar('general', 'date_format_short'), $reviewDeadlineDate);
 					TrackDirectorAction::setDueDate($trackDirectorSubmission->getPaperId(), $reviewAssignment->getId(), $reviewDueDate, null, false);
 				} elseif ($schedConf->getSetting('reviewDeadlineType') == REVIEW_DEADLINE_TYPE_RELATIVE) {
 					TrackDirectorAction::setDueDate($trackDirectorSubmission->getPaperId(), $reviewAssignment->getId(), null, $schedConf->getSetting('numWeeksPerReviewRelative'), false);
+				} else {
+					$dueDateSet = false;
+				}
+				if ($dueDateSet) {
+					$reviewAssignment = $reviewAssignmentDao->getReviewAssignment($trackDirectorSubmission->getPaperId(), $reviewerId, $stage);
+					$trackDirectorSubmission->updateReviewAssignment($reviewAssignment);
+					$trackDirectorSubmissionDao->updateTrackDirectorSubmission($trackDirectorSubmission);
 				}
 			}
+
 			// Add log
 			import('paper.log.PaperLog');
 			import('paper.log.PaperEventLogEntry');
