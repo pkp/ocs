@@ -237,6 +237,7 @@ class MetadataForm extends Form {
 				if ($isExistingAuthor == false) {
 					$paper->addAuthor($author);
 				}
+				unset($author);
 			}
 		}
 
