@@ -14,9 +14,7 @@
 {/strip}
 
 <ul class="plain">
-	{if $currentConference->getLocalizedSetting('focusScopeDesc') != ''}<li>&#187; <a href="{url op="editorialPolicies" anchor="focusAndScope"}">{translate key="about.focusAndScope"}</a></li>{/if}
-	{if $currentConference->getLocalizedSetting('reviewPolicy') != ''}<li>&#187; <a href="{url op="editorialPolicies" anchor="peerReviewProcess"}">{translate key="about.peerReviewProcess"}</a></li>{/if}
-	{if $currentConference->getLocalizedSetting('pubFreqPolicy') != ''}<li>&#187; <a href="{url op="editorialPolicies" anchor="publicationFrequency"}">{translate key="about.publicationFrequency"}</a></li>{/if}
+	{if $currentSchedConf && $currentSchedConf->getLocalizedSetting('reviewPolicy') != ''}<li>&#187; <a href="{url op="editorialPolicies" anchor="peerReviewProcess"}">{translate key="about.peerReviewProcess"}</a></li>{/if}
 	{if $currentConference->getLocalizedSetting('archiveAccessPolicy') != ''}<li>&#187; <a href="{url op="editorialPolicies" anchor="archiveAccessPolicy"}">{translate key="about.archiveAccessPolicy"}</a></li>{/if}
 	{if !empty($conferenceSettings.enableDelayedOpenAccess) || !empty($conferenceSettings.enableAuthorSelfArchive)}<li>&#187; <a href="{url op="editorialPolicies" anchor="openAccessPolicy"}">{translate key="about.openAccessPolicy"}</a></li>{/if}
 	{if $conferenceSettings.enableLockss && $currentConference->getLocalizedSetting('lockssLicense') != ''}<li>&#187; <a href="{url op="editorialPolicies" anchor="archiving"}">{translate key="about.archiving"}</a></li>{/if}
@@ -27,25 +25,9 @@
 	{/foreach}
 </ul>
 
-{if $currentConference->getLocalizedSetting('focusScopeDesc') != ''}
-<div id="focusAndScope"><h3>{translate key="about.focusAndScope"}</h3>
-<p>{$currentConference->getLocalizedSetting('focusScopeDesc')|nl2br}</p>
-
-<div class="separator">&nbsp;</div>
-</div>
-{/if}
-
-{if $currentConference->getLocalizedSetting('reviewPolicy') != ''}
+{if $currentSchedConf && $currentSchedConf->getLocalizedSetting('reviewPolicy') != ''}
 <div id="peerReviewProcess"><h3>{translate key="about.peerReviewProcess"}</h3>
-<p>{$currentConference->getLocalizedSetting('reviewPolicy')|nl2br}</p>
-
-<div class="separator">&nbsp;</div>
-</div>
-{/if}
-
-{if $currentConference->getLocalizedSetting('pubFreqPolicy') != ''}
-<div id="publicationFrequency"><h3>{translate key="about.publicationFrequency"}</h3>
-<p>{$currentConference->getLocalizedSetting('pubFreqPolicy')|nl2br}</p>
+<p>{$currentSchedConf->getLocalizedSetting('reviewPolicy')|nl2br}</p>
 
 <div class="separator">&nbsp;</div>
 </div>
@@ -53,7 +35,7 @@
 
 {if $currentConference->getLocalizedSetting('archiveAccessPolicy') != ''}
 <div id="archiveAccessPolicy"><h3>{translate key="about.archiveAccessPolicy"}</h3>
-	<p>{$currentConference->getLocalizedSetting('archiveAccessPolicy')|nl2br}</p>
+<p>{$currentConference->getLocalizedSetting('archiveAccessPolicy')|nl2br}</p>
 
 <div class="separator">&nbsp;</div>
 </div>
