@@ -14,7 +14,7 @@
 	<type>core</type>
 	<release>2.3.4.0</release>
 	<tag>ocs-2_3_4-0</tag>
-	<date>2011-09-20</date>
+	<date>2011-10-07</date>
 	<info>http://pkp.sfu.ca/ocs/</info>
 	<package>http://pkp.sfu.ca/ocs/download/ocs-2.3.4.tar.gz</package>
 	<patch from="2.0.0.0">http://pkp.sfu.ca/ocs/download/patch/ocs-2.0.0-1_to_2.3.4.patch.gz</patch><!-- OCS 2.0.0.1 is marked in DB as 2.0.0.0. -->
