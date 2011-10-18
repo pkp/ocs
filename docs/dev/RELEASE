@@ -77,8 +77,8 @@ OCS codebase and the PKP library to be distributed with it):
     http://pkp.sfu.ca/ocs/doxygen
 
 
-8. Place the release notes, upgrade instructions, and readme on the OJS website:
+8. Place the release notes, upgrade instructions, and readme on the OCS website:
 
-	http://pkp.sfu.ca/ojs/README-<VERSION>
-	http://pkp.sfu.ca/ojs/RELEASE-<VERSION>
-	http://pkp.sfu.ca/ojs/UPGRADE-<VERSION>
+	http://pkp.sfu.ca/ocs/README-<VERSION>
+	http://pkp.sfu.ca/ocs/RELEASE-<VERSION>
+	http://pkp.sfu.ca/ocs/UPGRADE-<VERSION>
