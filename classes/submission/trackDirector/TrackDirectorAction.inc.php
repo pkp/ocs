@@ -1627,7 +1627,7 @@ import('classes.file.PaperFileManager');
 
 		$user =& Request::getUser();
 		import('classes.mail.PaperMailTemplate');
-		$email = new PaperMailTemplate($paper, 'SUBMISSION_DECISION_REVIEWERS');
+		$email = new PaperMailTemplate($paper, 'SUBMISSION_DECISION_REVIEWERS', null, null, null, null, true, true);
 
 		if ($send && !$email->hasErrors() && !$inhibitExistingEmail) {
 			HookRegistry::call('TrackDirectorAction::blindCcReviewsToReviewers', array(&$paper, &$reviewAssignments, &$email));
