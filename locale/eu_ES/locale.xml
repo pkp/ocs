@@ -48,9 +48,9 @@
 	<message key="manager.reviewForms.completed">Bukatuta</message>
 	<message key="manager.reviewForms.inReview">Ebaluatzen</message>
 	<message key="manager.reviewForms.confirmDeleteUnpublished">Ziur zaude argitaratu gabeko ebaluazio-inprimaki hau ezabatu nahi duzula?</message>
-	
-	<message key="manager.reviewForms.form.titleRequired">Titulua eman behar zaio ebaluazio-inprimakiari.</message>	
-	
+
+	<message key="manager.reviewForms.form.titleRequired">Titulua eman behar zaio ebaluazio-inprimakiari.</message>
+
 	<message key="manager.reviewFormElements">Inprimakiko elementuak</message>
 	<message key="manager.reviewFormElements.create">Sortu elementu berria</message>
 	<message key="manager.reviewFormElements.edit">Editatu inprimaki-elementua</message>
@@ -65,8 +65,8 @@
 	<message key="manager.reviewFormElements.chooseType">Aukeratu elementu mota</message>
 	<message key="manager.reviewFormElement.changeType">Kontuz: Ebaluazio-inprimakiko elementu mota aldatzen baduzu aukera multzo bat izatetik irekia izatera, aukera multzoa ezabatu egingo da.</message>
 
-	<message key="manager.reviewFormElements.form.questionRequired">Inprimaki-elementu honek galdera bat behar du.</message>	
-	<message key="manager.reviewFormElements.form.elementTypeRequired">Inprimaki-elementu honek elementu mota bat behar du.</message>	
+	<message key="manager.reviewFormElements.form.questionRequired">Inprimaki-elementu honek galdera bat behar du.</message>
+	<message key="manager.reviewFormElements.form.elementTypeRequired">Inprimaki-elementu honek elementu mota bat behar du.</message>
 
 	<message key="manager.reviewFormElements.smalltextfield">Hitz bakarreko testu-koadroa</message>
 	<message key="manager.reviewFormElements.textfield">Lerro bakarreko testu-koadroa</message>
@@ -79,14 +79,14 @@
 	<message key="submission.reviewForm">Ebaluazio-inprimakia</message>
 	<message key="submission.reviewFormResponse">Ebaluazio-inprimakiaren erantzuna</message>
 
-	<message key="editor.paper.reviewForms">Ebaluazio-inprimakiak</message>	
-	<message key="editor.paper.selectReviewForm">Hautatu ebaluazio-inprimakia</message>	
-	<message key="editor.paper.clearReviewForm">Garbitu ebaluazio-Inprimakia</message>	
-	<message key="editor.paper.confirmChangeReviewForm">Kontuz: Ebaluazio-inprimakia aldatzen baduzu, eragina izango du ebaluatzaileek inprimaki honen bidez eman dituzten erantzunetan. Ziur zaude jarraitu nahi duzula?</message>	
+	<message key="editor.paper.reviewForms">Ebaluazio-inprimakiak</message>
+	<message key="editor.paper.selectReviewForm">Hautatu ebaluazio-inprimakia</message>
+	<message key="editor.paper.clearReviewForm">Garbitu ebaluazio-Inprimakia</message>
+	<message key="editor.paper.confirmChangeReviewForm">Kontuz: Ebaluazio-inprimakia aldatzen baduzu, eragina izango du ebaluatzaileek inprimaki honen bidez eman dituzten erantzunetan. Ziur zaude jarraitu nahi duzula?</message>
 
-	<message key="reviewer.paper.enterReviewForm">Egin klik ikono batean ebaluazio-inprimakia betetzeko.</message>	
-	<message key="reviewer.paper.reviewFormResponse.form.responseRequired">Nahitaezko eremuak bete egin behar dira.</message>	
-	
+	<message key="reviewer.paper.enterReviewForm">Egin klik ikono batean ebaluazio-inprimakia betetzeko.</message>
+	<message key="reviewer.paper.reviewFormResponse.form.responseRequired">Nahitaezko eremuak bete egin behar dira.</message>
+
 	<!-- review forms end -->
 
 	<!--
@@ -156,7 +156,7 @@
 	<message key="track.tracks">Kongresuaren atalak</message>
 	<message key="track.title">Atalaren titulua</message>
 	<message key="track.abbreviation">Laburdura</message>
-	<message key="track.abbreviation.example">(Adibidez, Lan 
+	<message key="track.abbreviation.example">(Adibidez, Lan
 orokorrak=OROK)</message>
 	<!-- Common Paper Terms -->
 	<message key="paper.papers">Lanak</message>
@@ -265,11 +265,11 @@ orokorrak=OROK)</message>
 	<message key="schedConf.scheduler.locations">Kongresuaren lekua</message>
 
 	<!-- User self-registration form -->
-	<message key="schedConf.registration.alreadyRegistered">Kongresu honetarako izena eman duzu, baina ordainketa 
-ez dugu jaso oraindik. Erroreren bat gertatu bada edo izen-ematea aldatu nahi baduzu, jar zaitez harremanetan, 
+	<message key="schedConf.registration.alreadyRegistered">Kongresu honetarako izena eman duzu, baina ordainketa
+ez dugu jaso oraindik. Erroreren bat gertatu bada edo izen-ematea aldatu nahi baduzu, jar zaitez harremanetan,
 mesedez, "Kongresuari buruz" orriko kontaktu nagusiarekin.</message>
-	<message key="schedConf.registration.alreadyRegisteredAndPaid">Dagoeneko kongresuan izena emanda zaude eta 
-ordainketa eginda dago. Erroreren bat gertatu bada edo izen-ematea aldatu nahi baduzu, jar zaitez harremanetan, 
+	<message key="schedConf.registration.alreadyRegisteredAndPaid">Dagoeneko kongresuan izena emanda zaude eta
+ordainketa eginda dago. Erroreren bat gertatu bada edo izen-ematea aldatu nahi baduzu, jar zaitez harremanetan,
 mesedez, "Kongresuari buruz" orriko kontaktu nagusiarekin.</message>
 	<message key="schedConf.registration.noPaymentMethodAvailable">Zure izen-ematea erregistratu da. Egoki bada, zurekin harremanetan jarriko gara ordainketari buruz.</message>
 	<message key="schedConf.registration.conferenceFees">Kongresu-tarifak</message>
@@ -318,7 +318,7 @@ mesedez, "Kongresuari buruz" orriko kontaktu nagusiarekin.</message>
 	 * LOG - This section contains entries related to log entries.
 	 *
 	-->
-	
+
 	<message key="event.logType.paper">Lana</message>
 	<message key="event.logType.director">Zuzendaria</message>
 	<message key="event.logType.review">Ebaluazioa</message>
@@ -326,16 +326,16 @@ mesedez, "Kongresuari buruz" orriko kontaktu nagusiarekin.</message>
 
 	<message key="event.eventLog">Gertaeren loga</message>
 	<message key="event.logLevel">Maila</message>
-	
+
 	<message key="event.logLevel.info">Info</message>
 	<message key="event.logLevel.notice">Berri-ematea</message>
 	<message key="event.logLevel.warning">Abisua</message>
 	<message key="event.logLevel.error">Errorea</message>
 
 	<message key="event.general.defaultEvent">Bidalketako gertaera</message>
-	
+
 	<!-- Submission events -->
-	
+
 	<message key="submission.event.general.abstractSubmitted">Laburpena bidali</message>
 	<message key="submission.event.general.presentationSubmitted">Aurkezpena bidali</message>
 	<message key="submission.event.general.paperPublished">Lana argitaratu</message>
@@ -378,7 +378,7 @@ mesedez, "Kongresuari buruz" orriko kontaktu nagusiarekin.</message>
 Kontuan izan OAI interfazea desgaitu daitekeela gune honetarako, OCS sistema-konfigurazioa editatuz. OCS bertsio berriagoetan aukera izango da gune barruko kongresuak banaka gaitzeko edo desgaitzeko.]]></message>
 
 
-	<!-- Site Administration Merge Users -->	
+	<!-- Site Administration Merge Users -->
 	<!-- Languages -->
 	<message key="admin.auth.defaultSourceDescription"><![CDATA[<p>OCS ez den autentifikazio-iturburu bat lehenetsi gisa ezartzeak ondorio hauek izango ditu:</p>
 <ul>
@@ -416,7 +416,7 @@ Kontuan izan OAI interfazea desgaitu daitekeela gune honetarako, OCS sistema-kon
 	<message key="plugins.categories.auth.description">Baimena emateko pluginen bidez, erabiltzaile-autentifikazioa beste sistema batzuei delega diezaieke Open Conference Systems-ek, esate baterako LDAP zerbitzariei.</message>
 
 	<message key="plugins.categories.citationFormats.description">Aipamen-formatuen pluginen bidez, erabiltzaileek hainbat formatu izango dituzte aipamenak ikusteko.</message>
- 
+
 	<!-- Files Browser -->
 	<!--
 	     ***
@@ -447,7 +447,7 @@ Kontuan izan, zuen gune-administratzaileak dagoeneko gunea erregistratu badu PKP
 <br /><br />
 <a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">Egin klik hemen</a> eta idatzi <span class="highlight">{$siteUrl}</span> <strong>Gunearen URLa</strong>n eta <span class="highlight">{$oaiUrl}</span> <strong>OAI Base URL</strong> eremuan.]]></message>
 
-	<!-- 
+	<!--
 	     ***
 	     *** Scheduled Conference Setup
 	     ***
@@ -644,11 +644,11 @@ Aktibo: une honetan kontsideratzen edo egiten ari diren ebaluazioen kopurua.]]><
 	<message key="presentations.notPermitted">Ez daukazu kongresu honetako aurkezpenetan sartzeko baimenik.</message>
 	<message key="presentations.trackEmpty">Atal honetan ez dago lan erabilgarririk.</message>
 	<message key="presentations.schedConfEmpty">Kongresu honetako aurkezpenak oraindik ez daude erabilgarri edo ez da bat datorrenik aurkitu.</message>
-	
+
 	<!-- Program page -->
 	<message key="schedConf.program.programFileInstructions">Kongresu honen programara ondorengo estekatik joaten da.</message>
 	<message key="schedConf.program.viewProgramFile">Ikusi programa</message>
-	
+
 	<!-- About The Conference -->
 	<message key="about.statistics">Estatistikak</message>
 	<message key="about.conferenceContact">Kongresuko kontaktua</message>
@@ -756,34 +756,34 @@ Zure zerbitzariak mbstring hau onartzen du: <strong>{$supportsMBString}</strong>
 	<message key="log.default.paperPeriodExpired">Osatu gabeko {$paperId} lana bidaltzeko leihoa iraungi egin da. Lana ehortzi egin da.</message>
 	<message key="log.review.reviewerAssigned">{$reviewerName} izendatu da {$paperId} lana ebaluatzeko {$stage}. fasean.</message>
 	<message key="log.review.reviewerUnassigned">{$reviewerName} ebaluatzaileari {$paperId} lana ebaluatzeko esleipena kendu zaio {$stage}. fasean.</message>
-	<message key="log.review.reviewInitiated">{$reviewerName} 
+	<message key="log.review.reviewInitiated">{$reviewerName}
 {$paperId} lana {$stage}. fasean ebaluatzen hasi da.</message>
-	<message key="log.review.reviewReinitiated">{$reviewerName} 
+	<message key="log.review.reviewReinitiated">{$reviewerName}
 berriro hasi da {$paperId} lana {$stage}. fasean ebaluatzen.</message>
-	<message key="log.review.reviewCancelled">{$reviewerName} 
-ebaluatzailearen {$paperId} lanaren {$stage}. ebaluazio-fasea bertan 
+	<message key="log.review.reviewCancelled">{$reviewerName}
+ebaluatzailearen {$paperId} lanaren {$stage}. ebaluazio-fasea bertan
 behera utzi da.</message>
-	<message key="log.review.reviewCleared">{$reviewerName} 
-ebaluatzailearen {$paperId} lanaren {$stage}. ebaluazio-fasea ezabatu 
+	<message key="log.review.reviewCleared">{$reviewerName}
+ebaluatzailearen {$paperId} lanaren {$stage}. ebaluazio-fasea ezabatu
 egin da.</message>
-	<message key="log.review.reviewerRated">{$reviewerName} 
+	<message key="log.review.reviewerRated">{$reviewerName}
 {$paperId} lanaren {$stage}. ebaluazio-faserako baloratu da.</message>
-	<message key="log.review.reviewDueDateSet">{$reviewerName} 
-ebaluatzailearen {$paperId} lanaren {$stage}. ebaluazio-fasearen 
+	<message key="log.review.reviewDueDateSet">{$reviewerName}
+ebaluatzailearen {$paperId} lanaren {$stage}. ebaluazio-fasearen
 mugaeguna {$dueDate} izango da.</message>
 	<message key="log.review.reviewRecommendationSet">{$reviewerName} ebaluatzailearen {$paperId} lanaren {$stage}. ebaluazio-faseko gomendioa jarri da.</message>
 	<message key="log.review.reviewRecommendationSetByProxy">{$paperId} lanaren {$stage}. ebaluazio-faseko gomendioa {$directorName} zuzendariak jarri du, {$reviewerName} ebaluatzailearen izenean.</message>
 	<message key="log.review.resubmit">{$paperId} berriro bidali da ebaluatzeko.</message>
 	<message key="log.review.reviewDeclined">{$reviewerName} ebaluatzaileak ez du onartu {$paperId} lanaren {$stage}. ebaluazio-fasea egitea.</message>
 	<message key="log.review.reviewAccepted">{$reviewerName} ebaluatzaileak {$paperId} lanaren {$stage}. ebaluazio-fasea egitea onartu du.</message>
-	<message key="log.review.reviewAcceptedByProxy">{$reviewerName} 
-ebaluatzailearen izenean, {$userName}(e)k {$paperId} lanaren {$stage}. 
+	<message key="log.review.reviewAcceptedByProxy">{$reviewerName}
+ebaluatzailearen izenean, {$userName}(e)k {$paperId} lanaren {$stage}.
 ebaluazio-fasea egitea onartu du.</message>
 	<message key="log.review.reviewFileByProxy">{$userName} zuzendariak {$paperId} lanaren {$stage}. faseko ebaluazio-fitxategia kargatu du, {$reviewerName} ebaluatzailearen izenean.</message>
 	<message key="log.review.reviewerFile">Ebaluazio-fitxategi bat kargatu da.</message>
-	<message key="log.director.decision">{$directorName} zuzendariak 
+	<message key="log.director.decision">{$directorName} zuzendariak
 {$paperId} lanari buruzko erabakia ({$decision}) grabatu du.</message>
-	<message key="log.director.publish">Lana argitaratu 
+	<message key="log.director.publish">Lana argitaratu
 da.</message>
 	<message key="log.director.unpublish">Lana berriro ilarara eraman da.</message>
 
@@ -799,7 +799,7 @@ da.</message>
 	<message key="log.deadline.submissionDeadlinePassed">Bidalketaren mugaeguna pasatu da.</message>
 	<message key="log.deadline.presentationsReleasedToParticipants">Aurkezpenak argitaratu dira parte-hartzaileentzat.</message>
 	<message key="log.deadline.presentationsReleasedToPublic">Aurkezpenak argitaratu dira jende guztiarentzat.</message>
-		
+
 	<message key="log.timeline.publicationStateChanged"><![CDATA[Argitalpen-egoera aldatu da: {$oldPublicationState} ->{$newPublicationState}.]]></message>
 	<message key="log.timeline.submissionStateChanged"><![CDATA[Bidalketaren egoera aldatu da: {$oldSubmissionState} -> {$newSubmissionState}.]]></message>
 	<message key="log.timeline.startDateChanged"><![CDATA[Kongresuaren hasiera-data aldatu da: {$oldStartDate} -> {$newStartDate}.]]></message>
@@ -819,7 +819,7 @@ da.</message>
 	<message key="log.timeline.delayOpenAccessChanged"><![CDATA[Sarrera librea emateko ezarpena aldatu da: {$oldDelayOpenAccess} -> {$newDelayOpenAccess}.]]></message>
 	<message key="log.timeline.closeCommentsDateChanged"><![CDATA[Iruzkinak egiteko itxiera-data aldatu da: {$oldCloseCommentsDate} -> {$newCloseCommentsDate}.]]></message>
 	<message key="log.timeline.closeCommentsChanged"><![CDATA[Iruzkinak egiteko ezarpena aldatu da: {$oldCloseComments} -> {$newCloseComments}.]]></message>
-	
+
 	<!-- Reading Tools entries -->
 	<!-- RT Settings -->
 	<message key="rt.admin.settings">Irakurtzeko tresnen ezarpenak</message>
@@ -842,9 +842,9 @@ Balidazioak huts egin dezake bilaketa egiteko inprimaki-datuak bidaltzea eskatze
 	<message key="rt.thisConference">Bilatu kongresuan</message>
 
 	<message key="rt.comments.commentsClosed">† Iruzkinen ixte-data: {$closeCommentsDate}.</message>
-	<message key="rt.context.authorTermsDescription">Egile bat baino gehiago dituzten lanetan, utzi izen guztiak 
-hautatuta antzeko lankidetzan aurkeztutako lanak bilatzeko, edo bilatu banaka, izen bakarra hautatuta. Baliabideari 
-buruzko informazio gehiago ikusteko, sakatu KONGRESUARI BURUZ. Garrantziaren arabera eta eduki osoa edo zati bat 
+	<message key="rt.context.authorTermsDescription">Egile bat baino gehiago dituzten lanetan, utzi izen guztiak
+hautatuta antzeko lankidetzan aurkeztutako lanak bilatzeko, edo bilatu banaka, izen bakarra hautatuta. Baliabideari
+buruzko informazio gehiago ikusteko, sakatu KONGRESUARI BURUZ. Garrantziaren arabera eta eduki osoa edo zati bat
 atzitzeko sarrera librearen (doakoaren) arabera hautatu dira baliabideak.</message>
 	<message key="manager.reviewFormElements.included">Egilearentzako mezuan erantsia</message>
 	<message key="navigation.browseByAuthor">Egilearena</message>
@@ -901,19 +901,19 @@ atzitzeko sarrera librearen (doakoaren) arabera hautatu dira baliabideak.</messa
 	<message key="rt.metadata.pkp.primaryAuthor">Egilearen izena, afiliatzea, herrialdea</message>
 	<message key="notification.mailListDescription">Idatzi posta elektronikoko helbidea ekitaldiari erantsitako eduki berri garrantzitsuen berehalako jakinarazpenak jasotzeko.</message>
 	<message key="notification.notificationsPublicDescription"><![CDATA[Orrialde honek ekitaldi honi lotutako garrantzizko eguneratzeak ditu, hala nola agiriak eta iragarpenak. Jakinarazpen hauen harpidetza egin dezakezu RSS sarreren bidez (eskuineko irduan klik eginez), edo <a href="{$emailUrl}">through email.</a>-ren bidez.]]></message>
-	<message key="notification.type.paperSubmitted">Agiri berria,  "{$param}", bidali da.</message>
+	<message key="notification.type.paperSubmitted">Agiri berria,  "{$title}", bidali da.</message>
 	<message key="notification.type.editing">Edizio-gertaerak</message>
-	<message key="notification.type.directorDecisionComment">Iruzkin bat editorearen erabakiaren zain geratu da "{$param}"-erako.</message>
-	<message key="notification.type.galleyModified">Galerada aldatu egin da "{$param}"-erako.</message>
-	<message key="notification.type.metadataModified">"{$param}"-en metadatua aldatu egin da.</message>
+	<message key="notification.type.directorDecisionComment">Iruzkin bat editorearen erabakiaren zain geratu da "{$title}"-erako.</message>
+	<message key="notification.type.galleyModified">Galerada aldatu egin da "{$title}"-erako.</message>
+	<message key="notification.type.metadataModified">"{$title}"-en metadatua aldatu egin da.</message>
 	<message key="notification.type.newAnnouncement">Iragarpen berria sortu da.</message>
-	<message key="notification.type.reviewerComment">Ikuskatzaile batek "{$param}"-i buruzko iruzkina egin du.</message>
-	<message key="notification.type.reviewerFormComment">Berrikuspen-agiri bat bidali da "{$param}"-era.</message>
+	<message key="notification.type.reviewerComment">Ikuskatzaile batek "{$title}"-i buruzko iruzkina egin du.</message>
+	<message key="notification.type.reviewerFormComment">Berrikuspen-agiri bat bidali da "{$title}"-era.</message>
 	<message key="notification.type.reviewing">Berrikuspen-gertaerak</message>
 	<message key="notification.type.site">Gunearen gertaerak</message>
-	<message key="notification.type.submissionComment">Zuzendari batek "{$param}"-i buruzkoiruzkina egin du.</message>
+	<message key="notification.type.submissionComment">Zuzendari batek "{$title}"-i buruzkoiruzkina egin du.</message>
 	<message key="notification.type.submissions">Bidalketa-gertaerak</message>
-	<message key="notification.type.suppFileModified">"{$param}"-en fitxategi osagarria(k) aldatu da/dira.</message>
-	<message key="notification.type.userComment">Irakurle batek "{$param}"-i buruzko iruzkina egin du.</message>
+	<message key="notification.type.suppFileModified">"{$title}"-en fitxategi osagarria(k) aldatu da/dira.</message>
+	<message key="notification.type.userComment">Irakurle batek "{$title}"-i buruzko iruzkina egin du.</message>
 </locale>
 

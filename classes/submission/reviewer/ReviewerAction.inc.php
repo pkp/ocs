@@ -48,7 +48,7 @@ class ReviewerAction extends Action {
 		$reviewer =& $userDao->getUser($reviewAssignment->getReviewerId());
 		if (!isset($reviewer)) return true;
 
-		// Only confirm the review for the reviewer if 
+		// Only confirm the review for the reviewer if
 		// he has not previously done so.
 		if ($reviewAssignment->getDateConfirmed() == null) {
 			import('classes.mail.PaperMailTemplate');
@@ -206,7 +206,7 @@ class ReviewerAction extends Action {
 	 */
 	function uploadReviewerVersion($reviewId) {
 		import('classes.file.PaperFileManager');
-		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');		
+		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
 		$reviewAssignment =& $reviewAssignmentDao->getById($reviewId);
 
 		$paperFileManager = new PaperFileManager($reviewAssignment->getSubmissionId());
@@ -290,13 +290,14 @@ class ReviewerAction extends Action {
 
 	/**
 	 * Post reviewer comments.
+	 * @param $request Request
 	 * @param $user object Current user
 	 * @param $paper object
 	 * @param $reviewId int
 	 * @param $emailComment boolean
 	 */
-	function postPeerReviewComment(&$user, &$paper, $reviewId, $emailComment) {
-		if (!HookRegistry::call('ReviewerAction::postPeerReviewComment', array(&$user, &$paper, &$reviewId, &$emailComment))) {
+	function postPeerReviewComment(&$request, &$user, &$paper, $reviewId, $emailComment) {
+		if (!HookRegistry::call('ReviewerAction::postPeerReviewComment', array(&$user, &$paper, &$reviewId, &$emailComment, &$request))) {
 			import('classes.submission.form.comment.PeerReviewCommentForm');
 
 			$commentForm = new PeerReviewCommentForm($paper, $reviewId, ROLE_ID_REVIEWER);
@@ -305,16 +306,16 @@ class ReviewerAction extends Action {
 
 			if ($commentForm->validate()) {
 				$commentForm->execute();
-				
+
 				// Send a notification to associated users
-				import('lib.pkp.classes.notification.NotificationManager');
+				import('classes.notification.NotificationManager');
 				$notificationManager = new NotificationManager();
 				$notificationUsers = $paper->getAssociatedUserIds();
+				$conference = $request->getConference();
 				foreach ($notificationUsers as $userRole) {
-					$url = Request::url(null, null, $userRole['role'], 'submissionReview', $paper->getId(), null, 'peerReview');
 					$notificationManager->createNotification(
-						$userRole['id'], 'notification.type.reviewerComment',
-						$paper->getLocalizedTitle(), $url, 1, NOTIFICATION_TYPE_REVIEWER_COMMENT
+						$request, $userRole['id'], NOTIFICATION_TYPE_REVIEWER_COMMENT,
+						$conference->getId(), ASSOC_TYPE_PAPER, $paper->getId()
 					);
 				}
 
@@ -330,7 +331,7 @@ class ReviewerAction extends Action {
 			return true;
 		}
 	}
-	
+
 		/**
 	 * Edit review form response.
 	 * @param $reviewId int
@@ -359,21 +360,21 @@ class ReviewerAction extends Action {
 			$reviewForm->readInputData();
 			if ($reviewForm->validate()) {
 				$reviewForm->execute();
-				
+
 				// Send a notification to associated users
-				import('lib.pkp.classes.notification.NotificationManager');
+				import('classes.notification.NotificationManager');
 				$notificationManager = new NotificationManager();
 				$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
 				$reviewAssignment = $reviewAssignmentDao->getById($reviewId);
 				$paperId = $reviewAssignment->getSubmissionId();
-				$paperDao =& DAORegistry::getDAO('PaperDAO'); 
+				$paperDao =& DAORegistry::getDAO('PaperDAO');
 				$paper =& $paperDao->getPaper($paperId);
 				$notificationUsers = $paper->getAssociatedUserIds();
+				$conference = $request->getConference();
 				foreach ($notificationUsers as $userRole) {
-					$url = Request::url(null, null, $userRole['role'], 'submissionReview', $paper->getId(), null, 'peerReview');
 					$notificationManager->createNotification(
-						$userRole['id'], 'notification.type.reviewerFormComment',
-						$paper->getLocalizedTitle(), $url, 1, NOTIFICATION_TYPE_REVIEWER_FORM_COMMENT
+						$request, $userRole['id'], NOTIFICATION_TYPE_REVIEWER_FORM_COMMENT,
+						$conference->getId(), ASSOC_TYPE_PAPER, $paper->getId()
 					);
 				}
 
@@ -397,7 +398,7 @@ class ReviewerAction extends Action {
 	 * @param $revision int
 	 */
 	function downloadReviewerFile($reviewId, &$paper, $fileId, $revision = null) {
-		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');		
+		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
 		$reviewAssignment =& $reviewAssignmentDao->getById($reviewId);
 		$conference =& Request::getConference();
 

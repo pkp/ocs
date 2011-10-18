@@ -45,7 +45,7 @@
 		</a>
 		<br/>
 		Este <span xmlns:dc="http://purl.org/dc/elements/1.1/" href="http://purl.org/dc/dcmitype/Text" rel="dc:type">trabajo</span> se distribuye con la licencia <a rel="license" target="_new" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0  License</a>.]]></message>
-	
+
 	<!-- Review Forms -->
 	<message key="manager.reviewForms">Formularios Revisión</message>
 	<message key="manager.reviewForms.noneChosen">Ninguno / Revisión libre</message>
@@ -272,7 +272,7 @@
 	 * LOG - This section contains entries related to log entries.
 	 *
 	-->
-	
+
 	<message key="event.logType.paper">Tipo de Documento</message>
 	<message key="event.logType.author">Autor</message>
 	<message key="event.logType.director">Director</message>
@@ -281,16 +281,16 @@
 
 	<message key="event.eventLog">Log del evento</message>
 	<message key="event.logLevel">Nivel</message>
-	
+
 	<message key="event.logLevel.info">Información</message>
 	<message key="event.logLevel.notice">Noticia</message>
 	<message key="event.logLevel.warning">¡Atención!</message>
 	<message key="event.logLevel.error">Error</message>
 
 	<message key="event.general.defaultEvent">Envío de evento</message>
-	
+
 	<!-- Submission events -->
-	
+
 	<message key="submission.event.general.abstractSubmitted">Resumen enviado</message>
 	<message key="submission.event.general.presentationSubmitted">Presentación enviada</message>
 	<message key="submission.event.general.paperPublished">Articulo publicado</message>
@@ -418,7 +418,7 @@ Observe que si el administrador del sistema ya ha regisrado este sitio en el rec
 <br /><br />
 <a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">Pulse aquí</a> y entre <span class="highlight">{$siteUrl}</span> a la  <strong>URL</strong>, y <span class="highlight">{$oaiUrl}</span> a la  <strong>URL de Fichero OAI</strong>.]]></message>
 
-	<!-- 
+	<!--
 	     ***
 	     *** Scheduled Conference Setup
 	     ***
@@ -439,10 +439,10 @@ Nombre del sistema de clasificación]]></message>
 	<!-- Track Management -->
 	<!-- Timeline management -->
 
-	
 
 
-	
+
+
 
 	<!-- Import/Export -->
 
@@ -466,7 +466,7 @@ Opcionalmente usted puede proporcionar al usuario la razón para la inhabilitaci
 	<!-- Email Management -->
 
 	<!-- Registro Policy Management -->
-	
+
 	<!-- Registro Type Management -->
 
 	<!-- Registro Management -->
@@ -680,11 +680,11 @@ Para depositar un trabajo en esta conferencia, siga los siguientes pasos.
 	<message key="presentations.notPermitted">Usted todavía no tiene acceso a las presentaciones del evento.</message>
 	<message key="presentations.trackEmpty">No existen trabajos disponibles.</message>
 	<message key="presentations.schedConfEmpty">Las presentaciones de esta conferencia todavía no están disponibles o no se ajustan a las existentes.</message>
-	
+
 	<!-- Program page -->
 	<message key="schedConf.program.programFileInstructions">El programa de este evento se enuentra disponible a través del siguiente enlace.</message>
 	<message key="schedConf.program.viewProgramFile">Ver el programa</message>
-	
+
 	<!-- About The Conference -->
 	<message key="about.statistics">Estadísticas</message>
 	<message key="about.conferenceContact">Contacto</message>
@@ -824,7 +824,7 @@ Su servidor actualmente soporta mbstring: <strong>{$supportsMBString}</strong>]]
 	<message key="log.deadline.submissionDeadlinePassed">La fecha de envíos de trabajos ha expirado.</message>
 	<message key="log.deadline.presentationsReleasedToParticipants">Las presentaciones están disponibles para los participantes.</message>
 	<message key="log.deadline.presentationsReleasedToPublic">Las presentaciones se han abierto al público en general.</message>
-		
+
 	<message key="log.timeline.publicationStateChanged">El estado de la publicación ha pasado de {$oldPublicationState} a {$newPublicationState}.</message>
 	<message key="log.timeline.submissionStateChanged">El estado del envío ha pasado de {$oldSubmissionState} a {$newSubmissionState}.</message>
 	<message key="log.timeline.startDateChanged">La conferencia ha cambiado la fecha de inicio de {$oldStartDate} a {$newStartDate}.</message>
@@ -844,7 +844,7 @@ Su servidor actualmente soporta mbstring: <strong>{$supportsMBString}</strong>]]
 	<message key="log.timeline.delayOpenAccessChanged">El embargo de los trabajos hasta su acceso abierto ha cambiado de {$oldDelayOpenAccess} a {$newDelayOpenAccess}.</message>
 	<message key="log.timeline.closeCommentsDateChanged">La fecha de finalización de comentarios ha cambiado de {$oldCloseCommentsDate} a {$newCloseCommentsDate}.</message>
 	<message key="log.timeline.closeCommentsChanged">El cierre de comentarios ha cambiado de {$oldCloseComments} a {$newCloseComments}.</message>
-	
+
 	<!-- Reading Tools entries -->
 
 
@@ -960,19 +960,19 @@ La validacion de URLs  puede fallar si requieren el envío de datos.]]></message
 	<message key="log.director.unpublish">El trabajo fue movido nuevamente a la cola</message>
 	<message key="notification.mailListDescription">Ingrese su dirección de correo-e para recibir notificaciones inmediatas sobre contenido importante agregado a la conferencia</message>
 	<message key="notification.notificationsPublicDescription"><![CDATA[Esta página muestra importantes actualizaciones asociadas con esta conferencia como ser nuevos trabajos o anuncios. Usted puede suscribirse a estas notificaciones a través de RSS (haciendo clic en las imágenes a la derecha), o <a href="{$emailUrl}">por medio de correo-e.</a>]]></message>
-	<message key="notification.type.paperSubmitted">Un nuevo trabajo, "{$param}", ha sido enviado.</message>
+	<message key="$title">Un nuevo trabajo, "{$title}", ha sido enviado.</message>
 	<message key="notification.type.editing">Editar Eventos</message>
-	<message key="notification.type.directorDecisionComment">Un comentario ha sido ingresdo en la decisión del editor para "{$param}".</message>
-	<message key="notification.type.galleyModified">Una galerada ha sido modificada para "{$param}".</message>
-	<message key="notification.type.metadataModified">Metadatos de "{$param}" han sido modificados.</message>
+	<message key="notification.type.directorDecisionComment">Un comentario ha sido ingresdo en la decisión del editor para "{$title}".</message>
+	<message key="notification.type.galleyModified">Una galerada ha sido modificada para "{$title}".</message>
+	<message key="notification.type.metadataModified">Metadatos de "{$title}" han sido modificados.</message>
 	<message key="notification.type.newAnnouncement">Un nuevo anuncio ha sido creado.</message>
-	<message key="notification.type.reviewerComment">Un revisor ha realizado un comentario en "{$param}".</message>
+	<message key="notification.type.reviewerComment">Un revisor ha realizado un comentario en "{$title}".</message>
 	<message key="notification.type.reviewing">Eventos de Revisión</message>
 	<message key="notification.type.site">Eventos del Sitio</message>
-	<message key="notification.type.submissionComment">Un director ha realizado un comentario en "{$param}".</message>
+	<message key="notification.type.submissionComment">Un director ha realizado un comentario en "{$title}".</message>
 	<message key="notification.type.submissions">Eventos de Envio</message>
-	<message key="notification.type.suppFileModified">Ficheros suplementarios de "{$param}" han sido modificados.</message>
-	<message key="notification.type.userComment">Un lector ha realizado un comentario en "{$param}"</message>
+	<message key="notification.type.suppFileModified">Ficheros suplementarios de "{$title}" han sido modificados.</message>
+	<message key="notification.type.userComment">Un lector ha realizado un comentario en "{$title}"</message>
 	<message key="reviewer.paper.notifyEditorB">si estaría dispuesto a llevar a cabo la revisión.</message>
 	<message key="log.timeline.postScheduleDateChanged">La fecha de envío ha cambiado del  {$oldPostScheduleDate} al {$newPostScheduleDate}.</message>
 	<message key="log.timeline.postScheduleChanged">La configuración de "envío de agenda" ha cambiado de {$oldPostSchedule} a {$newPostSchedule}.</message>

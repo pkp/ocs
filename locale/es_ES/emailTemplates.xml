@@ -37,7 +37,7 @@ Su nueva contraseña: {$password}
 	<email_text key="USER_REGISTER">
 		<subject>Nuevo registro de usuario</subject>
 		<body>Gracias por registrarse como usuario en {$conferenceName}. Le rogamos que siga con su nombre de usuario y contraseña, dado que son necesarios para toda gestión de las conferencias
-						
+
 						Nombre de usuario: {$username}
 Contraseña: {$password}
 
@@ -63,7 +63,7 @@ Si tiene cualquier duda, por favor contáctenos. Gracias por considerar estas co
 		<subject>Agradecimiento de envío de original</subject>
 		<body>{$authorName}:
 
-Gracias por envíar su [presentación], "{$paperTitle}" en {$conferenceName}. 
+Gracias por envíar su [presentación], "{$paperTitle}" en {$conferenceName}.
 
 Mediante el sistema de gestión de conferencias con el que trabajamos, podrá seguir su progreso a través del proceso editorial validándose en la web de las conferencias.
 
@@ -95,7 +95,7 @@ Una revisión inicial de "{$paperTitle}" indica claramente que este no se ajusta
 	<email_text key="SUBMISSION_DECISION_REVIEWERS">
 		<subject>Resolución de "{$paperTitle}"</subject>
 		<body>En calidad de revisor de la propuesta, "{$paperTitle}," en {$conferenceName}, le envío las notas de revisión y la decisión editorial. Le agradecemos de nuevo su importante contribución al evento.
-			
+
 {$editorialContactSignature}
 
 {$comments}</body>
@@ -116,7 +116,7 @@ Si tiene cualquier pregunta o duda, por favor póngase en contacto con nosotros.
 		<subject>Asignada tarea de Director</subject>
 		<body>{$editorialContactName}:
 
-La propuesta, "{$paperTitle}," en {$conferenceName} se le ha asignado en calidad de "Director de Seguimiento" en el proceso editorial.  
+La propuesta, "{$paperTitle}," en {$conferenceName} se le ha asignado en calidad de "Director de Seguimiento" en el proceso editorial.
 
 URL del envío de la propuesta: {$submissionUrl}
 Nombre de usuario: {$directorUsername}
@@ -157,7 +157,7 @@ Abstract
 
 Consideramos que usted seria un/a revisor/a excelente del original recibido: "{$paperTitle}," que ha sido enviado a {$conferenceName}. La información útil del original recibido está adjuntada al presente e-mail, esperamos que considere positivamente encargarse de esta tarea tan importante para nosotros.
 
-Le rogamos que se valide en el sitio web antes de {$weekLaterDate} para indicar si podría asumir el encargo de revisar el original recibido o no, así como acceder a la mismo y aportar su notas de revisión y recomendaciones. 
+Le rogamos que se valide en el sitio web antes de {$weekLaterDate} para indicar si podría asumir el encargo de revisar el original recibido o no, así como acceder a la mismo y aportar su notas de revisión y recomendaciones.
 
 La revisión finaliza el  {$reviewDueDate}.
 
@@ -189,7 +189,7 @@ Si tiene usted alguna pregunta, no dude en contactarnos.
 		<subject>Confirmación de revisión</subject>
 		<body>{$editorialContactName}:
 
-Estoy encantado y dispuesto para hacer la revisión de el original, "{$paperTitle}," para {$conferenceName}. 
+Estoy encantado y dispuesto para hacer la revisión de el original, "{$paperTitle}," para {$conferenceName}.
 Gracias por pensar en mi persona, tendré completado el proceso de revisión para la fecha límite, {$reviewDueDate}, o incluso antes.
 
 {$reviewerName}</body>
@@ -209,7 +209,7 @@ Gracias por responder afirmativamente a la revisión del original "{$paperTitle}
 		<subject>Revisión de original rechazada</subject>
 		<body>{$editorialContactName}:
 
-Lamento comunicarle que en este momento no estoy en disposición de revisar el trabajo, "{$paperTitle}," for {$conferenceName}. 
+Lamento comunicarle que en este momento no estoy en disposición de revisar el trabajo, "{$paperTitle}," for {$conferenceName}.
 Gracias por considerarme la persona adecuada, cuenten conmigo para una próxima ocasión.
 
 {$reviewerName}</body>
@@ -402,11 +402,6 @@ Enlace: {$url}
 		<description></description>
 	</email_text>
 	<email_text key="NOTIFICATION_MAILLIST_WELCOME">
-		<subject></subject>
-		<body></body>
-		<description></description>
-	</email_text>
-	<email_text key="NOTIFICATION_MAILLIST_PASSWORD">
 		<subject></subject>
 		<body></body>
 		<description></description>

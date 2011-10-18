@@ -37,7 +37,7 @@ La sena nova contrasenya: {$password}
 	<email_text key="USER_REGISTER">
 		<subject>Nou registre d'usuari</subject>
 		<body>Gràcies per registrar-se com usuari a {$conferenceName}. Li preguem que segueixi amb el seu nom d'usuari i contrasenya, atès que són necessaris per a tota gestió de les conferències
-						
+
 						Nom d'usuari: {$username}
 Contrasenya: {$password}
 
@@ -63,7 +63,7 @@ Si té qualsevol dubte, per favor contacti'ns. Gràcies per considerar aquestes 
 		<subject>Agraïment de tramesa d'original</subject>
 		<body>{$authorName}:
 
-Gràcies per trametre la seva [presentació], "{$paperTitle}" a {$conferenceName}. 
+Gràcies per trametre la seva [presentació], "{$paperTitle}" a {$conferenceName}.
 
 Mitjançant el sistema de gestió de conferències amb el qual treballem, podrà seguir el seu progrés a través del procés editorial validant-se en la web de les conferències.
 
@@ -95,7 +95,7 @@ Una revisió inicial de "{$paperTitle}" indica clarament que aquest no s'ajusta 
 	<email_text key="SUBMISSION_DECISION_REVIEWERS">
 		<subject>Resolució de "{$paperTitle}"</subject>
 		<body>En qualitat de revisor de la proposta, "{$paperTitle}," a {$conferenceName}, li trameto les notes de revisió i la decisió editorial. Li agraïm altre cop la seva important contribució a l'esdeveniment.
-			
+
 {$editorialContactSignature}
 
 {$comments}</body>
@@ -116,7 +116,7 @@ Si té qualsevol pregunta o dubte, per favor posi's en contacte amb nosaltres.
 		<subject>Assignada tasca de Director</subject>
 		<body>{$editorialContactName}:
 
-La proposta, "{$paperTitle}," a {$conferenceName} se li ha assignat en qualitat de "director de seguiment" al procés editorial.  
+La proposta, "{$paperTitle}," a {$conferenceName} se li ha assignat en qualitat de "director de seguiment" al procés editorial.
 
 URL de la tramesa de la proposta: {$submissionUrl}
 Non d'usuari: {$directorUsername}
@@ -157,7 +157,7 @@ Abstract
 
 Considerem que vostè seria un/a revisor/a excel·lent de l'original rebut: "{$paperTitle}," que ha estat tramés a {$conferenceName}. La informació útil de l'original rebut està adjuntada al present missatge, esperem que consideri positivament encarregar-se d'aquesta tasca tan important per a nosaltres.
 
-Le preguem que es validi en el lloc web abans de {$weekLaterDate} per indicar si podria assumir l'encàrrec de revisar l'original rebut o no, així com accedir a la mateix i aportar la seva notes de revisió i recomanacions. 
+Le preguem que es validi en el lloc web abans de {$weekLaterDate} per indicar si podria assumir l'encàrrec de revisar l'original rebut o no, així com accedir a la mateix i aportar la seva notes de revisió i recomanacions.
 
 La revisió finalitza el  {$reviewDueDate}.
 
@@ -189,7 +189,7 @@ Si té alguna pregunta, no dubti a contactar-nos.
 		<subject>Confirmació de revisió</subject>
 		<body>{$editorialContactName}:
 
-Estic encantat i accepto fer la revisió de l'original, "{$paperTitle}," per a {$conferenceName}. 
+Estic encantat i accepto fer la revisió de l'original, "{$paperTitle}," per a {$conferenceName}.
 Gràcies per pensar en la meva persona, tindré completat el procés de revisió per a la data límit, {$reviewDueDate}, o fins i tot abans.
 
 {$reviewerName}</body>

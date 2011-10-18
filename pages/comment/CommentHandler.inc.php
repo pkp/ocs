@@ -81,19 +81,19 @@ class CommentHandler extends Handler {
 		$templateMgr->display('comment/comments.tpl');
 	}
 
-	function add($args) {
+	function add($args, $request) {
 		$paperId = isset($args[0]) ? (int) $args[0] : 0;
 		$galleyId = isset($args[1]) ? (int) $args[1] : 0;
 		$parentId = isset($args[2]) ? (int) $args[2] : 0;
 
-		$conference =& Request::getConference();
-		$schedConf =& Request::getSchedConf();
+		$conference =& $request->getConference();
+		$schedConf =& $request->getSchedConf();
 		$this->validate($paperId);
 		$paper =& $this->paper;
 		$commentDao =& DAORegistry::getDAO('CommentDAO');
 		$parent =& $commentDao->getById($parentId, $paperId);
 		if (isset($parent) && $parent->getSubmissionId() != $paperId) {
-			Request::redirect(null, null, null, 'view', array($paperId, $galleyId));
+			$request->redirect(null, null, null, 'view', array($paperId, $galleyId));
 		}
 
 		$this->setupTemplate($paper, $galleyId, $parent);
@@ -110,8 +110,8 @@ class CommentHandler extends Handler {
 
 		$enableComments = $enableComments && !$commentsClosed && $paper->getEnableComments();
 
-		if (!$enableComments) Request::redirect(null, null, 'index');
-		if ($commentsRequireRegistration && !Request::getUser()) Validation::redirectLogin();
+		if (!$enableComments) $request->redirect(null, null, 'index');
+		if ($commentsRequireRegistration && !$request->getUser()) Validation::redirectLogin();
 
 		import('classes.comment.form.CommentForm');
 		$commentForm = new CommentForm(null, $paperId, $galleyId, isset($parent)?$parentId:null);
@@ -123,20 +123,19 @@ class CommentHandler extends Handler {
 				$commentForm->execute();
 
 				// Send a notification to associated users
-				import('lib.pkp.classes.notification.NotificationManager');
+				import('classes.notification.NotificationManager');
 				$notificationManager = new NotificationManager();
 				$paperDao =& DAORegistry::getDAO('PaperDAO');
 				$paper =& $paperDao->getPaper($paperId);
 				$notificationUsers = $paper->getAssociatedUserIds();
 				foreach ($notificationUsers as $userRole) {
-					$url = Request::url(null, null, null, 'view', array($paperId, $galleyId, $parentId));
 					$notificationManager->createNotification(
-						$userRole['id'], 'notification.type.userComment',
-						$paper->getLocalizedTitle(), $url, 1, NOTIFICATION_TYPE_USER_COMMENT
+						$request, $userRole['id'], NOTIFICATION_TYPE_USER_COMMENT,
+						$conference->getId(), ASSOC_TYPE_PAPER, $paper->getId()
 					);
 				}
 
-				Request::redirect(null, null, null, 'view', array($paperId, $galleyId, $parentId), array('refresh' => 1));
+				$request->redirect(null, null, null, 'view', array($paperId, $galleyId, $parentId), array('refresh' => 1));
 			}
 		}
 

@@ -103,7 +103,7 @@ Galderaren bat baduzu, jar zaitez harremanetan nirekin, mesedez. Eskerrik asko z
 	<email_text key="SUBMISSION_DECISION_REVIEWERS">
 		<subject>"{$paperTitle}" lanari buruzko erabakia</subject>
 		<body>{$conferenceName} kongresuko "{$paperTitle}" lanaren ebaluatzaileetako bat zarenez, aurkezleari bidali diogun ebaluazioa eta erabakia bidaltzen dizkizut. Berriro ere eskerrak eman nahi dizkizugu prozesu honi egin diozun ekarpen garrantzitsuagatik.
- 
+
 {$editorialContactSignature}
 
 {$comments}</body>
@@ -113,7 +113,7 @@ Galderaren bat baduzu, jar zaitez harremanetan nirekin, mesedez. Eskerrik asko z
 		<subject>Zuzendari-izendapena</subject>
 		<body>{$editorialContactName}:
 
-{$conferenceName} kongresuko "{$paperTitle}" lana esleitu dizugu prozesu editorialean eraman dezazun, Ataleko zuzendari gisa.  
+{$conferenceName} kongresuko "{$paperTitle}" lana esleitu dizugu prozesu editorialean eraman dezazun, Ataleko zuzendari gisa.
 
 Lanaren URLa: {$submissionUrl}
 Erabiltzaile-izena: {$directorUsername}
@@ -288,7 +288,7 @@ Mesedez, berrets iezaguzu kongresuarentzat biziki garrantzitsua den lan hori bur
 		<subject>Laburpenari buruzko erabaki editoriala</subject>
 		<body>{$presenterName}:
 
-Zorionak, zuk bidalitako {$paperTitle} lana onartua izan da {$locationCity}(e)n {$conferenceDate} egunetan izango den {$conferenceTitle} kongresuan aurkezteko. 
+Zorionak, zuk bidalitako {$paperTitle} lana onartua izan da {$locationCity}(e)n {$conferenceDate} egunetan izango den {$conferenceTitle} kongresuan aurkezteko.
 
 Eskerrik asko, zure parte-hartzearen zain edukiko gaituzu, eta bitartean atseginez agurtzen zaitugu.
 {$editorialContactSignature}</body>
@@ -318,7 +318,7 @@ Eskerrik asko, zure parte-hartzearen zain edukiko gaituzu, eta bitartean atsegin
 		<subject>Lanari buruzko erabaki editoriala</subject>
 		<body>{$presenterName}:
 
-Zorionak, zuk bidalitako {$paperTitle} lana onartua izan da {$locationCity}(e)n {$conferenceDate} egunetan izango den {$conferenceTitle} kongresuan aurkezteko. 
+Zorionak, zuk bidalitako {$paperTitle} lana onartua izan da {$locationCity}(e)n {$conferenceDate} egunetan izango den {$conferenceTitle} kongresuan aurkezteko.
 
 Eskerrik asko, zure parte-hartzearen zain edukiko gaituzu, eta bitartean atseginez agurtzen zaitugu.
 {$editorialContactSignature}</body>
@@ -417,14 +417,6 @@ Egin klik esteka honetan zure eskaera baieztatzeko eta gehitu zure posta elektro
 Jakinarazpenak jasotzeari utzi nahi badiozu, joan {$unsubscribeLink} helbidera eta sartu zure posta elektronikoko helbidea eta pasahitza.
 
 Hau da jakinarazpenak desgaitzeko pasahitza: {$password}
-
-{$principalContactSignature}</body>
-	</email_text>
-	<email_text key="NOTIFICATION_MAILLIST_PASSWORD">
-		<subject>{$siteTitle} guneko jakinarazpenen posta-zerrendari buruzko informazioa</subject>
-		<body>Hau da jakinarazpenak desgaitzeko pasahitz berria: {$password}
-
-Jakinarazpenak jasotzeari utzi nahi badiozu, joan {$unsubscribeLink} helbidera eta sartu zure posta elektronikoko helbidea eta pasahitza.
 
 {$principalContactSignature}</body>
 	</email_text>

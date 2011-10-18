@@ -19,9 +19,10 @@ import('lib.pkp.classes.core.PKPApplication');
 
 define('PHP_REQUIRED_VERSION', '4.2.0');
 
-define('ASSOC_TYPE_CONFERENCE',	0x0000100);
-define('ASSOC_TYPE_SCHED_CONF',	0x0000101);
-define('ASSOC_TYPE_PAPER',	0x0000102);
+define('ASSOC_TYPE_CONFERENCE',		0x0000100);
+define('ASSOC_TYPE_SCHED_CONF',		0x0000101);
+define('ASSOC_TYPE_PAPER',			0x0000102);
+define('ASSOC_TYPE_ANNOUNCEMENT',	0x0000103);
 
 define('CONTEXT_CONFERENCE', 1);
 define('CONTEXT_SCHED_CONF', 2);

@@ -61,7 +61,7 @@ class SubmissionCommentsHandler extends ReviewerHandler {
 		$user =& $submissionReviewHandler->user;
 
 		$this->setupTemplate($request, true);
-		if (ReviewerAction::postPeerReviewComment($user, $submission, $reviewId, $emailComment)) {
+		if (ReviewerAction::postPeerReviewComment($request, $user, $submission, $reviewId, $emailComment)) {
 			ReviewerAction::viewPeerReviewComments($user, $submission, $reviewId);
 		}
 	}
@@ -114,7 +114,7 @@ class SubmissionCommentsHandler extends ReviewerHandler {
 
 		$this->setupTemplate($request, true);
 
-		ReviewerAction::saveComment($submission, $comment, $emailComment);
+		ReviewerAction::saveComment($request, $submission, $comment, $emailComment);
 
 		// Refresh the comment
 		$paperCommentDao =& DAORegistry::getDAO('PaperCommentDAO');

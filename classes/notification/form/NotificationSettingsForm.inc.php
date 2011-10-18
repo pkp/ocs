@@ -32,42 +32,83 @@ class NotificationSettingsForm extends PKPNotificationSettingsForm {
 	 * Assign form data to user-submitted data.
 	 */
 	function readInputData() {
-		$this->readUserVars(
-			array(
-				'notificationPaperSubmitted',
-				'notificationMetadataModified',
-				'notificationSuppFileModified',
-				'notificationGalleyModified',
-				'notificationSubmissionComment',
-				'notificationReviewerComment',
-				'notificationReviewerFormComment',
-				'notificationDirectorDecisionComment',
-				'notificationUserComment',
-				'notificationNewAnnouncement',
-				'emailNotificationPaperSubmitted',
-				'emailNotificationMetadataModified',
-				'emailNotificationSuppFileModified',
-				'emailNotificationGalleyModified',
-				'emailNotificationSubmissionComment',
-				'emailNotificationReviewerComment',
-				'emailNotificationReviewerFormComment',
-				'emailNotificationDirectorDecisionComment', 
-				'emailNotificationUserComment',
-				'emailNotificationNewAnnouncement'
-			)
+		$userVars = array();
+		foreach($this->_getNotificationSettingsMap() as $notificationSetting) {
+			$userVars[] = $notificationSetting['settingName'];
+			$userVars[] = $notificationSetting['emailSettingName'];
+		}
+
+		$this->readUserVars($userVars);
+	}
+
+	/**
+	 * Get all notification settings form names and their setting type values
+	 * @return array
+	 */
+	function _getNotificationSettingsMap() {
+		return array(
+			NOTIFICATION_TYPE_PAPER_SUBMITTED => array('settingName' => 'notificationPaperSubmitted',
+				'emailSettingName' => 'emailNotificationPaperSubmitted',
+				'settingKey' => 'notification.type.paperSubmitted'),
+			NOTIFICATION_TYPE_METADATA_MODIFIED => array('settingName' => 'notificationMetadataModified',
+				'emailSettingName' => 'emailNotificationMetadataModified',
+				'settingKey' => 'notification.type.metadataModified'),
+			NOTIFICATION_TYPE_SUPP_FILE_MODIFIED => array('settingName' => 'notificationSuppFileModified',
+				'emailSettingName' => 'emailNotificationSuppFileModified',
+				'settingKey' => 'notification.type.suppFileModified'),
+			NOTIFICATION_TYPE_GALLEY_MODIFIED => array('settingName' => 'notificationGalleyModified',
+				'emailSettingName' => 'emailNotificationGalleyModified',
+				'settingKey' => 'notification.type.galleyModified'),
+			NOTIFICATION_TYPE_SUBMISSION_COMMENT => array('settingName' => 'notificationSubmissionComment',
+				'emailSettingName' => 'emailNotificationSubmissionComment',
+				'settingKey' => 'notification.type.submissionComment'),
+			NOTIFICATION_TYPE_REVIEWER_COMMENT => array('settingName' => 'notificationReviewerComment',
+				'emailSettingName' => 'emailNotificationReviewerComment',
+				'settingKey' => 'notification.type.reviewerComment'),
+			NOTIFICATION_TYPE_REVIEWER_FORM_COMMENT => array('settingName' => 'notificationReviewerFormComment',
+				'emailSettingName' => 'emailNotificationReviewerFormComment',
+				'settingKey' => 'notification.type.reviewerFormComment'),
+			NOTIFICATION_TYPE_DIRECTOR_DECISION_COMMENT => array('settingName' => 'notificationDirectorDecisionComment',
+				'emailSettingName' => 'emailNotificationDirectorDecisionComment',
+				'settingKey' => 'notification.type.directorDecisionComment'),
+			NOTIFICATION_TYPE_USER_COMMENT => array('settingName' => 'notificationUserComment',
+				'emailSettingName' => 'emailNotificationUserComment',
+				'settingKey' => 'notification.type.userComment'),
+			NOTIFICATION_TYPE_NEW_ANNOUNCEMENT => array('settingName' => 'notificationNewAnnouncement',
+				'emailSettingName' => 'emailNotificationNewAnnouncement',
+				'settingKey' => 'notification.type.newAnnouncement')
 		);
 	}
-	
+
+	/**
+	 * Get a list of notification category names (to display as headers)
+	 *  and the notification types under each category
+	 * @return array
+	 */
+	function _getNotificationSettingCategories() {
+		return array(
+			'submissions' => array('categoryKey' => 'notification.type.submissions',
+				'settings' => array(NOTIFICATION_TYPE_PAPER_SUBMITTED, NOTIFICATION_TYPE_METADATA_MODIFIED, NOTIFICATION_TYPE_SUPP_FILE_MODIFIED)),
+			'reviewing' => array('categoryKey' => 'notification.type.reviewing',
+				'settings' => array(NOTIFICATION_TYPE_REVIEWER_COMMENT, NOTIFICATION_TYPE_REVIEWER_FORM_COMMENT, NOTIFICATION_TYPE_DIRECTOR_DECISION_COMMENT)),
+			'editing' => array('categoryKey' => 'notification.type.editing',
+				'settings' => array(NOTIFICATION_TYPE_GALLEY_MODIFIED, NOTIFICATION_TYPE_SUBMISSION_COMMENT)),
+			'site' => array('categoryKey' => 'notification.type.site',
+				'settings' => array(NOTIFICATION_TYPE_USER_COMMENT, NOTIFICATION_TYPE_NEW_ANNOUNCEMENT)),
+		);
+	}
+
 	/**
 	 * Display the form.
+	 * @param $request Request
 	 */
-	function display() {
+	function display($request) {
 		$conferenceDao =& DAORegistry::getDAO('ConferenceDAO');
 		$conferences =& $conferenceDao->getConferenceTitles();
-		
+
 		$canOnlyRead = true;
 		$canOnlyReview = false;
-		
+
 		if (Validation::isReviewer()) {
 			$canOnlyRead = false;
 			$canOnlyReview = true;
@@ -77,49 +118,48 @@ class NotificationSettingsForm extends PKPNotificationSettingsForm {
 			$canOnlyReview = false;
 		}
 
+		// Remove the notification setting categories that the user will not be receiving (to simplify the form)
+		$notificationSettingCategories = $this->_getNotificationSettingCategories();
+		if($canOnlyRead || $canOnlyReview) {
+			unset($notificationSettingCategories['submissions']);
+		}
+		if($canOnlyRead) {
+			unset($notificationSettingCategories['reviewing']);
+		}
+
+		$templateMgr =& TemplateManager::getManager();
+		$templateMgr->assign('notificationSettingCategories', $notificationSettingCategories);
+		$templateMgr->assign('notificationSettings',  $this->_getNotificationSettingsMap());
+
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('canOnlyRead', $canOnlyRead);
 		$templateMgr->assign('canOnlyReview', $canOnlyReview);
-		return parent::display();
+		return parent::display($request);
 	}
 
 	/**
 	 * Save site settings.
+	 * @param $request Request
 	 */
-	function execute() {		
-		$user = Request::getUser();
+	function execute($request) {
+		$user = $request->getUser();
 		$userId = $user->getId();
-		
-		// Notification settings
-		$settings = array();
-		if(!$this->getData('notificationPaperSubmitted')) $settings[] = NOTIFICATION_TYPE_PAPER_SUBMITTED;
-		if(!$this->getData('notificationMetadataModified')) $settings[] = NOTIFICATION_TYPE_METADATA_MODIFIED;
-		if(!$this->getData('notificationSuppFileModified')) $settings[] = NOTIFICATION_TYPE_SUPP_FILE_MODIFIED;
-		if(!$this->getData('notificationGalleyModified')) $settings[] = NOTIFICATION_TYPE_GALLEY_MODIFIED;
-		if(!$this->getData('notificationSubmissionComment')) $settings[] = NOTIFICATION_TYPE_SUBMISSION_COMMENT;
-		if(!$this->getData('notificationReviewerComment')) $settings[] = NOTIFICATION_TYPE_REVIEWER_COMMENT;
-		if(!$this->getData('notificationReviewerFormComment')) $settings[] = NOTIFICATION_TYPE_REVIEWER_FORM_COMMENT;
-		if(!$this->getData('notificationDirectorDecisionComment')) $settings[] = NOTIFICATION_TYPE_DIRECTOR_DECISION_COMMENT; 
-		if(!$this->getData('notificationUserComment')) $settings[] = NOTIFICATION_TYPE_USER_COMMENT;
-		if(!$this->getData('notificationNewAnnouncement')) $settings[] = NOTIFICATION_TYPE_NEW_ANNOUNCEMENT;
-		
-		// Email settings
+		$conference =& $request->getConference();
+
+		$blockedNotifications = array();
 		$emailSettings = array();
-		if($this->getData('emailNotificationPaperSubmitted')) $emailSettings[] = NOTIFICATION_TYPE_PAPER_SUBMITTED;
-		if($this->getData('emailNotificationMetadataModified')) $emailSettings[] = NOTIFICATION_TYPE_METADATA_MODIFIED;
-		if($this->getData('emailNotificationSuppFileModified')) $emailSettings[] = NOTIFICATION_TYPE_SUPP_FILE_MODIFIED;
-		if($this->getData('emailNotificationGalleyModified')) $emailSettings[] = NOTIFICATION_TYPE_GALLEY_MODIFIED;
-		if($this->getData('emailNotificationSubmissionComment')) $emailSettings[] = NOTIFICATION_TYPE_SUBMISSION_COMMENT;
-		if($this->getData('emailNotificationReviewerComment')) $emailSettings[] = NOTIFICATION_TYPE_REVIEWER_COMMENT;
-		if($this->getData('emailNotificationReviewerFormComment')) $emailSettings[] = NOTIFICATION_TYPE_REVIEWER_FORM_COMMENT;
-		if($this->getData('emailNotificationDirectorDecisionComment')) $emailSettings[] = NOTIFICATION_TYPE_DIRECTOR_DECISION_COMMENT;
-		if($this->getData('emailNotificationUserComment')) $emailSettings[] = NOTIFICATION_TYPE_USER_COMMENT;
-		if($this->getData('emailNotificationNewAnnouncement')) $emailSettings[] = NOTIFICATION_TYPE_NEW_ANNOUNCEMENT;
-		
-		$notificationSettingsDao =& DAORegistry::getDAO('NotificationSettingsDAO');
-		$notificationSettingsDao->updateNotificationSettings($settings, $userId);
-		$notificationSettingsDao->updateNotificationEmailSettings($emailSettings, $userId);
-		
+		foreach($this->_getNotificationSettingsMap() as $settingId => $notificationSetting) {
+			// Get notifications that the user wants blocked
+			if(!$this->getData($notificationSetting['settingName'])) $blockedNotifications[] = $settingId;
+			// Get notifications that the user wants to be notified of by email
+			if($this->getData($notificationSetting['emailSettingName'])) $emailSettings[] = $settingId;
+		}
+
+		$notificationSubscriptionSettingsDao =& DAORegistry::getDAO('NotificationSubscriptionSettingsDAO');
+		$notificationSubscriptionSettingsDao->updateNotificationSubscriptionSettings('blocked_notification', $blockedNotifications, $userId, $conference->getId());
+		$notificationSubscriptionSettingsDao->updateNotificationSubscriptionSettings('emailed_notification', $emailSettings, $userId, $conference->getId());
+
+
 		return true;
 	}
 

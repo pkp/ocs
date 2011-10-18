@@ -9,7 +9,7 @@
  * @class SubmissionCommentsHandler
  * @ingroup pages_author
  *
- * @brief Handle requests for submission comments. 
+ * @brief Handle requests for submission comments.
  */
 
 //$Id$
@@ -19,7 +19,7 @@ import('pages.author.TrackSubmissionHandler');
 class SubmissionCommentsHandler extends AuthorHandler {
 	/** comment associated with the request **/
 	var $comment;
-	
+
 	/**
 	 * Constructor
 	 **/
@@ -67,9 +67,9 @@ class SubmissionCommentsHandler extends AuthorHandler {
 		$this->addCheck(new HandlerValidatorSubmissionComment($this, $commentId));
 		$this->validate($request);
 		$comment =& $this->comment;
-		
+
 		$this->setupTemplate($request, true);
-		
+
 		$trackSubmissionHandler = new TrackSubmissionHandler();
 		$trackSubmissionHandler->validate($request, $paperId);
 		$authorSubmission =& $trackSubmissionHandler->submission;
@@ -96,9 +96,9 @@ class SubmissionCommentsHandler extends AuthorHandler {
 		$this->addCheck(new HandlerValidatorSubmissionComment($this, $commentId));
 		$this->validate($request);
 		$comment =& $this->comment;
-		
+
 		$this->setupTemplate($request, true);
-		
+
 		$trackSubmissionHandler = new TrackSubmissionHandler();
 		$trackSubmissionHandler->validate($request, $paperId);
 		$authorSubmission =& $trackSubmissionHandler->submission;
@@ -108,7 +108,7 @@ class SubmissionCommentsHandler extends AuthorHandler {
 			$request->redirect(null, null, $request->getRequestedPage());
 		}
 
-		AuthorAction::saveComment($authorSubmission, $comment, $emailComment);
+		AuthorAction::saveComment($request, $authorSubmission, $comment, $emailComment);
 
 		$paperCommentDao =& DAORegistry::getDAO('PaperCommentDAO');
 		$comment =& $paperCommentDao->getPaperCommentById($commentId);
@@ -129,9 +129,9 @@ class SubmissionCommentsHandler extends AuthorHandler {
 		$this->addCheck(new HandlerValidatorSubmissionComment($this, $commentId));
 		$this->validate($request);
 		$comment =& $this->comment;
-		
+
 		$this->setupTemplate($request, true);
-		
+
 		$trackSubmissionHandler = new TrackSubmissionHandler();
 		$trackSubmissionHandler->validate($request, $paperId);
 		$authorSubmission =& $trackSubmissionHandler->submission;

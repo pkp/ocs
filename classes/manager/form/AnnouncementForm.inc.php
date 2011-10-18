@@ -3,7 +3,7 @@
 /**
  * @defgroup manager_form
  */
- 
+
 /**
  * @file classes/manager/form/AnnouncementForm.inc.php
  *
@@ -30,7 +30,7 @@ class AnnouncementForm extends PKPAnnouncementForm {
 
 		$conference =& Request::getConference();
 
-		// If provided, announcement type is valid 
+		// If provided, announcement type is valid
 		$this->addCheck(new FormValidatorCustom($this, 'typeId', 'optional', 'manager.announcements.form.typeIdValid', create_function('$typeId, $conferenceId', '$announcementTypeDao =& DAORegistry::getDAO(\'AnnouncementTypeDAO\'); return $announcementTypeDao->announcementTypeExistsByTypeId($typeId, ASSOC_TYPE_CONFERENCE, $conferenceId);'), array($conference->getId())));
 
 		// If supplied, the scheduled conference exists and belongs to the conference
@@ -75,10 +75,10 @@ class AnnouncementForm extends PKPAnnouncementForm {
 		parent::readInputData();
 		$this->readUserVars(array('schedConfId'));
 	}
-	
+
 	function _getAnnouncementTypesAssocId() {
 		$conference =& Request::getConference();
-		return array(ASSOC_TYPE_CONFERENCE, $conference->getId()); 
+		return array(ASSOC_TYPE_CONFERENCE, $conference->getId());
 	}
 
 	/**
@@ -97,15 +97,16 @@ class AnnouncementForm extends PKPAnnouncementForm {
 	}
 
 	/**
-	 * Save announcement. 
+	 * Save announcement.
+	 * @param $request Request
 	 */
-	function execute() {
+	function execute(&$request) {
 		$announcement = parent::execute();
-		$conference =& Request::getConference();
+		$conference =& $request->getConference();
 		$conferenceId = $conference->getId();
-		
+
 		// Send a notification to associated users
-		import('lib.pkp.classes.notification.NotificationManager');
+		import('classes.notification.NotificationManager');
 		$notificationManager = new NotificationManager();
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
 		$notificationUsers = array();
@@ -129,14 +130,14 @@ class AnnouncementForm extends PKPAnnouncementForm {
 
 		foreach ($notificationUsers as $userRole) {
 			$notificationManager->createNotification(
-				$userRole['id'], 'notification.type.newAnnouncement',
-				null, $url, 1, NOTIFICATION_TYPE_NEW_ANNOUNCEMENT
+				$request, $userRole['id'], NOTIFICATION_TYPE_NEW_ANNOUNCEMENT,
+				$conferenceId, ASSOC_TYPE_ANNOUNCEMENT, $announcement->getId()
 			);
 		}
-		$notificationManager->sendToMailingList(
+		$notificationManager->sendToMailingList($request,
 			$notificationManager->createNotification(
-				0, 'notification.type.newAnnouncement',
-				null, $url, 1, NOTIFICATION_TYPE_NEW_ANNOUNCEMENT
+				$request, $userRole['id'], NOTIFICATION_TYPE_NEW_ANNOUNCEMENT,
+				$conferenceId, ASSOC_TYPE_ANNOUNCEMENT, $announcement->getId()
 			)
 		);
 	}

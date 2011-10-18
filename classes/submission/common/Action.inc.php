@@ -56,22 +56,23 @@ class Action extends PKPAction {
 	/**
 	 * Save metadata.
 	 * @param $paper object
+	 * @param $request Request
 	 */
-	function saveMetadata($paper) {
-		if (!HookRegistry::call('Action::saveMetadata', array(&$paper))) {
+	function saveMetadata(&$request, $paper) {
+		if (!HookRegistry::call('Action::saveMetadata', array(&$paper, &$request))) {
 			import('classes.submission.form.MetadataForm');
 			$metadataForm = new MetadataForm($paper);
 			$metadataForm->readInputData();
 
 			// Check for any special cases before trying to save
-			if (Request::getUserVar('addAuthor')) {
+			if ($request->getUserVar('addAuthor')) {
 				// Add an author
 				$editData = true;
 				$authors = $metadataForm->getData('authors');
 				array_push($authors, array());
 				$metadataForm->setData('authors', $authors);
 
-			} else if (($delAuthor = Request::getUserVar('delAuthor')) && count($delAuthor) == 1) {
+			} else if (($delAuthor = $request->getUserVar('delAuthor')) && count($delAuthor) == 1) {
 				// Delete an author
 				$editData = true;
 				list($delAuthor) = array_keys($delAuthor);
@@ -89,12 +90,12 @@ class Action extends PKPAction {
 					$metadataForm->setData('primaryContact', 0);
 				}
 
-			} else if (Request::getUserVar('moveAuthor')) {
+			} else if ($request->getUserVar('moveAuthor')) {
 				// Move an author up/down
 				$editData = true;
-				$moveAuthorDir = Request::getUserVar('moveAuthorDir');
+				$moveAuthorDir = $request->getUserVar('moveAuthorDir');
 				$moveAuthorDir = $moveAuthorDir == 'u' ? 'u' : 'd';
-				$moveAuthorIndex = (int) Request::getUserVar('moveAuthorIndex');
+				$moveAuthorIndex = (int) $request->getUserVar('moveAuthorIndex');
 				$authors = $metadataForm->getData('authors');
 
 				if (!(($moveAuthorDir == 'u' && $moveAuthorIndex <= 0) || ($moveAuthorDir == 'd' && $moveAuthorIndex >= count($authors) - 1))) {
@@ -132,20 +133,21 @@ class Action extends PKPAction {
 				$metadataForm->execute();
 
 				// Send a notification to associated users
-				import('lib.pkp.classes.notification.NotificationManager');
+				import('classes.notification.NotificationManager');
 				$notificationManager = new NotificationManager();
 				$notificationUsers = $paper->getAssociatedUserIds();
+				$conference = $request->getConference();
 				foreach ($notificationUsers as $userRole) {
-					$url = Request::url(null, null, $userRole['role'], 'submission', $paper->getId(), null, 'metadata');
+					$url = $request->url(null, null, $userRole['role'], 'submission', $paper->getId(), null, 'metadata');
 					$notificationManager->createNotification(
-						$userRole['id'], 'notification.type.metadataModified',
-						$paper->getLocalizedTitle(), $url, 1, NOTIFICATION_TYPE_METADATA_MODIFIED
+						$request, $userRole['id'], NOTIFICATION_TYPE_METADATA_MODIFIED,
+						$conference->getId(), ASSOC_TYPE_PAPER, $paper->getId()
 					);
 				}
 
 
 				// Add log entry
-				$user =& Request::getUser();
+				$user =& $request->getUser();
 				import('classes.paper.log.PaperLog');
 				import('classes.paper.log.PaperEventLogEntry');
 				PaperLog::logEvent($paper->getId(), PAPER_LOG_METADATA_UPDATE, LOG_TYPE_DEFAULT, 0, 'log.director.metadataModified', array('directorName' => $user->getFullName()));
@@ -195,10 +197,13 @@ class Action extends PKPAction {
 
 	/**
 	 * Save comment.
-	 * @param $commentId int
+	 * @param $request Request
+	 * @param $paper Paper
+	 * @param $comment Comment
+	 * @param $emailComment boolean
 	 */
-	function saveComment($paper, &$comment, $emailComment) {
-		if (!HookRegistry::call('Action::saveComment', array(&$paper, &$comment, &$emailComment))) {
+	function saveComment(&$request, $paper, &$comment, $emailComment) {
+		if (!HookRegistry::call('Action::saveComment', array(&$paper, &$comment, &$emailComment, &$request))) {
 			import('classes.submission.form.comment.EditCommentForm');
 
 			$commentForm = new EditCommentForm($paper, $comment);
@@ -208,17 +213,16 @@ class Action extends PKPAction {
 				$commentForm->execute();
 
 				// Send a notification to associated users
-				import('lib.pkp.classes.notification.NotificationManager');
+				import('classes.notification.NotificationManager');
 				$notificationManager = new NotificationManager();
 				$notificationUsers = $paper->getAssociatedUserIds(true, false);
+				$conference = $request->getConference();
 				foreach ($notificationUsers as $userRole) {
-					$url = Request::url(null, null, $userRole['role'], 'submissionReview', $paper->getId(), null, 'editorDecision');
 					$notificationManager->createNotification(
-						$userRole['id'], 'notification.type.submissionComment',
-						$paper->getLocalizedTitle(), $url, 1, NOTIFICATION_TYPE_SUBMISSION_COMMENT
+						$request, $userRole['id'], NOTIFICATION_TYPE_SUBMISSION_COMMENT,
+						$conference->getId(), ASSOC_TYPE_PAPER, $paper->getId()
 					);
 				}
-
 
 				if ($emailComment) {
 					$commentForm->email($commentForm->emailHelper());

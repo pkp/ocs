@@ -14,6 +14,7 @@
  * FIXME: (Re)move once OCS styles are consolidated with new styles and themes
  */
 @import url("../lib/pkp/styles/themes/default/pnotify.css");
+@import url("../lib/pkp/styles/themes/default/notificationIcons.css");
 
 .ui-pnotify-title {
 	font-size: 0.8em;
@@ -83,7 +84,7 @@ a:hover {
 
 #announcementsHome {
 	width: 100%;
-	margin: 2em 0 2em 0;	
+	margin: 2em 0 2em 0;
 }
 
 #announcementsHome h3 {
@@ -136,7 +137,7 @@ table.announcements td.intro {
 }
 
 table.announcements tr.title {
-	vertical-align: top; 
+	vertical-align: top;
 }
 
 table.announcements td.title {
@@ -427,9 +428,9 @@ ul.tagit input[type="text"] {
 }
 
 ul.tagit li:after, ul.tagit li div:after {
-	content:" "; 
+	content:" ";
 	display:block;
-	clear:none; 
+	clear:none;
 }
 
 #registrationWarning p {

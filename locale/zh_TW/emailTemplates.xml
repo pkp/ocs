@@ -107,7 +107,7 @@
 		<body>感謝您協助審查 {$conferenceName},  的稿件：{$paperTitle}。
 該稿件已經完成審查，並寄發給發表者有關論文的評論和編輯決定。再次感謝您在這整個過程所付出的重要貢獻。
 
- 
+
 {$editorialContactSignature}
 
 {$comments}</body>
@@ -305,7 +305,7 @@
 		<subject>關於編輯論文決定</subject>
 		<body>{$authorName}:
 
-恭喜您，您的稿件{$paperTitle}已被接受並會在{$conferenceTitle}發表，研討會將會在{$conferenceDate}地點{$locationCity}舉行。 
+恭喜您，您的稿件{$paperTitle}已被接受並會在{$conferenceTitle}發表，研討會將會在{$conferenceDate}地點{$locationCity}舉行。
 
 謝謝您和期盼您的參與。
 {$editorialContactSignature}</body>
@@ -367,7 +367,7 @@
 		<body>{$registrantName}:
 
 您已在我們的網上研討會管理系統{$conferenceName}內登記註冊，以下註冊為：
- 
+
 
 {$registrationType}
 

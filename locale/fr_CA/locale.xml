@@ -358,7 +358,7 @@
 À noter que si l'administrateur du site a déjà inscrit le site sur le moissonneur du PKP, votre conférence va automatiquement être indexée et vous n'avez pas besoin d'inscrire votre conférence.
 <br /><br />
 <a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">Cliquer ici</a> et entrer <span class="highlight">{$siteUrl}</span> sous <strong>l'URL du site</strong>, et <span class="highlight">{$oaiUrl}</span> sous <strong> l'URL de base pour les archives OAI</strong>.]]></message>
-  <!-- 
+  <!--
 	     ***
 	     *** Scheduled Conference Setup
 	     ***
@@ -812,20 +812,20 @@ La validation peut échouer dans le cas d'adresses URL dont les données de form
 	<message key="log.director.unpublish">La communication a été déplacée de nouveau dans la file d'attente.</message>
 	<message key="notification.mailListDescription">Saisir votre adresse de courriel pour recevoir immédiatement les avis relatifs à tout nouveau contenu important ajouté à la conférence.</message>
 	<message key="notification.notificationsPublicDescription"><![CDATA[Cette page affiche les mises à jour importantes associées à cette conférence telles que les nouvelles communications et les annonces. Vous pouvez vous abonner à ces avis par l'intermédiare des flux RSS (en cliquant sur les images à droite), ou <a href="{$emailUrl}">par courriel.</a>]]></message>
-	<message key="notification.type.paperSubmitted">Une nouvelle communiation, "{$param}", a été soumise.</message>
+	<message key="$title">Une nouvelle communiation, "{$title}", a été soumise.</message>
 	<message key="notification.type.editing">Événements de révision</message>
-	<message key="notification.type.directorDecisionComment">Un commentaire a été laissé concernant la décision du rédacteur pour "{$param}".</message>
-	<message key="notification.type.galleyModified">Une épreuve a été modifiée pour "{$param}".</message>
-	<message key="notification.type.metadataModified">Les métadonnées de "{$param}" ont été modifiées.</message>
+	<message key="notification.type.directorDecisionComment">Un commentaire a été laissé concernant la décision du rédacteur pour "{$title}".</message>
+	<message key="notification.type.galleyModified">Une épreuve a été modifiée pour "{$title}".</message>
+	<message key="notification.type.metadataModified">Les métadonnées de "{$title}" ont été modifiées.</message>
 	<message key="notification.type.newAnnouncement">Une nouvelle annonce a été créée.</message>
-	<message key="notification.type.reviewerComment">Un évaluateur a écrit un commentaire sur "{$param}".</message>
-	<message key="notification.type.reviewerFormComment">Une évaluation de formulaire d'évaluation a été soumise pour "{$param}".</message>
+	<message key="notification.type.reviewerComment">Un évaluateur a écrit un commentaire sur "{$title}".</message>
+	<message key="notification.type.reviewerFormComment">Une évaluation de formulaire d'évaluation a été soumise pour "{$title}".</message>
 	<message key="notification.type.reviewing">Événements d'évaluation</message>
 	<message key="notification.type.site">Événements du site</message>
-	<message key="notification.type.submissionComment">Une responsable a écrit un commentaire à propos de "{$param}".</message>
+	<message key="notification.type.submissionComment">Une responsable a écrit un commentaire à propos de "{$title}".</message>
 	<message key="notification.type.submissions">Événements de soumission</message>
-	<message key="notification.type.suppFileModified">Le (ou les) fichier(s) supplémentaire(s) de "{$param}" a (ont) été modifié(s).</message>
-	<message key="notification.type.userComment">Un lecteur a fait un commentaire sur "{$param}"</message>
+	<message key="notification.type.suppFileModified">Le (ou les) fichier(s) supplémentaire(s) de "{$title}" a (ont) été modifié(s).</message>
+	<message key="notification.type.userComment">Un lecteur a fait un commentaire sur "{$title}"</message>
 	<message key="manager.reviewFormElements.included">Inclus dans le message à l'auteur</message>
 	<message key="schedConf.registration.landingPaid">Merci de vous être inscrit! Vous serez contactez pour des informations supplémentaires concernant le paiement.</message>
 </locale>

@@ -54,9 +54,9 @@
 	<message key="common.pageHeader.altText">Imagen del Encabezado de Página</message>
 	<message key="common.homePageHeader.altText">Imagen del Encabezado de la Página Principal</message>
 	<message key="common.conferenceHomepageImage.altText">Imagen de la Página de Inicio del Congreso</message>
-	
+
 	<!-- Common Form Messages -->
-	
+
 
 	<!-- Common Email Messages -->
 
@@ -227,7 +227,7 @@
 	<message key="schedConf.program.title">Programa</message>
 	<message key="schedConf.accommodation.title">Acomodaciones</message>
 	<message key="schedConf.trackPolicies.title">Políticas</message>
-	
+
 	<message key="schedConf.scheduler.locations">Ubicaciones del Congreso</message>
 
 	<!-- User self-registration form -->
@@ -266,7 +266,7 @@
         <message key="user.noRoles.submitProposalSubmissionsClosed">Enviar una Propuesta: Envios estan cerrados en este momento.</message>
 	<message key="user.noRoles.regReviewer">Registrarse como un Revisor del Congreso.</message>
 	<message key="user.noRoles.register">Inscribirse para participar del congreso</message>
-		    	
+
 
 	<!-- Roles -->
 	<message key="user.role.manager">Gestor del evento</message>
@@ -284,7 +284,7 @@
 	 * LOG - This section contains entries related to log entries.
 	 *
 	-->
-	
+
 	<message key="event.logType.paper">Tipo de Documento</message>
 	<message key="event.logType.presenter">Autor</message>
 	<message key="event.logType.director">Director</message>
@@ -293,16 +293,16 @@
 
 	<message key="event.eventLog">Log del evento</message>
 	<message key="event.logLevel">Nivel</message>
-	
+
 	<message key="event.logLevel.info">Información</message>
 	<message key="event.logLevel.notice">Noticia</message>
 	<message key="event.logLevel.warning">¡Atención!</message>
 	<message key="event.logLevel.error">Error</message>
 
 	<message key="event.general.defaultEvent">Envío de evento</message>
-	
+
 	<!-- Submission events -->
-	
+
 	<message key="submission.event.general.abstractSubmitted">Resumen enviado</message>
 	<message key="submission.event.general.presentationSubmitted">Presentación enviada</message>
 	<message key="submission.event.general.paperPublished">Articulo publicado</message>
@@ -376,7 +376,7 @@ Tenga en cuenta que la interfaz OAI puede ser desactivada para este sitio al edi
 
 
 
-	
+
 	<!-- Payment Handling -->
 
 	<message key="payment.type.registration">Inscripción a la Conferencia/Congreso</message>
@@ -393,7 +393,7 @@ Tenga en cuenta que la interfaz OAI puede ser desactivada para este sitio al edi
 	<!-- Scheduled Conference Management -->
 
 	<!-- Program settings -->
-	
+
 	<!-- Accommodation settings -->
 
 	<!-- Conference Management -->
@@ -432,10 +432,10 @@ Tenga en cuenta que la interfaz OAI puede ser desactivada para este sitio al edi
 
 
 	<message key="plugins.categories.citationFormats.description">Los plugins de formatos de citas proveen a los usuarios con varios formatos en los cuales acceder a las citas de los trabajos.</message>
- 
- 
- 
-	
+
+
+
+
 
 	<!-- Files Browser -->
 
@@ -493,7 +493,7 @@ Observe que si el administrador del sistema ya ha regisrado este sitio en el rec
 <br /><br />
 <a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">Pulse aquí</a> y entre <span class="highlight">{$siteUrl}</span> a la  <strong>URL</strong>, y <span class="highlight">{$oaiUrl}</span> a la  <strong>URL de Archivo OAI</strong>.]]></message>
 
-	<!-- 
+	<!--
 	     ***
 	     *** Scheduled Conference Setup
 	     ***
@@ -505,12 +505,12 @@ Observe que si el administrador del sistema ya ha regisrado este sitio en el rec
 	<!-- Scheduled Conference Setup Paso 1 -->
 
 	<!-- Scheduled Conference Setup Paso 2 -->
-	
+
 	<message key="manager.schedConfSetup.submissions.subjectClassificationDescription"><![CDATA[[la Conferencia/Congreso utilizará un sistema de  clasificación de materias disponible en la web.<br />
 Nombre del sistema de clasificación]]></message>
 
 	<!-- Scheduled Conference Setup Paso 3 -->
-	
+
 	<!-- Languages -->
 	<message key="manager.languages.alternateLocale1">Interfaz #1</message>
 	<message key="manager.languages.alternateLocale2">Interfaz #2</message>
@@ -519,14 +519,14 @@ Nombre del sistema de clasificación]]></message>
 
 	<!-- Track Management -->
 	<message key="manager.tracks.form.abstractLimitRequired">Es obligatorio un limite para los abstract para esta sección</message>
-	<message key="manager.tracks.form.abstractLimitNumeric">El limite para los abstract para esta sección debe ser un valor numérico positivo</message>	
+	<message key="manager.tracks.form.abstractLimitNumeric">El limite para los abstract para esta sección debe ser un valor numérico positivo</message>
 	<message key="manager.tracks.submissionsToThisTrack">Los envíos hechos a esta sección</message>
 	<message key="manager.tracks.abstractLimit">Límite de los Abstract de la Sección</message>
 	<message key="manager.tracks.abstractsDisabled">No se requiere resumen para hacer el envío.</message>
 
 
 
-	
+
 
 
 
@@ -555,7 +555,7 @@ Opcionalmente usted puede proporcionar al usuario la razón para la inhabilitaci
 	<!-- Email Management -->
 
 	<!-- Registro Policy Management -->
-	
+
 	<message key="manager.registrationPolicies.registrationPoliciesSaved">La configuración de la política de inscripción, se ha actualizado.</message>
 	<message key="manager.registrationPolicies.enableRegistroExpiryReminderBeforeMonthsValid">Por favor, utilice la casilla de verificación prevista.</message>
 	<message key="manager.registrationPolicies.numMonthsBeforeRegistroExpiryReminderValid">Por favor, seleccione un valor válido para el número de meses antes de que caduque su registro.</message>
@@ -794,11 +794,11 @@ Para depositar un trabajo en esta conferencia, siga los siguientes pasos.
 	<message key="presentations.notPermitted">Usted todavía no tiene acceso a las presentaciones del evento.</message>
 	<message key="presentations.trackEmpty">No existen trabajos disponibles.</message>
 	<message key="presentations.schedConfEmpty">Las presentaciones de esta conferencia todavía no están disponibles o no se ajustan a las existentes.</message>
-	
+
 	<!-- Program page -->
 	<message key="schedConf.program.programFileInstructions">El programa de este evento se enuentra disponible a través del siguiente enlace.</message>
 	<message key="schedConf.program.viewProgramFile">Ver el programa</message>
-	
+
 	<!-- About The Conference -->
 	<message key="about.statistics">Estadísticas</message>
 	<message key="about.conferenceContact">Contacto</message>
@@ -941,7 +941,7 @@ Su servidor actualmente soporta mbstring: <strong>{$supportsMBString}</strong>]]
 	<message key="log.deadline.submissionDeadlinePassed">La fecha de envíos de trabajos ha expirado.</message>
 	<message key="log.deadline.presentationsReleasedToParticipants">Las presentaciones están disponibles para los participantes.</message>
 	<message key="log.deadline.presentationsReleasedToPublic">Las presentaciones se han abierto al público en general.</message>
-		
+
 	<message key="log.timeline.publicationStateChanged">El estado de la publicación ha pasado de {$oldPublicationState} a {$newPublicationState}.</message>
 	<message key="log.timeline.submissionStateChanged">El estado del envío ha pasado de {$oldSubmissionState} a {$newSubmissionState}.</message>
 	<message key="log.timeline.startDateChanged">La conferencia ha cambiado la fecha de inicio de {$oldStartDate} a {$newStartDate}.</message>
@@ -961,7 +961,7 @@ Su servidor actualmente soporta mbstring: <strong>{$supportsMBString}</strong>]]
 	<message key="log.timeline.delayOpenAccessChanged">El embargo de los trabajos hasta su acceso abierto ha cambiado de {$oldDelayOpenAccess} a {$newDelayOpenAccess}.</message>
 	<message key="log.timeline.closeCommentsDateChanged">La fecha de finalización de comentarios ha cambiado de {$oldCloseCommentsDate} a {$newCloseCommentsDate}.</message>
 	<message key="log.timeline.closeCommentsChanged">El cierre de comentarios ha cambiado de {$oldCloseComments} a {$newCloseComments}.</message>
-	
+
 	<!-- Reading Tools entries -->
 
 
@@ -1182,18 +1182,18 @@ La validacion de URLs  puede fallar si requieren el envío de datos.]]></message
 	<message key="rt.metadata.pkp.primaryAuthor">Nombre del autor, institución, país</message>
 	<message key="notification.mailListDescription">Ingrese su dirección de email para recibir notificaciones inmediatas acerca de nuevo contenido importante agregado a la conferencia</message>
 	<message key="notification.notificationsPublicDescription"><![CDATA[Esta página miestra actualizaciones importantes asociadas con esta conferencia, como ser nuevos papers o anuncios. Usted puede suscribirse a estas notificaciones a través de RSS (haciendo clic en la imagen a la derecha), <a href="{$emailUrl}">por email.</a>]]></message>
-	<message key="notification.type.paperSubmitted">Un nuevo paper, "{$param}", ha sido enviado.</message>
+	<message key="notification.type.paperSubmitted">Un nuevo paper, "{$title}", ha sido enviado.</message>
 	<message key="notification.type.editing">Editar eventos</message>
-	<message key="notification.type.directorDecisionComment">Un comentario ha sido ingresdo en la decisión del editor para "{$param}".</message>
-	<message key="notification.type.galleyModified">Una galerada ha sido modificada para "{$param}".</message>
-	<message key="notification.type.metadataModified">Metadatos de "{$param}" han sido modificados.</message>
+	<message key="notification.type.directorDecisionComment">Un comentario ha sido ingresdo en la decisión del editor para "{$title}".</message>
+	<message key="notification.type.galleyModified">Una galerada ha sido modificada para "{$title}".</message>
+	<message key="notification.type.metadataModified">Metadatos de "{$title}" han sido modificados.</message>
 	<message key="notification.type.newAnnouncement">Un nuevo anuncio ha sido creado.</message>
-	<message key="notification.type.reviewerComment">Un revisor ha realizado un comentario en "{$param}".</message>
-	<message key="notification.type.reviewerFormComment">Un formulario de revisión ha sido enviado para "{$param}".</message>
+	<message key="notification.type.reviewerComment">Un revisor ha realizado un comentario en "{$title}".</message>
+	<message key="notification.type.reviewerFormComment">Un formulario de revisión ha sido enviado para "{$title}".</message>
 	<message key="notification.type.reviewing">Eventos de Revisión</message>
 	<message key="notification.type.site">Eventos del Sitio</message>
-	<message key="notification.type.submissionComment">Un director ha realizado un comentario para "{$param}".</message>
+	<message key="notification.type.submissionComment">Un director ha realizado un comentario para "{$title}".</message>
 	<message key="notification.type.submissions">Eventos de Envio</message>
-	<message key="notification.type.suppFileModified">"{$param}" archivos suplementario(s) ha(n) sido modificado(s)</message>
-	<message key="notification.type.userComment">Un lector ha realizado un comentario en "{$param}"</message>
+	<message key="notification.type.suppFileModified">"{$title}" archivos suplementario(s) ha(n) sido modificado(s)</message>
+	<message key="notification.type.userComment">Un lector ha realizado un comentario en "{$title}"</message>
 </locale>

@@ -24,14 +24,14 @@ import('pages.trackDirector.TrackDirectorHandler');
 class SubmissionEditHandler extends TrackDirectorHandler {
 	/** submission associated with the request **/
 	var $submission;
-	
+
 	/**
 	 * Constructor
 	 **/
 	function SubmissionEditHandler() {
 		parent::TrackDirectorHandler();
 	}
-	
+
 	function submission($args, $request) {
 		$paperId = (int) array_shift($args);
 		$this->validate($request, $paperId);
@@ -141,7 +141,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		$conference =& $request->getConference();
 		$schedConf =& $request->getSchedConf();
 		$submission =& $this->submission;
-		
+
 		$round = (int) array_shift($args);
 		$reviewMode = $submission->getReviewMode();
 		switch ($reviewMode) {
@@ -841,7 +841,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		$this->validate($request);
 		$this->setupTemplate($request, true);
 
-		// For manager.people at top of user profile		
+		// For manager.people at top of user profile
 		Locale::requireComponents(array(LOCALE_COMPONENT_PKP_MANAGER));
 
 
@@ -893,7 +893,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		$submission =& $this->submission;
 		$this->setupTemplate($request, true, $paperId, 'summary');
 
-		if (TrackDirectorAction::saveMetadata($submission)) {
+		if (TrackDirectorAction::saveMetadata($request, $submission)) {
 			$request->redirect(null, null, null, 'submission', $paperId);
 		}
 	}
@@ -941,7 +941,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 
 		$this->validate($request, $paperId, TRACK_DIRECTOR_ACCESS_REVIEW);
 		$submission =& $this->submission;
-		
+
 		TrackDirectorAction::clearReviewForm($submission, $reviewId);
 
 		$request->redirect(null, null, null, 'submissionReview', $paperId);
@@ -1126,16 +1126,16 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 			$submitForm->execute();
 
 			// Send a notification to associated users
-			import('lib.pkp.classes.notification.NotificationManager');
+			import('classes.notification.NotificationManager');
 			$notificationManager = new NotificationManager();
 			$paperDao =& DAORegistry::getDAO('PaperDAO');
 			$paper =& $paperDao->getPaper($paperId);
+			$conference =& $request->getConference();
 			$notificationUsers = $paper->getAssociatedUserIds(true, false);
 			foreach ($notificationUsers as $userRole) {
-				$url = $request->url(null, null, $userRole['role'], 'submissionReview', $paper->getId(), null, 'layout');
 				$notificationManager->createNotification(
-					$userRole['id'], 'notification.type.suppFileModified',
-					$paper->getLocalizedTitle(), $url, 1, NOTIFICATION_TYPE_SUPP_FILE_MODIFIED
+					$request, $userRole['id'], NOTIFICATION_TYPE_SUPP_FILE_MODIFIED,
+					$conference->getId(), ASSOC_TYPE_PAPER, $paper->getId()
 				);
 			}
 
@@ -1190,7 +1190,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		$paperId = (int) array_shift($args);
 		$this->validate($request, $paperId);
 		$submission =& $this->submission;
-		
+
 		TrackDirectorAction::restoreToQueue($submission);
 
 		$request->redirect(null, null, null, 'submission', $paperId);
@@ -1200,7 +1200,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		$paperId = (int) $request->getUserVar('paperId');
 		$this->validate($request, $paperId);
 		$submission =& $this->submission;
-		
+
 		$send = $request->getUserVar('send')?true:false;
 		$this->setupTemplate($request, true, $paperId, 'summary');
 
@@ -1244,7 +1244,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 			$templateMgr->assign('backLinkLabel', 'submission.review');
 			return $templateMgr->display('common/message.tpl');
 		}
-		
+
 		if ($layoutFileType == 'galley') {
 			$this->_uploadGalley($request, 'layoutFile', $round);
 
@@ -1339,16 +1339,16 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 			$submitForm->execute();
 
 			// Send a notification to associated users
-			import('lib.pkp.classes.notification.NotificationManager');
+			import('classes.notification.NotificationManager');
 			$notificationManager = new NotificationManager();
 			$paperDao =& DAORegistry::getDAO('PaperDAO');
 			$paper =& $paperDao->getPaper($paperId);
+			$conference =& $request->getConference();
 			$notificationUsers = $paper->getAssociatedUserIds(true, false);
 			foreach ($notificationUsers as $userRole) {
-				$url = $request->url(null, null, $userRole['role'], 'submissionReview', $paper->getId(), null, 'layout');
 				$notificationManager->createNotification(
-					$userRole['id'], 'notification.type.galleyModified',
-					$paper->getLocalizedTitle(), $url, 1, NOTIFICATION_TYPE_GALLEY_MODIFIED
+					$request, $userRole['id'], NOTIFICATION_TYPE_GALLEY_MODIFIED,
+					$conference->getId(), ASSOC_TYPE_PAPER, $paper->getId()
 				);
 			}
 
@@ -1566,7 +1566,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		$logId = (int) array_shift($args);
 		$this->validate($request, $paperId);
 		$submission =& $this->submission;
-		
+
 		$this->setupTemplate($request, true, $paperId, 'history');
 
 		$templateMgr =& TemplateManager::getManager();

@@ -9,7 +9,7 @@
  * @class AdminLanguagesHandler
  * @ingroup pages_admin
  *
- * @brief Handle requests for changing site language settings. 
+ * @brief Handle requests for changing site language settings.
  */
 
 // $Id$
@@ -85,9 +85,10 @@ class AdminLanguagesHandler extends AdminHandler {
 
 		$this->_removeLocalesFromConferences($request);
 
-		import('lib.pkp.classes.notification.NotificationManager');
+		import('classes.notification.NotificationManager');
 		$notificationManager = new NotificationManager();
-		$notificationManager->createTrivialNotification('notification.notification', 'common.changesSaved');
+		$user =& $request->getUser();
+		$notificationManager->createTrivialNotification($user->getId());
 
 		$request->redirect(null, null, null, 'index');
 	}

@@ -52,7 +52,7 @@ Obrigado por sua submissão, "{$paperTitle}" ao evento: {$conferenceName}. Com o
 URL da submissão: {$submissionUrl}
 Login: {$authorUsername}
 
-Quaisquer dúvidas, por favor entre em contato. 
+Quaisquer dúvidas, por favor entre em contato.
 Obrigado por considerar esta conferência um local para publicar seu trabalho.
 
 {$editorialContactSignature}</body>
@@ -67,7 +67,7 @@ Obrigado por enviar sua apresentação, "{$paperTitle}" ao evento: {$conferenceN
 URL da submissão: {$submissionUrl}
 Login: {$authorUsername}
 
-Quaisquer dúvidas, por favor entre em contato. 
+Quaisquer dúvidas, por favor entre em contato.
 Obrigado por considerar esta conferência um local para o seu trabalho.
 
 {$editorialContactSignature}</body>
@@ -96,7 +96,7 @@ Uma revisão inicial de "{$paperTitle}" determinou que a submissão não se enqu
 		<body>Como um dos revisores da submissão "{$paperTitle}," encaminhada ao evento {$conferenceName}, estou enviando as avaliações e decisões editoriais enviadas ao autor, após a conclusão do processo de avaliação.
 
 Obrigado novamente por sua importante participação neste processo.
- 
+
 {$editorialContactSignature}
 
 {$comments}</body>
@@ -123,12 +123,12 @@ Atenciosamente,
 
 Acreditamos que seria um excelente avaliador para a submissão "{$paperTitle}," submetida para a conferência {$conferenceName}. O extrato da submissão está inserido abaixo, e esperamos que considere aceitar o convite para assumir essa importante tarefa.
 
-Por favor, entre no site da conferência até {$weekLaterDate} para aceitar ou não o convite de avaliação. Use o mesmo site para acessar a submissão, registrar sua avaliação e recomendações. 
+Por favor, entre no site da conferência até {$weekLaterDate} para aceitar ou não o convite de avaliação. Use o mesmo site para acessar a submissão, registrar sua avaliação e recomendações.
 O endereço do site é: {$conferenceUrl}
 
 O prazo para concluir a avaliação e até {$reviewDueDate}.
 
-Caso não possua seu login e senha de acesso ao site da conferência, faça uso deste link para trocar a senha (que será enviada para o seu email) : {$passwordResetUrl} 
+Caso não possua seu login e senha de acesso ao site da conferência, faça uso deste link para trocar a senha (que será enviada para o seu email) : {$passwordResetUrl}
 
 URL da submissão {$submissionReviewUrl}
 
@@ -150,7 +150,7 @@ Resumo
 
 Acreditamos que seria um excelente avaliador para a proposta "{$paperTitle}", submetida para a conferência {$conferenceName}. O extrato da submissão está inserido abaixo, e esperamos que considere aceitar o convite para assumir essa importante tarefa.
 
-Por favor, entre no site da conferência até {$weekLaterDate} para aceitar ou não o convite de avaliação. Use o mesmo site para acessar a submissão, registrar sua avaliação e recomendações. 
+Por favor, entre no site da conferência até {$weekLaterDate} para aceitar ou não o convite de avaliação. Use o mesmo site para acessar a submissão, registrar sua avaliação e recomendações.
 O endereço do site é: {$conferenceUrl}
 
 O prazo para concluir a avaliação é até {$reviewDueDate}.
@@ -173,9 +173,9 @@ Resumo
 		<subject>Solicitação de avaliação cancelada</subject>
 		<body>{$reviewerName},
 
-Infelizmente decidimos cancelar nossa solicitação de avaliação para a submissão "{$paperTitle}," enviada à conferência {$conferenceName}. Pedimos sinceras desculpas pelo inconveniente que o cancelamento possa causar. 
+Infelizmente decidimos cancelar nossa solicitação de avaliação para a submissão "{$paperTitle}," enviada à conferência {$conferenceName}. Pedimos sinceras desculpas pelo inconveniente que o cancelamento possa causar.
 
-Esperamos poder contar com sua ajuda nessa ou em outra conferência. 
+Esperamos poder contar com sua ajuda nessa ou em outra conferência.
 
 ?Em caso de dúvidas, entre em contato.
 
@@ -295,7 +295,7 @@ Não hesite em entrar em contato, em caso de dúvidas ou problemas.
 		<subject>Decisão editorial</subject>
 		<body>{$authorName},
 
-Parabéns, o resumo de seu documento {$paperTitle} foi aceito para ser apresentado na conferência {$conferenceTitle} que acontecerá no dia {$conferenceDate}, em {$locationCity}. 
+Parabéns, o resumo de seu documento {$paperTitle} foi aceito para ser apresentado na conferência {$conferenceTitle} que acontecerá no dia {$conferenceDate}, em {$locationCity}.
 
 Agradecemos considerar esta conferência para publicar seus trabalhos e aguardamos sua presença no evento.
 
@@ -306,7 +306,7 @@ Agradecemos considerar esta conferência para publicar seus trabalhos e aguardam
 		<subject>Decisão editorial</subject>
 		<body>{$authorName},
 
-Concluímos a avaliação do resumo da submissão"{$paperTitle}." 
+Concluímos a avaliação do resumo da submissão"{$paperTitle}."
 
 O resultado é ...
 
@@ -328,7 +328,7 @@ Agradecemos a atenção dispensada e aguardamos sua participação no evento.
 		<subject>Decisão Editorial</subject>
 		<body>{$authorName},
 
-Parabéns, o seu documento {$paperTitle} foi aceito para ser apresentado na conferência {$conferenceTitle} que acontecerá no dia {$conferenceDate}, em {$locationCity}. 
+Parabéns, o seu documento {$paperTitle} foi aceito para ser apresentado na conferência {$conferenceTitle} que acontecerá no dia {$conferenceDate}, em {$locationCity}.
 
 Obrigado e aguardamos sua participação no evento.
 {$editorialContactSignature}</body>
@@ -338,7 +338,7 @@ Obrigado e aguardamos sua participação no evento.
 		<subject>Decisão Editorial</subject>
 		<body>{$authorName},
 
-Concluímos a avaliação do documento "{$paperTitle}." 
+Concluímos a avaliação do documento "{$paperTitle}."
 
 O resultado foi ...
 
@@ -360,7 +360,7 @@ Agradecemos a atenção dispensada e aguardamos sua participação no evento.
 		<subject>Notificação de inscrição</subject>
 		<body>{$registrantName},
 
-Você se inscreveu em nosso sistema para o evento {$conferenceName}, com os seguintes dados: 
+Você se inscreveu em nosso sistema para o evento {$conferenceName}, com os seguintes dados:
 
 {$registrationType}
 
@@ -437,14 +437,6 @@ Sua senha para desabilitar as notificações é: {$password}
 {$principalContactSignature}</body>
 		<description></description>
 	</email_text>
-	<email_text key="NOTIFICATION_MAILLIST_PASSWORD">
-		<subject>Informações de cadastro na lista de mensagens de {$siteTitle}</subject>
-		<body>Sua nova senha para desabilitar o serviço é: {$password}
-
-Caso não deseje mais receber as notificações, acesse {$unsubscribeLink} e informe seu e-mail e senha para cancelar a assinatura.
-
-{$principalContactSignature}</body>
-	</email_text>
 	<email_text key="MANUAL_PAYMENT_RECEIVED">
 		<subject>Pagaemento recebido para a conferência {$conferenceName}</subject>
 		<body>{$registrantName},
@@ -460,7 +452,7 @@ Em caso de dúvidas, entre em contato através deste e-mail.
 		<subject>Decisão editorial</subject>
 		<body>{$authorName},
 
-Informamos que o resumo do documento {$paperTitle} foi aceito para ser apresentado na conferência {$conferenceTitle}, que ocorrerá no dia {$conferenceDate}, em {$locationCity}. 
+Informamos que o resumo do documento {$paperTitle} foi aceito para ser apresentado na conferência {$conferenceTitle}, que ocorrerá no dia {$conferenceDate}, em {$locationCity}.
 
 Envie agora o texto completo para avaliação.
 

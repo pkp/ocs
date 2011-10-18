@@ -274,7 +274,7 @@
 	 * LOG - This section contains entries related to log entries.
 	 *
 	-->
-	
+
 	<message key="event.logType.paper">Documento</message>
 	<message key="event.logType.author">Autor</message>
 	<message key="event.logType.director">Diretor</message>
@@ -283,16 +283,16 @@
 
 	<message key="event.eventLog">Log de eventos</message>
 	<message key="event.logLevel">Nível</message>
-	
+
 	<message key="event.logLevel.info">Informações</message>
 	<message key="event.logLevel.notice">Nota</message>
 	<message key="event.logLevel.warning">Aviso</message>
 	<message key="event.logLevel.error">Erro</message>
 
 	<message key="event.general.defaultEvent">Evento da submissão</message>
-	
+
 	<!-- Submission events -->
-	
+
 	<message key="submission.event.general.abstractSubmitted">Resumo enviado</message>
 	<message key="submission.event.general.presentationSubmitted">Apresentação enviada</message>
 	<message key="submission.event.general.paperPublished">Documento publicado</message>
@@ -334,7 +334,7 @@
 
 	<!-- Site Administration -->
 
-	<message key="admin.settings.oaiRegistrationDescription"><![CDATA[Para indexar todo o conteúdo das conferências hospedadas neste portal em um sistema global de bases de dados de pesquisa integradas,  <a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">cadastre</a> a URL do portal no <a href="http://pkp.sfu.ca/harvester/" target="_blank">coletador de metadados</a>do Public Knowledge Project. Esta ferramenta coleta os metadados de cada item indexado na revista, permitindo pesquisa coletiva e precisa dentro dos portais que adotam o <a href="http://www.openarchives.org/OAI/openarchivesprotocol.htm#Introduction" target="_blank">Protocolo de Arquivos Abertos para Coleta de Metadados - OAI PMH</a>. 
+	<message key="admin.settings.oaiRegistrationDescription"><![CDATA[Para indexar todo o conteúdo das conferências hospedadas neste portal em um sistema global de bases de dados de pesquisa integradas,  <a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">cadastre</a> a URL do portal no <a href="http://pkp.sfu.ca/harvester/" target="_blank">coletador de metadados</a>do Public Knowledge Project. Esta ferramenta coleta os metadados de cada item indexado na revista, permitindo pesquisa coletiva e precisa dentro dos portais que adotam o <a href="http://www.openarchives.org/OAI/openarchivesprotocol.htm#Introduction" target="_blank">Protocolo de Arquivos Abertos para Coleta de Metadados - OAI PMH</a>.
 <br /><br />
 <a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">Clique aqui</a> e insira <span class="highlight">{$siteUrl}</span> no campo <strong>URL do Portal</strong>, e <span class="highlight">{$oaiUrl}</span> no campo <strong>URL Base para o Arquivo OAI</strong>.
 <br /><br />
@@ -427,7 +427,7 @@ Caso o administrador do portal já tenha cadastrado o portal do Coletador do PKP
 <br /><br />
 <a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">Clique aqui</a> e digite <span class="highlight">{$siteUrl}</span> no campo <strong>Site URL</strong>, e <span class="highlight">{$oaiUrl}</span> no campo <strong>Base URL for OAI Archive</strong>.]]></message>
 
-	<!-- 
+	<!--
 	     ***
 	     *** Scheduled Conference Setup
 	     ***
@@ -450,10 +450,10 @@ Título do sistema de classificação]]></message>
 	<!-- Track Management -->
 	<!-- Timeline management -->
 
-	
 
 
-	
+
+
 
 	<!-- Import/Export -->
 
@@ -687,11 +687,11 @@ Ativo indica quantas avaliações estão em consideração ou em andamento.]]></
 	<message key="presentations.notPermitted">Acesso às apresentações está indisponível no momento.</message>
 	<message key="presentations.trackEmpty">Nenhum documento disponível nesta modalidade.</message>
 	<message key="presentations.schedConfEmpty">Não há apresentações disponíveis ou nenhum documento encontrado com os termos escolhidos.</message>
-	
+
 	<!-- Program page -->
 	<message key="schedConf.program.programFileInstructions">Clique no link a seguir para visualizar o programa da conferência.</message>
 	<message key="schedConf.program.viewProgramFile">Visualizar o programa</message>
-	
+
 	<!-- About The Conference -->
 	<message key="about.statistics">Estatísticas</message>
 	<message key="about.conferenceContact">Contato da Conferência</message>
@@ -734,7 +734,7 @@ Ativo indica quantas avaliações estão em consideração ou em andamento.]]></
 	<message key="installer.ocsInstallation">Instalação do Sistema</message>
 	<message key="installer.ocsUpgrade">Atualização do Sistema</message>
 	<message key="installer.installationInstructions"><![CDATA[<h4>Versão {$version}</h4>
-	
+
 	<p>Agradecemos seu interesse em utilizar o <strong>Sistema Online de Administração de Conferências</strong>, desenvolvido pelo Public Knowledge Project. Antes de continuar, leia o documento <a href="{$baseUrl}/docs/README_pt">README_pt</a> incluído com o pacote. Para maiores informações sobre o Public Knowledge Project e outros sistemas desenvolvidos, acesse o <a href="http://pkp.sfu.ca/" target="_blank">portal do PKP</a>. Para reportar erros, sugestões ou dúvidas sobre o Sistema Online de Administração de Conferências/Open Conference Systems visite <a href="pkp.sfu.ca/support/forum">PKP Support Forum</a>, ou <a href="http://pkp.sfu.ca/bugzilla/" target="_blank">Sistema de Controle de erros Bugzilla</a> do PKP. Embora os fóruns sejam a forma preferêncial de contato, também pode-se enviar e-mail para a <a href="mailto:pkp.contact@gmail.com">Equipe do PKP (pkp.contact@gmail.com)</a>.</p>
 
 <h4>Atualização</h4>
@@ -835,7 +835,7 @@ O servidor atualmente tem suporte a mbstring: <strong>{$supportsMBString}</stron
 	<message key="log.deadline.submissionDeadlinePassed">Prazo para submissões expirado.</message>
 	<message key="log.deadline.presentationsReleasedToParticipants">Apresentações liberadas aos participantes.</message>
 	<message key="log.deadline.presentationsReleasedToPublic">Apresentações liberadas ao público.</message>
-		
+
 	<message key="log.timeline.publicationStateChanged">O status da publicação {$oldPublicationState} foi alterada para {$newPublicationState}.</message>
 	<message key="log.timeline.submissionStateChanged">O status da submissão {$oldSubmissionState} foi alterado para {$newSubmissionState}.</message>
 	<message key="log.timeline.startDateChanged">Data de abertura da Conferência {$oldStartDate} alterada para {$newStartDate}.</message>
@@ -855,7 +855,7 @@ O servidor atualmente tem suporte a mbstring: <strong>{$supportsMBString}</stron
 	<message key="log.timeline.delayOpenAccessChanged">Configuração de acesso livre adiado {$oldDelayOpenAccess} alterado para {$newDelayOpenAccess}.</message>
 	<message key="log.timeline.closeCommentsDateChanged">A data de encerramento de comentários {$oldCloseCommentsDate} alterada para {$newCloseCommentsDate}.</message>
 	<message key="log.timeline.closeCommentsChanged">Configuração de encerramento de comentários {$oldCloseComments} alterado para {$newCloseComments}.</message>
-	
+
 	<!-- Reading Tools entries -->
 
 
@@ -975,20 +975,20 @@ A validação pode falhar em URLs para pesquisa que requeiram dados via o métod
 	<message key="log.director.unpublish">O documento foi devolvido à fila.</message>
 	<message key="notification.mailListDescription">Informe seu endereço de e-mail para receber notificações instantâneas de conteúdo importante recentemente incluído na conferência.</message>
 	<message key="notification.notificationsPublicDescription"><![CDATA[Esta página apresenta atualizações importantes associadas a esta conferência, como avisos, noticias ou novas submissões. Pode-se assinar estas notificações via Canais RSS (clicando nas imagens à direita), ou <a href="{$emailUrl}">via e-mail.</a>]]></message>
-	<message key="notification.type.paperSubmitted">Um novo documento, "{$param}", foi enviado.</message>
+	<message key="$title">Um novo documento, "{$title}", foi enviado.</message>
 	<message key="notification.type.editing">Eventos da Edição</message>
-	<message key="notification.type.directorDecisionComment">Um comentário foi feito na decisão editorial por "{$param}".</message>
-	<message key="notification.type.galleyModified">Uma composição foi alterada por "{$param}".</message>
-	<message key="notification.type.metadataModified">Os metadados de "{$param}" foram alterados.</message>
+	<message key="notification.type.directorDecisionComment">Um comentário foi feito na decisão editorial por "{$title}".</message>
+	<message key="notification.type.galleyModified">Uma composição foi alterada por "{$title}".</message>
+	<message key="notification.type.metadataModified">Os metadados de "{$title}" foram alterados.</message>
 	<message key="notification.type.newAnnouncement">Um novo aviso foi criado.</message>
-	<message key="notification.type.reviewerComment">Um avaliador comentou sobre "{$param}".</message>
-	<message key="notification.type.reviewerFormComment">Um formulário de avaliação sobre "{$param}" foi enviado.</message>
+	<message key="notification.type.reviewerComment">Um avaliador comentou sobre "{$title}".</message>
+	<message key="notification.type.reviewerFormComment">Um formulário de avaliação sobre "{$title}" foi enviado.</message>
 	<message key="notification.type.reviewing">Eventos da Avaliação</message>
 	<message key="notification.type.site">Eventos do Site</message>
-	<message key="notification.type.submissionComment">Um diretor comentou sobre "{$param}".</message>
+	<message key="notification.type.submissionComment">Um diretor comentou sobre "{$title}".</message>
 	<message key="notification.type.submissions">Eventos da Submissão</message>
-	<message key="notification.type.suppFileModified">O(s) arquivo(s) suplementares de "{$param}" foram alterados</message>
-	<message key="notification.type.userComment">Um leitor fez um comentário sobre "{$param}".</message>
+	<message key="notification.type.suppFileModified">O(s) arquivo(s) suplementares de "{$title}" foram alterados</message>
+	<message key="notification.type.userComment">Um leitor fez um comentário sobre "{$title}".</message>
 	<message key="manager.reviewFormElements.included">Incluído na mensagem ao autor</message>
 	<message key="schedConf.registration.landingPaid">Agradecemos pela sua inscrição! Maiores informações sobre pagamentos serão encaminhadas posteriormente.</message>
 </locale>

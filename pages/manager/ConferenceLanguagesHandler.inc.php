@@ -9,7 +9,7 @@
  * @class ConferenceLanguagesHandler
  * @ingroup pages_manager
  *
- * @brief Handle requests for changing conference language settings. 
+ * @brief Handle requests for changing conference language settings.
  */
 
 //$Id$
@@ -54,9 +54,10 @@ class ConferenceLanguagesHandler extends ManagerHandler {
 
 		if ($settingsForm->validate()) {
 			$settingsForm->execute();
-			import('lib.pkp.classes.notification.NotificationManager');
+			import('classes.notification.NotificationManager');
 			$notificationManager = new NotificationManager();
-			$notificationManager->createTrivialNotification('notification.notification', 'common.changesSaved');
+			$user =& $request->getUser();
+			$notificationManager->createTrivialNotification($user->getId());
 			$request->redirect(null, null, null, 'index');
 		} else {
 			$settingsForm->display();
@@ -77,7 +78,7 @@ class ConferenceLanguagesHandler extends ManagerHandler {
 
 		$this->validate();
 		$this->setupTemplate(true);
-					
+
 		$conference =& $request->getConference();
 		$conferenceSettingsDao =& DAORegistry::getDAO('ConferenceSettingsDAO');
 		$conferenceSettingsDao->reloadLocalizedDefaultSettings(
@@ -92,9 +93,10 @@ class ConferenceLanguagesHandler extends ManagerHandler {
 		);
 
 		// Display a notification
-		import('lib.pkp.classes.notification.NotificationManager');
+		import('classes.notification.NotificationManager');
 		$notificationManager = new NotificationManager();
-		$notificationManager->createTrivialNotification('notification.notification', 'common.changesSaved');
+		$user =& $request->getUser();
+		$notificationManager->createTrivialNotification($user->getId());
 		$request->redirect(null, null, null, 'languages');
 	}
 }

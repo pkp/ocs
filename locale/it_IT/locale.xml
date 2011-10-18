@@ -273,7 +273,7 @@
 	 * LOG - This section contains entries related to log entries.
 	 *
 	-->
-	
+
 	<message key="event.logType.paper">Intervento</message>
 	<message key="event.logType.author">Autore</message>
 	<message key="event.logType.director">Direttore</message>
@@ -282,16 +282,16 @@
 
 	<message key="event.eventLog">Registro delle operazioni</message>
 	<message key="event.logLevel">Livello</message>
-	
+
 	<message key="event.logLevel.info">Info</message>
 	<message key="event.logLevel.notice">Attenzione</message>
 	<message key="event.logLevel.warning">Avviso</message>
 	<message key="event.logLevel.error">Errore</message>
 
 	<message key="event.general.defaultEvent">Evento della submission</message>
-	
+
 	<!-- Submission events -->
-	
+
 	<message key="submission.event.general.abstractSubmitted">Abstract inviato</message>
 	<message key="submission.event.general.presentationSubmitted">Presentazione inviata</message>
         <message key="submission.event.general.paperPublished">Articolo pubblicato</message>
@@ -430,7 +430,7 @@ Da notare che se il tuo amministratore del sito ha gi&#x00E0; registrato questo 
 <br /><br />
 <a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">Clicca qui</a> e inserisci <span class="highlight">{$siteUrl}</span> sotto <strong>l'URL del sito</strong>, e <span class="highlight">{$oaiUrl}</span> sotto <strong>Base URL per OAI Archive</strong>.]]></message>
 
-	<!-- 
+	<!--
 	     ***
 	     *** Scheduled Conference Setup
 	     ***
@@ -453,10 +453,10 @@ Titolo del sistema di classificazione]]></message>
 	<!-- Track Management -->
 	<!-- Timeline management -->
 
-	
 
 
-	
+
+
 
 	<!-- Import/Export -->
 
@@ -696,11 +696,11 @@ Attivo &#x00E8; il numero di quante revisioni si stanno considerando o stanno an
 	<message key="presentations.notPermitted">Non hai ancora accesso alle presentazioni di questo convegno.</message>
 	<message key="presentations.trackEmpty">Nessuna relazione disponibile in questa sessione.</message>
 	<message key="presentations.schedConfEmpty">Le presentazioni di questo convegno non sono ancora disponibili oppure non sono state trovate presentazioni corrispondenti.</message>
-	
+
 	<!-- Program page -->
 	<message key="schedConf.program.programFileInstructions">Il programma di questo convegno &#x00E8; disponibile attraverso il seguente link.</message>
 	<message key="schedConf.program.viewProgramFile">Visualizza il programma</message>
-	
+
 	<!-- About The Conference -->
 	<message key="about.statistics">Statistiche</message>
 	<message key="about.conferenceContact">Contatto del convegno</message>
@@ -842,7 +842,7 @@ Il vostro server supporta mbstring: <strong>{$supportsMBString}</strong>]]></mes
 	<message key="log.deadline.submissionDeadlinePassed">Il termine della submission &#x00E8; scaduto.</message>
 	<message key="log.deadline.presentationsReleasedToParticipants">Le presentazioni sono state rilasciate ai partecipanti.</message>
 	<message key="log.deadline.presentationsReleasedToPublic">Le presentazioni sono state rilasciate al pubblico.</message>
-		
+
 	<message key="log.timeline.publicationStateChanged">Lo stato di pubblicazione &#x00E8; stato cambiato da {$oldPublicationState} a {$newPublicationState}.</message>
 	<message key="log.timeline.submissionStateChanged">Lo stato della submission &#x00E8; stato cambiato da {$oldSubmissionState} a {$newSubmissionState}.</message>
 	<message key="log.timeline.startDateChanged">La data d'inizio del convegno &#x00E8; cambiata da {$oldStartDate} a {$newStartDate}.</message>
@@ -862,7 +862,7 @@ Il vostro server supporta mbstring: <strong>{$supportsMBString}</strong>]]></mes
 	<message key="log.timeline.delayOpenAccessChanged">La sistemazione dell'accesso aperto ritardato &#x00E8; stata cambiata da {$oldDelayOpenAccess} a {$newDelayOpenAccess}.</message>
 	<message key="log.timeline.closeCommentsDateChanged">La data di chiusura dei commenti &#x00E8; cambiata da {$oldCloseCommentsDate} a {$newCloseCommentsDate}.</message>
 	<message key="log.timeline.closeCommentsChanged">La sistemazione dei commenti chiusi &#x00E8; stata cambiata da {$oldCloseComments} a {$newCloseComments}.</message>
-	
+
 	<!-- Reading Tools entries -->
 
 
@@ -980,19 +980,19 @@ Il processo di validazione pu&#x00F2; non funzionare sulle URL di ricerca che ri
 	<message key="about.aboutThisPublishingSystem.altText">OCS Submission, Review, and Publishing Process</message>
 	<message key="log.director.unpublish">Il paper è stato riportato nella coda.</message>
 	<message key="notification.mailListDescription">Inserisci il tuo indirizzo di posta per essere informato su aggiornamenti importanti di questo convegno.</message>
-	<message key="notification.type.paperSubmitted">E' stato sottomesso un nuovo paper, "{$param}"</message>
+	<message key="$title">E' stato sottomesso un nuovo paper, "{$title}"</message>
 	<message key="notification.type.editing">Modifiche agli event.</message>
-	<message key="notification.type.directorDecisionComment">La decisione dell'editor su {$param}" ha ricevuto un commento.</message>
-	<message key="notification.type.galleyModified">E' stato modificato un file per {$param}"</message>
-	<message key="notification.type.metadataModified">I metadati di {$param}" sono stati modificati</message>
+	<message key="notification.type.directorDecisionComment">La decisione dell'editor su {$title}" ha ricevuto un commento.</message>
+	<message key="notification.type.galleyModified">E' stato modificato un file per {$title}"</message>
+	<message key="notification.type.metadataModified">I metadati di {$title}" sono stati modificati</message>
 	<message key="notification.type.newAnnouncement">E' stato aggiunto un nuovo avviso</message>
-	<message key="notification.type.reviewerComment">Un revisore ha lasciato un commento su {$param}"</message>
-	<message key="notification.type.reviewerFormComment">E' stato completato un modulo di revisione per {$param}".</message>
+	<message key="notification.type.reviewerComment">Un revisore ha lasciato un commento su {$title}"</message>
+	<message key="notification.type.reviewerFormComment">E' stato completato un modulo di revisione per {$title}".</message>
 	<message key="notification.type.reviewing">Eventi di revisione</message>
 	<message key="notification.type.site">Eventi del sito</message>
-	<message key="notification.type.submissionComment">Un direttore ha commentato {$param}".</message>
+	<message key="notification.type.submissionComment">Un direttore ha commentato {$title}".</message>
 	<message key="notification.type.submissions">Eventi di submission</message>
-	<message key="notification.type.suppFileModified">I file supplementari di {$param}" sono stati modificati.</message>
-	<message key="notification.type.userComment">Un lettore ha commentato {$param}".</message>
+	<message key="notification.type.suppFileModified">I file supplementari di {$title}" sono stati modificati.</message>
+	<message key="notification.type.userComment">Un lettore ha commentato {$title}".</message>
 	<message key="notification.notificationsPublicDescription"><![CDATA[Questa pagina mostra aggiornamenti importanti del convegno, come nuovi paper o avvisi. E' possibile ricevere queste notifiche tramite RSS (cliccando sull'immagine a destra) o <a href="{$emailUrl}">per email.</a>]]></message>
 </locale>

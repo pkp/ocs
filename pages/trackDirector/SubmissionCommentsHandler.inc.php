@@ -9,7 +9,7 @@
  * @class SubmissionCommentsHandler
  * @ingroup pages_trackDirector
  *
- * @brief Handle requests for submission comments. 
+ * @brief Handle requests for submission comments.
  */
 
 //$Id$
@@ -19,7 +19,7 @@ import('pages.trackDirector.SubmissionEditHandler');
 class SubmissionCommentsHandler extends TrackDirectorHandler {
 	/** comment associated with the request **/
 	var $comment;
-	
+
 	/**
 	 * Constructor
 	 **/
@@ -41,7 +41,7 @@ class SubmissionCommentsHandler extends TrackDirectorHandler {
 		$submissionEditHandler->validate($request, $paperId);
 		$paperDao =& DAORegistry::getDAO('PaperDAO');
 		$submission =& $paperDao->getPaper($paperId);
-		
+
 		TrackDirectorAction::viewPeerReviewComments($submission, $reviewId);
 	}
 
@@ -63,7 +63,7 @@ class SubmissionCommentsHandler extends TrackDirectorHandler {
 		$paperDao =& DAORegistry::getDAO('PaperDAO');
 		$submission =& $paperDao->getPaper($paperId);
 
-		if (TrackDirectorAction::postPeerReviewComment($submission, $reviewId, $emailComment)) {
+		if (TrackDirectorAction::postPeerReviewComment($request, $submission, $reviewId, $emailComment)) {
 			TrackDirectorAction::viewPeerReviewComments($submission, $reviewId);
 		}
 	}
@@ -81,7 +81,7 @@ class SubmissionCommentsHandler extends TrackDirectorHandler {
 		$submissionEditHandler->validate($request, $paperId);
 		$paperDao =& DAORegistry::getDAO('PaperDAO');
 		$submission =& $paperDao->getPaper($paperId);
-		
+
 		TrackDirectorAction::viewDirectorDecisionComments($submission);
 	}
 
@@ -101,8 +101,8 @@ class SubmissionCommentsHandler extends TrackDirectorHandler {
 		$submissionEditHandler->validate($request, $paperId);
 		$paperDao =& DAORegistry::getDAO('PaperDAO');
 		$submission =& $paperDao->getPaper($paperId);
-		
-		if (TrackDirectorAction::postDirectorDecisionComment($submission, $emailComment)) {
+
+		if (TrackDirectorAction::postDirectorDecisionComment($request, $submission, $emailComment)) {
 			TrackDirectorAction::viewDirectorDecisionComments($submission);
 		}
 	}
@@ -161,7 +161,7 @@ class SubmissionCommentsHandler extends TrackDirectorHandler {
 		$this->addCheck(new HandlerValidatorSubmissionComment($this, $commentId));
 		$this->validate($request);
 		$comment =& $this->comment;
-		
+
 		$this->setupTemplate($request, true);
 
 		if ($comment->getCommentType() == COMMENT_TYPE_DIRECTOR_DECISION) {
@@ -187,19 +187,19 @@ class SubmissionCommentsHandler extends TrackDirectorHandler {
 		$comment =& $this->comment;
 
 		$this->setupTemplate($request, true);
-		
+
 		$submissionEditHandler = new SubmissionEditHandler();
 		$submissionEditHandler->validate($request, $paperId);
 		$paperDao =& DAORegistry::getDAO('PaperDAO');
 		$submission =& $paperDao->getPaper($paperId);
-		
+
 		if ($comment->getCommentType() == COMMENT_TYPE_DIRECTOR_DECISION) {
 			// Cannot edit a director decision comment.
 			$request->redirect(null, null, $request->getRequestedPage());
 		}
 
 		// Save the comment.
-		TrackDirectorAction::saveComment($submission, $comment, $emailComment);
+		TrackDirectorAction::saveComment($request, $submission, $comment, $emailComment);
 
 		// refresh the comment
 		$paperCommentDao =& DAORegistry::getDAO('PaperCommentDAO');
@@ -219,7 +219,7 @@ class SubmissionCommentsHandler extends TrackDirectorHandler {
 	function deleteComment($args, $request) {
 		$paperId = (int) array_shift($args);
 		$commentId = (int) array_shift($args);
-		
+
 		$this->addCheck(new HandlerValidatorSubmissionComment($this, $commentId));
 		$this->validate($request);
 		$comment =& $this->comment;
@@ -228,7 +228,7 @@ class SubmissionCommentsHandler extends TrackDirectorHandler {
 		$submissionEditHandler->validate($request, $paperId);
 		$paperDao =& DAORegistry::getDAO('PaperDAO');
 		$submission =& $paperDao->getPaper($paperId);
-		
+
 		TrackDirectorAction::deleteComment($commentId);
 
 		// Redirect back to initial comments page

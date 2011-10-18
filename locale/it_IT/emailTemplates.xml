@@ -91,7 +91,7 @@ Una prima revisione di "{$paperTitle}" ha reso evidente che questa submission no
 	<email_text key="SUBMISSION_DECISION_REVIEWERS">
 		<subject>Decisione su "{$paperTitle}"</subject>
 		<body>come uno dei revisori per la submission, "{$paperTitle}," a {$conferenceName}, ti sto mandando le revisioni e la decisione editoriale inviate al relatore di questo pezzo. Grazie ancora per il tuo importante contributo a questo processo.
- 
+
 {$editorialContactSignature}
 
 {$comments}</body>
@@ -101,7 +101,7 @@ Una prima revisione di "{$paperTitle}" ha reso evidente che questa submission no
 		<subject>Incarico dell'organizzatore</subject>
 		<body>{$editorialContactName}:
 
-La submission, "{$paperTitle}," a {$conferenceName} ti è stata assegnata per seguirla durante il processo editoriale nel tuo ruolo di organizzatore di sessione.  
+La submission, "{$paperTitle}," a {$conferenceName} ti è stata assegnata per seguirla durante il processo editoriale nel tuo ruolo di organizzatore di sessione.
 
 Submission URL: {$submissionUrl}
 Username: {$directorUsername}
@@ -142,7 +142,7 @@ Abstract
 
 Spero che vorrai contribuire come eccellente revisore della submission, "{$paperTitle}," che è stata inviata a {$conferenceName}.  L'abstract della submission è inserito in basso, e spero che considererai di impegnarti per noi in questo importante compito.
 
-Per favore registrati al sito web del convegno al {$weekLaterDate} per indicare se ti impegnerai nella revisione o meno, ma anche per accedere alla submission e registrare la revisione e le raccomandazioni. 
+Per favore registrati al sito web del convegno al {$weekLaterDate} per indicare se ti impegnerai nella revisione o meno, ma anche per accedere alla submission e registrare la revisione e le raccomandazioni.
 
 La revisione è scaduta {$reviewDueDate}.
 
@@ -276,7 +276,7 @@ Per favore conferma la tua disponibilità a completare questo contributo vitale 
 		<subject>Decisione editoriale sulla relazione</subject>
 		<body>{$authorName}:
 
-Congratulazioni, la tua submission {$paperTitle} è stata accettata per la presentazione alla {$conferenceTitle} che si terrà il {$conferenceDate} a {$locationCity}. 
+Congratulazioni, la tua submission {$paperTitle} è stata accettata per la presentazione alla {$conferenceTitle} che si terrà il {$conferenceDate} a {$locationCity}.
 
 Ti ringraziamo e rimaniamo in attesa della tua partecipazione a quest'evento.
 {$editorialContactSignature}</body>
@@ -306,7 +306,7 @@ Ti ringraziamo e rimaniamo in attesa della tua partecipazione a quest'evento.
 		<subject>Decisione editoriale sulla relazione</subject>
 		<body>{$authorName}:
 
-Congratulazioni, la tua submission {$paperTitle}è stata accettata per la presentazione alla {$conferenceTitle} che si terrà il {$conferenceDate} a {$locationCity}. 
+Congratulazioni, la tua submission {$paperTitle}è stata accettata per la presentazione alla {$conferenceTitle} che si terrà il {$conferenceDate} a {$locationCity}.
 
 Ti ringraziamo e rimaniamo in attesa della tua partecipazione a quest'evento.
 {$editorialContactSignature}</body>
@@ -399,7 +399,7 @@ Se non vuoi più ricevere email di notifica, vai a {$unsubscribeLink} e inserisc
 	<email_text key="NOTIFICATION_MAILLIST_WELCOME">
 		<subject>Benvenuto nella mailing list di {$siteTitle}!</subject>
 		<body>Hai chiesto di ricevere notifiche da {$siteTitle}.
-			
+
 Clicca sul link sottostante per confermare la richiesta: {$confirmLink}
 
 Se non vuoi più ricevere aggiornamenti vai a {$unsubscribeLink} e inserisci il tuo indirizzo email e la password.
@@ -408,14 +408,6 @@ La password per disabilitare le notifiche è: {$password}
 
 {$principalContactSignature}</body>
 		<description>Questo messaggio è diretto agli utenti non registrati che hanno scelto di ricevere aggiornamenti attraverso la mailing list</description>
-	</email_text>
-	<email_text key="NOTIFICATION_MAILLIST_PASSWORD">
-		<subject>Informazioni sulla mailing list di  {$siteTitle}</subject>
-		<body>Se non vuoi più ricevere aggiornamenti vai a {$unsubscribeLink} e inserisci il tuo indirizzo email e la password.
-
-La password per disabilitare le notifiche è: {$password}
-
-{$principalContactSignature}</body>
 	</email_text>
 	<email_text key="MANUAL_PAYMENT_RECEIVED">
 		<subject>Ricevuta di pagamento per {$conferenceName}</subject>

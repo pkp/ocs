@@ -109,10 +109,11 @@ class CustomLocalePlugin extends GenericPlugin {
  	 * @param $verb string
  	 * @param $args array
 	 * @param $message string Location for the plugin to put a result msg
+	 * @param $messageParams array Parameters for the message key
  	 * @return boolean
  	 */
-	function manage($verb, $args, &$message) {
-		if (!parent::manage($verb, $args, $message)) return false;
+	function manage($verb, $args, &$message, &$messageParams) {
+		if (!parent::manage($verb, $args, $message, $messageParams)) return false;
 
 		$this->import('CustomLocaleHandler');
 		$customLocaleHandler = new CustomLocaleHandler();

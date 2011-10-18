@@ -66,7 +66,7 @@ class NotificationBlockPlugin extends BlockPlugin {
 		if ($user && $conference) {
 			$userId = $user->getId();
 			$notificationDao =& DAORegistry::getDAO('NotificationDAO');
-			$templateMgr->assign('unreadNotifications',  $notificationDao->getUnreadNotificationCount($userId));
+			$templateMgr->assign('unreadNotifications',  $notificationDao->getNotificationCount(false, $userId, $conference->getId()));
 		}
 
 		return parent::getContents($templateMgr);

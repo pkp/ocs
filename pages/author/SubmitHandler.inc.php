@@ -181,28 +181,24 @@ class SubmitHandler extends AuthorHandler {
 			// For the "abstract only" or sequential review models, nothing else needs
 			// to be collected beyond page 2.
 			$reviewMode = $paper?$paper->getReviewMode():$schedConf->getSetting('reviewMode');
-			if (($step == 3 && $reviewMode == REVIEW_MODE_BOTH_SEQUENTIAL && !$schedConf->getSetting('acceptSupplementaryReviewMaterials')) || 
+			if (($step == 3 && $reviewMode == REVIEW_MODE_BOTH_SEQUENTIAL && !$schedConf->getSetting('acceptSupplementaryReviewMaterials')) ||
 					($step == 3 && $reviewMode == REVIEW_MODE_ABSTRACTS_ALONE && !$schedConf->getSetting('acceptSupplementaryReviewMaterials')) ||
 					($step == 5 )) {
 
 				// Send a notification to associated users
-				import('lib.pkp.classes.notification.NotificationManager');
+				import('classes.notification.NotificationManager');
 				$notificationManager = new NotificationManager();
 				$roleDao =& DAORegistry::getDAO('RoleDAO');
-				$notificationUsers = array();
-				$conferenceManagers = $roleDao->getUsersByRoleId(ROLE_ID_CONFERENCE_MANAGER, $conference->getId());
-				$allUsers = $conferenceManagers->toArray();
 				$directors = $roleDao->getUsersByRoleId(ROLE_ID_DIRECTOR, $conference->getId(), $schedConf->getId());
-				array_merge($allUsers, $directors->toArray());
-				foreach ($allUsers as $user) {
+				$notificationUsers = array();
+				foreach ($directors->toArray() as $user) {
 					$notificationUsers[] = array('id' => $user->getId());
 				}
 
 				foreach ($notificationUsers as $userRole) {
-					$url = $request->url(null, null, 'director', 'submission', $paperId);
 					$notificationManager->createNotification(
-						$userRole['id'], 'notification.type.paperSubmitted',
-						$paper->getLocalizedTitle(), $url, 1, NOTIFICATION_TYPE_PAPER_SUBMITTED
+						$request, $userRole['id'], NOTIFICATION_TYPE_PAPER_SUBMITTED,
+						$conference->getId(), ASSOC_TYPE_PAPER, $paperId
 					);
 				}
 
