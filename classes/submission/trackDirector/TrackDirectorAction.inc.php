@@ -13,7 +13,6 @@
  *
  */
 
-// $Id$
 import('submission.common.Action');
 
 class TrackDirectorAction extends Action {
@@ -1626,7 +1625,7 @@ import('file.PaperFileManager');
 
 		$user =& Request::getUser();
 		import('mail.PaperMailTemplate');
-		$email = new PaperMailTemplate($paper, 'SUBMISSION_DECISION_REVIEWERS');
+		$email = new PaperMailTemplate($paper, 'SUBMISSION_DECISION_REVIEWERS', null, null, null, null, true, true);
 
 		if ($send && !$email->hasErrors() && !$inhibitExistingEmail) {
 			HookRegistry::call('TrackDirectorAction::blindCcReviewsToReviewers', array(&$paper, &$reviewAssignments, &$email));
