@@ -27,8 +27,8 @@ class ReviewReportDAO extends DAO {
 	 * @return array
 	 */
 	function getReviewReport($schedConfId) {
-		$primaryLocale = Locale::getPrimaryLocale();
-		$locale = Locale::getLocale();
+		$primaryLocale = AppLocale::getPrimaryLocale();
+		$locale = AppLocale::getLocale();
 
 		$result =& $this->retrieve(
 			'SELECT	paper_id,

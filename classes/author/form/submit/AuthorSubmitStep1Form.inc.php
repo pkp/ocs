@@ -61,7 +61,7 @@ class AuthorSubmitStep1Form extends AuthorSubmitForm {
 			$roleDao->userHasRole($conference->getId(), 0, $user->getId(), ROLE_ID_DIRECTOR) ||
 			$roleDao->userHasRole($conference->getId(), 0, $user->getId(), ROLE_ID_TRACK_DIRECTOR);
 
-		$templateMgr->assign('trackOptions', array('0' => Locale::translate('author.submit.selectTrack')) + $trackDao->getTrackTitles($schedConf->getId(), !$isDirector));
+		$templateMgr->assign('trackOptions', array('0' => __('author.submit.selectTrack')) + $trackDao->getTrackTitles($schedConf->getId(), !$isDirector));
 
 		$paperTypeDao =& DAORegistry::getDAO('PaperTypeDAO');
 		$sessionTypes = $paperTypeDao->getPaperTypes($schedConf->getId());
@@ -75,7 +75,7 @@ class AuthorSubmitStep1Form extends AuthorSubmitForm {
 		$templateMgr->assign(
 			'supportedSubmissionLocaleNames',
 			array_flip(array_intersect(
-				array_flip(Locale::getAllLocales()),
+				array_flip(AppLocale::getAllLocales()),
 				$supportedSubmissionLocales
 			))
 		);
@@ -101,7 +101,7 @@ class AuthorSubmitStep1Form extends AuthorSubmitForm {
 			// supported to use as a default.
 			$tryLocales = array(
 				$this->getFormLocale(), // Current form locale
-				Locale::getLocale(), // Current UI locale
+				AppLocale::getLocale(), // Current UI locale
 				$conference->getPrimaryLocale(), // Conference locale
 				$supportedSubmissionLocales[array_shift(array_keys($supportedSubmissionLocales))] // Fallback: first one on the list
 			);

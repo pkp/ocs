@@ -49,8 +49,8 @@ class ReviewerSubmissionDAO extends DAO {
 	 * @return ReviewerSubmission
 	 */
 	function &getReviewerSubmission($reviewId) {
-		$primaryLocale = Locale::getPrimaryLocale();
-		$locale = Locale::getLocale();
+		$primaryLocale = AppLocale::getPrimaryLocale();
+		$locale = AppLocale::getLocale();
 		$result =& $this->retrieve(
 			'SELECT	p.*, r.*,
 				r2.review_revision,
@@ -195,8 +195,8 @@ class ReviewerSubmissionDAO extends DAO {
 	 * @return array ReviewerSubmissions
 	 */
 	function &getReviewerSubmissionsByReviewerId($reviewerId, $schedConfId, $active = true, $rangeInfo = null) {
-		$primaryLocale = Locale::getPrimaryLocale();
-		$locale = Locale::getLocale();
+		$primaryLocale = AppLocale::getPrimaryLocale();
+		$locale = AppLocale::getLocale();
 		$result =& $this->retrieveRange(
 			'SELECT	p.*,
 				r.*,

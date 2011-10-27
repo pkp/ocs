@@ -17,13 +17,13 @@ import('lib.pkp.classes.plugins.GenericPlugin');
 
 class StaticPagesPlugin extends GenericPlugin {
 	function getDisplayName() {
-		return Locale::translate('plugins.generic.staticPages.displayName');
+		return __('plugins.generic.staticPages.displayName');
 	}
 
 	function getDescription() {
-		$description = Locale::translate('plugins.generic.staticPages.description');
+		$description = __('plugins.generic.staticPages.description');
 		if ( !$this->isTinyMCEInstalled() )
-			$description .= "<br />".Locale::translate('plugins.generic.staticPages.requirement.tinymce');
+			$description .= "<br />".__('plugins.generic.staticPages.requirement.tinymce');
 		return $description;
 	}
 
@@ -82,7 +82,7 @@ class StaticPagesPlugin extends GenericPlugin {
 	function getManagementVerbs() {
 		$verbs = array();
 		if ($this->getEnabled() && $this->isTinyMCEInstalled()) {
-			$verbs[] = array('settings', Locale::translate('plugins.generic.staticPages.editAddContent'));
+			$verbs[] = array('settings', __('plugins.generic.staticPages.editAddContent'));
 		}
 		return parent::getManagementVerbs($verbs);
 	}

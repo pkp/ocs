@@ -59,8 +59,8 @@ class OAIMetadataFormat_MARC21 extends OAIMetadataFormat {
 		}
 
 		// Types
-		Locale::requireComponents(array(LOCALE_COMPONENT_APPLICATION_COMMON));
-		$type = Locale::translate('rt.metadata.pkp.peerReviewed');
+		AppLocale::requireComponents(array(LOCALE_COMPONENT_APPLICATION_COMMON));
+		$type = __('rt.metadata.pkp.peerReviewed');
 
 		// Formats
 		$format = array();

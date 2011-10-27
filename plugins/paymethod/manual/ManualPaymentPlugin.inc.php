@@ -24,11 +24,11 @@ class ManualPaymentPlugin extends PaymethodPlugin {
 	}
 
 	function getDisplayName() {
-		return Locale::translate('plugins.paymethod.manual.displayName');
+		return __('plugins.paymethod.manual.displayName');
 	}
 
 	function getDescription() {
-		return Locale::translate('plugins.paymethod.manual.description');
+		return __('plugins.paymethod.manual.description');
 	}
 
 	function register($category, $path) {
@@ -94,7 +94,7 @@ class ManualPaymentPlugin extends PaymethodPlugin {
 		switch ( $op ) {
 			case 'notify':
 				import('classes.mail.MailTemplate');
-				Locale::requireComponents(array(LOCALE_COMPONENT_APPLICATION_COMMON));
+				AppLocale::requireComponents(array(LOCALE_COMPONENT_APPLICATION_COMMON));
 				$contactName = $schedConf->getSetting('registrationName');
 				$contactEmail = $schedConf->getSetting('registrationEmail');
 				$mail = new MailTemplate('MANUAL_PAYMENT_NOTIFICATION');
@@ -102,8 +102,8 @@ class ManualPaymentPlugin extends PaymethodPlugin {
 				$mail->addRecipient($contactEmail, $contactName);
 				$mail->assignParams(array(
 					'schedConfName' => $schedConf->getFullTitle(),
-					'userFullName' => $user?$user->getFullName():('(' . Locale::translate('common.none') . ')'),
-					'userName' => $user?$user->getUsername():('(' . Locale::translate('common.none') . ')'),
+					'userFullName' => $user?$user->getFullName():('(' . __('common.none') . ')'),
+					'userName' => $user?$user->getUsername():('(' . __('common.none') . ')'),
 					'itemName' => $queuedPayment->getName(),
 					'itemCost' => $queuedPayment->getAmount(),
 					'itemCurrencyCode' => $queuedPayment->getCurrencyCode()

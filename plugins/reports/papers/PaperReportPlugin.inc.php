@@ -45,17 +45,17 @@ class PaperReportPlugin extends ReportPlugin {
 	}
 
 	function getDisplayName() {
-		return Locale::translate('plugins.reports.papers.displayName');
+		return __('plugins.reports.papers.displayName');
 	}
 
 	function getDescription() {
-		return Locale::translate('plugins.reports.papers.description');
+		return __('plugins.reports.papers.description');
 	}
 
 	function display(&$args) {
 		$conference =& Request::getConference();
 		$schedConf =& Request::getSchedConf();
-		Locale::requireComponents(array(LOCALE_COMPONENT_APPLICATION_COMMON, LOCALE_COMPONENT_PKP_SUBMISSION, LOCALE_COMPONENT_PKP_USER, LOCALE_COMPONENT_OCS_MANAGER));
+		AppLocale::requireComponents(array(LOCALE_COMPONENT_APPLICATION_COMMON, LOCALE_COMPONENT_PKP_SUBMISSION, LOCALE_COMPONENT_PKP_USER, LOCALE_COMPONENT_OCS_MANAGER));
 
 		header('content-type: text/comma-separated-values; charset=utf-8');
 		header('content-disposition: attachment; filename=papers-' . date('Ymd') . '.csv');
@@ -74,46 +74,46 @@ class PaperReportPlugin extends ReportPlugin {
 			}
 		}
 
-		Locale::requireComponents(array(LOCALE_COMPONENT_OCS_DIRECTOR));
+		AppLocale::requireComponents(array(LOCALE_COMPONENT_OCS_DIRECTOR));
 		import('classes.paper.Paper');
 		$decisionMessages = array(
-			SUBMISSION_DIRECTOR_DECISION_INVITE => Locale::translate('director.paper.decision.invitePresentation'),
-			SUBMISSION_DIRECTOR_DECISION_ACCEPT => Locale::translate('director.paper.decision.accept'),
-			SUBMISSION_DIRECTOR_DECISION_PENDING_REVISIONS => Locale::translate('director.paper.decision.pendingRevisions'),
-			SUBMISSION_DIRECTOR_DECISION_DECLINE => Locale::translate('director.paper.decision.decline'),
-			null => Locale::translate('plugins.reports.papers.nodecision')
+			SUBMISSION_DIRECTOR_DECISION_INVITE => __('director.paper.decision.invitePresentation'),
+			SUBMISSION_DIRECTOR_DECISION_ACCEPT => __('director.paper.decision.accept'),
+			SUBMISSION_DIRECTOR_DECISION_PENDING_REVISIONS => __('director.paper.decision.pendingRevisions'),
+			SUBMISSION_DIRECTOR_DECISION_DECLINE => __('director.paper.decision.decline'),
+			null => __('plugins.reports.papers.nodecision')
 		);
 
 		$columns = array(
-			'paper_id' => Locale::translate('paper.submissionId'),
-			'title' => Locale::translate('paper.title'),
-			'abstract' => Locale::translate('paper.abstract'),
+			'paper_id' => __('paper.submissionId'),
+			'title' => __('paper.title'),
+			'abstract' => __('paper.abstract'),
 		);
 		
 		for ($a = 1; $a <= $maxAuthors; $a++) {
 			$columns = array_merge($columns, array(
-				'fname' . $a => Locale::translate('user.firstName') . " (" . Locale::translate('user.role.author') . " $a)",
-				'mname' . $a => Locale::translate('user.middleName') . " (" . Locale::translate('user.role.author') . " $a)",
-				'lname' . $a => Locale::translate('user.lastName') . " (" . Locale::translate('user.role.author') . " $a)",
-				'country' . $a => Locale::translate('common.country') . " (" . Locale::translate('user.role.author') . " $a)",
-				'affiliation' . $a => Locale::translate('user.affiliation') . " (" . Locale::translate('user.role.author') . " $a)",
-				'email' . $a => Locale::translate('user.email') . " (" . Locale::translate('user.role.author') . " $a)",
-				'url' . $a => Locale::translate('user.url') . " (" . Locale::translate('user.role.author') . " $a)",
-				'biography' . $a => Locale::translate('user.biography') . " (" . Locale::translate('user.role.author') . " $a)"
+				'fname' . $a => __('user.firstName') . " (" . __('user.role.author') . " $a)",
+				'mname' . $a => __('user.middleName') . " (" . __('user.role.author') . " $a)",
+				'lname' . $a => __('user.lastName') . " (" . __('user.role.author') . " $a)",
+				'country' . $a => __('common.country') . " (" . __('user.role.author') . " $a)",
+				'affiliation' . $a => __('user.affiliation') . " (" . __('user.role.author') . " $a)",
+				'email' . $a => __('user.email') . " (" . __('user.role.author') . " $a)",
+				'url' . $a => __('user.url') . " (" . __('user.role.author') . " $a)",
+				'biography' . $a => __('user.biography') . " (" . __('user.role.author') . " $a)"
 			));
 		}
 		
 		$columns = array_merge($columns, array(
-			'track_title' => Locale::translate('track.title'),
-			'language' => Locale::translate('common.language'),
-			'director_decision' => Locale::translate('submission.directorDecision'),
-			'start_time' => Locale::translate('manager.scheduler.startTime'),
-			'end_time' => Locale::translate('manager.scheduler.endTime'),
-			'building' => Locale::translate('manager.scheduler.building'),
-			'room' => Locale::translate('manager.scheduler.room'),
-			'status' => Locale::translate('common.status'),
-			'paper_type' => Locale::translate('paper.sessionType'),
-			'comments' => Locale::translate('paper.commentsToDirector')
+			'track_title' => __('track.title'),
+			'language' => __('common.language'),
+			'director_decision' => __('submission.directorDecision'),
+			'start_time' => __('manager.scheduler.startTime'),
+			'end_time' => __('manager.scheduler.endTime'),
+			'building' => __('manager.scheduler.building'),
+			'room' => __('manager.scheduler.room'),
+			'status' => __('common.status'),
+			'paper_type' => __('paper.sessionType'),
+			'comments' => __('paper.commentsToDirector')
 		));
 
 		$fp = fopen('php://output', 'wt');
@@ -163,7 +163,7 @@ class PaperReportPlugin extends ReportPlugin {
 						$columns[$index] = $decisionMessages[null];
 					}
 				} elseif ($index == 'status') {
-					$columns[$index] = Locale::translate($statusMap[$row[$index]]);
+					$columns[$index] = __($statusMap[$row[$index]]);
 				} elseif ($index == 'abstract' || $index == 'title' || $index == 'affiliation') {
 					$columns[$index] = html_entity_decode(strip_tags($row[$index]), ENT_QUOTES, 'UTF-8');
 				} elseif ($index == 'start_time' || $index == 'end_time') {

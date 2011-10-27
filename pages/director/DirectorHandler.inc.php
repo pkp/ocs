@@ -74,12 +74,12 @@ class DirectorHandler extends TrackDirectorHandler {
 		$tracks =& $trackDao->getTrackTitles($schedConfId);
 
 		$filterDirectorOptions = array(
-			FILTER_DIRECTOR_ALL => Locale::Translate('director.allDirectors'),
-			FILTER_DIRECTOR_ME => Locale::Translate('director.me')
+			FILTER_DIRECTOR_ALL => AppLocale::Translate('director.allDirectors'),
+			FILTER_DIRECTOR_ME => AppLocale::Translate('director.me')
 		);
 
 		$filterTrackOptions = array(
-			FILTER_TRACK_ALL => Locale::Translate('director.allTracks')
+			FILTER_TRACK_ALL => AppLocale::Translate('director.allTracks')
 		) + $tracks;
 
 		// Get the user's search conditions, if any
@@ -202,8 +202,8 @@ class DirectorHandler extends TrackDirectorHandler {
 			$templateMgr->assign($param, $request->getUserVar($param));
 
 		$templateMgr->assign('reviewType', Array(
-			REVIEW_ROUND_ABSTRACT => Locale::translate('submission.abstract'),
-			REVIEW_ROUND_PRESENTATION => Locale::translate('submission.paper')
+			REVIEW_ROUND_ABSTRACT => __('submission.abstract'),
+			REVIEW_ROUND_PRESENTATION => __('submission.paper')
 		));
 
 		$templateMgr->assign('fieldOptions', Array(
@@ -250,7 +250,7 @@ class DirectorHandler extends TrackDirectorHandler {
 	 */
 	function assignDirector($args, $request) {
 		$this->validate($request);
-		Locale::requireComponents(array(LOCALE_COMPONENT_PKP_MANAGER)); // manager.people.noneEnrolled
+		AppLocale::requireComponents(array(LOCALE_COMPONENT_PKP_MANAGER)); // manager.people.noneEnrolled
 
 		$schedConf =& $request->getSchedConf();
 		$paperId = $request->getUserVar('paperId');
@@ -343,7 +343,7 @@ class DirectorHandler extends TrackDirectorHandler {
 				USER_FIELD_USERNAME => 'user.username',
 				USER_FIELD_EMAIL => 'user.email'
 			));
-			$templateMgr->assign('alphaList', explode(' ', Locale::translate('common.alphaList')));
+			$templateMgr->assign('alphaList', explode(' ', __('common.alphaList')));
 			$templateMgr->assign('helpTopicId', 'editorial.directorsRole.summaryPage.submissionManagement');
 			$templateMgr->display('director/selectTrackDirector.tpl');
 		}

@@ -101,7 +101,7 @@ class ManagerSetupHandler extends ManagerHandler {
 						if ($setupForm->uploadImage('homepageImage', $formLocale)) {
 							$editData = true;
 						} else {
-							$setupForm->addError('homepageImage', Locale::translate('manager.setup.homepageImageInvalid'));
+							$setupForm->addError('homepageImage', __('manager.setup.homepageImageInvalid'));
 						}
 
 					} else if (Request::getUserVar('deleteHomepageImage')) {
@@ -114,7 +114,7 @@ class ManagerSetupHandler extends ManagerHandler {
 						if ($setupForm->uploadImage('homeHeaderTitleImage', $formLocale)) {
 							$editData = true;
 						} else {
-							$setupForm->addError('homeHeaderTitleImage', Locale::translate('manager.setup.homeTitleImageInvalid'));
+							$setupForm->addError('homeHeaderTitleImage', __('manager.setup.homeTitleImageInvalid'));
 						}
 
 					} else if (Request::getUserVar('deleteHomeHeaderTitleImage')) {
@@ -125,7 +125,7 @@ class ManagerSetupHandler extends ManagerHandler {
 						if ($setupForm->uploadImage('homeHeaderLogoImage', $formLocale)) {
 							$editData = true;
 						} else {
-							$setupForm->addError('homeHeaderLogoImage', Locale::translate('manager.setup.homeHeaderImageInvalid'));
+							$setupForm->addError('homeHeaderLogoImage', __('manager.setup.homeHeaderImageInvalid'));
 						}
 
 					} else if (Request::getUserVar('deleteHomeHeaderLogoImage')) {
@@ -136,7 +136,7 @@ class ManagerSetupHandler extends ManagerHandler {
 						if ($setupForm->uploadImage('conferenceFavicon', $formLocale)) {
 							$editData = true;
 						} else {
-							$setupForm->addError('conferenceFavicon', Locale::translate('manager.setup.layout.faviconInvalid'));
+							$setupForm->addError('conferenceFavicon', __('manager.setup.layout.faviconInvalid'));
 						}
 
 					} else if (Request::getUserVar('deleteConferenceFavicon')) {
@@ -147,7 +147,7 @@ class ManagerSetupHandler extends ManagerHandler {
 						if ($setupForm->uploadImage('pageHeaderTitleImage', $formLocale)) {
 							$editData = true;
 						} else {
-							$setupForm->addError('pageHeaderTitleImage', Locale::translate('manager.setup.pageHeaderTitleImageInvalid'));
+							$setupForm->addError('pageHeaderTitleImage', __('manager.setup.pageHeaderTitleImageInvalid'));
 						}
 
 					} else if (Request::getUserVar('deletePageHeaderTitleImage')) {
@@ -158,7 +158,7 @@ class ManagerSetupHandler extends ManagerHandler {
 						if ($setupForm->uploadImage('pageHeaderLogoImage', $formLocale)) {
 							$editData = true;
 						} else {
-							$setupForm->addError('pageHeaderLogoImage', Locale::translate('manager.setup.pageHeaderLogoImageInvalid'));
+							$setupForm->addError('pageHeaderLogoImage', __('manager.setup.pageHeaderLogoImageInvalid'));
 						}
 
 					} else if (Request::getUserVar('deletePageHeaderLogoImage')) {
@@ -189,7 +189,7 @@ class ManagerSetupHandler extends ManagerHandler {
 						if ($setupForm->uploadStyleSheet('conferenceStyleSheet')) {
 							$editData = true;
 						} else {
-							$setupForm->addError('conferenceStyleSheet', Locale::translate('manager.setup.conferenceStyleSheetInvalid'));
+							$setupForm->addError('conferenceStyleSheet', __('manager.setup.conferenceStyleSheetInvalid'));
 						}
 					} else if (Request::getUserVar('deleteConferenceStyleSheet')) {
 						$editData = true;

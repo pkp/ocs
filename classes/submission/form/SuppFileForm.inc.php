@@ -110,7 +110,7 @@ class SuppFileForm extends Form {
 
 		$publicSuppFileId = $this->getData('publicSuppFileId');
 		if ($publicSuppFileId && $suppFileDao->suppFileExistsByPublicId($publicSuppFileId, $this->suppFileId, $conference->getId())) {
-			$this->addError('publicSchedConfId', Locale::translate('author.suppFile.suppFilePublicIdentificationExists'));
+			$this->addError('publicSchedConfId', __('author.suppFile.suppFilePublicIdentificationExists'));
 			$this->addErrorField('publicSuppFileId');
 		}
 

@@ -40,17 +40,17 @@ class RegistrantReportPlugin extends ReportPlugin {
 	}
 
 	function getDisplayName() {
-		return Locale::translate('plugins.reports.registrants.displayName');
+		return __('plugins.reports.registrants.displayName');
 	}
 
 	function getDescription() {
-		return Locale::translate('plugins.reports.registrants.description');
+		return __('plugins.reports.registrants.description');
 	}
 
 	function display(&$args) {
 		$conference =& Request::getConference();
 		$schedConf =& Request::getSchedConf();
-		Locale::requireComponents(array(LOCALE_COMPONENT_APPLICATION_COMMON, LOCALE_COMPONENT_PKP_USER, LOCALE_COMPONENT_OCS_MANAGER));
+		AppLocale::requireComponents(array(LOCALE_COMPONENT_APPLICATION_COMMON, LOCALE_COMPONENT_PKP_USER, LOCALE_COMPONENT_OCS_MANAGER));
 
 		header('content-type: text/comma-separated-values; charset=utf-8');
 		header('content-disposition: attachment; filename=registrants-' . date('Ymd') . '.csv');
@@ -61,21 +61,21 @@ class RegistrantReportPlugin extends ReportPlugin {
 		$userDao =& DAORegistry::getDAO('UserDAO');
 
 		$columns = array(
-			Locale::translate('plugins.reports.registrants.registrationid'),
-			Locale::translate('plugins.reports.registrants.userid'),
-			Locale::translate('user.username'),
-			Locale::translate('user.firstName'),
-			Locale::translate('user.middleName'),
-			Locale::translate('user.lastName'),
-			Locale::translate('user.affiliation'),
-			Locale::translate('user.url'),
-			Locale::translate('user.email'),
-			Locale::translate('user.phone'),
-			Locale::translate('user.fax'),
-			Locale::translate('common.mailingAddress'),
-			Locale::translate('common.billingAddress'),
-			Locale::translate('common.country'),
-			Locale::translate('manager.registration.registrationType')
+			__('plugins.reports.registrants.registrationid'),
+			__('plugins.reports.registrants.userid'),
+			__('user.username'),
+			__('user.firstName'),
+			__('user.middleName'),
+			__('user.lastName'),
+			__('user.affiliation'),
+			__('user.url'),
+			__('user.email'),
+			__('user.phone'),
+			__('user.fax'),
+			__('common.mailingAddress'),
+			__('common.billingAddress'),
+			__('common.country'),
+			__('manager.registration.registrationType')
 		);
 		
 		$registrationOptions =& $registrationOptionDao->getRegistrationOptionsBySchedConfId($schedConf->getId());
@@ -89,10 +89,10 @@ class RegistrantReportPlugin extends ReportPlugin {
 		} 
 		
 		$columns = array_merge($columns, array(
-			Locale::translate('manager.registration.dateRegistered'),
-			Locale::translate('manager.registration.datePaid'),
-			Locale::translate('schedConf.registration.specialRequests'),
-			Locale::translate('plugins.reports.registrants.total')
+			__('manager.registration.dateRegistered'),
+			__('manager.registration.datePaid'),
+			__('schedConf.registration.specialRequests'),
+			__('plugins.reports.registrants.total')
 		));
 
 
@@ -143,12 +143,12 @@ class RegistrantReportPlugin extends ReportPlugin {
 			$selectedOptionIds = $registrationOptionDao->getRegistrationOptions($registrationId);
 			foreach ($registrationOptionIds as $optionId) {
 				if (in_array($optionId, $selectedOptionIds)) {
-					$columns[] = Locale::translate('common.yes');
+					$columns[] = __('common.yes');
 					if (isset($registrationOptionCosts[$registrationTypeId][$optionId])) {
 						$totalCost += $registrationOptionCosts[$registrationTypeId][$optionId];
 					}
 				} else {
-					$columns[] = Locale::translate('common.no');
+					$columns[] = __('common.no');
 				}
 			}
 

@@ -112,7 +112,7 @@ class SchedConfSetupStep2Form extends SchedConfSetupForm {
 	function validate() {
 		// Ensure all submission types have names in the primary locale
 		// as well as numeric word limits (optional)
-		$primaryLocale = Locale::getPrimaryLocale();
+		$primaryLocale = AppLocale::getPrimaryLocale();
 		if (isset($this->_data['paperTypes'])) {
 			$paperTypes =& $this->_data['paperTypes'];
 			if (!is_array($paperTypes)) return false;
@@ -120,12 +120,12 @@ class SchedConfSetupStep2Form extends SchedConfSetupForm {
 			foreach ($paperTypes as $paperTypeId => $paperType) {
 				if (!isset($paperType['name'][$primaryLocale]) || empty($paperType['name'][$primaryLocale])) {
 					$fieldName = 'paperTypeName-' . $paperTypeId;
-					$this->addError($fieldName, Locale::translate('manager.schedConfSetup.submissions.typeOfSubmission.nameMissing', array('primaryLocale' => $primaryLocale)));
+					$this->addError($fieldName, __('manager.schedConfSetup.submissions.typeOfSubmission.nameMissing', array('primaryLocale' => $primaryLocale)));
 					$this->addErrorField($fieldName);
 				}
 				if (isset($paperType['abstractLength']) && !empty($paperType['abstractLength']) && (!is_numeric($paperType['abstractLength']) || $paperType['abstractLength'] <= 0)) {
 					$fieldName = 'paperTypeAbstractLength-' . $paperTypeId;
-					$this->addError($fieldName, Locale::translate('manager.schedConfSetup.submissions.typeOfSubmission.abstractLengthInvalid'));
+					$this->addError($fieldName, __('manager.schedConfSetup.submissions.typeOfSubmission.abstractLengthInvalid'));
 					$this->addErrorField($fieldName);
 				}
 			}

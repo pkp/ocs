@@ -87,7 +87,7 @@ class TrackDirectorAction extends Action {
 			// Add log
 			import('classes.paper.log.PaperLog');
 			import('classes.paper.log.PaperEventLogEntry');
-			Locale::requireComponents(array(LOCALE_COMPONENT_APPLICATION_COMMON, LOCALE_COMPONENT_OCS_DIRECTOR));
+			AppLocale::requireComponents(array(LOCALE_COMPONENT_APPLICATION_COMMON, LOCALE_COMPONENT_OCS_DIRECTOR));
 			PaperLog::logEvent(
 				$trackDirectorSubmission->getId(),
 				PAPER_LOG_DIRECTOR_DECISION,
@@ -97,7 +97,7 @@ class TrackDirectorAction extends Action {
 				array(
 					'directorName' => $user->getFullName(),
 					'paperId' => $trackDirectorSubmission->getId(),
-					'decision' => Locale::translate($decisions[$decision]),
+					'decision' => __($decisions[$decision]),
 					'round' => ($round == REVIEW_ROUND_ABSTRACT?'submission.abstractReview':'submission.paperReview')
 				)
 			);
@@ -893,7 +893,7 @@ class TrackDirectorAction extends Action {
 						$galley = new PaperGalley();
 					}
 					$galley->setPaperId($trackDirectorSubmission->getId());
-					$galley->setLocale(Locale::getLocale());
+					$galley->setLocale(AppLocale::getLocale());
 					$galley->setFileId($fileId);
 					if ($galley->isHTMLGalley()) {
 						$galley->setLabel('HTML');
@@ -904,7 +904,7 @@ class TrackDirectorAction extends Action {
 					} else if (strstr($fileType, 'xml')) {
 						$galley->setLabel('XML');
 					} else {
-						$galley->setLabel(Locale::translate('common.untitled'));
+						$galley->setLabel(__('common.untitled'));
 					}
 					$paperGalleyDao->insertGalley($galley);
 				}
@@ -1542,7 +1542,7 @@ import('classes.file.PaperFileManager');
 
 							if ($paperComments) {
 								$body .= "------------------------------------------------------\n";
-								$body .= Locale::translate('submission.comments.importPeerReviews.reviewerLetter', array('reviewerLetter' => String::enumerateAlphabetically($reviewIndexes[$reviewAssignment->getReviewId()]))) . "\n";
+								$body .= __('submission.comments.importPeerReviews.reviewerLetter', array('reviewerLetter' => String::enumerateAlphabetically($reviewIndexes[$reviewAssignment->getReviewId()]))) . "\n";
 								if (is_array($paperComments)) {
 									foreach ($paperComments as $comment) {
 										// If the comment is viewable by the author, then add the comment.
@@ -1562,7 +1562,7 @@ import('classes.file.PaperFileManager');
 								$reviewFormElements =& $reviewFormElementDao->getReviewFormElements($reviewFormId);
 								if (!$paperComments) {
 									$body .= "------------------------------------------------------\n";
-									$body .= Locale::translate('submission.comments.importPeerReviews.reviewerLetter', array('reviewerLetter' => String::enumerateAlphabetically($reviewIndexes[$reviewAssignment->getReviewId()]))) . "\n\n";
+									$body .= __('submission.comments.importPeerReviews.reviewerLetter', array('reviewerLetter' => String::enumerateAlphabetically($reviewIndexes[$reviewAssignment->getReviewId()]))) . "\n\n";
 								}
 								foreach ($reviewFormElements as $reviewFormElement) if ($reviewFormElement->getIncluded()) {
 									$body .= String::html2text($reviewFormElement->getLocalizedQuestion()) . ": \n";

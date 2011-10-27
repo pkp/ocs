@@ -23,8 +23,8 @@ class CustomLocalePlugin extends GenericPlugin {
 
 			if ($this->getEnabled()) {
 				// Add custom locale data for already registered locale files.
-				$locale = Locale::getLocale();
-				$localeFiles = Locale::getLocaleFiles($locale);
+				$locale = AppLocale::getLocale();
+				$localeFiles = AppLocale::getLocaleFiles($locale);
 				$conference = Request::getConference();
 				$conferenceId = $conference->getId();
 				$publicFilesDir = Config::getVar('files', 'public_files_dir');
@@ -34,7 +34,7 @@ class CustomLocalePlugin extends GenericPlugin {
 				foreach ($localeFiles as $localeFile) {
 					$customLocalePath = $customLocalePathBase . $localeFile->getFilename();
 					if (FileManager::fileExists($customLocalePath)) {
-						Locale::registerLocaleFile($locale, $customLocalePath, true);
+						AppLocale::registerLocaleFile($locale, $customLocalePath, true);
 					}
 				}
 
@@ -58,7 +58,7 @@ class CustomLocalePlugin extends GenericPlugin {
 
 		import('lib.pkp.classes.file.FileManager');
 		if (FileManager::fileExists($customLocalePath)) {
-			Locale::registerLocaleFile($locale, $customLocalePath, true);
+			AppLocale::registerLocaleFile($locale, $customLocalePath, true);
 		}
 
 		return true;
@@ -66,11 +66,11 @@ class CustomLocalePlugin extends GenericPlugin {
 	}
 
 	function getDisplayName() {
-		return Locale::translate('plugins.generic.customLocale.name');
+		return __('plugins.generic.customLocale.name');
 	}
 
 	function getDescription() {
-		return Locale::translate('plugins.generic.customLocale.description');
+		return __('plugins.generic.customLocale.description');
 	}
 
 	function smartyPluginUrl($params, &$smarty) {
@@ -99,7 +99,7 @@ class CustomLocalePlugin extends GenericPlugin {
 	function getManagementVerbs() {
 		$verbs[] = array();
 		if ($this->getEnabled()) {
-			$verbs[] = array('index', Locale::translate('plugins.generic.customLocale.customize'));
+			$verbs[] = array('index', __('plugins.generic.customLocale.customize'));
 		}
 		return parent::getManagementVerbs($verbs);
 	}

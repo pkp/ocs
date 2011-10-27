@@ -95,7 +95,7 @@ class ReportPlugin extends Plugin {
 		if ($schedConf) return array(
 			array(
 				'reports',
-				Locale::translate('manager.statistics.reports')
+				__('manager.statistics.reports')
 			)
 		);
 		else return array();

@@ -44,11 +44,11 @@ class NativeImportExportPlugin extends ImportExportPlugin {
 	}
 
 	function getDisplayName() {
-		return Locale::translate('plugins.importexport.native.displayName');
+		return __('plugins.importexport.native.displayName');
 	}
 
 	function getDescription() {
-		return Locale::translate('plugins.importexport.native.description');
+		return __('plugins.importexport.native.description');
 	}
 
 	function display(&$args) {
@@ -118,8 +118,8 @@ class NativeImportExportPlugin extends ImportExportPlugin {
 					// import papers within an appropriate context. If not,
 					// prompt them for the.
 					if (!isset($context['track'])) {
-						Locale::requireComponents(array(LOCALE_COMPONENT_OCS_AUTHOR));
-						$templateMgr->assign('trackOptions', array('0' => Locale::translate('author.submit.selectTrack')) + $trackDao->getTrackTitles($schedConf->getId(), false));
+						AppLocale::requireComponents(array(LOCALE_COMPONENT_OCS_AUTHOR));
+						$templateMgr->assign('trackOptions', array('0' => __('author.submit.selectTrack')) + $trackDao->getTrackTitles($schedConf->getId(), false));
 						$templateMgr->assign('temporaryFileId', $temporaryFile->getId());
 						return $templateMgr->display($this->getTemplatePath() . 'paperContext.tpl');
 					}
@@ -249,8 +249,8 @@ class NativeImportExportPlugin extends ImportExportPlugin {
 
 		if (!$conference || !$schedConfPath) {
 			if ($conferencePath != '') {
-				echo Locale::translate('plugins.importexport.native.cliError') . "\n";
-				echo Locale::translate('plugins.importexport.native.error.unknownConference', array('conferencePath' => $conferencePath, 'schedConfPath' => $schedConfPath)) . "\n\n";
+				echo __('plugins.importexport.native.cliError') . "\n";
+				echo __('plugins.importexport.native.error.unknownConference', array('conferencePath' => $conferencePath, 'schedConfPath' => $schedConfPath)) . "\n\n";
 			}
 			$this->usage($scriptName);
 			return;
@@ -268,8 +268,8 @@ class NativeImportExportPlugin extends ImportExportPlugin {
 
 				if (!$user) {
 					if ($userName != '') {
-						echo Locale::translate('plugins.importexport.native.cliError') . "\n";
-						echo Locale::translate('plugins.importexport.native.error.unknownUser', array('userName' => $userName)) . "\n\n";
+						echo __('plugins.importexport.native.cliError') . "\n";
+						echo __('plugins.importexport.native.error.unknownUser', array('userName' => $userName)) . "\n\n";
 					}
 					$this->usage($scriptName);
 					return;
@@ -303,8 +303,8 @@ class NativeImportExportPlugin extends ImportExportPlugin {
 						}
 
 						if (!$track) {
-							echo Locale::translate('plugins.importexport.native.cliError') . "\n";
-							echo Locale::translate('plugins.importexport.native.export.error.trackNotFound', array('trackIdentifier' => $trackIdentifier)) . "\n\n";
+							echo __('plugins.importexport.native.cliError') . "\n";
+							echo __('plugins.importexport.native.export.error.trackNotFound', array('trackIdentifier' => $trackIdentifier)) . "\n\n";
 							return;
 						}
 						$context['track'] =& $track;
@@ -312,16 +312,16 @@ class NativeImportExportPlugin extends ImportExportPlugin {
 
 				$result = $this->handleImport($context, $doc, $errors, $papers, true);
 				if ($result) {
-					echo Locale::translate('plugins.importexport.native.import.success.description') . "\n\n";
-					Locale::requireComponents(array(LOCALE_COMPONENT_APPLICATION_COMMON));
-					if (!empty($papers)) echo Locale::translate('paper.papers') . ":\n";
+					echo __('plugins.importexport.native.import.success.description') . "\n\n";
+					AppLocale::requireComponents(array(LOCALE_COMPONENT_APPLICATION_COMMON));
+					if (!empty($papers)) echo __('paper.papers') . ":\n";
 					foreach ($papers as $paper) {
 						echo "\t" . $paper->getLocalizedTitle() . "\n";
 					}
 				} else {
-					echo Locale::translate('plugins.importexport.native.cliError') . "\n";
+					echo __('plugins.importexport.native.cliError') . "\n";
 					foreach ($errors as $error) {
-						echo "\t" . Locale::translate($error[0], $error[1]) . "\n";
+						echo "\t" . __($error[0], $error[1]) . "\n";
 					}
 				}
 				return;
@@ -332,8 +332,8 @@ class NativeImportExportPlugin extends ImportExportPlugin {
 						$paperId = array_shift($args);
 						$publishedPaper =& $publishedPaperDao->getPublishedPaperByBestPaperId($schedConf->getId(), $paperId);
 						if ($publishedPaper == null) {
-							echo Locale::translate('plugins.importexport.native.cliError') . "\n";
-							echo Locale::translate('plugins.importexport.native.export.error.paperNotFound', array('paperId' => $paperId)) . "\n\n";
+							echo __('plugins.importexport.native.cliError') . "\n";
+							echo __('plugins.importexport.native.export.error.paperNotFound', array('paperId' => $paperId)) . "\n\n";
 							return;
 						}
 
@@ -341,15 +341,15 @@ class NativeImportExportPlugin extends ImportExportPlugin {
 						$track =& $trackDao->getTrack($publishedPaper->getTrackId());
 
 						if (!$this->exportPaper($schedConf, $track, $publishedPaper, $xmlFile)) {
-							echo Locale::translate('plugins.importexport.native.cliError') . "\n";
-							echo Locale::translate('plugins.importexport.native.export.error.couldNotWrite', array('fileName' => $xmlFile)) . "\n\n";
+							echo __('plugins.importexport.native.cliError') . "\n";
+							echo __('plugins.importexport.native.export.error.couldNotWrite', array('fileName' => $xmlFile)) . "\n\n";
 						}
 						return;
 					case 'papers':
 						$results =& PaperSearch::formatResults($args);
 						if (!$this->exportPapers($results, $xmlFile)) {
-							echo Locale::translate('plugins.importexport.native.cliError') . "\n";
-							echo Locale::translate('plugins.importexport.native.export.error.couldNotWrite', array('fileName' => $xmlFile)) . "\n\n";
+							echo __('plugins.importexport.native.cliError') . "\n";
+							echo __('plugins.importexport.native.export.error.couldNotWrite', array('fileName' => $xmlFile)) . "\n\n";
 						}
 						return;
 				}
@@ -362,7 +362,7 @@ class NativeImportExportPlugin extends ImportExportPlugin {
 	 * Display the command-line usage information
 	 */
 	function usage($scriptName) {
-		echo Locale::translate('plugins.importexport.native.cliUsage', array(
+		echo __('plugins.importexport.native.cliUsage', array(
 			'scriptName' => $scriptName,
 			'pluginName' => $this->getName()
 		)) . "\n";

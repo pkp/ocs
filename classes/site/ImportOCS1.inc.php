@@ -210,18 +210,18 @@ class ImportOCS1 {
 			unset($conference);
 			$conference = new Conference();
 			$conference->setPath($this->conferencePath);
-			$conference->setPrimaryLocale(Locale::getLocale());
+			$conference->setPrimaryLocale(AppLocale::getLocale());
 			$conference->setEnabled(true);
 			$this->conferenceId = $conferenceDao->insertConference($conference);
 			$conferenceDao->resequenceConferences();
-			$conference->updateSetting('title', array(Locale::getLocale() => $this->globalConfigInfo['name']), null, true);
+			$conference->updateSetting('title', array(AppLocale::getLocale() => $this->globalConfigInfo['name']), null, true);
 
 			$this->conferenceIsNew = true;
 		} else {
 			if ($this->hasOption('verbose')) {
 				printf("Using existing conference\n");
 			}
-			$conference->updateSetting('title', array(Locale::getLocale() => $this->globalConfigInfo['name']), null, true);
+			$conference->updateSetting('title', array(AppLocale::getLocale() => $this->globalConfigInfo['name']), null, true);
 			$this->conferenceId = $conference->getId();
 			$this->conferenceIsNew = false;
 		}
@@ -308,9 +308,9 @@ class ImportOCS1 {
 			$schedConf->setPath($id);
 			$schedConfDao->insertSchedConf($schedConf);
 			$schedConfDao->resequenceSchedConfs($this->conferenceId);
-			$schedConf->updateSetting('title', array(Locale::getLocale() => $conferenceInfo['name']), null, true);
+			$schedConf->updateSetting('title', array(AppLocale::getLocale() => $conferenceInfo['name']), null, true);
 		} else {
-			$schedConf->updateSetting('title', array(Locale::getLocale() => $conferenceInfo['name']), null, true);
+			$schedConf->updateSetting('title', array(AppLocale::getLocale() => $conferenceInfo['name']), null, true);
 		}
 
 		$this->schedConfMap[$id] =& $schedConf;
@@ -354,7 +354,7 @@ class ImportOCS1 {
 				$fee = $fees[$key];
 				$registrationType = new RegistrationType();
 				$registrationType->setSchedConfId($schedConf->getId());
-				$registrationType->setName($level, Locale::getLocale());
+				$registrationType->setName($level, AppLocale::getLocale());
 				$registrationType->setCost($fee);
 				$registrationType->setCurrencyCodeAlpha('USD'); // FIXME?
 				$registrationType->setOpeningDate(Core::cleanVar($conferenceInfo['accept_deadline']));
@@ -373,7 +373,7 @@ class ImportOCS1 {
 				$fee = $feesLate[$key];
 				$registrationType = new RegistrationType();
 				$registrationType->setSchedConfId($schedConf->getId());
-				$registrationType->setName($level . ' (Late)', Locale::getLocale());
+				$registrationType->setName($level . ' (Late)', AppLocale::getLocale());
 				$registrationType->setCost($fee);
 				$registrationType->setCurrencyCodeAlpha('USD'); // FIXME?
 				$registrationType->setOpeningDate($lateDate);
@@ -501,7 +501,7 @@ class ImportOCS1 {
 			$track = new Track();
 			$schedConf =& $this->schedConfMap[$row['cf']];
 			$track->setSchedConfId($schedConf->getId());
-			$track->setTitle(Core::cleanVar($row['track']), Locale::getLocale());
+			$track->setTitle(Core::cleanVar($row['track']), AppLocale::getLocale());
 			$track->setSequence(++$sequence);
 			$track->setDirectorRestricted(0);
 			$track->setMetaReviewed(1);
@@ -635,10 +635,10 @@ class ImportOCS1 {
 				$user->setUsername(Core::cleanVar($row['login']));
 				$user->setFirstName(Core::cleanVar($row['first_name']));
 				$user->setLastName(Core::cleanVar($row['surname']));
-				$user->setAffiliation(Core::cleanVar($row['affiliation']), Locale::getLocale());
+				$user->setAffiliation(Core::cleanVar($row['affiliation']), AppLocale::getLocale());
 				$user->setEmail(Core::cleanVar($row['email']));
 				$user->setUrl(Core::cleanVar($row['url']));
-				$user->setBiography(Core::cleanVar($row['bio']), Locale::getLocale());
+				$user->setBiography(Core::cleanVar($row['bio']), AppLocale::getLocale());
 				$user->setLocales(array());
 				$user->setDateRegistered($row['created']);
 				$user->setDateLastLogin($row['created']);
@@ -684,7 +684,7 @@ class ImportOCS1 {
 			// Bring in the basic entry for the paper
 			$paper = new Paper();
 			$paper->setUserId($userId);
-			$paper->setLocale(Locale::getPrimaryLocale());
+			$paper->setLocale(AppLocale::getPrimaryLocale());
 			$paper->setSchedConfId($schedConfId);
 
 			$oldTrackId = $row['primary_track_id'];
@@ -697,7 +697,7 @@ class ImportOCS1 {
 					// that didn't have a track in OCS 1.x.
 					$track = new Track();
 					$track->setSchedConfId($schedConf->getId());
-					$track->setTitle('UNASSIGNED', Locale::getLocale());
+					$track->setTitle('UNASSIGNED', AppLocale::getLocale());
 					$track->setSequence(REALLY_BIG_NUMBER);
 					$track->setDirectorRestricted(1);
 					$track->setMetaReviewed(1);
@@ -710,11 +710,11 @@ class ImportOCS1 {
 			}
 
 			$paper->setTrackId($newTrackId);
-			$paper->setTitle(Core::cleanVar($row['title']), Locale::getLocale());
-			$paper->setAbstract(Core::cleanVar($row['abstract']), Locale::getLocale());
-			$paper->setDiscipline(Core::cleanVar($row['discipline']), Locale::getLocale());
-			$paper->setSponsor(Core::cleanVar($row['sponsor']), Locale::getLocale());
-			$paper->setSubject(Core::cleanVar($row['topic']), Locale::getLocale());
+			$paper->setTitle(Core::cleanVar($row['title']), AppLocale::getLocale());
+			$paper->setAbstract(Core::cleanVar($row['abstract']), AppLocale::getLocale());
+			$paper->setDiscipline(Core::cleanVar($row['discipline']), AppLocale::getLocale());
+			$paper->setSponsor(Core::cleanVar($row['sponsor']), AppLocale::getLocale());
+			$paper->setSubject(Core::cleanVar($row['topic']), AppLocale::getLocale());
 			$paper->setLanguage(Core::cleanVar($row['language']));
 
 			$paper->setDateSubmitted($row['created']);
@@ -740,7 +740,7 @@ class ImportOCS1 {
 				$author->setSubmissionId($paper->getId());
 				$author->setFirstName($firstNames[$key]);
 				$author->setLastName($lastNames[$key]);
-				$author->setAffiliation($affiliations[$key], Locale::getLocale());
+				$author->setAffiliation($affiliations[$key], AppLocale::getLocale());
 				@$author->setUrl($urls[$key]); // Suppress warnings from inconsistent OCS 1.x data
 				$author->setPrimaryContact($key == 0 ? 1 : 0);
 
@@ -800,7 +800,7 @@ class ImportOCS1 {
 					}
 				}
 
-				$galley->setLocale(Locale::getLocale());
+				$galley->setLocale(AppLocale::getLocale());
 				$galley->setPaperId($paperId);
 				$galley->setFileId($fileId);
 				$galleyDao->insertGalley($galley);
@@ -814,7 +814,7 @@ class ImportOCS1 {
 				PaperSearchIndex::updateFileIndex($paperId, PAPER_SEARCH_GALLEY_FILE, $fileId);
 				$galley = new PaperGalley();
 				$galley->setLabel('PDF');
-				$galley->setLocale(Locale::getLocale());
+				$galley->setLocale(AppLocale::getLocale());
 				$galley->setPaperId($paperId);
 				$galley->setFileId($fileId);
 				$galleyDao->insertGalley($galley);

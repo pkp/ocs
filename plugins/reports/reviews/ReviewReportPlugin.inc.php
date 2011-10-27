@@ -45,17 +45,17 @@ class ReviewReportPlugin extends ReportPlugin {
 	}
 
 	function getDisplayName() {
-		return Locale::translate('plugins.reports.reviews.displayName');
+		return __('plugins.reports.reviews.displayName');
 	}
 
 	function getDescription() {
-		return Locale::translate('plugins.reports.reviews.description');
+		return __('plugins.reports.reviews.description');
 	}
 
 	function display(&$args) {
 		$conference =& Request::getConference();
 		$schedConf =& Request::getSchedConf();
-		Locale::requireComponents(array(LOCALE_COMPONENT_APPLICATION_COMMON, LOCALE_COMPONENT_PKP_USER, LOCALE_COMPONENT_PKP_SUBMISSION, LOCALE_COMPONENT_OCS_MANAGER));
+		AppLocale::requireComponents(array(LOCALE_COMPONENT_APPLICATION_COMMON, LOCALE_COMPONENT_PKP_USER, LOCALE_COMPONENT_PKP_SUBMISSION, LOCALE_COMPONENT_OCS_MANAGER));
 
 		header('content-type: text/comma-separated-values; charset=utf-8');
 		header('content-disposition: attachment; filename=reviews-' . date('Ymd') . '.csv');
@@ -72,37 +72,37 @@ class ReviewReportPlugin extends ReportPlugin {
 			}
 		}
 
-		$yesnoMessages = array( 0 => Locale::translate('common.no'), 1 => Locale::translate('common.yes'));
+		$yesnoMessages = array( 0 => __('common.no'), 1 => __('common.yes'));
 
 		import('classes.schedConf.SchedConf');
 		$reviewTypes = array(
-			REVIEW_MODE_ABSTRACTS_ALONE => Locale::translate('manager.schedConfSetup.submissions.abstractsAlone'),
-			REVIEW_MODE_BOTH_SEQUENTIAL => Locale::translate('manager.schedConfSetup.submissions.bothSequential'),
-			REVIEW_MODE_PRESENTATIONS_ALONE => Locale::translate('manager.schedConfSetup.submissions.presentationsAlone'),
-			REVIEW_MODE_BOTH_SIMULTANEOUS => Locale::translate('manager.schedConfSetup.submissions.bothTogether')
+			REVIEW_MODE_ABSTRACTS_ALONE => __('manager.schedConfSetup.submissions.abstractsAlone'),
+			REVIEW_MODE_BOTH_SEQUENTIAL => __('manager.schedConfSetup.submissions.bothSequential'),
+			REVIEW_MODE_PRESENTATIONS_ALONE => __('manager.schedConfSetup.submissions.presentationsAlone'),
+			REVIEW_MODE_BOTH_SIMULTANEOUS => __('manager.schedConfSetup.submissions.bothTogether')
 		);
 
 		import('classes.submission.reviewAssignment.ReviewAssignment');
 		$recommendations = ReviewAssignment::getReviewerRecommendationOptions();
 
 		$columns = array(
-			'reviewRound' => Locale::translate('submissions.reviewType'),
-			'paper' => Locale::translate('paper.papers'),
-			'paperid' => Locale::translate('paper.submissionId'),
-			'reviewerid' => Locale::translate('plugins.reports.reviews.reviewerId'),
-			'reviewer' => Locale::translate('plugins.reports.reviews.reviewer'),
-			'firstname' => Locale::translate('user.firstName'),
-			'middlename' => Locale::translate('user.middleName'),
-			'lastname' => Locale::translate('user.lastName'),
-			'dateassigned' => Locale::translate('plugins.reports.reviews.dateAssigned'),
-			'datenotified' => Locale::translate('plugins.reports.reviews.dateNotified'),
-			'dateconfirmed' => Locale::translate('plugins.reports.reviews.dateConfirmed'),
-			'datecompleted' => Locale::translate('plugins.reports.reviews.dateCompleted'),
-			'datereminded' => Locale::translate('plugins.reports.reviews.dateReminded'),
-			'declined' => Locale::translate('submissions.declined'),
-			'cancelled' => Locale::translate('common.cancelled'),
-			'recommendation' => Locale::translate('reviewer.paper.recommendation'),
-			'comments' => Locale::translate('comments.commentsOnPaper')
+			'reviewRound' => __('submissions.reviewType'),
+			'paper' => __('paper.papers'),
+			'paperid' => __('paper.submissionId'),
+			'reviewerid' => __('plugins.reports.reviews.reviewerId'),
+			'reviewer' => __('plugins.reports.reviews.reviewer'),
+			'firstname' => __('user.firstName'),
+			'middlename' => __('user.middleName'),
+			'lastname' => __('user.lastName'),
+			'dateassigned' => __('plugins.reports.reviews.dateAssigned'),
+			'datenotified' => __('plugins.reports.reviews.dateNotified'),
+			'dateconfirmed' => __('plugins.reports.reviews.dateConfirmed'),
+			'datecompleted' => __('plugins.reports.reviews.dateCompleted'),
+			'datereminded' => __('plugins.reports.reviews.dateReminded'),
+			'declined' => __('submissions.declined'),
+			'cancelled' => __('common.cancelled'),
+			'recommendation' => __('reviewer.paper.recommendation'),
+			'comments' => __('comments.commentsOnPaper')
 		);
 		$yesNoArray = array('declined', 'cancelled');
 
@@ -121,7 +121,7 @@ class ReviewReportPlugin extends ReportPlugin {
 				} elseif ($index == 'reviewRound') {
 					$columns[$index] = $reviewTypes[$row[$index]];
 				} elseif ($index == "recommendation") {
-					$columns[$index] = (!isset($row[$index])) ? Locale::translate('common.none') : Locale::translate($recommendations[$row[$index]]);
+					$columns[$index] = (!isset($row[$index])) ? __('common.none') : __($recommendations[$row[$index]]);
 				} elseif ($index == "comments") {
 					if (isset($comments[$row['paperid']][$row['reviewerid']])) {
 						$columns[$index] = html_entity_decode(strip_tags($comments[$row['paperid']][$row['reviewerid']]), ENT_QUOTES, 'UTF-8');

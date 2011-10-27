@@ -325,9 +325,9 @@ class UserRegistrationForm extends Form {
 				$previouslyChosen = in_array($optionId, $oldRegistrationOptionIds);
 				$newlyChosen = in_array($optionId, $registrationOptionIds);
 				if ($previouslyChosen && !$newlyChosen) {
-					$optionsDiffer .= Locale::translate('schedConf.registrationOptions.removed', array('option' => $registrationOption->getRegistrationOptionName())) . "\n";
+					$optionsDiffer .= __('schedConf.registrationOptions.removed', array('option' => $registrationOption->getRegistrationOptionName())) . "\n";
 				} elseif (!$previouslyChosen && $newlyChosen) {
-					$optionsDiffer .= Locale::translate('schedConf.registrationOptions.added', array('option' => $registrationOption->getRegistrationOptionName())) . "\n";
+					$optionsDiffer .= __('schedConf.registrationOptions.added', array('option' => $registrationOption->getRegistrationOptionName())) . "\n";
 				}
 				unset($registrationOption);
 			}

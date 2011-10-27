@@ -45,8 +45,8 @@ class DirectorSubmissionDAO extends DAO {
 	 * @return DirectorSubmission
 	 */
 	function &getDirectorSubmission($paperId) {
-		$primaryLocale = Locale::getPrimaryLocale();
-		$locale = Locale::getLocale();
+		$primaryLocale = AppLocale::getPrimaryLocale();
+		$locale = AppLocale::getLocale();
 		$result =& $this->retrieve(
 			'SELECT	p.*,
 				COALESCE(ttl.setting_value, ttpl.setting_value) AS track_title,
@@ -178,8 +178,8 @@ class DirectorSubmissionDAO extends DAO {
 	 * @return array result
 	 */
 	function &_getUnfilteredDirectorSubmissions($schedConfId, $trackId = 0, $directorId = 0, $searchField = null, $searchMatch = null, $search = null, $dateField = null, $dateFrom = null, $dateTo = null, $additionalWhereSql = '', $rangeInfo = null, $sortBy = null, $sortDirection = SORT_DIRECTION_ASC) {
-		$primaryLocale = Locale::getPrimaryLocale();
-		$locale = Locale::getLocale();
+		$primaryLocale = AppLocale::getPrimaryLocale();
+		$locale = AppLocale::getLocale();
 		$params = array(
 			'title', // Track title (primary locale)
 			$primaryLocale,

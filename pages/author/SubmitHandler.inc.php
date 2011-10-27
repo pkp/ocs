@@ -96,7 +96,7 @@ class SubmitHandler extends AuthorHandler {
 				case 2:
 					if ($request->getUserVar('uploadSubmissionFile')) {
 						if (!$submitForm->uploadSubmissionFile('submissionFile')) {
-							$submitForm->addError('uploadSubmissionFile', Locale::translate('common.uploadFailed'));
+							$submitForm->addError('uploadSubmissionFile', __('common.uploadFailed'));
 						}
 						$editData = true;
 					}
@@ -166,7 +166,7 @@ class SubmitHandler extends AuthorHandler {
 						if ($suppFileId = SubmitHandler::submitUploadSuppFile(array(), $request)) {
 							$request->redirect(null, null, null, 'submitSuppFile', $suppFileId, array('paperId' => $paperId));
 						} else {
-							$submitForm->addError('uploadSubmissionFile', Locale::translate('common.uploadFailed'));
+							$submitForm->addError('uploadSubmissionFile', __('common.uploadFailed'));
 						}
 					}
 					break;
@@ -241,7 +241,7 @@ class SubmitHandler extends AuthorHandler {
 
 		import('classes.author.form.submit.AuthorSubmitSuppFileForm');
 		$submitForm = new AuthorSubmitSuppFileForm($paper);
-		$submitForm->setData('title', array($paper->getLocale() => Locale::translate('common.untitled')));
+		$submitForm->setData('title', array($paper->getLocale() => __('common.untitled')));
 		return $submitForm->execute();
 	}
 
@@ -295,7 +295,7 @@ class SubmitHandler extends AuthorHandler {
 		import('lib.pkp.classes.file.FileManager');
 		$fileManager = new FileManager();
 		if ($fileManager->uploadError('uploadSuppFile') && $suppFileId == 0) {
-			$submitForm->addError('uploadSubmissionFile', Locale::translate('common.uploadFailed'));
+			$submitForm->addError('uploadSubmissionFile', __('common.uploadFailed'));
 		}
 
 		if ($submitForm->validate()) {

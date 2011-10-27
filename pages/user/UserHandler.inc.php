@@ -207,7 +207,7 @@ class UserHandler extends Handler {
 			}
 		}
 
-		if (Locale::isLocaleValid($setLocale) && (!isset($conferenceSupportedLocales) || in_array($setLocale, $conferenceSupportedLocales)) && in_array($setLocale, $site->getSupportedLocales())) {
+		if (AppLocale::isLocaleValid($setLocale) && (!isset($conferenceSupportedLocales) || in_array($setLocale, $conferenceSupportedLocales)) && in_array($setLocale, $site->getSupportedLocales())) {
 			$session =& Request::getSession();
 			$session->setSessionVar('currentLocale', $setLocale);
 		}
@@ -291,7 +291,7 @@ class UserHandler extends Handler {
 	 */
 	function setupTemplate($subclass = false) {
 		parent::setupTemplate();
-		Locale::requireComponents(array(LOCALE_COMPONENT_OCS_AUTHOR, LOCALE_COMPONENT_OCS_DIRECTOR, LOCALE_COMPONENT_OCS_MANAGER));
+		AppLocale::requireComponents(array(LOCALE_COMPONENT_OCS_AUTHOR, LOCALE_COMPONENT_OCS_DIRECTOR, LOCALE_COMPONENT_OCS_MANAGER));
 
 		$conference =& Request::getConference();
 		$schedConf =& Request::getSchedConf();

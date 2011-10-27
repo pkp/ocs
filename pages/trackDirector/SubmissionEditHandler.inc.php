@@ -41,7 +41,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		$this->setupTemplate($request, true, $paperId);
 
 		// FIXME? For comments.readerComments under Status
-		Locale::requireComponents(array(LOCALE_COMPONENT_PKP_READER));
+		AppLocale::requireComponents(array(LOCALE_COMPONENT_PKP_READER));
 
 		$user =& $request->getUser();
 
@@ -406,7 +406,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		$schedConf =& $request->getSchedConf();
 		$submission =& $this->submission;
 
-		Locale::requireComponents(array(LOCALE_COMPONENT_PKP_MANAGER)); // manager.people.noneEnrolled FIXME?
+		AppLocale::requireComponents(array(LOCALE_COMPONENT_PKP_MANAGER)); // manager.people.noneEnrolled FIXME?
 
 		$sort = $request->getUserVar('sort');
 		$sort = isset($sort) ? $sort : 'name';
@@ -472,7 +472,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 			$templateMgr->assign('averageQualityRatings', $reviewAssignmentDao->getAverageQualityRatings($schedConf->getId()));
 
 			$templateMgr->assign('helpTopicId', 'conference.roles.reviewers');
-			$templateMgr->assign('alphaList', explode(' ', Locale::translate('common.alphaList')));
+			$templateMgr->assign('alphaList', explode(' ', __('common.alphaList')));
 			$templateMgr->assign('sort', $sort);
 			$templateMgr->assign('sortDirection', $sortDirection);
 			$templateMgr->display('trackDirector/selectReviewer.tpl');
@@ -492,7 +492,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 
 		import('classes.trackDirector.form.CreateReviewerForm');
 		$createReviewerForm = new CreateReviewerForm($paperId);
-		Locale::requireComponents(array(LOCALE_COMPONENT_PKP_MANAGER));
+		AppLocale::requireComponents(array(LOCALE_COMPONENT_PKP_MANAGER));
 		$this->setupTemplate($request, true, $paperId);
 
 		if (isset($args[1]) && $args[1] === 'create') {
@@ -534,7 +534,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 	function enrollSearch($args, $request) {
 		$paperId = (int) array_shift($args);
 		$this->validate($request, $paperId, TRACK_DIRECTOR_ACCESS_REVIEW);
-		Locale::requireComponents(array(LOCALE_COMPONENT_PKP_MANAGER)); // manager.people.enrollment, manager.people.enroll
+		AppLocale::requireComponents(array(LOCALE_COMPONENT_PKP_MANAGER)); // manager.people.enrollment, manager.people.enroll
 		$conference =& $request->getConference();
 		$schedConf =& $request->getSchedConf();
 		$submission =& $this->submission;
@@ -587,7 +587,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		));
 		$templateMgr->assign('roleId', $roleId);
 		$templateMgr->assign_by_ref('users', $users);
-		$templateMgr->assign('alphaList', explode(' ', Locale::translate('common.alphaList')));
+		$templateMgr->assign('alphaList', explode(' ', __('common.alphaList')));
 
 		$templateMgr->assign('helpTopicId', 'conference.roles.index');
 		$templateMgr->display('trackDirector/searchUsers.tpl');
@@ -842,7 +842,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		$this->setupTemplate($request, true);
 
 		// For manager.people at top of user profile
-		Locale::requireComponents(array(LOCALE_COMPONENT_PKP_MANAGER));
+		AppLocale::requireComponents(array(LOCALE_COMPONENT_PKP_MANAGER));
 
 
 		$templateMgr =& TemplateManager::getManager();
@@ -872,7 +872,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 			$templateMgr->assign('country', $country);
 
 			$templateMgr->assign_by_ref('user', $user);
-			$templateMgr->assign('localeNames', Locale::getAllLocales());
+			$templateMgr->assign('localeNames', AppLocale::getAllLocales());
 			$templateMgr->assign('helpTopicId', 'conference.roles.index');
 			$templateMgr->display('trackDirector/userProfile.tpl');
 		}
@@ -1473,7 +1473,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		import('classes.submission.form.SuppFileForm');
 
 		$suppFileForm = new SuppFileForm($submission);
-		$suppFileForm->setData('title', array($submission->getLocale() => Locale::translate('common.untitled')));
+		$suppFileForm->setData('title', array($submission->getLocale() => __('common.untitled')));
 		$suppFileId = $suppFileForm->execute($fileName);
 
 		$request->redirect(null, null, null, 'editSuppFile', array($paperId, $suppFileId));

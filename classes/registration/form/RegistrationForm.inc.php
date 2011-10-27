@@ -297,10 +297,10 @@ class RegistrationForm extends Form {
 		$registrationContactSignature = $registrationName;
 
 		if ($registrationMailingAddress != '') $registrationContactSignature .= "\n" . $registrationMailingAddress;
-		if ($registrationPhone != '') $registrationContactSignature .= "\n" . Locale::Translate('user.phone') . ': ' . $registrationPhone;
-		if ($registrationFax != '')	$registrationContactSignature .= "\n" . Locale::Translate('user.fax') . ': ' . $registrationFax;
+		if ($registrationPhone != '') $registrationContactSignature .= "\n" . AppLocale::Translate('user.phone') . ': ' . $registrationPhone;
+		if ($registrationFax != '')	$registrationContactSignature .= "\n" . AppLocale::Translate('user.fax') . ': ' . $registrationFax;
 
-		$registrationContactSignature .= "\n" . Locale::Translate('user.email') . ': ' . $registrationEmail;
+		$registrationContactSignature .= "\n" . AppLocale::Translate('user.email') . ': ' . $registrationEmail;
 		
 		return array($registrationEmail, $registrationName, $registrationContactSignature);
 	}

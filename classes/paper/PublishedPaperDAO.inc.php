@@ -44,8 +44,8 @@ class PublishedPaperDAO extends DAO {
 	 * @return object Iterator of PublishedPaper objects
 	 */
 	function &getPublishedPapers($schedConfId, $sortOrder = PAPER_SORT_ORDER_NATURAL) {
-		$primaryLocale = Locale::getPrimaryLocale();
-		$locale = Locale::getLocale();
+		$primaryLocale = AppLocale::getPrimaryLocale();
+		$locale = AppLocale::getLocale();
 
 		$params = array(
 			'title',
@@ -111,8 +111,8 @@ class PublishedPaperDAO extends DAO {
 	 * @param $rangeInfo object
 	 */
 	function &getPublishedPapersBySchedConfId($schedConfId, $rangeInfo = null) {
-		$primaryLocale = Locale::getPrimaryLocale();
-		$locale = Locale::getLocale();
+		$primaryLocale = AppLocale::getPrimaryLocale();
+		$locale = AppLocale::getLocale();
 
 		$result =& $this->retrieveRange(
 			'SELECT pp.*,
@@ -158,8 +158,8 @@ class PublishedPaperDAO extends DAO {
 	 * @return PublishedPaper objects array
 	 */
 	function &getPublishedPapersInTracks($schedConfId, $trackId = null, $searchField = null, $searchMatch = null, $search = null, $previewAbstracts = false) {
-		$primaryLocale = Locale::getPrimaryLocale();
-		$locale = Locale::getLocale();
+		$primaryLocale = AppLocale::getPrimaryLocale();
+		$locale = AppLocale::getLocale();
 
 		$publishedPapers = array();
 
@@ -253,8 +253,8 @@ class PublishedPaperDAO extends DAO {
 	 * @return PublishedPaper objects array
 	 */
 	function &getPublishedPapersByTrackId($trackId, $schedConfId) {
-		$primaryLocale = Locale::getPrimaryLocale();
-		$locale = Locale::getLocale();
+		$primaryLocale = AppLocale::getPrimaryLocale();
+		$locale = AppLocale::getLocale();
 
 		$publishedPapers = array();
 
@@ -338,8 +338,8 @@ class PublishedPaperDAO extends DAO {
 	 * @return PublishedPaper object
 	 */
 	function &getPublishedPaperByPaperId($paperId, $schedConfId = null, $previewAbstracts = null) {
-		$primaryLocale = Locale::getPrimaryLocale();
-		$locale = Locale::getLocale();
+		$primaryLocale = AppLocale::getPrimaryLocale();
+		$locale = AppLocale::getLocale();
 		$params = array(
 			'title',
 			$primaryLocale,
@@ -391,8 +391,8 @@ class PublishedPaperDAO extends DAO {
 	 * @return PublishedPaper object
 	 */
 	function &getPublishedPaperByPublicPaperId($schedConfId, $publicPaperId) {
-		$primaryLocale = Locale::getPrimaryLocale();
-		$locale = Locale::getLocale();
+		$primaryLocale = AppLocale::getPrimaryLocale();
+		$locale = AppLocale::getLocale();
 
 		$result =& $this->retrieve(
 			'SELECT	pa.*,
@@ -459,7 +459,7 @@ class PublishedPaperDAO extends DAO {
 	function &getPublishedPaperIdsAlphabetizedByTitle($conferenceId = null, $schedConfId = null, $rangeInfo = null) {
 		$params = array(
 			'cleanTitle',
-			Locale::getLocale(),
+			AppLocale::getLocale(),
 			'cleanTitle'
 		);
 		if ($conferenceId) $params[] = $conferenceId;
@@ -715,8 +715,8 @@ class PublishedPaperDAO extends DAO {
 	 * @return $authors array Author Objects
 	 */
 	function getPublishedPaperAuthors($schedConfId) {
-		$primaryLocale = Locale::getPrimaryLocale();
-		$locale = Locale::getLocale();
+		$primaryLocale = AppLocale::getPrimaryLocale();
+		$locale = AppLocale::getLocale();
 
 		$authors = array();
 		$result =& $this->retrieve(

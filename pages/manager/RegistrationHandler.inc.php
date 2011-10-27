@@ -244,7 +244,7 @@ class RegistrationHandler extends ManagerHandler {
 		$templateMgr->assign_by_ref('users', $users);
 		$templateMgr->assign('helpTopicId', 'conference.currentConferences.registration');
 		$templateMgr->assign('registrationId', Request::getUserVar('registrationId'));
-		$templateMgr->assign('alphaList', explode(' ', Locale::translate('common.alphaList')));
+		$templateMgr->assign('alphaList', explode(' ', __('common.alphaList')));
 		$templateMgr->assign('sort', $sort);
 		$templateMgr->assign('sortDirection', $sortDirection);
 		$templateMgr->display('registration/users.tpl');

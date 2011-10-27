@@ -251,18 +251,18 @@ class AcronPlugin extends GenericPlugin {
 	}
 
 	function getDisplayName() {
-		return Locale::translate('plugins.generic.acron.name');
+		return __('plugins.generic.acron.name');
 	}
 
 	function getDescription() {
-		return Locale::translate('plugins.generic.acron.description');
+		return __('plugins.generic.acron.description');
 	}
 
 	function getManagementVerbs() {
 		$verbs = array();
 		if ($this->getEnabled()) {
 			$verbs[] = array(
-				'reload', Locale::translate('plugins.generic.acron.reload')
+				'reload', __('plugins.generic.acron.reload')
 			);
 		}
 		return parent::getManagementVerbs($verbs);

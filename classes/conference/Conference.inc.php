@@ -160,10 +160,10 @@ class Conference extends DataObject {
 	}
 
 	function &getLocalizedSetting($name) {
-		$returner = $this->getSetting($name, Locale::getLocale());
+		$returner = $this->getSetting($name, AppLocale::getLocale());
 		if ($returner === null) {
 			unset($returner);
-			$returner = $this->getSetting($name, Locale::getPrimaryLocale());
+			$returner = $this->getSetting($name, AppLocale::getPrimaryLocale());
 		}
 		return $returner;
 	}
@@ -218,7 +218,7 @@ class Conference extends DataObject {
 
 		if (!isset($supportedLocales)) {
 			$supportedLocales = array();
-			$localeNames =& Locale::getAllLocales();
+			$localeNames =& AppLocale::getAllLocales();
 
 			$locales = $this->getSetting('supportedLocales');
 			if (!isset($locales) || !is_array($locales)) {
@@ -243,7 +243,7 @@ class Conference extends DataObject {
 
 		if (!isset($supportedLocales)) {
 			$supportedLocales = array();
-			$localeNames =& Locale::getAllLocales();
+			$localeNames =& AppLocale::getAllLocales();
 
 			$locales = $this->getSetting('supportedFormLocales');
 			if (!isset($locales) || !is_array($locales)) {
@@ -271,7 +271,7 @@ class Conference extends DataObject {
 
 		$title = null;
 
-		foreach (array(Locale::getLocale(), Locale::getPrimaryLocale()) as $locale) {
+		foreach (array(AppLocale::getLocale(), AppLocale::getPrimaryLocale()) as $locale) {
 			if (isset($typeArray[$locale]) && $typeArray[$locale]) {
 				if (isset($imageArray[$locale])) $title = $imageArray[$locale];
 			}
@@ -289,7 +289,7 @@ class Conference extends DataObject {
 	function getPageHeaderLogo($home = false) {
 		$prefix = $home ? 'home' : 'page';
 		$logoArray = $this->getSetting($prefix . 'HeaderLogoImage');
-		foreach (array(Locale::getLocale(), Locale::getPrimaryLocale()) as $locale) {
+		foreach (array(AppLocale::getLocale(), AppLocale::getPrimaryLocale()) as $locale) {
 			if (isset($logoArray[$locale])) return $logoArray[$locale];
 		}
 		return null;
@@ -301,7 +301,7 @@ class Conference extends DataObject {
 	 */
 	function getLocalizedFavicon() {
 		$faviconArray = $this->getSetting('conferenceFavicon');
-		foreach (array(Locale::getLocale(), Locale::getPrimaryLocale()) as $locale) {
+		foreach (array(AppLocale::getLocale(), AppLocale::getPrimaryLocale()) as $locale) {
 			if (isset($faviconArray[$locale])) return $faviconArray[$locale];
 		}
 	}

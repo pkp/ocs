@@ -151,7 +151,7 @@ class TrackSubmissionHandler extends AuthorHandler {
 		$this->validate($request, $paperId);
 		$authorSubmission =& $this->submission;
 		$this->setupTemplate($request, true, $paperId);
-		Locale::requireComponents(array(LOCALE_COMPONENT_OCS_DIRECTOR)); // FIXME?
+		AppLocale::requireComponents(array(LOCALE_COMPONENT_OCS_DIRECTOR)); // FIXME?
 
 		$reviewMode = $authorSubmission->getReviewMode();
 		switch ($reviewMode) {

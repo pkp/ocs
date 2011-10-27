@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @file classes/i18n/Locale.inc.php
+ * @file classes/i18n/AppLocale.inc.php
  *
  * Copyright (c) 2000-2011 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
@@ -25,7 +25,7 @@ define('LOCALE_COMPONENT_OCS_MANAGER',		0x00000104);
 define('LOCALE_COMPONENT_OCS_ADMIN',		0x00000105);
 define('LOCALE_COMPONENT_OCS_DEFAULT',		0x00000106);
 
-class Locale extends PKPLocale {
+class AppLocale extends PKPLocale {
 	/**
 	 * Get all supported UI locales for the current context.
 	 * @return array
@@ -34,7 +34,7 @@ class Locale extends PKPLocale {
 		static $supportedLocales;
 		if (!isset($supportedLocales)) {
 			if (defined('SESSION_DISABLE_INIT') || !Config::getVar('general', 'installed')) {
-				$supportedLocales = Locale::getAllLocales();
+				$supportedLocales = AppLocale::getAllLocales();
 			} elseif (($conference =& Request::getConference())) {
 				$supportedLocales = $conference->getSupportedLocaleNames();
 			} else {
@@ -53,7 +53,7 @@ class Locale extends PKPLocale {
 		static $supportedFormLocales;
 		if (!isset($supportedFormLocales)) {
 			if (defined('SESSION_DISABLE_INIT') || !Config::getVar('general', 'installed')) {
-				$supportedFormLocales = Locale::getAllLocales();
+				$supportedFormLocales = AppLocale::getAllLocales();
 			} elseif (($conference =& Request::getConference())) {
 				$supportedFormLocales = $conference->getSupportedFormLocaleNames();
 			} else {
@@ -77,7 +77,7 @@ class Locale extends PKPLocale {
 				// it to override. (Necessary when locale is
 				// being set, as cookie will not yet be re-set)
 				$locale = Request::getUserVar('setLocale');
-				if (empty($locale) || !in_array($locale, array_keys(Locale::getSupportedLocales()))) $locale = Request::getCookieVar('currentLocale');
+				if (empty($locale) || !in_array($locale, array_keys(AppLocale::getSupportedLocales()))) $locale = Request::getCookieVar('currentLocale');
 			} else {
 				$sessionManager =& SessionManager::getManager();
 				$session =& $sessionManager->getUserSession();
@@ -115,7 +115,7 @@ class Locale extends PKPLocale {
 				}
 			}
 
-			if (!Locale::isLocaleValid($locale)) {
+			if (!AppLocale::isLocaleValid($locale)) {
 				$locale = LOCALE_DEFAULT;
 			}
 
@@ -131,7 +131,7 @@ class Locale extends PKPLocale {
 	function getLocalePrecedence() {
 		static $localePrecedence;
 		if (!isset($localePrecedence)) {
-			$localePrecedence = array(Locale::getLocale());
+			$localePrecedence = array(AppLocale::getLocale());
 
 			$conference =& Request::getConference();
 			if ($conference && !in_array($conference->getPrimaryLocale(), $localePrecedence)) $localePrecedence[] = $conference->getPrimaryLocale();
@@ -163,7 +163,7 @@ class Locale extends PKPLocale {
 			$locale = $site->getPrimaryLocale();
 		}
 
-		if (!isset($locale) || !Locale::isLocaleValid($locale)) {
+		if (!isset($locale) || !AppLocale::isLocaleValid($locale)) {
 			$locale = LOCALE_DEFAULT;
 		}
 
