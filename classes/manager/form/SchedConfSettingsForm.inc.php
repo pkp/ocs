@@ -151,7 +151,7 @@ class SchedConfSettingsForm extends Form {
 			$title = $this->getData('title');
 			$title = $title[$this->getFormLocale()];
 
-			Locale::requireComponents(array(LOCALE_COMPONENT_APPLICATION_COMMON, LOCALE_COMPONENT_OCS_DEFAULT));
+			AppLocale::requireComponents(array(LOCALE_COMPONENT_APPLICATION_COMMON, LOCALE_COMPONENT_OCS_DEFAULT));
 			$schedConfSettingsDao->installSettings($schedConfId, Config::getVar('general', 'registry_dir') . '/schedConfSettings.xml', array(
 				'authorGuidelinesUrl' => Request::url($conference->getPath(), $this->getData('schedConfPath'), 'about', 'submissions', null, null, 'authorGuidelines'),
 				'indexUrl' => Request::getIndexUrl(),
@@ -167,9 +167,9 @@ class SchedConfSettingsForm extends Form {
 			$track = new Track();
 			$track->setSchedConfId($schedConfId);
 			$track->setMetaReviewed(true);
-			$track->setTitle(Locale::translate('track.default.title'), $conference->getPrimaryLocale());
-			$track->setAbbrev(Locale::translate('track.default.abbrev'), $conference->getPrimaryLocale());
-			$track->setPolicy(Locale::translate('track.default.policy'), $conference->getPrimaryLocale());
+			$track->setTitle(__('track.default.title'), $conference->getPrimaryLocale());
+			$track->setAbbrev(__('track.default.abbrev'), $conference->getPrimaryLocale());
+			$track->setPolicy(__('track.default.policy'), $conference->getPrimaryLocale());
 			$track->setDirectorRestricted(false);
 			$trackDao->insertTrack($track);
 		}

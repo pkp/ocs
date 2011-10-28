@@ -36,7 +36,7 @@ class EmailHandler extends ManagerHandler {
 
 		$emailTemplateDao =& DAORegistry::getDAO('EmailTemplateDAO');
 		$emailTemplatesArray =& $emailTemplateDao->getEmailTemplates(
-			Locale::getLocale(),
+			AppLocale::getLocale(),
 			$conference->getId()
 		);
 

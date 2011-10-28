@@ -390,8 +390,8 @@ class TimelineForm extends Form {
 				CONFERENCE_LOG_CONFIGURATION,
 				LOG_TYPE_DEFAULT,
 				0, 'log.timeline.postAbstractsChanged',
-				array(	'oldPostAbstracts' => Locale::translate($schedConf->getSetting('postAbstracts')?'common.true':'common.false'),
-					'newPostAbstracts' => Locale::translate($this->_data['postAbstracts'])?'common.true':'common.false'));
+				array(	'oldPostAbstracts' => __($schedConf->getSetting('postAbstracts')?'common.true':'common.false'),
+					'newPostAbstracts' => __($this->_data['postAbstracts'])?'common.true':'common.false'));
 			$schedConf->updateSetting('postAbstracts', $this->_data['postAbstracts'], 'bool');
 		}
 		if ($schedConf->getSetting('postScheduleDate') != $this->_data['postScheduleDate']) {
@@ -412,8 +412,8 @@ class TimelineForm extends Form {
 				CONFERENCE_LOG_CONFIGURATION,
 				LOG_TYPE_DEFAULT,
 				0, 'log.timeline.postScheduleChanged',
-				array(  'oldPostSchedule' => Locale::translate($schedConf->getSetting('postSchedule')?'common.true':'common.false'),
-					'newPostSchedule' => Locale::translate($this->_data['postSchedule']?'common.true':'common.false')));
+				array(  'oldPostSchedule' => __($schedConf->getSetting('postSchedule')?'common.true':'common.false'),
+					'newPostSchedule' => __($this->_data['postSchedule']?'common.true':'common.false')));
 			$schedConf->updateSetting('postSchedule', $this->_data['postSchedule'], 'bool');
 		}
 		if ($schedConf->getSetting('postPapersDate') != $this->_data['postPapersDate']) {
@@ -434,8 +434,8 @@ class TimelineForm extends Form {
 				CONFERENCE_LOG_CONFIGURATION,
 				LOG_TYPE_DEFAULT,
 				0, 'log.timeline.postPapersChanged',
-				array(	'oldPostPapers' => Locale::translate($schedConf->getSetting('postPapers')?'common.true':'common.false'),
-					'newPostPapers' => Locale::translate($this->_data['postPapers']?'common.true':'common.false')));
+				array(	'oldPostPapers' => __($schedConf->getSetting('postPapers')?'common.true':'common.false'),
+					'newPostPapers' => __($this->_data['postPapers']?'common.true':'common.false')));
 			$schedConf->updateSetting('postPapers', $this->_data['postPapers'], 'bool');
 		}
 		if ($schedConf->getSetting('delayOpenAccessDate') != $this->_data['delayOpenAccessDate']) {
@@ -456,8 +456,8 @@ class TimelineForm extends Form {
 				CONFERENCE_LOG_CONFIGURATION,
 				LOG_TYPE_DEFAULT,
 				0, 'log.timeline.delayOpenAccessChanged',
-				array(	'oldDelayOpenAccess' => Locale::translate($schedConf->getSetting('delayOpenAccess')?'common.true':'common.false'),
-					'newDelayOpenAccess' => Locale::translate($this->_data['delayOpenAccess']?'common.true':'common.false')));
+				array(	'oldDelayOpenAccess' => __($schedConf->getSetting('delayOpenAccess')?'common.true':'common.false'),
+					'newDelayOpenAccess' => __($this->_data['delayOpenAccess']?'common.true':'common.false')));
 			$schedConf->updateSetting('delayOpenAccess', $this->_data['delayOpenAccess'], 'bool');
 		}
 		if ($schedConf->getSetting('closeCommentsDate') != $this->_data['closeCommentsDate']) {
@@ -478,8 +478,8 @@ class TimelineForm extends Form {
 				CONFERENCE_LOG_CONFIGURATION,
 				LOG_TYPE_DEFAULT,
 				0, 'log.timeline.closeCommentsChanged',
-				array(	'oldCloseComments' => Locale::translate($schedConf->getSetting('closeComments')?'common.true':'common.false'),
-					'newCloseComments' => Locale::translate($this->_data['closeComments']?'common.true':'common.false')));
+				array(	'oldCloseComments' => __($schedConf->getSetting('closeComments')?'common.true':'common.false'),
+					'newCloseComments' => __($this->_data['closeComments']?'common.true':'common.false')));
 			$schedConf->updateSetting('closeComments', $this->_data['closeComments'], 'bool');
 		}
 	}

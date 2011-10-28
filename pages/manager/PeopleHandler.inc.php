@@ -137,7 +137,7 @@ class PeopleHandler extends ManagerHandler {
 			USER_FIELD_INTERESTS => 'user.interests'
 		));
 		$templateMgr->assign('rolePath', $roleDao->getRolePath($roleId));
-		$templateMgr->assign('alphaList', explode(' ', Locale::translate('common.alphaList')));
+		$templateMgr->assign('alphaList', explode(' ', __('common.alphaList')));
 		$templateMgr->assign('roleSymbolic', $roleSymbolic);
 		$templateMgr->assign('isSchedConfManagement', $schedConf ? true : false);
 		$templateMgr->assign('isConferenceManagement', $schedConf ? false : true);
@@ -209,7 +209,7 @@ class PeopleHandler extends ManagerHandler {
 		));
 		$templateMgr->assign_by_ref('users', $users);
 		$templateMgr->assign_by_ref('thisUser', Request::getUser());
-		$templateMgr->assign('alphaList', explode(' ', Locale::translate('common.alphaList')));
+		$templateMgr->assign('alphaList', explode(' ', __('common.alphaList')));
 		$templateMgr->assign('helpTopicId', 'conference.users.index');
 		$templateMgr->assign('sort', $sort);
 		$templateMgr->assign('sortDirection', $sortDirection);
@@ -545,7 +545,7 @@ class PeopleHandler extends ManagerHandler {
 			USER_FIELD_EMAIL => 'user.email',
 			USER_FIELD_INTERESTS => 'user.interests'
 		));
-		$templateMgr->assign('alphaList', explode(' ', Locale::translate('common.alphaList')));
+		$templateMgr->assign('alphaList', explode(' ', __('common.alphaList')));
 		$templateMgr->assign('oldUserIds', $oldUserIds);
 		$templateMgr->assign('rolePath', $roleDao->getRolePath($roleId));
 		$templateMgr->assign('roleSymbolic', $roleSymbolic);
@@ -735,7 +735,7 @@ class PeopleHandler extends ManagerHandler {
 
 			$templateMgr->assign_by_ref('user', $user);
 			$templateMgr->assign_by_ref('userRoles', $roles);
-			$templateMgr->assign('localeNames', Locale::getAllLocales());
+			$templateMgr->assign('localeNames', AppLocale::getAllLocales());
 			$templateMgr->display('manager/people/userProfile.tpl');
 		}
 	}

@@ -300,7 +300,7 @@ class TinyMCEPlugin extends GenericPlugin {
 			$baseUrl = $templateManager->get_template_vars('baseUrl');
 			$additionalHeadData = $templateManager->get_template_vars('additionalHeadData');
 			$enableFields = join(',', $enableFields);
-			$allLocales = Locale::getAllLocales();
+			$allLocales = AppLocale::getAllLocales();
 			$localeList = array();
 			foreach ($allLocales as $key => $locale) {
 				$localeList[] = String::substr($key, 0, 2);
@@ -322,7 +322,7 @@ class TinyMCEPlugin extends GenericPlugin {
 					entity_encoding : "raw",
 					plugins : "paste,fullscreen",
 					mode : "exact",
-					language : "' . String::substr(Locale::getLocale(), 0, 2) . '",
+					language : "' . String::substr(AppLocale::getLocale(), 0, 2) . '",
 					elements : "' . $enableFields . '",
 					relative_urls : false,
 					forced_root_block : false,
@@ -353,7 +353,7 @@ class TinyMCEPlugin extends GenericPlugin {
 	 * @return string
 	 */
 	function getDisplayName() {
-		return Locale::translate('plugins.generic.tinymce.name');
+		return __('plugins.generic.tinymce.name');
 	}
 
 	/**
@@ -361,8 +361,8 @@ class TinyMCEPlugin extends GenericPlugin {
 	 * @return string
 	 */
 	function getDescription() {
-		if ($this->isMCEInstalled()) return Locale::translate('plugins.generic.tinymce.description');
-		return Locale::translate('plugins.generic.tinymce.descriptionDisabled', array('tinyMcePath' => TINYMCE_INSTALL_PATH));
+		if ($this->isMCEInstalled()) return __('plugins.generic.tinymce.description');
+		return __('plugins.generic.tinymce.descriptionDisabled', array('tinyMcePath' => TINYMCE_INSTALL_PATH));
 	}
 
 	/**
@@ -391,7 +391,7 @@ class TinyMCEPlugin extends GenericPlugin {
 		$verbs = array();
 		if ($this->isMCEInstalled()) $verbs[] = array(
 			($this->getEnabled()?'disable':'enable'),
-			Locale::translate($this->getEnabled()?'manager.plugins.disable':'manager.plugins.enable')
+			__($this->getEnabled()?'manager.plugins.disable':'manager.plugins.enable')
 		);
 		return $verbs;
 	}
@@ -409,11 +409,11 @@ class TinyMCEPlugin extends GenericPlugin {
 		switch ($verb) {
 			case 'enable':
 				$this->updateSetting($conferenceId, 0, 'enabled', true);
-				$message = Locale::translate('plugins.generic.tinymce.enabled');
+				$message = __('plugins.generic.tinymce.enabled');
 				break;
 			case 'disable':
 				$this->updateSetting($conferenceId, 0, 'enabled', false);
-				$message = Locale::translate('plugins.generic.tinymce.disabled');
+				$message = __('plugins.generic.tinymce.disabled');
 				break;
 		}
 		return false;

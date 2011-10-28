@@ -27,8 +27,8 @@ class RegistrantReportDAO extends DAO {
 	 * @return array
 	 */
 	function getRegistrantReport($conferenceId, $schedConfId) {
-		$primaryLocale = Locale::getPrimaryLocale();
-		$locale = Locale::getLocale();
+		$primaryLocale = AppLocale::getPrimaryLocale();
+		$locale = AppLocale::getLocale();
 
 		$result =& $this->retrieve(
 			'SELECT

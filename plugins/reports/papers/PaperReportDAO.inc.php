@@ -28,8 +28,8 @@ class PaperReportDAO extends DAO {
 	 * @return array
 	 */
 	function getPaperReport($conferenceId, $schedConfId) {
-		$primaryLocale = Locale::getPrimaryLocale();
-		$locale = Locale::getLocale();
+		$primaryLocale = AppLocale::getPrimaryLocale();
+		$locale = AppLocale::getLocale();
 
 		$result =& $this->retrieve(
 			'SELECT	p.status AS status,

@@ -136,7 +136,7 @@ class SchedConfHandler extends Handler {
 			array(Request::url(null, 'index', 'index'), $conference->getConferenceTitle(), true),
 			array(Request::url(null, null, 'index'), $schedConf->getSchedConfTitle(), true)));
 		SchedConfHandler::setupTemplate($conference,$schedConf);
-		Locale::requireComponents(array(LOCALE_COMPONENT_OCS_MANAGER)); // FIXME: For timeline constants
+		AppLocale::requireComponents(array(LOCALE_COMPONENT_OCS_MANAGER)); // FIXME: For timeline constants
 		import('manager.form.TimelineForm');
 		if (checkPhpVersion('5.0.0')) { // WARNING: This form needs $this in constructor
 			$timelineForm = new TimelineForm(false, true);
@@ -162,7 +162,7 @@ class SchedConfHandler extends Handler {
 			array(Request::url(null, 'index', 'index'), $conference->getConferenceTitle(), true),
 			array(Request::url(null, null, 'index'), $schedConf->getSchedConfTitle(), true)));
 		SchedConfHandler::setupTemplate($conference,$schedConf);
-		Locale::requireComponents(array(LOCALE_COMPONENT_OCS_AUTHOR));
+		AppLocale::requireComponents(array(LOCALE_COMPONENT_OCS_AUTHOR));
 
 		$templateMgr->assign('cfpMessage', $schedConf->getLocalizedSetting('cfpMessage'));
 		$templateMgr->assign('authorGuidelines', $schedConf->getLocalizedSetting('authorGuidelines'));
@@ -173,11 +173,11 @@ class SchedConfHandler extends Handler {
 		if(!$submissionsOpenDate || !$submissionsCloseDate || time() < $submissionsOpenDate) {
 			// Too soon
 			$acceptingSubmissions = false;
-			$notAcceptingSubmissionsMessage = Locale::translate('author.submit.notAcceptingYet');
+			$notAcceptingSubmissionsMessage = __('author.submit.notAcceptingYet');
 		} elseif (time() > $submissionsCloseDate) {
 			// Too late
 			$acceptingSubmissions = false;
-			$notAcceptingSubmissionsMessage = Locale::translate('author.submit.submissionDeadlinePassed', array('closedDate' => strftime(Config::getVar('general', 'date_format_short'), $submissionsCloseDate)));
+			$notAcceptingSubmissionsMessage = __('author.submit.submissionDeadlinePassed', array('closedDate' => strftime(Config::getVar('general', 'date_format_short'), $submissionsCloseDate)));
 		} else {
 			$acceptingSubmissions = true;
 		}
@@ -339,9 +339,9 @@ class SchedConfHandler extends Handler {
 			array(Request::url(null, null, 'index'), $schedConf->getSchedConfTitle(), true)));
 		SchedConfHandler::setupTemplate($conference,$schedConf);
 
-		$templateMgr->assign('program', $schedConf->getSetting('program', Locale::getLocale()));
-		$templateMgr->assign('programFile', $schedConf->getSetting('programFile', Locale::getLocale()));
-		$templateMgr->assign('programFileTitle', $schedConf->getSetting('programFileTitle', Locale::getLocale()));
+		$templateMgr->assign('program', $schedConf->getSetting('program', AppLocale::getLocale()));
+		$templateMgr->assign('programFile', $schedConf->getSetting('programFile', AppLocale::getLocale()));
+		$templateMgr->assign('programFileTitle', $schedConf->getSetting('programFileTitle', AppLocale::getLocale()));
 		$templateMgr->assign('helpTopicId', 'conference.currentConferences.program');
 		$templateMgr->display('schedConf/program.tpl');
 	}
@@ -476,7 +476,7 @@ class SchedConfHandler extends Handler {
 
 		$templateMgr =& TemplateManager::getManager();
 		SchedConfHandler::setupTemplate($conference, $schedConf);
-		Locale::requireComponents(array(LOCALE_COMPONENT_OCS_DIRECTOR)); // FIXME: director.allTracks
+		AppLocale::requireComponents(array(LOCALE_COMPONENT_OCS_DIRECTOR)); // FIXME: director.allTracks
 
 		$templateMgr->assign('pageHierarchy', array(
 			array(Request::url(null, 'index', 'index'), $conference->getConferenceTitle(), true),
@@ -524,8 +524,8 @@ class SchedConfHandler extends Handler {
 			foreach ($duplicateParameters as $param)
 				$templateMgr->assign($param, Request::getUserVar($param));
 
-			$templateMgr->assign('alphaList', explode(' ', Locale::translate('common.alphaList')));
-			$templateMgr->assign('trackOptions', array(0 => Locale::Translate('director.allTracks')) + $tracks);
+			$templateMgr->assign('alphaList', explode(' ', __('common.alphaList')));
+			$templateMgr->assign('trackOptions', array(0 => AppLocale::Translate('director.allTracks')) + $tracks);
 			$templateMgr->assign_by_ref('publishedPapers', $publishedPapers);
 		}
 
@@ -542,7 +542,7 @@ class SchedConfHandler extends Handler {
 	function setupTemplate(&$conference, &$schedConf) {
 		parent::setupTemplate();
 		$templateMgr =& TemplateManager::getManager();
-		Locale::requireComponents(array(LOCALE_COMPONENT_OCS_MANAGER));
+		AppLocale::requireComponents(array(LOCALE_COMPONENT_OCS_MANAGER));
 
 		// Ensure the user is entitled to view the scheduled conference...
 		if (isset($schedConf) && ($conference->getEnabled() || (

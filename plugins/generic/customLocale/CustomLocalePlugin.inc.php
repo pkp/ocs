@@ -25,8 +25,8 @@ class CustomLocalePlugin extends GenericPlugin {
 
 			if ($this->getEnabled()) {
 				// Add custom locale data for already registered locale files.
-				$locale = Locale::getLocale();
-				$localeFiles = Locale::getLocaleFiles($locale);
+				$locale = AppLocale::getLocale();
+				$localeFiles = AppLocale::getLocaleFiles($locale);
 				$conference = Request::getConference();
 				$conferenceId = $conference->getId();
 				$publicFilesDir = Config::getVar('files', 'public_files_dir');
@@ -36,7 +36,7 @@ class CustomLocalePlugin extends GenericPlugin {
 				foreach ($localeFiles as $localeFile) {
 					$customLocalePath = $customLocalePathBase . $localeFile->getFilename();
 					if (FileManager::fileExists($customLocalePath)) {
-						Locale::registerLocaleFile($locale, $customLocalePath, true);
+						AppLocale::registerLocaleFile($locale, $customLocalePath, true);
 					}
 				}
 
@@ -60,7 +60,7 @@ class CustomLocalePlugin extends GenericPlugin {
 
 		import('file.FileManager');
 		if (FileManager::fileExists($customLocalePath)) {
-			Locale::registerLocaleFile($locale, $customLocalePath, true);
+			AppLocale::registerLocaleFile($locale, $customLocalePath, true);
 		}
 
 		return true;
@@ -72,11 +72,11 @@ class CustomLocalePlugin extends GenericPlugin {
 	}
 
 	function getDisplayName() {
-		return Locale::translate('plugins.generic.customLocale.name');
+		return __('plugins.generic.customLocale.name');
 	}
 
 	function getDescription() {
-		return Locale::translate('plugins.generic.customLocale.description');
+		return __('plugins.generic.customLocale.description');
 	}
 
 	function getEnabled() {
@@ -122,12 +122,12 @@ class CustomLocalePlugin extends GenericPlugin {
 
 		$verbs[] = array(
 			($isEnabled?'disable':'enable'),
-			Locale::translate($isEnabled?'manager.plugins.disable':'manager.plugins.enable')
+			__($isEnabled?'manager.plugins.disable':'manager.plugins.enable')
 		);
 
 		if ($isEnabled) $verbs[] = array(
 			'index',
-			Locale::translate('plugins.generic.customLocale.customize')
+			__('plugins.generic.customLocale.customize')
 		);
 
 		return $verbs;
@@ -148,12 +148,12 @@ class CustomLocalePlugin extends GenericPlugin {
 			case 'enable':
 				$this->setEnabled(true);
 				$returner = false;
-				$message = Locale::translate('plugins.generic.customLocale.enabled');
+				$message = __('plugins.generic.customLocale.enabled');
 				break;
 			case 'disable':
 				$this->setEnabled(false);
 				$returner = false;
-				$message = Locale::translate('plugins.generic.customLocale.disabled');
+				$message = __('plugins.generic.customLocale.disabled');
 				break;
 			case 'index':
 				if ($this->getEnabled()) {

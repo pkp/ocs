@@ -39,11 +39,11 @@ class METSExportPlugin extends ImportExportPlugin {
 	}
 
 	function getDisplayName() {
-		return Locale::translate('plugins.importexport.METSExport.displayName');
+		return __('plugins.importexport.METSExport.displayName');
 	}
 
 	function getDescription() {
-		return Locale::translate('plugins.importexport.METSExport.description');
+		return __('plugins.importexport.METSExport.description');
 	}
 
 	function display(&$args) {

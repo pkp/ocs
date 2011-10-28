@@ -40,11 +40,11 @@ class NLMExportPlugin extends ImportExportPlugin {
 	}
 
 	function getDisplayName() {
-		return Locale::translate('plugins.importexport.nlm.displayName');
+		return __('plugins.importexport.nlm.displayName');
 	}
 
 	function getDescription() {
-		return Locale::translate('plugins.importexport.nlm.description');
+		return __('plugins.importexport.nlm.description');
 	}
 
 	function display(&$args) {
@@ -132,8 +132,8 @@ class NLMExportPlugin extends ImportExportPlugin {
 
 		if (!$conference) {
 			if ($conferencePath != '') {
-				echo Locale::translate('plugins.importexport.nlm.cliError') . "\n";
-				echo Locale::translate('plugins.importexport.nlm.export.error.unknownConference', array('conferencePath' => $conferencePath)) . "\n\n";
+				echo __('plugins.importexport.nlm.cliError') . "\n";
+				echo __('plugins.importexport.nlm.export.error.unknownConference', array('conferencePath' => $conferencePath)) . "\n\n";
 			}
 			$this->usage($scriptName);
 			return;
@@ -143,8 +143,8 @@ class NLMExportPlugin extends ImportExportPlugin {
 			case 'papers':
 				$results =& PaperSearch::formatResults($args);
 				if (!$this->exportPapers($results, $xmlFile)) {
-					echo Locale::translate('plugins.importexport.nlm.cliError') . "\n";
-					echo Locale::translate('plugins.importexport.nlm.export.error.couldNotWrite', array('fileName' => $xmlFile)) . "\n\n";
+					echo __('plugins.importexport.nlm.cliError') . "\n";
+					echo __('plugins.importexport.nlm.export.error.couldNotWrite', array('fileName' => $xmlFile)) . "\n\n";
 				}
 				return;
 		}
@@ -156,7 +156,7 @@ class NLMExportPlugin extends ImportExportPlugin {
 	 * Display the command-line usage information
 	 */
 	function usage($scriptName) {
-		echo Locale::translate('plugins.importexport.nlm.cliUsage', array(
+		echo __('plugins.importexport.nlm.cliUsage', array(
 			'scriptName' => $scriptName,
 			'pluginName' => $this->getName()
 		)) . "\n";

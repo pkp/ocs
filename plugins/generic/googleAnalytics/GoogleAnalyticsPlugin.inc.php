@@ -61,11 +61,11 @@ class GoogleAnalyticsPlugin extends GenericPlugin {
 	}
 
 	function getDisplayName() {
-		return Locale::translate('plugins.generic.googleAnalytics.displayName');
+		return __('plugins.generic.googleAnalytics.displayName');
 	}
 
 	function getDescription() {
-		return Locale::translate('plugins.generic.googleAnalytics.description');
+		return __('plugins.generic.googleAnalytics.description');
 	}
 
 	/**
@@ -121,16 +121,16 @@ class GoogleAnalyticsPlugin extends GenericPlugin {
 		if ($this->getEnabled()) {
 			$verbs[] = array(
 				'disable',
-				Locale::translate('manager.plugins.disable')
+				__('manager.plugins.disable')
 			);
 			$verbs[] = array(
 				'settings',
-				Locale::translate('plugins.generic.googleAnalytics.manager.settings')
+				__('plugins.generic.googleAnalytics.manager.settings')
 			);
 		} else {
 			$verbs[] = array(
 				'enable',
-				Locale::translate('manager.plugins.enable')
+				__('manager.plugins.enable')
 			);
 		}
 		return $verbs;
@@ -203,12 +203,12 @@ class GoogleAnalyticsPlugin extends GenericPlugin {
 			case 'enable':
 				$this->setEnabled(true);
 				$returner = false;
-				$message = Locale::translate('plugins.generic.googleAnalytics.enabled');
+				$message = __('plugins.generic.googleAnalytics.enabled');
 				break;
 			case 'disable':
 				$this->setEnabled(false);
 				$returner = false;
-				$message = Locale::translate('plugins.generic.sgoogleAnalyticsehl.disabled'); // Typo is intentional to match locale files (#5350)
+				$message = __('plugins.generic.sgoogleAnalyticsehl.disabled'); // Typo is intentional to match locale files (#5350)
 				break;
 			case 'settings':
 				if ($this->getEnabled()) {

@@ -92,7 +92,7 @@ class ManagerAccommodationHandler extends ManagerHandler {
 				}
 			}
 			if (!$success) {
-				$settingsForm->addError('accommodationFiles', Locale::translate('common.uploadFailed'));
+				$settingsForm->addError('accommodationFiles', __('common.uploadFailed'));
 			}
 			$editData = true;
 		} else {

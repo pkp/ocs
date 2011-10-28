@@ -22,13 +22,13 @@ class StaticPagesPlugin extends GenericPlugin {
 	}
 
 	function getDisplayName() {
-		return Locale::translate('plugins.generic.staticPages.displayName');
+		return __('plugins.generic.staticPages.displayName');
 	}
 
 	function getDescription() {
-		$description = Locale::translate('plugins.generic.staticPages.description');
+		$description = __('plugins.generic.staticPages.description');
 		if ( !$this->isTinyMCEInstalled() )
-			$description .= "<br />".Locale::translate('plugins.generic.staticPages.requirement.tinymce');
+			$description .= "<br />".__('plugins.generic.staticPages.requirement.tinymce');
 		return $description;
 	}
 
@@ -111,18 +111,18 @@ class StaticPagesPlugin extends GenericPlugin {
 		if ($this->getEnabled()) {
 			$verbs[] = array(
 				'disable',
-				Locale::translate('manager.plugins.disable')
+				__('manager.plugins.disable')
 			);
 			if ( $this->isTinyMCEInstalled() ) {
 				$verbs[] = array(
 					'settings',
-					Locale::translate('plugins.generic.staticPages.editAddContent')
+					__('plugins.generic.staticPages.editAddContent')
 				);
 			}
 		} else {
 			$verbs[] = array(
 				'enable',
-				Locale::translate('manager.plugins.enable')
+				__('manager.plugins.enable')
 			);
 		}
 		return $verbs;

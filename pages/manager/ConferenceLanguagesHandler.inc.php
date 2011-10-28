@@ -71,7 +71,7 @@ class ConferenceLanguagesHandler extends ManagerHandler {
 	function reloadLocalizedDefaultSettings($args, &$request) {
 		// make sure the locale is valid
 		$locale = $request->getUserVar('localeToLoad');
-		if ( !Locale::isLocaleValid($locale) ) {
+		if ( !AppLocale::isLocaleValid($locale) ) {
 			$request->redirect(null, null, null, 'languages');
 		}
 

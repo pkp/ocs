@@ -66,7 +66,7 @@ class TrackDirectorHandler extends Handler {
 		$sortDirection = Request::getUserVar('sortDirection');
 
 		$filterTrackOptions = array(
-			FILTER_TRACK_ALL => Locale::Translate('director.allTracks')
+			FILTER_TRACK_ALL => AppLocale::Translate('director.allTracks')
 		) + $tracks;
 
 		switch($page) {
@@ -151,8 +151,8 @@ class TrackDirectorHandler extends Handler {
 			$templateMgr->assign($param, Request::getUserVar($param));
 
 		$templateMgr->assign('reviewType', Array(
-			REVIEW_STAGE_ABSTRACT => Locale::translate('submission.abstract'),
-			REVIEW_STAGE_PRESENTATION => Locale::translate('submission.paper')
+			REVIEW_STAGE_ABSTRACT => __('submission.abstract'),
+			REVIEW_STAGE_PRESENTATION => __('submission.paper')
 		));
 
 		$templateMgr->assign('fieldOptions', Array(
@@ -194,7 +194,7 @@ class TrackDirectorHandler extends Handler {
 	 */
 	function setupTemplate($subclass = false, $paperId = 0, $parentPage = null) {
 		parent::setupTemplate();
-		Locale::requireComponents(array(LOCALE_COMPONENT_OCS_DIRECTOR, LOCALE_COMPONENT_PKP_SUBMISSION, LOCALE_COMPONENT_OCS_AUTHOR));
+		AppLocale::requireComponents(array(LOCALE_COMPONENT_OCS_DIRECTOR, LOCALE_COMPONENT_PKP_SUBMISSION, LOCALE_COMPONENT_OCS_AUTHOR));
 		$templateMgr =& TemplateManager::getManager();
 		$isDirector = Validation::isDirector();
 		$pageHierarchy = array();

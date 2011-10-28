@@ -102,7 +102,7 @@ class ReviewerAction extends Action {
 					$email->assignParams(array(
 						'editorialContactName' => $editorialContactName,
 						'reviewerName' => $reviewer->getFullName(),
-						'reviewDueDate' => ($reviewAssignment->getDateDue() === null ? Locale::translate('common.noDate') : strftime(Config::getVar('general', 'date_format_short'), strtotime($reviewAssignment->getDateDue())))
+						'reviewDueDate' => ($reviewAssignment->getDateDue() === null ? __('common.noDate') : strftime(Config::getVar('general', 'date_format_short'), strtotime($reviewAssignment->getDateDue())))
 					));
 				}
 				$paramArray = array('reviewId' => $reviewId);
@@ -187,7 +187,7 @@ class ReviewerAction extends Action {
 						'editorialContactName' => $editorialContactName,
 						'reviewerName' => $reviewer->getFullName(),
 						'paperTitle' => strip_tags($reviewerSubmission->getLocalizedTitle()),
-						'recommendation' => Locale::translate($reviewerRecommendationOptions[$recommendation])
+						'recommendation' => __($reviewerRecommendationOptions[$recommendation])
 					));
 				}
 

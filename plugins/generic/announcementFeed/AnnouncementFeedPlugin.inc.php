@@ -42,7 +42,7 @@ class AnnouncementFeedPlugin extends GenericPlugin {
 	 * @return string
 	 */
 	function getDisplayName() {
-		return Locale::translate('plugins.generic.announcementfeed.displayName');
+		return __('plugins.generic.announcementfeed.displayName');
 	}
 
 	/**
@@ -50,7 +50,7 @@ class AnnouncementFeedPlugin extends GenericPlugin {
 	 * @return string
 	 */
 	function getDescription() {
-		return Locale::translate('plugins.generic.announcementfeed.description');
+		return __('plugins.generic.announcementfeed.description');
 	}   
 
 	/**
@@ -119,16 +119,16 @@ class AnnouncementFeedPlugin extends GenericPlugin {
 		if ($this->getEnabled()) {
 			$verbs[] = array(
 				'disable',
-				Locale::translate('manager.plugins.disable')
+				__('manager.plugins.disable')
 			);
 			$verbs[] = array(
 				'settings',
-				Locale::translate('plugins.generic.announcementfeed.settings')
+				__('plugins.generic.announcementfeed.settings')
 			);
 		} else {
 			$verbs[] = array(
 				'enable',
-				Locale::translate('manager.plugins.enable')
+				__('manager.plugins.enable')
 			);
 		}
 		return $verbs;
@@ -168,12 +168,12 @@ class AnnouncementFeedPlugin extends GenericPlugin {
 				break;
 			case 'enable':
 				$this->updateSetting($conference->getId(), 0, 'enabled', true);
-				$message = Locale::translate('plugins.generic.announcementfeed.enabled');
+				$message = __('plugins.generic.announcementfeed.enabled');
 				$returner = false;
 				break;
 			case 'disable':
 				$this->updateSetting($conference->getId(), 0, 'enabled', false);
-				$message = Locale::translate('plugins.generic.announcementfeed.enabled');
+				$message = __('plugins.generic.announcementfeed.enabled');
 				$returner = false;
 				break;	
 		}

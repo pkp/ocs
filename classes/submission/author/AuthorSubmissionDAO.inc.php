@@ -50,8 +50,8 @@ class AuthorSubmissionDAO extends DAO {
 	 * @return AuthorSubmission
 	 */
 	function &getAuthorSubmission($paperId) {
-		$primaryLocale = Locale::getPrimaryLocale();
-		$locale = Locale::getLocale();
+		$primaryLocale = AppLocale::getPrimaryLocale();
+		$locale = AppLocale::getLocale();
 		$result =& $this->retrieve(
 			'SELECT
 				p.*,
@@ -161,8 +161,8 @@ class AuthorSubmissionDAO extends DAO {
 	 * @return DAOResultFactory containing AuthorSubmissions
 	 */
 	function &getIncompleteSubmissions() {
-		$primaryLocale = Locale::getPrimaryLocale();
-		$locale = Locale::getLocale();
+		$primaryLocale = AppLocale::getPrimaryLocale();
+		$locale = AppLocale::getLocale();
 		$incompleteSubmissions = array();
 		$result =& $this->retrieve(
 			'SELECT	p.*,
@@ -201,8 +201,8 @@ class AuthorSubmissionDAO extends DAO {
 	 * @return DAOResultFactory containing AuthorSubmissions
 	 */
 	function &getAuthorSubmissions($authorId, $schedConfId, $active = true, $rangeInfo = null, $sortBy = null, $sortDirection = SORT_DIRECTION_ASC) {
-		$primaryLocale = Locale::getPrimaryLocale();
-		$locale = Locale::getLocale();
+		$primaryLocale = AppLocale::getPrimaryLocale();
+		$locale = AppLocale::getLocale();
 		$result =& $this->retrieveRange(
 			'SELECT	p.*,
 				COALESCE(ptl.setting_value, pptl.setting_value) AS submission_title,

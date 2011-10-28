@@ -205,7 +205,7 @@ class CommentHandler extends Handler {
 		parent::setupTemplate();
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->setCacheability(CACHEABILITY_PUBLIC);
-		Locale::requireComponents(array(LOCALE_COMPONENT_PKP_READER));
+		AppLocale::requireComponents(array(LOCALE_COMPONENT_PKP_READER));
 
 		$pageHierarchy = array(
 			array(

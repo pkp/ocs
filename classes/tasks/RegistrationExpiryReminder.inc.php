@@ -55,13 +55,13 @@ class RegistrationExpiryReminder extends ScheduledTask {
 			$registrationContactSignature .= "\n" . $registrationMailingAddress;
 		}
 		if ($registrationPhone != '') {
-			$registrationContactSignature .= "\n" . Locale::Translate('user.phone') . ': ' . $registrationPhone;
+			$registrationContactSignature .= "\n" . AppLocale::Translate('user.phone') . ': ' . $registrationPhone;
 		}
 		if ($registrationFax != '') {
-			$registrationContactSignature .= "\n" . Locale::Translate('user.fax') . ': ' . $registrationFax;
+			$registrationContactSignature .= "\n" . AppLocale::Translate('user.fax') . ': ' . $registrationFax;
 		}
 
-		$registrationContactSignature .= "\n" . Locale::Translate('user.email') . ': ' . $registrationEmail;
+		$registrationContactSignature .= "\n" . AppLocale::Translate('user.email') . ': ' . $registrationEmail;
 
 		$paramArray = array(
 			'registrantName' => $user->getFullName(),

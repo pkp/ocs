@@ -71,8 +71,8 @@ class RegistrationOptionDAO extends DAO {
 		$result =& $this->retrieve(
 			'SELECT COALESCE(l.setting_value, p.setting_value) FROM registration_option_settings l LEFT JOIN registration_option_settings p ON (p.option_id = ? AND p.setting_name = ? AND p.locale = ?) WHERE l.option_id = ? AND l.setting_name = ? AND l.locale = ?', 
 			array(
-				$optionId, 'name', Locale::getLocale(),
-				$optionId, 'name', Locale::getPrimaryLocale()
+				$optionId, 'name', AppLocale::getLocale(),
+				$optionId, 'name', AppLocale::getPrimaryLocale()
 			)
 		);
 

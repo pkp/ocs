@@ -51,7 +51,7 @@ class PaperHandler extends Handler {
 		$this->setupTemplate();
 
 		// manager.scheduler.building / manager.scheduler.room
-		Locale::requireComponents(array(LOCALE_COMPONENT_OCS_MANAGER));
+		AppLocale::requireComponents(array(LOCALE_COMPONENT_OCS_MANAGER));
 
 		$rtDao =& DAORegistry::getDAO('RTDAO');
 		$conferenceRt = $rtDao->getConferenceRTByConference($conference);
@@ -479,7 +479,7 @@ class PaperHandler extends Handler {
 
 	function setupTemplate() {
 		parent::setupTemplate();
-		Locale::requireComponents(array(LOCALE_COMPONENT_PKP_READER, LOCALE_COMPONENT_PKP_SUBMISSION));
+		AppLocale::requireComponents(array(LOCALE_COMPONENT_PKP_READER, LOCALE_COMPONENT_PKP_SUBMISSION));
 	}
 }
 

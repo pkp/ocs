@@ -46,7 +46,7 @@ class ReviewerHandler extends Handler {
 		$page = isset($args[0]) ? $args[0] : '';
 		switch($page) {
 			case 'completed':
-				Locale::requireComponents(array(LOCALE_COMPONENT_OCS_DIRECTOR));
+				AppLocale::requireComponents(array(LOCALE_COMPONENT_OCS_DIRECTOR));
 				$active = false;
 				break;
 			default:
@@ -124,7 +124,7 @@ class ReviewerHandler extends Handler {
 	 */
 	function setupTemplate($subclass = false, $paperId = 0, $reviewId = 0) {
 		parent::setupTemplate();
-		Locale::requireComponents(array(LOCALE_COMPONENT_PKP_SUBMISSION));
+		AppLocale::requireComponents(array(LOCALE_COMPONENT_PKP_SUBMISSION));
 		$templateMgr =& TemplateManager::getManager();
 		$pageHierarchy = $subclass ? array(array(Request::url(null, null, 'user'), 'navigation.user'), array(Request::url(null, null, 'reviewer'), 'user.role.reviewer'))
 				: array(array(Request::url(null, null, 'user'), 'navigation.user'), array(Request::url(null, null, 'reviewer'), 'user.role.reviewer'));

@@ -195,7 +195,7 @@ class PaperGalleyForm extends Form {
 				}
 
 				if ($galley->getLabel() == null) {
-					$galley->setLabel(Locale::translate('common.untitled'));
+					$galley->setLabel(__('common.untitled'));
 				}
 
 			} else {
@@ -226,7 +226,7 @@ class PaperGalleyForm extends Form {
 			$type = $fileManager->getUploadedFileType($fileName);
 			$extension = $fileManager->getImageExtension($type);
 			if (!$extension) {
-				$this->addError('imageFile', Locale::translate('submission.layout.imageInvalid'));
+				$this->addError('imageFile', __('submission.layout.imageInvalid'));
 				return false;
 			}
 

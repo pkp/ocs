@@ -49,11 +49,11 @@ class TranslatorPlugin extends GenericPlugin {
 	}
 
 	function getDisplayName() {
-		return Locale::translate('plugins.generic.translator.name');
+		return __('plugins.generic.translator.name');
 	}
 
 	function getDescription() {
-		return Locale::translate('plugins.generic.translator.description');
+		return __('plugins.generic.translator.description');
 	}
 
 	function getManagementVerbs() {
@@ -61,12 +61,12 @@ class TranslatorPlugin extends GenericPlugin {
 
 		$verbs[] = array(
 			($isEnabled?'disable':'enable'),
-			Locale::translate($isEnabled?'manager.plugins.disable':'manager.plugins.enable')
+			__($isEnabled?'manager.plugins.disable':'manager.plugins.enable')
 		);
 
 		if ($isEnabled) $verbs[] = array(
 			'translate',
-			Locale::translate('plugins.generic.translator.translate')
+			__('plugins.generic.translator.translate')
 		);
 
 		return $verbs;
@@ -85,11 +85,11 @@ class TranslatorPlugin extends GenericPlugin {
 		switch ($verb) {
 			case 'enable':
 				$this->updateSetting(0, 0, 'enabled', true);
-				$message = Locale::translate('plugins.generic.translator.enabled');
+				$message = __('plugins.generic.translator.enabled');
 				break;
 			case 'disable':
 				$this->updateSetting(0, 0, 'enabled', false);
-				$message = Locale::translate('plugins.generic.translator.disabled');
+				$message = __('plugins.generic.translator.disabled');
 				break;
 			case 'translate':
 				Request::redirect('index', 'index', 'translate');

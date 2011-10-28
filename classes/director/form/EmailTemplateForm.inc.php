@@ -68,7 +68,7 @@ class EmailTemplateForm extends Form {
 		$emailTemplateDao =& DAORegistry::getDAO('EmailTemplateDAO');
 
 		$emailTemplate =& $emailTemplateDao->getLocaleEmailTemplate($this->emailKey, $conferenceId);
-		$thisLocale = Locale::getLocale();
+		$thisLocale = AppLocale::getLocale();
 
 		if ($emailTemplate) {
 			$subject = array();
@@ -135,7 +135,7 @@ class EmailTemplateForm extends Form {
 				$emailTemplate->setBody($localeKey, $this->_data['body'][$localeKey]);
 			}
 		} else {
-			$localeKey = Locale::getLocale();
+			$localeKey = AppLocale::getLocale();
 			$emailTemplate->setSubject($localeKey, $this->_data['subject'][$localeKey]);
 			$emailTemplate->setBody($localeKey, $this->_data['body'][$localeKey]);
 		}

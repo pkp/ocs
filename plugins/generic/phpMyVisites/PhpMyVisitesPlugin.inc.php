@@ -61,11 +61,11 @@ class PhpMyVisitesPlugin extends GenericPlugin {
 	}
 
 	function getDisplayName() {
-		return Locale::translate('plugins.generic.phpmv.displayName');
+		return __('plugins.generic.phpmv.displayName');
 	}
 
 	function getDescription() {
-		return Locale::translate('plugins.generic.phpmv.description');
+		return __('plugins.generic.phpmv.description');
 	}
 
 	/**
@@ -121,16 +121,16 @@ class PhpMyVisitesPlugin extends GenericPlugin {
 		if ($this->getEnabled()) {
 			$verbs[] = array(
 				'disable',
-				Locale::translate('manager.plugins.disable')
+				__('manager.plugins.disable')
 			);
 			$verbs[] = array(
 				'settings',
-				Locale::translate('plugins.generic.phpmv.manager.settings')
+				__('plugins.generic.phpmv.manager.settings')
 			);
 		} else {
 			$verbs[] = array(
 				'enable',
-				Locale::translate('manager.plugins.enable')
+				__('manager.plugins.enable')
 			);
 		}
 		return $verbs;
@@ -200,12 +200,12 @@ class PhpMyVisitesPlugin extends GenericPlugin {
 			case 'enable':
 				$this->setEnabled(true);
 				$returner = false;
-				$message = Locale::translate('plugins.generic.phpmv.enabled');
+				$message = __('plugins.generic.phpmv.enabled');
 				break;
 			case 'disable':
 				$this->setEnabled(false);
 				$returner = false;
-				$message = Locale::translate('plugins.generic.phpmv.disabled');
+				$message = __('plugins.generic.phpmv.disabled');
 				break;
 			case 'settings':
 				if ($this->getEnabled()) {

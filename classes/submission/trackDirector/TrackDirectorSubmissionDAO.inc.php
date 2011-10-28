@@ -59,8 +59,8 @@ class TrackDirectorSubmissionDAO extends DAO {
 	 * @return DirectorSubmission
 	 */
 	function &getTrackDirectorSubmission($paperId) {
-		$primaryLocale = Locale::getPrimaryLocale();
-		$locale = Locale::getLocale();
+		$primaryLocale = AppLocale::getPrimaryLocale();
+		$locale = AppLocale::getLocale();
 		$result =& $this->retrieve(
 			'SELECT	p.*,
 				r2.review_revision,
@@ -269,8 +269,8 @@ class TrackDirectorSubmissionDAO extends DAO {
 	 * Retrieve unfiltered track director submissions
 	 */
 	function &_getUnfilteredTrackDirectorSubmissions($trackDirectorId, $schedConfId, $trackId = 0, $searchField = null, $searchMatch = null, $search = null, $dateField = null, $dateFrom = null, $dateTo = null, $additionalWhereSql = '', $rangeInfo = null, $sortBy = null, $sortDirection = SORT_DIRECTION_ASC) {
-		$primaryLocale = Locale::getPrimaryLocale();
-		$locale = Locale::getLocale();
+		$primaryLocale = AppLocale::getPrimaryLocale();
+		$locale = AppLocale::getLocale();
 
 		$params = array(
 			'title', // Track title

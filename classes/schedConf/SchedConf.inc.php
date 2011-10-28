@@ -267,10 +267,10 @@ class SchedConf extends DataObject {
 	 * @return mixed
 	 */
 	function &getLocalizedSetting($name) {
-		$returner = $this->getSetting($name, Locale::getLocale());
+		$returner = $this->getSetting($name, AppLocale::getLocale());
 		if ($returner === null) {
 			unset($returner);
-			$returner = $this->getSetting($name, Locale::getPrimaryLocale());
+			$returner = $this->getSetting($name, AppLocale::getPrimaryLocale());
 		}
 		return $returner;
 	}

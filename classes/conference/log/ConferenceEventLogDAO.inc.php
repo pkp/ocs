@@ -37,8 +37,8 @@ class ConferenceEventLogDAO extends DAO {
 	 * @return ConferenceEventLogEntry
 	 */
 	function &getLogEntry($logId, $conferenceId = null, $schedConfId = null) {
-		$primaryLocale = Locale::getPrimaryLocale();
-		$locale = Locale::getLocale();
+		$primaryLocale = AppLocale::getPrimaryLocale();
+		$locale = AppLocale::getLocale();
 		$args = array(
 			'title', // Conference
 			$primaryLocale,
@@ -107,8 +107,8 @@ class ConferenceEventLogDAO extends DAO {
 	 * @return DAOResultFactory containing matching ConferenceEventLogEntry ordered by sequence
 	 */
 	function &getConferenceLogEntriesByAssoc($conferenceId, $schedConfId = null, $assocType = null, $assocId = null, $rangeInfo = null) {
-		$primaryLocale = Locale::getPrimaryLocale();
-		$locale = Locale::getLocale();
+		$primaryLocale = AppLocale::getPrimaryLocale();
+		$locale = AppLocale::getLocale();
 		$params = array(
 			'title', // Conference
 			$primaryLocale,

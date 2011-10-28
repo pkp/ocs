@@ -310,12 +310,12 @@ class ScheduleForm extends Form {
 			$endTime = $publishedPaper->getEndTime();
 			if (($startTime === null || $endTime === null) && ($startTime || $endTime)) {
 				$fieldName = 'paper' . $publishedPaper->getId() . 'StartTime';
-				$this->addError($fieldName, Locale::translate('manager.scheduler.checkTimes'));
+				$this->addError($fieldName, __('manager.scheduler.checkTimes'));
 				$this->addErrorField($fieldName);
 				$success = false;
 			} elseif ($startTime && $endTime && strtotime($startTime) >= strtotime($endTime)) {
 				$fieldName = 'paper' . $publishedPaper->getId() . 'StartTime';
-				$this->addError('paper' . $publishedPaper->getId() . 'StartTime', Locale::translate('manager.scheduler.checkTimes'));
+				$this->addError('paper' . $publishedPaper->getId() . 'StartTime', __('manager.scheduler.checkTimes'));
 				$this->addErrorField($fieldName);
 				$success = false;
 			}
