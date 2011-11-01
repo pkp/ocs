@@ -63,7 +63,7 @@ class PaperHTMLGalley extends PaperGalley {
 		}
 
 		// Perform replacement for ocs://... URLs
-		$contents = String::regexp_replace_callback(
+		$contents = preg_replace_callback(
 			'/(<[^<>]*")[Oo][Jj][Ss]:\/\/([^"]+)("[^<>]*>)/',
 			array(&$this, '_handleOcsUrl'),
 			$contents
