@@ -39,7 +39,7 @@ class ReviewReminder extends ScheduledTask {
 
 		$reviewerAccessKeysEnabled = $schedConf->getSetting('reviewerAccessKeysEnabled');
 
-		$email = new PaperMailTemplate($paper, $reviewerAccessKeysEnabled?'REVIEW_REMIND_AUTO_ONECLICK':'REVIEW_REMIND_AUTO', null, false, $conference, $schedConf);
+		$email = new PaperMailTemplate($paper, $reviewerAccessKeysEnabled?'REVIEW_REMIND_AUTO_ONECLICK':'REVIEW_REMIND_AUTO', $conference->getPrimaryLocale(), false, $conference, $schedConf);
 		$email->setConference($conference);
 		$email->setSchedConf($schedConf);
 

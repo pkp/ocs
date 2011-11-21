@@ -74,7 +74,7 @@ class RegistrationExpiryReminder extends ScheduledTask {
 		);
 
 		import('classes.mail.MailTemplate');
-		$mail = new MailTemplate($emailKey);
+		$mail = new MailTemplate($emailKey, $conference->getPrimaryLocale());
 		$mail->setFrom($registrationEmail, $registrationName);
 		$mail->addRecipient($user->getEmail(), $user->getFullName());
 		$mail->setSubject($mail->getSubject($conference->getPrimaryLocale()));
