@@ -787,7 +787,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 
 			if ($schedConf->getSetting('reviewDeadlineType') == REVIEW_DEADLINE_TYPE_ABSOLUTE) {
 				// Get number of days from now until review deadline date
-				$reviewDeadlineDate = strtotime($schedConf->getSetting('numWeeksPerReviewAbsolute'));
+				$reviewDeadlineDate = $schedConf->getSetting('numWeeksPerReviewAbsolute');
 				$daysDiff = ($reviewDeadlineDate - strtotime(date("Y-m-d"))) / (60 * 60 * 24);
 				$numWeeksPerReview = round($daysDiff / 7);
 			} elseif ($schedConf->getSetting('reviewDeadlineType') == REVIEW_DEADLINE_TYPE_RELATIVE) {
