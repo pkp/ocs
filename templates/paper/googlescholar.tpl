@@ -13,7 +13,7 @@
 {foreach name="authors" from=$paper->getAuthors() item=author}
 	<meta name="citation_author" content="{$author->getFirstName()|escape}{if $author->getMiddleName() != ""} {$author->getMiddleName()|escape}{/if} {$author->getLastName()|escape}"/>
 {if $author->getAffiliation() != ""}
-	<meta name="citation_author_affiliation" content="{$author->getAffiliation()|strip_tags|escape}"/>
+	<meta name="citation_author_institution" content="{$author->getAffiliation()|strip_tags|escape}"/>
 {/if}
 {/foreach}
 	<meta name="citation_title" content="{$paper->getLocalizedTitle()|strip_tags|escape}"/>
