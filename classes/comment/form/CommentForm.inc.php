@@ -199,7 +199,7 @@ class CommentForm extends Form {
 
 		$comment = $this->comment;
 		if (!isset($comment)) {
-			$comment = new Comment();
+			$comment = $commentDao->newDataObject();
 		}
 
 		$user =& Request::getUser();

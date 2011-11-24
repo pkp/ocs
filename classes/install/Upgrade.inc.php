@@ -688,7 +688,7 @@ class Upgrade extends Installer {
 		return true;
 	}
 
-	/*
+	/**
 	 * For 2.4 Upgrade -- Overhaul notification structure
 	 */
 	function migrateNotifications() {
@@ -706,7 +706,7 @@ class Upgrade extends Installer {
 			preg_match_all('/\d+/', $url, $matches);
 
 			// Set the base data for the notification
-			$notification = new Notification();
+			$notification = $notificationDao->newDataObject();
 			$notification->setId($row['notification_id']);
 			$notification->setUserId($row['user_id']);
 			$notification->setLevel(NOTIFICATION_LEVEL_NORMAL);
