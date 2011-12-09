@@ -39,7 +39,7 @@
 	<upgrade minversion="2.1.2.0" maxversion="2.3.0.0">
 		<data file="dbscripts/xml/upgrade/2.3.1_preupdate.xml" />
 	</upgrade>
-	
+
 	<upgrade minversion="2.0.0.0" maxversion="2.3.9.9">
 		<!-- 2.x to 2.4 -->
 		<data file="dbscripts/xml/upgrade/2.4.0_preupdate.xml" />
@@ -120,6 +120,7 @@
 
 	<upgrade minversion="2.2.9.0" maxversion="2.3.9.9">
 		<code function="migrateNotifications" />
+		<code function="migrateNotifications2" />
 		<!-- Delete the notification*_old tables now that they have been migrated. -->
 		<data file="dbscripts/xml/upgrade/2.4.0_notifications2.xml" />
 		<!-- Update the notification emails (we have removed references to mailing list passwords) -->

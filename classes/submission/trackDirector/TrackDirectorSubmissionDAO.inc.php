@@ -678,8 +678,6 @@ class TrackDirectorSubmissionDAO extends DAO {
 		$paramArray = array((int) $paperId, (int) $round);
 		$joinInterests = false;
 		if($searchType == USER_FIELD_INTERESTS) {
-			$paramArray[] = ASSOC_TYPE_USER;
-			$paramArray[] = 'interest';
 			$joinInterests = true;
 		}
 
@@ -753,10 +751,8 @@ class TrackDirectorSubmissionDAO extends DAO {
 				($joinComplete ? 'LEFT JOIN review_assignments ac ON (ac.reviewer_id = u.user_id AND ac.date_completed IS NOT NULL) ' : '') .
 				($joinIncomplete ? 'LEFT JOIN review_assignments ai ON (ai.reviewer_id = u.user_id AND ai.date_completed IS NULL) ' : '') .
 				'LEFT JOIN papers p ON (ar.submission_id = p.paper_id) ' .
-				($joinInterests ?
-					' LEFT JOIN controlled_vocabs cv ON (cv.assoc_type = ? AND cv.assoc_id = u.user_id AND cv.symbolic = ?)
-					LEFT JOIN controlled_vocab_entries cve ON (cve.controlled_vocab_id = cv.controlled_vocab_id)
-					LEFT JOIN controlled_vocab_entry_settings cves ON (cves.controlled_vocab_entry_id = cve.controlled_vocab_entry_id) ' : '') .
+				($joinInterests ? 'LEFT JOIN user_interests ui ON (ui.user_id = u.user_id)
+				LEFT JOIN controlled_vocab_entry_settings cves ON (cves.controlled_vocab_entry_id = ui.controlled_vocab_entry_id) ':'') .
 			'WHERE	u.user_id = r.user_id AND
 				r.sched_conf_id = ? AND
 				r.role_id = ? ' . $searchSql . 'GROUP BY u.user_id, u.last_name, ar.review_id' .

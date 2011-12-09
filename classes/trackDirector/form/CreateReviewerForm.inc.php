@@ -75,13 +75,6 @@ class CreateReviewerForm extends Form {
 		$countries =& $countryDao->getCountries();
 		$templateMgr->assign_by_ref('countries', $countries);
 
-		$interestDao =& DAORegistry::getDAO('InterestDAO');
-		// Get all available interests to populate the autocomplete with
-		if ($interestDao->getAllUniqueInterests()) {
-			$existingInterests = $interestDao->getAllUniqueInterests();
-		} else $existingInterests = null;
-		$templateMgr->assign('existingInterests', $existingInterests);
-
 		parent::display();
 	}
 
@@ -105,8 +98,8 @@ class CreateReviewerForm extends Form {
 			'billingAddress',
 			'country',
 			'biography',
-			'interests',
-			'interestsKeywords',
+			'interestsTextOnly',
+			'keywords',
 			'gossip',
 			'userLocales',
 			'sendNotify',
@@ -122,10 +115,10 @@ class CreateReviewerForm extends Form {
 			$this->setData('username', strtolower($this->getData('username')));
 		}
 
-		$interests = $this->getData('interestsKeywords');
-		if ($interests != null && is_array($interests)) {
+		$keywords = $this->getData('keywords');
+		if ($keywords != null && is_array($keywords['interests'])) {
 			// The interests are coming in encoded -- Decode them for DB storage
-			$this->setData('interestsKeywords', array_map('urldecode', $interests));
+			$this->setData('interestsKeywords', array_map('urldecode', $keywords['interests']));
 		}
 	}
 
@@ -152,7 +145,6 @@ class CreateReviewerForm extends Form {
 		$user->setBillingAddress($this->getData('billingAddress'));
 		$user->setCountry($this->getData('country'));
 		$user->setBiography($this->getData('biography'), null); // Localized
-		$user->setInterests($this->getData('interestsKeywords'), null); // Localized
 		$user->setGossip($this->getData('gossip'), null); // Localized
 		$user->setMustChangePassword($this->getData('mustChangePassword') ? 1 : 0);
 
@@ -188,10 +180,11 @@ class CreateReviewerForm extends Form {
 		$user->setDateRegistered(Core::getCurrentDate());
 		$userId = $userDao->insertUser($user);
 
-		// Add reviewing interests to interests table
+		// Insert the user interests
+		$interests = $this->getData('interestsKeywords') ? $this->getData('interestsKeywords') : $this->getData('interestsTextOnly');
 		import('lib.pkp.classes.user.InterestManager');
 		$interestManager = new InterestManager();
-		$interestManager->insertInterests($userId, $this->getData('interestsKeywords'), $this->getData('interests'));
+		$interestManager->setInterestsForUser($user, $interests);
 
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
 		$schedConf =& Request::getSchedConf();

@@ -3,7 +3,7 @@
 /**
  * @defgroup pages_user
  */
- 
+
 /**
  * @file pages/user/index.php
  *
@@ -14,9 +14,6 @@
  *
  * @ingroup pages_user
  */
-
-//$Id$
-
 
 switch ($op) {
 	//
@@ -45,12 +42,19 @@ switch ($op) {
 		define('HANDLER_CLASS', 'EmailHandler');
 		import('pages.user.EmailHandler');
 		break;
+	//
+	// Misc.
+	//
 	case 'index':
 	case 'setLocale':
 	case 'become':
 	case 'viewCaptcha':
 		define('HANDLER_CLASS', 'UserHandler');
 		import('pages.user.UserHandler');
+		break;
+	case 'getInterests':
+		define('HANDLER_CLASS', 'PKPUserHandler');
+		import('lib.pkp.pages.user.PKPUserHandler');
 		break;
 }
 

@@ -6,27 +6,11 @@
  *
  * User registration form.
  *
- * $Id$
  *}
 {strip}
 {assign var="pageTitle" value="navigation.account"}
 {include file="common/header.tpl"}
 {/strip}
-
-{literal}
-<script type="text/javascript">
-	$(document).ready(function(){
-		$("#interestsTextOnly").hide();
-		$("#interests").tagit({
-			{/literal}{if $existingInterests}{literal}
-			// This is the list of interests in the system used to populate the autocomplete
-			availableTags: [{/literal}{foreach name=existingInterests from=$existingInterests item=interest}"{$interest|escape|escape:'javascript'}"{if !$smarty.foreach.existingInterests.last}, {/if}{/foreach}{literal}],{/literal}{/if}
-			// There are no current interests for the user since they're just registering; Assign an empty list
-			currentTags: []
-		});
-	});
-</script>
-{/literal}
 
 <form id="createAccount" method="post" action="{url op="createAccount"}">
 
@@ -232,7 +216,7 @@
 		{if $allowRegAuthor || $allowRegAuthor === null}
 			<input type="checkbox" name="createAsAuthor" id="createAsAuthor" value="1"{if $createAsAuthor} checked="checked"{/if} /> <label for="createAsAuthor">{translate key="user.role.author"}</label>: {translate key="user.account.authorDescription"}<br />
 		{/if}
-		{if $allowRegReviewer || $allowRegReviewer === null}<input type="checkbox" name="createAsReviewer" id="createAsReviewer" value="1"{if $createAsReviewer} checked="checked"{/if} /> <label for="createAsReviewer">{translate key="user.role.reviewer"}</label>: {if $existingUser}{translate key="user.account.reviewerDescriptionNoInterests"}{else}{translate key="user.account.reviewerDescription"} <ul id="interests"><li></li></ul><span class="interestDescription">{fieldLabel for="interests" key="user.interests.description"}</span><textarea name="interests" id="interestsTextOnly" rows="5" cols="40" class="textArea">				{foreach name=currentInterests from=$interestsKeywords item=interest}{$interest|escape}{if !$smarty.foreach.currentInterests.last}, {/if}{/foreach}</textarea>{/if}
+		{if $allowRegReviewer || $allowRegReviewer === null}<input type="checkbox" name="createAsReviewer" id="createAsReviewer" value="1"{if $createAsReviewer} checked="checked"{/if} /> <label for="createAsReviewer">{translate key="user.role.reviewer"}</label>: {if $existingUser}{translate key="user.account.reviewerDescriptionNoInterests"}{else}{translate key="user.account.reviewerDescription"} {include file="form/interestsInput.tpl" FBV_interestKeywords=$interestsKeywords FBV_interestsTextOnly=$interestsTextOnly}{/if}
 		{/if}
 	</td>
 </tr>
