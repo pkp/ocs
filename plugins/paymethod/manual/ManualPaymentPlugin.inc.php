@@ -94,7 +94,7 @@ class ManualPaymentPlugin extends PaymethodPlugin {
 		switch ( $op ) {
 			case 'notify':
 				import('classes.mail.MailTemplate');
-				AppLocale::requireComponents(array(LOCALE_COMPONENT_APPLICATION_COMMON));
+				AppLocale::requireComponents(LOCALE_COMPONENT_APPLICATION_COMMON);
 				$contactName = $schedConf->getSetting('registrationName');
 				$contactEmail = $schedConf->getSetting('registrationEmail');
 				$mail = new MailTemplate('MANUAL_PAYMENT_NOTIFICATION');

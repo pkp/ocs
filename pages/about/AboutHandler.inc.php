@@ -90,7 +90,7 @@ class AboutHandler extends Handler {
 
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->setCacheability(CACHEABILITY_PUBLIC);
-		AppLocale::requireComponents(array(LOCALE_COMPONENT_OCS_MANAGER, LOCALE_COMPONENT_PKP_MANAGER));
+		AppLocale::requireComponents(LOCALE_COMPONENT_OCS_MANAGER, LOCALE_COMPONENT_PKP_MANAGER);
 
 		$pageHierarchy = array();
 		if ($conference) $pageHierarchy[] = array(Request::url(null, 'index', 'index'), $conference->getConferenceTitle(), true);

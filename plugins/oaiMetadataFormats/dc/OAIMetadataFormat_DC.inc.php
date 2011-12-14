@@ -63,7 +63,7 @@ class OAIMetadataFormat_DC extends OAIMetadataFormat {
 		}
 
 		// Types
-		AppLocale::requireComponents(array(LOCALE_COMPONENT_APPLICATION_COMMON));
+		AppLocale::requireComponents(LOCALE_COMPONENT_APPLICATION_COMMON);
 		$this->stripAssocArray((array) $track->getIdentifyType(null));
 		$types = array_merge_recursive(
 			empty($types)?array(AppLocale::getLocale() => __('rt.metadata.pkp.peerReviewed')):$types,

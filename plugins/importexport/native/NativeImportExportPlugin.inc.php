@@ -118,7 +118,7 @@ class NativeImportExportPlugin extends ImportExportPlugin {
 					// import papers within an appropriate context. If not,
 					// prompt them for the.
 					if (!isset($context['track'])) {
-						AppLocale::requireComponents(array(LOCALE_COMPONENT_OCS_AUTHOR));
+						AppLocale::requireComponents(LOCALE_COMPONENT_OCS_AUTHOR);
 						$templateMgr->assign('trackOptions', array('0' => __('author.submit.selectTrack')) + $trackDao->getTrackTitles($schedConf->getId(), false));
 						$templateMgr->assign('temporaryFileId', $temporaryFile->getId());
 						return $templateMgr->display($this->getTemplatePath() . 'paperContext.tpl');
@@ -313,7 +313,7 @@ class NativeImportExportPlugin extends ImportExportPlugin {
 				$result = $this->handleImport($context, $doc, $errors, $papers, true);
 				if ($result) {
 					echo __('plugins.importexport.native.import.success.description') . "\n\n";
-					AppLocale::requireComponents(array(LOCALE_COMPONENT_APPLICATION_COMMON));
+					AppLocale::requireComponents(LOCALE_COMPONENT_APPLICATION_COMMON);
 					if (!empty($papers)) echo __('paper.papers') . ":\n";
 					foreach ($papers as $paper) {
 						echo "\t" . $paper->getLocalizedTitle() . "\n";

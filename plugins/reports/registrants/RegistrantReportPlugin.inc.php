@@ -50,7 +50,7 @@ class RegistrantReportPlugin extends ReportPlugin {
 	function display(&$args) {
 		$conference =& Request::getConference();
 		$schedConf =& Request::getSchedConf();
-		AppLocale::requireComponents(array(LOCALE_COMPONENT_APPLICATION_COMMON, LOCALE_COMPONENT_PKP_USER, LOCALE_COMPONENT_OCS_MANAGER));
+		AppLocale::requireComponents(LOCALE_COMPONENT_APPLICATION_COMMON, LOCALE_COMPONENT_PKP_USER, LOCALE_COMPONENT_OCS_MANAGER);
 
 		header('content-type: text/comma-separated-values; charset=utf-8');
 		header('content-disposition: attachment; filename=registrants-' . date('Ymd') . '.csv');

@@ -59,7 +59,7 @@ class TranslatorHandler extends Handler {
 	function setupTemplate($subclass = true) {
 		parent::setupTemplate();
 		$templateMgr =& TemplateManager::getManager();
-		AppLocale::requireComponents(array(LOCALE_COMPONENT_PKP_ADMIN, LOCALE_COMPONENT_PKP_MANAGER));
+		AppLocale::requireComponents(LOCALE_COMPONENT_PKP_ADMIN, LOCALE_COMPONENT_PKP_MANAGER);
 		$pageHierarchy = array(array(Request::url(null, null, 'user'), 'navigation.user'), array(Request::url(null, null, 'admin'), 'admin.siteAdmin'));
 		if ($subclass) $pageHierarchy[] = array(Request::url(null, null, 'translate'), 'plugins.generic.translator.name');
 		$templateMgr->assign('pageHierarchy', $pageHierarchy);

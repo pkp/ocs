@@ -136,7 +136,7 @@ class SchedConfHandler extends Handler {
 			array(Request::url(null, 'index', 'index'), $conference->getConferenceTitle(), true),
 			array(Request::url(null, null, 'index'), $schedConf->getLocalizedTitle(), true)));
 		SchedConfHandler::setupTemplate($conference,$schedConf);
-		AppLocale::requireComponents(array(LOCALE_COMPONENT_OCS_MANAGER)); // FIXME: For timeline constants
+		AppLocale::requireComponents(LOCALE_COMPONENT_OCS_MANAGER); // FIXME: For timeline constants
 		import('classes.manager.form.TimelineForm');
 		if (checkPhpVersion('5.0.0')) { // WARNING: This form needs $this in constructor
 			$timelineForm = new TimelineForm(false, true);
@@ -162,7 +162,7 @@ class SchedConfHandler extends Handler {
 			array(Request::url(null, 'index', 'index'), $conference->getConferenceTitle(), true),
 			array(Request::url(null, null, 'index'), $schedConf->getLocalizedTitle(), true)));
 		SchedConfHandler::setupTemplate($conference,$schedConf);
-		AppLocale::requireComponents(array(LOCALE_COMPONENT_OCS_AUTHOR));
+		AppLocale::requireComponents(LOCALE_COMPONENT_OCS_AUTHOR);
 
 		$templateMgr->assign('cfpMessage', $schedConf->getLocalizedSetting('cfpMessage'));
 		$templateMgr->assign('authorGuidelines', $schedConf->getLocalizedSetting('authorGuidelines'));
@@ -206,7 +206,7 @@ class SchedConfHandler extends Handler {
 			$templateMgr->assign('message', 'schedConf.registration.paymentNotConfigured');
 			$templateMgr->assign('backLinkLabel', 'common.back');
 			$templateMgr->assign('backLink', Request::url(null, null, 'index'));
-			AppLocale::requireComponents(array(LOCALE_COMPONENT_APPLICATION_COMMON));
+			AppLocale::requireComponents(LOCALE_COMPONENT_APPLICATION_COMMON);
 			return $templateMgr->display('common/message.tpl');
 		}
 
@@ -523,7 +523,7 @@ class SchedConfHandler extends Handler {
 
 		$templateMgr =& TemplateManager::getManager();
 		SchedConfHandler::setupTemplate($conference, $schedConf);
-		AppLocale::requireComponents(array(LOCALE_COMPONENT_OCS_DIRECTOR)); // FIXME: director.allTracks
+		AppLocale::requireComponents(LOCALE_COMPONENT_OCS_DIRECTOR); // FIXME: director.allTracks
 
 		$templateMgr->assign('pageHierarchy', array(
 			array(Request::url(null, 'index', 'index'), $conference->getConferenceTitle(), true),
@@ -589,7 +589,7 @@ class SchedConfHandler extends Handler {
 	function setupTemplate(&$conference, &$schedConf) {
 		parent::setupTemplate();
 		$templateMgr =& TemplateManager::getManager();
-		AppLocale::requireComponents(array(LOCALE_COMPONENT_OCS_MANAGER));
+		AppLocale::requireComponents(LOCALE_COMPONENT_OCS_MANAGER);
 
 		// Ensure the user is entitled to view the scheduled conference...
 		if (isset($schedConf) && ($conference->getEnabled() || (

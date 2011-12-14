@@ -118,12 +118,12 @@ class AuthorHandler extends Handler {
 	 */
 	function setupTemplate($request, $subclass = false, $paperId = 0, $parentPage = null) {
 		parent::setupTemplate();
-		AppLocale::requireComponents(array(
+		AppLocale::requireComponents(
 			LOCALE_COMPONENT_OCS_AUTHOR,
 			LOCALE_COMPONENT_PKP_SUBMISSION,
 			LOCALE_COMPONENT_OCS_DIRECTOR, // FIXME?
 			LOCALE_COMPONENT_OCS_MANAGER // manager.schedConfSetup.submissions.typeOfSubmission.* FIXME
-		));
+		);
 		$templateMgr =& TemplateManager::getManager();
 
 		$pageHierarchy = $subclass ? array(array($request->url(null, null, 'user'), 'navigation.user'), array($request->url(null, null, 'author'), 'user.role.author'), array($request->url(null, null, 'author'), 'paper.submissions'))

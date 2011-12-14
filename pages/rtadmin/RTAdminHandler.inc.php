@@ -124,7 +124,7 @@ class RTAdminHandler extends Handler {
 	 */
 	function setupTemplate($subclass = false, $version = null, $context = null, $search = null) {
 		parent::setupTemplate();
-		AppLocale::requireComponents(array(LOCALE_COMPONENT_PKP_READER, LOCALE_COMPONENT_OCS_MANAGER));
+		AppLocale::requireComponents(LOCALE_COMPONENT_PKP_READER, LOCALE_COMPONENT_OCS_MANAGER);
 
 		$conference =& Request::getConference();
 		$schedConf =& Request::getSchedConf();

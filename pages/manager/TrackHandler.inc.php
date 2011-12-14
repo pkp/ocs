@@ -130,7 +130,7 @@ class TrackHandler extends ManagerHandler {
 	}
 
 	function setupTemplate($subclass = false){
-		AppLocale::requireComponents(array(LOCALE_COMPONENT_PKP_SUBMISSION, LOCALE_COMPONENT_PKP_READER));
+		AppLocale::requireComponents(LOCALE_COMPONENT_PKP_SUBMISSION, LOCALE_COMPONENT_PKP_READER);
 		parent::setupTemplate(true);
 		if ($subclass) {
 			$templateMgr =& TemplateManager::getManager();

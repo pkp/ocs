@@ -476,7 +476,7 @@ class PaperHandler extends Handler {
 
 	function setupTemplate() {
 		parent::setupTemplate();
-		AppLocale::requireComponents(array(LOCALE_COMPONENT_PKP_READER, LOCALE_COMPONENT_PKP_SUBMISSION));
+		AppLocale::requireComponents(LOCALE_COMPONENT_PKP_READER, LOCALE_COMPONENT_PKP_SUBMISSION);
 	}
 }
 

@@ -291,7 +291,7 @@ class UserHandler extends Handler {
 	 */
 	function setupTemplate($subclass = false) {
 		parent::setupTemplate();
-		AppLocale::requireComponents(array(LOCALE_COMPONENT_OCS_AUTHOR, LOCALE_COMPONENT_OCS_DIRECTOR, LOCALE_COMPONENT_OCS_MANAGER));
+		AppLocale::requireComponents(LOCALE_COMPONENT_OCS_AUTHOR, LOCALE_COMPONENT_OCS_DIRECTOR, LOCALE_COMPONENT_OCS_MANAGER);
 
 		$conference =& Request::getConference();
 		$schedConf =& Request::getSchedConf();

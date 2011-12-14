@@ -260,7 +260,7 @@ class ConferenceSettingsDAO extends SettingsDAO {
 	function _performLocalizedReplacement($rawInput, $paramArray = array(), $locale = null) {
 		preg_match('{{translate key="([^"]+)"}}', $rawInput, $matches);
 		if ( isset($matches[1]) ) {
-			AppLocale::requireComponents(array(LOCALE_COMPONENT_OCS_DEFAULT, LOCALE_COMPONENT_OCS_MANAGER), $locale);
+			AppLocale::requireComponents(LOCALE_COMPONENT_OCS_DEFAULT, LOCALE_COMPONENT_OCS_MANAGER, $locale);
 			return __($matches[1], $paramArray, $locale);
 		}
 

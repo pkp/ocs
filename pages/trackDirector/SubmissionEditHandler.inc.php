@@ -41,7 +41,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		$this->setupTemplate($request, true, $paperId);
 
 		// FIXME? For comments.readerComments under Status
-		AppLocale::requireComponents(array(LOCALE_COMPONENT_PKP_READER));
+		AppLocale::requireComponents(LOCALE_COMPONENT_PKP_READER);
 
 		$user =& $request->getUser();
 
@@ -406,7 +406,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		$schedConf =& $request->getSchedConf();
 		$submission =& $this->submission;
 
-		AppLocale::requireComponents(array(LOCALE_COMPONENT_PKP_MANAGER)); // manager.people.noneEnrolled FIXME?
+		AppLocale::requireComponents(LOCALE_COMPONENT_PKP_MANAGER); // manager.people.noneEnrolled FIXME?
 
 		$sort = $request->getUserVar('sort');
 		$sort = isset($sort) ? $sort : 'name';
@@ -492,7 +492,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 
 		import('classes.trackDirector.form.CreateReviewerForm');
 		$createReviewerForm = new CreateReviewerForm($paperId);
-		AppLocale::requireComponents(array(LOCALE_COMPONENT_PKP_MANAGER));
+		AppLocale::requireComponents(LOCALE_COMPONENT_PKP_MANAGER);
 		$this->setupTemplate($request, true, $paperId);
 
 		if (isset($args[1]) && $args[1] === 'create') {
@@ -534,7 +534,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 	function enrollSearch($args, $request) {
 		$paperId = (int) array_shift($args);
 		$this->validate($request, $paperId, TRACK_DIRECTOR_ACCESS_REVIEW);
-		AppLocale::requireComponents(array(LOCALE_COMPONENT_PKP_MANAGER)); // manager.people.enrollment, manager.people.enroll
+		AppLocale::requireComponents(LOCALE_COMPONENT_PKP_MANAGER); // manager.people.enrollment, manager.people.enroll
 		$conference =& $request->getConference();
 		$schedConf =& $request->getSchedConf();
 		$submission =& $this->submission;
@@ -842,7 +842,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		$this->setupTemplate($request, true);
 
 		// For manager.people at top of user profile
-		AppLocale::requireComponents(array(LOCALE_COMPONENT_PKP_MANAGER));
+		AppLocale::requireComponents(LOCALE_COMPONENT_PKP_MANAGER);
 
 
 		$templateMgr =& TemplateManager::getManager();

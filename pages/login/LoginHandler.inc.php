@@ -121,7 +121,7 @@ class LoginHandler extends PKPLoginHandler {
 	 * Configure the template for display.
 	 */
 	function setupTemplate() {
-		AppLocale::requireComponents(array(LOCALE_COMPONENT_OCS_MANAGER, LOCALE_COMPONENT_PKP_MANAGER));
+		AppLocale::requireComponents(LOCALE_COMPONENT_OCS_MANAGER, LOCALE_COMPONENT_PKP_MANAGER);
 		parent::setupTemplate();
 	}
 }

@@ -200,7 +200,7 @@ class TrackDirectorHandler extends Handler {
 	 */
 	function setupTemplate($request, $subclass = false, $paperId = 0, $parentPage = null) {
 		parent::setupTemplate();
-		AppLocale::requireComponents(array(LOCALE_COMPONENT_OCS_DIRECTOR, LOCALE_COMPONENT_PKP_SUBMISSION, LOCALE_COMPONENT_OCS_AUTHOR));
+		AppLocale::requireComponents(LOCALE_COMPONENT_OCS_DIRECTOR, LOCALE_COMPONENT_PKP_SUBMISSION, LOCALE_COMPONENT_OCS_AUTHOR);
 		$templateMgr =& TemplateManager::getManager();
 		$isDirector = Validation::isDirector();
 		$pageHierarchy = array();
