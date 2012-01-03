@@ -349,9 +349,6 @@ Nota che l'interfaccia OAI pu&#x00F2; essere disabilitata per questo sito modifi
 </ul>]]></message>
 
 	<!-- System Information -->
-	<message key="admin.editSystemConfigInstructions"><![CDATA[Utilizzate questo modulo per modificare le configurazioni del vostro sistema (il file <tt>config.inc.php</tt>). Fate click su "Salva" per memorizzare la nuova configurazione, o "Visualizza" per mostrare la versione aggiornata della configurazione, senza effettuare nessuna modifica.
-<br /><br />
-<span class="formError">Avvertimento: la modifica di queste impostazioni pu&#x00F2; potenzialmente rendere il sistema inaccessibile (con la conseguenza di dover sistemare manualmente il file di configurazione). Si consiglia fortemente di non effettuare nessuna modifica a meno che non sappiate esattamente quello che state facendo.</span>]]></message>
 	<message key="admin.overwriteConfigFileInstructions"><![CDATA[<h4>NOTA!</div>
 <p>Il sistema non &#x00E8; riuscito a sovrascrivere il file di configurazione. Per effettuare delle modifiche &#x00E8; necessario aprire il file <tt>config.inc.php</tt> con un redattore di testo e sostituirne il contenuto con il testo del modulo sottostante.</p>]]></message>
 

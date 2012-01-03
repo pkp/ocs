@@ -333,8 +333,6 @@ Tingui en compte que la interfície OAI pot ser desactivada per a aquest lloc a 
 </ul>]]></message>
 
 	<!-- System Information -->
-	<message key="admin.editSystemConfigInstructions"><![CDATA[Utilitzi aquest formulari per a modificar la configuració del seu sistema (l'arxiu <tt>config.inc.php</tt>). Faci clic a Desa per a desar la nova configuració, o "Visualitza"  simplement per a visualitzar la configuració modificada i no modificar la configuració existent.<br /><br />
-<span class="formError">Atenció: Modificant aquests paràmetres pot fer que la seva web quedi en un estat inaccessible (que requereix modificar manualment el seu fitxer de configuració). Es recomana encaridament que no faci canvis tret que sàpiga exactament el que està fent .</span>]]></message>
 	<message key="admin.overwriteConfigFileInstructions"><![CDATA[<h4>NOTA!</div>
 <p>El sistema no pot sobreescriure automàticament l'arxiu de configuració. Per a aplicar els canvis de configuració ha d'obrir  <tt>config.inc.php</ tt> amb un editor de text adequat i substituir els contingut dels següents camps de text.</p>]]></message>
 

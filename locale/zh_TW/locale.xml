@@ -333,10 +333,6 @@
 </ul>]]></message>
 
 	<!-- System Information -->
-	<message key="admin.editSystemConfigInstructions"><![CDATA[使用這個形式來修改您的系統佈局 (the <tt>config.inc.php</tt> file)。點選儲存來存取您新的配置，或 按"顯示" 簡單地顯示更新配置文件及不修改您現有的配置。
-<br /><br />
-<span class="formError">警告: 修改這些設定可能會潛在地把您的站點留在在一個不能進入的狀態下(會要求您使用手工來修訂您的的設定檔案) 。
-因此強烈建議您不要做任何變動，除非您非常地確定您將要做什麼。</span>]]></message>
 	<message key="admin.overwriteConfigFileInstructions"><![CDATA[<h4>NOTE!</div>
 <p>此系統不能自動地重寫配置文件。若需要變更，您必須打開<tt>config.inc.php</tt>在適當的文本編輯程式，和用文本領域的內容替換它的內容，如下。</p>]]></message>
 
