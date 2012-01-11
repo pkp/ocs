@@ -283,14 +283,6 @@ class PaperFileManager extends FileManager {
 	}
 
 	/**
-	 * View a file inline (variant of downloadFile).
-	 * @see PaperFileManager::downloadFile
-	 */
-	function viewFile($fileId, $revision = null) {
-		$this->downloadFile($fileId, $revision, true);
-	}
-
-	/**
 	 * Copies an existing file to create a review file.
 	 * @param $originalFileId int the file id of the original file.
 	 * @param $originalRevision int the revision of the original file.

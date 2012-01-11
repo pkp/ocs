@@ -398,11 +398,7 @@ class PaperHandler extends Handler {
 		if ($paper && $suppFile) {
 			import('classes.file.PaperFileManager');
 			$paperFileManager = new PaperFileManager($paper->getId());
-			if ($suppFile->isInlineable()) {
-				$paperFileManager->viewFile($suppFile->getFileId());
-			} else {
-				$paperFileManager->downloadFile($suppFile->getFileId());
-			}
+			$paperFileManager->downloadFile($suppFile->getFileId(), null, $suppFile->isInlineable());
 		}
 	}
 
