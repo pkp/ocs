@@ -22,8 +22,6 @@
  * [paper id]/supp
  */
 
-//$Id$
-
 import('lib.pkp.classes.file.FileManager');
 import('classes.paper.PaperFile');
 
@@ -50,8 +48,9 @@ class PaperFileManager extends FileManager {
 		$schedConfId = $this->paper->getSchedConfId();
 		$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
 		$schedConf =& $schedConfDao->getSchedConf($schedConfId);
-		$this->filesDir = Config::getVar('files', 'files_dir') . '/conferences/' . $schedConf->getConferenceId() . '/schedConfs/' . $schedConfId .
-		'/papers/' . $paperId . '/';
+		$this->filesDir = Config::getVar('files', 'files_dir') . '/conferences/' . $schedConf->getConferenceId() . '/schedConfs/' . $schedConfId .  '/papers/' . $paperId . '/';
+
+		parent::PaperFileManager();
 	}
 
 	/**

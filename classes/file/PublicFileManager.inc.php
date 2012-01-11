@@ -12,11 +12,16 @@
  * @brief Wrapper class for uploading files to a site/conference's public directory.
  */
 
-//$Id$
-
 import('lib.pkp.classes.file.PKPPublicFileManager');
 
 class PublicFileManager extends PKPPublicFileManager {
+	/**
+	 * Constructor
+	 */
+	function PublicFileManager() {
+		parent::PKPPublicFileManager();
+	}
+
 	/**
 	 * Get the path to a conference's public files directory.
 	 * @param $conferenceId int

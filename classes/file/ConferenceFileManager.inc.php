@@ -12,8 +12,6 @@
  * @brief Class defining operations for private conference file management.
  */
 
-//$Id$
-
 import('lib.pkp.classes.file.FileManager');
 
 class ConferenceFileManager extends FileManager {
@@ -36,6 +34,8 @@ class ConferenceFileManager extends FileManager {
 		$this->conferenceId = $conference->getId();
 		$this->conference =& $conference;
 		$this->filesDir = Config::getVar('files', 'files_dir') . '/conferences/' . $this->conferenceId . '/';
+
+		parent::FileManager();
 	}
 
 	function uploadFile($fileName, $destFileName) {
