@@ -30,6 +30,7 @@ class FilesHandler extends ManagerHandler {
 	function files($args, &$request) {
 		$this->validate();
 		$this->setupTemplate(true);
+		$fileManager = new FileManager();
 
 		import('lib.pkp.classes.file.FileManager');
 
@@ -40,11 +41,10 @@ class FilesHandler extends ManagerHandler {
 		$currentPath = $this->_getRealFilesDir($request, $currentDir);
 
 		if (@is_file($currentPath)) {
-			$fileMgr = new FileManager();
 			if ($request->getUserVar('download')) {
-				$fileMgr->downloadFile($currentPath);
+				$fileManager->downloadFile($currentPath);
 			} else {
-				$fileMgr->viewFile($currentPath, $this->_fileMimeType($currentPath));
+				$fileManager->viewFile($currentPath, $this->_fileMimeType($currentPath));
 			}
 
 		} else {
@@ -59,7 +59,7 @@ class FilesHandler extends ManagerHandler {
 							'isDir' => $isDir,
 							'mimetype' => $isDir ? '' : $this->_fileMimeType($filePath),
 							'mtime' => filemtime($filePath),
-							'size' => $isDir ? '' : FileManager::getNiceFileSize(filesize($filePath)),
+							'size' => $isDir ? '' : $fileManager->getNiceFileSize(filesize($filePath)),
 						);
 						$files[$file] = $info;
 					}
@@ -87,10 +87,10 @@ class FilesHandler extends ManagerHandler {
 		$currentPath = $this->_getRealFilesDir($request, $currentDir);
 
 		import('lib.pkp.classes.file.FileManager');
-		$fileMgr = new FileManager();
-		if ($success = $fileMgr->uploadedFileExists('file')) {
-			$destPath = $currentPath . '/' . $this->_cleanFileName($fileMgr->getUploadedFileName('file'));
-			$success = $fileMgr->uploadFile('file', $destPath);
+		$fileManager = new FileManager();
+		if ($success = $fileManager->uploadedFileExists('file')) {
+			$destPath = $currentPath . '/' . $this->_cleanFileName($fileManager->getUploadedFileName('file'));
+			$success = $fileManager->uploadFile('file', $destPath);
 		}
 
 		if (!$success) {
@@ -122,8 +122,8 @@ class FilesHandler extends ManagerHandler {
 			$newDir = $currentPath . '/' . $this->_cleanFileName($dirName);
 
 			import('lib.pkp.classes.file.FileManager');
-			$fileMgr = new FileManager();
-			@$fileMgr->mkdir($newDir);
+			$fileManager = new FileManager();
+			@$fileManager->mkdir($newDir);
 		}
 
 		$request->redirect(null, null, null, 'files', explode('/', $currentDir));
@@ -141,13 +141,13 @@ class FilesHandler extends ManagerHandler {
 		$currentPath = $this->_getRealFilesDir($request, $currentDir);
 
 		import('lib.pkp.classes.file.FileManager');
-		$fileMgr = new FileManager();
+		$fileManager = new FileManager();
 
 		if (@is_file($currentPath)) {
-			$fileMgr->deleteFile($currentPath);
+			$fileManager->deleteFile($currentPath);
 		} else {
 			// TODO Use recursive delete (rmtree) instead?
-			@$fileMgr->rmdir($currentPath);
+			@$fileManager->rmdir($currentPath);
 		}
 
 		$request->redirect(null, null, null, 'files', explode('/', $parentDir));

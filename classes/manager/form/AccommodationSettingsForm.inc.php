@@ -41,12 +41,14 @@ class AccommodationSettingsForm extends Form {
 	 */
 	function display() {
 		import('classes.file.PublicFileManager');
+		$publicFileManager = new PublicFileManager();
+
 		$schedConf =& Request::getSchedConf();
 
 		$templateMgr =& TemplateManager::getManager();
 		$site =& Request::getSite();
 		$templateMgr->assign('helpTopicId','conference.currentConferences.accommodation');
-		$templateMgr->assign('publicSchedConfFilesDir', Request::getBaseUrl() . '/' . PublicFileManager::getSchedConfFilesPath($schedConf->getId()));
+		$templateMgr->assign('publicSchedConfFilesDir', Request::getBaseUrl() . '/' . $publicFileManager->getSchedConfFilesPath($schedConf->getId()));
 		$templateMgr->assign('accommodationFiles', $schedConf->getSetting('accommodationFiles'));
 		parent::display();
 	}

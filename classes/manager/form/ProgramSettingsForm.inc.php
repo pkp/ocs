@@ -40,12 +40,14 @@ class ProgramSettingsForm extends Form {
 	 */
 	function display() {
 		import('classes.file.PublicFileManager');
+		$publicFileManager = new PublicFileManager();
+
 		$site =& Request::getSite();
 		$schedConf =& Request::getSchedConf();
 
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('helpTopicId','conference.currentConferences.program');
-		$templateMgr->assign('publicSchedConfFilesDir', Request::getBaseUrl() . '/' . PublicFileManager::getSchedConfFilesPath($schedConf->getId()));
+		$templateMgr->assign('publicSchedConfFilesDir', Request::getBaseUrl() . '/' . $publicFileManager->getSchedConfFilesPath($schedConf->getId()));
 		$templateMgr->assign('programFile', $schedConf->getSetting('programFile'));
 
 		parent::display();

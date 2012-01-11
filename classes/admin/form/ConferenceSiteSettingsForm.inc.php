@@ -142,10 +142,11 @@ class ConferenceSiteSettingsForm extends Form {
 
 			// Make the file directories for the conference
 			import('lib.pkp.classes.file.FileManager');
-			FileManager::mkdir(Config::getVar('files', 'files_dir') . '/conferences/' . $conferenceId);
-			FileManager::mkdir(Config::getVar('files', 'files_dir') . '/conferences/' . $conferenceId . '/schedConfs');
-			FileManager::mkdir(Config::getVar('files', 'public_files_dir') . '/conferences/' . $conferenceId);
-			FileManager::mkdir(Config::getVar('files', 'public_files_dir') . '/conferences/' . $conferenceId . '/schedConfs');
+			$fileManager = new FileManager();
+			$fileManager->mkdir(Config::getVar('files', 'files_dir') . '/conferences/' . $conferenceId);
+			$fileManager->mkdir(Config::getVar('files', 'files_dir') . '/conferences/' . $conferenceId . '/schedConfs');
+			$fileManager->mkdir(Config::getVar('files', 'public_files_dir') . '/conferences/' . $conferenceId);
+			$fileManager->mkdir(Config::getVar('files', 'public_files_dir') . '/conferences/' . $conferenceId . '/schedConfs');
 
 			// Install default conference settings
 			$conferenceSettingsDao =& DAORegistry::getDAO('ConferenceSettingsDAO');

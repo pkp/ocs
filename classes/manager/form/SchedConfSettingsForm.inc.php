@@ -137,13 +137,14 @@ class SchedConfSettingsForm extends Form {
 
 			// Make the file directories for the scheduled conference
 			import('lib.pkp.classes.file.FileManager');
+			$fileManager = new FileManager();
 			$conferenceId = $schedConf->getConferenceId();
 			$privateBasePath = Config::getVar('files','files_dir') . '/conferences/' . $conferenceId . '/schedConfs/' . $schedConfId;
 			$publicBasePath = Config::getVar('files','public_files_dir') . '/conferences/' . $conferenceId . '/schedConfs/' . $schedConfId;
-			FileManager::mkdirtree($privateBasePath);
-			FileManager::mkdirtree($privateBasePath . '/papers');
-			FileManager::mkdirtree($privateBasePath . '/tracks');
-			FileManager::mkdirtree($publicBasePath);
+			$fileManager->mkdirtree($privateBasePath);
+			$fileManager->mkdirtree($privateBasePath . '/papers');
+			$fileManager->mkdirtree($privateBasePath . '/tracks');
+			$fileManager->mkdirtree($publicBasePath);
 
 			// Install default scheduled conference settings
 			$schedConfSettingsDao =& DAORegistry::getDAO('SchedConfSettingsDAO');

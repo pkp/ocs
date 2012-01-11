@@ -54,12 +54,13 @@ class TemplateManager extends PKPTemplateManager {
 			$site =& $request->getSite();
 			$this->assign('siteTitle', $site->getLocalizedTitle());
 
-			$siteFilesDir = $request->getBaseUrl() . '/' . PublicFileManager::getSiteFilesPath();
+			$publicFileManager = new PublicFileManager();
+			$siteFilesDir = $request->getBaseUrl() . '/' . $publicFileManager->getSiteFilesPath();
 			$this->assign('sitePublicFilesDir', $siteFilesDir);
 
 			$this->assign('homeContext', array('conference' => 'index', 'schedConf' => 'index'));
 
-			$siteStyleFilename = PublicFileManager::getSiteFilesPath() . '/' . $site->getSiteStyleFilename();
+			$siteStyleFilename = $publicFileManager->getSiteFilesPath() . '/' . $site->getSiteStyleFilename();
 			if (file_exists($siteStyleFilename)) $this->addStyleSheet($request->getBaseUrl() . '/' . $siteStyleFilename);
 
 			if (isset($conference)) {
@@ -88,13 +89,13 @@ class TemplateManager extends PKPTemplateManager {
 				$navMenuItems =& $conference->getLocalizedSetting('navItems');
 				$this->assign_by_ref('navMenuItems', $navMenuItems);
 
-				$this->assign('publicFilesDir', $request->getBaseUrl() . '/' . PublicFileManager::getConferenceFilesPath($conference->getId()));
+				$this->assign('publicFilesDir', $request->getBaseUrl() . '/' . $publicFileManager->getConferenceFilesPath($conference->getId()));
 				$this->assign('displayPageHeaderTitle', $conference->getPageHeaderTitle());
 				$this->assign('displayPageHeaderLogo', $conference->getPageHeaderLogo());
 				$this->assign('displayPageHeaderTitleAltText', $conference->getLocalizedSetting('pageHeaderTitleImageAltText'));
 				$this->assign('displayPageHeaderLogoAltText', $conference->getLocalizedSetting('pageHeaderLogoImageAltText'));
 				$this->assign('displayFavicon', $conference->getLocalizedFavicon());
-				$this->assign('faviconDir', $request->getBaseUrl() . '/' . PublicFileManager::getConferenceFilesPath($conference->getId()));
+				$this->assign('faviconDir', $request->getBaseUrl() . '/' . $publicFileManager->getConferenceFilesPath($conference->getId()));
 				$this->assign('alternatePageHeader', $conference->getLocalizedSetting('conferencePageHeader'));
 				$this->assign('metaSearchDescription', $conference->getLocalizedSetting('searchDescription'));
 				$this->assign('metaSearchKeywords', $conference->getLocalizedSetting('searchKeywords'));
@@ -107,7 +108,7 @@ class TemplateManager extends PKPTemplateManager {
 				if (isset($schedConf)) {
 
 					// This will be needed if inheriting public conference files from the scheduled conference.
-					$this->assign('publicSchedConfFilesDir', $request->getBaseUrl() . '/' . PublicFileManager::getSchedConfFilesPath($schedConf->getId()));
+					$this->assign('publicSchedConfFilesDir', $request->getBaseUrl() . '/' . $publicFileManager->getSchedConfFilesPath($schedConf->getId()));
 					$this->assign('primaryLocale', $conference->getSetting('primaryLocale'));
 					$this->assign('alternateLocales', $conference->getPrimaryLocale());
 
@@ -158,7 +159,7 @@ class TemplateManager extends PKPTemplateManager {
 				$conferenceStyleSheet = $conference->getSetting('conferenceStyleSheet');
 				if ($conferenceStyleSheet) {
 					$this->addStyleSheet($request->getBaseUrl() .
-					'/' .	PublicFileManager::getConferenceFilesPath($conference->getId()) .
+					'/' .	$publicFileManager->getConferenceFilesPath($conference->getId()) .
 					'/' . $conferenceStyleSheet['uploadName']);
 				}
 
@@ -167,7 +168,7 @@ class TemplateManager extends PKPTemplateManager {
 					$schedConfStyleSheet = $schedConf->getSetting('schedConfStyleSheet');
 					if ($schedConfStyleSheet) {
 						$this->addStyleSheet($request->getBaseUrl() .
-						'/' .	PublicFileManager::getSchedConfFilesPath($schedConf->getId()) .
+						'/' .	$publicFileManager->getSchedConfFilesPath($schedConf->getId()) .
 						'/' . $schedConfStyleSheet['uploadName']);
 					}
 				}
@@ -176,7 +177,7 @@ class TemplateManager extends PKPTemplateManager {
 				$displayPageHeaderTitle = $site->getLocalizedPageHeaderTitle();
 				$this->assign('displayPageHeaderTitle', $displayPageHeaderTitle);
 				if (isset($displayPageHeaderTitle['altText'])) $this->assign('displayPageHeaderTitleAltText', $displayPageHeaderTitle['altText']);
-				$this->assign('publicFilesDir', $request->getBaseUrl() . '/' . PublicFileManager::getSiteFilesPath());
+				$this->assign('publicFilesDir', $request->getBaseUrl() . '/' . $publicFileManager->getSiteFilesPath());
 			}
 
 			// Add java script for notifications

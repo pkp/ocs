@@ -53,7 +53,7 @@ class TemporaryFileManager extends PKPTemporaryFileManager {
 			$temporaryFile->setFileName($newFileName);
 			$temporaryFile->setFileType($paperFile->getFileType());
 			$temporaryFile->setFileSize($paperFile->getFileSize());
-			$temporaryFile->setOriginalFileName(TemporaryFileManager::truncateFileName($paperFile->getOriginalFileName(), 127));
+			$temporaryFile->setOriginalFileName($this->truncateFileName($paperFile->getOriginalFileName(), 127));
 			$temporaryFile->setDateUploaded(Core::getCurrentDate());
 
 			$temporaryFileDao->insertTemporaryFile($temporaryFile);

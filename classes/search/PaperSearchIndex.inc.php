@@ -13,8 +13,6 @@
  * @brief Class to add content to the paper search index.
  */
 
-//$Id$
-
 import('lib.pkp.classes.search.SearchFileParser');
 import('lib.pkp.classes.search.SearchHTMLParser');
 import('lib.pkp.classes.search.SearchHelperParser');
@@ -63,8 +61,8 @@ class PaperSearchIndex {
 	 */
 	function updateFileIndex($paperId, $type, $fileId) {
 		import('classes.file.PaperFileManager');
-		$fileMgr = new PaperFileManager($paperId);
-		$file =& $fileMgr->getFile($fileId);
+		$fileManager = new PaperFileManager($paperId);
+		$file =& $fileManager->getFile($fileId);
 
 		if (isset($file)) {
 			$parser =& SearchFileParser::fromFile($file);

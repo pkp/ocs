@@ -75,7 +75,8 @@ class UserImportExportPlugin extends ImportExportPlugin {
 				$continueOnError = (bool) Request::getUserVar('continueOnError');
 
 				import('lib.pkp.classes.file.FileManager');
-				if (($userFile = FileManager::getUploadedFilePath('userFile')) !== false) {
+				$fileManager = new FileManager();
+				if (($userFile = $fileManager->getUploadedFilePath('userFile')) !== false) {
 					// Import the uploaded file
 					$parser = new UserXMLParser($schedConf->getConferenceId(), $schedConf->getId());
 					$users =& $parser->parseData($userFile);

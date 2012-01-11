@@ -91,7 +91,7 @@ class NativeImportExportPlugin extends ImportExportPlugin {
 
 				if (($existingFileId = Request::getUserVar('temporaryFileId'))) {
 					// The user has just entered more context. Fetch an existing file.
-					$temporaryFile = TemporaryFileManager::getFile($existingFileId, $user->getId());
+					$temporaryFile = $temporaryFileManager->getFile($existingFileId, $user->getId());
 				} else {
 					$temporaryFile = $temporaryFileManager->handleUpload('importFile', $user->getId());
 				}

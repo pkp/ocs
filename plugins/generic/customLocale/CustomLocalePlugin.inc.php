@@ -31,9 +31,10 @@ class CustomLocalePlugin extends GenericPlugin {
 				$customLocalePathBase = $publicFilesDir . DIRECTORY_SEPARATOR . 'conferences' . DIRECTORY_SEPARATOR . $conferenceId . DIRECTORY_SEPARATOR . CUSTOM_LOCALE_DIR . DIRECTORY_SEPARATOR . $locale . DIRECTORY_SEPARATOR;
 
 				import('lib.pkp.classes.file.FileManager');
+				$fileManager = new FileManager();
 				foreach ($localeFiles as $localeFile) {
 					$customLocalePath = $customLocalePathBase . $localeFile->getFilename();
-					if (FileManager::fileExists($customLocalePath)) {
+					if ($fileManager->fileExists($customLocalePath)) {
 						AppLocale::registerLocaleFile($locale, $customLocalePath, true);
 					}
 				}
@@ -57,7 +58,8 @@ class CustomLocalePlugin extends GenericPlugin {
 		$customLocalePath = $publicFilesDir . DIRECTORY_SEPARATOR . 'conferences' . DIRECTORY_SEPARATOR . $conferenceId . DIRECTORY_SEPARATOR . CUSTOM_LOCALE_DIR . DIRECTORY_SEPARATOR . $locale . DIRECTORY_SEPARATOR . $localeFilename;
 
 		import('lib.pkp.classes.file.FileManager');
-		if (FileManager::fileExists($customLocalePath)) {
+		$fileManager = new FileManager();
+		if ($fileManager->fileExists($customLocalePath)) {
 			AppLocale::registerLocaleFile($locale, $customLocalePath, true);
 		}
 

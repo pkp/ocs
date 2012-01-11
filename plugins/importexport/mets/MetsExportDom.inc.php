@@ -416,6 +416,7 @@ class MetsExportDom {
 	function generatePaperFileDom(&$doc, &$root, &$paper, &$paperFile, &$conference, &$schedConf) {
 		import('classes.file.PublicFileManager');
 		import('lib.pkp.classes.file.FileManager');
+		$fileManager = new FileManager();
 		$contentWrapper =& Request::getUserVar('contentWrapper');
 		$mfile =& XMLCustomWriter::createElement($doc, 'METS:file');
 		$filePath  = MetsExportDom::getPublicFilePath($paperFile , '/public/');
@@ -427,7 +428,7 @@ class MetsExportDom {
 		XMLCustomWriter::setAttribute($mfile, 'CHECKSUM', $chkmd5return);
 		XMLCustomWriter::setAttribute($mfile, 'CHECKSUMTYPE', 'MD5');
 		if($contentWrapper == 'FContent'){
-			$fileContent =& FileManager::readFile($filePath);
+			$fileContent =& $fileManager->readFile($filePath);
 			$fContent =& XMLCustomWriter::createElement($doc, 'METS:FContent');
 			$fNameNode =& XMLCustomWriter::createChildWithText($doc, $fContent, 'METS:binData',base64_encode($fileContent));
 			XMLCustomWriter::appendChild($mfile, $fContent);
@@ -450,6 +451,7 @@ class MetsExportDom {
 	function generatePaperSuppFileDom(&$doc, &$root, &$paper, &$paperFile, &$conference, &$schedConf) {
 		import('classes.file.PublicFileManager');
 		import('lib.pkp.classes.file.FileManager');
+		$fileManager = new FileManager();
 		$contentWrapper =& Request::getUserVar('contentWrapper');
 		$mfile =& XMLCustomWriter::createElement($doc, 'METS:file');
 		$filePath  = MetsExportDom::getPublicFilePath($paperFile , '/supp/');;
@@ -461,7 +463,7 @@ class MetsExportDom {
 		XMLCustomWriter::setAttribute($mfile, 'CHECKSUM', $chkmd5return);
 		XMLCustomWriter::setAttribute($mfile, 'CHECKSUMTYPE', 'MD5');
 		if($contentWrapper == 'FContent'){
-			$fileContent =& FileManager::readFile($filePath);
+			$fileContent =& $fileManager->readFile($filePath);
 			$fContent =& XMLCustomWriter::createElement($doc, 'METS:FContent');
 			$fNameNode =& XMLCustomWriter::createChildWithText($doc, $fContent, 'METS:binData',base64_encode($fileContent));
 			XMLCustomWriter::appendChild($mfile, $fContent);

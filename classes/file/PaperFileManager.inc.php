@@ -393,7 +393,7 @@ class PaperFileManager extends FileManager {
 		$paperFile->setFileName($sourcePaperFile->getFileName());
 		$paperFile->setFileType($sourcePaperFile->getFileType());
 		$paperFile->setFileSize($sourcePaperFile->getFileSize());
-		$paperFile->setOriginalFileName(PaperFileManager::truncateFileName($sourcePaperFile->getFileName(), 127));
+		$paperFile->setOriginalFileName($this->truncateFileName($sourcePaperFile->getFileName(), 127));
 		$paperFile->setFileStage($destFileStage);
 		$paperFile->setDateUploaded(Core::getCurrentDate());
 		$paperFile->setDateModified(Core::getCurrentDate());
@@ -502,7 +502,7 @@ class PaperFileManager extends FileManager {
 
 		$paperFile->setFileType($this->getUploadedFileType($fileName));
 		$paperFile->setFileSize($_FILES[$fileName]['size']);
-		$paperFile->setOriginalFileName(PaperFileManager::truncateFileName($_FILES[$fileName]['name'], 127));
+		$paperFile->setOriginalFileName($this->truncateFileName($_FILES[$fileName]['name'], 127));
 		$paperFile->setFileStage($fileStage);
 		$paperFile->setRound($this->paper->getCurrentRound());
 
@@ -555,7 +555,7 @@ class PaperFileManager extends FileManager {
 
 		$paperFile->setFileType($mimeType);
 		$paperFile->setFileSize(strlen($contents));
-		$paperFile->setOriginalFileName(PaperFileManager::truncateFileName($fileName, 127));
+		$paperFile->setOriginalFileName($this->truncateFileName($fileName, 127));
 		$paperFile->setFileStage($fileStage);
 		$paperFile->setRound($this->paper->getCurrentRound());
 
@@ -606,7 +606,7 @@ class PaperFileManager extends FileManager {
 		}
 
 		$paperFile->setFileType($mimeType);
-		$paperFile->setOriginalFileName(PaperFileManager::truncateFileName(basename($url), 127));
+		$paperFile->setOriginalFileName($this->truncateFileName(basename($url), 127));
 		$paperFile->setFileStage($fileStage);
 		$paperFile->setRound($this->paper->getCurrentRound());
 
