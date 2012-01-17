@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * locale.xml
+  *
+  * Copyright (c) 2000-2012 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * LDAP authentication plugin localization strings for the cs_CZ (Czech) locale.
+  * Translated by Petr Petyovsky (petyovsky 'at' feec.vutbr.cz)
+  *
+  * $Id: locale.xml 219 2011-06-21 21:11:53Z petyovsky $
+  -->
+ 
+<locale name="cs_CZ" full_name="Čeština">
+	<message key="plugins.auth.ldap.displayName">LDAP</message>
+	<message key="plugins.auth.ldap.description">Doplněk umožňuje autentifikaci a synchronizaci uživatelských účtů s externím zdrojem LDAP dat.</message>
+	
+	<message key="plugins.auth.ldap.settings">Nastavení LDAP</message>
+	<message key="plugins.auth.ldap.settings.hostname">Jméno serveru</message>
+	<message key="plugins.auth.ldap.settings.hostname.description">Např.: "ldap.example.com", nebo "ldaps://ldap.example.com" (při použití SSL)</message>
+	<message key="plugins.auth.ldap.settings.port">Server port</message>
+	<message key="plugins.auth.ldap.settings.port.description">Volitelné. Výchozí nastavení je: 389 (LDAP) or 636 (LDAP přes SSL)</message>
+	<message key="plugins.auth.ldap.settings.basedn">Base DN</message>
+	<message key="plugins.auth.ldap.settings.basedn.description">Např.: "ou=people,dc=example,dc=com"</message>
+	<message key="plugins.auth.ldap.settings.managerdn">Správce DN</message>
+	<message key="plugins.auth.ldap.settings.managerdn.description">Např.: "cn=Manager,dc=example,dc=com"</message>
+	<message key="plugins.auth.ldap.settings.managerpwd">Heslo správce DN</message>
+	<message key="plugins.auth.ldap.settings.managerpwd.description">Položky "Správce DN" a "Heslo správce DN" jsou vyžadovány pouze v případě použití volby synchronizace nebo tvorby nového uživatelského jména a hesla. Pokud bude LDAP používáno pouze pro ověřování těchto údajů, potom není nutné je vyplňovat.</message>
+	<message key="plugins.auth.ldap.settings.uid">Atribut identifikace uživatele</message>
+	<message key="plugins.auth.ldap.settings.uid.description">Atribut, jehož hodnota jednoznačně identifikuje objekt uživatele, jako např. "uid", "cn" nebo "sAMAccountName".</message>
+	<message key="plugins.auth.ldap.settings.pwhash">Metoda šifrování hesla</message>
+	<message key="plugins.auth.ldap.settings.pwhash.description">Formát hash otisku hesla uloženého na serveru. Doporučeno SSHA (vyžaduje PHP >= 4.3.0).</message>
+	<message key="plugins.auth.ldap.settings.saslopt">SASL nastavení (volitelné)</message>
+	<message key="plugins.auth.ldap.settings.sasl">Použít SASL namísto jednoduché autentifikace (vyžaduje PHP >= 5)</message>
+	<message key="plugins.auth.ldap.settings.saslmech">SASL mechanismus</message>
+	<message key="plugins.auth.ldap.settings.saslmech.description">Např.: "DIGEST-MD5"</message>
+	<message key="plugins.auth.ldap.settings.saslrealm">Realm</message>
+	<message key="plugins.auth.ldap.settings.saslauthzid">Requested authorization ID</message>
+	<message key="plugins.auth.ldap.settings.saslprop">SASL bezpečnostní vlastnosti</message>
+</locale>

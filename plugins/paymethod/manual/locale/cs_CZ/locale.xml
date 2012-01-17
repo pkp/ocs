@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * locale.xml
+  *
+  * Copyright (c) 2000-2012 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the cs_CS (Czech) locale.
+  * Translated by Petr Petyovsky (petyovsky 'at' feec.vutbr.cz)
+  *
+  * $Id: locale.xml 230 2011-06-30 21:37:35Z petyovsky $
+ -->
+
+<locale name="cs_CZ" full_name="Čeština">
+	<message key="plugins.paymethod.manual.displayName">Doplněk manuálních plateb</message>
+	<message key="plugins.paymethod.manual.description">Doplněk umožňuje manažerovi konference přijímat informace o uživatelských platbách, které budou následně manuálně zaznamenány mimo tento software.</message>
+	<message key="plugins.paymethod.manual">Manuální úhrada poplatku</message>
+	<message key="plugins.paymethod.manual.settings">Nastavení manuální platby</message>
+	<message key="plugins.paymethod.manual.settings.instructions">Pokyny</message>
+	<message key="plugins.paymethod.manual.settings.manualInstructions">Pokyny pro ty uživatele, kteří si zvolili možnost manuální úhrady poplatku</message>
+
+	<message key="plugins.paymethod.manual.sendNotificationOfPayment">Odesílat oznámení o platbě</message>
+	<message key="plugins.paymethod.manual.paymentNotification">Oznámení o platbě</message>
+	<message key="plugins.paymethod.manual.notificationSent">Oznámení o platbě bylo odesláno</message>
+
+	<message key="plugins.paymethod.manual.purchase.title">Název</message>
+	<message key="plugins.paymethod.manual.purchase.fee">Poplatek</message>
+</locale>

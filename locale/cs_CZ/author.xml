@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * ocs2-devel/locale/cs_CZ/author.xml
+  *
+  * Copyright (c) 2000-2012 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the cs_CZ (Czech) locale.
+  * Translated by Pavel Zufan (pavel.zufan 'at' gmail.com)
+  * Corrections, migration to the OCS 2.3.x by Ivo Vesely and Petr Petyovsky (petyovsky 'at' feec.vutbr.cz)
+  *
+  * $Id: author.xml 218 2011-06-21 20:42:56Z petyovsky $
+  -->
+
+<locale name="cs_CZ" full_name = "Čeština">
+	<message key="author.submit">Nový příspěvek</message>
+	<message key="author.track">Aktivní příspěvky</message>
+	<message key="author.submit.startHere">Podání příspěvku na tuto konferenci začněte zde.</message>
+	<message key="author.submit.startHereLink">První krok postupu podání příspěvku</message>
+	<message key="author.submit.step1">Krok 1: Zahájení podání</message>
+	<message key="author.submit.step3">Krok 3: Vložení metadat příspěvku</message>
+	<message key="author.submit.step3AbstOnly">Krok 2: Vložení metadat příspěvku</message>	
+	<message key="author.submit.step2">Krok 2: Načtení příspěvku</message>
+	<message key="author.submit.step4">Krok 4: Načtení doplňkových souborů</message>
+	<message key="author.submit.step4a">Krok 4a: Přidání doplňkového souboru</message>
+	<message key="author.submit.step5">Krok 5: Potvrzení příspěvku</message>
+	<message key="author.submit.step5SkipSupp">Krok 4: Potvrzení příspěvku</message>
+	<message key="author.submit.start">1. Začít</message>
+	<message key="author.submit.metadata">3. Vložit metadata</message>
+	<message key="author.submit.metadataOnly">2. Vložit metadata</message>
+	<message key="author.submit.upload">2. Načíst příspěvek</message>
+	<message key="author.submit.uploadOnly">3. Načíst příspěvek</message>
+	<message key="author.submit.supplementaryFiles">4. Načíst doplňkové soubory</message>
+	<message key="author.submit.supplementaryFilesAbstractOnly">3. Načíst doplňkové soubory</message>
+	<message key="author.submit.supplementaryFilesInfoAbstractOnly">Krok 3a: Načíst doplňkové soubory</message>
+	<message key="author.submit.confirmation">5. Potvrzení</message>
+	<message key="author.submit.confirmationSkipSupp">4. Potvrzení</message>
+	<message key="author.submit.cancelSubmission">Podání tohoto příspěvku můžete dokončit později prostřednictvím volby "Aktuální příspěvky" z domovské stránky autora.</message>
+	<message key="author.submit.notAcceptingYet">Tato konference dosud nepřijímá příspěvky.</message>
+	<message key="author.submit.notAccepting">Tato konference nepřijímá příspěvky.</message>
+	<message key="author.submit.submissionDeadlinePassed">Uzávěrka příspěvků na tuto konferenci uplynula {$closedDate}.</message>
+	<message key="author.submit.authorRegistrationClosed">Registrace autorů příspěvků pro tuto konferenci již skončila.</message>
+	<message key="author.submissions.queuedAbstractReviewRevisions">Oponovaný abstrakt: Jsou vyžadovány úpravy</message>
+	<message key="author.submissions.queuedPaperReviewRevisions">Oponovaný příspěvek: Jsou vyžadovány úpravy</message>
+	<message key="author.submissions.confirmDelete">Skutečně si přejete vymazat tento nekompletní příspěvek?</message>
+	<message key="author.submissions.viewStatus">Prohlédnout stav</message>
+	<message key="author.submissions.noSubmissions">Žádné příspěvky.</message>
+	<message key="author.submit.howToSubmit"><![CDATA[Narazili jste na problém? Kontaktujte, prosím, následující osobu: <a href="mailto:{$supportEmail}">{$supportName}</a>, telefon: ({$supportPhone}).]]></message>
+	<message key="author.submit.howToSubmitNoPhone"><![CDATA[Narazili jste na problém? Kontaktujte, prosím následující osobu: <a href="mailto:{$supportEmail}">{$supportName}</a>.]]></message>
+	<message key="author.submit.conferenceTrack">Sekce konference</message>
+	<message key="author.submit.conferenceTrackDescription"><![CDATA[Vyberte pro tento příspěvek odpovídající sekci (viz <a href="{$aboutUrl}" target="_new">Seznam sekcí</a>).]]></message>
+	<message key="author.submit.selectTrack">Zvolte prosím sekci...</message>
+	<message key="author.submit.submissionChecklist">Kontrolní seznam příspěvku</message>
+	<message key="author.submit.submissionChecklistDescription">Označte, že tento příspěvek je připraven k odeslání na tuto konferenci zatrhnutím následujících polí (poznámky pro garanta lze vložit níže).</message>
+	<message key="author.submit.verifyChecklist">Ujistěte se, že byly splněny všechny položky na kontrolním seznamu.</message>
+	<message key="author.submit.copyrightNoticeAgree">Autoři souhlasí s podmínkami uvedenými v sekci Autorská práva k příspěvkům, která budou aplikována na tento příspěvek v případě jeho přijetí na konferenci (poznámky pro garanta lze vložit níže).</message>
+	<message key="author.submit.copyrightNoticeAgreeRequired">Před pokračováním musíte souhlasit s podmínkami uvedenými v sekci Autorská práva k příspěvkům.</message>
+	<message key="author.submit.commentsForDirector">Poznámky pro garanta konference</message>
+	<message key="author.submit.comments">Vložte text (nepovinné)</message>
+	<message key="author.submit.form.authorRequired">Zadejte alespoň jednoho autora.</message>
+	<message key="author.submit.form.authorRequiredFields">Zadejte jméno, příjmení a emailovou adresu každého autora.</message>
+	<message key="author.submit.form.trackRequired">Zvolte, prosím, odpovídající sekci konference pro tento příspěvek.</message>
+	<message key="author.submit.form.abstractRequired">Vložte prosím abstrakt svého příspěvku.</message>
+	<message key="author.submit.privacyStatement">Prohlášení o ochraně soukromí</message>
+	<message key="author.submit.reorderInstructions">Přeuspořádat autory podle toho, jak budou uvedeni v publikaci.</message>
+	<message key="author.submit.reorder">Přeuspořádat jména autorů</message>
+	<message key="author.submit.selectPrincipalContact">Hlavní kontaktní osoba pro korespondenci související s publikováním.</message>
+	<message key="author.submit.addAuthor">Přidat autora</message>
+	<message key="author.submit.deleteAuthor">Odstranit autora</message>
+	<message key="author.submit.submissionIndexingDescription">Zadejte pojmy pro indexování příspěvku; oddělte je středníkem (pojem1; pojem2; pojem3).</message>
+	<message key="author.submit.submissionSupportingAgencies">Podpora příspěvku</message>
+	<message key="author.submit.submissionSupportingAgenciesDescription">Uveďte partnery, kteří poskytli finanční či jinou podporu prezentované práce.</message>
+	<message key="author.submit.subjectClassInstructions">Použijte klasifikační systém pod uvedeným odkazem a vyberte klasifikační pojmy a případně číselné kódy.</message>
+	<message key="author.submit.languageInstructions"><![CDATA[English=en; French=fr; Spanish=es. <a href="http://www.loc.gov/standards/iso639-2/php/code_list.php" target="_blank">Další kódy</a>.]]></message>
+	<message key="presenter.submit.form.authorRequired">Zadejte alespoň jednoho autora.</message>
+	<message key="presenter.submit.form.authorRequiredFields">Zadejte jméno, příjmení a emailovou adresu každého autora.</message>
+	<message key="author.submit.form.titleRequired">Zadejte, prosím, název vašeho příspěvku.</message>
+	<message key="author.submit.form.wordCountAlert">Překročil jste limit počtu slov definovaný pro abstrakt v sekci této konference.</message>
+	<message key="author.submit.submissionFile">Soubor s příspěvkem</message>
+	<message key="author.submit.uploadSubmissionFile">Načíst soubor s příspěvkem</message>
+	<message key="author.submit.replaceSubmissionFile">Nahradit soubor s příspěvkem</message>
+	<message key="author.submit.noSubmissionFile">Nebyl uložen žádný soubor s příspěvkem.</message>
+	<message key="author.submit.noSubmissionConfirm">Skutečně chcete pokračovat bez načtení souboru s příspěvkem?</message>
+	<message key="author.submit.supplementaryFilesInstructions">Tento nepovinný krok umožňuje přidání doplňkových souborů k příspěvku. Soubory, které mohou být v jakémkoliv formátu, mohou obsahovat (a) výzkumné nástroje, (b) datové soubory, které jsou v souladu s etickými pravidly provedeného výzkumu, (c) zdroje, které by jinak nebyly čtenářům dostupné, (d) obrázky a tabulky, které nelze integrovat do samotného textu, nebo další materiály, které zvyšují přínos příspěvku.</message>
+	<message key="author.submit.supplementaryFiles.saveToUpload">Pro načtení souboru klikněte na "Uložit" (poté lze přidat další soubory).</message>
+	<message key="author.submit.forgottenSubmitSuppFile">Skutečně si přejete pokračovat bez načtení vybraného doplňkového souboru?</message>
+	<message key="author.submit.noSupplementaryFiles">K tomuto příspěvku nebyl přidán žádný doplňkový soubor.</message>
+	<message key="author.submit.backToSupplementaryFiles">Zpět k doplňkovým souborům</message>
+	<message key="author.submit.confirmDeleteSuppFile">Skutečně si přejete vymazat tento doplňkový soubor?</message>
+	<message key="author.submit.uploadSuppFile">Načíst doplňkový soubor</message>
+	<message key="author.submit.addSupplementaryFile">Připojit doplňkový soubor</message>
+	<message key="author.submit.editSupplementaryFile">Editovat doplňkový soubor</message>
+	<message key="author.submit.supplementaryFileData">Metadata doplňkového souboru</message>
+	<message key="author.submit.supplementaryFileDataDescription">Pro indexování tohoto doplňkového materiálu je třeba poskytnout následující metadata.</message>
+	<message key="author.submit.supplementaryFileUpload">Doplňkový soubor</message>
+	<message key="author.submit.suppFile.createrOrOwner">Autor (nebo vlastník) souboru</message>
+	<message key="author.submit.suppFile.researchInstrument">Výzkumný nástroj</message>
+	<message key="author.submit.suppFile.researchMaterials">Výzkumné materiály</message>
+	<message key="author.submit.suppFile.researchResults">Výsledky výzkumu</message>
+	<message key="author.submit.suppFile.transcripts">Transkripty</message>
+	<message key="author.submit.suppFile.dataAnalysis">Analýza dat</message>
+	<message key="author.submit.suppFile.dataSet">Soubor dat</message>
+	<message key="author.submit.suppFile.sourceText">Zdrojový text</message>
+	<message key="author.submit.suppFile.briefDescription">Stručný popis</message>
+	<message key="author.submit.suppFile.contributorOrSponsor">Podpůrný nebo sponzorující subjekt</message>
+	<message key="author.submit.suppFile.availableToPeers">Předat soubor oponentům (bez metadat), neboť nebude narušena anonymita oponentury.</message>
+	<message key="author.submit.suppFile.publisherDescription">Použít pouze ve formálně publikovaných materiálech.</message>
+	<message key="author.submit.suppFile.dateDescription">Datum sběru dat či vytvoření nástroje.</message>
+	<message key="author.submit.suppFile.sourceDescription">Název studie či jiného zdroje.</message>
+	<message key="author.submit.suppFile.specifyOtherType">Konkretizujte</message>
+	<message key="author.submit.suppFile.noFile">Nebyl načten žádný soubor.</message>
+	<message key="author.submit.suppFile.form.titleRequired">Zadejte prosím název tohoto doplňkového souboru.</message>
+	<message key="author.submit.suppFile.form.subjectRequired">Zadejte prosím předmět.</message>
+	<message key="author.submit.suppFile.form.descriptionRequired">Zadejte prosím popis.</message>
+	<message key="author.suppFile.suppFilePublicIdentificationExists">Veřejná identifikace doplňkového souboru už existuje.</message>
+	<message key="author.suppFile.publicSuppFileIdentifier">Identifikátor veřejného doplňkového souboru</message>
+	<message key="author.submit.addSubmissionFile">Připojit doplňkový soubor</message>
+	<message key="author.submit.submissionFileUpload">Doplňkový soubor</message>
+	<message key="author.submit.confirmationDescription">Pro odeslání rukopisu na konferenci {$conferenceTitle} klikněte na "Dokončit odeslání". Hlavní kontaktní osoba obdrží emailové oznámení a bude moci sledovat postup příspěvku oponenturami. Děkujeme za Váš zájem o účast na konferenci {$conferenceTitle}.</message>
+	<message key="author.submit.noFiles">K tomuto příspěvku nebyly připojeny žádné soubory.</message>
+	<message key="author.submit.filesSummary">Údaje o souboru</message>
+	<message key="author.submit.finishSubmission">Dokončit odeslání</message>
+	<message key="author.submit.submissionComplete">Odeslání dokončeno. Děkujeme za odeslání příspěvku na konferenci {$conferenceTitle}.</message>
+	<message key="author.submit.expedite"><![CDATA[Je-li tento příspěvek ve formátu, který je možné publikovat bez dalších změn a editací, lze ho rovnou odeslat na stránku Sborník <a href="{$expediteUrl}" class="action">kliknutím sem</a>. (Poznámka: Tuto nabídku mají k dispozici pouze garanti sekcí.)]]></message>
+	<message key="author.paper.uploadAuthorVersion">Načíst verzi autora</message>
+	<message key="presenter.submit.authorSubmitLoginMessage">Podávání materiálů na tuto konferenci je možné pouze po provedení registrace. To umožňuje garantům sekcí sledovat Vaše příspěvky a kontaktovat Vás při změně stavu Vašeho příspěvku, nebo v případě potřeby dalších informací od Vás.</message>
+</locale>

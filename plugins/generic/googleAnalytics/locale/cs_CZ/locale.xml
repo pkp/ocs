@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * locale.xml
+  *
+  * Copyright (c) 2000-2012 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Google Analytics plugin localization strings for the cs_CZ (Czech) locale.
+  * Translated by Petr Petyovsky (petyovsky 'at' feec.vutbr.cz)
+  *
+  * $Id: locale.xml 219 2011-06-21 21:11:53Z petyovsky $
+  -->
+ 
+<locale name="cs_CZ" full_name="Čeština">
+
+	<!-- Google Analytics -->
+	<message key="plugins.generic.googleAnalytics.displayName">Doplněk Google Analytics</message>
+	<message key="plugins.generic.googleAnalytics.description"><![CDATA[Doplněk umožňuje rychlou integraci OCS a služby Google Analytics (nástroje pro měření statistik návštěvnosti stránek od firmy Google). Doplněk vyžaduje, abyste již měli pro službu Google Analytics zřízen účet. Více informací o této službě naleznete na stránkách <a href="http://www.google.com/analytics/" title="stránky Google Analytics">Google Analytics</a>.]]></message>
+	<message key="plugins.generic.googleAnalytics.enabled">Doplněk Google Analytics byl povolen.</message>
+	<message key="plugins.generic.sgoogleAnalyticsehl.disabled">Doplněk Google Analytics byl zakázán.</message>
+	<!-- Google Analytics Settings Management -->
+	<message key="plugins.generic.googleAnalytics.manager.settings">Nastavení</message>
+	<message key="plugins.generic.googleAnalytics.manager.googleAnalyticsSettings">Nastavení parametrů Google Analytics</message>
+	<message key="plugins.generic.googleAnalytics.manager.settings.description"><![CDATA[<p>Pomocí tohoto doplňku můžete využívat službu Google Analytics ke sběru a analýze návštěvnosti stránek se systémem OCS. Prosím ověřte si, že již máte zřízený Google Analytics účet. Více informací o této službě naleznete na stránkách <a href="http://www.google.com/analytics/" title="stránky Google Analytics">Google Analytics</a>.</p><p>Prosím, uvědomte si, že služba Google Analytics vyžaduje alespoň 24 hodin na to, aby provedla sběr dat a jejich vyhodnocení. Během této doby nemusí funkce 'Check Status' vracet korektní výsledky ani při správné konfiguraci sledovacího kódu.</p>]]></message>
+	<message key="plugins.generic.googleAnalytics.manager.settings.googleAnalyticsSiteId">Číslo účtu</message>
+	<message key="plugins.generic.googleAnalytics.manager.settings.googleAnalyticsSiteIdInstructions"><![CDATA[V rámci služby Google Analytics, klikněte na tlačítko 'Check Status' a zobrazí se Vám sledovací (tracking) kód pro Vaše stránky. Původní (dřívější) sledovací kód má tvar: _uacct = "###". Aktuální sledovací kód má tvar: var pageTracker = _gat._getTracker("###"). Zadejte text uvedený na místě ### a zvolte jeden z typů sledovacího kódu v nastavení tohoto doplňku.]]></message>
+	<message key="plugins.generic.googleAnalytics.manager.settings.googleAnalyticsSiteIdRequired">Prosím, zadejte číslo účtu.</message>
+	<message key="plugins.generic.googleAnalytics.manager.settings.trackingCode">Sledovací (tracking) kód</message>
+	<message key="plugins.generic.googleAnalytics.manager.settings.trackingCodeRequired">Prosím, zadejte sledovací kód.</message>
+	<message key="plugins.generic.googleAnalytics.manager.settings.urchin">Sledovacího kód (původní typ) (urchin.js)</message>
+	<message key="plugins.generic.googleAnalytics.manager.settings.ga">Sledovacího kód (aktuální typ) (ga.js)</message>
+</locale>

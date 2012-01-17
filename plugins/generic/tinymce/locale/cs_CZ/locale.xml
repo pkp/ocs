@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * locale.xml
+  *
+  * Copyright (c) 2000-2012 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the cs_CZ (Czech) locale.
+  * Translated by Petr Petyovsky (petyovsky 'at' feec.vutbr.cz)
+  *
+  * $Id: locale.xml 219 2011-06-21 21:11:53Z petyovsky $
+  -->
+ 
+<locale name="cs_CZ" full_name="Čeština">
+	<message key="plugins.generic.tinymce.name">Doplněk TinyMCE</message>
+	<message key="plugins.generic.tinymce.description"><![CDATA[Doplněk umožňuje využití WYSIWYG editoru <a href="http://tinymce.moxiecode.com" target="_new">TinyMCE</a> v textových formulářích systému OCS.]]></message>
+	<message key="plugins.generic.tinymce.descriptionDisabled"><![CDATA[Doplněk umožňuje využití WYSIWYG editoru <a href="http://tinymce.moxiecode.com" target="_new">TinyMCE</a> v textových formulářích systému OCS. <strong>Editor TinyMCE není v současnosti nainstalován. Prosím, proveďte jeho instalaci do adresáře: {$tinyMcePath}.</strong>]]></message>
+
+	<message key="plugins.generic.tinymce.settings">Nastavení</message>
+	<message key="plugins.generic.tinymce.enabled">Doplněk TinyMCE byl povolen.</message>
+	<message key="plugins.generic.tinymce.disabled">Doplněk TinyMCE byl zakázán.</message>	
+</locale>

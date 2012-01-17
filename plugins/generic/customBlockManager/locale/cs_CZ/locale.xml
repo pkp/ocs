@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * locale.xml
+  *
+  * Copyright (c) 2000-2012 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the cs_CS (Czech) locale.
+  * Translated by Petr Petyovsky (petyovsky 'at' feec.vutbr.cz)
+  *
+  * $Id: locale.xml 219 2011-06-21 21:11:53Z petyovsky $
+  -->
+ 
+<locale name="cs_CZ" full_name="Čeština">
+	<message key="plugins.generic.customBlockManager.displayName">Doplněk pro správu uživatelských panelů</message>
+	<message key="plugins.generic.customBlockManager.description"><![CDATA[Doplněk umožňuje vytvářet nové uživatelské panely. Nástroje k editaci obsahu uživatelského panelu naleznete v záložkách: Správa doplňků -> Doplňkové panely.]]></message>	
+	<message key="plugin.generic.customBlockManager.introduction"><![CDATA[Doplněk umožňuje vytvářet a odstraňovat nové uživatelské panely. Obsah nového panelu je možné editovat v menu <a href="{$systemPluginsUrl}">Doplňky systému</a> v záložce Doplňkové panely. Změnit umístění panelu v rámci postranní lišty můžete v nastavení to <a href="{$setupStep4}">Správa webu -> 4.Styl konference</a>.]]></message>
+	<message key="plugins.generic.customBlockManager.settings">Nastavení</message>
+	<message key="plugins.generic.customBlockManager.blockName">Jméno panelu</message>	
+	<message key="plugins.generic.customBlockManager.action">Akce</message>	
+	<message key="plugins.generic.customBlockManager.delete">Odstranit</message>	
+	<message key="plugins.generic.customBlockManager.addBlock">Přidat panel</message>	
+
+	<message key="plugins.generic.customBlock.content">Obsah panelu</message>
+	<message key="plugins.generic.customBlock.saved">Obsah panelu byl uložen.</message>
+	<message key="plugins.generic.customBlock.nameSuffix">(uživatelský panel)</message>
+	<message key="plugins.generic.customBlock.description">Postranní panel vytvořený pomocí doplňku pro správu uživatelských panelů.</message>
+	<message key="plugins.generic.customBlock.editContent">Editace obsahu postranního panelu</message>
+	<message key="plugins.generic.customBlock.contentRequired">Je třeba vyplnit obsah panelu. Pokud si přejete jen panel odstranit, prosím využijte doplněk pro správu uživatelských panelů, nebo vypněte zobrazování zvoleného panelu v položce Styl konference v menu Správa webu.</message>
+	<message key="plugins.generic.customBlock.edit">Editovat</message>
+</locale>

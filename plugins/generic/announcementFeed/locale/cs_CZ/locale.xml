@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * locale.xml
+  *
+  * Copyright (c) 2000-2012 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the cs_CS (Czech) locale.
+  * Translated by Petr Petyovsky (petyovsky 'at' feec.vutbr.cz)
+  *
+  * $Id: locale.xml 219 2011-06-21 21:11:53Z petyovsky $
+  -->
+ 
+<locale name="cs_CZ" full_name="Čeština">
+	<message key="plugins.generic.announcementfeed.displayName">Doplněk pro správu RSS kanálu konferenčních oznámení</message>
+	<message key="plugins.generic.announcementfeed.description">Doplněk vytváří a spravuje RSS/Atom kanály oznámení publikované pro danou konferenci.</message>
+
+	<message key="plugins.generic.announcementfeed.settings">Nastavení</message>
+	<message key="plugins.generic.announcementfeed.settings.all">Zobrazit odkaz na RSS kanál na všech stránkách konference.</message>
+	<message key="plugins.generic.announcementfeed.settings.homepage">Zobrazit odkaz na RSS kanál pouze na hlavní stránce konference a na stránce konferenčních oznámení.</message>
+	<message key="plugins.generic.announcementfeed.settings.announcement">Zobrazit odkaz na RSS kanál pouze na stránce konferenčních oznámení.</message>
+	<message key="plugins.generic.announcementfeed.settings.recentAnnouncements1">Omezit kanál na</message>
+	<message key="plugins.generic.announcementfeed.settings.recentAnnouncements2">posledních oznámení.</message>
+	<message key="plugins.generic.announcementfeed.settings.recentItemsRequired">Zadejte prosím kladnou hodnotu, která bude definovat počet posledních oznámení, které budou v RSS kanálu publikovány.</message>
+	<message key="plugins.generic.announcementfeed.atom.altText">Atom logo</message>
+	<message key="plugins.generic.announcementfeed.rss1.altText">RSS1 logo</message>
+	<message key="plugins.generic.announcementfeed.rss2.altText">RSS2 logo</message>	
+	<message key="plugins.generic.announcementfeed.enabled">Doplněk pro správu RSS kanálu konferenčních oznámení byl povolen.</message>
+	<message key="plugins.generic.announcementfeed.disabled">Doplněk pro správu RSS kanálu konferenčních oznámení byl byl zakázán.</message>
+</locale>

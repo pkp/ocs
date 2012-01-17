@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * locale.xml
+  *
+  * Copyright (c) 2000-2012 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the cs_CS (Czech) locale.
+  * Translated by Petr Petyovsky (petyovsky 'at' feec.vutbr.cz)
+  *
+  * $Id: locale.xml 219 2011-06-21 21:11:53Z petyovsky $
+  -->
+ 
+<locale name="cs_CZ" full_name="Čeština">
+	<message key="plugins.generic.customLocale.name">Doplněk pro přizpůsobení lokalizace konference</message>
+	<message key="plugins.generic.customLocale.description">Doplněk umožňuje nezávisle přizpůsobovat lokalizační soubory pro potřeby konkrétní konference.</message>	
+	<message key="plugins.generic.customLocale.enabled">Doplněk pro přizpůsobení lokalizace byl povolen.</message>
+	<message key="plugins.generic.customLocale.disabled">Doplněk pro přizpůsobení lokalizace byl zakázán.</message>
+
+	<message key="plugins.generic.customLocale.longDescription">Tato stránka obsahuje seznam všech jazyků podporovaných v dané konferenci.</message>
+	<message key="plugins.generic.customLocale.localeDescription">Tato stránka obsahuje seznam všech lokalizačních souborů dostupných pro daný jazyk.</message>
+	<message key="plugins.generic.customLocale.fileDescription">Zadejte prosím upravený tvar řetězce do příslušného textového pole. Pokud některé z textových polí necháte prázdné, bude pro tento klíč využit řetězec definovaný v hlavní lokalizaci pro daný jazyk.</message>
+	<message key="plugins.generic.customLocale.localeName">Jméno lokalizace</message>
+	<message key="plugins.generic.customLocale.localeKey">Klíč</message>
+	<message key="plugins.generic.customLocale.localeKey.description">Zadejte celé jméno lokalizačního klíče pro vyhledání.</message>
+	<message key="plugins.generic.customLocale.localeKeyValue">Hodnota</message>
+	<message key="plugins.generic.customLocale.customize">Přizpůsobovat</message>
+	<message key="plugins.generic.customLocale.availableLocales">Dostupné lokalizace</message>
+
+	<message key="plugins.generic.customLocale.locale">{$locale} lokalizace</message>
+	<message key="plugins.generic.customLocale.localeFiles">Lokalizační soubory</message>
+	<message key="plugins.generic.customLocale.file.filename">Jméno souboru</message>
+	<message key="plugins.generic.customLocale.file.edit">Přizpůsobení souboru: {$filename}</message>
+	<message key="plugins.generic.customLocale.file.reference">Původní text</message>
+	<message key="plugins.generic.customLocale.file.custom">Přizpůsobený text</message>
+</locale>

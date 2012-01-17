@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * locale.xml
+  *
+  * Copyright (c) 2000-2012 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the cs_CZ (Czech) locale.
+  * Translated by Michael Stencl (michael.stencl 'at' gmail.com)
+  * Corrections, migration to the OCS 2.3.x by Petr Petyovsky (petyovsky 'at' feec.vutbr.cz)
+  *
+  * $Id: locale.xml 219 2011-06-21 21:11:53Z petyovsky $
+  -->
+ 
+<locale name="cs_CZ" full_name="Čeština">
+	<message key="plugins.block.user.displayName">Panel uživatelského menu</message>
+	<message key="plugins.block.user.description">Doplněk zobrazuje postranní panel se základními uživatelskými funkcemi (např. přihlášení, odhlášení, profil apod.).</message>
+	<message key="plugins.block.user.loggedInAs">Jste přihlášen(a) jako...</message>
+	<message key="plugins.block.user.myConferences">Mé konference</message>
+	<message key="plugins.block.user.myProfile">Informace o uživateli</message>
+	<message key="plugins.block.user.logout">Odhlásit</message>
+	<message key="plugins.block.user.signOutAsUser">Odhlásit se jako uživatel</message>
+	<message key="plugins.block.user.rememberMe">Trvalé přihlášení</message>
+</locale>

@@ -1,0 +1,458 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE email_texts SYSTEM "../../lib/pkp/dtd/emailTemplateData.dtd">
+<!--
+  * emailTemplateData.xml
+  *
+  * Copyright (c) 2000-2012 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localized email templates XML file.
+  * Translated by Ivo Vesely and Petr Petyovsky (petyovsky 'at' feec.vutbr.cz)
+  *
+  * $Id: emailTemplates.xml 225 2011-06-24 12:33:10Z petyovsky $
+  -->
+<email_texts locale="cs_CZ">
+	<email_text key="NOTIFICATION">
+		<subject>Nové oznámení od: {$siteTitle}</subject>
+		<body>Máte nové oznámení od: {$siteTitle}:
+
+{$notificationContents}
+
+Odkaz: {$url}
+
+{$principalContactSignature}</body>
+		<description>Tento email bude odeslán registrovaným uživatelům, kteří si nastavili volbu notifikací (oznámení) pomocí emailu.</description>
+	</email_text>
+	<email_text key="NOTIFICATION_MAILLIST">
+		<subject>Nové oznámení od: {$siteTitle}</subject>
+		<body>Máte nové oznámení od: {$siteTitle}:
+--
+{$notificationContents}
+
+Odkaz: {$url}
+--
+
+Pokud si nepřejete dostávat upozornění e-mailem, přejděte na: {$unsubscribeLink} a zadejte svou e-mailovou adresu a heslo.
+
+{$principalContactSignature}</body>
+		<description>Tento email je posílán neregistrovaným uživatelům, kteří se nachází v seznamu pro zasílání oznámení.</description>
+	</email_text>
+	<email_text key="NOTIFICATION_MAILLIST_WELCOME">
+		<subject>Vítejte na seznamu adres {$siteTitle} !</subject>
+		<body>Přihlásili jste se k odběru oznámení od: {$siteTitle}.
+
+Prosím klikněte na následující odkaz pro potvrzení Vašeho požadavku a zadejte svou e-mailovou adresu do seznamu adres:{$confirmLink}
+
+Pokud si nepřejete dostávat upozornění e-mailem, přejděte na: {$unsubscribeLink} a zadejte svou e-mailovou adresu a heslo.
+
+Vaše heslo pro zrušení upozornění e-mailem je: {$password}
+
+{$principalContactSignature}</body>
+		<description>Tento email je posílán neregistrovaným (novým) uživatelům, kteří se právě registrovali do seznamu adres oznámení.</description>
+	</email_text>
+	<email_text key="NOTIFICATION_MAILLIST_PASSWORD">
+		<subject>Informace o seznamu adres oznámení pro {$siteTitle}</subject>
+		<body>Vaše nové heslo pro zakázání oznamovacích emailů je: {$password}
+
+Pokud si nepřejete dostávat oznamovací e-maily, přejděte na: {$unsubscribeLink} a zadejte svou e-mailovou adresu a heslo.
+
+{$principalContactSignature}</body>
+		<description>Tento e-mail je posílán neregistrovaným uživatelům ze seznamu adres oznámení, pokud uvedou zapomenutí svého hesla, nebo nejsou schopni se přihlásit. Obdrží  URL adresu, kde si mohou obnovit své heslo.</description>
+	</email_text>
+	<email_text key="PASSWORD_RESET_CONFIRM">
+		<subject>Potvrzení změny hesla</subject>
+		<body>Obdrželi jsme žádost o změnu hesla pro webovou stránku {$siteTitle} .
+
+Pokud jste tuto žádost neposlali, ignorujte prosím tento e-mail (Vaše heslo zůstane nezměněno). Pokud chcete změnit své heslo, klikněte na níže uvedený odkaz.
+
+Odkaz na změnu Vašeho hesla: {$url}
+
+{$principalContactSignature}</body>
+		<description>Tento e-mail je posílán registrovaným uživatelům, který uvádí zapomenutí svého hesla, nebo se nejsou schopni přihlásit. Obdrží odkaz, který umožní změnit jejich heslo.</description>
+	</email_text>
+	<email_text key="PASSWORD_RESET">
+		<subject>Nové heslo</subject>
+		<body>Vaše heslo pro stránky {$siteTitle} bylo úspěšně změněno. Prosím uschovejte si toto uživatelské jméno a heslo, je nezbytné pro veškeré práce v konferenci.
+
+Vaše uživatelské jméno: {$username}
+Vaše nové heslo: {$password}
+
+{$principalContactSignature}</body>
+		<description>Tento e-mail je posílán registrovaným uživatelům, pokud úspěšně změnili své heslo v emailu PASSWORD_RESET_CONFIRM.</description>
+	</email_text>
+	<email_text key="USER_REGISTER">
+		<subject>Registrace nového uživatele</subject>
+		<body>Děkujeme Vám, že jste se registroval jako uživatel v {$conferenceName}. Prosím, zapamatujte si své uživatelské jméno a heslo, jsou potřebné pro všechny práce v této konferenci.
+
+
+Uživatelské jméno: {$username}
+Heslo: {$password}
+
+Děkujeme
+{$principalContactSignature}</body>
+		<description>Tento e-mail je posílán nově registrovaný uživatelům. Slouží k přivítání do systému a k poskytnutí jejich uživatelského jména a hesla.</description>
+	</email_text>
+	<email_text key="USER_VALIDATE">
+		<subject>Aktivace Vašeho účtu</subject>
+		<body>{$userFullName}
+
+Vytvořili jste účet v {$conferenceName}, pro jeho aktivaci použijte níže uvedený odkaz.
+
+{$activateUrl}
+
+Děkujeme
+{$principalContactSignature}</body>
+		<description>Tento e-mail je posílán nově vytvořeným uživatelům pro přivítání do systému a poskytnutí jejich uživatelského jména a hesla.</description>
+	</email_text>
+	<email_text key="SUBMISSION_ACK">
+		<subject>Poděkovaní za vložení příspěvku</subject>
+		<body>{$authorName}:
+
+Děkujeme Vám za Váš příspěvek, "{$paperTitle}" na {$conferenceName}. Pomocí online systému konference, který používáte, můžete sledovat proces schvalování.
+
+Vaše přihlašovací údaje jsou
+
+URL příspěvku: {$submissionUrl}
+Uživatelské jméno: {$authorUsername}
+
+Pokud budete mít nějakou otázku, kontaktujte nás. Děkujeme Vám za výběr této konference pro publikaci Vaší práce. 
+
+{$editorialContactSignature}</body>
+		<description>Pokud je tento email povolen, je automaticky poslán autorovi, poté co vloží příspěvek nebo abstrakt do konference. Poskytuje informace o sledování procesu schvalování a děkuje autorovy za podání příspěvku.</description>
+	</email_text>
+	<email_text key="SUBMISSION_UPLOAD_ACK">
+		<subject>Poděkování za nahrání příspěvku</subject>
+		<body>{$authorName}:
+
+Děkujeme Vám za nahrání Vašeho příspěvku, "{$paperTitle}" na {$conferenceName}. Pomocí online systému konference, který používáte, můžete sledovat proces schvalování.
+
+Vaše přihlašovací údaje jsou
+
+URL příspěvku: {$submissionUrl}
+Uživatelské jméno: {$authorUsername}
+
+Pokud budete mít nějakou otázku, kontaktujte nás. Děkujeme Vám za výběr této konference pro publikaci Vaší práce.
+
+{$editorialContactSignature}</body>
+		<description>Pokud je tento email povolen, je automaticky poslán autorovi, poté co nahraje příspěvek nebo abstrakt. Poskytuje informace o sledování procesu schvalování a děkuje autorovy za podání příspěvku.</description>
+	</email_text>
+	<email_text key="SUBMISSION_UNSUITABLE">
+		<subject>Nevhodný příspěvek</subject>
+		<body>{$authorName}:
+
+Z první recenze článku "{$paperTitle}" je zřejmé, že tento příspěvek není vhodný svým zaměřením pro konferenci {$conferenceName}. Doporučujeme se podívat do záložky "Podrobnosti o konferenci", kde se dozvíte více informací o pracích, které přijímáme. Můžete také zvážit předložení Vašeho příspěvku jiné vhodnější konferenci. 
+
+{$editorialContactSignature}</body>
+		<description></description>
+	</email_text>
+	<email_text key="SUBMISSION_COMMENT">
+		<subject>Komentář k příspěvku</subject>
+		<body>{$name}:
+
+{$commentName} přidal komentář k příspěvku, "{$paperTitle}" v {$conferenceName}:
+
+{$comments}</body>
+		<description>Tento email upozorní různé lidi zapojené do editačního procesu příspěvku tím že se pošle nový komentář.</description>
+	</email_text>
+	<email_text key="SUBMISSION_DECISION_REVIEWERS">
+		<subject>Rozhodnutí o "{$paperTitle}"</subject>
+		<body>Jako jeden z recenzentů pro příspěvek, "{$paperTitle}," na {$conferenceName}, Vám posílám recenzi a redakční rozhodnutí posílané autorovi.
+Ještě jednou Vám děkuji za Váš významný přínos.
+ 
+{$editorialContactSignature}
+
+{$comments}</body>
+		<description>Tento email upozorňuje recenzenty příspěvků, že recenze jsou kompletní. Vkládají se informace o příspěvku a rozhodnutí o přijetí příspěvku a děkuje se recenzentům za jejich příspěvky.</description>
+	</email_text>
+	<email_text key="DIRECTOR_ASSIGN">
+		<subject>Director Assignment</subject>
+		<body>{$editorialContactName}:
+
+Jako garantovi sekce Vám byl přidělen dohled nad editačním procesem příspěvku "{$paperTitle}," na {$conferenceName}.
+
+URL příspěvku: {$submissionUrl}
+Uživatelské jméno: {$directorUsername}
+
+Děkujeme Vám,
+{$editorialContactSignature}</body>
+		<description>Tento email upozorňuje garanta sekce, že mu garant konference přidělil dohled nad editačním procesem příspěvku. Zprava poskytuje informace o příspěvku a údaje pro přihlášení.</description>
+	</email_text>
+	<email_text key="REVIEW_REQUEST">
+		<subject>Žádost o recenzování příspěvku</subject>
+		<body>{$reviewerName}:
+
+Věříme, že budete výborný recenzent příspěvku, "{$paperTitle}," který byl podán na {$conferenceName}. Výtah článku je k nahlédnutí níže, a doufáme, že budete považovat tento úkol za důležitý.
+
+Prosím přihlaste se na webové stránky konference do {$weekLaterDate} pro potvrzení, zda souhlasíte s recenzováním příspěvků. Dále po přihlášení budete mít přístup k daným příspěvkům, a budete mít možnost nahrávat Vaše recenze a další doporučení. Webová stránka je dostupná zde: {$conferenceUrl}
+
+Recenze probíhají do {$reviewDueDate}.
+
+Pokud nemáte uživatelské jméno a heslo na stránky konference, můžete použít následující odkaz pro získání Vašeho hesla (které bude zasláno na Váš email spolu s uživatelským jménem). {$passwordResetUrl}
+
+URL příspěvku: {$submissionReviewUrl}
+
+Děkujeme za zvážení této žádosti.
+
+{$editorialContactSignature}
+
+
+
+"{$paperTitle}"
+
+Abstrakt
+{$paperAbstract}</body>
+		<description>Tento email odesílá garant sekce případnému recenzentovi a žádá ho o recenzování příspěvku. Email obsahuje název a abstrakt příspěvku, důležité termíny pro odevzdání recenze a přístup k příspěvku a jeho recenzi.</description>
+	</email_text>
+	<email_text key="REVIEW_REQUEST_ONECLICK">
+		<subject>Žádost o recenzování příspěvku</subject>
+		<body>{$reviewerName}:
+
+Věřím, že budete výborný recenzent příspěvku, "{$paperTitle}," který byl podán na {$conferenceName}. Výtah článku je k nahlédnutí níže, a doufám, že budete považovat tento úkol za důležitý.
+
+Prosím přihlaste se na webové stránky konference do {$weekLaterDate} pro potvrzení, zda souhlasíte s recenzováním příspěvků. Dále po přihlášení budete mít přístup k daným příspěvkům, a budete mít možnost nahrávat Vaše recenze a další doporučení.
+
+Recenze probíhají do {$reviewDueDate}.
+
+URL příspěvku: {$submissionReviewUrl}
+
+Děkujeme za zvážení této žádosti.
+
+{$editorialContactSignature}
+
+
+
+"{$paperTitle}"
+
+Abstrakt
+{$paperAbstract}</body>
+		<description>Tento email odesílá garant sekce recenzentovi a žádá ho o souhlas nebo zamítnutí recenzování příspěvku. Email obsahuje název a abstrakt příspěvku, důležité termíny pro odevzdání recenze, přístup k příspěvku a jeho recenzi.
+Tato zpráva je použita, pokud je v nastavení konference vybraný Standardní Recenzní Proces, Krok 2 a je povolen přístup recenzenta s volbou one-click.</description>
+	</email_text>
+	<email_text key="REVIEW_CANCEL">
+		<subject>Zrušení žádosti o recenzi příspěvku</subject>
+		<body>{$reviewerName}:
+
+Rozhodli jsme se zrušit naši žádost o recenzování příspěvku, "{$paperTitle}," pro {$conferenceName}. Omlouváme se za způsobené nepříjemnosti a doufáme, že Vás budeme moci znovu oslovit v případně další žádosti o recenzování příspěvku.
+
+Pokud máte jakékoliv dotazy, kontaktujte nás.
+
+{$editorialContactSignature}</body>
+		<description>Tento email zasílá garant sekce recenzentovi, který recenzuje daný příspěvek a oznamuje mu, že recenze již není nutná (byla stornována).</description>
+	</email_text>
+	<email_text key="REVIEW_CONFIRM">
+		<subject>Přijetí žádosti o recenzování</subject>
+		<body>{$editorialContactName}:
+
+Jsem ochotný recenzovat příspěvek, "{$paperTitle}," pro {$conferenceName}. Děkuji za projevenou důvěru. Příspěvek zrecenzuji do uvedeného data {$reviewDueDate}, ne-li dřív.
+
+{$reviewerName}</body>
+		<description>Tento email je zasílán recenzentem garantovi sekce jako reakce na žádost o recenzi příspěvku. Oznamuje, že recenzent žádost přijal a recenzi provede do daného data.</description>
+	</email_text>
+	<email_text key="REVIEW_CONFIRM_ACK">
+		<subject>Poděkování za příjetí žádosti o recenzi příspěvku</subject>
+		<body>{$reviewerName}:
+
+Děkujeme za přijetí žádosti o recenzování příspěvku "{$paperTitle}" pro {$conferenceName} do {$reviewDueDate}.
+
+{$editorialContactSignature}</body>
+		<description>Tento email je zasílán garantem sekce recenzentovi, aby potvrdil recenzování příspěvku nebo recenzenta povzbudil k dokončení recenze.</description>
+	</email_text>
+	<email_text key="REVIEW_DECLINE">
+		<subject>Odmítnutí žádosti o recenzi příspěvku</subject>
+		<body>{$editorialContactName}:
+
+Obávám se, že momentálně nejsem schopen recenzovat příspěvek "{$paperTitle}," pro {$conferenceName}. Děkuji za projevenou důvěru, a pokud to bude možné, v příští žádosti Vám rád vyhovím.
+
+{$reviewerName}</body>
+		<description>Tento email je odesílán recenzentem garantovi sekce a oznamuje mu, že žádost o recenzování příspěvku byla odmítnuta.</description>
+	</email_text>
+	<email_text key="REVIEW_COMPLETE">
+		<subject>Oznámení o dokončení recenze</subject>
+		<body>{$editorialContactName}:
+
+Právě jsem dokončil recenzi příspěvku "{$paperTitle}" pro {$conferenceName}, a vložil moje doporučení, "{$recommendation}."
+
+{$reviewerName}</body>
+		<description>Tento email posílá recenzent garantovi sekce a oznamuje mu, že dokončil recenzi a podmínky i doporučení nahrál na stránky konference.</description>
+	</email_text>
+	<email_text key="REVIEW_ACK">
+		<subject>Poděkovaní za provedenou recenzi</subject>
+		<body>{$reviewerName}:
+
+Děkujeme za provedenou recenzi příspěvku "{$paperTitle}," pro {$conferenceName}. Oceňujeme Váš přínos ke zkvalitnění naší konference.
+
+{$editorialContactSignature}</body>
+		<description>Tento email posílá garant sekce recenzentovi, aby potvrdil převzetí recenze, a děkuje za provedenou práci.</description>
+	</email_text>
+	<email_text key="REVIEW_REMIND">
+		<subject>Připomenutí odevzdání recenze</subject>
+		<body>{$reviewerName}:
+
+Dovolujeme si Vám připomenout žádost o recenzování příspěvku "{$paperTitle}," pro {$conferenceName}. Doufali jsme, že recenze bude hotova do {$reviewDueDate}, ale rádi ji přijmeme, jakmile ji budete mít připravenou.
+
+Pokud nemáte svoje uživatelské jméno a heslo pro vstup na stránky konference, můžete použít následující odkaz pro jejich získání (přihlašovací informace Vám budou zaslány emailem) {$passwordResetUrl}
+
+URL příspěvku: {$submissionReviewUrl}
+
+Prosím potvrďte, že recenzi dokončíte.
+Předem děkujeme za Vaši odpověď.
+
+{$editorialContactSignature}</body>
+		<description>Tento email odesílá garant sekce, aby recenzentovi připomněl závěrečný termín odevzdání recenzí.</description>
+	</email_text>
+	<email_text key="REVIEW_REMIND_ONECLICK">
+		<subject>Připomenutí odevzdání recenze</subject>
+		<body>{$reviewerName}:
+
+Dovolujeme si Vám připomenout žádost o recenzování příspěvku "{$paperTitle}," pro {$conferenceName}. Doufali jsme, že recenze bude hotova do {$reviewDueDate}, ale rádi ji přijmeme, jakmile ji budete mít připravenou.
+
+URL příspěvku: {$submissionReviewUrl}
+
+Prosím potvrďte, že recenzi dokončíte.
+Předem děkujeme za Vaši odpověď.
+
+{$editorialContactSignature}</body>
+		<description>Tento email odesílá garant sekce, aby recenzentovi připomněl závěrečný termín odevzdání recenzí.</description>
+	</email_text>
+	<email_text key="REVIEW_REMIND_AUTO">
+		<subject>Automatické připomenutí odevzdání recenze</subject>
+		<body>{$reviewerName}:
+
+Dovolujeme si Vám připomenout žádost o recenzování příspěvku "{$paperTitle}," pro {$conferenceName}. Doufali jsme, že recenze bude hotova do {$reviewDueDate}, tento email byl generován automaticky a termín odeslání je nastaven na tento den. Stále bychom rádi obdrželi Vaši recenzi, jakmile ji budete mít připravenou.
+
+Pokud nemáte svoje uživatelské jméno a heslo pro vstup na stránky konference, můžete použít následující odkaz pro jejich získání (tyto informace Vám budou zaslány emailem). {$passwordResetUrl}
+
+URL příspěvku: {$submissionReviewUrl}
+
+Prosím potvrďte, že recenzi dokončíte.
+Předem děkujeme za Vaši odpověď.
+
+{$editorialContactSignature}</body>
+		<description>Tento e-mail je odesílán  automaticky, jakmile  uplyne čas pro odevzdání recenzí (viz. Nastavení recenzí v Nastavení konference, krok 2) a stačí jeden klik a recenzentovi je zakázán přístup. Naplánované úlohy musí být povoleny a nakonfigurovány (viz konfigurační soubor stránek).</description>
+	</email_text>
+	<email_text key="REVIEW_REMIND_AUTO_ONECLICK">
+		<subject>Automatické připomenutí odevzdání recenze</subject>
+		<body>{$reviewerName}:
+
+Dovolujeme si Vám připomenout žádost o recenzování příspěvku "{$paperTitle}," pro {$conferenceName}. Doufali jsme, že recenze bude hotova do {$reviewDueDate}, tento email byl generován automaticky a je odeslán s odstupem od tohoto dne. Stále bychom rádi obdrželi Vaši recenzi, jakmile ji budete mít připravenou.
+
+URL příspěvku: {$submissionReviewUrl}
+
+Prosím potvrďte, že recenzi dokončíte.
+Předem děkujeme za Vaši odpověď.
+
+{$editorialContactSignature}</body>
+		<description>Tento e-mail je odesílán  automaticky jakmile uplyne čas pro odevzdání recenzí (viz Nastavení recenzí v Nastavení konference, krok 2) a stačí jeden klik a recenzentovi je zakázán přístup. Naplánované úlohy musí být povoleny a nakonfigurovány (viz konfigurační soubor stránek).</description>
+	</email_text>
+	<email_text key="SUBMISSION_ABSTRACT_ACCEPT">
+		<subject>Redakční rozhodnutí o abstraktu</subject>
+		<body>{$authorName}:
+
+Gratulujeme, Váš abstrakt {$paperTitle} byl přijat na konferenci {$conferenceTitle}, která se bude konat {$conferenceDate} v {$locationCity}. 
+
+Děkujeme a těšíme se na Vaši účast.
+{$editorialContactSignature}</body>
+		<description>Tento email je zasílán garantem sekce autorovi příspěvku a oznamuje kladné rozhodnutí o přijetí příspěvku.</description>
+	</email_text>
+	<email_text key="SUBMISSION_ABSTRACT_DECLINE">
+		<subject>Redakční rozhodnutí o příspěvku</subject>
+		<body>{$authorName}:
+
+Nyní jsme dokončili recenze Vašeho příspěvku "{$paperTitle}." Jako výsledek...
+
+{$editorialContactSignature}</body>
+		<description>Tento email je zasílán garantem sekce autorovi příspěvku a informuje ho o rozhodnutí ohledně příspěvku.</description>
+	</email_text>
+	<email_text key="SUBMISSION_ABSTRACT_REVISE">
+		<subject>Redakční rozhodnutí o příspěvku</subject>
+		<body>{$authorName}:
+
+Po pečlivém přezkoumání Vašeho příspěvku "{$paperTitle}" jsme se rozhodli pro přijetí příspěvku na {$conferenceTitle} pokud budou odstraněny následující nedostatky.
+
+Děkujeme a těšíme se na Vaši účast. 
+
+{$editorialContactSignature}</body>
+		<description>Tento email je zasílán garantem sekce autorovi příspěvku a informuje ho o rozhodnutí ohledně příspěvku.</description>
+	</email_text>
+	<email_text key="SUBMISSION_PAPER_ACCEPT">
+		<subject>Redakční rozhodnutí o příspěvku</subject>
+		<body>{$authorName}:
+
+Gratulujeme, Váš příspěvek {$paperTitle} byl přijat na konferenci {$conferenceTitle}, která se bude konat {$conferenceDate} v {$locationCity}. 
+
+Děkujeme a těšíme se na Vaši účast.
+{$editorialContactSignature}</body>
+		<description>Tento email je zasílán garantem sekce autorovi příspěvku a oznamuje kladné rozhodnutí o přijetí příspěvku.</description>
+	</email_text>
+	<email_text key="SUBMISSION_PAPER_DECLINE">
+		<subject>Redakční rozhodnutí o příspěvku</subject>
+		<body>{$authorName}:
+
+Nyní jsme dokončili recenze Vašeho příspěvku "{$paperTitle}." Jako výsledek...
+
+{$editorialContactSignature}</body>
+		<description>Tento email je zasílán garantem sekce autorovi příspěvku a informuje ho o rozhodnutí ohledně příspěvku.</description>
+	</email_text>
+	<email_text key="SUBMISSION_PAPER_REVISE">
+		<subject>Redakční rozhodnutí o příspěvku</subject>
+		<body>{$authorName}:
+
+Po pečlivém přezkoumání Vašeho příspěvku "{$paperTitle}" jsme se rozhodli pro přijetí příspěvku na {$conferenceTitle} pokud budou odstraněny následující nedostatky.
+
+Děkujeme a těšíme se na Vaši účast. 
+
+
+{$editorialContactSignature}</body>
+		<description>Tento email je zasílán garantem sekce autorovi příspěvku a informuje ho o rozhodnutí ohledně příspěvku.</description>
+	</email_text>
+	<email_text key="SUBMISSION_PAPER_INVITE">
+		<subject>Redakční rozhodnutí o abstraktu</subject>
+		<body>{$authorName}:
+
+Gratulujeme, Váš abstrakt {$paperTitle} byl přijat na konferenci {$conferenceTitle}, která se bude konat {$conferenceDate} v {$locationCity}. Nyní můžete poslat svůj článek na recenzi.
+
+Děkujeme a těšíme se na Vaši účast. 
+{$editorialContactSignature}</body>
+		<description>Tento email je zasílán garantem sekce autorovi příspěvku a informuje ho o rozhodnutí o přijetí s ohledem na abstrakt a vyzývá ho k odeslání plného článku na další zhodnocení.</description>
+	</email_text>
+	<email_text key="REGISTRATION_NOTIFY">
+		<subject>Oznámení o registraci</subject>
+		<body>{$registrantName}:
+
+Nyní jste zapsán jako žadatel o registraci v našem systému pro konferenci {$conferenceName}, s následující registrací:
+
+{$registrationType}
+
+Pro přístup k informacím, které jsou k dispozici pouze registrovaným uživatelům, se stačí přihlásit do systému pomocí Vašeho uživatelského jména "{$username}".
+
+Po přihlášení do systému si můžete změnit svůj profil a heslo.
+
+Pokud máte registraci provedenou institucí, žádný uživatel z této instituce se nemusí přihlašovat, jelikož žádost o registraci bude automaticky ověřena systémem.
+
+Pokud máte jakékoli dotazy, neváhejte a kontaktujte nás.
+
+{$registrationContactSignature}</body>
+		<description>Tento email oznamuje registrovaným čtenářům, že pro ně byla vytvořena registrace. Informuje o URL konference spolu s instrukcemi pro přihlášení.</description>
+	</email_text>
+	<email_text key="OPEN_ACCESS_NOTIFY">
+		<subject>Issue Now Open Access</subject>
+		<body>Readers:
+
+{$conferenceName} has just made available in an open access format the following issue. We invite you to review the Table of Contents here and then visit our web site ({$conferenceUrl}) to review papers and items of interest.
+
+Thanks for the continuing interest in our work,
+{$editorialContactSignature}</body>
+		<description>This email is sent to registered readers who have requested to receive a notification email when an issue becomes open access.</description>
+	</email_text>
+	<email_text key="MANUAL_PAYMENT_RECEIVED">
+		<subject>Vaše platba pro {$conferenceName} byla přijata</subject>
+		<body>{$registrantName}:
+
+Vaše platba pro {$conferenceName} byla přijata a zaznamenána ve Vašem účtu.
+
+Pokud máte jakékoli dotazy, kontaktujte nás.
+
+{$registrationContactSignature}</body>
+		<description>Tento email oznamuje registrovaným čtenářům, že pro ně byla vytvořena registrace. Informuje o URL konference spolu s instrukcemi pro přihlášení.</description>
+	</email_text>
+</email_texts>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * locale.xml
+  *
+  * Copyright (c) 2000-2012 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the cs_CZ (Czech) locale.
+  * Translated by Michael Stencl (michael.stencl 'at' gmail.com)
+  * Corrections, migration to the OCS 2.3.x by Petr Petyovsky (petyovsky 'at' feec.vutbr.cz)
+  *
+  * $Id: locale.xml 219 2011-06-21 21:11:53Z petyovsky $
+  -->
+ 
+<locale name="cs_CZ" full_name="Čeština">
+	<message key="plugins.block.information.displayName">Informační panel</message>
+	<message key="plugins.block.information.description">Doplněk zobrazuje postranní panel s informacemi pro autory/čtenáře.</message>
+	<message key="plugins.block.information.link">Informace</message>
+</locale>

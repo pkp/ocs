@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * locale.xml
+  *
+  * Copyright (c) 2000-2012 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the cs_CZ (Czech) locale.
+  * Translated by Petr Petyovsky (petyovsky 'at' feec.vutbr.cz)
+  *
+  * $Id: locale.xml 219 2011-06-21 21:11:53Z petyovsky $
+  -->
+ 
+<locale name="cs_CZ" full_name="Čeština">
+	<message key="plugins.generic.staticPages.displayName">Doplněk pro správu statických stránek</message>
+	<message key="plugins.generic.staticPages.description">Doplněk umožňuje vytvářet a spravovat statické stránky.</message>
+	<message key="plugins.generic.staticPages.pageTitle">Název</message>
+	<message key="plugins.generic.staticPages.content">Obsah</message>
+
+	<message key="plugins.generic.staticPages.path">Cesta</message>
+	<message key="plugins.generic.staticPages.requirement.tinymce"><![CDATA[<strong>Pokud chcete přidávat/editovat obsah musíte nejprve nainstalovat a povolit doplněk TinyMCE.</strong>]]></message>
+
+	<message key="plugins.generic.staticPages.editAddContent">Editovat/Přidat obsah</message>
+
+	<message key="plugins.generic.staticPages.addStaticPage">Přidat statickou stránku</message>
+	<message key="plugins.generic.staticPages.addNewPage">Přidat novou stránku</message>
+	<message key="plugins.generic.staticPages.editStaticPage">Editovat statickou stránku</message>	
+
+	<message key="plugins.generic.staticPages.settingInstructions">Formulář uvedený níže zobrazuje všechny statické stránky, které jste vytvořili. K jejich editaci nebo odstranění můžete využít odkazy uvedené na pravé straně.</message>
+	<message key="plugins.generic.staticPages.editInstructions">K přidání/editaci obsahu stránky použijte níže uvedený formulář.</message>
+	<message key="plugins.generic.staticPages.viewInstructions"><![CDATA[Stránky budou dostupné na adrese: {$pagesPath}, kde %PATH% je hodnota kterou si zvolíte. <strong>Poznámka:</strong> Žádné dvě stránky nemohou mít stejnou adresu/cestu.]]></message>
+	<message key="plugins.generic.staticPages.duplicatePath">Tato cesta je již používána pro jinou existující statickou stránku.</message>
+	
+	<message key="plugins.generic.staticPages.pageSaved">Stránka byla úspěšně uložena.</message>
+	<message key="plugins.generic.staticPages.pageDeleted">Stránka byla úspěšně odstraněna.</message>
+	
+	<message key="plugins.generic.staticPages.noneExist">Žádná stránka nebyla vytvořena</message>
+</locale>

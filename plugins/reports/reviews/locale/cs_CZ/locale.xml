@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * locale.xml
+  *
+  * Copyright (c) 2000-2012 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the cs_CZ (Czech) locale.
+  * Translated by Petr Petyovsky (petyovsky 'at' feec.vutbr.cz)
+  *
+  * $Id: locale.xml 219 2011-06-21 21:11:53Z petyovsky $
+  -->
+
+<locale name="cs_CZ" full_name="Čeština">
+	<message key="plugins.reports.reviews.displayName">Výkaz recenzí</message>
+	<message key="plugins.reports.reviews.description">Doplněk umožňuje generovat CSV soubor obsahující seznam recenzí pro danou konferenci.</message>
+	<message key="plugins.reports.reviews.reviewerId">ID recenzenta</message>
+	<message key="plugins.reports.reviews.reviewer">Recenzent</message>
+	<message key="plugins.reports.reviews.dateAssigned">Datum přidělení</message>
+	<message key="plugins.reports.reviews.dateNotified">Datum oznámení</message>
+	<message key="plugins.reports.reviews.dateConfirmed">Datum potvrzení</message>
+	<message key="plugins.reports.reviews.dateCompleted">Datum dokončení</message>
+	<message key="plugins.reports.reviews.dateReminded">Datum připomínky</message>
+</locale>
+

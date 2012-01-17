@@ -16,6 +16,7 @@
 
 <locales>
 	<locale key="ca_ES" complete="false" name="Català" iso639-2b="cat" iso639-3="cat" />
+	<locale key="cs_CZ" complete="true" name="Čeština"/>
 	<locale key="de_DE" complete="false" name="Deutsch" iso639-2b="ger" iso639-3="deu" />
 	<locale key="en_US" name="English" iso639-2b="eng" iso639-3="eng" />
 	<locale key="es_AR" complete="false" name="Español (Argentina)" iso639-2b="spa" iso639-3="spa" />	

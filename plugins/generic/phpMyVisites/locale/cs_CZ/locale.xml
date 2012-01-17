@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * locale.xml
+  *
+  * Copyright (c) 2000-2012 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * phpMyVisites plugin localization strings for the cs_CZ (Czech) locale.
+  * Translated by Petr Petyovsky (petyovsky 'at' feec.vutbr.cz)
+  *
+  * $Id: locale.xml 219 2011-06-21 21:11:53Z petyovsky $
+  -->
+ 
+<locale name="cs_CZ" full_name="Čeština">
+
+	<!-- phpMyVisites -->
+	<message key="plugins.generic.phpmv.displayName">Doplněk phpMyVisites</message>
+	<message key="plugins.generic.phpmv.description"><![CDATA[Doplněk umožňuje rychlou integraci OCS s aplikací phpMyVisites, což je volně šířený nástroj pro analýzu statistik o provozu webových stránek. Doplněk vyžaduje již nainstalovanou aplikaci phpMyVisites. Více informací o tomto nástroji naleznete na stránkách <a href="http://www.phpmyvisites.us/" title="stránky phpMyVisites">phpMyVisites</a>.]]></message>
+	<message key="plugins.generic.phpmv.enabled">Doplněk phpMyVisites byl povolen.</message>
+	<message key="plugins.generic.phpmv.disabled">Doplněk phpMyVisites byl zakázán.</message>
+	
+	<!-- phpMyVisites Settings Management -->
+	<message key="plugins.generic.phpmv.manager.settings">Nastavení</message>
+	<message key="plugins.generic.phpmv.manager.phpmvSettings">Nastavení parametrů phpMyVisites</message>
+	<message key="plugins.generic.phpmv.manager.settings.description"><![CDATA[<p>Doplněk umožňuje integraci aplikace phpMyVisites určené ke sběru a analýze statistik o provozu stránek se systémem OCS. Doplněk vyžaduje již nainstalovanou aplikaci phpMyVisites. Více informací o tomto nástroji naleznete na stránkách <a href="http://www.phpmyvisites.us/" title="stránky phpMyVisites site">phpMyVisites</a>.</p>]]></message>
+	<message key="plugins.generic.phpmv.manager.settings.phpmvUrl">phpMyVisites URL adresa</message>
+	<message key="plugins.generic.phpmv.manager.settings.phpmvUrlInstructions">Úplná URL adresa k nainstalované aplikaci phpMyVisites (např. http://myserver.net/phpmv).</message>
+	<message key="plugins.generic.phpmv.manager.settings.phpmvUrlRequired">Prosím, zadejte správnou URL adresu a to včetně http:// na začátku adresy.</message>
+	<message key="plugins.generic.phpmv.manager.settings.phpmvSiteId">Identifikační číslo stránky</message>
+	<message key="plugins.generic.phpmv.manager.settings.phpmvSiteIdInstructions">V rámci aplikace phpMyVisites, klikněte na Správa webů->Upravit web. Identifikační číslo stránek je zobrazeno hned vedle jména dané stránky.</message>
+	<message key="plugins.generic.phpmv.manager.settings.phpmvSiteIdRequired">Prosím, vložte identifikační číslo stránky.</message>
+
+</locale>

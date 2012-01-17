@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * ocs2-devel/locale/cs_CZ/admin.xml
+  *
+  * Copyright (c) 2000-2012 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the cs_CZ (Czech) locale.
+  * Translated by Pavel Zufan (pavel.zufan 'at' gmail.com)
+  * Corrections, migration to the OCS 2.3.x by Ivo Vesely and Petr Petyovsky (petyovsky 'at' feec.vutbr.cz)
+  *
+  * $Id: admin.xml 218 2011-06-21 20:42:56Z petyovsky $
+  -->
+
+<locale name="cs_CZ" full_name = "Čeština">
+	<message key="admin.languages.primaryLocaleInstructions">Toto bude přednastavený jazyk těchto stránek a jakékoliv provozované konference.</message>
+	<message key="admin.languages.supportedLocalesInstructions">Vyberte všechny podporované lokalizace pro tyto stránky. Vybrané lokalizace budou k dispozici pro všechny konference provozované na tomto serveru, a objeví se také v nabídce volby jazyka na každé stránce serveru (což však může být znemožněno na speciálních stránkách konkrétní konference). Nejsou-li vybrány lokalizace, nabídka volby jazyka se neobjeví a rozšířené možnosti nastavení jazyka nebudou pro konference k dispozici.</message>
+	<message key="admin.locale.maybeIncomplete">Označená lokalizace může být neúplná.</message>	
+	<message key="admin.languages.confirmUninstall">Skutečně si přejete odinstalovat tuto lokalizaci? To může ovlivnit jakoukoliv provozovanou konferenci, která aktuálně tuto lokalizaci používá.</message>
+	<message key="admin.languages.installNewLocalesInstructions">Vyberte jakékoliv další lokalizace k instalaci v tomto systému. Lokalizace lze použít pro konkrétní konferenci provozovanou na tomto serveru až po jejich instalaci. Informace o rozšíření podpory o nové jazyky je uvedena v dokumentaci OCS.</message>
+	<message key="admin.auth.enableSyncProfiles">Umožnit synchronizaci uživatelských profilů (je-li podporována tímto autentizačním doplňkem). Informace o uživatelském profilu bude automaticky aktualizována ze vzdáleného zdroje, jakmile se uživatel přihlásí, a změny profilu (včetně změny hesla) provedené v rámci OCS budou automaticky aktualizovány ve vzdáleném zdroji. Není-li tato volba umožněna, profilové informace OCS budou udržovány odděleně od profilových informací ve vzdáleném zdroji.</message>
+	<message key="admin.auth.enableSyncPasswords">Umožnit změnu hesla uživatele (je-li podporována tímto autentizačním doplňkem). Umožnění této volby dovoluje uživateli změnit heslo v rámci OCS využít nabídku OCS "ztracené heslo" ke změně zapomenutého hesla. Není-li tato volba umožněna, tyto funkce nebudou uživatelům dostupné.</message>
+	<message key="admin.auth.enableCreateUsers">Umožnit vytvoření uživatele (je-li podporována tímto autentizačním doplňkem). Uživatelé vytvoření s tímto autentizačním zdrojem v rámci OCS budou automaticky přidání do vzdáleného autentizačního zdroje, pokud v něm dosud neexistují. Navíc je-li tento autentizační zdroj nastaven jako výchozí, účty OCS vytvořené prostřednictvím registrace uživatele budou rovněž přidány do vzdáleného autentizačního zdroje.</message>
+	<message key="admin.systemVersion">Verze OCS</message>
+	<message key="admin.systemConfiguration">Konfigurace OCS</message>
+	<message key="admin.systemConfigurationDescription"><![CDATA[Konfigurační nastavení OCS z <tt>config.inc.php</tt>.]]></message>
+	<message key="admin.hostedConferences">Pořádané konference</message>
+	<message key="admin.settings.conferenceRedirect">Přesměrování konference</message>
+	<message key="admin.settings.conferenceRedirectInstructions">Požadavky na hlavní stránku budou přesměrovány na tuto konferenci. To je využitelné například v případě využití stránek pouze pro organizaci jedné konference.</message>
+	<message key="admin.settings.noConferenceRedirect">Nepřesměrovávat</message>
+	<message key="admin.auth.ocs">Databáze uživatelů OCS</message>
+	<message key="admin.conferences.conferenceSettings">Nastavení konference</message>
+	<message key="admin.conferences.noneCreated">Nebyla vytvořena žádná konference.</message>
+	<message key="admin.conferences.confirmDelete">Skutečně chcete tuto konferenci a veškerý její obsah permanentně vymazat?</message>
+	<message key="admin.conferences.create">Vytvořit konferenci</message>
+	<message key="admin.conferences.createInstructions">Budete automaticky určen manažerem této konference. Po vytvoření nové konference, vstupte do ní jako manažer a pokračujte v jejím nastavení a přihlášení uživatele.</message>
+	<message key="admin.conferences.urlWillBe">URL konference bude {$sampleUrl}</message>
+	<message key="admin.conferences.form.titleRequired">Je vyžadován titul.</message>
+	<message key="admin.conferences.form.pathRequired">Je vyžadována cesta.</message>
+	<message key="admin.conferences.form.pathAlphaNumeric">Cesta může obsahovat pouze alfanumerické znaky, podtržítka a pomlčky, a musí začínat a končit alfanumerickým znakem.</message>
+	<message key="admin.conferences.form.pathExists">Zadanou cestu již používá jiná konference.</message>
+	<message key="admin.conferences.enableConferenceInstructions">Zveřejnit tuto konferenci na serveru</message>
+	<message key="admin.conferences.conferenceDescription">Popis konference</message>
+	<message key="admin.conferences.conferenceDescriptionInstructions">Popis konference uvádí smysl této konference. Objevuje se na hlavní stránce konference i na všech dalších konferenčních stránkách.</message>
+	<message key="admin.conferences.importOCS1">Importovat z OCS 1</message>
+	<message key="admin.conferences.importOCS1.editMigratedConference">Editovat migrující konferenci</message>
+	<message key="admin.conferences.importOCS1.conflict.desc">Některé uživatelské účty obsahovaly konfliktní informace. OCS 1.x umožňuje více uživatelským účtům sdílení stejné emailové adresy, ovšem OCS 2.x to neumožňuje. Na níže uvedeném seznamu byla vždy druhému uvedenému jménu přiřazena dočasná emailová adresa. Toto je třeba opravit ručně buďto přiřazením odlišného emailového účtu nebo spojením účtů.</message>
+	<message key="admin.conferences.importOCS1.errors.desc">Při převodu konference ze systému OCS 1.x na systém OCS 2.x se vyskytly následující problémy.</message>
+	<message key="admin.conferences.importOCS1.conflict">{$firstUsername} ({$firstName}) a {$secondUsername} ({$secondName})</message>
+	<message key="admin.conferences.importOCS1Instructions"><![CDATA[Podrobné informace o převodu dat ze systému OCS 1 na systém OCS 2 naleznete v dokumentu UPGRADE distribuovaném spolu s OCS. Uvědomte si, že tento proces NEVYTVOŘÍ kompletně konfigurovanou konferenci v systému OCS 2; budou importovány pouze určité položky (např. příspěvky). <strong>Všichni importovaní uživatelé budou muset znovu nastavit svá hesla. Důrazně doporučujeme, aby garant konference zkontroloval veškeré importované informace ještě před spuštěním konferenčních stránek.</strong>]]></message>
+	<message key="admin.conference.pathImportInstructions">Existující či vytvářená cesta ke konferenci (např., "ocs").</message>
+	<message key="admin.conference.importPath">Cesta OCS 1</message>
+	<message key="admin.conference.importPathInstructions">Úplná cesta na místním systému souborů k instalaci OCS 1 (např., "/var/www/ocs").</message>
+	<message key="admin.conferences.importRegistrations">Importovat registrace</message>
+	<message key="admin.conferences.emailUsers">Odeslat vytvořeným uživatelům email s přihlašovacími informacemi včetně náhodných hesel</message>
+	<message key="admin.conferences.transcode">Překódovat metadata příspěvku z ISO8859-1</message>
+	<message key="admin.conferences.form.importPathRequired">Je vyžadována cesta importu.</message>
+	<message key="admin.conferences.importErrors">Importování se nezdařilo</message>
+
+	<!-- Site Administration Merge Users -->	
+	<message key="admin.mergeUsers">Sloučit uživatele</message>
+	<message key="admin.mergeUsers.mergeUser">Sloučit uživatele</message>
+	<message key="admin.mergeUsers.into.description">Vyberte uživatele, kterému mají být přiřazeny příspěvky, úkoly, atd. po předchozím uživateli.</message>
+	<message key="admin.mergeUsers.from.description">Zvolte uživatelský učet (příp. několik), které chcete sloučit do jiného uživatelského účtu (např. pokud se někdo registroval dvakrát). První vybraný účet bude vymazán a z něj převzaté příspěvky, úkoly, apod., budou přiřazeny druhému vybranému účtu.</message>
+	<message key="admin.mergeUsers.allUsers">Všichni přihlášení uživatelé</message>
+	<message key="admin.mergeUsers.confirm">Skutečně si přejete sloučit zvolený počet {$oldAccountCount} účtů s účtem uživatele "{$newUsername}"? Pozor, zvolených {$oldAccountCount} účtů bude vymazáno. Tato akce je nevratná.</message>
+	<message key="admin.mergerUsers.noneEnrolled">Žádní přihlášení uživatelé.</message>
+</locale>

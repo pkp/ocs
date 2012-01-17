@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * locale.xml
+  *
+  * Copyright (c) 2000-2012 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the cs_CZ (Czech) locale.
+  * Translated by Petr Petyovsky (petyovsky 'at' feec.vutbr.cz)
+  *
+  * $Id: locale.xml 219 2011-06-21 21:11:53Z petyovsky $
+  -->
+ 
+<locale name="cs_CZ" full_name="Čeština">
+	<message key="plugins.generic.jquery.name">Doplněk jQuery</message>
+	<message key="plugins.generic.jquery.description"><![CDATA[Doplněk zajišťuje pomocí javascript knihovny <a href="http://www.jquery.com" target="_new">jQuery</a> systému OCS možnost dle zadávaného obsahu dynamicky měnit formuláře. Uživateli tak nabídnete příjemnou a okamžitou interakci se systémem OCS.]]></message>
+	<message key="plugins.generic.jquery.descriptionDisabled"><![CDATA[Doplněk zajišťuje pomocí javascript knihovny <a href="http://www.jquery.com" target="_new">jQuery</a> systému OCS možnost dle zadávaného obsahu dynamicky měnit formuláře. Uživateli tak nabídnete příjemnou a okamžitou interakci se systémem OCS. <strong>Knihovna jQuery není v současnosti nainstalována. Prosím, proveďte její instalaci do adresáře: {$jQueryPath}.</strong>]]></message>
+	<message key="plugins.generic.jquery.disabled">Doplněk jQuery byl zakázán.</message>
+	<message key="plugins.generic.jquery.enabled">Doplněk jQuery byl povolen.</message>
+	<message key="plugins.generic.jquery.settings">Nastavení</message>
+</locale>

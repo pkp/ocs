@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * ocs2-devel/locale/cs_CZ/director.xml
+  *
+  * Copyright (c) 2000-2012 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the cs_CZ (Czech) locale.
+  * Translated by Pavel Zufan (pavel.zufan 'at' gmail.com)
+  * Corrections, migration to the OCS 2.3.x by Ivo Vesely and Petr Petyovsky (petyovsky 'at' feec.vutbr.cz)
+  *
+  * $Id: director.xml 218 2011-06-21 20:42:56Z petyovsky $
+  -->
+
+<locale name="cs_CZ" full_name="Čeština">
+	<message key="director.home">Stránka garanta konference</message>
+	<message key="director.submissionQueue">Příspěvky ve frontě</message>
+	<message key="director.submissionArchive">Příspěvky v archivu</message>
+	<message key="director.allTracks">Všechny sekce</message>
+	<message key="director.allDirectors">Všichni garanti</message>
+	<message key="director.me">Já</message>
+	<message key="director.submissionQueue.noSubmissions">Ve frontě nejsou žádné příspěvky.</message>
+	<message key="director.submissionQueue.saveChanges">Uložit změny příspěvků ve frontě?</message>
+	<message key="director.submissionArchive.noSubmissions">V archivu nejsou žádné příspěvky.</message>
+	<message key="director.submissionArchive.saveChanges">Uložit změny příspěvků v archivu? Příspěvky označené k odstranění budou nevratně smazány ze systému.</message>
+	<message key="director.submissionArchive.confirmDelete">Skutečně chcete nevratně vymazat tento příspěvek?</message>
+	<message key="director.submissionReview.confirmDecision">Skutečně chcete uložit toto rozhodnutí?</message>
+	<message key="director.submissionReview.confirmToLayout">Byl autor informován o tomto rozhodnutí? Pokud ne, klikněte na Zrušit a použijte nástroj pro oznámení autorovi, než tento příspěvek přesunete do tiskového rozvržení.</message>
+	<message key="director.submissionReview.confirmToArchive">Byl autor informován o tomto rozhodnutí? Pokud ne, klikněte na Zrušit a použijte nástroj pro oznámení autorovi, než tento příspěvek přesunete do archivu.</message>
+	<message key="director.submissionReview.notes">Termín označuje počet týdnů zbývajících do uzávěrky oponentury nebo (-) týdnů, které od uzávěrky uplynuly. Pole je vyplněné v momentě, kdy oponent přijme žádost o oponenturu.</message>
+	<message key="director.notifyUsers">Informovat uživatele</message>
+	<message key="director.notifyUsers.allUsers">Všichni uživatelé spojeni s touto konferencí ({$count} uživatelů)</message>
+	<message key="director.notifyUsers.interestedUsers">Uživatelé spojení s touto konferencí, kteří si přáli zasílání aktuálních informací ({$count} uživatelů)</message>
+	<message key="director.notifyUsers.includeToc">Zahrnout prezentace na konferenci</message>
+	<message key="director.notifyUsers.allReaders">Všichni čtenáři ({$count} uživatelů)</message>
+	<message key="director.notifyUsers.allAuthors">Všichni publikovaní prezentující ({$count} uživatelů)</message>
+	<message key="director.notifyUsers.allPaidRegistrants">Všichni se zaplaceným vložným ({$count} uživatelů)</message>
+	<message key="director.notifyUsers.allRegistrants">Všichni registrovaní ({$count} uživatelů)</message>
+	<message key="director.navigation.management">Management</message>
+	<message key="director.paper.sendToArchive">Archivovat tento příspěvek</message>
+	<message key="director.paper.designateReviewVersion">Označit původní soubor jako verzi k oponování</message>
+	<message key="director.paper.uploadReviewVersion">Nahrát upravený soubor, který bude sloužit jako verze k oponování</message>
+	<message key="director.paper.uploadDirectorVersion">Nahrát verzi pro garanta</message>
+	<message key="director.paper.showSuppFile">Odeslat soubor oponentům</message>
+	<message key="director.paper.stageDisabled">Zatím nelze provést tuto oponenturu. Buďto neskončila oponentura abstraktu nebo autor dosud neodeslal příspěvek k oponentuře.</message>
+	<message key="director.paper.clear">Vymazat</message>
+	<message key="director.paper.clearReviewer">Vymazat oponenta</message>
+	<message key="director.paper.changeTrack">Změnit sekci</message>
+	<message key="director.paper.setDueDate">Nastavit uzávěrku</message>
+	<message key="director.paper.addReviewer">Přidat oponenta</message>
+	<message key="director.paper.toReviewer">Předat oponentovi</message>
+	<message key="director.paper.notifyReviewer">Informovat oponenta</message>
+	<message key="director.paper.initiateReview">Zahájit oponenturu</message>
+	<message key="director.paper.cancelReview">Zrušit žádost o oponenturu</message>
+	<message key="director.paper.clearReview">Vymazat oponenta</message>
+	<message key="director.paper.enterRecommendation">Vložit doporučení</message>
+	<message key="director.paper.enterReviewerRecommendation">Vložit doporučení oponenta</message>
+	<message key="director.paper.recommendation">Doporučení</message>
+	<message key="director.paper.selectReviewer">Vybrat oponenta</message>
+	<message key="director.paper.replaceReviewer">Vyměnit oponenta</message>
+	<message key="director.paper.directorToEnter">Garant dosud nevložil doporučení/komentáře pro oponenta</message>
+	<message key="director.paper.uploadReviewForReviewer">Nahrát posudek</message>
+	<message key="director.paper.peerReviewOptions">Možnosti oponentury</message>
+	<message key="director.paper.decision">Rozhodnutí</message>
+	<message key="director.paper.recordDecision">Uložit rozhodnutí</message>
+	<message key="director.paper.cannotRecord">Nebylo možné uložit rozhodnutí; dosud nebyl uložen garant sekce nebo nebyl nahrán žádný soubor s posudkem.</message>
+	<message key="director.paper.cannotRecordYet">Před uložením rozhodnutí musí být příspěvek přiřazen garantovi sekce. Verze k oponentuře se automaticky stane verzí pro garanta.</message>
+	<message key="director.paper.cannotRecordTooLate">Příspěvek již prošel touto fází oponentury. Toto rozhodnutí už nelze změnit.</message>
+	<message key="director.paper.designateDueDate">Určit datum dodání</message>
+	<message key="director.paper.designateDueDateDescription">Změnu data pro tohoto oponenta provedete vložením jiného data nebo smazáním data a vložením počtu týdnů, dokdy má být oponentura dodána.</message>
+	<message key="director.paper.todaysDate">Dnešní datum</message>
+	<message key="director.paper.requestedByDate">Požadováno do</message>
+	<message key="director.paper.dueDateFormat">Formát: RRRR-MM-DD</message>
+	<message key="director.paper.numberOfWeeks">Počet týdnů</message>
+	<message key="director.paper.showAuthor">Umožnit autorovi prohlížení souboru</message>
+	<message key="director.paper.rateReviewer">Ohodnotit oponenta</message>
+	<message key="director.paper.reviewerRating.veryGood">5 Vynikající</message>
+	<message key="director.paper.reviewerRating.good">4</message>
+	<message key="director.paper.reviewerRating.average">3 Průměrný</message>
+	<message key="director.paper.reviewerRating.poor">2</message>
+	<message key="director.paper.reviewerRating.veryPoor">1 Špatný</message>
+	<message key="director.paper.quality">Hodnocení</message>
+	<message key="director.paper.comments">Komentáře</message>
+	<message key="director.paper.commentsRequired">Pole "Komentáře" je povinné.</message>
+	<message key="director.paper.archiveSubmission">Archivovat příspěvek</message>
+	<message key="director.paper.restoreToQueue">Obnovit na seznam aktivních</message>
+	<message key="director.paper.assignTrackDirector">Vložit garanta sekce</message>
+	<message key="director.paper.assignDirector">Vložit garanta</message>
+	<message key="director.paper.selectDirector">Zvolit {$roleName}</message>
+	<message key="director.paper.selectDecision">Vybrat rozhodnutí</message>
+	<message key="director.paper.decision.invitePresentation">Požádat o prezentaci</message>
+	<message key="director.paper.decision.accept">Přijmout příspěvek</message>
+	<message key="director.paper.decision.pendingRevisions">Jsou vyžadovány úpravy</message>
+	<message key="director.paper.decision.decline">Odmítnout příspěvek</message>
+	<message key="director.paper.moveToLayout">Přesunout do tiskového rozvržení</message>
+	<message key="director.paper.createGalley">Tento soubor je připraven k publikaci.</message>
+	<message key="director.paper.completeReview">Označit oponenturu jako hotovou</message>
+	<message key="director.paper.scheduleSubmission">Odeslat</message>
+	<message key="director.submissions.showBy">Vypsat dle</message>
+	<message key="director.submissions.submitMMDD">data dodání</message>
+	<message key="director.submissions.activeAssignments">aktivních úkolů</message>
+	<message key="director.submissions.invite">Pozvat</message>
+	<message key="director.submissions.accept">Akceptovat</message>
+	<message key="director.submissions.noSubmissions">Žádné příspěvky</message>
+	<message key="director.submissions.lastAssigned">Nejpozději</message>
+	<message key="director.submissions.averageTime">Týdny(ů)</message>
+	<message key="director.submissions.lastCompleted">Poslední dokončená</message>
+	<message key="director.submissions.assignedTo">Přiděleno </message>
+	<message key="director.submissions.inTrack">V sekci</message>
+</locale>

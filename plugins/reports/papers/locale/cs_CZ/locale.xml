@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * locale.xml
+  *
+  * Copyright (c) 2000-2012 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the cs_CZ (Czech) locale.
+  * Translated by Petr Petyovsky (petyovsky 'at' feec.vutbr.cz)
+  *
+  * $Id: locale.xml 219 2011-06-21 21:11:53Z petyovsky $
+  -->
+
+<locale name="cs_CZ" full_name="Čeština">
+	<message key="plugins.reports.papers.displayName">Výkaz příspěvků</message>
+	<message key="plugins.reports.papers.description">Doplněk umožňuje generovat CSV soubor obsahující seznam příspěvků včetně jejich popisu.</message>
+	<message key="plugins.reports.papers.nodecision">Bez rozhodnutí</message>
+</locale>

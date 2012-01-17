@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * locale.xml
+  *
+  * Copyright (c) 2000-2012 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the cs_CS (Czech) locale.
+  * Translated by Petr Petyovsky (petyovsky 'at' feec.vutbr.cz)
+  *
+  * $Id: locale.xml 219 2011-06-21 21:11:53Z petyovsky $
+  -->
+ 
+<locale name="cs_CZ" full_name="Čeština">
+	<message key="plugins.importexport.nlm.displayName">Doplněk pro export dat ve formátu NLM XML</message>
+	<message key="plugins.importexport.nlm.description">Doplněk exportuje metadata příspěvků ve XML formátu NLM Meeting Abstracts, který je vhodný k indexování.</message>
+
+	<message key="plugins.importexport.nlm.export">Export dat</message>
+	<message key="plugins.importexport.nlm.export.papers">Exportovat příspěvky</message>
+	<message key="plugins.importexport.nlm.export.selectPaper">Prosím, zvolte příspěvky, které chcete exportovat</message>
+	
+	<message key="plugins.importexport.nlm.cliUsage"><![CDATA[Usage: 
+{$scriptName} {$pluginName} [xmlFileName] [conference_path] papers [paperId1] [paperId2] ...
+]]></message>
+	<message key="plugins.importexport.nlm.cliError">ERROR:</message>
+
+	<message key="plugins.importexport.nlm.export.error.paperNotFound">Žádný příspěvek neodpovídá ID příspěvku: "{$paperId}".</message>
+	<message key="plugins.importexport.nlm.export.error.unknownConference">Neznámá cesta ke konferenci: {$conferencePath}</message>
+	<message key="plugins.importexport.nlm.export.error.couldNotWrite">Nelze specifikovat soubor: "{$fileName}"</message>
+</locale>

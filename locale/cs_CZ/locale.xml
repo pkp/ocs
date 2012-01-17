@@ -1,0 +1,869 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * locale.xml
+  *
+  * Copyright (c) 2000-2012 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the cs_CZ (Czech) locale.
+  * Translated by Pavel Zufan (pavel.zufan 'at' gmail.com)
+  * Corrections, migration to the OCS 2.3.x by Ivo Vesely and Petr Petyovsky (petyovsky 'at' feec.vutbr.cz)
+  *   
+  *
+  * $Id: locale.xml 234 2012-01-05 21:20:00Z petyovsky $
+  -->
+
+<locale name="cs_CZ" full_name="Čeština">
+	<!--
+	 * This file is organized into several major sections, separated
+	 * by comments like this one. These sections are called:
+	 *  COMMON - Contains frequently-used words
+	 *  ENTITIES - Contains terms pertaining to the system's major
+	 *             entities, e.g. Paper, Conference, Track
+	 *  INTERFACE - Contains phrases organized by the section of the
+	 *              user interface they appear in.
+	 *  LOG - Contains phrases related to log entries
+	 *  MISC - Entries that don't belong elsewhere.
+	 *  DEFAULT - Default settings for configuration items.
+	-->
+
+	<!-- review forms start -->
+
+	<!-- common -->
+	<message key="common.copy">Kopírovat</message>
+	<message key="common.preview">Náhled</message>
+	<message key="common.activate">Aktivovat</message>
+	<message key="common.deactivate">Deaktivovat</message>
+
+	<!-- Conference Management -->
+	<message key="manager.reviewForms">Formuláře posudků</message>
+
+	<message key="manager.reviewForms.list.description">Zde vytvořené formuláře posudků budou předány oponentům k vyplnění místo standardního formuláře, který obsahuje dvě otevřená textová pole, první "pro autora a editora" a druhé "pro editora". Formuláře posudků mohou být určeny konkrétní sekci a editoři budou mít možnost volby, který formulář má být využit při posuzování konkrétního příspěvku. Ve všech případech budou mít editoři možnost zahrnout posudky při korespondenci s autorem.</message>
+	<message key="manager.reviewForms.noneChosen">Nic / Prázdný formulář</message>
+	<message key="manager.reviewForms.noneCreated">Nebyly vytvořeny žádné formuláře.</message>
+	<message key="manager.reviewForms.create">Vytvořit formulář posudku</message>
+	<message key="manager.reviewForms.edit">Formulář posudku</message>
+	<message key="manager.reviewForms.title">Název</message>
+	<message key="manager.reviewForms.description">Popis a instrukce</message>
+	<message key="manager.reviewForms.preview">Náhled</message>
+	<message key="manager.reviewForms.completed">Vyplněn</message>
+	<message key="manager.reviewForms.inReview">Posuzován</message>
+	<message key="manager.reviewForms.confirmDeleteUnpublished">Určitě chcete vymazat tento nezveřejněný posudek?</message>
+
+	<message key="manager.reviewForms.form.titleRequired">Pro vytvoření formuláře posudku je požadováno uvedení jeho názvu.</message>
+
+	<message key="manager.reviewFormElements">Položky formuláře</message>
+	<message key="manager.reviewFormElements.create">Vytvořit novou položku</message>
+	<message key="manager.reviewFormElements.edit">Editovat položku</message>
+	<message key="manager.reviewFormElements.noneCreated">Nebyly vytvořeny žádné položky formuláře.</message>
+	<message key="manager.reviewFormElements.confirmDelete">Určitě chcete vymazat položku zveřejněného formuláře posudku?</message>
+	<message key="manager.reviewFormElements.copyTo">Kopírovat do:</message>
+	<message key="manager.reviewFormElements.question">Položka</message>
+	<message key="manager.reviewFormElements.required">Posuzovatelé musí vyplnit položku</message>
+	<message key="manager.reviewFormElements.included">Vložit do zprávy autorovi</message>
+	<message key="manager.reviewFormElements.elementType">Typ položky</message>
+	<message key="manager.reviewFormElements.possibleResponse">Volba</message>
+	<message key="manager.reviewFormElements.addResponseItem">A výběr</message>
+	<message key="manager.reviewFormElements.chooseType">Zvolte typ položky</message>
+	<message key="manager.reviewFormElement.changeType">Upozornění: Změna položky formuláře posudku z vícenásobného výběru na otevřenou položku bude znamenat vymazání nabídky možností vícenásobného výběru.</message>
+
+	<message key="manager.reviewFormElements.form.questionRequired">Pro tuto položku je vyžadována otázka.</message>
+	<message key="manager.reviewFormElements.form.elementTypeRequired">Pro tuto položku je třeba zadat typ položky.</message>
+
+	<message key="manager.reviewFormElements.smalltextfield">Textové pole pro jediné slovo</message>
+	<message key="manager.reviewFormElements.textfield">Textové pole pro jediný řádek</message>
+	<message key="manager.reviewFormElements.textarea">Rozšířené textové pole</message>
+	<message key="manager.reviewFormElements.checkboxes">Zatrhávací pole (lze vybrat jednu nebo více položek)</message>
+	<message key="manager.reviewFormElements.radiobuttons">Výběrové pole (lze vybrat pouze jedinou položku)</message>
+	<message key="manager.reviewFormElements.dropdownbox">Rozbalovací pole</message>
+
+	<!--  peer review -->
+	<message key="submission.reviewForm">Formulář posudku</message>
+	<message key="submission.reviewFormResponse">Reakce na posudek</message>
+
+	<message key="editor.paper.reviewForms">Formuláře posudků</message>
+	<message key="editor.paper.selectReviewForm">Zvolte formulář posudku</message>
+	<message key="editor.paper.clearReviewForm">Vymazat posudek</message>
+	<message key="editor.paper.confirmChangeReviewForm">Upozornění: Změna posudkového formuláře ovlivní veškeré odpovědi posuzovatelů, kteří formulář využijí. Skutečně chcete pokračovat?</message>
+
+	<message key="reviewer.paper.enterReviewForm">Klikněte na ikonu pro vyplnění posudku.</message>
+	<message key="reviewer.paper.reviewFormResponse.form.responseRequired">Vplňte prosím požadovaná pole.</message>
+
+	<!-- review forms end -->
+
+	<!--
+	 *
+	 * COMMON - This section contains the most frequently-used words
+	 *
+	-->
+
+	<!-- Common Messages -->
+	<message key="common.openConferenceSystems">Otevřené konferenční systémy</message>
+	<message key="common.noDate">(datum)</message>
+	<message key="common.time">Čas</message>
+	<message key="common.days">dny</message>
+	<message key="common.timeZone">Časová zóna</message>
+	<message key="common.ellipsis">...</message>
+	<message key="common.path">Cesta</message>
+	<message key="common.dateTimeSeparator">v(e)</message>
+	<message key="common.ccLicense"><![CDATA[
+		<a target="_new" rel="license" href="http://creativecommons.org/licenses/by/3.0/">
+			<img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by/3.0/80x15.png"/>
+		</a>
+		<br/>
+		This work is licensed under a <a rel="license" target="_new" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0  License</a>.
+	]]></message>
+	<message key="common.sortBy">Seřadit dle...</message>
+	<message key="common.sitePageHeader.altText">Obrázek postranní hlavičky</message>
+	<message key="common.pageHeader.altText">Obrázek hlavičky stránky</message>
+	<message key="common.homePageHeader.altText">Obrázek hlavičky domovské stránky</message>
+	<message key="common.conferenceHomepageImage.altText">Obrázek na domovské stránce konference</message>
+
+	<!-- Navigation -->
+	<message key="navigation.conferenceHelp">Nápověda konference</message>
+	<message key="navigation.account">Účet</message>
+	<message key="navigation.archive">Archiv</message>
+	<message key="navigation.current">Aktuální konference</message>
+	<message key="navigation.otherConferences">Ostatní konference</message>
+	<message key="navigation.browseByConference">Podle konference</message>
+	<message key="navigation.browseByAuthor">Podle autora</message>
+	<message key="navigation.infoForAuthors">Pro autory</message>
+	<message key="navigation.infoForReviewers">Pro oponenty</message>
+	<message key="navigation.infoForAuthors.long">Informace pro autory</message>
+	<message key="navigation.infoForReviewers.long">Informace pro oponenty</message>
+
+	<!-- Paper Queues -->
+	<message key="common.queue.long.submissionsUnassigned">Nepřiřazeno</message>
+	<message key="common.queue.short.submissionsUnassigned">Nepřiřazeno</message>
+	<message key="common.queue.long.submissionsInReview">Oponované příspěvky</message>
+	<message key="common.queue.short.submissionsInReview">Oponované</message>
+	<message key="common.queue.long.submissionsAccepted">Prezentace</message>
+	<message key="common.queue.short.submissionsAccepted">Prezentace</message>
+	<message key="common.queue.long.submissionsArchives">Archivy</message>
+	<message key="common.queue.short.submissionsArchives">Archivy</message>
+	<message key="common.queue.long.active">Aktivní příspěvky</message>
+	<message key="common.queue.short.active">Aktivní</message>
+	<message key="common.queue.long.completed">Archiv</message>
+	<message key="common.queue.short.completed">Archiv</message>
+
+	<!--
+	 *
+	 * ENTITIES - This section contains terms pertaining to the system's
+	 *            major entities, e.g. Paper, Conference, Track
+	 *
+	-->
+
+	<!-- Common Track Terms -->
+	<message key="track.track">Sekce</message>
+	<message key="track.tracks">Sekce konference</message>
+	<message key="track.title">Název sekce</message>
+	<message key="track.abbreviation">Zkratka</message>
+	<message key="track.abbreviation.example">(Například, Obecné příspěvky=OBE)</message>
+
+	<!-- Common Paper Terms -->
+	<message key="paper.papers">Příspěvky</message>
+	<message key="paper.submissionId">ID příspěvku</message>
+	<message key="paper.title">Název</message>
+	<message key="paper.authors">Autoři</message>
+	<message key="paper.conferenceTrack">Sekce konference</message>
+	<message key="paper.file">Soubor</message>
+	<message key="paper.suppFile">Doplňkový soubor</message>
+	<message key="paper.suppFiles">Doplňkový(é) soubor(y)</message>
+	<message key="paper.suppFilesAbbrev">Dopl. soubory</message>
+	<message key="paper.discipline">Akademický obor a pod-obor</message>
+	<message key="paper.subjectClassification">Klasifikace oboru</message>
+	<message key="paper.subject">Klíčová slova</message>
+	<message key="paper.coverage">Rozsah</message>
+	<message key="paper.coverageGeo">Prostorový rozsah</message>
+	<message key="paper.coverageChron">Chronologický nebo historický rozsah</message>
+	<message key="paper.coverageSample">Charakteristiky výzkumného vzorku</message>
+	<message key="paper.type">Typ, metoda nebo přístup</message>
+	<message key="paper.language">Jazyk</message>
+	<message key="paper.trackDirector">GS</message>
+	<message key="paper.commentsToDirector">Poznámky autora</message>
+	<message key="paper.submission">Příspěvek</message>
+	<message key="paper.submissions">Příspěvky</message>
+	<message key="paper.abstract">Abstrakt</message>
+	<message key="paper.details">Podrobnosti</message>
+	<message key="paper.location">Místo</message>
+	<message key="paper.time">Čas</message>
+	<message key="paper.comments.trackDefault">Předdefinováno</message>
+	<message key="paper.comments.disable">Vypnout</message>
+	<message key="paper.comments.enable">Zapnout</message>
+	<message key="paper.fontSize">Velikost písma</message>
+	<message key="paper.fontSize.small.altText">Malé</message>
+	<message key="paper.fontSize.medium.altText">Střední</message>
+	<message key="paper.fontSize.large.altText">Velké</message>
+	<message key="paper.sessionType">Typ sekce</message>
+
+	<!-- Submission Tracking - Common -->
+	<message key="submission.fromTime">Od</message>
+	<message key="submission.toTime">Do</message>
+	<message key="submission.abstractReview">Posudek abstraktu</message>
+	<message key="submission.paperReview">Posudek příspěvku</message>
+	<message key="submission.page.abstractReview">Posudek abstraktu č. {$id}</message>
+	<message key="submission.page.paperReview">Posudek příspěvku č. {$id}</message>
+	<message key="submission.uploadFile">Nahrát příspěvek</message>
+	<message key="submission.changeTrack">Změnit na</message>
+	<message key="submission.acceptance">Souhlas s posouzením</message>
+	<message key="submission.complete.description">Přidat příspěvek na seznam přijatých prezentací.</message>
+	<message key="submission.directorDecision">Rozhodnutí</message>
+	<message key="submission.stage">Fáze&amp;nbsp;{$stage}</message>
+	<message key="submission.directorReview">Posudek předsedy</message>
+	<message key="submission.notifyAuthor">Oznámit autorovi</message>
+	<message key="submission.notifyDirector">Informovat předsedu</message>
+	<message key="submission.directorAuthorRecord">Email předsedy a autora</message>
+	<message key="submission.directorVersion">Verze pro předsedu</message>
+	<message key="submission.authorsRevisedVersion">Verze souboru upraveného autorem</message>
+	<message key="submission.authorVersion">Verze pro autora</message>
+	<message key="submission.layout.description">Tento volitelný krok lze využít k uspořádání příspěvků nebo ke změně formátu souborů ať už před nebo po odeslání příspěvků do Prezentací.</message>
+
+	<message key="submissions.track">Sekce</message>
+	<message key="submissions.queuedAbstractReview">Abstrakt oponování</message>
+	<message key="submissions.queuedPaperReview">Příspěvek oponován</message>
+	<message key="submissions.published">Odesláno</message>
+	<message key="submissions.accepted">Přijato</message>
+	<message key="submissions.reviewStage">Fáze oponování</message>
+	<message key="submissions.reviewType">Typ oponentury</message>
+	<message key="submissions.pendingPresentation">Čeká na nahrání</message>
+	<message key="submissions.expired">Uplynula</message>
+	<message key="submissions.directorDecision">Rozhodnutí předsedy</message>
+	<message key="submissions.directorRuling">Výkonný předseda</message>
+	<message key="trackDirector.galley.replaceGalley">Nahradit šablonu</message>
+	<message key="submission.abstract">Abstrakt</message>
+	<message key="submission.paper">Příspěvek</message>
+
+	<!-- Common Conference Terms -->
+	<message key="conference.conferences">Všechny konference</message>
+	<message key="conference.conference">Konference</message>
+
+	<!-- Common Scheduled Conference Terms -->
+	<message key="schedConf.scheduledConferences">Připravované konference</message>
+	<message key="schedConf.noScheduledConferences">Žádné připravované konference</message>
+	<message key="schedConf.schedConf">Připravovaná konference</message>
+	<message key="schedConf.contents">Informace o konferenci</message>
+	<message key="schedConf.overview">Obecný přehled</message>
+	<message key="schedConf.trackPolicies">Podmínky sekcí</message>
+	<message key="schedConf.schedule">Časový rozvrh</message>
+	<message key="schedConf.program">Program</message>
+	<message key="schedConf.cfp">Výzva k podávání příspěvků</message>
+	<message key="schedConf.discussion">Diskuse</message>
+	<message key="schedConf.registration">Registrace účastníka</message>
+	<message key="schedConf.accommodation">Ubytování</message>
+	<message key="schedConf.supporters">Organizátoři a partneři</message>
+	<message key="schedConf.timeline">Důležité termíny</message>
+	<message key="schedConf.schedule">Časový rozvrh</message>
+	<message key="schedConf.links">Související odkazy</message>
+	<message key="schedConf.presentations">Prezentace a autoři</message>
+	<message key="schedConf.presentations.short">Prezentace</message>
+	<message key="schedConf.abstract">Abstrakt</message>
+	<message key="schedConf.submission">Příspěvek</message>
+	<message key="schedConf.submissions">Příspěvky</message>
+
+	<message key="schedConf.cfp.title">Výzva k podávání příspěvků</message>
+	<message key="schedConf.overview.title">Obecný přehled</message>
+	<message key="schedConf.presentations.title">Prezentace a autoři</message>
+	<message key="schedConf.schedule.title">Rozvrh</message>
+	<message key="schedConf.program.title">Program</message>
+	<message key="schedConf.accommodation.title">Ubytování</message>
+	<message key="schedConf.trackPolicies.title">Podmínky sekcí</message>
+
+	<!-- Reader interface for scheduler -->
+	<message key="schedConf.scheduler.locations">Místa konference</message>
+
+	<!-- User self-registration form -->
+	<message key="schedConf.registration.alreadyRegistered">Na tuto konferenci jste již registrován(a), i když ještě nebyla provedena platba. Kontaktujte, prosím, hlavní kontakt v odkazu "O konferencích", je-li to omyl nebo pokud chcete upravit svou registraci.</message>
+	<message key="schedConf.registration.alreadyRegisteredAndPaid">Na tuto konferenci jste již registrován(a) a Váš registrační poplatek byl uhrazen. Kontaktujte, prosím, hlavní kontakt v odkazu "O konferencích", je-li to omyl nebo pokud chcete upravit svou registraci.</message>
+	<message key="schedConf.registration.noPaymentMethodAvailable">Vaše registrace byla zaznamenána. Je-li Vaše účast na konferenci zpoplatněna, zašleme Vám podklady pro provedení platby.</message>
+	<message key="schedConf.registration.free">Vaše registrace byla zaznamenána, žádné poplatky za registraci nebudou vyžadovány.</message>
+	<message key="schedConf.registration.conferenceFees">Konferenční poplatky</message>
+	<message key="schedConf.registration.failed">Vaše registrace se nezdařila. Zkuste to, prosím, znovu.</message>
+	<message key="schedConf.registration.type">Typ registrace účastníka</message>
+	<message key="schedConf.registration.cost">Poplatek</message>
+	<message key="schedConf.registrationTypes.noneAvailable">K dispozici nejsou žádné typy registrace.</message>
+	<message key="schedConf.registrationOptions.noneAvailable">K dispozici nejsou žádné možnosti registrace.</message>		
+	<message key="schedConf.registration.register">Registrovat</message>
+	<message key="schedConf.registration.typeCloses">(Končí dne {$closingDate})</message>
+	<message key="schedConf.registration.typeClosed">(Registrace uzavřena {$closingDate})</message>
+	<message key="schedConf.registration.typeFuture">(Registrace začne {$openingDate})</message>
+	<message key="schedConf.registration.optionCloses">(Končí dne {$closingDate})</message>
+	<message key="schedConf.registration.optionClosed">(Registrace uzavřena {$closingDate})</message>
+	<message key="schedConf.registration.optionFuture">(Registrace začne {$openingDate})</message>
+	<message key="schedConf.registration.feeCode">Kód poplatku</message>
+	<message key="schedConf.registration.feeCode.description">Pokud jste obdrželi zvláštní kód pro registraci, vložte ho, prosím, sem a ujistěte se, že jste vybrali odpovídající typ registrace účastníka. Jinak ponechejte pole Kód poplatku nevyplněné.</message>
+	<message key="schedConf.registration.specialRequests">Zvláštní požadavky</message>
+	<message key="schedConf.registration.specialRequests.description">Uveďte, prosím, jakékoliv speciální požadavky či žádosti související např. se stravováním, apod.</message>
+	<message key="schedConf.registration.account">Uživatelský účet</message>
+	<message key="schedConf.registration.loggedInAs"><![CDATA[Jste přihlášeni. Potvrďte správnost níže uvedených informací. Chcete-li je upravit, využijte, prosím odkaz <a href="{$profileUrl}">Můj profil</a> nebo <a href="{$logoutUrl}">se odhlaste</a> a použijte jiný účet.]]></message>
+	<message key="schedConf.registration.createAccount.description"><![CDATA[Nejste přihlášení. K registraci na konferenci budete potřebovat zřízení účtu. Pokud ho již máte zřízen, <a href="{$loginUrl}">klikněte zde</a> a přihlaste se; jinak vyplňte níže uvedené informace a účet Vám bude vytvořen.]]></message>
+	<message key="schedConf.registration.options">Možnosti registrace</message>
+
+	<message key="schedConf.registration.landingPaid">Děkujeme Vám za registraci! Budeme Vás kontaktovat ohledně dalších informace o platbě.</message>
+	<message key="schedConf.registration.landingPaid">Děkujeme Vám za registraci! Budeme Vás kontaktovat ohledně dalších informace o platbě.</message>
+
+	<!-- User -->
+	<message key="user.showAllConferences">Ukázat mé konference</message>
+	<message key="user.createAccount">Vytvořit</message>
+	<message key="user.createAccountForOtherConferences">Vytvořit účet pro další konference</message>
+	<message key="user.myConferences">Mé konference</message>
+	<message key="user.noRoles.chooseConference">Váš účet není v současné době spojen s žádnou konferencí. Vyberte, prosím, konferenci:</message>
+	<message key="user.noRoles.noRolesForConference">Váš účet v současné době nemá pro tuto konferenci žádné role. Vyberte, prosím, jednu z níže uvedených akcí:</message>
+	<message key="user.noRoles.submitProposal">Zaslat návrh příspěvku</message>
+	<message key="user.noRoles.submitProposalRegClosed">Zaslat návrh příspěvku: Registrace autorů je v tomto momentě uzavřena.</message>
+	<message key="user.noRoles.submitProposalSubmissionsClosed">Zaslat návrh příspěvku: Podávání příspěvků je v tomto momentě uzavřeno.</message>
+	<message key="user.noRoles.regReviewer">Registrovat jako oponenta konference</message>
+	<message key="user.noRoles.regReviewerClosed">Registrovat jako oponenta konference: registrace oponentů je v tomto momentě uzavřena.</message>
+	<message key="user.noRoles.register">Registrovat k účasti na konferenci</message>
+	<message key="user.noRoles.registerUnavailable">Registrovat k účasti na konferenci: registrace nejsou v tomto momentě přijímány.</message>
+
+	<!-- Roles -->
+	<message key="user.role.manager">Manažer konference</message>
+	<message key="user.role.director">Předseda</message>
+	<message key="user.role.trackDirector">Garant sekce</message>
+	<message key="user.role.author">Autor</message>
+
+	<message key="user.role.managers">Manažeři konference</message>
+	<message key="user.role.directors">Předsedové</message>
+	<message key="user.role.trackDirectors">Garanti sekcí</message>
+	<message key="user.role.authors">Autoři</message>
+
+	<!--
+	 *
+	 * LOG - This section contains entries related to log entries.
+	 *
+	-->
+
+	<message key="event.logType.paper">Příspěvek</message>
+	<message key="event.logType.author">Autor</message>
+	<message key="event.logType.director">Předseda</message>
+	<message key="event.logType.review">Posudek</message>
+	<message key="event.logType.conference">Konference</message>
+
+	<message key="event.eventLog">Záznam událostí</message>
+	<message key="event.logLevel">Úroveň</message>
+
+	<message key="event.logLevel.info">Informace</message>
+	<message key="event.logLevel.notice">Poznámka</message>
+	<message key="event.logLevel.warning">Upozornění</message>
+	<message key="event.logLevel.error">Chyba</message>
+
+	<message key="event.general.defaultEvent">Vkládání příspěvku</message>
+
+	<!-- Submission events -->
+
+	<message key="submission.event.general.abstractSubmitted">Abstrakt odeslán</message>
+	<message key="submission.event.general.presentationSubmitted">Prezentace odeslána</message>
+	<message key="submission.event.general.paperPublished">Příspěvek publikován</message>
+
+	<message key="submission.event.presenter.authorRevision">Oprava autora vložena</message>
+
+	<message key="submission.event.general.authorRevision">Soubor s opravou autora aktualizován</message>
+
+	<message key="submission.event.director.directorAssigned">Příspěvek přiřazen garantovi</message>
+	<message key="submission.event.director.directorUnassigned">Garant odebrán od příspěvku</message>
+	<message key="submission.event.director.directorDecision">Rozhodnutí garanta odesláno</message>
+	<message key="submission.event.director.directorFile">Soubor garanta odeslán</message>
+	<message key="submission.event.director.submissionArchived">Příspěvek odeslán do archivu</message>
+	<message key="submission.event.director.submissionRestored">Příspěvek obnoven z archivu</message>
+
+
+	<!-- Conference events -->
+	<message key="conference.event.general.configuration">Konfigurace konference změněna</message>
+	<message key="conference.event.general.deadline">Uzávěrka konference uplynula</message>
+
+	<!--
+	 *
+	 * INTERFACE - Contains phrases organized by the section of the
+	 *             user interface they appear in.
+	 *
+	-->
+
+	<!-- Reader paper view -->
+	<message key="reader.fullTextNotAvailable">Příspěvky na konferenci nejsou momentálně dostupné.</message>
+	<message key="reader.accessDenied">V tomto momentě nejste oprávněni k prohlížení tohoto příspěvku. Pokud máte účet na tomto konferenčním serveru, budete se patrně muset přihlásit, abyste si daný obsah mohli prohlédnout.</message>
+	<message key="reader.fullTextRegistrationRequired">K prohlížení příspěvků musíte být registrování na konferenci.</message>
+	<message key="reader.fullTextAccountRequired"><![CDATA[K prohlížení příspěvků je nutné mít účet na tomto serveru. <a href="{$registerUrl}">Klikněte zde</a> pro vytvoření účtu.]]></message>
+	<message key="reader.fullTextRegistrantsOnlyUntil">Otevřený přístup na tuto konferenci bude umožněn od {$date}.</message>
+	<message key="reader.fullTextNotPostedYet">Příspěvky na tuto konferenci budou odeslány dne {$date}.</message>
+
+	<!-- Reader Comments -->
+	<message key="comments.authenticated">{$userName}</message>
+	<message key="comments.commentsOnPaper">Komentáře k příspěvku</message>
+	<message key="comments.commentsClosed">Komentáře budou uzavřeny {$closeCommentsDate}.</message>
+
+	<!-- Site Administration -->
+
+	<message key="admin.settings.oaiRegistrationDescription"><![CDATA[Chcete-li mít obsah všech konferencí provozovaných na tomto serveru indexován v globálně distribuovaném systému výzkumných databází, <a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">registrujte</a> URL Vašeho serveru <a href="http://pkp.sfu.ca/harvester/" target="_blank">v registru Public Knowledge Project metadat</a>. Tento nástroj sbírá metadata každé indexované položky této konference a umožňuje tak přesné a skupinové vyhledávání na výzkumných portálech, které jsou v souladu s <a href="http://www.openarchives.org/OAI/openarchivesprotocol.htm#Introduction" target="_blank">Open Archives Initiative Protocol for Metadata Harvesting</a> (Iniciační protokol otevřených archivů pro sběr metadat).
+<br /><br />
+<a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">Klikněte zde</a> a vložte <span class="highlight">{$siteUrl}</span> jako <strong>URL stránek</strong> a <span class="highlight">{$oaiUrl}</span> jako <strong>základní URL pro archiv OAI</strong>.
+<br /><br />
+OAI interface lze pro tyto stránky odpojit editací konfigurace systému OCS. Budoucí verze OCS umožní napojení či odpojení OAI interface i ve vazbě na jednotlivé konference v rámci jednoho serveru.]]></message>
+
+	<message key="admin.auth.defaultSourceDescription"><![CDATA[<p>Určení jiného zdroje než OCS jako výchozího autentizačního zdroje má následující dopady:</p>
+<ul>
+	<li>Pokusí-li se uživatel vytvořit nový účet na těchto stránkách s uživatelským jménem, které již existuje v autentizačním zdroji (ovšem nikoliv v OCS databázi), registrační pokus bude dovolen pouze v případě, že uživatelské heslo je platné pro tento uživatelský účet.</li>
+</ul>]]></message>
+
+	<!-- System Information -->
+	<message key="admin.editSystemConfigInstructions"><![CDATA[Tento formulář lze využít k modifikaci Vaší systémové konfigurace (soubor <tt>config.inc.php</tt>). Klikněte na "Uložit" pro uložení Vaší nové konfigurace, nebo "Zobrazit" pro zobrazení aktualizovaného konfiguračního souboru bez modifikace stávající konfigurace.
+<br /><br />
+<span class="formError">Upozornění: Změna těchto nastavení může znepřístupnit Vaše stránky (což si vyžádá manuální opravu konfiguračního souboru). Důrazně doporučujeme dělat pouze změny, u nichž jste si jisti jejich význame.</span>]]></message>
+	<message key="admin.overwriteConfigFileInstructions"><![CDATA[<h4>POZOR!</div>
+<p>Systém nemohl automaticky přepsat konfigurační soubor. K provedení změn konfigurace musíte soubor <tt>config.inc.php</tt> otevřít ve vhodném textovém editoru a nahradit jeho obsah obsahem textového pole zobrazeného níže.</p>]]></message>
+
+	<!-- Payment Handling -->
+	<message key="payment.type.conferenceRegistration">Registrace na konferenci; {$schedConfTitle}; {$registrationTypeName}</message>
+
+	<!-- Conference Event Log -->
+	<message key="conference.event.confirmClearLog">Skutečně chcete vymazat registr událostí pro tuto konferenci?</message>
+	<message key="conference.event.confirmDeleteLogEntry">Skutečně chcete vymazat tuto položku registru událostí?</message>
+	<message key="conference.event.deleteLogEntry">Vymazat položku</message>
+	<message key="conference.event.backToEventLog">Zpět k registru</message>
+	<message key="conference.history.conferenceEventLog">Registr událostí</message>
+	<message key="conference.history.clearLog">Vymazat registr</message>
+	<message key="conference.history.noLogEntries">Žádné položky.</message>
+
+	<!-- General plugin information -->
+	<message key="plugins.categories.generic.description">Skupina obecných doplňků rozšiřuje systém OCS v mnoha specifických směrech a proto v této kategorii naleznete značně různorodé doplňky.</message>
+	<message key="plugins.categories.auth.description">Autorizační doplňky umožňují systému OCS delegovat úkoly spojené s autorizací uživatelů jiným systémům jako jsou například LDAP servery.</message>
+	<message key="plugins.categories.citationFormats.description">Doplňky citačních formátů poskytují uživatelům přístup k různým formátům citací příspěvku.</message>
+
+	<!-- Leftovers -->
+	<message key="manager.setup.finalStepSavedNotes"><![CDATA[<p>Téměř hotovo!</p>
+			<p>Konference byla nyní nastavena, což umožňuje chod jednorázové konference, výroční konference, nebo série více konferencí, přičemž všechny mohou být spravovány z těchto konferenčních stránek. K rozvržení konkrétní instance této konference přejděte na odkaz <a href="{$schedConfSetupUrl}">Aktuální konference</a>. K této stránce se dostanete kdykoliv prostřednictvím domovské stránky manažera konference.</p>
+			<p>Na těchto šest stránek se můžete vrátit kdykoliv prostřednictvím odkazu "Stránka uživatele > Manažer konference > Nastavení".</p>
+			<p>Aktuální konference můžete spravovat prostřednictvím odkazu "Stránka uživatele > Manažer konference > Nastavení"</p>]]></message>
+	<message key="manager.setup.citations">Umožňit autorům samostatně poskytovat formátovaný seznam odkazů (citací) jako součást svého příspěvku.</message>
+
+	<message key="manager.setup.indexing.registerConferenceForIndexing.description"><![CDATA[K indexování obsahu této konference v rámci globálně distribuovaného systému výzkumných databází <a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">zaregistrujte</a> URL Vaší konference do registru metadat projektu <a href="http://pkp.sfu.ca/harvester/" target="_blank">Public Knowledge Project</a>. Tento nástroj sbírá metadata každé indexované položky této konference, čímž umožňuje přesné a skupinové vyhledávání na výzkumných serverech, které jsou v souladu s protokolem <a href="http://www.openarchives.org/OAI/openarchivesprotocol.htm#Introduction" target="_blank">Open Archives Initiative Protocol for Metadata Harvesting</a> (Protokol iniciativy otevřených archivů pro sběr metadat).
+<br /><br />
+Pokud administrátor serveru již registroval tento server v registru PKP, bude Vaše konference indexována automaticky a nemusíte ji tedy registrovat zvlášť.
+<br /><br />
+<a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">Klikněte zde</a> a vložte <span class="highlight">{$siteUrl}</span> do pole <strong>Site URL</strong>, a <span class="highlight">{$oaiUrl}</span> do pole <strong>Base URL for OAI Archive</strong>.]]></message>
+
+	<!-- Scheduled Conference Setup Step 2 -->
+	<message key="manager.schedConfSetup.submissions.subjectClassificationDescription"><![CDATA[[Konference bude používat systém klasifikace témat dostupný na webu.<br />
+Název klasifikačního systému]]></message>
+
+	<!-- People Management -->
+	<message key="manager.people.confirmDisable">Uzavřít účet tohoto uživatele? Uživatel se nebude moci přihlásit do systému.
+
+Můžete případně informovat uživatele o důvodu uzavření jeho účtu.</message>
+	<message key="manager.people.noAdministrativeRights"><![CDATA[Omlouváme se, ale nemáte administrativní práva na tohoto uživatele. Příčinou může být následující:
+		<ul>
+			<li>Uživatel je administrátorem stránek</li>
+			<li>Uživatel je aktivní na konferenci, kterou neřídíte</li>
+		</ul>
+	Tento úkol musí provést administrátor stránek.]]></message>
+
+	<!-- Used by director in submission review / editing -->
+	<message key="director.paper.selectReviewerNotes"><![CDATA[Pod jménem je odkaz na profil oponenta.<br/>
+Hodnocení je 1-5 (Vynikající).<br/>
+Tůdny odkazují na průměrnou délku zpracování oponentur.<br/>
+Nejnovější odkazuje na den přijetí nejaktuálnějšího posudku.<br/>
+Aktivní odkazuje na počet oponentů, kteří ještě zvažují přijetí.]]></message>
+
+	<!-- Track Director -->
+	<message key="trackDirector.author.confirmRenotify">Opětovné informování tohoto autora restartuje jeho úkoly. Skutečně si to přejete udělat?</message>
+
+	<message key="trackDirector.regrets.breadcrumb">Připomínky</message>
+	<message key="trackDirector.regrets.title">Připomínky a odmítnutí oponenta příspěvku č. {$paperId}</message>
+	<message key="trackDirector.regrets">Připomínky</message>
+	<message key="trackDirector.regrets.link">Zobrazit připomínky a odmítnutí</message>
+	<message key="trackDirector.regrets.reviewStage">Oponentura, fáze {$stage}</message>
+	<message key="trackDirector.regrets.decisionStage">Rozhodnutí garanta, fáze {$stage}</message>
+	<message key="trackDirector.regrets.regretsAndCancels">Připomínky a odmítnutí oponenta</message>
+	<message key="trackDirector.regrets.regret">Připomínka</message>
+	<message key="trackDirector.regrets.result">Výsledek</message>
+	<message key="trackDirector.review.enrollReviewer">Zaregistrovat stávajícího uživatele jako oponenta</message>
+	<message key="trackDirector.review.createReviewer">Vytvořit nového oponenta</message>
+
+	<!-- Reviewer -->
+	<message key="reviewer.completedReviews">Hotovo</message>
+	<message key="reviewer.averageQuality">Hodnocení</message>
+
+	<!-- Used in submission review -->
+	<message key="reviewer.paper.fileToBeReviewed">Soubor k oponentuře</message>
+	<message key="reviewer.paper.notifyTheDirector">Oznámit garantovi</message>
+	<message key="reviewer.paper.canDoReview">Posudek udělá</message>
+	<message key="reviewer.paper.cannotDoReview">Nemůže to oponovat</message>
+	<message key="reviewer.paper.restrictedFileAccess">Příspěvek lze prohlížet pouze v případě jeho projití oponenturou.</message>
+	<message key="reviewer.paper.submissionDirector">Garant příspěvků</message>
+	<message key="reviewer.paper.reviewerCommentsDescription">Vepište či vložte komentáře oponenta</message>
+	<message key="reviewer.paper.directorToEnter">Vložit garanta</message>
+	<message key="reviewer.paper.sendReminder">Odeslat připomenutí</message>
+	<message key="reviewer.paper.automatic">(Auto)</message>
+	<message key="reviewer.paper.selectRecommendation">Vybrat doporučení</message>
+	<message key="reviewer.paper.recommendation">Doporučení</message>
+	<message key="reviewer.paper.submitReview">Předat oponenturu garantovi</message>
+	<message key="reviewer.paper.reviewerComments">Komentáře</message>
+	<message key="reviewer.paper.uploadedFile">Nahrané soubory</message>
+	<message key="reviewer.paper.reviewersAnnotatedVersion">Verze nahraná oponentem</message>
+	<message key="reviewer.paper.reviewersAnnotatedVersionDescription">(Chcete-li psát poznámky pro garanta přímo do souboru, uložte soubor na pevný disk a poté použijte Najít/načíst.)</message>
+	<message key="reviewer.paper.schedule.request">Požadavek garanta</message>
+	<message key="reviewer.paper.schedule.response">Vaše odpověď</message>
+	<message key="reviewer.paper.schedule.submitted">Oponentura vložena</message>
+	<message key="reviewer.paper.schedule.due">Termín oponentury</message>
+	<message key="reviewer.paper.decision.accept">Přijmout příspěvek</message>
+	<message key="reviewer.paper.decision.pendingRevisions">Požadavek na opravy</message>
+	<message key="reviewer.paper.decision.resubmitElsewhere">Podat jinam</message>
+	<message key="reviewer.paper.decision.decline">Odmítnout příspěvek</message>
+	<message key="reviewer.paper.decision.seeComments">Prohlížet komentáře</message>
+	<message key="reviewer.paper.schedule">Program</message>
+	<message key="reviewer.paper.submissionToBeReviewed">Příspěvek k oponentuře</message>
+	<message key="reviewer.paper.reviewSchedule">Rozvrh oponentur</message>
+	<message key="reviewer.paper.reviewSteps">Kroky oponentury</message>
+	<message key="reviewer.paper.reviewerGuidelines">Pokyny pro oponenty</message>
+	<message key="reviewer.paper.notifyEditorA">Informovat garanta příspěvků</message>
+	<message key="reviewer.paper.notifyEditorB">zda přijmete oponenturu.</message>
+	<message key="reviewer.paper.consultGuidelines">Pokud jste se rozhodli přijmout oponenturu, podívejte se na pokyny pro oponenty (viz níže).</message>
+	<message key="reviewer.paper.downloadSubmissionAbstractOnly">Oponovat abstrakt poskytnutý spolu s příspěvkem.</message>
+	<message key="reviewer.paper.downloadSubmissionSubmission">Oponovat příspěvek.</message>
+	<message key="reviewer.paper.enterReviewA">Klikněte na ikonu pro zadání (či vložení) posudku na tento příspěvek.</message>
+	<message key="reviewer.paper.uploadFile">Navíc můžete ukládat soubory pro garanta a/nebo autory ke konzultaci.</message>
+	<message key="reviewer.paper.selectRecommendation">Vybrat doporučení</message>
+	<message key="reviewer.paper.mustSelectDecision">Nebylo vybráno doporučení. Před uložením musíte vybrat doporučení.</message>
+	<message key="reviewer.paper.confirmDecision">Po uložení rozhodnutí nebudete moci tento posudek měnit. Skutečně si přejete pokračovat?</message>
+	<message key="reviewer.paper.ensuringBlindReview">Zajištění anonymity procesu</message>
+
+	<!-- Paper Submission Step 3 -->
+	<message key="author.submit.uploadInstructions"><![CDATA[
+<p>Při zasílání příspěvků na tuto konferenci postupujte podle následujících kroků.</p>
+
+<ol>
+<li>Na této stránce klikněte na "Procházet" (nebo Vybrat soubor), kde se dostanete k výběru souboru na pevném disku Vašeho počítače.</li>
+<li>Vyhledejte a označte soubor, který chcete odeslat.</li>
+<li>Klikněte na "Otevřít", čímž umístíte jméno souboru na tuto stránku.</li>
+<li>Klikněte na "Načíst" na této stránce, čímž odešlete soubor z Vašeho počítače na webové stránky konference, kde bude soubor přejmenován podle nastavených pravidel.</li>
+<li>Jakmile je příspěvek načten, klikněte na "Uložit a pokračovat" ve spodní části této stránky.</li>
+</ol>]]></message>
+
+	<!-- Paper Submission: upload file -->
+	<message key="submission.submissionFiles">Soubory s příspěvkem</message>
+
+	<!-- Submission Comments -->
+	<message key="submission.comments.directorAuthorCorrespondence">Garant/Korespondence s autorem</message>
+	<message key="submission.comments.viewableDescription"><![CDATA[Tyto komentáře lze sdílet s autorem.<br />
+(Po uložení lze vkládat další komentáře.)]]></message>
+	<message key="submission.comments.canShareWithAuthor">Pro autora a garanta</message>
+	<message key="submission.comments.cannotShareWithAuthor">Pro garanta</message>
+	<message key="submission.comments.blindCcReviewers">Odeslat slepou kopii rozhodnutí o přijetí příspěvku oponentům.</message>
+	<message key="submission.comments.forAuthorDirector">Pro autora a garanta</message>
+	<message key="submission.comments.forDirector">Pro garanta</message>
+	<message key="submission.comments.saveAndEmailAuthor">Uložit a odeslat email autorovi</message>
+	<message key="submission.comments.saveAndEmailDirector">Uložit a odeslat email garantovi</message>
+
+	<!-- Login -->
+	<message key="user.login.createAccount">Ještě nejste uživatelem? Vytvořte si na těchto stránkách účet.</message>
+	<message key="user.login.resetPasswordInstructions"><![CDATA[Z bezpečnostních důvodů odesílá systém emailem registrovaným uživatelům nově nastavené heslo a nikoliv obnovené původní heslo. Doporučujeme Vám si nově přidělené heslo po přihlášení do systému opětovně změnit, neboť běžná emailová komunikace není šifrována.<br /><br />Pro obnovu hesla zadejte svou emailovou adresu. Na tuto adresu bude odesláno potvrzení.]]></message>
+
+	<!-- Registration -->
+	<message key="user.account.repeatPassword">Zopakovat heslo</message>
+	<message key="user.account.form.usernameExists">Vybrané uživatelské jméno již využívá jiný uživatel.</message>
+	<message key="user.account.form.usernameAlphaNumeric">Uživatelské jméno může obsahovat alfanumerické znaky, podtržítka a pomlčky, a musí začínat a končit alfanumerickým znakem.</message>
+	<message key="user.account.form.emailExists">Zadanou emailovou adresu již používá nový uživatel.</message>
+	<message key="user.account.form.passwordsDoNotMatch">Hesla se neshodují.</message>
+	<message key="user.account.selectConference">Zvolte konferenci, na které chcete vytvořit účet</message>
+	<message key="user.account.noConferences">Na těchto stránkách nejsou žádné konference, na nichž by bylo možné vytvořit účet.</message>
+	<message key="user.account.selectSchedConf">Vyberte aktuální konferenci, na které chcete vytvořit účet</message>
+	<message key="user.account.noSchedConfs">Na těchto stránkách nejsou žádné aktuální konference, na nichž by bylo možné vytvořit účet.</message>
+	<message key="user.account.createAs">Vytvořit účet jako</message>
+	<message key="user.account.privacyStatement">Ochrana soukromí</message>
+	<message key="user.account.completeForm">Pro vytvoření účtu na této konferenci vyplňte tento formulář.</message>
+	<message key="user.account.hasAccount"><![CDATA[<a href="{$accountUrl}">Klikněte zde</a>, máte-li již účet na této konferenci či na jiné konferenci provozované na tomto serveru.]]></message>
+	<message key="user.account.hasNoAccount"><![CDATA[<a href="{$accountUrl}">Klikněte zde</a>, pokud dosud <strong>nemáte</strong> vytvořen účet na této nebo jiné konferenci provozované na tomto serveru.]]></message>
+	<message key="user.account.loginToRegister">Vložte své uživatelské jméno a heslo pro vytvoření účtu na této konferenci.</message>
+	<message key="user.account.createAccountDisabled">Tato konference v tomto momentě nepřijímá další účastníky.</message>
+	<message key="user.account.usernameRestriction">Uživatelské jméno musí obsahovat pouze malá písmena, čísla a pomlčky/podtržítka)...</message>
+	<message key="user.account.passwordLengthRestriction">Heslo musí mít minimální délku {$length} znaků.</message>
+	<message key="user.account.form.passwordLengthTooShort">Vložili jste příliš krátké heslo.</message>
+	<message key="user.account.readerDescription">Informováni e-mailem o zveřejnění prezentací</message>
+	<message key="user.account.openAccessNotificationDescription">Oznámit emailem otevření přístupu ke konferencí.</message>
+	<message key="user.account.authorDescription">Může vkládat materiály na konferenci.</message>
+	<message key="user.account.reviewerDescriptionNoInterests">Ochota účastnit se oponentury konferenčních příspěvků.</message>
+	<message key="user.account.reviewerDescription">Ochota oponovat příspěvky na konferenci. Uvést zájmy (hlavní oblasti a metody výzkumu).</message>
+	<message key="user.account.authorRegistrationMessage">Přestože máte na těchto stránkách již zřízen účet, nejste na ní v tomto momentě autory.</message>
+
+
+
+	<!-- Search -->
+	<message key="search.browseAuthorIndex">Procházet seznam autorů</message>
+	<message key="search.searchFor">Hledat na stránkách</message>
+	<message key="search.inField">V</message>
+	<message key="search.author">Autoři</message>
+	<message key="search.withinConference">V rámci</message>
+	<message key="search.allConferences">Všechny konference</message>
+	<message key="search.authorIndex">Procházet seznam autorů</message>
+	<message key="search.authorDetails">Podrobnosti o autorech</message>
+	<message key="search.syntaxInstructions"><![CDATA[<p>Tipy pro vyhledávání:</p>
+<ul>
+<li>U vyhledávaných položek jsou rozlišována malá a velká písmena</li>
+<li>Běžná slova jsou ignorována</li>
+<li>Standardně budou vypsány pouze příspěvky obsahující <em>všechny</em> termíny v zadání (tj. předpokládá se nastavení operátoru <em>AND</em>)</li>
+<li>Při hledání příspěvků obsahujících jeden ze zadaných termínů uveďte mezi nimi operátor <em>OR</em>; např., <em>odvětví OR sektor</em></li>
+<li>Pro tvorbu složitějších dotazů využijte závorky; např., <em>archiv ((časopis OR konference) NOT disertace)</em></li>
+<li>Přesnou frázi hledejte tak, že ji zadáte v uvozovkách; např. <em>"otevřený přístup k publikacím"</em></li>
+<li>Slovo lze vyloučit uvedením <strong>-</strong> nebo <em>NOT</em>; např. <em>online -politika</em> nebo <em>online NOT politika</em></li>
+<li><strong>*</strong> se využívá jako divoká karta, která vede k nalezení jakékoliv sekvence znaků; např. <em>společ* zodpovědnost</em> by vedla k nalezení všech dokumentů obsahujících buďto "společenská zodpovědnost" nebo "společná zodpovědnost".</li>
+</ul>]]></message>
+
+	<!-- Interstitial page for PDFs -->
+	<message key="paper.pdf.title">Portable Document Format (PDF)</message>
+	<message key="paper.pdf.note"><![CDATA[Soubor PDF, který jste vybrali, by se měl nahrát sem, pokud máte ve svém browseru instalován doplněk umožňující čtení formátu PDF (např. aktuální verzi Adobe Acrobat Reader <a href="http://www.adobe.com/products/acrobat/readstep2.html">najdete zde</a>). Případně lze stáhnout PDF soubor do počítače, kde ho lze otevřít prostřednictvím programu PDF reader. Chcete-li se dozvědět více informací o tisku, ukládání a práci se soubory PDF, Highwire Press poskytuje užitečné <a href="http://highwire.stanford.edu/help/pdf-faq.dtl">Často kladené otázky (FAQ) o PDF</a>.<br /><br />Nestáhne-li se soubor automaticky, <a href="{$url}">klikněte zde</a>.]]></message>
+
+	<!-- Interstitial page for non-PDF non-HTML galleys -->
+	<message key="paper.nonpdf.title">Stažení příspěvku</message>
+	<message key="paper.nonpdf.note"><![CDATA[Stažení vybraného souboru by mělo začít automaticky. Pokud ne, klikněte na odkaz níže. Prohlížení tohoto souboru může vyžadovat speciální prohlížeč nebo doplněk.<br /><br />Pokud stahování souboru nezačne automaticky, <a href="{$url}">klikněte sem</a>.]]></message>
+
+	<!-- Site index -->
+	<message key="site.conferencesHosted">Konference provozované na těchto stránkách</message>
+	<message key="site.conferenceView">Prohlížet konference</message>
+	<message key="site.conferenceAccount">Účet</message>
+	<message key="site.schedConfView">Prohlížet informace o konferencích</message>
+	<message key="site.schedConfCurrent">Aktuální konference</message>
+
+	<!-- Conference page -->
+	<message key="conference.currentConferences">Aktuální konference</message>
+	<message key="conference.noCurrentConferences">V současnosti nejsou aktivní žádné konference. Dřívější konference naleznete v archivu.</message>
+	<message key="conference.archive">Archiv konferencí</message>
+
+	<!-- Scheduled Conference page -->
+	<message key="schedConf.proposalSubmission">Návrh příspěvku</message>
+
+	<!-- Call-for-Papers (CFP) page -->
+	<message key="schedConf.cfp.submitHere">Zadání příspěvku na tuto konferenci začněte zde.</message>
+
+	<!-- Conference Proceedings -->
+	<message key="presentations.notPermitted">Zatím nemáte přístup k prezentacím na konferenci.</message>
+	<message key="presentations.trackEmpty">V této sekci nejsou k dispozici žádné příspěvky.</message>
+	<message key="presentations.schedConfEmpty">Prezentace pro tuto konferenci zatím nejsou dostupné nebo nebyly nalezeny žádné vyhovující prezentace.</message>
+
+	<!-- Program page -->
+	<message key="schedConf.program.programFileInstructions">Program této konference je k dispozici pod následujícím odkazem.</message>
+	<message key="schedConf.program.viewProgramFile">Prohlédnout program</message>
+
+	<!-- About The Conference -->
+	<message key="about.statistics">Statistiky</message>
+	<message key="about.conferenceContact">Kontaktní osoba konference</message>
+	<message key="about.aboutTheConference">Podrobnosti o konferenci</message>
+	<message key="about.organizingTeam">Organizační tým</message>
+	<message key="about.conferencePolicies">Podmínky konference</message>
+	<message key="about.submissions">Příspěvky</message>
+	<message key="about.sponsors">Sponzoři</message>
+	<message key="about.contributors">Zdroje podpory</message>
+	<message key="about.onlineSubmissions">Příspěvky online</message>
+	<message key="about.onlineSubmissions.haveAccount">Již máte uživatelské jméno/heslo na konferenci {$conferenceTitle}?</message>
+	<message key="about.onlineSubmissions.login">Přihlášení</message>
+	<message key="about.onlineSubmissions.needAccount">Potřebujete uživatelské jméno/heslo?</message>
+	<message key="about.onlineSubmissions.registration">Přejít na registraci</message>
+	<message key="about.onlineSubmissions.registrationRequired">Pro podání příspěvku a kontrolu jeho stavu je nutná registrace a přihlášení.</message>
+	<message key="about.authorGuidelines">Pokyny pro autory</message>
+	<message key="about.submissionPreparationChecklist">Kontrolní seznam pro přípravu příspěvku</message>
+	<message key="about.copyrightNotice">Prohlášení o ochraně autorských práv</message>
+	<message key="about.privacyStatement">Prohlášení o ochraně osobních údajů</message>
+	<message key="about.peerReviewProcess">Proces oponentury</message>
+	<message key="about.openAccessPolicy">Pravidla otevřeného přístupu</message>
+	<message key="about.archiveAccessPolicy">Pravidla přístupu do archivu</message>
+	<message key="about.delayedOpenAccess">Otevřený přístup po ukončení konference</message>
+	<message key="about.delayedOpenAccessDescription">Obsah této konference bude otevřen k přístupu po uplynutí {$delayedOpenAccessDuration} měsíce(ů) po otevření konference účastníkům.</message>
+	<message key="about.authorSelfArchive">Sebe-archivace autorů</message>
+	<message key="about.archiving">Archivace</message>
+	<message key="about.registration">Registrace</message>
+	<message key="about.registrationContact">Kontaktní osoba pro registrace</message>
+	<message key="about.availableRegistrationTypes">Typy registrací</message>
+	<message key="about.aboutThisPublishingSystem">Podrobnosti o webovém systému konference</message>
+	<message key="about.aboutThisPublishingSystem.altText">Proces podávání příspěvků, oponentur a publikace v rámci OCS</message>
+	<message key="about.currentConferences">Aktuální konference</message>
+	<message key="about.aboutOCSConference"><![CDATA[Tato konference využívá Otevřený konferenční systém (Open Conference Systems) {$ocsVersion} lokalizace: (cs_CZ  $Rev: 234 $), který je otevřeným softwarovým nástrojem vyvinutým, podporovaným a volně distribuovaným projektem <a href="http://pkp.sfu.ca/">Public Knowledge Project</a> pod veřejnou licencí GNU.]]></message>
+	<message key="about.aboutOCSSite"><![CDATA[Tyto stránky využívají Otevřený konferenční systém (Open Conference Systems) {$ocsVersion} lokalizace: (cs_CZ  $Rev: 234 $), který je otevřeným softwarovým nástrojem vyvinutým, podporovaným a volně distribuovaným projektem <a href="http://pkp.sfu.ca/">Public Knowledge Project</a> pod veřejnou licencí GNU.]]></message>
+
+	<!-- Announcement -->
+
+	<!-- Help -->
+	<message key="help.ocsHelp">Nápověda Otevřeného konferenčního systému</message>
+	<message key="help.ocsHelpAbbrev">Nápověda OCS</message>
+
+	<!-- Installer -->
+	<message key="installer.ocsInstallation">Instalace OCS</message>
+	<message key="installer.ocsUpgrade">Aktualizace OCS</message>
+	<message key="installer.installationInstructions"><![CDATA[<h4>Verze OCS {$version}</h4>
+
+<p>Děkujeme za stažení <strong>Otevřeného konferenčního systému </strong> Public Knowledge Project. Před pokračováním si přečtěte soubor <a href="{$baseUrl}/docs/README">README</a> dodaný s tímto software. Další informace o Public Knowledge Project a jeho softwarových projektech najdete na stránkách <a href="http://pkp.sfu.ca/" target="_blank">PKP</a>. Chcete-li odeslat zprávu o chybách nebo se zeptat na Otevřený konferenční systém, navštivte <a href="http://pkp.sfu.ca/support/forum">support forum</a> nebo stránky <a href="http://pkp.sfu.ca/bugzilla/" target="_blank">online systém upozornění na chyby</a> na stránkách PKP. Support forum je preferovanou metodou kontaktu, nicméně můžete rovněž odeslat email vývojovému týmu: <a href="mailto:pkp-support@sfu.ca">pkp-support@sfu.ca</a>.</p>
+
+<h4>Aktualizace</h4>
+
+<p>Aktualizujete-li existující instalaci OCS 2.x, <a href="{$upgradeUrl}">klikněte sem</a> pro pokračování.</p>
+
+<h4>Doporučené systémové požadavky</h4>
+
+<ul>
+	<li><a href="http://www.php.net/" target="_blank">PHP</a> >= {$phpRequiredVersion} (včetně PHP 5.x); v tomto momentě využíváte PHP {$phpVersion}{$wrongPhpText}</li>
+	<li><a href="http://www.mysql.com/" target="_blank">MySQL</a> >= 3.23.23 (včetně MySQL 4.x) nebo <a href="http://www.postgresql.org/" target="_blank">PostgreSQL</a> >= 7.1 (včetně PostgreSQL 8.x)</li>
+	<li><a href="http://httpd.apache.org/" target="_blank">Apache</a> >= 1.3.2x nebo >= 2.0.4x nebo Microsoft IIS 6</li>
+	<li>Operační systém: Jakýkoliv OS, který podporuje výše uvedený software, včetně <a href="http://www.linux.org/" target="_blank">Linux</a>, <a href="http://www.bsd.org/" target="_blank">BSD</a>, <a href="http://www.sun.com/" target="_blank">Solaris</a>, <a href="http://www.apple.com/" target="_blank">Mac OS X</a>, <a href="http://www.microsoft.com/">Windows</a></li>
+</ul>
+
+<p>Protož PKP nemá zdroje k testování všech možných kombinací softwarových verzí a platforem, není poskytována žádná záruka správného fungování nebo podpory.</p>
+
+<p>Změny těchto nastavení lze provést po instalaci editací souboru <tt>config.inc.php</tt> v kořenové knihovně OCS, nebo použitím rozhraní administrace stránek.</p>
+
+<h4>Podporované databázové systémy</h4>
+
+<p>OCS byl dosud testován pouze na MySQL a PostgreSQL, i když další systémy managementu databází podporované <a href="http://adodb.sourceforge.net/" target="_blank">ADOdb</a> mohou fungovat (plně nebo částečně). Zprávy o kompatibilitě a/nebo úpravách kódu pro alternativní databázové systémy lze zasílat týmu OCS.</p>
+
+<h4>Před instalací</h4>
+
+<p>1. Následující soubory a knihovny (a jejich obsah) musí být přístupný k zápisu:</p>
+<ul>
+	<li><tt>config.inc.php</tt> je otevřen k zápisu (volitelně): {$writable_config}</li>
+	<li><tt>public/</tt> je otevřen k zápisu: {$writable_public}</li>
+	<li><tt>cache/</tt> je otevřen k zápisu: {$writable_cache}</li>
+	<li><tt>cache/t_cache/</tt> je otevřen k zápisu: {$writable_templates_cache}</li>
+	<li><tt>cache/t_compile/</tt> je otevřen k zápisu: {$writable_templates_compile}</li>
+	<li><tt>cache/_db</tt> je otevřen k zápisu: {$writable_db_cache}</li>
+</ul>
+
+<p>2. Knihovna k ukládání načtených souborů musí být vytvořena a otevřena k zápisu (viz "Nastavení souborů" níže).</p>
+
+<h4>Manuální instalace</h4>
+
+<p>Vyberte <strong>Manuální instalaci</strong> pro zobrazení SQL příkazy nezbytné pro vytvoření schématu databáze a iniciačních dat, aby instalace databáze mohla být provedena manuálně. Tato možnost je využitelná v případě řešení instalačních problémů, zvláště u nepodporovaných platforem. Tento způsob instalace se nepokusí o vytvoření databáze nebo jakékoliv tabulky, ačkoliv konfigurační soubor bude i tak nastaven podle poskytnutých nastavení databáze.</p>]]></message>
+	<message key="installer.upgradeInstructions"><![CDATA[<h4>Verze OCS {$version}</h4>
+
+<p>Děkujeme za stažení <strong>Otevřeného konferenčního systému </strong> Public Knowledge Project. Před pokračováním si přečtěte soubor <a href="{$baseUrl}/docs/README">README</a> dodaný s tímto software. Další informace o Public Knowledge Project a jeho softwarových projektech najdete na stránkách <a href="http://pkp.sfu.ca/" target="_blank">PKP</a>. Chcete-li odeslat zprávu o chybách nebo se zeptat na Otevřený konferenční systém, navštivte <a href="http://pkp.sfu.ca/support/forum">support forum</a> nebo stránky <a href="http://pkp.sfu.ca/bugzilla/" target="_blank">online systém upozornění na chyby</a> na stránkách PKP. Support forum je preferovanou metodou kontaktu, nicméně můžete rovněž odeslat email vývojovému týmu: <a href="mailto:pkp-support@sfu.ca">pkp-support@sfu.ca</a>.</p>
+
+<p>Před pokračováním <strong>důrazně doporučujeme</strong> provedení zálohy databáze, knihovny souborů a instalace OCS.</p>
+<p>Pracujete li v <a href="http://www.php.net/features.safe-mode" target="_blank">PHP Safe Mode</a>, ujistěte se, že příkaz max_execution_time v konfiguračním souboru php.ini je nastaven na vysoký limit. Je-li dosažen tento nebo některý další časový limit (např. Apache příkaz "Timeout") a proces aktualizace je přerušen, bude nutná manuální úprava.</p>]]></message>
+	<message key="installer.localeSettingsInstructions"><![CDATA[Pro nastavení úplné podpory Unicode (UTF-8) vyberte sadu UTF-8 u všech nastavení znakových sad. Tato podpora v současnosti vyžaduje databázový server MySQL >= 4.1.1 nebo PostgreSQL >= 7.1. Plná podpora sady Unicode vyžaduje PHP >= 4.3.0 v kombinaci podpory pro knihovnu <a href="http://www.php.net/mbstring" target="_blank">mbstring</a> (standardně umožněnou nejnovějšími instalacemi PHP). Nesplňuje-li Váš server tyto požadavky, můžete narazit na problémy při využití rozšířené znakové sady.
+<br /><br />
+Váš server v tomto momentě podporuje mbstring: <strong>{$supportsMBString}</strong>]]></message>
+	<message key="installer.localeInstructions">Primární jazyk, který tento systém používá. Zajímáte-li se o podporu jazyků, které nejsou uvedeny na tomto seznamu, podívejte se do dokumentace OCS.</message>
+	<message key="installer.additionalLocalesInstructions">Zvolte jakoukoliv další jazyky podporované tímto systémem. Tyto jazyky budou k dispozici pro využití konferencemi provozovanými na těchto stránkách. Další jazyky lze rovněž kdykoliv instalovat z rozhraní administrace stránek.</message>
+	<message key="installer.filesDirInstructions"><![CDATA[Vložte kompletní cestu k existující knihovně, kam budou ukládány načtené soubory. Tato knihovna by neměla být přímo přístupná z webu. <strong>Před instalací se ujistěte, že tato knihovna existuje a je otevřena k zápisu.</strong> Cesty v systému Windows využívají lomítka, jako např. "C:/mojekonference/soubory".]]></message>
+	<message key="installer.databaseSettingsInstructions">OCS vyžaduje přístup k SQL databázi, v níž bude ukládat data. Podívejte se na systémové požadavky uvedené výše, kde jsou specifikovány podporované databáze. V níže uvedených polích uveďte nastavení, která se použijí k přístupu do databáze.</message>
+	<message key="installer.installApplication">Instalovat Open Conference Systems</message>
+	<message key="installer.upgradeApplication">Aktualizovat Open Conference Systems</message>	
+	<message key="installer.reinstallAfterDatabaseError"><![CDATA[<strong>Upozornění:</strong> Pokud se instalace nezdařila v průběhu instalace databáze, může být před dalším pokusem o instalaci nutné vymazat Vaši databázi OCS nebo databázové tabulky.]]></message>
+	<message key="installer.overwriteConfigFileInstructions"><![CDATA[<h4>DŮLEŽITÉ!</h4>
+<p>Instalátor nemohl automaticky přepsat konfigurační soubor. Před použitím systému otevřete soubor <tt>config.inc.php</tt> ve vhodném textovém editoru a nahraďte jeho obsah obsahem níže uvedeného textového pole.</p>]]></message>
+	<message key="installer.manualSQLInstructions"><![CDATA[<h4>Manuální instalace</h4>
+<p>Příkazy SQL k vytvoření databázového schématu OCS a výchozích dat jsou uvedeny níže. Systém nebude možné využívat, dokud manuálně nespustíte tyto příkazy. Rovněž budete muset manuálně konfigurovat soubor <tt>config.inc.php</tt>.</p>]]></message>
+	<message key="installer.installationComplete"><![CDATA[<p>Instalace OCS byla úspěšně dokončena.</p>
+<p>Můžete začít používat systém <a href="{$loginUrl}">přihlášením se</a> s uživatelským jménem a heslem vloženými na předchozí stránce.</p>
+<p>Chcete-li přijímat novinky a aktualizace, <strong>registrujte se prosím na <a href="http://pkp.sfu.ca/ocs/register" target="_new">http://pkp.sfu.ca/ocs/register</a>.</strong> Máte-li otázky či poznámky, navštivte stránky  <a href="http://pkp.sfu.ca/support/forum" target="_new">support forum</a>.</p>]]></message>
+	<message key="installer.upgradeComplete"><![CDATA[<p>Aktualizace OCS na verzi {$version} byla úspěšně dokončena.</p>
+<p>Nezapomeňte nastavit položky "instalováno" v konfiguračním souboru config.inc.php zpět na <em>Zapnuto</em>.</p>
+<p>Pokud jste se dosud neregistrovali a chcete přijímat novinky a aktualizace, <strong>registrujte se, prosím, na <a href="http://pkp.sfu.ca/ocs/register" target="_new">http://pkp.sfu.ca/ocs/register</a>.</strong> Máte-li otázky či poznámky, navštivte stránky  <a href="http://pkp.sfu.ca/support/forum" target="_new">support forum</a>.</p>]]></message>
+
+
+	<!-- Paper Logs -->
+	<message key="log.default.abstractPeriodExpired">Časový limit okna pro zadání abstraktu nekompletního příspěvku {$paperId} vypršel. Příspěvek byl vymazá.</message>
+	<message key="log.default.paperPeriodExpired">Časový limit okna pro zadání nekompletního příspěvku {$paperId} vypršel. Příspěvek byl vymazán.</message>
+	<message key="log.author.abstractSubmitted">{$authorName} vložil abstrakt příspěvku, ID {$submissionId}.</message>
+	<message key="log.author.presentationSubmitted">{$authorName} odeslal prezentaci, ID {$submissionId}.</message>
+	<message key="log.author.documentRevised">{$authorName} vložil upravený příspěvek {$paperId}. Nové ID souboru je {$fileId}.</message>
+	<message key="log.review.reviewerAssigned">{$reviewerName} byl nastaven jako oponent příspěvku {$paperId} v rámci oponentury {$stage}.</message>
+	<message key="log.review.reviewerUnassigned">{$reviewerName} byl odebrán od oponování příspěvku {$paperId} v rámci oponentury {$stage}.</message>
+	<message key="log.review.reviewInitiated">Proces oponentury {$stage} pro oponenta {$reviewerName} k příspěvku {$paperId} byl spuštěn.</message>
+	<message key="log.review.reviewReinitiated">Proces oponentury {$stage} pro oponenta {$reviewerName} k příspěvku {$paperId} byl znovu spuštěn.</message>
+	<message key="log.review.reviewCancelled">Proces oponentury {$stage} pro oponenta {$reviewerName} k příspěvku {$paperId} byl zrušen.</message>
+	<message key="log.review.reviewCleared">Proces oponentury {$stage} pro oponenta {$reviewerName} k příspěvku {$paperId} byl dokončen.</message>
+	<message key="log.review.reviewerRated">{$reviewerName} byl zařazen do oponentury {$stage} v rámci oponování příspěvku {$paperId}.</message>
+	<message key="log.review.reviewDueDateSet">Datum dodání oponentury pro příspěvky do sekce {$stage} příspěvku {$paperId} oponentem {$reviewerName} byl nastaven na {$dueDate}.</message>
+	<message key="log.review.reviewRecommendationSet">Doporučení pro sekci {$stage} a oponenturu příspěvku {$paperId} oponentem {$reviewerName} bylo nastaveno.</message>
+	<message key="log.review.reviewRecommendationSetByProxy">Doporučení pro sekci {$stage} a oponenturu příspěvku {$paperId} bylo nastaveno garantem {$directorName}, v zastoupení oponenta {$reviewerName}.</message>
+	<message key="log.review.resubmit">Příspěvek {$paperId} byl znovu zaslán na oponenturu.</message>
+	<message key="log.review.reviewDeclined">{$reviewerName} odmítl oponenturu v rámci sekce {$stage} u příspěvku {$paperId}.</message>
+	<message key="log.review.reviewAccepted">{$reviewerName} akceptoval oponenturu v rámci sekce {$stage} u příspěvku {$paperId}.</message>
+	<message key="log.review.reviewAcceptedByProxy">{$userName} přijal oponenturu příspěvku ($paperId) do sekce {$stage} v zastoupení oponenta {$reviewerName}.</message>
+	<message key="log.review.reviewFileByProxy">Garant {$userName} vložil soubor posudku do sekce {$stage} pro příspěvek {$paperId} v zastoupení oponenta {$reviewerName}.</message>
+	<message key="log.review.reviewerFile">Soubor oponenta byl uložen.</message>
+	<message key="log.director.decision">Rozhodnutí garanta ({$decision}) pro příspěvek {$paperId} bylo uloženo garantem {$directorName}.</message>
+	<message key="log.director.publish">Příspěvek byl publikován.</message>
+	<message key="log.director.unpublish">Příspěvek byl přesunut zpět do fronty.</message>
+
+	<message key="log.director.metadataModified">Metadata pro tento příspěvek byla modifikována garantem {$directorName}.</message>
+	<message key="log.director.directorFile">Verze příspěvku pro garanta byla uložena.</message>
+	<message key="log.director.archived">Příspěvek {$paperId} byl archivován.</message>
+	<message key="log.director.restored">Příspěvek {$paperId} byl vrácen do fronty.</message>
+	<message key="log.director.directorAssigned">{$directorName} byl nastaven jako garant pro příspěvek {$paperId}.</message>
+	<message key="log.director.submissionExpedited">{$directorName} provedl proces editace příspěvku {$paperId}.</message>
+	<message key="log.layout.layoutFileSet">{$directorName} odeslal šablonu příspěvku {$paperId}.</message>
+
+	<!-- Conference log entries -->
+	<message key="log.deadline.submissionDeadlinePassed">Termín pro podávání příspěvků uplynul.</message>
+	<message key="log.deadline.presentationsReleasedToParticipants">Prezentace byly zpřístupněny účastníkům.</message>
+	<message key="log.deadline.presentationsReleasedToPublic">Prezentace byly zpřístupněny veřejnosti.</message>
+
+	<message key="log.timeline.publicationStateChanged">Stav publikace se změnil z {$oldPublicationState} na {$newPublicationState}.</message>
+	<message key="log.timeline.submissionStateChanged">Stav příspěvku se změnil z {$oldSubmissionState} na {$newSubmissionState}.</message>
+	<message key="log.timeline.startDateChanged">Datum počátku konference bylo změněno z {$oldStartDate} na {$newStartDate}.</message>
+	<message key="log.timeline.endDateChanged">Datum konce konference bylo změněno z {$oldEndDate} na {$newEndDate}.</message>
+	<message key="log.timeline.regReviewerOpenDateChanged">Datum otevření registrace autorů bylo změněno z {$oldRegReviewerOpenDate} na {$newRegReviewerOpenDate}.</message>
+	<message key="log.timeline.regReviewerCloseDateChanged">Datum uzávěrky registrací se změnilo z {$oldRegReviewerCloseDate} nao {$newRegReviewerCloseDate}.</message>
+	<message key="log.timeline.regAuthorOpenDateChanged">Datum otevření registrace autorů bylo změněno z {$oldRegAuthorOpenDate} na {$newRegAuthorOpenDate}.</message>
+	<message key="log.timeline.regAuthorCloseDateChanged">Datum uzávěrky registrace autorů bylo změněno z {$oldRegAuthorCloseDate} na {$newRegAuthorCloseDate}.</message>
+	<message key="log.timeline.showCFPDateChanged">Datum zobrazení výzvy k podávání příspěvků bylo změněno z {$oldShowCFPDate} na {$newShowCFPDate}.</message>
+	<message key="log.timeline.submissionsOpenDateChanged">Datum otevření podávání příspěvků bylo změněno z {$oldSubmissionsOpenDate} na {$newSubmissionsOpenDate}</message>
+	<message key="log.timeline.submissionsCloseDateChanged">Datum ukončení podávání příspěvků bylo změněno z {$oldSubmissionsCloseDate} na {$newSubmissionsCloseDate}</message>
+	<message key="log.timeline.postAbstractsDateChanged">Datum odeslání abstraktu bylo změněno z {$oldPostAbstractsDate} na {$newPostAbstractsDate}.</message>
+	<message key="log.timeline.postAbstractsChanged">Nastavení "odeslat abstrakty" bylo změněno z {$oldPostAbstracts} na {$newPostAbstracts}.</message>
+	<message key="log.timeline.postScheduleDateChanged">Datum odeslání programu bylo změněno z {$oldPostScheduleDate} na {$newPostScheduleDate}.</message>
+	<message key="log.timeline.postScheduleChanged">Nastavení "odeslat program" bylo změněno z {$oldPostSchedule} na {$newPostSchedule}.</message>
+	<message key="log.timeline.postPapersDateChanged">Datum odeslání příspěvků bylo změněno z {$oldPostPapersDate} na {$newPostPapersDate}.</message>
+	<message key="log.timeline.postPapersChanged">Nastavení "odeslat příspěvky" bylo změněno z {$oldPostPapers} na {$newPostPapers}.</message>
+	<message key="log.timeline.delayOpenAccessDateChanged">Datum otevřeného přístupu bylo změněno z {$oldDelayOpenAccessDate} na {$newDelayOpenAccessDate}.</message>
+	<message key="log.timeline.delayOpenAccessChanged">Nastavení otevřeného přístupu po ukončení konference bylo změněno z {$oldDelayOpenAccess} na {$newDelayOpenAccess}.</message>
+	<message key="log.timeline.closeCommentsDateChanged">Datum ukončení příjmu poznámek bylo změněno z {$oldCloseCommentsDate} na {$newCloseCommentsDate}.</message>
+	<message key="log.timeline.closeCommentsChanged">Nastavení uzávěrky přijímání poznámek bylo změněno z {$oldCloseComments} na {$newCloseComments}.</message>
+
+	<!-- Reading Tools entries -->
+
+
+	<!-- RT Settings -->
+	<message key="rt.admin.settings">Nastavení nástrojů pro čtení</message>
+
+	<message key="rt.admin.settings.description">Nástroje pro čtení se zobrazují na liště vedle publikovaných položek v rámci sekcí konference, které byly určeny k indexování. Nástroje pro čtení obsahují soubor volitelných nástrojů souvisejících s publikovanou položkou, které jsou uvedeny níže, a nástrojů, které poskytují přístup k souvisejícím položkám seřazeným dle oblasti a disciplíny.</message>
+	<message key="rt.admin.settings.enableReadingTools">Umožnit nástroje pro čtení pro určené sekce konference.</message>
+	<message key="rt.admin.settings.relatedItems">Pole souvisejících položek</message>
+
+	<message key="rt.admin.options">Volitelné nástroje</message>
+
+	<message key="rt.admin.settings.addComment">Přidat komentář (umožňuje čtenářům odesílat komentáře, které mohou garanti konference mazat). Komentáře čtenářů musí být umožněny v Managementu stránek, sekce 1.5).</message>
+
+	<message key="rt.admin.validateUrls.description"><![CDATA[Možné neplatné URL adresy vyhledávacích stránek jsou zobrazeny níže.<br/>
+Měli byste manuálně verifikovat URL označené jako neplatné, protože tento test není 100% přesný.<br/>
+Validace může selhat u vyhledávacích URL, která vyžadují odesílání dat.]]></message>
+
+	<message key="rt.metadata.dublinCore.primaryAuthor">Autor</message>
+
+	<message key="rt.metadata.pkp.primaryAuthor">Jméno autora, organizace, země</message>
+	<message key="rt.metadata.pkp.peerReviewed">Oponovaný příspěvek</message>
+
+	<!-- Notification Types -->
+	<message key="notification.mailListDescription">Pokud si přejete být informováni o aktualitách a nových informacích vztahujících se k této konferenci, zadejte prosím svou emailovou adresu.</message>
+	<message key="notification.notificationsPublicDescription"><![CDATA[Tato stránka zobrazuje důležité aktuality ohledně konference, jako například nové příspěvky nebo oznámení. K automatizovanému odběru těchto aktualit můžete využít RSS kanál (kliknutím na obrázek napravo), nebo   <a href="{$emailUrl}">email.</a>]]></message>
+
+	<message key="notification.type.paperSubmitted">Právě byl přijat nový příspěvek: "{$param}".</message>
+	<message key="notification.type.editing">Událost editace</message>
+	<message key="notification.type.directorDecisionComment">Byla vloženo rozhodnutí editora ohledně: "{$param}".</message>
+	<message key="notification.type.galleyModified">Šablona ohledně: "{$param}" byla modifikována.</message>
+	<message key="notification.type.metadataModified">Metadata ohledně: "{$param}'s" byly modifikovány.</message>
+	<message key="notification.type.newAnnouncement">Bylo vytvořeno nové oznámení.</message>
+	<message key="notification.type.reviewerComment">Oponent vložil komentář: "{$param}".</message>
+	<message key="notification.type.reviewerFormComment">Oponent vložil recenzní posudek: "{$param}".</message>
+	<message key="notification.type.reviewing">Událost recenze</message>
+	<message key="notification.type.site">Událost na stránkách</message>
+	<message key="notification.type.submissionComment">Předseda vložil komentář: "{$param}".</message>
+	<message key="notification.type.submissions">Událost vložení příspěvku</message>
+	<message key="notification.type.suppFileModified">Doplňkový(é) soubor(y) ohledně: "{$param}" byly modifikovány.</message>
+	<message key="notification.type.userComment">Čtenář vložil komentář: "{$param}"</message>	
+	
+	<message key="rt.thisConference">Prohledávat konferenci</message>
+
+	<message key="rt.comments.commentsClosed">† Uzávěrka komentářů {$closeCommentsDate}</message>
+
+	<message key="rt.context.authorTermsDescription">U položek s více než jedním autorem můžete ponechat všechny položky zatrženy a vyhledávat obdobné spoluautorské práce, případně při vyhledávání pro jednoho člověka vždy ponechejte zatržené pouze jedno jméno. Více informací o prohledávaném zdroji najdete pod nabídkou "O konferencích". Tyto zdroje byly vybrány pro svou relevanci a otevřený (volný) přístup k veškerým nebo části svých zdrojů.</message>
+</locale>
