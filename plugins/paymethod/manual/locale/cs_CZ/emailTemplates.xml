@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE email_texts SYSTEM "../../../../../lib/pkp/dtd/emailTemplateData.dtd">
+<!--
+  * emailTemplates.xml
+  *
+  * Copyright (c) 2000-2010 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localized email templates XML file.
+  * Translated by Petr Petyovsky (petyovsky 'at' feec.vutbr.cz)
+  *
+  * $Id: emailTemplates.xml 230 2011-06-30 21:37:35Z petyovsky $
+  -->
+<email_texts locale="cs_CZ">
+	<email_text key="MANUAL_PAYMENT_NOTIFICATION">
+		<subject>Oznámení o manuální platbě</subject>
+		<body>Je třeba zpracovat manuální platbu od uživatele: "{$userFullName}" (s uživatelským jménem: "{$userName}").
+Platba je určena pro konferenci: "{$schedConfName}".
+
+Placená položka: "{$itemName}".
+Placená částka: {$itemCost} ({$itemCurrencyCode}).
+
+Tato emailová zpráva byla vygenerována doplňkem pro manuální platby v rámci systému OCS.</body>
+		<description>Tato emailová šablona oznamuje kontaktní osobě pro registrace, že je vyžadováno zpracování manuální platby.</description>
+	</email_text>
+</email_texts>

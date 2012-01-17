@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE email_texts SYSTEM "../../../../../lib/pkp/dtd/emailTemplateData.dtd">
+<!--
+  * emailTemplates.xml
+  *
+  * Copyright (c) 2000-2010 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localized email templates XML file.
+  * Translated by Petr Petyovsky (petyovsky 'at' feec.vutbr.cz)
+  *
+  * $Id: emailTemplates.xml 230 2011-06-30 21:37:35Z petyovsky $
+  -->
+<email_texts locale="cs_CZ">
+	<email_text key="PAYPAL_INVESTIGATE_PAYMENT">
+		<subject>Neobvyklá PayPal aktivita</subject>
+		<body>Systém OCS zjistil neobvyklou PayPal aktivitu týkající se plateb u konference: "{$schedConfName}". Prosím, podrobně prověřte tyto aktivity, případně zasáhněte a sjednejte nápravu.
+			
+Tato emailová zpráva byla vygenerována doplňkem pro PayPal platby v rámci systému OCS.
+
+Kompletní informace o daném požadavku:
+{$postInfo}
+
+Dodatečné informace (pokud byly dostupné):
+{$additionalInfo}
+
+Proměnné serveru:
+{$serverVars}
+</body>
+		<description>Tato emailová šablona oznamuje hlavní kontaktní osobě konference, že platební doplněk Paypal detekoval podezřelou platební aktivitu, případně aktivitu vyžadující sjednání nápravy.</description>
+	</email_text>
+</email_texts>
