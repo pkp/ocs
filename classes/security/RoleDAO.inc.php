@@ -151,7 +151,12 @@ class RoleDAO extends DAO {
 
 		$groupedRoles = array();
 		foreach ($roles as $role) {
-			$groupedRoles[$role->getConferenceId()][$role->getSchedConfId()][$role->getRoleId()] =& $role;
+			if ($role->getConferenceId() == CONTEXT_ID_NONE) {
+				$groupedRoles[CONTEXT_ID_NONE][$role->getRoleId()] =& $role;
+			} else {
+				$groupedRoles[$role->getConferenceId()][$role->getSchedConfId()][$role->getRoleId()] =& $role;
+			}
+			unset($role);
 		}
 
 		return $groupedRoles;
