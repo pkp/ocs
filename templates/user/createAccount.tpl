@@ -216,7 +216,7 @@
 		{if $allowRegAuthor || $allowRegAuthor === null}
 			<input type="checkbox" name="createAsAuthor" id="createAsAuthor" value="1"{if $createAsAuthor} checked="checked"{/if} /> <label for="createAsAuthor">{translate key="user.role.author"}</label>: {translate key="user.account.authorDescription"}<br />
 		{/if}
-		{if $allowRegReviewer || $allowRegReviewer === null}<input type="checkbox" name="createAsReviewer" id="createAsReviewer" value="1"{if $createAsReviewer} checked="checked"{/if} /> <label for="createAsReviewer">{translate key="user.role.reviewer"}</label>: {if $existingUser}{translate key="user.account.reviewerDescriptionNoInterests"}{else}{translate key="user.account.reviewerDescription"} {include file="form/interestsInput.tpl" FBV_interestKeywords=$interestsKeywords FBV_interestsTextOnly=$interestsTextOnly}{/if}
+		{if $allowRegReviewer || $allowRegReviewer === null}<input type="checkbox" name="createAsReviewer" id="createAsReviewer" value="1"{if $createAsReviewer} checked="checked"{/if} /> <label for="createAsReviewer">{translate key="user.role.reviewer"}</label>: {if $existingUser}{translate key="user.account.reviewerDescriptionNoInterests"}{else}{translate key="user.account.reviewerDescription"} {include file="form/interestsInput.tpl" FBV_interestsKeywords=$interestsKeywords FBV_interestsTextOnly=$interestsTextOnly}{/if}
 		{/if}
 	</td>
 </tr>
