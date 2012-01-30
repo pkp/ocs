@@ -715,7 +715,8 @@ class TrackDirectorSubmissionDAO extends DAO {
 		$sql = 'SELECT DISTINCT
 					u.user_id,
 					u.last_name,
-					ar.review_id ' .
+					ar.review_id,
+					ar.declined ' .
 					($selectQuality ? ', AVG(ar.quality) AS average_quality ' : '') .
 					($selectLatest ? ', MAX(ac.date_notified) AS latest ' : '') .
 					($selectComplete ? ', COUNT(ac.review_id) AS completed ' : '') .
@@ -743,6 +744,7 @@ class TrackDirectorSubmissionDAO extends DAO {
 	function &_returnReviewerUserFromRow(&$row) { // FIXME
 		$user =& $this->userDao->getUser($row['user_id']);
 		$user->review_id = $row['review_id'];
+		$user->declined = $row['declined'];
 
 		HookRegistry::call('TrackDirectorSubmissionDAO::_returnReviewerUserFromRow', array(&$user, &$row));
 

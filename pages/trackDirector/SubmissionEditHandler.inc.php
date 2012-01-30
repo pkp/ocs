@@ -24,14 +24,14 @@ import('pages.trackDirector.TrackDirectorHandler');
 class SubmissionEditHandler extends TrackDirectorHandler {
 	/** submission associated with the request **/
 	var $submission;
-	
+
 	/**
 	 * Constructor
 	 **/
 	function SubmissionEditHandler() {
 		parent::TrackDirectorHandler();
 	}
-	
+
 	function submission($args) {
 		$paperId = isset($args[0]) ? (int) $args[0] : 0;
 		$this->validate($paperId);
@@ -141,7 +141,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		$conference =& Request::getConference();
 		$schedConf =& Request::getSchedConf();
 		$submission =& $this->submission;
-		
+
 		$stage = (isset($args[1]) ? (int) $args[1] : null);
 		$reviewMode = $submission->getReviewMode();
 		switch ($reviewMode) {
@@ -694,6 +694,34 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		}
 	}
 
+	/*
+	 * Reassign a reviewer to the current round of review
+	 * @param $args array
+	 * @param $request object
+	 */
+	function reassignReviewer($args, $request) {
+			$paperId = isset($args[0]) ? (int) $args[0] : 0;
+			$this->validate($paperId, TRACK_DIRECTOR_ACCESS_REVIEW);
+			$userId = isset($args[1]) ? (int) $args[1] : 0;
+
+			$trackDirectorSubmissionDao =& DAORegistry::getDAO('TrackDirectorSubmissionDAO');
+			$submission =& $trackDirectorSubmissionDao->getTrackDirectorSubmission($paperId);
+			$stage = $submission->getCurrentStage();
+
+			$reviewAssignmentDao = &DAORegistry::getDAO('ReviewAssignmentDAO');
+			$reviewAssignment =& $reviewAssignmentDao->getReviewAssignment($paperId, $userId, $stage); /* @var $reviewAssignment ReviewAssignment */
+			if($reviewAssignment && !$reviewAssignment->getDateCompleted() && $reviewAssignment->getDeclined()) {
+					$reviewAssignment->setDeclined(false);
+					$reviewAssignment->setDateAssigned(Core::getCurrentDate());
+					$reviewAssignment->setDateNotified(null);
+					$reviewAssignment->setDateConfirmed(null);
+					$reviewAssignment->setStage($stage);
+
+					$reviewAssignmentDao->updateReviewAssignment($reviewAssignment);
+			}
+			$request->redirect(null, null, null, 'submissionReview', $paperId);
+	}
+
 	function thankReviewer($args = array()) {
 		$paperId = Request::getUserVar('paperId');
 		$this->validate($paperId, TRACK_DIRECTOR_ACCESS_REVIEW);
@@ -955,7 +983,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		$reviewId = isset($args[1]) ? (int) $args[1] : null;
 		$this->validate($paperId, TRACK_DIRECTOR_ACCESS_REVIEW);
 		$submission =& $this->submission;
-		
+
 		TrackDirectorAction::clearReviewForm($submission, $reviewId);
 
 		Request::redirect(null, null, null, 'submissionReview', $paperId);
@@ -1206,7 +1234,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		$paperId = isset($args[0]) ? (int) $args[0] : 0;
 		$this->validate($paperId);
 		$submission =& $this->submission;
-		
+
 		TrackDirectorAction::restoreToQueue($submission);
 
 		Request::redirect(null, null, null, 'submission', $paperId);
@@ -1216,7 +1244,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		$paperId = Request::getUserVar('paperId');
 		$this->validate($paperId);
 		$submission =& $this->submission;
-		
+
 		$send = Request::getUserVar('send')?true:false;
 		$this->setupTemplate(true, $paperId, 'summary');
 
@@ -1260,7 +1288,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 			$templateMgr->assign('backLinkLabel', 'submission.review');
 			return $templateMgr->display('common/message.tpl');
 		}
-		
+
 		if ($layoutFileType == 'galley') {
 			$this->uploadGalley('layoutFile', $stage);
 
@@ -1614,7 +1642,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		$logId = isset($args[1]) ? (int) $args[1] : 0;
 		$this->validate($paperId);
 		$submission =& $this->submission;
-		
+
 		$this->setupTemplate(true, $paperId, 'history');
 
 		$templateMgr =& TemplateManager::getManager();
