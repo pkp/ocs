@@ -181,6 +181,7 @@ class RoleDAO extends DAO {
 
 		$joinInterests = $searchType == USER_FIELD_INTERESTS ? true: false;
 		$paramArray = array();
+		if (isset($roleId)) $paramArray[] = (int) $roleId;
 		if (isset($conferenceId)) $paramArray[] = (int) $conferenceId;
 		if (isset($schedConfId)) $paramArray[] = (int) $schedConfId;
 

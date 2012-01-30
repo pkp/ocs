@@ -684,6 +684,34 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		}
 	}
 
+	/*
+	 * Reassign a reviewer to the current round of review
+	 * @param $args array
+	 * @param $request object
+	 */
+	function reassignReviewer($args, $request) {
+			$paperId = isset($args[0]) ? (int) $args[0] : 0;
+			$this->validate($request, $paperId, TRACK_DIRECTOR_ACCESS_REVIEW);
+			$userId = isset($args[1]) ? (int) $args[1] : 0;
+
+			$trackDirectorSubmissionDao =& DAORegistry::getDAO('TrackDirectorSubmissionDAO');
+			$submission =& $trackDirectorSubmissionDao->getTrackDirectorSubmission($paperId);
+			$round = $submission->getCurrentRound();
+
+			$reviewAssignmentDao = &DAORegistry::getDAO('ReviewAssignmentDAO');
+			$reviewAssignment =& $reviewAssignmentDao->getReviewAssignment($paperId, $userId, $submission->getCurrentRound()); /* @var $reviewAssignment ReviewAssignment */
+			if($reviewAssignment && !$reviewAssignment->getDateCompleted() && $reviewAssignment->getDeclined()) {
+					$reviewAssignment->setDeclined(false);
+					$reviewAssignment->setDateAssigned(Core::getCurrentDate());
+					$reviewAssignment->setDateNotified(null);
+					$reviewAssignment->setDateConfirmed(null);
+					$reviewAssignment->setRound($submission->getCurrentRound());
+
+					$reviewAssignmentDao->updateReviewAssignment($reviewAssignment);
+			}
+			$request->redirect(null, null, null, 'submissionReview', $paperId);
+	}
+
 	function thankReviewer($args, $request) {
 		$paperId = (int) $request->getUserVar('paperId');
 		$reviewId = (int) $request->getUserVar('reviewId');
