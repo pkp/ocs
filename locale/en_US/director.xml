@@ -14,7 +14,6 @@
 
 <locale name="en_US" full_name = "English">
 	<message key="director.home">Director Home</message>
-	<message key="director.reassign">Reassign</message>
 	<message key="director.submissionQueue">Submission Queue</message>
 	<message key="director.submissionArchive">Submission Archive</message>
 	<message key="director.allTracks">All Tracks</message>
