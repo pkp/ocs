@@ -13,14 +13,16 @@
  *
  */
 
-//$Id$
-
 import('classes.payment.ocs.OCSQueuedPayment');
 import('lib.pkp.classes.payment.PaymentManager');
 
 define('QUEUED_PAYMENT_TYPE_REGISTRATION',	0x000000001);
 
 class OCSPaymentManager extends PaymentManager {
+	/**
+	 * Get the payment manager instance.
+	 * @return OCSPaymentManager
+	 */
 	function &getManager() {
 		static $manager;
 		if (!isset($manager)) {
@@ -29,6 +31,17 @@ class OCSPaymentManager extends PaymentManager {
 		return $manager;
 	}
 
+	/**
+	 * Create a queued payment.
+	 * @param $conferenceId int Conference ID
+	 * @param $schedConfId int Scheduled conference ID
+	 * @param $type int PAYMENT_TYPE_...
+	 * @param $userId int ID of user responsible for this payment
+	 * @param $assocId int ID of associated entity for this payment type
+	 * @param $amount numeric Amount of $currencyCode currency to pay
+	 * @param $currencyCode string ISO 4217
+	 * @return QueuedPayment
+	 */
 	function &createQueuedPayment($conferenceId, $schedConfId, $type, $userId, $assocId, $amount, $currencyCode) {
 		$payment = new OCSQueuedPayment($amount, $currencyCode, $userId, $assocId);
 		$payment->setConferenceId($conferenceId);
@@ -38,6 +51,10 @@ class OCSPaymentManager extends PaymentManager {
 		return $payment;
 	}
 
+	/**
+	 * Get the currently configured payment plugin.
+	 * @return PaymentPlugin
+	 */
 	function &getPaymentPlugin() {
 		$schedConf =& Request::getSchedConf();
 		$paymentMethodPluginName = $schedConf->getSetting('paymentMethodPluginName');

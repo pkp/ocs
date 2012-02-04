@@ -13,34 +13,62 @@
  *
  */
 
-//$Id$
-
 import('lib.pkp.classes.payment.QueuedPayment');
 
 class OCSQueuedPayment extends QueuedPayment {
+	/** @var $conferenceId int Conference ID */
 	var $conferenceId;
+
+	/** @var $schedConfId int Scheduled conference ID */
 	var $schedConfId;
+
+	/** @var $type int PAYMENT_TYPE_... */
 	var $type;
+
+	/** @var $requestUrl string Request URL */
 	var $requestUrl;
 
+	/**
+	 * Set the conference ID
+	 * @param $conferenceId int Conference ID
+	 * @return New conference ID
+	 */
 	function setConferenceId($conferenceId) {
-		$this->conferenceId = $conferenceId;
+		return $this->conferenceId = $conferenceId;
 	}
 
+	/**
+	 * Get the conference ID
+	 * @return int
+	 */
 	function getConferenceId() {
 		return $this->conferenceId;
 	}
 
+	/**
+	 * Set the scheduled conference ID
+	 * @param $schedConfId int Scheduled conference ID
+	 * @return New scheduled conference ID
+	 */
 	function setSchedConfId($schedConfId) {
-		$this->schedConfId = $schedConfId;
+		return $this->schedConfId = $schedConfId;
 	}
 
+	/**
+	 * Get the scheduled conference ID
+	 * @return int
+	 */
 	function getSchedConfId() {
 		return $this->schedConfId;
 	}
 
+	/**
+	 * Set the payment type.
+	 * @param $type int PAYMENT_TYPE_...
+	 * @return int New PAYMENT_TYPE_...
+	 */
 	function setType($type) {
-		$this->type = $type;
+		return $this->type = $type;
 	}
 
 	function getType() {
@@ -55,6 +83,9 @@ class OCSQueuedPayment extends QueuedPayment {
 		switch ($this->type) {
 			case QUEUED_PAYMENT_TYPE_REGISTRATION:
 				return __('schedConf.registration');
+			default:
+				// Invalid payment type.
+				assert(false);
 		}
 	}
 
@@ -90,19 +121,33 @@ class OCSQueuedPayment extends QueuedPayment {
 					'schedConfTitle' => ($schedConf?$schedConf->getFullTitle():__('common.none')),
 					'registrationTypeName' => ($registrationType?$registrationType->getRegistrationTypeName():__('common.none')),
 				)) . $options;
+			default:
+				// Invalid payment type.
+				assert(false);
 		}
 	}
 
+	/**
+	 * Set the request URL.
+	 * @param $url string Request URL
+	 * @return string New request URL
+	 */
 	function setRequestUrl($url) {
-		$this->requestUrl = $url;
+		return $this->requestUrl = $url;
 	}
 
+	/**
+	 * Get the request URL.
+	 * @return string
+	 */
 	function getRequestUrl() {
 		return $this->requestUrl;
 	}
 
 	/**
-	 * Return a useful identifier for this payment for use in correspondence.
+	 * Return a useful identifier for this payment for use in
+	 * correspondence.
+	 * @return string
 	 */
 	function getInvoiceId() {
 		return $this->getSchedConfId() . '-' . $this->getUserId() . '-' . $this->getAssocId() . '-' . $this->getPaymentId();
