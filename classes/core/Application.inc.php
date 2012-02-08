@@ -122,6 +122,7 @@ class Application extends PKPApplication {
 			'SchedConfDAO' => 'classes.schedConf.SchedConfDAO',
 			'SchedConfSettingsDAO' => 'classes.schedConf.SchedConfSettingsDAO',
 			'SchedConfStatisticsDAO' => 'classes.schedConf.SchedConfStatisticsDAO',
+			'SignoffDAO' => 'classes.signoff.SignoffDAO',
 			'SpecialEventDAO' => 'classes.scheduler.SpecialEventDAO',
 			'SuppFileDAO' => 'classes.paper.SuppFileDAO',
 			'TimeBlockDAO' => 'classes.scheduler.TimeBlockDAO',
