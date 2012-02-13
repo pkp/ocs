@@ -60,9 +60,6 @@ class NotificationManager extends PKPNotificationManager {
 				return __('notification.type.directorDecisionComment', array('title' => $this->_getPaperTitle($notification)));
 			case NOTIFICATION_TYPE_USER_COMMENT:
 				return __('notification.type.userComment', array('title' => $this->_getPaperTitle($notification)));
-			case NOTIFICATION_TYPE_NEW_ANNOUNCEMENT:
-				assert($notification->getAssocType() == ASSOC_TYPE_ANNOUNCEMENT);
-				return __('notification.type.newAnnouncement');
 			default:
 				return parent::getNotificationContents($request, $notification);
 		}
