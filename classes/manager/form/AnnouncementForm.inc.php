@@ -23,18 +23,17 @@ import('lib.pkp.classes.manager.form.PKPAnnouncementForm');
 class AnnouncementForm extends PKPAnnouncementForm {
 	/**
 	 * Constructor
+	 * @param $conferenceId int
 	 * @param announcementId int leave as default for new announcement
 	 */
-	function AnnouncementForm($announcementId = null) {
-		parent::PKPAnnouncementForm($announcementId);
-
-		$conference =& Request::getConference();
+	function AnnouncementForm($conferenceId, $announcementId = null) {
+		parent::PKPAnnouncementForm($conferenceId, $announcementId);
 
 		// If provided, announcement type is valid
-		$this->addCheck(new FormValidatorCustom($this, 'typeId', 'optional', 'manager.announcements.form.typeIdValid', create_function('$typeId, $conferenceId', '$announcementTypeDao =& DAORegistry::getDAO(\'AnnouncementTypeDAO\'); return $announcementTypeDao->announcementTypeExistsByTypeId($typeId, ASSOC_TYPE_CONFERENCE, $conferenceId);'), array($conference->getId())));
+		$this->addCheck(new FormValidatorCustom($this, 'typeId', 'optional', 'manager.announcements.form.typeIdValid', create_function('$typeId, $conferenceId', '$announcementTypeDao =& DAORegistry::getDAO(\'AnnouncementTypeDAO\'); return $announcementTypeDao->announcementTypeExistsByTypeId($typeId, ASSOC_TYPE_CONFERENCE, $conferenceId);'), array($conferenceId)));
 
 		// If supplied, the scheduled conference exists and belongs to the conference
-		$this->addCheck(new FormValidatorCustom($this, 'schedConfId', 'required', 'manager.announcements.form.schedConfIdValid', create_function('$schedConfId, $conferenceId', 'if ($schedConfId == 0) return true; $schedConfDao =& DAORegistry::getDAO(\'SchedConfDAO\'); $schedConf =& $schedConfDao->getSchedConf($schedConfId); if(!$schedConf) return false; return ($schedConf->getConferenceId() == $conferenceId);'), array($conference->getId())));
+		$this->addCheck(new FormValidatorCustom($this, 'schedConfId', 'required', 'manager.announcements.form.schedConfIdValid', create_function('$schedConfId, $conferenceId', 'if ($schedConfId == 0) return true; $schedConfDao =& DAORegistry::getDAO(\'SchedConfDAO\'); $schedConf =& $schedConfDao->getSchedConf($schedConfId); if(!$schedConf) return false; return ($schedConf->getConferenceId() == $conferenceId);'), array($conferenceId)));
 	}
 
 	/**
@@ -44,9 +43,9 @@ class AnnouncementForm extends PKPAnnouncementForm {
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('helpTopicId', 'conference.generalManagement.announcements');
 
-		$conference =& Request::getConference();
+		$conferenceId = $this->getContextId();
 		$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
-		$schedConfs =& $schedConfDao->getSchedConfs(false, $conference->getId());
+		$schedConfs =& $schedConfDao->getSchedConfs(false, $conferenceId);
 		$templateMgr->assign('schedConfs', $schedConfs);
 
 		parent::display();
@@ -77,8 +76,8 @@ class AnnouncementForm extends PKPAnnouncementForm {
 	}
 
 	function _getAnnouncementTypesAssocId() {
-		$conference =& Request::getConference();
-		return array(ASSOC_TYPE_CONFERENCE, $conference->getId());
+		$conferenceId = $this->getContextId();
+		return array(ASSOC_TYPE_CONFERENCE, $conferenceId);
 	}
 
 	/**
@@ -87,9 +86,9 @@ class AnnouncementForm extends PKPAnnouncementForm {
 	 */
 	function _setAnnouncementAssocId(&$announcement) {
 		if ($this->getData('schedConfId') == 0) {
-			$conference =& Request::getConference();
+			$conferenceId = $this->getContextId();
 			$announcement->setAssocType(ASSOC_TYPE_CONFERENCE);
-			$announcement->setAssocId($conference->getId());
+			$announcement->setAssocId($conferenceId);
 		} else {
 			$announcement->setAssocType(ASSOC_TYPE_SCHED_CONF);
 			$announcement->setAssocId($this->getData('schedConfId'));
@@ -102,8 +101,7 @@ class AnnouncementForm extends PKPAnnouncementForm {
 	 */
 	function execute(&$request) {
 		$announcement = parent::execute();
-		$conference =& $request->getConference();
-		$conferenceId = $conference->getId();
+		$conferenceId = $this->getContextId();
 
 		// Send a notification to associated users
 		import('classes.notification.NotificationManager');
