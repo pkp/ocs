@@ -30,10 +30,10 @@ class AnnouncementHandler extends PKPAnnouncementHandler {
 	function announcements($args, &$request) {
 		$templateMgr =& TemplateManager::getManager();
 
- 		$conference =& $request->getConference();
-		if ($conference) {
+ 		$conferenceId = $this->getContextId($request);
+		if ($conferenceId) {
 			$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
-			$schedConfs =& $schedConfDao->getSchedConfs(false, $conference->getId());
+			$schedConfs =& $schedConfDao->getSchedConfs(false, $conferenceId);
 			$schedConfNames = array(0 => __('common.all'));
 			foreach($schedConfs->toArray() as $schedConf) {
 				$schedConfNames[$schedConf->getId()] = $schedConf->getLocalizedTitle();
@@ -61,14 +61,25 @@ class AnnouncementHandler extends PKPAnnouncementHandler {
 	}
 
 	/**
+	 * @see PKPAnnouncementHandler::getContextId()
+	 */
+	function getContextId(&$request) {
+		$conference =& $request->getConference();
+		if ($conference) {
+			return $conference->getId();
+		} else {
+			return null;
+		}
+	}
+
+	/**
 	 * @see PKPAnnouncementHandler::_getAnnouncements
 	 * @param $request PKPRequest
 	 * @param $rangeInfo object optional
 	 */
 	function &_getAnnouncements($request, $rangeInfo = null) {
-		$conference =& $request->getConference();
 		$announcementDao =& DAORegistry::getDAO('AnnouncementDAO');
-		$announcements =& $announcementDao->getAnnouncementsByConferenceId($conference->getId(), -1, $rangeInfo);
+		$announcements =& $announcementDao->getAnnouncementsByConferenceId($this->getContextId($request), -1, $rangeInfo);
 
 		return $announcements;
 	}
@@ -79,9 +90,8 @@ class AnnouncementHandler extends PKPAnnouncementHandler {
 	 * @param $rangeInfo object optional
 	 */
 	function &_getAnnouncementTypes($request, $rangeInfo = null) {
-		$conference =& $request->getConference();
 		$announcementTypeDao =& DAORegistry::getDAO('AnnouncementTypeDAO');
-		$announcements =& $announcementTypeDao->getAnnouncementTypesByAssocId(ASSOC_TYPE_CONFERENCE, $conference->getId(), $rangeInfo);
+		$announcements =& $announcementTypeDao->getAnnouncementTypesByAssocId(ASSOC_TYPE_CONFERENCE, $this->getContextId($request), $rangeInfo);
 
 		return $announcements;
 	}
@@ -99,10 +109,10 @@ class AnnouncementHandler extends PKPAnnouncementHandler {
 		$announcement =& $announcementDao->getAnnouncement($announcementId);
 		if (!$announcement) return false;
 
-		$conference =& $request->getConference();
-		if ($conference
+		$conferenceId = $this->getContextId($request);
+		if ($conferenceId
 			&& $announcement->getAssocType() == ASSOC_TYPE_CONFERENCE
-			&& $announcement->getAssocId() == $conference->getId())
+			&& $announcement->getAssocId() == $conferenceId)
 				return true;
 
 		// if its a schedConf announcements, make sure it is for a schedConf that belongs to the current conference
@@ -110,8 +120,8 @@ class AnnouncementHandler extends PKPAnnouncementHandler {
 			$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
 			$schedConf =& $schedConfDao->getSchedConf($announcement->getAssocId());
 			if ($schedConf
-				&& $conference
-				&& $schedConf->getConferenceId() == $conference->getId())
+				&& $conferenceId
+				&& $schedConf->getConferenceId() == $conferenceId)
 					return true;
 		}
 
@@ -125,9 +135,9 @@ class AnnouncementHandler extends PKPAnnouncementHandler {
 	 * return bool
 	 */
 	function _announcementTypeIsValid($request, $typeId) {
-		$conference =& $request->getConference();
+		$conferenceId = $this->getContextId($request);
 		$announcementTypeDao =& DAORegistry::getDAO('AnnouncementTypeDAO');
-		return (($typeId != null && $announcementTypeDao->getAnnouncementTypeAssocId($typeId) == $conference->getId()) || $typeId == null);
+		return (($typeId != null && $announcementTypeDao->getAnnouncementTypeAssocId($typeId) == $conferenceId) || $typeId == null);
 	}
 }
 
