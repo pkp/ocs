@@ -13,15 +13,12 @@
  *
  */
 
-// $Id$
-
-
 import('classes.handler.Handler');
 
 class PaymentHandler extends Handler {
 	/**
 	 * Constructor
-	 **/
+	 */
 	function PaymentHandler() {
 		parent::Handler();
 
@@ -31,35 +28,39 @@ class PaymentHandler extends Handler {
 
 	/**
 	 * Display scheduled conference view page.
+	 * @param $args array
+	 * @param $request PKPRequest
 	 */
-	function plugin($args) {
+	function plugin($args, &$request) {
 		$this->validate();
 		$this->setupTemplate();
 		
 		$paymentMethodPlugins =& PluginRegistry::loadCategory('paymethod');
 		$paymentMethodPluginName = array_shift($args);
 		if (empty($paymentMethodPluginName) || !isset($paymentMethodPlugins[$paymentMethodPluginName])) {
-			Request::redirect(null, null, 'index');
+			$request->redirect(null, null, 'index');
 		}
 
 		$paymentMethodPlugin =& $paymentMethodPlugins[$paymentMethodPluginName];
 		if (!$paymentMethodPlugin->isConfigured()) {
-			Request::redirect(null, null, 'index');
+			$request->redirect(null, null, 'index');
 		}
 
-		$paymentMethodPlugin->handle($args);
+		$paymentMethodPlugin->handle($args, $request);
 	}
 
 	/**
 	 * Display a landing page for a received registration payment.
+	 * @param $args array
+	 * @param $request PKPRequest
 	 */
-	function landing($args) {
+	function landing($args, &$request) {
 		$this->validate();
 		$this->setupTemplate();
 
-		$user =& Request::getUser();
-		$schedConf =& Request::getSchedConf();
-		if (!$user || !$schedConf) Request::redirect(null, null, 'index');
+		$user =& $request->getUser();
+		$schedConf =& $request->getSchedConf();
+		if (!$user || !$schedConf) $request->redirect(null, null, 'index');
 
 		$registrationDao =& DAORegistry::getDAO('RegistrationDAO');
 		$registrationId = $registrationDao->getRegistrationIdByUser($user->getId(), $schedConf->getId());
@@ -67,7 +68,7 @@ class PaymentHandler extends Handler {
 
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('message', ($registration && $registration->getDatePaid()) ? 'schedConf.registration.landingPaid' : 'schedConf.registration.landingUnpaid');
-		$templateMgr->assign('backLink', Request::url(null, null, 'index'));
+		$templateMgr->assign('backLink', $request->url(null, null, 'index'));
 		$templateMgr->assign('backLinkLabel', 'common.continue');
 		$templateMgr->display('common/message.tpl');
 	}

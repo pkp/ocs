@@ -150,7 +150,7 @@ class TemplateManager extends PKPTemplateManager {
 					$this->assign('submissionsOpenDate', $submissionsOpenDate);
 
 					import('classes.payment.ocs.OCSPaymentManager');
-					$paymentManager =& OCSPaymentManager::getManager();
+					$paymentManager = new OCSPaymentManager($request);
 					$this->assign('schedConfPaymentsEnabled', $paymentManager->isConfigured());
 
 				}

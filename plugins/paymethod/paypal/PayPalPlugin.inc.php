@@ -69,10 +69,13 @@ class PayPalPlugin extends PaymethodPlugin {
 		return parent::displayPaymentSettingsForm($params, $smarty);
 	}
 
-	function displayPaymentForm($queuedPaymentId, &$queuedPayment) {
+	/**
+	 * @see PaymentPlugin::displayPaymentForm
+	 */
+	function displayPaymentForm($queuedPaymentId, &$queuedPayment, &$request) {
 		if (!$this->isConfigured()) return false;
-		$schedConf =& Request::getSchedConf();
-		$user =& Request::getUser();
+		$schedConf =& $request->getSchedConf();
+		$user =& $request->getUser();
 
 		$params = array(
 			'charset' => Config::getVar('i18n', 'client_charset'),
@@ -85,9 +88,9 @@ class PayPalPlugin extends PaymethodPlugin {
 			'currency_code' => $queuedPayment->getCurrencyCode(),
 			'lc' => String::substr(AppLocale::getLocale(), 3),
 			'custom' => $queuedPaymentId,
-			'notify_url' => Request::url(null, null, 'payment', 'plugin', array($this->getName(), 'ipn')),
+			'notify_url' => $request->url(null, null, 'payment', 'plugin', array($this->getName(), 'ipn')),
 			'return' => $queuedPayment->getRequestUrl(),
-			'cancel_return' => Request::url(null, null, 'payment', 'plugin', array($this->getName(), 'cancel')),
+			'cancel_return' => $request->url(null, null, 'payment', 'plugin', array($this->getName(), 'cancel')),
 			'first_name' => ($user)?$user->getFirstName():'',
 			'last_name' => ($user)?$user->getLastname():'',
 			'item_number' => 1,
@@ -120,14 +123,16 @@ class PayPalPlugin extends PaymethodPlugin {
 		$templateMgr->assign('params', $params);
 		$templateMgr->assign('paypalFormUrl', $this->getSetting($schedConf->getConferenceId(), $schedConf->getId(), 'paypalurl'));
 		$templateMgr->display($this->getTemplatePath() . 'paymentForm.tpl');
+		return true;
 	}
 
 	/**
 	 * Handle incoming requests/notifications
+	 * @param $request PKPRequest
 	 */
-	function handle($args) {
+	function handle($args, &$request) {
 		$templateMgr =& TemplateManager::getManager();
-		$schedConf =& Request::getSchedConf();
+		$schedConf =& $request->getSchedConf();
 		if (!$schedConf) return parent::handle($args);
 
 		// Just in case we need to contact someone
@@ -138,7 +143,7 @@ class PayPalPlugin extends PaymethodPlugin {
 		$mail->setFrom($contactEmail, $contactName);
 		$mail->addRecipient($contactEmail, $contactName);
 
-		$paymentStatus = Request::getUserVar('payment_status');
+		$paymentStatus = $request->getUserVar('payment_status');
 
 		switch (array_shift($args)) {
 			case 'ipn':
@@ -155,7 +160,7 @@ class PayPalPlugin extends PaymethodPlugin {
 				curl_setopt($ch, CURLOPT_URL, $this->getSetting($schedConf->getConferenceId(), $schedConf->getId(), 'paypalurl'));
 				curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 				curl_setopt($ch, CURLOPT_POST, 1);
-				curl_setopt($ch, CURLOPT_HTTPHEADER, Array('Content-Type: application/x-www-form-urlencoded', 'Content-Length: ' . strlen($req)));
+				curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/x-www-form-urlencoded', 'Content-Length: ' . strlen($req)));
 				curl_setopt($ch, CURLOPT_POSTFIELDS, $req);
 				$ret = curl_exec ($ch);
 				curl_close ($ch);
@@ -164,7 +169,7 @@ class PayPalPlugin extends PaymethodPlugin {
 				if (strcmp($ret, 'VERIFIED') == 0) switch ($paymentStatus) {
 					case 'Completed':
 						$payPalDao =& DAORegistry::getDAO('PayPalDAO');
-						$transactionId = Request::getUserVar('txn_id');
+						$transactionId = $request->getUserVar('txn_id');
 						if ($payPalDao->transactionExists($transactionId)) {
 							// A duplicate transaction was received; notify someone.
 							$mail->assignParams(array(
@@ -179,18 +184,18 @@ class PayPalPlugin extends PaymethodPlugin {
 							// New transaction succeeded. Record it.
 							$payPalDao->insertTransaction(
 								$transactionId,
-								Request::getUserVar('txn_type'),
-								Request::getUserVar('payer_email'),
-								Request::getUserVar('receiver_email'),
-								Request::getUserVar('item_number'),
-								Request::getUserVar('payment_date'),
-								Request::getUserVar('payer_id'),
-								Request::getUserVar('receiver_id')
+								$request->getUserVar('txn_type'),
+								$request->getUserVar('payer_email'),
+								$request->getUserVar('receiver_email'),
+								$request->getUserVar('item_number'),
+								$request->getUserVar('payment_date'),
+								$request->getUserVar('payer_id'),
+								$request->getUserVar('receiver_id')
 							);
-							$queuedPaymentId = Request::getUserVar('custom');
+							$queuedPaymentId = $request->getUserVar('custom');
 
 							import('classes.payment.ocs.OCSPaymentManager');
-							$ocsPaymentManager =& OCSPaymentManager::getManager();
+							$ocsPaymentManager = new OCSPaymentManager($request);
 
 							// Verify the cost and user details as per PayPal spec.
 							$queuedPayment =& $ocsPaymentManager->getQueuedPayment($queuedPaymentId);
@@ -207,9 +212,9 @@ class PayPalPlugin extends PaymethodPlugin {
 							}
 
 							if (
-								($queuedAmount = $queuedPayment->getAmount()) != ($grantedAmount = Request::getUserVar('mc_gross')) ||
-								($queuedCurrency = $queuedPayment->getCurrencyCode()) != ($grantedCurrency = Request::getUserVar('mc_currency')) ||
-								($grantedEmail = Request::getUserVar('receiver_email')) != ($queuedEmail = $this->getSetting($schedConf->getConferenceId(), $schedConf->getId(), 'selleraccount'))
+								($queuedAmount = $queuedPayment->getAmount()) != ($grantedAmount = $request->getUserVar('mc_gross')) ||
+								($queuedCurrency = $queuedPayment->getCurrencyCode()) != ($grantedCurrency = $request->getUserVar('mc_currency')) ||
+								($grantedEmail = $request->getUserVar('receiver_email')) != ($queuedEmail = $this->getSetting($schedConf->getConferenceId(), $schedConf->getId(), 'selleraccount'))
 							) {
 								// The integrity checks for the transaction failed. Complain.
 								$mail->assignParams(array(
@@ -310,25 +315,33 @@ class PayPalPlugin extends PaymethodPlugin {
 			case 'cancel':
 				Handler::setupTemplate();
 				$templateMgr->assign(array(
-					'currentUrl' => Request::url(null, null, 'index'),
+					'currentUrl' => $request->url(null, null, 'index'),
 					'pageTitle' => 'plugins.paymethod.paypal.purchase.cancelled.title',
 					'message' => 'plugins.paymethod.paypal.purchase.cancelled'
 				));
 				$templateMgr->display('common/message.tpl');
 				exit();
-				break;
 		}
-		parent::handle($args); // Don't know what to do with it
+		parent::handle($args, $request); // Don't know what to do with it
 	}
 
+	/**
+	 * @see Plugin::getInstallSchemaFile
+	 */
 	function getInstallSchemaFile() {
 		return ($this->getPluginPath() . DIRECTORY_SEPARATOR . 'schema.xml');
 	}
 
+	/**
+	 * @see Plugin::getInstallEmailTemplatesFile
+	 */
 	function getInstallEmailTemplatesFile() {
 		return ($this->getPluginPath() . DIRECTORY_SEPARATOR . 'emailTemplates.xml');
 	}
 
+	/**
+	 * @see Plugin::getInstallEmailTemplateDataFile
+	 */
 	function getInstallEmailTemplateDataFile() {
 		return ($this->getPluginPath() . '/locale/{$installedLocale}/emailTemplates.xml');
 	}

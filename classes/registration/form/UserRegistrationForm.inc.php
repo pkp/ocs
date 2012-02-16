@@ -22,6 +22,9 @@ define('REGISTRATION_NO_PAYMENT',	3);
 define('REGISTRATION_FREE',		4);
 
 class UserRegistrationForm extends Form {
+	/** @var $request PKPRequest */
+	var $request;
+
 	/** @var captchaEnabled boolean whether or not captcha is enabled for this form */
 	var $captchaEnabled;
 
@@ -41,12 +44,14 @@ class UserRegistrationForm extends Form {
 	 * Constructor
 	 * @param $typeId int Registration type to use
 	 * @param $registration object optional registration option if one already exists
+	 * @param $request PKPRequest
 	 */
-	function UserRegistrationForm($typeId, $registration) {
-		$schedConf =& Request::getSchedConf();
+	function UserRegistrationForm($typeId, $registration, &$request) {
+		$schedConf =& $request->getSchedConf();
 
 		$this->typeId = (int) $typeId;
 		$this->_registration = $registration;
+		$this->request =& $request;
 
 		parent::Form('registration/userRegistrationForm.tpl');
 
@@ -59,9 +64,9 @@ class UserRegistrationForm extends Form {
 			$this->reCaptchaEnabled = Config::getVar('captcha', 'recaptcha')?true:false;
 		}
 
-		$user =& Request::getUser();
+		$user =& $request->getUser();
 		if (!$user) {
-			$site =& Request::getSite();
+			$site =& $request->getSite();
 			$this->addCheck(new FormValidator($this, 'username', 'required', 'user.profile.form.usernameRequired'));
 			$this->addCheck(new FormValidator($this, 'password', 'required', 'user.profile.form.passwordRequired'));
 
@@ -95,7 +100,7 @@ class UserRegistrationForm extends Form {
 	}
 
 	function validate() {
-		$schedConf =& Request::getSchedConf();
+		$schedConf =& $this->request->getSchedConf();
 		$registrationTypeDao =& DAORegistry::getDAO('RegistrationTypeDAO');
 		$registrationType =& $registrationTypeDao->getRegistrationType($this->getData('registrationTypeId'));
 		if ($registrationType && $registrationType->getCode() != '') {
@@ -109,9 +114,9 @@ class UserRegistrationForm extends Form {
 	 */
 	function display() {
 		$templateMgr =& TemplateManager::getManager();
-		$user =& Request::getUser();
-		$schedConf =& Request::getSchedConf();
-		$site =& Request::getSite();
+		$user =& $this->request->getUser();
+		$schedConf =& $this->request->getSchedConf();
+		$site =& $this->request->getSite();
 
 		$userDao =& DAORegistry::getDAO('UserDAO');
 		$templateMgr->assign('genderOptions', $userDao->getGenderOptions());
@@ -190,7 +195,7 @@ class UserRegistrationForm extends Form {
 	function readInputData() {
 		$userVars = array('registrationTypeId', 'specialRequests', 'feeCode', 'registrationOptionId');
 
-		$user =& Request::getUser();
+		$user =& $this->request->getUser();
 		if (!$user) {
 			$userVars[] = 'username';
 			$userVars[] = 'salutation';
@@ -236,8 +241,8 @@ class UserRegistrationForm extends Form {
 	 * Save registration.
 	 */
 	function execute() {
-		$schedConf =& Request::getSchedConf();
-		$user =& Request::getUser();
+		$schedConf =& $this->request->getSchedConf();
+		$user =& $this->request->getUser();
 
 		$registrationOptionIds = (array) $this->getData('registrationOptionId');
 
@@ -272,7 +277,7 @@ class UserRegistrationForm extends Form {
 				return REGISTRATION_FAILED;
 			}
 
-			$conference =& Request::getConference();
+			$conference =& $this->request->getConference();
 			$roleDao =& DAORegistry::getDAO('RoleDAO');
 			$role = new Role();
 			$role->setRoleId(ROLE_ID_READER);
@@ -297,11 +302,11 @@ class UserRegistrationForm extends Form {
 		$registrationTypeDao =& DAORegistry::getDAO('RegistrationTypeDAO');
 		$registrationType =& $registrationTypeDao->getRegistrationType($this->getData('registrationTypeId'));
 		if (!$registrationType || $registrationType->getSchedConfId() != $schedConf->getId()) {
-			Request::redirect('index');
+			$this->request->redirect('index');
 		}
 
 		import('classes.payment.ocs.OCSPaymentManager');
-		$paymentManager =& OCSPaymentManager::getManager();
+		$paymentManager = new OCSPaymentManager($this->request);
 
 		if (!$paymentManager->isConfigured()) return REGISTRATION_NO_PAYMENT;
 

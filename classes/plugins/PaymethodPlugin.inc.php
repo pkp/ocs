@@ -65,7 +65,14 @@ class PaymethodPlugin extends Plugin {
 		return parent::getTemplatePath() . 'templates' . DIRECTORY_SEPARATOR ;
 	}
 
-	function displayPaymentForm($queuedPaymentId, $key, &$queuedPayment) {
+	/**
+	 * Display the payment form.
+	 * @param $queuedPaymentId int
+	 * @param $key string
+	 * @param $queuedPayment QueuedPayment
+	 * @param $request PKPRequest
+	 */
+	function displayPaymentForm($queuedPaymentId, $key, &$queuedPayment, &$request) {
 		assert(false); // Should always be overridden
 	}
 
@@ -100,10 +107,12 @@ class PaymethodPlugin extends Plugin {
 	/**
 	 * Handle an incoming request from a user callback or an external
 	 * payment processing system.
+	 * @param $args array
+	 * @param $request PKPRequest
 	 */
-	function handle($args) {
+	function handle($args, &$request) {
 		// Subclass should override.
-		Request::redirect(null, null, 'index');
+		$request->redirect(null, null, 'index');
 	}
 }
 

@@ -13,9 +13,6 @@
  *
  */
 
-// $Id$
-
-
 import('classes.schedConf.SchedConfAction');
 import('classes.payment.ocs.OCSPaymentManager');
 import('classes.handler.Handler');
@@ -190,32 +187,34 @@ class SchedConfHandler extends Handler {
 
 	/**
 	 * Display conference registration page
+	 * @param $args array
+	 * @param $request PKPRequest
 	 */
-	function registration() {
+	function registration($args, &$request) {
 		$this->addCheck(new HandlerValidatorSchedConf($this));
 		$this->validate();
 
-		$conference =& Request::getConference();
-		$schedConf =& Request::getSchedConf();
+		$conference =& $request->getConference();
+		$schedConf =& $request->getSchedConf();
 
 		$templateMgr =& TemplateManager::getManager();
-		$paymentManager =& OCSPaymentManager::getManager();
+		$paymentManager = new OCSPaymentManager($request);
 		if (!$paymentManager->isConfigured()) {
 			// If the system isn't fully configured, display a message and block
 			// the user from going further.
 			$templateMgr->assign('message', 'schedConf.registration.paymentNotConfigured');
 			$templateMgr->assign('backLinkLabel', 'common.back');
-			$templateMgr->assign('backLink', Request::url(null, null, 'index'));
+			$templateMgr->assign('backLink', $request->url(null, null, 'index'));
 			AppLocale::requireComponents(LOCALE_COMPONENT_APPLICATION_COMMON);
 			return $templateMgr->display('common/message.tpl');
 		}
 
 		$templateMgr->assign('pageHierarchy', array(
-			array(Request::url(null, 'index', 'index'), $conference->getConferenceTitle(), true),
-			array(Request::url(null, null, 'index'), $schedConf->getLocalizedTitle(), true)));
-		SchedConfHandler::setupTemplate($conference,$schedConf);
+			array($request->url(null, 'index', 'index'), $conference->getConferenceTitle(), true),
+			array($request->url(null, null, 'index'), $schedConf->getLocalizedTitle(), true)));
+		SchedConfHandler::setupTemplate($conference, $schedConf);
 
-		$user =& Request::getUser();
+		$user =& $request->getUser();
 		$registrationDao =& DAORegistry::getDAO('RegistrationDAO');
 		$registration = null;
 		if ($user && ($registrationId = $registrationDao->getRegistrationIdByUser($user->getId(), $schedConf->getId()))) {
@@ -223,27 +222,27 @@ class SchedConfHandler extends Handler {
 			$registration =& $registrationDao->getRegistration($registrationId);
 
 			import('classes.payment.ocs.OCSPaymentManager');
-			$paymentManager =& OCSPaymentManager::getManager();
+			$paymentManager = new OCSPaymentManager($request);
 
 			if (!$paymentManager->isConfigured() || !$registration || $registration->getDatePaid()) {
 				// If the system isn't fully configured or the registration is already paid,
 				// display a message and block the user from going further.
 				$templateMgr->assign('message', 'schedConf.registration.alreadyRegisteredAndPaid');
 				$templateMgr->assign('backLinkLabel', 'common.back');
-				$templateMgr->assign('backLink', Request::url(null, null, 'index'));
+				$templateMgr->assign('backLink', $request->url(null, null, 'index'));
 				return $templateMgr->display('common/message.tpl');
 			}
 		}
 
-		$typeId = (int) Request::getUserVar('registrationTypeId');
+		$typeId = (int) $request->getUserVar('registrationTypeId');
 		if ($typeId) {
 			// A registration type has been chosen
 			import('classes.registration.form.UserRegistrationForm');
 
 			if (checkPhpVersion('5.0.0')) { // WARNING: This form needs $this in constructor
-				$form = new UserRegistrationForm($typeId, $registration);
+				$form = new UserRegistrationForm($typeId, $registration, $request);
 			} else {
-				$form =& new UserRegistrationForm($typeId, $registration);
+				$form =& new UserRegistrationForm($typeId, $registration, $request);
 			}
 			if ($form->isLocaleResubmit()) {
 				$form->readInputData();
@@ -263,18 +262,20 @@ class SchedConfHandler extends Handler {
 
 	/**
 	 * Handle submission of the user registration form
+	 * @param $args array
+	 * @param $request PKPRequest
 	 */
-	function register() {
+	function register($args, &$request) {
 		$this->addCheck(new HandlerValidatorSchedConf($this));
 		$this->validate();
 
-		$conference =& Request::getConference();
-		$schedConf =& Request::getSchedConf();
+		$conference =& $request->getConference();
+		$schedConf =& $request->getSchedConf();
 
-		$paymentManager =& OCSPaymentManager::getManager();
-		if (!$paymentManager->isConfigured()) Request::redirect(null, null, 'index');
+		$paymentManager = new OCSPaymentManager($request);
+		if (!$paymentManager->isConfigured()) $request->redirect(null, null, 'index');
 
-		$user =& Request::getUser();
+		$user =& $request->getUser();
 		$registrationDao =& DAORegistry::getDAO('RegistrationDAO');
 		$registration = null;
 		if ($user && ($registrationId = $registrationDao->getRegistrationIdByUser($user->getId(), $schedConf->getId()))) {
@@ -282,22 +283,22 @@ class SchedConfHandler extends Handler {
 			$registration =& $registrationDao->getRegistration($registrationId);
 			if ( !$registration || $registration->getDatePaid() ) {
 				// And they have already paid. Redirect to a message explaining.
-				Request::redirect(null, null, null, 'registration');
+				$request->redirect(null, null, null, 'registration');
 			}
 		}
 
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('pageHierarchy', array(
-			array(Request::url(null, 'index', 'index'), $conference->getConferenceTitle(), true),
-			array(Request::url(null, null, 'index'), $schedConf->getLocalizedTitle(), true)));
+			array($request->url(null, 'index', 'index'), $conference->getConferenceTitle(), true),
+			array($request->url(null, null, 'index'), $schedConf->getLocalizedTitle(), true)));
 		SchedConfHandler::setupTemplate($conference,$schedConf);
 
 		import('classes.registration.form.UserRegistrationForm');
-		$typeId = (int) Request::getUserVar('registrationTypeId');
+		$typeId = (int) $request->getUserVar('registrationTypeId');
 		if (checkPhpVersion('5.0.0')) { // WARNING: This form needs $this in constructor
-			$form = new UserRegistrationForm($typeId, $registration);
+			$form = new UserRegistrationForm($typeId, $registration, $request);
 		} else {
-			$form =& new UserRegistrationForm($typeId, $registration);
+			$form =& new UserRegistrationForm($typeId, $registration, $request);
 		}
 		$form->readInputData();
 		if ($form->validate()) {
@@ -353,13 +354,13 @@ class SchedConfHandler extends Handler {
 					// "you will be contacted" message.
 					$templateMgr->assign('message', 'schedConf.registration.noPaymentMethodAvailable');
 					$templateMgr->assign('backLinkLabel', 'common.back');
-					$templateMgr->assign('backLink', Request::url(null, null, 'index'));
+					$templateMgr->assign('backLink', $request->url(null, null, 'index'));
 					$templateMgr->display('common/message.tpl');
 				} elseif ($registrationError == REGISTRATION_FREE) {
 					// Registration successful; no payment required (free)
 					$templateMgr->assign('message', 'schedConf.registration.free');
 					$templateMgr->assign('backLinkLabel', 'common.back');
-					$templateMgr->assign('backLink', Request::url(null, null, 'index'));
+					$templateMgr->assign('backLink', $request->url(null, null, 'index'));
 					$templateMgr->display('common/message.tpl');
 				}
 			}

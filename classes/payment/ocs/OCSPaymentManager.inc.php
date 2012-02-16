@@ -20,15 +20,11 @@ define('QUEUED_PAYMENT_TYPE_REGISTRATION',	0x000000001);
 
 class OCSPaymentManager extends PaymentManager {
 	/**
-	 * Get the payment manager instance.
-	 * @return OCSPaymentManager
+	 * Constructor
+	 * @param $request PKPRequest
 	 */
-	function &getManager() {
-		static $manager;
-		if (!isset($manager)) {
-			$manager = new OCSPaymentManager();
-		}
-		return $manager;
+	function OCSPaymentManager(&$request) {
+		parent::PaymentManager($request);
 	}
 
 	/**
@@ -47,7 +43,7 @@ class OCSPaymentManager extends PaymentManager {
 		$payment->setConferenceId($conferenceId);
 		$payment->setSchedConfId($schedConfId);
 		$payment->setType($type);
-		$payment->setRequestUrl(Request::url(null, null, 'payment', 'landing')); // Only one type for now: registration
+		$payment->setRequestUrl($this->request->url(null, null, 'payment', 'landing')); // Only one type for now: registration
 		return $payment;
 	}
 
@@ -56,7 +52,7 @@ class OCSPaymentManager extends PaymentManager {
 	 * @return PaymentPlugin
 	 */
 	function &getPaymentPlugin() {
-		$schedConf =& Request::getSchedConf();
+		$schedConf =& $this->request->getSchedConf();
 		$paymentMethodPluginName = $schedConf->getSetting('paymentMethodPluginName');
 		$paymentMethodPlugin = null;
 		if (!empty($paymentMethodPluginName)) {

@@ -270,7 +270,7 @@ class NotificationManager extends PKPNotificationManager {
 		if (!$conference) return array();
 
 		import('classes.payment.ocs.OCSPaymentManager');
-		$paymentManager =& OCSPaymentManager::getManager();
+		$paymentManager = new OCSPaymentManager($request);
 
 		$settings = array(
 			'allowRegReviewer' => $conference->getSetting('allowRegReviewer'),

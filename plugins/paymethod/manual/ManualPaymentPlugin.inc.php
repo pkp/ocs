@@ -56,11 +56,18 @@ class ManualPaymentPlugin extends PaymethodPlugin {
 		return true;
 	}
 
-	function displayPaymentForm($queuedPaymentId, &$queuedPayment) {
+	/**
+	 * Display the payment form.
+	 * @param $queuedPaymentId int
+	 * @param $queuedPayment QueuedPayment
+	 * @param $request PKPRequest
+	 * @return boolean
+	 */
+	function displayPaymentForm($queuedPaymentId, &$queuedPayment, &$request) {
 		if (!$this->isConfigured()) return false;
-		$schedConf =& Request::getSchedConf();
+		$schedConf =& $request->getSchedConf();
 		$templateMgr =& TemplateManager::getManager();
-		$user =& Request::getUser();
+		$user =& $request->getUser();
 
 		$templateMgr->assign('itemName', $queuedPayment->getName());
 		$templateMgr->assign('itemDescription', $queuedPayment->getDescription());
@@ -72,26 +79,29 @@ class ManualPaymentPlugin extends PaymethodPlugin {
 		$templateMgr->assign('queuedPaymentId', $queuedPaymentId);
 
 		$templateMgr->display($this->getTemplatePath() . 'paymentForm.tpl');
+		return true;
 	}
 
 	/**
 	 * Handle incoming requests/notifications
+	 * @param $args array
+	 * @param $request PKPRequest
 	 */
-	function handle($args) {
-		$conference =& Request::getConference();
-		$schedConf =& Request::getSchedConf();
+	function handle($args, &$request) {
+		$conference =& $request->getConference();
+		$schedConf =& $request->getSchedConf();
 		$templateMgr =& TemplateManager::getManager();
-		$user =& Request::getUser();
+		$user =& $request->getUser();
 		$op = isset($args[0])?$args[0]:null;
 		$queuedPaymentId = isset($args[1])?((int) $args[1]):0;
 
 		import('classes.payment.ocs.OCSPaymentManager');
-		$ocsPaymentManager =& OCSPaymentManager::getManager();
+		$ocsPaymentManager = new OCSPaymentManager($request);
 		$queuedPayment =& $ocsPaymentManager->getQueuedPayment($queuedPaymentId);
 		// if the queued payment doesn't exist, redirect away from payments
-		if ( !$queuedPayment ) Request::redirect(null, null, null, 'index');
+		if (!$queuedPayment) $request->redirect(null, null, null, 'index');
 
-		switch ( $op ) {
+		switch ($op) {
 			case 'notify':
 				import('classes.mail.MailTemplate');
 				AppLocale::requireComponents(LOCALE_COMPONENT_APPLICATION_COMMON);
@@ -111,23 +121,28 @@ class ManualPaymentPlugin extends PaymethodPlugin {
 				$mail->send();
 
 				$templateMgr->assign(array(
-					'currentUrl' => Request::url(null, null, null, 'payment', 'plugin', array('notify', $queuedPaymentId)),
+					'currentUrl' => $request->url(null, null, null, 'payment', 'plugin', array('notify', $queuedPaymentId)),
 					'pageTitle' => 'plugins.paymethod.manual.paymentNotification',
 					'message' => 'plugins.paymethod.manual.notificationSent',
-					'backLink' => Request::url(null, null, 'index'),
+					'backLink' => $request->url(null, null, 'index'),
 					'backLinkLabel' => 'common.continue'
 				));
 				$templateMgr->display('common/message.tpl');
 				exit();
-				break;
 		}
-		parent::handle($args); // Don't know what to do with it
+		parent::handle($args, $request); // Don't know what to do with it
 	}
 
+	/**
+	 * @see Plugin::getInstallEmailTemplatesFile
+	 */
 	function getInstallEmailTemplatesFile() {
 		return ($this->getPluginPath() . DIRECTORY_SEPARATOR . 'emailTemplates.xml');
 	}
 
+	/**
+	 * @see getInstallEmailTemplateDataFile
+	 */
 	function getInstallEmailTemplateDataFile() {
 		return ($this->getPluginPath() . '/locale/{$installedLocale}/emailTemplates.xml');
 	}
