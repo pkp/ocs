@@ -209,10 +209,10 @@ class RegistrationExpiryReminder extends ScheduledTask {
 		$conference = null;
 
 		$todayDate = array(
-						'year' => date('Y'),
-						'month' => date('n'),
-						'day' => date('j')
-					);
+			'year' => date('Y'),
+			'month' => date('n'),
+			'day' => date('j')
+		);
 
 		while (!$schedConfs->eof()) {
 			$schedConf =& $schedConfs->next();

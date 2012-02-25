@@ -93,7 +93,7 @@ class ConferenceSetupStep4Form extends ConferenceSetupForm {
 				$value = array(
 					'name' => $fileManager->getUploadedFileName($settingName),
 					'uploadName' => $uploadName,
-					'dateUploaded' => date("Y-m-d g:i:s")
+					'dateUploaded' => Core::getCurrentDate()
 				);
 
 				$settingsDao->updateSetting($conference->getId(), $settingName, $value, 'object');
