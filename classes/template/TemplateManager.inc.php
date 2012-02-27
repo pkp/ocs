@@ -178,6 +178,14 @@ class TemplateManager extends PKPTemplateManager {
 				$this->assign('displayPageHeaderTitle', $displayPageHeaderTitle);
 				if (isset($displayPageHeaderTitle['altText'])) $this->assign('displayPageHeaderTitleAltText', $displayPageHeaderTitle['altText']);
 				$this->assign('publicFilesDir', $request->getBaseUrl() . '/' . $publicFileManager->getSiteFilesPath());
+
+				// Load and apply theme plugin, if chosen
+				$themePluginPath = $site->getSetting('siteTheme');
+				if (!empty($themePluginPath)) {
+					// Load and activate the theme
+					$themePlugin =& PluginRegistry::loadPlugin('themes', $themePluginPath);
+					if ($themePlugin) $themePlugin->activate($this);
+				}
 			}
 
 			// Add java script for notifications

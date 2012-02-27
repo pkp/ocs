@@ -35,6 +35,16 @@ class SiteSettingsForm extends PKPSiteSettingsForm {
 		$conferences =& $conferenceDao->getConferenceTitles();
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('redirectOptions', $conferences);
+
+		$allThemes =& PluginRegistry::loadCategory('themes');
+		$themes = array();
+		foreach ($allThemes as $key => $junk) {
+			$plugin =& $allThemes[$key]; // by ref
+			$themes[basename($plugin->getPluginPath())] =& $plugin;
+			unset($plugin);
+		}
+		$templateMgr->assign('themes', $themes);
+
 		return parent::display();
 	}
 }
