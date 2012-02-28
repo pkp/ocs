@@ -91,7 +91,7 @@ class AnnouncementHandler extends PKPAnnouncementHandler {
 	 */
 	function &_getAnnouncementTypes($request, $rangeInfo = null) {
 		$announcementTypeDao =& DAORegistry::getDAO('AnnouncementTypeDAO');
-		$announcements =& $announcementTypeDao->getAnnouncementTypesByAssocId(ASSOC_TYPE_CONFERENCE, $this->getContextId($request), $rangeInfo);
+		$announcements =& $announcementTypeDao->getByAssoc(ASSOC_TYPE_CONFERENCE, $this->getContextId($request), $rangeInfo);
 
 		return $announcements;
 	}
@@ -106,7 +106,7 @@ class AnnouncementHandler extends PKPAnnouncementHandler {
 		if ($announcementId == null) return true;
 
 		$announcementDao =& DAORegistry::getDAO('AnnouncementDAO');
-		$announcement =& $announcementDao->getAnnouncement($announcementId);
+		$announcement =& $announcementDao->getById($announcementId);
 		if (!$announcement) return false;
 
 		$conferenceId = $this->getContextId($request);

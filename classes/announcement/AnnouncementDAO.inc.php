@@ -19,6 +19,26 @@ import('classes.announcement.Announcement');
 import('lib.pkp.classes.announcement.PKPAnnouncementDAO');
 
 class AnnouncementDAO extends PKPAnnouncementDAO {
+	/**
+	 * Constructor
+	 */
+	function AnnouncementDAO() {
+		parent::PKPAnnouncementDAO();
+	}
+
+	/**
+	 * @see PKPAnnouncementDAO::newDataObject
+	 */
+	function newDataObject() {
+		return new Announcement();
+	}
+
+	/**
+	 * Get announcements by conference.
+	 * @param $conferenceId int
+	 * @param $schedConfId int optional
+	 * @param $rangeInfo Object optional
+	 */
 	function &getAnnouncementsByConferenceId($conferenceId, $schedConfId = 0, $rangeInfo = null) {
 		$conferenceArgs = array(ASSOC_TYPE_CONFERENCE, $conferenceId);
 		if($schedConfId == -1) {
@@ -48,6 +68,12 @@ class AnnouncementDAO extends PKPAnnouncementDAO {
 		return $returner;
 	}
 
+	/**
+	 * Get non-expired announcements by conference ID.
+	 * @param $conferenceId int
+	 * @param $schedConfId int optional
+	 * @param $rangeInfo Object optional
+	 */
 	function &getAnnouncementsNotExpiredByConferenceId($conferenceId, $schedConfId = 0, $rangeInfo = null) {
 
 		$conferenceArgs = array(ASSOC_TYPE_CONFERENCE, $conferenceId);
@@ -58,10 +84,10 @@ class AnnouncementDAO extends PKPAnnouncementDAO {
 			while (!$schedConfs->eof()) {
 				$schedConf =& $schedConfs->next();			
 				$schedConfArgs[] = ASSOC_TYPE_SCHED_CONF;
-				$schedConfArgs[] = $schedConf->getId();
+				$schedConfArgs[] = (int) $schedConf->getId();
 			}
 		} else {
-			$schedConfArgs = array(ASSOC_TYPE_SCHED_CONF, $schedConfId);
+			$schedConfArgs = array(ASSOC_TYPE_SCHED_CONF, (int) $schedConfId);
 		}
 
 		$result =& $this->retrieveRange(
@@ -78,7 +104,13 @@ class AnnouncementDAO extends PKPAnnouncementDAO {
 		$returner = new DAOResultFactory($result, $this, '_returnAnnouncementFromRow');
 		return $returner;
 	}	
-	
+
+	/**
+	 * Get the number of non-expired announcements by conference ID.
+	 * @param $conferenceId int
+	 * @param $schedConfId int optional
+	 * @param $rangeInfo Object optional
+	 */
 	function &getNumAnnouncementsNotExpiredByConferenceId($conferenceId, $schedConfId = 0, $numAnnouncements, $rangeInfo = null) {
 		$conferenceArgs = array(ASSOC_TYPE_CONFERENCE, $conferenceId);
 		if($schedConfId == -1) {
@@ -88,10 +120,10 @@ class AnnouncementDAO extends PKPAnnouncementDAO {
 			while (!$schedConfs->eof()) {
 				$schedConf =& $schedConfs->next();			
 				$schedConfArgs[] = ASSOC_TYPE_SCHED_CONF;
-				$schedConfArgs[] = $schedConf->getId();
+				$schedConfArgs[] = (int) $schedConf->getId();
 			}
 		} else {
-			$schedConfArgs = array(ASSOC_TYPE_SCHED_CONF, $schedConfId);
+			$schedConfArgs = array(ASSOC_TYPE_SCHED_CONF, (int) $schedConfId);
 		}
 
 		$result =& $this->retrieveRange(

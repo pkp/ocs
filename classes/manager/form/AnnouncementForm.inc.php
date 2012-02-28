@@ -59,7 +59,7 @@ class AnnouncementForm extends PKPAnnouncementForm {
 
 		if (isset($this->announcementId)) {
 			$announcementDao =& DAORegistry::getDAO('AnnouncementDAO');
-			$announcement =& $announcementDao->getAnnouncement($this->announcementId);
+			$announcement =& $announcementDao->getById($this->announcementId);
 
 			if ($announcement != null) {
 				$this->_data['schedConfId'] = ($announcement->getAssocType() == ASSOC_TYPE_SCHED_CONF)?$announcement->getAssocId():null;
