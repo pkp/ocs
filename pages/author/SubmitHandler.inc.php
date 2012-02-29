@@ -51,7 +51,7 @@ class SubmitHandler extends AuthorHandler {
 		}
 
 		$step = isset($args[0]) ? (int) $args[0] : 1;
-		$paperId = Request::getUserVar('paperId');
+		$paperId = (int) Request::getUserVar('paperId');
 
 		$this->validate($paperId, $step);
 		$this->setupTemplate(true);
@@ -76,7 +76,7 @@ class SubmitHandler extends AuthorHandler {
 	 */
 	function saveSubmit($args) {
 		$step = isset($args[0]) ? (int) $args[0] : 0;
-		$paperId = Request::getUserVar('paperId');
+		$paperId = (int) Request::getUserVar('paperId');
 
 		$this->validate($paperId, $step);
 		$this->setupTemplate(true);
@@ -231,7 +231,7 @@ class SubmitHandler extends AuthorHandler {
 	 * Create new supplementary file with a uploaded file.
 	 */
 	function submitUploadSuppFile() {
-		$paperId = Request::getUserVar('paperId');
+		$paperId = (int) Request::getUserVar('paperId');
 		$this->validate($paperId, 4);
 		$paper =& $this->paper;
 		$this->setupTemplate(true);
@@ -254,7 +254,7 @@ class SubmitHandler extends AuthorHandler {
 	 * @param $args array optional, if set the first parameter is the supplementary file to edit
 	 */
 	function submitSuppFile($args) {
-		$paperId = Request::getUserVar('paperId');
+		$paperId = (int) Request::getUserVar('paperId');
 		$suppFileId = isset($args[0]) ? (int) $args[0] : 0;
 
 		$this->validate($paperId, 4);
@@ -281,7 +281,7 @@ class SubmitHandler extends AuthorHandler {
 	 * @param $args array optional, if set the first parameter is the supplementary file to update
 	 */
 	function saveSubmitSuppFile($args) {
-		$paperId = Request::getUserVar('paperId');
+		$paperId = (int) Request::getUserVar('paperId');
 		$suppFileId = isset($args[0]) ? (int) $args[0] : 0;
 
 		$this->validate($paperId, 4);
@@ -317,7 +317,7 @@ class SubmitHandler extends AuthorHandler {
 	function deleteSubmitSuppFile($args) {
 		import("file.PaperFileManager");
 
-		$paperId = Request::getUserVar('paperId');
+		$paperId = (int) Request::getUserVar('paperId');
 		$suppFileId = isset($args[0]) ? (int) $args[0] : 0;
 
 		$this->validate($paperId, 4);
@@ -355,13 +355,13 @@ class SubmitHandler extends AuthorHandler {
 		$paperDao =& DAORegistry::getDAO('PaperDAO');
 		$user =& Request::getUser();
 
-		if ($step !== false && ($step < 1 || $step > 5 || (!isset($paperId) && $step != 1))) {
+		if ($step !== false && ($step < 1 || $step > 5 || (!$paperId && $step != 1))) {
 			Request::redirect(null, null, null, 'submit', array(1));
 		}
 
 		$paper = null;
 
-		if (isset($paperId)) {
+		if ($paperId) {
 			// Check that paper exists for this conference and user and that submission is incomplete
 			$paper =& $paperDao->getPaper((int) $paperId);
 			if (!$paper || $paper->getUserId() !== $user->getId() || $paper->getSchedConfId() !== $schedConf->getId()) {
