@@ -51,7 +51,7 @@ class SubmitHandler extends AuthorHandler {
 		}
 
 		$step = (int) array_shift($args);
-		$paperId = $request->getUserVar('paperId');
+		$paperId = (int) $request->getUserVar('paperId');
 
 		$this->validate($request, $paperId, $step);
 		$this->setupTemplate($request, true);
@@ -250,7 +250,7 @@ class SubmitHandler extends AuthorHandler {
 	 * @param $args array optional, if set the first parameter is the supplementary file to edit
 	 */
 	function submitSuppFile($args, $request) {
-		$paperId = $request->getUserVar('paperId');
+		$paperId = (int) $request->getUserVar('paperId');
 		$suppFileId = (int) array_shift($args);
 
 		$this->validate($request, $paperId, 4);
@@ -352,7 +352,7 @@ class SubmitHandler extends AuthorHandler {
 		$paperDao =& DAORegistry::getDAO('PaperDAO');
 		$user =& $request->getUser();
 
-		if ($step !== false && ($step < 1 || $step > 5 || (!isset($paperId) && $step != 1))) {
+		if ($step !== false && ($step < 1 || $step > 5 || (!$paperId && $step != 1))) {
 			$request->redirect(null, null, null, 'submit', array(1));
 		}
 
