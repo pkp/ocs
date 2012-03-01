@@ -136,6 +136,7 @@ class PayPalPlugin extends PaymethodPlugin {
 				curl_setopt($ch, CURLOPT_HTTPHEADER, Array('Content-Type: application/x-www-form-urlencoded', 'Content-Length: ' . strlen($req)));
 				curl_setopt($ch, CURLOPT_POSTFIELDS, $req);
 				$ret = curl_exec ($ch);
+				$curlError = curl_error($ch);
 				curl_close ($ch);
 
 				// Check the confirmation response and handle as necessary.
@@ -276,7 +277,7 @@ class PayPalPlugin extends PaymethodPlugin {
 					$mail->assignParams(array(
 						'schedConfName' => $schedConf->getFullTitle(),
 						'postInfo' => print_r($_POST, true),
-						'additionalInfo' => "Confirmation return: $ret",
+						'additionalInfo' => "Confirmation return: $ret\nCURL error: $curlError",
 						'serverVars' => print_r($_SERVER, true)
 					));
 					$mail->send();
