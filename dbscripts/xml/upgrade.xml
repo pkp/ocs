@@ -10,7 +10,7 @@
   * Upgrade descriptor file.
   -->
 
-<install version="2.3.4">
+<install version="2.3.5">
 	<!-- #2961: Stage 1 of 2.1 schema upgrade: Do not drop columns yet -->
 	<upgrade minversion="2.0.0.0" maxversion="2.0.0.1">
 		<data file="dbscripts/xml/upgrade/2.1.0_preupdate.xml" />
