@@ -1371,7 +1371,7 @@ import('file.PaperFileManager');
 			// Send a notification to associated users
 			import('notification.NotificationManager');
 			$notificationManager = new NotificationManager();
-			$notificationUsers = $paper->getAssociatedUserIds();
+			$notificationUsers = $paper->getAssociatedUserIds(false, false);
 			foreach ($notificationUsers as $userRole) {
 				$url = Request::url(null, null, $userRole['role'], 'submissionReview', $paper->getId(), null, 'peerReview');
 				$notificationManager->createNotification(

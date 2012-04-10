@@ -309,7 +309,7 @@ class ReviewerAction extends Action {
 				// Send a notification to associated users
 				import('notification.NotificationManager');
 				$notificationManager = new NotificationManager();
-				$notificationUsers = $paper->getAssociatedUserIds();
+				$notificationUsers = $paper->getAssociatedUserIds(false, false);
 				foreach ($notificationUsers as $userRole) {
 					$url = Request::url(null, null, $userRole['role'], 'submissionReview', $paper->getId(), null, 'peerReview');
 					$notificationManager->createNotification(
@@ -368,7 +368,7 @@ class ReviewerAction extends Action {
 				$paperId = $reviewAssignment->getPaperId();
 				$paperDao =& DAORegistry::getDAO('PaperDAO'); 
 				$paper =& $paperDao->getPaper($paperId);
-				$notificationUsers = $paper->getAssociatedUserIds();
+				$notificationUsers = $paper->getAssociatedUserIds(false, false);
 				foreach ($notificationUsers as $userRole) {
 					$url = Request::url(null, null, $userRole['role'], 'submissionReview', $paper->getId(), null, 'peerReview');
 					$notificationManager->createNotification(
