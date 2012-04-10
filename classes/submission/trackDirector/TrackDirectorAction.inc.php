@@ -1377,7 +1377,7 @@ import('classes.file.PaperFileManager');
 			// Send a notification to associated users
 			import('classes.notification.NotificationManager');
 			$notificationManager = new NotificationManager();
-			$notificationUsers = $paper->getAssociatedUserIds();
+			$notificationUsers = $paper->getAssociatedUserIds(false, false);
 			$conference = $request->getConference();
 			foreach ($notificationUsers as $userRole) {
 				$notificationManager->createNotification(
