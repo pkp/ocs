@@ -264,6 +264,13 @@ class AuthorSubmitStep3Form extends AuthorSubmitForm {
 
 		// Save the paper
 		$paperDao->updatePaper($paper);
+		
+		// Update references list if it changed.
+		$citationDao =& DAORegistry::getDAO('CitationDAO');
+		$rawCitationList = $article->getCitations();
+		if ($previousRawCitationList != $rawCitationList) {
+			$citationDao->importCitations($this->request, ASSOC_TYPE_ARTICLE, $article->getId(), $rawCitationList);
+		}
 
 		// Log the submission, even though it may not be "complete"
 		// at this step. This is important because we don't otherwise

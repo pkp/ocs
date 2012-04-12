@@ -27,6 +27,7 @@
 		<li><a href="{url op="submissionReview" path=$submission->getId()}">{translate key="submission.review"}</a></li>
 	{/if}
 	<li><a href="{url op="submissionHistory" path=$submission->getId()}">{translate key="submission.history"}</a></li>
+	<li><a href="{url op="submissionCitations" path=$submission->getId()}">{translate key="submission.citations"}</a></li>
 </ul>
 
 {include file="trackDirector/submission/management.tpl"}

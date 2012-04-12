@@ -15,7 +15,7 @@
 import('lib.pkp.classes.controllers.grid.filter.PKPFilterGridHandler');
 
 // import validation classes
-import('classes.handler.validation.HandlerValidatorJournal');
+import('classes.handler.validation.HandlerValidatorSchedConf');
 import('lib.pkp.classes.handler.validation.HandlerValidatorRoles');
 
 class FilterGridHandler extends PKPFilterGridHandler {
@@ -25,7 +25,7 @@ class FilterGridHandler extends PKPFilterGridHandler {
 	function FilterGridHandler() {
 		parent::PKPFilterGridHandler();
 		$this->addRoleAssignment(
-				ROLE_ID_JOURNAL_MANAGER,
+				ROLE_ID_CONFERENCE_MANAGER,
 				array('fetchGrid', 'addFilter', 'editFilter', 'updateFilter', 'deleteFilter'));
 	}
 
@@ -37,9 +37,9 @@ class FilterGridHandler extends PKPFilterGridHandler {
 	 * @see PKPHandler::authorize()
 	 */
 	function authorize(&$request, &$args, $roleAssignments) {
-		// Make sure the user can change the journal setup.
+		// Make sure the user can change the conference setup.
 		import('classes.security.authorization.OjsJournalAccessPolicy');
-		$this->addPolicy(new OjsJournalAccessPolicy($request, $roleAssignments));
+		$this->addPolicy(new OcsConferenceAccessPolicy($request, $roleAssignments));
 		return parent::authorize($request, $args, $roleAssignments);
 	}
 }

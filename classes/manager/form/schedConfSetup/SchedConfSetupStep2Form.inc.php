@@ -43,6 +43,7 @@ class SchedConfSetupStep2Form extends SchedConfSetupForm {
 			'metaType' => 'bool',
 			'metaTypeExamples' => 'string',
 			'metaCitations' => 'bool',
+			'metaCitationOutputFilterId' => 'int',
 			'enablePublicPaperId' => 'bool',
 			'enablePublicSuppFileId' => 'bool'
 		);
@@ -183,6 +184,61 @@ class SchedConfSetupStep2Form extends SchedConfSetupForm {
 
 		return parent::execute();
 	}
+	
+		/**
+	 * Display the form
+	 * @param $request Request
+	 * @param $dispatcher Dispatcher
+	 */
+	function display($request, $dispatcher) {
+		$templateMgr =& TemplateManager::getManager($request);
+		// Add extra style sheets required for ajax components
+		// FIXME: Must be removed after OMP->OJS backporting
+		$templateMgr->addStyleSheet($request->getBaseUrl().'/styles/ojs.css');
+
+		// Add extra java script required for ajax components
+		// FIXME: Must be removed after OMP->OJS backporting
+		$templateMgr->addJavaScript('lib/pkp/js/functions/grid-clickhandler.js');
+		$templateMgr->addJavaScript('lib/pkp/js/functions/modal.js');
+		$templateMgr->addJavaScript('lib/pkp/js/lib/jquery/plugins/validate/jquery.validate.min.js');
+		$templateMgr->addJavaScript('lib/pkp/js/functions/jqueryValidatorI18n.js');
+
+		import('classes.mail.MailTemplate');
+		$mail = new MailTemplate('SUBMISSION_ACK');
+		if ($mail->isEnabled()) {
+			$templateMgr->assign('submissionAckEnabled', true);
+		}
+
+		// Citation editor filter configuration
+		//
+		// 1) Check whether PHP5 is available.
+		if (!checkPhpVersion('5.0.0')) {
+			AppLocale::requireComponents(LOCALE_COMPONENT_PKP_SUBMISSION);
+			$citationEditorError = 'submission.citations.editor.php5Required';
+		} else {
+			$citationEditorError = null;
+		}
+		$templateMgr->assign('citationEditorError', $citationEditorError);
+
+		if (!$citationEditorError) {
+			// 2) Add the filter grid URLs
+			$parserFilterGridUrl = $dispatcher->url($request, ROUTE_COMPONENT, null, 'grid.filter.ParserFilterGridHandler', 'fetchGrid');
+			$templateMgr->assign('parserFilterGridUrl', $parserFilterGridUrl);
+			$lookupFilterGridUrl = $dispatcher->url($request, ROUTE_COMPONENT, null, 'grid.filter.LookupFilterGridHandler', 'fetchGrid');
+			$templateMgr->assign('lookupFilterGridUrl', $lookupFilterGridUrl);
+
+			// 3) Create a list of all available citation output filters.
+			$router =& $request->getRouter();
+			$journal =& $router->getContext($request);
+			$filterDao =& DAORegistry::getDAO('FilterDAO'); /* @var $filterDao FilterDAO */
+			$metaCitationOutputFilterObjects =& $filterDao->getObjectsByGroup('nlm30-element-citation=>plaintext', $journal->getId());
+			foreach($metaCitationOutputFilterObjects as $metaCitationOutputFilterObject) {
+				$metaCitationOutputFilters[$metaCitationOutputFilterObject->getId()] = $metaCitationOutputFilterObject->getDisplayName();
+			}
+			$templateMgr->assign_by_ref('metaCitationOutputFilters', $metaCitationOutputFilters);
+		}
+	
+	
 }
 
 ?>
