@@ -58,9 +58,9 @@
 		<tr valign="top">
 			<td>{$registrationType->getRegistrationTypeName()|escape}<br />{$registrationType->getRegistrationTypeDescription()|strip_unsafe_html|nl2br}</td>
 			<td>{translate key=$registrationType->getAccessString()}</td>
-			<td>{$registrationType->getOpeningDate()}</td>
-			<td>{$registrationType->getClosingDate()}</td>
-			<td>{$registrationType->getExpiryDate()}</td>
+			<td>{$registrationType->getOpeningDate()|date_format:$dateFormatLong}</td>
+			<td>{$registrationType->getClosingDate()|date_format:$dateFormatLong}</td>
+			<td>{$registrationType->getExpiryDate()|date_format:$dateFormatLong}</td>
 			<td>{$registrationType->getCost()|string_format:"%.2f"}&nbsp;({$registrationType->getCurrencyStringShort()|escape})</td>
 		</tr>
 		<tr><td colspan="6" class="{if $registrationTypes->eof()}end{/if}separator">&nbsp;</td></tr>
