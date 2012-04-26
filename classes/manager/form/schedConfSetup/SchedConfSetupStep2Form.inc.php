@@ -193,11 +193,11 @@ class SchedConfSetupStep2Form extends SchedConfSetupForm {
 	function display($request, $dispatcher) {
 		$templateMgr =& TemplateManager::getManager($request);
 		// Add extra style sheets required for ajax components
-		// FIXME: Must be removed after OMP->OJS backporting
-		$templateMgr->addStyleSheet($request->getBaseUrl().'/styles/ojs.css');
+		// FIXME: Must be removed after OMP->OCS backporting
+		$templateMgr->addStyleSheet($request->getBaseUrl().'/styles/ocs.css');
 
 		// Add extra java script required for ajax components
-		// FIXME: Must be removed after OMP->OJS backporting
+		// FIXME: Must be removed after OMP->OCS backporting
 		$templateMgr->addJavaScript('lib/pkp/js/functions/grid-clickhandler.js');
 		$templateMgr->addJavaScript('lib/pkp/js/functions/modal.js');
 		$templateMgr->addJavaScript('lib/pkp/js/lib/jquery/plugins/validate/jquery.validate.min.js');
