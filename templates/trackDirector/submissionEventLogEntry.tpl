@@ -79,7 +79,7 @@
 			{if $logEntry->getIsTranslated()}
 				{translate key=$logEntry->getMessage() params=$logEntry->getEntryParams()|strip_unsafe_html|escape}
 			{else}{* Legacy entries *}
-				{$logEntry->getMessage()|strip_unsafe_html|truncate:60:"..."|escape}
+				{$logEntry->getMessage()|strip_tags|truncate:60:"..."|escape}
 			{/if}
 		</td>
 	</tr>

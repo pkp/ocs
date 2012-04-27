@@ -43,7 +43,7 @@
 
 <div class="rtSeparator"></div>
 
-<h6>{$paper->getLocalizedTitle()|strip_unsafe_html|truncate:20:"...":true}</h6>
+<h6>{$paper->getLocalizedTitle()|strip_tags|truncate:20:"...":true}</h6>
 <p><em>{$paper->getAuthorString(true)|escape}</em></p>
 
 <div class="rtSeparator"></div>

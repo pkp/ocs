@@ -104,9 +104,9 @@
 			<strong>{translate key=$logEntry->getEventTitle()|escape}</strong>
 			<br />
 			{if $logEntry->getIsTranslated()}
-				{translate key=$logEntry->getMessage() params=$logEntry->getEntryParams()|strip_unsafe_html|truncate:60:"..."|escape}
+				{translate key=$logEntry->getMessage() params=$logEntry->getEntryParams()|strip_tags|truncate:60:"..."|escape}
 			{else}{* Legacy entries *}
-				{$logEntry->getMessage()|strip_unsafe_html|truncate:60:"..."|escape}
+				{$logEntry->getMessage()|strip_tags|truncate:60:"..."|escape}
 			{/if}
 		</td>
 		<td align="right">{if $logEntry->getAssocType()}<a href="{url op="submissionEventLogType" path=$submission->getPaperId()|to_array:$logEntry->getAssocType():$logEntry->getAssocId()}" class="action">{translate key="common.related"}</a>&nbsp;|&nbsp;{/if}<a href="{url op="submissionEventLog" path=$submission->getPaperId()|to_array:$logEntry->getLogId()}" class="action">{translate key="common.view"}</a>{if $isDirector}&nbsp;|&nbsp;<a href="{url op="clearSubmissionEventLog" path=$submission->getPaperId()|to_array:$logEntry->getLogId()}" class="action" onclick="return confirm('{translate|escape:"jsparam" key="submission.event.confirmDeleteLogEntry"}')">{translate key="common.delete"}</a>{/if}</td>
