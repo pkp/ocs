@@ -94,8 +94,14 @@ class TemplateManager extends PKPTemplateManager {
 				$this->assign('displayPageHeaderLogo', $conference->getPageHeaderLogo());
 				$this->assign('displayPageHeaderTitleAltText', $conference->getLocalizedSetting('pageHeaderTitleImageAltText'));
 				$this->assign('displayPageHeaderLogoAltText', $conference->getLocalizedSetting('pageHeaderLogoImageAltText'));
-				$this->assign('displayFavicon', $conference->getLocalizedFavicon());
-				$this->assign('faviconDir', $request->getBaseUrl() . '/' . $publicFileManager->getConferenceFilesPath($conference->getId()));
+
+				$displayFavicon = $conference->getLocalizedFavicon();
+				$this->assign('displayFavicon', $displayFavicon);
+				if ($displayFavicon) {
+					$this->assign('faviconDir', $request->getBaseUrl() . '/' . $publicFileManager->getConferenceFilesPath($conference->getId()));
+					$this->assign('faviconType', String::mime_content_type($publicFileManager->getConferenceFilesPath($conference->getId()) . '/' . $displayFavicon['uploadName']));
+				}
+
 				$this->assign('alternatePageHeader', $conference->getLocalizedSetting('conferencePageHeader'));
 				$this->assign('metaSearchDescription', $conference->getLocalizedSetting('searchDescription'));
 				$this->assign('metaSearchKeywords', $conference->getLocalizedSetting('searchKeywords'));
