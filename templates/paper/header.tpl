@@ -19,7 +19,7 @@
 		<meta name="keywords" content="{$paper->getLocalizedSubject()|escape}" />
 	{/if}
 
-	{if $displayFavicon}<link rel="icon" href="{$faviconDir}/{$displayFavicon.uploadName|escape:"url"}" type="{$faviconType}" />{/if}
+	{if $displayFavicon}<link rel="icon" href="{$faviconDir}/{$displayFavicon.uploadName|escape:"url"}" type="{$displayFavicon.mimeType|escape}" />{/if}
 
 	{include file="paper/dublincore.tpl"}
 	{include file="paper/googlescholar.tpl"}

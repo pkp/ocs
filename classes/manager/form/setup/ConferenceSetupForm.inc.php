@@ -118,6 +118,7 @@ class ConferenceSetupForm extends Form {
 					'uploadName' => $uploadName,
 					'width' => $width,
 					'height' => $height,
+					'mimeType' => $fileManager->getUploadedFileType($settingName),
 					'dateUploaded' => Core::getCurrentDate()
 				);
 
