@@ -6,7 +6,6 @@
  *
  * Display paper search results.
  *
- * $Id$
  *}
 {strip}
 {assign var=pageTitle value="search.searchResults"}
@@ -17,11 +16,11 @@
 {literal}
 <!--
 function ensureKeyword() {
-	if (document.getElementById('search').query.value == '') {
+	if (document.getElementById('searchForm').query.value == '') {
 		alert({/literal}'{translate|escape:"jsparam" key="search.noKeywordError"}'{literal});
 		return false;
 	}
-	document.getElementById('search').submit();
+	document.getElementById('searchForm').submit();
 	return true;
 }
 // -->

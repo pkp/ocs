@@ -6,7 +6,6 @@
  *
  * Index of published papers by author.
  *
- * $Id$
  *}
 {strip}
 {assign var="pageTitle" value="search.authorDetails"}

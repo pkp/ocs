@@ -1,12 +1,11 @@
 {**
- * titleIndex.tpl
+ * templates/search/titleIndex.tpl
  *
  * Copyright (c) 2000-2012 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * Display published papers by title
  *
- * $Id$
  *}
 {strip}
 {assign var=pageTitle value="search.titleIndex"}
