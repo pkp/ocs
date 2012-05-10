@@ -127,6 +127,10 @@
 		<code function="installEmailTemplate" key="NOTIFICATION_MAILLIST_WELCOME" locales="ca_ES,en_US,es_AR,es_ES,eu_ES,fr_CA,it_IT,pt_BR,zh_TW" />
 		<code function="installEmailTemplate" key="NOTIFICATION_MAILLIST" locales="ca_ES,en_US,es_AR,es_ES,eu_ES,fr_CA,it_IT,pt_BR,zh_TW" />
 	</upgrade>
+	
+	<upgrade minversion="2.0.0.0" maxversion="2.4.9.9">
+		<data file="registry/citationAssistantData.xml" />	
+	</upgrade>
 
 	<!-- update plugin configuration - should be done as the final upgrade task -->
 	<code function="addPluginVersions" />

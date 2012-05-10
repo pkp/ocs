@@ -447,6 +447,7 @@ Note that if your site administrator has already registered this site with the P
 	<!-- Scheduled Conference Setup Step 2 -->
 	<message key="manager.schedConfSetup.submissions.subjectClassificationDescription"><![CDATA[Conference will use a subject classification system available on the web.<br />
 Title of classification system]]></message>
+	<message key="manager.setup.citations">Enable the Citation Markup Assistant</message>
 
 	<!-- People Management -->
 	<message key="manager.people.confirmDisable">Disable this user? This will prevent the user from logging into the system.
