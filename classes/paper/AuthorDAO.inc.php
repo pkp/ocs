@@ -13,9 +13,6 @@
  * @brief Operations for retrieving and modifying Author objects.
  */
 
-// $Id$
-
-
 import('classes.paper.Author');
 import('classes.paper.Paper');
 import('lib.pkp.classes.submission.PKPAuthorDAO');
@@ -126,14 +123,11 @@ class AuthorDAO extends PKPAuthorDAO {
 			FROM	authors aa
 				LEFT JOIN author_settings aspl ON (aa.author_id = aspl.author_id AND aspl.setting_name = ? AND aspl.locale = ?)
 				LEFT JOIN author_settings asl ON (aa.author_id = asl.author_id AND asl.setting_name = ? AND asl.locale = ?)
-				LEFT JOIN papers a ON (a.paper_id = aa.submission_id)
-				LEFT JOIN published_papers pa ON (pa.paper_id = a.paper_id)
-				LEFT JOIN sched_confs e ON (a.sched_conf_id = e.sched_conf_id)
-			WHERE	e.sched_conf_id = pa.sched_conf_id
-				AND aa.submission_id = a.paper_id
+				JOIN papers a ON (a.paper_id = aa.submission_id)
+				JOIN published_papers pa ON (pa.paper_id = a.paper_id)
+				JOIN sched_confs e ON (a.sched_conf_id = e.sched_conf_id)
+			WHERE	a.status = ' . STATUS_PUBLISHED . '
 				' . (isset($schedConfId)?'AND a.sched_conf_id = ? ':'') . '
-				AND pa.paper_id = a.paper_id
-				AND a.status = ' . STATUS_PUBLISHED . '
 				AND (aa.last_name IS NOT NULL
 				AND aa.last_name <> \'\')' . $initialSql . ' ORDER BY aa.last_name, aa.first_name',
 			$params,
