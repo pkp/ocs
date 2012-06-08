@@ -13,6 +13,10 @@
 {include file="common/header.tpl"}
 {/strip}
 
+{if $newVersionAvailable}
+<div class="warningMessage">{translate key="site.upgradeAvailable.manager" currentVersion=$currentVersion latestVersion=$latestVersion siteAdminName=$siteAdmin->getFullName() siteAdminEmail=$siteAdmin->getEmail()}</div>
+{/if}
+
 <h3>{translate key="manager.managementPages"}</h3>
 <div id="description">
 {translate key="manager.managementPages.description"}

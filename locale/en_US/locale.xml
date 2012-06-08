@@ -756,6 +756,10 @@ Your server currently supports mbstring: <strong>{$supportsMBString}</strong>]]>
 <p>Don't forget to set the "installed" setting in your config.inc.php configuration file back to <em>On</em>.</p>
 <p>If you haven't already registered and wish to receive news and updates, <strong>please register at <a href="http://pkp.sfu.ca/ocs/register" target="_new">http://pkp.sfu.ca/ocs/register</a>.</strong> If you have questions or comments, please visit the <a href="http://pkp.sfu.ca/support/forum" target="_new">support forum</a>.</p>]]></message>
 
+	<!-- Installation upgrade warnings -->
+	<message key="site.upgradeAvailable.admin"><![CDATA[There is a new version of OCS available! You are currently using OCS {$currentVersion}. The most recent version is OCS {$latestVersion}. Please visit <a href="http://pkp.sfu.ca/ocs_download" target="_new">this page</a> to download the most recent version and find upgrade instructions.]]></message>
+	<message key="site.upgradeAvailable.manager"><![CDATA[There is a new version of OCS available! You are currently using OCS {$currentVersion}. The most recent version is OCS {$latestVersion}. Please contact your Site Administrator ({$siteAdminName}, <a href="mailto:{$siteAdminEmail}">{$siteAdminEmail}</a>) to notify them of this new release. More information can be found <a href="http://pkp.sfu.ca/ocs_download" target="_new">here</a>.]]></message>
+
 
 	<!-- Paper Logs -->
 	<message key="log.default.abstractPeriodExpired">The abstract submission window for incomplete paper {$paperId} has expired. Paper moved to graveyard.</message>

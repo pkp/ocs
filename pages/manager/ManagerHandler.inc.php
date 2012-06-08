@@ -39,6 +39,24 @@ class ManagerHandler extends Handler {
 		$conference =& Request::getConference();
 		$templateMgr =& TemplateManager::getManager();
 
+		// Display a warning message if there is a new version of OJS available
+		$newVersionAvailable = false;
+		if (Config::getVar('general', 'show_upgrade_warning')) {
+			import('lib.pkp.classes.site.VersionCheck');
+			if($latestVersion = VersionCheck::checkIfNewVersionExists()) {
+				$newVersionAvailable = true;
+				$templateMgr->assign('latestVersion', $latestVersion);
+				$currentVersion =& VersionCheck::getCurrentDBVersion();
+				$templateMgr->assign('currentVersion', $currentVersion->getVersionString());
+				
+				// Get contact information for site administrator
+				$roleDao =& DAORegistry::getDAO('RoleDAO');
+				$siteAdmins =& $roleDao->getUsersByRoleId(ROLE_ID_SITE_ADMIN);
+				$templateMgr->assign_by_ref('siteAdmin', $siteAdmins->next());
+			}
+		}
+		$templateMgr->assign('newVersionAvailable', $newVersionAvailable);
+
 		$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
 		$schedConfs =& $schedConfDao->getSchedConfs(false, $conference->getId());
 		$templateMgr->assign_by_ref('schedConfs', $schedConfs);

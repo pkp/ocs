@@ -87,6 +87,9 @@ restful_urls = Off
 ; Allow javascript files to be served through a content delivery network (set to off to use local files)
 enable_cdn = On
 
+; Display a message on the site admin and journal manager user home pages if there is an upgrade available
+show_upgrade_warning = On
+
 ;;;;;;;;;;;;;;;;;;;;;
 ; Database Settings ;
 ;;;;;;;;;;;;;;;;;;;;;
