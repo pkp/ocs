@@ -27,7 +27,7 @@ $(document).ready(function() { setupTableDND("#dragTable", {/literal}"{url op=mo
 
 <br/>
 
-<div id="membership">
+<div id="memberships">
 <table width="100%" id="dragTable" class="listing">
 	<tr>
 		<td colspan="2" class="headseparator">&nbsp;</td>
@@ -61,7 +61,7 @@ $(document).ready(function() { setupTableDND("#dragTable", {/literal}"{url op=mo
 {else}
 	<tr>
 		<td align="left">{page_info iterator=$memberships}</td>
-		<td align="right">{page_links anchor="membership" name="memberships" iterator=$memberships}</td>
+		<td align="right">{page_links anchor="memberships" name="memberships" iterator=$memberships}</td>
 	</tr>
 {/if}
 </table>

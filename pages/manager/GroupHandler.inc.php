@@ -207,7 +207,7 @@ class GroupHandler extends ManagerHandler {
 		$this->validate($groupId);
 		$group =& $this->group;
 
-		$rangeInfo =& Handler::getRangeInfo('membership', array($groupId));
+		$rangeInfo =& Handler::getRangeInfo('memberships', array($groupId));
 
 		$this->setupTemplate($group, true);
 		$groupMembershipDao =& DAORegistry::getDAO('GroupMembershipDAO');
