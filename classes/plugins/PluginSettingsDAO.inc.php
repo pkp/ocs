@@ -47,7 +47,7 @@ class PluginSettingsDAO extends DAO {
 	 */
 	function getSetting($conferenceId, $schedConfId, $pluginName, $name) {
 		// Normalize the plug-in name to lower case.
-		$pluginName = strtolower($pluginName);
+		$pluginName = strtolower_codesafe($pluginName);
 
 		// Retrieve the setting.
 		$cache =& $this->_getCache($conferenceId, $schedConfId, $pluginName);
@@ -76,7 +76,7 @@ class PluginSettingsDAO extends DAO {
 	 */
 	function &getPluginSettings($conferenceId, $schedConfId, $pluginName) {
 		// Normalize plug-in name to lower case.
-		$pluginName = strtolower($pluginName);
+		$pluginName = strtolower_codesafe($pluginName);
 
 		$result =& $this->retrieve(
 			'SELECT setting_name, setting_value, setting_type FROM plugin_settings WHERE plugin_name = ? AND conference_id = ? AND sched_conf_id = ?', array($pluginName, $conferenceId, $schedConfId)
@@ -117,7 +117,7 @@ class PluginSettingsDAO extends DAO {
 	 */
 	function updateSetting($conferenceId, $schedConfId, $pluginName, $name, $value, $type = null) {
 		// Normalize the plug-in name to lower case.
-		$pluginName = strtolower($pluginName);
+		$pluginName = strtolower_codesafe($pluginName);
 
 		$cache =& $this->_getCache($conferenceId, $schedConfId, $pluginName);
 		$cache->setCache($name, $value);
@@ -161,7 +161,7 @@ class PluginSettingsDAO extends DAO {
 	 */
 	function deleteSetting($conferenceId, $schedConfId, $pluginName, $name) {
 		// Normalize the plug-in name to lower case.
-		$pluginName = strtolower($pluginName);
+		$pluginName = strtolower_codesafe($pluginName);
 
 		$cache =& $this->_getCache($conferenceId, $schedConfId, $pluginName);
 		$cache->setCache($name, null);
@@ -180,7 +180,7 @@ class PluginSettingsDAO extends DAO {
 	 */
 	function deleteSettingsByPlugin($pluginName, $conferenceId = null, $schedConfId = null) {
 		// Normalize the plug-in name to lower case.
-		$pluginName = strtolower($pluginName);
+		$pluginName = strtolower_codesafe($pluginName);
 
 		if ( $conferenceId && $schedConfId) {
 			$cache =& $this->_getCache($conferenceId, $schedConfId, $pluginName);

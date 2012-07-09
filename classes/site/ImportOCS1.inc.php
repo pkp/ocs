@@ -885,7 +885,7 @@ class ImportOCS1 {
 			$reviewAssignment->setDateNotified($row['timestamp']);
 			$reviewAssignment->setDateConfirmed($row['timestamp']);
 			$reviewAssignment->setDeclined(0);
-			switch (trim(strtolower(array_shift(split("[\n\.:]", $row['recommendation']))))) {
+			switch (trim(strtolower_codesafe(array_shift(split("[\n\.:]", $row['recommendation']))))) {
 				case 'accept':
 					$reviewAssignment->setRecommendation(SUBMISSION_REVIEWER_RECOMMENDATION_ACCEPT);
 					$reviewAssignment->setDateCompleted($row['timestamp']);

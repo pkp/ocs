@@ -133,7 +133,7 @@ class NLMExportDom {
 		// OtherInformation element goes here with location for current conference
 
 		/* --- Language --- */
-		XMLCustomWriter::createChildWithText($doc, $articleNode, 'Language', strtolower($paper->getLanguage()), false);
+		XMLCustomWriter::createChildWithText($doc, $articleNode, 'Language', strtolower_codesafe($paper->getLanguage()), false);
 
 		/* --- MedlineJournalInfo--- */
 		// FIXME: at the moment this is a null element required by NLM
