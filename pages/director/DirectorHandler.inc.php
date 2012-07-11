@@ -13,9 +13,6 @@
  *
  */
 
-// $Id$
-
-
 import('pages.trackDirector.TrackDirectorHandler');
 
 define('DIRECTOR_TRACK_HOME', 0);
@@ -447,9 +444,14 @@ class DirectorHandler extends TrackDirectorHandler {
 					);
 					break;
 			}
+			import('lib.pkp.classes.validation.ValidatorEmail');
 			while (!$recipients->eof()) {
 				$recipient =& $recipients->next();
-				$email->addRecipient($recipient->getEmail(), $recipient->getFullName());
+				if (preg_match(ValidatorEmail::getRegexp(), $recipient->getEmail())) {
+					$email->addRecipient($recipient->getEmail(), $recipient->getFullName());
+				} else {
+					error_log("Invalid email address: " . $recipient->getEmail());
+				}
 				unset($recipient);
 			}
 
