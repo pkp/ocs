@@ -14,9 +14,6 @@
  *
  */
 
-// $Id$
-
-
 import('classes.search.PaperSearch');
 import('classes.file.PublicFileManager');
 import('lib.pkp.classes.template.PKPTemplateManager');
@@ -28,18 +25,10 @@ class TemplateManager extends PKPTemplateManager {
 	 * @param $request PKPRequest FIXME: is optional for backwards compatibility only - make mandatory
 	 */
 	function TemplateManager($request = null) {
-		// FIXME: for backwards compatibility only - remove
-		if (!isset($request)) {
-			// FIXME: Trigger a deprecation warning when enough instances of this
-			// call have been fixed to not clutter the error log.
-			$request =& Registry::get('request');
-		}
-		assert(is_a($request, 'PKPRequest'));
-
 		parent::PKPTemplateManager($request);
 
 		// Retrieve the router
-		$router =& $request->getRouter();
+		$router =& $this->request->getRouter();
 		assert(is_a($router, 'PKPRouter'));
 
 		if (!defined('SESSION_DISABLE_INIT')) {
@@ -49,19 +38,19 @@ class TemplateManager extends PKPTemplateManager {
 			 * installer pages).
 			 */
 
-			$conference =& $router->getContext($request, 1);
-			$schedConf =& $router->getContext($request, 2);
-			$site =& $request->getSite();
+			$conference =& $router->getContext($this->request, 1);
+			$schedConf =& $router->getContext($this->request, 2);
+			$site =& $this->request->getSite();
 			$this->assign('siteTitle', $site->getLocalizedTitle());
 
 			$publicFileManager = new PublicFileManager();
-			$siteFilesDir = $request->getBaseUrl() . '/' . $publicFileManager->getSiteFilesPath();
+			$siteFilesDir = $this->request->getBaseUrl() . '/' . $publicFileManager->getSiteFilesPath();
 			$this->assign('sitePublicFilesDir', $siteFilesDir);
 
 			$this->assign('homeContext', array('conference' => 'index', 'schedConf' => 'index'));
 
 			$siteStyleFilename = $publicFileManager->getSiteFilesPath() . '/' . $site->getSiteStyleFilename();
-			if (file_exists($siteStyleFilename)) $this->addStyleSheet($request->getBaseUrl() . '/' . $siteStyleFilename);
+			if (file_exists($siteStyleFilename)) $this->addStyleSheet($this->request->getBaseUrl() . '/' . $siteStyleFilename);
 
 			if (isset($conference)) {
 				$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
@@ -89,13 +78,13 @@ class TemplateManager extends PKPTemplateManager {
 				$navMenuItems =& $conference->getLocalizedSetting('navItems');
 				$this->assign_by_ref('navMenuItems', $navMenuItems);
 
-				$this->assign('publicFilesDir', $request->getBaseUrl() . '/' . $publicFileManager->getConferenceFilesPath($conference->getId()));
+				$this->assign('publicFilesDir', $this->request->getBaseUrl() . '/' . $publicFileManager->getConferenceFilesPath($conference->getId()));
 				$this->assign('displayPageHeaderTitle', $conference->getPageHeaderTitle());
 				$this->assign('displayPageHeaderLogo', $conference->getPageHeaderLogo());
 				$this->assign('displayPageHeaderTitleAltText', $conference->getLocalizedSetting('pageHeaderTitleImageAltText'));
 				$this->assign('displayPageHeaderLogoAltText', $conference->getLocalizedSetting('pageHeaderLogoImageAltText'));
 				$this->assign('displayFavicon', $conference->getLocalizedFavicon());
-				$this->assign('faviconDir', $request->getBaseUrl() . '/' . $publicFileManager->getConferenceFilesPath($conference->getId()));
+				$this->assign('faviconDir', $this->request->getBaseUrl() . '/' . $publicFileManager->getConferenceFilesPath($conference->getId()));
 				$this->assign('alternatePageHeader', $conference->getLocalizedSetting('conferencePageHeader'));
 				$this->assign('metaSearchDescription', $conference->getLocalizedSetting('searchDescription'));
 				$this->assign('metaSearchKeywords', $conference->getLocalizedSetting('searchKeywords'));
@@ -108,7 +97,7 @@ class TemplateManager extends PKPTemplateManager {
 				if (isset($schedConf)) {
 
 					// This will be needed if inheriting public conference files from the scheduled conference.
-					$this->assign('publicSchedConfFilesDir', $request->getBaseUrl() . '/' . $publicFileManager->getSchedConfFilesPath($schedConf->getId()));
+					$this->assign('publicSchedConfFilesDir', $this->request->getBaseUrl() . '/' . $publicFileManager->getSchedConfFilesPath($schedConf->getId()));
 					$this->assign('primaryLocale', $conference->getSetting('primaryLocale'));
 					$this->assign('alternateLocales', $conference->getPrimaryLocale());
 
@@ -150,7 +139,7 @@ class TemplateManager extends PKPTemplateManager {
 					$this->assign('submissionsOpenDate', $submissionsOpenDate);
 
 					import('classes.payment.ocs.OCSPaymentManager');
-					$paymentManager = new OCSPaymentManager($request);
+					$paymentManager = new OCSPaymentManager($this->request);
 					$this->assign('schedConfPaymentsEnabled', $paymentManager->isConfigured());
 
 				}
@@ -158,7 +147,7 @@ class TemplateManager extends PKPTemplateManager {
 				// Assign conference stylesheet and footer
 				$conferenceStyleSheet = $conference->getSetting('conferenceStyleSheet');
 				if ($conferenceStyleSheet) {
-					$this->addStyleSheet($request->getBaseUrl() .
+					$this->addStyleSheet($this->request->getBaseUrl() .
 					'/' .	$publicFileManager->getConferenceFilesPath($conference->getId()) .
 					'/' . $conferenceStyleSheet['uploadName']);
 				}
@@ -167,7 +156,7 @@ class TemplateManager extends PKPTemplateManager {
 				if($schedConf) {
 					$schedConfStyleSheet = $schedConf->getSetting('schedConfStyleSheet');
 					if ($schedConfStyleSheet) {
-						$this->addStyleSheet($request->getBaseUrl() .
+						$this->addStyleSheet($this->request->getBaseUrl() .
 						'/' .	$publicFileManager->getSchedConfFilesPath($schedConf->getId()) .
 						'/' . $schedConfStyleSheet['uploadName']);
 					}
@@ -177,7 +166,7 @@ class TemplateManager extends PKPTemplateManager {
 				$displayPageHeaderTitle = $site->getLocalizedPageHeaderTitle();
 				$this->assign('displayPageHeaderTitle', $displayPageHeaderTitle);
 				if (isset($displayPageHeaderTitle['altText'])) $this->assign('displayPageHeaderTitleAltText', $displayPageHeaderTitle['altText']);
-				$this->assign('publicFilesDir', $request->getBaseUrl() . '/' . $publicFileManager->getSiteFilesPath());
+				$this->assign('publicFilesDir', $this->request->getBaseUrl() . '/' . $publicFileManager->getSiteFilesPath());
 
 				// Load and apply theme plugin, if chosen
 				$themePluginPath = $site->getSetting('siteTheme');
@@ -189,7 +178,7 @@ class TemplateManager extends PKPTemplateManager {
 			}
 
 			// Add java script for notifications
-			$user =& $request->getUser();
+			$user =& $this->request->getUser();
 			if ($user) $this->addJavaScript('lib/pkp/js/lib/jquery/plugins/jquery.pnotify.js');
 		}
 	}
@@ -216,7 +205,7 @@ class TemplateManager extends PKPTemplateManager {
 			}
 
 			if ($params['url'] == "true") {
-				return Request::url(null, null, 'help', 'view', explode('/', $translatedKey));
+				return $this->request->url(null, null, 'help', 'view', explode('/', $translatedKey));
 			} else {
 				return $translatedKey;
 			}
@@ -236,7 +225,7 @@ class TemplateManager extends PKPTemplateManager {
 		$help =& Help::getHelp();
 		if (isset($params) && !empty($params)) {
 			$translatedKey = isset($params['key']) ? $help->translate($params['key']) : $help->translate('');
-			$link = Request::url(null, null, 'help', 'view', explode('/', $translatedKey));
+			$link = $this->request->url(null, null, 'help', 'view', explode('/', $translatedKey));
 			$text = isset($params['text']) ? $params['text'] : '';
 			return "<a href=\"$link\">$text</a>";
 		}
@@ -287,9 +276,9 @@ class TemplateManager extends PKPTemplateManager {
 
 		if ($page>1) {
 			$params[$paramName] = 1;
-			$value .= '<a href="' . Request::url(null, null, null, null, Request::getRequestedArgs(), $params, $anchor, true) . '"' . $allExtra . '>&lt;&lt;</a>&nbsp;';
+			$value .= '<a href="' . $this->request->url(null, null, null, null, $this->request->getRequestedArgs(), $params, $anchor, true) . '"' . $allExtra . '>&lt;&lt;</a>&nbsp;';
 			$params[$paramName] = $page - 1;
-			$value .= '<a href="' . Request::url(null, null, null, null, Request::getRequestedArgs(), $params, $anchor, true) . '"' . $allExtra . '>&lt;</a>&nbsp;';
+			$value .= '<a href="' . $this->request->url(null, null, null, null, $this->request->getRequestedArgs(), $params, $anchor, true) . '"' . $allExtra . '>&lt;</a>&nbsp;';
 		}
 
 		for ($i=$pageBase; $i<min($pageBase+$numPageLinks, $pageCount+1); $i++) {
@@ -297,14 +286,14 @@ class TemplateManager extends PKPTemplateManager {
 				$value .= "<strong>$i</strong>&nbsp;";
 			} else {
 				$params[$paramName] = $i;
-				$value .= '<a href="' . Request::url(null, null, null, null, Request::getRequestedArgs(), $params, $anchor, true) . '"' . $allExtra . '>' . $i . '</a>&nbsp;';
+				$value .= '<a href="' . $this->request->url(null, null, null, null, $this->request->getRequestedArgs(), $params, $anchor, true) . '"' . $allExtra . '>' . $i . '</a>&nbsp;';
 			}
 		}
 		if ($page < $pageCount) {
 			$params[$paramName] = $page + 1;
-			$value .= '<a href="' . Request::url(null, null, null, null, Request::getRequestedArgs(), $params, $anchor, true) . '"' . $allExtra . '>&gt;</a>&nbsp;';
+			$value .= '<a href="' . $this->request->url(null, null, null, null, $this->request->getRequestedArgs(), $params, $anchor, true) . '"' . $allExtra . '>&gt;</a>&nbsp;';
 			$params[$paramName] = $pageCount;
-			$value .= '<a href="' . Request::url(null, null, null, null, Request::getRequestedArgs(), $params, $anchor, true) . '"' . $allExtra . '>&gt;&gt;</a>&nbsp;';
+			$value .= '<a href="' . $this->request->url(null, null, null, null, $this->request->getRequestedArgs(), $params, $anchor, true) . '"' . $allExtra . '>&gt;&gt;</a>&nbsp;';
 		}
 
 		return $value;
