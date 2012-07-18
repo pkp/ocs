@@ -444,7 +444,7 @@ class PublishedPaperDAO extends DAO {
 	 */
 	function &getPublishedPaperByBestPaperId($schedConfId, $paperId, $previewAbstracts = null) {
 		$paper =& $this->getPublishedPaperByPublicPaperId($schedConfId, $paperId);
-		if (!isset($paper) && ctype_digit($paperId)) $paper =& $this->getPublishedPaperByPaperId((int) $paperId, $schedConfId, $previewAbstracts);
+		if (!isset($paper) && ctype_digit("$paperId")) $paper =& $this->getPublishedPaperByPaperId((int) $paperId, $schedConfId, $previewAbstracts);
 		return $paper;
 	}
 
