@@ -1659,8 +1659,9 @@ import('classes.file.PaperFileManager');
 	/**
 	 * Accepts the review assignment on behalf of its reviewer.
 	 * @param $reviewId int
+	 * @param $accept boolean
 	 */
-	function confirmReviewForReviewer($reviewId) {
+	function confirmReviewForReviewer($reviewId, $accept) {
 		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
 		$userDao =& DAORegistry::getDAO('UserDAO');
 		$user =& Request::getUser();
@@ -1668,12 +1669,12 @@ import('classes.file.PaperFileManager');
 		$reviewAssignment =& $reviewAssignmentDao->getById($reviewId);
 		$reviewer =& $userDao->getUser($reviewAssignment->getReviewerId(), true);
 
-		if (HookRegistry::call('TrackDirectorAction::confirmReviewForReviewer', array(&$reviewAssignment, &$reviewer))) return;
+		if (HookRegistry::call('TrackDirectorAction::confirmReviewForReviewer', array(&$reviewAssignment, &$reviewer, &$accept))) return;
 
 		// Only confirm the review for the reviewer if
 		// he has not previously done so.
 		if ($reviewAssignment->getDateConfirmed() == null) {
-			$reviewAssignment->setDeclined(0);
+			$reviewAssignment->setDeclined($accept?0:1);
 			$reviewAssignment->setDateConfirmed(Core::getCurrentDate());
 			$reviewAssignment->stampModified();
 			$reviewAssignmentDao->updateReviewAssignment($reviewAssignment);
@@ -1687,7 +1688,7 @@ import('classes.file.PaperFileManager');
 			$entry->setUserId($user->getId());
 			$entry->setDateLogged(Core::getCurrentDate());
 			$entry->setEventType(PAPER_LOG_REVIEW_ACCEPT_BY_PROXY);
-			$entry->setLogMessage('log.review.reviewAcceptedByProxy', array('reviewerName' => $reviewer->getFullName(), 'paperId' => $reviewAssignment->getSubmissionId(), 'stage' => $reviewAssignment->getRound(), 'userName' => $user->getFullName()));
+			$entry->setLogMessage($accept?'log.review.reviewAcceptedByProxy':'log.review.reviewDeclinedByProxy', array('reviewerName' => $reviewer->getFullName(), 'paperId' => $reviewAssignment->getSubmissionId(), 'stage' => $reviewAssignment->getRound(), 'userName' => $user->getFullName()));
 			$entry->setAssocType(LOG_TYPE_REVIEW);
 			$entry->setAssocId($reviewAssignment->getId());
 

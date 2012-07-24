@@ -781,6 +781,7 @@ Your server currently supports mbstring: <strong>{$supportsMBString}</strong>]]>
 	<message key="log.review.reviewDeclined">{$reviewerName} has declined the stage {$stage} review for submission {$paperId}.</message>
 	<message key="log.review.reviewAccepted">{$reviewerName} has accepted the stage {$stage} review for submission {$paperId}.</message>
 	<message key="log.review.reviewAcceptedByProxy">{$userName} has accepted the stage {$stage} review for submission {$paperId} on behalf of {$reviewerName}.</message>
+	<message key="log.review.reviewDeclinedByProxy">{$userName} has declined the stage {$stage} review for submission {$paperId} on behalf of {$reviewerName}.</message>
 	<message key="log.review.reviewFileByProxy">The Director, {$userName}, has uploaded a review file for stage {$stage} of submission {$paperId} on behalf of the reviewer, {$reviewerName}.</message>
 	<message key="log.review.reviewerFile">A reviewer file has been uploaded.</message>
 	<message key="log.director.decision">A director decision ({$decision}) for paper {$paperId} was recorded by {$directorName}.</message>

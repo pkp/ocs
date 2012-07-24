@@ -752,7 +752,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		$schedConf =& $request->getSchedConf();
 		$submission =& $this->submission;
 
-		TrackDirectorAction::confirmReviewForReviewer($reviewId);
+		TrackDirectorAction::confirmReviewForReviewer($reviewId, $accept);
 		$request->redirect(null, null, null, 'submissionReview', $paperId);
 	}
 
