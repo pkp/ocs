@@ -377,7 +377,7 @@ class NativeImportDom {
 		/* --- Handle authors --- */
 		$hasErrors = false;
 		for ($index = 0; ($node = $paperNode->getChildByName('author', $index)); $index++) {
-			if (!NativeImportDom::handleAuthorNode($conference, $schedConf, $node, $track, $paper, $authorErrors)) {
+			if (!NativeImportDom::handleAuthorNode($conference, $schedConf, $node, $track, $paper, $authorErrors, $index)) {
 				$errors = array_merge($errors, $authorErrors);
 				$hasErrors = true;
 			}
@@ -462,7 +462,17 @@ class NativeImportDom {
 		return true;
 	}
 
-	function handleAuthorNode(&$conference, &$schedConf, &$authorNode, &$track, &$paper, &$errors) {
+	/**
+	 * Handle an author node (i.e. convert an author from DOM to DAO).
+	 * @param $journal Journal
+	 * @param $authorNode DOMElement
+	 * @param $issue Issue
+	 * @param $section Section
+	 * @param $article Article
+	 * @param $errors array
+	 * @param $authorIndex int 0 for first author, 1 for second, ...
+	 */
+	function handleAuthorNode(&$conference, &$schedConf, &$authorNode, &$track, &$paper, &$errors, $authorIndex) {
 		$errors = array();
 
 		$conferenceSupportedLocales = array_keys($conference->getSupportedLocaleNames()); // => conference locales must be set up before
@@ -475,6 +485,7 @@ class NativeImportDom {
 		if (($node = $authorNode->getChildByName('country'))) $author->setCountry($node->getValue());
 		if (($node = $authorNode->getChildByName('email'))) $author->setEmail($node->getValue());
 		if (($node = $authorNode->getChildByName('url'))) $author->setUrl($node->getValue());
+		$author->setSequence($authorIndex+1); // 1-based
 		for ($index=0; ($node = $authorNode->getChildByName('affiliation', $index)); $index++) {
 			$locale = $node->getAttribute('locale');
 			if ($locale == '') {
