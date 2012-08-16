@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <!--
-  * conferenceSettings.xml
+  * registry/conferenceSettings.xml
   *
   * Copyright (c) 2000-2012 John Willinsky
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
   *
   * Default conference settings.
-  *
-  * $Id$
   -->
 
 <!DOCTYPE conference_settings [
