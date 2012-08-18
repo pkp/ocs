@@ -12,7 +12,6 @@
  * @brief Class for DAO relating tracks to directors.
  */
 
-//$Id$
 
 class TrackDirectorsDAO extends DAO {
 	/**

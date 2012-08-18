@@ -13,7 +13,6 @@
  * @brief Basic class describing a registration option.
  */
 
-//$Id$
 
 /**
  * Registration access options

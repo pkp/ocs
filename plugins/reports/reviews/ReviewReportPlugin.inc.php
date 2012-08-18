@@ -13,7 +13,6 @@
  * @brief Review report plugin
  */
 
-//$Id$
 
 import('classes.plugins.ReportPlugin');
 

@@ -15,7 +15,6 @@
  * @ingroup pages_schedConfs
  */
 
-//$Id$
 
 
 switch ($op) {

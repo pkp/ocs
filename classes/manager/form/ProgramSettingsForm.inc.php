@@ -12,7 +12,6 @@
  * @brief Form for modifying scheduled conference program settings.
  */
 
-//$Id$
 
 import('lib.pkp.classes.form.Form');
 

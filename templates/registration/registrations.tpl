@@ -6,7 +6,6 @@
  *
  * Display list of registrations in scheduled conference management.
  *
- * $Id$
  *}
 {strip}
 {assign var="pageTitle" value="manager.registration"}

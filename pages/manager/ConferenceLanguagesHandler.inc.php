@@ -12,7 +12,6 @@
  * @brief Handle requests for changing conference language settings.
  */
 
-//$Id$
 
 import('pages.manager.ManagerHandler');
 

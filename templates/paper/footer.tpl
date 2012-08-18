@@ -6,7 +6,6 @@
  *
  * Paper View -- Footer component.
  *
- * $Id$
  *}
 {call_hook name="Templates::Paper::Footer::PageFooter"}
 </div>

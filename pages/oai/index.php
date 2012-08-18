@@ -15,7 +15,6 @@
  * @ingroup pages_oai
  */
 
-//$Id$
 
 
 switch ($op) {

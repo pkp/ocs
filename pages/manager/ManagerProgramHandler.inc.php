@@ -12,7 +12,6 @@
  * @brief Handle requests for changing scheduled conference program settings. 
  */
 
-//$Id$
 
 import('pages.manager.ManagerHandler');
 

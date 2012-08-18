@@ -12,7 +12,6 @@
  * @brief Supplementary file form.
  */
 
-//$Id$
 
 import('lib.pkp.classes.form.Form');
 

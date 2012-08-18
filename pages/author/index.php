@@ -15,7 +15,6 @@
  * @ingroup pages_author
  */
 
-//$Id$
 
 
 switch ($op) {

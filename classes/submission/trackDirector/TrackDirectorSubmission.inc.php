@@ -13,7 +13,6 @@
  * @brief TrackDirectorSubmission class.
  */
 
-//$Id$
 
 import('classes.paper.Paper');
 

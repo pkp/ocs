@@ -6,7 +6,6 @@
  *
  * Time block form under Scheduler.
  *
- * $Id$
  *}
 {strip}
 {assign var="pageCrumbTitle" value="$timeBlockTitle"}

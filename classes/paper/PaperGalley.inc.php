@@ -13,7 +13,6 @@
  * @brief A galley is a final presentation version of the full-text of a paper.
  */
 
-//$Id$
 
 import('classes.paper.PaperFile');
 

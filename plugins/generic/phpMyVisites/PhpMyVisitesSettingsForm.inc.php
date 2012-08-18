@@ -11,7 +11,6 @@
  *
  * Form for conference managers to modify phpMyVisites plugin settings
  *
- * $Id$
  */
 
 import('lib.pkp.classes.form.Form');

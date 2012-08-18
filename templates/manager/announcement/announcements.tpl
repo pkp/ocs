@@ -6,7 +6,6 @@
  *
  * Display list of announcements in conference management.
  *
- * $Id$
  *}
 {strip}
 {assign var="pageTitle" value="manager.announcements"}

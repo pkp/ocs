@@ -6,7 +6,6 @@
  *
  * Submission review.
  *
- * $Id$
  *}
 {strip}
 {if $submission->getReviewMode() == $smarty.const.REVIEW_MODE_BOTH_SIMULTANEOUS}

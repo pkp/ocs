@@ -15,7 +15,6 @@
  * @ingroup pages_paper
  */
 
-//$Id$
 
 
 switch ($op) {

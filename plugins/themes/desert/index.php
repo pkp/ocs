@@ -15,7 +15,6 @@
  * @ingroup plugins_themes_desert
  */
 
-//$Id$
 
 require_once('DesertThemePlugin.inc.php');
 

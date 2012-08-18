@@ -13,7 +13,6 @@
  * @brief Paper file class.
  */
 
-// $Id$
 
 
 import('lib.pkp.classes.submission.SubmissionFile');

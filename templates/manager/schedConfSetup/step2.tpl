@@ -6,7 +6,6 @@
  *
  * Step 3 of conference setup.
  *
- * $Id$
  *}
 {assign var="pageTitle" value="manager.schedConfSetup.submissions.title"}
 {include file="manager/schedConfSetup/setupHeader.tpl"}

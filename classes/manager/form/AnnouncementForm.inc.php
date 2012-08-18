@@ -16,7 +16,6 @@
  * @brief Form for conference managers to create/edit announcements.
  */
 
-// $Id$
 
 import('lib.pkp.classes.manager.form.PKPAnnouncementForm');
 

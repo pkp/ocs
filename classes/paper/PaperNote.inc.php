@@ -13,7 +13,6 @@
  * @brief Class for PaperNote.
  */
 
-// $Id$
 
 
 import('classes.note.Note');

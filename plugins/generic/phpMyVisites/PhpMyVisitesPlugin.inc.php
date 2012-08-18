@@ -11,7 +11,6 @@
  *
  * phpMyVisites plugin class
  *
- * $Id$
  */
 
 import('lib.pkp.classes.plugins.GenericPlugin');

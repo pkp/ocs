@@ -15,7 +15,6 @@
  * @ingroup plugins_themes_night
  */
 
-//$Id$
 
 require_once('NightThemePlugin.inc.php');
 

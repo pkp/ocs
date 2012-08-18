@@ -12,7 +12,6 @@
  * @brief Handle requests for changing scheduled conference accommodation settings. 
  */
 
-//$Id$
 
 import('pages.manager.ManagerHandler');
 

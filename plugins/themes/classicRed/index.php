@@ -15,7 +15,6 @@
  * @ingroup plugins_themes_classicRed
  */
 
-//$Id$
 
 require_once('ClassicRedThemePlugin.inc.php');
 

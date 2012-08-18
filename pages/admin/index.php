@@ -15,7 +15,6 @@
  * @ingroup pages_admin
  */
 
-//$Id$
 
 
 switch ($op) {

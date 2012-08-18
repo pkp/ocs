@@ -6,7 +6,6 @@
  *
  * Display list of tracks in conference management.
  *
- * $Id$
  *}
 {strip}
 {assign var="pageTitle" value="track.tracks"}

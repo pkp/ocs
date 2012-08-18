@@ -6,7 +6,6 @@
  *
  * Display list of rooms in the Scheduler in conference management.
  *
- * $Id$
  *}
 {strip}
 {assign var="pageTitle" value="manager.scheduler.rooms"}

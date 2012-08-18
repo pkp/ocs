@@ -12,7 +12,6 @@
  * @brief Form for Step 1 of conference setup.
  */
 
-//$Id$
 
 import('classes.manager.form.setup.ConferenceSetupForm');
 

@@ -15,7 +15,6 @@
  * @ingroup plugins_importexport_native
  */
 
-//$Id$
 
 require_once('NativeImportExportPlugin.inc.php');
 

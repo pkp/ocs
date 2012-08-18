@@ -13,7 +13,6 @@
  * @brief Operations for retrieving and modifying RegistrationOption objects.
  */
 
-//$Id$
 
 import('classes.registration.RegistrationOption');
 

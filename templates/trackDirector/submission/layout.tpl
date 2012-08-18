@@ -6,7 +6,6 @@
  *
  * Subtemplate defining the layout editing table.
  *
- * $Id$
  *}
 {assign var=layoutFile value=$submission->getLayoutFile()}
 <div id="layout">

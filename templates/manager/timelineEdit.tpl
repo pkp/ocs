@@ -6,7 +6,6 @@
  *
  * Timeline management page.
  *
- * $Id$
  *}
 {strip}
 {assign var="pageTitle" value="manager.timeline.conferenceTimeline"}

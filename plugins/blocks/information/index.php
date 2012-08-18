@@ -11,7 +11,6 @@
  * @brief Wrapper for information block plugin.
  */
 
-//$Id$
 
 require_once('InformationBlockPlugin.inc.php');
 

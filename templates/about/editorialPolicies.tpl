@@ -6,7 +6,6 @@
  *
  * About the Conference / Editorial Policies.
  * 
- * $Id$
  *}
 {strip}
 {assign var="pageTitle" value="about.conferencePolicies"}

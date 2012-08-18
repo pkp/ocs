@@ -13,7 +13,6 @@
  * @brief dc metadata format plugin for OAI.
  */
 
-// $Id$
 
 
 import('classes.plugins.OAIMetadataFormatPlugin');

@@ -6,7 +6,6 @@
  *
  * About the Conference Registration.
  *
- * $Id$
  *}
 {strip}
 {assign var="pageTitle" value="about.registration"}

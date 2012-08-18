@@ -6,7 +6,6 @@
  *
  * Prompt for track "context" for article import
  *
- * $Id$
  *}
 {strip}
 {assign var="pageTitle" value="plugins.importexport.native.import.papers"}

@@ -15,7 +15,6 @@
  * @brief Contains descriptive constants for paper and conference event logs.
  */
 
-//$Id$
 
 // Log levels
 define('LOG_LEVEL_INFO', 'I');

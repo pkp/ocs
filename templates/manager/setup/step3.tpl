@@ -6,7 +6,6 @@
  *
  * Step 3 of conference setup.
  *
- * $Id$
  *}
 {assign var="pageTitle" value="manager.setup.layout.title"}
 {include file="manager/setup/setupHeader.tpl"}

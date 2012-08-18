@@ -6,7 +6,6 @@
  *
  * Author's submission review.
  *
- * $Id$
  *}
 {strip}
 {if $submission->getReviewMode() == REVIEW_MODE_BOTH_SIMULTANEOUS}

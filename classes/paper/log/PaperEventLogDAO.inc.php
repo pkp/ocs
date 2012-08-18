@@ -13,7 +13,6 @@
  * @brief Class for inserting/accessing paper history log entries.
  */
 
-//$Id$
 
 import ('classes.paper.log.PaperEventLogEntry');
 

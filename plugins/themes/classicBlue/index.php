@@ -15,7 +15,6 @@
  * @ingroup plugins_themes_classicBlue
  */
 
-//$Id$
 
 require_once('ClassicBlueThemePlugin.inc.php');
 

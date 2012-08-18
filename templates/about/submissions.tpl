@@ -6,7 +6,6 @@
  *
  * About the Conference / Submissions.
  *
- * $Id$
  *}
 {strip}
 {assign var="pageTitle" value="about.submissions"}

@@ -7,7 +7,6 @@
  * Show submission regrets/cancels/earlier rounds
  *
  *
- * $Id$
  *}
 {strip}
 {translate|assign:"pageTitleTranslated" key="trackDirector.regrets.title" paperId=$submission->getId()}

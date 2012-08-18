@@ -15,7 +15,6 @@
  * @ingroup plugins_citationFormats_proCite
  */
 
-//$Id$
 
 require_once('ProCiteCitationPlugin.inc.php');
 

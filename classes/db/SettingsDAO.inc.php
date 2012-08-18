@@ -12,7 +12,6 @@
  * @brief Operations for retrieving and modifying settings.
  */
 
-//$Id$
 
 class SettingsDAO extends DAO {
 	/**

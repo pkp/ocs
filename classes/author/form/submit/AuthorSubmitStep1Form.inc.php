@@ -12,7 +12,6 @@
  * @brief Form for Step 1 of author paper submission.
  */
 
-//$Id$
 
 import('classes.author.form.submit.AuthorSubmitForm');
 

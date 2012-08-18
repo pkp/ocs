@@ -13,7 +13,6 @@
  * @brief AuthorSubmission class.
  */
 
-//$Id$
 
 import('classes.paper.Paper');
 

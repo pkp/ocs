@@ -6,7 +6,6 @@
  *
  * Display comments on a paper.
  *
- * $Id$
  *}
 <div id="comments">
 {strip}

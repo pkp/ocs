@@ -13,7 +13,6 @@
  * @brief DAO operations for the OCS OAI interface.
  */
 
-//$Id$
 
 import('lib.pkp.classes.oai.OAI');
 

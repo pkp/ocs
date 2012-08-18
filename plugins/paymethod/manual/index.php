@@ -15,7 +15,6 @@
  * @ingroup plugins_paymethod_manual
  */
 
-//$Id$
 
 require_once('ManualPaymentPlugin.inc.php');
 

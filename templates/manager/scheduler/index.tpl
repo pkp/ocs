@@ -6,7 +6,6 @@
  *
  * Main landing page for the Scheduler.
  *
- * $Id$
  *}
 {strip}
 {assign var="pageTitle" value="manager.scheduler"}

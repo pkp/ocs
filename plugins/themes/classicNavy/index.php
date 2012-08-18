@@ -15,7 +15,6 @@
  * @ingroup plugins_themes_classicNavy
  */
 
-//$Id$
 
 require_once('ClassicNavyThemePlugin.inc.php');
 

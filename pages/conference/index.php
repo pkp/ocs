@@ -15,7 +15,6 @@
  * @ingroup pages_conference
  */
 
-//$Id$
 
 
 switch ($op) {

@@ -15,7 +15,6 @@
  * @ingroup plugins_citationFormats_turabian
  */
 
-//$Id$
 
 require_once('TurabianCitationPlugin.inc.php');
 

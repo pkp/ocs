@@ -15,7 +15,6 @@
  * @ingroup plugins_citationFormats_endNote
  */
 
-//$Id$
 
 require_once('EndNoteCitationPlugin.inc.php');
 

@@ -6,7 +6,6 @@
  *
  * Basic conference settings under site administration.
  *
- * $Id$
  *}
 {strip}
 {assign var="pageTitle" value="admin.conferences.conferenceSettings"}

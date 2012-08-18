@@ -19,7 +19,6 @@
  * FIXME: NEAR; precedence w/o parens?; stemming; weighted counting
  */
 
-//$Id$
 
 // Search types
 define('PAPER_SEARCH_AUTHOR',		0x00000001);

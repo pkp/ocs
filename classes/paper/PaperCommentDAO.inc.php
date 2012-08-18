@@ -13,7 +13,6 @@
  * @brief Operations for retrieving and modifying PaperComment objects.
  */
 
-//$Id$
 
 import('classes.paper.PaperComment');
 

@@ -7,7 +7,6 @@
  * Scheduled conference index page. Displayed when both a conference and a
  * scheduled conference have been specified.
  *
- * $Id$
  *}
 {*
  * The page and crumb titles differ here since the breadcrumbs already include

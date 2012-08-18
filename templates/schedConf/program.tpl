@@ -6,7 +6,6 @@
  *
  * Scheduled conference program page.
  *
- * $Id$
  *}
 {strip}
 {translate|assign:"pageTitleTranslated" key="schedConf.program.title"}

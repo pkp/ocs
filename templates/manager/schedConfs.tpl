@@ -6,7 +6,6 @@
  *
  * Display list of scheduled conferences in site administration.
  *
- * $Id$
  *}
 {strip}
 {assign var="pageTitle" value="schedConf.scheduledConferences"}

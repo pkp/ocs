@@ -6,7 +6,6 @@
  *
  * Scheduled conference call-for-papers page.
  *
- * $Id$
  *}
 {strip}
 {translate|assign:"pageTitleTranslated" key="schedConf.cfp.title"}

@@ -12,7 +12,6 @@
  * @brief An HTML galley may include an optional stylesheet and set of images.
  */
 
-//$Id$
 
 import('classes.paper.PaperGalley');
 

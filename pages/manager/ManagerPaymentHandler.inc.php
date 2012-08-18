@@ -12,7 +12,6 @@
  * @brief Handle requests for configuring payments. 
  */
 
-//$Id$
 
 import('pages.manager.ManagerHandler');
 

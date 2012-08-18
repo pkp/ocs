@@ -16,7 +16,6 @@
  * @ingroup pages_payment
  */
 
-//$Id$
 
 
 switch ($op) {

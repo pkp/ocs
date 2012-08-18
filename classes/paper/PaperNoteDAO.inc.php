@@ -13,7 +13,6 @@
  * @brief Operations for retrieving and modifying PaperNote objects.
  */
 
-// $Id$
 
 
 import('classes.paper.PaperNote');

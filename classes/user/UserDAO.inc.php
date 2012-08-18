@@ -13,7 +13,6 @@
  * @brief Operations for retrieving and modifying User objects.
  */
 
-// $Id$
 
 import('classes.user.User');
 import('lib.pkp.classes.user.PKPUserDAO');

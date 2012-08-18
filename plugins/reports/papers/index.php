@@ -15,7 +15,6 @@
  * @ingroup plugins_reports_paper
  */
 
-//$Id$
 
 require_once('PaperReportPlugin.inc.php');
 

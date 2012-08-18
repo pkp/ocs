@@ -6,7 +6,6 @@
  *
  * Paper reading tools -- Capture Citation for ABNT
  *
- * $Id$
  *}
 <div class="separator"></div>
 <div id="citation">

@@ -14,7 +14,6 @@
  * FIXME: add cacheable pages
  */
 
-// $Id$
 
 
 import('lib.pkp.classes.core.PKPPageRouter');

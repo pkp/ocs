@@ -13,7 +13,6 @@
  * @brief Class for DAO relating reviewers to papers.
  */
 
-// $Id$
 
 
 import('classes.submission.reviewAssignment.ReviewAssignment');

@@ -11,7 +11,6 @@
  *
  */
 
-// $Id$
 
 
 require_once('OAIMetadataFormatPlugin_MARC21.inc.php');

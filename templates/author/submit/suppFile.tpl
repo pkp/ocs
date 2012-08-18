@@ -6,7 +6,6 @@
  *
  * Add/edit a supplementary file.
  *
- * $Id$
  *}
 {if $showAbstractSteps && !$showPaperSteps}
 	{assign var="pageTitle" value="author.submit.supplementaryFilesInfoAbstractOnly"}

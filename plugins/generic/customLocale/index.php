@@ -10,7 +10,6 @@
  *
  * @package plugins.generic.customLocale
  *
- * $Id$
  */
 
 require_once('CustomLocalePlugin.inc.php');

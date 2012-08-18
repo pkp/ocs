@@ -12,7 +12,6 @@
  * @brief Handle login/logout requests. 
  */
 
-//$Id$
 
 
 import('lib.pkp.pages.login.PKPLoginHandler');

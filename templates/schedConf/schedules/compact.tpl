@@ -6,7 +6,6 @@
  *
  * Scheduled conference schedule page (compact version).
  *
- * $Id$
  *}
 {strip}
 {translate|assign:"pageTitleTranslated" key="schedConf.schedule.title"}

@@ -15,7 +15,6 @@
  * @ingroup plugins_importexport_users
  */
 
-//$Id$
 
 require_once('UserImportExportPlugin.inc.php');
 

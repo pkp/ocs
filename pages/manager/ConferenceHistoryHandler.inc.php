@@ -12,7 +12,6 @@
  * @brief Handle requests for conference event log funcs.
  */
 
-//$Id$
 
 import('pages.manager.ManagerHandler');
 

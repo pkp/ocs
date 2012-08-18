@@ -12,7 +12,6 @@
  * @brief Turabian citation format plugin
  */
 
-//$Id$
 
 import('classes.plugins.CitationPlugin');
 

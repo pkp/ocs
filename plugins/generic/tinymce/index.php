@@ -15,7 +15,6 @@
  * @ingroup plugins_generic_tinymce
  */
 
-//$Id$
 
 require_once('TinyMCEPlugin.inc.php');
 

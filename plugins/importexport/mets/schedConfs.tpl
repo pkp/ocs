@@ -6,7 +6,6 @@
  *
  * List of conference papers to potentially export
  *
- * $Id$
  *}
 {strip}
 {assign var="pageTitle" value="plugins.importexport.METSExport.export.selectschedConfs"}

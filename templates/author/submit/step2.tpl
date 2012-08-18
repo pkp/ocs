@@ -6,7 +6,6 @@
  *
  * Step 2 of author paper submission.
  *
- * $Id$
  *}
 
 {if !$showAbstractSteps}

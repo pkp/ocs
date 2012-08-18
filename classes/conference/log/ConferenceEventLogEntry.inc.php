@@ -13,7 +13,6 @@
  * @brief Describes an entry in the conference history log.
  */
 
-//$Id$
 
 import('classes.log.EventLogConstants');
 

@@ -6,7 +6,6 @@
  *
  * Display list of buildings in the Scheduler in conference management.
  *
- * $Id$
  *}
 {strip}
 {assign var="pageTitle" value="manager.scheduler.buildings"}

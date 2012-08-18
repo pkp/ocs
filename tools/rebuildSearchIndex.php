@@ -12,7 +12,6 @@
  * @brief CLI tool to rebuild the paper keyword search database.
  */
 
-//$Id$
 
 require(dirname(__FILE__) . '/bootstrap.inc.php');
 

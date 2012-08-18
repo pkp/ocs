@@ -7,7 +7,6 @@
  * This template is for the site index, which is displayed when neither
  * a conference nor an scheduled conference are specified.
  *
- * $Id$
  *}
 {strip}
 {if $siteTitle}

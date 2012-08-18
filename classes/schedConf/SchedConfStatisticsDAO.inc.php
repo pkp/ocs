@@ -12,7 +12,6 @@
  * @brief Operations for retrieving scheduled conference statistics.
  */
 
-//$Id$
 
 define('REPORT_TYPE_CONFERENCE',	0x00001);
 define('REPORT_TYPE_SCHED_CONF',	0x00002);

@@ -6,7 +6,6 @@
  *
  * List of papers to potentially export
  *
- * $Id$
  *}
 {strip}
 {assign var="pageTitle" value="plugins.importexport.native.selectPaper"}

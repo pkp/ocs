@@ -6,7 +6,6 @@
  *
  * Director submissions page(s).
  *
- * $Id$
  *}
 {strip}
 {assign var="pageTitle" value="common.queue.long.$pageToDisplay"}

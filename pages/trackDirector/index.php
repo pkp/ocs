@@ -15,7 +15,6 @@
  * @ingroup pages_trackDirector
  */
 
-//$Id$
 
 switch ($op) {
 	//

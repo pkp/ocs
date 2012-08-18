@@ -13,7 +13,6 @@
  * @brief Basic class describing a room.
  */
 
-//$Id$
 
 class Room extends DataObject {
 	//

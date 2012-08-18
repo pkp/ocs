@@ -14,7 +14,6 @@
  * Operations for retrieving and modifying Transactions objects.
  */
 
-//$Id$
 
 import('lib.pkp.classes.db.DAO');
 

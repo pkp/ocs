@@ -6,7 +6,6 @@
  *
  * Reference Manager citation format generator
  *
- * $Id$
  *}
 {if $galleyId}
 {url|assign:"paperUrl" page="paper" op="view" path=$paperId|to_array:$galleyId}

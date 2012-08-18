@@ -15,7 +15,6 @@
  * @ingroup plugins_themes_classicBrown
  */
 
-//$Id$
 
 require_once('ClassicBrownThemePlugin.inc.php');
 

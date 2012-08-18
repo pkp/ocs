@@ -12,7 +12,6 @@
  *
  * @brief Operations for retrieving and modifying DirectorSubmission objects.
  *
- * $Id$
  */
 
 import('classes.submission.director.DirectorSubmission');

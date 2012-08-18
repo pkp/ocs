@@ -15,7 +15,6 @@
  * @ingroup plugins_themes_uncommon
  */
 
-//$Id$
 
 require_once('UncommonThemePlugin.inc.php');
 

@@ -13,7 +13,6 @@
  * @brief DAO class for paper search index.
  */
 
-//$Id$
 
 import('classes.search.PaperSearch');
 import('classes.paper.Paper');

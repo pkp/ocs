@@ -9,7 +9,6 @@
   * Localized email templates XML file.
   * Translated by Ivo Vesely and Petr Petyovsky (petyovsky 'at' feec.vutbr.cz)
   *
-  * $Id: emailTemplates.xml 225 2011-06-24 12:33:10Z petyovsky $
   -->
 <email_texts locale="cs_CZ">
 	<email_text key="NOTIFICATION">

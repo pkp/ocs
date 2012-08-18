@@ -6,7 +6,6 @@
  *
  * Basic conference settings under site administration.
  *
- * $Id$
  *}
 {strip}
 {if !$isNewTemplate}

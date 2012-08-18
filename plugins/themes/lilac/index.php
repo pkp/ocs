@@ -15,7 +15,6 @@
  * @ingroup plugins_themes_lilac
  */
 
-//$Id$
 
 require_once('LilacThemePlugin.inc.php');
 

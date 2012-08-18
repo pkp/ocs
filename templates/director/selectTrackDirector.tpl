@@ -6,7 +6,6 @@
  *
  * List directors or track directors and give the ability to select one.
  *
- * $Id$
  *}
 {strip}
 {assign var="pageTitle" value=$roleName|concat:"s"}

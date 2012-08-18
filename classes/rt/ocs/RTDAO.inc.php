@@ -13,7 +13,6 @@
  * @brief DAO operations for the OCS Reading Tools interface.
  */
 
-//$Id$
 
 import('classes.rt.ocs.ConferenceRT');
 

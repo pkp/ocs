@@ -6,7 +6,6 @@
  *
  * Display list of registration options in scheduled conference management.
  *
- * $Id$
  *}
 {assign var="pageTitle" value="manager.registrationOptions"}
 {assign var="pageId" value="manager.registrationOptions"}

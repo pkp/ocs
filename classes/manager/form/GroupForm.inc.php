@@ -13,7 +13,6 @@
  * @brief Form for conference managers to create/edit groups.
  */
 
-// $Id$
 
 
 import('lib.pkp.classes.form.Form');

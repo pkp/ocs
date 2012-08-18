@@ -15,7 +15,6 @@
  * @ingroup plugins_citationFormats_abnt
  */
 
-//$Id$
 
 require_once('AbntCitationPlugin.inc.php');
 

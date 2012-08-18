@@ -12,7 +12,6 @@
  * @brief Handle requests for author paper submission.
  */
 
-//$Id$
 
 import('pages.author.AuthorHandler');
 

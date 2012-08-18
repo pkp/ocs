@@ -6,7 +6,6 @@
  *
  * Paper View.
  *
- * $Id$
  *}
 {strip}
 {assign var="pageTitle" value="schedConf.presentations.short"}

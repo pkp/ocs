@@ -6,7 +6,6 @@
  *
  * Paper reading tools -- author bio page.
  *
- * $Id$
  *}
 {strip}
 {assign var=pageTitle value="rt.authorBio"}

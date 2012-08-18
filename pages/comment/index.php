@@ -15,7 +15,6 @@
  * @ingroup pages_comment
  */
 
-//$Id$
 
 
 switch ($op) {

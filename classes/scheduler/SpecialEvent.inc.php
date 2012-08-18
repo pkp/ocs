@@ -17,7 +17,6 @@
  * @brief Basic class describing a specialEvent.
  */
 
-//$Id$
 
 class SpecialEvent extends DataObject {
 	//

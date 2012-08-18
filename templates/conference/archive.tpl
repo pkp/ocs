@@ -7,7 +7,6 @@
  * Conference index page. Displayed when a conference, but not a scheduled
  * conference, has been selected.
  *
- * $Id$
  *}
 {strip}
 {assign var="pageTitleTranslated" value=$conferenceTitle}

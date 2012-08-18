@@ -12,7 +12,6 @@
  * @brief Form for modifying conference language settings.
  */
 
-//$Id$
 
 import('lib.pkp.classes.form.Form');
 

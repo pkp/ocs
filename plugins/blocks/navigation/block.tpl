@@ -6,7 +6,6 @@
  *
  * Common site sidebar menu -- navigation links.
  *
- * $Id$
  *}
 	<div class="block" id="sidebarNavigation">
 		<span class="blockTitle">{translate key="plugins.block.navigation.conferenceContent"}</span>

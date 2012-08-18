@@ -11,7 +11,6 @@
  *
  * Form for conference manager to create/edit time blocks for scheduler.
  *
- * $Id$
  */
 
 import('lib.pkp.classes.form.Form');

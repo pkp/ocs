@@ -7,7 +7,6 @@
  * Interstitial page used to display a note about plugins
  * before sending browser directly to the PDF file
  *
- * $Id$
  *}
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"

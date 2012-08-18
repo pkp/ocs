@@ -13,7 +13,6 @@
  *
  */
 
-// $Id$
 
 
 require_once('TranslatorAction.inc.php');

@@ -13,7 +13,6 @@
  * @brief Operations for retrieving and modifying SchedConf objects.
  */
 
-//$Id$
 
 import ('classes.schedConf.SchedConf');
 

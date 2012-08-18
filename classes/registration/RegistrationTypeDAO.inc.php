@@ -13,7 +13,6 @@
  * @brief Operations for retrieving and modifying RegistrationType objects.
  */
 
-//$Id$
 
 import('classes.registration.RegistrationType');
 

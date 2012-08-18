@@ -12,7 +12,6 @@
  * @brief Handle requests for scheduled conference management in site administration.
  */
 
-//$Id$
 
 import('pages.manager.ManagerHandler');
 

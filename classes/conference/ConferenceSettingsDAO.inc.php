@@ -13,7 +13,6 @@
  * Operations for retrieving and modifying conference settings.
  */
 
-//$Id$
 
 import('classes.db.SettingsDAO');
 class ConferenceSettingsDAO extends SettingsDAO {

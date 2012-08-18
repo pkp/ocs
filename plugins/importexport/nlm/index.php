@@ -15,7 +15,6 @@
  * @ingroup plugins_citationFormats_nlm
  */
 
-//$Id$
 
 require_once('NLMExportPlugin.inc.php');
 

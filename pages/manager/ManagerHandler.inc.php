@@ -12,7 +12,6 @@
  * @brief Handle requests for conference management functions.
  */
 
-//$Id$
 
 import('classes.handler.Handler');
 

@@ -7,7 +7,6 @@
  * Director navigation sidebar.
  * Lists active assignments and director functions.
  *
- * $Id$
  *}
 <div class="block" id="sidebarDirector">
 	<span class="blockTitle">{translate key="user.role.director"}</span>

@@ -12,7 +12,6 @@
  * @brief Form for site administrator to migrate data from an OCS 1.x system.
  */
 
-//$Id$
 
 import('classes.site.ImportOCS1');
 import('lib.pkp.classes.form.Form');

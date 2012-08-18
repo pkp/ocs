@@ -6,7 +6,6 @@
  *
  * User login form.
  *
- * $Id$
  *}
 {strip}
 {assign var="helpTopicId" value="conference.users.index"}

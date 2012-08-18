@@ -15,7 +15,6 @@
  * @ingroup plugins_citationFormats_cbe
  */
 
-//$Id$
 
 require_once('CbeCitationPlugin.inc.php');
 

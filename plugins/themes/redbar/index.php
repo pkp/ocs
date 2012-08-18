@@ -15,7 +15,6 @@
  * @ingroup plugins_themes_redbar
  */
 
-//$Id$
 
 require_once('RedbarThemePlugin.inc.php');
 

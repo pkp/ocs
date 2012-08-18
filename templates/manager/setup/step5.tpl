@@ -6,7 +6,6 @@
  *
  * Step 5 of conference setup.
  *
- * $Id$
  *}
 {assign var="pageTitle" value="manager.setup.indexing.title"}
 {include file="manager/setup/setupHeader.tpl"}

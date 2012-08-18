@@ -6,7 +6,6 @@
  *
  * Subtemplate defining the submission directors table.
  *
- * $Id$
  *}
 <div id="directors">
 <h3>{translate key="user.role.directors"}</h3>

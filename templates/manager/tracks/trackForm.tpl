@@ -6,7 +6,6 @@
  *
  * Form to create/modify a conference track.
  *
- * $Id$
  *}
 {strip}
 {assign var="pageTitle" value="track.track"}

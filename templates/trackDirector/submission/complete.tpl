@@ -6,7 +6,6 @@
  *
  * Subtemplate defining the "complete" button for submissions.
  *
- * $Id$
  *}
 <div id="complete">
 <h3>{translate key="submission.complete"}</h3>

@@ -12,7 +12,6 @@
  * @brief Static class for adding / accessing paper log entries.
  */
 
-//$Id$
 
 class PaperLog {
 

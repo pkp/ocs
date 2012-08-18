@@ -6,7 +6,6 @@
  *
  * About the Conference / Conference Contact.
  *
- * $Id$
  *}
 {strip}
 {assign var="pageTitle" value="about.conferenceContact"}

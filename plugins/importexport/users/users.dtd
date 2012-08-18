@@ -6,7 +6,6 @@
   *
   * Usernames and passwords are optional and will be generated automatically if omitted.
   *
-  * $Id$
   -->
 
 <!ELEMENT users (user*)>

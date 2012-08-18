@@ -6,7 +6,6 @@
  *
  * Display list of time blocks in the Scheduler in conference management.
  *
- * $Id$
  *}
 {strip}
 {assign var="pageTitle" value="manager.scheduler.timeBlocks"}

@@ -12,7 +12,6 @@
  * @brief Handle requests for track management functions. 
  */
 
-//$Id$
 
 import('pages.manager.ManagerHandler');
 

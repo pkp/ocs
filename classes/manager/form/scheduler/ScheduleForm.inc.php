@@ -16,7 +16,6 @@
  * @brief Form for conference manager to for schedule presentations.
  */
 
-//$Id$
 
 import('lib.pkp.classes.form.Form');
 

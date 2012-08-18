@@ -6,7 +6,6 @@
  *
  * Site registration.
  *
- * $Id$
  *}
 {strip}
 {assign var="pageTitle" value="navigation.account"}

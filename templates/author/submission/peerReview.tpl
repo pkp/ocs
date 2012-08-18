@@ -6,7 +6,6 @@
  *
  * Subtemplate defining the author's peer review table.
  *
- * $Id$
  *}
 
 <div id="peerReview">

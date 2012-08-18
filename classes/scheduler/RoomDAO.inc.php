@@ -13,7 +13,6 @@
  * @brief Operations for retrieving and modifying Room objects.
  */
 
-//$Id$
 
 import('classes.scheduler.Room');
 

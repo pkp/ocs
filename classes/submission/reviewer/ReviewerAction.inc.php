@@ -13,7 +13,6 @@
  *
  */
 
-// $Id$
 
 
 import('classes.submission.common.Action');

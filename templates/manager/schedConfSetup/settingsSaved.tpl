@@ -6,7 +6,6 @@
  *
  * Show confirmation after saving settings.
  *
- * $Id$
  *}
 {assign var="pageTitle" value="manager.schedConfSetup.schedConfSetup"}
 {include file="manager/schedConfSetup/setupHeader.tpl"}

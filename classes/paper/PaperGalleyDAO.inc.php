@@ -13,7 +13,6 @@
  * @brief Operations for retrieving and modifying PaperGalley/PaperHTMLGalley objects.
  */
 
-//$Id$
 
 import('classes.paper.PaperGalley');
 import('classes.paper.PaperHTMLGalley');

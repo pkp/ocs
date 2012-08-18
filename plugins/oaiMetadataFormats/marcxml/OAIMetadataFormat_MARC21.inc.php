@@ -13,7 +13,6 @@
  * @brief OAI metadata format class -- MARC21 (MARCXML).
  */
 
-// $Id$
 
 
 class OAIMetadataFormat_MARC21 extends OAIMetadataFormat {

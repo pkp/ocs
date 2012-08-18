@@ -12,7 +12,6 @@
  * @brief CBE citation format plugin
  */
 
-//$Id$
 
 import('classes.plugins.CitationPlugin');
 

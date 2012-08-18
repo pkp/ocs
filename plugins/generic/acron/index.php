@@ -15,7 +15,6 @@
  * @ingroup plugins_generic_acron
  */
 
-//$Id$
 
 require_once('AcronPlugin.inc.php');
 

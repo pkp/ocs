@@ -6,7 +6,6 @@
  *
  * Show reviewer's active submissions.
  *
- * $Id$
  *}
 
 <div id="submissions">

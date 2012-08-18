@@ -13,7 +13,6 @@
  * @brief NLM XML export plugin DOM functions
  */
 
-//$Id$
 
 import('lib.pkp.classes.xml.XMLCustomWriter');
 

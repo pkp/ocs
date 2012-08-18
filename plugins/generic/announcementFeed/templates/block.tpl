@@ -6,7 +6,6 @@
  *
  * Announcement feed plugin navigation sidebar.
  *
- * $Id$
  *}
 <div class="block" id="sidebarAnnouncementFeed">
 	<span class="blockTitle">{translate key="announcement.announcements"}</span>	

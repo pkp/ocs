@@ -6,7 +6,6 @@
  *
  * Attendee self-registration page.
  *
- * $Id$
  *}
 {strip}
 {assign var="pageTitle" value="schedConf.registration"}

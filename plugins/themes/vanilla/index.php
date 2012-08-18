@@ -15,7 +15,6 @@
  * @ingroup plugins_themes_vanilla
  */
 
-//$Id$
 
 require_once('VanillaThemePlugin.inc.php');
 

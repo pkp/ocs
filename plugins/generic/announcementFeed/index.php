@@ -10,7 +10,6 @@
  *
  * @package plugins.generic.announcementFeed
  *
- * $Id$
  */
 
 require_once('AnnouncementFeedPlugin.inc.php');

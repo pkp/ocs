@@ -12,7 +12,6 @@
  * @brief Handle conference index requests.
  */
 
-//$Id$
 
 
 import('classes.handler.Handler');

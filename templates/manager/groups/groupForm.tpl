@@ -6,7 +6,6 @@
  *
  * Group form under conference management.
  *
- * $Id$
  *}
 {strip}
 {assign var="pageId" value="manager.groups.groupForm"}

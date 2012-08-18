@@ -12,7 +12,6 @@
  * @brief Handle requests for organizing team management functions.
  */
 
-//$Id$
 
 import('pages.manager.ManagerHandler');
 

@@ -13,7 +13,6 @@
  * @brief Registrant report plugin
  */
 
-//$Id$
 
 import('classes.plugins.ReportPlugin');
 

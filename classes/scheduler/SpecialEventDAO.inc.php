@@ -13,7 +13,6 @@
  * @brief Operations for retrieving and modifying SpecialEvent objects.
  */
 
-//$Id$
 
 import('classes.scheduler.SpecialEvent');
 

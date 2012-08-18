@@ -13,7 +13,6 @@
  * @brief Class for PaperComment.
  */
 
-//$Id$
 
 /** Comment associative types. All types must be defined here. */
 define('COMMENT_TYPE_PEER_REVIEW', 0x01);

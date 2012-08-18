@@ -17,7 +17,6 @@
  * @brief Class for inserting/accessing conference history log entries.
  */
 
-//$Id$
 
 import ('classes.conference.log.ConferenceEventLogEntry');
 

@@ -6,7 +6,6 @@
  *
  * Director index.
  *
- * $Id$
  *}
 {strip}
 {assign var="pageTitle" value="director.home"}

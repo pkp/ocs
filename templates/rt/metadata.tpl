@@ -6,7 +6,6 @@
  *
  * Paper reading tools -- paper metadata page.
  *
- * $Id$
  *}
 {strip}
 {assign var=pageTitle value="rt.viewMetadata"}

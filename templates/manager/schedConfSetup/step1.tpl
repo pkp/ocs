@@ -6,7 +6,6 @@
  *
  * Step 1 of scheduled conference setup.
  *
- * $Id$
  *}
 {assign var="pageTitle" value="manager.schedConfSetup.details.title"}
 {include file="manager/schedConfSetup/setupHeader.tpl"}

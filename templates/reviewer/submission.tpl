@@ -8,7 +8,6 @@
  *
  * FIXME: At "Notify The Director", fix the date.
  *
- * $Id$
  *}
 {strip}
 {assign var="paperId" value=$submission->getId()}

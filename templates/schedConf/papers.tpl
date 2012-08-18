@@ -6,7 +6,6 @@
  *
  * Issue
  *
- * $Id$
  *}
 {strip}
 {assign var="pageTitle" value="schedConf.presentations"}

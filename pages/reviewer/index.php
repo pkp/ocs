@@ -15,7 +15,6 @@
  * @ingroup pages_reviewer
  */
 
-//$Id$
 
 
 switch ($op) {

@@ -12,7 +12,6 @@
  * @brief Form for Step 2 of scheduled conference setup.
  */
 
-//$Id$
 
 import('classes.manager.form.schedConfSetup.SchedConfSetupForm');
 

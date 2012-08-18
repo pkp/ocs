@@ -6,7 +6,6 @@
  *
  * Header for the paper submission pages.
  *
- * $Id$
  *}
 {strip}
 {assign var="pageCrumbTitle" value="author.submit"}

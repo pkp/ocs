@@ -6,7 +6,6 @@
  *
  * Subtemplate defining the submission metadata table. Non-form implementation.
  *
- * $Id$
  *}
 <div id="metadata">
 <h3>{translate key="submission.metadata"}</h3>

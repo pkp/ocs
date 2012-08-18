@@ -8,7 +8,6 @@
   *
   * Email templates XML file.
   *
-  * $Id$
   -->
 <emails>
 	<email key="PAYPAL_INVESTIGATE_PAYMENT" can_edit="1" can_disable="0"/>

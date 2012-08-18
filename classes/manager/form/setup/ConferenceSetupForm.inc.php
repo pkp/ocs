@@ -16,7 +16,6 @@
  * @brief Base class for conference setup forms.
  */
 
-//$Id$
 
 import('classes.manager.form.setup.ConferenceSetupForm');
 import('lib.pkp.classes.form.Form');

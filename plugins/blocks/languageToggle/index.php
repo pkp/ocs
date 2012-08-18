@@ -11,7 +11,6 @@
  * @brief Wrapper for language selector block plugin.
  */
 
-//$Id$
 
 require_once('LanguageToggleBlockPlugin.inc.php');
 

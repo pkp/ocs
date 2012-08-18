@@ -13,7 +13,6 @@
  * @brief Class for DAO relating directors to papers.
  */
 
-//$Id$
 
 import('classes.submission.editAssignment.EditAssignment');
 

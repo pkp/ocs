@@ -6,7 +6,6 @@
  *
  * Migration conflicts list
  *
- * $Id$
  *}
 {strip}
 {include file="common/header.tpl"}

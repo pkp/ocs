@@ -13,7 +13,6 @@
  * @brief Paper author metadata class.
  */
 
-// $Id$
 
 
 import('lib.pkp.classes.submission.PKPAuthor');

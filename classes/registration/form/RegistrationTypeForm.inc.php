@@ -12,7 +12,6 @@
  * @brief Form for scheduled conference managers to create/edit registration types.
  */
 
-//$Id$
 
 import('lib.pkp.classes.form.Form');
 

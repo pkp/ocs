@@ -12,7 +12,6 @@
   * Corrections, migration to the OCS 2.3.x by Ivo Vesely and Petr Petyovsky (petyovsky 'at' feec.vutbr.cz)
   *   
   *
-  * $Id: locale.xml 234 2012-01-05 21:20:00Z petyovsky $
   -->
 
 <locale name="cs_CZ" full_name="Čeština">

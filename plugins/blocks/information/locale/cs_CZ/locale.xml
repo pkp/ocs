@@ -11,7 +11,6 @@
   * Translated by Michael Stencl (michael.stencl 'at' gmail.com)
   * Corrections, migration to the OCS 2.3.x by Petr Petyovsky (petyovsky 'at' feec.vutbr.cz)
   *
-  * $Id: locale.xml 219 2011-06-21 21:11:53Z petyovsky $
   -->
  
 <locale name="cs_CZ" full_name="Čeština">

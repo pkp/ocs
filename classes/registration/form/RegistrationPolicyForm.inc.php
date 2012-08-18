@@ -12,7 +12,6 @@
  * @brief Form for managers to setup registration policies.
  */
 
-//$Id$
 
 define('REGISTRATION_EXPIRY_REMINDER_BEFORE_MONTHS_MIN', '1');
 define('REGISTRATION_EXPIRY_REMINDER_BEFORE_MONTHS_MAX', '12');

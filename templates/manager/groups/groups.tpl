@@ -6,7 +6,6 @@
  *
  * Display list of groups in conference management.
  *
- * $Id$
  *}
 {strip}
 {assign var="pageTitle" value="manager.groups"}

@@ -13,7 +13,6 @@
  *
  */
 
-// $Id$
 
 
 import('lib.pkp.classes.scheduledTask.ScheduledTask');

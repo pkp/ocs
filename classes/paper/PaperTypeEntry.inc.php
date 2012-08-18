@@ -13,7 +13,6 @@
  * @brief Basic class describing a paper type.
  */
 
-//$Id$
 
 
 import('lib.pkp.classes.controlledVocab.ControlledVocabEntry');

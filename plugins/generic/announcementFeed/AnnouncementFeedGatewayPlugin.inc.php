@@ -11,7 +11,6 @@
  *
  * Gateway component of announcement feed plugin
  *
- * $Id$
  */
 
 import('classes.plugins.GatewayPlugin');

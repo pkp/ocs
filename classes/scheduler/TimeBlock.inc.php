@@ -12,7 +12,6 @@
  * TimeBlock class.
  * Basic class describing a block of time available for scheduling.
  *
- * $Id$
  */
 
 class TimeBlock extends DataObject {

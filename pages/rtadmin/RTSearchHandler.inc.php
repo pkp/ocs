@@ -12,7 +12,6 @@
  * @brief Handle Reading Tools administration requests -- contexts section.
  */
 
-//$Id$
 
 import('classes.rt.ocs.ConferenceRTAdmin');
 import('pages.rtadmin.RTAdminHandler');

@@ -13,7 +13,6 @@
  * @brief Operations for retrieving and modifying Conference objects.
  */
 
-//$Id$
 
 import ('classes.conference.Conference');
 

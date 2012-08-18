@@ -17,7 +17,6 @@
  * @brief OAI metadata format class -- Dublin Core.
  */
 
-// $Id$
 
 
 class OAIMetadataFormat_DC extends OAIMetadataFormat {

@@ -6,7 +6,6 @@
  *
  * Display list of registration types in scheduled conference management.
  *
- * $Id$
  *}
 {strip}
 {assign var="pageTitle" value="manager.registrationTypes"}

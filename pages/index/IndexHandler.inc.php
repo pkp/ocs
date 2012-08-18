@@ -12,7 +12,6 @@
  * @brief Handle site index requests.
  */
 
-//$Id$
 
 
 import('classes.handler.Handler');

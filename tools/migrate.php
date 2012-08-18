@@ -12,7 +12,6 @@
  * @brief CLI tool for migrating OCS 1.x data to OCS 2.
  */
 
-//$Id$
 
 require(dirname(__FILE__) . '/bootstrap.inc.php');
 

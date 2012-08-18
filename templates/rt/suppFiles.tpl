@@ -6,7 +6,6 @@
  *
  * Paper reading tools -- supplementary files page.
  *
- * $Id$
  *}
 {strip}
 {assign var=pageTitle value="rt.suppFiles"}

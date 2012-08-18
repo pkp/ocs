@@ -12,7 +12,6 @@
  * @brief OJS subclass for Notifications (defines OJS-specific types and icons).
  */
 
-// $Id$
 
 
 /** Notification associative types. */

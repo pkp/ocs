@@ -13,7 +13,6 @@
  *
  */
 
-// $Id$
 
 
 class SchedConfAction {

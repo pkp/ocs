@@ -12,7 +12,6 @@
  * @brief DirectorAction class.
  */
 
-//$Id$
 
 import('classes.submission.trackDirector.TrackDirectorAction');
 

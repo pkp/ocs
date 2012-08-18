@@ -12,7 +12,6 @@
  * @brief Operations for retrieving and modifying users' sched conf notification status.
  */
 
-//$Id$
 
 class NotificationStatusDAO extends DAO {
 	function &getSchedConfNotifications($userId) {

@@ -9,7 +9,6 @@
   *
   * Cadenes per a ca_ES (català Espanya) locale.
   * Traduït per Fermín Cueva Doñate 2008/06/05 19:17
-  * $Id: locale.xml,v 1.145 2007/05/16 21:51:17 asmecher Exp
   * $
   -->
 <locale name="ca_ES" full_name="Català (Espanya)">

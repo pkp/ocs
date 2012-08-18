@@ -15,7 +15,6 @@
  * @ingroup plugins_citationFormats_refMan
  */
 
-//$Id$
 
 require_once('RefManCitationPlugin.inc.php');
 

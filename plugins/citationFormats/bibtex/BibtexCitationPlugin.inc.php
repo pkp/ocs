@@ -12,7 +12,6 @@
  * @brief BibTeX citation format plugin
  */
 
-//$Id$
 
 import('classes.plugins.CitationPlugin');
 

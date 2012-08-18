@@ -12,7 +12,6 @@
  * @brief Handle requests for scheduled conference timeline management functions. 
  */
 
-//$Id$
 
 import('pages.manager.ManagerHandler');
 

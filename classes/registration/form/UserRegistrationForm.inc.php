@@ -12,7 +12,6 @@
  * @brief Form for users to self-register.
  */
 
-//$Id$
 
 import('lib.pkp.classes.form.Form');
 

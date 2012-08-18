@@ -11,7 +11,6 @@
  * @brief Wrapper for user block plugin.
  */
 
-//$Id$
 
 require_once('UserBlockPlugin.inc.php');
 

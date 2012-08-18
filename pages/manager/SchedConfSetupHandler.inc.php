@@ -12,7 +12,6 @@
  * @brief Handle requests for conference setup functions. 
  */
 
-//$Id$
 
 import('pages.manager.ManagerHandler');
 

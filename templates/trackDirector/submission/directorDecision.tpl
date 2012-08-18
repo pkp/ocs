@@ -6,7 +6,6 @@
  *
  * Subtemplate defining the director decision table.
  *
- * $Id$
  *}
 <div id="directorDecision">
 <h3>{translate key="submission.directorDecision"}</h3>

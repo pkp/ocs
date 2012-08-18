@@ -15,7 +15,6 @@
  * @ingroup plugins_themes_classicGreen
  */
 
-//$Id$
 
 require_once('ClassicGreenThemePlugin.inc.php');
 

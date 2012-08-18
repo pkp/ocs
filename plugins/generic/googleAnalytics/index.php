@@ -10,7 +10,6 @@
  *
  * @package plugins.generic.googleAnalytics
  *
- * $Id$
  */
 
 require_once('GoogleAnalyticsPlugin.inc.php');

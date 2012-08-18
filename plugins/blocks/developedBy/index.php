@@ -15,7 +15,6 @@
  * @brief Wrapper for "developed by" block plugin.
  */
 
-//$Id$
 
 require_once('DevelopedByBlockPlugin.inc.php');
 

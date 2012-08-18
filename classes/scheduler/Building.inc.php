@@ -13,7 +13,6 @@
  * @brief Basic class describing a building.
  */
 
-//$Id$
 
 class Building extends DataObject {
 	//

@@ -15,7 +15,6 @@
  * @ingroup plugins_citationFormats_bibtex
  */
 
-//$Id$
 
 require_once('BibtexCitationPlugin.inc.php');
 

@@ -6,7 +6,6 @@
  *
  * Track Director navigation sidebar.
  *
- * $Id$
  *}
 <div class="block" id="sidebarTrackDirector">
 	<span class="blockTitle">{translate key="user.role.trackDirector"}</span>

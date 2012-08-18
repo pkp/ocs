@@ -11,7 +11,6 @@
  * @brief Wrapper for help block plugin.
  */
 
-//$Id$
 
 require_once('HelpBlockPlugin.inc.php');
 

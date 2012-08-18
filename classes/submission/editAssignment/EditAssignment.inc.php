@@ -13,7 +13,6 @@
  * @brief Describes edit assignment properties.
  */
 
-//$Id$
 
 class EditAssignment extends DataObject {
 

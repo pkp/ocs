@@ -6,7 +6,6 @@
  *
  * Common site sidebar menu -- user tools.
  *
- * $Id$
  *}
 <div class="block" id="sidebarUser">
 	<span class="blockTitle">{translate key="navigation.user"}</span>

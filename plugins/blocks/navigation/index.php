@@ -11,7 +11,6 @@
  * @brief Wrapper for navigation block plugin.
  */
 
-//$Id$
 
 require_once('NavigationBlockPlugin.inc.php');
 

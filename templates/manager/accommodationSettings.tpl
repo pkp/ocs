@@ -6,7 +6,6 @@
  *
  * Form to edit scheduled conference accommodation settings.
  *
- * $Id$
  *}
 {strip}
 {assign var="pageTitle" value="schedConf.accommodation"}

@@ -15,7 +15,6 @@
  * @ingroup pages_about
  */
 
-//$Id$
 
 
 switch($op) {

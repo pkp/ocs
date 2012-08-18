@@ -6,7 +6,6 @@
  *
  * About the Conference index.
  *
- * $Id$
  *}
 {strip}
 {assign var="pageTitle" value="about.aboutTheConference"}

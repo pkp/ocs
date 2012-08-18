@@ -6,7 +6,6 @@
  *
  * Paper View -- Comments component.
  *
- * $Id$
  *}
 {if $comments}
 <div class="separator"></div>

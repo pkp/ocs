@@ -16,7 +16,6 @@
  * @brief Form for creating and modifying conference tracks.
  */
 
-//$Id$
 
 import('lib.pkp.classes.form.Form');
 

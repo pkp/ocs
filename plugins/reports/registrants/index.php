@@ -15,7 +15,6 @@
  * @ingroup plugins_reports_registrant
  */
 
-//$Id$
 
 require_once('RegistrantReportPlugin.inc.php');
 

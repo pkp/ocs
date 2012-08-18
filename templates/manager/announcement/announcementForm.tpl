@@ -6,7 +6,6 @@
  *
  * Announcement form under conference management.
  *
- * $Id$
  *}
 {strip}
 {assign var="pageCrumbTitle" value="$announcementTitle"}

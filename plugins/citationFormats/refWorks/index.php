@@ -15,7 +15,6 @@
  * @ingroup plugins_citationFormats_proCite
  */
 
-//$Id$
 
 require_once('RefWorksCitationPlugin.inc.php');
 

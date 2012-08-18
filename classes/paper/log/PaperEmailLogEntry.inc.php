@@ -13,7 +13,6 @@
  * @brief Describes an entry in the paper email log.
  */
 
-//$Id$
 
 // Email associative types. All types must be defined here
 define('PAPER_EMAIL_TYPE_DEFAULT', 		0);

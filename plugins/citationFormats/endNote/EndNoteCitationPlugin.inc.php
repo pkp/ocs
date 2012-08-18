@@ -12,7 +12,6 @@
  * @brief EndNote citation format plugin
  */
 
-//$Id$
 
 import('classes.plugins.CitationPlugin');
 

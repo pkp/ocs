@@ -6,7 +6,6 @@
  *
  * Step 5 of author paper submission.
  *
- * $Id$
  *}
 {if $showAbstractSteps && $currentSchedConf->getSetting('acceptSupplementaryReviewMaterials') && !$showPaperSteps}
 	{assign var="pageTitle" value="author.submit.step5SkipSupp"}

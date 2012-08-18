@@ -15,7 +15,6 @@
  * @ingroup plugins_citationFormats_apa
  */
 
-//$Id$
 
 require_once('ApaCitationPlugin.inc.php');
 

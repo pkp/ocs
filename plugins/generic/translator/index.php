@@ -15,7 +15,6 @@
  * @ingroup plugins_generic_translator
  */
 
-//$Id$
 
 require_once('TranslatorPlugin.inc.php');
 

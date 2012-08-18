@@ -15,7 +15,6 @@
  * @ingroup plugins_themes_steel
  */
 
-//$Id$
 
 require_once('SteelThemePlugin.inc.php');
 

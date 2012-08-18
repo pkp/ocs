@@ -13,7 +13,6 @@
  * @brief rfc1807 metadata format plugin for OAI.
  */
 
-// $Id$
 
 
 import('classes.plugins.OAIMetadataFormatPlugin');

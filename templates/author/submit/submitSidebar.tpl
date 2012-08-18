@@ -6,7 +6,6 @@
  *
  * Sidebar accompanying paper submission pages.
  *
- * $Id$
  *}
 {* Empty for now *}
 

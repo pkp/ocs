@@ -6,7 +6,6 @@
  *
  * Scheduled conference overview page.
  *
- * $Id$
  *}
 {strip}
 {translate|assign:"pageTitleTranslated" key="schedConf.overview.title"}

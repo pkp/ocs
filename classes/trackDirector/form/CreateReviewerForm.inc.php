@@ -17,7 +17,6 @@
  *
  */
 
-// $Id$
 
 
 import('lib.pkp.classes.form.Form');

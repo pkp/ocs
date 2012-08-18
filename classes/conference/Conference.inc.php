@@ -17,7 +17,6 @@
  * @brief Describes basic conference properties.
  */
 
-//$Id$
 
 define('PAPER_ACCESS_OPEN',			0x00000000);
 define('PAPER_ACCESS_ACCOUNT_REQUIRED',		0x00000001);

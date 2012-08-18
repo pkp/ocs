@@ -12,7 +12,6 @@
  * @brief Form for conference manager to create/edit buildings for scheduler.
  */
 
-//$Id$
 
 import('lib.pkp.classes.form.Form');
 

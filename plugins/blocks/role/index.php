@@ -15,7 +15,6 @@
  * @ingroup plugins_blocks_role
  */
 
-//$Id$
 
 require_once('RoleBlockPlugin.inc.php');
 

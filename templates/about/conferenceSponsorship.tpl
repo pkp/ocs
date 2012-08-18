@@ -6,7 +6,6 @@
  *
  * About the Conference / Conference Sponsorship.
  *
- * $Id$
  *}
 <div id="conferenceSponsorship">
 {if not(empty($publisher.note) && empty($publisher.institution))}

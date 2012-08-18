@@ -6,7 +6,6 @@
  *
  * Metadata elements for papers based on preferred types for Google Scholar
  *
- * $Id$
  *}
 	<meta name="gs_meta_revision" content="1.1" />
 	<meta name="citation_conference_title" content="{$currentSchedConf->getFullTitle()|strip_tags|escape}"/>

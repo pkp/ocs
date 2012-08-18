@@ -13,7 +13,6 @@
  * @brief Operations for retrieving and modifying PaperType objects
  */
 
-//$Id$
 
 
 import('lib.pkp.classes.controlledVocab.ControlledVocabDAO');

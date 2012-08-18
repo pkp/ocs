@@ -6,7 +6,6 @@
  *
  * Registration type form under scheduled conference management.
  *
- * $Id$
  *}
 {strip}
 {if $typeId}

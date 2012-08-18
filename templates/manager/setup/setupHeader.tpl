@@ -6,7 +6,6 @@
  *
  * Header for conference setup pages.
  *
- * $Id$
  *}
 {strip}
 {assign var="pageCrumbTitle" value="manager.websiteManagement"}

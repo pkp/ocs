@@ -13,7 +13,6 @@
  * @brief Basic class describing a registration.
  */
 
-//$Id$
 
 define('REGISTRATION_IP_RANGE_SEPERATOR', ';');
 define('REGISTRATION_IP_RANGE_RANGE', '-');

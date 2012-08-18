@@ -9,7 +9,6 @@
  * TODO: - Crosses and checkmarks for the track properties are currently just
  * 		text. Replace with images.
  *
- * $Id$
  *}
 {strip}
 {translate|assign:"pageTitleTranslated" key="schedConf.trackPolicies.title"}

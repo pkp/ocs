@@ -6,7 +6,6 @@
  *
  * List enrolled users.
  *
- * $Id$
  *}
 {strip}
 {if $roleSymbolic == 'all'}

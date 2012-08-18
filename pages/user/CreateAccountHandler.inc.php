@@ -12,7 +12,6 @@
  * @brief Handle requests for user account creation. 
  */
 
-//$Id$
 
 import('pages.user.UserHandler');
 

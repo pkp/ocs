@@ -9,7 +9,6 @@
   *
   * Localization strings for the zh_TW (正體中文) locale.
   *正體中文由 陳文誌 (長庚大學工業設計系) 與 莊惠茹 共同翻譯 (V1 @ 20080515)
-  * $Id$
   -->
  
 <locale name="zh_TW" full_name="正體中文">

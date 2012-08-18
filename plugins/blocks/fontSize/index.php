@@ -11,7 +11,6 @@
  * @brief Wrapper for font size block plugin.
  */
 
-//$Id$
 
 require_once('FontSizeBlockPlugin.inc.php');
 

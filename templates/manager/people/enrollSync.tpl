@@ -6,7 +6,6 @@
  *
  * Synchronize user enrollment with another conference.
  *
- * $Id$
  *}
 {strip}
 {assign var="pageTitle" value="manager.people.syncUsers"}

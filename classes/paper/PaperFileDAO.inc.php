@@ -13,7 +13,6 @@
  * @brief Operations for retrieving and modifying PaperFile objects.
  */
 
-//$Id$
 
 import('classes.paper.PaperFile');
 

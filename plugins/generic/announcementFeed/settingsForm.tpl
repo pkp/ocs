@@ -6,7 +6,6 @@
  *
  * Announcement Feed plugin settings
  *
- * $Id$
  *}
 {strip}
 {assign var="pageTitle" value="plugins.generic.announcementfeed.displayName"}

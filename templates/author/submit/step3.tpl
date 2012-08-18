@@ -6,7 +6,6 @@
  *
  * Step 3 of author paper submission.
  *
- * $Id$
  *}
 {if $showPaperSteps}
 	{assign var="pageTitle" value="author.submit.step3"}

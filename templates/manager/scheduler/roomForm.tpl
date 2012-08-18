@@ -6,7 +6,6 @@
  *
  * Room form under Scheduler.
  *
- * $Id$
  *}
 {strip}
 {assign var="pageCrumbTitle" value="$roomTitle"}

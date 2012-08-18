@@ -17,7 +17,6 @@
  * @brief Describes an entry in the paper history log.
  */
 
-//$Id$
 
 import('classes.log.EventLogConstants');
 

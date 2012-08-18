@@ -12,7 +12,6 @@
  * Class for TimeBlock DAO.
  * Operations for retrieving and modifying TimeBlock objects.
  *
- * $Id$
  */
 
 import('classes.scheduler.TimeBlock');

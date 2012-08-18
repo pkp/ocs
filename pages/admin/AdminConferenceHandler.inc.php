@@ -12,7 +12,6 @@
  * @brief Handle requests for conference management in site administration.
  */
 
-//$Id$
 
 import('pages.admin.AdminHandler');
 

@@ -12,7 +12,6 @@
  * @brief Reference Manager citation format plugin
  */
 
-//$Id$
 
 import('classes.plugins.CitationPlugin');
 

@@ -6,7 +6,6 @@
  *
  * Conference setup index/intro.
  *
- * $Id$
  *}
 {strip}
 {assign var="pageTitle" value="manager.schedConfSetup.schedConfSetup"}

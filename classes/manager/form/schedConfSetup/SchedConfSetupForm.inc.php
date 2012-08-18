@@ -12,7 +12,6 @@
  * @brief Base class for scheduled conference setup forms.
  */
 
-//$Id$
 
 import('classes.manager.form.schedConfSetup.SchedConfSetupForm');
 import('lib.pkp.classes.form.Form');

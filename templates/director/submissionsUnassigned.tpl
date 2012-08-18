@@ -6,7 +6,6 @@
  *
  * Show listing of unassigned submissions.
  *
- * $Id$
  *}
 <div id="submissions">
 <table width="100%" class="listing">

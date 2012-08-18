@@ -13,7 +13,6 @@
  * @brief Class for inserting/accessing paper email log entries.
  */
 
-//$Id$
 
 import ('classes.paper.log.PaperEmailLogEntry');
 

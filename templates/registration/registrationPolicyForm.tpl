@@ -6,7 +6,6 @@
  *
  * Setup registration policies.
  *
- * $Id$
  *}
 {strip}
 {assign var="pageTitle" value="manager.registrationPolicies"}

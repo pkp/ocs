@@ -6,7 +6,6 @@
  *
  * Common site sidebar menu -- "Notification" block.
  *
- * $Id$
  *}
 {if $currentConference}
 <div class="block" id="notification">

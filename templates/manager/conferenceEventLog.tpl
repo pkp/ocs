@@ -7,7 +7,6 @@
  * Show conference log page.
  *
  *
- * $Id$
  *}
 {strip}
 {assign var="pageTitle" value="event.eventLog"}

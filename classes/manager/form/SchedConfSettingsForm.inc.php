@@ -12,7 +12,6 @@
  * @brief Form for conference manager to edit basic scheduled conference settings.
  */
 
-//$Id$
 
 import('lib.pkp.classes.db.DBDataXMLParser');
 import('lib.pkp.classes.form.Form');

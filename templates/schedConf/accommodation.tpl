@@ -6,7 +6,6 @@
  *
  * Scheduled conference accommodation page.
  *
- * $Id$
  *}
 {strip}
 {translate|assign:"pageTitleTranslated" key="schedConf.accommodation.title"}

@@ -13,7 +13,6 @@
  * @brief Published paper class.
  */
 
-//$Id$
 
 import('classes.paper.Paper');
 

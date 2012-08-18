@@ -12,7 +12,6 @@
  * @brief Display conference information.
  */
 
-//$Id$
 
 
 import('classes.handler.Handler');

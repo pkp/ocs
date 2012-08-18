@@ -6,7 +6,6 @@
  *
  * Step 2 of conference setup.
  *
- * $Id$
  *}
 {assign var="pageTitle" value="manager.setup.additionalContent.title"}
 {include file="manager/setup/setupHeader.tpl"}

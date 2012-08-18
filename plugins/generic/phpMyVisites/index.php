@@ -10,7 +10,6 @@
  *
  * @package plugins.generic.phpMyVisites
  *
- * $Id$
  */
 
 require_once('PhpMyVisitesPlugin.inc.php');

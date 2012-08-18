@@ -15,7 +15,6 @@
  * @ingroup pages_search
  */
 
-//$Id$
 
 
 switch ($op) {

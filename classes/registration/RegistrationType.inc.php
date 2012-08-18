@@ -13,7 +13,6 @@
  * @brief Basic class describing a registration type.
  */
 
-//$Id$
 
 /**
  * Registration access types

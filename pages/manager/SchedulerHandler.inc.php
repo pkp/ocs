@@ -12,7 +12,6 @@
  * @brief Handle requests for registration management functions. 
  */
 
-//$Id$
 
 import('pages.manager.ManagerHandler');
 

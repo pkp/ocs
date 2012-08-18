@@ -13,7 +13,6 @@
  * @brief Operations for retrieving and modifying Building objects.
  */
 
-//$Id$
 
 import('classes.scheduler.Building');
 

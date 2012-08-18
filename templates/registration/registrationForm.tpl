@@ -6,7 +6,6 @@
  *
  * Registration form under scheduled conference management.
  *
- * $Id$
  *}
 {strip}
 {assign var="pageCrumbTitle" value="$registrationTitle"}

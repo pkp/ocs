@@ -12,7 +12,6 @@
  * @brief Removes dependency on 'cron' for scheduled tasks
  */
 
-//$Id$
 
 import('lib.pkp.classes.plugins.GenericPlugin');
 

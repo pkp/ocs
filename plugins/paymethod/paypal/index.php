@@ -15,7 +15,6 @@
  * @ingroup plugins_paymethod_paypal
  */
 
-//$Id$
 
 require_once('PayPalPlugin.inc.php');
 

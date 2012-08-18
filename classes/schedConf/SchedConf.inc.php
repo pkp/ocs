@@ -18,7 +18,6 @@
  *
  */
 
-// $Id$
 
 
 define('SCHED_CONF_DATE_YEAR_OFFSET_FUTURE',	'+2');

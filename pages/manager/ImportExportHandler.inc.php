@@ -12,7 +12,6 @@
  * @brief Handle requests for import/export functions. 
  */
 
-//$Id$
 
 define('IMPORTEXPORT_PLUGIN_CATEGORY', 'importexport');
 

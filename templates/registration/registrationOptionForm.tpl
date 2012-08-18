@@ -6,7 +6,6 @@
  *
  * Registration option form under scheduled conference management.
  *
- * $Id$
  *}
 {if $optionId}
 {assign var="pageTitle" value="manager.registrationOptions.edit"}

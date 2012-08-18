@@ -6,7 +6,6 @@
  *
  * Paper View.
  *
- * $Id$
  *}
 {include file="paper/header.tpl"}
 

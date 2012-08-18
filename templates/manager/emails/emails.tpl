@@ -6,7 +6,6 @@
  *
  * Display list of email templates in conference management.
  *
- * $Id$
  *}
 {strip}
 {assign var="pageTitle" value="manager.emails"}

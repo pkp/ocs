@@ -13,7 +13,6 @@
  * @brief Paper report plugin
  */
 
-//$Id$
 
 import('classes.plugins.ReportPlugin');
 

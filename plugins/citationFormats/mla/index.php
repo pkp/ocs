@@ -15,7 +15,6 @@
  * @ingroup plugins_citationFormats_mla
  */
 
-//$Id$
 
 require_once('MlaCitationPlugin.inc.php');
 

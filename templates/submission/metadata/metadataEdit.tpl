@@ -6,7 +6,6 @@
  *
  * Form for changing metadata of a paper. Used by MetadataForm.
  *
- * $Id$
  *}
 {strip}
 {assign var="pageTitle" value="submission.editMetadata"}

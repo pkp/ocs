@@ -6,7 +6,6 @@
  *
  * Display list of conferences in site administration.
  *
- * $Id$
  *}
 {strip}
 {assign var="pageTitle" value="conference.conferences"}

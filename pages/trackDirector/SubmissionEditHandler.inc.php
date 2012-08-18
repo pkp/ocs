@@ -13,7 +13,6 @@
  *
  */
 
-// $Id$
 
 
 define('TRACK_DIRECTOR_ACCESS_EDIT', 0x00001);

@@ -6,7 +6,6 @@
  *
  * Schedule layout form under scheduler (allows customization of schedules).
  *
- * $Id$
  *}
 {strip}
 {assign var="pageTitle" value="manager.scheduler.layout"}

@@ -6,7 +6,6 @@
  *
  * Building form under Scheduler.
  *
- * $Id$
  *}
 {strip}
 {assign var="pageTitle" value="manager.scheduler.schedule"}

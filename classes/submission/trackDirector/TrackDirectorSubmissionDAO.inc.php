@@ -14,7 +14,6 @@
  *
  */
 
-// $Id$
 
 
 import('classes.submission.trackDirector.TrackDirectorSubmission');

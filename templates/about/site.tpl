@@ -6,7 +6,6 @@
  *
  * About the Conference site.
  *
- * $Id$
  *}
 {strip}
 {assign var="pageTitle" value="about.aboutSite"}

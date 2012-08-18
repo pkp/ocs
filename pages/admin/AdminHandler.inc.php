@@ -13,7 +13,6 @@
  * @brief Handle requests for site administration functions. 
  */
 
-//$Id$
 
 
 import('classes.handler.Handler');

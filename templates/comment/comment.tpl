@@ -6,7 +6,6 @@
  *
  * Paper reader comment editing
  *
- * $Id$
  *}
 {strip}
 {assign var="pageTitle" value="comments.enterComment"}

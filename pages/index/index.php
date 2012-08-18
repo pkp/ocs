@@ -15,7 +15,6 @@
  * @ingroup pages_index
  */
 
-//$Id$
 
 
 switch ($op) {

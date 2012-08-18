@@ -13,7 +13,6 @@
  * @brief Review report DAO
  */
 
-//$Id$
 
 
 import('classes.paper.PaperComment');

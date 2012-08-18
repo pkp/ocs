@@ -13,7 +13,6 @@
  * @brief Class for OCS Note.
  */
 
-// $Id$
 
 
 import('classes.paper.PaperFile');
