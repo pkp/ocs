@@ -85,7 +85,7 @@ class PaperReportDAO extends DAO {
 		unset($result);
 
 		$result =& $this->retrieve(
-			'SELECT	MAX(ed.date_decided) AS date,
+			'SELECT	MAX(ed.date_decided) AS date_decided,
 				ed.paper_id AS paper_id
 			FROM	edit_decisions ed,
 				papers p
@@ -110,7 +110,7 @@ class PaperReportDAO extends DAO {
 					p.submission_progress = 0 AND
 					p.paper_id = ?',
 				array(
-					$row['date'],
+					$row['date_decided'],
 					$row['paper_id']
 				)
 			);
