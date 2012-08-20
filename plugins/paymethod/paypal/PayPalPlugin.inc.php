@@ -81,7 +81,7 @@ class PayPalPlugin extends PaymethodPlugin {
 			'charset' => Config::getVar('i18n', 'client_charset'),
 			'business' => $this->getSetting($schedConf->getConferenceId(), $schedConf->getId(), 'selleraccount'),
 			'item_name' => $queuedPayment->getDescription(),
-			'amount' => $queuedPayment->getAmount(),
+			'amount' => sprintf('%.2F', $queuedPayment->getAmount()),
 			'quantity' => 1,
 			'no_note' => 1,
 			'no_shipping' => 1,
