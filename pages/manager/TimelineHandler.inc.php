@@ -32,11 +32,7 @@ class TimelineHandler extends ManagerHandler {
 
 		import('classes.manager.form.TimelineForm');
 
-		if (checkPhpVersion('5.0.0')) { // WARNING: This form needs $this in constructor
-			$timelineForm = new TimelineForm(Request::getUserVar('overrideDates'));
-		} else {
-			$timelineForm =& new TimelineForm(Request::getUserVar('overrideDates'));
-		}
+		$timelineForm = new TimelineForm(Request::getUserVar('overrideDates'));
 		$timelineForm->initData();
 		$timelineForm->display();
 
@@ -48,11 +44,7 @@ class TimelineHandler extends ManagerHandler {
 
 		import('classes.manager.form.TimelineForm');
 
-		if (checkPhpVersion('5.0.0')) { // WARNING: This form needs $this in constructor
-			$timelineForm = new TimelineForm(Request::getUserVar('overrideDates'));
-		} else {
-			$timelineForm =& new TimelineForm(Request::getUserVar('overrideDates'));
-		}
+		$timelineForm = new TimelineForm(Request::getUserVar('overrideDates'));
 		$timelineForm->readInputData();
 
 		if ($timelineForm->validate()) {

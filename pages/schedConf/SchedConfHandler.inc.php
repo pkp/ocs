@@ -135,11 +135,7 @@ class SchedConfHandler extends Handler {
 		SchedConfHandler::setupTemplate($conference,$schedConf);
 		AppLocale::requireComponents(LOCALE_COMPONENT_OCS_MANAGER); // FIXME: For timeline constants
 		import('classes.manager.form.TimelineForm');
-		if (checkPhpVersion('5.0.0')) { // WARNING: This form needs $this in constructor
-			$timelineForm = new TimelineForm(false, true);
-		} else {
-			$timelineForm =& new TimelineForm(false, true);
-		}
+		$timelineForm = new TimelineForm(false, true);
 		$timelineForm->initData();
 		$timelineForm->display();
 	}
@@ -239,11 +235,7 @@ class SchedConfHandler extends Handler {
 			// A registration type has been chosen
 			import('classes.registration.form.UserRegistrationForm');
 
-			if (checkPhpVersion('5.0.0')) { // WARNING: This form needs $this in constructor
-				$form = new UserRegistrationForm($typeId, $registration, $request);
-			} else {
-				$form =& new UserRegistrationForm($typeId, $registration, $request);
-			}
+			$form = new UserRegistrationForm($typeId, $registration, $request);
 			if ($form->isLocaleResubmit()) {
 				$form->readInputData();
 			} else {
@@ -295,11 +287,7 @@ class SchedConfHandler extends Handler {
 
 		import('classes.registration.form.UserRegistrationForm');
 		$typeId = (int) $request->getUserVar('registrationTypeId');
-		if (checkPhpVersion('5.0.0')) { // WARNING: This form needs $this in constructor
-			$form = new UserRegistrationForm($typeId, $registration, $request);
-		} else {
-			$form =& new UserRegistrationForm($typeId, $registration, $request);
-		}
+		$form = new UserRegistrationForm($typeId, $registration, $request);
 		$form->readInputData();
 		if ($form->validate()) {
 			if (($registrationError = $form->execute()) == REGISTRATION_SUCCESSFUL) {
