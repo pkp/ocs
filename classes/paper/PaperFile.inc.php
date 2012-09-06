@@ -46,8 +46,11 @@ class PaperFile extends SubmissionFile {
 		$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
 		$schedConf =& $schedConfDao->getSchedConf($paperId);
 
+		import('classes.file.PaperFIleManager');
+		$paperFileManager = new PaperFileManager($this->getPaperId());
+
 		return Config::getVar('files', 'files_dir') . '/conferences/' . $schedConf->getConferenceId() . '/schedConfs/' . $paperId .
-		'/papers/' . $this->getPaperId() . '/' . $this->getFileStage() . '/' . $this->getFileName();
+			'/papers/' . $this->getPaperId() . '/' . $paperFileManager->fileStageToPath($this->getFileStage()) . '/' . $this->getFileName();
 	}
 
 	//
