@@ -41,18 +41,18 @@
 <tr valign="top">
 	<td class="label">{fieldLabel key="common.date"}</td>
 	<td class="value">
-		{html_select_date prefix="startTime" all_extra="selectMenu" time=$startTime}
+		{html_select_date prefix="startTime" all_extra="selectMenu" time=$startTime|default:$schedConfStartDate start_year=$firstYear end_year=$lastYear}
 	</td>
 <tr valign="top">
 	<td class="label">{fieldLabel key="manager.scheduler.timeBlock.startTime"}</td>
 	<td class="value" width="30%">
-		{html_select_time prefix="startTime" use_24_hours=false minute_interval=5 display_seconds=false all_extra="class=\"selectMenu\"" time=$startTime}
+		{html_select_time prefix="startTime" use_24_hours=false minute_interval=5 display_seconds=false all_extra="class=\"selectMenu\"" time=$startTime|default:"09:00"}
 	</td>
 </tr>
 <tr valign="top">
 	<td class="label">{translate key="manager.scheduler.timeBlock.endTime"}</td>
 	<td class="value">
-		{html_select_time prefix="endTime" use_24_hours=false minute_interval=5 display_seconds=false all_extra="class=\"selectMenu\"" time=$endTime}
+		{html_select_time prefix="endTime" use_24_hours=false minute_interval=5 display_seconds=false all_extra="class=\"selectMenu\"" time=$endTime|default:"10:00"}
 	</td>
 </tr>
 </table>
