@@ -238,13 +238,15 @@ class NativeImportDom {
 		$errors = array();
 
 		$conferenceSupportedLocales = array_keys($conference->getSupportedLocaleNames()); // => locales must be set up before
-		$conferencePrimaryLocale = $conference->getPrimaryLocale();
-
 		$publishedPaperDao =& DAORegistry::getDAO('PublishedPaperDAO');
 		$paperDao =& DAORegistry::getDAO('PaperDAO');
 
 		$paper = new Paper();
-		$paper->setLocale(AppLocale::getLocale()); // FIXME in bug #5543
+		if ($locale = $paperNode->getAttribute('locale')) {
+			$paper->setLocale($locale);
+		} else {
+			$paper->setLocale($conference->getPrimaryLocale());
+		}
 		$paper->setSchedConfId($schedConf->getId());
 		$paper->setUserId($user->getId());
 		$paper->setTrackId($track->getId());
@@ -259,7 +261,7 @@ class NativeImportDom {
 		for ($index=0; ($node = $paperNode->getChildByName('title', $index)); $index++) {
 			$locale = $node->getAttribute('locale');
 			if ($locale == '') {
-				$locale = $conferencePrimaryLocale;
+				$locale = $paper->getLocale();
 			} elseif (!in_array($locale, $conferenceSupportedLocales)) {
 				$errors[] = array('plugins.importexport.native.import.error.paperTitleLocaleUnsupported', array('paperTitle' => $node->getValue(), 'locale' => $locale));
 				return false;
@@ -267,7 +269,7 @@ class NativeImportDom {
 			$paper->setTitle($node->getValue(), $locale);
 			$titleExists = true;
 		}
-		if (!$titleExists || $paper->getTitle($conferencePrimaryLocale) == "") {
+		if (!$titleExists || $paper->getTitle($paper->getLocale()) == "") {
 			$errors[] = array('plugins.importexport.native.import.error.paperTitleMissing', array('trackTitle' => $track->getLocalizedTitle()));
 			return false;
 		}
@@ -275,7 +277,7 @@ class NativeImportDom {
 		for ($index=0; ($node = $paperNode->getChildByName('abstract', $index)); $index++) {
 			$locale = $node->getAttribute('locale');
 			if ($locale == '') {
-				$locale = $conferencePrimaryLocale;
+				$locale = $paper->getLocale();
 			} elseif (!in_array($locale, $conferenceSupportedLocales)) {
 				$errors[] = array('plugins.importexport.native.import.error.paperAbstractLocaleUnsupported', array('paperTitle' => $paper->getLocalizedTitle(), 'locale' => $locale));
 				return false;
@@ -287,7 +289,7 @@ class NativeImportDom {
 			for ($index=0; ($node = $indexingNode->getChildByName('discipline', $index)); $index++) {
 				$locale = $node->getAttribute('locale');
 				if ($locale == '') {
-					$locale = $conferencePrimaryLocale;
+					$locale = $paper->getLocale();
 				} elseif (!in_array($locale, $conferenceSupportedLocales)) {
 					$errors[] = array('plugins.importexport.native.import.error.paperDisciplineLocaleUnsupported', array('paperTitle' => $paper->getLocalizedTitle(), 'locale' => $locale));
 					return false;
@@ -297,7 +299,7 @@ class NativeImportDom {
 			for ($index=0; ($node = $indexingNode->getChildByName('type', $index)); $index++) {
 				$locale = $node->getAttribute('locale');
 				if ($locale == '') {
-					$locale = $conferencePrimaryLocale;
+					$locale = $paper->getLocale();
 				} elseif (!in_array($locale, $conferenceSupportedLocales)) {
 					$errors[] = array('plugins.importexport.native.import.error.paperTypeLocaleUnsupported', array('paperTitle' => $paper->getLocalizedTitle(), 'locale' => $locale));
 					return false;
@@ -307,7 +309,7 @@ class NativeImportDom {
 			for ($index=0; ($node = $indexingNode->getChildByName('subject', $index)); $index++) {
 				$locale = $node->getAttribute('locale');
 				if ($locale == '') {
-					$locale = $conferencePrimaryLocale;
+					$locale = $paper->getLocale();
 				} elseif (!in_array($locale, $conferenceSupportedLocales)) {
 					$errors[] = array('plugins.importexport.native.import.error.paperSubjectLocaleUnsupported', array('paperTitle' => $paper->getLocalizedTitle(), 'locale' => $locale));
 					return false;
@@ -317,7 +319,7 @@ class NativeImportDom {
 			for ($index=0; ($node = $indexingNode->getChildByName('subject_class', $index)); $index++) {
 				$locale = $node->getAttribute('locale');
 				if ($locale == '') {
-					$locale = $conferencePrimaryLocale;
+					$locale = $paper->getLocale();
 				} elseif (!in_array($locale, $conferenceSupportedLocales)) {
 					$errors[] = array('plugins.importexport.native.import.error.paperSubjectClassLocaleUnsupported', array('paperTitle' => $paper->getLocalizedTitle(), 'locale' => $locale));
 					return false;
@@ -329,7 +331,7 @@ class NativeImportDom {
 				for ($index=0; ($node = $coverageNode->getChildByName('geographical', $index)); $index++) {
 					$locale = $node->getAttribute('locale');
 					if ($locale == '') {
-						$locale = $conferencePrimaryLocale;
+						$locale = $paper->getLocale();
 					} elseif (!in_array($locale, $conferenceSupportedLocales)) {
 						$errors[] = array('plugins.importexport.native.import.error.paperCoverageGeoLocaleUnsupported', array('paperTitle' => $paper->getLocalizedTitle(), 'locale' => $locale));
 						return false;
@@ -339,7 +341,7 @@ class NativeImportDom {
 				for ($index=0; ($node = $coverageNode->getChildByName('chronological', $index)); $index++) {
 					$locale = $node->getAttribute('locale');
 					if ($locale == '') {
-						$locale = $conferencePrimaryLocale;
+						$locale = $paper->getLocale();
 					} elseif (!in_array($locale, $conferenceSupportedLocales)) {
 						$errors[] = array('plugins.importexport.native.import.error.paperCoverageChronLocaleUnsupported', array('paperTitle' => $paper->getLocalizedTitle(), 'locale' => $locale));
 						return false;
@@ -349,7 +351,7 @@ class NativeImportDom {
 				for ($index=0; ($node = $coverageNode->getChildByName('sample', $index)); $index++) {
 					$locale = $node->getAttribute('locale');
 					if ($locale == '') {
-						$locale = $conferencePrimaryLocale;
+						$locale = $paper->getLocale();
 					} elseif (!in_array($locale, $conferenceSupportedLocales)) {
 						$errors[] = array('plugins.importexport.native.import.error.paperCoverageSampleLocaleUnsupported', array('paperTitle' => $paper->getLocalizedTitle(), 'locale' => $locale));
 						return false;
@@ -362,7 +364,7 @@ class NativeImportDom {
 		for ($index=0; ($node = $paperNode->getChildByName('sponsor', $index)); $index++) {
 			$locale = $node->getAttribute('locale');
 			if ($locale == '') {
-				$locale = $conferencePrimaryLocale;
+				$locale = $paper->getLocale();
 			} elseif (!in_array($locale, $conferenceSupportedLocales)) {
 				$errors[] = array('plugins.importexport.native.import.error.paperSponsorLocaleUnsupported', array('paperTitle' => $paper->getLocalizedTitle(), 'locale' => $locale));
 				return false;
@@ -475,8 +477,6 @@ class NativeImportDom {
 		$errors = array();
 
 		$conferenceSupportedLocales = array_keys($conference->getSupportedLocaleNames()); // => conference locales must be set up before
-		$conferencePrimaryLocale = $conference->getPrimaryLocale();
-
 		$author = new Author();
 		if (($node = $authorNode->getChildByName('firstname'))) $author->setFirstName($node->getValue());
 		if (($node = $authorNode->getChildByName('middlename'))) $author->setMiddleName($node->getValue());
@@ -488,7 +488,7 @@ class NativeImportDom {
 		for ($index=0; ($node = $authorNode->getChildByName('affiliation', $index)); $index++) {
 			$locale = $node->getAttribute('locale');
 			if ($locale == '') {
-				$locale = $conferencePrimaryLocale;
+				$locale = $paper->getLocale();
 			} elseif (!in_array($locale, $conferenceSupportedLocales)) {
 				$errors[] = array('plugins.importexport.native.import.error.paperAuthorAffiliationLocaleUnsupported', array('authorFullName' => $author->getFullName(), 'paperTitle' => $paper->getLocalizedTitle(), 'locale' => $locale));
 				return false;
@@ -498,7 +498,7 @@ class NativeImportDom {
 		for ($index=0; ($node = $authorNode->getChildByName('biography', $index)); $index++) {
 			$locale = $node->getAttribute('locale');
 			if ($locale == '') {
-				$locale = $conferencePrimaryLocale;
+				$locale = $paper->getLocale();
 			} elseif (!in_array($locale, $conferenceSupportedLocales)) {
 				$errors[] = array('plugins.importexport.native.import.error.paperAuthorBiographyLocaleUnsupported', array('authorFullName' => $author->getFullName(), 'paperTitle' => $paper->getLocalizedTitle(), 'locale' => $locale));
 				return false;
@@ -519,8 +519,6 @@ class NativeImportDom {
 		$errors = array();
 
 		$conferenceSupportedLocales = array_keys($conference->getSupportedLocaleNames()); // => locales must be set up before
-		$conferencePrimaryLocale = $conference->getPrimaryLocale();
-
 		$galleyDao =& DAORegistry::getDAO('PaperGalleyDAO');
 
 		if ($isHtml) $galley = new PaperHtmlGalley();
@@ -532,7 +530,7 @@ class NativeImportDom {
 		// just conference supported locales?
 		$locale = $galleyNode->getAttribute('locale');
 		if ($locale == '') {
-			$locale = $conferencePrimaryLocale;
+			$locale = $paper->getLocale();
 		} elseif (!in_array($locale, $conferenceSupportedLocales)) {
 			$errors[] = array('plugins.importexport.native.import.error.galleyLocaleUnsupported', array('paperTitle' => $paper->getLocalizedTitle(), 'locale' => $locale));
 			return false;
@@ -648,8 +646,6 @@ class NativeImportDom {
 		$errors = array();
 
 		$conferenceSupportedLocales = array_keys($conference->getSupportedLocaleNames()); // => locales must be set up before
-		$conferencePrimaryLocale = $conference->getPrimaryLocale();
-
 		$suppFileDao =& DAORegistry::getDAO('SuppFileDAO');
 
 		$suppFile = new SuppFile();
@@ -658,7 +654,7 @@ class NativeImportDom {
 		for ($index=0; ($node = $suppNode->getChildByName('title', $index)); $index++) {
 			$locale = $node->getAttribute('locale');
 			if ($locale == '') {
-				$locale = $conferencePrimaryLocale;
+				$locale = $paper->getLocale();
 			} elseif (!in_array($locale, $conferenceSupportedLocales)) {
 				$errors[] = array('plugins.importexport.native.import.error.paperSuppFileTitleLocaleUnsupported', array('suppFileTitle' => $node->getValue(), 'paperTitle' => $paper->getLocalizedTitle(), 'locale' => $locale));
 				return false;
@@ -668,7 +664,7 @@ class NativeImportDom {
 		for ($index=0; ($node = $suppNode->getChildByName('creator', $index)); $index++) {
 			$locale = $node->getAttribute('locale');
 			if ($locale == '') {
-				$locale = $conferencePrimaryLocale;
+				$locale = $paper->getLocale();
 			} elseif (!in_array($locale, $conferenceSupportedLocales)) {
 				$errors[] = array('plugins.importexport.native.import.error.paperSuppFileCreatorLocaleUnsupported', array('suppFileTitle' => $node->getValue(), 'paperTitle' => $paper->getLocalizedTitle(), 'locale' => $locale));
 				return false;
@@ -678,7 +674,7 @@ class NativeImportDom {
 		for ($index=0; ($node = $suppNode->getChildByName('subject', $index)); $index++) {
 			$locale = $node->getAttribute('locale');
 			if ($locale == '') {
-				$locale = $conferencePrimaryLocale;
+				$locale = $paper->getLocale();
 			} elseif (!in_array($locale, $conferenceSupportedLocales)) {
 				$errors[] = array('plugins.importexport.native.import.error.paperSuppFileSubjectLocaleUnsupported', array('suppFileTitle' => $node->getValue(), 'paperTitle' => $paper->getLocalizedTitle(), 'locale' => $locale));
 				return false;
@@ -688,7 +684,7 @@ class NativeImportDom {
 		for ($index=0; ($node = $suppNode->getChildByName('type_other', $index)); $index++) {
 			$locale = $node->getAttribute('locale');
 			if ($locale == '') {
-				$locale = $conferencePrimaryLocale;
+				$locale = $paper->getLocale();
 			} elseif (!in_array($locale, $conferenceSupportedLocales)) {
 				$errors[] = array('plugins.importexport.native.import.error.paperSuppFileTypeOtherLocaleUnsupported', array('suppFileTitle' => $node->getValue(), 'paperTitle' => $paper->getLocalizedTitle(), 'locale' => $locale));
 				return false;
@@ -698,7 +694,7 @@ class NativeImportDom {
 		for ($index=0; ($node = $suppNode->getChildByName('description', $index)); $index++) {
 			$locale = $node->getAttribute('locale');
 			if ($locale == '') {
-				$locale = $conferencePrimaryLocale;
+				$locale = $paper->getLocale();
 			} elseif (!in_array($locale, $conferenceSupportedLocales)) {
 				$errors[] = array('plugins.importexport.native.import.error.paperSuppFileDescriptionLocaleUnsupported', array('suppFileTitle' => $node->getValue(), 'paperTitle' => $paper->getLocalizedTitle(), 'locale' => $locale));
 				return false;
@@ -708,7 +704,7 @@ class NativeImportDom {
 		for ($index=0; ($node = $suppNode->getChildByName('publisher', $index)); $index++) {
 			$locale = $node->getAttribute('locale');
 			if ($locale == '') {
-				$locale = $conferencePrimaryLocale;
+				$locale = $paper->getLocale();
 			} elseif (!in_array($locale, $conferenceSupportedLocales)) {
 				$errors[] = array('plugins.importexport.native.import.error.paperSuppFilePublisherLocaleUnsupported', array('suppFileTitle' => $node->getValue(), 'paperTitle' => $paper->getLocalizedTitle(), 'locale' => $locale));
 				return false;
@@ -718,7 +714,7 @@ class NativeImportDom {
 		for ($index=0; ($node = $suppNode->getChildByName('sponsor', $index)); $index++) {
 			$locale = $node->getAttribute('locale');
 			if ($locale == '') {
-				$locale = $conferencePrimaryLocale;
+				$locale = $paper->getLocale();
 			} elseif (!in_array($locale, $conferenceSupportedLocales)) {
 				$errors[] = array('plugins.importexport.native.import.error.paperSuppFileSponsorLocaleUnsupported', array('suppFileTitle' => $node->getValue(), 'paperTitle' => $paper->getLocalizedTitle(), 'locale' => $locale));
 				return false;
@@ -728,7 +724,7 @@ class NativeImportDom {
 		for ($index=0; ($node = $suppNode->getChildByName('source', $index)); $index++) {
 			$locale = $node->getAttribute('locale');
 			if ($locale == '') {
-				$locale = $conferencePrimaryLocale;
+				$locale = $paper->getLocale();
 			} elseif (!in_array($locale, $conferenceSupportedLocales)) {
 				$errors[] = array('plugins.importexport.native.import.error.paperSuppFileSourceLocaleUnsupported', array('suppFileTitle' => $node->getValue(), 'paperTitle' => $paper->getLocalizedTitle(), 'locale' => $locale));
 				return false;
