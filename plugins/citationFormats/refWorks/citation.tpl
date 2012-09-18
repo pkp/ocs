@@ -13,7 +13,7 @@
 	<textarea name="ImportData" rows=15 cols=70>{literal}@paper{{{/literal}{$schedConf->getLocalizedSetting('acronym')|escape}{literal}}{{/literal}{$paperId|escape}{literal}},
 	author = {{/literal}{assign var=authors value=$paper->getAuthors()}{foreach from=$authors item=author name=authors key=i}{$author->getLastName()|escape}, {assign var=firstName value=$author->getFirstName()}{assign var=authorCount value=$authors|@count}{$firstName|escape|truncate:1:"":true}.{if $i<$authorCount-1}, {/if}{/foreach}{literal}},
 	title = {{/literal}{$paper->getLocalizedTitle()|strip_unsafe_html}{literal}},
-	conference = {{/literal}{$conference->getConferenceTitle()|escape}{literal}},
+	conference = {{/literal}{$conference->getLocalizedTitle()|escape}{literal}},
 	year = {{/literal}{$paper->getDatePublished()|date_format:'%Y'}{literal}},
 {/literal}{assign var=issn value=$conference->getSetting('issn')|escape}{if $issn}{literal}	issn = {{/literal}{$issn|escape}{literal}},{/literal}{/if}
 {literal}	url = {{/literal}{$paperUrl}{literal}}

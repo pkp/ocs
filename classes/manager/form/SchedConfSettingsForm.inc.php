@@ -156,7 +156,7 @@ class SchedConfSettingsForm extends Form {
 				'authorGuidelinesUrl' => Request::url($conference->getPath(), $this->getData('schedConfPath'), 'about', 'submissions', null, null, 'authorGuidelines'),
 				'indexUrl' => Request::getIndexUrl(),
 				'conferencePath' => $conference->getPath(),
-				'conferenceName' => $conference->getConferenceTitle(),
+				'conferenceName' => $conference->getLocalizedTitle(),
 				'schedConfPath' => $this->getData('schedConfPath'),
 				'schedConfUrl' => Request::url($conference->getPath(), $this->getData('schedConfPath'), 'index'),
 				'schedConfName' => $title

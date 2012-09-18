@@ -35,7 +35,7 @@
 <div id="container">
 <div id="main" style="width: 150px; font-size: 0.7em; padding-top: 1.5em; padding-left: 1em">
 
-<h5>{$conference->getConferenceTitle()|escape}<br />{$schedConf->getLocalizedTitle()|escape}</h5>
+<h5>{$conference->getLocalizedTitle()|escape}<br />{$schedConf->getLocalizedTitle()|escape}</h5>
 
 <p><a href="{url page="schedConf" op="presentations"}" target="_parent" class="rtAction">{translate key="schedConf.presentations.short"}</a></p>
 

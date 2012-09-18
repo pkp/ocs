@@ -11,7 +11,7 @@
 <rss version="2.0">
 	<channel>
 		{* required elements *}
-		<title>{if $schedConf}{$schedConf->getLocalizedTitle()|escape:"html"|strip}{else}{$conference->getConferenceTitle()|escape:"html"|strip}{/if}: {translate key="announcement.announcements"}</title>
+		<title>{if $schedConf}{$schedConf->getLocalizedTitle()|escape:"html"|strip}{else}{$conference->getLocalizedTitle()|escape:"html"|strip}{/if}: {translate key="announcement.announcements"}</title>
 		<link>{if $schedConf}{$schedConf->getUrl()|escape}{else}{$conference->getUrl()|escape}{/if}</link>
 		{if $schedConf && $schedConf->getSchedConfIntroduction()}
 			{assign var="description" value=$schedConf->getSchedConfIntroduction()}

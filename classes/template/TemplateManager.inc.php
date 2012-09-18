@@ -60,7 +60,7 @@ class TemplateManager extends PKPTemplateManager {
 				$this->assign('currentSchedConfsExist', $currentSchedConfsExist);
 
 				$this->assign_by_ref('currentConference', $conference);
-				$conferenceTitle = $conference->getConferenceTitle();
+				$conferenceTitle = $conference->getLocalizedTitle();
 
 				$this->assign('numPageLinks', $conference->getSetting('numPageLinks'));
 				$this->assign('itemsPerPage', $conference->getSetting('itemsPerPage'));

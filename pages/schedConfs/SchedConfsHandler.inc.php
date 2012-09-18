@@ -49,7 +49,7 @@ class SchedConfsHandler extends Handler {
 		$templateMgr->assign('homepageImage', $conference->getSetting('homepageImage'));
 		$templateMgr->assign('homepageImageAltText', $conference->getLocalizedSetting('homepageImageAltText'));
 		$templateMgr->assign('description', $conference->getSetting('description'));
-		$templateMgr->assign('conferenceTitle', $conference->getConferenceTitle());
+		$templateMgr->assign('conferenceTitle', $conference->getLocalizedTitle());
 
 		$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
 		$currentSchedConfs =& $schedConfDao->getCurrentSchedConfs($conference->getId());
@@ -83,7 +83,7 @@ class SchedConfsHandler extends Handler {
 		$templateMgr->assign('homepageImage', $conference->getSetting('homepageImage'));
 		$templateMgr->assign('homepageImageAltText', $conference->getLocalizedSetting('homepageImageAltText'));
 		$templateMgr->assign('description', $conference->getSetting('description'));
-		$templateMgr->assign('conferenceTitle', $conference->getConferenceTitle());
+		$templateMgr->assign('conferenceTitle', $conference->getLocalizedTitle());
 
 		$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
 		$pastSchedConfs =& $schedConfDao->getEnabledSchedConfs($conference->getId());

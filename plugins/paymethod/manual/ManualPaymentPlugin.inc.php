@@ -110,7 +110,7 @@ class ManualPaymentPlugin extends PaymethodPlugin {
 				$mail->setFrom($contactEmail, $contactName);
 				$mail->addRecipient($contactEmail, $contactName);
 				$mail->assignParams(array(
-					'schedConfName' => $schedConf->getFullTitle(),
+					'schedConfName' => $schedConf->getLocalizedTitle(),
 					'userFullName' => $user?$user->getFullName():('(' . __('common.none') . ')'),
 					'userName' => $user?$user->getUsername():('(' . __('common.none') . ')'),
 					'itemName' => $queuedPayment->getName(),

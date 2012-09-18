@@ -28,7 +28,7 @@ class OAIMetadataFormat_RFC1807 extends OAIMetadataFormat {
 		$galleys =& $record->getData('galleys');
 
 		// Add page information to sources
-		$source = $conference->getConferenceTitle() . '; ' . $schedConf->getLocalizedTitle();
+		$source = $conference->getLocalizedTitle() . '; ' . $schedConf->getLocalizedTitle();
 		if ($paper->getPages() != '') {
 			$source .= '; ' . $paper->getPages();
 		}
@@ -52,7 +52,7 @@ class OAIMetadataFormat_RFC1807 extends OAIMetadataFormat {
 		);
 
 		// Publishers
-		$publisher = $conference->getConferenceTitle(); // Default
+		$publisher = $conference->getLocalizedTitle(); // Default
 		$publisherInstitution = $conference->getSetting('publisherInstitution');
 		if (!empty($publisherInstitution)) {
 			$publisher = $publisherInstitution;

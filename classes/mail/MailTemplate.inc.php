@@ -127,7 +127,7 @@ class MailTemplate extends PKPMailTemplate {
 
 		if (isset($conference)) {
 			// FIXME Include affiliation, title, etc. in signature?
-			$paramArray['conferenceName'] = $conference->getConferenceTitle();
+			$paramArray['conferenceName'] = $conference->getLocalizedTitle();
 		}
 		if (!isset($paramArray['conferenceUrl'])) $paramArray['conferenceUrl'] = Request::url(Request::getRequestedConferencePath(), Request::getRequestedSchedConfPath());
 

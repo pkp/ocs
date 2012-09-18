@@ -17,9 +17,9 @@
 {iterate from=schedConfs item=schedConf}
 	<li>
 		{if $source}
-			<a href="{url schedConf=$schedConf->getPath() page="user" op="account" source=$source|escape}">{$schedConf->getFullTitle()|escape}</a>
+			<a href="{url schedConf=$schedConf->getPath() page="user" op="account" source=$source|escape}">{$schedConf->getLocalizedTitle()|escape}</a>
 		{else}
-			<a href="{url schedConf=$schedConf->getPath() page="user" op="account"}">{$schedConf->getFullTitle()|escape}</a>
+			<a href="{url schedConf=$schedConf->getPath() page="user" op="account"}">{$schedConf->getLocalizedTitle()|escape}</a>
 		{/if}
 	</li>
 {/iterate}

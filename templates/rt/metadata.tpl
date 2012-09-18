@@ -129,7 +129,7 @@
 	<td>11.</td>
 	<td>{translate key="rt.metadata.dublinCore.source"}</td>
 	<td>{translate key="rt.metadata.pkp.source"}</td>
-	<td>{$currentConference->getConferenceTitle()|escape}; {$schedConf->getLocalizedTitle()|escape}</td>
+	<td>{$currentConference->getLocalizedTitle()|escape}; {$schedConf->getLocalizedTitle()|escape}</td>
 </tr>
 <tr><td colspan="4" class="separator">&nbsp;</td></tr>
 <tr valign="top">

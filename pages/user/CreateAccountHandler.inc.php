@@ -54,7 +54,7 @@ class CreateAccountHandler extends UserHandler {
 
 			$templateMgr =& TemplateManager::getManager();
 			$templateMgr->assign('pageHierarchy', array(
-				array(Request::url(null, 'index', 'index'), $conference->getConferenceTitle(), true)));
+				array(Request::url(null, 'index', 'index'), $conference->getLocalizedTitle(), true)));
 			$templateMgr->assign('source', Request::getUserVar('source'));
 			$templateMgr->assign_by_ref('schedConfs', $schedConfs);
 			$templateMgr->display('user/createAccountConference.tpl');

@@ -122,7 +122,7 @@ class AuthorSubmitForm extends Form {
 			$mail->assignParams(array(
 				'authorName' => $user->getFullName(),
 				'authorUsername' => $user->getUsername(),
-				'editorialContactSignature' => $schedConf->getSetting('contactName') . "\n" . $conference->getConferenceTitle(),
+				'editorialContactSignature' => $schedConf->getSetting('contactName') . "\n" . $conference->getLocalizedTitle(),
 				'submissionUrl' => Request::url(null, null, 'author', 'submission', $paper->getId())
 			));
 			$mail->send();

@@ -21,7 +21,7 @@
 
 {iterate from=conferences item=conference}
 
-<h3>{$conference->getConferenceTitle()|escape}</h3>
+<h3>{$conference->getLocalizedTitle()|escape}</h3>
 
 {if $conference->getLocalizedSetting('description') != ''}
 <p>{$conference->getLocalizedSetting('description')|nl2br}</p>

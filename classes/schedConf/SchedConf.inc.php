@@ -85,11 +85,6 @@ class SchedConf extends DataObject {
 		return $this->getLocalizedSetting('title');
 	}
 
-	function getSchedConfTitle() {
-		if (Config::getVar('debug', 'deprecation_warnings')) trigger_error('Deprecated function.');
-		return $this->getLocalizedTitle();
-	}
-
 	/**
 	 * Get title of scheduled conference
 	 * @param $locale string
@@ -107,11 +102,6 @@ class SchedConf extends DataObject {
 		return $this->getLocalizedSetting('acronym');
 	}
 
-	function getSchedConfAcronym() {
-		if (Config::getVar('debug', 'deprecation_warnings')) trigger_error('Deprecated function.');
-		return $this->getLocalizedAcronym();
-	}
-
 	/**
 	 * Get acronym of scheduled conference
 	 * @param $locale string
@@ -119,24 +109,6 @@ class SchedConf extends DataObject {
 	 */
 	function getAcronym($locale) {
 		return $this->getSetting('acronym', $locale);
-	}
-
-	/**
-	 * Get ID of scheduled conference.
-	 * @return int
-	 */
-	function getSchedConfId() {
-		if (Config::getVar('debug', 'deprecation_warnings')) trigger_error('Deprecated function.');
-		return $this->getId();
-	}
-
-	/**
-	 * Set ID of scheduled conference.
-	 * @param $schedConfId int
-	 */
-	function setSchedConfId($schedConfId) {
-		if (Config::getVar('debug', 'deprecation_warnings')) trigger_error('Deprecated function.');
-		return $this->setId($schedConfId);
 	}
 
 	/**
@@ -230,21 +202,6 @@ class SchedConf extends DataObject {
 	function getSchedConfIntroduction() {
 		return $this->getLocalizedSetting('introduction');
 	}
-
-	//
-	// Helper functions making use of both the scheduled conference
-	// and Conference.
-	//
-
-	/**
-	 * Get full title of scheduled conference.
-	 * (Used to include conference title as well; this behavior was deprecated prior to 2.0 release.)
-	 * @return string
-	 */
-	function getFullTitle() {
-		return $this->getLocalizedTitle();
-	}
-
 
 	//
 	// SchedConfSettings functions: the following make use of data in the

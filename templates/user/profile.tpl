@@ -169,7 +169,7 @@
 		{/if}
 
 		{if $enableOpenAccessNotification}
-			<input type="checkbox" name="openAccessNotify[]" {if $notificationEnabled}checked="checked" {/if}id="openAccessNotify-{$thisSchedConfId|escape}" value="{$thisSchedConfId|escape}" /> <label for="openAccessNotify-{$thisSchedConfId|escape}">{$thisSchedConf->getFullTitle()|escape}</label><br/>
+			<input type="checkbox" name="openAccessNotify[]" {if $notificationEnabled}checked="checked" {/if}id="openAccessNotify-{$thisSchedConfId|escape}" value="{$thisSchedConfId|escape}" /> <label for="openAccessNotify-{$thisSchedConfId|escape}">{$thisSchedConf->getLocalizedTitle()|escape}</label><br/>
 		{/if}
 
 		{if $smarty.foreach.schedConfOpenAccessNotifications.last}

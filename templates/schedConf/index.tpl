@@ -14,7 +14,7 @@
  *}
 {strip}
 {assign var="pageCrumbTitleTranslated" value=$schedConf->getLocalizedTitle()}
-{assign var="pageTitleTranslated" value=$schedConf->getFullTitle()}
+{assign var="pageTitleTranslated" value=$schedConf->getLocalizedTitle()}
 {include file="common/header.tpl"}
 {/strip}
 

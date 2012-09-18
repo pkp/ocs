@@ -47,7 +47,7 @@ class Conference extends DataObject {
 	 * Get the localized title of the conference.
 	 * @return string
 	 */
-	function getConferenceTitle() {
+	function getLocalizedTitle() {
 		return $this->getLocalizedSetting('title');
 	}
 

@@ -25,7 +25,7 @@
 	{if !$schedConfUnavailable}
 	<li>
 
-		<em><a href="{url conference=$conference->getPath() schedConf=$schedConf->getPath()}">{$schedConf->getFullTitle()|escape}</a> - {$track->getLocalizedTitle()|escape}</em><br />
+		<em><a href="{url conference=$conference->getPath() schedConf=$schedConf->getPath()}">{$schedConf->getLocalizedTitle()|escape}</a> - {$track->getLocalizedTitle()|escape}</em><br />
 		{$paper->getLocalizedTitle()|strip_unsafe_html}<br/>
 		<a href="{url conference=$conference->getPath() schedConf=$schedConf->getPath() page="paper" op="view" path=$paper->getBestPaperId()}" class="file">{translate key="paper.abstract"}</a>
 		{foreach from=$paper->getLocalizedGalleys() item=galley name=galleyList}

@@ -37,7 +37,7 @@
 
 <div id="main">
 
-<h2>{$siteTitle|escape},&nbsp;{$schedConf->getFullTitle()|escape}</h2>
+<h2>{$siteTitle|escape},&nbsp;{$schedConf->getLocalizedTitle()|escape}</h2>
 
 <div id="content">
 {if $galley}

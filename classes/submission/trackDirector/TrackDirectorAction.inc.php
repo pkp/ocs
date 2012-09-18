@@ -1521,7 +1521,7 @@ import('classes.file.PaperFileManager');
 				$email->assignParams(array(
 					'conferenceDate' => strftime(Config::getVar('general', 'date_format_short'), $schedConf->getSetting('startDate')),
 					'authorName' => $authorUser->getFullName(),
-					'conferenceTitle' => $conference->getConferenceTitle(),
+					'conferenceTitle' => $conference->getLocalizedTitle(),
 					'editorialContactSignature' => $user->getContactSignature(),
 					'locationCity' => $schedConf->getSetting('locationCity'),
 					'paperTitle' => $trackDirectorSubmission->getLocalizedTitle()

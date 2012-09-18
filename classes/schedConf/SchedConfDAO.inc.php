@@ -74,7 +74,7 @@ class SchedConfDAO extends DAO {
 	 */
 	function &_returnSchedConfFromRow(&$row) {
 		$schedConf = new SchedConf();
-		$schedConf->setSchedConfId($row['sched_conf_id']);
+		$schedConf->setId($row['sched_conf_id']);
 		$schedConf->setPath($row['path']);
 		$schedConf->setSequence($row['seq']);
 		$schedConf->setConferenceId($row['conference_id']);
@@ -105,7 +105,7 @@ class SchedConfDAO extends DAO {
 			)
 		);
 
-		$schedConf->setSchedConfId($this->getInsertSchedConfId());
+		$schedConf->setId($this->getInsertSchedConfId());
 		return $schedConf->getId();
 	}
 

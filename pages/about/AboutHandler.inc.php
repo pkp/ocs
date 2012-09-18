@@ -92,7 +92,7 @@ class AboutHandler extends Handler {
 		AppLocale::requireComponents(LOCALE_COMPONENT_OCS_MANAGER, LOCALE_COMPONENT_PKP_MANAGER);
 
 		$pageHierarchy = array();
-		if ($conference) $pageHierarchy[] = array(Request::url(null, 'index', 'index'), $conference->getConferenceTitle(), true);
+		if ($conference) $pageHierarchy[] = array(Request::url(null, 'index', 'index'), $conference->getLocalizedTitle(), true);
 		if ($schedConf) $pageHierarchy[] = array(Request::url(null, null, 'index'), $schedConf->getLocalizedTitle(), true);
 		if ($subclass) $pageHierarchy[] = array(Request::url(null, null, 'about'), 'about.aboutTheConference');
 		$templateMgr->assign('pageHierarchy', $pageHierarchy);

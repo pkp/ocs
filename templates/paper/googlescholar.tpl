@@ -8,7 +8,7 @@
  *
  *}
 	<meta name="gs_meta_revision" content="1.1" />
-	<meta name="citation_conference_title" content="{$currentSchedConf->getFullTitle()|strip_tags|escape}"/>
+	<meta name="citation_conference_title" content="{$currentSchedConf->getLocalizedTitle()|strip_tags|escape}"/>
 {foreach name="authors" from=$paper->getAuthors() item=author}
 	<meta name="citation_author" content="{$author->getFirstName()|escape}{if $author->getMiddleName() != ""} {$author->getMiddleName()|escape}{/if} {$author->getLastName()|escape}"/>
 {if $author->getAffiliation() != ""}

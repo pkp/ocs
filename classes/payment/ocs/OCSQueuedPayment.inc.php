@@ -118,7 +118,7 @@ class OCSQueuedPayment extends QueuedPayment {
 				);
 
 				return __('payment.type.conferenceRegistration', array(
-					'schedConfTitle' => ($schedConf?$schedConf->getFullTitle():__('common.none')),
+					'schedConfTitle' => ($schedConf?$schedConf->getLocalizedTitle():__('common.none')),
 					'registrationTypeName' => ($registrationType?$registrationType->getRegistrationTypeName():__('common.none')),
 				)) . $options;
 			default:

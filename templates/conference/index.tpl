@@ -39,7 +39,7 @@
 <h3>{translate key="conference.currentConferences"}</h3>
 {if not $currentSchedConfs->eof()}
 	{iterate from=currentSchedConfs item=schedConf}
-		<h4><a href="{url schedConf=$schedConf->getPath()}">{$schedConf->getFullTitle()|escape}</a></h4>
+		<h4><a href="{url schedConf=$schedConf->getPath()}">{$schedConf->getLocalizedTitle()|escape}</a></h4>
 		<p>
 			{$schedConf->getSetting('locationName')}<br/>
 			{$schedConf->getSetting('locationAddress')|nl2br}<br/>

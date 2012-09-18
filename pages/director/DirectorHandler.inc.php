@@ -518,9 +518,9 @@ class DirectorHandler extends TrackDirectorHandler {
 		$pageHierarchy = array();
 
 		if ($schedConf) {
-			$pageHierarchy[] = array($request->url(null, null, 'index'), $schedConf->getFullTitle(), true);
+			$pageHierarchy[] = array($request->url(null, null, 'index'), $schedConf->getLocalizedTitle(), true);
 		} elseif ($conference) {
-			$pageHierarchy[] = array($request->url(null, 'index', 'index'), $conference->getConferenceTitle(), true);
+			$pageHierarchy[] = array($request->url(null, 'index', 'index'), $conference->getLocalizedTitle(), true);
 		}
 
 		$pageHierarchy[] = array($request->url(null, null, 'user'), 'navigation.user');

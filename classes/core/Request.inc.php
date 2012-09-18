@@ -73,7 +73,6 @@ class Request extends PKPRequest {
 	}
 
 	/**
-	 * Deprecated
 	 * @see PKPPageRouter::getContext()
 	 */
 	function &getConference() {
@@ -83,7 +82,6 @@ class Request extends PKPRequest {
 	}
 
 	/**
-	 * Deprecated
 	 * @see PKPPageRouter::getContext()
 	 */
 	function &getSchedConf() {

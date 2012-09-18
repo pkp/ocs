@@ -59,9 +59,9 @@ class InformationHandler extends Handler {
 		$templateMgr =& TemplateManager::getManager();
 
 		if($schedConf) {
-			$templateMgr->assign('schedConfTitle', $schedConf->getFullTitle());
+			$templateMgr->assign('schedConfTitle', $schedConf->getLocalizedTitle());
 		}
-		$templateMgr->assign('conferenceTitle', $conference->getConferenceTitle());
+		$templateMgr->assign('conferenceTitle', $conference->getLocalizedTitle());
 
 		$templateMgr->assign('pageCrumbTitle', $pageCrumbTitle);
 		$templateMgr->assign('pageTitle', $pageTitle);

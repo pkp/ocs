@@ -18,7 +18,7 @@
 <h3>{translate key="conference.archive"}</h3>
 {if not $schedConfs->eof()}
 	{iterate from=schedConfs item=schedConf}
-		<h4><a href="{url schedConf=$schedConf->getPath()}">{$schedConf->getFullTitle()|escape}</a></h4>
+		<h4><a href="{url schedConf=$schedConf->getPath()}">{$schedConf->getLocalizedTitle()|escape}</a></h4>
 		<p>
 			{$schedConf->getSetting('locationName')|escape}<br/>
 			{$schedConf->getSetting('locationAddress')|nl2br}<br/>

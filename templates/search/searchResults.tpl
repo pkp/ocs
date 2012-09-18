@@ -82,7 +82,7 @@ function ensureKeyword() {
 {assign var=conference value=$result.conference}
 {assign var=track value=$result.track}
 <tr valign="top">
-	{if !$currentConference}<td><a href="{url conference=$conference->getPath()}">{$conference->getConferenceTitle()|escape}</a></td>{/if}
+	{if !$currentConference}<td><a href="{url conference=$conference->getPath()}">{$conference->getLocalizedTitle()|escape}</a></td>{/if}
 	<td><a href="{url conference=$conference->getPath() schedConf=$schedConf->getPath()}">{$schedConf->getLocalizedTitle()|escape}</a></td>
 	<td width="30%">{$paper->getLocalizedTitle()|strip_unsafe_html}</td>
 	<td width="30%" align="right">

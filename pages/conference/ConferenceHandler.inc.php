@@ -50,7 +50,7 @@ class ConferenceHandler extends Handler {
 		$templateMgr->assign('homepageImage', $conference->getLocalizedSetting('homepageImage'));
 		$templateMgr->assign('homepageImageAltText', $conference->getLocalizedSetting('homepageImageAltText'));
 		$templateMgr->assign('description', $conference->getLocalizedSetting('description'));
-		$templateMgr->assign('conferenceTitle', $conference->getConferenceTitle());
+		$templateMgr->assign('conferenceTitle', $conference->getLocalizedTitle());
 
 		$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
 		$currentSchedConfs =& $schedConfDao->getCurrentSchedConfs($conference->getId());

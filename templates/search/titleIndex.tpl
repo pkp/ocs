@@ -37,7 +37,7 @@
 {assign var=schedConf value=$result.schedConf}
 {assign var=conference value=$result.conference}
 <tr valign="top">
-	{if !$currentConference}<td><a href="{url conference=$conference->getPath() schedConf="index"}">{$conference->getConferenceTitle()|escape}</a></td>{/if}
+	{if !$currentConference}<td><a href="{url conference=$conference->getPath() schedConf="index"}">{$conference->getLocalizedTitle()|escape}</a></td>{/if}
 	<td><a href="{url conference=$conference->getPath() schedConf=$schedConf->getPath() page="schedConf"}">{$schedConf->getLocalizedTitle()|escape}</a></td>
 	<td width="35%">{$paper->getLocalizedTitle()|strip_unsafe_html}</td>
 	<td width="25%" align="right">
