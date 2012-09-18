@@ -57,7 +57,7 @@ class TrackSubmissionHandler extends AuthorHandler {
 	function deletePaperFile($args) {
 		$paperId = (int) array_shift($args);
 		$fileId = (int) array_shift($args);
-		$revisionId (int) array_shift($args);
+		$revisionId = (int) array_shift($args);
 
 		$this->validate($paperId, true);
 		$authorSubmission =& $this->submission;
