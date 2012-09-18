@@ -190,7 +190,7 @@ class SchedConfDAO extends DAO {
 		$registrationOptionDao->deleteRegistrationOptionsBySchedConf($schedConfId);
 
 		$announcementDao =& DAORegistry::getDAO('AnnouncementDAO');
-		$announcementDao->deleteAnnouncementsByAssocId(ASSOC_TYPE_SCHED_CONF, $schedConfId);
+		$announcementDao->deleteByAssocId(ASSOC_TYPE_SCHED_CONF, $schedConfId);
 
 		$buildingDao =& DAORegistry::getDAO('BuildingDAO');
 		$buildingDao->deleteBuildingsBySchedConfId($schedConfId);
