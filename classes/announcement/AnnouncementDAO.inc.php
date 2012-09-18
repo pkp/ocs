@@ -38,7 +38,7 @@ class AnnouncementDAO extends PKPAnnouncementDAO {
 	 * @param $schedConfId int optional
 	 * @param $rangeInfo Object optional
 	 */
-	function &getAnnouncementsByConferenceId($conferenceId, $schedConfId = 0, $rangeInfo = null) {
+	function &getByConferenceId($conferenceId, $schedConfId = 0, $rangeInfo = null) {
 		$conferenceArgs = array(ASSOC_TYPE_CONFERENCE, $conferenceId);
 		if($schedConfId == -1) {
 			$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');

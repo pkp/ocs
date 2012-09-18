@@ -79,7 +79,7 @@ class AnnouncementHandler extends PKPAnnouncementHandler {
 	 */
 	function &_getAnnouncements($request, $rangeInfo = null) {
 		$announcementDao =& DAORegistry::getDAO('AnnouncementDAO');
-		$announcements =& $announcementDao->getAnnouncementsByConferenceId($this->getContextId($request), -1, $rangeInfo);
+		$announcements =& $announcementDao->getByAssocId($this->getContextId($request), -1, $rangeInfo);
 
 		return $announcements;
 	}
