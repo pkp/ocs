@@ -170,7 +170,7 @@ class NativeImportDom {
 		foreach($abbrevs as $locale => $abbrev) {
 			$abbrevTrack = $trackDao->getTrackByAbbrev($abbrev, $schedConf->getId());
 			if ($abbrevTrack) {
-				$trackId = $abbrevTrack->getTrackId();
+				$trackId = $abbrevTrack->getId();
 				if ($foundTrackId) {
 					if ($foundTrackId != $trackId) {
 						// Mismatching tracks found. Throw an error.
@@ -210,7 +210,7 @@ class NativeImportDom {
 			$track->setSequence(REALLY_BIG_NUMBER);
 			$track->setMetaIndexed(1);
 			$track->setEditorRestricted(1);
-			$track->setTrackId($trackDao->insertTrack($track));
+			$track->setId($trackDao->insertTrack($track));
 			$trackDao->resequenceTracks($schedConf>getSchedConfId());
 		}
 

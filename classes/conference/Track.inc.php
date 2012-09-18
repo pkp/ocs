@@ -14,8 +14,6 @@
  *
  */
 
-
-
 class Track extends DataObject {
 
 	/**
@@ -33,11 +31,6 @@ class Track extends DataObject {
 		return $this->getLocalizedData('title');
 	}
 
-	function getTrackTitle() {
-		if (Config::getVar('debug', 'deprecation_warnings')) trigger_error('Deprecated function.');
-		return $this->getLocalizedTitle();
-	}
-
 	/**
 	 * Get localized abbreviation of conference track.
 	 */
@@ -45,32 +38,9 @@ class Track extends DataObject {
 		return $this->getLocalizedData('abbrev');
 	}
 
-	function getTrackAbbrev() {
-		if (Config::getVar('debug', 'deprecation_warnings')) trigger_error('Deprecated function.');
-		return $this->getLocalizedAbbrev();
-	}
-
 	//
 	// Get/set methods
 	//
-
-	/**
-	 * Get ID of track.
-	 * @return int
-	 */
-	function getTrackId() {
-		if (Config::getVar('debug', 'deprecation_warnings')) trigger_error('Deprecated function.');
-		return $this->getId();
-	}
-
-	/**
-	 * Set ID of track.
-	 * @param $trackId int
-	 */
-	function setTrackId($trackId) {
-		if (Config::getVar('debug', 'deprecation_warnings')) trigger_error('Deprecated function.');
-		return $this->setId($trackId);
-	}
 
 	/**
 	 * Get ID of scheduled conference.
@@ -198,11 +168,6 @@ class Track extends DataObject {
 		return $this->getLocalizedData('identifyType');
 	}
 
-	function getTrackIdentifyType() {
-		if (Config::getVar('debug', 'deprecation_warnings')) trigger_error('Deprecated function.');
-		return $this->getLocalizedIdentifyType();
-	}
-
 	/**
 	 * Get string identifying type of items in this track.
 	 * @param $locale string
@@ -275,11 +240,6 @@ class Track extends DataObject {
 	 */
 	function getLocalizedPolicy() {
 		return $this->getLocalizedData('policy');
-	}
-
-	function getTrackPolicy() {
-		if (Config::getVar('debug', 'deprecation_warnings')) trigger_error('Deprecated function.');
-		return $this->getLocalizedPolicy();
 	}
 
 	/**

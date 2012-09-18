@@ -483,7 +483,7 @@ class OAIDAO extends DAO {
 			$tracks =& $this->trackDao->getConferenceTracks($conference->getId());
 			foreach ($tracks->toArray() as $track) {
 				$schedConf =& $this->getSchedConf($track->getSchedConfId());
-				array_push($sets, new OAISet($abbrev . ':' . $schedConf->getPath() . ':' . $track->getLocalizedAbbrev(), $track->getTrackTitle(), ''));
+				array_push($sets, new OAISet($abbrev . ':' . $schedConf->getPath() . ':' . $track->getLocalizedAbbrev(), $track->getLocalizedTitle(), ''));
 				unset($schedConf);
 			}
 		}
