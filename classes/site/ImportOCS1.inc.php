@@ -905,7 +905,7 @@ class ImportOCS1 {
 					break;
 			}
 
-			$reviewId = $reviewAssignmentDao->insertReviewAssignment($reviewAssignment);
+			$reviewId = $reviewAssignmentDao->insertObject($reviewAssignment);
 
 			$paperComment = new PaperComment();
 			$paperComment->setCommentType(COMMENT_TYPE_PEER_REVIEW);

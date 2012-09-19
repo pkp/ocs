@@ -218,7 +218,7 @@ class TrackDirectorSubmissionDAO extends DAO {
 				if ($reviewAssignment->getId() > 0) {
 					$this->reviewAssignmentDao->updateReviewAssignment($reviewAssignment);
 				} else {
-					$this->reviewAssignmentDao->insertReviewAssignment($reviewAssignment);
+					$this->reviewAssignmentDao->insertObject($reviewAssignment);
 				}
 			}
 		}
@@ -226,7 +226,7 @@ class TrackDirectorSubmissionDAO extends DAO {
 		// Remove deleted review assignments
 		$removedReviewAssignments = $trackDirectorSubmission->getRemovedReviewAssignments();
 		for ($i=0, $count=count($removedReviewAssignments); $i < $count; $i++) {
-			$this->reviewAssignmentDao->deleteReviewAssignmentById($removedReviewAssignments[$i]->getId());
+			$this->reviewAssignmentDao->deleteById($removedReviewAssignments[$i]->getId());
 		}
 
 		// Update paper
