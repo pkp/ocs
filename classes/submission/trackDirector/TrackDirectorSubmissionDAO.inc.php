@@ -226,7 +226,7 @@ class TrackDirectorSubmissionDAO extends DAO {
 		// Remove deleted review assignments
 		$removedReviewAssignments = $trackDirectorSubmission->getRemovedReviewAssignments();
 		for ($i=0, $count=count($removedReviewAssignments); $i < $count; $i++) {
-			$this->reviewAssignmentDao->deleteReviewAssignmentById($removedReviewAssignments[$i]->getReviewId());
+			$this->reviewAssignmentDao->deleteReviewAssignmentById($removedReviewAssignments[$i]->getId());
 		}
 
 		// Update paper

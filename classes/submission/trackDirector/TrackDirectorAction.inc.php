@@ -1542,7 +1542,7 @@ import('classes.file.PaperFileManager');
 
 							if ($paperComments) {
 								$body .= "------------------------------------------------------\n";
-								$body .= __('submission.comments.importPeerReviews.reviewerLetter', array('reviewerLetter' => String::enumerateAlphabetically($reviewIndexes[$reviewAssignment->getReviewId()]))) . "\n";
+								$body .= __('submission.comments.importPeerReviews.reviewerLetter', array('reviewerLetter' => String::enumerateAlphabetically($reviewIndexes[$reviewAssignment->getId()]))) . "\n";
 								if (is_array($paperComments)) {
 									foreach ($paperComments as $comment) {
 										// If the comment is viewable by the author, then add the comment.
@@ -1562,7 +1562,7 @@ import('classes.file.PaperFileManager');
 								$reviewFormElements =& $reviewFormElementDao->getReviewFormElements($reviewFormId);
 								if (!$paperComments) {
 									$body .= "------------------------------------------------------\n";
-									$body .= __('submission.comments.importPeerReviews.reviewerLetter', array('reviewerLetter' => String::enumerateAlphabetically($reviewIndexes[$reviewAssignment->getReviewId()]))) . "\n\n";
+									$body .= __('submission.comments.importPeerReviews.reviewerLetter', array('reviewerLetter' => String::enumerateAlphabetically($reviewIndexes[$reviewAssignment->getId()]))) . "\n\n";
 								}
 								foreach ($reviewFormElements as $reviewFormElement) if ($reviewFormElement->getIncluded()) {
 									$body .= String::html2text($reviewFormElement->getLocalizedQuestion()) . ": \n";
