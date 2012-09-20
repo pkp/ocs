@@ -712,21 +712,7 @@ current password.<br /><br />Enter your email address below to reset your passwo
 
 <h4>Supported database systems</h4>
 
-<p>OCS has currently only been tested on MySQL and PostgreSQL, although other database management systems supported by <a href="http://adodb.sourceforge.net/" target="_blank">ADOdb</a> may work (in full or partially). Compatibility reports and/or code patches for alternative DBMSs can be sent to the OCS team.</p>
-
-<h4>Pre-Installation Steps</h4>
-
-<p>1. The following files and directories (and their contents) must be made writable:</p>
-<ul>
-	<li><tt>config.inc.php</tt> is writable (optional): {$writable_config}</li>
-	<li><tt>public/</tt> is writable: {$writable_public}</li>
-	<li><tt>cache/</tt> is writable: {$writable_cache}</li>
-	<li><tt>cache/t_cache/</tt> is writable: {$writable_templates_cache}</li>
-	<li><tt>cache/t_compile/</tt> is writable: {$writable_templates_compile}</li>
-	<li><tt>cache/_db</tt> is writable: {$writable_db_cache}</li>
-</ul>
-
-<p>2. A directory to store uploaded files must be created and made writable (see "File Settings" below).</p>]]></message>
+<p>OCS has currently only been tested on MySQL and PostgreSQL, although other database management systems supported by <a href="http://adodb.sourceforge.net/" target="_blank">ADOdb</a> may work (in full or partially). Compatibility reports and/or code patches for alternative DBMSs can be sent to the OCS team.</p>]]></message>
 	<message key="installer.upgradeInstructions"><![CDATA[<h4>OCS Version {$version}</h4>
 
 <p>Thank you for downloading the Public Knowledge Project's <strong>Open Conference Systems</strong>. Before proceeding, please read the <a href="{$baseUrl}/docs/README">README</a> and <a href="{$baseUrl}/docs/UPGRADE">UPGRADE</a> files included with this software. For more information about the Public Knowledge Project and its software projects, please visit the <a href="http://pkp.sfu.ca/" target="_blank">PKP web site</a>. If you have bug reports or technical support inquiries about Open Conference Systems, see the <a href="http://pkp.sfu.ca/support/forum" target="_blank">support forum</a> or visit PKP's online <a href="http://pkp.sfu.ca/bugzilla/" target="_blank">bug reporting system</a>. Although the support forum is the preferred method of contact, you can also email the team at <a href="mailto:pkp.contact@gmail.com">pkp.contact@gmail.com</a>.</p>
