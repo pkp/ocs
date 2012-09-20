@@ -69,7 +69,7 @@ class TrackForm extends Form {
 			$unassignedDirectors = array();
 			foreach ($unassignedDirectorIds as $edUserId) {
 				if (!empty($edUserId)) {
-					$unassignedDirectors[] =& $userDao->getUser($edUserId);
+					$unassignedDirectors[] =& $userDao->getById($edUserId);
 				}
 			}
 
@@ -77,7 +77,7 @@ class TrackForm extends Form {
 			$assignedDirectors = array();
 			foreach ($assignedDirectorIds as $edUserId) {
 				if (!empty($edUserId)) {
-					$assignedDirectors[] =& $userDao->getUser($edUserId);
+					$assignedDirectors[] =& $userDao->getById($edUserId);
 				}
 			}
 

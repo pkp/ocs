@@ -174,7 +174,7 @@ class TrackDirectorAction extends Action {
 		$userDao =& DAORegistry::getDAO('UserDAO');
 		$user =& Request::getUser();
 
-		$reviewer =& $userDao->getUser($reviewerId);
+		$reviewer =& $userDao->getById($reviewerId);
 
 		// Check to see if the requested reviewer is not already
 		// assigned to review this paper.
@@ -253,7 +253,7 @@ class TrackDirectorAction extends Action {
 		$reviewAssignment =& $reviewAssignmentDao->getById($reviewId);
 
 		if (isset($reviewAssignment) && $reviewAssignment->getSubmissionId() == $trackDirectorSubmission->getId() && !HookRegistry::call('TrackDirectorAction::clearReview', array(&$trackDirectorSubmission, $reviewAssignment))) {
-			$reviewer =& $userDao->getUser($reviewAssignment->getReviewerId());
+			$reviewer =& $userDao->getById($reviewAssignment->getReviewerId());
 			if (!isset($reviewer)) return false;
 			$trackDirectorSubmission->removeReviewAssignment($reviewId);
 			$trackDirectorSubmissionDao->updateTrackDirectorSubmission($trackDirectorSubmission);
@@ -299,7 +299,7 @@ class TrackDirectorAction extends Action {
 		}
 
 		if ($reviewAssignment->getSubmissionId() == $trackDirectorSubmission->getId()) {
-			$reviewer =& $userDao->getUser($reviewAssignment->getReviewerId());
+			$reviewer =& $userDao->getById($reviewAssignment->getReviewerId());
 			if (!isset($reviewer)) return true;
 
 			if (!$email->isEnabled() || ($send && !$email->hasErrors())) {
@@ -392,7 +392,7 @@ class TrackDirectorAction extends Action {
 		$user =& Request::getUser();
 
 		$reviewAssignment =& $reviewAssignmentDao->getById($reviewId);
-		$reviewer =& $userDao->getUser($reviewAssignment->getReviewerId());
+		$reviewer =& $userDao->getById($reviewAssignment->getReviewerId());
 		if (!isset($reviewer)) return true;
 
 		if ($reviewAssignment->getSubmissionId() == $trackDirectorSubmission->getId()) {
@@ -473,7 +473,7 @@ class TrackDirectorAction extends Action {
 			HookRegistry::call('TrackDirectorAction::remindReviewer', array(&$trackDirectorSubmission, &$reviewAssignment, &$email));
 			$email->setAssoc(PAPER_EMAIL_REVIEW_REMIND, PAPER_EMAIL_TYPE_REVIEW, $reviewId);
 
-			$reviewer =& $userDao->getUser($reviewAssignment->getReviewerId());
+			$reviewer =& $userDao->getById($reviewAssignment->getReviewerId());
 
 			if ($reviewerAccessKeysEnabled) {
 				import('lib.pkp.classes.security.AccessKeyManager');
@@ -505,7 +505,7 @@ class TrackDirectorAction extends Action {
 			$reviewAssignmentDao->updateReviewAssignment($reviewAssignment);
 			return true;
 		} elseif ($reviewAssignment->getSubmissionId() == $trackDirectorSubmission->getId()) {
-			$reviewer =& $userDao->getUser($reviewAssignment->getReviewerId());
+			$reviewer =& $userDao->getById($reviewAssignment->getReviewerId());
 
 			if (!Request::getUserVar('continued')) {
 				if (!isset($reviewer)) return true;
@@ -568,7 +568,7 @@ class TrackDirectorAction extends Action {
 		$email = new PaperMailTemplate($trackDirectorSubmission, 'REVIEW_ACK');
 
 		if ($reviewAssignment->getSubmissionId() == $trackDirectorSubmission->getId()) {
-			$reviewer =& $userDao->getUser($reviewAssignment->getReviewerId());
+			$reviewer =& $userDao->getById($reviewAssignment->getReviewerId());
 			if (!isset($reviewer)) return true;
 
 			if (!$email->isEnabled() || ($send && !$email->hasErrors())) {
@@ -610,7 +610,7 @@ class TrackDirectorAction extends Action {
 		$user =& Request::getUser();
 
 		$reviewAssignment =& $reviewAssignmentDao->getById($reviewId);
-		$reviewer =& $userDao->getUser($reviewAssignment->getReviewerId());
+		$reviewer =& $userDao->getById($reviewAssignment->getReviewerId());
 		if (!isset($reviewer)) return false;
 
 		if ($reviewAssignment->getSubmissionId() == $paperId && !HookRegistry::call('TrackDirectorAction::rateReviewer', array(&$reviewAssignment, &$reviewer, &$quality))) {
@@ -665,7 +665,7 @@ class TrackDirectorAction extends Action {
 		$user =& Request::getUser();
 
 		$reviewAssignment =& $reviewAssignmentDao->getById($reviewId);
-		$reviewer =& $userDao->getUser($reviewAssignment->getReviewerId());
+		$reviewer =& $userDao->getById($reviewAssignment->getReviewerId());
 		if (!isset($reviewer)) return false;
 
 		if ($reviewAssignment->getSubmissionId() == $paperId && !HookRegistry::call('TrackDirectorAction::setDueDate', array(&$reviewAssignment, &$reviewer, &$dueDate, &$numWeeks))) {
@@ -724,7 +724,7 @@ class TrackDirectorAction extends Action {
 		$schedConf =& Request::getSchedConf();
 		$user =& Request::getUser();
 
-		$author =& $userDao->getUser($trackDirectorSubmission->getUserId());
+		$author =& $userDao->getById($trackDirectorSubmission->getUserId());
 		if (!isset($author)) return true;
 
 		import('classes.mail.PaperMailTemplate');
@@ -766,7 +766,7 @@ class TrackDirectorAction extends Action {
 		$user =& Request::getUser();
 
 		$reviewAssignment =& $reviewAssignmentDao->getById($reviewId);
-		$reviewer =& $userDao->getUser($reviewAssignment->getReviewerId(), true);
+		$reviewer =& $userDao->getById($reviewAssignment->getReviewerId(), true);
 
 		if ($reviewAssignment->getSubmissionId() == $paperId && !HookRegistry::call('TrackDirectorAction::setReviewerRecommendation', array(&$reviewAssignment, &$reviewer, &$recommendation, &$acceptOption))) {
 			$reviewAssignment->setRecommendation($recommendation);
@@ -1510,7 +1510,7 @@ import('classes.file.PaperFileManager');
 			return true;
 		} else {
 			if (!Request::getUserVar('continued')) {
-				$authorUser =& $userDao->getUser($trackDirectorSubmission->getUserId());
+				$authorUser =& $userDao->getById($trackDirectorSubmission->getUserId());
 				$authorEmail = $authorUser->getEmail();
 				$email->addRecipient($authorEmail, $authorUser->getFullName());
 				if ($schedConf->getSetting('notifyAllAuthorsOnDecision')) foreach ($trackDirectorSubmission->getAuthors() as $author) {
@@ -1638,7 +1638,7 @@ import('classes.file.PaperFileManager');
 				$email->clearRecipients();
 				foreach ($reviewAssignments as $reviewAssignment) {
 					if ($reviewAssignment->getDateCompleted() != null && !$reviewAssignment->getCancelled()) {
-						$reviewer =& $userDao->getUser($reviewAssignment->getReviewerId());
+						$reviewer =& $userDao->getById($reviewAssignment->getReviewerId());
 
 						if (isset($reviewer)) $email->addBcc($reviewer->getEmail(), $reviewer->getFullName());
 					}
@@ -1667,7 +1667,7 @@ import('classes.file.PaperFileManager');
 		$user =& Request::getUser();
 
 		$reviewAssignment =& $reviewAssignmentDao->getById($reviewId);
-		$reviewer =& $userDao->getUser($reviewAssignment->getReviewerId(), true);
+		$reviewer =& $userDao->getById($reviewAssignment->getReviewerId(), true);
 
 		if (HookRegistry::call('TrackDirectorAction::confirmReviewForReviewer', array(&$reviewAssignment, &$reviewer, &$accept))) return;
 
@@ -1706,7 +1706,7 @@ import('classes.file.PaperFileManager');
 		$user =& Request::getUser();
 
 		$reviewAssignment =& $reviewAssignmentDao->getById($reviewId);
-		$reviewer =& $userDao->getUser($reviewAssignment->getReviewerId(), true);
+		$reviewer =& $userDao->getById($reviewAssignment->getReviewerId(), true);
 
 		if (HookRegistry::call('TrackDirectorAction::uploadReviewForReviewer', array(&$reviewAssignment, &$reviewer))) return;
 

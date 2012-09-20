@@ -246,7 +246,7 @@ class PayPalPlugin extends PaymethodPlugin {
 
 								// Get registrant name and email
 								$userDao =& DAORegistry::getDAO('UserDAO');
-								$user =& $userDao->getUser($queuedPayment->getUserId());
+								$user =& $userDao->getById($queuedPayment->getUserId());
 								$registrantName = $user->getFullName();
 								$registrantEmail = $user->getEmail();
 

@@ -537,7 +537,7 @@ class ImportOCS1 {
 			$schedConf =& $this->schedConfMap[$row['cf']];
 			$schedConfId = $schedConf->getId();
 
-			$user = $userDao->getUserByUsername(Core::cleanVar($row['login']));
+			$user = $userDao->getByUsername(Core::cleanVar($row['login']));
 			if (!$user) {
 				unset($user);
 				$user = new User();
@@ -627,7 +627,7 @@ class ImportOCS1 {
 			$schedConfId = $schedConf->getId();
 
 			// Bring in the primary user for this paper.
-			$user = $userDao->getUserByUsername(Core::cleanVar($row['login']));
+			$user = $userDao->getByUsername(Core::cleanVar($row['login']));
 			if (!$user) {
 				unset($user);
 				$user = new User();

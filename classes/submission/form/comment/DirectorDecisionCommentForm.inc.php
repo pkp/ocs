@@ -81,7 +81,7 @@ class DirectorDecisionCommentForm extends CommentForm {
 
 		if ($this->roleId == ROLE_ID_DIRECTOR || $this->roleId == ROLE_ID_TRACK_DIRECTOR) {
 			// Then add author
-			$user =& $userDao->getUser($this->paper->getUserId());
+			$user =& $userDao->getById($this->paper->getUserId());
 
 			if ($user) $recipients = array_merge($recipients, array($user->getEmail() => $user->getFullName()));
 		} else {

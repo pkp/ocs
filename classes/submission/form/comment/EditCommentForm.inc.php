@@ -145,13 +145,13 @@ class EditCommentForm extends Form {
 		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
 		$reviewAssignment =& $reviewAssignmentDao->getById($this->comment->getAssocId());
 		if ($reviewAssignment != null && $reviewAssignment->getReviewerId() != null) {
-			$reviewer =& $userDao->getUser($reviewAssignment->getReviewerId());
+			$reviewer =& $userDao->getById($reviewAssignment->getReviewerId());
 		} else {
 			$reviewer = null;
 		}
 
 		// Get author
-		$author =& $userDao->getUser($this->paper->getUserId());
+		$author =& $userDao->getById($this->paper->getUserId());
 
 		switch ($this->comment->getCommentType()) {
 		case COMMENT_TYPE_PEER_REVIEW:

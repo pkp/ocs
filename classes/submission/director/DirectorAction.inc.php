@@ -42,7 +42,7 @@ class DirectorAction extends TrackDirectorAction {
 		$conference =& Request::getConference();
 
 		$directorSubmission =& $directorSubmissionDao->getDirectorSubmission($paperId);
-		$trackDirector =& $userDao->getUser($trackDirectorId);
+		$trackDirector =& $userDao->getById($trackDirectorId);
 		if (!isset($trackDirector)) return true;
 
 		import('classes.mail.PaperMailTemplate');

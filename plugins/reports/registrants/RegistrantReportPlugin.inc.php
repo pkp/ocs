@@ -117,7 +117,7 @@ class RegistrantReportPlugin extends ReportPlugin {
 			$registrationType =& $registrationTypes[$registrationTypeId];
 
 			// Get registrant user object
-			$user =& $userDao->getUser($registration->getUserId());
+			$user =& $userDao->getById($registration->getUserId());
 
 			$columns = array(
 				$registrationId,

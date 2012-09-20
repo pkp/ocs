@@ -248,7 +248,7 @@ class CreateAccountForm extends Form {
 		if ($this->existingUser) {
 			// Existing user in the system
 			$userDao =& DAORegistry::getDAO('UserDAO');
-			$user =& $userDao->getUserByUsername($this->getData('username'));
+			$user =& $userDao->getByUsername($this->getData('username'));
 			if ($user == null) {
 				return false;
 			}

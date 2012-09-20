@@ -88,7 +88,7 @@ class RegistrationForm extends Form {
 		$templateMgr->assign('yearOffsetFuture', REGISTRATION_YEAR_OFFSET_FUTURE);
 
 		$userDao =& DAORegistry::getDAO('UserDAO');
-		$user =& $userDao->getUser(isset($this->userId)?$this->userId:$this->getData('userId'));
+		$user =& $userDao->getById(isset($this->userId)?$this->userId:$this->getData('userId'));
 
 		$templateMgr->assign_by_ref('user', $user);
 
@@ -197,7 +197,7 @@ class RegistrationForm extends Form {
 
 			$schedConfName = $schedConf->getLocalizedTitle();
 			$schedConfId = $schedConf->getId();
-			$user =& $userDao->getUser($this->getData('userId'));
+			$user =& $userDao->getById($this->getData('userId'));
 
 			list($registrationEmail, $registrationName, $registrationContactSignature) = $this->getRegistrationContactInformation($schedConfId);
 
@@ -256,7 +256,7 @@ class RegistrationForm extends Form {
 
 			$schedConfName = $schedConf->getLocalizedTitle();
 			$schedConfId = $schedConf->getId();
-			$user =& $userDao->getUser($this->getData('userId'));
+			$user =& $userDao->getById($this->getData('userId'));
 			$registrationType =& $registrationTypeDao->getRegistrationType($this->getData('typeId'));
 
 			list($registrationEmail, $registrationName, $registrationContactSignature) = $this->getRegistrationContactInformation($schedConfId);
