@@ -41,7 +41,7 @@
 	<p>
 
 	{if $parent}
-		{assign var=parentId value=$parent->getCommentId()}
+		{assign var=parentId value=$parent->getId()}
 		{url|assign:"url" page="comment" op="view" path=$paperId|to_array:$parentId}
 		<em>{translate key="comments.inResponseTo" url=$url title=$parent->getTitle()|escape|default:"&nbsp;"}</em><br />
 	{/if}
@@ -81,7 +81,7 @@
 {foreach from=$comments item=child}
 <div id="childComment">
 {assign var=user value=$child->getUser()}
-{assign var=childId value=$child->getCommentId()}
+{assign var=childId value=$child->getId()}
 <h4><a href="{url op="view" path=$paperId|to_array:$galleyId:$childId}" target="_parent">{$child->getTitle()|escape|default:"&nbsp;"}</a></h4>
 <h5>
 	{if $user}
@@ -109,7 +109,7 @@
 {/if}
 {if $isManager}
 	{if $hasPriorAction}&nbsp;|&nbsp;{/if}
-	<a href="{url op="delete" path=$paperId|to_array:$galleyId:$child->getCommentId()}" {if $child->getChildCommentCount()!=0}onclick="return confirm('{translate|escape:"jsparam" key="comments.confirmDeleteChildren"}')" {/if}class="action">{translate key="comments.delete"}</a>
+	<a href="{url op="delete" path=$paperId|to_array:$galleyId:$child->getId()}" {if $child->getChildCommentCount()!=0}onclick="return confirm('{translate|escape:"jsparam" key="comments.confirmDeleteChildren"}')" {/if}class="action">{translate key="comments.delete"}</a>
 	{assign var="hasPriorAction" value=1}
 {/if}
 <br />
@@ -125,7 +125,7 @@
 <div id="grandchildComment">
 {assign var=user value=$grandChild->getUser()}
 	<li>
-		<a href="{url op="view" path=$paperId|to_array:$galleyId:$grandChild->getCommentId()}" target="_parent">{$grandChild->getTitle()|escape|default:"&nbsp;"}</a>
+		<a href="{url op="view" path=$paperId|to_array:$galleyId:$grandChild->getId()}" target="_parent">{$grandChild->getTitle()|escape|default:"&nbsp;"}</a>
 		{if $grandChild->getChildCommentCount()==1}
 			{translate key="comments.oneReply"}
 		{elseif $grandChild->getChildCommentCount()>0}

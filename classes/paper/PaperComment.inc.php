@@ -28,24 +28,6 @@ class PaperComment extends DataObject {
 	}
 
 	/**
-	 * get paper comment id
-	 * @return int
-	 */
-	function getCommentId() {
-		if (Config::getVar('debug', 'deprecation_warnings')) trigger_error('Deprecated function.');
-		return $this->getId();
-	}
-
-	/**
-	 * set paper comment id
-	 * @param $commentId int
-	 */
-	function setCommentId($commentId) {
-		if (Config::getVar('debug', 'deprecation_warnings')) trigger_error('Deprecated function.');
-		return $this->setId($commentId);
-	}
-
-	/**
 	 * get comment type
 	 * @return int
 	 */
