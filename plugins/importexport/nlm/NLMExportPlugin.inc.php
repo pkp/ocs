@@ -5,7 +5,7 @@
  *
  * Copyright (c) 2000-2012 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
- * 
+ *
  * @class NLMExportPlugin
  * @ingroup plugins_importexport_nlm
  * @see NLMExportDom
@@ -49,8 +49,9 @@ class NLMExportPlugin extends ImportExportPlugin {
 	function display(&$args) {
 		$templateMgr =& TemplateManager::getManager();
 		parent::display($args);
+		$request =& $this->getRequest();
 
-		$conference =& Request::getConference();
+		$conference =& $request->getConference();
 
 		switch (array_shift($args)) {
 			case 'exportPaper':
@@ -61,7 +62,7 @@ class NLMExportPlugin extends ImportExportPlugin {
 				$this->exportPapers($result);
 				break;
 			case 'exportPapers':
-				$paperIds = Request::getUserVar('paperId');
+				$paperIds = $request->getUserVar('paperId');
 				if (!isset($paperIds)) $paperIds = array();
 				else array_pop($paperIds);
 				$results =& PaperSearch::formatResults($paperIds);

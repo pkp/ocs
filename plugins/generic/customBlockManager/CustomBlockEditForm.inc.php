@@ -10,7 +10,7 @@
  * @class CustomBlockEditForm
  *
  * Form for conference managers to create and modify sidebar blocks
- * 
+ *
  */
 
 import('lib.pkp.classes.form.Form');
@@ -21,7 +21,7 @@ class CustomBlockEditForm extends Form {
 
 	/** @var $plugin object */
 	var $plugin;
-	
+
 	/** $var $errors string */
 	var $errors;
 
@@ -48,15 +48,16 @@ class CustomBlockEditForm extends Form {
 		$conferenceId = $this->conferenceId;
 		$plugin =& $this->plugin;
 
-		// add the tiny MCE script 
+		// add the tiny MCE script
 		$this->addTinyMCE();
 		$this->setData('blockContent', $plugin->getSetting($conferenceId, 0, 'blockContent'));
 	}
 
 	/**
 	 * Add the tinyMCE script for editing sidebar blocks with a WYSIWYG editor
+	 * @param $request PKPRequest
 	 */
-	function addTinyMCE() {
+	function addTinyMCE(&$request) {
 		$conferenceId = $this->conferenceId;
 		$plugin =& $this->plugin;
 		$templateMgr =& TemplateManager::getManager();
@@ -67,7 +68,7 @@ class CustomBlockEditForm extends Form {
 		import('classes.file.ConferenceFileManager');
 		$publicFileManager = new PublicFileManager();
 		$tinyMCE_script = '
-		<script language="javascript" type="text/javascript" src="'.Request::getBaseUrl().'/'.TINYMCE_JS_PATH.'/tiny_mce.js"></script>
+		<script language="javascript" type="text/javascript" src="'.$request->getBaseUrl().'/'.TINYMCE_JS_PATH.'/tiny_mce.js"></script>
 		<script language="javascript" type="text/javascript">
 			tinyMCE.init({
 			mode : "textareas",
@@ -78,9 +79,9 @@ class CustomBlockEditForm extends Form {
 			theme_advanced_buttons3 : "cut,copy,paste,pastetext,pasteword,|,cleanup,help,code,",
 			theme_advanced_toolbar_location : "bottom",
 			theme_advanced_toolbar_align : "left",
-			content_css : "' . Request::getBaseUrl() . '/styles/common.css", 
-			relative_urls : false, 		
-			document_base_url : "'. Request::getBaseUrl() .'/'.$publicFileManager->getConferenceFilesPath($conferenceId) .'/", 
+			content_css : "' . $request->getBaseUrl() . '/styles/common.css",
+			relative_urls : false,
+			document_base_url : "'. $request->getBaseUrl() .'/'.$publicFileManager->getConferenceFilesPath($conferenceId) .'/",
 			extended_valid_elements : "span[*], div[*]"
 			});
 		</script>';
@@ -98,11 +99,11 @@ class CustomBlockEditForm extends Form {
 
 	/**
 	 * Save page into DB
-	 */	 
+	 */
 	function save() {
 		$plugin =& $this->plugin;
 		$conferenceId = $this->conferenceId;
-		$plugin->updateSetting($conferenceId, 0, 'blockContent', $this->getData('blockContent'));		
+		$plugin->updateSetting($conferenceId, 0, 'blockContent', $this->getData('blockContent'));
 	}
 
 }

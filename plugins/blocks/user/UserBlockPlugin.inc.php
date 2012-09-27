@@ -55,18 +55,24 @@ class UserBlockPlugin extends BlockPlugin {
 		return __('plugins.block.user.description');
 	}
 
-	function getContents(&$templateMgr) {
+	/**
+	 * Get the HTML contents for this block.
+	 * @param $templateMgr object
+	 * @param $request PKPRequest
+	 * @return $string
+	 */
+	function getContents(&$templateMgr, &$request) {
 		if (!defined('SESSION_DISABLE_INIT')) {
-			$session =& Request::getSession();
+			$session =& $request->getSession();
 			$templateMgr->assign_by_ref('userSession', $session);
 			$templateMgr->assign('loggedInUsername', $session->getSessionVar('username'));
-			$loginUrl = Request::url(null, null, 'login', 'signIn');
+			$loginUrl = $request->url(null, null, 'login', 'signIn');
 			if (Config::getVar('security', 'force_login_ssl')) {
 				$loginUrl = String::regexp_replace('/^http:/', 'https:', $loginUrl);
 			}
 			$templateMgr->assign('userBlockLoginUrl', $loginUrl);
 		}
-		return parent::getContents($templateMgr);
+		return parent::getContents($templateMgr, $request);
 	}
 }
 

@@ -72,9 +72,10 @@ class TranslatorPlugin extends GenericPlugin {
  	 */
 	function manage($verb, $args, &$message, &$messageParams) {
 		if (!parent::manage($verb, $args, $message, $messageParams)) return false;
+		$request =& $this->getRequest();
 		switch ($verb) {
 			case 'translate':
-				Request::redirect('index', 'index', 'translate');
+				$request->redirect('index', 'index', 'translate');
 				return false;
 			default:
 				// Unknown management verb

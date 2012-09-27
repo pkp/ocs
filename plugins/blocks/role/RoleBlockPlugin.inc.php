@@ -45,9 +45,10 @@ class RoleBlockPlugin extends BlockPlugin {
 	 * @return string
 	 */
 	function getBlockTemplateFilename() {
-		$conference =& Request::getConference();
-		$schedConf =& Request::getSchedConf();
-		$user =& Request::getUser();
+		$request =& $this->getRequest();
+		$conference =& $request->getConference();
+		$schedConf =& $request->getSchedConf();
+		$user =& $request->getUser();
 		if (!$conference || !$schedConf || !$user) return null;
 
 		$userId = $user->getId();
@@ -56,8 +57,8 @@ class RoleBlockPlugin extends BlockPlugin {
 
 		$templateMgr =& TemplateManager::getManager();
 
-		switch (Request::getRequestedPage()) {
-			case 'author': switch (Request::getRequestedOp()) {
+		switch ($request->getRequestedPage()) {
+			case 'author': switch ($request->getRequestedOp()) {
 				case 'submit':
 				case 'saveSubmit':
 				case 'submitSuppFile':
@@ -72,7 +73,7 @@ class RoleBlockPlugin extends BlockPlugin {
 					return 'author.tpl';
 			}
 			case 'director':
-				if (Request::getRequestedOp() == 'index') return null;
+				if ($request->getRequestedOp() == 'index') return null;
 				$directorSubmissionDao =& DAORegistry::getDAO('DirectorSubmissionDAO');
 				$submissionsCount =& $directorSubmissionDao->getDirectorSubmissionsCount($schedConfId);
 				$templateMgr->assign('submissionsCount', $submissionsCount);

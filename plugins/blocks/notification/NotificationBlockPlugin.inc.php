@@ -57,10 +57,15 @@ class NotificationBlockPlugin extends BlockPlugin {
 		return __('plugins.block.notification.description');
 	}
 
-
-	function getContents(&$templateMgr) {
-		$user =& Request::getUser();
-		$conference =& Request::getConference();
+	/**
+	 * Get the HTML contents for this block.
+	 * @param $templateMgr object
+	 * @param $request PKPRequest
+	 * @return $string
+	 */
+	function getContents(&$templateMgr, &$request) {
+		$user =& $request->getUser();
+		$conference =& $request->getConference();
 
 		if ($user && $conference) {
 			$userId = $user->getId();
@@ -68,7 +73,7 @@ class NotificationBlockPlugin extends BlockPlugin {
 			$templateMgr->assign('unreadNotifications',  $notificationDao->getNotificationCount(false, $userId, $conference->getId()));
 		}
 
-		return parent::getContents($templateMgr);
+		return parent::getContents($templateMgr, $request);
 	}
 }
 

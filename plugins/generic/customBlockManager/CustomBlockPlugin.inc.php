@@ -100,19 +100,20 @@ class CustomBlockPlugin extends BlockPlugin {
 
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->register_function('plugin_url', array(&$this, 'smartyPluginUrl'));
+		$request =& $this->getRequest();
 
 		$pageCrumbs = array(
 			array(
-				Request::url(null, 'user'),
+				$request->url(null, 'user'),
 				'navigation.user'
 			),
 			array(
-				Request::url(null, 'manager'),
+				$request->url(null, 'manager'),
 				'user.role.manager'
 			)
 		);
 
-		$conference =& Request::getConference();
+		$conference =& $request->getConference();
 
 		$this->import('CustomBlockEditForm');
 		$form = new CustomBlockEditForm($this, $conference->getId());
@@ -126,7 +127,7 @@ class CustomBlockPlugin extends BlockPlugin {
 				break;
 			case 'edit':
 				$pageCrumbs[] = array(
-					Request::url(null, null, 'manager', 'plugins'),
+					$request->url(null, null, 'manager', 'plugins'),
 					__('manager.plugins'),
 					true
 				);
@@ -140,19 +141,19 @@ class CustomBlockPlugin extends BlockPlugin {
 				$form->readInputData();
 				if ($form->validate()) {
 					$form->save();
-					$pageCrumbs[] = array(Request::url(null, 'manager', 'plugins'), 'manager.plugins');
+					$pageCrumbs[] = array($request->url(null, 'manager', 'plugins'), 'manager.plugins');
 					$templateMgr->assign(array(
-						'currentUrl' => Request::url(null, null, null, null, array($this->getCategory(), $this->getName(), 'edit')),
+						'currentUrl' => $request->url(null, null, null, null, array($this->getCategory(), $this->getName(), 'edit')),
 						'pageTitleTranslated' => $this->getDisplayName(),
 						'pageHierarchy' => $pageCrumbs,
 						'message' => 'plugins.generic.customBlock.saved',
-						'backLink' => Request::url(null, null, 'manager', 'plugins'),
+						'backLink' => $request->url(null, null, 'manager', 'plugins'),
 						'backLinkLabel' => 'common.continue'
 					));
 					$templateMgr->display('common/message.tpl');
 					exit;
 				} else {
-					$form->addTinyMCE();
+					$form->addTinyMCE($request);
 					$form->readInputData();
 					$form->display();
 					exit;
@@ -164,15 +165,15 @@ class CustomBlockPlugin extends BlockPlugin {
 	/**
 	 * Get the contents of the Block
 	 * @param $templateMgr object
+	 * @param $request PKPRequest
 	 * @return string
 	 */
-	function getContents(&$templateMgr) {
-		$conference =& Request::getConference();
+	function getContents(&$templateMgr, &$request) {
+		$conference =& $request->getConference();
 		if (!$conference) return '';
 
 		$templateMgr->assign('customBlockContent', $this->getSetting($conference->getId(), 0, 'blockContent'));
-		return parent::getContents($templateMgr);
-
+		return parent::getContents($templateMgr, $request);
 	}
 
 	/**

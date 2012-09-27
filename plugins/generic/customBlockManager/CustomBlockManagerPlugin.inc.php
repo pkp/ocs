@@ -44,11 +44,12 @@ class CustomBlockManagerPlugin extends GenericPlugin {
 	function callbackLoadCategory($hookName, $args) {
 		$category =& $args[0];
 		$plugins =& $args[1];
+		$request =& $this->getRequest();
 		switch ($category) {
 			case 'blocks':
 				$this->import('CustomBlockPlugin');
 
-				$conference =& Request::getConference();
+				$conference =& $request->getConference();
 				if ( !$conference ) return false;
 
 				$blocks = $this->getSetting($conference->getId(), 0, 'blocks');
@@ -91,6 +92,8 @@ class CustomBlockManagerPlugin extends GenericPlugin {
 	 */
 	function manage($verb, $args, &$message, &$messageParams) {
 		if (!parent::manage($verb, $args, $message, $messageParams)) return false;
+		$request =& $this->getRequest();
+
 		switch ($verb) {
 			case 'settings':
 				$templateMgr =& TemplateManager::getManager();
@@ -98,19 +101,19 @@ class CustomBlockManagerPlugin extends GenericPlugin {
 
 				$pageCrumbs = array(
 					array(
-						Request::url(null, null, 'user'),
+						$request->url(null, null, 'user'),
 						'navigation.user'
 					),
 					array(
-						Request::url(null, null, 'manager'),
+						$request->url(null, null, 'manager'),
 						'user.role.manager'
 					)
 				);
 
-				$conference =& Request::getConference();
+				$conference =& $request->getConference();
 
 				$pageCrumbs[] = array(
-					Request::url(null, null, 'manager', 'plugins'),
+					$request->url(null, null, 'manager', 'plugins'),
 					__('manager.plugins'),
 					true
 				);
@@ -120,14 +123,14 @@ class CustomBlockManagerPlugin extends GenericPlugin {
 				$form = new SettingsForm($this, $conference->getId());
 				$form->readInputData();
 
-				if (Request::getUserVar('addBlock')) {
+				if ($request->getUserVar('addBlock')) {
 					// Add a block
 					$editData = true;
 					$blocks = $form->getData('blocks');
 					array_push($blocks, '');
 					$form->_data['blocks'] = $blocks;
 
-				} else if (($delBlock = Request::getUserVar('delBlock')) && count($delBlock) == 1) {
+				} else if (($delBlock = $request->getUserVar('delBlock')) && count($delBlock) == 1) {
 					// Delete an block
 					$editData = true;
 					list($delBlock) = array_keys($delBlock);
@@ -140,7 +143,7 @@ class CustomBlockManagerPlugin extends GenericPlugin {
 					}
 					array_splice($blocks, $delBlock, 1);
 					$form->_data['blocks'] = $blocks;
-				} else if ( Request::getUserVar('save') ) {
+				} else if ($request->getUserVar('save')) {
 					$editData = true;
 					$form->execute();
 				} else {

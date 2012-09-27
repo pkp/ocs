@@ -5,7 +5,7 @@
  *
  * Copyright (c) 2000-2012 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
- * 
+ *
  * @class RegistrantReportPlugin
  * @ingroup plugins_reports_registrant
  * @see RegistrantReportDAO
@@ -47,8 +47,9 @@ class RegistrantReportPlugin extends ReportPlugin {
 	}
 
 	function display(&$args) {
-		$conference =& Request::getConference();
-		$schedConf =& Request::getSchedConf();
+		$request =& $this->getRequest();
+		$conference =& $request->getConference();
+		$schedConf =& $request->getSchedConf();
 		AppLocale::requireComponents(LOCALE_COMPONENT_APPLICATION_COMMON, LOCALE_COMPONENT_PKP_USER, LOCALE_COMPONENT_OCS_MANAGER);
 
 		header('content-type: text/comma-separated-values; charset=utf-8');
@@ -76,17 +77,17 @@ class RegistrantReportPlugin extends ReportPlugin {
 			__('common.country'),
 			__('manager.registration.registrationType')
 		);
-		
+
 		$registrationOptions =& $registrationOptionDao->getRegistrationOptionsBySchedConfId($schedConf->getId());
-		
+
 		// 'option' + optionId => name of the registration option
 		$registrationOptionIds = array();
 		while ($registrationOption =& $registrationOptions->next()) {
 			$registrationOptionIds[] = $registrationOption->getOptionId();
 			$columns = array_merge($columns, array('option' . $registrationOption->getOptionId() => $registrationOption->getRegistrationOptionName()));
 			unset($registrationOption);
-		} 
-		
+		}
+
 		$columns = array_merge($columns, array(
 			__('manager.registration.dateRegistered'),
 			__('manager.registration.datePaid'),
@@ -136,7 +137,7 @@ class RegistrantReportPlugin extends ReportPlugin {
 				$user->getCountry(),
 				$registrationType->getRegistrationTypeName()
 			);
-			
+
 			// Get selected registration options; calculate costs
 			$totalCost = $registrationType->getCost();
 			$selectedOptionIds = $registrationOptionDao->getRegistrationOptions($registrationId);

@@ -5,7 +5,7 @@
  *
  * Copyright (c) 2000-2012 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
- * 
+ *
  * @class PaperReportPlugin
  * @ingroup plugins_reports_paper
  * @see PaperReportDAO
@@ -52,8 +52,9 @@ class PaperReportPlugin extends ReportPlugin {
 	}
 
 	function display(&$args) {
-		$conference =& Request::getConference();
-		$schedConf =& Request::getSchedConf();
+		$request =& $this->getRequest();
+		$conference =& $request->getConference();
+		$schedConf =& $request->getSchedConf();
 		AppLocale::requireComponents(LOCALE_COMPONENT_APPLICATION_COMMON, LOCALE_COMPONENT_PKP_SUBMISSION, LOCALE_COMPONENT_PKP_USER, LOCALE_COMPONENT_OCS_MANAGER);
 
 		header('content-type: text/comma-separated-values; charset=utf-8');
@@ -65,7 +66,7 @@ class PaperReportPlugin extends ReportPlugin {
 			$schedConf->getId()
 		);
 		$maxAuthors = $this->getMaxAuthorCount($authorsIterator);
-		
+
 		$decisions = array();
 		foreach ($decisionsIteratorsArray as $decisionsIterator) {
 			while ($row =& $decisionsIterator->next()) {
@@ -88,7 +89,7 @@ class PaperReportPlugin extends ReportPlugin {
 			'title' => __('paper.title'),
 			'abstract' => __('paper.abstract'),
 		);
-		
+
 		for ($a = 1; $a <= $maxAuthors; $a++) {
 			$columns = array_merge($columns, array(
 				'fname' . $a => __('user.firstName') . " (" . __('user.role.author') . " $a)",
@@ -101,7 +102,7 @@ class PaperReportPlugin extends ReportPlugin {
 				'biography' . $a => __('user.biography') . " (" . __('user.role.author') . " $a)"
 			));
 		}
-		
+
 		$columns = array_merge($columns, array(
 			'track_title' => __('track.title'),
 			'language' => __('common.language'),
@@ -195,10 +196,10 @@ class PaperReportPlugin extends ReportPlugin {
 			$authorIndex++;
 			unset($row);
 		}
-		
+
 		fclose($fp);
 	}
-	
+
 	/**
 	 * Get the highest author count for any paper (to determine how many columns to set)
 	 * @param $authorsIterator DBRowIterator
@@ -211,7 +212,7 @@ class PaperReportPlugin extends ReportPlugin {
 		}
 		return $maxAuthors;
 	}
-	
+
 	/**
 	 * Flatten an array of author information into one array and append author sequence to each key
 	 * @param $authors array
@@ -222,7 +223,7 @@ class PaperReportPlugin extends ReportPlugin {
 		$seq = 0;
 		foreach($authors as $author) {
 			$seq++;
-			
+
 			$returner['fname' . $seq] = isset($author['fname']) ? $author['fname'] : '';
 			$returner['mname' . $seq] = isset($author['mname']) ? $author['mname'] : '';
 			$returner['lname' . $seq] = isset($author['lname']) ? $author['lname'] : '';

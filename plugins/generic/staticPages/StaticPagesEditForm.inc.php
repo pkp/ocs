@@ -10,7 +10,7 @@
  * @class StaticPagesSettingsForm
  *
  * Form for conference managers to view and modify static pages
- * 
+ *
  */
 
 import('lib.pkp.classes.form.Form');
@@ -21,7 +21,7 @@ class StaticPagesEditForm extends Form {
 
 	/** @var $plugin object */
 	var $plugin;
-	
+
 	/** @var $staticPageId **/
 	var $staticPageId;
 
@@ -48,13 +48,13 @@ class StaticPagesEditForm extends Form {
 	/**
 	 * Custom Form Validator for PATH to ensure no duplicate PATHs are created
 	 * @param $pagePath String the PATH being checked
-	 * @param $conferenceId int 
+	 * @param $conferenceId int
 	 * @param $staticPageId int
 	 */
 	function checkForDuplicatePath($pagePath, $conferenceId, $staticPageId) {
 		$staticPagesDao =& DAORegistry::getDAO('StaticPagesDAO');
 
-		return !$staticPagesDao->duplicatePathExists($pagePath, $conferenceId, $staticPageId);		
+		return !$staticPagesDao->duplicatePathExists($pagePath, $conferenceId, $staticPageId);
 	}
 
 	/**
@@ -64,27 +64,27 @@ class StaticPagesEditForm extends Form {
 		$conferenceId = $this->conferenceId;
 		$plugin =& $this->plugin;
 
-		// add the tiny MCE script 
+		// add the tiny MCE script
 		$this->addTinyMCE();
 
 		if (isset($this->staticPageId)) {
 			$staticPagesDao =& DAORegistry::getDAO('StaticPagesDAO');
 			$staticPage =& $staticPagesDao->getStaticPage($this->staticPageId);
 
-			if ($staticPage != null) {  
+			if ($staticPage != null) {
 				$this->_data = array(
 					'staticPageId' => $staticPage->getId(),
  					'pagePath' => $staticPage->getPath(),
 					'title' => $staticPage->getTitle(null),
 					'content' => $staticPage->getContent(null)
-				);				
+				);
 			} else {
 				$this->staticPageId = null;
 			}
 		}
 	}
 
-	function addTinyMCE() {
+	function addTinyMCE(&$request) {
 		$conferenceId = $this->conferenceId;
 		$plugin =& $this->plugin;
 		$templateMgr =& TemplateManager::getManager();
@@ -95,7 +95,7 @@ class StaticPagesEditForm extends Form {
 		import('classes.file.ConferenceFileManager');
 		$publicFileManager = new PublicFileManager();
 		$tinyMCE_script = '
-		<script language="javascript" type="text/javascript" src="'.Request::getBaseUrl().'/'.TINYMCE_JS_PATH.'/tiny_mce.js"></script>
+		<script language="javascript" type="text/javascript" src="'.$request->getBaseUrl().'/'.TINYMCE_JS_PATH.'/tiny_mce.js"></script>
 		<script language="javascript" type="text/javascript">
 			tinyMCE.init({
 			mode : "textareas",
@@ -109,8 +109,8 @@ class StaticPagesEditForm extends Form {
 			theme_advanced_toolbar_location : "top",
 			theme_advanced_toolbar_align : "left",
 			theme_advanced_statusbar_location : "bottom",
-			relative_urls : false, 		
-			document_base_url : "'. Request::getBaseUrl() .'/'.$publicFileManager->getConferenceFilesPath($conferenceId) .'/", 
+			relative_urls : false,
+			document_base_url : "'. $request->getBaseUrl() .'/'.$publicFileManager->getConferenceFilesPath($conferenceId) .'/",
 			theme : "advanced",
 			theme_advanced_layout_manager : "SimpleLayout",
 			extended_valid_elements : "span[*], div[*]",
@@ -139,12 +139,12 @@ class StaticPagesEditForm extends Form {
 
 	/**
 	 * Save page into DB
-	 */	 
+	 */
 	function save() {
 		$plugin =& $this->plugin;
 		$conferenceId = $this->conferenceId;
 
-		$plugin->import('StaticPage');	
+		$plugin->import('StaticPage');
 		$staticPagesDao =& DAORegistry::getDAO('StaticPagesDAO');
 		if (isset($this->staticPageId)) {
 			$staticPage =& $staticPagesDao->getStaticPage($this->staticPageId);
@@ -153,13 +153,13 @@ class StaticPagesEditForm extends Form {
 		if (!isset($staticPage)) {
 			$staticPage = new StaticPage();
 		}
-		
+
 		$staticPage->setConferenceId($conferenceId);
 		$staticPage->setPath($this->getData('pagePath'));
 
 		$staticPage->setTitle($this->getData('title'), null); 		// Localized
 		$staticPage->setContent($this->getData('content'), null); 	// Localized
-		
+
 		if (isset($this->staticPageId)) {
 			$staticPagesDao->updateStaticPage($staticPage);
 		} else {
@@ -169,7 +169,7 @@ class StaticPagesEditForm extends Form {
 
 	function display() {
 		$templateMgr =& TemplateManager::getManager();
-		
+
 		parent::display();
 	}
 }

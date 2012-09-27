@@ -43,7 +43,8 @@ class ManualPaymentPlugin extends PaymethodPlugin {
 	}
 
 	function isConfigured() {
-		$schedConf =& Request::getSchedConf();
+		$request =& $this->getRequest();
+		$schedConf =& $request->getSchedConf();
 		if (!$schedConf) return false;
 
 		// Make sure that all settings form fields have been filled in

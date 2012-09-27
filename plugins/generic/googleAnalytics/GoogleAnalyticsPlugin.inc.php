@@ -82,18 +82,20 @@ class GoogleAnalyticsPlugin extends GenericPlugin {
 	 */
 	function setBreadcrumbs($isSubclass = false) {
 		$templateMgr =& TemplateManager::getManager();
+		$request =& $this->getRequest();
+
 		$pageCrumbs = array(
 			array(
-				Request::url(null, null,  'user'),
+				$request->url(null, null,  'user'),
 				'navigation.user'
 			),
 			array(
-				Request::url(null, null,  'manager'),
+				$request->url(null, null,  'manager'),
 				'user.role.manager'
 			)
 		);
 		if ($isSubclass) $pageCrumbs[] = array(
-			Request::url(null, null, 'manager', 'plugins'),
+			$request->url(null, null, 'manager', 'plugins'),
 			'manager.plugins'
 		);
 
@@ -122,7 +124,8 @@ class GoogleAnalyticsPlugin extends GenericPlugin {
 			$currentConference = $templateMgr->get_template_vars('currentConference');
 
 			if (!empty($currentConference)) {
-				$conference =& Request::getConference();
+				$request =& $this->getRequest();
+				$conference =& $request->getConference();
 				$conferenceId = $conference->getId();
 				$googleAnalyticsSiteId = $this->getSetting($conferenceId, 0, 'googleAnalyticsSiteId');
 
@@ -150,20 +153,21 @@ class GoogleAnalyticsPlugin extends GenericPlugin {
  	 */
 	function manage($verb, $args, &$message, &$messageParams) {
 		if (!parent::manage($verb, $args, $message, $messageParams)) return false;
+		$request =& $this->getRequest();
 
 		switch ($verb) {
 			case 'settings':
 				$templateMgr =& TemplateManager::getManager();
 				$templateMgr->register_function('plugin_url', array(&$this, 'smartyPluginUrl'));
-				$conference =& Request::getConference();
+				$conference =& $request->getConference();
 
 				$this->import('GoogleAnalyticsSettingsForm');
 				$form = new GoogleAnalyticsSettingsForm($this, $conference->getId());
-				if (Request::getUserVar('save')) {
+				if ($request->getUserVar('save')) {
 					$form->readInputData();
 					if ($form->validate()) {
 						$form->execute();
-						Request::redirect(null, null, 'manager', 'plugin');
+						$request->redirect(null, null, 'manager', 'plugin');
 						return false;
 					} else {
 						$this->setBreadCrumbs(true);

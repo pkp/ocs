@@ -22,9 +22,10 @@ class CustomLocalePlugin extends GenericPlugin {
 
 			if ($this->getEnabled()) {
 				// Add custom locale data for already registered locale files.
+				$request =& $this->getRequest();
 				$locale = AppLocale::getLocale();
 				$localeFiles = AppLocale::getLocaleFiles($locale);
-				$conference = Request::getConference();
+				$conference = $request->getConference();
 				$conferenceId = $conference->getId();
 				$publicFilesDir = Config::getVar('files', 'public_files_dir');
 				$customLocalePathBase = $publicFilesDir . DIRECTORY_SEPARATOR . 'conferences' . DIRECTORY_SEPARATOR . $conferenceId . DIRECTORY_SEPARATOR . CUSTOM_LOCALE_DIR . DIRECTORY_SEPARATOR . $locale . DIRECTORY_SEPARATOR;
@@ -50,8 +51,8 @@ class CustomLocalePlugin extends GenericPlugin {
 	function addCustomLocale($hookName, $args) {
 		$locale =& $args[0];
 		$localeFilename =& $args[1];
-
-		$conference = Request::getConference();
+		$request =& $this->getRequest();
+		$conference = $request->getConference();
 		$conferenceId = $conference->getId();
 		$publicFilesDir = Config::getVar('files', 'public_files_dir');
 		$customLocalePath = $publicFilesDir . DIRECTORY_SEPARATOR . 'conferences' . DIRECTORY_SEPARATOR . $conferenceId . DIRECTORY_SEPARATOR . CUSTOM_LOCALE_DIR . DIRECTORY_SEPARATOR . $locale . DIRECTORY_SEPARATOR . $localeFilename;

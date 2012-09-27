@@ -85,10 +85,11 @@ class AnnouncementFeedBlockPlugin extends BlockPlugin {
 	/**
 	 * Get the HTML contents for this block.
 	 * @param $templateMgr object
+	 * @param $request PKPRequest
 	 * @return $string
 	 */
-	function getContents(&$templateMgr) {
-		$conference =& Request::getConference();
+	function getContents(&$templateMgr, &$request) {
+		$conference =& $request->getConference();
 
 		if (!$conference) return '';
 
@@ -96,10 +97,10 @@ class AnnouncementFeedBlockPlugin extends BlockPlugin {
 
 		$plugin =& $this->getAnnouncementFeedPlugin();
 		$displayPage = $plugin->getSetting($conference->getId(), 0, 'displayPage');
-		$requestedPage = Request::getRequestedPage();
+		$requestedPage = $request->getRequestedPage();
 
 		if (($displayPage == 'all') || ($displayPage == 'homepage' && (empty($requestedPage) || $requestedPage == 'index' || $requestedPage == 'announcement')) || ($displayPage == $requestedPage)) {
-			return parent::getContents($templateMgr);
+			return parent::getContents($templateMgr, $request);
 		} else {
 			return '';
 		}

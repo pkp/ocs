@@ -88,25 +88,26 @@ class StaticPagesPlugin extends GenericPlugin {
 	 */
 	function manage($verb, $args, &$message, &$messageparams) {
 		if (!parent::manage($verb, $args, $message, $messageParams)) return false;
+		$request =& $this->getRequest();
+		$conference =& $request->getConference();
 
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->register_function('plugin_url', array(&$this, 'smartyPluginUrl'));
-		$templateMgr->assign('pagesPath', Request::url(null, null, 'pages', 'view', 'REPLACEME'));
+		$templateMgr->assign('pagesPath', $request->url(null, null, 'pages', 'view', 'REPLACEME'));
 
 		$pageCrumbs = array(
 			array(
-				Request::url(null, null, 'user'),
+				$request->url(null, null, 'user'),
 				'navigation.user'
 			),
 			array(
-				Request::url(null, null, 'manager'),
+				$request->url(null, null, 'manager'),
 				'user.role.manager'
 			)
 		);
 
 		switch ($verb) {
 			case 'settings':
-				$conference =& Request::getConference();
 
 				$this->import('StaticPagesSettingsForm');
 				$form = new StaticPagesSettingsForm($this, $conference->getId());
@@ -117,7 +118,6 @@ class StaticPagesPlugin extends GenericPlugin {
 				return true;
 			case 'edit':
 			case 'add':
-				$conference =& Request::getConference();
 
 				$this->import('StaticPagesEditForm');
 
@@ -126,13 +126,13 @@ class StaticPagesPlugin extends GenericPlugin {
 
 				if ($form->isLocaleResubmit()) {
 					$form->readInputData();
-					$form->addTinyMCE();
+					$form->addTinyMCE($request);
 				} else {
 					$form->initData();
 				}
 
 				$pageCrumbs[] = array(
-					Request::url(null, null,  'manager', 'plugin', array('generic', $this->getName(), 'settings')),
+					$request->url(null, null,  'manager', 'plugin', array('generic', $this->getName(), 'settings')),
 					$this->getDisplayName(),
 					true
 				);
@@ -140,46 +140,44 @@ class StaticPagesPlugin extends GenericPlugin {
 				$form->display();
 				return true;
 			case 'save':
-				$conference =& Request::getConference();
 
 				$this->import('StaticPagesEditForm');
 
 				$staticPageId = isset($args[0])?(int)$args[0]:null;
 				$form = new StaticPagesEditForm($this, $conference->getId(), $staticPageId);
 
-				if (Request::getUserVar('edit')) {
+				if ($request->getUserVar('edit')) {
 					$form->readInputData();
 					if ($form->validate()) {
 						$form->save();
 						$templateMgr->assign(array(
-							'currentUrl' => Request::url(null, null, null, null, array($this->getCategory(), $this->getName(), 'settings')),
+							'currentUrl' => $request->url(null, null, null, null, array($this->getCategory(), $this->getName(), 'settings')),
 							'pageTitle' => 'plugins.generic.staticPages.displayName',
 							'pageHierarchy' => $pageCrumbs,
 							'message' => 'plugins.generic.staticPages.pageSaved',
-							'backLink' => Request::url(null, null, null, null, array($this->getCategory(), $this->getName(), 'settings')),
+							'backLink' => $request->url(null, null, null, null, array($this->getCategory(), $this->getName(), 'settings')),
 							'backLinkLabel' => 'common.continue'
 						));
 						$templateMgr->display('common/message.tpl');
 						exit;
 					} else {
-						$form->addTinyMCE();
+						$form->addTinyMCE($request);
 						$form->display();
 						exit;
 					}
 				}
-				Request::redirect(null, null, null, 'manager', 'plugins');
+				$request->redirect(null, null, null, 'manager', 'plugins');
 				return false;
 			case 'delete':
-				$conference =& Request::getConference();
 				$staticPageId = isset($args[0])?(int) $args[0]:null;
 				$staticPagesDao =& DAORegistry::getDAO('StaticPagesDAO');
 				$staticPagesDao->deleteStaticPageById($staticPageId);
 
 				$templateMgr->assign(array(
-					'currentUrl' => Request::url(null, null, null, null, array($this->getCategory(), $this->getName(), 'settings')),
+					'currentUrl' => $request->url(null, null, null, null, array($this->getCategory(), $this->getName(), 'settings')),
 					'pageTitle' => 'plugins.generic.staticPages.displayName',
 					'message' => 'plugins.generic.staticPages.pageDeleted',
-					'backLink' => Request::url(null, null, null, null, array($this->getCategory(), $this->getName(), 'settings')),
+					'backLink' => $request->url(null, null, null, null, array($this->getCategory(), $this->getName(), 'settings')),
 					'backLinkLabel' => 'common.continue'
 				));
 

@@ -42,15 +42,16 @@ class InformationBlockPlugin extends BlockPlugin {
 	/**
 	 * Get the HTML contents for this block.
 	 * @param $templateMgr object
+	 * @param $request PKPRequest
 	 * @return $string
 	 */
-	function getContents(&$templateMgr) {
-		$conference =& Request::getConference();
+	function getContents(&$templateMgr, &$request) {
+		$conference =& $request->getConference();
 		if (!$conference) return '';
 
 		$templateMgr->assign('forReaders', $conference->getLocalizedSetting('readerInformation'));
 		$templateMgr->assign('forAuthors', $conference->getLocalizedSetting('authorInformation'));
-		return parent::getContents($templateMgr);
+		return parent::getContents($templateMgr, $request);
 	}
 }
 

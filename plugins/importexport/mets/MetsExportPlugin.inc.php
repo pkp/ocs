@@ -47,8 +47,9 @@ class METSExportPlugin extends ImportExportPlugin {
 
 	function display(&$args) {
 		$templateMgr =& TemplateManager::getManager();
+		$request =& $this->getRequest();
 		parent::display($args);
-		$conference =& Request::getConference();
+		$conference =& $request->getConference();
 		switch (array_shift($args)) {
 			case 'exportschedConf':
 				$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
@@ -58,7 +59,7 @@ class METSExportPlugin extends ImportExportPlugin {
 					$this->exportSchedConf($conference, $schedConf);
 					return true;
 				} else {
-					$schedConfIds = Request::getUserVar('SchedConfId');
+					$schedConfIds = $request->getUserVar('SchedConfId');
 					$this->exportSchedConfs($conference, $schedConfIds);
 					return true;
 				}

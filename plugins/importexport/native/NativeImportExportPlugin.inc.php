@@ -52,10 +52,11 @@ class NativeImportExportPlugin extends ImportExportPlugin {
 
 	function display(&$args) {
 		$templateMgr =& TemplateManager::getManager();
+		$request =& $this->getRequest();
 		parent::display($args);
 
-		$conference =& Request::getConference();
-		$schedConf =& Request::getSchedConf();
+		$conference =& $request->getConference();
+		$schedConf =& $request->getSchedConf();
 
 		switch (array_shift($args)) {
 			case 'exportPaper':
@@ -64,7 +65,7 @@ class NativeImportExportPlugin extends ImportExportPlugin {
 				$this->exportPaper($schedConf, $result['track'], $result['publishedPaper']);
 				break;
 			case 'exportPapers':
-				$paperIds = Request::getUserVar('paperId');
+				$paperIds = $request->getUserVar('paperId');
 				if (!isset($paperIds)) $paperIds = array();
 				$results =& PaperSearch::formatResults($paperIds);
 				$this->exportPapers($results);
@@ -85,10 +86,10 @@ class NativeImportExportPlugin extends ImportExportPlugin {
 			case 'import':
 				import('classes.file.TemporaryFileManager');
 				$trackDao =& DAORegistry::getDAO('TrackDAO');
-				$user =& Request::getUser();
+				$user =& $request->getUser();
 				$temporaryFileManager = new TemporaryFileManager();
 
-				if (($existingFileId = Request::getUserVar('temporaryFileId'))) {
+				if (($existingFileId = $request->getUserVar('temporaryFileId'))) {
 					// The user has just entered more context. Fetch an existing file.
 					$temporaryFile = $temporaryFileManager->getFile($existingFileId, $user->getId());
 				} else {
@@ -101,7 +102,7 @@ class NativeImportExportPlugin extends ImportExportPlugin {
 					'user' => $user
 				);
 
-				if (($trackId = Request::getUserVar('trackId'))) {
+				if (($trackId = $request->getUserVar('trackId'))) {
 					$context['track'] = $trackDao->getTrack($trackId);
 				}
 
@@ -109,7 +110,7 @@ class NativeImportExportPlugin extends ImportExportPlugin {
  					$templateMgr->assign('error', 'plugins.importexport.native.error.uploadFailed');
  					return $templateMgr->display($this->getTemplatePath() . 'importError.tpl');
  				}
- 
+
 				$doc =& $this->getDocument($temporaryFile->getFilePath());
 
 				if (substr($this->getRootNodeName($doc), 0, 5) === 'paper') {
@@ -230,7 +231,7 @@ class NativeImportExportPlugin extends ImportExportPlugin {
 	/**
 	 * Execute import/export tasks using the command-line interface.
 	 * @param $args Parameters to the plugin
-	 */ 
+	 */
 	function executeCLI($scriptName, &$args) {
 		$command = array_shift($args);
 		$xmlFile = array_shift($args);

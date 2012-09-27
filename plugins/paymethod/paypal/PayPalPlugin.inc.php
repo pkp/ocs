@@ -50,7 +50,8 @@ class PayPalPlugin extends PaymethodPlugin {
 	}
 
 	function isConfigured() {
-		$schedConf =& Request::getSchedConf();
+		$request =& $this->getRequest();
+		$schedConf =& $request->getSchedConf();
 		if (!$schedConf) return false;
 
 		// Make sure CURL support is included.

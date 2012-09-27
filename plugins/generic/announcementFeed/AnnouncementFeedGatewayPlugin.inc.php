@@ -71,8 +71,9 @@ class AnnouncementFeedGatewayPlugin extends GatewayPlugin {
 	 */
 	function fetch($args) {
 		// Make sure we're within a Conference context
-		$conference =& Request::getConference();
-		$schedConf =& Request::getSchedConf();
+		$request =& $this->getRequest();
+		$conference =& $request->getConference();
+		$schedConf =& $request->getSchedConf();
 		if (!$conference) return false;
 
 		// Make sure announcements and plugin are enabled
@@ -94,7 +95,7 @@ class AnnouncementFeedGatewayPlugin extends GatewayPlugin {
 		);
 		if (!isset($typeMap[$type])) return false;
 
-		// Get limit setting, if any 
+		// Get limit setting, if any
 		$limitRecentItems = $announcementFeedPlugin->getSetting($conference->getId(), 0, 'limitRecentItems');
 		$recentItems = (int) $announcementFeedPlugin->getSetting($conference->getId(), 0, 'recentItems');
 
@@ -116,17 +117,17 @@ class AnnouncementFeedGatewayPlugin extends GatewayPlugin {
 		// Get date of most recent announcement
 		$lastDateUpdated = $announcementFeedPlugin->getSetting($conference->getId(), $schedConfId, 'dateUpdated');
 		if ($announcements->wasEmpty()) {
-			if (empty($lastDateUpdated)) { 
-				$dateUpdated = Core::getCurrentDate(); 
-				$announcementFeedPlugin->updateSetting($conference->getId(), $schedConfId, 'dateUpdated', $dateUpdated, 'string');			
+			if (empty($lastDateUpdated)) {
+				$dateUpdated = Core::getCurrentDate();
+				$announcementFeedPlugin->updateSetting($conference->getId(), $schedConfId, 'dateUpdated', $dateUpdated, 'string');
 			} else {
 				$dateUpdated = $lastDateUpdated;
 			}
 		} else {
 			$mostRecentAnnouncement =& $announcementDao->getMostRecentAnnouncementByConferenceId($conferenceId, $schedConfId);
 			$dateUpdated = $mostRecentAnnouncement->getDatetimePosted();
-			if (empty($lastDateUpdated) || (strtotime($dateUpdated) > strtotime($lastDateUpdated))) { 
-				$announcementFeedPlugin->updateSetting($conference->getId(), $schedConfId, 'dateUpdated', $dateUpdated, 'string');			
+			if (empty($lastDateUpdated) || (strtotime($dateUpdated) > strtotime($lastDateUpdated))) {
+				$announcementFeedPlugin->updateSetting($conference->getId(), $schedConfId, 'dateUpdated', $dateUpdated, 'string');
 			}
 		}
 
@@ -134,7 +135,7 @@ class AnnouncementFeedGatewayPlugin extends GatewayPlugin {
 		$version =& $versionDao->getCurrentVersion();
 
 		$templateMgr =& TemplateManager::getManager();
-		$templateMgr->assign('selfUrl', Request::getCompleteUrl()); 
+		$templateMgr->assign('selfUrl', $request->getCompleteUrl());
 		$templateMgr->assign('dateUpdated', $dateUpdated);
 		$templateMgr->assign('ocsVersion', $version->getVersionString());
 		$templateMgr->assign_by_ref('announcements', $announcements->toArray());

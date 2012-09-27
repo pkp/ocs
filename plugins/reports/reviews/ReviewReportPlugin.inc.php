@@ -5,7 +5,7 @@
  *
  * Copyright (c) 2000-2012 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
- * 
+ *
  * @class ReviewReportPlugin
  * @ingroup plugins_reports_review
  * @see ReviewReportDAO
@@ -52,8 +52,9 @@ class ReviewReportPlugin extends ReportPlugin {
 	}
 
 	function display(&$args) {
-		$conference =& Request::getConference();
-		$schedConf =& Request::getSchedConf();
+		$request =& $this->getRequest();
+		$conference =& $request->getConference();
+		$schedConf =& $request->getSchedConf();
 		AppLocale::requireComponents(LOCALE_COMPONENT_APPLICATION_COMMON, LOCALE_COMPONENT_PKP_USER, LOCALE_COMPONENT_PKP_SUBMISSION, LOCALE_COMPONENT_OCS_MANAGER);
 
 		header('content-type: text/comma-separated-values; charset=utf-8');

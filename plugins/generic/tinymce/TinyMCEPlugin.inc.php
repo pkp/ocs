@@ -64,6 +64,7 @@ class TinyMCEPlugin extends GenericPlugin {
 	 */
 	function getEnableFields(&$templateMgr, $page, $op) {
 		$formLocale = $templateMgr->get_template_vars('formLocale');
+		$request =& $this->getRequest();
 		$fields = array();
 		switch ("$page/$op") {
 			case 'admin/settings':
@@ -78,7 +79,7 @@ class TinyMCEPlugin extends GenericPlugin {
 				break;
 			case 'author/submit':
 			case 'author/saveSubmit':
-				switch (array_shift(Request::getRequestedArgs())) {
+				switch (array_shift($request->getRequestedArgs())) {
 					case 1: $fields[] = 'commentsToDirector'; break;
 					case 3:
 						$count = max(1, count($templateMgr->get_template_vars('authors')));
@@ -130,7 +131,7 @@ class TinyMCEPlugin extends GenericPlugin {
 				break;
 			case 'manager/setup':
 			case 'manager/saveSetup':
-				switch (array_shift(Request::getRequestedArgs())) {
+				switch (array_shift($request->getRequestedArgs())) {
 					case 1:
 						$fields[] = 'description';
 						$fields[] = 'contactMailingAddress';
@@ -158,7 +159,7 @@ class TinyMCEPlugin extends GenericPlugin {
 				break;
 			case 'manager/schedConfSetup':
 			case 'manager/saveSchedConfSetup':
-				switch (array_shift(Request::getRequestedArgs())) {
+				switch (array_shift($request->getRequestedArgs())) {
 					case 1:
 						$fields[] = 'introduction';
 						$fields[] = 'overview';
@@ -297,9 +298,10 @@ class TinyMCEPlugin extends GenericPlugin {
 	 */
 	function callback($hookName, $args) {
 		$templateManager =& $args[0];
+		$request =& $this->getRequest();
 
-		$page = Request::getRequestedPage();
-		$op = Request::getRequestedOp();
+		$page = $request->getRequestedPage();
+		$op = $request->getRequestedOp();
 		$enableFields = $this->getEnableFields($templateManager, $page, $op);
 
 		if (!empty($enableFields)) {
