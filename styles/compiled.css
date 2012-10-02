@@ -802,3 +802,18 @@ div.ui-pnotify-container {
 .pkp_notification .notifyForbidden { background:#f8dada url(../lib/pkp/templates/images/structure/response_forbidden.png); }
 .pkp_notification .notifyInformation { background:#c9e3f8 url(../lib/pkp/templates/images/structure/response_info.png); }
 .pkp_notification .notifyHelp { background:#c9e3f8 url(../lib/pkp/templates/images/structure/response_help.png); }
+.button.ui-state-default, .ui-button {
+  background:none !important;
+  background-color:#c0a0a0 !important;
+  color:#fbfbf3 !important;
+  border-color:#c0a0a0 !important;
+  font-weight:normal !important;
+  font-family:Verdana, Arial, Helvetica, sans-serif !important;
+  font-size:11px !important;
+}
+.button.ui-state-hover, .ui-button.ui-state-hover, .button.ui-state-active, .ui-button.ui-state-active {
+  background:none !important;
+  background-color:#fbfbf3 !important;
+  color:#c0a0a0 !important;
+  border-color:#c0a0a0 !important;
+}
