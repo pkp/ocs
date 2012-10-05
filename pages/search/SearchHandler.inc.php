@@ -41,7 +41,7 @@ class SearchHandler extends Handler {
 	 */
 	function search($args, &$request) {
 		parent::validate();
-		$this->advanced($args, &$request);
+		$this->advanced($args, $request);
 	}
 
 	/**
