@@ -19,28 +19,24 @@ import('classes.handler.Handler');
 class InformationHandler extends Handler {
 	/**
 	 * Constructor
-	 **/
+	 */
 	function InformationHandler() {
 		parent::Handler();
 	}
 
 	/**
-	 * Display the information page for the conference..
+	 * Display the information page for the conference.
+	 * @param $args array
+	 * @param $request PKPRequest
 	 */
-	function index($args) {
+	function index($args, &$request) {
 		$this->validate();
 		$this->setupTemplate();
 		
-		$conference =& Request::getConference();
-		$schedConf =& Request::getSchedConf();
-		$schedConfContent = null;
+		$conference =& $request->getConference();
+		if (!$conference) $request->redirect('index');
 
-		if ($conference == null) {
-			Request::redirect('index');
-			return;
-		}
-
-		switch(isset($args[0])?$args[0]:null) {
+		switch(array_shift($args)) {
 			case 'readers':
 				$conferenceContent = $conference->getLocalizedSetting('readerInformation');
 				$pageTitle = 'navigation.infoForReaders.long';
@@ -52,30 +48,22 @@ class InformationHandler extends Handler {
 				$pageCrumbTitle = 'navigation.infoForAuthors';
 				break;
 			default:
-				Request::redirect($conference->getPath());
-				return;
+				$request->redirect($conference->getPath());
 		}
 
 		$templateMgr =& TemplateManager::getManager();
-
-		if($schedConf) {
-			$templateMgr->assign('schedConfTitle', $schedConf->getLocalizedTitle());
-		}
-		$templateMgr->assign('conferenceTitle', $conference->getLocalizedTitle());
-
 		$templateMgr->assign('pageCrumbTitle', $pageCrumbTitle);
 		$templateMgr->assign('pageTitle', $pageTitle);
-		$templateMgr->assign('conferenceContent', $conferenceContent);
-		$templateMgr->assign('schedConfContent', $schedConfContent);
+		$templateMgr->assign('content', $conferenceContent);
 		$templateMgr->display('information/information.tpl');
 	}
 
-	function readers() {
-		$this->index(array('readers'));
+	function readers($args, &$request) {
+		$this->index(array('readers'), $request);
 	}
 
-	function authors() {
-		$this->index(array('authors'));
+	function authors($args, &$request) {
+		$this->index(array('authors'), $request);
 	}
 
 	/**

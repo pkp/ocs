@@ -22,4 +22,3 @@
 {/if}
 
 {include file="common/footer.tpl"}
-
