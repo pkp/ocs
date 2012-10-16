@@ -12,7 +12,7 @@
 {include file="common/header.tpl"}
 {/strip}
 
-<form action="{url op="register"}" id="registration" method="post">
+<form class="pkp_form" action="{url op="register"}" id="registration" method="post">
 <input type="hidden" name="registrationTypeId" value="{$registrationTypeId|escape}" />
 
 {include file="common/formErrors.tpl"}

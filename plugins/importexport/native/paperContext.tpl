@@ -14,7 +14,7 @@
 
 <p>{translate key="plugins.importexport.native.import.papers.description"}</p>
 
-<form action="{plugin_url path="import"}" method="post">
+<form class="pkp_form" action="{plugin_url path="import"}" method="post">
 <input type="hidden" name="temporaryFileId" value="{$temporaryFileId|escape}"/>
 
 {translate key="track.track"}&nbsp;&nbsp;

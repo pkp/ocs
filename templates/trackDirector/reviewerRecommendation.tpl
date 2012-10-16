@@ -16,7 +16,7 @@
 
 <br />
 
-<form method="post" action="{url op="enterReviewerRecommendation"}">
+<form class="pkp_form" method="post" action="{url op="enterReviewerRecommendation"}">
 <input type="hidden" name="paperId" value="{$paperId|escape}" />
 <input type="hidden" name="reviewId" value="{$reviewId|escape}" />
 <table width="100%" class="data">

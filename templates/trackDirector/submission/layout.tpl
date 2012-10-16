@@ -78,7 +78,7 @@
 	</tr>
 </table>
 
-<form method="post" action="{url op="uploadLayoutFile"}"  enctype="multipart/form-data">
+<form class="pkp_form" method="post" action="{url op="uploadLayoutFile"}"  enctype="multipart/form-data">
 	<input type="hidden" name="from" value="submissionReview" />
 	<input type="hidden" name="paperId" value="{$submission->getId()}" />
 	<input type="hidden" name="round" value="{$round|escape}" />

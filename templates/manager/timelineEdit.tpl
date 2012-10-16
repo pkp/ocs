@@ -20,7 +20,7 @@
 
 <br />
 
-<form action="{url op="updateTimeline"}" method="post">
+<form class="pkp_form" action="{url op="updateTimeline"}" method="post">
 
 {include file="common/formErrors.tpl"}
 

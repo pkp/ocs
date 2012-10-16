@@ -31,7 +31,7 @@ function confirmForgottenUpload() {
 </script>
 
 
-<form id="submitForm" method="post" action="{url op="saveSubmit" path=$submitStep}" enctype="multipart/form-data">
+<form class="pkp_form" id="submitForm" method="post" action="{url op="saveSubmit" path=$submitStep}" enctype="multipart/form-data">
 <input type="hidden" name="paperId" value="{$paperId|escape}" />
 {include file="common/formErrors.tpl"}
 

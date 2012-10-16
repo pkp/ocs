@@ -13,7 +13,7 @@
 {include file="common/header.tpl"}
 {/strip}
 
-<form method="post" action="{url page="admin" op="doImportOCS1"}">
+<form class="pkp_form" method="post" action="{url page="admin" op="doImportOCS1"}">
 
 {include file="common/formErrors.tpl"}
 

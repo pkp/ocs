@@ -122,7 +122,7 @@
 
 <div id="thisConference" class="rtBlock">
 	<span class="rtSubtitle">{translate key="rt.thisConference"}</span>
-	<form method="post" action="{url page="search" op="results"}" target="_parent">
+	<form class="pkp_form" method="post" action="{url page="search" op="results"}" target="_parent">
 	<table>
 	<tr>
 		<td><input type="text" id="query" name="query" size="15" maxlength="255" value="" class="textField" /></td>

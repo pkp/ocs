@@ -23,7 +23,7 @@
 
 <br/>
 
-<form id="registrationOption" method="post" action="{url op="updateRegistrationOption"}">
+<form class="pkp_form" id="registrationOption" method="post" action="{url op="updateRegistrationOption"}">
 {if $optionId}
 <input type="hidden" name="optionId" value="{$optionId|escape}" />
 {/if}

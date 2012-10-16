@@ -13,7 +13,7 @@
 {include file="common/header.tpl"}
 {/strip}
 
-<form id="track" method="post" action="{url op="updateTrack"}" onsubmit="return saveSelectedDirectors()">
+<form class="pkp_form" id="track" method="post" action="{url op="updateTrack"}" onsubmit="return saveSelectedDirectors()">
 {if $trackId}
 <input type="hidden" name="trackId" value="{$trackId|escape}" />
 {/if}

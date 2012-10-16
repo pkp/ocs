@@ -14,7 +14,7 @@
 
 <div id="scheduleLayoutForm">
 
-<form id="scheduleLayout" method="post" action="{url op="saveScheduleLayout"}">
+<form class="pkp_form" id="scheduleLayout" method="post" action="{url op="saveScheduleLayout"}">
 {include file="common/formErrors.tpl"}
 
 <h4>{translate key="manager.scheduler.layout.mergeSchedules"}</h4>

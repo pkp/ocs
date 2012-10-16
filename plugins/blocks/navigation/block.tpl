@@ -11,7 +11,7 @@
 		<span class="blockTitle">{translate key="plugins.block.navigation.conferenceContent"}</span>
 		
 		<span class="blockSubtitle">{translate key="navigation.search"}</span>
-		<form method="post" action="{url page="search" op="results"}">
+		<form class="pkp_form" method="post" action="{url page="search" op="results"}">
 		<table>
 		<tr>
 			<td><input type="text" id="query" name="query" size="15" maxlength="255" value="" class="textField" /></td>

@@ -14,7 +14,7 @@
 <tr valign="top">
 	<td class="label" width="20%">{translate key="director.paper.selectDecision"}</td>
 	<td width="80%" class="value" colspan="2">
-		<form method="post" action="{url op="recordDecision" path=$round}">
+		<form class="pkp_form" method="post" action="{url op="recordDecision" path=$round}">
 			<input type="hidden" name="paperId" value="{$submission->getId()}" />
 			<select name="decision" size="1" class="selectMenu"{if not $allowRecommendation} disabled="disabled"{/if}>
 				{assign var=availableDirectorDecisionOptions value=$submission->getDirectorDecisionOptions($currentSchedConf,$round)}
@@ -59,7 +59,7 @@
 </tr>
 </table>
 </div>
-<form method="post" action="{url op="directorReview" path=$round}" enctype="multipart/form-data">
+<form class="pkp_form" method="post" action="{url op="directorReview" path=$round}" enctype="multipart/form-data">
 <input type="hidden" name="paperId" value="{$submission->getId()}" />
 {assign var=authorFiles value=$submission->getAuthorFileRevisions($round)}
 {assign var=directorFiles value=$submission->getDirectorFileRevisions($round)}

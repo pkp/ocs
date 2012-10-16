@@ -90,7 +90,7 @@ function prepBlockFields() {
 {/literal}
 </script>
 
-<form id="setupForm" method="post" action="{url op="saveSetup" path="4"}" enctype="multipart/form-data">
+<form class="pkp_form" id="setupForm" method="post" action="{url op="saveSetup" path="4"}" enctype="multipart/form-data">
 {include file="common/formErrors.tpl"}
 
 {* There are no localized settings on this page.

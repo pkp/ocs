@@ -53,7 +53,7 @@ function SubmitIfAnyIsChecked() {
 {/literal}
 </script>
 
-<form action="{plugin_url path="exportschedConf"}" method="post" id="schedConfs">
+<form class="pkp_form" action="{plugin_url path="exportschedConf"}" method="post" id="schedConfs">
 
 <h3>{translate key="plugins.importexport.METSExport.settings"}</h3>
 

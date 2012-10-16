@@ -14,7 +14,7 @@
 
 <br />
 <div id="conferenceSettings">
-<form id="conference" method="post" action="{url op="updateConference"}">
+<form class="pkp_form" id="conference" method="post" action="{url op="updateConference"}">
 {if $conferenceId}
 <input type="hidden" name="conferenceId" value="{$conferenceId|escape}" />
 {/if}

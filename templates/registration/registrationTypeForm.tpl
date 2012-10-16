@@ -25,7 +25,7 @@
 
 <br/>
 
-<form id="registrationType" method="post" action="{url op="updateRegistrationType"}">
+<form class="pkp_form" id="registrationType" method="post" action="{url op="updateRegistrationType"}">
 {if $typeId}
 <input type="hidden" name="typeId" value="{$typeId|escape}" />
 {/if}

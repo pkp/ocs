@@ -22,7 +22,7 @@
 {/if}
 
 <p>{translate key="manager.registration.selectRegistrant.desc"}</p>
-<form method="post" id="submit" action="{if $registrationId}{url op="selectRegistrant" registrationId=$registrationId}{else}{url op="selectRegistrant" registrationId=$registrationId}{/if}">
+<form class="pkp_form" method="post" id="submit" action="{if $registrationId}{url op="selectRegistrant" registrationId=$registrationId}{else}{url op="selectRegistrant" registrationId=$registrationId}{/if}">
 	<select name="searchField" size="1" class="selectMenu">
 		{html_options_translate options=$fieldOptions selected=$searchField}
 	</select>

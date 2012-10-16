@@ -16,7 +16,7 @@
 
 <p>{translate key="director.paper.designateDueDateDescription"}</p>
 
-<form method="post" action="{url op=$actionHandler path=$paperId|to_array:$reviewId}">
+<form class="pkp_form" method="post" action="{url op=$actionHandler path=$paperId|to_array:$reviewId}">
 	<table class="data" width="100%">
 		<tr valign="top">
 			<td class="label" width="20%">{translate key="director.paper.todaysDate"}</td>

@@ -43,7 +43,7 @@ function sortSearch(heading, direction) {
 {assign var="dateTo" value="--"}
 {/if}
 
-<form method="post" name="submit" action="{url op="registration"}">
+<form class="pkp_form" method="post" name="submit" action="{url op="registration"}">
 	<input type="hidden" name="sort" value="id"/>
 	<input type="hidden" name="sortDirection" value="ASC"/>
 	<select name="searchField" size="1" class="selectMenu">

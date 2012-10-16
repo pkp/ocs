@@ -12,7 +12,7 @@
 {include file="common/header.tpl"}
 {/strip}
 
-<form id="metadata" method="post" action="{url op="saveMetadata"}">
+<form class="pkp_form" id="metadata" method="post" action="{url op="saveMetadata"}">
 <input type="hidden" name="paperId" value="{$paperId|escape}" />
 {include file="common/formErrors.tpl"}
 

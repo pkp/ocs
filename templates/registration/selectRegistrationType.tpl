@@ -17,7 +17,7 @@
 	</div>
 {/if}
 
-<form action="{url op="registration"}" method="post">
+<form class="pkp_form" action="{url op="registration"}" method="post">
 <div id="registrationType">
 <table class="listing" width="100%">
 	<tr>

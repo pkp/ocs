@@ -33,14 +33,14 @@ function sortSearch(heading, direction) {
 	<li{if $pageToDisplay == "submissionsArchives"} class="current"{/if}><a href="{url op="submissions" path="submissionsArchives"}">{translate key="common.queue.short.submissionsArchives"}</a></li>
 </ul>
 
-<form action="#">
+<form class="pkp_form" action="#">
 <ul class="filter">
 	<li>{translate key="director.submissions.assignedTo"}: <select name="filterDirector" onchange="location.href='{url|escape:"javascript" path=$pageToDisplay searchField=$searchField searchMatch=$searchMatch search=$search dateFromDay=$dateFromDay dateFromYear=$dateFromYear dateFromMonth=$dateFromMonth dateToDay=$dateToDay dateToYear=$dateToYear dateToMonth=$dateToMonth filterDirector="DIRECTOR"}'.replace('DIRECTOR', this.options[this.selectedIndex].value)" size="1" class="selectMenu">{html_options options=$directorOptions selected=$filterDirector}</select></li>
 	<li>{translate key="director.submissions.inTrack"}: <select name="filterTrack" onchange="location.href='{url|escape:"javascript" path=$pageToDisplay searchField=$searchField searchMatch=$searchMatch search=$search dateFromDay=$dateFromDay dateFromYear=$dateFromYear dateFromMonth=$dateFromMonth dateToDay=$dateToDay dateToYear=$dateToYear dateToMonth=$dateToMonth filterTrack="TRACK_ID"}'.replace('TRACK_ID', this.options[this.selectedIndex].value)" size="1" class="selectMenu">{html_options options=$trackOptions selected=$filterTrack}</select></li>
 </ul>
 </form>
 
-<form method="post" name="submit" action="{url op="submissions" path=$pageToDisplay}">
+<form class="pkp_form" method="post" name="submit" action="{url op="submissions" path=$pageToDisplay}">
 	<input type="hidden" name="sort" value="id"/>
 	<input type="hidden" name="sortDirection" value="ASC"/>
 	<select name="searchField" size="1" class="selectMenu">

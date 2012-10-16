@@ -64,7 +64,7 @@
 	<tr>
 		<td class="label">{translate key="track.track"}</td>
 		<td class="value">
-			<form action="{url op="changeTrack" paperId=$submission->getId()}" method="post">
+			<form class="pkp_form" action="{url op="changeTrack" paperId=$submission->getId()}" method="post">
 				<select name="trackId" size="1" class="selectMenu">{html_options options=$tracks selected=$submission->getTrackId()}</select>
 				<input type="submit" value="{translate key="common.record"}" class="button" />
 			</form>
@@ -76,7 +76,7 @@
 		<tr valign="top">
 			<td width="20%" class="label">{translate key="paper.sessionType"}</td>
 			<td class="data" colspan="2">
-				<form action="{url op="changeSessionType" paperId=$submission->getId()}" method="post">
+				<form class="pkp_form" action="{url op="changeSessionType" paperId=$submission->getId()}" method="post">
 					<select name="sessionType" size="1" class="selectMenu">
 						{if empty($sessionType) || !isset($sessionTypes[$sessionType])}<option value=""></option>{/if}
 						{html_options options=$sessionTypes selected=$sessionType}

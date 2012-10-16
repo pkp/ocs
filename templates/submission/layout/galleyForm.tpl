@@ -16,7 +16,7 @@
 
 <br />
 
-<form method="post" action="{url op="saveGalley" path=$paperId|to_array:$galleyId:$round}" enctype="multipart/form-data">
+<form class="pkp_form" method="post" action="{url op="saveGalley" path=$paperId|to_array:$galleyId:$round}" enctype="multipart/form-data">
 {include file="common/formErrors.tpl"}
 <div id="galleyFileData">
 <p>{translate key="submission.layout.galleyFileData"}</p>

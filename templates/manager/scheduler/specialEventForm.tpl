@@ -22,7 +22,7 @@
 
 <br/>
 
-<form id="specialEvent" method="post" action="{url op="updateSpecialEvent"}">
+<form class="pkp_form" id="specialEvent" method="post" action="{url op="updateSpecialEvent"}">
 {if $specialEventId}
 <input type="hidden" name="specialEventId" value="{$specialEventId|escape}" />
 {/if}

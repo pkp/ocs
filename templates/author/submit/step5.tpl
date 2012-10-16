@@ -18,7 +18,7 @@
 
 <p>{translate key="author.submit.confirmationDescription" conferenceTitle=$conference->getLocalizedTitle()}</p>
 
-<form method="post" action="{url op="saveSubmit" path=$submitStep}">
+<form class="pkp_form" method="post" action="{url op="saveSubmit" path=$submitStep}">
 <input type="hidden" name="paperId" value="{$paperId|escape}" />
 
 <h3>{translate key="author.submit.filesSummary"}</h3>

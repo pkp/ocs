@@ -124,7 +124,7 @@ function sortBy(sortName) {
 
 <br/>
 
-<form id="schedule" method="post" action="{url op="saveSchedule"}">
+<form class="pkp_form" id="schedule" method="post" action="{url op="saveSchedule"}">
 <input name="changes" type="hidden" value="{$changes|escape}" />
 <input name="sort" type="hidden" value="{$sort|truncate:20|escape}" />
 {include file="common/formErrors.tpl"}

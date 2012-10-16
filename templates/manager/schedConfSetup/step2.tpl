@@ -10,7 +10,7 @@
 {assign var="pageTitle" value="manager.schedConfSetup.submissions.title"}
 {include file="manager/schedConfSetup/setupHeader.tpl"}
 
-<form id="setupForm" method="post" action="{url op="saveSchedConfSetup" path="2"}">
+<form class="pkp_form" id="setupForm" method="post" action="{url op="saveSchedConfSetup" path="2"}">
 {* For up/down/delete buttons for paper types, it's necessary to perform a
    form submit so that data is kept, but it's not desirable to use buttons
    from a UI perspective. Use two hidden form parameters instead. *}

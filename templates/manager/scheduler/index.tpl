@@ -16,7 +16,7 @@
 
 <div id="timeBlockSettings">
 	{assign var=enableTimeBlocks value=$currentSchedConf->getSetting('enableTimeBlocks')}
-	<form action="{url op="saveSchedulerSettings"}" method="post">
+	<form class="pkp_form" action="{url op="saveSchedulerSettings"}" method="post">
 		<input type="radio" name="enableTimeBlocks" id="enableTimeBlocks-0" value="0" {if !$enableTimeBlocks}checked="checked" {/if}/>&nbsp;<label for="enableTimeBlocks-0">{translate key="manager.scheduler.disableTimeBlocks"}</label><br />
 		<input type="radio" name="enableTimeBlocks" id="enableTimeBlocks-1" value="1" {if $enableTimeBlocks}checked="checked" {/if}/>&nbsp;<label for="enableTimeBlocks-1">{translate key="manager.scheduler.enableTimeBlocks"}</label><br />
 		<input type="submit" value="{translate key="common.record"}" class="button defaultButton" />

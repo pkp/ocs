@@ -27,7 +27,7 @@ $(document).ready(function() {
 // -->
 </script>
 
-<form method="post" id="paymentSettingsForm" action="{url op="savePaymentSettings"}">
+<form class="pkp_form" method="post" id="paymentSettingsForm" action="{url op="savePaymentSettings"}">
 
 <p>{translate key="manager.payment.form.description"}</p>
 

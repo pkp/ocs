@@ -29,7 +29,7 @@
 
 <br/>
 
-<form id="room" method="post" action="{url op="updateRoom"}">
+<form class="pkp_form" id="room" method="post" action="{url op="updateRoom"}">
 {if $roomId}
 <input type="hidden" name="roomId" value="{$roomId|escape}" />
 {/if}

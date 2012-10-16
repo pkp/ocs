@@ -12,7 +12,7 @@
 {include file="common/header.tpl"}
 {/strip}
 
-<form id="createAccount" method="post" action="{url op="createAccount"}">
+<form class="pkp_form" id="createAccount" method="post" action="{url op="createAccount"}">
 
 <p>{translate key="user.account.completeForm"}</p>
 

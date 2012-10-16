@@ -83,7 +83,7 @@
 			{translate key="author.paper.uploadAuthorVersion"}
 		</td>
 		<td class="value" width="80%">
-			<form method="post" action="{url op="uploadRevisedVersion"}" enctype="multipart/form-data">
+			<form class="pkp_form" method="post" action="{url op="uploadRevisedVersion"}" enctype="multipart/form-data">
 				<input type="hidden" name="paperId" value="{$submission->getId()}" />
 				<input type="file" {if !$mayEditPaper}disabled="disabled" {/if}name="upload" class="uploadField" />
 				<input type="submit" {if !$mayEditPaper}disabled="disabled" {/if}name="submit" value="{translate key="common.upload"}" class="button" />

@@ -14,7 +14,7 @@
 <p>{translate key="manager.statistics.statistics.description"}</p>
 
 <p>{translate key="manager.statistics.statistics.selectTracks"}</p>
-<form action="{url op="saveStatisticsTracks"}" method="post">
+<form class="pkp_form" action="{url op="saveStatisticsTracks"}" method="post">
 	<select name="trackIds[]" class="selectMenu" multiple="multiple" size="5">
 		{foreach from=$tracks item=track}
 			<option {if in_array($track->getId(), $trackIds)}selected {/if}value="{$track->getId()}">{$track->getLocalizedTitle()}</option>
@@ -25,7 +25,7 @@
 
 <br/>
 
-<form action="{url op="savePublicStatisticsList"}" method="post">
+<form class="pkp_form" action="{url op="savePublicStatisticsList"}" method="post">
 <table width="100%" class="data">
 	<tr valign="top">
 		<td width="30%" class="label"><input type="checkbox" id="statItemsPublished" name="statItemsPublished" {if $statItemsPublished}checked {/if}/><label for="statItemsPublished">{translate key="manager.statistics.statistics.itemsPublished"}</label></td>

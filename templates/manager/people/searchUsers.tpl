@@ -13,7 +13,7 @@
 {include file="common/header.tpl"}
 {/strip}
 
-<form id="disableUser" method="post" action="{url op="disableUser"}">
+<form class="pkp_form" id="disableUser" method="post" action="{url op="disableUser"}">
 	<input type="hidden" name="reason" value=""/>
 	<input type="hidden" name="userId" value=""/>
 </form>
@@ -50,7 +50,7 @@ function sortSearch(heading, direction) {
 {/literal}
 </script>
 
-<form method="post" id="submit" action="{url op="enrollSearch"}">
+<form class="pkp_form" method="post" id="submit" action="{url op="enrollSearch"}">
 	<input type="hidden" name="roleId" value="{$roleId|escape}"/>
 	<input type="hidden" name="sortDirection" value="ASC"/>
 	<select name="searchField" size="1" class="selectMenu">
@@ -66,7 +66,7 @@ function sortSearch(heading, direction) {
 
 <p>{foreach from=$alphaList item=letter}<a href="{url op="enrollSearch" searchInitial=$letter roleId=$roleId}">{if $letter == $searchInitial}<strong>{$letter|escape}</strong>{else}{$letter|escape}{/if}</a> {/foreach}<a href="{url op="enrollSearch" roleId=$roleId}">{if $searchInitial==''}<strong>{translate key="common.all"}</strong>{else}{translate key="common.all"}{/if}</a></p>
 
-<form id="enroll" action="{if $roleId}{url op="enroll" path=$roleId}{else}{url op="enroll"}{/if}" method="post">
+<form class="pkp_form" id="enroll" action="{if $roleId}{url op="enroll" path=$roleId}{else}{url op="enroll"}{/if}" method="post">
 {if !$roleId}
 	<p>
 	{translate key="manager.people.enrollUserAs"} <select name="roleId" size="1"  class="selectMenu">

@@ -76,7 +76,7 @@
 
 <br />
 
-<form id="userForm" method="post" action="{url op="updateUser"}" onsubmit="enablePasswordFields()">
+<form class="pkp_form" id="userForm" method="post" action="{url op="updateUser"}" onsubmit="enablePasswordFields()">
 <input type="hidden" name="source" value="{$source|escape}" />
 {if $userId}
 <input type="hidden" name="userId" value="{$userId|escape}" />

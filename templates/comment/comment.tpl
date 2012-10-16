@@ -40,7 +40,7 @@ function handleAnonymousCheckbox(theBox) {
 
 {assign var=parentId value=$parentId|default:"0"}
 <div id="comment">
-<form id="submit" action="{if $commentId}{url op="edit" path=$paperId|to_array:$galleyId:$commentId}{else}{url op="add" path=$paperId|to_array:$galleyId:$parentId:"save"}{/if}" method="post">
+<form class="pkp_form" id="submit" action="{if $commentId}{url op="edit" path=$paperId|to_array:$galleyId:$commentId}{else}{url op="add" path=$paperId|to_array:$galleyId:$parentId:"save"}{/if}" method="post">
 <table class="data" width="100%">
 	<tr valign="top">
 		<td class="label" width="20%"><label for="posterName">{translate key="comments.name"}</label></td>
