@@ -18,53 +18,24 @@ import('pages.manager.ManagerHandler');
 class PluginHandler extends ManagerHandler {
 	/**
 	 * Constructor
-	 **/
+	 */
 	function PluginHandler() {
 		parent::ManagerHandler();
 	}
+
 	/**
 	 * Display a list of plugins along with management options.
 	 */
 	function plugins($args) {
-		$category = isset($args[0])?$args[0]:null;
 		$categories = PluginRegistry::getCategories();
 
 		$templateMgr =& TemplateManager::getManager();
 		$this->validate();
 
-		if (isset($category) && in_array($category, $categories)) {
-			// The user specified a category of plugins to view;
-			// get the plugins in that category only.
-			$mainPage = false;
-			$plugins =& PluginRegistry::loadCategory($category);
-
-			$this->setupTemplate(false);
-			$templateMgr->assign('pageTitle', 'plugins.categories.' . $category);
-			$templateMgr->assign('pageHierarchy', PluginHandler::setBreadcrumbs(true));
-		} else {
-			// No plugin specified; display all.
-			$mainPage = true;
-			$plugins = array();
-			foreach ($categories as $category) {
-				$newPlugins =& PluginRegistry::loadCategory($category);
-				if (isset($newPlugins)) {
-					$plugins = array_merge($plugins, PluginRegistry::loadCategory($category));
-				}
-			}
-
-			$this->setupTemplate(true);
-			$templateMgr->assign('pageTitle', 'manager.plugins.pluginManagement');
-			$templateMgr->assign('pageHierarchy', PluginHandler::setBreadcrumbs(false));
-		}
-
-
-
-		$templateMgr->assign_by_ref('plugins', $plugins);
-		$templateMgr->assign_by_ref('categories', $categories);
-		$templateMgr->assign('mainPage', $mainPage);
-		$templateMgr->assign('isSiteAdmin', Validation::isSiteAdmin());
+		$this->setupTemplate(true);
+		$templateMgr->assign('pageTitle', 'manager.plugins.pluginManagement');
+		$templateMgr->assign('pageHierarchy', PluginHandler::setBreadcrumbs(false));
 		$templateMgr->assign('helpTopicId', 'conference.generalManagement.plugins');
-
 		$templateMgr->display('manager/plugins/plugins.tpl');
 	}
 
