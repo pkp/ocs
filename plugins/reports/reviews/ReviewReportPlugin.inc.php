@@ -107,7 +107,7 @@ class ReviewReportPlugin extends ReportPlugin {
 		$yesNoArray = array('declined', 'cancelled');
 
 		$fp = fopen('php://output', 'wt');
-		String::fputcsv($fp, array_values($columns));
+		fputcsv($fp, array_values($columns));
 
 		while ($row =& $reviewsIterator->next()) {
 			foreach ($columns as $index => $junk) {
@@ -132,7 +132,7 @@ class ReviewReportPlugin extends ReportPlugin {
 					$columns[$index] = $row[$index];
 				}
 			}
-			String::fputcsv($fp, $columns);
+			fputcsv($fp, $columns);
 			unset($row);
 		}
 		fclose($fp);
