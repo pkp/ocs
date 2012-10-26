@@ -25,9 +25,6 @@ class CreateAccountForm extends Form {
 	/** @var boolean user is already registered with another conference */
 	var $existingUser;
 
-	/** @var boolean whether to use reCaptcha or the default captcha */
-	var $reCaptchaEnabled;
-
 	/** @var AuthPlugin default authentication source, if specified */
 	var $defaultAuth;
 
@@ -42,12 +39,7 @@ class CreateAccountForm extends Form {
 
 		$this->existingUser = Request::getUserVar('existingUser') ? 1 : 0;
 
-		import('lib.pkp.classes.captcha.CaptchaManager');
-		$captchaManager = new CaptchaManager();
-		$this->captchaEnabled = ($captchaManager->isEnabled() && Config::getVar('captcha', 'captcha_on_register'))?true:false;
-		if ($this->captchaEnabled) {
-			$this->reCaptchaEnabled = Config::getVar('captcha', 'recaptcha')?true:false;
-		}
+		$this->captchaEnabled = Config::getVar('captcha', 'captcha_on_register') && Config::getVar('captcha', 'recaptcha');
 
 		// Validation checks for this form
 		$this->addCheck(new FormValidator($this, 'username', 'required', 'user.profile.form.usernameRequired'));
@@ -72,11 +64,7 @@ class CreateAccountForm extends Form {
 			$this->addCheck(new FormValidator($this, 'affiliation', 'required', 'user.profile.form.affiliationRequired'));
 			$this->addCheck(new FormValidatorCustom($this, 'email', 'required', 'user.account.form.emailExists', array(DAORegistry::getDAO('UserDAO'), 'userExistsByEmail'), array(), true));
 			if ($this->captchaEnabled) {
-				if ($this->reCaptchaEnabled) {
-					$this->addCheck(new FormValidatorReCaptcha($this, 'recaptcha_challenge_field', 'recaptcha_response_field', Request::getRemoteAddr(), 'common.captchaField.badCaptcha'));
-				} else {
-					$this->addCheck(new FormValidatorCaptcha($this, 'captcha', 'captchaId', 'common.captchaField.badCaptcha'));
-				}
+				$this->addCheck(new FormValidatorReCaptcha($this, 'recaptcha_challenge_field', 'recaptcha_response_field', Request::getRemoteAddr(), 'common.captchaField.badCaptcha'));
 			}
 
 			$authDao =& DAORegistry::getDAO('AuthSourceDAO');
@@ -100,23 +88,12 @@ class CreateAccountForm extends Form {
 		$schedConf =& Request::getSchedConf();
 
 		if ($this->captchaEnabled) {
-			$templateMgr->assign('reCaptchaEnabled', $this->reCaptchaEnabled);
-			if ($this->reCaptchaEnabled) {
-				import('lib.pkp.lib.recaptcha.recaptchalib');
-				$publicKey = Config::getVar('captcha', 'recaptcha_public_key');
-				$useSSL = Config::getVar('security', 'force_ssl')?true:false;
-				$reCaptchaHtml = recaptcha_get_html($publicKey, null, $useSSL);
-				$templateMgr->assign('reCaptchaHtml', $reCaptchaHtml);
-				$templateMgr->assign('captchaEnabled', $this->captchaEnabled);
-			} else {
-				import('lib.pkp.classes.captcha.CaptchaManager');
-				$captchaManager = new CaptchaManager();
-				$captcha =& $captchaManager->createCaptcha();
-				if ($captcha) {
-					$templateMgr->assign('captchaEnabled', $this->captchaEnabled);
-					$this->setData('captchaId', $captcha->getId());
-				}
-			}
+			import('lib.pkp.lib.recaptcha.recaptchalib');
+			$publicKey = Config::getVar('captcha', 'recaptcha_public_key');
+			$useSSL = Config::getVar('security', 'force_ssl')?true:false;
+			$reCaptchaHtml = recaptcha_get_html($publicKey, null, $useSSL);
+			$templateMgr->assign('reCaptchaHtml', $reCaptchaHtml);
+			$templateMgr->assign('captchaEnabled', true);
 		}
 
 		$countryDao =& DAORegistry::getDAO('CountryDAO');
@@ -175,13 +152,8 @@ class CreateAccountForm extends Form {
 			'createAsReviewer', 'existingUser', 'sendPassword'
 		);
 		if ($this->captchaEnabled) {
-			if ($this->reCaptchaEnabled) {
-				$userVars[] = 'recaptcha_challenge_field';
-				$userVars[] = 'recaptcha_response_field';
-			} else {
-				$userVars[] = 'captchaId';
-				$userVars[] = 'captcha';
-			}
+			$userVars[] = 'recaptcha_challenge_field';
+			$userVars[] = 'recaptcha_response_field';
 		}
 
 		$this->readUserVars($userVars);

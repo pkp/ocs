@@ -72,20 +72,10 @@ function handleAnonymousCheckbox(theBox) {
 
 {if $captchaEnabled}
 	<tr valign="top">
-		{if $reCaptchaEnabled}
 		<td class="label" valign="top">{fieldLabel name="recaptcha_challenge_field" required="true" key="common.captchaField"}</td>
 		<td class="value">
 			{$reCaptchaHtml}
 		</td>
-		{else}
-		<td class="label" valign="top">{fieldLabel name="captcha" required="true" key="common.captchaField"}</td>
-		<td class="value">
-			<img src="{url page="user" op="viewCaptcha" path=$captchaId}" alt="{translate key="common.captchaField.altText"}" /><br />
-			<span class="instruct">{translate key="common.captchaField.description"}</span><br />
-			<input name="captcha" id="captcha" value="" size="20" maxlength="32" class="textField" />
-			<input type="hidden" name="captchaId" value="{$captchaId|escape:"quoted"}" />
-		</td>
-		{/if}
 	</tr>
 {/if}
 
@@ -98,4 +88,3 @@ function handleAnonymousCheckbox(theBox) {
 {if $commentsClosed}{translate key="comments.commentsClosed" closeCommentsDate=$closeCommentsDate|date_format:$dateFormatShort}<br />{/if}
 
 {include file="common/footer.tpl"}
-
