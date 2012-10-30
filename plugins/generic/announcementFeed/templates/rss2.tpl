@@ -13,10 +13,10 @@
 		{* required elements *}
 		<title>{if $schedConf}{$schedConf->getLocalizedTitle()|escape:"html"|strip}{else}{$conference->getLocalizedTitle()|escape:"html"|strip}{/if}: {translate key="announcement.announcements"}</title>
 		<link>{if $schedConf}{$schedConf->getUrl()|escape}{else}{$conference->getUrl()|escape}{/if}</link>
-		{if $schedConf && $schedConf->getSchedConfIntroduction()}
-			{assign var="description" value=$schedConf->getSchedConfIntroduction()}
-		{elseif $conference->getConferenceDescription()}
-			{assign var="description" value=$conference->getConferenceDescription()}
+		{if $schedConf && $schedConf->getLocalizedIntroduction()}
+			{assign var="description" value=$schedConf->getLocalizedIntroduction()}
+		{elseif $conference->getLocalizedDescription()}
+			{assign var="description" value=$conference->getLocalizedDescription()}
 		{/if}
 		<description>{$description|escape:"html"|strip}</description>
 

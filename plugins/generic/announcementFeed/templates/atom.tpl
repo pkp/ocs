@@ -23,10 +23,10 @@
 	{* <category/> *}
 	{* <contributor/> *}
 	<generator uri="http://pkp.sfu.ca/ocs/" version="{$ocsVersion|escape}">Open Conference Systems</generator>
-	{if $schedConf && $schedConf->getSchedConfIntroduction()}
-		{assign var="description" value=$schedConf->getSchedConfIntroduction()}
-	{elseif $conference->getConferenceDescription()}
-		{assign var="description" value=$conference->getConferenceDescription()}
+	{if $schedConf && $schedConf->getLocalizedIntroduction()}
+		{assign var="description" value=$schedConf->getLocalizedIntroduction()}
+	{elseif $conference->getLocalizedDescription()}
+		{assign var="description" value=$conference->getLocalizedDescription()}
 	{/if}
 	{if $description}
 	<subtitle>{$description|strip|escape:"html"}</subtitle>

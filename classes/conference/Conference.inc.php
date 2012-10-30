@@ -3,7 +3,7 @@
 /**
  * @defgroup conference
  */
- 
+
 /**
  * @file Conference.inc.php
  *
@@ -17,22 +17,18 @@
  * @brief Describes basic conference properties.
  */
 
-
 define('PAPER_ACCESS_OPEN',			0x00000000);
 define('PAPER_ACCESS_ACCOUNT_REQUIRED',		0x00000001);
 define('PAPER_ACCESS_REGISTRATION_REQUIRED',	0x00000002);
 
-class Conference extends DataObject {
-	//
-	// Conference functions: the following do not operate on data from the
-	// ConferenceSettings table.
-	//
+import('lib.pkp.classes.core.Context');
 
+class Conference extends Context {
 	/**
 	 * Constructor.
 	 */
 	function Conference() {
-		parent::DataObject();
+		parent::Context();
 	}
 
 	/**
@@ -61,39 +57,6 @@ class Conference extends DataObject {
 	}
 
 	/**
-	 * Get the localized description of the conference.
-	 * @return string
-	 */
-	function getConferenceDescription() {
-		return $this->getLocalizedSetting('description');
-	}
-
-	/**
-	 * Get description of conference
-	 * @param $locale string
-	 * @return string
-	 */
-	function getDescription($locale) {
-		return $this->getSetting('description', $locale);
-	}
-
-	/**
-	 * Get enabled flag of conference
-	 * @return int
-	 */
-	function getEnabled() {
-		return $this->getData('enabled');
-	}
-
-	/**
-	 * Set enabled flag of conference
-	 * @param $enabled int
-	 */
-	function setEnabled($enabled) {
-		return $this->setData('enabled',$enabled);
-	}
-
-	/**
 	 * Get ID of conference.
 	 * @return int
 	 */
@@ -110,43 +73,6 @@ class Conference extends DataObject {
 		if (Config::getVar('debug', 'deprecation_warnings')) trigger_error('Deprecated function.');
 		return $this->setId($conferenceId);
 	}
-
-	/**
-	 * Get path to conference (in URL).
-	 * @return string
-	 */
-	function getPath() {
-		return $this->getData('path');
-	}
-
-	/**
-	 * Set path to conference (in URL).
-	 * @param $path string
-	 */
-	function setPath($path) {
-		return $this->setData('path', $path);
-	}
-
-	/**
-	 * Get sequence of conference in site table of contents.
-	 * @return float
-	 */
-	function getSequence() {
-		return $this->getData('sequence');
-	}
-
-	/**
-	 * Set sequence of conference in site table of contents.
-	 * @param $sequence float
-	 */
-	function setSequence($sequence) {
-		return $this->setData('sequence', $sequence);
-	}
-
-	//
-	// ConferenceSettings functions: the following make use of data in the
-	// ConferenceSettings table.
-	//
 
 	/**
 	 * Retrieve array of conference settings.
@@ -192,72 +118,6 @@ class Conference extends DataObject {
 	}
 
 	/**
-	 * Return the primary locale of this conference.
-	 * @return string
-	 */
-	function getPrimaryLocale() {
-		return $this->getData('primaryLocale');
-	}
-
-	/**
-	 * Set the primary locale of this conference.
-	 * @param $primaryLocale string
-	 */
-	function setPrimaryLocale($primaryLocale) {
-		$this->setData('primaryLocale', $primaryLocale);
-	}
-
-	/**
-	 * Return associative array of all locales supported by the site.
-	 * These locales are used to provide a language toggle on the main site pages.
-	 * @return array
-	 */
-	function &getSupportedLocaleNames() {
-		static $supportedLocales;
-
-		if (!isset($supportedLocales)) {
-			$supportedLocales = array();
-			$localeNames =& AppLocale::getAllLocales();
-
-			$locales = $this->getSetting('supportedLocales');
-			if (!isset($locales) || !is_array($locales)) {
-				$locales = array();
-			}
-
-			foreach ($locales as $localeKey) {
-				$supportedLocales[$localeKey] = $localeNames[$localeKey];
-			}
-		}
-
-		return $supportedLocales;
-	}
-
-	/**
-	 * Return associative array of all locales supported by forms on the site.
-	 * These locales are used to provide a language toggle on the main site pages.
-	 * @return array
-	 */
-	function &getSupportedFormLocaleNames() {
-		$supportedLocales =& $this->getData('supportedFormLocales');
-
-		if (!isset($supportedLocales)) {
-			$supportedLocales = array();
-			$localeNames =& AppLocale::getAllLocales();
-
-			$locales = $this->getSetting('supportedFormLocales');
-			if (!isset($locales) || !is_array($locales)) {
-				$locales = array();
-			}
-
-			foreach ($locales as $localeKey) {
-				$supportedLocales[$localeKey] = $localeNames[$localeKey];
-			}
-		}
-
-		return $supportedLocales;
-	}
-
-	/**
 	 * Get "localized" conference page title (if applicable).
 	 * param $home boolean get homepage title
 	 * @return string
@@ -293,7 +153,7 @@ class Conference extends DataObject {
 		}
 		return null;
 	}
-	
+
 	/**
 	 * Get localized favicon
 	 * @return string
@@ -304,7 +164,6 @@ class Conference extends DataObject {
 			if (isset($faviconArray[$locale])) return $faviconArray[$locale];
 		}
 	}
-		
 }
 
 ?>

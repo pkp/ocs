@@ -18,8 +18,6 @@
  *
  */
 
-
-
 define('SCHED_CONF_DATE_YEAR_OFFSET_FUTURE',	'+2');
 
 define('REVIEW_MODE_ABSTRACTS_ALONE',		0x00000000);
@@ -33,7 +31,15 @@ define('REVIEW_DEADLINE_TYPE_ABSOLUTE', 	0x00000002);
 define('SCHEDULE_LAYOUT_COMPACT', 0x00001);
 define('SCHEDULE_LAYOUT_EXPANDED', 0x00002);
 
-class SchedConf extends DataObject {
+import('lib.pkp.classes.core.Context');
+
+class SchedConf extends Context {
+	/**
+	 * Constructor
+	 */
+	function SchedConf() {
+		parent::Context();
+	}
 
 	//
 	// Scheduled Conference functions: the following do not operate on data from the
@@ -127,38 +133,6 @@ class SchedConf extends DataObject {
 		return $this->setData('conferenceId', $conferenceId);
 	}
 
-	/**
-	 * Get path to scheduled conference (in URL).
-	 * @return string
-	 */
-	function getPath() {
-		return $this->getData('path');
-	}
-
-	/**
-	 * Set path to scheduled conference (in URL).
-	 * @param $path string
-	 */
-	function setPath($path) {
-		return $this->setData('path', $path);
-	}
-
-	/**
-	 * Get sequence of scheduled conference in site table of contents.
-	 * @return float
-	 */
-	function getSequence() {
-		return $this->getData('sequence');
-	}
-
-	/**
-	 * Set sequence of scheduled conference in site table of contents.
-	 * @param $sequence float
-	 */
-	function setSequence($sequence) {
-		return $this->setData('sequence', $sequence);
-	}
-
 	//
 	// Scheduled conference start/end date functions
 	//
@@ -199,7 +173,7 @@ class SchedConf extends DataObject {
 	 * Get the localized introduction of the scheduled conference
 	 * @return string
 	 */
-	function getSchedConfIntroduction() {
+	function getLocalizedIntroduction() {
 		return $this->getLocalizedSetting('introduction');
 	}
 
@@ -262,14 +236,6 @@ class SchedConf extends DataObject {
 	function getPrimaryLocale() {
 		$conference =& $this->getConference();
 		return $conference->getPrimaryLocale();
-	}
-
-	/**
-	 * Set the primary locale of this conference.
-	 * @param $locale string
-	 */
-	function setPrimaryLocale($primaryLocale) {
-		return $this->setData('primaryLocale', $primaryLocale);
 	}
 
 	/**
