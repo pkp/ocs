@@ -63,7 +63,7 @@ class NotificationBlockPlugin extends BlockPlugin {
 	 * @param $request PKPRequest
 	 * @return $string
 	 */
-	function getContents(&$templateMgr, &$request) {
+	function getContents(&$templateMgr, $request = null) {
 		$user =& $request->getUser();
 		$conference =& $request->getConference();
 

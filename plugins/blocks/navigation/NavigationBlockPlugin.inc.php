@@ -52,7 +52,7 @@ class NavigationBlockPlugin extends BlockPlugin {
 	 * @param $templateMgr object
 	 * @return string
 	 */
-	function getContents(&$templateMgr) {
+	function getContents(&$templateMgr, $request = null) {
 		$templateMgr->assign('paperSearchByOptions', array(
 			'' => 'search.allFields',
 			PAPER_SEARCH_AUTHOR => 'search.author',

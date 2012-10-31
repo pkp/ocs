@@ -83,7 +83,7 @@ class FontSizeBlockPlugin extends BlockPlugin {
 	 * @param $templateMgr object
 	 * @return string
 	 */
-	function getContents(&$templateMgr) {
+	function getContents(&$templateMgr, $request = null) {
 		return parent::getContents($templateMgr);
 	}
 }

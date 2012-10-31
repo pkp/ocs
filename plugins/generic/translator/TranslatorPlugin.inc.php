@@ -70,7 +70,7 @@ class TranslatorPlugin extends GenericPlugin {
 	 * @param $messageParams array Parameters for the message key
  	 * @return boolean
  	 */
-	function manage($verb, $args, &$message, &$messageParams) {
+	function manage($verb, $args, &$message, &$messageParams, &$pluginModalContent = null) {
 		if (!parent::manage($verb, $args, $message, $messageParams)) return false;
 		$request =& $this->getRequest();
 		switch ($verb) {

@@ -45,7 +45,7 @@ class InformationBlockPlugin extends BlockPlugin {
 	 * @param $request PKPRequest
 	 * @return $string
 	 */
-	function getContents(&$templateMgr, &$request) {
+	function getContents(&$templateMgr, $request = null) {
 		$conference =& $request->getConference();
 		if (!$conference) return '';
 

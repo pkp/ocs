@@ -61,7 +61,7 @@ class UserBlockPlugin extends BlockPlugin {
 	 * @param $request PKPRequest
 	 * @return $string
 	 */
-	function getContents(&$templateMgr, &$request) {
+	function getContents(&$templateMgr, $request = null) {
 		if (!defined('SESSION_DISABLE_INIT')) {
 			$session =& $request->getSession();
 			$templateMgr->assign_by_ref('userSession', $session);

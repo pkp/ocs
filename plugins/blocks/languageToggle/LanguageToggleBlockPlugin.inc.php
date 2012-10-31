@@ -80,7 +80,7 @@ class LanguageToggleBlockPlugin extends BlockPlugin {
 	 * @param $request PKPRequest
 	 * @return $string
 	 */
-	function getContents(&$templateMgr, &$request) {
+	function getContents(&$templateMgr, $request = null) {
 		$templateMgr->assign('isPostRequest', $request->isPost());
 		if (!defined('SESSION_DISABLE_INIT')) {
 			$conference =& $request->getConference();
