@@ -378,9 +378,8 @@ class TinyMCEPlugin extends GenericPlugin {
 	 * @return array
 	 */
 	function getManagementVerbs() {
-		$verbs = array();
-		if ($this->isMCEInstalled()) $verbs = parent::getManagementVerbs();
-		return $verbs;
+		if ($this->isMCEInstalled()) return parent::getManagementVerbs();
+		else return array();
 	}
 }
 

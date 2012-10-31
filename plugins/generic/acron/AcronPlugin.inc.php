@@ -258,13 +258,13 @@ class AcronPlugin extends GenericPlugin {
 	}
 
 	function getManagementVerbs() {
-		$verbs = array();
+		$verbs = parent::getManagementVerbs();
 		if ($this->getEnabled()) {
 			$verbs[] = array(
 				'reload', __('plugins.generic.acron.reload')
 			);
 		}
-		return parent::getManagementVerbs($verbs);
+		return $verbs;
 	}
 
  	/*
