@@ -47,17 +47,6 @@ class SchedConf extends Context {
 	//
 
 	/**
-	 * Get the base URL to the scheduled conference.
-	 * @return string
-	 */
-	function getUrl() {
-		// This is potentially abusable, since there's no guarantee the conference
-		// component of the URL hasn't been changed. However, there's nothing to
-		// gain by doing so.
-		return Request::url(null, $this->getPath());
-	}
-
-	/**
 	 * Get the conference for this scheduled conference.
 	 * @return string
 	 */

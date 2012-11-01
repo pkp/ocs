@@ -12,7 +12,7 @@
 	<channel>
 		{* required elements *}
 		<title>{if $schedConf}{$schedConf->getLocalizedTitle()|escape:"html"|strip}{else}{$conference->getLocalizedTitle()|escape:"html"|strip}{/if}: {translate key="announcement.announcements"}</title>
-		<link>{if $schedConf}{$schedConf->getUrl()|escape}{else}{$conference->getUrl()|escape}{/if}</link>
+		<link>{if $schedConf}{url conference=$conference->getPath() schedConf=$schedConf->getPath()}{else}{url conference=$conference->getPath()}{/if}</link>
 		{if $schedConf && $schedConf->getLocalizedIntroduction()}
 			{assign var="description" value=$schedConf->getLocalizedIntroduction()}
 		{elseif $conference->getLocalizedDescription()}

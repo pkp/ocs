@@ -32,14 +32,6 @@ class Conference extends Context {
 	}
 
 	/**
-	 * Get the base URL to the conference.
-	 * @return string
-	 */
-	function getUrl() {
-		return Request::url($this->getPath());
-	}
-
-	/**
 	 * Get the localized title of the conference.
 	 * @return string
 	 */

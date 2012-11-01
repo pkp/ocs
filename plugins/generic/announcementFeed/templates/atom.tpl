@@ -16,7 +16,7 @@
 
 	{* recommended elements *}
 	{* <author/> *}
-	<link rel="alternate" href="{if $schedConf}{$schedConf->getUrl()|escape}{else}{$conference->getUrl()|escape}{/if}" />
+	<link rel="alternate" href="{if $schedConf}{url conference=$conference->getPath() schedConf=$schedConf->getPath()}{else}{url conference=$conference->getPath()}{/if}" />
 	<link rel="self" type="application/atom+xml" href="{$selfUrl|escape}" />
 
 	{* optional elements *}

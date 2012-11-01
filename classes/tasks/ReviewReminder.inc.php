@@ -83,8 +83,8 @@ class ReviewReminder extends ScheduledTask {
 		$paramArray = array(
 			'reviewerName' => $reviewer->getFullName(),
 			'reviewerUsername' => $reviewer->getUsername(),
-			'conferenceUrl' => $conference->getUrl(),
-			'schedConfUrl' => $schedConf->getUrl(),
+			'conferenceUrl' => Request::url($conference->getPath()),
+			'schedConfUrl' => Request::url($conference->getPath(), $schedConf->getPath()),
 			'reviewerPassword' => $reviewer->getPassword(),
 			'reviewDueDate' => $reviewDueDate,
 			'weekLaterDate' => strftime(Config::getVar('general', 'date_format_short'), strtotime('+1 week')),
