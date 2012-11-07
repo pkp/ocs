@@ -196,7 +196,7 @@ class NativeExportDom {
 		}
 
 		XMLCustomWriter::createChildWithText($doc, $root, 'country', $author->getCountry(), false);
-		XMLCustomWriter::createChildWithText($doc, $root, 'email', $author->getEmail(), false);
+		XMLCustomWriter::createChildWithText($doc, $root, 'email', $author->getEmail());
 		XMLCustomWriter::createChildWithText($doc, $root, 'url', $author->getUrl(), false);
 		if (is_array($author->getBiography(null))) foreach ($author->getBiography(null) as $locale => $biography) {
 			$biographyNode =& XMLCustomWriter::createChildWithText($doc, $root, 'biography', strip_tags($biography), false);
