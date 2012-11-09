@@ -33,7 +33,7 @@ class PaymentHandler extends Handler {
 	 */
 	function plugin($args, &$request) {
 		$this->validate();
-		$this->setupTemplate();
+		$this->setupTemplate($request);
 		
 		$paymentMethodPlugins =& PluginRegistry::loadCategory('paymethod');
 		$paymentMethodPluginName = array_shift($args);
@@ -56,7 +56,7 @@ class PaymentHandler extends Handler {
 	 */
 	function landing($args, &$request) {
 		$this->validate();
-		$this->setupTemplate();
+		$this->setupTemplate($request);
 
 		$user =& $request->getUser();
 		$schedConf =& $request->getSchedConf();

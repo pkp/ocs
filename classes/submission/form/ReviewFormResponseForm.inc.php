@@ -46,8 +46,8 @@ class ReviewFormResponseForm extends Form {
 	/**
 	 * Display the form.
 	 */
-	function display() {
-		$conference =& Request::getConference();
+	function display($request) {
+		$conference =& $request->getConference();
 		$reviewFormDao =& DAORegistry::getDAO('ReviewFormDAO');
 		$reviewForm =& $reviewFormDao->getReviewForm($this->reviewFormId, ASSOC_TYPE_CONFERENCE, $conference->getId());
 		$reviewFormElementDao =& DAORegistry::getDAO('ReviewFormElementDAO');
@@ -57,10 +57,10 @@ class ReviewFormResponseForm extends Form {
 		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
 		$reviewAssignment = $reviewAssignmentDao->getById($this->reviewId);
 
-		$editorPreview = Request::getRequestedPage() != 'reviewer';
+		$editorPreview = $request->getRequestedPage() != 'reviewer';
 
 		if (!$editorPreview) {
-			ReviewerHandler::setupTemplate(true, $reviewAssignment->getSubmissionId(), $this->reviewId);
+			ReviewerHandler::setupTemplate($request, true, $reviewAssignment->getSubmissionId(), $this->reviewId);
 		}
 
 		$templateMgr =& TemplateManager::getManager();

@@ -94,7 +94,7 @@ class TrackDirectorHandler extends Handler {
 			}	
 		}
 
-		$rangeInfo = Handler::getRangeInfo('submissions', array($functionName, (string) $searchField, (string) $searchMatch, (string) $search));
+		$rangeInfo = $this->getRangeInfo($request, 'submissions', array($functionName, (string) $searchField, (string) $searchMatch, (string) $search));
 		while (true) {
 			$submissions =& $trackDirectorSubmissionDao->$functionName(
 				$user->getId(),
@@ -135,7 +135,7 @@ class TrackDirectorHandler extends Handler {
 			$request->redirect(null, null, null, 'submission', array($submission->getId()));
 		}
 
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 		$templateMgr->assign('helpTopicId', $helpTopicId);
 		$templateMgr->assign('trackOptions', $filterTrackOptions);
 		$templateMgr->assign('filterTrack', $filterTrack);
@@ -198,9 +198,9 @@ class TrackDirectorHandler extends Handler {
 	 * @param $subclass boolean set to true if caller is below this handler in the hierarchy
 	 */
 	function setupTemplate($request, $subclass = false, $paperId = 0, $parentPage = null) {
-		parent::setupTemplate();
+		parent::setupTemplate($request);
 		AppLocale::requireComponents(LOCALE_COMPONENT_OCS_DIRECTOR, LOCALE_COMPONENT_PKP_SUBMISSION, LOCALE_COMPONENT_OCS_AUTHOR);
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 		$isDirector = Validation::isDirector();
 		$pageHierarchy = array();
 

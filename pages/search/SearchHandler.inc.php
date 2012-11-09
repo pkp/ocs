@@ -52,7 +52,7 @@ class SearchHandler extends Handler {
 	function advanced($args, &$request) {
 		parent::validate();
 		$this->setupTemplate($request, false);
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 		$publishedPaperDao =& DAORegistry::getDAO('PublishedPaperDAO');
 
 		if ($request->getConference() == null) {
@@ -136,7 +136,7 @@ class SearchHandler extends Handler {
 				$request->redirect(null, null, $request->getRequestedPage());
 			}
 
-			$templateMgr =& TemplateManager::getManager();
+			$templateMgr =& TemplateManager::getManager($request);
 			$templateMgr->assign_by_ref('publishedPapers', $publishedPapers);
 			$templateMgr->assign_by_ref('conferences', $conferences);
 			$templateMgr->assign_by_ref('schedConfs', $schedConfs);
@@ -155,7 +155,7 @@ class SearchHandler extends Handler {
 		} else {
 			// Show the author index
 			$searchInitial = $request->getUserVar('searchInitial');
-			$rangeInfo = $this->getRangeInfo('authors');
+			$rangeInfo = $this->getRangeInfo($request, 'authors');
 
 			$schedConf =& $request->getSchedConf();
 
@@ -165,7 +165,7 @@ class SearchHandler extends Handler {
 				$rangeInfo
 			);
 
-			$templateMgr =& TemplateManager::getManager();
+			$templateMgr =& TemplateManager::getManager($request);
 			$templateMgr->assign('searchInitial', $request->getUserVar('searchInitial'));
 			$templateMgr->assign('alphaList', explode(' ', __('common.alphaList')));
 			$templateMgr->assign_by_ref('authors', $authors);
@@ -189,7 +189,7 @@ class SearchHandler extends Handler {
 		$publishedPaperDao =& DAORegistry::getDAO('PublishedPaperDAO');
 		$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
 
-		$rangeInfo = $this->getRangeInfo('search');
+		$rangeInfo = $this->getRangeInfo($request, 'search');
 
 		$allPaperIds =& $publishedPaperDao->getPublishedPaperIdsAlphabetizedByTitle(
 			$conference? $conference->getId():null,
@@ -222,7 +222,7 @@ class SearchHandler extends Handler {
 		import('lib.pkp.classes.core.VirtualArrayIterator');
 		$results = new VirtualArrayIterator(PaperSearch::formatResults($paperIds), $totalResults, $rangeInfo->getPage(), $rangeInfo->getCount());
 
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 		$templateMgr->assign_by_ref('results', $results);
 		$templateMgr->display('search/titleIndex.tpl');
 	}
@@ -251,7 +251,7 @@ class SearchHandler extends Handler {
 			unset($conference);
 		}
 
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 		$templateMgr->assign_by_ref('conferenceIndex', $conferenceIndex);
 		$templateMgr->assign_by_ref('schedConfIndex', $schedConfIndex);
 		$templateMgr->display('search/schedConfIndex.tpl');
@@ -266,7 +266,7 @@ class SearchHandler extends Handler {
 		parent::validate();
 		$this->setupTemplate($request, true);
 
-		$rangeInfo = $this->getRangeInfo('search');
+		$rangeInfo = $this->getRangeInfo($request, 'search');
 
 		$searchConferenceId = $request->getUserVar('searchConference');
 		if (!empty($searchConferenceId)) {
@@ -284,7 +284,7 @@ class SearchHandler extends Handler {
 
 		$results =& PaperSearch::retrieveResults($conference, $keywords, null, null, $rangeInfo);
 
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 		$templateMgr->assign_by_ref('results', $results);
 		$templateMgr->assign('basicQuery', $request->getUserVar('query'));
 		$templateMgr->assign('searchField', $request->getUserVar('searchField'));
@@ -300,7 +300,7 @@ class SearchHandler extends Handler {
 		parent::validate();
 		$this->setupTemplate($request, true);
 
-		$rangeInfo = $this->getRangeInfo('search');
+		$rangeInfo = $this->getRangeInfo($request, 'search');
 
 		$publishedPaperDao =& DAORegistry::getDAO('PublishedPaperDAO');
 		$searchConferenceId = $request->getUserVar('searchConference');
@@ -331,7 +331,7 @@ class SearchHandler extends Handler {
 
 		$results =& PaperSearch::retrieveResults($conference, $keywords, $fromDate, $toDate, $rangeInfo);
 
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 		$templateMgr->setCacheability(CACHEABILITY_NO_STORE);
 		$templateMgr->assign_by_ref('results', $results);
 		$this->_assignAdvancedSearchParameters($request, $templateMgr, $yearRange);
@@ -345,8 +345,8 @@ class SearchHandler extends Handler {
 	 * @param $subclass boolean set to true if caller is below this handler in the hierarchy
 	 */
 	function setupTemplate(&$request, $subclass = false) {
-		parent::setupTemplate();
-		$templateMgr =& TemplateManager::getManager();
+		parent::setupTemplate($request);
+		$templateMgr =& TemplateManager::getManager($request);
 		$templateMgr->assign('helpTopicId', 'user.searchBrowse');
 		$templateMgr->assign('pageHierarchy',
 			$subclass ? array(array($request->url(null, null, 'search'), 'navigation.search'))

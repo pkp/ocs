@@ -30,7 +30,7 @@ class AdminLanguagesHandler extends AdminHandler {
 	 */
 	function languages($args, &$request) {
 		$this->validate();
-		$this->setupTemplate(true);
+		$this->setupTemplate($request, true);
 
 		$site =& $request->getSite();
 

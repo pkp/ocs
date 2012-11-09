@@ -26,35 +26,35 @@ class TimelineHandler extends ManagerHandler {
 	/**
 	 * Display a list of the tracks within the current conference.
 	 */
-	function timeline($args) {
+	function timeline($args, &$request) {
 		$this->validate();
-		$this->setupTemplate(true);
+		$this->setupTemplate($request, true);
 
 		import('classes.manager.form.TimelineForm');
 
-		$timelineForm = new TimelineForm(Request::getUserVar('overrideDates'));
+		$timelineForm = new TimelineForm($request->getUserVar('overrideDates'));
 		$timelineForm->initData();
 		$timelineForm->display();
 
 	}
 
-	function updateTimeline($args) {
+	function updateTimeline($args, &$request) {
 		$this->validate();
-		$this->setupTemplate(true);
+		$this->setupTemplate($request, true);
 
 		import('classes.manager.form.TimelineForm');
 
-		$timelineForm = new TimelineForm(Request::getUserVar('overrideDates'));
+		$timelineForm = new TimelineForm($request->getUserVar('overrideDates'));
 		$timelineForm->readInputData();
 
 		if ($timelineForm->validate()) {
 			$timelineForm->execute();
-			Request::redirect(null, null, null, 'index');
+			$request->redirect(null, null, null, 'index');
 		} else {
 			$timelineForm->setData('errorsExist', true);
 			$timelineForm->display();
 		}
 	}
-
 }
+
 ?>

@@ -138,7 +138,7 @@ class DirectorHandler extends TrackDirectorHandler {
 			}	
 		}
 
-		$rangeInfo =& Handler::getRangeInfo('submissions', array($functionName, (string) $searchField, (string) $searchMatch, (string) $search));
+		$rangeInfo = $this->getRangeInfo($request, 'submissions', array($functionName, (string) $searchField, (string) $searchMatch, (string) $search));
 		while (true) {
 			$submissions =& $directorSubmissionDao->$functionName(
 				$schedConfId,
@@ -288,7 +288,7 @@ class DirectorHandler extends TrackDirectorHandler {
 			}
 
 			$forDirectors = isset($args[0]) && $args[0] === 'director';
-			$rangeInfo =& Handler::getRangeInfo('directors', array($forDirectors, (string) $searchType, (string) $search, (string) $searchMatch));
+			$rangeInfo =& Handler::getRangeInfo($request, 'directors', array($forDirectors, (string) $searchType, (string) $search, (string) $searchMatch));
 			$directorSubmissionDao =& DAORegistry::getDAO('DirectorSubmissionDAO');
 
 			if ($forDirectors) {

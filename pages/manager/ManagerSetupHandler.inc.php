@@ -18,7 +18,7 @@ import('pages.manager.ManagerHandler');
 class ManagerSetupHandler extends ManagerHandler {
 	/**
 	 * Constructor
-	 **/
+	 */
 	function ManagerSetupHandler() {
 		parent::ManagerHandler();
 	}
@@ -28,9 +28,9 @@ class ManagerSetupHandler extends ManagerHandler {
 	 * Displays setup index page if a valid step is not specified.
 	 * @param $args array optional, if set the first parameter is the step to display
 	 */
-	function setup($args) {
+	function setup($args, &$request) {
 		$this->validate();
-		$this->setupTemplate(true);
+		$this->setupTemplate($request, true);
 
 		$step = isset($args[0]) ? (int) $args[0] : 0;
 
@@ -48,7 +48,7 @@ class ManagerSetupHandler extends ManagerHandler {
 			$setupForm->display();
 
 		} else {
-			$templateMgr =& TemplateManager::getManager();
+			$templateMgr =& TemplateManager::getManager($request);
 			$templateMgr->assign('helpTopicId','conference.generalManagement.websiteManagement');
 			$templateMgr->display('manager/setup/index.tpl');
 		}
@@ -58,14 +58,14 @@ class ManagerSetupHandler extends ManagerHandler {
 	 * Save changes to conference settings.
 	 * @param $args array first parameter is the step being saved
 	 */
-	function saveSetup($args) {
+	function saveSetup($args, &$request) {
 		$this->validate();
 
 		$step = isset($args[0]) ? (int) $args[0] : 0;
 
 		if ($step >= 1 && $step <= 5) {
 
-			$this->setupTemplate(true);
+			$this->setupTemplate($request, true);
 
 			$formClass = "ConferenceSetupStep{$step}Form";
 			import("classes.manager.form.setup.$formClass");
@@ -77,14 +77,14 @@ class ManagerSetupHandler extends ManagerHandler {
 			// Check for any special cases before trying to save
 			switch ($step) {
 				case 1:
-					if (Request::getUserVar('addCustomAboutItem')) {
+					if ($request->getUserVar('addCustomAboutItem')) {
 						// Add a custom about item
 						$editData = true;
 						$customAboutItems = $setupForm->getData('customAboutItems');
 						$customAboutItems[$formLocale][] = array();
 						$setupForm->setData('customAboutItems', $customAboutItems);
 
-					} else if (($delCustomAboutItem = Request::getUserVar('delCustomAboutItem')) && count($delCustomAboutItem) == 1) {
+					} else if (($delCustomAboutItem = $request->getUserVar('delCustomAboutItem')) && count($delCustomAboutItem) == 1) {
 						// Delete a custom about item
 						$editData = true;
 						list($delCustomAboutItem) = array_keys($delCustomAboutItem);
@@ -96,82 +96,82 @@ class ManagerSetupHandler extends ManagerHandler {
 					}
 					break;
 				case 2:
-					if (Request::getUserVar('uploadHomepageImage')) {
+					if ($request->getUserVar('uploadHomepageImage')) {
 						if ($setupForm->uploadImage('homepageImage', $formLocale)) {
 							$editData = true;
 						} else {
 							$setupForm->addError('homepageImage', __('manager.setup.homepageImageInvalid'));
 						}
 
-					} else if (Request::getUserVar('deleteHomepageImage')) {
+					} else if ($request->getUserVar('deleteHomepageImage')) {
 						$editData = true;
 						$setupForm->deleteImage('homepageImage', $formLocale);
 					}
 					break;
 				case 3:
-					if (Request::getUserVar('uploadHomeHeaderTitleImage')) {
+					if ($request->getUserVar('uploadHomeHeaderTitleImage')) {
 						if ($setupForm->uploadImage('homeHeaderTitleImage', $formLocale)) {
 							$editData = true;
 						} else {
 							$setupForm->addError('homeHeaderTitleImage', __('manager.setup.homeTitleImageInvalid'));
 						}
 
-					} else if (Request::getUserVar('deleteHomeHeaderTitleImage')) {
+					} else if ($request->getUserVar('deleteHomeHeaderTitleImage')) {
 						$editData = true;
 						$setupForm->deleteImage('homeHeaderTitleImage', $formLocale);
 
-					} else if (Request::getUserVar('uploadHomeHeaderLogoImage')) {
+					} else if ($request->getUserVar('uploadHomeHeaderLogoImage')) {
 						if ($setupForm->uploadImage('homeHeaderLogoImage', $formLocale)) {
 							$editData = true;
 						} else {
 							$setupForm->addError('homeHeaderLogoImage', __('manager.setup.homeHeaderImageInvalid'));
 						}
 
-					} else if (Request::getUserVar('deleteHomeHeaderLogoImage')) {
+					} else if ($request->getUserVar('deleteHomeHeaderLogoImage')) {
 						$editData = true;
 						$setupForm->deleteImage('homeHeaderLogoImage', $formLocale);
 
-					} else if (Request::getUserVar('uploadConferenceFavicon')) {
+					} else if ($request->getUserVar('uploadConferenceFavicon')) {
 						if ($setupForm->uploadImage('conferenceFavicon', $formLocale)) {
 							$editData = true;
 						} else {
 							$setupForm->addError('conferenceFavicon', __('manager.setup.layout.faviconInvalid'));
 						}
 
-					} else if (Request::getUserVar('deleteConferenceFavicon')) {
+					} else if ($request->getUserVar('deleteConferenceFavicon')) {
 						$editData = true;
 						$setupForm->deleteImage('conferenceFavicon', $formLocale);
 
- 					} else if (Request::getUserVar('uploadPageHeaderTitleImage')) {
+ 					} else if ($request->getUserVar('uploadPageHeaderTitleImage')) {
 						if ($setupForm->uploadImage('pageHeaderTitleImage', $formLocale)) {
 							$editData = true;
 						} else {
 							$setupForm->addError('pageHeaderTitleImage', __('manager.setup.pageHeaderTitleImageInvalid'));
 						}
 
-					} else if (Request::getUserVar('deletePageHeaderTitleImage')) {
+					} else if ($request->getUserVar('deletePageHeaderTitleImage')) {
 						$editData = true;
 						$setupForm->deleteImage('pageHeaderTitleImage', $formLocale);
 
-					} else if (Request::getUserVar('uploadPageHeaderLogoImage')) {
+					} else if ($request->getUserVar('uploadPageHeaderLogoImage')) {
 						if ($setupForm->uploadImage('pageHeaderLogoImage', $formLocale)) {
 							$editData = true;
 						} else {
 							$setupForm->addError('pageHeaderLogoImage', __('manager.setup.pageHeaderLogoImageInvalid'));
 						}
 
-					} else if (Request::getUserVar('deletePageHeaderLogoImage')) {
+					} else if ($request->getUserVar('deletePageHeaderLogoImage')) {
 						$editData = true;
 						$setupForm->deleteImage('pageHeaderLogoImage', $formLocale);
 
-					} else if (Request::getUserVar('addNavItem')) {
+					} else if ($request->getUserVar('addNavItem')) {
 						// Add a navigation bar item
 						$editData = true;
 						$navItems = $setupForm->getData('navItems');
 						$navItems[$formLocale][] = array();
 						$setupForm->setData('navItems', $navItems);
 
-					} else if (($delNavItem = Request::getUserVar('delNavItem')) && count($delNavItem) == 1) {
+					} else if (($delNavItem = $request->getUserVar('delNavItem')) && count($delNavItem) == 1) {
 						// Delete a  navigation bar item
 						$editData = true;
 						list($delNavItem) = array_keys($delNavItem);
@@ -184,13 +184,13 @@ class ManagerSetupHandler extends ManagerHandler {
 					}
 					break;
 				case '4':
-					if (Request::getUserVar('uploadConferenceStyleSheet')) {
+					if ($request->getUserVar('uploadConferenceStyleSheet')) {
 						if ($setupForm->uploadStyleSheet('conferenceStyleSheet')) {
 							$editData = true;
 						} else {
 							$setupForm->addError('conferenceStyleSheet', __('manager.setup.conferenceStyleSheetInvalid'));
 						}
-					} else if (Request::getUserVar('deleteConferenceStyleSheet')) {
+					} else if ($request->getUserVar('deleteConferenceStyleSheet')) {
 						$editData = true;
 						$setupForm->deleteImage('conferenceStyleSheet');
 					}
@@ -199,37 +199,37 @@ class ManagerSetupHandler extends ManagerHandler {
 
 			if (!isset($editData) && $setupForm->validate()) {
 				$setupForm->execute();
-				Request::redirect(null, null, null, 'setupSaved', $step);
+				$request->redirect(null, null, null, 'setupSaved', $step);
 			} else {
 				$setupForm->display();
 			}
 
 		} else {
-			Request::redirect();
+			$request->redirect();
 		}
 	}
 
 	/**
 	 * Display the "settings saved" page
 	 */
-	function setupSaved($args) {
+	function setupSaved($args, &$request) {
 		$this->validate();
 
 		$step = isset($args[0]) ? (int) $args[0] : 0;
 
 		if ($step >= 1 && $step <= 5) {
-			$this->setupTemplate(true);
-			$templateMgr =& TemplateManager::getManager();
+			$this->setupTemplate($request, true);
+			$templateMgr =& TemplateManager::getManager($request);
 			$templateMgr->assign('setupStep', $step);
 			$templateMgr->assign('helpTopicId', 'conference.generalManagement.websiteManagement');
 
 			if($step == 5) {
-				$conference =& Request::getConference();
+				$conference =& $request->getConference();
 				$templateMgr->assign('showSetupHints',true);
 			}
 			$templateMgr->display('manager/setup/settingsSaved.tpl');
 		} else {
-			Request::redirect(null, null, 'index');
+			$request->redirect(null, null, 'index');
 		}
 	}
 }

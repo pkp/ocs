@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @file UserHandler.inc.php
+ * @file pages/user/UserHandler.inc.php
  *
  * Copyright (c) 2000-2012 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
@@ -20,7 +20,7 @@ import('classes.handler.Handler');
 class UserHandler extends Handler {
 	/**
 	 * Constructor
-	 **/
+	 */
 	function UserHandler() {
 		parent::Handler();
 	}
@@ -28,10 +28,10 @@ class UserHandler extends Handler {
 	/**
 	 * Display user index page.
 	 */
-	function index() {
+	function index($args, &$request) {
 		$this->validate();
 
-		$user =& Request::getUser();
+		$user =& $request->getUser();
 		$userId = $user->getId();
 		
 		$setupIncomplete = array();
@@ -43,10 +43,10 @@ class UserHandler extends Handler {
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
 		$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
 
-		$this->setupTemplate();
-		$templateMgr =& TemplateManager::getManager();
+		$this->setupTemplate($request);
+		$templateMgr =& TemplateManager::getManager($request);
 
-		$conference =& Request::getConference();
+		$conference =& $request->getConference();
 		$templateMgr->assign('helpTopicId', 'user.userHome');
 		
 		$allConferences = $allSchedConfs = array();
@@ -121,7 +121,7 @@ class UserHandler extends Handler {
 				unset($schedConf);
 			}
 
-			$schedConf =& Request::getSchedConf();
+			$schedConf =& $request->getSchedConf();
 			if ($schedConf) {
 				import('classes.schedConf.SchedConfAction');
 				$templateMgr->assign('allowRegAuthor', SchedConfAction::allowRegAuthor($schedConf));
@@ -194,11 +194,11 @@ class UserHandler extends Handler {
 	 * Change the locale for the current user.
 	 * @param $args array first parameter is the new locale
 	 */
-	function setLocale($args) {
+	function setLocale($args, &$request) {
 		$setLocale = isset($args[0]) ? $args[0] : null;
 
-		$site =& Request::getSite();
-		$conference =& Request::getConference();
+		$site =& $request->getSite();
+		$conference =& $request->getConference();
 		if ($conference != null) {
 			$conferenceSupportedLocales = $conference->getSetting('supportedLocales');
 			if (!is_array($conferenceSupportedLocales)) {
@@ -207,32 +207,32 @@ class UserHandler extends Handler {
 		}
 
 		if (AppLocale::isLocaleValid($setLocale) && (!isset($conferenceSupportedLocales) || in_array($setLocale, $conferenceSupportedLocales)) && in_array($setLocale, $site->getSupportedLocales())) {
-			$session =& Request::getSession();
+			$session =& $request->getSession();
 			$session->setSessionVar('currentLocale', $setLocale);
 		}
 
 		if(isset($_SERVER['HTTP_REFERER'])) {
-			Request::redirectUrl($_SERVER['HTTP_REFERER']);
+			$request->redirectUrl($_SERVER['HTTP_REFERER']);
 		}
 
-		$source = Request::getUserVar('source');
+		$source = $request->getUserVar('source');
 		if (isset($source) && !empty($source)) {
-			Request::redirectUrl(Request::getProtocol() . '://' . Request::getServerHost() . $source, false);
+			$request->redirectUrl($request->getProtocol() . '://' . $request->getServerHost() . $source, false);
 		}
 
-		Request::redirect(null, null, 'index');
+		$request->redirect(null, null, 'index');
 	}
 
 	/**
 	 * Become a given role.
 	 */
-	function become($args) {
+	function become($args, &$request) {
 		$this->addCheck(new HandlerValidatorConference($this));
 		$this->addCheck(new HandlerValidatorSchedConf($this));
 		$this->validate(true);
 
-		$schedConf =& Request::getSchedConf();
-		$user =& Request::getUser();
+		$schedConf =& $request->getSchedConf();
+		$user =& $request->getUser();
 
 		import('classes.schedConf.SchedConfAction');
 		$schedConfAction = new SchedConfAction();
@@ -249,7 +249,7 @@ class UserHandler extends Handler {
 				$deniedKey = 'user.noRoles.regReviewerClosed';
 				break;
 			default:
-				Request::redirect(null, null, 'index');
+				$request->redirect(null, null, 'index');
 		}
 
 		if ($schedConfAction->$func($schedConf)) {
@@ -261,9 +261,9 @@ class UserHandler extends Handler {
 
 			$roleDao =& DAORegistry::getDAO('RoleDAO');
 			$roleDao->insertRole($role);
-			Request::redirectUrl(Request::getUserVar('source'));
+			$request->redirectUrl($request->getUserVar('source'));
 		} else {
-			$templateMgr =& TemplateManager::getManager();
+			$templateMgr =& TemplateManager::getManager($request);
 			$templateMgr->assign('message', $deniedKey);
 			return $templateMgr->display('common/message.tpl');
 		}
@@ -288,24 +288,24 @@ class UserHandler extends Handler {
 	 * Setup common template variables.
 	 * @param $subclass boolean set to true if caller is below this handler in the hierarchy
 	 */
-	function setupTemplate($subclass = false) {
-		parent::setupTemplate();
+	function setupTemplate($request, $subclass = false) {
+		parent::setupTemplate($request);
 		AppLocale::requireComponents(LOCALE_COMPONENT_OCS_AUTHOR, LOCALE_COMPONENT_OCS_DIRECTOR, LOCALE_COMPONENT_OCS_MANAGER);
 
-		$conference =& Request::getConference();
-		$schedConf =& Request::getSchedConf();
-		$templateMgr =& TemplateManager::getManager();
+		$conference =& $request->getConference();
+		$schedConf =& $request->getSchedConf();
+		$templateMgr =& TemplateManager::getManager($request);
 
 		$pageHierarchy = array();
 
 		if ($schedConf) {
-			$pageHierarchy[] = array(Request::url(null, null, 'index'), $schedConf->getLocalizedTitle(), true);
+			$pageHierarchy[] = array($request->url(null, null, 'index'), $schedConf->getLocalizedTitle(), true);
 		} elseif ($conference) {
-			$pageHierarchy[] = array(Request::url(null, 'index', 'index'), $conference->getLocalizedTitle(), true);
+			$pageHierarchy[] = array($request->url(null, 'index', 'index'), $conference->getLocalizedTitle(), true);
 		}
 
 		if ($subclass) {
-			$pageHierarchy[] = array(Request::url(null, null, 'user'), 'navigation.user');
+			$pageHierarchy[] = array($request->url(null, null, 'user'), 'navigation.user');
 		}
 
 		$templateMgr->assign('pageHierarchy', $pageHierarchy);

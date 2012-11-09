@@ -35,8 +35,6 @@ switch ($op) {
 	case 'updateConference':
 	case 'deleteConference':
 	case 'moveConference':
-	case 'importOCS1':
-	case 'doImportOCS1':
 		define('HANDLER_CLASS', 'AdminConferenceHandler');
 		import('pages.admin.AdminConferenceHandler');
 		break;

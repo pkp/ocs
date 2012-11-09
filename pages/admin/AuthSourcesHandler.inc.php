@@ -31,7 +31,7 @@ class AuthSourcesHandler extends AdminHandler {
 	 */
 	function auth($args, &$request) {
 		$this->validate();
-		$this->setupTemplate(true);
+		$this->setupTemplate($request, true);
 
 		$authDao =& DAORegistry::getDAO('AuthSourceDAO');
 		$sources =& $authDao->getSources();
@@ -89,7 +89,7 @@ class AuthSourcesHandler extends AdminHandler {
 	 */
 	function editAuthSource($args, &$request) {
 		$this->validate();
-		$this->setupTemplate(true);
+		$this->setupTemplate($request, true);
 
 		import('classes.security.form.AuthSourceSettingsForm');
 		$form = new AuthSourceSettingsForm((int) array_shift($args));

@@ -33,17 +33,17 @@ class CommentHandler extends Handler {
 		$this->addCheck(new HandlerValidatorSchedConf($this));
 	}
 
-	function view($args) {
+	function view($args, &$request) {
 		$paperId = isset($args[0]) ? (int) $args[0] : 0;
 		$galleyId = isset($args[1]) ? (int) $args[1] : 0;
 		$commentId = isset($args[2]) ? (int) $args[2] : 0;
 
 		$this->validate($paperId);
-		$conference =& Request::getConference();
-		$schedConf =& Request::getSchedConf();
+		$conference =& $request->getConference();
+		$schedConf =& $request->getSchedConf();
 		$paper =& $this->paper;
 
-		$user =& Request::getUser();
+		$user =& $request->getUser();
 		$userId = isset($user)?$user->getId():null;
 
 		$commentDao =& DAORegistry::getDAO('CommentDAO');
@@ -55,10 +55,10 @@ class CommentHandler extends Handler {
 		if (!$comment) $comments =& $commentDao->getRootCommentsBySubmissionId($paperId, 1);
 		else $comments =& $comment->getChildren();
 
-		$this->setupTemplate($paper, $galleyId, $comment);
+		$this->setupTemplate($request, $paper, $galleyId, $comment);
 
-		$templateMgr =& TemplateManager::getManager();
-		if (Request::getUserVar('refresh')) $templateMgr->setCacheability(CACHEABILITY_NO_CACHE);
+		$templateMgr =& TemplateManager::getManager($request);
+		if ($request->getUserVar('refresh')) $templateMgr->setCacheability(CACHEABILITY_NO_CACHE);
 		if ($comment) {
 			$templateMgr->assign_by_ref('comment', $comment);
 			$templateMgr->assign_by_ref('parent', $commentDao->getById($comment->getParentCommentId(), $paperId));
@@ -95,7 +95,7 @@ class CommentHandler extends Handler {
 			$request->redirect(null, null, null, 'view', array($paperId, $galleyId));
 		}
 
-		$this->setupTemplate($paper, $galleyId, $parent);
+		$this->setupTemplate($request, $paper, $galleyId, $parent);
 
 		// Bring in comment constants
 		$commentDao =& DAORegistry::getDAO('CommentDAO');
@@ -144,25 +144,25 @@ class CommentHandler extends Handler {
 	/**
 	 * Delete the specified comment and all its children.
 	 */
-	function delete($args) {
+	function delete($args, &$request) {
 		$paperId = isset($args[0]) ? (int) $args[0] : 0;
 		$galleyId = isset($args[1]) ? (int) $args[1] : 0;
 		$commentId = isset($args[2]) ? (int) $args[2] : 0;
 
 		$this->validate($paperId);
-		$user =& Request::getUser();
+		$user =& $request->getUser();
 		$userId = isset($user)?$user->getId():null;
 
 		$commentDao =& DAORegistry::getDAO('CommentDAO');
 
 		if (!Validation::isConferenceManager()) {
-			Request::redirect(null, null, 'index');
+			$request->redirect(null, null, 'index');
 		}
 
 		$comment =& $commentDao->getById($commentId, $paperId, SUBMISSION_COMMENT_RECURSE_ALL);
 		if ($comment)$commentDao->deleteComment($comment);
 
-		Request::redirect(null, null, null, 'view', array($paperId, $galleyId), array('refresh' => 1));
+		$request->redirect(null, null, null, 'view', array($paperId, $galleyId), array('refresh' => 1));
 	}
 
 	/**
@@ -198,23 +198,23 @@ class CommentHandler extends Handler {
 		return true;
 	}
 
-	function setupTemplate($paper, $galleyId, $comment = null) {
-		parent::setupTemplate();
-		$templateMgr =& TemplateManager::getManager();
+	function setupTemplate($request, $paper, $galleyId, $comment = null) {
+		parent::setupTemplate($request);
+		$templateMgr =& TemplateManager::getManager($request);
 		$templateMgr->setCacheability(CACHEABILITY_PUBLIC);
 		AppLocale::requireComponents(LOCALE_COMPONENT_PKP_READER);
 
 		$pageHierarchy = array(
 			array(
-				Request::url(null, null, 'paper', 'view', array(
-					$paper->getBestPaperId(Request::getConference()), $galleyId
+				$request->url(null, null, 'paper', 'view', array(
+					$paper->getBestPaperId($request->getConference()), $galleyId
 				)),
 				String::stripUnsafeHtml($paper->getLocalizedTitle()),
 				true
 			)
 		);
 
-		if ($comment) $pageHierarchy[] = array(Request::url(null, null, 'comment', 'view', array($paper->getId(), $galleyId)), 'comments.readerComments');
+		if ($comment) $pageHierarchy[] = array($request->url(null, null, 'comment', 'view', array($paper->getId(), $galleyId)), 'comments.readerComments');
 		$templateMgr->assign('pageHierarchy', $pageHierarchy);
 	}
 }

@@ -26,12 +26,12 @@ class CreateAccountHandler extends UserHandler {
 	/**
 	 * Display account form for new users.
 	 */
-	function account() {
+	function account($args, &$request) {
 		$this->validate();
-		$this->setupTemplate(true);
+		$this->setupTemplate($request, true);
 		
-		$conference =& Request::getConference();
-		$schedConf =& Request::getSchedConf();
+		$conference =& $request->getConference();
+		$schedConf =& $request->getSchedConf();
 
 		if ($conference != null && $schedConf != null) {
 
@@ -52,10 +52,10 @@ class CreateAccountHandler extends UserHandler {
 			$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
 			$schedConfs =& $schedConfDao->getEnabledSchedConfs($conference->getId());
 
-			$templateMgr =& TemplateManager::getManager();
+			$templateMgr =& TemplateManager::getManager($request);
 			$templateMgr->assign('pageHierarchy', array(
-				array(Request::url(null, 'index', 'index'), $conference->getLocalizedTitle(), true)));
-			$templateMgr->assign('source', Request::getUserVar('source'));
+				array($request->url(null, 'index', 'index'), $conference->getLocalizedTitle(), true)));
+			$templateMgr->assign('source', $request->getUserVar('source'));
 			$templateMgr->assign_by_ref('schedConfs', $schedConfs);
 			$templateMgr->display('user/createAccountConference.tpl');
 
@@ -67,8 +67,8 @@ class CreateAccountHandler extends UserHandler {
 			$conferencesDao =& DAORegistry::getDAO('ConferenceDAO');
 			$conferences =& $conferencesDao->getConferences(true);
 
-			$templateMgr =& TemplateManager::getManager();
-			$templateMgr->assign('source', Request::getUserVar('source'));
+			$templateMgr =& TemplateManager::getManager($request);
+			$templateMgr->assign('source', $request->getUserVar('source'));
 			$templateMgr->assign_by_ref('conferences', $conferences);
 			$templateMgr->display('user/createAccountSite.tpl');
 		}
@@ -77,9 +77,9 @@ class CreateAccountHandler extends UserHandler {
 	/**
 	 * Validate user information and create new user.
 	 */
-	function createAccount() {
+	function createAccount($args, &$request) {
 		$this->validate();
-		$this->setupTemplate(true);
+		$this->setupTemplate($request, true);
 		import('classes.user.form.CreateAccountForm');
 
 		$regForm = new CreateAccountForm();
@@ -90,22 +90,22 @@ class CreateAccountHandler extends UserHandler {
 			if (Config::getVar('email', 'require_validation')) {
 				// Send them home; they need to deal with the
 				// registration email.
-				Request::redirect(null, 'index');
+				$request->redirect(null, 'index');
 			}
 			Validation::login($regForm->getData('username'), $regForm->getData('password'), $reason);
 			if ($reason !== null) {
-				$templateMgr =& TemplateManager::getManager();
+				$templateMgr =& TemplateManager::getManager($request);
 				$templateMgr->assign('pageTitle', 'user.login');
 				$templateMgr->assign('errorMsg', $reason==''?'user.login.accountDisabled':'user.login.accountDisabledWithReason');
 				$templateMgr->assign('errorParams', array('reason' => $reason));
-				$templateMgr->assign('backLink', Request::url(null, null, null, 'login'));
+				$templateMgr->assign('backLink', $request->url(null, null, null, 'login'));
 				$templateMgr->assign('backLinkLabel', 'user.login');
 				return $templateMgr->display('common/error.tpl');
 			}
-			if($source = Request::getUserVar('source'))
-				Request::redirectUrl($source);
+			if($source = $request->getUserVar('source'))
+				$request->redirectUrl($source);
 
-			else Request::redirect(null, null, 'login');
+			else $request->redirect(null, null, 'login');
 
 		} else {
 			$regForm->display();
@@ -115,12 +115,12 @@ class CreateAccountHandler extends UserHandler {
 	/**
 	 * Show error message if user account creation is not allowed.
 	 */
-	function createAccountDisabled() {
-		$this->setupTemplate(true);
-		$templateMgr =& TemplateManager::getManager();
+	function createAccountDisabled($args, &$request) {
+		$this->setupTemplate($request, true);
+		$templateMgr =& TemplateManager::getManager($request);
 		$templateMgr->assign('pageTitle', 'navigation.account');
 		$templateMgr->assign('errorMsg', 'user.account.createAccountDisabled');
-		$templateMgr->assign('backLink', Request::url(null, null, null, 'login'));
+		$templateMgr->assign('backLink', $request->url(null, null, null, 'login'));
 		$templateMgr->assign('backLinkLabel', 'user.login');
 		$templateMgr->display('common/error.tpl');
 	}
@@ -129,13 +129,13 @@ class CreateAccountHandler extends UserHandler {
 	 * Check credentials and activate a new user
 	 * @author Marc Bria <marc.bria@uab.es>
 	 */
-	function activateUser($args) {
+	function activateUser($args, &$request) {
 		$username = array_shift($args);
 		$accessKeyCode = array_shift($args);
 
 		$userDao =& DAORegistry::getDAO('UserDAO');
 		$user =& $userDao->getByUsername($username);
-		if (!$user) Request::redirect(null, 'login');
+		if (!$user) $request->redirect(null, 'login');
 
 		// Checks user & token
 		import('lib.pkp.classes.security.AccessKeyManager');
@@ -154,11 +154,11 @@ class CreateAccountHandler extends UserHandler {
 			$user->setDateValidated(Core::getCurrentDate());
 			$userDao->updateObject($user);
 
-			$templateMgr =& TemplateManager::getManager();
+			$templateMgr =& TemplateManager::getManager($request);
 			$templateMgr->assign('message', 'user.login.activated');
 			return $templateMgr->display('common/message.tpl');
 		}
-		Request::redirect(null, 'login');
+		$request->redirect(null, 'login');
 	}
 
 	/**

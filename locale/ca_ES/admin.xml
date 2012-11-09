@@ -40,17 +40,4 @@
 	<message key="admin.conferences.enableConferenceInstructions">Activi la Conferència/Congrés per a que ese publiqui a la web</message>
 	<message key="admin.conferences.conferenceDescription">Descripció de la Conferència/Congrés</message>
 	<message key="admin.conferences.conferenceDescriptionInstructions">La descripció de la Conferència/Congrés identifica la Conferència/Congrés. Apareix en la pagina principal de la Conferència/Congrés, així com en totes les seves pàgines.</message>
-	<message key="admin.conferences.importOCS1">Importar des de l'OCS 1</message>
-	<message key="admin.conferences.importOCS1.editMigratedConference">Editar la Conferència/Congrés migrada</message>
-	<message key="admin.conferences.importOCS1.conflict.desc">Alguns comptes dels usuaris contenien informació. L'OCS 1.x permet múltiples comptes d'usuari que comparteixin la mateixa adreça de correu electrònic, mentre que l'OCS 2.x no. A la següent llista, al segon dels comptes mostrat se li ha assignat un compte de correu electrònic de caràcter temporal. Aquests han de corregir-se a mà, ja sigui mitjançant l'assignació d'altre compte de correu electrònic, o mitjançant la fusió dels comptes.</message>
-	<message key="admin.conferences.importOCS1.errors.desc">S'han trobat els següents errors al migrar de l'OCS 1.x a l'OCS 2.x.</message>
-	<message key="admin.conferences.importOCS1.conflict">{$firstUsername} ({$firstName}) i {$secondUsername} ({$secondName})</message>
-	<message key="admin.conferences.importOCS1Instructions"><![CDATA[Consulti el document de ACTUALITZACIÓ distribuït amb l'OCS amb informació detallada sobre la migració de dades de l'OCS 1 al l'OCS 2. Tingui en compte que aquest procés NO crea una Conferència/Congrés completament configurada en l'OCS 2 ; només s'importaran determinats elements (per exemple documents). <strong>Tots els usuaris importats haurien de restablir les seves contrasenyes. És important que el Director de la Conferència/Congrés revisi tota la informació abans d'activar la importació del lloc web.</strong>]]></message>
-	<message key="admin.conference.pathImportInstructions">Ruta existent per a la Conferència/Congrés o ruta a crear (p.e., "ocs").</message>
-	<message key="admin.conference.importPath">Ruta a l'OCS 1</message>
-	<message key="admin.conference.importPathInstructions">Ruta completa al sistema d'arxius on es va instal·lar l'OCS   1 (p.e., "/var/www/ocs").</message>
-	<message key="admin.conferences.emailUsers">Email creat amb la informació d'accés dels usuaris, incloent una contrasenya a l'atzar</message>
-	<message key="admin.conferences.transcode">Codificació de documents de metadades de ISO8859-1</message>
-	<message key="admin.conferences.form.importPathRequired">La ruta d'importació és obligatòria.</message>
-	<message key="admin.conferences.importErrors">La importació no ha estat completada amb èxit</message>
 </locale>

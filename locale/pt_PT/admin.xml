@@ -47,18 +47,4 @@
 	<message key="admin.conferences.enableConferenceInstructions">Permitir Acesso Livre a esta conferência no portal</message>
 	<message key="admin.conferences.conferenceDescription">Descrição da conferência</message>
 	<message key="admin.conferences.conferenceDescriptionInstructions">A descrição da conferência identifica a sua missão constante, sendo exibida na página principal da conferência, bem como em todas as páginas de eventos da conferência.</message>
-	<message key="admin.conferences.importOCS1">Importar de OCS 1</message>
-	<message key="admin.conferences.importOCS1.editMigratedConference">Editar Conferência Migrada</message>
-	<message key="admin.conferences.importOCS1.conflict.desc">Alguns utilizadores possuem registos conflituantes. A versão 1.x permite vários utilizadores com o mesmo e-mail, enquanto a versão 2.x não permite. Nos registos abaixo, foi designado um e-mail temporário à segunda lista dos registos. Estes deverão ser corrigidos manualmente, informando um novo e-mail ou mesclando as contas.</message>
-	<message key="admin.conferences.importOCS1.errors.desc">Os seguintes erros foram encontrados durante a migração.</message>
-	<message key="admin.conferences.importOCS1.conflict">{$firstUsername} ({$firstName}) e {$secondUsername} ({$secondName})</message>
-	<message key="admin.conferences.importOCS1Instructions"><![CDATA[Consulte o UPGRADE distribuído com o sistema para informações detalhadas sobre como migrar da versão 1.x para a versão 2. Note que este processo NÃO criará uma conferência completamente configurada; apenas alguns itens (ex. papers) serão importados. <strong>Todos os utilizadores importados deverão configurar novas senhas. É altamente recomendado que o Presidente Comissão Organizadora da Conferência verifica todas as informações importadas antes do lançamento da conferência.</strong>]]></message>
-	<message key="admin.conference.pathImportInstructions">Caminho existente ou caminho a ser criado (ex.: "conf1")</message>
-	<message key="admin.conference.importPath">Caminho físico da versão 1</message>
-	<message key="admin.conference.importPathInstructions">Caminho físico completo da instalação da versão 1.x (ex.: "/var/www/ocs") </message>
-	<message key="admin.conferences.importRegistrations">Importar registos</message>
-	<message key="admin.conferences.emailUsers">Os e-mails criaram utilizadores com dados de login, incluindo uma senha automática</message>
-	<message key="admin.conferences.transcode">Transcodificar metadados da submissão de ISO8859-1</message>
-	<message key="admin.conferences.form.importPathRequired">Caminho da importação obrigatório</message>
-	<message key="admin.conferences.importErrors">Importação não concluída com êxito</message>
 </locale>

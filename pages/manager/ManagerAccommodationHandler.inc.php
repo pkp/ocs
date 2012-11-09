@@ -18,7 +18,7 @@ import('pages.manager.ManagerHandler');
 class ManagerAccommodationHandler extends ManagerHandler {
 	/**
 	 * Constructor
-	 **/
+	 */
 	function ManagerAccommodationHandler() {
 		parent::ManagerHandler();
 	}
@@ -26,12 +26,12 @@ class ManagerAccommodationHandler extends ManagerHandler {
 	/**
 	 * Display form to edit accommodation settings.
 	 */
-	function accommodation() {
+	function accommodation($args, &$request) {
 		$this->validate();
-		$this->setupTemplate(true);
+		$this->setupTemplate($request, true);
 
-		$schedConf =& Request::getSchedConf();
-		if (!$schedConf) Request::redirect (null, null, 'index');
+		$schedConf =& $request->getSchedConf();
+		if (!$schedConf) $request->redirect (null, null, 'index');
 
 		import('classes.manager.form.AccommodationSettingsForm');
 
@@ -47,12 +47,12 @@ class ManagerAccommodationHandler extends ManagerHandler {
 	/**
 	 * Save changes to accommodation settings.
 	 */
-	function saveAccommodationSettings() {
+	function saveAccommodationSettings($args, &$request) {
 		$this->validate();
-		$this->setupTemplate(true);
+		$this->setupTemplate($request, true);
 
-		$schedConf =& Request::getSchedConf();
-		if (!$schedConf) Request::redirect (null, null, 'index');
+		$schedConf =& $request->getSchedConf();
+		if (!$schedConf) $request->redirect (null, null, 'index');
 
 		import('classes.manager.form.AccommodationSettingsForm');
 
@@ -62,7 +62,7 @@ class ManagerAccommodationHandler extends ManagerHandler {
 		$editData = false;
 
 		$accommodationFiles =& $schedConf->getSetting('accommodationFiles');
-		if (Request::getUserVar('uploadAccommodationFile')) {
+		if ($request->getUserVar('uploadAccommodationFile')) {
 			// Get a numeric key for this file.
 			$thisFileKey = 0;
 			if (isset($accommodationFiles[$settingsForm->getFormLocale()])) foreach ($accommodationFiles[$settingsForm->getFormLocale()] as $key => $junk) {
@@ -82,7 +82,7 @@ class ManagerAccommodationHandler extends ManagerHandler {
 						'name' => $oldName,
 						'uploadName' => $uploadName,
 						'dateUploaded' => Core::getCurrentDate(),
-						'title' => Request::getUserVar('accommodationFileTitle')
+						'title' => $request->getUserVar('accommodationFileTitle')
 					);
 					$accommodationFiles[$settingsForm->getFormLocale()][$thisFileKey] =& $value;
 					$settingsForm->setData('accommodationFiles', $accommodationFiles);
@@ -99,7 +99,7 @@ class ManagerAccommodationHandler extends ManagerHandler {
 			$deleteKey = null;
 			if (isset($accommodationFiles[$formLocale])) {
 				foreach ($accommodationFiles[$formLocale] as $key => $junk) {
-					if (Request::getUserVar("deleteAccommodationFile-$formLocale-$key")) $deleteKey = $key;
+					if ($request->getUserVar("deleteAccommodationFile-$formLocale-$key")) $deleteKey = $key;
 				}
 			}
 			if ($deleteKey !== null) {
@@ -116,12 +116,12 @@ class ManagerAccommodationHandler extends ManagerHandler {
 		if (!$editData && $settingsForm->validate()) {
 			$settingsForm->execute();
 
-			$templateMgr =& TemplateManager::getManager();
+			$templateMgr =& TemplateManager::getManager($request);
 			$templateMgr->assign(array(
-				'currentUrl' => Request::url(null, null, null, 'accommodation'),
+				'currentUrl' => $request->url(null, null, null, 'accommodation'),
 				'pageTitle' => 'schedConf.accommodation',
 				'message' => 'common.changesSaved',
-				'backLink' => Request::url(null, null, Request::getRequestedPage()),
+				'backLink' => $request->url(null, null, $request->getRequestedPage()),
 				'backLinkLabel' => 'manager.conferenceSiteManagement'
 			));
 			$templateMgr->display('common/message.tpl');
@@ -130,6 +130,6 @@ class ManagerAccommodationHandler extends ManagerHandler {
 			$settingsForm->display();
 		}
 	}
-
 }
+
 ?>

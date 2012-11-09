@@ -47,19 +47,5 @@
 	<message key="admin.conferences.enableConferenceInstructions">Gaitu kongresu hau publikoki agertzeko gunean.</message>
 	<message key="admin.conferences.conferenceDescription">Kongresuaren azalpena</message>
 	<message key="admin.conferences.conferenceDescriptionInstructions">Kongresuaren azalpenean kongresuaren misioa identifikatzen da. Kongresuaren orri nagusian eta konbentzio-orri guztietan agertzen da.</message>
-	<message key="admin.conferences.importOCS1">Inportatu OCS 1etik</message>
-	<message key="admin.conferences.importOCS1.editMigratedConference">Editatu migratutako Kongresua</message>
-	<message key="admin.conferences.importOCS1.conflict.desc">Erabiltzaile-kontu batzuen datuek gatazka sortzen dute. OCS 1.x bertsioak onartzen du hainbat erabiltzailek helbide elektroniko bera izatea, baina OCS 2.x bertsioak ez. Beheko zerrendan, bigarren kontuari behin-behineko helbide elektroniko bat esleitu zaio. Eskuz zuzendu daiteke, beste helbide elektroniko bat esleituz edo posta-kontuak batuz.</message>
-	<message key="admin.conferences.importOCS1.errors.desc">Errore hauek topatu dira OCS 1.x-tik OCS 2.x-ra migratzean:</message>
-	<message key="admin.conferences.importOCS1.conflict">{$firstUsername} ({$firstName}) eta {$secondUsername} ({$secondName})</message>
-	<message key="admin.conferences.importOCS1Instructions"><![CDATA[Datuak OCS 1etik OCS 2ra migratzeko informazio xehea ikusteko, kontsultatu OCSrekin banatzen den UPGRADE dokumentua. Kontuan izan prozesu honek EZ duela sortuko erabat konfiguratutako OCS 2 kongresu bat, elementu batzuk bakarrik (lanak adib.) inportatuko direla. <strong>Inportatutako erabiltzaile guztiek pasahitza berrezarri beharko dute. Biziki gomendatzen zaio Kongresuaren Zuzendariari inportatutako informazioa berrikustea kongresuaren webgunea abiatu aurretik.</strong>]]></message>
-	<message key="admin.conference.pathImportInstructions">Lehendik dagoen kongresuaren kokalekua edo berria (adib., "ocs")</message>
-	<message key="admin.conference.importPath">OCS 1 bidea</message>
-	<message key="admin.conference.importPathInstructions">Osatu OCS 1 instalazioaren fitxategi-sistema lokalaren bidea (adib., "/var/www/ocs")</message>
-	<message key="admin.conferences.importRegistrations">Inportatu izen-emateak</message>
-	<message key="admin.conferences.emailUsers">Bidali mezu elektronikoa sortutako erabiltzaileei, saioa hasteko izena eta ausazko pasahitz bat emateko</message>
-	<message key="admin.conferences.transcode">Bihurtu lanen metadatuak ISO8859-1etik.</message>
-	<message key="admin.conferences.form.importPathRequired">Inportatzeko bidea zehaztu behar da.</message>
-	<message key="admin.conferences.importErrors">Inportazioak huts egin du.</message>
 	<message key="admin.locale.maybeIncomplete">Markatutako lokalak osatu gabe egon daitezke.</message>
 </locale>

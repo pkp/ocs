@@ -195,7 +195,7 @@ class SubmissionReviewHandler extends ReviewerHandler {
 	 * Edit or preview review form response.
 	 * @param $args array
 	 */
-	function editReviewFormResponse($args) {
+	function editReviewFormResponse($args, &$request) {
 		$reviewId = isset($args[0]) ? $args[0] : 0;
 		
 		$this->validate($reviewId);
@@ -204,7 +204,7 @@ class SubmissionReviewHandler extends ReviewerHandler {
 		$reviewAssignment =& $reviewAssignmentDao->getById($reviewId);
 		$reviewFormId = $reviewAssignment->getReviewFormId();
 		if ($reviewFormId != null) {
-			ReviewerAction::editReviewFormResponse($reviewId, $reviewFormId);		
+			ReviewerAction::editReviewFormResponse($request, $reviewId, $reviewFormId);		
 		}
 	}
 
@@ -217,9 +217,9 @@ class SubmissionReviewHandler extends ReviewerHandler {
 		$reviewFormId = (int) array_shift($args);
 
 		$this->validate($reviewId);
-		$this->setupTemplate(true);
+		$this->setupTemplate($request, true);
 
-		if (ReviewerAction::saveReviewFormResponse($reviewId, $reviewFormId)) {
+		if (ReviewerAction::saveReviewFormResponse($request, $reviewId, $reviewFormId)) {
 			$request->redirect(null, null, null, 'submission', $reviewId);
 		}
 	}

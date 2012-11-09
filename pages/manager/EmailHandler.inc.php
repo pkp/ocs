@@ -30,9 +30,9 @@ class EmailHandler extends ManagerHandler {
 	 */
 	function emails($args, &$request) {
 		$this->validate($request);
-		$this->setupTemplate(true);
+		$this->setupTemplate($request, true);
 
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 		$templateMgr->assign('pageHierarchy', array(
 			array($request->url(null, 'index', 'manager'), 'manager.conferenceSiteManagement')
 		));

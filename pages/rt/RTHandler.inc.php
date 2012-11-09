@@ -38,7 +38,7 @@ class RTHandler extends PaperHandler {
 	 */
 	function bio($args, &$request) {
 		$router =& $request->getRouter();
-		$this->setupTemplate();
+		$this->setupTemplate($request);
 		$paperId = isset($args[0]) ? $args[0] : 0;
 		$galleyId = isset($args[1]) ? (int) $args[1] : 0;
 
@@ -67,7 +67,7 @@ class RTHandler extends PaperHandler {
 	 */
 	function metadata($args, &$request) {
 		$router =& $request->getRouter();
-		$this->setupTemplate();
+		$this->setupTemplate($request);
 		$paperId = isset($args[0]) ? $args[0] : 0;
 		$galleyId = isset($args[1]) ? (int) $args[1] : 0;
 		$this->validate($request, $paperId, $galleyId);
@@ -107,7 +107,7 @@ class RTHandler extends PaperHandler {
 	 */
 	function context($args, &$request) {
 		$router =& $request->getRouter();
-		$this->setupTemplate();
+		$this->setupTemplate($request);
 		$paperId = isset($args[0]) ? $args[0] : 0;
 		$galleyId = isset($args[1]) ? (int) $args[1] : 0;
 		$contextId = Isset($args[2]) ? (int) $args[2] : 0;
@@ -199,7 +199,7 @@ class RTHandler extends PaperHandler {
 	 */
 	function captureCite($args, &$request) {
 		$router =& $request->getRouter();
-		$this->setupTemplate();
+		$this->setupTemplate($request);
 		$paperId = isset($args[0]) ? $args[0] : 0;
 		$galleyId = isset($args[1]) ? (int) $args[1] : 0;
 		$citeType = isset($args[2]) ? $args[2] : null;
@@ -240,7 +240,7 @@ class RTHandler extends PaperHandler {
 	 */
 	function printerFriendly($args, &$request) {
 		$router =& $request->getRouter();
-		$this->setupTemplate();
+		$this->setupTemplate($request);
 		$paperId = isset($args[0]) ? $args[0] : 0;
 		$galleyId = isset($args[1]) ? (int) $args[1] : 0;
 		$this->validate($request, $paperId, $galleyId);
@@ -279,7 +279,7 @@ class RTHandler extends PaperHandler {
 	 */
 	function emailColleague($args, &$request) {
 		$router =& $request->getRouter();
-		$this->setupTemplate();
+		$this->setupTemplate($request);
 		$paperId = isset($args[0]) ? $args[0] : 0;
 		$galleyId = isset($args[1]) ? (int) $args[1] : 0;
 
@@ -328,7 +328,7 @@ class RTHandler extends PaperHandler {
 	 */
 	function emailAuthor($args, &$request) {
 		$router =& $request->getRouter();
-		$this->setupTemplate();
+		$this->setupTemplate($request);
 		$paperId = isset($args[0]) ? $args[0] : 0;
 		$galleyId = isset($args[1]) ? (int) $args[1] : 0;
 
@@ -371,7 +371,7 @@ class RTHandler extends PaperHandler {
 	 */
 	function suppFiles($args, &$request) {
 		$router =& $request->getRouter();
-		$this->setupTemplate();
+		$this->setupTemplate($request);
 		$paperId = isset($args[0]) ? $args[0] : 0;
 		$galleyId = isset($args[1]) ? (int) $args[1] : 0;
 
@@ -402,7 +402,7 @@ class RTHandler extends PaperHandler {
 	 */
 	function suppFileMetadata($args, &$request) {
 		$router =& $request->getRouter();
-		$this->setupTemplate();
+		$this->setupTemplate($request);
 		$paperId = isset($args[0]) ? $args[0] : 0;
 		$galleyId = isset($args[1]) ? (int) $args[1] : 0;
 		$suppFileId = isset($args[2]) ? (int) $args[2] : 0;
@@ -438,7 +438,7 @@ class RTHandler extends PaperHandler {
 	 */
 	function findingReferences($args, &$request) {
 		$router =& $request->getRouter();
-		$this->setupTemplate();
+		$this->setupTemplate($request);
 		$paperId = isset($args[0]) ? $args[0] : 0;
 		$galleyId = isset($args[1]) ? (int) $args[1] : 0;
 		$this->validate($request, $paperId, $galleyId);

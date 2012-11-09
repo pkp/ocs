@@ -31,7 +31,7 @@ class InformationHandler extends Handler {
 	 */
 	function index($args, &$request) {
 		$this->validate();
-		$this->setupTemplate();
+		$this->setupTemplate($request);
 		
 		$conference =& $request->getConference();
 		if (!$conference) $request->redirect('index');
@@ -69,8 +69,8 @@ class InformationHandler extends Handler {
 	/**
 	 * Initialize the template.
 	 */
-	function setupTemplate() {
-		parent::setupTemplate();
+	function setupTemplate($request) {
+		parent::setupTemplate($request);
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->setCacheability(CACHEABILITY_PUBLIC);
 	}

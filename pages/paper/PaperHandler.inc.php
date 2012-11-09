@@ -47,7 +47,7 @@ class PaperHandler extends Handler {
 		$this->validate($request, $paperId, $galleyId);
 		$conference =& $router->getContext($request, CONTEXT_CONFERENCE);
 		$paper =& $this->paper;
-		$this->setupTemplate();
+		$this->setupTemplate($request);
 
 		$rtDao =& DAORegistry::getDAO('RTDAO');
 		$conferenceRt = $rtDao->getConferenceRTByConference($conference);
@@ -66,7 +66,7 @@ class PaperHandler extends Handler {
 			return;
 		}
 
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 		$templateMgr->assign('paperId', $paperId);
 		$templateMgr->assign_by_ref('paper', $paper);
 		$templateMgr->assign('galleyId', $galleyId);
@@ -86,7 +86,7 @@ class PaperHandler extends Handler {
 		$galleyId = isset($args[1]) ? (int) $args[1] : 0;
 		$this->validate($request, $paperId, $galleyId);
 		$paper =& $this->paper;
-		$this->setupTemplate();
+		$this->setupTemplate($request);
 
 		if (!$galley) {
 			$galleyDao =& DAORegistry::getDAO('PaperGalleyDAO');
@@ -95,7 +95,7 @@ class PaperHandler extends Handler {
 
 		if (!$galley) $request->redirect(null, null, 'view', $paperId);
 
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 		$templateMgr->assign('paperId', $paperId);
 		$templateMgr->assign('galleyId', $galleyId);
 		$templateMgr->assign_by_ref('galley', $galley);
@@ -116,7 +116,7 @@ class PaperHandler extends Handler {
 
 		$this->validate($request, $paperId, $galleyId);
 		$paper =& $this->paper;
-		$this->setupTemplate();
+		$this->setupTemplate($request);
 
 		if (!$galley) {
 			$galleyDao =& DAORegistry::getDAO('PaperGalleyDAO');
@@ -125,7 +125,7 @@ class PaperHandler extends Handler {
 
 		if (!$galley) $request->redirect(null, null, 'view', $paperId);
 
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 		$templateMgr->assign('paperId', $paperId);
 		$templateMgr->assign('galleyId', $galleyId);
 		$templateMgr->assign_by_ref('galley', $galley);
@@ -147,7 +147,7 @@ class PaperHandler extends Handler {
 		$conference =& $router->getContext($request, CONTEXT_CONFERENCE);
 		$schedConf =& $router->getContext($request, CONTEXT_SCHED_CONF);
 		$paper =& $this->paper;
-		$this->setupTemplate();
+		$this->setupTemplate($request);
 
 		$rtDao =& DAORegistry::getDAO('RTDAO');
 		$conferenceRt = $rtDao->getConferenceRTByConference($conference);
@@ -178,7 +178,7 @@ class PaperHandler extends Handler {
 		$paperGalleyDao =& DAORegistry::getDAO('PaperGalleyDAO');
 		$galley =& $paperGalleyDao->getGalley($galleyId, $paper->getId());
 
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 
 		if (!$galley) {
 			// Get the registration status if displaying the abstract;
@@ -258,7 +258,7 @@ class PaperHandler extends Handler {
 		$conference =& $router->getContext($request, CONTEXT_CONFERENCE);
 		$schedConf =& $router->getContext($request, CONTEXT_SCHED_CONF);
 		$paper =& $this->paper;
-		$this->setupTemplate();
+		$this->setupTemplate($request);
 
 		$rtDao =& DAORegistry::getDAO('RTDAO');
 		$conferenceRt = $rtDao->getConferenceRTByConference($conference);
@@ -270,7 +270,7 @@ class PaperHandler extends Handler {
 		$trackDao =& DAORegistry::getDAO('TrackDAO');
 		$track =& $trackDao->getTrack($paper->getTrackId());
 
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 
 		$templateMgr->assign_by_ref('schedConf', $schedConf);
 		$templateMgr->assign_by_ref('paper', $paper);
@@ -328,7 +328,7 @@ class PaperHandler extends Handler {
 
 		$this->validate($request, $paperId, $galleyId);
 		$paper =& $this->paper;
-		$this->setupTemplate();
+		$this->setupTemplate($request);
 
 		$galleyDao =& DAORegistry::getDAO('PaperGalleyDAO');
 		$galley =& $galleyDao->getGalley($galleyId, $paper->getId());
@@ -452,8 +452,8 @@ class PaperHandler extends Handler {
 				// Bar access to abstract?
 				((!isset($galleyId) || $galleyId==0) && !SchedConfAction::mayViewProceedings($schedConf))
 			) {
-				$this->setupTemplate();				
-				$templateMgr =& TemplateManager::getManager();
+				$this->setupTemplate($request);				
+				$templateMgr =& TemplateManager::getManager($request);
 				$templateMgr->assign_by_ref('paper', $paper);
 				$templateMgr->assign_by_ref('schedConf', $schedConf);
 				$templateMgr->assign_by_ref('conference', $conference);
@@ -469,8 +469,8 @@ class PaperHandler extends Handler {
 		return true;
 	}
 
-	function setupTemplate() {
-		parent::setupTemplate();
+	function setupTemplate($request) {
+		parent::setupTemplate($request);
 		AppLocale::requireComponents(LOCALE_COMPONENT_PKP_READER, LOCALE_COMPONENT_PKP_SUBMISSION);
 	}
 }

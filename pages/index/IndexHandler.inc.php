@@ -29,12 +29,12 @@ class IndexHandler extends Handler {
 	 * If no scheduled conference is specified, display a list of scheduled conferences.
 	 * If no conference is specified, display list of conferences.
 	 */
-	function index($args) {
+	function index($args, $request) {
 		$this->validate();
-		$this->setupTemplate();
+		$this->setupTemplate($request);
 		
-		$conference =& Request::getConference();
-		$schedConf =& Request::getSchedConf();
+		$conference =& $request->getConference();
+		$schedConf =& $request->getSchedConf();
 
 		if ($schedConf && $conference) {
 
@@ -47,7 +47,7 @@ class IndexHandler extends Handler {
 			if (!empty($redirect)) {
 				$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
 				$redirectSchedConf =& $schedConfDao->getSchedConf($redirect, $conference->getId());
-				if ($redirectSchedConf) Request::redirect($conference->getPath(), $redirectSchedConf->getPath());
+				if ($redirectSchedConf) $request->redirect($conference->getPath(), $redirectSchedConf->getPath());
 			}
 
 			// A scheduled conference was specified; display it.
@@ -65,11 +65,11 @@ class IndexHandler extends Handler {
 			// If the site specifies that we should redirect to a specific conference
 			// by default, do it.
 
-			$site =& Request::getSite();
+			$site =& $request->getSite();
 			$conference = $conferenceDao->getConference($site->getRedirect());
 
 			if ($site->getRedirect() && $conference) {
-				Request::redirect($conference->getPath());
+				$request->redirect($conference->getPath());
 			}
 
 			// Otherwise, show a list of hosted conferences.

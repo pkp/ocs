@@ -18,7 +18,7 @@ import('pages.manager.ManagerHandler');
 class ConferenceLanguagesHandler extends ManagerHandler {
 	/**
 	 * Constructor
-	 **/
+	 */
 	function ConferenceLanguagesHandler() {
 		parent::ManagerHandler();
 	}
@@ -26,9 +26,9 @@ class ConferenceLanguagesHandler extends ManagerHandler {
 	/**
 	 * Display form to edit language settings.
 	 */
-	function languages() {
+	function languages($args, &$request) {
 		$this->validate();
-		$this->setupTemplate(true);
+		$this->setupTemplate($request, true);
 
 		import('classes.manager.form.LanguageSettingsForm');
 
@@ -44,7 +44,7 @@ class ConferenceLanguagesHandler extends ManagerHandler {
 	 */
 	function saveLanguageSettings($args, &$request) {
 		$this->validate();
-		$this->setupTemplate(true);
+		$this->setupTemplate($request, true);
 
 		import('classes.manager.form.LanguageSettingsForm');
 
@@ -76,7 +76,7 @@ class ConferenceLanguagesHandler extends ManagerHandler {
 		}
 
 		$this->validate();
-		$this->setupTemplate(true);
+		$this->setupTemplate($request, true);
 
 		$conference =& $request->getConference();
 		$conferenceSettingsDao =& DAORegistry::getDAO('ConferenceSettingsDAO');

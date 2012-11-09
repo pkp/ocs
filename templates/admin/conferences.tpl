@@ -59,7 +59,7 @@ $(document).ready(function() { setupTableDND("#adminConferences", "moveConferenc
 	{/if}
 </table>
 
-<p><a href="{url op="createConference"}" class="action">{translate key="admin.conferences.create"}</a> | <a href="{url op="importOCS1"}" class="action">{translate key="admin.conferences.importOCS1"}</a></p>
+<p><a href="{url op="createConference"}" class="action">{translate key="admin.conferences.create"}</a></p>
 </div>
-{include file="common/footer.tpl"}
 
+{include file="common/footer.tpl"}

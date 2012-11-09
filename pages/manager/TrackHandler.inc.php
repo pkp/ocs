@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @file TrackHandler.inc.php
+ * @file pages/manager/TrackHandler.inc.php
  *
  * Copyright (c) 2000-2012 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
@@ -18,19 +18,19 @@ import('pages.manager.ManagerHandler');
 class TrackHandler extends ManagerHandler {
 	/**
 	 * Constructor
-	 **/
+	 */
 	function TrackHandler() {
 		parent::ManagerHandler();
 	}
 	/**
 	 * Display a list of the tracks within the current conference.
 	 */
-	function tracks() {
+	function tracks($args, &$request) {
 		$this->validate();
-		$this->setupTemplate();
+		$this->setupTemplate($request);
 
-		$schedConf =& Request::getSchedConf();
-		$rangeInfo =& Handler::getRangeInfo('tracks', array());
+		$schedConf =& $request->getSchedConf();
+		$rangeInfo =& Handler::getRangeInfo($request, 'tracks', array());
 		$trackDao =& DAORegistry::getDAO('TrackDAO');
 		while (true) {
 			$tracks =& $trackDao->getSchedConfTracks($schedConf->getId(), $rangeInfo);
@@ -40,8 +40,8 @@ class TrackHandler extends ManagerHandler {
 			unset($tracks);
 		}
 
-		$templateMgr =& TemplateManager::getManager();
-		$templateMgr->assign('pageHierarchy', array(array(Request::url(null, null, 'manager'), 'manager.schedConfManagement')));
+		$templateMgr =& TemplateManager::getManager($request);
+		$templateMgr->assign('pageHierarchy', array(array($request->url(null, null, 'manager'), 'manager.schedConfManagement')));
 		$templateMgr->assign_by_ref('tracks', $tracks);
 		$templateMgr->assign('helpTopicId','conference.currentConferences.tracks');
 		$templateMgr->display('manager/tracks/tracks.tpl');
@@ -50,17 +50,18 @@ class TrackHandler extends ManagerHandler {
 	/**
 	 * Display form to create a new track.
 	 */
-	function createTrack() {
-		$this->editTrack();
+	function createTrack($args, &$request) {
+		$this->editTrack($args, $request);
 	}
 
 	/**
 	 * Display form to create/edit a track.
-	 * @param $args array optional, if set the first parameter is the ID of the track to edit
+	 * @param $args array
+	 * @param $request PKPRequest
 	 */
-	function editTrack($args = array()) {
+	function editTrack($args, &$request) {
 		$this->validate();
-		$this->setupTemplate(true);
+		$this->setupTemplate($request, true);
 
 		import('classes.manager.form.TrackForm');
 
@@ -76,18 +77,18 @@ class TrackHandler extends ManagerHandler {
 	/**
 	 * Save changes to a track.
 	 */
-	function updateTrack() {
+	function updateTrack($args, &$request) {
 		parent::validate();
-		$this->setupTemplate(true);
+		$this->setupTemplate($request, true);
 
 		import('classes.manager.form.TrackForm');
 
-		$trackForm = new TrackForm(Request::getUserVar('trackId'));
+		$trackForm = new TrackForm($request->getUserVar('trackId'));
 		$trackForm->readInputData();
 
 		if ($trackForm->validate()) {
 			$trackForm->execute();
-			Request::redirect(null, null, null, 'tracks');
+			$request->redirect(null, null, null, 'tracks');
 		} else {
 			$trackForm->display();
 		}
@@ -97,43 +98,43 @@ class TrackHandler extends ManagerHandler {
 	 * Delete a track.
 	 * @param $args array first parameter is the ID of the track to delete
 	 */
-	function deleteTrack($args) {
+	function deleteTrack($args, &$request) {
 		$this->validate();
 
-		$schedConf =& Request::getSchedConf();
+		$schedConf =& $request->getSchedConf();
 		if (isset($args) && !empty($args)) {
 			$trackDao =& DAORegistry::getDAO('TrackDAO');
 			$trackDao->deleteTrackById($args[0], $schedConf->getId());
 		}
 
-		Request::redirect(null, null, null, 'tracks');
+		$request->redirect(null, null, null, 'tracks');
 	}
 
 	/**
 	 * Change the sequence of a track.
 	 */
-	function moveTrack() {
+	function moveTrack($args, &$request) {
 		$this->validate();
 
-		$schedConf =& Request::getSchedConf();
+		$schedConf =& $request->getSchedConf();
 		$trackDao =& DAORegistry::getDAO('TrackDAO');
-		$track =& $trackDao->getTrack(Request::getUserVar('trackId'), $schedConf->getId());
+		$track =& $trackDao->getTrack($request->getUserVar('trackId'), $schedConf->getId());
 
 		if ($track != null) {
-			$track->setSequence($track->getSequence() + (Request::getUserVar('d') == 'u' ? -1.5 : 1.5));
+			$track->setSequence($track->getSequence() + ($request->getUserVar('d') == 'u' ? -1.5 : 1.5));
 			$trackDao->updateTrack($track);
 			$trackDao->resequenceTracks($schedConf->getId());
 		}
 
-		Request::redirect(null, null, null, 'tracks');
+		$request->redirect(null, null, null, 'tracks');
 	}
 
-	function setupTemplate($subclass = false){
+	function setupTemplate($request, $subclass = false){
 		AppLocale::requireComponents(LOCALE_COMPONENT_PKP_SUBMISSION, LOCALE_COMPONENT_PKP_READER);
-		parent::setupTemplate(true);
+		parent::setupTemplate($request, true);
 		if ($subclass) {
-			$templateMgr =& TemplateManager::getManager();
-			$templateMgr->append('pageHierarchy', array(Request::url(null, null, 'manager', 'tracks'), 'track.tracks'));
+			$templateMgr =& TemplateManager::getManager($request);
+			$templateMgr->append('pageHierarchy', array($request->url(null, null, 'manager', 'tracks'), 'track.tracks'));
 		}
 	}
 }

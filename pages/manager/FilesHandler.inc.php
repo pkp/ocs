@@ -29,12 +29,12 @@ class FilesHandler extends ManagerHandler {
 	 */
 	function files($args, &$request) {
 		$this->validate();
-		$this->setupTemplate(true);
+		$this->setupTemplate($request, true);
 		$fileManager = new FileManager();
 
 		import('lib.pkp.classes.file.FileManager');
 
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 		$templateMgr->assign('pageHierarchy', array(array($request->url(null, null, 'manager'), 'manager.conferenceSiteManagement')));
 
 		$this->_parseDirArg($args, $currentDir, $parentDir);
@@ -94,8 +94,8 @@ class FilesHandler extends ManagerHandler {
 		}
 
 		if (!$success) {
-			$templateMgr =& TemplateManager::getManager();
-			$this->setupTemplate(true);
+			$templateMgr =& TemplateManager::getManager($request);
+			$this->setupTemplate($request, true);
 			$templateMgr->assign('pageTitle', 'manager.filesBrowser');
 			$templateMgr->assign('message', 'common.uploadFailed');
 			$templateMgr->assign('backLink', $request->url(null, null, null, 'files', explode('/', $currentDir)));

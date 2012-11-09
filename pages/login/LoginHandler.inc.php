@@ -32,7 +32,7 @@ class LoginHandler extends PKPLoginHandler {
 			$conference =& $request->getConference();
 
 			if (!Validation::canAdminister($conference->getId(), $userId)) {
-				$this->setupTemplate();
+				$this->setupTemplate($request);
 				// We don't have administrative rights
 				// over this user. Display an error.
 				$templateMgr =& TemplateManager::getManager();
@@ -119,9 +119,9 @@ class LoginHandler extends PKPLoginHandler {
 	/**
 	 * Configure the template for display.
 	 */
-	function setupTemplate() {
+	function setupTemplate($request) {
 		AppLocale::requireComponents(LOCALE_COMPONENT_OCS_MANAGER, LOCALE_COMPONENT_PKP_MANAGER);
-		parent::setupTemplate();
+		parent::setupTemplate($request);
 	}
 }
 

@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @file RTVersionHandler.inc.php
+ * @file pages/manager/RTVersionHandler.inc.php
  *
  * Copyright (c) 2000-2012 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
@@ -19,17 +19,17 @@ import('pages.rtadmin.RTAdminHandler');
 class RTVersionHandler extends RTAdminHandler {
 	/**
 	 * Constructor
-	 **/
+	 */
 	function RTVersionHandler() {
 		parent::RTAdminHandler();
 	}
 	
-	function createVersion($args) {
+	function createVersion($args, &$request) {
 		$this->validate();
 
 		$rtDao =& DAORegistry::getDAO('RTDAO');
 
-		$conference = Request::getConference();
+		$conference = $request->getConference();
 
 		import('classes.rt.ocs.form.VersionForm');
 		$versionForm = new VersionForm(null, $conference->getId());
@@ -37,47 +37,47 @@ class RTVersionHandler extends RTAdminHandler {
 		if (isset($args[0]) && $args[0]=='save') {
 			$versionForm->readInputData();
 			$versionForm->execute();
-			Request::redirect(null, null, null, 'versions');
+			$request->redirect(null, null, null, 'versions');
 		} else {
-			$this->setupTemplate(true);
+			$this->setupTemplate($request, true);
 			$versionForm->display();
 		}
 	}
 
-	function exportVersion($args) {
+	function exportVersion($args, &$request) {
 		$this->validate();
 
 		$rtDao =& DAORegistry::getDAO('RTDAO');
 
-		$conference = Request::getConference();
+		$conference = $request->getConference();
 		$versionId = isset($args[0])?$args[0]:0;
 		$version =& $rtDao->getVersion($versionId, $conference->getId());
 
 		if ($version) {
-			$templateMgr =& TemplateManager::getManager();
+			$templateMgr =& TemplateManager::getManager($request);
 			$templateMgr->assign_by_ref('version', $version);
 
 			$templateMgr->display('rtadmin/exportXml.tpl', 'application/xml');
 		}
-		else Request::redirect(null, null, null, 'versions');
+		else $request->redirect(null, null, null, 'versions');
 	}
 
-	function importVersion() {
+	function importVersion($args, &$request) {
 		$this->validate();
-		$conference =& Request::getConference();
+		$conference =& $request->getConference();
 
 		$fileField = 'versionFile';
 		if (isset($_FILES[$fileField]['tmp_name']) && is_uploaded_file($_FILES[$fileField]['tmp_name'])) {
 			$rtAdmin = new ConferenceRTAdmin($conference->getId());
 			$rtAdmin->importVersion($_FILES[$fileField]['tmp_name']);
 		}
-		Request::redirect(null, null, null, 'versions');
+		$request->redirect(null, null, null, 'versions');
 	}
 
-	function restoreVersions() {
+	function restoreVersions($args, &$request) {
 		$this->validate();
 
-		$conference =& Request::getConference();
+		$conference =& $request->getConference();
 		$rtAdmin = new ConferenceRTAdmin($conference->getId());
 		$rtAdmin->restoreVersions();
 
@@ -91,62 +91,62 @@ class RTVersionHandler extends RTAdminHandler {
 			$rtDao->updateConferenceRT($conferenceRt);
 		}
 
-		Request::redirect(null, null, null, 'versions');
+		$request->redirect(null, null, null, 'versions');
 	}
 
-	function versions() {
+	function versions($args, &$request) {
 		$this->validate();
-		$this->setupTemplate(true);
+		$this->setupTemplate($request, true);
 
-		$conference = Request::getConference();
+		$conference = $request->getConference();
 
 		$rtDao =& DAORegistry::getDAO('RTDAO');
-		$rangeInfo = Handler::getRangeInfo('versions');
+		$rangeInfo = $this->getRangeInfo($request, 'versions');
 
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 		$templateMgr->assign_by_ref('versions', $rtDao->getVersions($conference->getId(), $rangeInfo));
 		$templateMgr->assign('helpTopicId', 'conference.generalManagement.readingTools.versions');
 		$templateMgr->display('rtadmin/versions.tpl');
 	}
 
-	function editVersion($args) {
+	function editVersion($args, &$request) {
 		$this->validate();
 
 		$rtDao =& DAORegistry::getDAO('RTDAO');
 
-		$conference = Request::getConference();
+		$conference = $request->getConference();
 		$versionId = isset($args[0])?$args[0]:0;
 		$version =& $rtDao->getVersion($versionId, $conference->getId());
 
 		if (isset($version)) {
 			import('classes.rt.ocs.form.VersionForm');
-			$this->setupTemplate(true, $version);
+			$this->setupTemplate($request, true, $version);
 			$versionForm = new VersionForm($versionId, $conference->getId());
 			$versionForm->initData();
 			$versionForm->display();
 		}
-		else Request::redirect(null, null, null, 'versions');
+		else $request->redirect(null, null, null, 'versions');
 	}
 
-	function deleteVersion($args) {
+	function deleteVersion($args, &$request) {
 		$this->validate();
 
 		$rtDao =& DAORegistry::getDAO('RTDAO');
 
-		$conference = Request::getConference();
+		$conference = $request->getConference();
 		$versionId = isset($args[0])?$args[0]:0;
 
 		$rtDao->deleteVersion($versionId, $conference->getId());
 
-		Request::redirect(null, null, null, 'versions');
+		$request->redirect(null, null, null, 'versions');
 	}
 
-	function saveVersion($args) {
+	function saveVersion($args, &$request) {
 		$this->validate();
 
 		$rtDao =& DAORegistry::getDAO('RTDAO');
 
-		$conference = Request::getConference();
+		$conference = $request->getConference();
 		$versionId = isset($args[0])?$args[0]:0;
 		$version =& $rtDao->getVersion($versionId, $conference->getId());
 
@@ -157,7 +157,7 @@ class RTVersionHandler extends RTAdminHandler {
 			$versionForm->execute();
 		}
 
-		Request::redirect(null, null, null, 'versions');
+		$request->redirect(null, null, null, 'versions');
 	}
 }
 

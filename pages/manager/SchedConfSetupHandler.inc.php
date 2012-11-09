@@ -18,7 +18,7 @@ import('pages.manager.ManagerHandler');
 class SchedConfSetupHandler extends ManagerHandler {
 	/**
 	 * Constructor
-	 **/
+	 */
 	function SchedConfSetupHandler() {
 		parent::ManagerHandler();
 	}
@@ -28,9 +28,9 @@ class SchedConfSetupHandler extends ManagerHandler {
 	 * Displays setup index page if a valid step is not specified.
 	 * @param $args array optional, if set the first parameter is the step to display
 	 */
-	function schedConfSetup($args) {
+	function schedConfSetup($args, &$request) {
 		$this->validate();
-		$this->setupTemplate(true);
+		$this->setupTemplate($request, true);
 
 		$step = isset($args[0]) ? (int) $args[0] : 0;
 
@@ -48,7 +48,7 @@ class SchedConfSetupHandler extends ManagerHandler {
 			$setupForm->display();
 
 		} else {
-			$templateMgr =& TemplateManager::getManager();
+			$templateMgr =& TemplateManager::getManager($request);
 			$templateMgr->assign('helpTopicId','conference.currentConferences.setup');
 			$templateMgr->display('manager/schedConfSetup/index.tpl');
 		}
@@ -58,14 +58,14 @@ class SchedConfSetupHandler extends ManagerHandler {
 	 * Save changes to conference settings.
 	 * @param $args array first parameter is the step being saved
 	 */
-	function saveSchedConfSetup($args) {
+	function saveSchedConfSetup($args, &$request) {
 		$this->validate();
 
 		$step = isset($args[0]) ? (int) $args[0] : 0;
 
 		if ($step >= 1 && $step <= 3) {
 
-			$this->setupTemplate(true);
+			$this->setupTemplate($request, true);
 
 			$formClass = "SchedConfSetupStep{$step}Form";
 			import("classes.manager.form.schedConfSetup.$formClass");
@@ -77,14 +77,14 @@ class SchedConfSetupHandler extends ManagerHandler {
 			// Check for any special cases before trying to save
 			switch ($step) {
 				case 1:
-					if (Request::getUserVar('addSponsor')) {
+					if ($request->getUserVar('addSponsor')) {
 						// Add a sponsor
 						$editData = true;
 						$sponsors = $setupForm->getData('sponsors');
 						array_push($sponsors, array());
 						$setupForm->setData('sponsors', $sponsors);
 
-					} else if (($delSponsor = Request::getUserVar('delSponsor')) && count($delSponsor) == 1) {
+					} else if (($delSponsor = $request->getUserVar('delSponsor')) && count($delSponsor) == 1) {
 						// Delete a sponsor
 						$editData = true;
 						list($delSponsor) = array_keys($delSponsor);
@@ -93,14 +93,14 @@ class SchedConfSetupHandler extends ManagerHandler {
 						array_splice($sponsors, $delSponsor, 1);
 						$setupForm->setData('sponsors', $sponsors);
 
-					} else if (Request::getUserVar('addContributor')) {
+					} else if ($request->getUserVar('addContributor')) {
 						// Add a contributor
 						$editData = true;
 						$contributors = $setupForm->getData('contributors');
 						array_push($contributors, array());
 						$setupForm->setData('contributors', $contributors);
 
-					} else if (($delContributor = Request::getUserVar('delContributor')) && count($delContributor) == 1) {
+					} else if (($delContributor = $request->getUserVar('delContributor')) && count($delContributor) == 1) {
 						// Delete a contributor
 						$editData = true;
 						list($delContributor) = array_keys($delContributor);
@@ -111,10 +111,10 @@ class SchedConfSetupHandler extends ManagerHandler {
 					}
 					break;
 				case 2:
-					if ($action = Request::getUserVar('paperTypeAction')) {
+					if ($action = $request->getUserVar('paperTypeAction')) {
 						$editData = true;
 						$setupForm->readInputData();
-						$paperTypeId = Request::getUserVar('paperTypeId');
+						$paperTypeId = $request->getUserVar('paperTypeId');
 						switch ($action) {
 							case 'movePaperTypeUp':
 							case 'movePaperTypeDown':
@@ -128,7 +128,7 @@ class SchedConfSetupHandler extends ManagerHandler {
 								$setupForm->_data['paperTypes']['a' . count($setupForm->_data['paperTypes'])] = array(); // Hack: non-numeric for new
 								break;
 						}
-					} elseif (Request::getUserVar('addChecklist')) {
+					} elseif ($request->getUserVar('addChecklist')) {
 						// Add a checklist item
 						$editData = true;
 						$checklist = $setupForm->getData('submissionChecklist');
@@ -141,7 +141,7 @@ class SchedConfSetupHandler extends ManagerHandler {
 						array_push($checklist[$formLocale], array('order' => $lastOrder+1));
 						$setupForm->setData('submissionChecklist', $checklist);
 
-					} else if (($delChecklist = Request::getUserVar('delChecklist')) && count($delChecklist) == 1) {
+					} else if (($delChecklist = $request->getUserVar('delChecklist')) && count($delChecklist) == 1) {
 						// Delete a checklist item
 						$editData = true;
 						list($delChecklist) = array_keys($delChecklist);
@@ -165,27 +165,27 @@ class SchedConfSetupHandler extends ManagerHandler {
 
 			if (!isset($editData) && $setupForm->validate()) {
 				$setupForm->execute();
-				Request::redirect(null, null, null, 'schedConfSetupSaved', $step);
+				$request->redirect(null, null, null, 'schedConfSetupSaved', $step);
 			} else {
 				$setupForm->display();
 			}
 
 		} else {
-			Request::redirect();
+			$request->redirect();
 		}
 	}
 
 	/**
 	 * Display a "Scheduled conference settings saved" page
 	 */
-	function schedConfSetupSaved($args) {
+	function schedConfSetupSaved($args, &$request) {
 		$this->validate();
 
 		$step = isset($args[0]) ? (int) $args[0] : 0;
 
 		if ($step >= 1 && $step <= 3) {
-			$this->setupTemplate(true);
-			$templateMgr =& TemplateManager::getManager();
+			$this->setupTemplate($request, true);
+			$templateMgr =& TemplateManager::getManager($request);
 			$templateMgr->assign('setupStep', $step);
 			$templateMgr->assign('helpTopicId', 'conference.currentConferences.setup');
 			if ($step == 3) $templateMgr->assign('showSetupHints',true);

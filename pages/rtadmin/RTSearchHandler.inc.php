@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @file RTSearchHandler.inc.php
+ * @file pages/manager/RTSearchHandler.inc.php
  *
  * Copyright (c) 2000-2012 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
@@ -19,15 +19,15 @@ import('pages.rtadmin.RTAdminHandler');
 class RTSearchHandler extends RTAdminHandler {
 	/**
 	 * Constructor
-	 **/
+	 */
 	function RTSearchHandler() {
 		parent::RTAdminHandler();
 	}
 
-	function createSearch($args) {
+	function createSearch($args, &$request) {
 		$this->validate();
 
-		$conference = Request::getConference();
+		$conference = $request->getConference();
 
 		$rtDao =& DAORegistry::getDAO('RTDAO');
 
@@ -42,20 +42,20 @@ class RTSearchHandler extends RTAdminHandler {
 		if (isset($args[2]) && $args[2]=='save') {
 			$searchForm->readInputData();
 			$searchForm->execute();
-			Request::redirect(null, null, null, 'searches', array($versionId, $contextId));
+			$request->redirect(null, null, null, 'searches', array($versionId, $contextId));
 		} else {
-			$this->setupTemplate(true, $version, $context);
+			$this->setupTemplate($request, true, $version, $context);
 			$searchForm->display();
 		}
 	}
 
-	function searches($args) {
+	function searches($args, &$request) {
 		$this->validate();
 
-		$conference = Request::getConference();
+		$conference = $request->getConference();
 
 		$rtDao =& DAORegistry::getDAO('RTDAO');
-		$rangeInfo = Handler::getRangeInfo('searches');
+		$rangeInfo = $this->getRangeInfo($request, 'searches');
 
 		$versionId = isset($args[0])?$args[0]:0;
 		$version =& $rtDao->getVersion($versionId, $conference->getId());
@@ -64,9 +64,9 @@ class RTSearchHandler extends RTAdminHandler {
 		$context =& $rtDao->getContext($contextId);
 
 		if ($context && $version && $context->getVersionId() == $version->getVersionId()) {
-			$this->setupTemplate(true, $version, $context);
+			$this->setupTemplate($request, true, $version, $context);
 
-			$templateMgr =& TemplateManager::getManager();
+			$templateMgr =& TemplateManager::getManager($request);
 			$templateMgr->addJavaScript('lib/pkp/js/lib/jquery/plugins/jquery.tablednd.js');
 			$templateMgr->addJavaScript('lib/pkp/js/functions/tablednd.js');
 
@@ -78,15 +78,15 @@ class RTSearchHandler extends RTAdminHandler {
 			$templateMgr->assign('helpTopicId', 'conference.generalManagement.readingTools.contexts');
 			$templateMgr->display('rtadmin/searches.tpl');
 		}
-		else Request::redirect(null, null, null, 'versions');
+		else $request->redirect(null, null, null, 'versions');
 	}
 
-	function editSearch($args) {
+	function editSearch($args, &$request) {
 		$this->validate();
 
 		$rtDao =& DAORegistry::getDAO('RTDAO');
 
-		$conference = Request::getConference();
+		$conference = $request->getConference();
 		$versionId = isset($args[0])?$args[0]:0;
 		$version =& $rtDao->getVersion($versionId, $conference->getId());
 		$contextId = isset($args[1])?$args[1]:0;
@@ -96,22 +96,22 @@ class RTSearchHandler extends RTAdminHandler {
 
 		if (isset($version) && isset($context) && isset($search) && $context->getVersionId() == $version->getVersionId() && $search->getContextId() == $context->getContextId()) {
 			import('classes.rt.ocs.form.SearchForm');
-			$this->setupTemplate(true, $version, $context, $search);
+			$this->setupTemplate($request, true, $version, $context, $search);
 			$searchForm = new SearchForm($searchId, $contextId, $versionId);
 			$searchForm->initData();
 			$searchForm->display();
 		}
-		else Request::redirect(null, null, null, 'searches', array($versionId, $contextId));
+		else $request->redirect(null, null, null, 'searches', array($versionId, $contextId));
 
 
 	}
 
-	function deleteSearch($args) {
+	function deleteSearch($args, &$request) {
 		$this->validate();
 
 		$rtDao =& DAORegistry::getDAO('RTDAO');
 
-		$conference = Request::getConference();
+		$conference = $request->getConference();
 		$versionId = isset($args[0])?$args[0]:0;
 		$version =& $rtDao->getVersion($versionId, $conference->getId());
 		$contextId = isset($args[1])?$args[1]:0;
@@ -123,15 +123,15 @@ class RTSearchHandler extends RTAdminHandler {
 			$rtDao->deleteSearch($searchId, $contextId);
 		}
 
-		Request::redirect(null, null, null, 'searches', array($versionId, $contextId));
+		$request->redirect(null, null, null, 'searches', array($versionId, $contextId));
 	}
 
-	function saveSearch($args) {
+	function saveSearch($args, &$request) {
 		$this->validate();
 
 		$rtDao =& DAORegistry::getDAO('RTDAO');
 
-		$conference = Request::getConference();
+		$conference = $request->getConference();
 		$versionId = isset($args[0])?$args[0]:0;
 		$version =& $rtDao->getVersion($versionId, $conference->getId());
 		$contextId = isset($args[1])?$args[1]:0;
@@ -146,15 +146,15 @@ class RTSearchHandler extends RTAdminHandler {
 			$searchForm->execute();
 		}
 
-		Request::redirect(null, null, null, 'searches', array($versionId, $contextId));
+		$request->redirect(null, null, null, 'searches', array($versionId, $contextId));
 	}
 
-	function moveSearch($args) {
+	function moveSearch($args, &$request) {
 		$this->validate();
 
 		$rtDao =& DAORegistry::getDAO('RTDAO');
 
-		$conference = Request::getConference();
+		$conference = $request->getConference();
 		$versionId = isset($args[0])?$args[0]:0;
 		$version =& $rtDao->getVersion($versionId, $conference->getId());
 		$contextId = isset($args[1])?$args[1]:0;
@@ -163,13 +163,13 @@ class RTSearchHandler extends RTAdminHandler {
 		$search =& $rtDao->getSearch($searchId);
 
 		if (isset($version) && isset($context) && isset($search) && $context->getVersionId() == $version->getVersionId() && $search->getContextId() == $context->getContextId()) {
-			$isDown = Request::getUserVar('dir')=='d';
+			$isDown = $request->getUserVar('dir')=='d';
 			$search->setOrder($search->getOrder()+($isDown?1.5:-1.5));
 			$rtDao->updateSearch($search);
 			$rtDao->resequenceSearches($context->getContextId());
 		}
 
-		Request::redirect(null, null, null, 'searches', array($versionId, $contextId));
+		$request->redirect(null, null, null, 'searches', array($versionId, $contextId));
 	}
 }
 

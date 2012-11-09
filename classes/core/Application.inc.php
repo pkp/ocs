@@ -39,11 +39,11 @@ class Application extends PKPApplication {
 	 * Scheduled Conference [2]).
 	 * @return int
 	 */
-	static function getContextDepth() {
+	function getContextDepth() {
 		return 2;
 	}
 
-	static function getContextList() {
+	function getContextList() {
 		return array('conference', 'schedConf');
 	}
 

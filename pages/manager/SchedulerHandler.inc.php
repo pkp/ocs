@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @file SchedulerHandler.inc.php
+ * @file pages/manager/SchedulerHandler.inc.php
  *
  * Copyright (c) 2000-2012 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
@@ -18,7 +18,7 @@ import('pages.manager.ManagerHandler');
 class SchedulerHandler extends ManagerHandler {
 	/**
 	 * Constructor
-	 **/
+	 */
 	function SchedulerHandler() {
 		parent::ManagerHandler();
 	}
@@ -26,11 +26,11 @@ class SchedulerHandler extends ManagerHandler {
 	/**
 	 * Display the scheduler index page
 	 */
-	function scheduler() {
+	function scheduler($args, &$request) {
 		$this->validate();
-		$this->setupTemplate();
+		$this->setupTemplate($request);
 
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 		$templateMgr->assign('helpTopicId', 'conference.currentConferences.scheduler');
 		$templateMgr->display('manager/scheduler/index.tpl');
 	}
@@ -38,23 +38,23 @@ class SchedulerHandler extends ManagerHandler {
 	/**
 	 * Save scheduler settings (time block enable/disable)
 	 */
-	function saveSchedulerSettings() {
+	function saveSchedulerSettings($args, &$request) {
 		parent::validate();
-		$enableTimeBlocks = Request::getUserVar('enableTimeBlocks');
-		$schedConf =& Request::getSchedConf();
+		$enableTimeBlocks = $request->getUserVar('enableTimeBlocks');
+		$schedConf =& $request->getSchedConf();
 		$schedConf->updateSetting('enableTimeBlocks', $enableTimeBlocks);
-		Request::redirect(null, null, 'manager', 'scheduler');
+		$request->redirect(null, null, 'manager', 'scheduler');
 	}
 
 	/**
 	 * Display a list of buildings to manage.
 	 */
-	function buildings() {
+	function buildings($args, &$request) {
 		$this->validate();
-		$this->setupTemplate(true);
+		$this->setupTemplate($request, true);
 
-		$schedConf =& Request::getSchedConf();
-		$rangeInfo =& Handler::getRangeInfo('buildings', array());
+		$schedConf =& $request->getSchedConf();
+		$rangeInfo = $this->getRangeInfo($request, 'buildings', array());
 		$buildingDao =& DAORegistry::getDAO('BuildingDAO');
 		while (true) {
 			$buildings =& $buildingDao->getBuildingsBySchedConfId($schedConf->getId(), $rangeInfo);
@@ -64,7 +64,7 @@ class SchedulerHandler extends ManagerHandler {
 			unset($buildings);
 		}
 
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 		$templateMgr->assign('buildings', $buildings);
 		$templateMgr->assign('helpTopicId', 'conference.currentConferences.buildings');
 		$templateMgr->display('manager/scheduler/buildings.tpl');
@@ -74,10 +74,10 @@ class SchedulerHandler extends ManagerHandler {
 	 * Delete a building.
 	 * @param $args array first parameter is the ID of the building to delete
 	 */
-	function deleteBuilding($args) {
+	function deleteBuilding($args, &$request) {
 		$this->validate();
 		$buildingId = (int) array_shift($args);
-		$schedConf =& Request::getSchedConf();
+		$schedConf =& $request->getSchedConf();
 		$buildingDao =& DAORegistry::getDAO('BuildingDAO');
 
 		// Ensure building is for this conference
@@ -85,18 +85,18 @@ class SchedulerHandler extends ManagerHandler {
 			$buildingDao->deleteBuildingById($buildingId);
 		}
 
-		Request::redirect(null, null, null, 'buildings');
+		$request->redirect(null, null, null, 'buildings');
 	}
 
 	/**
 	 * Display form to edit a building.
 	 * @param $args array optional, first parameter is the ID of the building to edit
 	 */
-	function editBuilding($args = array()) {
+	function editBuilding($args, &$request) {
 		$this->validate();
-		$this->setupTemplate(true);
+		$this->setupTemplate($request, true);
 
-		$schedConf =& Request::getSchedConf();
+		$schedConf =& $request->getSchedConf();
 		$buildingId = !isset($args) || empty($args) ? null : (int) $args[0];
 		$buildingDao =& DAORegistry::getDAO('BuildingDAO');
 
@@ -104,8 +104,8 @@ class SchedulerHandler extends ManagerHandler {
 		if (($buildingId != null && $buildingDao->getBuildingSchedConfId($buildingId) == $schedConf->getId()) || ($buildingId == null)) {
 			import('classes.manager.form.scheduler.BuildingForm');
 
-			$templateMgr =& TemplateManager::getManager();
-			$templateMgr->append('pageHierarchy', array(Request::url(null, null, 'manager', 'buildings'), 'manager.scheduler.buildings'));
+			$templateMgr =& TemplateManager::getManager($request);
+			$templateMgr->append('pageHierarchy', array($request->url(null, null, 'manager', 'buildings'), 'manager.scheduler.buildings'));
 
 			if ($buildingId == null) {
 				$templateMgr->assign('buildingTitle', 'manager.scheduler.building.createBuildingShort');
@@ -122,28 +122,28 @@ class SchedulerHandler extends ManagerHandler {
 			$buildingForm->display();
 
 		} else {
-				Request::redirect(null, null, null, 'buildings');
+			$request->redirect(null, null, null, 'buildings');
 		}
 	}
 
 	/**
 	 * Display form to create new building.
 	 */
-	function createBuilding() {
-		$this->editBuilding();
+	function createBuilding($args, &$request) {
+		$this->editBuilding($args, $request);
 	}
 
 	/**
 	 * Save changes to a building.
 	 */
-	function updateBuilding() {
+	function updateBuilding($args, &$request) {
 		$this->validate();
-		$this->setupTemplate(true);
+		$this->setupTemplate($request, true);
 
 		import('classes.manager.form.scheduler.BuildingForm');
 
-		$schedConf =& Request::getSchedConf();
-		$buildingId = Request::getUserVar('buildingId') == null ? null : (int) Request::getUserVar('buildingId');
+		$schedConf =& $request->getSchedConf();
+		$buildingId = $request->getUserVar('buildingId') == null ? null : (int) $request->getUserVar('buildingId');
 		$buildingDao =& DAORegistry::getDAO('BuildingDAO');
 
 		if (($buildingId != null && $buildingDao->getBuildingSchedConfId($buildingId) == $schedConf->getId()) || $buildingId == null) {
@@ -154,15 +154,15 @@ class SchedulerHandler extends ManagerHandler {
 			if ($buildingForm->validate()) {
 				$buildingForm->execute();
 
-				if (Request::getUserVar('createAnother')) {
-					Request::redirect(null, null, null, 'createBuilding');
+				if ($request->getUserVar('createAnother')) {
+					$request->redirect(null, null, null, 'createBuilding');
 				} else {
-					Request::redirect(null, null, null, 'buildings');
+					$request->redirect(null, null, null, 'buildings');
 				}
 
 			} else {
-				$templateMgr =& TemplateManager::getManager();
-				$templateMgr->append('pageHierarchy', array(Request::url(null, null, 'manager', 'buildings'), 'manager.scheduler.buildings'));
+				$templateMgr =& TemplateManager::getManager($request);
+				$templateMgr->append('pageHierarchy', array($request->url(null, null, 'manager', 'buildings'), 'manager.scheduler.buildings'));
 
 				if ($buildingId == null) {
 					$templateMgr->assign('buildingTitle', 'manager.scheduler.building.createBuilding');
@@ -174,28 +174,28 @@ class SchedulerHandler extends ManagerHandler {
 			}
 
 		} else {
-				Request::redirect(null, null, null, 'buildings');
+			$request->redirect(null, null, null, 'buildings');
 		}	
 	}
 
 	/**
 	 * Display a list of rooms to manage.
 	 */
-	function rooms($args) {
-		$schedConf =& Request::getSchedConf();
+	function rooms($args, &$request) {
+		$schedConf =& $request->getSchedConf();
 		$buildingId = (int) array_shift($args);
 
 		$this->validate();
-		$this->setupTemplate(true);
+		$this->setupTemplate($request, true);
 
 		$buildingDao =& DAORegistry::getDAO('BuildingDAO');
 		$building =& $buildingDao->getBuilding($buildingId);
 
 		if (!$schedConf || !$building || $building->getSchedConfId() != $schedConf->getId()) {
-			Request::redirect(null, null, null, 'scheduler');
+			$request->redirect(null, null, null, 'scheduler');
 		}
 
-		$rangeInfo =& Handler::getRangeInfo('rooms', array($buildingId));
+		$rangeInfo = $this->getRangeInfo($request, 'rooms', array($buildingId));
 		$roomDao =& DAORegistry::getDAO('RoomDAO');
 		while (true) {
 			$rooms =& $roomDao->getRoomsByBuildingId($buildingId, $rangeInfo);
@@ -205,7 +205,7 @@ class SchedulerHandler extends ManagerHandler {
 			unset($rooms);
 		}
 
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 		$templateMgr->assign('rooms', $rooms);
 		$templateMgr->assign('buildingId', $buildingId);
 		$templateMgr->assign('helpTopicId', 'conference.currentConferences.rooms');
@@ -216,10 +216,10 @@ class SchedulerHandler extends ManagerHandler {
 	 * Delete a room.
 	 * @param $args array first parameter is the ID of the room to delete
 	 */
-	function deleteRoom($args) {
+	function deleteRoom($args, &$request) {
 		$this->validate();
 		$roomId = (int) array_shift($args);
-		$schedConf =& Request::getSchedConf();
+		$schedConf =& $request->getSchedConf();
 
 		$roomDao =& DAORegistry::getDAO('RoomDAO');
 		$buildingDao =& DAORegistry::getDAO('BuildingDAO');
@@ -235,19 +235,19 @@ class SchedulerHandler extends ManagerHandler {
 			$roomDao->deleteRoomById($roomId);
 		}
 
-		if ($building) Request::redirect(null, null, null, 'rooms', array($building->getId()));
-		else Request::redirect(null, null, null, 'scheduler');
+		if ($building) $request->redirect(null, null, null, 'rooms', array($building->getId()));
+		else $request->redirect(null, null, null, 'scheduler');
 	}
 
 	/**
 	 * Display form to edit a room.
 	 * @param $args array optional, first parameter is the ID of the room to edit
 	 */
-	function editRoom($args) {
+	function editRoom($args, &$request) {
 		$this->validate();
-		$this->setupTemplate(true);
+		$this->setupTemplate($request, true);
 
-		$schedConf =& Request::getSchedConf();
+		$schedConf =& $request->getSchedConf();
 		$buildingId = (int) array_shift($args);
 		$roomId = (int) array_shift($args);
 
@@ -268,8 +268,8 @@ class SchedulerHandler extends ManagerHandler {
 		) {
 			import('classes.manager.form.scheduler.RoomForm');
 
-			$templateMgr =& TemplateManager::getManager();
-			$templateMgr->append('pageHierarchy', array(Request::url(null, null, 'manager', 'rooms', array($building->getId())), 'manager.scheduler.rooms'));
+			$templateMgr =& TemplateManager::getManager($request);
+			$templateMgr->append('pageHierarchy', array($request->url(null, null, 'manager', 'rooms', array($building->getId())), 'manager.scheduler.rooms'));
 
 			if ($roomId == null) {
 				$templateMgr->assign('roomTitle', 'manager.scheduler.room.createRoomShort');
@@ -286,29 +286,29 @@ class SchedulerHandler extends ManagerHandler {
 			$roomForm->display();
 
 		} else {
-				Request::redirect(null, null, null, 'rooms', array($buildingId));
+			$request->redirect(null, null, null, 'rooms', array($buildingId));
 		}
 	}
 
 	/**
 	 * Display form to create new room.
 	 */
-	function createRoom($args) {
-		$this->editRoom($args);
+	function createRoom($args, &$request) {
+		$this->editRoom($args, $request);
 	}
 
 	/**
 	 * Save changes to a room.
 	 */
-	function updateRoom() {
+	function updateRoom($args, &$request) {
 		$this->validate();
-		$this->setupTemplate(true);
+		$this->setupTemplate($request, true);
 
 		import('classes.manager.form.scheduler.RoomForm');
 
-		$schedConf =& Request::getSchedConf();
-		$roomId = Request::getUserVar('roomId') == null ? null : (int) Request::getUserVar('roomId');
-		$buildingId = Request::getUserVar('buildingId') == null ? null : (int) Request::getUserVar('buildingId');
+		$schedConf =& $request->getSchedConf();
+		$roomId = $request->getUserVar('roomId') == null ? null : (int) $request->getUserVar('roomId');
+		$buildingId = $request->getUserVar('buildingId') == null ? null : (int) $request->getUserVar('buildingId');
 
 		$roomDao =& DAORegistry::getDAO('RoomDAO');
 		$buildingDao =& DAORegistry::getDAO('BuildingDAO');
@@ -319,7 +319,7 @@ class SchedulerHandler extends ManagerHandler {
 		if (	!$building || !$schedConf ||
 			$schedConf->getId() != $building->getSchedConfId()
 		) {
-			Request::redirect(null, null, null, 'scheduler');
+			$request->redirect(null, null, null, 'scheduler');
 		}
 
 		if (($roomId != null && $roomDao->getRoomBuildingId($roomId) == $buildingId) || $roomId == null) {
@@ -330,15 +330,15 @@ class SchedulerHandler extends ManagerHandler {
 			if ($roomForm->validate()) {
 				$roomForm->execute();
 
-				if (Request::getUserVar('createAnother')) {
-					Request::redirect(null, null, null, 'createRoom', array($buildingId));
+				if ($request->getUserVar('createAnother')) {
+					$request->redirect(null, null, null, 'createRoom', array($buildingId));
 				} else {
-					Request::redirect(null, null, null, 'rooms', array($buildingId));
+					$request->redirect(null, null, null, 'rooms', array($buildingId));
 				}
 
 			} else {
-				$templateMgr =& TemplateManager::getManager();
-				$templateMgr->append('pageHierarchy', array(Request::url(null, null, 'manager', 'rooms', array($buildingId)), 'manager.scheduler.rooms'));
+				$templateMgr =& TemplateManager::getManager($request);
+				$templateMgr->append('pageHierarchy', array($request->url(null, null, 'manager', 'rooms', array($buildingId)), 'manager.scheduler.rooms'));
 
 				if ($roomId == null) {
 					$templateMgr->assign('roomTitle', 'manager.scheduler.room.createRoom');
@@ -350,19 +350,19 @@ class SchedulerHandler extends ManagerHandler {
 			}
 
 		} else {
-				Request::redirect(null, null, null, 'rooms');
+			$request->redirect(null, null, null, 'rooms');
 		}	
 	}
 
 	/**
 	 * Display a list of special events to manage.
 	 */
-	function specialEvents() {
+	function specialEvents($args, &$request) {
 		$this->validate();
-		$this->setupTemplate(true);
+		$this->setupTemplate($request, true);
 
-		$schedConf =& Request::getSchedConf();
-		$rangeInfo =& Handler::getRangeInfo('specialEvents', array());
+		$schedConf =& $request->getSchedConf();
+		$rangeInfo = $this->getRangeInfo($request, 'specialEvents', array());
 		$specialEventDao =& DAORegistry::getDAO('SpecialEventDAO');
 		while (true) {
 			$specialEvents =& $specialEventDao->getSpecialEventsBySchedConfId($schedConf->getId(), $rangeInfo);
@@ -372,7 +372,7 @@ class SchedulerHandler extends ManagerHandler {
 			unset($specialEvents);
 		}
 
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 		$templateMgr->assign('specialEvents', $specialEvents);
 		$templateMgr->assign('helpTopicId', 'conference.currentConferences.specialEvents');
 		$templateMgr->display('manager/scheduler/specialEvents.tpl');
@@ -382,10 +382,10 @@ class SchedulerHandler extends ManagerHandler {
 	 * Delete a special event.
 	 * @param $args array first parameter is the ID of the special event to delete
 	 */
-	function deleteSpecialEvent($args) {
+	function deleteSpecialEvent($args, &$request) {
 		$this->validate();
 		$specialEventId = (int) array_shift($args);
-		$schedConf =& Request::getSchedConf();
+		$schedConf =& $request->getSchedConf();
 		$specialEventDao =& DAORegistry::getDAO('SpecialEventDAO');
 
 		// Ensure specialEvent is for this conference
@@ -393,18 +393,19 @@ class SchedulerHandler extends ManagerHandler {
 			$specialEventDao->deleteSpecialEventById($specialEventId);
 		}
 
-		Request::redirect(null, null, null, 'specialEvents');
+		$request->redirect(null, null, null, 'specialEvents');
 	}
 
 	/**
 	 * Display form to edit a special event.
-	 * @param $args array optional, first parameter is the ID of the specialEvent to edit
+	 * @param $args array
+	 * @param $request PKPRequest
 	 */
-	function editSpecialEvent($args = array()) {
+	function editSpecialEvent($args, $request) {
 		$this->validate();
-		$this->setupTemplate(true);
+		$this->setupTemplate($request, true);
 
-		$schedConf =& Request::getSchedConf();
+		$schedConf =& $request->getSchedConf();
 		$specialEventId = !isset($args) || empty($args) ? null : (int) $args[0];
 		$specialEventDao =& DAORegistry::getDAO('SpecialEventDAO');
 
@@ -412,8 +413,8 @@ class SchedulerHandler extends ManagerHandler {
 		if (($specialEventId != null && $specialEventDao->getSpecialEventSchedConfId($specialEventId) == $schedConf->getId()) || ($specialEventId == null)) {
 			import('classes.manager.form.scheduler.SpecialEventForm');
 
-			$templateMgr =& TemplateManager::getManager();
-			$templateMgr->append('pageHierarchy', array(Request::url(null, null, 'manager', 'specialEvents'), 'manager.scheduler.specialEvents'));
+			$templateMgr =& TemplateManager::getManager($request);
+			$templateMgr->append('pageHierarchy', array($request->url(null, null, 'manager', 'specialEvents'), 'manager.scheduler.specialEvents'));
 
 			if ($specialEventId == null) {
 				$templateMgr->assign('specialEventTitle', 'manager.scheduler.specialEvent.createSpecialEventShort');
@@ -430,28 +431,28 @@ class SchedulerHandler extends ManagerHandler {
 			$specialEventForm->display();
 
 		} else {
-				Request::redirect(null, null, null, 'specialEvents');
+			$request->redirect(null, null, null, 'specialEvents');
 		}
 	}
 
 	/**
 	 * Display form to create new special event.
 	 */
-	function createSpecialEvent() {
-		$this->editSpecialEvent();
+	function createSpecialEvent($args, &$request) {
+		$this->editSpecialEvent($args, $request);
 	}
 
 	/**
 	 * Save changes to a special event.
 	 */
-	function updateSpecialEvent() {
+	function updateSpecialEvent($args, &$request) {
 		$this->validate();
-		$this->setupTemplate(true);
+		$this->setupTemplate($request, true);
 
 		import('classes.manager.form.scheduler.SpecialEventForm');
 
-		$schedConf =& Request::getSchedConf();
-		$specialEventId = Request::getUserVar('specialEventId') == null ? null : (int) Request::getUserVar('specialEventId');
+		$schedConf =& $request->getSchedConf();
+		$specialEventId = $request->getUserVar('specialEventId') == null ? null : (int) $request->getUserVar('specialEventId');
 		$specialEventDao =& DAORegistry::getDAO('SpecialEventDAO');
 
 		if (($specialEventId != null && $specialEventDao->getSpecialEventSchedConfId($specialEventId) == $schedConf->getId()) || $specialEventId == null) {
@@ -462,15 +463,15 @@ class SchedulerHandler extends ManagerHandler {
 			if ($specialEventForm->validate()) {
 				$specialEventForm->execute();
 
-				if (Request::getUserVar('createAnother')) {
-					Request::redirect(null, null, null, 'createSpecialEvent');
+				if ($request->getUserVar('createAnother')) {
+					$request->redirect(null, null, null, 'createSpecialEvent');
 				} else {
-					Request::redirect(null, null, null, 'specialEvents');
+					$request->redirect(null, null, null, 'specialEvents');
 				}
 
 			} else {
-				$templateMgr =& TemplateManager::getManager();
-				$templateMgr->append('pageHierarchy', array(Request::url(null, null, 'manager', 'specialEvents'), 'manager.scheduler.specialEvents'));
+				$templateMgr =& TemplateManager::getManager($request);
+				$templateMgr->append('pageHierarchy', array($request->url(null, null, 'manager', 'specialEvents'), 'manager.scheduler.specialEvents'));
 
 				if ($specialEventId == null) {
 					$templateMgr->assign('specialEventTitle', 'manager.scheduler.specialEvent.createSpecialEvent');
@@ -481,18 +482,18 @@ class SchedulerHandler extends ManagerHandler {
 				$specialEventForm->display();
 			}
 		} else {
-			Request::redirect(null, null, null, 'specialEvents');
+			$request->redirect(null, null, null, 'specialEvents');
 		}	
 	}
 
 	/**
 	 * Display the conference schedule.
 	 */
-	function schedule($args) {
+	function schedule($args, &$request) {
 		$this->validate();
-		$this->setupTemplate(true);
+		$this->setupTemplate($request, true);
 
-		$schedConf =& Request::getSchedConf();
+		$schedConf =& $request->getSchedConf();
 
 		import('classes.manager.form.scheduler.ScheduleForm');
 		$scheduleForm = new ScheduleForm();
@@ -504,11 +505,11 @@ class SchedulerHandler extends ManagerHandler {
 	/**
 	 * Save the schedule.
 	 */
-	function saveSchedule() {
+	function saveSchedule($args, &$request) {
 		$this->validate();
-		$this->setupTemplate(true);
+		$this->setupTemplate($request, true);
 
-		$schedConf =& Request::getSchedConf();
+		$schedConf =& $request->getSchedConf();
 
 		import('classes.manager.form.scheduler.ScheduleForm');
 		$scheduleForm = new ScheduleForm();
@@ -516,7 +517,7 @@ class SchedulerHandler extends ManagerHandler {
 		$scheduleForm->readInputData();
 		if ($scheduleForm->validate()) {
 			$scheduleForm->execute();
-			Request::redirect(null, null, null, 'scheduler');
+			$request->redirect(null, null, null, 'scheduler');
 		} else {
 			$scheduleForm->display();
 		}
@@ -525,9 +526,9 @@ class SchedulerHandler extends ManagerHandler {
 	/**
 	 * Configure the layout of the schedule
 	 */
-	function scheduleLayout($args) {
+	function scheduleLayout($args, &$request) {
 		$this->validate();
-		$this->setupTemplate(true);
+		$this->setupTemplate($request, true);
 
 		import('classes.manager.form.scheduler.ScheduleLayoutForm');
 		$scheduleLayoutForm = new ScheduleLayoutForm();
@@ -539,11 +540,11 @@ class SchedulerHandler extends ManagerHandler {
 	/**
 	 * Save the schedule.
 	 */
-	function saveScheduleLayout() {
+	function saveScheduleLayout($args, &$request) {
 		$this->validate();
-		$this->setupTemplate(true);
+		$this->setupTemplate($request, true);
 
-		$schedConf =& Request::getSchedConf();
+		$schedConf =& $request->getSchedConf();
 
 		import('classes.manager.form.scheduler.ScheduleLayoutForm');
 		$scheduleLayoutForm = new ScheduleLayoutForm();
@@ -551,7 +552,7 @@ class SchedulerHandler extends ManagerHandler {
 		$scheduleLayoutForm->readInputData();
 		if ($scheduleLayoutForm->validate()) {
 			$scheduleLayoutForm->execute();
-			Request::redirect(null, null, null, 'scheduler');
+			$request->redirect(null, null, null, 'scheduler');
 		} else {
 			$scheduleLayoutForm->display();
 		}
@@ -560,12 +561,12 @@ class SchedulerHandler extends ManagerHandler {
 	/**
 	 * Display a list of time blocks to manage.
 	 */
-	function timeBlocks() {
+	function timeBlocks($args, &$request) {
 		parent::validate();
-		SchedulerHandler::setupTemplate(true);
+		$this->setupTemplate($request, true);
 
-		$schedConf =& Request::getSchedConf();
-		$rangeInfo =& Handler::getRangeInfo('timeBlocks', array());
+		$schedConf =& $request->getSchedConf();
+		$rangeInfo = $this->getRangeInfo($request, 'timeBlocks', array());
 		$timeBlockDao =& DAORegistry::getDAO('TimeBlockDAO');
 		while (true) {
 			$timeBlocks =& $timeBlockDao->getTimeBlocksBySchedConfId($schedConf->getId(), $rangeInfo);
@@ -575,7 +576,7 @@ class SchedulerHandler extends ManagerHandler {
 			unset($timeBlocks);
 		}
 
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 		$templateMgr->assign('timeBlocks', $timeBlocks);
 		$templateMgr->assign('helpTopicId', 'conference.managementPages.timeBlocks');
 		$templateMgr->display('manager/scheduler/timeBlocks.tpl');
@@ -585,10 +586,10 @@ class SchedulerHandler extends ManagerHandler {
 	 * Delete a time block.
 	 * @param $args array first parameter is the ID of the time block to delete
 	 */
-	function deleteTimeBlock($args) {
+	function deleteTimeBlock($args, &$request) {
 		parent::validate();
 		$timeBlockId = (int) array_shift($args);
-		$schedConf =& Request::getSchedConf();
+		$schedConf =& $request->getSchedConf();
 		$timeBlockDao =& DAORegistry::getDAO('TimeBlockDAO');
 
 		// Ensure time block is for this conference
@@ -596,25 +597,26 @@ class SchedulerHandler extends ManagerHandler {
 			$timeBlockDao->deleteTimeBlockById($timeBlockId);
 		}
 
-		Request::redirect(null, null, null, 'timeBlocks');
+		$request->redirect(null, null, null, 'timeBlocks');
 	}
 
 	/**
 	 * Display form to create new time block.
 	 */
-	function createTimeBlock() {
-		SchedulerHandler::editTimeBlock();
+	function createTimeBlock($args, &$request) {
+		$this->editTimeBlock($args, $request);
 	}
 
 	/**
 	 * Display form to edit a time block.
-	 * @param $args array optional, first parameter is the ID of the time block to edit
+	 * @param $args array
+	 * @param $request PKPRequest
 	 */
-	function editTimeBlock($args = array()) {
+	function editTimeBlock($args, &$request) {
 		parent::validate();
-		SchedulerHandler::setupTemplate(true);
+		$this->setupTemplate($request, true);
 
-		$schedConf =& Request::getSchedConf();
+		$schedConf =& $request->getSchedConf();
 		$timeBlockId = !isset($args) || empty($args) ? null : (int) $args[0];
 		$timeBlockDao =& DAORegistry::getDAO('TimeBlockDAO');
 
@@ -622,8 +624,8 @@ class SchedulerHandler extends ManagerHandler {
 		if (($timeBlockId != null && $timeBlockDao->getTimeBlockSchedConfId($timeBlockId) == $schedConf->getId()) || ($timeBlockId == null)) {
 			import('classes.manager.form.scheduler.TimeBlockForm');
 
-			$templateMgr =& TemplateManager::getManager();
-			$templateMgr->append('pageHierarchy', array(Request::url(null, null, 'manager', 'timeBlocks'), 'manager.scheduler.timeBlocks'));
+			$templateMgr =& TemplateManager::getManager($request);
+			$templateMgr->append('pageHierarchy', array($request->url(null, null, 'manager', 'timeBlocks'), 'manager.scheduler.timeBlocks'));
 
 			if ($timeBlockId == null) {
 				$templateMgr->assign('timeBlockTitle', 'manager.scheduler.timeBlock.createTimeBlockShort');
@@ -640,21 +642,21 @@ class SchedulerHandler extends ManagerHandler {
 			$timeBlockForm->display();
 
 		} else {
-				Request::redirect(null, null, null, 'timeBlocks');
+			$request->redirect(null, null, null, 'timeBlocks');
 		}
 	}
 
 	/**
 	 * Save changes to a timeBlock.
 	 */
-	function updateTimeBlock() {
+	function updateTimeBlock($args, &$request) {
 		parent::validate();
-		SchedulerHandler::setupTemplate(true);
+		$this->setupTemplate($request, true);
 
 		import('classes.manager.form.scheduler.TimeBlockForm');
 
-		$schedConf =& Request::getSchedConf();
-		$timeBlockId = Request::getUserVar('timeBlockId') == null ? null : (int) Request::getUserVar('timeBlockId');
+		$schedConf =& $request->getSchedConf();
+		$timeBlockId = $request->getUserVar('timeBlockId') == null ? null : (int) $request->getUserVar('timeBlockId');
 		$timeBlockDao =& DAORegistry::getDAO('TimeBlockDAO');
 
 		if (($timeBlockId != null && $timeBlockDao->getTimeBlockSchedConfId($timeBlockId) == $schedConf->getId()) || $timeBlockId == null) {
@@ -665,16 +667,16 @@ class SchedulerHandler extends ManagerHandler {
 			if ($timeBlockForm->validate()) {
 				$timeBlockForm->execute();
 
-				if (Request::getUserVar('createAnother')) {
+				if ($request->getUserVar('createAnother')) {
 					// Provide last block as template
 					return $timeBlockForm->display();
 				} else {
-					Request::redirect(null, null, null, 'timeBlocks');
+					$request->redirect(null, null, null, 'timeBlocks');
 				}
 
 			} else {
-				$templateMgr =& TemplateManager::getManager();
-				$templateMgr->append('pageHierarchy', array(Request::url(null, null, 'manager', 'timeBlocks'), 'manager.scheduler.timeBlocks'));
+				$templateMgr =& TemplateManager::getManager($request);
+				$templateMgr->append('pageHierarchy', array($request->url(null, null, 'manager', 'timeBlocks'), 'manager.scheduler.timeBlocks'));
 
 				if ($timeBlockId == null) {
 					$templateMgr->assign('timeBlockTitle', 'manager.scheduler.timeBlock.createTimeBlock');
@@ -686,7 +688,7 @@ class SchedulerHandler extends ManagerHandler {
 			}
 
 		} else {
-				Request::redirect(null, null, null, 'timeBlocks');
+			$request->redirect(null, null, null, 'timeBlocks');
 		}	
 	}
 
@@ -696,11 +698,11 @@ class SchedulerHandler extends ManagerHandler {
 	 * "subclass" (sub-page) of the Scheduler (i.e. as
 	 * opposed to the index)
 	 */
-	function setupTemplate($subclass = false) {
-		parent::setupTemplate(true);
+	function setupTemplate($request, $subclass = false) {
+		parent::setupTemplate($request, true);
 		if ($subclass) {
-			$templateMgr =& TemplateManager::getManager();
-			$templateMgr->append('pageHierarchy', array(Request::url(null, null, 'manager', 'scheduler'), 'manager.scheduler'));
+			$templateMgr =& TemplateManager::getManager($request);
+			$templateMgr->append('pageHierarchy', array($request->url(null, null, 'manager', 'scheduler'), 'manager.scheduler'));
 		}
 	}
 }

@@ -241,7 +241,7 @@ class PayPalPlugin extends PaymethodPlugin {
 							}
 
 							// Fulfill the queued payment.
-							if ($ocsPaymentManager->fulfillQueuedPayment($queuedPaymentId, $queuedPayment)) {
+							if ($ocsPaymentManager->fulfillQueuedPayment($request, $queuedPaymentId, $queuedPayment)) {
 								// Send the registrant a notification that their payment was received
 								$schedConfSettingsDao =& DAORegistry::getDAO('SchedConfSettingsDAO');
 
@@ -320,7 +320,7 @@ class PayPalPlugin extends PaymethodPlugin {
 
 				break;
 			case 'cancel':
-				Handler::setupTemplate();
+				Handler::setupTemplate($request);
 				$templateMgr->assign(array(
 					'currentUrl' => $request->url(null, null, 'index'),
 					'pageTitle' => 'plugins.paymethod.paypal.purchase.cancelled.title',

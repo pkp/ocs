@@ -64,10 +64,11 @@ class OCSPaymentManager extends PaymentManager {
 
 	/**
 	 * Fulfill a queued payment.
+	 * @param $request PKPRequest
 	 * @param $queuedPaymentId int
 	 * @param $queuedPayment object
 	 */
-	function fulfillQueuedPayment($queuedPaymentId, &$queuedPayment) {
+	function fulfillQueuedPayment($request, $queuedPaymentId, &$queuedPayment) {
 		if ($queuedPayment) switch ($queuedPayment->getType()) {
 			case QUEUED_PAYMENT_TYPE_REGISTRATION:
 				$registrationId = $queuedPayment->getAssocId();

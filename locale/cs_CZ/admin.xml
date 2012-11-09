@@ -43,20 +43,6 @@
 	<message key="admin.conferences.enableConferenceInstructions">Zveřejnit tuto konferenci na serveru</message>
 	<message key="admin.conferences.conferenceDescription">Popis konference</message>
 	<message key="admin.conferences.conferenceDescriptionInstructions">Popis konference uvádí smysl této konference. Objevuje se na hlavní stránce konference i na všech dalších konferenčních stránkách.</message>
-	<message key="admin.conferences.importOCS1">Importovat z OCS 1</message>
-	<message key="admin.conferences.importOCS1.editMigratedConference">Editovat migrující konferenci</message>
-	<message key="admin.conferences.importOCS1.conflict.desc">Některé uživatelské účty obsahovaly konfliktní informace. OCS 1.x umožňuje více uživatelským účtům sdílení stejné emailové adresy, ovšem OCS 2.x to neumožňuje. Na níže uvedeném seznamu byla vždy druhému uvedenému jménu přiřazena dočasná emailová adresa. Toto je třeba opravit ručně buďto přiřazením odlišného emailového účtu nebo spojením účtů.</message>
-	<message key="admin.conferences.importOCS1.errors.desc">Při převodu konference ze systému OCS 1.x na systém OCS 2.x se vyskytly následující problémy.</message>
-	<message key="admin.conferences.importOCS1.conflict">{$firstUsername} ({$firstName}) a {$secondUsername} ({$secondName})</message>
-	<message key="admin.conferences.importOCS1Instructions"><![CDATA[Podrobné informace o převodu dat ze systému OCS 1 na systém OCS 2 naleznete v dokumentu UPGRADE distribuovaném spolu s OCS. Uvědomte si, že tento proces NEVYTVOŘÍ kompletně konfigurovanou konferenci v systému OCS 2; budou importovány pouze určité položky (např. příspěvky). <strong>Všichni importovaní uživatelé budou muset znovu nastavit svá hesla. Důrazně doporučujeme, aby garant konference zkontroloval veškeré importované informace ještě před spuštěním konferenčních stránek.</strong>]]></message>
-	<message key="admin.conference.pathImportInstructions">Existující či vytvářená cesta ke konferenci (např., "ocs").</message>
-	<message key="admin.conference.importPath">Cesta OCS 1</message>
-	<message key="admin.conference.importPathInstructions">Úplná cesta na místním systému souborů k instalaci OCS 1 (např., "/var/www/ocs").</message>
-	<message key="admin.conferences.importRegistrations">Importovat registrace</message>
-	<message key="admin.conferences.emailUsers">Odeslat vytvořeným uživatelům email s přihlašovacími informacemi včetně náhodných hesel</message>
-	<message key="admin.conferences.transcode">Překódovat metadata příspěvku z ISO8859-1</message>
-	<message key="admin.conferences.form.importPathRequired">Je vyžadována cesta importu.</message>
-	<message key="admin.conferences.importErrors">Importování se nezdařilo</message>
 
 	<!-- Site Administration Merge Users -->	
 	<message key="admin.mergeUsers">Sloučit uživatele</message>

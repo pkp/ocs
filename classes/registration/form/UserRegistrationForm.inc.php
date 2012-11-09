@@ -357,7 +357,7 @@ class UserRegistrationForm extends Form {
 		$queuedPaymentId = $paymentManager->queuePayment($queuedPayment, time() + (60 * 60 * 24 * 30)); // 30 days to complete
 
 		if ($cost == 0) {
-			$paymentManager->fulfillQueuedPayment($queuedPaymentId, $queuedPayment);
+			$paymentManager->fulfillQueuedPayment($this->request, $queuedPaymentId, $queuedPayment);
 			return REGISTRATION_FREE;
 		} else {
 			$paymentManager->displayPaymentForm($queuedPaymentId, $queuedPayment);

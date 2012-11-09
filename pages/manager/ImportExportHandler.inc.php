@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @file ImportExportHandler.inc.php
+ * @file pages/manager/ImportExportHandler.inc.php
  *
  * Copyright (c) 2000-2012 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
@@ -20,17 +20,17 @@ import('pages.manager.ManagerHandler');
 class ImportExportHandler extends ManagerHandler {
 	/**
 	 * Constructor
-	 **/
+	 */
 	function ImportExportHandler() {
 		parent::ManagerHandler();
 	}
 	
-	function importexport($args) {
+	function importexport($args, &$request) {
 		$this->validate();
-		$this->setupTemplate(true);
+		$this->setupTemplate($request, true);
 
 		PluginRegistry::loadCategory(IMPORTEXPORT_PLUGIN_CATEGORY);
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 
 		if (array_shift($args) === 'plugin') {
 			$pluginName = array_shift($args);

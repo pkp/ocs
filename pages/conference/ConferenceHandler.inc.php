@@ -19,7 +19,7 @@ import('classes.handler.Handler');
 class ConferenceHandler extends Handler {
 	/**
 	 * Constructor
-	 **/
+	 */
 	function ConferenceHandler() {
 		parent::Handler();
 
@@ -29,11 +29,11 @@ class ConferenceHandler extends Handler {
 	/**
 	 * Display the home page for the current conference.
 	 */
-	function index($args) {
+	function index($args, &$request) {
 		$this->validate();
-		$this->setupTemplate();
+		$this->setupTemplate($request);
 		
-		$conference =& Request::getConference();
+		$conference =& $request->getConference();
 
 		$templateMgr =& TemplateManager::getManager();
 
@@ -57,7 +57,7 @@ class ConferenceHandler extends Handler {
 		if ($currentSchedConfs && $currentSchedConfs->getCount() == 1) {
 			// If only one sched conf exists, redirect to it.
 			$singleSchedConf =& $currentSchedConfs->next();
-			Request::redirect(null, $singleSchedConf->getPath());
+			$request->redirect(null, $singleSchedConf->getPath());
 		}
 		$templateMgr->assign_by_ref('currentSchedConfs', $currentSchedConfs);
 

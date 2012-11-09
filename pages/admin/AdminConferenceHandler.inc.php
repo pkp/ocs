@@ -26,11 +26,11 @@ class AdminConferenceHandler extends AdminHandler {
 	/**
 	 * Display a list of the conferences hosted on the site.
 	 */
-	function conferences() {
+	function conferences($args, &$request) {
 		$this->validate();
-		$this->setupTemplate(true);
+		$this->setupTemplate($request, true);
 
-		$rangeInfo = Handler::getRangeInfo('conferences');
+		$rangeInfo = $this->getRangeInfo($request, 'conferences');
 
 		$conferenceDao =& DAORegistry::getDAO('ConferenceDAO');
 		$conferences =& $conferenceDao->getConferences(false, $rangeInfo);
@@ -46,17 +46,18 @@ class AdminConferenceHandler extends AdminHandler {
 	/**
 	 * Display form to create a new conference.
 	 */
-	function createConference() {
-		AdminConferenceHandler::editConference();
+	function createConference($args, &$request) {
+		AdminConferenceHandler::editConference($args, $request);
 	}
 
 	/**
 	 * Display form to create/edit a conference.
-	 * @param $args array optional, if set the first parameter is the ID of the conference to edit
+	 * @param $args array
+	 * @param $request PKPRequest
 	 */
-	function editConference($args = array()) {
+	function editConference($args, &$request) {
 		$this->validate();
-		$this->setupTemplate(true);
+		$this->setupTemplate($request, true);
 
 		import('classes.admin.form.ConferenceSiteSettingsForm');
 
@@ -76,7 +77,7 @@ class AdminConferenceHandler extends AdminHandler {
 	 */
 	function updateConference($args, &$request) {
 		$this->validate();
-		$this->setupTemplate(true);
+		$this->setupTemplate($request, true);
 
 		import('classes.admin.form.ConferenceSiteSettingsForm');
 
@@ -161,51 +162,6 @@ class AdminConferenceHandler extends AdminHandler {
 		// updated on the client side, so no reload is necessary.
 		if ($direction != null) {
 			$request->redirect(null, null, null, 'conferences');
-		}
-	}
-
-	/**
-	 * Show form to import data from an OCS 1.x conference.
-	 */
-	function importOCS1() {
-		$this->validate();
-		$this->setupTemplate(true);
-
-		import('classes.admin.form.ImportOCS1Form');
-
-		$importForm = new ImportOCS1Form();
-		$importForm->initData();
-		$importForm->display();
-	}
-
-	/**
-	 * Import data from an OCS 1.x conference.
-	 * @param $args array
-	 * @param $request object
-	 */
-	function doImportOCS1($args, &$request) {
-		$this->validate();
-		$this->setupTemplate(true);
-
-		import('classes.admin.form.ImportOCS1Form');
-
-		$importForm = new ImportOCS1Form();
-		$importForm->readInputData();
-
-		if ($importForm->validate() && ($conferenceId = $importForm->execute()) !== false) {
-			$conflicts = $importForm->getConflicts();
-			$errors = $importForm->getErrors();
-			if (!empty($conflicts) || !empty($errors)) {
-				$templateMgr =& TemplateManager::getManager();
-				$templateMgr->assign('conferenceId', $conferenceId);
-				$templateMgr->assign('conflicts', $conflicts);
-				$templateMgr->assign('errors', $errors);
-				$templateMgr->display('admin/importConflicts.tpl');
-			} else {
-				$request->redirect(null, null, null, 'editConference', $conferenceId);
-			}
-		} else {
-			$importForm->display();
 		}
 	}
 }

@@ -28,11 +28,11 @@ class SchedConfsHandler extends Handler {
 	/**
 	 * Display the home page for the current conference.
 	 */
-	function current($args) {
+	function current($args, &$request) {
 		$this->addCheck(new HandlerValidatorConference($this));
 		$this->validate();
-		$conference =& Request::getConference();
-		$this->setupTemplate();
+		$conference =& $request->getConference();
+		$this->setupTemplate($request);
 
 		$templateMgr =& TemplateManager::getManager();
 
@@ -62,11 +62,11 @@ class SchedConfsHandler extends Handler {
 	/**
 	 * Display the home page for the current conference.
 	 */
-	function archive($args) {
+	function archive($args, &$request) {
 		$this->addCheck(new HandlerValidatorConference($this));
 		$this->validate();
-		$conference =& Request::getConference();
-		$this->setupTemplate();
+		$conference =& $request->getConference();
+		$this->setupTemplate($request);
 
 		$templateMgr =& TemplateManager::getManager();
 

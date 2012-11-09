@@ -44,7 +44,7 @@ class AuthorHandler extends Handler {
 		$schedConf =& $request->getSchedConf();
 
 		$user =& $request->getUser();
-		$rangeInfo =& Handler::getRangeInfo('submissions');
+		$rangeInfo =& Handler::getRangeInfo($request, 'submissions');
 		$authorSubmissionDao =& DAORegistry::getDAO('AuthorSubmissionDAO');
 
 		$page = array_shift($args);
@@ -116,7 +116,7 @@ class AuthorHandler extends Handler {
 	 * @param $subclass boolean set to true if caller is below this handler in the hierarchy
 	 */
 	function setupTemplate($request, $subclass = false, $paperId = 0, $parentPage = null) {
-		parent::setupTemplate();
+		parent::setupTemplate($request);
 		AppLocale::requireComponents(
 			LOCALE_COMPONENT_OCS_AUTHOR,
 			LOCALE_COMPONENT_PKP_SUBMISSION,

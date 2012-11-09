@@ -31,9 +31,9 @@ class AdminHandler extends Handler {
 	/**
 	 * Display site admin index page.
 	 */
-	function index() {
+	function index($args, &$request) {
 		$this->validate();
-		$this->setupTemplate();
+		$this->setupTemplate($request);
 
 		$templateMgr =& TemplateManager::getManager();
 
@@ -56,15 +56,16 @@ class AdminHandler extends Handler {
 
 	/**
 	 * Setup common template variables.
+	 * @param $request PKPRequest
 	 * @param $subclass boolean set to true if caller is below this handler in the hierarchy
 	 */
-	function setupTemplate($subclass = false) {
-		parent::setupTemplate();
+	function setupTemplate($request, $subclass = false) {
+		parent::setupTemplate($request);
 		AppLocale::requireComponents(LOCALE_COMPONENT_PKP_ADMIN, LOCALE_COMPONENT_OCS_ADMIN, LOCALE_COMPONENT_OCS_MANAGER);
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('pageHierarchy',
-			$subclass ? array(array(Request::url(null, null, 'user'), 'navigation.user'), array(Request::url(null, null, ROLE_PATH_SITE_ADMIN), 'admin.siteAdmin'))
-				: array(array(Request::url(null, null, 'user'), 'navigation.user'))
+			$subclass ? array(array($request->url(null, null, 'user'), 'navigation.user'), array($request->url(null, null, ROLE_PATH_SITE_ADMIN), 'admin.siteAdmin'))
+				: array(array($request->url(null, null, 'user'), 'navigation.user'))
 		);
 	}
 }

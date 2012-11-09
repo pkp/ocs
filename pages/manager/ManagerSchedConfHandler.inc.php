@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @file ManagerSchedConfHandler.inc.php
+ * @file pages/manager/ManagerSchedConfHandler.inc.php
  *
  * Copyright (c) 2000-2012 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
@@ -18,7 +18,7 @@ import('pages.manager.ManagerHandler');
 class ManagerSchedConfHandler extends ManagerHandler {
 	/**
 	 * Constructor
-	 **/
+	 */
 	function ManagerSchedConfHandler() {
 		parent::ManagerHandler();
 	}
@@ -26,13 +26,13 @@ class ManagerSchedConfHandler extends ManagerHandler {
 	/**
 	 * Display a list of the scheduled conferences hosted on the site.
 	 */
-	function schedConfs() {
+	function schedConfs($args, &$request) {
 		$this->validate();
-		$this->setupTemplate(true);
+		$this->setupTemplate($request, true);
 
-		$conference =& Request::getConference();
+		$conference =& $request->getConference();
 
-		$rangeInfo = Handler::getRangeInfo('schedConfs', array());
+		$rangeInfo = $this->getRangeInfo($request, 'schedConfs', array());
 
 		$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
 		while (true) {
@@ -43,7 +43,7 @@ class ManagerSchedConfHandler extends ManagerHandler {
 			unset($schedConfs);
 		}
 
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 		$templateMgr->addJavaScript('lib/pkp/js/lib/jquery/plugins/jquery.tablednd.js');
 		$templateMgr->addJavaScript('lib/pkp/js/functions/tablednd.js');
 		$templateMgr->assign_by_ref('schedConfs', $schedConfs);
@@ -55,10 +55,10 @@ class ManagerSchedConfHandler extends ManagerHandler {
 	/**
 	 * Display form to create a new scheduled conference.
 	 */
-	function createSchedConf() {
+	function createSchedConf($args, &$request) {
 		import('classes.schedConf.SchedConf');
-		$schedConf = Request::getSchedConf();
-		$conference = Request::getConference();
+		$schedConf = $request->getSchedConf();
+		$conference = $request->getConference();
 
 		if($schedConf) {
 			$schedConfId = $schedConf->getId();
@@ -72,16 +72,16 @@ class ManagerSchedConfHandler extends ManagerHandler {
 			$conferenceId = null;
 		}
 
-		ManagerSchedConfHandler::editSchedConf(array($conferenceId, $schedConfId));
+		$this->editSchedConf(array($conferenceId, $schedConfId), $request);
 	}
 
 	/**
 	 * Display form to create/edit a scheduled conference.
 	 * @param $args array optional, if set the first parameter is the ID of the scheduled conference to edit
 	 */
-	function editSchedConf($args = array()) {
+	function editSchedConf($args, &$request) {
 		$this->validate();
-		$this->setupTemplate(true);
+		$this->setupTemplate($request, true);
 
 		import('classes.manager.form.SchedConfSettingsForm');
 
@@ -97,20 +97,20 @@ class ManagerSchedConfHandler extends ManagerHandler {
 	/**
 	 * Save changes to a scheduled conference's settings.
 	 */
-	function updateSchedConf() {
+	function updateSchedConf($args, &$request) {
 		$this->validate();
-		$this->setupTemplate(true);
+		$this->setupTemplate($request, true);
 
 		import('classes.manager.form.SchedConfSettingsForm');
 
 		$settingsForm = new SchedConfSettingsForm(
-			array(Request::getUserVar('conferenceId'), Request::getUserVar('schedConfId'))
+			array($request->getUserVar('conferenceId'), $request->getUserVar('schedConfId'))
 		);
 		$settingsForm->readInputData();
 
 		if ($settingsForm->validate()) {
 			$settingsForm->execute();
-			Request::redirect(null, null, null, 'schedConfs');
+			$request->redirect(null, null, null, 'schedConfs');
 
 		} else {
 			$settingsForm->display();
@@ -121,7 +121,7 @@ class ManagerSchedConfHandler extends ManagerHandler {
 	 * Delete a scheduled conference.
 	 * @param $args array first parameter is the ID of the scheduled conference to delete
 	 */
-	function deleteSchedConf($args) {
+	function deleteSchedConf($args, &$request) {
 		$this->validate();
 
 		$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
@@ -147,20 +147,20 @@ class ManagerSchedConfHandler extends ManagerHandler {
 			}
 		}
 
-		Request::redirect(null, null, null, 'schedConfs');
+		$request->redirect(null, null, null, 'schedConfs');
 	}
 
 	/**
 	 * Change the sequence of a schedConf on the site index page.
 	 */
-	function moveSchedConf() {
+	function moveSchedConf($args, &$request) {
 		$this->validate();
 
-		$conference =& Request::getConference();
+		$conference =& $request->getConference();
 
 		$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
-		$schedConf =& $schedConfDao->getSchedConf(Request::getUserVar('id'), $conference->getId());
-		$direction = Request::getUserVar('d');
+		$schedConf =& $schedConfDao->getSchedConf($request->getUserVar('id'), $conference->getId());
+		$direction = $request->getUserVar('d');
 
 		if ($schedConf != null) {
 			if ($direction != null) {
@@ -168,7 +168,7 @@ class ManagerSchedConfHandler extends ManagerHandler {
 				$schedConf->setSequence($schedConf->getSequence() + ($direction == 'u' ? -1.5 : 1.5));
 			} else {
 				// Dragging and dropping onto another scheduled conference
-				$prevId = Request::getUserVar('prevId');
+				$prevId = $request->getUserVar('prevId');
 				if ($prevId == null)
 					$prevSeq = 0;
 				else {
@@ -185,7 +185,7 @@ class ManagerSchedConfHandler extends ManagerHandler {
 		// In the case of a drag and drop move, the display has been
 		// updated on the client side, so no reload is necessary.
 		if ($direction != null) {
-			Request::redirect(null, null, null, 'schedConfs');
+			$request->redirect(null, null, null, 'schedConfs');
 		}
 	}
 }

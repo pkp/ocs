@@ -26,12 +26,12 @@ class ManagerProgramHandler extends ManagerHandler {
 	/**
 	 * Display form to edit program settings.
 	 */
-	function program() {
+	function program($args, &$request) {
 		$this->validate();
-		$this->setupTemplate(true);
+		$this->setupTemplate($request, true);
 
-		$schedConf =& Request::getSchedConf();
-		if (!$schedConf) Request::redirect (null, null, 'index');
+		$schedConf =& $request->getSchedConf();
+		if (!$schedConf) $request->redirect (null, null, 'index');
 
 		import('classes.manager.form.ProgramSettingsForm');
 
@@ -47,28 +47,28 @@ class ManagerProgramHandler extends ManagerHandler {
 	/**
 	 * Save changes to program settings.
 	 */
-	function saveProgramSettings() {
+	function saveProgramSettings($args, &$request) {
 		$this->validate();
-		$this->setupTemplate(true);
+		$this->setupTemplate($request, true);
 
-		$schedConf =& Request::getSchedConf();
-		if (!$schedConf) Request::redirect (null, null, 'index');
+		$schedConf =& $request->getSchedConf();
+		if (!$schedConf) $request->redirect (null, null, 'index');
 
 		import('classes.manager.form.ProgramSettingsForm');
 
 		$settingsForm = new ProgramSettingsForm();
 		$settingsForm->readInputData();
 		$formLocale = $settingsForm->getFormLocale();
-		$programTitle = Request::getUserVar('programFileTitle');
+		$programTitle = $request->getUserVar('programFileTitle');
 
 		$editData = false;
 
-		if (Request::getUserVar('uploadProgramFile')) {
+		if ($request->getUserVar('uploadProgramFile')) {
 			if (!$settingsForm->uploadProgram('programFile', $formLocale)) {
 				$settingsForm->addError('programFile', __('common.uploadFailed'));
 			}
 			$editData = true;
-		} elseif (Request::getUserVar('deleteProgramFile')) {
+		} elseif ($request->getUserVar('deleteProgramFile')) {
 			$settingsForm->deleteProgram('programFile', $formLocale);
 			$editData = true;
 		}
@@ -76,12 +76,12 @@ class ManagerProgramHandler extends ManagerHandler {
 		if (!$editData && $settingsForm->validate()) {
 			$settingsForm->execute();
 
-			$templateMgr =& TemplateManager::getManager();
+			$templateMgr =& TemplateManager::getManager($request);
 			$templateMgr->assign(array(
-				'currentUrl' => Request::url(null, null, null, 'program'),
+				'currentUrl' => $request->url(null, null, null, 'program'),
 				'pageTitle' => 'schedConf.program',
 				'message' => 'common.changesSaved',
-				'backLink' => Request::url(null, null, Request::getRequestedPage()),
+				'backLink' => $request->url(null, null, $request->getRequestedPage()),
 				'backLinkLabel' => 'manager.conferenceSiteManagement'
 			));
 			$templateMgr->display('common/message.tpl');
@@ -90,6 +90,6 @@ class ManagerProgramHandler extends ManagerHandler {
 			$settingsForm->display();
 		}
 	}
-
 }
+
 ?>

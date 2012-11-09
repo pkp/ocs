@@ -18,24 +18,25 @@ import('pages.user.UserHandler');
 class EmailHandler extends UserHandler {
 	/**
 	 * Constructor
-	 **/
+	 */
 	function EmailHandler() {
 		parent::UserHandler();
 	}
-	function email($args) {
+
+	function email($args, &$request) {
 		$this->validate();
-		$this->setupTemplate(true);
+		$this->setupTemplate($request, true);
 		
-		$conference =& Request::getConference();
-		$schedConf =& Request::getSchedConf();
+		$conference =& $request->getConference();
+		$schedConf =& $request->getSchedConf();
 		
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 
 		$userDao =& DAORegistry::getDAO('UserDAO');
-		$user =& Request::getUser();
+		$user =& $request->getUser();
 
 		// See if this is the Director or Manager and an email template has been chosen
-		$template = Request::getUserVar('template');
+		$template = $request->getUserVar('template');
 		if (	!$conference || empty($template) || (
 			!Validation::isConferenceManager() &&
 			!Validation::isDirector() &&
@@ -73,7 +74,7 @@ class EmailHandler extends UserHandler {
 		}
 
 		$email = null;
-		if ($paperId = Request::getUserVar('paperId')) {
+		if ($paperId = $request->getUserVar('paperId')) {
 			// This message is in reference to a paper.
 			// Determine whether the current user has access
 			// to the paper in some form, and if so, use an
@@ -113,7 +114,7 @@ class EmailHandler extends UserHandler {
 			$email = new MailTemplate();
 		}
 
-		if (Request::getUserVar('send') && !$email->hasErrors()) {
+		if ($request->getUserVar('send') && !$email->hasErrors()) {
 			$recipients = $email->getRecipients();
 			$ccs = $email->getCcs();
 			$bccs = $email->getBccs();
@@ -134,13 +135,13 @@ class EmailHandler extends UserHandler {
 			}
 
 			$email->send();
-			$redirectUrl = Request::getUserVar('redirectUrl');
-			if (empty($redirectUrl)) $redirectUrl = Request::url(null, null, 'user');
+			$redirectUrl = $request->getUserVar('redirectUrl');
+			if (empty($redirectUrl)) $redirectUrl = $request->url(null, null, 'user');
 			$user->setDateLastEmail(Core::getCurrentDate());
 			$userDao->updateObject($user);
-			Request::redirectUrl($redirectUrl);
+			$request->redirectUrl($redirectUrl);
 		} else {
-			$email->displayEditForm(Request::url(null, null, null, 'email'), array('redirectUrl' => Request::getUserVar('redirectUrl'), 'paperId' => $paperId), null, array('disableSkipButton' => true));
+			$email->displayEditForm($request->url(null, null, null, 'email'), array('redirectUrl' => $request->getUserVar('redirectUrl'), 'paperId' => $paperId), null, array('disableSkipButton' => true));
 		}
 	}
 }

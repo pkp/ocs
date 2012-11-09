@@ -40,18 +40,4 @@
 	<message key="admin.conferences.enableConferenceInstructions">Permettre à cette conférence d'apparaître publiquement sur le site</message>
 	<message key="admin.conferences.conferenceDescription">Description de la Conférence</message>
 	<message key="admin.conferences.conferenceDescriptionInstructions">La description de la conférence identifie les tâches en cours sur cette conférence. Elle apparaît sur la page d'accueil de la conférence, ainsi que sur toutes ses pages de conventions</message>
-	<message key="admin.conferences.importOCS1">Importer d'OCS 1</message>
-	<message key="admin.conferences.importOCS1.editMigratedConference">Modifier la conférence importée</message>
-	<message key="admin.conferences.importOCS1.conflict.desc">Certains comptes utilisateurs ont des informations contradictoires. OCS 1.x permet en effet le partage d'une adresse courriel par plusieurs utilisateurs, ce n'est pas le cas de OCS 2.x. Dans la liste ci-dessous, le second compte s'est vu affecter une adresse email temporaire. Ceci doit être corrigé manuellement, soit en changeant l'adresse courriel, soit en fusionnant les comptes.</message>
-	<message key="admin.conferences.importOCS1.errors.desc">Les erreurs suivantes ont été rencontrées lors de la migration de la conférence entre OCS 1.x à OCS 2.x.</message>
-	<message key="admin.conferences.importOCS1.conflict">{$firstUsername} ({$firstName}) et {$secondUsername} ({$secondName})</message>
-	<message key="admin.conferences.importOCS1Instructions"><![CDATA[Consulter le document UPGRADE distribué avec OCS pour plus d'informations sur la migration des données d'OCS 1 à OCS 2. A noter que ce processus ne créera pas une conférence OCS 2 parfaitement configurée; seulement certains éléments (les papiers par exemple) vont être importés. <strong>Tout utilisateur importé va se voir réinitialiser son mot de passe. Il est fortement recommandé que le responsable vérifie toutes les informations importées avant de lancer le site web de la conférence.</strong>]]></message>
-	<message key="admin.conference.pathImportInstructions">Chemin d'accès à la conférence existant ou chemin à créer (ex. "ocs").</message>
-	<message key="admin.conference.importPath">Chemin OCS 1</message>
-	<message key="admin.conference.importPathInstructions">Compléter le chemin local du dossier d'installation de OCS 1 (ex. "/var/www/ocs").</message>
-	<message key="admin.conferences.importRegistrations">Importer les Inscriptions</message>
-	<message key="admin.conferences.emailUsers">Courriel créé avec les informations de l'utilisateur, y compris un mot de passe aléatoire</message>
-	<message key="admin.conferences.transcode">Traduction des métadonnées du papier depuis ISO8859-1</message>
-	<message key="admin.conferences.form.importPathRequired">Le chemin d'importation est exigé.</message>
-	<message key="admin.conferences.importErrors">L'importation a échoué</message>
 </locale>

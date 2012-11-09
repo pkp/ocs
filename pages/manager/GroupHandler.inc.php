@@ -35,14 +35,14 @@ class GroupHandler extends ManagerHandler {
 	/**
 	 * Display a list of groups for the current conference.
 	 */
-	function groups() {
+	function groups($args, &$request) {
 		$this->validate();
-		$this->setupTemplate();
+		$this->setupTemplate($request);
 
-		$schedConf =& Request::getSchedConf();
+		$schedConf =& $request->getSchedConf();
 		$schedConfId = $schedConf? $schedConf->getId():0;
 
-		$rangeInfo =& Handler::getRangeInfo('groups', array());
+		$rangeInfo = $this->getRangeInfo($request, 'groups', array());
 		$groupDao =& DAORegistry::getDAO('GroupDAO');
 		while (true) {
 			$groups =& $groupDao->getGroups(ASSOC_TYPE_SCHED_CONF, $schedConfId, null, $rangeInfo);
@@ -52,7 +52,7 @@ class GroupHandler extends ManagerHandler {
 			unset($groups);
 		}
 
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 		$templateMgr->addJavaScript('lib/pkp/js/lib/jquery/plugins/jquery.tablednd.js');
 		$templateMgr->addJavaScript('lib/pkp/js/functions/tablednd.js');
 		$templateMgr->assign_by_ref('groups', $groups);
@@ -64,29 +64,29 @@ class GroupHandler extends ManagerHandler {
 	 * Delete a group.
 	 * @param $args array first parameter is the ID of the group to delete
 	 */
-	function deleteGroup($args) {
+	function deleteGroup($args, &$request) {
 		$groupId = isset($args[0])?(int)$args[0]:0;
 		$this->validate($groupId);
-		$schedConf =& Request::getSchedConf();
+		$schedConf =& $request->getSchedConf();
 		$group =& $this->group;
 
 		$groupDao =& DAORegistry::getDAO('GroupDAO');
 		$groupDao->deleteObject($group);
 		$groupDao->resequenceGroups(ASSOC_TYPE_SCHED_CONF, $schedConf->getId());
 
-		Request::redirect(null, null, null, 'groups');
+		$request->redirect(null, null, null, 'groups');
 	}
 
 	/**
 	 * Change the sequence of a group.
 	 */
-	function moveGroup() {
-		$groupId = (int) Request::getUserVar('id');
+	function moveGroup($args, &$request) {
+		$groupId = (int) $request->getUserVar('id');
 		$this->validate($groupId);
 
 		$group =& $this->group;
 		$groupDao =& DAORegistry::getDAO('GroupDAO');
-		$direction = Request::getUserVar('d');
+		$direction = $request->getUserVar('d');
 
 		if ($direction != null) {
 			// moving with up or down arrow
@@ -94,11 +94,11 @@ class GroupHandler extends ManagerHandler {
 
 		} else {
 			// Dragging and dropping
-			$prevId = Request::getUserVar('prevId');
+			$prevId = $request->getUserVar('prevId');
 			if ($prevId == null)
 				$prevSeq = 0;
 			else {
-				$schedConf =& Request::getSchedConf();
+				$schedConf =& $request->getSchedConf();
 				$prevGroup =& $groupDao->getById($prevId, ASSOC_TYPE_SCHED_CONF, $schedConf->getId());
 				$prevSeq = $prevGroup->getSequence();
 			}
@@ -114,7 +114,7 @@ class GroupHandler extends ManagerHandler {
 		// In the case of a drag and drop move, the display has been
 		// updated on the client side, so no reload is necessary.
 		if ($direction != null) {
-			Request::redirect(null, null, null, 'groups');
+			$request->redirect(null, null, null, 'groups');
 		}
 	}
 
@@ -122,23 +122,23 @@ class GroupHandler extends ManagerHandler {
 	 * Display form to edit a group.
 	 * @param $args array optional, first parameter is the ID of the group to edit
 	 */
-	function editGroup($args = array()) {
+	function editGroup($args, &$request) {
 		$groupId = isset($args[0])?(int)$args[0]:null;
 		$this->validate();
-		$schedConf =& Request::getSchedConf();
+		$schedConf =& $request->getSchedConf();
 
 		if ($groupId !== null) {
 			$groupDao =& DAORegistry::getDAO('GroupDAO');
 			$group =& $groupDao->getById($groupId, ASSOC_TYPE_SCHED_CONF, $schedConf->getId());
 			if (!$group) {
-				Request::redirect(null, null, null, 'groups');
+				$request->redirect(null, null, null, 'groups');
 			}
 		} else $group = null;
 
-		$this->setupTemplate($group, true);
+		$this->setupTemplate($request, $group, true);
 		import('classes.manager.form.GroupForm');
 
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 
 		$templateMgr->assign('pageTitle',
 			$group === null?
@@ -158,15 +158,15 @@ class GroupHandler extends ManagerHandler {
 	/**
 	 * Display form to create new group.
 	 */
-	function createGroup($args) {
-		$this->editGroup($args);
+	function createGroup($args, &$request) {
+		$this->editGroup($args, $request);
 	}
 
 	/**
 	 * Save changes to a group.
 	 */
-	function updateGroup() {
-		$groupId = Request::getUserVar('groupId') === null? null : (int) Request::getUserVar('groupId');
+	function updateGroup($args, &$request) {
+		$groupId = $request->getUserVar('groupId') === null? null : (int) $request->getUserVar('groupId');
 		if ($groupId === null) {
 			$this->validate();
 			$group = null;
@@ -174,7 +174,7 @@ class GroupHandler extends ManagerHandler {
 			$this->validate($groupId);
 			$group =& $this->group;
 		}
-		$this->setupTemplate($group);
+		$this->setupTemplate($request, $group);
 
 		import('classes.manager.form.GroupForm');
 
@@ -183,10 +183,10 @@ class GroupHandler extends ManagerHandler {
 
 		if ($groupForm->validate()) {
 			$groupForm->execute();
-			Request::redirect(null, null, null, 'groups');
+			$request->redirect(null, null, null, 'groups');
 		} else {
-			$templateMgr =& TemplateManager::getManager();
-			$templateMgr->append('pageHierarchy', array(Request::url(null, null, 'manager', 'groups'), 'manager.groups'));
+			$templateMgr =& TemplateManager::getManager($request);
+			$templateMgr->append('pageHierarchy', array($request->url(null, null, 'manager', 'groups'), 'manager.groups'));
 
 			$templateMgr->assign('pageTitle',
 				$group?
@@ -201,14 +201,14 @@ class GroupHandler extends ManagerHandler {
 	/**
 	 * View group membership.
 	 */
-	function groupMembership($args) {
+	function groupMembership($args, &$request) {
 		$groupId = isset($args[0])?(int)$args[0]:0;
 		$this->validate($groupId);
 		$group =& $this->group;
 
-		$rangeInfo =& Handler::getRangeInfo('memberships', array($groupId));
+		$rangeInfo = $this->getRangeInfo($request, 'memberships', array($groupId));
 
-		$this->setupTemplate($group, true);
+		$this->setupTemplate($request, $group, true);
 		$groupMembershipDao =& DAORegistry::getDAO('GroupMembershipDAO');
 		while (true) {
 			$memberships =& $groupMembershipDao->getMemberships($group->getId(), $rangeInfo);
@@ -217,7 +217,7 @@ class GroupHandler extends ManagerHandler {
 			$rangeInfo =& $memberships->getLastPageRangeInfo();
 			unset($memberships);
 		}
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 		$templateMgr->addJavaScript('lib/pkp/js/lib/jquery/plugins/jquery.tablednd.js');
 		$templateMgr->addJavaScript('lib/pkp/js/functions/tablednd.js');
 		$templateMgr->assign_by_ref('memberships', $memberships);
@@ -228,7 +228,7 @@ class GroupHandler extends ManagerHandler {
 	/**
 	 * Add group membership (or list users if none chosen).
 	 */
-	function addMembership($args) {
+	function addMembership($args, &$request) {
 		$groupId = isset($args[0])?(int)$args[0]:0;
 		$userId = isset($args[1])?(int)$args[1]:null;
 
@@ -238,7 +238,7 @@ class GroupHandler extends ManagerHandler {
 		// Otherwise list users.
 		if ($userId !== null) {
 			$this->validate($groupId, $userId);
-			$schedConf =& Request::getSchedConf();
+			$schedConf =& $request->getSchedConf();
 			$group =& $this->group;
 			$user =& $this->user;
 
@@ -256,22 +256,22 @@ class GroupHandler extends ManagerHandler {
 				$groupMembership->setAboutDisplayed(true);
 				$groupMembershipDao->insertMembership($groupMembership);
 			}
-			Request::redirect(null, null, null, 'groupMembership', $group->getId());
+			$request->redirect(null, null, null, 'groupMembership', $group->getId());
 		} else {
 			$this->validate($groupId);
 			$groupDao =& DAORegistry::getDAO('GroupDAO');
-			$conference =& Request::getConference();
-			$schedConf =& Request::getSchedConf();
+			$conference =& $request->getConference();
+			$schedConf =& $request->getSchedConf();
 			$group =& $this->group;
 
-			$this->setupTemplate($group, true);
+			$this->setupTemplate($request, $group, true);
 			$searchType = null;
 			$searchMatch = null;
-			$search = $searchQuery = Request::getUserVar('search');
-			$searchInitial = Request::getUserVar('searchInitial');
+			$search = $searchQuery = $request->getUserVar('search');
+			$searchInitial = $request->getUserVar('searchInitial');
 			if (!empty($search)) {
-				$searchType = Request::getUserVar('searchField');
-				$searchMatch = Request::getUserVar('searchMatch');
+				$searchType = $request->getUserVar('searchField');
+				$searchMatch = $request->getUserVar('searchMatch');
 
 			} elseif (!empty($searchInitial)) {
 				$searchInitial = String::strtoupper($searchInitial);
@@ -279,7 +279,7 @@ class GroupHandler extends ManagerHandler {
 				$search = $searchInitial;
 			}
 
-			$rangeInfo =& Handler::getRangeInfo('users', array($groupId, (string) $search, (string) $searchMatch, (string) $searchType));
+			$rangeInfo = $this->getRangeInfo($request, 'users', array($groupId, (string) $search, (string) $searchMatch, (string) $searchType));
 
 			$roleDao =& DAORegistry::getDAO('RoleDAO');
 			while (true) {
@@ -290,12 +290,12 @@ class GroupHandler extends ManagerHandler {
 				unset($users);
 			}
 
-			$templateMgr =& TemplateManager::getManager();
+			$templateMgr =& TemplateManager::getManager($request);
 
 			$templateMgr->assign('searchField', $searchType);
 			$templateMgr->assign('searchMatch', $searchMatch);
 			$templateMgr->assign('search', $searchQuery);
-			$templateMgr->assign('searchInitial', Request::getUserVar('searchInitial'));
+			$templateMgr->assign('searchInitial', $request->getUserVar('searchInitial'));
 
 			$templateMgr->assign_by_ref('users', $users);
 			$templateMgr->assign('fieldOptions', Array(
@@ -314,12 +314,12 @@ class GroupHandler extends ManagerHandler {
 	/**
 	 * Delete group membership.
 	 */
-	function deleteMembership($args) {
+	function deleteMembership($args, &$request) {
 		$groupId = isset($args[0])?(int)$args[0]:0;
 		$userId = isset($args[1])?(int)$args[1]:0;
 
 		$this->validate($groupId, $userId, true);
-		$schedConf =& Request::getSchedConf();
+		$schedConf =& $request->getSchedConf();
 		$group =& $this->group;
 		$user =& $this->user;
 		$groupMembership =& $this->groupMembership;
@@ -328,27 +328,27 @@ class GroupHandler extends ManagerHandler {
 		$groupMembershipDao->deleteMembershipById($group->getId(), $user->getId());
 		$groupMembershipDao->resequenceMemberships($group->getId());
 
-		Request::redirect(null, null, null, 'groupMembership', $group->getId());
+		$request->redirect(null, null, null, 'groupMembership', $group->getId());
 	}
 
 	/**
 	 * Change the sequence of a group membership.
 	 */
-	function moveMembership($args) {
+	function moveMembership($args, &$request) {
 		$groupId = isset($args[0])?(int)$args[0]:0;
-		$userId = (int) Request::getUserVar('id');
+		$userId = (int) $request->getUserVar('id');
 		$this->validate($groupId, $userId, true);
 		$group =& $this->group;
 		$groupMembership =& $this->groupMembership;
 
 		$groupMembershipDao =& DAORegistry::getDAO('GroupMembershipDAO');
-		$direction = Request::getUserVar('d');
+		$direction = $request->getUserVar('d');
 		if ($direction != null) {
 			// moving with up or down arrow
 			$groupMembership->setSequence($groupMembership->getSequence() + ($direction == 'u' ? -1.5 : 1.5));
 		} else {
 			// drag and drop
-			$prevId = Request::getUserVar('prevId');
+			$prevId = $request->getUserVar('prevId');
 			if ($prevId == null)
 				$prevSeq = 0;
 			else {
@@ -365,27 +365,27 @@ class GroupHandler extends ManagerHandler {
 		// In the case of a drag and drop move, the display has been
 		// updated on the client side, so no reload is necessary.
 		if ($direction != null) {
-			Request::redirect(null, null, null, 'groupMembership', $group->getId());
+			$request->redirect(null, null, null, 'groupMembership', $group->getId());
 		}
 	}
 
-	function setBoardEnabled($args) {
+	function setBoardEnabled($args, &$request) {
 		$this->validate();
-		$conference =& Request::getConference();
-		$boardEnabled = Request::getUserVar('boardEnabled')==1?true:false;
-		$schedConf =& Request::getSchedConf();
+		$conference =& $request->getConference();
+		$boardEnabled = $request->getUserVar('boardEnabled')==1?true:false;
+		$schedConf =& $request->getSchedConf();
 		$schedConf->updateSetting('boardEnabled', $boardEnabled);
-		Request::redirect(null, null, null, 'groups');
+		$request->redirect(null, null, null, 'groups');
 	}
 
-	function setupTemplate($group = null, $subclass = false) {
-		parent::setupTemplate(true);
-		$templateMgr =& TemplateManager::getManager();
+	function setupTemplate($request, $group = null, $subclass = false) {
+		parent::setupTemplate($request, true);
+		$templateMgr =& TemplateManager::getManager($request);
 		if ($subclass) {
-			$templateMgr->append('pageHierarchy', array(Request::url(null, null, 'manager', 'groups'), 'manager.groups'));
+			$templateMgr->append('pageHierarchy', array($request->url(null, null, 'manager', 'groups'), 'manager.groups'));
 		}
 		if ($group) {
-			$templateMgr->append('pageHierarchy', array(Request::url(null, null, 'manager', 'editGroup', $group->getId()), $group->getLocalizedTitle(), true));
+			$templateMgr->append('pageHierarchy', array($request->url(null, null, 'manager', 'editGroup', $group->getId()), $group->getLocalizedTitle(), true));
 		}
 		$templateMgr->assign('helpTopicId', 'conference.currentConferences.organizingTeam');
 	}
@@ -403,8 +403,8 @@ class GroupHandler extends ManagerHandler {
 	function validate($groupId = null, $userId = null, $fetchMembership = false) {
 		parent::validate();
 
-		$conference =& Request::getConference();
-		$schedConf =& Request::getSchedConf();
+		$conference =& $request->getConference();
+		$schedConf =& $request->getSchedConf();
 
 		$passedValidation = true;
 
@@ -430,7 +430,7 @@ class GroupHandler extends ManagerHandler {
 				}
 			}
 		}
-		if (!$passedValidation) Request::redirect(null, null, null, 'groups');
+		if (!$passedValidation) $request->redirect(null, null, null, 'groups');
 		return true;
 	}
 }

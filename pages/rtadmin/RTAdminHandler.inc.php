@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @file RTAdminHandler.inc.php
+ * @file pages/manager/RTAdminHandler.inc.php
  *
  * Copyright (c) 2000-2012 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
@@ -33,10 +33,10 @@ class RTAdminHandler extends Handler {
 	 * If no conference is selected, display list of conferences.
 	 * Otherwise, display the index page for the selected conference.
 	 */
-	function index() {
+	function index($args, &$request) {
 		$this->validate();
-		$conference = Request::getConference();
-		$user = Request::getUser();
+		$conference = $request->getConference();
+		$user = $request->getUser();
 		if ($conference) {
 			$rtDao =& DAORegistry::getDAO('RTDAO');
 			$rt = $rtDao->getConferenceRTByConference($conference);
@@ -46,8 +46,8 @@ class RTAdminHandler extends Handler {
 
 			// Display the administration menu for this conference.
 
-			$this->setupTemplate();
-			$templateMgr =& TemplateManager::getManager();
+			$this->setupTemplate($request);
+			$templateMgr =& TemplateManager::getManager($request);
 			$templateMgr->assign('helpTopicId', 'conference.generalManagement.readingTools');
 			$templateMgr->assign('versionTitle', isset($version)?$version->getTitle():null);
 			$templateMgr->assign('enabled', $rt->getEnabled());
@@ -69,8 +69,8 @@ class RTAdminHandler extends Handler {
 				}
 			}
 
-			$this->setupTemplate();
-			$templateMgr =& TemplateManager::getManager();
+			$this->setupTemplate($request);
+			$templateMgr =& TemplateManager::getManager($request);
 			$templateMgr->assign_by_ref('conferences', $conferences);
 			$templateMgr->assign('helpTopicId', 'conference.generalManagement.readingTools');
 			$templateMgr->display('rtadmin/conferences.tpl');
@@ -80,14 +80,14 @@ class RTAdminHandler extends Handler {
 		}
 	}
 
-	function validateUrls($args) {
+	function validateUrls($args, &$request) {
 		$this->validate();
 
 		$rtDao =& DAORegistry::getDAO('RTDAO');
-		$conference = Request::getConference();
+		$conference = $request->getConference();
 
 		if (!$conference) {
-			Request::redirect(null, null, Request::getRequestedPage());
+			$request->redirect(null, null, $request->getRequestedPage());
 			return;
 		}
 
@@ -106,8 +106,8 @@ class RTAdminHandler extends Handler {
 			$versions = $rtDao->getVersions($conferenceId);
 		}
 
-		$this->setupTemplate(true, $version);
-		$templateMgr =& TemplateManager::getManager();
+		$this->setupTemplate($request, true, $version);
+		$templateMgr =& TemplateManager::getManager($request);
 		$templateMgr->register_modifier('validate_url', 'smarty_rtadmin_validate_url');
 		$templateMgr->assign_by_ref('versions', $versions);
 		$templateMgr->assign('helpTopicId', 'conference.generalManagement.readingTools');
@@ -116,41 +116,42 @@ class RTAdminHandler extends Handler {
 
 	/**
 	 * Setup common template variables.
+	 * @param $request PKPRequest
 	 * @param $subclass boolean set to true if caller is below this handler in the hierarchy
 	 * @param $version object The current version, if applicable
 	 * @param $context object The current context, if applicable
 	 * @param $search object The current search, if applicable
 	 */
-	function setupTemplate($subclass = false, $version = null, $context = null, $search = null) {
-		parent::setupTemplate();
+	function setupTemplate($request, $subclass = false, $version = null, $context = null, $search = null) {
+		parent::setupTemplate($request);
 		AppLocale::requireComponents(LOCALE_COMPONENT_PKP_READER, LOCALE_COMPONENT_OCS_MANAGER);
 
-		$conference =& Request::getConference();
-		$schedConf =& Request::getSchedConf();
-		$templateMgr =& TemplateManager::getManager();
+		$conference =& $request->getConference();
+		$schedConf =& $request->getSchedConf();
+		$templateMgr =& TemplateManager::getManager($request);
 
 		$pageHierarchy = array();
 
 		if ($schedConf) {
-			$pageHierarchy[] = array(Request::url(null, null, 'index'), $schedConf->getLocalizedTitle(), true);
+			$pageHierarchy[] = array($request->url(null, null, 'index'), $schedConf->getLocalizedTitle(), true);
 		} elseif ($conference) {
-			$pageHierarchy[] = array(Request::url(null, 'index', 'index'), $conference->getLocalizedTitle(), true);
+			$pageHierarchy[] = array($request->url(null, 'index', 'index'), $conference->getLocalizedTitle(), true);
 		}
 
-		$pageHierarchy[] = array(Request::url(null, null, 'user'), 'navigation.user');
-		$pageHierarchy[] = array(Request::url(null, null, 'manager'), 'manager.conferenceSiteManagement');
+		$pageHierarchy[] = array($request->url(null, null, 'user'), 'navigation.user');
+		$pageHierarchy[] = array($request->url(null, null, 'manager'), 'manager.conferenceSiteManagement');
 
-		if ($subclass) $pageHierarchy[] = array(Request::url(null, null, 'rtadmin'), 'rt.readingTools');
+		if ($subclass) $pageHierarchy[] = array($request->url(null, null, 'rtadmin'), 'rt.readingTools');
 
 		if ($version) {
-			$pageHierarchy[] = array(Request::url(null, null, 'rtadmin', 'versions'), 'rt.versions');
-			$pageHierarchy[] = array(Request::url(null, null, 'rtadmin', 'editVersion', $version->getVersionId()), $version->getTitle(), true);
+			$pageHierarchy[] = array($request->url(null, null, 'rtadmin', 'versions'), 'rt.versions');
+			$pageHierarchy[] = array($request->url(null, null, 'rtadmin', 'editVersion', $version->getVersionId()), $version->getTitle(), true);
 			if ($context) {
-				$pageHierarchy[] = array(Request::url(null, null, 'rtadmin', 'contexts', $version->getVersionId()), 'rt.contexts');
-				$pageHierarchy[] = array(Request::url(null, null, 'rtadmin', 'editContext', array($version->getVersionId(), $context->getContextId())), $context->getAbbrev(), true);
+				$pageHierarchy[] = array($request->url(null, null, 'rtadmin', 'contexts', $version->getVersionId()), 'rt.contexts');
+				$pageHierarchy[] = array($request->url(null, null, 'rtadmin', 'editContext', array($version->getVersionId(), $context->getContextId())), $context->getAbbrev(), true);
 				if ($search) {
-					$pageHierarchy[] = array(Request::url(null, null, 'rtadmin', 'searches', array($version->getVersionId(), $context->getContextId())), 'rt.searches');
-					$pageHierarchy[] = array(Request::url(null, null, 'rtadmin', 'editSearch', array($version->getVersionId(), $context->getContextId(), $search->getSearchId())), $search->getTitle(), true);
+					$pageHierarchy[] = array($request->url(null, null, 'rtadmin', 'searches', array($version->getVersionId(), $context->getContextId())), 'rt.searches');
+					$pageHierarchy[] = array($request->url(null, null, 'rtadmin', 'editSearch', array($version->getVersionId(), $context->getContextId(), $search->getSearchId())), $search->getTitle(), true);
 				}
 			}
 		}

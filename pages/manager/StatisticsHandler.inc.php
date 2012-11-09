@@ -18,7 +18,7 @@ import('pages.manager.ManagerHandler');
 class StatisticsHandler extends ManagerHandler {
 	/**
 	 * Constructor
-	 **/
+	 */
 	function StatisticsHandler() {
 		parent::ManagerHandler();
 	}
@@ -27,20 +27,20 @@ class StatisticsHandler extends ManagerHandler {
 	 * WARNING: This implementation should be kept roughly synchronized
 	 * with the reader's statistics view in the About pages.
 	 */
-	function statistics() {
+	function statistics($args, &$request) {
 		$this->validate();
-		$this->setupTemplate(true);
+		$this->setupTemplate($request, true);
 
-		$schedConf =& Request::getSchedConf();
-		if (!$schedConf) Request::redirect(null, 'index');
+		$schedConf =& $request->getSchedConf();
+		if (!$schedConf) $request->redirect(null, 'index');
 
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 
 		$trackIds = $schedConf->getSetting('statisticsTrackIds');
 		if (!is_array($trackIds)) $trackIds = array();
 		$templateMgr->assign('trackIds', $trackIds);
 
-		foreach (StatisticsHandler::_getPublicStatisticsNames() as $name) {
+		foreach ($this->_getPublicStatisticsNames() as $name) {
 			$templateMgr->assign($name, $schedConf->getSetting($name));
 		}
 
@@ -72,23 +72,23 @@ class StatisticsHandler extends ManagerHandler {
 		$templateMgr->display('manager/statistics/index.tpl');
 	}
 
-	function saveStatisticsTracks() {
+	function saveStatisticsTracks($args, &$request) {
 		// The manager wants to save the list of tracks used to
 		// generate statistics.
 
 		$this->validate();
 
-		$schedConf =& Request::getSchedConf();
-		if (!$schedConf) Request::redirect(null, 'index');
+		$schedConf =& $request->getSchedConf();
+		if (!$schedConf) $request->redirect(null, 'index');
 
-		$trackIds = Request::getUserVar('trackIds');
+		$trackIds = $request->getUserVar('trackIds');
 		if (!is_array($trackIds)) {
 			if (empty($trackIds)) $trackIds = array();
 			else $trackIds = array($trackIds);
 		}
 
 		$schedConf->updateSetting('statisticsTrackIds', $trackIds);
-		Request::redirect(null, null, 'manager', 'statistics', null, array('statisticsYear' => Request::getUserVar('statisticsYear')));
+		$request->redirect(null, null, 'manager', 'statistics', null, array('statisticsYear' => $request->getUserVar('statisticsYear')));
 	}
 
 	function _getPublicStatisticsNames() {
@@ -106,29 +106,29 @@ class StatisticsHandler extends ManagerHandler {
 		);
 	}
 
-	function savePublicStatisticsList() {
+	function savePublicStatisticsList($args, &$request) {
 		$this->validate();
 
-		$schedConf =& Request::getSchedConf();
-		if (!$schedConf) Request::redirect(null, 'index');
+		$schedConf =& $request->getSchedConf();
+		if (!$schedConf) $request->redirect(null, 'index');
 
-		foreach (StatisticsHandler::_getPublicStatisticsNames() as $name) {
-			$schedConf->updateSetting($name, Request::getUserVar($name)?true:false);
+		foreach ($this->_getPublicStatisticsNames() as $name) {
+			$schedConf->updateSetting($name, $request->getUserVar($name)?true:false);
 		}
-		Request::redirect(null, null, 'manager', 'statistics', null, array('statisticsYear' => Request::getUserVar('statisticsYear')));
+		$request->redirect(null, null, 'manager', 'statistics', null, array('statisticsYear' => $request->getUserVar('statisticsYear')));
 	}
 
-	function report($args) {
+	function report($args, &$request) {
 		$this->validate();
 
-		$schedConf =& Request::getSchedConf();
-		if (!$schedConf) Request::redirect(null, 'index');
+		$schedConf =& $request->getSchedConf();
+		if (!$schedConf) $request->redirect(null, 'index');
 
 		$pluginName = array_shift($args);
 		$reportPlugins =& PluginRegistry::loadCategory('reports');
 
 		if ($pluginName == '' || !isset($reportPlugins[$pluginName])) {
-			Request::redirect(null, null, null, 'statistics');
+			$request->redirect(null, null, null, 'statistics');
 		}
 
 		$plugin =& $reportPlugins[$pluginName];

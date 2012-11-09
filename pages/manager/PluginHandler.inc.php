@@ -26,15 +26,24 @@ class PluginHandler extends ManagerHandler {
 	/**
 	 * Display a list of plugins along with management options.
 	 */
-	function plugins($args) {
-		$categories = PluginRegistry::getCategories();
-
-		$templateMgr =& TemplateManager::getManager();
+	function plugins($args, &$request) {
+		$templateMgr =& TemplateManager::getManager($request);
 		$this->validate();
 
-		$this->setupTemplate(true);
+		$this->setupTemplate($request, true);
 		$templateMgr->assign('pageTitle', 'manager.plugins.pluginManagement');
-		$templateMgr->assign('pageHierarchy', PluginHandler::setBreadcrumbs(false));
+		$templateMgr->assign('pageHierarchy', array(
+			array(
+				$request->url(null, null, 'user'),
+				'navigation.user',
+				false
+			),
+			array(
+				$request->url(null, null, 'manager'),
+				'manager.conferenceSiteManagement',
+				false
+			)
+		));
 		$templateMgr->assign('helpTopicId', 'conference.generalManagement.plugins');
 		$templateMgr->display('manager/plugins/plugins.tpl');
 	}
@@ -50,7 +59,7 @@ class PluginHandler extends ManagerHandler {
 		$verb = array_shift($args);
 
 		$this->validate();
-		$this->setupTemplate(true);
+		$this->setupTemplate($request, true);
 
 		$plugins =& PluginRegistry::loadCategory($category);
 		$message = $messageParams = null;
@@ -63,36 +72,6 @@ class PluginHandler extends ManagerHandler {
 			}
 			$request->redirect(null, null, null, 'plugins', array($category));
 		}
-	}
-
-	/**
-	 * Set the page's breadcrumbs
-	 * @param $subclass boolean
-	 */
-	function setBreadcrumbs($subclass = false) {
-		$templateMgr =& TemplateManager::getManager();
-		$pageCrumbs = array(
-			array(
-				Request::url(null, null, 'user'),
-				'navigation.user',
-				false
-			),
-			array(
-				Request::url(null, null, 'manager'),
-				'manager.conferenceSiteManagement',
-				false
-			)
-		);
-
-		if ($subclass) {
-			$pageCrumbs[] = array(
-				Request::url(null, null, 'manager', 'plugins'),
-				'manager.plugins.pluginManagement',
-				false
-			);
-		}
-
-		return $pageCrumbs;
 	}
 }
 

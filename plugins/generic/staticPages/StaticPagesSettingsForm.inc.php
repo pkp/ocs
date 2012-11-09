@@ -10,7 +10,7 @@
  * @class StaticPagesSettingsForm
  *
  * Form for conference managers to modify Static Page content and title
- * 
+ *
  */
 
 import('lib.pkp.classes.form.Form');
@@ -42,16 +42,17 @@ class StaticPagesSettingsForm extends Form {
 
 	/**
 	 * Initialize form data from current group group.
+	 * @param $request
 	 */
-	function initData() {
+	function initData($request) {
 		$conferenceId = $this->conferenceId;
 		$plugin =& $this->plugin;
 
 		$staticPagesDao =& DAORegistry::getDAO('StaticPagesDAO');
 
-		$rangeInfo =& Handler::getRangeInfo('staticPages');		
+		$rangeInfo =& Handler::getRangeInfo($request, 'staticPages');
 		$staticPages = $staticPagesDao->getStaticPagesByConferenceId($conferenceId);
-		$this->setData('staticPages', $staticPages);	
+		$this->setData('staticPages', $staticPages);
 	}
 
 	/**
@@ -66,7 +67,7 @@ class StaticPagesSettingsForm extends Form {
 	 */
 	function execute() {
 		$plugin =& $this->plugin;
-		$conferenceId = $this->conferenceId;		
+		$conferenceId = $this->conferenceId;
 	}
 
 }

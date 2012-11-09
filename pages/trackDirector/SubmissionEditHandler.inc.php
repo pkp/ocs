@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @file SubmissionEditHandler.inc.php
+ * @file pages/trackDirector/SubmissionEditHandler.inc.php
  *
  * Copyright (c) 2000-2012 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
@@ -26,7 +26,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 
 	/**
 	 * Constructor
-	 **/
+	 */
 	function SubmissionEditHandler() {
 		parent::TrackDirectorHandler();
 	}
@@ -52,7 +52,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 
 		$enableComments = $conference->getSetting('enableComments');
 
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 
 		$templateMgr->assign_by_ref('submission', $submission);
 		$templateMgr->assign_by_ref('track', $track);
@@ -115,7 +115,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 			}
 		}
 
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 		$templateMgr->assign('reviewMode', $submission->getReviewMode());
 		$templateMgr->assign_by_ref('submission', $submission);
 		$templateMgr->assign_by_ref('reviewAssignmentRounds', $rounds);
@@ -215,7 +215,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 			}
 		}
 
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 
 		$templateMgr->assign_by_ref('submission', $submission);
 		$templateMgr->assign_by_ref('reviewIndexes', $reviewAssignmentDao->getReviewIndexesForRound($paperId, $round));
@@ -275,7 +275,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 
 		import('classes.paper.log.PaperLog');
 
-		$rangeInfo =& Handler::getRangeInfo('eventLogEntries', array($paperId));
+		$rangeInfo = $this->getRangeInfo($request, 'eventLogEntries', array($paperId));
 		while (true) {
 			$eventLogEntries =& PaperLog::getEventLogEntries($paperId, $rangeInfo);
 			unset($rangeInfo);
@@ -284,7 +284,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 			unset($eventLogEntries);
 		}
 
-		$rangeInfo =& Handler::getRangeInfo('emailLogEntries', array($paperId));
+		$rangeInfo = $this->getRangeInfo($request, 'emailLogEntries', array($paperId));
 		while (true) {
 			$emailLogEntries =& PaperLog::getEmailLogEntries($paperId, $rangeInfo);
 			unset($rangeInfo);
@@ -293,7 +293,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 			unset($emailLogEntries);
 		}
 
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 
 		$templateMgr->assign_by_ref('reviewMode', $submission->getReviewMode());
 
@@ -438,7 +438,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 				$search = $searchInitial;
 			}
 
-			$rangeInfo =& Handler::getRangeInfo('reviewers', array($submission->getCurrentRound(), (string) $searchType, (string) $search, (string) $searchMatch)); // Paper ID intentionally omitted
+			$rangeInfo = $this->getRangeInfo($request, 'reviewers', array($submission->getCurrentRound(), (string) $searchType, (string) $search, (string) $searchMatch)); // Paper ID intentionally omitted
 			while (true) {
 				$reviewers = $trackDirectorSubmissionDao->getReviewersForPaper($schedConf->getId(), $paperId, $submission->getCurrentRound(), $searchType, $search, $searchMatch, $rangeInfo, $sort, $sortDirection);
 				if ($reviewers->isInBounds()) break;
@@ -449,7 +449,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 
 			$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
 
-			$templateMgr =& TemplateManager::getManager();
+			$templateMgr =& TemplateManager::getManager($request);
 
 			$templateMgr->assign('searchField', $searchType);
 			$templateMgr->assign('searchMatch', $searchMatch);
@@ -544,7 +544,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 
 		$user =& $request->getUser();
 
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 		$this->setupTemplate($request, true);
 
 		$searchType = null;
@@ -561,7 +561,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 			$search = $searchInitial;
 		}
 
-		$rangeInfo = Handler::getRangeInfo('users', array((string) $searchType, (string) $searchMatch, (string) $search)); // Paper ID intentionally omitted
+		$rangeInfo = $this->getRangeInfo($request, 'users', array((string) $searchType, (string) $searchMatch, (string) $search)); // Paper ID intentionally omitted
 		$userDao =& DAORegistry::getDAO('UserDAO');
 		while (true) {
 			$users =& $userDao->getUsersByField($searchType, $searchMatch, $search, false, $rangeInfo);
@@ -806,7 +806,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 
 			$settings = $schedConf->getSettings();
 
-			$templateMgr =& TemplateManager::getManager();
+			$templateMgr =& TemplateManager::getManager($request);
 
 			if ($reviewAssignment->getDateDue() != null) {
 				$templateMgr->assign('dueDate', $reviewAssignment->getDateDue());
@@ -846,7 +846,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		} else {
 			$this->setupTemplate($request, true, $paperId, 'review');
 
-			$templateMgr =& TemplateManager::getManager();
+			$templateMgr =& TemplateManager::getManager($request);
 
 			$templateMgr->assign('paperId', $paperId);
 			$templateMgr->assign('reviewId', $reviewId);
@@ -872,7 +872,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		AppLocale::requireComponents(LOCALE_COMPONENT_PKP_MANAGER);
 
 
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 		$templateMgr->assign('currentUrl', $request->url(null, null, null, $request->getRequestedPage()));
 
 		$userDao =& DAORegistry::getDAO('UserDAO');
@@ -948,7 +948,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
 		$reviewAssignment =& $reviewAssignmentDao->getById($reviewId);
 
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 		$templateMgr->assign('pageTitle', 'manager.reviewForms.preview');
 		$templateMgr->assign_by_ref('reviewForm', $reviewForm);
 		$templateMgr->assign('reviewFormElements', $reviewFormElements);
@@ -993,14 +993,14 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 			$request->redirect(null, null, null, 'submissionReview', $paperId);
 		} else {
 			$conference =& $request->getConference();
-			$rangeInfo =& Handler::getRangeInfo('reviewForms');
+			$rangeInfo = $this->getRangeInfo($request, 'reviewForms');
 			$reviewFormDao =& DAORegistry::getDAO('ReviewFormDAO');
 			$reviewForms =& $reviewFormDao->getActiveByAssocId(ASSOC_TYPE_CONFERENCE, $conference->getId(), $rangeInfo);
 			$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
 			$reviewAssignment =& $reviewAssignmentDao->getById($reviewId);
 
 			$this->setupTemplate($request, true, $paperId, 'review');
-			$templateMgr =& TemplateManager::getManager();
+			$templateMgr =& TemplateManager::getManager($request);
 
 			$templateMgr->assign('paperId', $paperId);
 			$templateMgr->assign('reviewId', $reviewId);
@@ -1263,7 +1263,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		import('lib.pkp.classes.file.FileManager');
 		$fileManager = new FileManager();
 		if ($fileManager->uploadError('layoutFile')) {
-			$templateMgr =& TemplateManager::getManager();
+			$templateMgr =& TemplateManager::getManager($request);
 			$this->setupTemplate($request, true);
 			$templateMgr->assign('pageTitle', 'submission.review');
 			$templateMgr->assign('message', 'common.uploadFailed');
@@ -1431,7 +1431,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		$galleyId = (int) array_shift($args);
 		$this->validate($request, $paperId, TRACK_DIRECTOR_ACCESS_EDIT);
 
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 		$templateMgr->assign('paperId', $paperId);
 		$templateMgr->assign('galleyId', $galleyId);
 		$templateMgr->display('submission/layout/proofGalley.tpl');
@@ -1446,7 +1446,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		$galleyId = (int) array_shift($args);
 		$this->validate($request, $paperId, TRACK_DIRECTOR_ACCESS_EDIT);
 
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 		$templateMgr->assign('paperId', $paperId);
 		$templateMgr->assign('galleyId', $galleyId);
 		$templateMgr->assign('backHandler', 'submissionReview');
@@ -1469,7 +1469,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 
 		if (isset($galley)) {
 			if ($galley->isHTMLGalley()) {
-				$templateMgr =& TemplateManager::getManager();
+				$templateMgr =& TemplateManager::getManager($request);
 				$templateMgr->assign_by_ref('galley', $galley);
 				if ($galley->isHTMLGalley() && $styleFile =& $galley->getStyleFile()) {
 					$templateMgr->addStyleSheet($request->url(null, null, 'paper', 'viewFile', array(
@@ -1535,7 +1535,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 
 		$this->setupTemplate($request, true, $paperId, 'history');
 
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 
 		$templateMgr->assign('isDirector', Validation::isDirector());
 		$templateMgr->assign_by_ref('submission', $submission);
@@ -1550,7 +1550,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 			$templateMgr->display('trackDirector/submissionEventLogEntry.tpl');
 
 		} else {
-			$rangeInfo =& Handler::getRangeInfo('eventLogEntries', array($paperId));
+			$rangeInfo = $this->getRangeInfo($request, 'eventLogEntries', array($paperId));
 
 			import('classes.paper.log.PaperLog');
 			while (true) {
@@ -1596,7 +1596,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 
 		$this->setupTemplate($request, true, $paperId, 'history');
 
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 
 		$templateMgr->assign('isDirector', Validation::isDirector());
 		$templateMgr->assign_by_ref('submission', $submission);
@@ -1611,7 +1611,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 			$templateMgr->display('trackDirector/submissionEmailLogEntry.tpl');
 
 		} else {
-			$rangeInfo =& Handler::getRangeInfo('emailLogEntries', array($paperId));
+			$rangeInfo = $this->getRangeInfo($request, 'emailLogEntries', array($paperId));
 
 			import('classes.paper.log.PaperLog');
 			while (true) {
@@ -1714,7 +1714,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 			$note = $noteDao->getById($noteId);
 		}
 
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 
 		$templateMgr->assign('paperId', $paperId);
 		$templateMgr->assign_by_ref('submission', $submission);
@@ -1802,7 +1802,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 			$isValid = false;
 
 		} else {
-			$templateMgr =& TemplateManager::getManager();
+			$templateMgr =& TemplateManager::getManager($request);
 			// If this user isn't the submission's director, they don't have access.
 			$editAssignments =& $trackDirectorSubmission->getEditAssignments();
 			$wasFound = false;

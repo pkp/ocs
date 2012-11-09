@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @file ManagerPaymentHandler.inc.php
+ * @file pages/manager/ManagerPaymentHandler.inc.php
  *
  * Copyright (c) 2000-2012 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
@@ -18,7 +18,7 @@ import('pages.manager.ManagerHandler');
 class ManagerPaymentHandler extends ManagerHandler {
 	/**
 	 * Constructor
-	 **/
+	 */
 	function ManagerPaymentHandler() {
 		parent::ManagerHandler();
 	}
@@ -26,12 +26,12 @@ class ManagerPaymentHandler extends ManagerHandler {
 	/**
 	 * Display form to edit program settings.
 	 */
-	function paymentSettings() {
+	function paymentSettings($args, &$request) {
 		$this->validate();
-		$this->setupTemplate(true);
+		$this->setupTemplate($request, true);
 
-		$schedConf =& Request::getSchedConf();
-		if (!$schedConf) Request::redirect (null, null, 'index');
+		$schedConf =& $request->getSchedConf();
+		if (!$schedConf) $request->redirect (null, null, 'index');
 
 		import('classes.manager.form.PaymentSettingsForm');
 
@@ -43,12 +43,12 @@ class ManagerPaymentHandler extends ManagerHandler {
 	/**
 	 * Save changes to payment settings.
 	 */
-	function savePaymentSettings() {
+	function savePaymentSettings($args, &$request) {
 		$this->validate();
-		$this->setupTemplate(true);
+		$this->setupTemplate($request, true);
 
-		$schedConf =& Request::getSchedConf();
-		if (!$schedConf) Request::redirect (null, null, 'index');
+		$schedConf =& $request->getSchedConf();
+		if (!$schedConf) $request->redirect (null, null, 'index');
 
 		import('classes.manager.form.PaymentSettingsForm');
 
@@ -58,12 +58,12 @@ class ManagerPaymentHandler extends ManagerHandler {
 		if ($settingsForm->validate()) {
 			$settingsForm->execute();
 
-			$templateMgr =& TemplateManager::getManager();
+			$templateMgr =& TemplateManager::getManager($request);
 			$templateMgr->assign(array(
-				'currentUrl' => Request::url(null, null, null, 'paymentSettings'),
+				'currentUrl' => $request->url(null, null, null, 'paymentSettings'),
 				'pageTitle' => 'manager.payment.paymentSettings',
 				'message' => 'common.changesSaved',
-				'backLink' => Request::url(null, null, Request::getRequestedPage()),
+				'backLink' => $request->url(null, null, Request::getRequestedPage()),
 				'backLinkLabel' => 'manager.conferenceSiteManagement'
 			));
 			$templateMgr->display('common/message.tpl');

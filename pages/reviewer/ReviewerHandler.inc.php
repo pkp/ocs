@@ -40,7 +40,7 @@ class ReviewerHandler extends Handler {
 		$schedConf =& $request->getSchedConf();
 		$user =& $request->getUser();
 		$reviewerSubmissionDao =& DAORegistry::getDAO('ReviewerSubmissionDAO');
-		$rangeInfo = Handler::getRangeInfo('submissions');
+		$rangeInfo = $this->getRangeInfo($request, 'submissions');
 
 		$page = isset($args[0]) ? $args[0] : '';
 		switch($page) {
@@ -55,7 +55,7 @@ class ReviewerHandler extends Handler {
 
 		$submissions = $reviewerSubmissionDao->getReviewerSubmissionsByReviewerId($user->getId(), $schedConf->getId(), $active, $rangeInfo);
 
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 		$templateMgr->assign('reviewerRecommendationOptions', ReviewAssignment::getReviewerRecommendationOptions());
 		$templateMgr->assign('pageToDisplay', $page);
 		$templateMgr->assign_by_ref('submissions', $submissions);
@@ -122,9 +122,9 @@ class ReviewerHandler extends Handler {
 	 * @param $subclass boolean set to true if caller is below this handler in the hierarchy
 	 */
 	function setupTemplate($request, $subclass = false, $paperId = 0, $reviewId = 0) {
-		parent::setupTemplate();
+		parent::setupTemplate($request);
 		AppLocale::requireComponents(LOCALE_COMPONENT_PKP_SUBMISSION);
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 		$pageHierarchy = $subclass ? array(array($request->url(null, null, 'user'), 'navigation.user'), array($request->url(null, null, 'reviewer'), 'user.role.reviewer'))
 				: array(array($request->url(null, null, 'user'), 'navigation.user'), array($request->url(null, null, 'reviewer'), 'user.role.reviewer'));
 

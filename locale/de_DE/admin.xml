@@ -40,18 +40,4 @@
 	<message key="admin.conferences.enableConferenceInstructions">Enable this conference to appear publicly on the site</message>
 	<message key="admin.conferences.conferenceDescription">Conference description</message>
 	<message key="admin.conferences.conferenceDescriptionInstructions">The conference description identifies the ongoing mission of this conference. It appears on the main conference page, as well as all of the conference&apos;s convention pages.</message>
-	<message key="admin.conferences.importOCS1">Import from OCS 1</message>
-	<message key="admin.conferences.importOCS1.editMigratedConference">Edit Migrated Conference</message>
-	<message key="admin.conferences.importOCS1.conflict.desc">Some user accounts had conflicting information. OCS 1.x allows multiple user accounts to share the same email address, while OCS 2.x does not. In the list below, the second account listed has had a temporary email account assigned to it. These should be corrected by hand, either by assigning a different email account, or by merging accounts.</message>
-	<message key="admin.conferences.importOCS1.errors.desc">The following errors were encountered when migrating from the OCS 1.x conference into OCS 2.x.</message>
-	<message key="admin.conferences.importOCS1.conflict">{$firstUsername} ({$firstName}) and {$secondUsername} ({$secondName})</message>
-	<message key="admin.conferences.importOCS1Instructions"><![CDATA[Consult the UPGRADE document distributed with OCS for detailed information on migrating data from OCS 1 to OCS 2. Note that this process will NOT create a completely configured OCS 2 conference; only certain items (e.g. papers) will be imported. <strong>All imported users will need to reset their passwords. It is strongly suggested that the Conference Director review all imported information before launching the conference website.</strong>]]></message>
-	<message key="admin.conference.pathImportInstructions">Existing conference path or path to create (e.g., &quot;ocs&quot;).</message>
-	<message key="admin.conference.importPath">OCS 1 path</message>
-	<message key="admin.conference.importPathInstructions">Complete local filesystem path to the OCS 1 installation (e.g., &quot;/var/www/ocs&quot;).</message>
-	<message key="admin.conferences.importRegistrations">Import registrations</message>
-	<message key="admin.conferences.emailUsers">Email created users with login information, including a random password</message>
-	<message key="admin.conferences.transcode">Transcode paper metadata from ISO8859-1</message>
-	<message key="admin.conferences.form.importPathRequired">The import path is required.</message>
-	<message key="admin.conferences.importErrors">Importing failed to complete successfully</message>
 </locale>

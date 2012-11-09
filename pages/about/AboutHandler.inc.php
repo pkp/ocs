@@ -20,7 +20,7 @@ import('classes.handler.Handler');
 class AboutHandler extends Handler {
 	/**
 	 * Constructor
-	 **/
+	 */
 	function AboutHandler() {
 		parent::Handler();
 	}
@@ -28,18 +28,18 @@ class AboutHandler extends Handler {
 	/**
 	 * Display about index page.
 	 */
-	function index() {
+	function index($args, &$request) {
 		$this->validate();
-		$this->setupTemplate(false);
+		$this->setupTemplate($request, false);
 
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 		$conferenceDao =& DAORegistry::getDAO('ConferenceDAO');
 		$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
-		$conferencePath = Request::getRequestedConferencePath();
+		$conferencePath = $request->getRequestedConferencePath();
 
 		if ($conferencePath != 'index' && $conferenceDao->conferenceExistsByPath($conferencePath)) {
-			$schedConf =& Request::getSchedConf();
-			$conference =& Request::getConference();
+			$schedConf =& $request->getSchedConf();
+			$conference =& $request->getConference();
 
 			if($schedConf) {
 				$templateMgr->assign('showAboutSchedConf', true);
@@ -66,7 +66,7 @@ class AboutHandler extends Handler {
 			$templateMgr->assign_by_ref('conferenceSettings', $settings);
 			$templateMgr->display('about/index.tpl');
 		} else {
-			$site =& Request::getSite();
+			$site =& $request->getSite();
 			$about = $site->getLocalizedAbout();
 			$templateMgr->assign('about', $about);
 
@@ -79,37 +79,38 @@ class AboutHandler extends Handler {
 
 	/**
 	 * Setup common template variables.
+	 * @param $request PKPRequest
 	 * @param $subclass boolean set to true if caller is below this handler in the hierarchy
 	 */
-	function setupTemplate($subclass = true) {
-		parent::setupTemplate();
+	function setupTemplate($request, $subclass = true) {
+		parent::setupTemplate($request);
 
-		$conference =& Request::getConference();
-		$schedConf =& Request::getSchedConf();
+		$conference =& $request->getConference();
+		$schedConf =& $request->getSchedConf();
 
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 		$templateMgr->setCacheability(CACHEABILITY_PUBLIC);
 		AppLocale::requireComponents(LOCALE_COMPONENT_OCS_MANAGER, LOCALE_COMPONENT_PKP_MANAGER);
 
 		$pageHierarchy = array();
-		if ($conference) $pageHierarchy[] = array(Request::url(null, 'index', 'index'), $conference->getLocalizedTitle(), true);
-		if ($schedConf) $pageHierarchy[] = array(Request::url(null, null, 'index'), $schedConf->getLocalizedTitle(), true);
-		if ($subclass) $pageHierarchy[] = array(Request::url(null, null, 'about'), 'about.aboutTheConference');
+		if ($conference) $pageHierarchy[] = array($request->url(null, 'index', 'index'), $conference->getLocalizedTitle(), true);
+		if ($schedConf) $pageHierarchy[] = array($request->url(null, null, 'index'), $schedConf->getLocalizedTitle(), true);
+		if ($subclass) $pageHierarchy[] = array($request->url(null, null, 'about'), 'about.aboutTheConference');
 		$templateMgr->assign('pageHierarchy', $pageHierarchy);
 	}
 
 	/**
 	 * Display contact page.
 	 */
-	function contact() {
+	function contact($args, &$request) {
 		$this->validate(true);
-		$this->setupTemplate();
+		$this->setupTemplate($request);
 
-		$schedConf =& Request::getSchedConf();
-		$conference =& Request::getConference();
+		$schedConf =& $request->getSchedConf();
+		$conference =& $request->getConference();
 
 		$settings = ($schedConf? $schedConf->getSettings():$conference->getSettings());
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 
 		$templateMgr->assign_by_ref('conferenceSettings', $settings);
 		$templateMgr->display('about/contact.tpl');
@@ -118,12 +119,12 @@ class AboutHandler extends Handler {
 	/**
 	 * Display organizingTeam page.
 	 */
-	function organizingTeam() {
+	function organizingTeam($args, &$request) {
 		$this->validate(true);
-		$this->setupTemplate();
+		$this->setupTemplate($request);
 
-		$conference =& Request::getConference();
-		$schedConf =& Request::getSchedConf();
+		$conference =& $request->getConference();
+		$schedConf =& $request->getSchedConf();
 
 		$conferenceId = $conference->getId();
 		$schedConfId = ($schedConf? $schedConf->getId():-1);
@@ -133,7 +134,7 @@ class AboutHandler extends Handler {
 		else
 			$settings =& $conference->getSettings();
 
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 
 		$countryDao =& DAORegistry::getDAO('CountryDAO');
 		$countries =& $countryDao->getCountries();
@@ -213,17 +214,17 @@ class AboutHandler extends Handler {
 	/**
 	 * Display a biography for an organizing team member.
 	 */
-	function organizingTeamBio($args) {
+	function organizingTeamBio($args, &$request) {
 		$this->addCheck(new HandlerValidatorConference($this));
 		$this->validate();
-		$this->setupTemplate();
+		$this->setupTemplate($request);
 
-		$conference =& Request::getConference();
-		$schedConf =& Request::getSchedConf();
+		$conference =& $request->getConference();
+		$schedConf =& $request->getSchedConf();
 
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
 
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 
 		$userId = isset($args[0])?(int)$args[0]:0;
 
@@ -280,7 +281,7 @@ class AboutHandler extends Handler {
 			}
 		}
 
-		if (!$user) Request::redirect(null, null, null, 'about', 'organizingTeam');
+		if (!$user) $request->redirect(null, null, null, 'about', 'organizingTeam');
 
 		$countryDao =& DAORegistry::getDAO('CountryDAO');
 		if ($user && $user->getCountry() != '') {
@@ -296,15 +297,15 @@ class AboutHandler extends Handler {
 	/**
 	 * Display editorialPolicies page.
 	 */
-	function editorialPolicies() {
+	function editorialPolicies($args, &$request) {
 		parent::validate(true);
-		$this->setupTemplate();
+		$this->setupTemplate($request);
 
 		$trackDirectorsDao =& DAORegistry::getDAO('TrackDirectorsDAO');
-		$schedConf =& Request::getSchedConf();
-		$conference =& Request::getConference();
+		$schedConf =& $request->getSchedConf();
+		$conference =& $request->getConference();
 
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 		$settings = ($schedConf? $schedConf->getSettings(): $conference->getSettings());
 		$templateMgr->assign('conferenceSettings', $settings);
 
@@ -314,17 +315,17 @@ class AboutHandler extends Handler {
 	/**
 	 * Display registration page.
 	 */
-	function registration() {
+	function registration($args, &$request) {
 		parent::validate(true);
-		$this->setupTemplate();
+		$this->setupTemplate($request);
 
 		$conferenceDao =& DAORegistry::getDAO('ConferenceSettingsDAO');
 		$registrationTypeDao =& DAORegistry::getDAO('RegistrationTypeDAO');
 
-		$schedConf =& Request::getSchedConf();
-		$conference =& Request::getConference();
+		$schedConf =& $request->getSchedConf();
+		$conference =& $request->getConference();
 
-		if (!$schedConf || !$conference) Request::redirect(null, null, 'about');
+		if (!$schedConf || !$conference) $request->redirect(null, null, 'about');
 
 		$registrationName =& $schedConf->getSetting('registrationName');
 		$registrationEmail =& $schedConf->getSetting('registrationEmail');
@@ -334,7 +335,7 @@ class AboutHandler extends Handler {
 		$registrationAdditionalInformation =& $schedConf->getLocalizedSetting('registrationAdditionalInformation');
 		$registrationTypes =& $registrationTypeDao->getRegistrationTypesBySchedConfId($schedConf->getId());
 
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 		$templateMgr->assign('registrationName', $registrationName);
 		$templateMgr->assign('registrationEmail', $registrationEmail);
 		$templateMgr->assign('registrationPhone', $registrationPhone);
@@ -348,16 +349,16 @@ class AboutHandler extends Handler {
 	/**
 	 * Display submissions page.
 	 */
-	function submissions() {
+	function submissions($args, &$request) {
 		parent::validate(true);
-		$this->setupTemplate();
+		$this->setupTemplate($request);
 
-		$conference =& Request::getConference();
-		$schedConf =& Request::getSchedConf();
+		$conference =& $request->getConference();
+		$schedConf =& $request->getSchedConf();
 
 		$settings = ($schedConf? $schedConf->getSettings():$conference->getSettings());
 
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 		$submissionChecklist = $schedConf?$schedConf->getLocalizedSetting('submissionChecklist'):null;
 		if (!empty($submissionChecklist)) {
 			ksort($submissionChecklist);
@@ -377,13 +378,13 @@ class AboutHandler extends Handler {
 	/**
 	 * Display siteMap page.
 	 */
-	function siteMap() {
+	function siteMap($args, &$request) {
 		$this->validate();
-		$this->setupTemplate();
+		$this->setupTemplate($request);
 
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 		$conferenceDao =& DAORegistry::getDAO('ConferenceDAO');
-		$user =& Request::getUser();
+		$user =& $request->getUser();
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
 
 		if ($user) {
@@ -413,14 +414,14 @@ class AboutHandler extends Handler {
 	/**
 	 * Display aboutThisPublishingSystem page.
 	 */
-	function aboutThisPublishingSystem() {
+	function aboutThisPublishingSystem($args, &$request) {
 		$this->validate();
-		$this->setupTemplate();
+		$this->setupTemplate($request);
 
 		$versionDao =& DAORegistry::getDAO('VersionDAO');
 		$version =& $versionDao->getCurrentVersion();
 
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 		$templateMgr->assign('ocsVersion', $version->getVersionString());
 
 		foreach (array(AppLocale::getLocale(), $primaryLocale = AppLocale::getPrimaryLocale(), 'en_US') as $locale) {
@@ -437,13 +438,13 @@ class AboutHandler extends Handler {
 	 * WARNING: This implementation should be kept roughly synchronized
 	 * with the reader's statistics view in the About pages.
 	 */
-	function statistics() {
+	function statistics($args, &$request) {
 		$this->validate();
-		$this->setupTemplate();
+		$this->setupTemplate($request);
 
-		$conference =& Request::getConference();
-		$schedConf =& Request::getSchedConf();
-		$templateMgr =& TemplateManager::getManager();
+		$conference =& $request->getConference();
+		$schedConf =& $request->getSchedConf();
+		$templateMgr =& TemplateManager::getManager($request);
 		$templateMgr->assign('helpTopicId','user.about');
 
 		$trackIds = $schedConf->getSetting('statisticsTrackIds');

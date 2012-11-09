@@ -331,18 +331,19 @@ class ReviewerAction extends Action {
 		}
 	}
 
-		/**
+	/**
 	 * Edit review form response.
+	 * @param $request
 	 * @param $reviewId int
 	 * @param $reviewFormId int
 	 */
-	function editReviewFormResponse($reviewId, $reviewFormId) {
+	function editReviewFormResponse($request, $reviewId, $reviewFormId) {
 		if (!HookRegistry::call('ReviewerAction::editReviewFormResponse', array($reviewId, $reviewFormId))) {
 			import('classes.submission.form.ReviewFormResponseForm');
 
 			$reviewForm = new ReviewFormResponseForm($reviewId, $reviewFormId);
 			$reviewForm->initData();
-			$reviewForm->display();
+			$reviewForm->display($request);
 		}
 	}
 
@@ -351,7 +352,7 @@ class ReviewerAction extends Action {
 	 * @param $reviewId int
 	 * @param $reviewFormId int
 	 */
-	function saveReviewFormResponse($reviewId, $reviewFormId) {
+	function saveReviewFormResponse($request, $reviewId, $reviewFormId) {
 		if (!HookRegistry::call('ReviewerAction::saveReviewFormResponse', array($reviewId, $reviewFormId))) {
 			import('classes.submission.form.ReviewFormResponseForm');
 
@@ -378,7 +379,7 @@ class ReviewerAction extends Action {
 				}
 
 			} else {
-				$reviewForm->display();
+				$reviewForm->display($request);
 				return false;
 			}
 			return true;

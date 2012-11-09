@@ -29,9 +29,9 @@ class AdminFunctionsHandler extends AdminHandler {
 	/**
 	 * Show system information summary.
 	 */
-	function systemInfo() {
+	function systemInfo($args, &$request) {
 		$this->validate();
-		$this->setupTemplate(true);
+		$this->setupTemplate($request, true);
 
 		$configData =& Config::getData();
 
@@ -50,12 +50,12 @@ class AdminFunctionsHandler extends AdminHandler {
 			'admin.server.dbVersion' => (empty($dbServerInfo['description']) ? $dbServerInfo['version'] : $dbServerInfo['description'])
 		);
 
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 		$templateMgr->assign_by_ref('currentVersion', $currentVersion);
 		$templateMgr->assign_by_ref('versionHistory', $versionHistory);
 		$templateMgr->assign_by_ref('configData', $configData);
 		$templateMgr->assign_by_ref('serverInfo', $serverInfo);
-		if (Request::getUserVar('versionCheck')) {
+		if ($request->getUserVar('versionCheck')) {
 			$latestVersionInfo =& VersionCheck::getLatestVersion();
 			$latestVersionInfo['patch'] = VersionCheck::getPatch($latestVersionInfo);
 			$templateMgr->assign_by_ref('latestVersionInfo', $latestVersionInfo);
@@ -67,7 +67,7 @@ class AdminFunctionsHandler extends AdminHandler {
 	/**
 	 * Show full PHP configuration information.
 	 */
-	function phpinfo() {
+	function phpinfo($args, &$request) {
 		$this->validate();
 		phpinfo();
 	}
@@ -75,38 +75,38 @@ class AdminFunctionsHandler extends AdminHandler {
 	/**
 	 * Expire all user sessions (will log out all users currently logged in).
 	 */
-	function expireSessions() {
+	function expireSessions($args, &$request) {
 		$this->validate();
 		$sessionDao =& DAORegistry::getDAO('SessionDAO');
 		$sessionDao->deleteAllSessions();
-		Request::redirect(null, null, ROLE_PATH_SITE_ADMIN);
+		$request->redirect(null, null, ROLE_PATH_SITE_ADMIN);
 	}
 
 	/**
 	 * Clear compiled templates.
 	 */
-	function clearTemplateCache() {
+	function clearTemplateCache($args, &$request) {
 		$this->validate();
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 		$templateMgr->clearTemplateCache();
-		Request::redirect(null, null, ROLE_PATH_SITE_ADMIN);
+		$request->redirect(null, null, ROLE_PATH_SITE_ADMIN);
 	}
 
 	/**
 	 * Clear the data cache.
 	 */
-	function clearDataCache() {
+	function clearDataCache($args, &$request) {
 		$this->validate();
 
 		// Clear the CacheManager's caches
-		$cacheManager =& CacheManager::getManager();
+		$cacheManager =& CacheManager::getManager($request);
 		$cacheManager->flush();
 
 		// Clear ADODB's cache
 		$userDao =& DAORegistry::getDAO('UserDAO'); // As good as any
 		$userDao->flushCache();
 
-		Request::redirect(null, null, ROLE_PATH_SITE_ADMIN);
+		$request->redirect(null, null, ROLE_PATH_SITE_ADMIN);
 	}
 }
 
