@@ -186,7 +186,7 @@ class RoomDAO extends DAO {
 	 * @return int
 	 */
 	function getInsertRoomId() {
-		return $this->getInsertId('rooms', 'room_id');
+		return $this->_getInsertId('rooms', 'room_id');
 	}
 }
 

@@ -310,7 +310,7 @@ class PaperGalleyDAO extends DAO {
 	 * @return int
 	 */
 	function getInsertGalleyId() {
-		return $this->getInsertId('paper_galleys', 'galley_id');
+		return $this->_getInsertId('paper_galleys', 'galley_id');
 	}
 
 

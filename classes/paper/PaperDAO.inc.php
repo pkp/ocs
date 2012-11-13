@@ -543,7 +543,7 @@ class PaperDAO extends DAO {
 	 * @return int
 	 */
 	function getInsertPaperId() {
-		return $this->getInsertId('papers', 'paper_id');
+		return $this->_getInsertId('papers', 'paper_id');
 	}
 }
 

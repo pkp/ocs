@@ -400,7 +400,7 @@ class RegistrationTypeDAO extends DAO {
 	 * @return int
 	 */
 	function getInsertRegistrationTypeId() {
-		return $this->getInsertId('registration_types', 'type_id');
+		return $this->_getInsertId('registration_types', 'type_id');
 	}
 
 	/**

@@ -198,7 +198,7 @@ class SpecialEventDAO extends DAO {
 	 * @return int
 	 */
 	function getInsertSpecialEventId() {
-		return $this->getInsertId('special_events', 'special_event_id');
+		return $this->_getInsertId('special_events', 'special_event_id');
 	}
 }
 

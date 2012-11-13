@@ -296,7 +296,7 @@ class SchedConfDAO extends DAO {
 	 * @return int
 	 */
 	function getInsertSchedConfId() {
-		return $this->getInsertId('sched_confs', 'sched_conf_id');
+		return $this->_getInsertId('sched_confs', 'sched_conf_id');
 	}
 
 	/**

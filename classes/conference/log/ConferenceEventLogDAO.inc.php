@@ -266,7 +266,7 @@ class ConferenceEventLogDAO extends DAO {
 	 * @return int
 	 */
 	function getInsertLogId() {
-		return $this->getInsertId('conference_event_log', 'log_id');
+		return $this->_getInsertId('conference_event_log', 'log_id');
 	}
 
 }

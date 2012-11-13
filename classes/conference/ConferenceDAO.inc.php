@@ -266,7 +266,7 @@ class ConferenceDAO extends DAO {
 	 * @return int
 	 */
 	function getInsertConferenceId() {
-		return $this->getInsertId('conferences', 'conference_id');
+		return $this->_getInsertId('conferences', 'conference_id');
 	}
 }
 

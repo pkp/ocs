@@ -192,7 +192,7 @@ class PaperCommentDAO extends DAO {
 	 * @return int
 	 */
 	function getInsertPaperCommentId() {
-		return $this->getInsertId('paper_comments', 'comment_id');
+		return $this->_getInsertId('paper_comments', 'comment_id');
 	}	
 
 	/**

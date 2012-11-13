@@ -202,7 +202,7 @@ class BuildingDAO extends DAO {
 	 * @return int
 	 */
 	function getInsertBuildingId() {
-		return $this->getInsertId('buildings', 'building_id');
+		return $this->_getInsertId('buildings', 'building_id');
 	}
 }
 

@@ -673,7 +673,7 @@ class RegistrationDAO extends DAO {
 	 * @return int
 	 */
 	function getInsertRegistrationId() {
-		return $this->getInsertId('registrations', 'registration_id');
+		return $this->_getInsertId('registrations', 'registration_id');
 	}
 
 	/**

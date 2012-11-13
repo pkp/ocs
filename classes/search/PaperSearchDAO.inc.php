@@ -39,7 +39,7 @@ class PaperSearchDAO extends DAO {
 				true,
 				false
 			)) {
-				$keywordId = $this->getInsertId('paper_search_keyword_list', 'keyword_id');
+				$keywordId = $this->_getInsertId('paper_search_keyword_list', 'keyword_id');
 			} else {
 				$keywordId = null; // Bug #2324
 			}
@@ -174,7 +174,7 @@ class PaperSearchDAO extends DAO {
 				'INSERT INTO paper_search_objects (paper_id, type, assoc_id) VALUES (?, ?, ?)',
 				array($paperId, $type, (int) $assocId)
 			);
-			$objectId = $this->getInsertId('paper_search_objects', 'object_id');
+			$objectId = $this->_getInsertId('paper_search_objects', 'object_id');
 
 		} else {
 			$objectId = $result->fields[0];

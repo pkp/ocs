@@ -234,7 +234,7 @@ class TimeBlockDAO extends DAO {
 	 * @return int
 	 */
 	function getInsertTimeBlockId() {
-		return $this->getInsertId('time_blocks', 'time_block_id');
+		return $this->_getInsertId('time_blocks', 'time_block_id');
 	}
 }
 

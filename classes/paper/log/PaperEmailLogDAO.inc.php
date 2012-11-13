@@ -190,7 +190,7 @@ class PaperEmailLogDAO extends DAO {
 	 * @return int
 	 */
 	function getInsertLogId() {
-		return $this->getInsertId('paper_email_log', 'log_id');
+		return $this->_getInsertId('paper_email_log', 'log_id');
 	}
 }
 

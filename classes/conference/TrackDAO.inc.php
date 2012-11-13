@@ -446,7 +446,7 @@ class TrackDAO extends DAO {
 	 * @return int
 	 */
 	function getInsertTrackId() {
-		return $this->getInsertId('tracks', 'track_id');
+		return $this->_getInsertId('tracks', 'track_id');
 	}
 }
 

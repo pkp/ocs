@@ -379,7 +379,7 @@ class RegistrationOptionDAO extends DAO {
 	 * @return int
 	 */
 	function getInsertRegistrationOptionId() {
-		return $this->getInsertId('registration_options', 'option_id');
+		return $this->_getInsertId('registration_options', 'option_id');
 	}
 
 	/**

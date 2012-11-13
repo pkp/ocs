@@ -334,7 +334,7 @@ class PaperFileDAO extends DAO {
 	 * @return int
 	 */
 	function getInsertPaperFileId() {
-		return $this->getInsertId('paper_files', 'file_id');
+		return $this->_getInsertId('paper_files', 'file_id');
 	}
 
 	/**

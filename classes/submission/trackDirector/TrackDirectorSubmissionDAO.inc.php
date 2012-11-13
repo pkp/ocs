@@ -181,7 +181,7 @@ class TrackDirectorSubmissionDAO extends DAO {
 								$directorDecision['decision']
 							)
 						);
-						$insertId = $this->getInsertId('edit_decisions', 'edit_decision_id');
+						$insertId = $this->_getInsertId('edit_decisions', 'edit_decision_id');
 						$directorDecision['editDecisionId'] = $insertId;
 						$insertedDecision = true;
 					}
