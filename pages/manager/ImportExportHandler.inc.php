@@ -35,7 +35,7 @@ class ImportExportHandler extends ManagerHandler {
 		if (array_shift($args) === 'plugin') {
 			$pluginName = array_shift($args);
 			$plugin =& PluginRegistry::getPlugin(IMPORTEXPORT_PLUGIN_CATEGORY, $pluginName); 
-			if ($plugin) return $plugin->display($args);
+			if ($plugin) return $plugin->display($args, $request);
 		}
 		$templateMgr->assign_by_ref('plugins', PluginRegistry::getPlugins(IMPORTEXPORT_PLUGIN_CATEGORY));
 		$templateMgr->assign('helpTopicId', 'conference.currentConferences.importExport');
