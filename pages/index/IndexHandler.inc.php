@@ -40,7 +40,7 @@ class IndexHandler extends Handler {
 
 			// A scheduled conference was specified; display it.
 			import('pages.schedConf.SchedConfHandler');
-			SchedConfHandler::index($args);
+			SchedConfHandler::index($args, $request);
 
 		} elseif ($conference) {
 			$redirect = $conference->getSetting('schedConfRedirect');
@@ -52,7 +52,7 @@ class IndexHandler extends Handler {
 
 			// A scheduled conference was specified; display it.
 			import('pages.conference.ConferenceHandler');
-			ConferenceHandler::index($args);
+			ConferenceHandler::index($args, $request);
 
 		} else {
 

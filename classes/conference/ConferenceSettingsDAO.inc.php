@@ -53,7 +53,7 @@ class ConferenceSettingsDAO extends SettingsDAO {
 	}
 
 	function _cacheMiss(&$cache, $id) {
-		$settings =& $this->getConferenceSettings($cache->getCacheId());
+		$settings =& $this->getSettings($cache->getCacheId());
 		if (!isset($settings[$id])) {
 			// Make sure that even null values are cached
 			$cache->setCache($id, null);
@@ -67,7 +67,7 @@ class ConferenceSettingsDAO extends SettingsDAO {
 	 * @param $conferenceId int
 	 * @return array
 	 */
-	function &getConferenceSettings($conferenceId) {
+	function &getSettings($conferenceId) {
 		$conferenceSettings = array();
 
 		$result =& $this->retrieve(

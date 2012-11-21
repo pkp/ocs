@@ -13,9 +13,8 @@
  *
  */
 
-
-
 import('classes.db.SettingsDAO');
+
 class SchedConfSettingsDAO extends SettingsDAO {
 	function &_getCache($schedConfId) {
 		static $settingCache;
@@ -55,7 +54,7 @@ class SchedConfSettingsDAO extends SettingsDAO {
 	}
 
 	function _cacheMiss(&$cache, $id) {
-		$settings =& $this->getSchedConfSettings($cache->getCacheId());
+		$settings =& $this->getSettings($cache->getCacheId());
 		if (!isset($settings[$id])) {
 			// Make sure that even null values are cached
 			$cache->setCache($id, null);
@@ -69,7 +68,7 @@ class SchedConfSettingsDAO extends SettingsDAO {
 	 * @param $schedConfId int
 	 * @return array
 	 */
-	function &getSchedConfSettings($schedConfId) {
+	function &getSettings($schedConfId) {
 		$schedConfSettings = array();
 
 		$result =& $this->retrieve(

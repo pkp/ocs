@@ -67,49 +67,6 @@ class Conference extends Context {
 	}
 
 	/**
-	 * Retrieve array of conference settings.
-	 * @return array
-	 */
-	function &getSettings() {
-		$conferenceSettingsDao =& DAORegistry::getDAO('ConferenceSettingsDAO');
-		$settings =& $conferenceSettingsDao->getConferenceSettings($this->getId());
-		return $settings;
-	}
-
-	function &getLocalizedSetting($name) {
-		$returner = $this->getSetting($name, AppLocale::getLocale());
-		if ($returner === null) {
-			unset($returner);
-			$returner = $this->getSetting($name, AppLocale::getPrimaryLocale());
-		}
-		return $returner;
-	}
-
-	/**
-	 * Retrieve a conference setting value.
-	 * @param $name
-	 * @param $locale string
-	 * @return mixed
-	 */
-	function &getSetting($name, $locale = null) {
-		$conferenceSettingsDao =& DAORegistry::getDAO('ConferenceSettingsDAO');
-		$setting =& $conferenceSettingsDao->getSetting($this->getId(), $name, $locale);
-		return $setting;
-	}
-
-	/**
-	 * Update a conference setting value.
-	 * @param $name string
-	 * @param $value mixed
-	 * @param $type string optional
-	 * @param $isLocalized boolean optional
-	 */
-	function updateSetting($name, $value, $type = null, $isLocalized = false) {
-		$conferenceSettingsDao =& DAORegistry::getDAO('ConferenceSettingsDAO');
-		return $conferenceSettingsDao->updateSetting($this->getConferenceId(), $name, $value, $type, $isLocalized);
-	}
-
-	/**
 	 * Get "localized" conference page title (if applicable).
 	 * param $home boolean get homepage title
 	 * @return string
@@ -155,6 +112,14 @@ class Conference extends Context {
 		foreach (array(AppLocale::getLocale(), AppLocale::getPrimaryLocale()) as $locale) {
 			if (isset($faviconArray[$locale])) return $faviconArray[$locale];
 		}
+	}
+
+	/**
+	 * Get the settings DAO for this context object.
+	 * @return DAO
+	 */
+	static function getSettingsDAO() {
+		return DAORegistry::getDAO('ConferenceSettingsDAO');
 	}
 }
 

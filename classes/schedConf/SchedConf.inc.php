@@ -166,58 +166,6 @@ class SchedConf extends Context {
 		return $this->getLocalizedSetting('introduction');
 	}
 
-	//
-	// SchedConfSettings functions: the following make use of data in the
-	// ConferenceSettings or SchedConfSettings tables.
-	//
-
-	/**
-	 * Retrieve array of scheduled conference settings.
-	 * @return array
-	 */
-	function getSettings() {
-		$schedConfSettingsDao =& DAORegistry::getDAO('SchedConfSettingsDAO');
-		return $schedConfSettingsDao->getSchedConfSettings($this->getId());
-	}
-
-	/**
-	 * Get a localized scheduled conference setting.
-	 * @param $name string
-	 * @return mixed
-	 */
-	function &getLocalizedSetting($name) {
-		$returner = $this->getSetting($name, AppLocale::getLocale());
-		if ($returner === null) {
-			unset($returner);
-			$returner = $this->getSetting($name, AppLocale::getPrimaryLocale());
-		}
-		return $returner;
-	}
-
-	/**
-	 * Retrieve a scheduled conference setting value.
-	 * @param $name
-	 * @param $locale string
-	 * @return mixed
-	 */
-	function &getSetting($name, $locale = null) {
-		$schedConfSettingsDao =& DAORegistry::getDAO('SchedConfSettingsDAO');
-		$setting =& $schedConfSettingsDao->getSetting($this->getId(), $name, $locale);
-		return $setting;
-	}
-
-	/**
-	 * Update a scheduled conference setting value.
-	 * @param $name string
-	 * @param $value mixed
-	 * @param $type string optional
-	 * @param $isLocalized boolean optional
-	 */
-	function updateSetting($name, $value, $type = null, $isLocalized = false) {
-		$schedConfSettingsDao =& DAORegistry::getDAO('SchedConfSettingsDAO');
-		return $schedConfSettingsDao->updateSetting($this->getSchedConfId(), $name, $value, $type, $isLocalized);
-	}
-
 	/**
 	 * Return the primary locale of this scheduled conference.
 	 * @return string
@@ -233,6 +181,14 @@ class SchedConf extends Context {
 	 */
 	function getStyleFilename() {
 		return $this->getSetting('schedConfStyleSheet');
+	}
+
+	/**
+	 * Get the settings DAO for this context object.
+	 * @return DAO
+	 */
+	static function getSettingsDAO() {
+		return DAORegistry::getDAO('SchedConfSettingsDAO');
 	}
 }
 
