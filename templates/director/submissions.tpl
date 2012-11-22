@@ -16,7 +16,7 @@
 {literal}
 <!--
 function sortSearch(heading, direction) {
-	var submitForm = document.getElementById('submit');
+	var submitForm = document.getElementById('submissionsSubmit');
 	submitForm.sort.value = heading;
 	submitForm.sortDirection.value = direction;
 	submitForm.submit();
@@ -40,7 +40,7 @@ function sortSearch(heading, direction) {
 </ul>
 </form>
 
-<form class="pkp_form" method="post" name="submit" action="{url op="submissions" path=$pageToDisplay}">
+<form class="pkp_form" method="post" id="submissionsSubmit" action="{url op="submissions" path=$pageToDisplay}">
 	<input type="hidden" name="sort" value="id"/>
 	<input type="hidden" name="sortDirection" value="ASC"/>
 	<select name="searchField" size="1" class="selectMenu">
