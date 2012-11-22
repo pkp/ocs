@@ -62,7 +62,7 @@ class AuthorDAO extends PKPAuthorDAO {
 		);
 
 		while (!$result->EOF) {
-			$row =& $result->getRowAssoc(false);
+			$row = $result->getRowAssoc(false);
 			$publishedPaper =& $publishedPaperDao->getPublishedPaperByPaperId($row['submission_id']);
 			if ($publishedPaper) {
 				$publishedPapers[] =& $publishedPaper;

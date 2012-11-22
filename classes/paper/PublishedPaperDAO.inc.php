@@ -226,7 +226,7 @@ class PublishedPaperDAO extends DAO {
 
 		$currTrackId = 0;
 		while (!$result->EOF) {
-			$row =& $result->GetRowAssoc(false);
+			$row = $result->GetRowAssoc(false);
 			$publishedPaper =& $this->_returnPublishedPaperFromRow($row);
 			if ($publishedPaper->getTrackId() != $currTrackId) {
 				$currTrackId = $publishedPaper->getTrackId();

@@ -90,7 +90,7 @@ class PluginSettingsDAO extends DAO {
 
 		} else {
 			while (!$result->EOF) {
-				$row =& $result->getRowAssoc(false);
+				$row = $result->getRowAssoc(false);
 				$value = $this->convertFromDB($row['setting_value'], $row['setting_type']);
 				$pluginSettings[$pluginName][$row['setting_name']] = $value;
 				$result->MoveNext();

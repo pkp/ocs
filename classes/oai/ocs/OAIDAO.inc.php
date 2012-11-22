@@ -155,7 +155,7 @@ class OAIDAO extends DAO {
 
 		$returner = null;
 		if ($result->RecordCount() != 0) {
-			$row =& $result->GetRowAssoc(false);
+			$row = $result->GetRowAssoc(false);
 			$returner =& $this->_returnRecordFromRow($row);
 		}
 
@@ -216,7 +216,7 @@ class OAIDAO extends DAO {
 
 		$result->Move($offset);
 		for ($count = 0; $count < $limit && !$result->EOF; $count++) {
-			$row =& $result->GetRowAssoc(false);
+			$row = $result->GetRowAssoc(false);
 			$records[] =& $this->_returnRecordFromRow($row);
 			$result->moveNext();
 		}
@@ -281,7 +281,7 @@ class OAIDAO extends DAO {
 
 		$result->Move($offset);
 		for ($count = 0; $count < $limit && !$result->EOF; $count++) {
-			$row =& $result->GetRowAssoc(false);
+			$row = $result->GetRowAssoc(false);
 			$records[] =& $this->_returnIdentifierFromRow($row);
 			$result->moveNext();
 		}
@@ -415,7 +415,7 @@ class OAIDAO extends DAO {
 			$token = null;
 
 		} else {
-			$row =& $result->getRowAssoc(false);
+			$row = $result->getRowAssoc(false);
 			$token = new OAIResumptionToken($row['token'], $row['record_offset'], unserialize($row['params']), $row['expire']);
 		}
 
