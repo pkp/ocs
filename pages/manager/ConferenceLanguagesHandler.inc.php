@@ -27,76 +27,11 @@ class ConferenceLanguagesHandler extends ManagerHandler {
 	 * Display form to edit language settings.
 	 */
 	function languages($args, &$request) {
-		$this->validate();
+		$this->validate($request);
 		$this->setupTemplate($request, true);
 
-		import('classes.manager.form.LanguageSettingsForm');
-
-		$settingsForm = new LanguageSettingsForm();
-		$settingsForm->initData();
-		$settingsForm->display();
-	}
-
-	/**
-	 * Save changes to language settings.
-	 * @param $args array
-	 * @param $request object
-	 */
-	function saveLanguageSettings($args, &$request) {
-		$this->validate();
-		$this->setupTemplate($request, true);
-
-		import('classes.manager.form.LanguageSettingsForm');
-
-		$settingsForm = new LanguageSettingsForm();
-		$settingsForm->readInputData();
-
-		if ($settingsForm->validate()) {
-			$settingsForm->execute();
-			import('classes.notification.NotificationManager');
-			$notificationManager = new NotificationManager();
-			$user =& $request->getUser();
-			$notificationManager->createTrivialNotification($user->getId());
-			$request->redirect(null, null, null, 'index');
-		} else {
-			$settingsForm->display();
-		}
-	}
-
-	/**
-	 * Reload the default localized settings for this conference
-	 * @param $args array
-	 * @param $request object
-	 */
-	function reloadLocalizedDefaultSettings($args, &$request) {
-		// make sure the locale is valid
-		$locale = $request->getUserVar('localeToLoad');
-		if ( !AppLocale::isLocaleValid($locale) ) {
-			$request->redirect(null, null, null, 'languages');
-		}
-
-		$this->validate();
-		$this->setupTemplate($request, true);
-
-		$conference =& $request->getConference();
-		$conferenceSettingsDao =& DAORegistry::getDAO('ConferenceSettingsDAO');
-		$conferenceSettingsDao->reloadLocalizedDefaultSettings(
-			$conference->getId(), 'registry/conferenceSettings.xml',
-			array(
-				'indexUrl' => $request->getIndexUrl(),
-				'conferencePath' => $conference->getData('path'),
-				'primaryLocale' => $conference->getPrimaryLocale(),
-				'conferenceName' => $conference->getTitle($conference->getPrimaryLocale())
-			),
-			$locale
-		);
-
-		// Display a notification
-		import('classes.notification.NotificationManager');
-		$notificationManager = new NotificationManager();
-		$user =& $request->getUser();
-		$notificationManager->createTrivialNotification($user->getId());
-		$request->redirect(null, null, null, 'languages');
+		$templateMgr =& TemplateManager::getManager($request);
+		$templateMgr->display('manager/languageSettings.tpl');
 	}
 }
 
