@@ -12,6 +12,14 @@
   -->
 
 <locale name="en_US" full_name = "English">
+	<message key="admin.languages.downloadUnavailable"><![CDATA[<p>Downloading language packs from the Public Knowledge Project web server is not currently available because:</p>
+	<ul>
+		<li>Your server does not have or allow execution of the GNU "tar" utility</li>
+		<li>OCS is unable to modify the locale registry file, typically "registry/locales.xml".</li>
+	</ul>
+<p>Language packs can be manually downloaded from the <a href="http://pkp.sfu.ca">PKP web site</a>.</p>]]></message>
+
+	<message key="admin.languages.confirmDisable">Are you sure you want to disable this locale? This may affect any hosted conferences currently using the locale.</message>
 	<message key="admin.languages.primaryLocaleInstructions">This will be the default language for the site and any hosted conferences.</message>
 	<message key="admin.languages.supportedLocalesInstructions">Select all locales to support on the site. The selected locales will be available for use by all conferences hosted on the site, and also appear in a language select menu to appear on each site page (which can be overridden on conference-specific pages). If multiple locales are not selected, the language toggle menu will not appear and extended language settings will not be available to conferences.</message>
 	<message key="admin.locale.maybeIncomplete">Marked locales may be incomplete.</message>
