@@ -90,23 +90,6 @@ class SchedConf extends Context {
 	}
 
 	/**
-	 * Get the localized acronym of the scheduled conference
-	 * @return string
-	 */
-	function getLocalizedAcronym() {
-		return $this->getLocalizedSetting('acronym');
-	}
-
-	/**
-	 * Get acronym of scheduled conference
-	 * @param $locale string
-	 * @return string
-	 */
-	function getAcronym($locale) {
-		return $this->getSetting('acronym', $locale);
-	}
-
-	/**
 	 * Get conference ID of scheduled conference.
 	 * @return int
 	 */
