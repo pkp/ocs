@@ -507,7 +507,7 @@ class OAIDAO extends DAO {
 		$conferenceId = null;
 		$schedConfId = null;
 
-		$conference =& $this->conferenceDao->getConferenceByPath($conferenceSpec);
+		$conference =& $this->conferenceDao->getByPath($conferenceSpec);
 		if (!isset($conference) || (isset($restrictConferenceId) && $conference->getId() != $restrictConferenceId)) {
 			return array(0, 0, 0);
 		}
@@ -516,7 +516,7 @@ class OAIDAO extends DAO {
 		$trackId = null;
 
 		if (isset($schedConfSpec)) {
-			$schedConf =& $this->schedConfDao->getSchedConfByPath($schedConfSpec, $conferenceId);
+			$schedConf =& $this->schedConfDao->getByPath($schedConfSpec, $conferenceId);
 			if (!$schedConf) return array(0, 0, 0);
 		}
 

@@ -44,7 +44,7 @@ class SchedConfDAO extends DAO {
 	 * @param $path string
 	 * @return SchedConf
 	 */
-	function &getSchedConfByPath($path, $conferenceId = null) {
+	function &getByPath($path, $conferenceId = null) {
 		if($conferenceId == null) {
 			$conference =& Request::getConference();
 

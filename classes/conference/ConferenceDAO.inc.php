@@ -41,7 +41,7 @@ class ConferenceDAO extends DAO {
 	 * @param $path string
 	 * @return Conference
 	 */
-	function &getConferenceByPath($path) {
+	function &getByPath($path) {
 		$returner = null;
 		$result =& $this->retrieve(
 			'SELECT * FROM conferences WHERE path = ?', $path

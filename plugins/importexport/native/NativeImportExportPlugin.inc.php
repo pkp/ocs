@@ -244,8 +244,8 @@ class NativeImportExportPlugin extends ImportExportPlugin {
 		$userDao =& DAORegistry::getDAO('UserDAO');
 		$publishedPaperDao =& DAORegistry::getDAO('PublishedPaperDAO');
 
-		$conference =& $conferenceDao->getConferenceByPath($conferencePath);
-		if ($conference) $schedConf =& $schedConfDao->getSchedConfByPath($schedConfPath, $conference->getId());
+		$conference =& $conferenceDao->getByPath($conferencePath);
+		if ($conference) $schedConf =& $schedConfDao->getByPath($schedConfPath, $conference->getId());
 
 		if (!$conference || !$schedConfPath) {
 			if ($conferencePath != '') {

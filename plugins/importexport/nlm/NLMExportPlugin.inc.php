@@ -128,7 +128,7 @@ class NLMExportPlugin extends ImportExportPlugin {
 		$userDao =& DAORegistry::getDAO('UserDAO');
 		$publishedPaperDao =& DAORegistry::getDAO('PublishedPaperDAO');
 
-		$conference =& $conferenceDao->getConferenceByPath($conferencePath);
+		$conference =& $conferenceDao->getByPath($conferencePath);
 
 		if (!$conference) {
 			if ($conferencePath != '') {

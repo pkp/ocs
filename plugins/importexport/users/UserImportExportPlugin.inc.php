@@ -214,7 +214,7 @@ class UserImportExportPlugin extends ImportExportPlugin {
 		$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
 		$userDao =& DAORegistry::getDAO('UserDAO');
 
-		$schedConf =& $schedConfDao->getSchedConfByPath($schedConfPath);
+		$schedConf =& $schedConfDao->getByPath($schedConfPath);
 
 		if (!$schedConf) {
 			if ($schedConfPath != '') {
