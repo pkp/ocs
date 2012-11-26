@@ -143,7 +143,7 @@ class NotificationManager extends PKPNotificationManager {
 
 		$conferenceDao =& DAORegistry::getDAO('ConferenceDAO'); /* @var $conferenceDaoDao ConferenceDAO */
 		$conferenceId = $schedConf->getConferenceId();
-		$conference =& $conferenceDao->getConference($conferenceId);
+		$conference =& $conferenceDao->getById($conferenceId);
 
 		return $conference->getPath();
 	}

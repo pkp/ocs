@@ -318,7 +318,7 @@ class PeopleHandler extends ManagerHandler {
 		}
 
 		$conferenceDao =& DAORegistry::getDAO('ConferenceDAO');
-		$conferenceTitles =& $conferenceDao->getConferenceTitles();
+		$conferenceTitles =& $conferenceDao->getTitles();
 
 		$conference =& $request->getConference();
 		$schedConf =& $request->getSchedConf();
@@ -718,8 +718,8 @@ class PeopleHandler extends ManagerHandler {
 				// conference names other than the current journal.
 				$conferenceDao =& DAORegistry::getDAO('ConferenceDAO');
 				$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
-				$conferenceTitles =& $conferenceDao->getConferenceTitles();
-				$schedConfTitles =& $schedConfDao->getSchedConfTitles();
+				$conferenceTitles =& $conferenceDao->getTitles();
+				$schedConfTitles =& $schedConfDao->getTitles();
 				$templateMgr->assign_by_ref('conferenceTitles', $conferenceTitles);
 				$templateMgr->assign_by_ref('schedConfTitles', $schedConfTitles);
 			}

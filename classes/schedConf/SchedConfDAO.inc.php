@@ -90,7 +90,7 @@ class SchedConfDAO extends DAO {
 	 * Insert a new scheduled conference.
 	 * @param $schedConf SchedConf
 	 */	
-	function insertSchedConf(&$schedConf) {
+	function insertObject(&$schedConf) {
 		$this->update(
 			sprintf('INSERT INTO sched_confs
 				(conference_id, path, seq, start_date, end_date)
@@ -113,7 +113,7 @@ class SchedConfDAO extends DAO {
 	 * Update an existing scheduled conference.
 	 * @param $schedConf SchedConf
 	 */
-	function updateSchedConf(&$schedConf) {
+	function updateObject(&$schedConf) {
 		return $this->update(
 			sprintf('UPDATE sched_confs
 				SET
@@ -146,7 +146,7 @@ class SchedConfDAO extends DAO {
 	 * Retrieve the IDs and titles of all scheduled conferences for a conference in an associative array.
 	 * @return array
 	 */
-	function &getSchedConfTitles($conferenceId = null) {
+	function &getTitles($conferenceId = null) {
 		$schedConfs = array();
 		$schedConfIterator =& $this->getSchedConfs(false, $conferenceId);
 		while ($schedConf =& $schedConfIterator->next()) {
@@ -268,7 +268,7 @@ class SchedConfDAO extends DAO {
 	/**
 	 * Sequentially renumber scheduled conferences in their sequence order.
 	 */
-	function resequenceSchedConfs($conferenceId) {
+	function resequence($conferenceId) {
 		$result =& $this->retrieve(
 			'SELECT sched_conf_id FROM sched_confs WHERE conference_id = ? ORDER BY seq',
 			$conferenceId

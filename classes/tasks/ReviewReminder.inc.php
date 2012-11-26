@@ -150,7 +150,7 @@ class ReviewReminder extends ScheduledTask {
 			if ($shouldRemind) {
 				// We may still have to look up the conference.
 				if(!$conference || $schedConf->getConferenceId() != $conference->getId()) {
-					$conference =& $conferenceDao->getConference($schedConf->getConferenceId());
+					$conference =& $conferenceDao->getById($schedConf->getConferenceId());
 				}
 				$this->sendReminder ($reviewAssignment, $paper, $conference, $schedConf);
 			}

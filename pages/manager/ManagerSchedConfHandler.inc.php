@@ -177,8 +177,8 @@ class ManagerSchedConfHandler extends ManagerHandler {
 				}
 				$schedConf->setSequence($prevSeq + .5);
 			}
-			$schedConfDao->updateSchedConf($schedConf);
-			$schedConfDao->resequenceSchedConfs($conference->getId());
+			$schedConfDao->updateObject($schedConf);
+			$schedConfDao->resequence($conference->getId());
 		}
 
 		// Moving up or down with the arrows requires a page reload.

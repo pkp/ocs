@@ -103,7 +103,7 @@ class NotificationSettingsForm extends PKPNotificationSettingsForm {
 	 */
 	function display($request) {
 		$conferenceDao =& DAORegistry::getDAO('ConferenceDAO');
-		$conferences =& $conferenceDao->getConferenceTitles();
+		$conferences =& $conferenceDao->getTitles();
 
 		$canOnlyRead = true;
 		$canOnlyReview = false;

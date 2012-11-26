@@ -265,7 +265,7 @@ class PaperSearch {
 				$schedConf =& $schedConfDao->getSchedConf($schedConfId);
 				$conferenceId = $schedConf->getConferenceId();
 				if (!isset($conferenceCache[$conferenceId])) {
-					$conferenceCache[$conferenceId] = $conferenceDao->getConference($conferenceId);
+					$conferenceCache[$conferenceId] = $conferenceDao->getById($conferenceId);
 				}
 
 				// Get the scheduled conference, storing in cache if necessary.

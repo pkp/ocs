@@ -306,7 +306,7 @@ class OAIDAO extends DAO {
 	 */
 	function &getConference($conferenceId) {
 		if (!isset($this->conferenceCache[$conferenceId])) {
-			$this->conferenceCache[$conferenceId] =& $this->conferenceDao->getConference($conferenceId);
+			$this->conferenceCache[$conferenceId] =& $this->conferenceDao->getById($conferenceId);
 		}
 		return $this->conferenceCache[$conferenceId];
 	}
@@ -467,7 +467,7 @@ class OAIDAO extends DAO {
 	 */
 	function &getConferenceSets($conferenceId, $offset, &$total) {
 		if (isset($conferenceId)) {
-			$conferences = array($this->conferenceDao->getConference($conferenceId));
+			$conferences = array($this->conferenceDao->getById($conferenceId));
 		} else {
 			$conferences =& $this->conferenceDao->getConferences();
 			$conferences =& $conferences->toArray();

@@ -57,7 +57,7 @@ class SearchHandler extends Handler {
 
 		if ($request->getConference() == null) {
 			$conferenceDao =& DAORegistry::getDAO('ConferenceDAO');
-			$conferences =& $conferenceDao->getConferenceTitles(true);  //Enabled added
+			$conferences =& $conferenceDao->getTitles(true); // Enabled added
 			$templateMgr->assign('siteSearch', true);
 			$templateMgr->assign('conferenceOptions', array('' => AppLocale::Translate('search.allConferences')) + $conferences);
 			$yearRange = $publishedPaperDao->getPaperYearRange(null);
@@ -128,7 +128,7 @@ class SearchHandler extends Handler {
 
 				$conferenceId = $schedConfs[$schedConfId]->getConferenceId();
 				if (!isset($conferences[$conferenceId])) {
-					$conferences[$conferenceId] =& $conferenceDao->getConference($conferenceId);
+					$conferences[$conferenceId] =& $conferenceDao->getById($conferenceId);
 				}
 			}
 
@@ -271,7 +271,7 @@ class SearchHandler extends Handler {
 		$searchConferenceId = $request->getUserVar('searchConference');
 		if (!empty($searchConferenceId)) {
 			$conferenceDao =& DAORegistry::getDAO('ConferenceDAO');
-			$conference =& $conferenceDao->getConference($searchConferenceId);
+			$conference =& $conferenceDao->getById($searchConferenceId);
 		} else {
 			$conference =& $request->getConference();
 		}
@@ -306,7 +306,7 @@ class SearchHandler extends Handler {
 		$searchConferenceId = $request->getUserVar('searchConference');
 		if (!empty($searchConferenceId)) {
 			$conferenceDao =& DAORegistry::getDAO('ConferenceDAO');
-			$conference =& $conferenceDao->getConference($searchConferenceId);
+			$conference =& $conferenceDao->getById($searchConferenceId);
 			$yearRange = $publishedPaperDao->getPaperYearRange($conference->getId());
 		} else {
 			$conference =& $request->getConference();

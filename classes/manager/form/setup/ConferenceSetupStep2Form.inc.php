@@ -55,7 +55,7 @@ class ConferenceSetupStep2Form extends ConferenceSetupForm {
 		$conference =& Request::getConference();
 
 		$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
-		$schedConfTitles =& $schedConfDao->getSchedConfTitles($conference->getId());
+		$schedConfTitles =& $schedConfDao->getTitles($conference->getId());
 		$templateMgr->assign_by_ref('schedConfTitles', $schedConfTitles);
 
 		$templateMgr->assign(array(

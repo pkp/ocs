@@ -69,7 +69,7 @@ class PageRouter extends PKPPageRouter {
 				$schedConfPath = 'index';
 
 				if ($role->getConferenceId()) {
-					$conference = $conferenceDao->getConference($role->getConferenceId());
+					$conference = $conferenceDao->getById($role->getConferenceId());
 					isset($conference) ? $confPath = $conference->getPath() :
 										 $confPath = 'index';
 				}

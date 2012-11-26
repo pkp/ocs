@@ -27,7 +27,7 @@ class ConferenceLog {
 		$conferenceDao =& DAORegistry::getDAO('ConferenceDAO');
 		$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
 
-		$conference = $conferenceDao->getConference($conferenceId);
+		$conference = $conferenceDao->getById($conferenceId);
 		if(!$conference) {
 			// Conference is invalid.
 			return false;

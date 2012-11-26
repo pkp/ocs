@@ -125,7 +125,7 @@ class PaperHTMLGalley extends PaperGalley {
 					$conferenceDao =& DAORegistry::getDAO('ConferenceDAO');
 					$thisSchedConf =& $schedConfDao->getByPath($urlParts[1]);
 					if (!$thisSchedConf) break;
-					$thisConference =& $conferenceDao->getConference($thisSchedConf->getConferenceId());
+					$thisConference =& $conferenceDao->getById($thisSchedConf->getConferenceId());
 					$url = Request::url(
 						$thisConference->getPath(),
 						$thisSchedConf->getPath(),

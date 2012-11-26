@@ -73,7 +73,7 @@ class SchedConfSettingsForm extends Form {
 		}
 
 		$conferenceDao =& DAORegistry::getDAO('ConferenceDAO');
-		$conference =& $conferenceDao->getConference($this->conferenceId);
+		$conference =& $conferenceDao->getById($this->conferenceId);
 		if ($conference == null) {
 			// TODO: redirect?
 			$this->conferenceId = null;
@@ -114,7 +114,7 @@ class SchedConfSettingsForm extends Form {
 		$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
 		$conferenceDao =& DAORegistry::getDAO('ConferenceDAO');
 
-		$conference =& $conferenceDao->getConference($this->getData('conferenceId'));
+		$conference =& $conferenceDao->getById($this->getData('conferenceId'));
 
 		if (isset($this->schedConfId)) {
 			$schedConf =& $schedConfDao->getSchedConf($this->schedConfId);
@@ -128,11 +128,11 @@ class SchedConfSettingsForm extends Form {
 		$schedConf->setPath($this->getData('schedConfPath'));
 
 		if ($schedConf->getId() != null) {
-			$schedConfDao->updateSchedConf($schedConf);
+			$schedConfDao->updateObject($schedConf);
 			$track = null; // avoid warning
 		} else {
-			$schedConfId = $schedConfDao->insertSchedConf($schedConf);
-			$schedConfDao->resequenceSchedConfs($this->getData('conferenceId'));
+			$schedConfId = $schedConfDao->insertObject($schedConf);
+			$schedConfDao->resequence($this->getData('conferenceId'));
 
 			// Make the file directories for the scheduled conference
 			import('lib.pkp.classes.file.FileManager');

@@ -54,7 +54,7 @@ class ConferenceSiteSettingsForm extends Form {
 	function initData() {
 		if (isset($this->conferenceId)) {
 			$conferenceDao =& DAORegistry::getDAO('ConferenceDAO');
-			$conference =& $conferenceDao->getConference($this->conferenceId);
+			$conference =& $conferenceDao->getById($this->conferenceId);
 
 			if ($conference != null) {
 				$this->_data = array(
@@ -92,7 +92,7 @@ class ConferenceSiteSettingsForm extends Form {
 
 		if (isset($this->conferenceId)) {
 			$conferenceDao =& DAORegistry::getDAO('ConferenceDAO');
-			$conference =& $conferenceDao->getConference($this->conferenceId);
+			$conference =& $conferenceDao->getById($this->conferenceId);
 			$this->setData('oldPath', $conference->getPath());
 		}
 	}
@@ -104,7 +104,7 @@ class ConferenceSiteSettingsForm extends Form {
 		$conferenceDao =& DAORegistry::getDAO('ConferenceDAO');
 
 		if (isset($this->conferenceId)) {
-			$conference =& $conferenceDao->getConference($this->conferenceId);
+			$conference =& $conferenceDao->getById($this->conferenceId);
 		}
 
 		if (!isset($conference)) {
@@ -115,15 +115,15 @@ class ConferenceSiteSettingsForm extends Form {
 		$conference->setEnabled($this->getData('enabled'));
 
 		if ($conference->getId() != null) {
-			$conferenceDao->updateConference($conference);
+			$conferenceDao->updateObject($conference);
 		} else {
 			$site =& Request::getSite();
 
 			// Give it a default primary locale.
 			$conference->setPrimaryLocale($site->getPrimaryLocale());
 
-			$conferenceId = $conferenceDao->insertConference($conference);
-			$conferenceDao->resequenceConferences();
+			$conferenceId = $conferenceDao->insertObject($conference);
+			$conferenceDao->resequence();
 
 			// Make the site administrator the conference manager
 			$sessionManager =& SessionManager::getManager();

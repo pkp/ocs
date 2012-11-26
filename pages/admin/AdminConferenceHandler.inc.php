@@ -135,7 +135,7 @@ class AdminConferenceHandler extends AdminHandler {
 		$this->validate();
 
 		$conferenceDao =& DAORegistry::getDAO('ConferenceDAO');
-		$conference =& $conferenceDao->getConference($request->getUserVar('id'));
+		$conference =& $conferenceDao->getById($request->getUserVar('id'));
 
 		if ($conference != null) {
 			$direction = $request->getUserVar('d');
@@ -148,13 +148,13 @@ class AdminConferenceHandler extends AdminHandler {
 				if ($prevId == null)
 					$prevSeq = 0;
 				else {
-					$prevConference = $conferenceDao->getConference($prevId);
+					$prevConference = $conferenceDao->getById($prevId);
 					$prevSeq = $prevConference->getSequence();
 				}
 				$conference->setSequence($prevSeq + .5);
 			}
-			$conferenceDao->updateConference($conference);
-			$conferenceDao->resequenceConferences();
+			$conferenceDao->updateObject($conference);
+			$conferenceDao->resequence();
 		}
 
 		// Moving up or down with the arrows requires a page reload.

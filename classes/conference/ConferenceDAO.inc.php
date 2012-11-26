@@ -22,9 +22,10 @@ class ConferenceDAO extends DAO {
 	 * @param $conferenceId int
 	 * @return Conference
 	 */
-	function &getConference($conferenceId) {
+	function &getById($conferenceId) {
 		$result =& $this->retrieve(
-			'SELECT * FROM conferences WHERE conference_id = ?', $conferenceId
+			'SELECT * FROM conferences WHERE conference_id = ?',
+			(int) $conferenceId
 		);
 
 		$returner = null;
@@ -77,7 +78,7 @@ class ConferenceDAO extends DAO {
 	 * Insert a new conference.
 	 * @param $conference Conference
 	 */	
-	function insertConference(&$conference) {
+	function insertObject(&$conference) {
 		$this->update(
 			'INSERT INTO conferences
 				(primary_locale, path, seq, enabled)
@@ -99,7 +100,7 @@ class ConferenceDAO extends DAO {
 	 * Update an existing conference.
 	 * @param $conference Conference
 	 */
-	function updateConference(&$conference) {
+	function updateObject(&$conference) {
 		return $this->update(
 			'UPDATE conferences
 				SET
@@ -199,7 +200,7 @@ class ConferenceDAO extends DAO {
 	 * @param $enabledOnly boolean optional
 	 * @return array
 	 */
-	function &getConferenceTitles($enabledOnly = false) {
+	function &getTitles($enabledOnly = false) {
 		$conferences = array();
 		$conferenceIterator =& $this->getConferences($enabledOnly);
 		while ($conference =& $conferenceIterator->next()) {
@@ -215,7 +216,7 @@ class ConferenceDAO extends DAO {
 	 */
 	function &getEnabledConferenceTitles() {
 		if (Config::getVar('debug', 'deprecation_warnings')) trigger_error('Deprecated function.');
-		$titles =& $this->getConferenceTitles(true);
+		$titles =& $this->getTitles(true);
 		return $titles;
 	}
 
@@ -239,7 +240,7 @@ class ConferenceDAO extends DAO {
 	/**
 	 * Sequentially renumber conferences in their sequence order.
 	 */
-	function resequenceConferences() {
+	function resequence() {
 		$result =& $this->retrieve(
 			'SELECT conference_id FROM conferences ORDER BY seq'
 		);

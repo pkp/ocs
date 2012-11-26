@@ -217,7 +217,7 @@ class RegistrationExpiryReminder extends ScheduledTask {
 			$schedConf =& $schedConfs->next();
 
 			if(!$conference || $schedConf->getConferenceId() != $conference->getId()) {
-				$conference =& $conferenceDao->getConference($schedConf->getConferenceId());
+				$conference =& $conferenceDao->getById($schedConf->getConferenceId());
 			}
 
 			// Send reminders based on current date
@@ -247,7 +247,7 @@ class RegistrationExpiryReminder extends ScheduledTask {
 				$schedConf =& $schedConfs->next();
 
 				if(!$conference || $schedConf->getConferenceId() != $conference->getId()) {
-					$conference =& $conferenceDao->getConference($schedConf->getConferenceId());
+					$conference =& $conferenceDao->getById($schedConf->getConferenceId());
 				}
 
 				// Send reminders for simulated 31st day of short month
@@ -270,7 +270,7 @@ class RegistrationExpiryReminder extends ScheduledTask {
 				$schedConf =& $schedConfs->next();
 
 				if(!$conference || $schedConf->getConferenceId() != $conference->getId()) {
-					$conference =& $conferenceDao->getConference($schedConf->getConferenceId());
+					$conference =& $conferenceDao->getById($schedConf->getConferenceId());
 				}
 
 				// Send reminders for simulated 30th day of February
@@ -289,7 +289,7 @@ class RegistrationExpiryReminder extends ScheduledTask {
 					$schedConf =& $schedConfs->next();
 
 					if(!$conference || $schedConf->getConferenceId() != $conference->getId()) {
-						$conference =& $conferenceDao->getConference($schedConf->getConferenceId());
+						$conference =& $conferenceDao->getById($schedConf->getConferenceId());
 					}
 
 					// Send reminders for simulated 29th day of February

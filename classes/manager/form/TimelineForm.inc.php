@@ -241,12 +241,12 @@ class TimelineForm extends Form {
 
 		if ($schedConf->getStartDate() != $this->_data['siteStartDate']) {
 			$schedConf->setStartDate($this->_data['siteStartDate']);
-			$schedConfDao->updateSchedConf($schedConf);
+			$schedConfDao->updateObject($schedConf);
 		}
 
 		if ($schedConf->getEndDate() != $this->_data['siteEndDate']) {
 			$schedConf->setEndDate($this->_data['siteEndDate']);
-			$schedConfDao->updateSchedConf($schedConf);
+			$schedConfDao->updateObject($schedConf);
 		}
 
 		// Conference Information display flags

@@ -66,7 +66,7 @@ class IndexHandler extends Handler {
 			// by default, do it.
 
 			$site =& $request->getSite();
-			$conference = $conferenceDao->getConference($site->getRedirect());
+			$conference = $conferenceDao->getById($site->getRedirect());
 
 			if ($site->getRedirect() && $conference) {
 				$request->redirect($conference->getPath());
