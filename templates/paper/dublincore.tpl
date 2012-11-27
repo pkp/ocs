@@ -52,7 +52,7 @@
 	<meta name="DC.Rights" content="{$currentConference->getLocalizedSetting('copyrightNotice')|strip_tags|escape}"/>
 {/if}
 {* DC.Rights.accessRights *}
-	<meta name="DC.Source" content="{$currentSchedConf->getLocalizedTitle()|strip_tags|escape}"/>
+	<meta name="DC.Source" content="{$currentSchedConf->getLocalizedName()|strip_tags|escape}"/>
 	<meta name="DC.Source.URI" content="{url page="index"|strip_tags|escape}"/>
 {if $paper->getSubject(null)}{foreach from=$paper->getSubject(null) key=metaLocale item=metaValue}
 	{foreach from=$metaValue|explode:"; " item=dcSubject}

@@ -17,6 +17,6 @@
 	{$author->getLastName()|escape}, {$firstName|escape}{if $i==$authorCount-2}, {translate key="rt.context.and"} {elseif $i<$authorCount-1}, {else}.{/if}
 {/foreach}
 
-"{$paper->getLocalizedTitle()|strip_unsafe_html}" <em>{$conference->getLocalizedTitle()|escape}</em> ({$paper->getDatePublished()|date_format:'%Y'}):{if $paper->getPages()} {$paper->getPages()}{else} {translate key="plugins.citationFormats.mla.noPages"}{/if} {translate key="rt.captureCite.web"}. {$smarty.now|date_format:'%e %b. %Y'}
+"{$paper->getLocalizedTitle()|strip_unsafe_html}" <em>{$conference->getLocalizedName()|escape}</em> ({$paper->getDatePublished()|date_format:'%Y'}):{if $paper->getPages()} {$paper->getPages()}{else} {translate key="plugins.citationFormats.mla.noPages"}{/if} {translate key="rt.captureCite.web"}. {$smarty.now|date_format:'%e %b. %Y'}
 
 </div>

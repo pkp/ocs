@@ -109,7 +109,7 @@ class ConferenceOAI extends OAI {
 		$info = new OAIRepository();
 
 		if (isset($this->conference)) {
-			$info->repositoryName = $this->conference->getLocalizedTitle();
+			$info->repositoryName = $this->conference->getLocalizedName();
 			$info->adminEmail = $this->conference->getSetting('contactEmail');
 
 		} else {

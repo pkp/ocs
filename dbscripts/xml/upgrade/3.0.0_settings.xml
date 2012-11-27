@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE data SYSTEM "../../../lib/pkp/dtd/xmlData.dtd">
+
+<!--
+  * 3.0.0_settings.xml
+  *
+  * Copyright (c) 2003-2012 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * 3.0.0.0 updates for context settings.
+  -->
+<data>
+	<!-- Bug #8042: Improve standardization of context objects -->
+	<sql>
+		<query>UPDATE sched_conf_settings SET setting_name = 'name' WHERE setting_name = 'title'</query>
+		<query>UPDATE conference_settings SET setting_name = 'name' WHERE setting_name = 'title'</query>
+	</sql>
+</data>

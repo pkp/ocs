@@ -17,7 +17,7 @@
 	<h3>{translate key="about.currentConferences"}</h3>
 	<ul class="plain">
 		{iterate from=currentSchedConfs item=schedConf}
-			<li>&#187; <a href="{url schedConf=$schedConf->getPath()}">{$schedConf->getLocalizedTitle()}</a></li>
+			<li>&#187; <a href="{url schedConf=$schedConf->getPath()}">{$schedConf->getLocalizedName()}</a></li>
 		{/iterate}
 	</ul>
 {/if}

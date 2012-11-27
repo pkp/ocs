@@ -100,7 +100,7 @@ class MailTemplate extends PKPMailTemplate {
 		}
 
 		if ($schedConf && !Request::getUserVar('continued')) {
-			$this->setSubject('[' . $schedConf->getLocalizedSetting('acronym') . '] ' . $this->getSubject());
+			$this->setSubject('[' . $schedConf->getLocalizedAcronym() . '] ' . $this->getSubject());
 		}
 
 		$this->conference =& $conference;
@@ -127,7 +127,7 @@ class MailTemplate extends PKPMailTemplate {
 
 		if (isset($conference)) {
 			// FIXME Include affiliation, title, etc. in signature?
-			$paramArray['conferenceName'] = $conference->getLocalizedTitle();
+			$paramArray['conferenceName'] = $conference->getLocalizedName();
 		}
 		if (!isset($paramArray['conferenceUrl'])) $paramArray['conferenceUrl'] = Request::url(Request::getRequestedConferencePath(), Request::getRequestedSchedConfPath());
 

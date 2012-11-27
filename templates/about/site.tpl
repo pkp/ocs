@@ -19,7 +19,7 @@
 <h3>{translate key="conference.conferences"}</h3>
 <ul class="plain">
 {iterate from=conferences item=conference}
-	<li>&#187; <a href="{url conference=$conference->getPath() page="about" op="index"}">{$conference->getLocalizedTitle()|escape}</a></li>
+	<li>&#187; <a href="{url conference=$conference->getPath() page="about" op="index"}">{$conference->getLocalizedName()|escape}</a></li>
 {/iterate}
 </ul>
 

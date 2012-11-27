@@ -73,23 +73,6 @@ class SchedConf extends Context {
 	}
 
 	/**
-	 * Get the localized title of the scheduled conference
-	 * @return string
-	 */
-	function getLocalizedTitle() {
-		return $this->getLocalizedSetting('title');
-	}
-
-	/**
-	 * Get title of scheduled conference
-	 * @param $locale string
-	 * @return string
-	 */
-	function getTitle($locale) {
-		return $this->getSetting('title', $locale);
-	}
-
-	/**
 	 * Get conference ID of scheduled conference.
 	 * @return int
 	 */

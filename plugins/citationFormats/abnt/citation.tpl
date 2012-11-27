@@ -15,6 +15,6 @@
 	{assign var=firstName value=$author->getFirstName()}
 	{$author->getLastName()|escape|upper}, {$firstName|escape|truncate:1:"":true}.{if $i<$authorCount-1}; {/if}{/foreach}.
 {$paper->getLocalizedTitle()|strip_unsafe_html}.
-<strong>{$conference->getLocalizedTitle()|escape}</strong>, {translate key="plugins.citationFormat.abnt.location"},
+<strong>{$conference->getLocalizedName()|escape}</strong>, {translate key="plugins.citationFormat.abnt.location"},
 {$paper->getDatePublished()|date_format:'%b. %Y'|lower}. {translate key="plugins.citationFormats.abnt.retrieved" retrievedDate=$smarty.now|date_format:'%d %b. %Y' url=$paperUrl}.
 </div>

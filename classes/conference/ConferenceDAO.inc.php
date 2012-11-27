@@ -204,7 +204,7 @@ class ConferenceDAO extends DAO {
 		$conferences = array();
 		$conferenceIterator =& $this->getConferences($enabledOnly);
 		while ($conference =& $conferenceIterator->next()) {
-			$conferences[$conference->getId()] = $conference->getLocalizedTitle();
+			$conferences[$conference->getId()] = $conference->getLocalizedName();
 			unset($conference);
 		}
 		return $conferences;

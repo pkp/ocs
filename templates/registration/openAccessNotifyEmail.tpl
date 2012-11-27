@@ -6,7 +6,7 @@ Content-Transfer-Encoding: quoted-printable
 
 {$body}
 
-{$schedConf->getLocalizedTitle()}
+{$schedConf->getLocalizedName()}
 {translate key="schedConf.toc"}
 
 {foreach name=tracks from=$publishedPapers item=track key=trackId}
@@ -44,7 +44,7 @@ Content-Transfer-Encoding: quoted-printable
 
 	<p>{$body|escape|nl2br}</p>
 
-		<h3>{$schedConf->getLocalizedTitle()}<br />{translate key="schedConf.toc"}</h3>
+		<h3>{$schedConf->getLocalizedName()}<br />{translate key="schedConf.toc"}</h3>
 		{foreach name=tracks from=$publishedPapers item=track key=trackId}
 			{if $track.title}<h4>{$track.title|escape}</h4>{/if}
 

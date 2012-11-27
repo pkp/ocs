@@ -150,7 +150,7 @@ class SchedConfDAO extends DAO {
 		$schedConfs = array();
 		$schedConfIterator =& $this->getSchedConfs(false, $conferenceId);
 		while ($schedConf =& $schedConfIterator->next()) {
-			$schedConfs[$schedConf->getId()] = $schedConf->getLocalizedTitle();
+			$schedConfs[$schedConf->getId()] = $schedConf->getLocalizedName();
 			unset($schedConf);
 		}
 		return $schedConfs;

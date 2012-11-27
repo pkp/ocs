@@ -32,23 +32,6 @@ class Conference extends Context {
 	}
 
 	/**
-	 * Get the localized title of the conference.
-	 * @return string
-	 */
-	function getLocalizedTitle() {
-		return $this->getLocalizedSetting('title');
-	}
-
-	/**
-	 * Get title of conference
-	 * @param $locale string
-	 * @return string
-	 */
-	function getTitle($locale) {
-		return $this->getSetting('title', $locale);
-	}
-
-	/**
 	 * Get ID of conference.
 	 * @return int
 	 */

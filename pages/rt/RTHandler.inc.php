@@ -309,10 +309,10 @@ class RTHandler extends PaperHandler {
 				$primaryAuthor = $paper->getAuthors();
 				$primaryAuthor = $primaryAuthor[0];
 
-				$email->setSubject('[' . $schedConf->getLocalizedSetting('acronym') . '] ' . strip_tags($paper->getLocalizedTitle()));
+				$email->setSubject('[' . $schedConf->getLocalizedAcronym() . '] ' . strip_tags($paper->getLocalizedTitle()));
 				$email->assignParams(array(
 					'paperTitle' => strip_tags($paper->getLocalizedTitle()),
-					'schedConf' => $schedConf->getLocalizedTitle(),
+					'schedConf' => $schedConf->getLocalizedName(),
 					'authorName' => $primaryAuthor->getFullName(),
 					'paperUrl' => $router->url($request, null, null, 'paper', 'view', array($paper->getBestPaperId()))
 				));
@@ -355,7 +355,7 @@ class RTHandler extends PaperHandler {
 			$templateMgr->display('rt/sent.tpl');
 		} else {
 			if (!$request->getUserVar('continued')) {
-				$email->setSubject('[' . $schedConf->getLocalizedSetting('acronym') . '] ' . strip_tags($paper->getLocalizedTitle()));
+				$email->setSubject('[' . $schedConf->getLocalizedAcronym() . '] ' . strip_tags($paper->getLocalizedTitle()));
 				$authors =& $paper->getAuthors();
 				$author =& $authors[0];
 				$email->addRecipient($author->getEmail(), $author->getFullName());

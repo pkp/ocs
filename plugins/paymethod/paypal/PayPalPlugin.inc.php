@@ -180,7 +180,7 @@ class PayPalPlugin extends PaymethodPlugin {
 						if ($payPalDao->transactionExists($transactionId)) {
 							// A duplicate transaction was received; notify someone.
 							$mail->assignParams(array(
-								'schedConfName' => $schedConf->getLocalizedTitle(),
+								'schedConfName' => $schedConf->getLocalizedName(),
 								'postInfo' => print_r($_POST, true),
 								'additionalInfo' => "Duplicate transaction ID: $transactionId",
 								'serverVars' => print_r($_SERVER, true)
@@ -209,7 +209,7 @@ class PayPalPlugin extends PaymethodPlugin {
 							if (!$queuedPayment) {
 								// The queued payment entry is missing. Complain.
 								$mail->assignParams(array(
-									'schedConfName' => $schedConf->getLocalizedTitle(),
+									'schedConfName' => $schedConf->getLocalizedName(),
 									'postInfo' => print_r($_POST, true),
 									'additionalInfo' => "Missing queued payment ID: $queuedPaymentId",
 									'serverVars' => print_r($_SERVER, true)
@@ -225,7 +225,7 @@ class PayPalPlugin extends PaymethodPlugin {
 							) {
 								// The integrity checks for the transaction failed. Complain.
 								$mail->assignParams(array(
-									'schedConfName' => $schedConf->getLocalizedTitle(),
+									'schedConfName' => $schedConf->getLocalizedName(),
 									'postInfo' => print_r($_POST, true),
 									'additionalInfo' =>
 										"Granted amount: $grantedAmount\n" .
@@ -268,7 +268,7 @@ class PayPalPlugin extends PaymethodPlugin {
 
 								$paramArray = array(
 									'registrantName' => $registrantName,
-									'conferenceName' => $schedConf->getLocalizedTitle(),
+									'conferenceName' => $schedConf->getLocalizedName(),
 									'invoiceId' => $queuedPayment->getInvoiceId(),
 									'registrationContactSignature' => $registrationContactSignature
 								);
@@ -285,7 +285,7 @@ class PayPalPlugin extends PaymethodPlugin {
 
 							// If we're still here, it means the payment couldn't be fulfilled.
 							$mail->assignParams(array(
-								'schedConfName' => $schedConf->getLocalizedTitle(),
+								'schedConfName' => $schedConf->getLocalizedName(),
 								'postInfo' => print_r($_POST, true),
 								'additionalInfo' => "Queued payment ID $queuedPaymentId could not be fulfilled.",
 								'serverVars' => print_r($_SERVER, true)
@@ -299,7 +299,7 @@ class PayPalPlugin extends PaymethodPlugin {
 					default:
 						// An unhandled payment status was received; notify someone.
 						$mail->assignParams(array(
-							'schedConfName' => $schedConf->getLocalizedTitle(),
+							'schedConfName' => $schedConf->getLocalizedName(),
 							'postInfo' => print_r($_POST, true),
 							'additionalInfo' => "Payment status: $paymentStatus",
 							'serverVars' => print_r($_SERVER, true)
@@ -309,7 +309,7 @@ class PayPalPlugin extends PaymethodPlugin {
 				} else {
 					// An unknown confirmation response was received; notify someone.
 					$mail->assignParams(array(
-						'schedConfName' => $schedConf->getLocalizedTitle(),
+						'schedConfName' => $schedConf->getLocalizedName(),
 						'postInfo' => print_r($_POST, true),
 						'additionalInfo' => "Confirmation return: $ret\nCURL error: $curlError",
 						'serverVars' => print_r($_SERVER, true)

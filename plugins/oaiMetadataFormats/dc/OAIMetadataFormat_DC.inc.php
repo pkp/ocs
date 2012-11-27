@@ -31,7 +31,7 @@ class OAIMetadataFormat_DC extends OAIMetadataFormat {
 		$galleys =& $record->getData('galleys');
 
 		// Add page information to sources
-		$sources = array($conference->getLocalizedTitle() . '; ' . $schedConf->getLocalizedTitle());
+		$sources = array($conference->getLocalizedName() . '; ' . $schedConf->getLocalizedName());
 		if ($paper->getPages() != '') foreach ($sources as $a => $b) {
 			$sources[$a] .= '; ' . $paper->getPages();
 		}

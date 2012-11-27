@@ -21,7 +21,7 @@
 	<ul class="plain">
 	{if $conferences|@count>1 && !$currentConference}
 		{foreach from=$conferences item=conference}
-			<li><a href="{url conference=$conference->getPath() page="about" op="siteMap"}">{$conference->getLocalizedTitle()|escape}</a></li>
+			<li><a href="{url conference=$conference->getPath() page="about" op="siteMap"}">{$conference->getLocalizedName()|escape}</a></li>
 		{/foreach}
 	{else}
 		{if $conferences|@count==1}
@@ -32,7 +32,7 @@
 			{assign var=onlyOneConference value=1}
 		{/if}
 
-		<li><a href="{url conference=$currentConference->getPath()}">{$currentConference->getLocalizedTitle()|escape}</a><br/>
+		<li><a href="{url conference=$currentConference->getPath()}">{$currentConference->getLocalizedName()|escape}</a><br/>
 			<ul class="plain">
 				<li><a href="{url conference=$currentConference->getPath() page="about"}">{translate key="navigation.about"}</a></li>
 				<li>

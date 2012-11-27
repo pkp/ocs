@@ -41,7 +41,7 @@
 <div id="currentConfs">
 <h3>{translate key="manager.currentConferences"}</h3>
 {iterate from=schedConfs item=schedConf}
-	<h4>{$schedConf->getLocalizedTitle()}</h4>
+	<h4>{$schedConf->getLocalizedName()}</h4>
 	<ul class="plain">
 		<li>&#187; <a href="{url schedConf=$schedConf->getPath() page="manager" op="schedConfSetup"}">{translate key="manager.schedConfSetup"}</a></li>
 		<li>&#187; <a href="{url schedConf=$schedConf->getPath() page="manager" op="timeline"}">{translate key="manager.timeline"}</a></li>

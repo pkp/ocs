@@ -18,7 +18,7 @@ AU  - {$author->getFullName(true)|escape}
 {/foreach}
 PY  - {$paper->getDatePublished()|date_format:"%Y"}
 TI  - {$paper->getLocalizedTitle()|strip_tags}
-JF  - {$conference->getLocalizedTitle()|escape}; {$schedConf->getLocalizedTitle()|escape}
+JF  - {$conference->getLocalizedName()|escape}; {$schedConf->getLocalizedName()|escape}
 Y2  - {$paper->getDatePublished()|date_format:"%Y"}
 KW  - {$paper->getLocalizedSubject()|replace:';':','|escape}
 N2  - {$paper->getLocalizedAbstract()|strip_tags|replace:"\n":" "|replace:"\r":" "}

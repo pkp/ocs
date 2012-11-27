@@ -210,9 +210,9 @@ class TrackDirectorHandler extends Handler {
 		$templateMgr->assign('helpTopicId', $isDirector ? 'editorial.directorsRole' : 'editorial.trackDirectorsRole');
 
 		if ($schedConf) {
-			$pageHierarchy[] = array($request->url(null, null, 'index'), $schedConf->getLocalizedTitle(), true);
+			$pageHierarchy[] = array($request->url(null, null, 'index'), $schedConf->getLocalizedName(), true);
 		} elseif ($conference) {
-			$pageHierarchy[] = array($request->url(null, 'index', 'index'), $conference->getLocalizedTitle(), true);
+			$pageHierarchy[] = array($request->url(null, 'index', 'index'), $conference->getLocalizedName(), true);
 		}
 
 		$roleSymbolic = $isDirector ? 'director' : 'trackDirector';

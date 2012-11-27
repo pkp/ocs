@@ -31,7 +31,7 @@ class ConferenceSiteSettingsForm extends Form {
 		$this->conferenceId = isset($conferenceId) ? (int) $conferenceId : null;
 
 		// Validation checks for this form
-		$this->addCheck(new FormValidatorLocale($this, 'title', 'required', 'admin.conferences.form.titleRequired'));
+		$this->addCheck(new FormValidatorLocale($this, 'name', 'required', 'admin.conferences.form.titleRequired'));
 		$this->addCheck(new FormValidator($this, 'conferencePath', 'required', 'admin.conferences.form.pathRequired'));
 		$this->addCheck(new FormValidatorAlphaNum($this, 'conferencePath', 'required', 'admin.conferences.form.pathAlphaNumeric'));
 		$this->addCheck(new FormValidatorCustom($this, 'conferencePath', 'required', 'admin.conferences.form.pathExists', create_function('$path,$form,$conferenceDao', 'return !$conferenceDao->conferenceExistsByPath($path) || ($form->getData(\'oldPath\') != null && $form->getData(\'oldPath\') == $path);'), array(&$this, DAORegistry::getDAO('ConferenceDAO'))));
@@ -58,7 +58,7 @@ class ConferenceSiteSettingsForm extends Form {
 
 			if ($conference != null) {
 				$this->_data = array(
-					'title' => $conference->getTitle(null), // Localized
+					'name' => $conference->getName(null), // Localized
 					'description' => $conference->getDescription(null), // Localized
 					'conferencePath' => $conference->getPath(),
 					'enabled' => $conference->getEnabled()
@@ -80,14 +80,14 @@ class ConferenceSiteSettingsForm extends Form {
 	 * @return array
 	 */
 	function getLocaleFieldNames() {
-		return array('title', 'description');
+		return array('name', 'description');
 	}
 
 	/**
 	 * Assign form data to user-submitted data.
 	 */
 	function readInputData() {
-		$this->readUserVars(array('title', 'description', 'conferencePath', 'enabled'));
+		$this->readUserVars(array('name', 'description', 'conferencePath', 'enabled'));
 		$this->setData('enabled', (int)$this->getData('enabled'));
 
 		if (isset($this->conferenceId)) {
@@ -149,7 +149,7 @@ class ConferenceSiteSettingsForm extends Form {
 
 			// Install default conference settings
 			$conferenceSettingsDao =& DAORegistry::getDAO('ConferenceSettingsDAO');
-			$titles = $this->getData('title');
+			$names = $this->getData('name');
 			AppLocale::requireComponents(LOCALE_COMPONENT_OCS_DEFAULT);
 			$conferenceSettingsDao->installSettings($conferenceId, Config::getVar('general', 'registry_dir') . '/conferenceSettings.xml', array(
 				'privacyStatementUrl' => Request::url($this->getData('conferencePath'), 'index', 'about', 'submissions', null, null, 'privacyStatement'),
@@ -159,7 +159,7 @@ class ConferenceSiteSettingsForm extends Form {
 				'primaryLocale' => $site->getPrimaryLocale(),
 				'aboutUrl' => Request::url($this->getData('conferencePath'), 'index', 'about', null),
 				'accountUrl' => Request::url($this->getData('conferencePath'), 'index', 'user', 'register'),
-				'conferenceName' => $titles[$site->getPrimaryLocale()]
+				'conferenceName' => $names[$site->getPrimaryLocale()]
 			));
 
 			// Install the default RT versions.
@@ -168,7 +168,7 @@ class ConferenceSiteSettingsForm extends Form {
 			$conferenceRtAdmin->restoreVersions(false);
 		}
 
-		$conference->updateSetting('title', $this->getData('title'), 'string', true);
+		$conference->updateSetting('name', $this->getData('name'), 'string', true);
 		$conference->updateSetting('description', $this->getData('description'), 'string', true);
 
 

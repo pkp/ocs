@@ -17,9 +17,9 @@
 {iterate from=conferences item=conference}
 	<li>
 		{if $source}
-			<a href="{url conference=$conference->getPath() page="user" op="account" source=$source|escape}">{$conference->getLocalizedTitle()|escape}</a>
+			<a href="{url conference=$conference->getPath() page="user" op="account" source=$source|escape}">{$conference->getLocalizedName()|escape}</a>
 		{else}
-			<a href="{url conference=$conference->getPath() page="user" op="account"}">{$conference->getLocalizedTitle()|escape}</a>
+			<a href="{url conference=$conference->getPath() page="user" op="account"}">{$conference->getLocalizedName()|escape}</a>
 		{/if}
 	</li>
 {/iterate}

@@ -35,8 +35,8 @@ $(document).ready(function() { setupTableDND("#adminSchedConfs", "moveSchedConf"
 	</tr>
 	{iterate from=schedConfs item=schedConf}
 	<tr valign="top" id="schedConf-{$schedConf->getId()}" class="data">
-		<td><a class="action" href="{url schedConf=$schedConf->getPath() page="manager"}">{$schedConf->getLocalizedTitle()|escape}</a></td>
-		<td class="drag">{$schedConf->getLocalizedSetting('acronym')|escape|default:"&mdash;"}</td>
+		<td><a class="action" href="{url schedConf=$schedConf->getPath() page="manager"}">{$schedConf->getLocalizedName()|escape}</a></td>
+		<td class="drag">{$schedConf->getLocalizedAcronym()|escape|default:"&mdash;"}</td>
 		<td><a href="{url op="moveSchedConf" d=u id=$schedConf->getId()}">&uarr;</a> <a href="{url op="moveSchedConf" d=d id=$schedConf->getId()}">&darr;</a></td>
 		<td align="right">
 			<a href="{url op="editSchedConf" path=$conference->getId()|to_array:$schedConf->getId()}" class="action">{translate key="common.edit"}</a>

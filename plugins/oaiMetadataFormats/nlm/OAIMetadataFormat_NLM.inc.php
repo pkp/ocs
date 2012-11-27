@@ -55,7 +55,7 @@ class OAIMetadataFormat_NLM extends OAIMetadataFormat {
 			"\t<front>\n" .
 			"\t\t<journal-meta>\n" .
 			"\t\t\t<journal-id journal-id-type=\"other\">" . htmlspecialchars(Core::cleanVar(($s = Config::getVar('oai', 'nlm_journal_id'))!=''?$s:$conference->getPath() . '-' . $schedConf->getPath())) . "</journal-id>\n" .
-			"\t\t\t<journal-title>" . htmlspecialchars(Core::cleanVar($schedConf->getLocalizedTitle())) . "</journal-title>\n";
+			"\t\t\t<journal-title>" . htmlspecialchars(Core::cleanVar($schedConf->getLocalizedName())) . "</journal-title>\n";
 
 		// Include translated scheduled conference titles
 		foreach ($schedConf->getTitle(null) as $locale => $title) {
@@ -153,7 +153,7 @@ class OAIMetadataFormat_NLM extends OAIMetadataFormat {
 		$response .=
 			"\t\t\t<conference>\n" .
 			"\t\t\t\t<conf-date>" . strftime('%Y-%m-%d', $schedConf->getSetting('startDate')) . "</conf-date>\n" .
-			"\t\t\t\t<conf-name>" . htmlspecialchars(Core::cleanVar($schedConf->getLocalizedTitle())) . "</conf-name>\n" .
+			"\t\t\t\t<conf-name>" . htmlspecialchars(Core::cleanVar($schedConf->getLocalizedName())) . "</conf-name>\n" .
 			"\t\t\t\t<conf-acronym>" . htmlspecialchars(Core::cleanVar($schedConf->getLocalizedAcronym())) . "</conf-acronym>\n" .
 			(!empty($confLoc)?"\t\t\t\t<conf-loc>" . htmlspecialchars(Core::cleanVar($confLoc)) . "</conf-loc>\n":'') .
 			"\t\t\t</conference>\n" .

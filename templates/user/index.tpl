@@ -23,7 +23,7 @@
 {foreach from=$userConferences item=conference}
 {assign var="hasRole" value=1}
 <div id="conference-{$conference->getPath()|escape}">
-<h4><a href="{url conference=$conference->getPath() page="user"}">{$conference->getLocalizedTitle()|escape}</a></h4>
+<h4><a href="{url conference=$conference->getPath() page="user"}">{$conference->getLocalizedName()|escape}</a></h4>
 	{assign var="conferenceId" value=$conference->getId()}
 	{assign var="conferencePath" value=$conference->getPath()}
 	{* Display conference roles *}
@@ -45,7 +45,7 @@
 		<div id="schedConf-{$conference->getPath()|escape}-{$schedConf->getPath()|escape}">
 		{assign var="schedConfId" value=$schedConf->getId()}
 		{assign var="schedConfPath" value=$schedConf->getPath()}
-		<h5><a href="{url conference=$conference->getPath() schedConf=$schedConf->getPath() page="index"}">{$schedConf->getLocalizedTitle()|escape}</a></h5>
+		<h5><a href="{url conference=$conference->getPath() schedConf=$schedConf->getPath() page="index"}">{$schedConf->getLocalizedName()|escape}</a></h5>
 
 		<table width="100%" class="info">
 			{if $isValid.Director.$conferenceId.$schedConfId}
@@ -131,11 +131,11 @@
 	{if !$currentSchedConf}
 		<p>{translate key="user.noRoles.chooseConference"}</p>
 		{foreach from=$allConferences item=thisConference key=conferenceId}
-			<h4>{$thisConference->getLocalizedTitle()|escape}</h4>
+			<h4>{$thisConference->getLocalizedName()|escape}</h4>
 			{if !empty($allSchedConfs[$conferenceId])}
 			<ul class="plain">
 			{foreach from=$allSchedConfs[$conferenceId] item=thisSchedConf key=schedConfId}
-				<li>&#187; <a href="{url conference=$thisConference->getPath() schedConf=$thisSchedConf->getPath() page="user" op="index"}">{$thisSchedConf->getLocalizedTitle()|escape}</a></li>
+				<li>&#187; <a href="{url conference=$thisConference->getPath() schedConf=$thisSchedConf->getPath() page="user" op="index"}">{$thisSchedConf->getLocalizedName()|escape}</a></li>
 			{/foreach}
 			</ul>
 			{/if}{* !empty($allSchedConfs[$conferenceId]) *}

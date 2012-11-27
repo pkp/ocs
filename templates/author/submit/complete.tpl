@@ -12,7 +12,7 @@
 {include file="common/header.tpl"}
 {/strip}
 <div id="submissionComplete">
-<p>{translate key="author.submit.submissionComplete" conferenceTitle=$conference->getLocalizedTitle()}</p>
+<p>{translate key="author.submit.submissionComplete" conferenceTitle=$conference->getLocalizedName()}</p>
 
 <p>&#187; <a href="{url page="author"}">{translate key="author.track"}</a></p>
 </div>

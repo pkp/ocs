@@ -476,7 +476,7 @@ class OAIDAO extends DAO {
 		// FIXME Set descriptions
 		$sets = array();
 		foreach ($conferences as $conference) {
-			$title = $conference->getLocalizedTitle();
+			$title = $conference->getLocalizedName();
 			$abbrev = $conference->getPath();
 			array_push($sets, new OAISet($abbrev, $title, ''));
 

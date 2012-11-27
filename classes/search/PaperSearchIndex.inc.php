@@ -264,7 +264,7 @@ class PaperSearchIndex {
 			$schedConf =& $schedConfs->next();
 			$numIndexed = 0;
 
-			if ($log) echo "Indexing \"", $schedConf->getLocalizedTitle(), "\" ... ";
+			if ($log) echo "Indexing \"", $schedConf->getLocalizedName(), "\" ... ";
 
 			$papers =& $paperDao->getPapersBySchedConfId($schedConf->getId());
 			while (!$papers->eof()) {

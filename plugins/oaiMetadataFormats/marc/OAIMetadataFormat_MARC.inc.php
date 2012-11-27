@@ -28,7 +28,7 @@ class OAIMetadataFormat_MARC extends OAIMetadataFormat {
 		$galleys =& $record->getData('galleys');
 
 		// Add page information to sources
-		$source = $conference->getLocalizedTitle() . '; ' . $schedConf->getLocalizedTitle();
+		$source = $conference->getLocalizedName() . '; ' . $schedConf->getLocalizedNameTitle();
 		if ($paper->getPages() != '') {
 			$source .= '; ' . $paper->getPages();
 		}
@@ -52,7 +52,7 @@ class OAIMetadataFormat_MARC extends OAIMetadataFormat {
 		);
 
 		// Publishers
-		$publisher = $conference->getLocalizedTitle(); // Default
+		$publisher = $conference->getLocalizedName(); // Default
 		$publisherInstitution = $conference->getSetting('publisherInstitution');
 		if (!empty($publisherInstitution)) {
 			$publisher = $publisherInstitution;

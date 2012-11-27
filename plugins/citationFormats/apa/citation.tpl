@@ -18,6 +18,6 @@
 
 ({$paper->getDatePublished()|date_format:'%Y'}).
 {$apaCapitalized|strip_unsafe_html}. {translate key="search.inField"}
-<em>{$conference->getLocalizedTitle()|escape}</em>{if $paper->getPages()} (pp. {$paper->getPages()}){/if}.
+<em>{$conference->getLocalizedName()|escape}</em>{if $paper->getPages()} (pp. {$paper->getPages()}){/if}.
 {translate key="plugins.citationFormats.apa.retrieved" url=$paperUrl}
 </div>

@@ -127,7 +127,7 @@ class NLMExportDom {
 		$conferenceNode =& XMLCustomWriter::createElement($doc, 'Author');
 		XMLCustomWriter::appendChild($authorListNode, $conferenceNode);
 
-		XMLCustomWriter::createChildWithText($doc, $conferenceNode, 'CollectiveName', $conference->getLocalizedTitle());
+		XMLCustomWriter::createChildWithText($doc, $conferenceNode, 'CollectiveName', $conference->getLocalizedName());
 
 		// OtherInformation element goes here with location for current conference
 

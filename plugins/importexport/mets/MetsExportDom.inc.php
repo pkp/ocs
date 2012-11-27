@@ -156,7 +156,7 @@ class MetsExportDom {
 		XMLCustomWriter::setAttribute($mods, 'xmlns:mods', 'http://www.loc.gov/mods/v3');
 		XMLCustomWriter::setAttribute($root, 'xsi:schemaLocation', str_replace(' http://www.loc.gov/mods/v3 http://www.loc.gov/standards/mods/v3/mods-3-0.xsd', '', $root->getAttribute('xsi:schemaLocation')) . ' http://www.loc.gov/mods/v3 http://www.loc.gov/standards/mods/v3/mods-3-0.xsd');
 		$titleInfo =& XMLCustomWriter::createElement($doc, 'mods:titleInfo');
-		XMLCustomWriter::createChildWithText($doc, $titleInfo, 'mods:title', $conference->getLocalizedTitle());
+		XMLCustomWriter::createChildWithText($doc, $titleInfo, 'mods:title', $conference->getLocalizedName());
 		XMLCustomWriter::appendChild($mods, $titleInfo);
 		XMLCustomWriter::createChildWithText($doc, $mods, 'mods:genre', 'series');
 		XMLCustomWriter::appendChild($xmlData, $mods);
@@ -178,7 +178,7 @@ class MetsExportDom {
 		XMLCustomWriter::setAttribute($mods, 'xmlns:mods', 'http://www.loc.gov/mods/v3');
 		XMLCustomWriter::setAttribute($root, 'xsi:schemaLocation', str_replace(' http://www.loc.gov/mods/v3 http://www.loc.gov/standards/mods/v3/mods-3-0.xsd', '', $root->getAttribute('xsi:schemaLocation')) . ' http://www.loc.gov/mods/v3 http://www.loc.gov/standards/mods/v3/mods-3-0.xsd');
 		$titleInfo =& XMLCustomWriter::createElement($doc, 'mods:titleInfo');
-		XMLCustomWriter::createChildWithText($doc, $titleInfo, 'mods:title', $schedConf->getLocalizedTitle());
+		XMLCustomWriter::createChildWithText($doc, $titleInfo, 'mods:title', $schedConf->getLocalizedName());
 		XMLCustomWriter::appendChild($mods, $titleInfo);
 		XMLCustomWriter::createChildWithText($doc, $mods, 'mods:genre', 'conference');
 		if($schedConf->getStartDate() != '' || $schedConf->getEndDate() != ''){

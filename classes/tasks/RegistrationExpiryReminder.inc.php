@@ -35,7 +35,7 @@ class RegistrationExpiryReminder extends ScheduledTask {
 		$userDao =& DAORegistry::getDAO('UserDAO');
 		$registrationTypeDao =& DAORegistry::getDAO('RegistrationTypeDAO');
 
-		$schedConfName = $schedConf->getLocalizedTitle();
+		$schedConfName = $schedConf->getLocalizedName();
 		$schedConfId = $schedConf->getId();
 		$user =& $userDao->getById($registration->getUserId());
 		if (!isset($user)) return false;

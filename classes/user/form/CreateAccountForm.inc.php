@@ -112,8 +112,8 @@ class CreateAccountForm extends Form {
 		$templateMgr->assign('allowRegReviewer', SchedConfAction::allowRegReviewer($schedConf));
 		$templateMgr->assign('source', Request::getUserVar('source'));
 		$templateMgr->assign('pageHierarchy', array(
-			array(Request::url(null, 'index', 'index'), $conference->getLocalizedTitle(), true),
-			array(Request::url(null, null, 'index'), $schedConf->getLocalizedTitle(), true)));
+			array(Request::url(null, 'index', 'index'), $conference->getLocalizedName(), true),
+			array(Request::url(null, null, 'index'), $schedConf->getLocalizedName(), true)));
 
 		$site =& Request::getSite();
 		$templateMgr->assign('availableLocales', $site->getSupportedLocaleNames());

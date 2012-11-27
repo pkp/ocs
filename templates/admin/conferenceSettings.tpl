@@ -37,8 +37,8 @@
 		</tr>
 	{/if}
 	<tr valign="top">
-		<td width="20%" class="label">{fieldLabel name="title" key="manager.setup.conferenceTitle" required="true"}</td>
-		<td width="80%" class="value"><input type="text" id="title" name="title[{$formLocale|escape}]" value="{$title[$formLocale]|escape}" size="40" maxlength="120" class="textField" /></td>
+		<td width="20%" class="label">{fieldLabel name="name" key="manager.setup.conferenceTitle" required="true"}</td>
+		<td width="80%" class="value"><input type="text" id="name" name="name[{$formLocale|escape}]" value="{$name[$formLocale]|escape}" size="40" maxlength="120" class="textField" /></td>
 	</tr>
 	<tr valign="top">
 		<td class="label">{fieldLabel name="description" key="admin.conferences.conferenceDescription"}</td>

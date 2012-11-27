@@ -16,7 +16,7 @@
 
 <ul class="plain">
 {foreach from=$conferences item=conference}
-<li>&#187; <a href="{url conference=$conference->getPath() schedConf="index" page="rtadmin"}">{$conference->getLocalizedTitle()|escape}</a></li>
+<li>&#187; <a href="{url conference=$conference->getPath() schedConf="index" page="rtadmin"}">{$conference->getLocalizedName()|escape}</a></li>
 {/foreach}
 </ul>
 </div>

@@ -33,7 +33,7 @@ class SchedConfSettingsForm extends Form {
 		$this->schedConfId = $args[1];
 
 		// Validation checks for this form
-		$this->addCheck(new FormValidatorLocale($this, 'title', 'required', 'manager.schedConfs.form.titleRequired'));
+		$this->addCheck(new FormValidatorLocale($this, 'name', 'required', 'manager.schedConfs.form.titleRequired'));
 		$this->addCheck(new FormValidatorLocale($this, 'acronym', 'required', 'manager.schedConfs.form.acronymRequired'));
 		$this->addCheck(new FormValidator($this, 'schedConfPath', 'required', 'manager.schedConfs.form.pathRequired'));
 		$this->addCheck(new FormValidatorAlphaNum($this, 'schedConfPath', 'required', 'manager.schedConfs.form.pathAlphaNumeric'));
@@ -63,7 +63,7 @@ class SchedConfSettingsForm extends Form {
 			if($schedConf != null) {
 				$this->_data = array(
 					'conferenceId' => $schedConf->getConferenceId(),
-					'title' => $schedConf->getTitle(null), // Localized
+					'name' => $schedConf->getName(null), // Localized
 					'schedConfPath' => $schedConf->getPath(),
 					'acronym' => $schedConf->getAcronym(null) // Localized
 				);
@@ -90,7 +90,7 @@ class SchedConfSettingsForm extends Form {
 	 * Assign form data to user-submitted data.
 	 */
 	function readInputData() {
-		$this->readUserVars(array('conferenceId', 'acronym', 'title', 'schedConfPath'));
+		$this->readUserVars(array('conferenceId', 'acronym', 'name', 'schedConfPath'));
 
 		if (isset($this->schedConfId)) {
 			$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
@@ -104,7 +104,7 @@ class SchedConfSettingsForm extends Form {
 	 * @return array
 	 */
 	function getLocaleFieldNames() {
-		return array('title', 'acronym');
+		return array('name', 'acronym');
 	}
 
 	/**
@@ -148,18 +148,18 @@ class SchedConfSettingsForm extends Form {
 			// Install default scheduled conference settings
 			$schedConfSettingsDao =& DAORegistry::getDAO('SchedConfSettingsDAO');
 
-			$title = $this->getData('title');
-			$title = $title[$this->getFormLocale()];
+			$name = $this->getData('name');
+			$name = $name[$this->getFormLocale()];
 
 			AppLocale::requireComponents(LOCALE_COMPONENT_APPLICATION_COMMON, LOCALE_COMPONENT_OCS_DEFAULT);
 			$schedConfSettingsDao->installSettings($schedConfId, Config::getVar('general', 'registry_dir') . '/schedConfSettings.xml', array(
 				'authorGuidelinesUrl' => Request::url($conference->getPath(), $this->getData('schedConfPath'), 'about', 'submissions', null, null, 'authorGuidelines'),
 				'indexUrl' => Request::getIndexUrl(),
 				'conferencePath' => $conference->getPath(),
-				'conferenceName' => $conference->getLocalizedTitle(),
+				'conferenceName' => $conference->getLocalizedName(),
 				'schedConfPath' => $this->getData('schedConfPath'),
 				'schedConfUrl' => Request::url($conference->getPath(), $this->getData('schedConfPath'), 'index'),
-				'schedConfName' => $title
+				'schedConfName' => $name
 			));
 
 			// Create a default "Papers" track
@@ -174,7 +174,7 @@ class SchedConfSettingsForm extends Form {
 			$trackDao->insertTrack($track);
 		}
 
-		$schedConf->updateSetting('title', $this->getData('title'), 'string', true);
+		$schedConf->updateSetting('name', $this->getData('name'), 'string', true);
 		$schedConf->updateSetting('acronym', $this->getData('acronym'), 'string', true);
 
 		HookRegistry::call('SchedConfSettingsForm::execute', array(&$this, &$conference, &$schedConf, &$track));
