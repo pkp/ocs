@@ -130,7 +130,7 @@ class RoleDAO extends DAO {
 		);
 
 		while (!$result->EOF) {
-			$roles[] =& $this->_returnRoleFromRow($result->GetRowAssoc(false));
+			$roles[] = $this->_returnRoleFromRow($result->GetRowAssoc(false));
 			$result->moveNext();
 		}
 
