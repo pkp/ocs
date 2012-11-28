@@ -36,7 +36,7 @@ class ManagerSchedConfHandler extends ManagerHandler {
 
 		$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
 		while (true) {
-			$schedConfs =& $schedConfDao->getSchedConfs(false, $conference->getId(), $rangeInfo);
+			$schedConfs = $schedConfDao->getAll(false, $conference->getId(), $rangeInfo);
 			if ($schedConfs->isInBounds()) break;
 			unset($rangeInfo);
 			$rangeInfo =& $schedConfs->getLastPageRangeInfo();
@@ -128,14 +128,14 @@ class ManagerSchedConfHandler extends ManagerHandler {
 
 		if (isset($args) && !empty($args) && !empty($args[0])) {
 			$schedConfId = $args[0];
-			$schedConf =& $schedConfDao->getSchedConf($schedConfId);
+			$schedConf = $schedConfDao->getById($schedConfId);
 
 			// Look up the scheduled conference path before we delete the scheduled conference.
 			import('classes.file.PublicFileManager');
 			$publicFileManager = new PublicFileManager();
 			$schedConfFilesPath = $publicFileManager->getSchedConfFilesPath($schedConfId);
 
-			if ($schedConfDao->deleteSchedConfById($schedConfId)) {
+			if ($schedConfDao->deleteId($schedConfId)) {
 				// Delete scheduled conference file tree
 				// FIXME move this somewhere better.
 				import('lib.pkp.classes.file.FileManager');
@@ -159,7 +159,7 @@ class ManagerSchedConfHandler extends ManagerHandler {
 		$conference =& $request->getConference();
 
 		$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
-		$schedConf =& $schedConfDao->getSchedConf($request->getUserVar('id'), $conference->getId());
+		$schedConf = $schedConfDao->getById($request->getUserVar('id'), $conference->getId());
 		$direction = $request->getUserVar('d');
 
 		if ($schedConf != null) {

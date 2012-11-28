@@ -259,7 +259,7 @@ class PaperSearchIndex {
 		$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
 		$paperDao =& DAORegistry::getDAO('PaperDAO');
 
-		$schedConfs =& $schedConfDao->getSchedConfs();
+		$schedConfs = $schedConfDao->getAll();
 		while (!$schedConfs->eof()) {
 			$schedConf =& $schedConfs->next();
 			$numIndexed = 0;

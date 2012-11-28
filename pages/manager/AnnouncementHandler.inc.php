@@ -33,7 +33,7 @@ class AnnouncementHandler extends PKPAnnouncementHandler {
  		$conferenceId = $this->getContextId($request);
 		if ($conferenceId) {
 			$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
-			$schedConfs =& $schedConfDao->getSchedConfs(false, $conferenceId);
+			$schedConfs = $schedConfDao->getAll(false, $conferenceId);
 			$schedConfNames = array(0 => __('common.all'));
 			foreach($schedConfs->toArray() as $schedConf) {
 				$schedConfNames[$schedConf->getId()] = $schedConf->getLocalizedName();
@@ -118,7 +118,7 @@ class AnnouncementHandler extends PKPAnnouncementHandler {
 		// if its a schedConf announcements, make sure it is for a schedConf that belongs to the current conference
 		if ($announcement->getAssocType() == ASSOC_TYPE_SCHED_CONF) {
 			$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
-			$schedConf =& $schedConfDao->getSchedConf($announcement->getAssocId());
+			$schedConf = $schedConfDao->getById($announcement->getAssocId());
 			if ($schedConf
 				&& $conferenceId
 				&& $schedConf->getConferenceId() == $conferenceId)

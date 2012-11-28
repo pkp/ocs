@@ -13,47 +13,23 @@
  * @brief Operations for retrieving and modifying Conference objects.
  */
 
+import('lib.pkp.classes.core.ContextDAO');
+import('classes.conference.Conference');
 
-import ('classes.conference.Conference');
-
-class ConferenceDAO extends DAO {
+class ConferenceDAO extends ContextDAO {
 	/**
-	 * Retrieve a conference by ID.
-	 * @param $conferenceId int
-	 * @return Conference
+	 * Constructor
 	 */
-	function &getById($conferenceId) {
-		$result =& $this->retrieve(
-			'SELECT * FROM conferences WHERE conference_id = ?',
-			(int) $conferenceId
-		);
-
-		$returner = null;
-		if ($result->RecordCount() != 0) {
-			$returner =& $this->_returnConferenceFromRow($result->GetRowAssoc(false));
-		}
-		$result->Close();
-		unset($result);
-		return $returner;
+	function ConferenceDAO() {
+		parent::ContextDAO();
 	}
 
 	/**
-	 * Retrieve a conference by path.
-	 * @param $path string
+	 * Create a new data object.
 	 * @return Conference
 	 */
-	function &getByPath($path) {
-		$returner = null;
-		$result =& $this->retrieve(
-			'SELECT * FROM conferences WHERE path = ?', $path
-		);
-
-		if ($result->RecordCount() != 0) {
-			$returner =& $this->_returnConferenceFromRow($result->GetRowAssoc(false));
-		}
-		$result->Close();
-		unset($result);
-		return $returner;
+	function newDataObject() {
+		return new Conference();
 	}
 
 	/**
@@ -61,16 +37,11 @@ class ConferenceDAO extends DAO {
 	 * @param $row array
 	 * @return Conference
 	 */
-	function &_returnConferenceFromRow(&$row) {
-		$conference = new Conference();
-		$conference->setConferenceId($row['conference_id']);
-		$conference->setPath($row['path']);
-		$conference->setSequence($row['seq']);
-		$conference->setEnabled($row['enabled']);
+	function _fromRow($row) {
+		$conference = parent::_fromRow($row);
 		$conference->setPrimaryLocale($row['primary_locale']);
-
+		$conference->setEnabled($row['enabled']);
 		HookRegistry::call('ConferenceDAO::_returnConferenceFromRow', array(&$conference, &$row));
-
 		return $conference;
 	}
 
@@ -87,12 +58,12 @@ class ConferenceDAO extends DAO {
 			array(
 				$conference->getPrimaryLocale(),
 				$conference->getPath(),
-				$conference->getSequence() == null ? 0 : $conference->getSequence(),
-				$conference->getEnabled() ? 1 : 0
+				(int) $conference->getSequence(),
+				(int) $conference->getEnabled()
 			)
 		);
 
-		$conference->setConferenceId($this->getInsertConferenceId());
+		$conference->setId($this->getInsertId());
 		return $conference->getId();
 	}
 
@@ -112,26 +83,18 @@ class ConferenceDAO extends DAO {
 			array(
 				$conference->getPrimaryLocale(),
 				$conference->getPath(),
-				$conference->getSequence(),
-				$conference->getEnabled() ? 1 : 0,
-				$conference->getId()
+				(int) $conference->getSequence(),
+				(int) $conference->getEnabled(),
+				(int) $conference->getId()
 			)
 		);
-	}
-
-	/**
-	 * Delete a conference, INCLUDING ALL DEPENDENT ITEMS.
-	 * @param $conference Conference
-	 */
-	function deleteConference(&$conference) {
-		return $this->deleteConferenceById($conference->getId());
 	}
 
 	/**
 	 * Delete a conference by ID, INCLUDING ALL DEPENDENT ITEMS.
 	 * @param $conferenceId int
 	 */
-	function deleteConferenceById($conferenceId) {
+	function deleteById($conferenceId) {
 		$conferenceSettingsDao =& DAORegistry::getDAO('ConferenceSettingsDAO');
 		$conferenceSettingsDao->deleteSettingsByConference($conferenceId);
 
@@ -160,11 +123,9 @@ class ConferenceDAO extends DAO {
 		$announcementTypeDao->deleteAnnouncementTypesByAssocId(ASSOC_TYPE_CONFERENCE, $conferenceId);
 
 		$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
-		$schedConfDao->deleteSchedConfsByConferenceId($conferenceId);
+		$schedConfDao->deleteByConferenceId($conferenceId);
 
-		return $this->update(
-			'DELETE FROM conferences WHERE conference_id = ?', $conferenceId
-		);
+		parent::deleteById($conferenceId);
 	}
 
 	/**
@@ -181,93 +142,27 @@ class ConferenceDAO extends DAO {
 			false, $rangeInfo
 		);
 
-		$returner = new DAOResultFactory($result, $this, '_returnConferenceFromRow');
+		$returner = new DAOResultFactory($result, $this, '_fromRow');
 		return $returner;
 	}
 
+	//
+	// Protected methods
+	//
 	/**
-	 * Retrieve all enabled conferences
-	 * @return array Conferences ordered by sequence
+	 * Get the table name for this context.
+	 * @return string
 	 */
-	function &getEnabledConferences() {
-		if (Config::getVar('debug', 'deprecation_warnings')) trigger_error('Deprecated function.');
-		$returner =& $this->getConferences(true);
-		return $returner;
+	protected function _getTableName() {
+		return 'conferences';
 	}
 
 	/**
-	 * Retrieve the IDs and titles of all conferences in an associative array.
-	 * @param $enabledOnly boolean optional
-	 * @return array
+	 * Get the name of the primary key column for this context.
+	 * @return string
 	 */
-	function &getTitles($enabledOnly = false) {
-		$conferences = array();
-		$conferenceIterator =& $this->getConferences($enabledOnly);
-		while ($conference =& $conferenceIterator->next()) {
-			$conferences[$conference->getId()] = $conference->getLocalizedName();
-			unset($conference);
-		}
-		return $conferences;
-	}
-
-	/**
-	 * Retrieve enabled conference IDs and titles in an associative array
-	 * @return array
-	 */
-	function &getEnabledConferenceTitles() {
-		if (Config::getVar('debug', 'deprecation_warnings')) trigger_error('Deprecated function.');
-		$titles =& $this->getTitles(true);
-		return $titles;
-	}
-
-	/**
-	 * Check if a conference exists with a specified path.
-	 * @param $path the path of the conference
-	 * @return boolean
-	 */
-	function conferenceExistsByPath($path) {
-		$result =& $this->retrieve(
-			'SELECT COUNT(*) FROM conferences WHERE path = ?', $path
-		);
-		$returner = isset($result->fields[0]) && $result->fields[0] == 1 ? true : false;
-
-		$result->Close();
-		unset($result);
-
-		return $returner;
-	}
-
-	/**
-	 * Sequentially renumber conferences in their sequence order.
-	 */
-	function resequence() {
-		$result =& $this->retrieve(
-			'SELECT conference_id FROM conferences ORDER BY seq'
-		);
-
-		for ($i=1; !$result->EOF; $i++) {
-			list($conferenceId) = $result->fields;
-			$this->update(
-				'UPDATE conferences SET seq = ? WHERE conference_id = ?',
-				array(
-					$i,
-					$conferenceId
-				)
-			);
-
-			$result->moveNext();
-		}
-
-		$result->close();
-		unset($result);
-	}
-
-	/**
-	 * Get the ID of the last inserted conference.
-	 * @return int
-	 */
-	function getInsertConferenceId() {
-		return $this->_getInsertId('conferences', 'conference_id');
+	protected function _getPrimaryKeyColumn() {
+		return 'conference_id';
 	}
 }
 

@@ -53,7 +53,7 @@ class AuthorAction extends Action {
 				if (!$schedConf || $schedConf->getId() != $authorSubmission->getSchedConfId()) {
 					$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
 					unset($schedConf);
-					$schedConf =& $schedConfDao->getSchedConf($authorSubmission->getSchedConfId());
+					$schedConf = $schedConfDao->getById($authorSubmission->getSchedConfId());
 				}
 				$trackDirectorSubmissionDao->createReviewRound($authorSubmission->getId(), REVIEW_ROUND_PRESENTATION, 1);
 			}
@@ -295,7 +295,7 @@ class AuthorAction extends Action {
 		if (!$schedConf || $schedConf->getId() != $authorSubmission->getSchedConfId()) {
 			unset($schedConf);
 			$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
-			$schedConf =& $schedConfDao->getSchedConf($paper->getSchedConfId());
+			$schedConf = $schedConfDao->getById($paper->getSchedConfId());
 		}
 
 		// Directors acting as Authors can always edit.

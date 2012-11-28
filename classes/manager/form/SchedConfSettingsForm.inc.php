@@ -37,7 +37,7 @@ class SchedConfSettingsForm extends Form {
 		$this->addCheck(new FormValidatorLocale($this, 'acronym', 'required', 'manager.schedConfs.form.acronymRequired'));
 		$this->addCheck(new FormValidator($this, 'schedConfPath', 'required', 'manager.schedConfs.form.pathRequired'));
 		$this->addCheck(new FormValidatorAlphaNum($this, 'schedConfPath', 'required', 'manager.schedConfs.form.pathAlphaNumeric'));
-		$this->addCheck(new FormValidatorCustom($this, 'schedConfPath', 'required', 'manager.schedConfs.form.pathExists', create_function('$path,$form,$schedConfDao', 'return !$schedConfDao->schedConfExistsByPath($path) || ($form->getData(\'oldPath\') != null && $form->getData(\'oldPath\') == $path);'), array(&$this, DAORegistry::getDAO('SchedConfDAO'))));
+		$this->addCheck(new FormValidatorCustom($this, 'schedConfPath', 'required', 'manager.schedConfs.form.pathExists', create_function('$path,$form,$schedConfDao', 'return !$schedConfDao->existsByPath($path) || ($form->getData(\'oldPath\') != null && $form->getData(\'oldPath\') == $path);'), array(&$this, DAORegistry::getDAO('SchedConfDAO'))));
 		$this->addCheck(new FormValidatorPost($this));
 	}
 
@@ -58,7 +58,7 @@ class SchedConfSettingsForm extends Form {
 	function initData() {
 		if(isset($this->schedConfId)) {
 			$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
-			$schedConf =& $schedConfDao->getSchedConf($this->schedConfId);
+			$schedConf = $schedConfDao->getById($this->schedConfId);
 
 			if($schedConf != null) {
 				$this->_data = array(
@@ -94,7 +94,7 @@ class SchedConfSettingsForm extends Form {
 
 		if (isset($this->schedConfId)) {
 			$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
-			$schedConf =& $schedConfDao->getSchedConf($this->schedConfId);
+			$schedConf = $schedConfDao->getById($this->schedConfId);
 			$this->setData('oldPath', $schedConf->getPath());
 		}
 	}
@@ -117,7 +117,7 @@ class SchedConfSettingsForm extends Form {
 		$conference =& $conferenceDao->getById($this->getData('conferenceId'));
 
 		if (isset($this->schedConfId)) {
-			$schedConf =& $schedConfDao->getSchedConf($this->schedConfId);
+			$schedConf = $schedConfDao->getById($this->schedConfId);
 		}
 
 		if (!isset($schedConf)) {

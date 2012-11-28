@@ -45,7 +45,7 @@ class RoleDAO extends DAO {
 
 		$returner = null;
 		if ($result->RecordCount() != 0) {
-			$returner =& $this->_returnRoleFromRow($result->GetRowAssoc(false));
+			$returner = $this->_returnRoleFromRow($result->GetRowAssoc(false));
 		}
 
 		$result->Close();
@@ -59,7 +59,7 @@ class RoleDAO extends DAO {
 	 * @param $row array
 	 * @return Role
 	 */
-	function &_returnRoleFromRow(&$row) {
+	function _returnRoleFromRow($row) {
 		$role = new Role();
 		$role->setConferenceId($row['conference_id']);
 		$role->setSchedConfId($row['sched_conf_id']);

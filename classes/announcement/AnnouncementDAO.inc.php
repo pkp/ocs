@@ -42,7 +42,7 @@ class AnnouncementDAO extends PKPAnnouncementDAO {
 		$conferenceArgs = array(ASSOC_TYPE_CONFERENCE, $conferenceId);
 		if($schedConfId == -1) {
 			$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
-			$schedConfs = $schedConfDao->getSchedConfs(false, $conferenceId);
+			$schedConfs = $schedConfDao->getAll(false, $conferenceId);
 			$schedConfArgs = array();
 			while (!$schedConfs->eof()) {
 				$schedConf =& $schedConfs->next();			
@@ -78,7 +78,7 @@ class AnnouncementDAO extends PKPAnnouncementDAO {
 		$conferenceArgs = array(ASSOC_TYPE_CONFERENCE, $conferenceId);
 		if($schedConfId == -1) {
 			$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
-			$schedConfs = $schedConfDao->getSchedConfs(false, $conferenceId);
+			$schedConfs = $schedConfDao->getAll(false, $conferenceId);
 			$schedConfArgs = array();
 			while (!$schedConfs->eof()) {
 				$schedConf =& $schedConfs->next();			
@@ -114,7 +114,7 @@ class AnnouncementDAO extends PKPAnnouncementDAO {
 		$conferenceArgs = array(ASSOC_TYPE_CONFERENCE, $conferenceId);
 		if($schedConfId == -1) {
 			$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
-			$schedConfs = $schedConfDao->getSchedConfs(false, $conferenceId);
+			$schedConfs = $schedConfDao->getAll(false, $conferenceId);
 			$schedConfArgs = array();
 			while (!$schedConfs->eof()) {
 				$schedConf =& $schedConfs->next();			

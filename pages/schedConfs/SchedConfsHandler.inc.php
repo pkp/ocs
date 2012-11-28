@@ -20,7 +20,7 @@ import('classes.handler.Handler');
 class SchedConfsHandler extends Handler {
 	/**
 	 * Constructor
-	 **/
+	 */
 	function SchedConfsHandler() {
 		parent::Handler();
 	}
@@ -86,7 +86,7 @@ class SchedConfsHandler extends Handler {
 		$templateMgr->assign('conferenceTitle', $conference->getLocalizedName());
 
 		$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
-		$pastSchedConfs =& $schedConfDao->getEnabledSchedConfs($conference->getId());
+		$pastSchedConfs = $schedConfDao->getAll(true, $conference->getId());
 
 		$templateMgr->assign_by_ref('schedConfs', $pastSchedConfs);
 

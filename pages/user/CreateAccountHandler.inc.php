@@ -50,7 +50,7 @@ class CreateAccountHandler extends UserHandler {
 
 			// We have the conference, but need to select a scheduled conference
 			$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
-			$schedConfs =& $schedConfDao->getEnabledSchedConfs($conference->getId());
+			$schedConfs = $schedConfDao->getAll(true, $conference->getId());
 
 			$templateMgr =& TemplateManager::getManager($request);
 			$templateMgr->assign('pageHierarchy', array(

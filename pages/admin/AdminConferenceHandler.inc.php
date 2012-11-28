@@ -108,7 +108,7 @@ class AdminConferenceHandler extends AdminHandler {
 
 		if (isset($args) && !empty($args) && !empty($args[0])) {
 			$conferenceId = $args[0];
-			if ($conferenceDao->deleteConferenceById($conferenceId)) {
+			if ($conferenceDao->deleteById($conferenceId)) {
 				// Delete conference file tree
 				// FIXME move this somewhere better.
 				import('lib.pkp.classes.file.FileManager');

@@ -57,7 +57,7 @@ class ManagerHandler extends Handler {
 		$templateMgr->assign('newVersionAvailable', $newVersionAvailable);
 
 		$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
-		$schedConfs =& $schedConfDao->getSchedConfs(false, $conference->getId());
+		$schedConfs = $schedConfDao->getAll(false, $conference->getId());
 		$templateMgr->assign_by_ref('schedConfs', $schedConfs);
 
 		$templateMgr->assign('announcementsEnabled', $conference->getSetting('enableAnnouncements'));

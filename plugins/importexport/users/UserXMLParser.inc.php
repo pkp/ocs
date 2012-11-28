@@ -59,7 +59,7 @@ class UserXMLParser {
 		$tree = $this->parser->parse($file);
 
 		$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
-		$schedConf =& $schedConfDao->getSchedConf($this->schedConfId);
+		$schedConf = $schedConfDao->getById($this->schedConfId);
 		$schedConfPrimaryLocale = AppLocale::getPrimaryLocale();
 
 		$site =& Request::getSite();
@@ -196,7 +196,7 @@ class UserXMLParser {
 			$mail = new MailTemplate('USER_REGISTER');
 
 			$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
-			$schedConf =& $schedConfDao->getSchedConf($this->schedConfId);
+			$schedConf = $schedConfDao->getById($this->schedConfId);
 			$mail->setFrom($schedConf->getSetting('contactEmail'), $schedConf->getSetting('contactName'));
 		}
 

@@ -29,7 +29,7 @@ class PaperLog {
 			return false;
 		}
 		$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
-		$schedConf =& $schedConfDao->getSchedConf($schedConfId);
+		$schedConf = $schedConfDao->getById($schedConfId);
 		$conferenceId = $schedConf->getConferenceId();
 
 		// Add the entry
@@ -102,7 +102,7 @@ class PaperLog {
 		$schedConfId = $paperDao->getPaperSchedConfId($paperId);
 
 		$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
-		$schedConf =& $schedConfDao->getSchedConf($schedConfId);
+		$schedConf = $schedConfDao->getById($schedConfId);
 
 		if (!$schedConfId) {
 			// Invalid paper

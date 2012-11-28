@@ -118,7 +118,7 @@ class ReviewReminder extends ScheduledTask {
 			if ($paper == null || $paper->getId() != $reviewAssignment->getSubmissionId()) {
 				$paper =& $paperDao->getPaper($reviewAssignment->getSubmissionId());
 				if ($schedConf == null || $schedConf->getId() != $paper->getSchedConfId()) {
-					$schedConf =& $schedConfDao->getSchedConf($paper->getSchedConfId());
+					$schedConf = $schedConfDao->getById($paper->getSchedConfId());
 
 					$inviteReminderEnabled = $schedConf->getSetting('remindForInvite');
 					$submitReminderEnabled = $schedConf->getSetting('remindForSubmit');

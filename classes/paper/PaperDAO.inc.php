@@ -117,7 +117,7 @@ class PaperDAO extends DAO {
 	function _paperFromRow(&$paper, &$row) {
 		$schedConfId = $row['sched_conf_id'];
 		$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
-		$schedConf =& $schedConfDao->getSchedConf($schedConfId);
+		$schedConf = $schedConfDao->getById($schedConfId);
 		$conferenceId = $schedConf->getConferenceId();
 
 		$paper->setId($row['paper_id']);

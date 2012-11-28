@@ -47,7 +47,7 @@ class MetsExportDom {
 		XMLCustomWriter::setAttribute($cDiv, 'ADMID', 'A-'.$conference->getId());
 		$i = 0;
 		while ($i < sizeof($schedConfIdArray)) {
-			$schedConf =& $schedConfDao->getSchedConf($schedConfIdArray[$i]);
+			$schedConf = $schedConfDao->getById($schedConfIdArray[$i]);
 			MetsExportDom::generateSchedConfDiv($doc, $cDiv, $schedConf);
 			$i++;
 		}
@@ -584,7 +584,7 @@ class MetsExportDom {
 		$paper =& $paperDao->getPaper($paperFile->getPaperId());
 		$paperId = $paper->getSchedConfId();
 		$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
-		$schedConf =& $schedConfDao->getSchedConf($paperId);
+		$schedConf = $schedConfDao->getById($paperId);
 		return Config::getVar('files', 'files_dir') . '/conferences/' . $schedConf->getConferenceId() . '/schedConfs/' . $paperId .
 		'/papers/' . $paperFile->getPaperId() . $pathComponent . $paperFile->getFileName();
 	}

@@ -47,7 +47,7 @@ class PaperFileManager extends FileManager {
 		$this->paper =& $paperDao->getPaper($paperId);
 		$schedConfId = $this->paper->getSchedConfId();
 		$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
-		$schedConf =& $schedConfDao->getSchedConf($schedConfId);
+		$schedConf = $schedConfDao->getById($schedConfId);
 		$this->filesDir = Config::getVar('files', 'files_dir') . '/conferences/' . $schedConf->getConferenceId() . '/schedConfs/' . $schedConfId .  '/papers/' . $paperId . '/';
 
 		parent::PaperFileManager();

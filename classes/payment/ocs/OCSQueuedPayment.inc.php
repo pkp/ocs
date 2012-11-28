@@ -113,7 +113,7 @@ class OCSQueuedPayment extends QueuedPayment {
 				}
 				
 				$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
-				$schedConf =& $schedConfDao->getSchedConf(
+				$schedConf = $schedConfDao->getById(
 					$registrationType?$registrationType->getSchedConfId():0
 				);
 

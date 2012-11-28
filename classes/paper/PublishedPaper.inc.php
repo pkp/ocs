@@ -228,7 +228,7 @@ class PublishedPaper extends Paper {
 		// Retrieve the conference, if necessary.
 		if (!isset($schedConf)) {
 			$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
-			$schedConf = $schedConfDao->getSchedConf($this->getSchedConfId());
+			$schedConf = $schedConfDao->getById($this->getSchedConfId());
 		}
 
 		if ($schedConf->getSetting('enablePublicPaperId')) {

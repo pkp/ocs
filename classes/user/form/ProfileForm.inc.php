@@ -112,7 +112,7 @@ class ProfileForm extends Form {
 		$userSettingsDao =& DAORegistry::getDAO('UserSettingsDAO');
 		$userDao =& DAORegistry::getDAO('UserDAO');
 
-		$schedConfs =& $schedConfDao->getEnabledSchedConfs();
+		$schedConfs = $schedConfDao->getAll();
 		$schedConfs =& $schedConfs->toArray();
 
 		foreach ($schedConfs as $thisSchedConf) {
@@ -319,7 +319,7 @@ class ProfileForm extends Form {
 		$openAccessNotify = Request::getUserVar('openAccessNotify');
 
 		$userSettingsDao =& DAORegistry::getDAO('UserSettingsDAO');
-		$schedConfs =& $schedConfDao->getSchedConfs();
+		$schedConfs = $schedConfDao->getAll();
 		$schedConfs =& $schedConfs->toArray();
 
 		foreach ($schedConfs as $thisSchedConf) {

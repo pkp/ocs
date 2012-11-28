@@ -35,7 +35,7 @@ class ConferenceLog {
 
 		$schedConf = null;
 		if($schedConfId != null)
-			$schedConf = $schedConfDao->getSchedConf($schedConfId);
+			$schedConf = $schedConfDao->getById($schedConfId);
 
 		// Add the entry
 		$entry->setConferenceId($conferenceId);

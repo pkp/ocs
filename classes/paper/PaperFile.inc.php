@@ -44,7 +44,7 @@ class PaperFile extends SubmissionFile {
 		$paper =& $paperDao->getPaper($this->getPaperId());
 		$paperId = $paper->getSchedConfId();
 		$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
-		$schedConf =& $schedConfDao->getSchedConf($paperId);
+		$schedConf = $schedConfDao->getById($paperId);
 
 		import('classes.file.PaperFIleManager');
 		$paperFileManager = new PaperFileManager($this->getPaperId());

@@ -326,7 +326,7 @@ class Upgrade extends Installer {
 		$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
 		$paperDao =& DAORegistry::getDAO('PaperDAO');
 
-		$schedConfs =& $schedConfDao->getSchedConfs();
+		$schedConfs = $schedConfDao->getAll();
 		while ($schedConf =& $schedConfs->next()) {
 			$papers =& $paperDao->getPapersBySchedConfId($schedConf->getId());
 			$reviewMode = $schedConf->getSetting('reviewMode');
@@ -485,7 +485,7 @@ class Upgrade extends Installer {
 
 			foreach ($locales as $locale) AppLocale::requireComponents(LOCALE_COMPONENT_OCS_DEFAULT, $locale);
 
-			$schedConfs =& $schedConfDao->getSchedConfs(false, $conference->getId());
+			$schedConfs = $schedConfDao->getAll(false, $conference->getId());
 			while ($schedConf =& $schedConfs->next()) {
 				$allowIndividualSubmissions = $schedConf->getSetting('allowIndividualSubmissions');
 				$allowPanelSubmissions = $schedConf->getSetting('allowPanelSubmissions');

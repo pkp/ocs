@@ -48,7 +48,7 @@ class PageRouter extends PKPPageRouter {
 				$schedConfPath = 'index';
 
 				if ($role->getSchedConfId()) {
-					$schedConf = $schedConfDao->getSchedConf($role->getSchedConfId());
+					$schedConf = $schedConfDao->getById($role->getSchedConfId());
 					$schedConfPath = $schedConf->getPath();
 				}
 				if ($role->getRoleId() == ROLE_ID_READER) $request->redirect($confPath, $schedConfPath, 'index');
@@ -74,7 +74,7 @@ class PageRouter extends PKPPageRouter {
 										 $confPath = 'index';
 				}
 				if ($role->getSchedConfId()) {
-					$schedConf = $schedConfDao->getSchedConf($role->getSchedConfId());
+					$schedConf = $schedConfDao->getById($role->getSchedConfId());
 					isset($schedConf) ? $schedConfPath = $schedConf->getPath() :
 										$schedConfPath = 'index';
 				}

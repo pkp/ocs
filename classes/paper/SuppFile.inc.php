@@ -399,7 +399,7 @@ class SuppFile extends PaperFile {
 			$paperDao =& DAORegistry::getDAO('PaperDAO');
 			$paper =& $paperDao->getPaper($this->getPaperId());
 			$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
-			$schedConf =& $schedConfDao->getSchedConf($paper->getSchedConfId());
+			$schedConf = $schedConfDao->getById($paper->getSchedConfId());
 		}
 
 		if ($schedConf->getSetting('enablePublicSuppFileId')) {

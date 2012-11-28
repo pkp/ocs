@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @file SchedConfDAO.inc.php
+ * @file classes/schedConf/SchedConfDAO.inc.php
  *
  * Copyright (c) 2000-2012 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
@@ -13,29 +13,46 @@
  * @brief Operations for retrieving and modifying SchedConf objects.
  */
 
+import('lib.pkp.classes.core.ContextDAO');
+import('classes.schedConf.SchedConf');
 
-import ('classes.schedConf.SchedConf');
+class SchedConfDAO extends ContextDAO {
+	/**
+	 * Constructor
+	 */
+	function SchedConfDAO() {
+		parent::ContextDAO();
+	}
 
-class SchedConfDAO extends DAO {
+	/**
+	 * Generate a new data object.
+	 * @return SchedConf
+	 */
+	function newDataObject() {
+		return new SchedConf();
+	}
+
 	/**
 	 * Retrieve a scheduled conference by ID.
 	 * @param $schedConfId int
 	 * @param $conferenceId int optional
 	 * @return SchedConf
 	 */
-	function &getSchedConf($schedConfId, $conferenceId = null) {
-		$params = array($schedConfId);
-		if ($conferenceId !== null) $params[] = $conferenceId;
+	function getById($schedConfId, $conferenceId = null) {
+		// If only $schedConfId specified, fall back on parent impl
+		if ($conferenceId === null) return parent::getById($schedConfId);
+
 		$result =& $this->retrieve(
-			'SELECT * FROM sched_confs WHERE sched_conf_id = ?' . ($conferenceId !== null?' AND conference_id = ?':''), $params
+			'SELECT * FROM sched_confs WHERE sched_conf_id = ? AND conference_id = ?',
+			array(
+				(int) $schedConfId,
+				(int) $conferenceId
+			)
 		);
 
-		$returner = null;
-		if ($result->RecordCount() != 0) {
-			$returner =& $this->_returnSchedConfFromRow($result->GetRowAssoc(false));
-		}
+		if ($result->RecordCount() == 0) return null;
+		$returner = $this->_fromRow($result->GetRowAssoc(false));
 		$result->Close();
-		unset($result);
 		return $returner;
 	}
 
@@ -44,7 +61,7 @@ class SchedConfDAO extends DAO {
 	 * @param $path string
 	 * @return SchedConf
 	 */
-	function &getByPath($path, $conferenceId = null) {
+	function getByPath($path, $conferenceId = null) {
 		if($conferenceId == null) {
 			$conference =& Request::getConference();
 
@@ -60,7 +77,7 @@ class SchedConfDAO extends DAO {
 			array($path, $conferenceId));
 
 		if ($result->RecordCount() != 0) {
-			$returner =& $this->_returnSchedConfFromRow($result->GetRowAssoc(false));
+			$returner = $this->_fromRow($result->GetRowAssoc(false));
 		}
 		$result->Close();
 		unset($result);
@@ -72,11 +89,8 @@ class SchedConfDAO extends DAO {
 	 * @param $row array
 	 * @return SchedConf
 	 */
-	function &_returnSchedConfFromRow(&$row) {
-		$schedConf = new SchedConf();
-		$schedConf->setId($row['sched_conf_id']);
-		$schedConf->setPath($row['path']);
-		$schedConf->setSequence($row['seq']);
+	function _fromRow($row) {
+		$schedConf = parent::_fromRow($row);
 		$schedConf->setConferenceId($row['conference_id']);
 		$schedConf->setStartDate($this->datetimeFromDB($row['start_date']));
 		$schedConf->setEndDate($this->datetimeFromDB($row['end_date']));
@@ -105,7 +119,7 @@ class SchedConfDAO extends DAO {
 			)
 		);
 
-		$schedConf->setId($this->getInsertSchedConfId());
+		$schedConf->setId($this->getInsertId());
 		return $schedConf->getId();
 	}
 
@@ -135,23 +149,14 @@ class SchedConfDAO extends DAO {
 	}
 
 	/**
-	 * Delete a scheduled conference, INCLUDING ALL DEPENDENT ITEMS.
-	 * @param $schedConf SchedConf
-	 */
-	function deleteSchedConf(&$schedConf) {
-		return $this->deleteSchedConfById($schedConf->getId());
-	}
-
-	/**
 	 * Retrieve the IDs and titles of all scheduled conferences for a conference in an associative array.
 	 * @return array
 	 */
-	function &getTitles($conferenceId = null) {
+	function getNames($conferenceId) {
 		$schedConfs = array();
-		$schedConfIterator =& $this->getSchedConfs(false, $conferenceId);
-		while ($schedConf =& $schedConfIterator->next()) {
+		$schedConfIterator = $this->getAll(false, $conferenceId);
+		while ($schedConf = $schedConfIterator->next()) {
 			$schedConfs[$schedConf->getId()] = $schedConf->getLocalizedName();
-			unset($schedConf);
 		}
 		return $schedConfs;
 	}
@@ -160,12 +165,12 @@ class SchedConfDAO extends DAO {
 	 * Delete all scheduled conferences by conference ID.
 	 * @param $schedConfId int
 	 */
-	function deleteSchedConfsByConferenceId($conferenceId) {
-		$schedConfs = $this->getSchedConfs(false, $conferenceId);
+	function deleteByConferenceId($conferenceId) {
+		$schedConfs = $this->getAll(false, $conferenceId);
 
 		while (!$schedConfs->eof()) {
-			$schedConf =& $schedConfs->next();
-			$this->deleteSchedConfById($schedConf->getId());
+			$schedConf = $schedConfs->next();
+			$this->deleteById($schedConf->getId());
 		}
 	}
 
@@ -173,7 +178,7 @@ class SchedConfDAO extends DAO {
 	 * Delete a scheduled conference by ID, INCLUDING ALL DEPENDENT ITEMS.
 	 * @param $schedConfId int
 	 */
-	function deleteSchedConfById($schedConfId) {
+	function deleteById($schedConfId) {
 		$schedConfSettingsDao =& DAORegistry::getDAO('SchedConfSettingsDAO');
 		$schedConfSettingsDao->deleteSettingsBySchedConf($schedConfId);
 
@@ -207,9 +212,7 @@ class SchedConfDAO extends DAO {
 		$groupDao =& DAORegistry::getDAO('GroupDAO');
 		$groupDao->deleteGroupsByAssocId(ASSOC_TYPE_SCHED_CONF, $schedConfId);
 
-		return $this->update(
-			'DELETE FROM sched_confs WHERE sched_conf_id = ?', $schedConfId
-		);
+		parent::deleteById($schedConfId);
 	}
 
 	/**
@@ -218,7 +221,7 @@ class SchedConfDAO extends DAO {
 	 * @param $rangeInfo object optional
 	 * @return DAOResultFactory containing matching scheduled conferences
 	 */
-	function &getSchedConfs($enabledOnly = false, $conferenceId = null, $rangeInfo = null) {
+	function getAll($enabledOnly = false, $conferenceId = null, $rangeInfo = null) {
 		$params = array();
 		if ($conferenceId) $params[] = (int) $conferenceId;
 
@@ -233,35 +236,7 @@ class SchedConfDAO extends DAO {
 			$params, $rangeInfo
 		);
 
-		$returner = new DAOResultFactory($result, $this, '_returnSchedConfFromRow');
-		return $returner;
-	}
-
-	/**
-	 * Retrieve all scheduled conferences
-	 * @param conferenceId optional conference ID
-	 * @return array SchedConfs ordered by sequence
-	 */
-	function &getEnabledSchedConfs($conferenceId = null) {
-		if (Config::getVar('debug', 'deprecation_warnings')) trigger_error('Deprecated function.');
-		$returner =& $this->getSchedConfs(true, $conferenceId);
-		return $returner;
-	}
-
-	/**
-	 * Check if a scheduled conference exists with a specified path.
-	 * @param $path the path of the scheduled conference
-	 * @return boolean
-	 */
-	function schedConfExistsByPath($path) {
-		$result =& $this->retrieve(
-			'SELECT COUNT(*) FROM sched_confs WHERE path = ?', $path
-		);
-		$returner = isset($result->fields[0]) && $result->fields[0] == 1 ? true : false;
-
-		$result->Close();
-		unset($result);
-
+		$returner = new DAOResultFactory($result, $this, '_fromRow');
 		return $returner;
 	}
 
@@ -271,16 +246,16 @@ class SchedConfDAO extends DAO {
 	function resequence($conferenceId) {
 		$result =& $this->retrieve(
 			'SELECT sched_conf_id FROM sched_confs WHERE conference_id = ? ORDER BY seq',
-			$conferenceId
+			(int) $conferenceId
 		);
 
-		for ($i=1; !$result->EOF; $i++) {
+		for ($i=1; !$result->EOF; $i+=2) {
 			list($schedConfId) = $result->fields;
 			$this->update(
 				'UPDATE sched_confs SET seq = ? WHERE sched_conf_id = ?',
 				array(
-					$i,
-					$schedConfId
+					(int) $i,
+					(int) $schedConfId
 				)
 			);
 
@@ -289,14 +264,6 @@ class SchedConfDAO extends DAO {
 
 		$result->close();
 		unset($result);
-	}
-
-	/**
-	 * Get the ID of the last inserted scheduled conference.
-	 * @return int
-	 */
-	function getInsertSchedConfId() {
-		return $this->_getInsertId('sched_confs', 'sched_conf_id');
 	}
 
 	/**
@@ -312,9 +279,10 @@ class SchedConfDAO extends DAO {
 				AND i.start_date < NOW()
 				AND i.end_date > NOW()
 			ORDER BY c.seq, i.seq',
-			$conferenceId);
+			(int) $conferenceId
+		);
 
-		$resultFactory = new DAOResultFactory($result, $this, '_returnSchedConfFromRow');
+		$resultFactory = new DAOResultFactory($result, $this, '_fromRow');
 		return $resultFactory;
 	}
 
@@ -325,7 +293,8 @@ class SchedConfDAO extends DAO {
 	 */
 	function archivedSchedConfsExist($conferenceId) {
 		$result =& $this->retrieve(
-			'SELECT COUNT(*) FROM sched_confs WHERE conference_id = ? AND end_date < now()', $conferenceId
+			'SELECT COUNT(*) FROM sched_confs WHERE conference_id = ? AND end_date < now()',
+			(int) $conferenceId
 		);
 		$returner = isset($result->fields[0]) && $result->fields[0] >= 1 ? true : false;
 
@@ -342,7 +311,8 @@ class SchedConfDAO extends DAO {
 	 */
 	function currentSchedConfsExist($conferenceId) {
 		$result =& $this->retrieve(
-			'SELECT COUNT(*) FROM sched_confs WHERE conference_id = ? AND start_date < now() AND end_date > now()', $conferenceId
+			'SELECT COUNT(*) FROM sched_confs WHERE conference_id = ? AND start_date < now() AND end_date > now()',
+			(int) $conferenceId
 		);
 		$returner = isset($result->fields[0]) && $result->fields[0] >= 1 ? true : false;
 
@@ -350,6 +320,25 @@ class SchedConfDAO extends DAO {
 		unset($result);
 
 		return $returner;
+	}
+
+	//
+	// Protected methods
+	//
+	/**
+	 * Get the table name for this context.
+	 * @return string
+	 */
+	protected function _getTableName() {
+		return 'sched_confs';
+	}
+
+	/**
+	 * Get the name of the primary key column for this context.
+	 * @return string
+	 */
+	protected function _getPrimaryKeyColumn() {
+		return 'sched_conf_id';
 	}
 }
 

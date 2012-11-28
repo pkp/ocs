@@ -37,7 +37,7 @@ class AboutHandler extends Handler {
 		$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
 		$conferencePath = $request->getRequestedConferencePath();
 
-		if ($conferencePath != 'index' && $conferenceDao->conferenceExistsByPath($conferencePath)) {
+		if ($conferencePath != 'index' && $conferenceDao->existsByPath($conferencePath)) {
 			$schedConf =& $request->getSchedConf();
 			$conference =& $request->getConference();
 

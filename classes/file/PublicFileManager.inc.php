@@ -38,7 +38,7 @@ class PublicFileManager extends PKPPublicFileManager {
 	 */
 	function getSchedConfFilesPath($schedConfId) {
 		$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
-		$schedConf =& $schedConfDao->getSchedConf($schedConfId);
+		$schedConf = $schedConfDao->getById($schedConfId);
 		return Config::getVar('files', 'public_files_dir') . '/conferences/' . $schedConf->getConferenceId() . '/schedConfs/' . $schedConfId;
 	}
 

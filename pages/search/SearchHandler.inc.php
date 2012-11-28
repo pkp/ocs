@@ -57,7 +57,7 @@ class SearchHandler extends Handler {
 
 		if ($request->getConference() == null) {
 			$conferenceDao =& DAORegistry::getDAO('ConferenceDAO');
-			$conferences =& $conferenceDao->getTitles(true); // Enabled added
+			$conferences =& $conferenceDao->getNames(true); // Enabled added
 			$templateMgr->assign('siteSearch', true);
 			$templateMgr->assign('conferenceOptions', array('' => AppLocale::Translate('search.allConferences')) + $conferences);
 			$yearRange = $publishedPaperDao->getPaperYearRange(null);
@@ -117,7 +117,7 @@ class SearchHandler extends Handler {
 
 				if (!isset($schedConfs[$schedConfId])) {
 					import('classes.schedConf.SchedConfAction');
-					$schedConf =& $schedConfDao->getSchedConf($schedConfId);
+					$schedConf = $schedConfDao->getById($schedConfId);
 					$schedConfs[$schedConfId] =& $schedConf;
 					$schedConfsUnavailable[$schedConfId] = !SchedConfAction::mayViewProceedings($schedConf);
 					unset($schedConf);
@@ -207,7 +207,7 @@ class SearchHandler extends Handler {
 
 			if(!isset($schedConfAbstractPermissions[$schedConfId])) {
 				unset($schedConf);
-				$schedConf =& $schedConfDao->getSchedConf($schedConfId);
+				$schedConf = $schedConfDao->getById($schedConfId);
 				$schedConfAbstractPermissions[$schedConfId] = SchedConfAction::mayViewProceedings($schedConf);
 				$schedConfPaperPermissions[$schedConfId] = SchedConfAction::mayViewPapers($schedConf, $conference);
 			}
@@ -245,7 +245,7 @@ class SearchHandler extends Handler {
 		while ($conference =& $conferences->next()) {
 			$conferenceId = $conference->getId();
 			$conferenceIndex[$conferenceId] =& $conference;
-			$schedConfsIterator =& $schedConfDao->getSchedConfs(true, $conferenceId);
+			$schedConfsIterator = $schedConfDao->getAll(true, $conferenceId);
 			$schedConfIndex[$conferenceId] =& $schedConfsIterator->toArray();
 			unset($schedConfsIterator);
 			unset($conference);

@@ -195,7 +195,7 @@ class TrackDirectorAction extends Action {
 			// Assign review form automatically if needed
 			$schedConfId = $trackDirectorSubmission->getSchedConfId();
 			$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
-			$schedConf =& $schedConfDao->getSchedConf($schedConfId);
+			$schedConf = $schedConfDao->getById($schedConfId);
 			$conferenceId = $schedConf->getConferenceId();
 			$trackDao =& DAORegistry::getDAO('TrackDAO');
 			$reviewFormDao =& DAORegistry::getDAO('ReviewFormDAO');

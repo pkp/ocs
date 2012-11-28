@@ -204,7 +204,7 @@ class RegistrationExpiryReminder extends ScheduledTask {
 	function execute() {
 		$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
 		$conferenceDao =& DAORegistry::getDAO('ConferenceDAO');
-		$schedConfs =& $schedConfDao->getEnabledSchedConfs();
+		$schedConfs = $schedConfDao->getAll(true);
 		$conference = null;
 
 		$todayDate = array(
@@ -241,7 +241,7 @@ class RegistrationExpiryReminder extends ScheduledTask {
 				$curDate['year'] = $todayDate['year'];
 			}
 
-			$schedConfs =& $schedConfDao->getEnabledSchedConfs();
+			$schedConfs = $schedConfDao->getAll(true);
 
 			while (!$schedConfs->eof()) {
 				$schedConf =& $schedConfs->next();
@@ -264,7 +264,7 @@ class RegistrationExpiryReminder extends ScheduledTask {
 			$curDate['month'] = 2;
 			$curDate['year'] = $todayDate['year'];
 
-			$schedConfs =& $schedConfDao->getEnabledSchedConfs();
+			$schedConfs = $schedConfDao->getAll(true);
 
 			while (!$schedConfs->eof()) {
 				$schedConf =& $schedConfs->next();
@@ -283,7 +283,7 @@ class RegistrationExpiryReminder extends ScheduledTask {
 
 				$curDate['day'] = 29;
 
-				$schedConfs =& $schedConfDao->getEnabledSchedConfs();
+				$schedConfs = $schedConfDao->getAll(true);
 
 				while (!$schedConfs->eof()) {
 					$schedConf =& $schedConfs->next();

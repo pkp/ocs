@@ -55,7 +55,7 @@ class METSExportPlugin extends ImportExportPlugin {
 				$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
 				$schedConfId = array_shift($args);
 				if ($schedConfId) {
-					$schedConf =& $schedConfDao->getSchedConf($schedConfId);
+					$schedConf = $schedConfDao->getById($schedConfId);
 					$this->exportSchedConf($conference, $schedConf);
 					return true;
 				} else {
@@ -138,7 +138,7 @@ class METSExportPlugin extends ImportExportPlugin {
 		XMLCustomWriter::setAttribute($fileGrp, 'USE', 'original');
 		$i = 0;
 		while ($i < sizeof($schedConfIdArray)) {
-			$schedConf =& $schedConfDao->getSchedConf($schedConfIdArray[$i]);
+			$schedConf = $schedConfDao->getById($schedConfIdArray[$i]);
 			MetsExportDom::generateSchedConfDmdSecDom($doc, $root, $conference, $schedConf);
 			MetsExportDom::generateSchedConfFileSecDom($doc, $fileGrp, $conference, $schedConf);
 			$i++;

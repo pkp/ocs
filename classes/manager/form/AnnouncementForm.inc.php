@@ -32,7 +32,7 @@ class AnnouncementForm extends PKPAnnouncementForm {
 		$this->addCheck(new FormValidatorCustom($this, 'typeId', 'optional', 'manager.announcements.form.typeIdValid', create_function('$typeId, $conferenceId', '$announcementTypeDao =& DAORegistry::getDAO(\'AnnouncementTypeDAO\'); return $announcementTypeDao->announcementTypeExistsByTypeId($typeId, ASSOC_TYPE_CONFERENCE, $conferenceId);'), array($conferenceId)));
 
 		// If supplied, the scheduled conference exists and belongs to the conference
-		$this->addCheck(new FormValidatorCustom($this, 'schedConfId', 'required', 'manager.announcements.form.schedConfIdValid', create_function('$schedConfId, $conferenceId', 'if ($schedConfId == 0) return true; $schedConfDao =& DAORegistry::getDAO(\'SchedConfDAO\'); $schedConf =& $schedConfDao->getSchedConf($schedConfId); if(!$schedConf) return false; return ($schedConf->getConferenceId() == $conferenceId);'), array($conferenceId)));
+		$this->addCheck(new FormValidatorCustom($this, 'schedConfId', 'required', 'manager.announcements.form.schedConfIdValid', create_function('$schedConfId, $conferenceId', 'if ($schedConfId == 0) return true; $schedConfDao =& DAORegistry::getDAO(\'SchedConfDAO\'); $schedConf = $schedConfDao->getById($schedConfId); if(!$schedConf) return false; return ($schedConf->getConferenceId() == $conferenceId);'), array($conferenceId)));
 	}
 
 	/**
@@ -44,7 +44,7 @@ class AnnouncementForm extends PKPAnnouncementForm {
 
 		$conferenceId = $this->getContextId();
 		$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
-		$schedConfs =& $schedConfDao->getSchedConfs(false, $conferenceId);
+		$schedConfs = $schedConfDao->getAll(false, $conferenceId);
 		$templateMgr->assign('schedConfs', $schedConfs);
 
 		parent::display();
@@ -121,7 +121,7 @@ class AnnouncementForm extends PKPAnnouncementForm {
 		} else {
 			// Associated with a sched conf -- determine its path.
 			$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
-			$schedConf =& $schedConfDao->getSchedConf($schedConfId);
+			$schedConf = $schedConfDao->getById($schedConfId);
 			$url = Request::url(null, $schedConf->getPath(), 'announcement', 'view', array($announcement->getId()));
 		}
 

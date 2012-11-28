@@ -121,7 +121,7 @@ class NotificationManager extends PKPNotificationManager {
 		$paper =& $paperDao->getPaper($paperId);
 
 		$schedConfDao =& DAORegistry::getDAO('SchedConfDAO'); /* @var $schedConfDao SchedConfDAO */
-		$schedConf =& $schedConfDao->getSchedConf($paper->getSchedConfId());
+		$schedConf = $schedConfDao->getById($paper->getSchedConfId());
 
 		return $schedConf->getPath();
 	}
@@ -139,7 +139,7 @@ class NotificationManager extends PKPNotificationManager {
 		$paper =& $paperDao->getPaper($paperId);
 
 		$schedConfDao =& DAORegistry::getDAO('SchedConfDAO'); /* @var $schedConfDao SchedConfDAO */
-		$schedConf =& $schedConfDao->getSchedConf($paper->getSchedConfId());
+		$schedConf = $schedConfDao->getById($paper->getSchedConfId());
 
 		$conferenceDao =& DAORegistry::getDAO('ConferenceDAO'); /* @var $conferenceDaoDao ConferenceDAO */
 		$conferenceId = $schedConf->getConferenceId();
@@ -194,7 +194,7 @@ class NotificationManager extends PKPNotificationManager {
 		$paper =& $paperDao->getPaper($paperId);
 
 		$schedConfDao =& DAORegistry::getDAO('SchedConfDAO'); /* @var $schedConfDao SchedConfDAO */
-		$schedConf =& $schedConfDao->getSchedConf($paper->getSchedConfId());
+		$schedConf = $schedConfDao->getById($paper->getSchedConfId());
 
 		$roles = array();
 		// Check if user is director

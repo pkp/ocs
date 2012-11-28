@@ -36,7 +36,7 @@ class ConferenceSetupStep2Form extends ConferenceSetupForm {
 			)
 		);
 		$conference =& Request::getConference();
-		$this->addCheck(new FormValidatorCustom($this, 'schedConfRedirect', 'optional', 'manager.setup.additionalContent.redirect.invalidSchedConf', create_function('$schedConfRedirect,$form,$schedConfDao,$conferenceId', 'return $schedConfDao->getSchedConf($schedConfRedirect, $conferenceId);'), array(&$this, DAORegistry::getDAO('SchedConfDAO'), $conference->getId())));
+		$this->addCheck(new FormValidatorCustom($this, 'schedConfRedirect', 'optional', 'manager.setup.additionalContent.redirect.invalidSchedConf', create_function('$schedConfRedirect,$form,$schedConfDao,$conferenceId', 'return $schedConfDao->getById($schedConfRedirect, $conferenceId);'), array(&$this, DAORegistry::getDAO('SchedConfDAO'), $conference->getId())));
 	}
 
 	/**
@@ -55,7 +55,7 @@ class ConferenceSetupStep2Form extends ConferenceSetupForm {
 		$conference =& Request::getConference();
 
 		$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
-		$schedConfTitles =& $schedConfDao->getTitles($conference->getId());
+		$schedConfTitles =& $schedConfDao->getNames($conference->getId());
 		$templateMgr->assign_by_ref('schedConfTitles', $schedConfTitles);
 
 		$templateMgr->assign(array(

@@ -318,7 +318,7 @@ class OAIDAO extends DAO {
 	 */
 	function &getSchedConf($schedConfId) {
 		if (!isset($this->schedConfCache[$schedConfId])) {
-			$this->schedConfCache[$schedConfId] =& $this->schedConfDao->getSchedConf($schedConfId);
+			$this->schedConfCache[$schedConfId] = $this->schedConfDao->getById($schedConfId);
 		}
 		return $this->schedConfCache[$schedConfId];
 	}
