@@ -7,7 +7,5 @@
  * Common site header.
  *}
 {strip}
-{translate|assign:"applicationName" key="common.openConferenceSystems"}
 {include file="core:common/header.tpl"}
 {/strip}
-
