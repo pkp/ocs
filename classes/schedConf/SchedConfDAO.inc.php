@@ -334,6 +334,14 @@ class SchedConfDAO extends ContextDAO {
 	}
 
 	/**
+	 * Get the table name for this context's settings table.
+	 * @return string
+	 */
+	protected function _getSettingsTableName() {
+		return 'sched_conf_settings';
+	}
+
+	/**
 	 * Get the name of the primary key column for this context.
 	 * @return string
 	 */
