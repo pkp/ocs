@@ -65,11 +65,6 @@ switch ($op) {
 	// Scheduled Conference Management
 	//
 	case 'schedConfs':
-	case 'createSchedConf':
-	case 'editSchedConf':
-	case 'updateSchedConf':
-	case 'deleteSchedConf':
-	case 'moveSchedConf':
 		define('HANDLER_CLASS', 'ManagerSchedConfHandler');
 		import('pages.manager.ManagerSchedConfHandler');
 		break;

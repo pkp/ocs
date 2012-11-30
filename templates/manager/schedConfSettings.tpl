@@ -4,70 +4,41 @@
  * Copyright (c) 2000-2012 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * Basic scheduled conference settings under site administration.
+ * Basic scheduled schedConf settings under schedConf management.
  *
  *}
-{strip}
-{assign var="pageTitle" value="manager.schedConfs.schedulingAConference"}
-{include file="common/header.tpl"}
-{/strip}
 
-<br />
+<script type="text/javascript">
+	$(function() {ldelim}
+		// Attach the form handler.
+		$('#schedConfSettingsForm').pkpHandler('$.pkp.controllers.form.AjaxFormHandler');
+	{rdelim});
+</script>
 
-<form class="pkp_form" id="schedConf" method="post" action="{url op="updateSchedConf"}">
-{if $schedConfId}
-<input type="hidden" name="schedConfId" value="{$schedConfId|escape}" />
-{/if}
-<input type="hidden" name="conferenceId" value="{$conferenceId|escape}" />
+<form class="pkp_form" id="schedConfSettingsForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.settings.schedConf.SchedConfGridHandler" op="updateContext"}">
+	{include file="controllers/notification/inPlaceNotification.tpl" notificationId="schedConfSettingsNotification"}
 
-{include file="common/formErrors.tpl"}
-
-{if not $schedConfId}
-<p><span class="instruct">{translate key="manager.schedConfs.form.createInstructions"}</span></p>
-{/if}
-
-<table class="data" width="100%">
-	{if count($formLocales) > 1}
-		<tr valign="top">
-			<td width="20%" class="label">{fieldLabel name="formLocale" key="form.formLanguage"}</td>
-			<td width="80%" class="value">
-				{if $schedConfId}
-					{url|assign:"settingsUrl" op="editSchedConf" path=$conferenceId|to_array:$schedConfId escape=false}
-				{else}
-					{url|assign:"settingsUrl" op="createSchedConf" escape=false}
-				{/if}
-				{form_language_chooser form="schedConf" url=$settingsUrl}
-				<span class="instruct">{translate key="form.formLanguage.description"}</span>
-			</td>
-		</tr>
+	{if $contextId}
+		{fbvElement id="contextId" type="hidden" name="contextId" value=$contextId}
+	{else}
+		<p>{translate key="manager.schedConfs.form.createInstructions"}</p>
 	{/if}
-	<tr valign="top">
-		<td width="20%" class="label">{fieldLabel name="name" key="manager.schedConfs.form.title" required="true"}</td>
-		<td width="80%" class="value"><input type="text" id="name" name="name[{$formLocale|escape}]" value="{$name[$formLocale]|escape}" size="40" maxlength="120" class="textField" /></td>
-	</tr>
-	<tr valign="top">
-		<td width="20%" class="label">{fieldLabel name="acronym" required="true" key="manager.schedConfs.form.acronym"}</td>
-		<td width="80%" class="value">
-			<input type="text" name="acronym[{$formLocale|escape}]" id="acronym" value="{$acronym[$formLocale]|escape}" size="8" maxlength="16" class="textField" />
-		</td>
-	</tr>
-	<tr valign="top">
-		<td class="label">{fieldLabel name="schedConfPath" key="common.path" required="true"}</td>
-		<td class="value">
-			<input type="text" id="schedConfPath" name="schedConfPath" value="{$schedConfPath|escape}" size="16" maxlength="32" class="textField" />
-			<br />
-			{translate|assign:"sampleEllipsis" key="common.ellipsis"}
-			{url|assign:"sampleUrl" schedConf="path" page="$sampleEllipsis"}
+
+	{fbvFormArea id="schedConfSettings"}
+		{fbvFormSection title="manager.schedConfs.form.title" required=true for="name"}
+			{fbvElement type="text" id="name" value=$name multilingual=true}
+		{/fbvFormSection}
+		{fbvFormSection title="manager.schedConfs.form.acronym" for="acronym"}
+			{fbvElement type="text" id="acronym" value=$acronym multilingual=true}
+		{/fbvFormSection}
+		{fbvFormSection title="common.path" required=true for="path"}
+			{fbvElement type="text" id="path" value=$path size=$smarty.const.SMALL maxlength="32"}
+			{url|assign:"sampleUrl" router=$smarty.const.ROUTE_PAGE schedConf="path"}
+			{** FIXME: is this class instruct still the right one? **}
 			<span class="instruct">{translate key="manager.schedConfs.form.urlWillBe" sampleUrl=$sampleUrl}</span>
-		</td>
-	</tr>
-</table>
+		{/fbvFormSection}
 
-<p><input type="submit" value="{translate key="common.save"}" class="button defaultButton" /> <input type="button" value="{translate key="common.cancel"}" class="button" onclick="document.location.href='{url op="schedConfs"}'" /></p>
-
+		<p><span class="formRequired">{translate key="common.requiredField"}</span></p>
+		{fbvFormButtons id="schedConfSettingsFormSubmit" submitText="common.save"}
+	{/fbvFormArea}
 </form>
-
-<p><span class="formRequired">{translate key="common.requiredField"}</span></p>
-
-{include file="common/footer.tpl"}
-

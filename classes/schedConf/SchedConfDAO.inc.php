@@ -322,6 +322,14 @@ class SchedConfDAO extends ContextDAO {
 		return $returner;
 	}
 
+	/**
+	 * Get a list of localized settings.
+	 * @return array
+	 */
+	function getLocaleFieldNames() {
+		return parent::getLocaleFieldNames() + array('acronym');
+	}
+
 	//
 	// Protected methods
 	//
