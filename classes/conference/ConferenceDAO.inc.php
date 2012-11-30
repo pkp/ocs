@@ -114,13 +114,13 @@ class ConferenceDAO extends ContextDAO {
 		$pluginSettingsDao->deleteSettingsByConferenceId($conferenceId);
 		
 		$reviewFormDao =& DAORegistry::getDAO('ReviewFormDAO');
-		$reviewFormDao->deleteByAssocId(ASSOC_TYPE_CONFERENCE, $conferenceId);
+		$reviewFormDao->deleteByAssoc(ASSOC_TYPE_CONFERENCE, $conferenceId);
 
 		$announcementDao =& DAORegistry::getDAO('AnnouncementDAO');
-		$announcementDao->deleteByAssocId(ASSOC_TYPE_CONFERENCE, $conferenceId);
+		$announcementDao->deleteByAssoc(ASSOC_TYPE_CONFERENCE, $conferenceId);
 
 		$announcementTypeDao =& DAORegistry::getDAO('AnnouncementTypeDAO');
-		$announcementTypeDao->deleteAnnouncementTypesByAssocId(ASSOC_TYPE_CONFERENCE, $conferenceId);
+		$announcementTypeDao->deleteByAssoc(ASSOC_TYPE_CONFERENCE, $conferenceId);
 
 		$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
 		$schedConfDao->deleteByConferenceId($conferenceId);

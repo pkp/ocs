@@ -27,9 +27,13 @@
 <script type="text/javascript" src="{$baseUrl}/lib/pkp/js/classes/ObjectProxy.js"></script>
 <script type="text/javascript" src="{$baseUrl}/lib/pkp/js/classes/Handler.js"></script>
 <script type="text/javascript" src="{$baseUrl}/lib/pkp/js/classes/features/Feature.js"></script>
+<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/classes/features/OrderItemsFeature.js"></script>
+<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/classes/features/OrderGridItemsFeature.js"></script>
 <script type="text/javascript" src="{$baseUrl}/lib/pkp/js/classes/linkAction/LinkActionRequest.js"></script>
 <script type="text/javascript" src="{$baseUrl}/lib/pkp/js/classes/linkAction/ModalRequest.js"></script>
 <script type="text/javascript" src="{$baseUrl}/lib/pkp/js/classes/linkAction/RedirectRequest.js"></script>
+<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/classes/linkAction/PostAndRedirectRequest.js"></script>
+<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/classes/linkAction/NullAction.js"></script>
 <script type="text/javascript" src="{$baseUrl}/lib/pkp/js/classes/linkAction/AjaxRequest.js"></script>
 <script type="text/javascript" src="{$baseUrl}/lib/pkp/js/classes/notification/NotificationHelper.js"></script>
 

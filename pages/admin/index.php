@@ -30,11 +30,6 @@ switch ($op) {
 	// Conference Management
 	//
 	case 'conferences':
-	case 'createConference':
-	case 'editConference':
-	case 'updateConference':
-	case 'deleteConference':
-	case 'moveConference':
 		define('HANDLER_CLASS', 'AdminConferenceHandler');
 		import('pages.admin.AdminConferenceHandler');
 		break;

@@ -7,69 +7,42 @@
  * Basic conference settings under site administration.
  *
  *}
-{strip}
-{assign var="pageTitle" value="admin.conferences.conferenceSettings"}
-{include file="common/header.tpl"}
-{/strip}
 
-<br />
-<div id="conferenceSettings">
-<form class="pkp_form" id="conference" method="post" action="{url op="updateConference"}">
-{if $conferenceId}
-<input type="hidden" name="conferenceId" value="{$conferenceId|escape}" />
-{/if}
+<script type="text/javascript">
+	$(function() {ldelim}
+		// Attach the form handler.
+		$('#conferenceSettingsForm').pkpHandler('$.pkp.controllers.form.AjaxFormHandler');
+	{rdelim});
+</script>
 
-{include file="common/formErrors.tpl"}
+<form class="pkp_form" id="conferenceSettingsForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.admin.conference.ConferenceGridHandler" op="updateContext"}">
+	{include file="controllers/notification/inPlaceNotification.tpl" notificationId="conferenceSettingsNotification"}
 
-{if not $conferenceId}
-<p><span class="instruct">{translate key="admin.conferences.createInstructions"}</span></p>
-{/if}
-
-<table class="data" width="100%">
-	{if count($formLocales) > 1}
-		<tr valign="top">
-			<td width="20%" class="label">{fieldLabel name="formLocale" key="form.formLanguage"}</td>
-			<td width="80%" class="value">
-				{url|assign:"settingsUrl" op="editConference" path=$conferenceId escape=false}
-				{form_language_chooser form="conference" url=$settingsUrl}
-				<span class="instruct">{translate key="form.formLanguage.description"}</span>
-			</td>
-		</tr>
+	{if $contextId}
+		{fbvElement id="contextId" type="hidden" name="contextId" value=$contextId}
+	{else}
+		<p>{translate key="admin.conferences.createInstructions"}</p>
 	{/if}
-	<tr valign="top">
-		<td width="20%" class="label">{fieldLabel name="name" key="manager.setup.conferenceTitle" required="true"}</td>
-		<td width="80%" class="value"><input type="text" id="name" name="name[{$formLocale|escape}]" value="{$name[$formLocale]|escape}" size="40" maxlength="120" class="textField" /></td>
-	</tr>
-	<tr valign="top">
-		<td class="label">{fieldLabel name="description" key="admin.conferences.conferenceDescription"}</td>
-		<td class="value">
-			<textarea name="description[{$formLocale|escape}]" id="description" cols="40" rows="10" class="textArea">{$description[$formLocale]|escape}</textarea>
-			<br />
-			<span class="instruct">{translate key="admin.conferences.conferenceDescriptionInstructions" sampleUrl=$sampleUrl}</span>
-		</td>
-	</tr>
-	<tr valign="top">
-		<td class="label">{fieldLabel name="conferencePath" key="common.path" required="true"}</td>
-		<td class="value">
-			<input type="text" id="conferencePath" name="conferencePath" value="{$conferencePath|escape}" size="16" maxlength="32" class="textField" />
-			<br />
-			{translate|assign:"sampleEllipsis" key="common.ellipsis"}
-			{url|assign:"sampleUrl" conference="path" schedConf="$sampleEllipsis"}
+
+	{fbvFormArea id="conferenceSettings"}
+		{fbvFormSection title="manager.setup.conferenceTitle" required=true for="name"}
+			{fbvElement type="text" id="name" value=$name multilingual=true}
+		{/fbvFormSection}
+		{fbvFormSection title="admin.conferences.conferenceDescription" for="description"}
+			{fbvElement type="textarea" id="description" value=$description multilingual=true rich=true}
+		{/fbvFormSection}
+		{fbvFormSection title="common.path" required=true for="path"}
+			{fbvElement type="text" id="path" value=$path size=$smarty.const.SMALL maxlength="32"}
+			{url|assign:"sampleUrl" router=$smarty.const.ROUTE_PAGE conference="path"}
+			{** FIXME: is this class instruct still the right one? **}
 			<span class="instruct">{translate key="admin.conferences.urlWillBe" sampleUrl=$sampleUrl}</span>
-		</td>
-	</tr>
-	<tr valign="top">
-		<td colspan="2" class="label">
-			<input type="checkbox" name="enabled" id="enabled" value="1"{if $enabled} checked="checked"{/if} /> <label for="enabled">{translate key="admin.conferences.enableConferenceInstructions"}</label>
-		</td>
-	</tr>
-</table>
+		{/fbvFormSection}
+		{fbvFormSection for="enabled" list=true}
+			{if $enabled}{assign var="enabled" value="checked"}{/if}
+			{fbvElement type="checkbox" id="enabled" checked=$enabled value="1" label="admin.conferences.enableConferenceInstructions"}
+		{/fbvFormSection}
 
-<p><input type="submit" value="{translate key="common.save"}" class="button defaultButton" /> <input type="button" value="{translate key="common.cancel"}" class="button" onclick="document.location.href='{url op="conferences"}'" /></p>
-
+		<p><span class="formRequired">{translate key="common.requiredField"}</span></p>
+		{fbvFormButtons id="conferenceSettingsFormSubmit" submitText="common.save"}
+	{/fbvFormArea}
 </form>
-
-<p><span class="formRequired">{translate key="common.requiredField"}</span></p>
-</div>
-{include file="common/footer.tpl"}
-

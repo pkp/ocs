@@ -151,8 +151,8 @@ class ReviewFormHandler extends ManagerHandler {
 			$request->redirect(null, null, null, 'reviewForms');
 		}
 
-		$completeCounts = $reviewFormDao->getUseCounts(ASSOC_TYPE_JOURNAL, $journal->getId(), true);
-		$incompleteCounts = $reviewFormDao->getUseCounts(ASSOC_TYPE_JOURNAL, $journal->getId(), false);
+		$completeCounts = $reviewFormDao->getUseCounts(ASSOC_TYPE_CONFERENCE, $conference->getId(), true);
+		$incompleteCounts = $reviewFormDao->getUseCounts(ASSOC_TYPE_CONFERENCE, $conference->getId(), false);
 		if ($completeCounts[$reviewFormId] != 0 || $incompleteCounts[$reviewFormId] != 0) {
 			$this->setupTemplate($request, true);
 		} else {
@@ -184,8 +184,8 @@ class ReviewFormHandler extends ManagerHandler {
 		$reviewFormDao =& DAORegistry::getDAO('ReviewFormDAO');
 		$reviewForm =& $reviewFormDao->getReviewForm($reviewFormId, ASSOC_TYPE_CONFERENCE, $conference->getId());
 
-		$completeCounts = $reviewFormDao->getUseCounts(ASSOC_TYPE_JOURNAL, $journal->getId(), true);
-		$incompleteCounts = $reviewFormDao->getUseCounts(ASSOC_TYPE_JOURNAL, $journal->getId(), false);
+		$completeCounts = $reviewFormDao->getUseCounts(ASSOC_TYPE_CONFERENCE, $conference->getId(), true);
+		$incompleteCounts = $reviewFormDao->getUseCounts(ASSOC_TYPE_CONFERENCE, $conference->getId(), false);
 		if (isset($reviewForm) && $completeCounts[$reviewFormId] == 0 && $incompleteCounts[$reviewFormId] == 0) {
 			$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
 			$reviewAssignments =& $reviewAssignmentDao->getByReviewFormId($reviewFormId);
