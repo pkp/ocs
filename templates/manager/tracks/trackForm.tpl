@@ -123,7 +123,7 @@
 </tr>
 <tr valign="top">
 	<td class="label">{fieldLabel name="policy" key="manager.tracks.policy"}</td>
-	<td class="value"><textarea name="policy[{$formLocale|escape}]" rows="4" cols="40" id="policy" class="textArea">{$policy[$formLocale]|escape}</textarea></td>
+	<td class="value"><textarea name="policy[{$formLocale|escape}]" rows="4" cols="40" id="policy" class="textArea richContent">{$policy[$formLocale]|escape}</textarea></td>
 </tr>
 <td class="label">{fieldLabel name="reviewFormId" key="submission.reviewForm"}</td>
 <td class="value">

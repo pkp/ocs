@@ -67,7 +67,7 @@
 <tr valign="top">
 	<td class="label">{fieldLabel name="description" key="manager.scheduler.specialEvent.description"}</td>
 	<td class="value">
-		<textarea name="description[{$formLocale|escape}]" id="description" cols="40" rows="10" class="textArea">{$description[$formLocale]|escape}</textarea>
+		<textarea name="description[{$formLocale|escape}]" id="description" cols="40" rows="10" class="textArea richContent">{$description[$formLocale]|escape}</textarea>
 	</td>
 </tr>
 </table>

@@ -72,7 +72,7 @@
 	</tr>
 	<tr valign="top">
 		<td width="20%" class="label">{fieldLabel name="registrationMailingAddress" key="common.mailingAddress"}</td>
-		<td width="80%" class="value"><textarea name="registrationMailingAddress" id="registrationMailingAddress" rows="6" cols="40" class="textArea">{$registrationMailingAddress|escape}</textarea></td>
+		<td width="80%" class="value"><textarea name="registrationMailingAddress" id="registrationMailingAddress" rows="6" cols="40" class="textArea richContent">{$registrationMailingAddress|escape}</textarea></td>
 	</tr>
 </table>
 </div>
@@ -83,7 +83,7 @@
 <h3>{translate key="manager.registrationPolicies.registrationAdditionalInformation"}</h3>
 <p>{translate key="manager.registrationPolicies.registrationAdditionalInformationDescription"}</p>
 <p>
-	<textarea name="registrationAdditionalInformation[{$formLocale|escape}]" id="registrationAdditionalInformation" rows="12" cols="60" class="textArea">{$registrationAdditionalInformation[$formLocale]|escape}</textarea>
+	<textarea name="registrationAdditionalInformation[{$formLocale|escape}]" id="registrationAdditionalInformation" rows="12" cols="60" class="textArea richContent">{$registrationAdditionalInformation[$formLocale]|escape}</textarea>
 	<br />
 	<span class="instruct">{translate key="manager.registrationPolicies.htmlInstructions"}</span>
 </p>
@@ -144,7 +144,7 @@
 
 	<p>{translate key="manager.registrationPolicies.delayedOpenAccessPolicyDescription"}</p>
 	<p>
-	<textarea name="delayedOpenAccessPolicy[{$formLocale|escape}]" id="delayedOpenAccessPolicy" rows="12" cols="60" class="textArea">{$delayedOpenAccessPolicy[$formLocale]|escape}</textarea>
+	<textarea name="delayedOpenAccessPolicy[{$formLocale|escape}]" id="delayedOpenAccessPolicy" rows="12" cols="60" class="textArea richContent">{$delayedOpenAccessPolicy[$formLocale]|escape}</textarea>
 	<br />
 	<span class="instruct">{translate key="manager.registrationPolicies.htmlInstructions"}</span>
 	</p>
@@ -155,7 +155,7 @@
 	<label for="enableAuthorSelfArchive">{translate key="manager.registrationPolicies.authorSelfArchiveDescription"}</label>
 	</p>
 	<p>
-	<textarea name="authorSelfArchivePolicy[{$formLocale|escape}]" id="authorSelfArchivePolicy" rows="12" cols="60" class="textArea">{$authorSelfArchivePolicy[$formLocale]|escape}</textarea>
+	<textarea name="authorSelfArchivePolicy[{$formLocale|escape}]" id="authorSelfArchivePolicy" rows="12" cols="60" class="textArea richContent">{$authorSelfArchivePolicy[$formLocale]|escape}</textarea>
 	<br />
 	<span class="instruct">{translate key="manager.registrationPolicies.htmlInstructions"}</span>
 	</p>

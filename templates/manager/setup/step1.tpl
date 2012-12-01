@@ -42,7 +42,7 @@
 <h3><label for="description">1.2 {translate key="manager.setup.aboutConference.conferenceDescription"}</label></h3>
 <span class="instruct">{translate key="manager.setup.aboutConference.conferenceDescription.description"}</span>
 
-<textarea name="description[{$formLocale|escape}]" id="description" rows="5" cols="60" class="textArea">{$description[$formLocale]|escape}</textarea>
+<textarea name="description[{$formLocale|escape}]" id="description" rows="5" cols="60" class="textArea richContent">{$description[$formLocale]|escape}</textarea>
 </div>
 <div class="separator"></div>
 <div id="principalContact">
@@ -59,7 +59,7 @@
 	</tr>	
 	<tr valign="top">
 		<td width="20%" class="label">{fieldLabel name="contactAffiliation" key="user.affiliation"}</td>
-		<td width="80%" class="value"><textarea name="contactAffiliation[{$formLocale|escape}]" id="contactAffiliation" rows="5" cols="40" class="textArea">{$contactAffiliation[$formLocale]|escape}</textarea></td>
+		<td width="80%" class="value"><textarea name="contactAffiliation[{$formLocale|escape}]" id="contactAffiliation" rows="5" cols="40" class="textArea richContent">{$contactAffiliation[$formLocale]|escape}</textarea></td>
 	</tr>
 	<tr valign="top">
 		<td width="20%" class="label">{fieldLabel name="contactEmail" key="user.email" required="true"}</td>
@@ -75,7 +75,7 @@
 	</tr>
 	<tr valign="top">
 		<td width="20%" class="label">{fieldLabel name="contactMailingAddress" key="common.mailingAddress"}</td>
-		<td width="80%" class="value"><textarea name="contactMailingAddress" id="contactMailingAddress" rows="3" cols="40" class="textArea">{$contactMailingAddress|escape}</textarea></td>
+		<td width="80%" class="value"><textarea name="contactMailingAddress" id="contactMailingAddress" rows="3" cols="40" class="textArea richContent">{$contactMailingAddress|escape}</textarea></td>
 	</tr>
 </table>
 </div>
@@ -84,7 +84,7 @@
 <h3><label for="copyrightNotice">1.4 {translate key="manager.setup.aboutConference.copyrightNotice"}</label></h3>
 <p>{translate key="manager.setup.aboutConference.copyrightNotice.description"}</p>
 
-<p><textarea name="copyrightNotice[{$formLocale|escape}]" id="copyrightNotice" rows="10" cols="60" class="textArea">{$copyrightNotice[$formLocale]|escape}</textarea></p>
+<p><textarea name="copyrightNotice[{$formLocale|escape}]" id="copyrightNotice" rows="10" cols="60" class="textArea richContent">{$copyrightNotice[$formLocale]|escape}</textarea></p>
 
 <p><input type="checkbox" name="copyrightNoticeAgree" id="copyrightNoticeAgree" value="1"{if $copyrightNoticeAgree} checked="checked"{/if} /> {fieldLabel name="copyrightNoticeAgree" key="manager.setup.aboutConference.copyrightNoticeAgree"}<br/>
 <input type="checkbox" name="postCreativeCommons" id="postCreativeCommons" value="1"{if $postCreativeCommons} checked="checked"{/if} /> {fieldLabel name="postCreativeCommons" key="manager.setup.aboutConference.postCreativeCommons"}<br/></p>
@@ -135,14 +135,14 @@
 <div id="policy">
 <h4>{translate key="manager.setup.aboutConference.archiveAccessPolicy"}</h4>
 
-<p><textarea name="archiveAccessPolicy[{$formLocale|escape}]" id="archiveAccessPolicy" rows="10" cols="60" class="textArea">{$archiveAccessPolicy[$formLocale]|escape}</textarea></p>
+<p><textarea name="archiveAccessPolicy[{$formLocale|escape}]" id="archiveAccessPolicy" rows="10" cols="60" class="textArea richContent">{$archiveAccessPolicy[$formLocale]|escape}</textarea></p>
 </div>
 </div>
 <div class="separator"></div>
 <div id="privacyStatementInfo">
 <h3>1.6 {translate key="manager.setup.aboutConference.privacyStatement"}</h3>
 
-<p><textarea name="privacyStatement[{$formLocale|escape}]" id="privacyStatement" rows="10" cols="60" class="textArea">{$privacyStatement[$formLocale]|escape}</textarea></p>
+<p><textarea name="privacyStatement[{$formLocale|escape}]" id="privacyStatement" rows="10" cols="60" class="textArea richContent">{$privacyStatement[$formLocale]|escape}</textarea></p>
 </div>
 <div class="separator"></div>
 <div id="addItemtoAboutConference">
@@ -156,7 +156,7 @@
 	</tr>
 	<tr valign="top">
 		<td width="20%" class="label">{fieldLabel name="customAboutItems-$aboutId-content" key="manager.setup.aboutConference.aboutItemContent"}</td>
-		<td width="80%" class="value"><textarea name="customAboutItems[{$formLocale|escape}][{$aboutId|escape}][content]" id="customAboutItems-{$aboutId|escape}-content" rows="10" cols="40" class="textArea">{$aboutItem.content|escape}</textarea></td>
+		<td width="80%" class="value"><textarea name="customAboutItems[{$formLocale|escape}][{$aboutId|escape}][content]" id="customAboutItems-{$aboutId|escape}-content" rows="10" cols="40" class="textArea richContent">{$aboutItem.content|escape}</textarea></td>
 	</tr>
 	{if !$smarty.foreach.customAboutItems.last}
 	<tr valign="top">
@@ -170,7 +170,7 @@
 	</tr>
 	<tr valign="top">
 		<td width="20%" class="label">{fieldLabel name="customAboutItems-0-content" key="manager.setup.aboutConference.aboutItemContent"}</td>
-		<td width="80%" class="value"><textarea name="customAboutItems[{$formLocale|escape}][0][content]" id="customAboutItems-0-content" rows="10" cols="40" class="textArea"></textarea></td>
+		<td width="80%" class="value"><textarea name="customAboutItems[{$formLocale|escape}][0][content]" id="customAboutItems-0-content" rows="10" cols="40" class="textArea richContent"></textarea></td>
 	</tr>
 {/foreach}
 </table>

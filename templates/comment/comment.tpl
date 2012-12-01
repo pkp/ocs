@@ -66,7 +66,7 @@ function handleAnonymousCheckbox(theBox) {
 	<tr valign="top">
 		<td class="label"><label for="bodyField">{translate key="comments.body"}</label></td>
 		<td class="value">
-			<textarea class="textArea" name="body" id="bodyField" rows="5" cols="60">{$body|escape}</textarea>
+			<textarea class="textArea richContent" name="body" id="bodyField" rows="5" cols="60">{$body|escape}</textarea>
 		</td>
 	</tr>
 

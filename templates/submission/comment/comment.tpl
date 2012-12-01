@@ -59,7 +59,7 @@
 </tr>
 <tr valign="top">
 	<td class="label">{fieldLabel name="comments" required="true" key="submission.comments.comments"}</td>
-	<td class="value"><textarea id="comments" name="comments" rows="10" cols="50" class="textArea">{$comments|escape}</textarea></td>
+	<td class="value"><textarea id="comments" name="comments" rows="10" cols="50" class="textArea richContent">{$comments|escape}</textarea></td>
 </tr>
 </table>
 

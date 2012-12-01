@@ -216,7 +216,7 @@
 
 <tr valign="top">
 	<td class="label">{fieldLabel name="affiliation" key="user.affiliation" required="true"}</td>
-	<td class="value"><textarea id="affiliation" name="affiliation" rows="5" cols="40" class="textArea">{$affiliation|escape}</textarea></td>
+	<td class="value"><textarea id="affiliation" name="affiliation" rows="5" cols="40" class="textArea richContent">{$affiliation|escape}</textarea></td>
 </tr>
 
 <tr valign="top">
@@ -246,12 +246,12 @@
 
 <tr valign="top">
 	<td class="label">{fieldLabel name="mailingAddress" key="common.mailingAddress"}</td>
-	<td class="value"><textarea name="mailingAddress" id="mailingAddress" rows="3" cols="40" class="textArea">{$mailingAddress|escape}</textarea></td>
+	<td class="value"><textarea name="mailingAddress" id="mailingAddress" rows="3" cols="40" class="textArea richContent">{$mailingAddress|escape}</textarea></td>
 </tr>
 
 <tr valign="top">
 	<td class="label">{fieldLabel name="billingAddress" key="common.billingAddress"}</td>
-	<td class="value"><textarea name="billingAddress" id="billingAddress" rows="3" cols="40" class="textArea">{$billingAddress|escape}</textarea></td>
+	<td class="value"><textarea name="billingAddress" id="billingAddress" rows="3" cols="40" class="textArea richContent">{$billingAddress|escape}</textarea></td>
 </tr>
 
 <tr valign="top">
@@ -266,7 +266,7 @@
 
 <tr valign="top">
 	<td class="label">{fieldLabel name="biography" key="user.biography"}<br />{translate key="user.biography.description"}</td>
-	<td class="value"><textarea name="biography[{$formLocale|escape}]" id="biography" rows="5" cols="40" class="textArea">{$biography[$formLocale]|escape}</textarea></td>
+	<td class="value"><textarea name="biography[{$formLocale|escape}]" id="biography" rows="5" cols="40" class="textArea richContent">{$biography[$formLocale]|escape}</textarea></td>
 </tr>
 
 </table>
@@ -279,7 +279,7 @@
 
 <p><label for="specialRequests">{translate key="schedConf.registration.specialRequests.description"}</label></p>
 
-<p><textarea name="specialRequests" id="specialRequests" cols="60" rows="10" class="textArea">{$specialRequests|escape}</textarea></p>
+<p><textarea name="specialRequests" id="specialRequests" cols="60" rows="10" class="textArea richContent">{$specialRequests|escape}</textarea></p>
 </div>
 <div class="separator"></div>
 

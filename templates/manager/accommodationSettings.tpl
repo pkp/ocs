@@ -63,7 +63,7 @@
 <h4>{translate key="manager.accommodation.form.accommodationText"}</h4>
 <p>{translate key="manager.accommodation.form.accommodationText.description"}</p>
 
-<textarea name="accommodationDescription[{$formLocale|escape}]" id="accommodationDescription" rows="5" cols="60" class="textArea">{$accommodationDescription[$formLocale]|escape}</textarea>
+<textarea name="accommodationDescription[{$formLocale|escape}]" id="accommodationDescription" rows="5" cols="60" class="textArea richContent">{$accommodationDescription[$formLocale]|escape}</textarea>
 
 <div class="separator"></div>
 

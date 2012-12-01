@@ -34,7 +34,7 @@
 
 <h4>{translate key="manager.schedConfSetup.review.reviewPolicy"}</h4>
 
-<p><textarea name="reviewPolicy[{$formLocale|escape}]" id="reviewPolicy" rows="12" cols="60" class="textArea">{$reviewPolicy[$formLocale]|escape}</textarea></p>
+<p><textarea name="reviewPolicy[{$formLocale|escape}]" id="reviewPolicy" rows="12" cols="60" class="textArea richContent">{$reviewPolicy[$formLocale]|escape}</textarea></p>
 </div>
 <div class="separator"></div>
 <div id="peerReview">
@@ -42,7 +42,7 @@
 
 <p>{translate key="manager.schedConfSetup.review.reviewGuidelinesDescription"}</p>
 
-<p><textarea name="reviewGuidelines[{$formLocale|escape}]" id="reviewGuidelines" rows="12" cols="60" class="textArea">{$reviewGuidelines[$formLocale]|escape}</textarea></p>
+<p><textarea name="reviewGuidelines[{$formLocale|escape}]" id="reviewGuidelines" rows="12" cols="60" class="textArea richContent">{$reviewGuidelines[$formLocale]|escape}</textarea></p>
 
 <script type="text/javascript">
 	{literal}

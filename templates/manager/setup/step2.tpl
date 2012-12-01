@@ -78,7 +78,7 @@
 
 <p>{translate key="manager.setup.additionalContent.additionalContent.description"}</p>
 
-<p><textarea name="additionalHomeContent[{$formLocale|escape}]" id="additionalHomeContent" rows="10" cols="60" class="textArea">{$additionalHomeContent[$formLocale]|escape}</textarea></p>
+<p><textarea name="additionalHomeContent[{$formLocale|escape}]" id="additionalHomeContent" rows="10" cols="60" class="textArea richContent">{$additionalHomeContent[$formLocale]|escape}</textarea></p>
 </div>
 </div>
 <div class="separator"></div>
@@ -89,12 +89,12 @@
 <div id="infoForReaders">
 <h4>{translate key="manager.setup.additionalContent.information.forReaders"}</h4>
 
-<p><textarea name="readerInformation[{$formLocale|escape}]" id="readerInformation" rows="10" cols="60" class="textArea">{$readerInformation[$formLocale]|escape}</textarea></p>
+<p><textarea name="readerInformation[{$formLocale|escape}]" id="readerInformation" rows="10" cols="60" class="textArea richContent">{$readerInformation[$formLocale]|escape}</textarea></p>
 </div>
 <div id="forAuthors">
 <h4>{translate key="manager.setup.additionalContent.information.forAuthors"}</h4>
 
-<p><textarea name="authorInformation[{$formLocale|escape}]" id="authorInformation" rows="10" cols="60" class="textArea">{$authorInformation[$formLocale]|escape}</textarea></p>
+<p><textarea name="authorInformation[{$formLocale|escape}]" id="authorInformation" rows="10" cols="60" class="textArea richContent">{$authorInformation[$formLocale]|escape}</textarea></p>
 </div>
 </div>
 <div class="separator"></div>
@@ -133,7 +133,7 @@
 
 <p>{translate key="manager.setup.additionalContent.announcementsIntroductionDescription"}</p>
 
-<p><textarea name="announcementsIntroduction[{$formLocale|escape}]" id="announcementsIntroduction" rows="10" cols="60" class="textArea">{$announcementsIntroduction[$formLocale]|escape}</textarea></p>
+<p><textarea name="announcementsIntroduction[{$formLocale|escape}]" id="announcementsIntroduction" rows="10" cols="60" class="textArea richContent">{$announcementsIntroduction[$formLocale]|escape}</textarea></p>
 </div>
 </div>
 

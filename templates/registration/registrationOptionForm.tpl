@@ -49,7 +49,7 @@
 </tr>
 <tr valign="top">
 	<td class="label">{fieldLabel name="description" key="manager.registrationOptions.form.description"}</td>
-	<td class="value"><textarea name="description[{$formLocale|escape}]" id="description" cols="40" rows="4" class="textArea">{$description[$formLocale]|escape}</textarea></td>
+	<td class="value"><textarea name="description[{$formLocale|escape}]" id="description" cols="40" rows="4" class="textArea richContent">{$description[$formLocale]|escape}</textarea></td>
 </tr>
 <tr valign="top">
 	<td class="label">{translate key="manager.registrationOptions.cost"}</td>

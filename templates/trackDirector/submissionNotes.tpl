@@ -90,7 +90,7 @@
 	</tr>
 	<tr valign="top">
 		<td class="label" width="20%">{translate key="common.note"}</td>
-		<td class="value" width="80%"><textarea name="note" id="note" rows="10" cols="50" class="textArea">{$paperNote->getNote()|strip_unsafe_html|escape}</textarea></td>
+		<td class="value" width="80%"><textarea name="note" id="note" rows="10" cols="50" class="textArea richContent">{$paperNote->getNote()|escape}</textarea></td>
 	</tr>
 	<tr valign="top">
 		<td class="label" width="20%">{translate key="common.file"}</td>
@@ -116,7 +116,7 @@
 	</tr>
 	<tr valign="top">
 		<td class="label">{translate key="common.note"}</td>
-		<td class="value"><textarea name="note" id="note" rows="10" cols="50" class="textArea"></textarea></td>
+		<td class="value"><textarea name="note" id="note" rows="10" cols="50" class="textArea richContent"></textarea></td>
 	</tr>
 	<tr valign="top">
 		<td class="label">{translate key="common.file"}</td>

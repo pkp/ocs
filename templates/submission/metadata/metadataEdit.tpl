@@ -96,7 +96,7 @@ function moveAuthor(dir, authorIndex) {
 	<tr valign="top">
 		<td class="label">{fieldLabel name="authors-$authorIndex-affiliation" key="user.affiliation"}</td>
 		<td class="value">
-			<textarea name="authors[{$authorIndex|escape}][affiliation][{$formLocale|escape}]" class="textArea" id="authors-{$authorIndex|escape}-affiliation" rows="5" cols="40">{$author.affiliation[$formLocale]|escape}</textarea><br/>
+			<textarea name="authors[{$authorIndex|escape}][affiliation][{$formLocale|escape}]" class="textArea richContent" id="authors-{$authorIndex|escape}-affiliation" rows="5" cols="40">{$author.affiliation[$formLocale]|escape}</textarea><br/>
 			<span class="instruct">{translate key="user.affiliation.description"}</span>
 		</td>
 	</tr>
@@ -111,7 +111,7 @@ function moveAuthor(dir, authorIndex) {
 	</tr>
 	<tr valign="top">
 		<td class="label">{fieldLabel name="authors-$authorIndex-biography" key="user.biography"}<br />{translate key="user.biography.description"}</td>
-		<td class="value"><textarea name="authors[{$authorIndex|escape}][biography][{$formLocale|escape}]" id="authors-{$authorIndex|escape}-biography" rows="5" cols="40" class="textArea">{$author.biography[$formLocale]|escape}</textarea></td>
+		<td class="value"><textarea name="authors[{$authorIndex|escape}][biography][{$formLocale|escape}]" id="authors-{$authorIndex|escape}-biography" rows="5" cols="40" class="textArea richContent">{$author.biography[$formLocale]|escape}</textarea></td>
 	</tr>
 	{if $smarty.foreach.authors.total > 1}
 	<tr valign="top">
@@ -153,7 +153,7 @@ function moveAuthor(dir, authorIndex) {
 	<tr valign="top">
 		<td class="label">{fieldLabel name="authors-0-affiliation" key="user.affiliation"}</td>
 		<td class="value">
-			<textarea name="authors[0][affiliation][{$formLocale|escape}]" class="textArea" id="authors-0-affiliation" rows="5" cols="40"></textarea><br/>
+			<textarea name="authors[0][affiliation][{$formLocale|escape}]" class="textArea richContent" id="authors-0-affiliation" rows="5" cols="40"></textarea><br/>
 			<span class="instruct">{translate key="user.affiliation.description"}</span>
 		</td>
 	</tr>
@@ -167,7 +167,7 @@ function moveAuthor(dir, authorIndex) {
 	</tr>
 	<tr valign="top">
 		<td class="label">{fieldLabel name="authors-0-biography" key="user.biography"}<br />{translate key="user.biography.description"}</td>
-		<td class="value"><textarea name="authors[0][biography][{$formLocale|escape}]" id="authors-0-biography" rows="5" cols="40" class="textArea"></textarea></td>
+		<td class="value"><textarea name="authors[0][biography][{$formLocale|escape}]" id="authors-0-biography" rows="5" cols="40" class="textArea richContent"></textarea></td>
 	</tr>
 	{/foreach}
 </table>
@@ -192,7 +192,7 @@ function moveAuthor(dir, authorIndex) {
 	</tr>
 	<tr valign="top">
 		<td class="label">{fieldLabel name="abstract" key="paper.abstract" required="true"}</td>
-		<td class="value"><textarea name="abstract[{$formLocale|escape}]" id="abstract" rows="15" cols="60" class="textArea">{$abstract[$formLocale]|escape}</textarea></td>
+		<td class="value"><textarea name="abstract[{$formLocale|escape}]" id="abstract" rows="15" cols="60" class="textArea richContent">{$abstract[$formLocale]|escape}</textarea></td>
 	</tr>
 </table>
 </div>
@@ -342,7 +342,7 @@ function moveAuthor(dir, authorIndex) {
 <table width="100%" class="data">
 <tr valign="top">
 	<td width="20%" class="label">{fieldLabel name="citations" key="submission.citations"}</td>
-	<td width="80%" class="value"><textarea name="citations" id="citations" class="textArea" rows="15" cols="60">{$citations|escape}</textarea></td>
+	<td width="80%" class="value"><textarea name="citations" id="citations" class="textArea richContent" rows="15" cols="60">{$citations|escape}</textarea></td>
 </tr>
 </table>
 </div>

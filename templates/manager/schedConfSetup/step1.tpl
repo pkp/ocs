@@ -32,11 +32,11 @@
 
 <p><label for="introduction">{translate key="manager.schedConfSetup.details.introduction.description"}</label></p>
 
-<p><textarea name="introduction[{$formLocale|escape}]" id="introduction" rows="10" cols="60" class="textArea">{$introduction[$formLocale]|escape}</textarea></p>
+<p><textarea name="introduction[{$formLocale|escape}]" id="introduction" rows="10" cols="60" class="textArea richContent">{$introduction[$formLocale]|escape}</textarea></p>
 
 <p><label for="overview">{translate key="manager.schedConfSetup.details.overview.description"}</label></p>
 
-<p><textarea name="overview[{$formLocale|escape}]" id="overview" rows="10" cols="60" class="textArea">{$overview[$formLocale]|escape}</textarea></p>
+<p><textarea name="overview[{$formLocale|escape}]" id="overview" rows="10" cols="60" class="textArea richContent">{$overview[$formLocale]|escape}</textarea></p>
 </div>
 <div class="separator"></div>
 <div id="location">
@@ -49,7 +49,7 @@
 	</tr>
 	<tr valign="top">
 		<td class="label">{fieldLabel name="locationAddress" key="common.mailingAddress"}</td>
-		<td class="value"><textarea name="locationAddress" id="locationAddress" rows="3" cols="40" class="textArea">{$locationAddress|escape}</textarea></td>
+		<td class="value"><textarea name="locationAddress" id="locationAddress" rows="3" cols="40" class="textArea richContent">{$locationAddress|escape}</textarea></td>
 	</tr>
 	<tr valign="top">
 		<td class="label">{fieldLabel name="locationCity" key="manager.schedConfSetup.details.location.city"}</td>
@@ -81,7 +81,7 @@
 	</tr>	
 	<tr valign="top">
 		<td width="20%" class="label">{fieldLabel name="contactAffiliation" key="user.affiliation"}</td>
-		<td width="80%" class="value"><textarea name="contactAffiliation[{$formLocale|escape}]" id="contactAffiliation" rows="5" cols="40" class="textArea">{$contactAffiliation[$formLocale]|escape}</textarea></td>
+		<td width="80%" class="value"><textarea name="contactAffiliation[{$formLocale|escape}]" id="contactAffiliation" rows="5" cols="40" class="textArea richContent">{$contactAffiliation[$formLocale]|escape}</textarea></td>
 	</tr>
 	<tr valign="top">
 		<td width="20%" class="label">{fieldLabel name="contactEmail" key="user.email" required="true"}</td>
@@ -97,7 +97,7 @@
 	</tr>
 	<tr valign="top">
 		<td width="20%" class="label">{fieldLabel name="contactMailingAddress" key="common.mailingAddress"}</td>
-		<td width="80%" class="value"><textarea name="contactMailingAddress" id="contactMailingAddress" rows="3" cols="40" class="textArea">{$contactMailingAddress|escape}</textarea></td>
+		<td width="80%" class="value"><textarea name="contactMailingAddress" id="contactMailingAddress" rows="3" cols="40" class="textArea richContent">{$contactMailingAddress|escape}</textarea></td>
 	</tr>
 </table>
 </div>
@@ -158,7 +158,7 @@
 	<tr valign="top">
 		<td width="20%" class="label">{fieldLabel name="sponsorNote" key="manager.schedConfSetup.details.note"}</td>
 		<td width="80%" class="value">
-			<textarea name="sponsorNote[{$formLocale|escape}]" id="sponsorNote" rows="5" cols="40" class="textArea">{$sponsorNote[$formLocale]|escape}</textarea>
+			<textarea name="sponsorNote[{$formLocale|escape}]" id="sponsorNote" rows="5" cols="40" class="textArea richContent">{$sponsorNote[$formLocale]|escape}</textarea>
 			<br/>
 			<span class="instruct">{translate key="manager.schedConfSetup.details.sponsors.noteDescription"}</span>
 		</td>
@@ -176,7 +176,7 @@
 	<tr valign="top">
 		<td width="20%" class="label">{fieldLabel name="sponsors-$sponsorId-address" key="common.mailingAddress"}</td>
 		<td width="80%" class="value">
-			<textarea name="sponsors[{$sponsorId|escape}][address]" id="sponsors-{$sponsorId|escape}-address" rows="4" cols="35" class="textArea">{$sponsor.address|escape}</textarea>
+			<textarea name="sponsors[{$sponsorId|escape}][address]" id="sponsors-{$sponsorId|escape}-address" rows="4" cols="35" class="textArea richContent">{$sponsor.address|escape}</textarea>
 		</td>
 	</tr>
 	<tr valign="top">
@@ -195,7 +195,7 @@
 	</tr>
 	<tr valign="top">
 		<td width="20%" class="label">{fieldLabel name="sponsors-0-address" key="common.mailingAddress"}</td>
-		<td width="80%" class="value"><textarea name="sponsors[0][address]" id="sponsors-0-address" rows="4" cols="35" class="textArea">{$sponsors[0][address]|escape}</textarea>
+		<td width="80%" class="value"><textarea name="sponsors[0][address]" id="sponsors-0-address" rows="4" cols="35" class="textArea richContent">{$sponsors[0][address]|escape}</textarea>
 		</td>
 	</tr>
 	<tr valign="top">
@@ -217,7 +217,7 @@
 	<tr valign="top">
 		<td width="20%" class="label">{fieldLabel name="contributorNote" key="manager.schedConfSetup.details.note"}</td>
 		<td width="80%" class="value">
-			<textarea name="contributorNote[{$formLocale|escape}]" id="contributorNote" rows="5" cols="40" class="textArea">{$contributorNote[$formLocale]|escape}</textarea>
+			<textarea name="contributorNote[{$formLocale|escape}]" id="contributorNote" rows="5" cols="40" class="textArea richContent">{$contributorNote[$formLocale]|escape}</textarea>
 			<br/>
 			<span class="instruct">{translate key="manager.schedConfSetup.details.contributors.noteDescription"}</span>
 		</td>

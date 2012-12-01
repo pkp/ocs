@@ -178,7 +178,7 @@
 
 <p>{translate key="manager.setup.layout.alternateHeaderDescription"}</p>
 
-<p><textarea name="conferencePageHeader[{$formLocale|escape}]" id="conferencePageHeader" rows="10" cols="60" class="textArea">{$conferencePageHeader[$formLocale]|escape}</textarea></p>
+<p><textarea name="conferencePageHeader[{$formLocale|escape}]" id="conferencePageHeader" rows="10" cols="60" class="textArea richContent">{$conferencePageHeader[$formLocale]|escape}</textarea></p>
 </div>
 </div>
 
@@ -189,7 +189,7 @@
 
 <p>{translate key="manager.setup.layout.conferencePageFooterDescription"}</p>
 
-<p><textarea name="conferencePageFooter[{$formLocale|escape}]" id="conferencePageFooter" rows="10" cols="60" class="textArea">{$conferencePageFooter[$formLocale]|escape}</textarea></p>
+<p><textarea name="conferencePageFooter[{$formLocale|escape}]" id="conferencePageFooter" rows="10" cols="60" class="textArea richContent">{$conferencePageFooter[$formLocale]|escape}</textarea></p>
 </div>
 
 <div class="separator"></div>

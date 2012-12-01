@@ -95,7 +95,7 @@
 	<tr valign="top">
 		<td class="label">{fieldLabel name="affiliation" key="user.affiliation"}</td>
 		<td class="value">
-			<textarea name="affiliation[{$formLocale|escape}]" id="affiliation" rows="5" cols="40" class="textArea">{$affiliation[$formLocale]|escape}</textarea><br/>
+			<textarea name="affiliation[{$formLocale|escape}]" id="affiliation" rows="5" cols="40" class="textArea richContent">{$affiliation[$formLocale]|escape}</textarea><br/>
 			<span class="instruct">{translate key="user.affiliation.description"}</span>
 		</td>
 	</tr>
@@ -127,11 +127,11 @@
 	</tr>
 	<tr valign="top">
 		<td class="label">{fieldLabel name="mailingAddress" key="common.mailingAddress"}</td>
-		<td class="value"><textarea name="mailingAddress" id="mailingAddress" rows="3" cols="40" class="textArea">{$mailingAddress|escape}</textarea></td>
+		<td class="value"><textarea name="mailingAddress" id="mailingAddress" rows="3" cols="40" class="textArea richContent">{$mailingAddress|escape}</textarea></td>
 	</tr>
 	<tr valign="top">
 		<td class="label">{fieldLabel name="billingAddress" key="common.billingAddress"}</td>
-		<td class="value"><textarea name="billingAddress" id="billingAddress" rows="3" cols="40" class="textArea">{$billingAddress|escape}</textarea></td>
+		<td class="value"><textarea name="billingAddress" id="billingAddress" rows="3" cols="40" class="textArea richContent">{$billingAddress|escape}</textarea></td>
 	</tr>
 <tr valign="top">
 	<td class="label">{fieldLabel name="country" key="common.country"}</td>
@@ -144,7 +144,7 @@
 </tr>
 	<tr valign="top">
 		<td class="label">{fieldLabel name="biography" key="user.biography"}<br />{translate key="user.biography.description"}</td>
-		<td class="value"><textarea name="biography[{$formLocale|escape}]" id="biography" rows="5" cols="40" class="textArea">{$biography[$formLocale]|escape}</textarea></td>
+		<td class="value"><textarea name="biography[{$formLocale|escape}]" id="biography" rows="5" cols="40" class="textArea richContent">{$biography[$formLocale]|escape}</textarea></td>
 	</tr>
 	{if count($availableLocales) > 1}
 	<tr valign="top">

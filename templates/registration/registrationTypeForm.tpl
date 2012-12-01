@@ -51,7 +51,7 @@
 </tr>
 <tr valign="top">
 	<td class="label">{fieldLabel name="description" key="manager.registrationTypes.form.description"}</td>
-	<td colspan="2" class="value"><textarea name="description[{$formLocale|escape}]" id="description" cols="40" rows="4" class="textArea">{$description[$formLocale]|escape}</textarea></td>
+	<td colspan="2" class="value"><textarea name="description[{$formLocale|escape}]" id="description" cols="40" rows="4" class="textArea richContent">{$description[$formLocale]|escape}</textarea></td>
 </tr>
 <tr valign="top">
 	<td class="label">{fieldLabel name="currency" required="true" key="manager.registrationTypes.form.currency"}</td>

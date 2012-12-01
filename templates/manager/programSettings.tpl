@@ -59,7 +59,7 @@
 <h4>{translate key="manager.program.form.programText"}</h4>
 <p>{translate key="manager.program.form.programText.description"}</p>
 
-<textarea name="program[{$formLocale|escape}]" id="program" rows="5" cols="60" class="textArea">{$program[$formLocale]|escape}</textarea>
+<textarea name="program[{$formLocale|escape}]" id="program" rows="5" cols="60" class="textArea richContent">{$program[$formLocale]|escape}</textarea>
 
 <div class="separator"></div>
 
