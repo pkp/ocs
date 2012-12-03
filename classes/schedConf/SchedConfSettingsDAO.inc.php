@@ -16,20 +16,11 @@
 import('lib.pkp.classes.db.SettingsDAO');
 
 class SchedConfSettingsDAO extends SettingsDAO {
-	function _getCache($schedConfId) {
-		static $settingCache;
-
-		if (!isset($settingCache)) {
-			$settingCache = array();
-		}
-		if (!isset($settingCache[$schedConfId])) {
-			$cacheManager = CacheManager::getManager();
-			$settingCache[$schedConfId] = $cacheManager->getCache(
-				'schedConfSettings', $schedConfId,
-				array($this, '_cacheMiss')
-			);
-		}
-		return $settingCache[$schedConfId];
+	/**
+	 * Constructor
+	 */
+	function SchedConfSettingsDAO() {
+		parent::SettingsDAO();
 	}
 
 	/**
@@ -45,6 +36,13 @@ class SchedConfSettingsDAO extends SettingsDAO {
 	 */
 	protected function _getPrimaryKeyColumn() {
 		return 'sched_conf_id';
+	}
+
+	/**
+	 * Get the cache name.
+	 */
+	protected function _getCacheName() {
+		return 'schedConfSettings';
 	}
 }
 

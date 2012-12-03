@@ -16,29 +16,11 @@
 import('lib.pkp.classes.db.SettingsDAO');
 
 class ConferenceSettingsDAO extends SettingsDAO {
-	function &_getCache($conferenceId) {
-		static $settingCache;
-		if (!isset($settingCache)) {
-			$settingCache = array();
-		}
-		if (!isset($settingCache[$conferenceId])) {
-			$cacheManager = CacheManager::getManager();
-			$settingCache[$conferenceId] = $cacheManager->getCache(
-				'conferenceSettings', $conferenceId,
-				array($this, '_cacheMiss')
-			);
-		}
-		return $settingCache[$conferenceId];
-	}
-
-	function _cacheMiss(&$cache, $id) {
-		$settings = $this->getSettings($cache->getCacheId());
-		if (!isset($settings[$id])) {
-			// Make sure that even null values are cached
-			$cache->setCache($id, null);
-			return null;
-		}
-		return $settings[$id];
+	/**
+	 * Constructor
+	 */
+	function ConferenceSettingsDAO() {
+		parent::SettingsDAO();
 	}
 
 	/**
@@ -54,6 +36,13 @@ class ConferenceSettingsDAO extends SettingsDAO {
 	 */
 	protected function _getPrimaryKeyColumn() {
 		return 'conference_id';
+	}
+
+	/**
+	 * Get the cache name.
+	 */
+	protected function _getCacheName() {
+		return 'conferenceSettings';
 	}
 }
 
