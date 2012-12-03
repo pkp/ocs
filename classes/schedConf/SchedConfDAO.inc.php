@@ -180,7 +180,7 @@ class SchedConfDAO extends ContextDAO {
 	 */
 	function deleteById($schedConfId) {
 		$schedConfSettingsDao =& DAORegistry::getDAO('SchedConfSettingsDAO');
-		$schedConfSettingsDao->deleteSettingsBySchedConf($schedConfId);
+		$schedConfSettingsDao->deleteById($schedConfId);
 
 		$trackDao =& DAORegistry::getDAO('TrackDAO');
 		$trackDao->deleteTracksBySchedConf($schedConfId);

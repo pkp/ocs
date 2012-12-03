@@ -96,7 +96,7 @@ class ConferenceDAO extends ContextDAO {
 	 */
 	function deleteById($conferenceId) {
 		$conferenceSettingsDao =& DAORegistry::getDAO('ConferenceSettingsDAO');
-		$conferenceSettingsDao->deleteSettingsByConference($conferenceId);
+		$conferenceSettingsDao->deleteById($conferenceId);
 
 		$emailTemplateDao =& DAORegistry::getDAO('EmailTemplateDAO');
 		$emailTemplateDao->deleteEmailTemplatesByConference($conferenceId);
