@@ -16,14 +16,14 @@
 import('lib.pkp.classes.db.SettingsDAO');
 
 class SchedConfSettingsDAO extends SettingsDAO {
-	function &_getCache($schedConfId) {
+	function _getCache($schedConfId) {
 		static $settingCache;
 
 		if (!isset($settingCache)) {
 			$settingCache = array();
 		}
 		if (!isset($settingCache[$schedConfId])) {
-			$cacheManager =& CacheManager::getManager();
+			$cacheManager = CacheManager::getManager();
 			$settingCache[$schedConfId] = $cacheManager->getCache(
 				'schedConfSettings', $schedConfId,
 				array($this, '_cacheMiss')
@@ -40,7 +40,7 @@ class SchedConfSettingsDAO extends SettingsDAO {
 	 * @return mixed
 	 */
 	function &getSetting($schedConfId, $name, $locale = null) {
-		$cache =& $this->_getCache($schedConfId);
+		$cache = $this->_getCache($schedConfId);
 		$returner = $cache->get($name);
 		if ($locale !== null) {
 			if (!isset($returner[$locale]) || !is_array($returner)) {
@@ -54,7 +54,7 @@ class SchedConfSettingsDAO extends SettingsDAO {
 	}
 
 	function _cacheMiss(&$cache, $id) {
-		$settings =& $this->getSettings($cache->getCacheId());
+		$settings = $this->getSettings($cache->getCacheId());
 		if (!isset($settings[$id])) {
 			// Make sure that even null values are cached
 			$cache->setCache($id, null);
@@ -71,7 +71,7 @@ class SchedConfSettingsDAO extends SettingsDAO {
 	function &getSettings($schedConfId) {
 		$schedConfSettings = array();
 
-		$result =& $this->retrieve(
+		$result = $this->retrieve(
 			'SELECT setting_name, setting_value, setting_type, locale FROM sched_conf_settings WHERE sched_conf_id = ?', $schedConfId 
 		);
 
@@ -91,7 +91,7 @@ class SchedConfSettingsDAO extends SettingsDAO {
 			$result->close();
 			unset($result);
 
-			$cache =& $this->_getCache($schedConfId);
+			$cache = $this->_getCache($schedConfId);
 			$cache->setEntireCache($schedConfSettings);
 
 			return $schedConfSettings;
@@ -107,7 +107,7 @@ class SchedConfSettingsDAO extends SettingsDAO {
 	 * @param $isLocalized boolean
 	 */
 	function updateSetting($schedConfId, $name, $value, $type = null, $isLocalized = false) {
-		$cache =& $this->_getCache($schedConfId);
+		$cache = $this->_getCache($schedConfId);
 		$cache->setCache($name, $value);
 
 		$keyFields = array('setting_name', 'locale', 'sched_conf_id');
@@ -147,7 +147,7 @@ class SchedConfSettingsDAO extends SettingsDAO {
 	 * @param $locale string optional
 	 */
 	function deleteSetting($schedConfId, $name, $locale = null) {
-		$cache =& $this->_getCache($schedConfId);
+		$cache = $this->_getCache($schedConfId);
 		$cache->setCache($name, null);
 
 		$params = array($schedConfId, $name);
@@ -164,11 +164,11 @@ class SchedConfSettingsDAO extends SettingsDAO {
 	 * @param $schedConfId int
 	 */
 	function deleteSettingsBySchedConf($schedConfId) {
-		$cache =& $this->_getCache($schedConfId);
+		$cache = $this->_getCache($schedConfId);
 		$cache->flush();
 
 		return $this->update(
-				'DELETE FROM sched_conf_settings WHERE sched_conf_id = ?', $schedConfId
+			'DELETE FROM sched_conf_settings WHERE sched_conf_id = ?', $schedConfId
 		);
 	}
 }

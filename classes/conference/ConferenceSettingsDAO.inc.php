@@ -22,7 +22,7 @@ class ConferenceSettingsDAO extends SettingsDAO {
 			$settingCache = array();
 		}
 		if (!isset($settingCache[$conferenceId])) {
-			$cacheManager =& CacheManager::getManager();
+			$cacheManager = CacheManager::getManager();
 			$settingCache[$conferenceId] = $cacheManager->getCache(
 				'conferenceSettings', $conferenceId,
 				array($this, '_cacheMiss')
@@ -39,7 +39,7 @@ class ConferenceSettingsDAO extends SettingsDAO {
 	 * @return mixed
 	 */
 	function &getSetting($conferenceId, $name, $locale = null) {
-		$cache =& $this->_getCache($conferenceId);
+		$cache = $this->_getCache($conferenceId);
 		$returner = $cache->get($name);
 		if ($locale !== null) {
 			if (!isset($returner[$locale]) || !is_array($returner)) {
@@ -53,7 +53,7 @@ class ConferenceSettingsDAO extends SettingsDAO {
 	}
 
 	function _cacheMiss(&$cache, $id) {
-		$settings =& $this->getSettings($cache->getCacheId());
+		$settings = $this->getSettings($cache->getCacheId());
 		if (!isset($settings[$id])) {
 			// Make sure that even null values are cached
 			$cache->setCache($id, null);
@@ -70,7 +70,7 @@ class ConferenceSettingsDAO extends SettingsDAO {
 	function &getSettings($conferenceId) {
 		$conferenceSettings = array();
 
-		$result =& $this->retrieve(
+		$result = $this->retrieve(
 			'SELECT setting_name, setting_value, setting_type, locale FROM conference_settings WHERE conference_id = ?', $conferenceId
 		);
 
@@ -84,7 +84,7 @@ class ConferenceSettingsDAO extends SettingsDAO {
 		$result->Close();
 		unset($result);
 
-		$cache =& $this->_getCache($conferenceId);
+		$cache = $this->_getCache($conferenceId);
 		$cache->setEntireCache($conferenceSettings);
 
 		return $conferenceSettings;
@@ -99,7 +99,7 @@ class ConferenceSettingsDAO extends SettingsDAO {
 	 * @param $isLocalized boolean
 	 */
 	function updateSetting($conferenceId, $name, $value, $type = null, $isLocalized = false) {
-		$cache =& $this->_getCache($conferenceId);
+		$cache = $this->_getCache($conferenceId);
 		$cache->setCache($name, $value);
 
 		$keyFields = array('setting_name', 'locale', 'conference_id');
@@ -139,7 +139,7 @@ class ConferenceSettingsDAO extends SettingsDAO {
 	 * @param $locale string
 	 */
 	function deleteSetting($conferenceId, $name, $locale = null) {
-		$cache =& $this->_getCache($conferenceId);
+		$cache = $this->_getCache($conferenceId);
 		$cache->setCache($name, null);
 
 		$params = array($conferenceId, $name);
@@ -157,96 +157,12 @@ class ConferenceSettingsDAO extends SettingsDAO {
 	 * @param $conferenceId int
 	 */
 	function deleteSettingsByConference($conferenceId) {
-		$cache =& $this->_getCache($conferenceId);
+		$cache = $this->_getCache($conferenceId);
 		$cache->flush();
 
 		return $this->update(
 				'DELETE FROM conference_settings WHERE conference_id = ?', $conferenceId
 		);
-	}
-
-	/**
-	 * Used internally by installSettings to perform variable and translation replacements.
-	 * @param $rawInput string contains text including variable and/or translate replacements.
-	 * @param $paramArray array contains variables for replacement
-	 * @returns string
-	 */
-	function _performReplacement($rawInput, $paramArray = array()) {
-		$value = preg_replace_callback('{{translate key="([^"]+)"}}', array(&$this, '_installer_regexp_callback'), $rawInput);
-		foreach ($paramArray as $pKey => $pValue) {
-			$value = str_replace('{$' . $pKey . '}', $pValue, $value);
-		}
-		return $value;
-	}
-
-	/**
-	 * Used internally by installSettings to recursively build nested arrays.
-	 * Deals with translation and variable replacement calls.
-	 * @param $node object XMLNode <array> tag
-	 * @param $paramArray array Parameters to be replaced in key/value contents
-	 */
-	function &_buildObject (&$node, $paramArray = array()) {
-		$value = array();
-		foreach ($node->getChildren() as $element) {
-			$key = $element->getAttribute('key');
-			$childArray =& $element->getChildByName('array');
-			if (isset($childArray)) {
-				$content = $this->_buildObject($childArray, $paramArray);
-			} else {
-				$content = $this->_performReplacement($element->getValue(), $paramArray);
-			}
-			if (!empty($key)) {
-				$key = $this->_performReplacement($key, $paramArray);
-				$value[$key] = $content;
-			} else $value[] = $content;
-		}
-		return $value;
-	}
-
-	/**
-	 * Install conference settings from an XML file.
-	 * @param $conferenceId int ID of conference for settings to apply to
-	 * @param $filename string Name of XML file to parse and install
-	 * @param $paramArray array Optional parameters for variable replacement in settings
-	 */
-	function installSettings($conferenceId, $filename, $paramArray = array()) {
-		$xmlParser = new XMLParser();
-		$tree = $xmlParser->parse($filename);
-
-		if (!$tree) {
-			$xmlParser->destroy();
-			return false;
-		}
-
-		foreach ($tree->getChildren() as $setting) {
-			$nameNode =& $setting->getChildByName('name');
-			$valueNode =& $setting->getChildByName('value');
-
-			if (isset($nameNode) && isset($valueNode)) {
-				$type = $setting->getAttribute('type');
-				$isLocaleField = $setting->getAttribute('locale');
-				$name =& $nameNode->getValue();
-
-				if ($type == 'object') {
-					$arrayNode =& $valueNode->getChildByName('array');
-					$value = $this->_buildObject($arrayNode, $paramArray);
-				} else {
-					$value = $this->_performReplacement($valueNode->getValue(), $paramArray);
-				}
-
-				// Replace translate calls with translated content
-				$this->updateSetting(
-					$conferenceId,
-					$name,
-					$isLocaleField?array(AppLocale::getLocale() => $value):$value,
-					$type,
-					$isLocaleField
-				);
-			}
-		}
-
-		$xmlParser->destroy();
-
 	}
 
 	/**
@@ -277,7 +193,7 @@ class ConferenceSettingsDAO extends SettingsDAO {
 		$value = array();
 		foreach ($node->getChildren() as $element) {
 			$key = $element->getAttribute('key');
-			$childArray =& $element->getChildByName('array');
+			$childArray = $element->getChildByName('array');
 			if (isset($childArray)) {
 				$content = $this->_buildLocalizedObject($childArray, $paramArray, $locale);
 			} else {
@@ -308,19 +224,19 @@ class ConferenceSettingsDAO extends SettingsDAO {
 		}
 
 		foreach ($tree->getChildren() as $setting) {
-			$nameNode =& $setting->getChildByName('name');
-			$valueNode =& $setting->getChildByName('value');
+			$nameNode = $setting->getChildByName('name');
+			$valueNode = $setting->getChildByName('value');
 
 			if (isset($nameNode) && isset($valueNode)) {
 				$type = $setting->getAttribute('type');
 				$isLocaleField = $setting->getAttribute('locale');
-				$name =& $nameNode->getValue();
+				$name = $nameNode->getValue();
 
 				//skip all settings that are not locale fields
 				if (!$isLocaleField) continue;
 
 				if ($type == 'object') {
-					$arrayNode =& $valueNode->getChildByName('array');
+					$arrayNode = $valueNode->getChildByName('array');
 					$value = $this->_buildLocalizedObject($arrayNode, $paramArray, $locale);
 				} else {
 					$value = $this->_performLocalizedReplacement($valueNode->getValue(), $paramArray, $locale);
@@ -340,14 +256,6 @@ class ConferenceSettingsDAO extends SettingsDAO {
 		$xmlParser->destroy();
 
 	}
-
-	/**
-	 * Used internally by conference setting installation code to perform translation function.
-	 */
-	function _installer_regexp_callback($matches) {
-		return __($matches[1]);
-	}
-
 }
 
 ?>
