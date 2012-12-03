@@ -13,7 +13,7 @@
  *
  */
 
-import('classes.db.SettingsDAO');
+import('lib.pkp.classes.db.SettingsDAO');
 
 class SchedConfSettingsDAO extends SettingsDAO {
 	function &_getCache($schedConfId) {
