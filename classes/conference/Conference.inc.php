@@ -98,6 +98,14 @@ class Conference extends Context {
 	}
 
 	/**
+	 * Get the association type for this context.
+	 * @return int
+	 */
+	function getAssocType() {
+		return ASSOC_TYPE_CONFERENCE;
+	}
+
+	/**
 	 * Get the settings DAO for this context object.
 	 * @return DAO
 	 */

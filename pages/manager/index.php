@@ -19,21 +19,10 @@
 
 switch ($op) {
 	//
-	//	announcements
+	// Announcements
 	//
 	case 'announcements':
-	case 'deleteAnnouncement':
-	case 'createAnnouncement':
-	case 'editAnnouncement':
-	case 'updateAnnouncement':
-	//
-	//	announcement Types
-	//
 	case 'announcementTypes':
-	case 'deleteAnnouncementType':
-	case 'createAnnouncementType':
-	case 'editAnnouncementType':
-	case 'updateAnnouncementType':
 		define('HANDLER_CLASS', 'AnnouncementHandler');
 		import('pages.manager.AnnouncementHandler');
 		break;

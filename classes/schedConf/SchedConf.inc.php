@@ -150,6 +150,14 @@ class SchedConf extends Context {
 	}
 
 	/**
+	 * Get the association type for this context.
+	 * @return int
+	 */
+	function getAssocType() {
+		return ASSOC_TYPE_SCHED_CONF;
+	}
+
+	/**
 	 * Get the settings DAO for this context object.
 	 * @return DAO
 	 */

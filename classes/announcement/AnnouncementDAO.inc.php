@@ -33,41 +33,6 @@ class AnnouncementDAO extends PKPAnnouncementDAO {
 	}
 
 	/**
-	 * Get announcements by conference.
-	 * @param $conferenceId int
-	 * @param $schedConfId int optional
-	 * @param $rangeInfo Object optional
-	 */
-	function &getByConferenceId($conferenceId, $schedConfId = 0, $rangeInfo = null) {
-		$conferenceArgs = array(ASSOC_TYPE_CONFERENCE, $conferenceId);
-		if($schedConfId == -1) {
-			$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
-			$schedConfs = $schedConfDao->getAll(false, $conferenceId);
-			$schedConfArgs = array();
-			while (!$schedConfs->eof()) {
-				$schedConf =& $schedConfs->next();			
-				$schedConfArgs[] = ASSOC_TYPE_SCHED_CONF;
-				$schedConfArgs[] = $schedConf->getId();
-			}
-		} else {
-			$schedConfArgs = array(ASSOC_TYPE_SCHED_CONF, $schedConfId);
-		}
-
-		$result =& $this->retrieveRange(
-			'SELECT *
-			FROM announcements
-			WHERE (assoc_type = ? AND assoc_id = ?)' .
-				(count($schedConfArgs) ? str_repeat(' OR (assoc_type = ? AND assoc_id = ?)', count($schedConfArgs)/2):'') .
-			' ORDER BY announcement_id DESC',
-			array_merge($conferenceArgs, $schedConfArgs),
-			$rangeInfo
-		);
-
-		$returner = new DAOResultFactory($result, $this, '_returnAnnouncementFromRow');
-		return $returner;
-	}
-
-	/**
 	 * Get non-expired announcements by conference ID.
 	 * @param $conferenceId int
 	 * @param $schedConfId int optional
