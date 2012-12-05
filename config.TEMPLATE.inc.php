@@ -71,6 +71,7 @@ allow_url_fopen = Off
 ; be used to override the base URLs used by OCS. If you want to use a
 ; proxy to rewrite URLs to OCS, configure your proxy's URL here.
 ; Syntax: base_url[conference_path] = http://www.myUrl.com
+; ...and/or... base_url[conference_path][sched_conf_path] = http://www.myUrl.com
 ; To override URLs that aren't part of a particular conference, use a
 ; conference_path of "index".
 ; Examples:
