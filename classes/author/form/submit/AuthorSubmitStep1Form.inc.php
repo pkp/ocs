@@ -31,9 +31,11 @@ class AuthorSubmitStep1Form extends AuthorSubmitForm {
 		$this->addCheck(new FormValidatorCustom($this, 'trackId', 'required', 'author.submit.form.trackRequired', array(DAORegistry::getDAO('TrackDAO'), 'trackExists'), array($schedConf->getId())));
 		$this->addCheck(new FormValidatorControlledVocab($this, 'sessionType', 'optional', 'author.submit.form.sessionTypeRequired', 'paperType', ASSOC_TYPE_SCHED_CONF, $schedConf->getId()));
 
-		$supportedSubmissionLocales = $conference->getSetting('supportedSubmissionLocales');
-		if (!is_array($supportedSubmissionLocales) || count($supportedSubmissionLocales) < 1) $supportedSubmissionLocales = array($conference->getPrimaryLocale());
-		$this->addCheck(new FormValidatorInSet($this, 'locale', 'required', 'author.submit.form.localeRequired', $supportedSubmissionLocales));
+		$this->addCheck(new FormValidatorInSet(
+			$this, 'locale', 'required',
+			'author.submit.form.localeRequired',
+			$conference->getSupportedSubmissionLocales()
+		));
 	}
 
 	/**
