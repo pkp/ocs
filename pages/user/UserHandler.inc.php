@@ -13,16 +13,14 @@
  *
  */
 
+import('lib.pkp.pages.user.PKPUserHandler');
 
-
-import('classes.handler.Handler');
-
-class UserHandler extends Handler {
+class UserHandler extends PKPUserHandler {
 	/**
 	 * Constructor
 	 */
 	function UserHandler() {
-		parent::Handler();
+		parent::PKPUserHandler();
 	}
 
 	/**
@@ -188,39 +186,6 @@ class UserHandler extends Handler {
 			$conference->getSetting('contactName') == ''
 		) return true;
 		return false;
-	}
-
-	/**
-	 * Change the locale for the current user.
-	 * @param $args array first parameter is the new locale
-	 */
-	function setLocale($args, &$request) {
-		$setLocale = isset($args[0]) ? $args[0] : null;
-
-		$site =& $request->getSite();
-		$conference =& $request->getConference();
-		if ($conference != null) {
-			$conferenceSupportedLocales = $conference->getSetting('supportedLocales');
-			if (!is_array($conferenceSupportedLocales)) {
-				$conferenceSupportedLocales = array();
-			}
-		}
-
-		if (AppLocale::isLocaleValid($setLocale) && (!isset($conferenceSupportedLocales) || in_array($setLocale, $conferenceSupportedLocales)) && in_array($setLocale, $site->getSupportedLocales())) {
-			$session =& $request->getSession();
-			$session->setSessionVar('currentLocale', $setLocale);
-		}
-
-		if(isset($_SERVER['HTTP_REFERER'])) {
-			$request->redirectUrl($_SERVER['HTTP_REFERER']);
-		}
-
-		$source = $request->getUserVar('source');
-		if (isset($source) && !empty($source)) {
-			$request->redirectUrl($request->getProtocol() . '://' . $request->getServerHost() . $source, false);
-		}
-
-		$request->redirect(null, null, 'index');
 	}
 
 	/**
