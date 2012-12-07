@@ -577,7 +577,6 @@ current password.<br /><br />Enter your email address below to reset your passwo
 	<message key="user.account.loginToRegister">Enter your existing username and password to create an account with this conference.</message>
 	<message key="user.account.createAccountDisabled">This conference is currently not accepting new users.</message>
 	<message key="user.account.usernameRestriction">The username must contain only lowercase letters, numbers, and hyphens/underscores.</message>
-	<message key="user.account.passwordLengthRestriction">The password must be at least {$length} characters.</message>
 	<message key="user.account.form.passwordLengthTooShort">The password you entered is not long enough.</message>
 	<message key="user.account.readerDescription">Notified by email on publication of presentations.</message>
 	<message key="user.account.openAccessNotificationDescription">Notified by email when a conference is made open access.</message>
