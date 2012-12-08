@@ -554,11 +554,6 @@ Active is how many reviews are currently being considered or underway.]]></messa
 	<message key="submission.comments.saveAndEmailAuthor">Save and Email Author</message>
 	<message key="submission.comments.saveAndEmailDirector">Save and Email Director</message>
 
-	<!-- Login -->
-	<message key="user.login.createAccount">Not a user? Create an account with this site</message>
-	<message key="user.login.resetPasswordInstructions"><![CDATA[For security reasons, this system emails a reset password to registered users, rather than recalling the
-current password.<br /><br />Enter your email address below to reset your password. A confirmation will be sent to this email address.]]></message>
-
 	<!-- Registration -->
 	<message key="user.account.repeatPassword">Repeat password</message>
 	<message key="user.account.form.usernameExists">The selected username is already in use by another user.</message>
