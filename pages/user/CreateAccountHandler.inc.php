@@ -18,9 +18,16 @@ import('pages.user.UserHandler');
 class CreateAccountHandler extends UserHandler {
 	/**
 	 * Constructor
-	 **/
+	 */
 	function CreateAccountHandler() {
 		parent::UserHandler();
+	}
+
+	/**
+	 * Alias for account creation (for consistency with other apps)
+	 */
+	function register($args, $request) {
+		$this->account($args, $request);
 	}
 
 	/**

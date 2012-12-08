@@ -29,6 +29,7 @@ switch ($op) {
 	//
 	// Create Account
 	//
+	case 'register':
 	case 'account':
 	case 'createAccount':
 	case 'activateUser':
