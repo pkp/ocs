@@ -11,14 +11,14 @@
 <rss version="2.0">
 	<channel>
 		{* required elements *}
-		<title>{if $schedConf}{$schedConf->getLocalizedName()|escape:"html"Namep}{else}{$conference->getLocalizedName()|escape:"html"|strip}{/if}: {translate key="announcement.announcements"}</title>
+		<title>{if $schedConf}{$schedConf->getLocalizedName()|escape:"html"Namep}{else}{$conference->getLocalizedName()|strip|escape:"html"}{/if}: {translate key="announcement.announcements"}</title>
 		<link>{if $schedConf}{url conference=$conference->getPath() schedConf=$schedConf->getPath()}{else}{url conference=$conference->getPath()}{/if}</link>
 		{if $schedConf && $schedConf->getLocalizedIntroduction()}
 			{assign var="description" value=$schedConf->getLocalizedIntroduction()}
 		{elseif $conference->getLocalizedDescription()}
 			{assign var="description" value=$conference->getLocalizedDescription()}
 		{/if}
-		<description>{$description|escape:"html"|strip}</description>
+		<description>{$description|strip|escape:"html"}</description>
 
 		{* optional elements *}
 	    {if $conference->getPrimaryLocale()}
