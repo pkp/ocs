@@ -24,8 +24,13 @@ class FontSizeBlockPlugin extends BlockPlugin {
 	 * the plugin will be displayed during install.
 	 */
 	function getEnabled() {
-		if (!Config::getVar('general', 'installed')) return true;
-		return parent::getEnabled();
+		if (!Config::getVar('general', 'installed')) $enabled = true;
+		else $enabled = parent::getEnabled();
+
+		if ($enabled) {
+			HookRegistry::register('TemplateManager::display', array(&$this, 'displayTemplateCallback'));
+		}
+		return $enabled;
 	}
 
 	/**
@@ -85,6 +90,20 @@ class FontSizeBlockPlugin extends BlockPlugin {
 	 */
 	function getContents(&$templateMgr, $request = null) {
 		return parent::getContents($templateMgr);
+	}
+
+	/**
+	 * Callback to add the sizer CSS and JS
+	 * @param $hookName string
+	 * @param $args array
+	 * @return boolean
+	 */
+	function displayTemplateCallback($hookName, $args) {
+		$templateMgr =& $args[0];
+		$request = $this->getRequest();
+		$templateMgr->addStylesheet($request->getBaseUrl() . '/' . $this->getPluginPath() . '/fontSize.css');
+		$templateMgr->addJavaScript($this->getPluginPath() . '/jquery.jfontsize-1.0.min.js');
+		return false;
 	}
 }
 
