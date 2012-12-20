@@ -739,7 +739,7 @@ class TrackDirectorSubmissionDAO extends DAO {
 				u.user_id,
 				u.last_name,
 				ar.review_id,
-				ar.declined' .
+				MAX(ar.declined)' . // MAX needed for PSQL (bug #6007)
 				($selectQuality ? ', AVG(a.quality) AS average_quality' : '') .
 				($selectComplete ? ', COUNT(ac.review_id) AS completed' : '') .
 				($selectAverage ? ', AVG(ac.date_completed-ac.date_notified) AS average' : '') .
