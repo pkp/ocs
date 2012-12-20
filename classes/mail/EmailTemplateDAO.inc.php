@@ -88,7 +88,7 @@ class EmailTemplateDAO extends PKPEmailTemplateDAO {
 	 * @param $conferenceId int
 	 * @return boolean
 	 */
-	function templateExistsByKey($emailKey, $conferenceId) {
+	function templateExistsByKey($emailKey, $conferenceId = null) {
 		return parent::templateExistsByKey($emailKey, ASSOC_TYPE_CONFERENCE, $conferenceId);
 	}
 
