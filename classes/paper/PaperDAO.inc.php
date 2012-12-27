@@ -314,7 +314,7 @@ class PaperDAO extends DAO {
 	 * @param $paperId int
 	 */
 	function deletePaperById($paperId) {
-		$this->authorDao->deleteAuthorsByPaper($paperId);
+		$this->authorDao->deleteAuthorsBySubmission($paperId);
 
 		$publishedPaperDao =& DAORegistry::getDAO('PublishedPaperDAO');
 		$publishedPaperDao->deletePublishedPaperByPaperId($paperId);
