@@ -24,7 +24,7 @@ class HandlerValidatorSubmissionComment extends HandlerValidator {
 	 * @param $roles array of role id's 
 	 * @param $all bool flag for whether all roles must exist or just 1
 	 */	 
-	function HandlerValidatorSubmissionComment(&$handler, $commentId, &$user = null) {
+	function HandlerValidatorSubmissionComment(&$handler, $commentId, $user = null) {
 		parent::HandlerValidator($handler);
 		$this->commentId = $commentId;
 		if ( $user ) {
