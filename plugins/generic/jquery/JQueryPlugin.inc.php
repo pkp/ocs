@@ -116,7 +116,7 @@ class JQueryPlugin extends GenericPlugin {
 		$user =& Request::getUser();
 		$notificationsMarkup = '';
 
-		$notifications =& $notificationDao->getNotificationsByUserId($user->getId(), NOTIFICATION_LEVEL_TRIVIAL);
+		$notifications =& $notificationDao->getByUserId($user->getId(), NOTIFICATION_LEVEL_TRIVIAL);
 		while ($notification =& $notifications->next()) {
 			$notificationTitle = $notification->getTitle();
 			if ($notification->getIsLocalized() && !empty($notificationTitle)) $notificationTitle = __($notificationTitle);
