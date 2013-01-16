@@ -62,20 +62,15 @@ class SchedConfDAO extends ContextDAO {
 	 * @return SchedConf
 	 */
 	function getByPath($path, $conferenceId = null) {
-		if($conferenceId == null) {
-			$conference =& Request::getConference();
+		$params = array($path);
+		if ($conferenceId) $params[] = (int) $conferenceId;
 
-			if(!$conference)
-				$conferenceId = -1;
-			else
-				$conferenceId = $conference->getId();
-		}
+		$result = $this->retrieve(
+			'SELECT * FROM sched_confs WHERE path = ?' . ($conferenceId?' AND conference_id = ?':''),
+			$params
+		);
 
 		$returner = null;
-		$result =& $this->retrieve(
-			'SELECT * FROM sched_confs WHERE path = ? and conference_id = ?',
-			array($path, $conferenceId));
-
 		if ($result->RecordCount() != 0) {
 			$returner = $this->_fromRow($result->GetRowAssoc(false));
 		}
