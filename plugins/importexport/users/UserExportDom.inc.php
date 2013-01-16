@@ -67,13 +67,13 @@ class UserExportDom {
 				}
 			}
 			$interestsNode =& XMLCustomWriter::createChildWithText($doc, $userNode, 'interests', $user->getInterestString(), false);
-				if ($interestsNode) {
+			if ($interestsNode) {
 				XMLCustomWriter::setAttribute($interestsNode);
 			}
 			if (is_array($user->getGossip(null))) {
 				foreach($user->getGossip(null) as $locale => $value) {
 					$gossipNode =& XMLCustomWriter::createChildWithText($doc, $userNode, 'gossip', $value, false);
-					if ($interestsNode) {
+					if ($gossipNode) {
 						XMLCustomWriter::setAttribute($gossipNode, 'locale', $locale);
 					}
 					unset($gossipNode);
