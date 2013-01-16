@@ -76,7 +76,7 @@ class SchedConfSetupStep3Form extends SchedConfSetupForm {
 		if (Config::getVar('general', 'scheduled_tasks'))
 			$templateMgr->assign('scheduledTasksEnabled', true);
 
-		import('manager.form.TimelineForm');
+		import('classes.manager.form.TimelineForm');
 		$schedConf =& Request::getSchedConf();
 		list($earliestDate, $latestDate) = TimelineForm::getOutsideDates($schedConf);
 		$templateMgr->assign('firstYear', strftime('%Y', $earliestDate));
