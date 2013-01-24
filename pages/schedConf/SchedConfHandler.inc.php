@@ -201,7 +201,7 @@ class SchedConfHandler extends Handler {
 			$templateMgr->assign('message', 'schedConf.registration.paymentNotConfigured');
 			$templateMgr->assign('backLinkLabel', 'common.back');
 			$templateMgr->assign('backLink', $request->url(null, null, 'index'));
-			AppLocale::requireComponents(LOCALE_COMPONENT_APPLICATION_COMMON);
+			AppLocale::requireComponents(LOCALE_COMPONENT_APP_COMMON);
 			return $templateMgr->display('common/message.tpl');
 		}
 

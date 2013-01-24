@@ -58,7 +58,7 @@ class OAIMetadataFormat_MARC21 extends OAIMetadataFormat {
 		}
 
 		// Types
-		AppLocale::requireComponents(LOCALE_COMPONENT_APPLICATION_COMMON);
+		AppLocale::requireComponents(LOCALE_COMPONENT_APP_COMMON);
 		$type = __('rt.metadata.pkp.peerReviewed');
 
 		// Formats

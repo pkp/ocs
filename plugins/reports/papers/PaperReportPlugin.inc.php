@@ -55,7 +55,7 @@ class PaperReportPlugin extends ReportPlugin {
 		$request =& $this->getRequest();
 		$conference =& $request->getConference();
 		$schedConf =& $request->getSchedConf();
-		AppLocale::requireComponents(LOCALE_COMPONENT_APPLICATION_COMMON, LOCALE_COMPONENT_PKP_SUBMISSION, LOCALE_COMPONENT_PKP_USER, LOCALE_COMPONENT_APP_MANAGER);
+		AppLocale::requireComponents(LOCALE_COMPONENT_APP_COMMON, LOCALE_COMPONENT_PKP_SUBMISSION, LOCALE_COMPONENT_PKP_USER, LOCALE_COMPONENT_APP_MANAGER);
 
 		header('content-type: text/comma-separated-values; charset=utf-8');
 		header('content-disposition: attachment; filename=papers-' . date('Ymd') . '.csv');

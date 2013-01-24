@@ -22,7 +22,7 @@ class StaticPagesHandler extends Handler {
 
 	function view ($args) {
 		if (count($args) > 0 ) {
-			AppLocale::requireComponents(LOCALE_COMPONENT_PKP_COMMON, LOCALE_COMPONENT_APPLICATION_COMMON, LOCALE_COMPONENT_PKP_USER);
+			AppLocale::requireComponents(LOCALE_COMPONENT_PKP_COMMON, LOCALE_COMPONENT_APP_COMMON, LOCALE_COMPONENT_PKP_USER);
 			$conference =& Request::getConference();
 			$conferenceId = $conference?$conference->getId():0;
 			$path = $args[0];

@@ -87,7 +87,7 @@ class TrackDirectorAction extends Action {
 			// Add log
 			import('classes.paper.log.PaperLog');
 			import('classes.paper.log.PaperEventLogEntry');
-			AppLocale::requireComponents(LOCALE_COMPONENT_APPLICATION_COMMON, LOCALE_COMPONENT_APP_DIRECTOR);
+			AppLocale::requireComponents(LOCALE_COMPONENT_APP_COMMON, LOCALE_COMPONENT_APP_DIRECTOR);
 			PaperLog::logEvent(
 				$trackDirectorSubmission->getId(),
 				PAPER_LOG_DIRECTOR_DECISION,

@@ -313,7 +313,7 @@ class NativeImportExportPlugin extends ImportExportPlugin {
 				$result = $this->handleImport($context, $doc, $errors, $papers, true);
 				if ($result) {
 					echo __('plugins.importexport.native.import.success.description') . "\n\n";
-					AppLocale::requireComponents(LOCALE_COMPONENT_APPLICATION_COMMON);
+					AppLocale::requireComponents(LOCALE_COMPONENT_APP_COMMON);
 					if (!empty($papers)) echo __('paper.papers') . ":\n";
 					foreach ($papers as $paper) {
 						echo "\t" . $paper->getLocalizedTitle() . "\n";

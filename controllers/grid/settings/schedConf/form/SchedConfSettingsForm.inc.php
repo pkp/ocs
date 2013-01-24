@@ -113,7 +113,7 @@ class SchedConfSettingsForm extends ContextSiteSettingsForm {
 			$name = $this->getData('name');
 			$name = $name[$this->getFormLocale()];
 
-			AppLocale::requireComponents(LOCALE_COMPONENT_APPLICATION_COMMON, LOCALE_COMPONENT_APP_DEFAULT);
+			AppLocale::requireComponents(LOCALE_COMPONENT_APP_COMMON, LOCALE_COMPONENT_APP_DEFAULT);
 			$dispatcher = $request->getDispatcher();
 			$schedConfSettingsDao->installSettings($schedConfId, Config::getVar('general', 'registry_dir') . '/schedConfSettings.xml', array(
 				'authorGuidelinesUrl' => $dispatcher->url($request, ROUTE_PAGE, array($conference->getPath(), $this->getData('schedConfPath')), 'about', 'submissions', null, null, 'authorGuidelines'),
