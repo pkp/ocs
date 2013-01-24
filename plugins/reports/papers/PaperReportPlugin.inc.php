@@ -55,7 +55,7 @@ class PaperReportPlugin extends ReportPlugin {
 		$request =& $this->getRequest();
 		$conference =& $request->getConference();
 		$schedConf =& $request->getSchedConf();
-		AppLocale::requireComponents(LOCALE_COMPONENT_APPLICATION_COMMON, LOCALE_COMPONENT_PKP_SUBMISSION, LOCALE_COMPONENT_PKP_USER, LOCALE_COMPONENT_OCS_MANAGER);
+		AppLocale::requireComponents(LOCALE_COMPONENT_APPLICATION_COMMON, LOCALE_COMPONENT_PKP_SUBMISSION, LOCALE_COMPONENT_PKP_USER, LOCALE_COMPONENT_APP_MANAGER);
 
 		header('content-type: text/comma-separated-values; charset=utf-8');
 		header('content-disposition: attachment; filename=papers-' . date('Ymd') . '.csv');
@@ -74,7 +74,7 @@ class PaperReportPlugin extends ReportPlugin {
 			}
 		}
 
-		AppLocale::requireComponents(LOCALE_COMPONENT_OCS_DIRECTOR);
+		AppLocale::requireComponents(LOCALE_COMPONENT_APP_DIRECTOR);
 		import('classes.paper.Paper');
 		$decisionMessages = array(
 			SUBMISSION_DIRECTOR_DECISION_INVITE => __('director.paper.decision.invitePresentation'),

@@ -45,7 +45,7 @@ class ReviewerHandler extends Handler {
 		$page = isset($args[0]) ? $args[0] : '';
 		switch($page) {
 			case 'completed':
-				AppLocale::requireComponents(LOCALE_COMPONENT_OCS_DIRECTOR);
+				AppLocale::requireComponents(LOCALE_COMPONENT_APP_DIRECTOR);
 				$active = false;
 				break;
 			default:

@@ -112,7 +112,7 @@ class ConferenceSiteSettingsForm extends ContextSiteSettingsForm {
 			// Install default conference settings
 			$conferenceSettingsDao =& DAORegistry::getDAO('ConferenceSettingsDAO');
 			$names = $this->getData('name');
-			AppLocale::requireComponents(LOCALE_COMPONENT_OCS_DEFAULT, LOCALE_COMPONENT_APPLICATION_COMMON);
+			AppLocale::requireComponents(LOCALE_COMPONENT_APP_DEFAULT, LOCALE_COMPONENT_APPLICATION_COMMON);
 			$dispatcher = $request->getDispatcher();
 			$conferenceSettingsDao->installSettings($conferenceId, 'registry/conferenceSettings.xml', array(
 				'privacyStatementUrl' => $dispatcher->url($request, ROUTE_PAGE, array($this->getData('path'), 'index'), 'about', 'submissions', null, null, 'privacyStatement'),

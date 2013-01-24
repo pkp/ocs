@@ -483,7 +483,7 @@ class Upgrade extends Installer {
 			$locales[] = $conference->getPrimaryLocale();
 			$locales = array_unique($locales);
 
-			foreach ($locales as $locale) AppLocale::requireComponents(LOCALE_COMPONENT_OCS_DEFAULT, $locale);
+			foreach ($locales as $locale) AppLocale::requireComponents(LOCALE_COMPONENT_APP_DEFAULT, $locale);
 
 			$schedConfs = $schedConfDao->getAll(false, $conference->getId());
 			while ($schedConf =& $schedConfs->next()) {

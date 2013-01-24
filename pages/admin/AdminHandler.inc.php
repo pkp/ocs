@@ -61,7 +61,7 @@ class AdminHandler extends Handler {
 	 */
 	function setupTemplate($request, $subclass = false) {
 		parent::setupTemplate($request);
-		AppLocale::requireComponents(LOCALE_COMPONENT_PKP_ADMIN, LOCALE_COMPONENT_OCS_ADMIN, LOCALE_COMPONENT_OCS_MANAGER);
+		AppLocale::requireComponents(LOCALE_COMPONENT_PKP_ADMIN, LOCALE_COMPONENT_APP_ADMIN, LOCALE_COMPONENT_APP_MANAGER);
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('pageHierarchy',
 			$subclass ? array(array($request->url(null, null, 'user'), 'navigation.user'), array($request->url(null, null, ROLE_PATH_SITE_ADMIN), 'admin.siteAdmin'))

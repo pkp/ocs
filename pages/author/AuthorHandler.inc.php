@@ -118,10 +118,10 @@ class AuthorHandler extends Handler {
 	function setupTemplate($request, $subclass = false, $paperId = 0, $parentPage = null) {
 		parent::setupTemplate($request);
 		AppLocale::requireComponents(
-			LOCALE_COMPONENT_OCS_AUTHOR,
+			LOCALE_COMPONENT_APP_AUTHOR,
 			LOCALE_COMPONENT_PKP_SUBMISSION,
-			LOCALE_COMPONENT_OCS_DIRECTOR, // FIXME?
-			LOCALE_COMPONENT_OCS_MANAGER // manager.schedConfSetup.submissions.typeOfSubmission.* FIXME
+			LOCALE_COMPONENT_APP_DIRECTOR, // FIXME?
+			LOCALE_COMPONENT_APP_MANAGER // manager.schedConfSetup.submissions.typeOfSubmission.* FIXME
 		);
 		$templateMgr =& TemplateManager::getManager();
 

@@ -133,7 +133,7 @@ class SchedConfHandler extends Handler {
 			array($request->url(null, 'index', 'index'), $conference->getLocalizedName(), true),
 			array($request->url(null, null, 'index'), $schedConf->getLocalizedName(), true)));
 		$this->setupTemplate($request, $conference, $schedConf);
-		AppLocale::requireComponents(LOCALE_COMPONENT_OCS_MANAGER); // FIXME: For timeline constants
+		AppLocale::requireComponents(LOCALE_COMPONENT_APP_MANAGER); // FIXME: For timeline constants
 		import('classes.manager.form.TimelineForm');
 		$timelineForm = new TimelineForm(false, true);
 		$timelineForm->initData();
@@ -155,7 +155,7 @@ class SchedConfHandler extends Handler {
 			array($request->url(null, 'index', 'index'), $conference->getLocalizedName(), true),
 			array($request->url(null, null, 'index'), $schedConf->getLocalizedName(), true)));
 		$this->setupTemplate($request, $conference, $schedConf);
-		AppLocale::requireComponents(LOCALE_COMPONENT_OCS_AUTHOR);
+		AppLocale::requireComponents(LOCALE_COMPONENT_APP_AUTHOR);
 
 		$templateMgr->assign('cfpMessage', $schedConf->getLocalizedSetting('cfpMessage'));
 		$templateMgr->assign('authorGuidelines', $schedConf->getLocalizedSetting('authorGuidelines'));
@@ -512,7 +512,7 @@ class SchedConfHandler extends Handler {
 
 		$templateMgr =& TemplateManager::getManager();
 		$this->setupTemplate($request, $conference, $schedConf);
-		AppLocale::requireComponents(LOCALE_COMPONENT_OCS_DIRECTOR); // FIXME: director.allTracks
+		AppLocale::requireComponents(LOCALE_COMPONENT_APP_DIRECTOR); // FIXME: director.allTracks
 
 		$templateMgr->assign('pageHierarchy', array(
 			array($request->url(null, 'index', 'index'), $conference->getLocalizedName(), true),
@@ -578,7 +578,7 @@ class SchedConfHandler extends Handler {
 	function setupTemplate($request, &$conference, &$schedConf) {
 		parent::setupTemplate($request);
 		$templateMgr =& TemplateManager::getManager();
-		AppLocale::requireComponents(LOCALE_COMPONENT_OCS_MANAGER);
+		AppLocale::requireComponents(LOCALE_COMPONENT_APP_MANAGER);
 
 		// Ensure the user is entitled to view the scheduled conference...
 		if (isset($schedConf) && ($conference->getEnabled() || (

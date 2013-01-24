@@ -407,7 +407,7 @@ class RTHandler extends PaperHandler {
 		$galleyId = isset($args[1]) ? (int) $args[1] : 0;
 		$suppFileId = isset($args[2]) ? (int) $args[2] : 0;
 		$this->validate($request, $paperId, $galleyId);
-		AppLocale::requireComponents(LOCALE_COMPONENT_OCS_AUTHOR);
+		AppLocale::requireComponents(LOCALE_COMPONENT_APP_AUTHOR);
 		$conference =& $router->getContext($request, CONTEXT_CONFERENCE);
 		$paper =& $this->paper;
 
