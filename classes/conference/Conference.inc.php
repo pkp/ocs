@@ -112,6 +112,15 @@ class Conference extends Context {
 	static function getSettingsDAO() {
 		return DAORegistry::getDAO('ConferenceSettingsDAO');
 	}
+
+	/**
+	 * Get the DAO for this context object.
+	 * @return DAO
+	 */
+	static function getDAO() {
+		return DAORegistry::getDAO('ConferenceDAO');
+	}
+
 }
 
 ?>
