@@ -255,7 +255,7 @@ class UserHandler extends PKPUserHandler {
 	 */
 	function setupTemplate($request, $subclass = false) {
 		parent::setupTemplate($request);
-		AppLocale::requireComponents(LOCALE_COMPONENT_APP_AUTHOR, LOCALE_COMPONENT_APP_DIRECTOR, LOCALE_COMPONENT_APP_MANAGER);
+		AppLocale::requireComponents(LOCALE_COMPONENT_APP_AUTHOR, LOCALE_COMPONENT_APP_EDITOR, LOCALE_COMPONENT_APP_MANAGER);
 
 		$conference =& $request->getConference();
 		$schedConf =& $request->getSchedConf();

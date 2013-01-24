@@ -120,7 +120,7 @@ class AuthorHandler extends Handler {
 		AppLocale::requireComponents(
 			LOCALE_COMPONENT_APP_AUTHOR,
 			LOCALE_COMPONENT_PKP_SUBMISSION,
-			LOCALE_COMPONENT_APP_DIRECTOR, // FIXME?
+			LOCALE_COMPONENT_APP_EDITOR, // FIXME?
 			LOCALE_COMPONENT_APP_MANAGER // manager.schedConfSetup.submissions.typeOfSubmission.* FIXME
 		);
 		$templateMgr =& TemplateManager::getManager();

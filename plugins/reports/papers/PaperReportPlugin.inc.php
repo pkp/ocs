@@ -74,7 +74,7 @@ class PaperReportPlugin extends ReportPlugin {
 			}
 		}
 
-		AppLocale::requireComponents(LOCALE_COMPONENT_APP_DIRECTOR);
+		AppLocale::requireComponents(LOCALE_COMPONENT_APP_EDITOR);
 		import('classes.paper.Paper');
 		$decisionMessages = array(
 			SUBMISSION_DIRECTOR_DECISION_INVITE => __('director.paper.decision.invitePresentation'),
