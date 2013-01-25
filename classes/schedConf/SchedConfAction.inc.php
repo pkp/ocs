@@ -147,7 +147,7 @@ class SchedConfAction {
 			// it is assumed that they are allowed to view the scheduled conference as a registrant.
 			$roleDao =& DAORegistry::getDAO('RoleDAO');
 			$registrationAssumedRoles = array(
-				ROLE_ID_CONFERENCE_MANAGER,
+				ROLE_ID_MANAGER,
 				ROLE_ID_DIRECTOR,
 				ROLE_ID_TRACK_DIRECTOR
 			);

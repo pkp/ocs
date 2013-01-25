@@ -9,7 +9,7 @@
  * @class AdminPeopleHandler
  * @ingroup pages_admin
  *
- * @brief Handle requests for people management functions. 
+ * @brief Handle requests for people management functions.
  */
 
 
@@ -117,7 +117,9 @@ class AdminPeopleHandler extends AdminHandler {
 		));
 		$templateMgr->assign('alphaList', explode(' ', __('common.alphaList')));
 		$templateMgr->assign('oldUserIds', $oldUserIds);
-		$templateMgr->assign('rolePath', $roleDao->getRolePath($roleId));
+		$role =& $roleDao->newDataObject();
+		$role->setId($roleId);
+		$templateMgr->assign('rolePath', $role->getPath());
 		$templateMgr->assign('roleSymbolic', $roleSymbolic);
 		$templateMgr->display('admin/selectMergeUser.tpl');
 	}

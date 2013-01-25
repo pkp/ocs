@@ -290,7 +290,7 @@ class Validation {
 	 * @return boolean
 	 */
 	static function isConferenceManager($conferenceId = -1) {
-		return Validation::isAuthorized(ROLE_ID_CONFERENCE_MANAGER, $conferenceId, 0);
+		return Validation::isAuthorized(ROLE_ID_MANAGER, $conferenceId, 0);
 	}
 
 	/**

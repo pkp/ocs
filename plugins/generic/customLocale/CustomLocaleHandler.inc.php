@@ -30,7 +30,7 @@ class CustomLocaleHandler extends Handler {
 		parent::Handler();
 		
 		$this->addCheck(new HandlerValidatorConference($this));		
-		$this->addCheck(new HandlerValidatorRoles($this, true, null, null, array(ROLE_ID_SITE_ADMIN, ROLE_ID_CONFERENCE_MANAGER)));
+		$this->addCheck(new HandlerValidatorRoles($this, true, null, null, array(ROLE_ID_SITE_ADMIN, ROLE_ID_MANAGER)));
 
 		$plugin =& PluginRegistry::getPlugin('generic', 'CustomLocalePlugin');
 		$this->plugin =& $plugin;				

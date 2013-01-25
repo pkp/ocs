@@ -14,7 +14,7 @@
 
 {if $isSiteAdmin}
 {assign var="hasRole" value=1}
-	&#187; <a href="{url conference="index" page=$isSiteAdmin->getRolePath()}">{translate key=$isSiteAdmin->getRoleName()}</a>
+	&#187; <a href="{url conference="index" page=$isSiteAdmin->getPath()}">{translate key=$isSiteAdmin->getRoleName()}</a>
 	{call_hook name="Templates::User::Index::Admin"}
 {/if}
 

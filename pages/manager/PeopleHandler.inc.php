@@ -84,7 +84,7 @@ class PeopleHandler extends ManagerHandler {
 			}
 			$templateMgr->assign('roleId', $roleId);
 			switch($roleId) {
-				case ROLE_ID_CONFERENCE_MANAGER:
+				case ROLE_ID_MANAGER:
 					$helpTopicId = 'conference.roles.conferenceManager';
 					break;
 				case ROLE_ID_DIRECTOR:
@@ -135,7 +135,9 @@ class PeopleHandler extends ManagerHandler {
 			USER_FIELD_EMAIL => 'user.email',
 			USER_FIELD_INTERESTS => 'user.interests'
 		));
-		$templateMgr->assign('rolePath', $roleDao->getRolePath($roleId));
+		$role =& $roleDao->newDataObject();
+		$role->setId($roleId);
+		$templateMgr->assign('rolePath', $role->getPath());
 		$templateMgr->assign('alphaList', explode(' ', __('common.alphaList')));
 		$templateMgr->assign('roleSymbolic', $roleSymbolic);
 		$templateMgr->assign('isSchedConfManagement', $schedConf ? true : false);
@@ -235,7 +237,9 @@ class PeopleHandler extends ManagerHandler {
 		$schedConf =& $request->getSchedConf();
 
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
-		$rolePath = $roleDao->getRolePath($roleId);
+		$role =& $roleDao->newDataObject();
+		$role->setId($roleId);
+		$rolePath = $role->getPath();
 
 		$isConferenceManager = Validation::isConferenceManager($conference->getId()) || Validation::isSiteAdmin();
 
@@ -263,7 +267,7 @@ class PeopleHandler extends ManagerHandler {
 
 					$role = new Role();
 					$role->setConferenceId($conference->getId());
-					if ($schedConf && $rolePath != ROLE_PATH_CONFERENCE_MANAGER) {
+					if ($schedConf && $rolePath != ROLE_PATH_MANAGER) {
 						$role->setSchedConfId($schedConfId);
 					} else {
 						$role->setSchedConfId(0);
@@ -297,7 +301,9 @@ class PeopleHandler extends ManagerHandler {
 			$roleDao->deleteRoleByUserId($userId, $conferenceId, $roleId, $schedConfId);
 		}
 
-		$request->redirect(null, null, null, 'people', $roleDao->getRolePath($roleId) . 's');
+		$role =& $roleDao->newDataObject();
+		$role->setId($roleId);
+		$request->redirect(null, null, null, 'people', $role->getPath() . 's');
 	}
 
 	/**
@@ -355,13 +361,15 @@ class PeopleHandler extends ManagerHandler {
 				$role =& $roles->next();
 				$role->setConferenceId($conference->getId());
 				$role->setSchedConfId($schedConf->getId());
-				if ($role->getRolePath() != ROLE_PATH_SITE_ADMIN && !$roleDao->userHasRole($role->getConferenceId(), $schedConf->getId(), $role->getUserId(), $role->getRoleId())) {
+				if ($role->getPath() != ROLE_PATH_SITE_ADMIN && !$roleDao->userHasRole($role->getConferenceId(), $schedConf->getId(), $role->getUserId(), $role->getRoleId())) {
 					$roleDao->insertRole($role);
 				}
 			}
 		}
 
-		$request->redirect(null, null, null, 'people', $roleDao->getRolePath($roleId));
+		$role =& $roleDao->newDataObject();
+		$role->setId($roleId);
+		$request->redirect(null, null, null, 'people', $role->getPath());
 	}
 
 	/**
@@ -544,7 +552,9 @@ class PeopleHandler extends ManagerHandler {
 		));
 		$templateMgr->assign('alphaList', explode(' ', __('common.alphaList')));
 		$templateMgr->assign('oldUserIds', $oldUserIds);
-		$templateMgr->assign('rolePath', $roleDao->getRolePath($roleId));
+		$role =& $roleDao->newDataObject();
+		$role->setId($roleId);
+		$templateMgr->assign('rolePath', $role->getPath());
 		$templateMgr->assign('roleSymbolic', $roleSymbolic);
 		$templateMgr->assign('sort', $sort);
 		$templateMgr->assign('sortDirection', $sortDirection);

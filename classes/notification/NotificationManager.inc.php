@@ -169,13 +169,17 @@ class NotificationManager extends PKPNotificationManager {
 			foreach ($this->privilegedRoles[$userId][$paperId] as $roleId) {
 				// Get the first role that is in the validRoles list
 				if (in_array($roleId, $validRoles)) {
-					return $roleDao->getRolePath($roleId);
+					$role =& $roleDao->newDataObject();
+					$role->setId($roleId);
+					return $role->getPath();
 				}
 			}
 		} else {
 			// Return first (most privileged) role
 			$roleId = isset($this->privilegedRoles[$userId][$paperId][0]) ? $this->privilegedRoles[$userId][$paperId][0] : null;
-			return $roleDao->getRolePath($roleId);
+			$role =& $roleDao->newDataObject();
+			$role->setId($roleId);
+			return $role->getPath();
 		}
 	}
 

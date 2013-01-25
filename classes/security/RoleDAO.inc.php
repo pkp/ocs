@@ -15,14 +15,24 @@
 
 
 import('classes.security.Role');
+import('lib.pkp.classes.security.PKPRoleDAO');
 
-class RoleDAO extends DAO {
+class RoleDAO extends PKPRoleDAO {
 	/**
 	 * Constructor.
 	 */
 	function RoleDAO() {
-		parent::DAO();
+		parent::PKPRoleDAO();
 		$this->userDao =& DAORegistry::getDAO('UserDAO');
+	}
+
+	/**
+	 * Create new data object.
+	 * @return Role
+	 */
+	function &newDataObject() {
+		$dataObject = new Role();
+		return $dataObject;
 	}
 
 	/**
@@ -60,7 +70,7 @@ class RoleDAO extends DAO {
 	 * @return Role
 	 */
 	function _returnRoleFromRow($row) {
-		$role = new Role();
+		$role = new Role($row['role_id']);
 		$role->setConferenceId($row['conference_id']);
 		$role->setSchedConfId($row['sched_conf_id']);
 		$role->setUserId($row['user_id']);
@@ -523,66 +533,13 @@ class RoleDAO extends DAO {
 	}
 
 	/**
-	 * Get the i18n key name associated with the specified role.
-	 * @param $roleId int
-	 * @param $plural boolean get the plural form of the name
-	 * @return string
-	 */
-	function getRoleName($roleId, $plural = false) {
-		switch ($roleId) {
-			case ROLE_ID_SITE_ADMIN:
-				return 'user.role.siteAdmin' . ($plural ? 's' : '');
-			case ROLE_ID_CONFERENCE_MANAGER:
-				return 'user.role.manager' . ($plural ? 's' : '');
-			case ROLE_ID_DIRECTOR:
-				return 'user.role.director' . ($plural ? 's' : '');
-			case ROLE_ID_TRACK_DIRECTOR:
-				return 'user.role.trackDirector' . ($plural ? 's' : '');
-			case ROLE_ID_REVIEWER:
-				return 'user.role.reviewer' . ($plural ? 's' : '');
-			case ROLE_ID_AUTHOR:
-				return 'user.role.author' . ($plural ? 's' : '');
-			case ROLE_ID_READER:
-				return 'user.role.reader' . ($plural ? 's' : '');
-			default:
-				return '';
-		}
-	}
-
-	/**
 	 * Get role names
 	 * @param $roleId int ROLE_ID_...
 	 * @param $plural boolean
 	 * @return array
 	 */
-	function getRoleNames($roleId, $plural = false) {
+	static function getRoleNames($roleId, $plural = false) {
 		return array(self::getRoleName($roleId, $plural));
-	}
-
-	/**
-	 * Get the URL path associated with the specified role's operations.
-	 * @param $roleId int
-	 * @return string
-	 */
-	function getRolePath($roleId) {
-		switch ($roleId) {
-			case ROLE_ID_SITE_ADMIN:
-				return ROLE_PATH_SITE_ADMIN;
-			case ROLE_ID_CONFERENCE_MANAGER:
-				return ROLE_PATH_CONFERENCE_MANAGER;
-			case ROLE_ID_DIRECTOR:
-				return ROLE_PATH_DIRECTOR;
-			case ROLE_ID_TRACK_DIRECTOR:
-				return ROLE_PATH_TRACK_DIRECTOR;
-			case ROLE_ID_REVIEWER:
-				return ROLE_PATH_REVIEWER;
-			case ROLE_ID_AUTHOR:
-				return ROLE_PATH_AUTHOR;
-			case ROLE_ID_READER:
-				return ROLE_PATH_READER;
-			default:
-				return '';
-		}
 	}
 
 	/**
@@ -592,37 +549,12 @@ class RoleDAO extends DAO {
 	 */
 	function getRoleIdFromPath($rolePath) {
 		switch ($rolePath) {
-			case ROLE_PATH_SITE_ADMIN:
-				return ROLE_ID_SITE_ADMIN;
-			case ROLE_PATH_CONFERENCE_MANAGER:
-				return ROLE_ID_CONFERENCE_MANAGER;
 			case ROLE_PATH_DIRECTOR:
 				return ROLE_ID_DIRECTOR;
 			case ROLE_PATH_TRACK_DIRECTOR:
 				return ROLE_ID_TRACK_DIRECTOR;
-			case ROLE_PATH_REVIEWER:
-				return ROLE_ID_REVIEWER;
-			case ROLE_PATH_AUTHOR:
-				return ROLE_ID_AUTHOR;
-			case ROLE_PATH_READER:
-				return ROLE_ID_READER;
 			default:
-				return null;
-		}
-	}
-
-	/**
-	 * Map a column heading value to a database value for sorting
-	 * @param string
-	 * @return string
-	 */
-	function getSortMapping($heading) {
-		switch ($heading) {
-			case 'username': return 'u.username';
-			case 'name': return 'u.last_name';
-			case 'email': return 'u.email';
-			case 'id': return 'u.user_id';
-			default: return null;
+				return parent::getRoleIdFromPath($rolePath);
 		}
 	}
 }

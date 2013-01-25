@@ -91,7 +91,7 @@ class UserExportDom {
 			XMLCustomWriter::createChildWithText($doc, $userNode, 'locales', join(':', $user->getLocales()), false);
 			$roles =& $roleDao->getRolesByUserId($user->getId(), $schedConf->getId());
 			foreach ($roles as $role) {
-				$rolePath = $role->getRolePath();
+				$rolePath = $role->getPath();
 				if ($allowedRoles !== null && !in_array($rolePath, $allowedRoles)) {
 					continue;
 				}

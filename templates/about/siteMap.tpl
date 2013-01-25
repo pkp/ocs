@@ -41,7 +41,7 @@
 							{assign var=currentConferenceId value=$currentConference->getId()}
 							{foreach from=$rolesByConference[$currentConferenceId] item=role}
 								{translate|assign:"roleName" key=$role->getRoleName()}
-								<li><a href="{url conference=$currentConference->getPath() page=$role->getRolePath()}">{$roleName|escape}</a></li>
+								<li><a href="{url conference=$currentConference->getPath() page=$role->getPath()}">{$roleName|escape}</a></li>
 							{/foreach}
 						</ul>
 					{else}
@@ -68,7 +68,7 @@
 	</ul>
 </li>
 {if $isSiteAdmin}
-	<li><a href="{url conference="index" page=$isSiteAdmin->getRolePath()}">{translate key=$isSiteAdmin->getRoleName()}</a></li>
+	<li><a href="{url conference="index" page=$isSiteAdmin->getPath()}">{translate key=$isSiteAdmin->getRoleName()}</a></li>
 {/if}
 <li><a href="http://pkp.sfu.ca/ojs">{translate key="common.openConferenceSystems"}</a></li>
 <!-- li><a href="javascript:openHelp('{url conference="index" page="help"}')">{translate key="help.help"}</a></li -->

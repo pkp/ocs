@@ -62,7 +62,7 @@ class ProfileForm extends PKPProfileForm {
 			$roleDao = DAORegistry::getDAO('RoleDAO');
 			$roles = $roleDao->getRolesByUserId($user->getId(), $schedConf->getId());
 			$roleNames = array();
-			foreach ($roles as $role) $roleNames[$role->getRolePath()] = $role->getRoleName();
+			foreach ($roles as $role) $roleNames[$role->getPath()] = $role->getRoleName();
 			import('classes.schedConf.SchedConfAction');
 			$templateMgr->assign('allowRegReviewer', SchedConfAction::allowRegReviewer($schedConf));
 			$templateMgr->assign('allowRegAuthor', SchedConfAction::allowRegAuthor($schedConf));

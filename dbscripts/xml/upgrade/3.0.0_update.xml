@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE data SYSTEM "../../../lib/pkp/dtd/xmlData.dtd">
+
+<!--
+  * 3.0.0_settings.xml
+  *
+  * Copyright (c) 2003-2012 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * 3.0.0.0 updates for context settings.
+  -->
+<data>
+	<!-- Bug #8095: Standardize READER role constant value across PKP apps -->
+	<sql>
+		<query>UPDATE roles SET role_id = '1048576' WHERE role_id = '32768'</query>
+	</sql>
+</data>

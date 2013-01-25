@@ -23,7 +23,7 @@ class ManagerHandler extends Handler {
 		parent::Handler();
 
 		$this->addCheck(new HandlerValidatorConference($this));
-		$this->addCheck(new HandlerValidatorRoles($this, true, null, null, array(ROLE_ID_SITE_ADMIN, ROLE_ID_CONFERENCE_MANAGER)));
+		$this->addCheck(new HandlerValidatorRoles($this, true, null, null, array(ROLE_ID_SITE_ADMIN, ROLE_ID_MANAGER)));
 	}
 
 	/**
@@ -63,7 +63,7 @@ class ManagerHandler extends Handler {
 		$templateMgr->assign('announcementsEnabled', $conference->getSetting('enableAnnouncements'));
 
 		$templateMgr->assign('helpTopicId','conference.index');
-		$templateMgr->display(ROLE_PATH_CONFERENCE_MANAGER . '/index.tpl');
+		$templateMgr->display(ROLE_PATH_MANAGER . '/index.tpl');
 	}
 
 

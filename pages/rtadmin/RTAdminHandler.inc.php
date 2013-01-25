@@ -26,7 +26,7 @@ class RTAdminHandler extends Handler {
 		parent::Handler();
 
 		$this->addCheck(new HandlerValidatorConference($this));		
-		$this->addCheck(new HandlerValidatorRoles($this, true, null, null, array(ROLE_ID_SITE_ADMIN, ROLE_ID_CONFERENCE_MANAGER)));		
+		$this->addCheck(new HandlerValidatorRoles($this, true, null, null, array(ROLE_ID_SITE_ADMIN, ROLE_ID_MANAGER)));
 	}
 
 	/**
@@ -64,7 +64,7 @@ class RTAdminHandler extends Handler {
 			$allConferences =& $allConferences->toArray();
 
 			foreach ($allConferences as $conference) {
-				if ($roleDao->userHasRole($conference->getId(), 0, $user->getId(), ROLE_ID_CONFERENCE_MANAGER)) {
+				if ($roleDao->userHasRole($conference->getId(), 0, $user->getId(), ROLE_ID_MANAGER)) {
 					$conferences[] = $conference;
 				}
 			}

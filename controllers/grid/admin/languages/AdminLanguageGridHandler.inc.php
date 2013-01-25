@@ -70,7 +70,7 @@ class AdminLanguageGridHandler extends PKPAdminLanguageGridHandler {
 		$conferences =& $conferenceDao->getConferences();
 		$userRoles = $this->getAuthorizedContextObject(ASSOC_TYPE_USER_ROLES);
 		$conference =& $request->getConference();
-		return ($conferences->getCount() == 1 && $conference && in_array(ROLE_ID_CONFERENCE_MANAGER, $userRoles));
+		return ($conferences->getCount() == 1 && $conference && in_array(ROLE_ID_MANAGER, $userRoles));
 	}
 }
 

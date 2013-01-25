@@ -178,7 +178,9 @@ class SchedConfStatisticsDAO extends DAO {
 
 		while (!$result->EOF) {
 			$row = $result->GetRowAssoc(false);
-			$returner[$roleDao->getRolePath($row['role_id'])] = $row['role_count'];
+			$role =& $roleDao->newDataObject();
+			$role->setId($row['role_id']);
+			$returner[$role->getPath()] = $row['role_count'];
 			$result->moveNext();
 		}
 

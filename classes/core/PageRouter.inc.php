@@ -34,7 +34,7 @@ class PageRouter extends PKPPageRouter {
 			if(count($roles) == 1) {
 				$role = array_shift($roles);
 				if ($role->getRoleId() == ROLE_ID_READER) $request->redirect(null, 'index');
-				$request->redirect(null, null, $role->getRolePath());
+				$request->redirect(null, null, $role->getPath());
 			} else {
 				$request->redirect(null, null, 'user');
 			}
@@ -52,7 +52,7 @@ class PageRouter extends PKPPageRouter {
 					$schedConfPath = $schedConf->getPath();
 				}
 				if ($role->getRoleId() == ROLE_ID_READER) $request->redirect($confPath, $schedConfPath, 'index');
-				$request->redirect($confPath, $schedConfPath, $role->getRolePath());
+				$request->redirect($confPath, $schedConfPath, $role->getPath());
 			} else {
 				$request->redirect(null, null,  'user');
 			}
@@ -79,7 +79,7 @@ class PageRouter extends PKPPageRouter {
 										$schedConfPath = 'index';
 				}
 
-				$request->redirect($confPath, $schedConfPath, $role->getRolePath());
+				$request->redirect($confPath, $schedConfPath, $role->getPath());
 			} else $request->redirect('index', 'index', 'user');
 		}
 	}

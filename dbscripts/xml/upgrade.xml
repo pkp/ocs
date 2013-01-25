@@ -43,6 +43,7 @@
 		<!-- 2.x to 2.4 -->
 		<data file="dbscripts/xml/upgrade/2.4.0_preupdate.xml" />
 		<data file="dbscripts/xml/upgrade/2.4.0_preaffiliations.xml" condition="return $installer->columnExists('users', 'affiliation') &amp;&amp; $installer->columnExists('authors', 'affiliation');" />
+	</upgrade>
 
 	<upgrade minversion="2.2.9.0" maxversion="2.3.9.9">
 		<data file="dbscripts/xml/upgrade/2.4.0_notifications.xml" />
@@ -130,6 +131,7 @@
 	<upgrade minversion="2.4.0" maxversion="3.0.0">
 		<data file="dbscripts/xml/upgrade/3.0.0_change_assoc_type.xml" />
 		<data file="dbscripts/xml/upgrade/3.0.0_settings.xml" />
+		<data file="dbscripts/xml/upgrade/3.0.0_update.xml" />
 		<code function="clearDataCache" />
 	</upgrade>
 

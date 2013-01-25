@@ -95,7 +95,7 @@ class ConferenceSiteSettingsForm extends ContextSiteSettingsForm {
 				$role = new Role();
 				$role->setConferenceId($conferenceId);
 				$role->setUserId($userSession->getUserId());
-				$role->setRoleId(ROLE_ID_CONFERENCE_MANAGER);
+				$role->setRoleId(ROLE_ID_MANAGER);
 
 				$roleDao =& DAORegistry::getDAO('RoleDAO');
 				$roleDao->insertRole($role);

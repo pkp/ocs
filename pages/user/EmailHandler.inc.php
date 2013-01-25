@@ -48,7 +48,7 @@ class EmailHandler extends UserHandler {
 		// email sending restrictions.
 		$canSendUnlimitedEmails = Validation::isSiteAdmin();
 		$unlimitedEmailRoles = array(
-			ROLE_ID_CONFERENCE_MANAGER,
+			ROLE_ID_MANAGER,
 			ROLE_ID_DIRECTOR,
 			ROLE_ID_TRACK_DIRECTOR
 		);

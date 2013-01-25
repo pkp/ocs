@@ -72,10 +72,10 @@ function sortSearch(heading, direction) {
 	{translate key="manager.people.enrollUserAs"} <select name="roleId" size="1"  class="selectMenu">
 		<option value=""></option>
 		{if $isConferenceManagement}
-			<option value="{$smarty.const.ROLE_ID_CONFERENCE_MANAGER}">{translate key="user.role.manager"}</option>
+			<option value="{$smarty.const.ROLE_ID_MANAGER}">{translate key="user.role.manager"}</option>
 		{/if}
 		{if $isSchedConfManagement}
-			<option value="{$smarty.const.ROLE_ID_CONFERENCE_MANAGER}">{translate key="user.role.manager"}</option>
+			<option value="{$smarty.const.ROLE_ID_MANAGER}">{translate key="user.role.manager"}</option>
 			<option value="{$smarty.const.ROLE_ID_DIRECTOR}">{translate key="user.role.director"}</option>
 			<option value="{$smarty.const.ROLE_ID_TRACK_DIRECTOR}">{translate key="user.role.trackDirector"}</option>
 			<option value="{$smarty.const.ROLE_ID_REVIEWER}">{translate key="user.role.reviewer"}</option>
