@@ -23,12 +23,31 @@ class PublicFileManager extends PKPPublicFileManager {
 	}
 
 	/**
+	 * Get the files path associated with the specified context information.
+	 * @param $assocType int Context assoc type
+	 * @param $contextId int Context ID
+	 */
+	function getContextFilesPath($assocType, $contextId) {
+		switch ($assocType) {
+			case ASSOC_TYPE_CONFERENCE:
+				return Config::getVar('files', 'public_files_dir') . '/conferences/' . $conferenceId;
+			case ASSOC_TYPE_SCHED_CONF:
+				$schedConfDao = DAORegistry::getDAO('SchedConfDAO');
+				$schedConf = $schedConfDao->getById($schedConfId);
+				return Config::getVar('files', 'public_files_dir') . '/conferences/' . $schedConf->getConferenceId() . '/schedConfs/' . $schedConfId;
+			default:
+				assert(false);
+				break;
+		}
+	}
+
+	/**
 	 * Get the path to a conference's public files directory.
 	 * @param $conferenceId int
 	 * @return string
 	 */
 	function getConferenceFilesPath($conferenceId) {
-		return Config::getVar('files', 'public_files_dir') . '/conferences/' . $conferenceId;
+		return $this->getContextFilesPath(ASSOC_TYPE_CONFERENCE, $conferenceId);
 	}
 
 	/**
@@ -37,9 +56,7 @@ class PublicFileManager extends PKPPublicFileManager {
 	 * @return string
 	 */
 	function getSchedConfFilesPath($schedConfId) {
-		$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
-		$schedConf = $schedConfDao->getById($schedConfId);
-		return Config::getVar('files', 'public_files_dir') . '/conferences/' . $schedConf->getConferenceId() . '/schedConfs/' . $schedConfId;
+		return $this->getContextFilesPath(ASSOC_TYPE_SCHED_CONF, $schedConfId);
 	}
 
 	/**
@@ -50,7 +67,7 @@ class PublicFileManager extends PKPPublicFileManager {
 	 * @return boolean
 	 */
  	function uploadConferenceFile($conferenceId, $fileName, $destFileName) {
- 		return $this->uploadFile($fileName, $this->getConferenceFilesPath($conferenceId) . '/' . $destFileName);
+ 		return $this->uploadContextFile(ASSOC_TYPE_CONFERENCE, $fileName, $this->getConferenceFilesPath($conferenceId) . '/' . $destFileName);
  	}
 
 	/**
@@ -60,8 +77,8 @@ class PublicFileManager extends PKPPublicFileManager {
 	 * @param $contents string the contents to write to the file
 	 * @return boolean
 	 */
- 	function writeConferenceFile($conferenceId, $destFileName, &$contents) {
- 		return $this->writeFile($this->getConferenceFilesPath($conferenceId) . '/' . $destFileName, $contents);
+ 	function writeConferenceFile($conferenceId, $destFileName, $contents) {
+ 		return $this->writeContextFile(ASSOC_TYPE_CONFERENCE, $conferenceId, $destFileName, $contents);
  	}
 
 	/**
@@ -72,7 +89,7 @@ class PublicFileManager extends PKPPublicFileManager {
 	 * @return boolean
 	 */
  	function copyConferenceFile($conferenceId, $sourceFile, $destFileName) {
- 		return $this->copyFile($sourceFile, $this->getConferenceFilesPath($conferenceId) . '/' . $destFileName);
+ 		return $this->copyContextFile(ASSOC_TYPE_CONFERENCE, $conferenceId, $sourceFile, $destFileName);
  	}
 
  	/**
@@ -82,7 +99,7 @@ class PublicFileManager extends PKPPublicFileManager {
 	 * @return boolean
  	 */
  	function removeConferenceFile($conferenceId, $fileName) {
- 		return $this->deleteFile($this->getConferenceFilesPath($conferenceId) . '/' . $fileName);
+ 		return $this->removeContextFile(ASSOC_TYPE_CONFERENCE, $conferenceId, $fileName);
  	}
 
 	/**
@@ -93,7 +110,7 @@ class PublicFileManager extends PKPPublicFileManager {
 	 * @return boolean
 	 */
  	function uploadSchedConfFile($schedConfId, $fileName, $destFileName) {
- 		return $this->uploadFile($fileName, $this->getSchedConfFilesPath($schedConfId) . '/' . $destFileName);
+ 		return $this->uploadContextFile(ASSOC_TYPE_SCHED_CONF, $schedConfId, $fileName, $destFileName);
  	}
 
 	/**
@@ -103,8 +120,8 @@ class PublicFileManager extends PKPPublicFileManager {
 	 * @param $contents string the contents to write to the file
 	 * @return boolean
 	 */
- 	function writeSchedConfFile($schedConfId, $destFileName, &$contents) {
- 		return $this->writeFile($this->getSchedConfFilesPath($schedConfId) . '/' . $destFileName, $contents);
+ 	function writeSchedConfFile($schedConfId, $destFileName, $contents) {
+ 		return $this->writeContextFile(ASSOC_TYPE_SCHED_CONF, $schedConfId, $destFileName, $contents);
  	}
 
 	/**
@@ -115,7 +132,7 @@ class PublicFileManager extends PKPPublicFileManager {
 	 * @return boolean
 	 */
  	function copySchedConfFile($schedConfId, $sourceFile, $destFileName) {
- 		return $this->copyFile($sourceFile, $this->getSchedConfFilesPath($schedConfId) . '/' . $destFileName);
+ 		return $this->copyContextFile(ASSOC_TYPE_SCHED_CONF, $schedConfId, $sourceFile, $destFileName);
  	}
 
  	/**
@@ -125,7 +142,7 @@ class PublicFileManager extends PKPPublicFileManager {
 	 * @return boolean
  	 */
  	function removeSchedConfFile($schedConfId, $fileName) {
- 		return $this->deleteFile($this->getSchedConfFilesPath($schedConfId) . '/' . $fileName);
+ 		return $this->deleteContextFile(ASSOC_TYPE_SCHED_CONF, $schedConfId, $fileName);
  	}
 }
 
