@@ -399,14 +399,8 @@ class PaperEventLogEntry extends DataObject {
 	 * @return string
 	 */
 	function getUserFullName() {
-		static $userFullName;
-
-		if(!isset($userFullName)) {
-			$userDao =& DAORegistry::getDAO('UserDAO');
-			$userFullName = $userDao->getUserFullName($this->getUserId(), true);
-		}
-
-		return $userFullName ? $userFullName : '';
+		$userDao =& DAORegistry::getDAO('UserDAO');
+		return $userDao->getUserFullName($this->getUserId(), true);
 	}
 
 	/**
@@ -414,14 +408,8 @@ class PaperEventLogEntry extends DataObject {
 	 * @return string
 	 */
 	function getUserEmail() {
-		static $userEmail;
-
-		if(!isset($userEmail)) {
-			$userDao =& DAORegistry::getDAO('UserDAO');
-			$userEmail = $userDao->getUserEmail($this->getUserId(), true);
-		}
-
-		return $userEmail ? $userEmail : '';
+		$userDao =& DAORegistry::getDAO('UserDAO');
+		return $userDao->getUserEmail($this->getUserId(), true);
 	}
 
 	/**
