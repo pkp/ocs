@@ -8,6 +8,5 @@
  *
  *}
 {strip}
-{include file="core:common/footer.tpl"}
+{include file="core:common/footer-old.tpl"}
 {/strip}
-
