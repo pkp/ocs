@@ -66,55 +66,6 @@ class ManagerHandler extends Handler {
 		$templateMgr->display(ROLE_PATH_MANAGER . '/index.tpl');
 	}
 
-
-	/**
-	 * Send an email to a user or group of users.
-	 */
-	function email($args, &$request) {
-		$this->validate();
-		$this->setupTemplate($request, true);
-
-		$conference =& $request->getConference();
-		$schedConf =& $request->getSchedConf();
-
-		$templateMgr =& TemplateManager::getManager($request);
-		$templateMgr->assign('helpTopicId', 'conference.users.emailUsers');
-
-		$userDao =& DAORegistry::getDAO('UserDAO');
-
-		$site =& $request->getSite();
-		$user =& $request->getUser();
-
-		import('classes.mail.MailTemplate');
-		$email = new MailTemplate($request->getUserVar('template'), $request->getUserVar('locale'));
-
-		if ($request->getUserVar('send') && !$email->hasErrors()) {
-			$email->send();
-			$request->redirect(null, null, $request->getRequestedPage());
-		} else {
-			$email->assignParams(); // FIXME Forces default parameters to be assigned (should do this automatically in MailTemplate?)
-			if (!$request->getUserVar('continued')) {
-				if (($groupId = $request->getUserVar('toGroup')) != '') {
-					// Special case for emailing entire groups:
-					// Check for a group ID and add recipients.
-					$groupDao =& DAORegistry::getDAO('GroupDAO');
-					$group =& $groupDao->getById($groupId, ASSOC_TYPE_SCHED_CONF, $schedConf->getId());
-					if ($group) {
-						$groupMembershipDao =& DAORegistry::getDAO('GroupMembershipDAO');
-						$memberships =& $groupMembershipDao->getMemberships($group->getId());
-						$memberships =& $memberships->toArray();
-						foreach ($memberships as $membership) {
-							$user =& $membership->getUser();
-							$email->addRecipient($user->getEmail(), $user->getFullName());
-						}
-					}
-				}
-				if (count($email->getRecipients())==0) $email->addRecipient($user->getEmail(), $user->getFullName());
-			}
-			$email->displayEditForm($request->url(null, null, null, 'email'), array(), 'manager/people/email.tpl');
-		}
-	}
-
 	/**
 	 * Setup common template variables.
 	 * @param $subclass boolean set to true if caller is below this handler in the hierarchy

@@ -170,45 +170,19 @@ class AboutHandler extends Handler {
 
 		// FIXME: This is pretty inefficient; should probably be cached.
 
-		if (!$schedConf->getSetting('boardEnabled')) {
-			// Don't use the Organizing Team feature. Generate
-			// Organizing Team information using Role info.
-			$roleDao =& DAORegistry::getDAO('RoleDAO');
+		// Don't use the Organizing Team feature. Generate
+		// Organizing Team information using Role info.
+		$roleDao =& DAORegistry::getDAO('RoleDAO');
 
-			$directors =& $roleDao->getUsersByRoleId(ROLE_ID_DIRECTOR, $conference->getId(), $schedConfId);
-			$directors =& $directors->toArray();
+		$directors =& $roleDao->getUsersByRoleId(ROLE_ID_DIRECTOR, $conference->getId(), $schedConfId);
+		$directors =& $directors->toArray();
 
-			$trackDirectors =& $roleDao->getUsersByRoleId(ROLE_ID_TRACK_DIRECTOR, $conference->getId(), $schedConfId);
-			$trackDirectors =& $trackDirectors->toArray();
+		$trackDirectors =& $roleDao->getUsersByRoleId(ROLE_ID_TRACK_DIRECTOR, $conference->getId(), $schedConfId);
+		$trackDirectors =& $trackDirectors->toArray();
 
-			$templateMgr->assign_by_ref('directors', $directors);
-			$templateMgr->assign_by_ref('trackDirectors', $trackDirectors);
-			$templateMgr->display('about/organizingTeam.tpl');
-		} else {
-			// The Organizing Team feature has been enabled.
-			// Generate information using Group data.
-			$groupDao =& DAORegistry::getDAO('GroupDAO');
-			$groupMembershipDao =& DAORegistry::getDAO('GroupMembershipDAO');
-
-			$allGroups =& $groupDao->getGroups(ASSOC_TYPE_SCHED_CONF, $schedConf->getId());
-			$teamInfo = array();
-			$groups = array();
-			while ($group =& $allGroups->next()) {
-				if (!$group->getAboutDisplayed()) continue;
-				$memberships = array();
-				$allMemberships =& $groupMembershipDao->getMemberships($group->getId());
-				while ($membership =& $allMemberships->next()) {
-					if (!$membership->getAboutDisplayed()) continue;
-					$memberships[] =& $membership;
-				}
-				if (!empty($memberships)) $groups[] =& $group;
-				$teamInfo[$group->getId()] = $memberships;
-			}
-
-			$templateMgr->assign_by_ref('groups', $groups);
-			$templateMgr->assign_by_ref('teamInfo', $teamInfo);
-			$templateMgr->display('about/organizingTeamBoard.tpl');
-		}
+		$templateMgr->assign_by_ref('directors', $directors);
+		$templateMgr->assign_by_ref('trackDirectors', $trackDirectors);
+		$templateMgr->display('about/organizingTeam.tpl');
 	}
 
 	/**
@@ -244,42 +218,22 @@ class AboutHandler extends Handler {
 		}
 
 		$user = null;
-		if (!isset($settings['boardEnabled']) || $settings['boardEnabled'] != true) {
-			$roles =& $roleDao->getRolesByUserId($userId, $conference->getId());
-			$acceptableRoles = array(
-				ROLE_ID_DIRECTOR,
-				ROLE_ID_TRACK_DIRECTOR
-			);
-			foreach ($roles as $role) {
-				$roleId = $role->getRoleId();
-				if (in_array($roleId, $acceptableRoles)) {
-					$userDao =& DAORegistry::getDAO('UserDAO');
-					$user =& $userDao->getById($userId);
-					break;
-				}
-			}
-
-			// Currently we always publish emails in this mode.
-			$publishEmail = true;
-		} else {
-			$groupDao =& DAORegistry::getDAO('GroupDAO');
-			$groupMembershipDao =& DAORegistry::getDAO('GroupMembershipDAO');
-			$publishEmail = false;
-
-			$allGroups =& $groupDao->getGroups(ASSOC_TYPE_SCHED_CONF, $schedConfId);
-			while ($group =& $allGroups->next()) {
-				if (!$group->getAboutDisplayed()) continue;
-				$allMemberships =& $groupMembershipDao->getMemberships($group->getId());
-				while ($membership =& $allMemberships->next()) {
-					if (!$membership->getAboutDisplayed()) continue;
-					$potentialUser =& $membership->getUser();
-					if ($potentialUser->getId() == $userId) {
-						if ($group->getPublishEmail()) $publishEmail = true;
-						$user = $potentialUser;
-					}
-				}
+		$roles =& $roleDao->getRolesByUserId($userId, $conference->getId());
+		$acceptableRoles = array(
+			ROLE_ID_DIRECTOR,
+			ROLE_ID_TRACK_DIRECTOR
+		);
+		foreach ($roles as $role) {
+			$roleId = $role->getRoleId();
+			if (in_array($roleId, $acceptableRoles)) {
+				$userDao =& DAORegistry::getDAO('UserDAO');
+				$user =& $userDao->getById($userId);
+				break;
 			}
 		}
+
+		// Currently we always publish emails in this mode.
+		$publishEmail = true;
 
 		if (!$user) $request->redirect(null, null, null, 'about', 'organizingTeam');
 

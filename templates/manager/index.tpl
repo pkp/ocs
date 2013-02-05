@@ -46,7 +46,6 @@
 		<li>&#187; <a href="{url schedConf=$schedConf->getPath() page="manager" op="schedConfSetup"}">{translate key="manager.schedConfSetup"}</a></li>
 		<li>&#187; <a href="{url schedConf=$schedConf->getPath() page="manager" op="timeline"}">{translate key="manager.timeline"}</a></li>
 		<li>&#187; <a href="{url schedConf=$schedConf->getPath() page="manager" op="tracks" clearPageContext=1}">{translate key="track.tracks"}</a></li>
-		<li>&#187; <a href="{url schedConf=$schedConf->getPath() page="manager" op="groups" clearPageContext=1}">{translate key="manager.groups"}</a></li>
 		<li>&#187; <a href="{url schedConf=$schedConf->getPath() page="manager" op="program"}">{translate key="manager.program"}</a></li>
 		<li>&#187; <a href="{url schedConf=$schedConf->getPath() page="manager" op="importexport"}">{translate key="manager.importExport"}</a></li>
 		<li>&#187; <a href="{url schedConf=$schedConf->getPath() page="manager" op="statistics"}">{translate key="manager.statistics"}</a></li>

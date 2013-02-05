@@ -193,23 +193,6 @@ switch ($op) {
 		import('pages.manager.SchedulerHandler');
 		break;
 	//
-	// Group Management
-	//
-	case 'groups':
-	case 'createGroup':
-	case 'updateGroup':
-	case 'deleteGroup':
-	case 'editGroup':
-	case 'groupMembership':
-	case 'addMembership':
-	case 'deleteMembership':
-	case 'setBoardEnabled':
-	case 'moveGroup':
-	case 'moveMembership':
-		define('HANDLER_CLASS', 'GroupHandler');
-		import('pages.manager.GroupHandler');
-		break;
-	//
 	// Statistics Functions
 	//
 	case 'statistics':
@@ -293,7 +276,6 @@ switch ($op) {
 		import('pages.manager.ConferenceHistoryHandler');
 		break;
 	case 'index':
-	case 'email':
 		define('HANDLER_CLASS', 'ManagerHandler');
 		import('pages.manager.ManagerHandler');
 		break;

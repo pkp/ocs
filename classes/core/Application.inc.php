@@ -88,8 +88,6 @@ class Application extends PKPApplication {
 			'DirectorSubmissionDAO' => 'classes.submission.director.DirectorSubmissionDAO',
 			'EditAssignmentDAO' => 'classes.submission.editAssignment.EditAssignmentDAO',
 			'EmailTemplateDAO' => 'classes.mail.EmailTemplateDAO',
-			'GroupDAO' => 'lib.pkp.classes.group.GroupDAO',
-			'GroupMembershipDAO' => 'lib.pkp.classes.group.GroupMembershipDAO',
 			'NoteDAO' => 'classes.note.NoteDAO',
 			'OAIDAO' => 'classes.oai.ocs.OAIDAO',
 			'PaperCommentDAO' => 'classes.paper.PaperCommentDAO',
