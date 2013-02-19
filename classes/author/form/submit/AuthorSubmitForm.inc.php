@@ -97,7 +97,7 @@ class AuthorSubmitForm extends Form {
 
 		// Send author notification email
 		import('mail.PaperMailTemplate');
-		$mail = new PaperMailTemplate($paper, $mailTemplate, null, null, null, null, false);
+		$mail = new PaperMailTemplate($paper, $mailTemplate, null, null, null, null, false, true);
 		$mail->setFrom($schedConf->getSetting('contactEmail'), $schedConf->getSetting('contactName'));
 		if ($mail->isEnabled()) {
 			$mail->addRecipient($user->getEmail(), $user->getFullName());
