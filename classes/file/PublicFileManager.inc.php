@@ -33,7 +33,7 @@ class PublicFileManager extends PKPPublicFileManager {
 				return Config::getVar('files', 'public_files_dir') . '/conferences/' . $conferenceId;
 			case ASSOC_TYPE_SCHED_CONF:
 				$schedConfDao = DAORegistry::getDAO('SchedConfDAO');
-				$schedConf = $schedConfDao->getById($schedConfId);
+				$schedConf = $schedConfDao->getById($contextId);
 				return Config::getVar('files', 'public_files_dir') . '/conferences/' . $schedConf->getConferenceId() . '/schedConfs/' . $schedConfId;
 			default:
 				assert(false);
