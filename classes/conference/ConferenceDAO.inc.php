@@ -13,7 +13,7 @@
  * @brief Operations for retrieving and modifying Conference objects.
  */
 
-import('lib.pkp.classes.core.ContextDAO');
+import('lib.pkp.classes.context.ContextDAO');
 import('classes.conference.Conference');
 
 class ConferenceDAO extends ContextDAO {

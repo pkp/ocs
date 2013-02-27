@@ -21,7 +21,7 @@ define('PAPER_ACCESS_OPEN',			0x00000000);
 define('PAPER_ACCESS_ACCOUNT_REQUIRED',		0x00000001);
 define('PAPER_ACCESS_REGISTRATION_REQUIRED',	0x00000002);
 
-import('lib.pkp.classes.core.Context');
+import('lib.pkp.classes.context.Context');
 
 class Conference extends Context {
 	/**

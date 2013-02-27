@@ -13,7 +13,7 @@
  * @brief Operations for retrieving and modifying SchedConf objects.
  */
 
-import('lib.pkp.classes.core.ContextDAO');
+import('lib.pkp.classes.context.ContextDAO');
 import('classes.schedConf.SchedConf');
 
 class SchedConfDAO extends ContextDAO {

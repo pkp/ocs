@@ -31,7 +31,7 @@ define('REVIEW_DEADLINE_TYPE_ABSOLUTE', 	0x00000002);
 define('SCHEDULE_LAYOUT_COMPACT', 0x00001);
 define('SCHEDULE_LAYOUT_EXPANDED', 0x00002);
 
-import('lib.pkp.classes.core.Context');
+import('lib.pkp.classes.context.Context');
 
 class SchedConf extends Context {
 	/**
