@@ -217,8 +217,8 @@ class ReviewerSubmissionDAO extends DAO {
 				r.reviewer_id = ? AND
 				r.date_notified IS NOT NULL' .
 				($active?
-					' AND r.date_completed IS NULL AND r.declined <> 1 AND (r.cancelled = 0 OR r.cancelled IS NULL)':
-					' AND (r.date_completed IS NOT NULL OR r.cancelled = 1 OR r.declined = 1)'
+					' AND r.date_completed IS NULL AND r.declined <> 1 AND (r.cancelled = 0 OR r.cancelled IS NULL) AND a.status = ' . STATUS_QUEUED:
+					' AND (r.date_completed IS NOT NULL OR r.cancelled = 1 OR r.declined = 1 OR a.status <> ' . STATUS_QUEUED . ')'
 				),
 			array(
 				'title',
@@ -251,7 +251,7 @@ class ReviewerSubmissionDAO extends DAO {
 		$submissionsCount[1] = 0;
 
 		$sql = '
-			SELECT r.date_completed, r.declined, r.cancelled
+			SELECT r.date_completed, r.declined, r.cancelled, a.status
 			FROM papers a
 				LEFT JOIN review_assignments r ON (a.paper_id = r.submission_id)
 				LEFT JOIN tracks t ON (t.track_id = a.track_id)
@@ -262,7 +262,7 @@ class ReviewerSubmissionDAO extends DAO {
 		$result =& $this->retrieve($sql, array($schedConfId, $reviewerId));
 
 		while (!$result->EOF) {
-			if ($result->fields['date_completed'] == null && $result->fields['declined'] != 1 && $result->fields['cancelled'] != 1) {
+			if ($result->fields['date_completed'] == null && $result->fields['declined'] != 1 && $result->fields['cancelled'] != 1 && $result->fields['status'] == STATUS_QUEUED) {
 				$submissionsCount[0] += 1;
 			} else {
 				$submissionsCount[1] += 1;
