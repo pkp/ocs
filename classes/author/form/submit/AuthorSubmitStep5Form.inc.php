@@ -74,7 +74,7 @@ class AuthorSubmitStep5Form extends AuthorSubmitForm {
 		$reviewAssignments =& $reviewAssignmentDao->getBySubmissionId($paper->getId(), REVIEW_ROUND_PRESENTATION);
 		foreach($reviewAssignments as $reviewAssignment) {
 			$reviewAssignment->setReviewFileId($authorSubmission->getReviewFileId());
-			$reviewAssignmentDao->updateReviewAssignment($reviewAssignment);
+			$reviewAssignmentDao->updateObject($reviewAssignment);
 		}
 
 		$reviewMode = $authorSubmission->getReviewMode();

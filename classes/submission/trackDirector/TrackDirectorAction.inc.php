@@ -335,7 +335,7 @@ class TrackDirectorAction extends Action {
 				$reviewAssignment->setDateNotified(Core::getCurrentDate());
 				$reviewAssignment->setCancelled(0);
 				$reviewAssignment->stampModified();
-				$reviewAssignmentDao->updateReviewAssignment($reviewAssignment);
+				$reviewAssignmentDao->updateObject($reviewAssignment);
 				return true;
 			} else {
 				if (!Request::getUserVar('continued')) {
@@ -413,7 +413,7 @@ class TrackDirectorAction extends Action {
 					$reviewAssignment->setDateCompleted(Core::getCurrentDate());
 					$reviewAssignment->stampModified();
 
-					$reviewAssignmentDao->updateReviewAssignment($reviewAssignment);
+					$reviewAssignmentDao->updateObject($reviewAssignment);
 
 					// Add log
 					import('classes.paper.log.PaperLog');
@@ -502,7 +502,7 @@ class TrackDirectorAction extends Action {
 
 			$reviewAssignment->setDateReminded(Core::getCurrentDate());
 			$reviewAssignment->setReminderWasAutomatic(0);
-			$reviewAssignmentDao->updateReviewAssignment($reviewAssignment);
+			$reviewAssignmentDao->updateObject($reviewAssignment);
 			return true;
 		} elseif ($reviewAssignment->getSubmissionId() == $trackDirectorSubmission->getId()) {
 			$reviewer =& $userDao->getById($reviewAssignment->getReviewerId());
@@ -580,7 +580,7 @@ class TrackDirectorAction extends Action {
 
 				$reviewAssignment->setDateAcknowledged(Core::getCurrentDate());
 				$reviewAssignment->stampModified();
-				$reviewAssignmentDao->updateReviewAssignment($reviewAssignment);
+				$reviewAssignmentDao->updateObject($reviewAssignment);
 			} else {
 				if (!Request::getUserVar('continued')) {
 					$email->addRecipient($reviewer->getEmail(), $reviewer->getFullName());
@@ -623,7 +623,7 @@ class TrackDirectorAction extends Action {
 			$reviewAssignment->setDateRated(Core::getCurrentDate());
 			$reviewAssignment->stampModified();
 
-			$reviewAssignmentDao->updateReviewAssignment($reviewAssignment);
+			$reviewAssignmentDao->updateObject($reviewAssignment);
 
 			// Add log
 			import('classes.paper.log.PaperLog');
@@ -688,7 +688,7 @@ class TrackDirectorAction extends Action {
 			}
 
 			$reviewAssignment->stampModified();
-			$reviewAssignmentDao->updateReviewAssignment($reviewAssignment);
+			$reviewAssignmentDao->updateObject($reviewAssignment);
 
 			if ($logChange) {
 				// Add log
@@ -778,7 +778,7 @@ class TrackDirectorAction extends Action {
 			$reviewAssignment->setDateCompleted($nowDate);
 			$reviewAssignment->stampModified();
 
-			$reviewAssignmentDao->updateReviewAssignment($reviewAssignment);
+			$reviewAssignmentDao->updateObject($reviewAssignment);
 
 			// Add log
 			import('classes.paper.log.PaperLog');
@@ -805,7 +805,7 @@ class TrackDirectorAction extends Action {
 				$reviewFormResponseDao->deleteByReviewId($reviewId);
 			}
 			$reviewAssignment->setReviewFormId(null);
-			$reviewAssignmentDao->updateReviewAssignment($reviewAssignment);
+			$reviewAssignmentDao->updateObject($reviewAssignment);
 		}
 	}
 
@@ -831,7 +831,7 @@ class TrackDirectorAction extends Action {
 					$reviewFormResponseDao->deleteByReviewId($reviewId);
 				}
 				$reviewAssignment->setReviewFormId($reviewFormId);
-				$reviewAssignmentDao->updateReviewAssignment($reviewAssignment);
+				$reviewAssignmentDao->updateObject($reviewAssignment);
 			}
 		}
 	}
@@ -1677,7 +1677,7 @@ import('classes.file.PaperFileManager');
 			$reviewAssignment->setDeclined($accept?0:1);
 			$reviewAssignment->setDateConfirmed(Core::getCurrentDate());
 			$reviewAssignment->stampModified();
-			$reviewAssignmentDao->updateReviewAssignment($reviewAssignment);
+			$reviewAssignmentDao->updateObject($reviewAssignment);
 
 			// Add log
 			import('classes.paper.log.PaperLog');
@@ -1736,7 +1736,7 @@ import('classes.file.PaperFileManager');
 
 			$reviewAssignment->setReviewerFileId($fileId);
 			$reviewAssignment->stampModified();
-			$reviewAssignmentDao->updateReviewAssignment($reviewAssignment);
+			$reviewAssignmentDao->updateObject($reviewAssignment);
 
 			// Add log
 			import('classes.paper.log.PaperLog');

@@ -216,7 +216,7 @@ class TrackDirectorSubmissionDAO extends DAO {
 		foreach ($trackDirectorSubmission->getReviewAssignments(null) as $roundReviewAssignments) {
 			foreach ($roundReviewAssignments as $reviewAssignment) {
 				if ($reviewAssignment->getId() > 0) {
-					$this->reviewAssignmentDao->updateReviewAssignment($reviewAssignment);
+					$this->reviewAssignmentDao->updateObject($reviewAssignment);
 				} else {
 					$this->reviewAssignmentDao->insertObject($reviewAssignment);
 				}

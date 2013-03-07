@@ -98,7 +98,7 @@ class ReviewReminder extends ScheduledTask {
 
 		$reviewAssignment->setDateReminded(Core::getCurrentDate());
 		$reviewAssignment->setReminderWasAutomatic(1);
-		$reviewAssignmentDao->updateReviewAssignment($reviewAssignment);
+		$reviewAssignmentDao->updateObject($reviewAssignment);
 
 	}
 

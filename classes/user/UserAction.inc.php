@@ -72,7 +72,7 @@ class UserAction {
 		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
 		foreach ($reviewAssignmentDao->getByUserId($oldUserId) as $reviewAssignment) {
 			$reviewAssignment->setReviewerId($newUserId);
-			$reviewAssignmentDao->updateReviewAssignment($reviewAssignment);
+			$reviewAssignmentDao->updateObject($reviewAssignment);
 			unset($reviewAssignment);
 		}
 

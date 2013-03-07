@@ -65,7 +65,7 @@ class ReviewerAction extends Action {
 				$reviewAssignment->setDeclined($decline);
 				$reviewAssignment->setDateConfirmed(Core::getCurrentDate());
 				$reviewAssignment->stampModified();
-				$reviewAssignmentDao->updateReviewAssignment($reviewAssignment);
+				$reviewAssignmentDao->updateObject($reviewAssignment);
 
 				// Add log
 				import('classes.paper.log.PaperLog');
@@ -150,7 +150,7 @@ class ReviewerAction extends Action {
 				$reviewAssignment->setRecommendation($recommendation);
 				$reviewAssignment->setDateCompleted(Core::getCurrentDate());
 				$reviewAssignment->stampModified();
-				$reviewAssignmentDao->updateReviewAssignment($reviewAssignment);
+				$reviewAssignmentDao->updateObject($reviewAssignment);
 
 				// Add log
 				import('classes.paper.log.PaperLog');
@@ -227,7 +227,7 @@ class ReviewerAction extends Action {
 
 		$reviewAssignment->setReviewerFileId($fileId);
 		$reviewAssignment->stampModified();
-		$reviewAssignmentDao->updateReviewAssignment($reviewAssignment);
+		$reviewAssignmentDao->updateObject($reviewAssignment);
 
 		// Add log
 		import('classes.paper.log.PaperLog');
