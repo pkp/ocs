@@ -42,7 +42,7 @@ class TrackSubmissionHandler extends AuthorHandler {
 			$paperFileManager = new PaperFileManager($paperId);
 			$paperFileManager->deletePaperTree();
 
-			$paperDao =& DAORegistry::getDAO('PaperDAO');
+			$paperDao = DAORegistry::getDAO('PaperDAO');
 			$paperDao->deletePaperById($paperId);
 		}
 
@@ -107,13 +107,13 @@ class TrackSubmissionHandler extends AuthorHandler {
 				break;
 		}
 
-		$publishedPaperDao =& DAORegistry::getDAO('PublishedPaperDAO');
+		$publishedPaperDao = DAORegistry::getDAO('PublishedPaperDAO');
 		$publishedPaper =& $publishedPaperDao->getPublishedPaperByPaperId($submission->getId());
 
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('mayEditPaper', AuthorAction::mayEditPaper($submission));
 
-		$trackDao =& DAORegistry::getDAO('TrackDAO');
+		$trackDao = DAORegistry::getDAO('TrackDAO');
 		$track =& $trackDao->getTrack($submission->getTrackId());
 		$templateMgr->assign_by_ref('track', $track);
 
@@ -125,11 +125,11 @@ class TrackSubmissionHandler extends AuthorHandler {
 		$templateMgr->assign_by_ref('revisedFile', $submission->getRevisedFile());
 		$templateMgr->assign_by_ref('suppFiles', $submission->getSuppFiles());
 
-		$controlledVocabDao =& DAORegistry::getDAO('ControlledVocabDAO');
+		$controlledVocabDao = DAORegistry::getDAO('ControlledVocabDAO');
 		$templateMgr->assign('sessionTypes', $controlledVocabDao->enumerateBySymbolic('sessionTypes', ASSOC_TYPE_SCHED_CONF, $schedConf->getId()));
 
 		// FIXME: Author code should not use track director object
-		$trackDirectorSubmissionDao =& DAORegistry::getDAO('TrackDirectorSubmissionDAO');
+		$trackDirectorSubmissionDao = DAORegistry::getDAO('TrackDirectorSubmissionDAO');
 		$trackDirectorSubmission =& $trackDirectorSubmissionDao->getTrackDirectorSubmission($submission->getId());
 		$templateMgr->assign_by_ref('directorDecisionOptions', $trackDirectorSubmission->getDirectorDecisionOptions());
 
@@ -166,7 +166,7 @@ class TrackSubmissionHandler extends AuthorHandler {
 				break;
 		}
 
-		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
+		$reviewAssignmentDao = DAORegistry::getDAO('ReviewAssignmentDAO');
 		$reviewModifiedByRound = $reviewAssignmentDao->getLastModifiedByRound($paperId);
 		$reviewEarliestNotificationByRound = $reviewAssignmentDao->getEarliestNotificationByRound($paperId);
 		$reviewFilesByRound =& $reviewAssignmentDao->getReviewFilesByRound($paperId);
@@ -189,7 +189,7 @@ class TrackSubmissionHandler extends AuthorHandler {
 		$templateMgr->assign('lastDirectorDecision', $lastDecision);
 
 		// FIXME: Author code should not use track director object
-		$trackDirectorSubmissionDao =& DAORegistry::getDAO('TrackDirectorSubmissionDAO');
+		$trackDirectorSubmissionDao = DAORegistry::getDAO('TrackDirectorSubmissionDAO');
 		$trackDirectorSubmission =& $trackDirectorSubmissionDao->getTrackDirectorSubmission($authorSubmission->getId());
 		$templateMgr->assign_by_ref('directorDecisionOptions', $trackDirectorSubmission->getDirectorDecisionOptions());
 
@@ -234,7 +234,7 @@ class TrackSubmissionHandler extends AuthorHandler {
 		$this->setupTemplate($request, true, $paperId, 'summary');
 
 		// View supplementary file only
-		$suppFileDao =& DAORegistry::getDAO('SuppFileDAO');
+		$suppFileDao = DAORegistry::getDAO('SuppFileDAO');
 		$suppFile =& $suppFileDao->getSuppFile($suppFileId, $paperId);
 
 		if (!isset($suppFile)) {
@@ -281,7 +281,7 @@ class TrackSubmissionHandler extends AuthorHandler {
 		$authorSubmission =& $this->submission;
 
 		$suppFileId = $request->getUserVar('fileId');
-		$suppFileDao =& DAORegistry::getDAO('SuppFileDAO');
+		$suppFileDao = DAORegistry::getDAO('SuppFileDAO');
 		$suppFile = $suppFileDao->getSuppFile($suppFileId, $paperId);
 
 		if (isset($suppFile) && $suppFile != null) {
@@ -418,8 +418,8 @@ class TrackSubmissionHandler extends AuthorHandler {
 	function validate($request, $paperId, $requiresEditAccess = false, $isDeleting = false) {
 		parent::validate();
 
-		$authorSubmissionDao =& DAORegistry::getDAO('AuthorSubmissionDAO');
-		$roleDao =& DAORegistry::getDAO('RoleDAO');
+		$authorSubmissionDao = DAORegistry::getDAO('AuthorSubmissionDAO');
+		$roleDao = DAORegistry::getDAO('RoleDAO');
 		$conference =& $request->getConference();
 		$schedConf =& $request->getSchedConf();
 		$user =& $request->getUser();

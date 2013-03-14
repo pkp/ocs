@@ -99,7 +99,7 @@ class EditCommentForm extends Form {
 	 * Update the comment.
 	 */
 	function execute() {
-		$commentDao =& DAORegistry::getDAO('PaperCommentDAO');
+		$commentDao = DAORegistry::getDAO('PaperCommentDAO');
 
 		// Update comment		
 		$comment = $this->comment;
@@ -116,14 +116,14 @@ class EditCommentForm extends Form {
 	 * @return $recipients array of recipients (email address => name)
 	 */
 	function emailHelper() {
-		$roleDao =& DAORegistry::getDAO('RoleDAO');
-		$userDao =& DAORegistry::getDAO('UserDAO');
+		$roleDao = DAORegistry::getDAO('RoleDAO');
+		$userDao = DAORegistry::getDAO('UserDAO');
 		$conference =& Request::getConference();
 
 		$recipients = array();
 
 		// Get directors for paper
-		$editAssignmentDao =& DAORegistry::getDAO('EditAssignmentDAO');
+		$editAssignmentDao = DAORegistry::getDAO('EditAssignmentDAO');
 		$editAssignments =& $editAssignmentDao->getEditAssignmentsByPaperId($this->paper->getPaperId());
 		$editAssignments =& $editAssignments->toArray();
 		$directorAddresses = array();
@@ -142,7 +142,7 @@ class EditCommentForm extends Form {
 		}
 
 		// Get reviewer
-		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
+		$reviewAssignmentDao = DAORegistry::getDAO('ReviewAssignmentDAO');
 		$reviewAssignment =& $reviewAssignmentDao->getById($this->comment->getAssocId());
 		if ($reviewAssignment != null && $reviewAssignment->getReviewerId() != null) {
 			$reviewer =& $userDao->getById($reviewAssignment->getReviewerId());

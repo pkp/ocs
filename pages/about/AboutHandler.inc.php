@@ -33,8 +33,8 @@ class AboutHandler extends Handler {
 		$this->setupTemplate($request, false);
 
 		$templateMgr =& TemplateManager::getManager($request);
-		$conferenceDao =& DAORegistry::getDAO('ConferenceDAO');
-		$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
+		$conferenceDao = DAORegistry::getDAO('ConferenceDAO');
+		$schedConfDao = DAORegistry::getDAO('SchedConfDAO');
 		$conferencePath = $request->getRequestedConferencePath();
 
 		if ($conferencePath != 'index' && $conferenceDao->existsByPath($conferencePath)) {
@@ -136,7 +136,7 @@ class AboutHandler extends Handler {
 
 		$templateMgr =& TemplateManager::getManager($request);
 
-		$countryDao =& DAORegistry::getDAO('CountryDAO');
+		$countryDao = DAORegistry::getDAO('CountryDAO');
 		$countries =& $countryDao->getCountries();
 		$templateMgr->assign_by_ref('countries', $countries);
 
@@ -172,7 +172,7 @@ class AboutHandler extends Handler {
 
 		// Don't use the Organizing Team feature. Generate
 		// Organizing Team information using Role info.
-		$roleDao =& DAORegistry::getDAO('RoleDAO');
+		$roleDao = DAORegistry::getDAO('RoleDAO');
 
 		$directors =& $roleDao->getUsersByRoleId(ROLE_ID_DIRECTOR, $conference->getId(), $schedConfId);
 		$directors =& $directors->toArray();
@@ -196,7 +196,7 @@ class AboutHandler extends Handler {
 		$conference =& $request->getConference();
 		$schedConf =& $request->getSchedConf();
 
-		$roleDao =& DAORegistry::getDAO('RoleDAO');
+		$roleDao = DAORegistry::getDAO('RoleDAO');
 
 		$templateMgr =& TemplateManager::getManager($request);
 
@@ -226,7 +226,7 @@ class AboutHandler extends Handler {
 		foreach ($roles as $role) {
 			$roleId = $role->getRoleId();
 			if (in_array($roleId, $acceptableRoles)) {
-				$userDao =& DAORegistry::getDAO('UserDAO');
+				$userDao = DAORegistry::getDAO('UserDAO');
 				$user =& $userDao->getById($userId);
 				break;
 			}
@@ -237,7 +237,7 @@ class AboutHandler extends Handler {
 
 		if (!$user) $request->redirect(null, null, null, 'about', 'organizingTeam');
 
-		$countryDao =& DAORegistry::getDAO('CountryDAO');
+		$countryDao = DAORegistry::getDAO('CountryDAO');
 		if ($user && $user->getCountry() != '') {
 			$country = $countryDao->getCountry($user->getCountry());
 			$templateMgr->assign('country', $country);
@@ -255,7 +255,7 @@ class AboutHandler extends Handler {
 		parent::validate(true);
 		$this->setupTemplate($request);
 
-		$trackDirectorsDao =& DAORegistry::getDAO('TrackDirectorsDAO');
+		$trackDirectorsDao = DAORegistry::getDAO('TrackDirectorsDAO');
 		$schedConf =& $request->getSchedConf();
 		$conference =& $request->getConference();
 
@@ -273,8 +273,8 @@ class AboutHandler extends Handler {
 		parent::validate(true);
 		$this->setupTemplate($request);
 
-		$conferenceDao =& DAORegistry::getDAO('ConferenceSettingsDAO');
-		$registrationTypeDao =& DAORegistry::getDAO('RegistrationTypeDAO');
+		$conferenceDao = DAORegistry::getDAO('ConferenceSettingsDAO');
+		$registrationTypeDao = DAORegistry::getDAO('RegistrationTypeDAO');
 
 		$schedConf =& $request->getSchedConf();
 		$conference =& $request->getConference();
@@ -337,9 +337,9 @@ class AboutHandler extends Handler {
 		$this->setupTemplate($request);
 
 		$templateMgr =& TemplateManager::getManager($request);
-		$conferenceDao =& DAORegistry::getDAO('ConferenceDAO');
+		$conferenceDao = DAORegistry::getDAO('ConferenceDAO');
 		$user =& $request->getUser();
-		$roleDao =& DAORegistry::getDAO('RoleDAO');
+		$roleDao = DAORegistry::getDAO('RoleDAO');
 
 		if ($user) {
 			$rolesByConference = array();
@@ -372,7 +372,7 @@ class AboutHandler extends Handler {
 		$this->validate();
 		$this->setupTemplate($request);
 
-		$versionDao =& DAORegistry::getDAO('VersionDAO');
+		$versionDao = DAORegistry::getDAO('VersionDAO');
 		$version =& $versionDao->getCurrentVersion();
 
 		$templateMgr =& TemplateManager::getManager($request);
@@ -409,14 +409,14 @@ class AboutHandler extends Handler {
 			$templateMgr->assign($name, $schedConf->getSetting($name));
 		}
 
-		$schedConfStatisticsDao =& DAORegistry::getDAO('SchedConfStatisticsDAO');
+		$schedConfStatisticsDao = DAORegistry::getDAO('SchedConfStatisticsDAO');
 		$paperStatistics = $schedConfStatisticsDao->getPaperStatistics($schedConf->getId(), null);
 		$templateMgr->assign('paperStatistics', $paperStatistics);
 
 		$limitedPaperStatistics = $schedConfStatisticsDao->getPaperStatistics($schedConf->getId(), $trackIds);
 		$templateMgr->assign('limitedPaperStatistics', $limitedPaperStatistics);
 
-		$trackDao =& DAORegistry::getDAO('TrackDAO');
+		$trackDao = DAORegistry::getDAO('TrackDAO');
 		$tracks =& $trackDao->getSchedConfTracks($schedConf->getId());
 		$templateMgr->assign('tracks', $tracks->toArray());
 

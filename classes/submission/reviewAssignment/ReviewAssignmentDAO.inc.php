@@ -28,9 +28,9 @@ class ReviewAssignmentDAO extends PKPReviewAssignmentDAO {
 	 */
 	function ReviewAssignmentDAO() {
 		parent::PKPReviewAssignmentDAO();
-		$this->paperFileDao =& DAORegistry::getDAO('PaperFileDAO');
-		$this->suppFileDao =& DAORegistry::getDAO('SuppFileDAO');
-		$this->paperCommentDao =& DAORegistry::getDAO('PaperCommentDAO');
+		$this->paperFileDao = DAORegistry::getDAO('PaperFileDAO');
+		$this->suppFileDao = DAORegistry::getDAO('SuppFileDAO');
+		$this->paperCommentDao = DAORegistry::getDAO('PaperCommentDAO');
 	}
 
 	/**

@@ -46,10 +46,10 @@ class CommentHandler extends Handler {
 		$user =& $request->getUser();
 		$userId = isset($user)?$user->getId():null;
 
-		$commentDao =& DAORegistry::getDAO('CommentDAO');
+		$commentDao = DAORegistry::getDAO('CommentDAO');
 		$comment =& $commentDao->getById($commentId, $paperId, 2);
 
-		$roleDao =& DAORegistry::getDAO('RoleDAO');
+		$roleDao = DAORegistry::getDAO('RoleDAO');
 		$isManager = Validation::isConferenceManager($conference->getId());
 
 		if (!$comment) $comments =& $commentDao->getRootCommentsBySubmissionId($paperId, 1);
@@ -89,7 +89,7 @@ class CommentHandler extends Handler {
 		$schedConf =& $request->getSchedConf();
 		$this->validate($paperId);
 		$paper =& $this->paper;
-		$commentDao =& DAORegistry::getDAO('CommentDAO');
+		$commentDao = DAORegistry::getDAO('CommentDAO');
 		$parent =& $commentDao->getById($parentId, $paperId);
 		if (isset($parent) && $parent->getSubmissionId() != $paperId) {
 			$request->redirect(null, null, null, 'view', array($paperId, $galleyId));
@@ -98,7 +98,7 @@ class CommentHandler extends Handler {
 		$this->setupTemplate($request, $paper, $galleyId, $parent);
 
 		// Bring in comment constants
-		$commentDao =& DAORegistry::getDAO('CommentDAO');
+		$commentDao = DAORegistry::getDAO('CommentDAO');
 
 		$enableComments = $conference->getSetting('enableComments');
 		$commentsRequireRegistration = $conference->getSetting('commentsRequireRegistration');
@@ -124,7 +124,7 @@ class CommentHandler extends Handler {
 				// Send a notification to associated users
 				import('classes.notification.NotificationManager');
 				$notificationManager = new NotificationManager();
-				$paperDao =& DAORegistry::getDAO('PaperDAO');
+				$paperDao = DAORegistry::getDAO('PaperDAO');
 				$paper =& $paperDao->getPaper($paperId);
 				$notificationUsers = $paper->getAssociatedUserIds();
 				foreach ($notificationUsers as $userRole) {
@@ -153,7 +153,7 @@ class CommentHandler extends Handler {
 		$user =& $request->getUser();
 		$userId = isset($user)?$user->getId():null;
 
-		$commentDao =& DAORegistry::getDAO('CommentDAO');
+		$commentDao = DAORegistry::getDAO('CommentDAO');
 
 		if (!Validation::isConferenceManager()) {
 			$request->redirect(null, null, 'index');
@@ -173,7 +173,7 @@ class CommentHandler extends Handler {
 		$conference =& Request::getConference();
 		$schedConf =& Request::getSchedConf();
 
-		$publishedPaperDao =& DAORegistry::getDAO('PublishedPaperDAO');
+		$publishedPaperDao = DAORegistry::getDAO('PublishedPaperDAO');
 		$paper =& $publishedPaperDao->getPublishedPaperByPaperId($paperId, $schedConf->getId(), $schedConf->getSetting('previewAbstracts'));
 		$this->paper =& $paper;
 
@@ -182,7 +182,7 @@ class CommentHandler extends Handler {
 		}
 
 		// Bring in comment and view constants
-		$commentDao =& DAORegistry::getDAO('CommentDAO');
+		$commentDao = DAORegistry::getDAO('CommentDAO');
 		$enableComments = $conference->getSetting('enableComments');
 
 		if (!$enableComments || !$paper->getEnableComments()) {

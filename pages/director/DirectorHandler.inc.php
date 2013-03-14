@@ -46,7 +46,7 @@ class DirectorHandler extends TrackDirectorHandler {
 
 		$templateMgr =& TemplateManager::getManager();
 		$schedConf =& $request->getSchedConf();
-		$directorSubmissionDao =& DAORegistry::getDAO('DirectorSubmissionDAO');
+		$directorSubmissionDao = DAORegistry::getDAO('DirectorSubmissionDAO');
 		$submissionsCount =& $directorSubmissionDao->getDirectorSubmissionsCount($schedConf->getId());
 		$templateMgr->assign('submissionsCount', $submissionsCount);
 		$templateMgr->assign('helpTopicId', 'editorial.directorsRole');
@@ -64,8 +64,8 @@ class DirectorHandler extends TrackDirectorHandler {
 		$schedConfId = $schedConf->getId();
 		$user =& $request->getUser();
 
-		$directorSubmissionDao =& DAORegistry::getDAO('DirectorSubmissionDAO');
-		$trackDao =& DAORegistry::getDAO('TrackDAO');
+		$directorSubmissionDao = DAORegistry::getDAO('DirectorSubmissionDAO');
+		$trackDao = DAORegistry::getDAO('TrackDAO');
 
 		$page = isset($args[0]) ? $args[0] : '';
 		$tracks =& $trackDao->getTrackTitles($schedConfId);
@@ -226,11 +226,11 @@ class DirectorHandler extends TrackDirectorHandler {
 		$schedConf =& $request->getSchedConf();
 		$editId = (int) (isset($args[0])?$args[0]:0);
 
-		$editAssignmentDao =& DAORegistry::getDAO('EditAssignmentDAO');
+		$editAssignmentDao = DAORegistry::getDAO('EditAssignmentDAO');
 		$editAssignment =& $editAssignmentDao->getEditAssignment($editId);
 
 		if ($editAssignment) {
-			$paperDao =& DAORegistry::getDAO('PaperDAO');
+			$paperDao = DAORegistry::getDAO('PaperDAO');
 			$paper =& $paperDao->getPaper($editAssignment->getPaperId());
 
 			if ($paper && $paper->getSchedConfId() === $schedConf->getId()) {
@@ -252,7 +252,7 @@ class DirectorHandler extends TrackDirectorHandler {
 		$schedConf =& $request->getSchedConf();
 		$paperId = $request->getUserVar('paperId');
 		$directorId = $request->getUserVar('directorId');
-		$roleDao =& DAORegistry::getDAO('RoleDAO');
+		$roleDao = DAORegistry::getDAO('RoleDAO');
 
 		$isDirector = $roleDao->userHasRole($schedConf->getConferenceId(), $schedConf->getId(), $directorId, ROLE_ID_DIRECTOR) || $roleDao->userHasRole($schedConf->getConferenceId(), 0, $directorId, ROLE_ID_DIRECTOR);
 		$isTrackDirector = $roleDao->userHasRole($schedConf->getConferenceId(), $schedConf->getId(), $directorId, ROLE_ID_TRACK_DIRECTOR) || $roleDao->userHasRole($schedConf->getConferenceId(), 0, $directorId, ROLE_ID_TRACK_DIRECTOR);
@@ -289,7 +289,7 @@ class DirectorHandler extends TrackDirectorHandler {
 
 			$forDirectors = isset($args[0]) && $args[0] === 'director';
 			$rangeInfo =& Handler::getRangeInfo($request, 'directors', array($forDirectors, (string) $searchType, (string) $search, (string) $searchMatch));
-			$directorSubmissionDao =& DAORegistry::getDAO('DirectorSubmissionDAO');
+			$directorSubmissionDao = DAORegistry::getDAO('DirectorSubmissionDAO');
 
 			if ($forDirectors) {
 				$roleName = 'user.role.director';
@@ -320,10 +320,10 @@ class DirectorHandler extends TrackDirectorHandler {
 			$templateMgr->assign('rolePath', $rolePath);
 			$templateMgr->assign('paperId', $paperId);
 
-			$trackDao =& DAORegistry::getDAO('TrackDAO');
+			$trackDao = DAORegistry::getDAO('TrackDAO');
 			$trackDirectorTracks =& $trackDao->getDirectorTracks($schedConf->getId());
 
-			$editAssignmentDao =& DAORegistry::getDAO('EditAssignmentDAO');
+			$editAssignmentDao = DAORegistry::getDAO('EditAssignmentDAO');
 			$directorStatistics = $editAssignmentDao->getDirectorStatistics($schedConf->getId());
 
 			$templateMgr->assign_by_ref('directorTracks', $trackDirectorTracks);
@@ -355,7 +355,7 @@ class DirectorHandler extends TrackDirectorHandler {
 
 		$schedConf =& $request->getSchedConf();
 
-		$paperDao =& DAORegistry::getDAO('PaperDAO');
+		$paperDao = DAORegistry::getDAO('PaperDAO');
 		$paper =& $paperDao->getPaper($paperId);
 
 		$status = $paper->getStatus();
@@ -384,7 +384,7 @@ class DirectorHandler extends TrackDirectorHandler {
 		$schedConf =& $request->getSchedConf();
 		$this->validate($request);
 
-		$publishedPaperDao =& DAORegistry::getDAO('PublishedPaperDAO');
+		$publishedPaperDao = DAORegistry::getDAO('PublishedPaperDAO');
 		$publishedPaper =& $publishedPaperDao->getPublishedPaperByPaperId($paperId);
 
 		if ($publishedPaper != null && $publishedPaper->getSchedConfId() == $schedConf->getId()) {
@@ -403,10 +403,10 @@ class DirectorHandler extends TrackDirectorHandler {
 		$this->validate($request);
 		$this->setupTemplate($request, DIRECTOR_TRACK_HOME);
 
-		$userDao =& DAORegistry::getDAO('UserDAO');
-		$roleDao =& DAORegistry::getDAO('RoleDAO');
-		$authorDao =& DAORegistry::getDAO('AuthorDAO');
-		$registrationDao =& DAORegistry::getDAO('RegistrationDAO');
+		$userDao = DAORegistry::getDAO('UserDAO');
+		$roleDao = DAORegistry::getDAO('RoleDAO');
+		$authorDao = DAORegistry::getDAO('AuthorDAO');
+		$registrationDao = DAORegistry::getDAO('RegistrationDAO');
 
 		$conference =& $request->getConference();
 		$conferenceId = $conference->getId();
@@ -456,7 +456,7 @@ class DirectorHandler extends TrackDirectorHandler {
 			}
 
 			if ($request->getUserVar('includeToc')=='1') {
-				$publishedPaperDao =& DAORegistry::getDAO('PublishedPaperDAO');
+				$publishedPaperDao = DAORegistry::getDAO('PublishedPaperDAO');
 				$publishedPapers =& $publishedPaperDao->getPublishedPapersInTracks($schedConfId);
 
 				$templateMgr->assign_by_ref('conference', $conference);

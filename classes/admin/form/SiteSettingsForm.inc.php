@@ -30,7 +30,7 @@ class SiteSettingsForm extends PKPSiteSettingsForm {
 	 * Display the form.
 	 */
 	function display() {
-		$conferenceDao =& DAORegistry::getDAO('ConferenceDAO');
+		$conferenceDao = DAORegistry::getDAO('ConferenceDAO');
 		$conferences =& $conferenceDao->getNames();
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('redirectOptions', $conferences);

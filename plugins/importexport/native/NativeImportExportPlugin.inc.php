@@ -73,7 +73,7 @@ class NativeImportExportPlugin extends ImportExportPlugin {
 			case 'papers':
 				// Display a list of papers for export
 				$this->setBreadcrumbs(array(), true);
-				$publishedPaperDao =& DAORegistry::getDAO('PublishedPaperDAO');
+				$publishedPaperDao = DAORegistry::getDAO('PublishedPaperDAO');
 				$rangeInfo = Handler::getRangeInfo($request, 'papers');
 				$paperIds = $publishedPaperDao->getPublishedPaperIdsAlphabetizedBySchedConf($conference->getId(), $schedConf->getId());
 				$totalPapers = count($paperIds);
@@ -85,7 +85,7 @@ class NativeImportExportPlugin extends ImportExportPlugin {
 				break;
 			case 'import':
 				import('classes.file.TemporaryFileManager');
-				$trackDao =& DAORegistry::getDAO('TrackDAO');
+				$trackDao = DAORegistry::getDAO('TrackDAO');
 				$user =& $request->getUser();
 				$temporaryFileManager = new TemporaryFileManager();
 
@@ -238,11 +238,11 @@ class NativeImportExportPlugin extends ImportExportPlugin {
 		$conferencePath = array_shift($args);
 		$schedConfPath = array_shift($args);
 
-		$conferenceDao =& DAORegistry::getDAO('ConferenceDAO');
-		$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
-		$trackDao =& DAORegistry::getDAO('TrackDAO');
-		$userDao =& DAORegistry::getDAO('UserDAO');
-		$publishedPaperDao =& DAORegistry::getDAO('PublishedPaperDAO');
+		$conferenceDao = DAORegistry::getDAO('ConferenceDAO');
+		$schedConfDao = DAORegistry::getDAO('SchedConfDAO');
+		$trackDao = DAORegistry::getDAO('TrackDAO');
+		$userDao = DAORegistry::getDAO('UserDAO');
+		$publishedPaperDao = DAORegistry::getDAO('PublishedPaperDAO');
 
 		$conference =& $conferenceDao->getByPath($conferencePath);
 		if ($conference) $schedConf =& $schedConfDao->getByPath($schedConfPath, $conference->getId());
@@ -337,7 +337,7 @@ class NativeImportExportPlugin extends ImportExportPlugin {
 							return;
 						}
 
-						$trackDao =& DAORegistry::getDAO('TrackDAO');
+						$trackDao = DAORegistry::getDAO('TrackDAO');
 						$track =& $trackDao->getTrack($publishedPaper->getTrackId());
 
 						if (!$this->exportPaper($schedConf, $track, $publishedPaper, $xmlFile)) {

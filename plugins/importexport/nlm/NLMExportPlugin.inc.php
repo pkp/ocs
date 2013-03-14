@@ -71,7 +71,7 @@ class NLMExportPlugin extends ImportExportPlugin {
 			case 'papers':
 				// Display a list of papers for export
 				$this->setBreadcrumbs(array(), true);
-				$publishedPaperDao =& DAORegistry::getDAO('PublishedPaperDAO');
+				$publishedPaperDao = DAORegistry::getDAO('PublishedPaperDAO');
 				$rangeInfo = Handler::getRangeInfo($request, 'papers');
 				$paperIds = $publishedPaperDao->getPublishedPaperIdsAlphabetizedBySchedConf($conference->getId());
 				$totalPapers = count($paperIds);
@@ -124,9 +124,9 @@ class NLMExportPlugin extends ImportExportPlugin {
 		$xmlFile = array_shift($args);
 		$conferencePath = array_shift($args);
 
-		$conferenceDao =& DAORegistry::getDAO('ConferenceDAO');
-		$userDao =& DAORegistry::getDAO('UserDAO');
-		$publishedPaperDao =& DAORegistry::getDAO('PublishedPaperDAO');
+		$conferenceDao = DAORegistry::getDAO('ConferenceDAO');
+		$userDao = DAORegistry::getDAO('UserDAO');
+		$publishedPaperDao = DAORegistry::getDAO('PublishedPaperDAO');
 
 		$conference =& $conferenceDao->getByPath($conferencePath);
 

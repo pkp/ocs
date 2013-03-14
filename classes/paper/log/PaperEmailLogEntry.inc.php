@@ -189,7 +189,7 @@ class PaperEmailLogEntry extends DataObject {
 		static $senderFullName;
 
 		if(!isset($senderFullName)) {
-			$userDao =& DAORegistry::getDAO('UserDAO');
+			$userDao = DAORegistry::getDAO('UserDAO');
 			$senderFullName = $userDao->getUserFullName($this->getSenderId(), true);
 		}
 
@@ -204,7 +204,7 @@ class PaperEmailLogEntry extends DataObject {
 		static $senderEmail;
 
 		if(!isset($senderEmail)) {
-			$userDao =& DAORegistry::getDAO('UserDAO');
+			$userDao = DAORegistry::getDAO('UserDAO');
 			$senderEmail = $userDao->getUserEmail($this->getSenderId(), true);
 		}
 

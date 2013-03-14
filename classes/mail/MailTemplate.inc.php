@@ -37,7 +37,7 @@ class MailTemplate extends PKPMailTemplate {
 		if ($schedConf == null) $schedConf =& Request::getSchedConf();
 
 		if (isset($this->emailKey)) {
-			$emailTemplateDao =& DAORegistry::getDAO('EmailTemplateDAO');
+			$emailTemplateDao = DAORegistry::getDAO('EmailTemplateDAO');
 			$emailTemplate =& $emailTemplateDao->getEmailTemplate($this->emailKey, $this->locale, $conference == null ? 0 : $conference->getId());
 		}
 

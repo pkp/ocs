@@ -36,7 +36,7 @@ class RegistrationTypeForm extends Form {
 	 * @param typeId int leave as default for new registration type
 	 */
 	function RegistrationTypeForm($typeId = null) {
-		$this->registrationTypeDao =& DAORegistry::getDAO('RegistrationTypeDAO');
+		$this->registrationTypeDao = DAORegistry::getDAO('RegistrationTypeDAO');
 
 		$this->validAccessTypes = array (
 			REGISTRATION_TYPE_ACCESS_ONLINE => __('manager.registrationTypes.access.online'),
@@ -44,7 +44,7 @@ class RegistrationTypeForm extends Form {
 			REGISTRATION_TYPE_ACCESS_BOTH => __('manager.registrationTypes.access.both')
 		);
 
-		$currencyDao =& DAORegistry::getDAO('CurrencyDAO');
+		$currencyDao = DAORegistry::getDAO('CurrencyDAO');
 		$currencies =& $currencyDao->getCurrencies();
 		$this->validCurrencies = array();
 		while (list(, $currency) = each($currencies)) {
@@ -114,7 +114,7 @@ class RegistrationTypeForm extends Form {
 		$templateMgr->assign('helpTopicId', 'conference.currentConferences.registration');
 
 		$schedConf =& Request::getSchedConf();
-		$registrationOptionDao =& DAORegistry::getDAO('RegistrationOptionDAO');
+		$registrationOptionDao = DAORegistry::getDAO('RegistrationOptionDAO');
 		$registrationOptions =& $registrationOptionDao->getRegistrationOptionsBySchedConfId($schedConf->getId());
 		$registrationOptionsArray =& $registrationOptions->toArray();
 		$templateMgr->assign_by_ref('registrationOptions', $registrationOptionsArray);

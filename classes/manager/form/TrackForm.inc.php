@@ -45,7 +45,7 @@ class TrackForm extends Form {
 	 * @return array
 	 */
 	function getLocaleFieldNames() {
-		$trackDao =& DAORegistry::getDAO('TrackDAO');
+		$trackDao = DAORegistry::getDAO('TrackDAO');
 		return $trackDao->getLocaleFieldNames();
 	}
 
@@ -63,7 +63,7 @@ class TrackForm extends Form {
 			$unassignedDirectorIds = explode(':', Request::getUserVar('unassignedDirectors'));
 			$assignedDirectorIds = explode(':', Request::getUserVar('assignedDirectors'));
 
-			$userDao =& DAORegistry::getDAO('UserDAO');
+			$userDao = DAORegistry::getDAO('UserDAO');
 
 			// Get track directors not assigned to this track
 			$unassignedDirectors = array();
@@ -82,7 +82,7 @@ class TrackForm extends Form {
 			}
 
 		} else {
-			$trackDirectorsDao =& DAORegistry::getDAO('TrackDirectorsDAO');
+			$trackDirectorsDao = DAORegistry::getDAO('TrackDirectorsDAO');
 
 			// Get track directors not assigned to this track
 			$unassignedDirectors =& $trackDirectorsDao->getDirectorsNotInTrack($schedConf->getId(), $this->trackId);
@@ -96,7 +96,7 @@ class TrackForm extends Form {
 		$templateMgr->assign('commentsEnabled', $conference->getSetting('enableComments'));
 		$templateMgr->assign('helpTopicId','conference.currentConferences.tracks');
 
-		$reviewFormDao =& DAORegistry::getDAO('ReviewFormDAO');
+		$reviewFormDao = DAORegistry::getDAO('ReviewFormDAO');
 		$reviewForms =& $reviewFormDao->getActiveByAssocId(ASSOC_TYPE_CONFERENCE, $conference->getId());
 		$reviewFormOptions = array();
 		while ($reviewForm =& $reviewForms->next()) {
@@ -112,10 +112,10 @@ class TrackForm extends Form {
 	 */
 	function initData() {
 		$conference =& Request::getConference();
-		$trackDirectorsDao =& DAORegistry::getDAO('TrackDirectorsDAO');
+		$trackDirectorsDao = DAORegistry::getDAO('TrackDirectorsDAO');
 		
 		if (isset($this->trackId)) {
-			$trackDao =& DAORegistry::getDAO('TrackDAO');
+			$trackDao = DAORegistry::getDAO('TrackDAO');
 			$track =& $trackDao->getTrack($this->trackId);
 
 			if ($track == null) {
@@ -155,7 +155,7 @@ class TrackForm extends Form {
 	function execute() {
 		$schedConf =& Request::getSchedConf();
 
-		$trackDao =& DAORegistry::getDAO('TrackDAO');
+		$trackDao = DAORegistry::getDAO('TrackDAO');
 
 		if (isset($this->trackId)) {
 			$track =& $trackDao->getTrack($this->trackId);
@@ -189,7 +189,7 @@ class TrackForm extends Form {
 		}
 
 		// Save assigned directors
-		$trackDirectorsDao =& DAORegistry::getDAO('TrackDirectorsDAO');
+		$trackDirectorsDao = DAORegistry::getDAO('TrackDirectorsDAO');
 		$trackDirectorsDao->deleteDirectorsByTrackId($trackId, $schedConf->getId());
 		$directors = explode(':', Request::getUserVar('assignedDirectors'));
 		foreach ($directors as $edUserId) {

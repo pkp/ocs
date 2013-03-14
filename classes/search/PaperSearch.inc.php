@@ -186,7 +186,7 @@ class PaperSearch {
 		}
 
 		$mergedResults = array();
-		$paperSearchDao =& DAORegistry::getDAO('PaperSearchDAO');
+		$paperSearchDao = DAORegistry::getDAO('PaperSearchDAO');
 		$results =& $paperSearchDao->getPhraseResults(
 			$conference,
 			$phrase,
@@ -230,11 +230,11 @@ class PaperSearch {
 	 * results for the title index, and possibly elsewhere.
 	 */
 	function &formatResults(&$results) {
-		$paperDao =& DAORegistry::getDAO('PaperDAO');
-		$publishedPaperDao =& DAORegistry::getDAO('PublishedPaperDAO');
-		$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
-		$conferenceDao =& DAORegistry::getDAO('ConferenceDAO');
-		$trackDao =& DAORegistry::getDAO('TrackDAO');
+		$paperDao = DAORegistry::getDAO('PaperDAO');
+		$publishedPaperDao = DAORegistry::getDAO('PublishedPaperDAO');
+		$schedConfDao = DAORegistry::getDAO('SchedConfDAO');
+		$conferenceDao = DAORegistry::getDAO('ConferenceDAO');
+		$trackDao = DAORegistry::getDAO('TrackDAO');
 
 		$publishedPaperCache = array();
 		$paperCache = array();

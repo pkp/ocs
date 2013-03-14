@@ -34,7 +34,7 @@ class ConferenceSiteSettingsForm extends ContextSiteSettingsForm {
 	 */
 	function initData() {
 		if (isset($this->contextId)) {
-			$conferenceDao =& DAORegistry::getDAO('ConferenceDAO');
+			$conferenceDao = DAORegistry::getDAO('ConferenceDAO');
 			$conference =& $conferenceDao->getById($this->contextId);
 
 			parent::initData($conference);
@@ -50,7 +50,7 @@ class ConferenceSiteSettingsForm extends ContextSiteSettingsForm {
 		parent::readInputData();
 
 		if ($this->contextId) {
-			$conferenceDao =& DAORegistry::getDAO('ConferenceDAO');
+			$conferenceDao = DAORegistry::getDAO('ConferenceDAO');
 			$conference =& $conferenceDao->getById($this->contextId);
 			if ($conference) $this->setData('oldPath', $conference->getPath());
 		}
@@ -61,7 +61,7 @@ class ConferenceSiteSettingsForm extends ContextSiteSettingsForm {
 	 * @param $request PKPRequest
 	 */
 	function execute($request) {
-		$conferenceDao =& DAORegistry::getDAO('ConferenceDAO');
+		$conferenceDao = DAORegistry::getDAO('ConferenceDAO');
 
 		if (isset($this->contextId)) {
 			$conference =& $conferenceDao->getById($this->contextId);
@@ -97,7 +97,7 @@ class ConferenceSiteSettingsForm extends ContextSiteSettingsForm {
 				$role->setUserId($userSession->getUserId());
 				$role->setRoleId(ROLE_ID_MANAGER);
 
-				$roleDao =& DAORegistry::getDAO('RoleDAO');
+				$roleDao = DAORegistry::getDAO('RoleDAO');
 				$roleDao->insertRole($role);
 			}
 
@@ -110,7 +110,7 @@ class ConferenceSiteSettingsForm extends ContextSiteSettingsForm {
 			$fileManager->mkdir(Config::getVar('files', 'public_files_dir') . '/conferences/' . $conferenceId . '/schedConfs');
 
 			// Install default conference settings
-			$conferenceSettingsDao =& DAORegistry::getDAO('ConferenceSettingsDAO');
+			$conferenceSettingsDao = DAORegistry::getDAO('ConferenceSettingsDAO');
 			$names = $this->getData('name');
 			AppLocale::requireComponents(LOCALE_COMPONENT_APP_DEFAULT, LOCALE_COMPONENT_APP_COMMON);
 			$dispatcher = $request->getDispatcher();

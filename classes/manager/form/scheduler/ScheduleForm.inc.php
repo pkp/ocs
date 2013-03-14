@@ -33,7 +33,7 @@ class ScheduleForm extends Form {
 		parent::Form('manager/scheduler/scheduleForm.tpl');
 		$this->addCheck(new FormValidatorPost($this));
 		$this->schedConf =& Request::getSchedConf();
-		$this->publishedPaperDao =& DAORegistry::getDAO('PublishedPaperDAO');
+		$this->publishedPaperDao = DAORegistry::getDAO('PublishedPaperDAO');
 	}
 
 	function authorSort($a, $b) {
@@ -45,7 +45,7 @@ class ScheduleForm extends Form {
 
 	function roomSort($a, $b) {
 		static $roomMap = array();
-		$roomDao =& DAORegistry::getDAO('RoomDAO');
+		$roomDao = DAORegistry::getDAO('RoomDAO');
 
 		$aRoomId = $a->getRoomId();
 		$bRoomId = $b->getRoomId();
@@ -69,7 +69,7 @@ class ScheduleForm extends Form {
 
 	function trackSort($a, $b) {
 		static $trackMap = array();
-		$trackDao =& DAORegistry::getDAO('TrackDAO');
+		$trackDao = DAORegistry::getDAO('TrackDAO');
 
 		$aTrackId = $a->getTrackId();
 		$bTrackId = $b->getTrackId();
@@ -152,8 +152,8 @@ class ScheduleForm extends Form {
 		$templateMgr->assign('defaultStartTime', $defaultStartTime);
 
 		$buildingsAndRooms = array();
-		$buildingDao =& DAORegistry::getDAO('BuildingDAO');
-		$roomDao =& DAORegistry::getDAO('RoomDAO');
+		$buildingDao = DAORegistry::getDAO('BuildingDAO');
+		$roomDao = DAORegistry::getDAO('RoomDAO');
 		$schedConf =& Request::getSchedConf();
 		$buildings =& $buildingDao->getBuildingsBySchedConfId($schedConf->getId());
 		while ($building =& $buildings->next()) {
@@ -172,7 +172,7 @@ class ScheduleForm extends Form {
 		}
 		$templateMgr->assign_by_ref('buildingsAndRooms', $buildingsAndRooms);
 
-		$timeBlockDao =& DAORegistry::getDAO('TimeBlockDAO');
+		$timeBlockDao = DAORegistry::getDAO('TimeBlockDAO');
 		$timeBlocks =& $timeBlockDao->getTimeBlocksBySchedConfId($schedConf->getId());
 		$timeBlocks =& $timeBlocks->toArray();
 		$templateMgr->assign_by_ref('timeBlocks', $timeBlocks);
@@ -278,7 +278,7 @@ class ScheduleForm extends Form {
 						break;
 					}
 					// Otherwise, a time block was chosen.
-					$timeBlockDao =& DAORegistry::getDAO('TimeBlockDAO');
+					$timeBlockDao = DAORegistry::getDAO('TimeBlockDAO');
 					$timeBlock =& $timeBlockDao->getTimeBlock((int) $newValue);
 					if (!$timeBlock || $timeBlock->getSchedConfId() != $schedConf->getId()) break;
 					$publishedPaper->setStartTime($timeBlock->getStartTime());
@@ -337,8 +337,8 @@ class ScheduleForm extends Form {
 
 		$publishedPapers =& $this->publishedPaperDao->getPublishedPapers($this->schedConf->getId());
 
-		$publishedPaperDao =& DAORegistry::getDAO('PublishedPaperDAO'); // For modifying room IDs
-		$paperDao =& DAORegistry::getDAO('PaperDAO'); // For modifying times/dates
+		$publishedPaperDao = DAORegistry::getDAO('PublishedPaperDAO'); // For modifying room IDs
+		$paperDao = DAORegistry::getDAO('PaperDAO'); // For modifying times/dates
 		while ($publishedPaper =& $publishedPapers->next()) {
 			$paperId = $publishedPaper->getId();
 			if (isset($modifiedPapersById[$paperId])) {

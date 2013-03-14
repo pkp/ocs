@@ -25,7 +25,7 @@ class UserExportDom {
 	}
 
 	function &exportUsers(&$schedConf, &$users, $allowedRoles = null) {
-		$roleDao =& DAORegistry::getDAO('RoleDAO');
+		$roleDao = DAORegistry::getDAO('RoleDAO');
 
 		$doc =& XMLCustomWriter::createDocument('users', USERS_DTD_ID, USERS_DTD_URL);
 		$root =& XMLCustomWriter::createElement($doc, 'users');

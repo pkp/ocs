@@ -53,7 +53,7 @@ class TemplateManager extends PKPTemplateManager {
 			if (file_exists($siteStyleFilename)) $this->addStyleSheet($this->request->getBaseUrl() . '/' . $siteStyleFilename);
 
 			if (isset($conference)) {
-				$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
+				$schedConfDao = DAORegistry::getDAO('SchedConfDAO');
 				$archivedSchedConfsExist = $schedConfDao->archivedSchedConfsExist($conference->getId());
 				$currentSchedConfsExist = $schedConfDao->currentSchedConfsExist($conference->getId());
 				$this->assign('archivedSchedConfsExist', $archivedSchedConfsExist);

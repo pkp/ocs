@@ -170,7 +170,7 @@ class StaticPagesPlugin extends GenericPlugin {
 				return false;
 			case 'delete':
 				$staticPageId = isset($args[0])?(int) $args[0]:null;
-				$staticPagesDao =& DAORegistry::getDAO('StaticPagesDAO');
+				$staticPagesDao = DAORegistry::getDAO('StaticPagesDAO');
 				$staticPagesDao->deleteStaticPageById($staticPageId);
 
 				$templateMgr->assign(array(

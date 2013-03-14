@@ -32,7 +32,7 @@ class EmailHandler extends UserHandler {
 		
 		$templateMgr =& TemplateManager::getManager($request);
 
-		$userDao =& DAORegistry::getDAO('UserDAO');
+		$userDao = DAORegistry::getDAO('UserDAO');
 		$user =& $request->getUser();
 
 		// See if this is the Director or Manager and an email template has been chosen
@@ -52,7 +52,7 @@ class EmailHandler extends UserHandler {
 			ROLE_ID_DIRECTOR,
 			ROLE_ID_TRACK_DIRECTOR
 		);
-		$roleDao =& DAORegistry::getDAO('RoleDAO');
+		$roleDao = DAORegistry::getDAO('RoleDAO');
 		if ($conference) {
 			$roles =& $roleDao->getRolesByUserId($user->getId(), $conference->getId());
 			foreach ($roles as $role) {
@@ -79,7 +79,7 @@ class EmailHandler extends UserHandler {
 			// Determine whether the current user has access
 			// to the paper in some form, and if so, use an
 			// PaperMailTemplate.
-			$paperDao =& DAORegistry::getDAO('PaperDAO');
+			$paperDao = DAORegistry::getDAO('PaperDAO');
 
 			$paper =& $paperDao->getPaper($paperId);
 			$hasAccess = false;
@@ -88,14 +88,14 @@ class EmailHandler extends UserHandler {
 			// 1. User is submitter
 			if ($paper && $paper->getUserId() == $user->getId()) $hasAccess = true;
 			// 2. User is director
-			$editAssignmentDao =& DAORegistry::getDAO('EditAssignmentDAO');
+			$editAssignmentDao = DAORegistry::getDAO('EditAssignmentDAO');
 			$editAssignments =& $editAssignmentDao->getEditAssignmentsByPaperId($paperId);
 			while ($editAssignment =& $editAssignments->next()) {
 				if ($editAssignment->getDirectorId() === $user->getId()) $hasAccess = true;
 			}
 			if (Validation::isDirector()) $hasAccess = true;
 			// 3. User is reviewer
-			$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
+			$reviewAssignmentDao = DAORegistry::getDAO('ReviewAssignmentDAO');
 			foreach ($reviewAssignmentDao->getBySubmissionId($paperId) as $reviewAssignment) {
 				if ($reviewAssignment->getReviewerId() === $user->getId()) $hasAccess = true;
 			}

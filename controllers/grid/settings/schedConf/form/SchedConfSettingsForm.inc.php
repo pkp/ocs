@@ -34,7 +34,7 @@ class SchedConfSettingsForm extends ContextSiteSettingsForm {
 	 */
 	function initData() {
 		if (isset($this->contextId)) {
-			$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
+			$schedConfDao = DAORegistry::getDAO('SchedConfDAO');
 			$schedConf =& $schedConfDao->getById($this->contextId);
 
 			parent::initData($schedConf);
@@ -59,7 +59,7 @@ class SchedConfSettingsForm extends ContextSiteSettingsForm {
 		$this->readUserVars(array('name', 'acronym', 'path'));
 
 		if ($this->contextId) {
-			$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
+			$schedConfDao = DAORegistry::getDAO('SchedConfDAO');
 			$schedConf =& $schedConfDao->getById($this->contextId);
 			if ($schedConf) $this->setData('oldPath', $schedConf->getPath());
 		}
@@ -108,7 +108,7 @@ class SchedConfSettingsForm extends ContextSiteSettingsForm {
 			$fileManager->mkdirtree($publicBasePath);
 
 			// Install default scheduled conference settings
-			$schedConfSettingsDao =& DAORegistry::getDAO('SchedConfSettingsDAO');
+			$schedConfSettingsDao = DAORegistry::getDAO('SchedConfSettingsDAO');
 
 			$name = $this->getData('name');
 			$name = $name[$this->getFormLocale()];

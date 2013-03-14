@@ -56,7 +56,7 @@ class CreateAccountHandler extends UserHandler {
 		} elseif ($conference != null) {
 
 			// We have the conference, but need to select a scheduled conference
-			$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
+			$schedConfDao = DAORegistry::getDAO('SchedConfDAO');
 			$schedConfs = $schedConfDao->getAll(true, $conference->getId());
 
 			$templateMgr =& TemplateManager::getManager($request);
@@ -71,7 +71,7 @@ class CreateAccountHandler extends UserHandler {
 			// We have neither conference nor scheduled conference; start by selecting a
 			// conference and we'll end up above after a redirect.
 
-			$conferencesDao =& DAORegistry::getDAO('ConferenceDAO');
+			$conferencesDao = DAORegistry::getDAO('ConferenceDAO');
 			$conferences =& $conferencesDao->getConferences(true);
 
 			$templateMgr =& TemplateManager::getManager($request);
@@ -140,7 +140,7 @@ class CreateAccountHandler extends UserHandler {
 		$username = array_shift($args);
 		$accessKeyCode = array_shift($args);
 
-		$userDao =& DAORegistry::getDAO('UserDAO');
+		$userDao = DAORegistry::getDAO('UserDAO');
 		$user =& $userDao->getByUsername($username);
 		if (!$user) $request->redirect(null, 'login');
 
@@ -177,7 +177,7 @@ class CreateAccountHandler extends UserHandler {
 		$conference =& Request::getConference();
 
 		if ($conference != null) {
-			$conferenceSettingsDao =& DAORegistry::getDAO('ConferenceSettingsDAO');
+			$conferenceSettingsDao = DAORegistry::getDAO('ConferenceSettingsDAO');
 			if ($conferenceSettingsDao->getSetting($conference->getId(), 'disableUserReg')) {
 				// Users cannot create accounts for this conference
 				$this->createAccountDisabled();

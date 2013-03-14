@@ -36,10 +36,10 @@ class SubmissionReviewHandler extends ReviewerHandler {
 		$user =& $this->user;
 		$schedConf =& $request->getSchedConf();
 		
-		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
+		$reviewAssignmentDao = DAORegistry::getDAO('ReviewAssignmentDAO');
 		$reviewAssignment = $reviewAssignmentDao->getById($reviewId);
 		
-		$reviewFormResponseDao =& DAORegistry::getDAO('ReviewFormResponseDAO');
+		$reviewFormResponseDao = DAORegistry::getDAO('ReviewFormResponseDAO');
 
 		if ($reviewAssignment->getDateConfirmed() == null) {
 			$confirmedStatus = 0;
@@ -72,7 +72,7 @@ class SubmissionReviewHandler extends ReviewerHandler {
 		import('classes.submission.reviewAssignment.ReviewAssignment');
 		$templateMgr->assign_by_ref('reviewerRecommendationOptions', ReviewAssignment::getReviewerRecommendationOptions());
 
-		$controlledVocabDao =& DAORegistry::getDAO('ControlledVocabDAO');
+		$controlledVocabDao = DAORegistry::getDAO('ControlledVocabDAO');
 		$templateMgr->assign('sessionTypes', $controlledVocabDao->enumerateBySymbolic('sessionTypes', ASSOC_TYPE_SCHED_CONF, $schedConf->getId()));
 
 		$templateMgr->assign('helpTopicId', 'editorial.reviewersRole.review');		
@@ -84,7 +84,7 @@ class SubmissionReviewHandler extends ReviewerHandler {
 		$declineReview = $request->getUserVar('declineReview');
 		$decline = isset($declineReview) ? 1 : 0;
 
-		$reviewerSubmissionDao =& DAORegistry::getDAO('ReviewerSubmissionDAO');
+		$reviewerSubmissionDao = DAORegistry::getDAO('ReviewerSubmissionDAO');
 
 		$this->validate($request, $reviewId);
 		$reviewerSubmission =& $this->submission;
@@ -200,7 +200,7 @@ class SubmissionReviewHandler extends ReviewerHandler {
 		
 		$this->validate($reviewId);
 
-		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
+		$reviewAssignmentDao = DAORegistry::getDAO('ReviewAssignmentDAO');
 		$reviewAssignment =& $reviewAssignmentDao->getById($reviewId);
 		$reviewFormId = $reviewAssignment->getReviewFormId();
 		if ($reviewFormId != null) {
@@ -234,7 +234,7 @@ class SubmissionReviewHandler extends ReviewerHandler {
 	 * Redirects to reviewer index page if validation fails.
 	 */
 	function validate($request, $reviewId) {
-		$reviewerSubmissionDao =& DAORegistry::getDAO('ReviewerSubmissionDAO');
+		$reviewerSubmissionDao = DAORegistry::getDAO('ReviewerSubmissionDAO');
 		$schedConf =& $request->getSchedConf();
 		$user =& $request->getUser();
 

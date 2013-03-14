@@ -40,7 +40,7 @@ class ReviewFormForm extends Form {
 	 * @return array
 	 */
 	function getLocaleFieldNames() {
-		$reviewFormDao =& DAORegistry::getDAO('ReviewFormDAO');
+		$reviewFormDao = DAORegistry::getDAO('ReviewFormDAO');
 		return $reviewFormDao->getLocaleFieldNames();
 	}
 
@@ -60,7 +60,7 @@ class ReviewFormForm extends Form {
 	function initData() {
 		if ($this->reviewFormId != null) {
 			$conference =& Request::getConference();
-			$reviewFormDao =& DAORegistry::getDAO('ReviewFormDAO');
+			$reviewFormDao = DAORegistry::getDAO('ReviewFormDAO');
 			$reviewForm =& $reviewFormDao->getReviewForm($this->reviewFormId, ASSOC_TYPE_CONFERENCE, $conference->getId());
 
 			if ($reviewForm == null) {
@@ -88,7 +88,7 @@ class ReviewFormForm extends Form {
 		$conference =& Request::getConference();
 		$conferenceId = $conference->getId();
 
-		$reviewFormDao =& DAORegistry::getDAO('ReviewFormDAO');
+		$reviewFormDao = DAORegistry::getDAO('ReviewFormDAO');
 
 		if ($this->reviewFormId != null) {
 			$reviewForm =& $reviewFormDao->getReviewForm($this->reviewFormId, ASSOC_TYPE_CONFERENCE, $conferenceId);

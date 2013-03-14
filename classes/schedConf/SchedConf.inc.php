@@ -51,7 +51,7 @@ class SchedConf extends Context {
 	 * @return string
 	 */
 	function &getConference() {
-		$conferenceDao =& DAORegistry::getDAO('ConferenceDAO');
+		$conferenceDao = DAORegistry::getDAO('ConferenceDAO');
 		$returner =& $conferenceDao->getById($this->getConferenceId());
 		return $returner;
 	}

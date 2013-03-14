@@ -37,7 +37,7 @@ class ConferenceHandler extends Handler {
 
 		$templateMgr =& TemplateManager::getManager();
 
-		$conferenceDao =& DAORegistry::getDAO('ConferenceDAO');
+		$conferenceDao = DAORegistry::getDAO('ConferenceDAO');
 
 		$templateMgr->assign('helpTopicId', 'user.home');
 
@@ -52,7 +52,7 @@ class ConferenceHandler extends Handler {
 		$templateMgr->assign('description', $conference->getLocalizedSetting('description'));
 		$templateMgr->assign('conferenceTitle', $conference->getLocalizedName());
 
-		$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
+		$schedConfDao = DAORegistry::getDAO('SchedConfDAO');
 		$currentSchedConfs =& $schedConfDao->getCurrentSchedConfs($conference->getId());
 		if ($currentSchedConfs && $currentSchedConfs->getCount() == 1) {
 			// If only one sched conf exists, redirect to it.
@@ -66,7 +66,7 @@ class ConferenceHandler extends Handler {
 			$enableAnnouncementsHomepage = $conference->getSetting('enableAnnouncementsHomepage');
 			if ($enableAnnouncementsHomepage) {
 				$numAnnouncementsHomepage = $conference->getSetting('numAnnouncementsHomepage');
-				$announcementDao =& DAORegistry::getDAO('AnnouncementDAO');
+				$announcementDao = DAORegistry::getDAO('AnnouncementDAO');
 				$announcements =& $announcementDao->getNumAnnouncementsNotExpiredByAssocId(ASSOC_TYPE_CONFERENCE, $conference->getId(), $numAnnouncementsHomepage);
 				$templateMgr->assign('announcements', $announcements);
 				$templateMgr->assign('enableAnnouncementsHomepage', $enableAnnouncementsHomepage);

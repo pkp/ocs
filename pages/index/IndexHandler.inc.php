@@ -45,7 +45,7 @@ class IndexHandler extends Handler {
 		} elseif ($conference) {
 			$redirect = $conference->getSetting('schedConfRedirect');
 			if (!empty($redirect)) {
-				$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
+				$schedConfDao = DAORegistry::getDAO('SchedConfDAO');
 				$redirectSchedConf = $schedConfDao->getById($redirect, $conference->getId());
 				if ($redirectSchedConf) $request->redirect($conference->getPath(), $redirectSchedConf->getPath());
 			}
@@ -59,7 +59,7 @@ class IndexHandler extends Handler {
 			// Otherwise, display a list of conferences to choose from.
 			$templateMgr =& TemplateManager::getManager();
 
-			$conferenceDao =& DAORegistry::getDAO('ConferenceDAO');
+			$conferenceDao = DAORegistry::getDAO('ConferenceDAO');
 			$templateMgr->assign('helpTopicId', 'user.home');
 
 			// If the site specifies that we should redirect to a specific conference

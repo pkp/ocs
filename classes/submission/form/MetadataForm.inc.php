@@ -29,7 +29,7 @@ class MetadataForm extends Form {
 	 * Constructor.
 	 */
 	function MetadataForm($paper) {
-		$roleDao =& DAORegistry::getDAO('RoleDAO');
+		$roleDao = DAORegistry::getDAO('RoleDAO');
 
 		$schedConf =& Request::getSchedConf();
 		$user =& Request::getUser();
@@ -128,8 +128,8 @@ class MetadataForm extends Form {
 	 */
 	function display() {
 		$schedConf =& Request::getSchedConf();
-		$roleDao =& DAORegistry::getDAO('RoleDAO');
-		$trackDao =& DAORegistry::getDAO('TrackDAO');
+		$roleDao = DAORegistry::getDAO('RoleDAO');
+		$trackDao = DAORegistry::getDAO('TrackDAO');
 
 		AppLocale::requireComponents(LOCALE_COMPONENT_APP_EDITOR); // editor.cover.xxx locale keys; FIXME?
 
@@ -138,7 +138,7 @@ class MetadataForm extends Form {
 		$templateMgr->assign('rolePath', Request::getRequestedPage());
 		$templateMgr->assign('canViewAuthors', $this->canViewAuthors);
 
-		$countryDao =& DAORegistry::getDAO('CountryDAO');
+		$countryDao = DAORegistry::getDAO('CountryDAO');
 		$templateMgr->assign('countries', $countryDao->getCountries());
 
 		$templateMgr->assign('helpTopicId','submission.indexingMetadata');
@@ -180,9 +180,9 @@ class MetadataForm extends Form {
 	 * @return int the paper ID
 	 */
 	function execute() {
-		$paperDao =& DAORegistry::getDAO('PaperDAO');
-		$authorDao =& DAORegistry::getDAO('AuthorDAO');
-		$trackDao =& DAORegistry::getDAO('TrackDAO');
+		$paperDao = DAORegistry::getDAO('PaperDAO');
+		$authorDao = DAORegistry::getDAO('AuthorDAO');
+		$trackDao = DAORegistry::getDAO('TrackDAO');
 
 		// Update paper
 

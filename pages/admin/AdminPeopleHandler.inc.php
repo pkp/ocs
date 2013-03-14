@@ -30,8 +30,8 @@ class AdminPeopleHandler extends AdminHandler {
 		$this->validate();
 		$this->setupTemplate($request, true);
 
-		$roleDao =& DAORegistry::getDAO('RoleDAO');
-		$userDao =& DAORegistry::getDAO('UserDAO');
+		$roleDao = DAORegistry::getDAO('RoleDAO');
+		$userDao = DAORegistry::getDAO('UserDAO');
 
 		$templateMgr =& TemplateManager::getManager();
 

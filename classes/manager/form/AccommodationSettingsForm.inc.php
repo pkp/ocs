@@ -81,7 +81,7 @@ class AccommodationSettingsForm extends Form {
 	 */
 	function execute() {
 		$schedConf =& Request::getSchedConf();
-		$settingsDao =& DAORegistry::getDAO('SchedConfSettingsDAO');
+		$settingsDao = DAORegistry::getDAO('SchedConfSettingsDAO');
 
 		foreach ($this->_data as $name => $value) {
 			$settingsDao->updateSetting(

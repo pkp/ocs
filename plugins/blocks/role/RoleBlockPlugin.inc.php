@@ -67,24 +67,24 @@ class RoleBlockPlugin extends BlockPlugin {
 					// Block disabled for submission
 					return null;
 				default:
-					$authorSubmissionDao =& DAORegistry::getDAO('AuthorSubmissionDAO');
+					$authorSubmissionDao = DAORegistry::getDAO('AuthorSubmissionDAO');
 					$submissionsCount = $authorSubmissionDao->getSubmissionsCount($userId, $schedConfId);
 					$templateMgr->assign('submissionsCount', $submissionsCount);
 					return 'author.tpl';
 			}
 			case 'director':
 				if ($request->getRequestedOp() == 'index') return null;
-				$directorSubmissionDao =& DAORegistry::getDAO('DirectorSubmissionDAO');
+				$directorSubmissionDao = DAORegistry::getDAO('DirectorSubmissionDAO');
 				$submissionsCount =& $directorSubmissionDao->getDirectorSubmissionsCount($schedConfId);
 				$templateMgr->assign('submissionsCount', $submissionsCount);
 				return 'director.tpl';
 			case 'trackDirector':
-				$trackDirectorSubmissionDao =& DAORegistry::getDAO('TrackDirectorSubmissionDAO');
+				$trackDirectorSubmissionDao = DAORegistry::getDAO('TrackDirectorSubmissionDAO');
 				$submissionsCount =& $trackDirectorSubmissionDao->getTrackDirectorSubmissionsCount($userId, $schedConfId);
 				$templateMgr->assign('submissionsCount', $submissionsCount);
 				return 'trackDirector.tpl';
 			case 'reviewer':
-				$reviewerSubmissionDao =& DAORegistry::getDAO('ReviewerSubmissionDAO');
+				$reviewerSubmissionDao = DAORegistry::getDAO('ReviewerSubmissionDAO');
 				$submissionsCount = $reviewerSubmissionDao->getSubmissionsCount($userId, $schedConfId);
 				$templateMgr->assign('submissionsCount', $submissionsCount);
 				return 'reviewer.tpl';

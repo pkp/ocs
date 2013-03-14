@@ -60,7 +60,7 @@ class ReviewReportPlugin extends ReportPlugin {
 		header('content-type: text/comma-separated-values; charset=utf-8');
 		header('content-disposition: attachment; filename=reviews-' . date('Ymd') . '.csv');
 
-		$reviewReportDao =& DAORegistry::getDAO('ReviewReportDAO');
+		$reviewReportDao = DAORegistry::getDAO('ReviewReportDAO');
 		list($commentsIterator, $reviewsIterator) = $reviewReportDao->getReviewReport($schedConf->getId());
 
 		$comments = array();

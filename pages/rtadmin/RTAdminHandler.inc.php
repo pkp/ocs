@@ -38,7 +38,7 @@ class RTAdminHandler extends Handler {
 		$conference = $request->getConference();
 		$user = $request->getUser();
 		if ($conference) {
-			$rtDao =& DAORegistry::getDAO('RTDAO');
+			$rtDao = DAORegistry::getDAO('RTDAO');
 			$rt = $rtDao->getConferenceRTByConference($conference);
 			if (isset($rt)) {
 				$version = $rtDao->getVersion($rt->getVersion(), $conference->getId());
@@ -55,8 +55,8 @@ class RTAdminHandler extends Handler {
 			$templateMgr->display('rtadmin/index.tpl');
 		} elseif ($user) {
 			// Display a list of conferences.
-			$conferenceDao =& DAORegistry::getDAO('ConferenceDAO');
-			$roleDao =& DAORegistry::getDAO('RoleDAO');
+			$conferenceDao = DAORegistry::getDAO('ConferenceDAO');
+			$roleDao = DAORegistry::getDAO('RoleDAO');
 
 			$conferences = array();
 
@@ -83,7 +83,7 @@ class RTAdminHandler extends Handler {
 	function validateUrls($args, &$request) {
 		$this->validate();
 
-		$rtDao =& DAORegistry::getDAO('RTDAO');
+		$rtDao = DAORegistry::getDAO('RTDAO');
 		$conference = $request->getConference();
 
 		if (!$conference) {

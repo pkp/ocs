@@ -57,7 +57,7 @@ class AuthSourceSettingsForm extends Form {
 	 * Initialize form data from current settings.
 	 */
 	function initData() {
-		$authDao =& DAORegistry::getDAO('AuthSourceDAO');
+		$authDao = DAORegistry::getDAO('AuthSourceDAO');
 		$auth =& $authDao->getSource($this->authId);
 
 		if ($auth != null) {
@@ -81,7 +81,7 @@ class AuthSourceSettingsForm extends Form {
 	 * Save conference settings.
 	 */
 	function execute() {
-		$authDao =& DAORegistry::getDAO('AuthSourceDAO');
+		$authDao = DAORegistry::getDAO('AuthSourceDAO');
 
 		$auth = $authDao->newDataObject();
 		$auth->setAuthId($this->authId);

@@ -26,7 +26,7 @@ class PaperGalleyDAO extends DAO {
 	 */
 	function PaperGalleyDAO() {
 		parent::DAO();
-		$this->paperFileDao =& DAORegistry::getDAO('PaperFileDAO');
+		$this->paperFileDao = DAORegistry::getDAO('PaperFileDAO');
 	}
 
 	/**

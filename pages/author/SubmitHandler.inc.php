@@ -187,7 +187,7 @@ class SubmitHandler extends AuthorHandler {
 				// Send a notification to associated users
 				import('classes.notification.NotificationManager');
 				$notificationManager = new NotificationManager();
-				$roleDao =& DAORegistry::getDAO('RoleDAO');
+				$roleDao = DAORegistry::getDAO('RoleDAO');
 				$directors = $roleDao->getUsersByRoleId(ROLE_ID_DIRECTOR, $conference->getId(), $schedConf->getId());
 				$notificationUsers = array();
 				foreach ($directors->toArray() as $user) {
@@ -323,7 +323,7 @@ class SubmitHandler extends AuthorHandler {
 
 		if (!$schedConf->getSetting('acceptSupplementaryReviewMaterials')) $request->redirect(null, null, 'index');
 
-		$suppFileDao =& DAORegistry::getDAO('SuppFileDAO');
+		$suppFileDao = DAORegistry::getDAO('SuppFileDAO');
 		$suppFile = $suppFileDao->getSuppFile($suppFileId, $paperId);
 		$suppFileDao->deleteSuppFileById($suppFileId, $paperId);
 
@@ -348,7 +348,7 @@ class SubmitHandler extends AuthorHandler {
 		$conference =& $request->getConference();
 		$schedConf =& $request->getSchedConf();
 
-		$paperDao =& DAORegistry::getDAO('PaperDAO');
+		$paperDao = DAORegistry::getDAO('PaperDAO');
 		$user =& $request->getUser();
 
 		if ($step !== false && ($step < 1 || $step > 5 || (!$paperId && $step != 1))) {

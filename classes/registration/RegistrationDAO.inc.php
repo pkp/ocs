@@ -413,7 +413,7 @@ class RegistrationDAO extends DAO {
 			$dbResultRange
 		);
 
-		$userDao =& DAORegistry::getDAO('UserDAO');
+		$userDao = DAORegistry::getDAO('UserDAO');
 		$returner = new DAOResultFactory($result, $userDao, '_returnUserFromRowWithData');
 		return $returner;
 	}

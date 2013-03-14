@@ -26,7 +26,7 @@ class PaperTypeDAO extends ControlledVocabDAO {
 
 	function getPaperTypes($schedConfId) {
 		$paperTypes = $this->build($schedConfId);
-		$paperTypeEntryDao =& DAORegistry::getDAO('PaperTypeEntryDAO');
+		$paperTypeEntryDao = DAORegistry::getDAO('PaperTypeEntryDAO');
 		return $paperTypeEntryDao->getByControlledVocabId($paperTypes->getId());
 	}
 }

@@ -102,7 +102,7 @@ class NotificationSettingsForm extends PKPNotificationSettingsForm {
 	 * @param $request Request
 	 */
 	function display($request) {
-		$conferenceDao =& DAORegistry::getDAO('ConferenceDAO');
+		$conferenceDao = DAORegistry::getDAO('ConferenceDAO');
 		$conferences =& $conferenceDao->getNames();
 
 		$canOnlyRead = true;
@@ -154,7 +154,7 @@ class NotificationSettingsForm extends PKPNotificationSettingsForm {
 			if($this->getData($notificationSetting['emailSettingName'])) $emailSettings[] = $settingId;
 		}
 
-		$notificationSubscriptionSettingsDao =& DAORegistry::getDAO('NotificationSubscriptionSettingsDAO');
+		$notificationSubscriptionSettingsDao = DAORegistry::getDAO('NotificationSubscriptionSettingsDAO');
 		$notificationSubscriptionSettingsDao->updateNotificationSubscriptionSettings('blocked_notification', $blockedNotifications, $userId, $conference->getId());
 		$notificationSubscriptionSettingsDao->updateNotificationSubscriptionSettings('emailed_notification', $emailSettings, $userId, $conference->getId());
 

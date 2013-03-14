@@ -44,7 +44,7 @@ class GroupForm extends Form {
 	 * @return array
 	 */
 	function getLocaleFieldNames() {
-		$groupDao =& DAORegistry::getDAO('GroupDAO');
+		$groupDao = DAORegistry::getDAO('GroupDAO');
 		return $groupDao->getLocaleFieldNames();
 	}
 
@@ -85,7 +85,7 @@ class GroupForm extends Form {
 	 * Save group group. 
 	 */
 	function execute() {
-		$groupDao =& DAORegistry::getDAO('GroupDAO');
+		$groupDao = DAORegistry::getDAO('GroupDAO');
 		$conference =& Request::getConference();
 		$schedConf =& Request::getSchedConf();
 

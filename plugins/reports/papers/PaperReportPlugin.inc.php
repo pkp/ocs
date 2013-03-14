@@ -60,7 +60,7 @@ class PaperReportPlugin extends ReportPlugin {
 		header('content-type: text/comma-separated-values; charset=utf-8');
 		header('content-disposition: attachment; filename=papers-' . date('Ymd') . '.csv');
 
-		$paperReportDao =& DAORegistry::getDAO('PaperReportDAO');
+		$paperReportDao = DAORegistry::getDAO('PaperReportDAO');
 		list($papersIterator, $authorsIterator, $decisionsIteratorsArray) = $paperReportDao->getPaperReport(
 			$conference->getId(),
 			$schedConf->getId()
@@ -122,12 +122,12 @@ class PaperReportPlugin extends ReportPlugin {
 		import('classes.paper.Paper'); // Bring in getStatusMap function
 		$statusMap =& Paper::getStatusMap();
 
-		$controlledVocabDao =& DAORegistry::getDAO('ControlledVocabDAO');
+		$controlledVocabDao = DAORegistry::getDAO('ControlledVocabDAO');
 		$sessionTypes = $controlledVocabDao->enumerateBySymbolic('paperType', ASSOC_TYPE_SCHED_CONF, $schedConf->getId());
 
 		// Load building and room data
-		$buildingDao =& DAORegistry::getDAO('BuildingDAO');
-		$roomDao =& DAORegistry::getDAO('RoomDAO');
+		$buildingDao = DAORegistry::getDAO('BuildingDAO');
+		$roomDao = DAORegistry::getDAO('RoomDAO');
 
 		$buildings = $rooms = array();
 		$buildingsIterator =& $buildingDao->getBuildingsBySchedConfId($schedConf->getId());

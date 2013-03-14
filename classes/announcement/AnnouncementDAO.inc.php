@@ -42,7 +42,7 @@ class AnnouncementDAO extends PKPAnnouncementDAO {
 
 		$conferenceArgs = array(ASSOC_TYPE_CONFERENCE, $conferenceId);
 		if($schedConfId == -1) {
-			$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
+			$schedConfDao = DAORegistry::getDAO('SchedConfDAO');
 			$schedConfs = $schedConfDao->getAll(false, $conferenceId);
 			$schedConfArgs = array();
 			while (!$schedConfs->eof()) {
@@ -78,7 +78,7 @@ class AnnouncementDAO extends PKPAnnouncementDAO {
 	function &getNumAnnouncementsNotExpiredByConferenceId($conferenceId, $schedConfId = 0, $numAnnouncements, $rangeInfo = null) {
 		$conferenceArgs = array(ASSOC_TYPE_CONFERENCE, $conferenceId);
 		if($schedConfId == -1) {
-			$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
+			$schedConfDao = DAORegistry::getDAO('SchedConfDAO');
 			$schedConfs = $schedConfDao->getAll(false, $conferenceId);
 			$schedConfArgs = array();
 			while (!$schedConfs->eof()) {

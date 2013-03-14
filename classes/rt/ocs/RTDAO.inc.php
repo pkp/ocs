@@ -46,7 +46,7 @@ class RTDAO extends DAO {
 	}
 
 	function updateConferenceRT(&$rt) {
-		$conferenceDao =& DAORegistry::getDAO('ConferenceDAO');
+		$conferenceDao = DAORegistry::getDAO('ConferenceDAO');
 		$conference =& $conferenceDao->getById($rt->getConferenceId());
 
 		$conference->updateSetting('rtEnabled', $rt->getEnabled(), 'bool');

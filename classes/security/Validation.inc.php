@@ -28,7 +28,7 @@ class Validation {
 	static function &login($username, $password, &$reason, $remember = false) {
 		$reason = null;
 		$valid = false;
-		$userDao =& DAORegistry::getDAO('UserDAO');
+		$userDao = DAORegistry::getDAO('UserDAO');
 
 		$user =& $userDao->getByUsername($username, true);
 
@@ -38,7 +38,7 @@ class Validation {
 		}
 
 		if ($user->getAuthId()) {
-			$authDao =& DAORegistry::getDAO('AuthSourceDAO');
+			$authDao = DAORegistry::getDAO('AuthSourceDAO');
 			$auth =& $authDao->getPlugin($user->getAuthId());
 		}
 
@@ -114,7 +114,7 @@ class Validation {
 			$sessionManager->updateSessionLifetime(0);
 		}
 
-		$sessionDao =& DAORegistry::getDAO('SessionDAO');
+		$sessionDao = DAORegistry::getDAO('SessionDAO');
 		$sessionDao->updateObject($session);
 
 		return true;
@@ -142,13 +142,13 @@ class Validation {
 	 * @return boolean
 	 */
 	static function checkCredentials($username, $password) {
-		$userDao =& DAORegistry::getDAO('UserDAO');
+		$userDao = DAORegistry::getDAO('UserDAO');
 		$user =& $userDao->getByUsername($username, false);
 
 		$valid = false;
 		if (isset($user)) {
 			if ($user->getAuthId()) {
-				$authDao =& DAORegistry::getDAO('AuthSourceDAO');
+				$authDao = DAORegistry::getDAO('AuthSourceDAO');
 				$auth =& $authDao->getPlugin($user->getAuthId());
 			}
 
@@ -189,7 +189,7 @@ class Validation {
 		$session =& $sessionManager->getUserSession();
 		$user =& $session->getUser();
 
-		$roleDao =& DAORegistry::getDAO('RoleDAO');
+		$roleDao = DAORegistry::getDAO('RoleDAO');
 		return $roleDao->userHasRole($conferenceId, $schedConfId, $user->getId(), $roleId);
 	}
 
@@ -243,7 +243,7 @@ class Validation {
 	 * @return string (boolean false if user is invalid)
 	 */
 	static function generatePasswordResetHash($userId) {
-		$userDao =& DAORegistry::getDAO('UserDAO');
+		$userDao = DAORegistry::getDAO('UserDAO');
 		if (($user = $userDao->getById($userId)) == null) {
 			// No such user
 			return false;
@@ -259,7 +259,7 @@ class Validation {
 		$initial = String::substr($firstName, 0, 1);
 
 		$suggestion = String::regexp_replace('/[^a-zA-Z0-9_-]/', '', String::strtolower($initial . $lastName));
-		$userDao =& DAORegistry::getDAO('UserDAO');
+		$userDao = DAORegistry::getDAO('UserDAO');
 		for ($i = ''; $userDao->userExistsByUsername($suggestion . $i); $i++);
 		return $suggestion . $i;
 	}
@@ -351,7 +351,7 @@ class Validation {
 
 		// Check for roles in other conferences that this user
 		// doesn't have administrative rights over.
-		$roleDao =& DAORegistry::getDAO('RoleDAO');
+		$roleDao = DAORegistry::getDAO('RoleDAO');
 		$roles =& $roleDao->getRolesByUserId($userId);
 		foreach ($roles as $role) {
 			// Other user cannot be site admin

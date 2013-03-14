@@ -247,16 +247,16 @@ class TrackDAO extends DAO {
 	 * @param $schedConfId int optional
 	 */
 	function deleteTrackById($trackId, $schedConfId = null) {
-		$trackDirectorsDao =& DAORegistry::getDAO('TrackDirectorsDAO');
+		$trackDirectorsDao = DAORegistry::getDAO('TrackDirectorsDAO');
 		$trackDirectorsDao->deleteDirectorsByTrackId($trackId, $schedConfId);
 
 		// Remove papers from this track
-		$paperDao =& DAORegistry::getDAO('PaperDAO');
+		$paperDao = DAORegistry::getDAO('PaperDAO');
 		$paperDao->removePapersFromTrack($trackId);
 
 		// Delete published paper entries from this track -- they must
 		// be re-published.
-		$publishedPaperDao =& DAORegistry::getDAO('PublishedPaperDAO');
+		$publishedPaperDao = DAORegistry::getDAO('PublishedPaperDAO');
 		$publishedPaperDao->deletePublishedPapersByTrackId($trackId);
 
 		if (isset($schedConfId) && !$this->trackExists($trackId, $schedConfId)) return false;

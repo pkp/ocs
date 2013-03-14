@@ -167,7 +167,7 @@ class AuthorSubmission extends Paper {
 		$schedConf =& Request::getSchedConf();
 		if (!$schedConf || $this->getSchedConfId() != $schedConf->getId()) {
 			unset($schedConf);
-			$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
+			$schedConfDao = DAORegistry::getDAO('SchedConfDAO');
 			$schedConf = $schedConfDao->getById($this->getSchedConfId());
 		}
 

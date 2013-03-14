@@ -67,10 +67,10 @@ class CreateReviewerForm extends Form {
 
 		$site =& Request::getSite();
 		$templateMgr->assign('availableLocales', $site->getSupportedLocaleNames());
-		$userDao =& DAORegistry::getDAO('UserDAO');
+		$userDao = DAORegistry::getDAO('UserDAO');
 		$templateMgr->assign('genderOptions', $userDao->getGenderOptions());
 
-		$countryDao =& DAORegistry::getDAO('CountryDAO');
+		$countryDao = DAORegistry::getDAO('CountryDAO');
 		$countries =& $countryDao->getCountries();
 		$templateMgr->assign_by_ref('countries', $countries);
 
@@ -126,7 +126,7 @@ class CreateReviewerForm extends Form {
 	 * @return $userId int
 	 */
 	function execute() {
-		$userDao =& DAORegistry::getDAO('UserDAO');
+		$userDao = DAORegistry::getDAO('UserDAO');
 		$user = new User();
 
 		$user->setSalutation($this->getData('salutation'));
@@ -147,7 +147,7 @@ class CreateReviewerForm extends Form {
 		$user->setGossip($this->getData('gossip'), null); // Localized
 		$user->setMustChangePassword($this->getData('mustChangePassword') ? 1 : 0);
 
-		$authDao =& DAORegistry::getDAO('AuthSourceDAO');
+		$authDao = DAORegistry::getDAO('AuthSourceDAO');
 		$auth =& $authDao->getDefaultPlugin();
 		$user->setAuthId($auth?$auth->getAuthId():0);
 
@@ -185,7 +185,7 @@ class CreateReviewerForm extends Form {
 		$interestManager = new InterestManager();
 		$interestManager->setInterestsForUser($user, $interests);
 
-		$roleDao =& DAORegistry::getDAO('RoleDAO');
+		$roleDao = DAORegistry::getDAO('RoleDAO');
 		$schedConf =& Request::getSchedConf();
 		$role = new Role();
 		$role->setConferenceId($schedConf->getConferenceId());

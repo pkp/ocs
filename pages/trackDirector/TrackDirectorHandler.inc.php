@@ -54,8 +54,8 @@ class TrackDirectorHandler extends Handler {
 		$searchMatch = $request->getUserVar('searchMatch');
 		$search = $request->getUserVar('search');
 
-		$trackDao =& DAORegistry::getDAO('TrackDAO');
-		$trackDirectorSubmissionDao =& DAORegistry::getDAO('TrackDirectorSubmissionDAO');
+		$trackDao = DAORegistry::getDAO('TrackDAO');
+		$trackDirectorSubmissionDao = DAORegistry::getDAO('TrackDirectorSubmissionDAO');
 
 		$page = isset($args[0]) ? $args[0] : '';
 		$tracks =& $trackDao->getTrackTitles($schedConfId);

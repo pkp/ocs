@@ -63,7 +63,7 @@ class SchedConfGridHandler extends ContextGridHandler {
 	 */
 	function loadData(&$request) {
 		// Get all schedConfs.
-		$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
+		$schedConfDao = DAORegistry::getDAO('SchedConfDAO');
 		$schedConfs = $schedConfDao->getAll(false, $request->getConference()->getId());
 
 		return $schedConfs->toAssociativeArray();
@@ -92,7 +92,7 @@ class SchedConfGridHandler extends ContextGridHandler {
 
 		// Identify the schedConf Id.
 		$schedConfId = $request->getUserVar('rowId');
-		$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
+		$schedConfDao = DAORegistry::getDAO('SchedConfDAO');
 		$schedConf = $schedConfDao->getById($schedConfId);
 		$conference = $request->getConference();
 		if (!$conference || $schedConf && $schedConf->getConferenceId() != $conference->getId()) {
@@ -158,7 +158,7 @@ class SchedConfGridHandler extends ContextGridHandler {
 
 		// Identify the schedConf Id.
 		$schedConfId = $request->getUserVar('rowId');
-		$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
+		$schedConfDao = DAORegistry::getDAO('SchedConfDAO');
 		$schedConf = $schedConfDao->getById($schedConfId);
 		$conference = $request->getConference();
 		if (!$schedConf || !$conference || $schedConf->getConferenceId() != $conference->getId()) {

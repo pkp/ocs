@@ -31,7 +31,7 @@ class AuthorSubmitStep5Form extends AuthorSubmitForm {
 		$templateMgr =& TemplateManager::getManager();
 
 		// Get paper file for this paper
-		$paperFileDao =& DAORegistry::getDAO('PaperFileDAO');
+		$paperFileDao = DAORegistry::getDAO('PaperFileDAO');
 		$paperFiles =& $paperFileDao->getPaperFilesByPaper($this->paperId);
 
 		$templateMgr->assign_by_ref('files', $paperFiles);
@@ -44,8 +44,8 @@ class AuthorSubmitStep5Form extends AuthorSubmitForm {
 	 * Save changes to paper.
 	 */
 	function execute() {
-		$paperDao =& DAORegistry::getDAO('PaperDAO');
-		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
+		$paperDao = DAORegistry::getDAO('PaperDAO');
+		$reviewAssignmentDao = DAORegistry::getDAO('ReviewAssignmentDAO');
 
 		$conference = Request::getConference();
 		$schedConf = Request::getSchedConf();
@@ -64,7 +64,7 @@ class AuthorSubmitStep5Form extends AuthorSubmitForm {
 		$paperDao->updatePaper($paper);
 
 		// Designate this as the review version by default.
-		$authorSubmissionDao =& DAORegistry::getDAO('AuthorSubmissionDAO');
+		$authorSubmissionDao = DAORegistry::getDAO('AuthorSubmissionDAO');
 		$authorSubmission =& $authorSubmissionDao->getAuthorSubmission($paper->getId());
 		AuthorAction::designateReviewVersion($authorSubmission);
 		unset($authorSubmission);

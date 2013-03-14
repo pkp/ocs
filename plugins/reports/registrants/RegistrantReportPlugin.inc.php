@@ -55,10 +55,10 @@ class RegistrantReportPlugin extends ReportPlugin {
 		header('content-type: text/comma-separated-values; charset=utf-8');
 		header('content-disposition: attachment; filename=registrants-' . date('Ymd') . '.csv');
 
-		$registrationDao =& DAORegistry::getDAO('RegistrationDAO');
-		$registrationOptionDao =& DAORegistry::getDAO('RegistrationOptionDAO');
-		$registrationTypeDao =& DAORegistry::getDAO('RegistrationTypeDAO');
-		$userDao =& DAORegistry::getDAO('UserDAO');
+		$registrationDao = DAORegistry::getDAO('RegistrationDAO');
+		$registrationOptionDao = DAORegistry::getDAO('RegistrationOptionDAO');
+		$registrationTypeDao = DAORegistry::getDAO('RegistrationTypeDAO');
+		$userDao = DAORegistry::getDAO('UserDAO');
 
 		$columns = array(
 			__('plugins.reports.registrants.registrationid'),

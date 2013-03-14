@@ -34,7 +34,7 @@ class SubmissionCommentsHandler extends ReviewerHandler {
 
 		$submissionReviewHandler = new SubmissionReviewHandler();
 		$submissionReviewHandler->validate($request, $reviewId);
-		$paperDao =& DAORegistry::getDAO('PaperDAO');
+		$paperDao = DAORegistry::getDAO('PaperDAO');
 		$submission =& $paperDao->getPaper($paperId);
 
 		$user =& $request->getUser();
@@ -56,7 +56,7 @@ class SubmissionCommentsHandler extends ReviewerHandler {
 
 		$submissionReviewHandler = new SubmissionReviewHandler();
 		$submissionReviewHandler->validate($request, $reviewId);
-		$paperDao =& DAORegistry::getDAO('PaperDAO');
+		$paperDao = DAORegistry::getDAO('PaperDAO');
 		$submission =& $paperDao->getPaper($paperId);
 		$user =& $submissionReviewHandler->user;
 
@@ -74,7 +74,7 @@ class SubmissionCommentsHandler extends ReviewerHandler {
 		$commentId = (int) array_shift($args);
 		$reviewId = $request->getUserVar('reviewId');
 
-		$paperDao =& DAORegistry::getDAO('PaperDAO');
+		$paperDao = DAORegistry::getDAO('PaperDAO');
 		$submission = $paperDao->getPaper($paperId);
 
 		$submissionReviewHandler = new SubmissionReviewHandler();
@@ -98,7 +98,7 @@ class SubmissionCommentsHandler extends ReviewerHandler {
 		$commentId = (int) $request->getUserVar('commentId');
 		$reviewId = (int) $request->getUserVar('reviewId');
 
-		$paperDao =& DAORegistry::getDAO('PaperDAO');
+		$paperDao = DAORegistry::getDAO('PaperDAO');
 		$submission = $paperDao->getPaper($paperId);
 
 		$submissionReviewHandler = new SubmissionReviewHandler();
@@ -117,7 +117,7 @@ class SubmissionCommentsHandler extends ReviewerHandler {
 		ReviewerAction::saveComment($request, $submission, $comment, $emailComment);
 
 		// Refresh the comment
-		$paperCommentDao =& DAORegistry::getDAO('PaperCommentDAO');
+		$paperCommentDao = DAORegistry::getDAO('PaperCommentDAO');
 		$comment =& $paperCommentDao->getPaperCommentById($commentId);
 
 		// Redirect back to initial comments page

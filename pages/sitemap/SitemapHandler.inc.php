@@ -54,8 +54,8 @@ class SitemapHandler extends Handler {
 	 * @return XMLNode
 	 */
 	function _createSitemapIndex() {
-		$conferenceDao =& DAORegistry::getDAO('ConferenceDAO');
-		$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
+		$conferenceDao = DAORegistry::getDAO('ConferenceDAO');
+		$schedConfDao = DAORegistry::getDAO('SchedConfDAO');
 		
 		$doc =& XMLCustomWriter::createDocument();
 		$root =& XMLCustomWriter::createElement($doc, 'sitemapindex');
@@ -108,8 +108,8 @@ class SitemapHandler extends Handler {
 	 * @return XMLNode
 	 */
 	function _createSchedConfSitemap() {		
-		$publishedPaperDao =& DAORegistry::getDAO('PublishedPaperDAO');
-		$galleyDao =& DAORegistry::getDAO('PaperGalleyDAO');
+		$publishedPaperDao = DAORegistry::getDAO('PublishedPaperDAO');
+		$galleyDao = DAORegistry::getDAO('PaperGalleyDAO');
 		
 		$conference =& Request::getConference();
 		$conferenceId = $conference->getId();

@@ -30,7 +30,7 @@ class ConferenceRTAdmin extends RTAdmin {
 
 	function ConferenceRTAdmin($conferenceId) {
 		$this->conferenceId = $conferenceId;
-		$this->dao =& DAORegistry::getDAO('RTDAO');
+		$this->dao = DAORegistry::getDAO('RTDAO');
 	}
 
 	function restoreVersions($deleteBeforeLoad = true) {

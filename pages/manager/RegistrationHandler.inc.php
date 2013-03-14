@@ -33,7 +33,7 @@ class RegistrationHandler extends ManagerHandler {
 
 		$schedConf =& $request->getSchedConf();
 		$rangeInfo = $this->getRangeInfo($request, 'registrations', array());
-		$registrationDao =& DAORegistry::getDAO('RegistrationDAO');
+		$registrationDao = DAORegistry::getDAO('RegistrationDAO');
 
 		// Get the user's search conditions, if any
 		$searchField = $request->getUserVar('searchField');
@@ -127,7 +127,7 @@ class RegistrationHandler extends ManagerHandler {
 			$schedConf =& $request->getSchedConf();
 			$registrationId = (int) $args[0];
 
-			$registrationDao =& DAORegistry::getDAO('RegistrationDAO');
+			$registrationDao = DAORegistry::getDAO('RegistrationDAO');
 
 			// Ensure registration is for this scheduled conference
 			if ($registrationDao->getRegistrationSchedConfId($registrationId) == $schedConf->getId()) {
@@ -150,7 +150,7 @@ class RegistrationHandler extends ManagerHandler {
 		$schedConf =& $request->getSchedConf();
 		$registrationId = !isset($args) || empty($args) ? null : (int) $args[0];
 		$userId = $request->getUserVar('userId');
-		$registrationDao =& DAORegistry::getDAO('RegistrationDAO');
+		$registrationDao = DAORegistry::getDAO('RegistrationDAO');
 
 		// Ensure registration is valid and for this scheduled conference
 		if (($registrationId != null && $registrationDao->getRegistrationSchedConfId($registrationId) == $schedConf->getId()) || ($registrationId == null && $userId)) {
@@ -194,8 +194,8 @@ class RegistrationHandler extends ManagerHandler {
 		$this->setupTemplate($request);
 		$templateMgr->append('pageHierarchy', array($request->url(null, null, 'manager', 'registration'), 'manager.registration'));
 
-		$userDao =& DAORegistry::getDAO('UserDAO');
-		$roleDao =& DAORegistry::getDAO('RoleDAO');
+		$userDao = DAORegistry::getDAO('UserDAO');
+		$roleDao = DAORegistry::getDAO('RoleDAO');
 		
 		$searchType = null;
 		$searchMatch = null;
@@ -258,7 +258,7 @@ class RegistrationHandler extends ManagerHandler {
 
 		$schedConf =& $request->getSchedConf();
 		$registrationId = $request->getUserVar('registrationId') == null ? null : (int) $request->getUserVar('registrationId');
-		$registrationDao =& DAORegistry::getDAO('RegistrationDAO');
+		$registrationDao = DAORegistry::getDAO('RegistrationDAO');
 
 		if (($registrationId != null && $registrationDao->getRegistrationSchedConfId($registrationId) == $schedConf->getId()) || $registrationId == null) {
 
@@ -301,7 +301,7 @@ class RegistrationHandler extends ManagerHandler {
 
 		$schedConf =& $request->getSchedConf();
 		$rangeInfo = $this->getRangeInfo($request, 'registrationTypes', array());
-		$registrationTypeDao =& DAORegistry::getDAO('RegistrationTypeDAO');
+		$registrationTypeDao = DAORegistry::getDAO('RegistrationTypeDAO');
 		while (true) {
 			$registrationTypes =& $registrationTypeDao->getRegistrationTypesBySchedConfId($schedConf->getId(), $rangeInfo);
 			if ($registrationTypes->isInBounds()) break;
@@ -326,7 +326,7 @@ class RegistrationHandler extends ManagerHandler {
 		$registrationTypeId = isset($args[0])?$args[0]:0;
 		$schedConf =& $request->getSchedConf();
 
-		$registrationTypeDao =& DAORegistry::getDAO('RegistrationTypeDAO');
+		$registrationTypeDao = DAORegistry::getDAO('RegistrationTypeDAO');
 		$registrationType =& $registrationTypeDao->getRegistrationType($registrationTypeId);
 
 		if ($registrationType && $registrationType->getSchedConfId() == $schedConf->getId()) {
@@ -350,7 +350,7 @@ class RegistrationHandler extends ManagerHandler {
 			$schedConf =& $request->getSchedConf();
 			$registrationTypeId = (int) $args[0];
 
-			$registrationTypeDao =& DAORegistry::getDAO('RegistrationTypeDAO');
+			$registrationTypeDao = DAORegistry::getDAO('RegistrationTypeDAO');
 
 			// Ensure registration type is for this scheduled conference.
 			if ($registrationTypeDao->getRegistrationTypeSchedConfId($registrationTypeId) == $schedConf->getId()) {
@@ -372,7 +372,7 @@ class RegistrationHandler extends ManagerHandler {
 
 		$schedConf =& $request->getSchedConf();
 		$registrationTypeId = !isset($args) || empty($args) ? null : (int) $args[0];
-		$registrationTypeDao =& DAORegistry::getDAO('RegistrationTypeDAO');
+		$registrationTypeDao = DAORegistry::getDAO('RegistrationTypeDAO');
 
 		// Ensure registration type is valid and for this scheduled conference.
 		if (($registrationTypeId != null && $registrationTypeDao->getRegistrationTypeSchedConfId($registrationTypeId) == $schedConf->getId()) || $registrationTypeId == null) {
@@ -420,7 +420,7 @@ class RegistrationHandler extends ManagerHandler {
 
 		$schedConf =& $request->getSchedConf();
 		$registrationTypeId = $request->getUserVar('typeId') == null ? null : (int) $request->getUserVar('typeId');
-		$registrationTypeDao =& DAORegistry::getDAO('RegistrationTypeDAO');
+		$registrationTypeDao = DAORegistry::getDAO('RegistrationTypeDAO');
 
 		if (($registrationTypeId != null && $registrationTypeDao->getRegistrationTypeSchedConfId($registrationTypeId) == $schedConf->getId()) || $registrationTypeId == null) {
 
@@ -468,7 +468,7 @@ class RegistrationHandler extends ManagerHandler {
 
 		$schedConf =& $request->getSchedConf();
 		$rangeInfo = $this->getRangeInfo($request, 'registrationOptions', array());
-		$registrationOptionDao =& DAORegistry::getDAO('RegistrationOptionDAO');
+		$registrationOptionDao = DAORegistry::getDAO('RegistrationOptionDAO');
 		while (true) {
 			$registrationOptions =& $registrationOptionDao->getRegistrationOptionsBySchedConfId($schedConf->getId(), $rangeInfo);
 			if ($registrationOptions->isInBounds()) break;
@@ -493,7 +493,7 @@ class RegistrationHandler extends ManagerHandler {
 		$registrationOptionId = isset($args[0])?$args[0]:0;
 		$schedConf =& $request->getSchedConf();
 
-		$registrationOptionDao =& DAORegistry::getDAO('RegistrationOptionDAO');
+		$registrationOptionDao = DAORegistry::getDAO('RegistrationOptionDAO');
 		$registrationOption =& $registrationOptionDao->getRegistrationOption($registrationOptionId);
 
 		if ($registrationOption && $registrationOption->getSchedConfId() == $schedConf->getId()) {
@@ -517,7 +517,7 @@ class RegistrationHandler extends ManagerHandler {
 			$schedConf =& $request->getSchedConf();
 			$registrationOptionId = (int) $args[0];
 
-			$registrationOptionDao =& DAORegistry::getDAO('RegistrationOptionDAO');
+			$registrationOptionDao = DAORegistry::getDAO('RegistrationOptionDAO');
 
 			// Ensure registration option is for this scheduled conference.
 			if ($registrationOptionDao->getRegistrationOptionSchedConfId($registrationOptionId) == $schedConf->getId()) {
@@ -538,7 +538,7 @@ class RegistrationHandler extends ManagerHandler {
 
 		$schedConf =& $request->getSchedConf();
 		$registrationOptionId = !isset($args) || empty($args) ? null : (int) $args[0];
-		$registrationOptionDao =& DAORegistry::getDAO('RegistrationOptionDAO');
+		$registrationOptionDao = DAORegistry::getDAO('RegistrationOptionDAO');
 
 		// Ensure registration option is valid and for this scheduled conference.
 		if (($registrationOptionId != null && $registrationOptionDao->getRegistrationOptionSchedConfId($registrationOptionId) == $schedConf->getId()) || $registrationOptionId == null) {
@@ -585,7 +585,7 @@ class RegistrationHandler extends ManagerHandler {
 
 		$schedConf =& $request->getSchedConf();
 		$registrationOptionId = $request->getUserVar('optionId') == null ? null : (int) $request->getUserVar('optionId');
-		$registrationOptionDao =& DAORegistry::getDAO('RegistrationOptionDAO');
+		$registrationOptionDao = DAORegistry::getDAO('RegistrationOptionDAO');
 
 		if (($registrationOptionId != null && $registrationOptionDao->getRegistrationOptionSchedConfId($registrationOptionId) == $schedConf->getId()) || $registrationOptionId == null) {
 

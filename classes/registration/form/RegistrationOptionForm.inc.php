@@ -52,7 +52,7 @@ class RegistrationOptionForm extends Form {
 	 * @return array
 	 */
 	function getLocaleFieldNames() {
-		$registrationOptionDao =& DAORegistry::getDAO('RegistrationOptionDAO');
+		$registrationOptionDao = DAORegistry::getDAO('RegistrationOptionDAO');
 		return $registrationOptionDao->getLocaleFieldNames();
 	}
 
@@ -74,7 +74,7 @@ class RegistrationOptionForm extends Form {
 	 */
 	function initData() {
 		if (isset($this->optionId)) {
-			$registrationOptionDao =& DAORegistry::getDAO('RegistrationOptionDAO');
+			$registrationOptionDao = DAORegistry::getDAO('RegistrationOptionDAO');
 			$registrationOption =& $registrationOptionDao->getRegistrationOption($this->optionId);
 
 			if ($registrationOption != null) {
@@ -110,7 +110,7 @@ class RegistrationOptionForm extends Form {
 	 * Save registration option. 
 	 */
 	function execute() {
-		$registrationOptionDao =& DAORegistry::getDAO('RegistrationOptionDAO');
+		$registrationOptionDao = DAORegistry::getDAO('RegistrationOptionDAO');
 		$schedConf =& Request::getSchedConf();
 
 		if (isset($this->optionId)) {

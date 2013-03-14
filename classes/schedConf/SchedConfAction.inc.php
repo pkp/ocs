@@ -145,7 +145,7 @@ class SchedConfAction {
 		if (isset($user) && isset($schedConf)) {
 			// If the user is a conference manager, director, or track director,
 			// it is assumed that they are allowed to view the scheduled conference as a registrant.
-			$roleDao =& DAORegistry::getDAO('RoleDAO');
+			$roleDao = DAORegistry::getDAO('RoleDAO');
 			$registrationAssumedRoles = array(
 				ROLE_ID_MANAGER,
 				ROLE_ID_DIRECTOR,
@@ -176,7 +176,7 @@ class SchedConfAction {
 	 */
 	function registeredUser(&$schedConf) {
 		$user =& Request::getUser();
-		$registrationDao =& DAORegistry::getDAO('RegistrationDAO');
+		$registrationDao = DAORegistry::getDAO('RegistrationDAO');
 		$result = false;
 
 		if (isset($user) && isset($schedConf)) {
@@ -196,7 +196,7 @@ class SchedConfAction {
 	function registeredDomain(&$schedConf) {
 		$schedConf =& Request::getSchedConf();
 	
-		$registrationDao =& DAORegistry::getDAO('RegistrationDAO');
+		$registrationDao = DAORegistry::getDAO('RegistrationDAO');
 		$result = $registrationDao->isValidRegistration(Request::getRemoteDomain(), Request::getRemoteAddr(), null, $schedConf->getId());
 		HookRegistry::call('SchedConfAction::registeredDomain', array(&$schedConf, &$result));
 		return $result;

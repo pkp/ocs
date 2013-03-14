@@ -156,7 +156,7 @@ class PaperMailTemplate extends MailTemplate {
 
 	function ccAssignedDirectors($paperId) {
 		$returner = array();
-		$editAssignmentDao =& DAORegistry::getDAO('EditAssignmentDAO');
+		$editAssignmentDao = DAORegistry::getDAO('EditAssignmentDAO');
 		$editAssignments =& $editAssignmentDao->getDirectorAssignmentsByPaperId($paperId);
 		while ($editAssignment =& $editAssignments->next()) {
 			$this->addCc($editAssignment->getDirectorEmail(), $editAssignment->getDirectorFullName());
@@ -168,7 +168,7 @@ class PaperMailTemplate extends MailTemplate {
 
 	function toAssignedDirectors($paperId) {
 		$returner = array();
-		$editAssignmentDao =& DAORegistry::getDAO('EditAssignmentDAO');
+		$editAssignmentDao = DAORegistry::getDAO('EditAssignmentDAO');
 		$editAssignments =& $editAssignmentDao->getDirectorAssignmentsByPaperId($paperId);
 		while ($editAssignment =& $editAssignments->next()) {
 			$this->addRecipient($editAssignment->getDirectorEmail(), $editAssignment->getDirectorFullName());
@@ -180,7 +180,7 @@ class PaperMailTemplate extends MailTemplate {
 
 	function toAssignedTrackDirectors($paperId) {
 		$returner = array();
-		$editAssignmentDao =& DAORegistry::getDAO('EditAssignmentDAO');
+		$editAssignmentDao = DAORegistry::getDAO('EditAssignmentDAO');
 		$editAssignments =& $editAssignmentDao->getTrackDirectorAssignmentsByPaperId($paperId);
 		while ($editAssignment =& $editAssignments->next()) {
 			$this->addRecipient($editAssignment->getDirectorEmail(), $editAssignment->getDirectorFullName());
@@ -192,7 +192,7 @@ class PaperMailTemplate extends MailTemplate {
 
 	function ccAssignedTrackDirectors($paperId) {
 		$returner = array();
-		$editAssignmentDao =& DAORegistry::getDAO('EditAssignmentDAO');
+		$editAssignmentDao = DAORegistry::getDAO('EditAssignmentDAO');
 		$editAssignments =& $editAssignmentDao->getTrackDirectorAssignmentsByPaperId($paperId);
 		while ($editAssignment =& $editAssignments->next()) {
 			$this->addCc($editAssignment->getDirectorEmail(), $editAssignment->getDirectorFullName());

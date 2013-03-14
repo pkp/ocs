@@ -54,8 +54,8 @@ class Upgrade extends Installer {
 	 * @return boolean
 	 */
 	function installBlockPlugins() {
-		$pluginSettingsDao =& DAORegistry::getDAO('PluginSettingsDAO');
-		$conferenceDao =& DAORegistry::getDAO('ConferenceDAO');
+		$pluginSettingsDao = DAORegistry::getDAO('PluginSettingsDAO');
+		$conferenceDao = DAORegistry::getDAO('ConferenceDAO');
 		$conferences =& $conferenceDao->getConferences();
 
 		// Get conference IDs for insertion, including 0 for site-level
@@ -93,8 +93,8 @@ class Upgrade extends Installer {
 	 * @return boolean
 	 */
 	function setConferencePrimaryLocales() {
-		$conferenceDao =& DAORegistry::getDAO('ConferenceDAO');
-		$conferenceSettingsDao =& DAORegistry::getDAO('ConferenceSettingsDAO');
+		$conferenceDao = DAORegistry::getDAO('ConferenceDAO');
+		$conferenceSettingsDao = DAORegistry::getDAO('ConferenceSettingsDAO');
 
 		// There was a bug in OCS 2.0 that resulted in a conference
 		// primary locale setting of {$primaryLocale} (or truncated to
@@ -134,9 +134,9 @@ class Upgrade extends Installer {
 	 * @return boolean
 	 */
 	function migratePaperLocations() {
-		$paperDao =& DAORegistry::getDAO('PaperDAO');
-		$buildingDao =& DAORegistry::getDAO('BuildingDAO');
-		$roomDao =& DAORegistry::getDAO('RoomDAO');
+		$paperDao = DAORegistry::getDAO('PaperDAO');
+		$buildingDao = DAORegistry::getDAO('BuildingDAO');
+		$roomDao = DAORegistry::getDAO('RoomDAO');
 
 		$lastSchedConfId = null;
 		$buildingId = null;
@@ -197,8 +197,8 @@ class Upgrade extends Installer {
 	 * @return boolean
 	 */
 	function localizeConferenceSettings() {
-		$conferenceSettingsDao =& DAORegistry::getDAO('ConferenceSettingsDAO');
-		$conferenceDao =& DAORegistry::getDAO('ConferenceDAO');
+		$conferenceSettingsDao = DAORegistry::getDAO('ConferenceSettingsDAO');
+		$conferenceDao = DAORegistry::getDAO('ConferenceDAO');
 
 		$settingNames = array(
 			// Setup page 1
@@ -257,8 +257,8 @@ class Upgrade extends Installer {
 	 * @return boolean
 	 */
 	function localizeSchedConfSettings() {
-		$schedConfSettingsDao =& DAORegistry::getDAO('SchedConfSettingsDAO');
-		$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
+		$schedConfSettingsDao = DAORegistry::getDAO('SchedConfSettingsDAO');
+		$schedConfDao = DAORegistry::getDAO('SchedConfDAO');
 
 		$settingNames = array(
 			// Setup page 1
@@ -303,8 +303,8 @@ class Upgrade extends Installer {
 	 * @return boolean
 	 */
 	function setGalleyLocales() {
-		$paperGalleyDao =& DAORegistry::getDAO('PaperGalleyDAO');
-		$conferenceDao =& DAORegistry::getDAO('ConferenceDAO');
+		$paperGalleyDao = DAORegistry::getDAO('PaperGalleyDAO');
+		$conferenceDao = DAORegistry::getDAO('ConferenceDAO');
 
 		$result =& $conferenceDao->retrieve('SELECT g.galley_id, c.primary_locale FROM conferences c, sched_confs sc, papers p, paper_galleys g WHERE p.sched_conf_id = sc.sched_conf_id AND sc.conference_id = c.conference_id AND g.paper_id = p.paper_id AND (g.locale IS NULL OR g.locale = ?)', '');
 		while (!$result->EOF) {
@@ -323,8 +323,8 @@ class Upgrade extends Installer {
 	 * @return boolean
 	 */
 	function setReviewMode() {
-		$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
-		$paperDao =& DAORegistry::getDAO('PaperDAO');
+		$schedConfDao = DAORegistry::getDAO('SchedConfDAO');
+		$paperDao = DAORegistry::getDAO('PaperDAO');
 
 		$schedConfs = $schedConfDao->getAll();
 		while ($schedConf =& $schedConfs->next()) {
@@ -346,7 +346,7 @@ class Upgrade extends Installer {
 	 * @return boolean
 	 */
 	function dropAllIndexes() {
-		$siteDao =& DAORegistry::getDAO('SiteDAO');
+		$siteDao = DAORegistry::getDAO('SiteDAO');
 		$dict = NewDataDictionary($siteDao->_dataSource);
 		$dropIndexSql = array();
 
@@ -397,8 +397,8 @@ class Upgrade extends Installer {
 	 * that it is properly set.
 	 */
 	function ensureSupportedLocales() {
-		$conferenceDao =& DAORegistry::getDAO('ConferenceDAO');
-		$conferenceSettingsDao =& DAORegistry::getDAO('ConferenceSettingsDAO');
+		$conferenceDao = DAORegistry::getDAO('ConferenceDAO');
+		$conferenceSettingsDao = DAORegistry::getDAO('ConferenceSettingsDAO');
 		$result =& $conferenceDao->retrieve(
 			'SELECT	c.conference_id,
 				c.primary_locale
@@ -427,7 +427,7 @@ class Upgrade extends Installer {
 	 * For 2.3 update.  Go through all user email templates and change {$presenter to {$author
 	 */
 	function changePresenterInUserEmailTemplates() {
-		$emailTemplateDao =& DAORegistry::getDAO('EmailTemplateDAO');
+		$emailTemplateDao = DAORegistry::getDAO('EmailTemplateDAO');
 
 		// Reset email templates
 		$result =& $emailTemplateDao->retrieve('SELECT email_key, locale, body, subject FROM email_templates_data');
@@ -471,10 +471,10 @@ class Upgrade extends Installer {
 	 * structure.
 	 */
 	function upgradePaperType() {
-		$conferenceDao =& DAORegistry::getDAO('ConferenceDAO');
-		$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
-		$paperTypeDao =& DAORegistry::getDAO('PaperTypeDAO');
-		$paperTypeEntryDao =& DAORegistry::getDAO('PaperTypeEntryDAO');
+		$conferenceDao = DAORegistry::getDAO('ConferenceDAO');
+		$schedConfDao = DAORegistry::getDAO('SchedConfDAO');
+		$paperTypeDao = DAORegistry::getDAO('PaperTypeDAO');
+		$paperTypeEntryDao = DAORegistry::getDAO('PaperTypeEntryDAO');
 
 		$conferences =& $conferenceDao->getConferences();
 
@@ -547,8 +547,8 @@ class Upgrade extends Installer {
 	 * @return boolean
 	 */
 	function localizeProgramSettings() {
-		$schedConfSettingsDao =& DAORegistry::getDAO('SchedConfSettingsDAO');
-		$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
+		$schedConfSettingsDao = DAORegistry::getDAO('SchedConfSettingsDAO');
+		$schedConfDao = DAORegistry::getDAO('SchedConfDAO');
 
 		$settings = array('program', 'programFile', 'programFileTitle');
 
@@ -571,8 +571,8 @@ class Upgrade extends Installer {
 	 * @return boolean
 	 */
 	function updateReviewDeadlineSettings() {
-		$schedConfSettingsDao =& DAORegistry::getDAO('SchedConfSettingsDAO');
-		$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
+		$schedConfSettingsDao = DAORegistry::getDAO('SchedConfSettingsDAO');
+		$schedConfDao = DAORegistry::getDAO('SchedConfDAO');
 
 
 		$result =& $schedConfDao->retrieve('SELECT scs.sched_conf_id FROM sched_conf_settings scs WHERE scs.setting_name = ?', array('numWeeksPerReview'));
@@ -603,7 +603,7 @@ class Upgrade extends Installer {
 	 * @return boolean
 	 */
 	function cleanTitles() {
-		$paperDao =& DAORegistry::getDAO('PaperDAO');
+		$paperDao = DAORegistry::getDAO('PaperDAO');
 		$punctuation = array ("\"", "\'", ",", ".", "!", "?", "-", "$", "(", ")");
 
 		$result =& $paperDao->retrieve('SELECT paper_id, locale, setting_value FROM paper_settings WHERE setting_name = ?', "title");
@@ -634,7 +634,7 @@ class Upgrade extends Installer {
 			'pageHeaderTitleImage' => 'pageHeaderTitleImageAltText',
 			'pageHeaderLogoImage' => 'pageHeaderLogoImageAltText'
 		);
-		$conferenceDao =& DAORegistry::getDAO('ConferenceDAO');
+		$conferenceDao = DAORegistry::getDAO('ConferenceDAO');
 		$conferences =& $conferenceDao->getConferences();
 		while ($conference =& $conferences->next()) {
 			foreach ($imageSettings as $imageSettingName => $newSettingName) {
@@ -657,8 +657,8 @@ class Upgrade extends Installer {
 	 * @return boolean
 	 */
 	function migrateReviewingInterests() {
-		$userDao =& DAORegistry::getDAO('UserDAO');
-		$controlledVocabDao =& DAORegistry::getDAO('ControlledVocabDAO');
+		$userDao = DAORegistry::getDAO('UserDAO');
+		$controlledVocabDao = DAORegistry::getDAO('ControlledVocabDAO');
 
 		$result =& $userDao->retrieve('SELECT setting_value as interests, user_id FROM user_settings WHERE setting_name = ?', 'interests');
 		while (!$result->EOF) {
@@ -709,7 +709,7 @@ class Upgrade extends Installer {
 	 * For 2.4 Upgrade -- Overhaul notification structure
 	 */
 	function migrateNotifications() {
-		$notificationDao =& DAORegistry::getDAO('NotificationDAO');
+		$notificationDao = DAORegistry::getDAO('NotificationDAO');
 
 		// Retrieve all notifications from pre-2.4 notifications table
 		$result =& $notificationDao->retrieve('SELECT * FROM notifications_old');
@@ -820,7 +820,7 @@ class Upgrade extends Installer {
 					$settingId = $row['setting_id'];
 
 					// Get the token from the access_keys table
-					$accessKeyDao =& DAORegistry::getDAO('AccessKeyDAO'); /* @var $accessKeyDao AccessKeyDAO */
+					$accessKeyDao = DAORegistry::getDAO('AccessKeyDAO'); /* @var $accessKeyDao AccessKeyDAO */
 					$accessKey =& $accessKeyDao->getAccessKeyByUserId('MailListContext', $settingId);
 					if(!$accessKey) continue;
 					$token = $accessKey->getKeyHash();
@@ -859,8 +859,8 @@ class Upgrade extends Installer {
 	 * @return boolean
 	 */
 	function migrateReviewingInterests2() {
-		$interestDao =& DAORegistry::getDAO('InterestDAO'); /* @var $interestDao InterestDAO */
-		$interestEntryDao =& DAORegistry::getDAO('InterestEntryDAO'); /* @var $interestEntryDao InterestEntryDAO */
+		$interestDao = DAORegistry::getDAO('InterestDAO'); /* @var $interestDao InterestDAO */
+		$interestEntryDao = DAORegistry::getDAO('InterestEntryDAO'); /* @var $interestEntryDao InterestEntryDAO */
 
 		// Check if this upgrade method has already been run to prevent data corruption on subsequent upgrade attempts
 		$idempotenceCheck =& $interestDao->retrieve('SELECT * FROM controlled_vocabs cv WHERE symbolic = ?', array('interest'));

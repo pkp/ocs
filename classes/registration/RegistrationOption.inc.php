@@ -135,7 +135,7 @@ class RegistrationOption extends DataObject {
 	 * @return int
 	 */
 	function getCurrencyString() {
-		$currencyDao =& DAORegistry::getDAO('CurrencyDAO');
+		$currencyDao = DAORegistry::getDAO('CurrencyDAO');
 		$currency =& $currencyDao->getCurrencyByAlphaCode($this->getData('currencyCodeAlpha'));
 
 		if ($currency != null) {
@@ -150,7 +150,7 @@ class RegistrationOption extends DataObject {
 	 * @return int
 	 */
 	function getCurrencyStringShort() {
-		$currencyDao =& DAORegistry::getDAO('CurrencyDAO');
+		$currencyDao = DAORegistry::getDAO('CurrencyDAO');
 		$currency =& $currencyDao->getCurrencyByAlphaCode($this->getData('currencyCodeAlpha'));
 
 		if ($currency != null) {

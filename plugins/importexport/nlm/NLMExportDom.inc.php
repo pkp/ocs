@@ -47,7 +47,7 @@ class NLMExportDom {
 	function &generatePaperDom(&$doc, &$conference, &$track, &$paper) {
 
 		// register the editor submission DAO for use later
-//		$editorSubmissionDao =& DAORegistry::getDAO('EditorSubmissionDAO');
+//		$editorSubmissionDao = DAORegistry::getDAO('EditorSubmissionDAO');
 
 		/* --- MeetingAbstract --- */
 		$root =& XMLCustomWriter::createElement($doc, 'MeetingAbstract');

@@ -49,7 +49,7 @@ class CommentForm extends Form {
 
 		$this->paperId = $paperId;
 
-		$commentDao =& DAORegistry::getDAO('CommentDAO');
+		$commentDao = DAORegistry::getDAO('CommentDAO');
 		$this->comment =& $commentDao->getById($commentId, $paperId);
 
 		$this->captchaEnabled = Config::getVar('captcha', 'captcha_on_comments') && Config::getVar('captcha', 'recaptcha');
@@ -81,7 +81,7 @@ class CommentForm extends Form {
 				'posterEmail' => $comment->getPosterEmail()
 			);
 		} else {
-			$commentDao =& DAORegistry::getDAO('CommentDAO');
+			$commentDao = DAORegistry::getDAO('CommentDAO');
 			$comment =& $commentDao->getById($this->parentId, $this->paperId);
 			$this->_data = array();
 			$user = Request::getUser();
@@ -166,7 +166,7 @@ class CommentForm extends Form {
 		$commentsRequireRegistration = $conference->getSetting('commentsRequireRegistration');
 		$commentsAllowAnonymous = $conference->getSetting('commentsAllowAnonymous');
 
-		$commentDao =& DAORegistry::getDAO('CommentDAO');
+		$commentDao = DAORegistry::getDAO('CommentDAO');
 
 		$comment = $this->comment;
 		if (!isset($comment)) {

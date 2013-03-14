@@ -109,7 +109,7 @@ class SubmissionCommentsHandler extends AuthorHandler {
 
 		AuthorAction::saveComment($request, $authorSubmission, $comment, $emailComment);
 
-		$paperCommentDao =& DAORegistry::getDAO('PaperCommentDAO');
+		$paperCommentDao = DAORegistry::getDAO('PaperCommentDAO');
 		$comment =& $paperCommentDao->getPaperCommentById($commentId);
 
 		// Redirect back to initial comments page

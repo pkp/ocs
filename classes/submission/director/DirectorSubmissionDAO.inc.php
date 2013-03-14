@@ -32,10 +32,10 @@ class DirectorSubmissionDAO extends DAO {
 	 */
 	function DirectorSubmissionDAO() {
 		parent::DAO();
-		$this->paperDao =& DAORegistry::getDAO('PaperDAO');
-		$this->authorDao =& DAORegistry::getDAO('AuthorDAO');
-		$this->userDao =& DAORegistry::getDAO('UserDAO');
-		$this->editAssignmentDao =& DAORegistry::getDAO('EditAssignmentDAO');
+		$this->paperDao = DAORegistry::getDAO('PaperDAO');
+		$this->authorDao = DAORegistry::getDAO('AuthorDAO');
+		$this->userDao = DAORegistry::getDAO('UserDAO');
+		$this->editAssignmentDao = DAORegistry::getDAO('EditAssignmentDAO');
 	}
 
 	/**
@@ -102,7 +102,7 @@ class DirectorSubmissionDAO extends DAO {
 		}
 
 		// Review Rounds
-		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
+		$reviewAssignmentDao = DAORegistry::getDAO('ReviewAssignmentDAO');
 		for ($i = REVIEW_ROUND_ABSTRACT; $i <= $directorSubmission->getCurrentRound(); $i++) {
 			$reviewAssignments =& $reviewAssignmentDao->getBySubmissionId($directorSubmission->getId(), $i);
 			if (!empty($reviewAssignments)) {

@@ -338,7 +338,7 @@ class ConferenceEventLogEntry extends DataObject {
 	 * @return string
 	 */
 	function getUserFullName() {
-		$userDao =& DAORegistry::getDAO('UserDAO');
+		$userDao = DAORegistry::getDAO('UserDAO');
 		return $userDao->getUserFullName($this->getUserId(), true);
 	}
 
@@ -347,7 +347,7 @@ class ConferenceEventLogEntry extends DataObject {
 	 * @return string
 	 */
 	function getUserEmail() {
-		$userDao =& DAORegistry::getDAO('UserDAO');
+		$userDao = DAORegistry::getDAO('UserDAO');
 		return $userDao->getUserEmail($this->getUserId(), true);
 	}
 

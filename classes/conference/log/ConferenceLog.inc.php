@@ -24,8 +24,8 @@ class ConferenceLog {
 	 * @param $entry ConferenceEventLogEntry
 	 */
 	function logEventEntry($conferenceId, $schedConfId = null, &$entry) {
-		$conferenceDao =& DAORegistry::getDAO('ConferenceDAO');
-		$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
+		$conferenceDao = DAORegistry::getDAO('ConferenceDAO');
+		$schedConfDao = DAORegistry::getDAO('SchedConfDAO');
 
 		$conference = $conferenceDao->getById($conferenceId);
 		if(!$conference) {
@@ -46,7 +46,7 @@ class ConferenceLog {
 			$entry->setUserId($user == null ? 0 : $user->getId());
 		}
 
-		$logDao =& DAORegistry::getDAO('ConferenceEventLogDAO');
+		$logDao = DAORegistry::getDAO('ConferenceEventLogDAO');
 		return $logDao->insertLogEntry($entry);
 	}
 
@@ -96,7 +96,7 @@ class ConferenceLog {
 	 * @return array ConferenceEventLogEntry
 	 */
 	function &getEventLogEntries($conferenceId, $schedConfId = null, $rangeInfo = null) {
-		$logDao =& DAORegistry::getDAO('ConferenceEventLogDAO');
+		$logDao = DAORegistry::getDAO('ConferenceEventLogDAO');
 		$returner =& $logDao->getConferenceLogEntries($conferenceId, $schedConfId, $rangeInfo);
 		return $returner;
 	}

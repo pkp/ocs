@@ -103,9 +103,9 @@ class PayPalPlugin extends PaymethodPlugin {
 		switch ($queuedPayment->getType()) {
 			case QUEUED_PAYMENT_TYPE_REGISTRATION:
 				// Provide registration-specific details to template.
-				$registrationDao =& DAORegistry::getDAO('RegistrationDAO');
-				$registrationOptionDao =& DAORegistry::getDAO('RegistrationOptionDAO');
-				$registrationTypeDao =& DAORegistry::getDAO('RegistrationTypeDAO');
+				$registrationDao = DAORegistry::getDAO('RegistrationDAO');
+				$registrationOptionDao = DAORegistry::getDAO('RegistrationOptionDAO');
+				$registrationTypeDao = DAORegistry::getDAO('RegistrationTypeDAO');
 
 				$registration =& $registrationDao->getRegistration($queuedPayment->getAssocId());
 				if (!$registration || $registration->getUserId() != $queuedPayment->getUserId() || $registration->getSchedConfId() != $queuedPayment->getSchedConfId()) break;
@@ -175,7 +175,7 @@ class PayPalPlugin extends PaymethodPlugin {
 				// Check the confirmation response and handle as necessary.
 				if (strcmp($ret, 'VERIFIED') == 0) switch ($paymentStatus) {
 					case 'Completed':
-						$payPalDao =& DAORegistry::getDAO('PayPalDAO');
+						$payPalDao = DAORegistry::getDAO('PayPalDAO');
 						$transactionId = $request->getUserVar('txn_id');
 						if ($payPalDao->transactionExists($transactionId)) {
 							// A duplicate transaction was received; notify someone.
@@ -243,10 +243,10 @@ class PayPalPlugin extends PaymethodPlugin {
 							// Fulfill the queued payment.
 							if ($ocsPaymentManager->fulfillQueuedPayment($request, $queuedPaymentId, $queuedPayment)) {
 								// Send the registrant a notification that their payment was received
-								$schedConfSettingsDao =& DAORegistry::getDAO('SchedConfSettingsDAO');
+								$schedConfSettingsDao = DAORegistry::getDAO('SchedConfSettingsDAO');
 
 								// Get registrant name and email
-								$userDao =& DAORegistry::getDAO('UserDAO');
+								$userDao = DAORegistry::getDAO('UserDAO');
 								$user =& $userDao->getById($queuedPayment->getUserId());
 								$registrantName = $user->getFullName();
 								$registrantEmail = $user->getEmail();

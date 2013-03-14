@@ -45,7 +45,7 @@ class SpecialEventForm extends Form {
 	 * @return array
 	 */
 	function getLocaleFieldNames() {
-		$specialEventDao =& DAORegistry::getDAO('SpecialEventDAO');
+		$specialEventDao = DAORegistry::getDAO('SpecialEventDAO');
 		return $specialEventDao->getLocaleFieldNames();
 	}
 
@@ -77,7 +77,7 @@ class SpecialEventForm extends Form {
 	 */
 	function initData() {
 		if (isset($this->specialEventId)) {
-			$specialEventDao =& DAORegistry::getDAO('SpecialEventDAO');
+			$specialEventDao = DAORegistry::getDAO('SpecialEventDAO');
 			$specialEvent =& $specialEventDao->getSpecialEvent($this->specialEventId);
 
 			if ($specialEvent != null) {
@@ -115,7 +115,7 @@ class SpecialEventForm extends Form {
 	 * Save specialEvent. 
 	 */
 	function execute() {
-		$specialEventDao =& DAORegistry::getDAO('SpecialEventDAO');
+		$specialEventDao = DAORegistry::getDAO('SpecialEventDAO');
 		$schedConf =& Request::getSchedConf();
 
 		if (isset($this->specialEventId)) {

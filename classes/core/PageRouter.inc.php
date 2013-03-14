@@ -24,7 +24,7 @@ class PageRouter extends PKPPageRouter {
 	 * @param $request PKPRequest the request to be routed
 	 */
 	function redirectHome(&$request) {
-		$roleDao =& DAORegistry::getDAO('RoleDAO');
+		$roleDao = DAORegistry::getDAO('RoleDAO');
 		$user = $request->getUser();
 		$userId = $user->getId();
 
@@ -40,7 +40,7 @@ class PageRouter extends PKPPageRouter {
 			}
 		} elseif ($conference =& $this->getContext($request, 1)) {
 			// The user is in the conference context, see if they have one role only
-			$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
+			$schedConfDao = DAORegistry::getDAO('SchedConfDAO');
 			$roles =& $roleDao->getRolesByUserId($userId, $conference->getId());
 			if(count($roles) == 1) {
 				$role = array_shift($roles);
@@ -59,8 +59,8 @@ class PageRouter extends PKPPageRouter {
 		} else {
 			// The user is at the site context, check to see if they are
 			// only registered in one conf/SchedConf w/ one role
-			$conferenceDao =& DAORegistry::getDAO('ConferenceDAO');
-			$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
+			$conferenceDao = DAORegistry::getDAO('ConferenceDAO');
+			$schedConfDao = DAORegistry::getDAO('SchedConfDAO');
 			$roles = $roleDao->getRolesByUserId($userId);
 
 			if(count($roles) == 1) {

@@ -36,7 +36,7 @@ class SuppFileForm extends Form {
 		$this->paper = $paper;
 
 		if (isset($suppFileId) && !empty($suppFileId)) {
-			$suppFileDao =& DAORegistry::getDAO('SuppFileDAO');
+			$suppFileDao = DAORegistry::getDAO('SuppFileDAO');
 			$this->suppFile =& $suppFileDao->getSuppFile($suppFileId, $paper->getId());
 			if (isset($this->suppFile)) {
 				$this->suppFileId = $suppFileId;
@@ -53,7 +53,7 @@ class SuppFileForm extends Form {
 	 * @return array
 	 */
 	function getLocaleFieldNames() {
-		$suppFileDao =& DAORegistry::getDAO('SuppFileDAO');
+		$suppFileDao = DAORegistry::getDAO('SuppFileDAO');
 		return $suppFileDao->getLocaleFieldNames();
 	}
 
@@ -105,7 +105,7 @@ class SuppFileForm extends Form {
 	 */
 	function validate() {
 		$conference =& Request::getConference();
-		$suppFileDao =& DAORegistry::getDAO('SuppFileDAO');
+		$suppFileDao = DAORegistry::getDAO('SuppFileDAO');
 
 		$publicSuppFileId = $this->getData('publicSuppFileId');
 		if ($publicSuppFileId && $suppFileDao->suppFileExistsByPublicId($publicSuppFileId, $this->suppFileId, $conference->getId())) {
@@ -177,7 +177,7 @@ class SuppFileForm extends Form {
 	function execute($fileName = null) {
 		import('classes.file.PaperFileManager');
 		$paperFileManager = new PaperFileManager($this->paper->getPaperId());
-		$suppFileDao =& DAORegistry::getDAO('SuppFileDAO');
+		$suppFileDao = DAORegistry::getDAO('SuppFileDAO');
 
 		$fileName = isset($fileName) ? $fileName : 'uploadSuppFile';
 

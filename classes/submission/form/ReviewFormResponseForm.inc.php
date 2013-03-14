@@ -36,7 +36,7 @@ class ReviewFormResponseForm extends Form {
 		$this->reviewId = $reviewId;
 		$this->reviewFormId = $reviewFormId;
 
-		$reviewFormElementDao =& DAORegistry::getDAO('ReviewFormElementDAO');
+		$reviewFormElementDao = DAORegistry::getDAO('ReviewFormElementDAO');
 		$requiredReviewFormElementIds = $reviewFormElementDao->getRequiredReviewFormElementIds($this->reviewFormId);
 
 		$this->addCheck(new FormValidatorCustom($this, 'reviewFormResponses', 'required', 'reviewer.paper.reviewFormResponse.form.responseRequired', create_function('$reviewFormResponses, $requiredReviewFormElementIds', 'foreach ($requiredReviewFormElementIds as $requiredReviewFormElementId) { if (!isset($reviewFormResponses[$requiredReviewFormElementId]) || $reviewFormResponses[$requiredReviewFormElementId] == \'\') return false; } return true;'), array($requiredReviewFormElementIds)));
@@ -48,13 +48,13 @@ class ReviewFormResponseForm extends Form {
 	 */
 	function display($request) {
 		$conference =& $request->getConference();
-		$reviewFormDao =& DAORegistry::getDAO('ReviewFormDAO');
+		$reviewFormDao = DAORegistry::getDAO('ReviewFormDAO');
 		$reviewForm =& $reviewFormDao->getReviewForm($this->reviewFormId, ASSOC_TYPE_CONFERENCE, $conference->getId());
-		$reviewFormElementDao =& DAORegistry::getDAO('ReviewFormElementDAO');
+		$reviewFormElementDao = DAORegistry::getDAO('ReviewFormElementDAO');
 		$reviewFormElements =& $reviewFormElementDao->getReviewFormElements($this->reviewFormId);
-		$reviewFormResponseDao =& DAORegistry::getDAO('ReviewFormResponseDAO');
+		$reviewFormResponseDao = DAORegistry::getDAO('ReviewFormResponseDAO');
 		$reviewFormResponses =& $reviewFormResponseDao->getReviewReviewFormResponseValues($this->reviewId);
-		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
+		$reviewAssignmentDao = DAORegistry::getDAO('ReviewAssignmentDAO');
 		$reviewAssignment = $reviewAssignmentDao->getById($this->reviewId);
 
 		$editorPreview = $request->getRequestedPage() != 'reviewer';
@@ -103,7 +103,7 @@ class ReviewFormResponseForm extends Form {
 			if (!isset($reviewFormResponse)) {
 				$reviewFormResponse = new ReviewFormResponse();
 			}
-			$reviewFormElementDao =& DAORegistry::getDAO('ReviewFormElementDAO');
+			$reviewFormElementDao = DAORegistry::getDAO('ReviewFormElementDAO');
 			$reviewFormElement = $reviewFormElementDao->getReviewFormElement($reviewFormElementId);
 			$elementType = $reviewFormElement->getElementType();
 			switch ($elementType) {

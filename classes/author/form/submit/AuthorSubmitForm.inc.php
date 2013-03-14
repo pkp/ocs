@@ -68,7 +68,7 @@ class AuthorSubmitForm extends Form {
 		$templateMgr->assign('helpTopicId', $helpTopicId);
 
 		$schedConf =& Request::getSchedConf();
-		$settingsDao =& DAORegistry::getDAO('SchedConfSettingsDAO');
+		$settingsDao = DAORegistry::getDAO('SchedConfSettingsDAO');
 
 		// Determine which submission steps should be shown
 
@@ -112,7 +112,7 @@ class AuthorSubmitForm extends Form {
 				if (!empty($copyAddress)) $mail->addBcc($copyAddress);
 			}
 
-			$editAssignmentDao =& DAORegistry::getDAO('EditAssignmentDAO');
+			$editAssignmentDao = DAORegistry::getDAO('EditAssignmentDAO');
 			$editAssignments =& $editAssignmentDao->getEditAssignmentsByPaperId($paper->getId());
 			while ($editAssignment =& $editAssignments->next()) {
 				$mail->addBcc($editAssignment->getDirectorEmail(), $editAssignment->getDirectorFullName());
@@ -139,8 +139,8 @@ class AuthorSubmitForm extends Form {
 		$trackId = $paper->getTrackId();
 		$schedConf =& Request::getSchedConf();
 
-		$trackDirectorsDao =& DAORegistry::getDAO('TrackDirectorsDAO');
-		$editAssignmentDao =& DAORegistry::getDAO('EditAssignmentDAO');
+		$trackDirectorsDao = DAORegistry::getDAO('TrackDirectorsDAO');
+		$editAssignmentDao = DAORegistry::getDAO('EditAssignmentDAO');
 
 		$trackDirectors =& $trackDirectorsDao->getDirectorsByTrackId($schedConf->getId(), $trackId);
 

@@ -96,7 +96,7 @@ class RegistrationPolicyForm extends Form {
 	 * Initialize form data from current registration policies.
 	 */
 	function initData() {
-		$schedConfSettingsDao =& DAORegistry::getDAO('SchedConfSettingsDAO');
+		$schedConfSettingsDao = DAORegistry::getDAO('SchedConfSettingsDAO');
 		$schedConf =& Request::getSchedConf();
 		$schedConfId = $schedConf->getId();
 
@@ -161,7 +161,7 @@ class RegistrationPolicyForm extends Form {
 	 * Save registration policies. 
 	 */
 	function execute() {
-		$schedConfSettingsDao =& DAORegistry::getDAO('SchedConfSettingsDAO');
+		$schedConfSettingsDao = DAORegistry::getDAO('SchedConfSettingsDAO');
 		$schedConf =& Request::getSchedConf();
 		$schedConfId = $schedConf->getId();
 

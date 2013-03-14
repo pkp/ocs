@@ -67,7 +67,7 @@ class ConferenceSetupForm extends Form {
 	 */
 	function execute() {
 		$conference =& Request::getConference();
-		$settingsDao =& DAORegistry::getDAO('ConferenceSettingsDAO');
+		$settingsDao = DAORegistry::getDAO('ConferenceSettingsDAO');
 
 		foreach ($this->_data as $name => $value) {
 			if (isset($this->settings[$name])) {
@@ -90,7 +90,7 @@ class ConferenceSetupForm extends Form {
 	 */
 	function uploadImage($settingName, $locale) {
 		$conference =& Request::getConference();
-		$settingsDao =& DAORegistry::getDAO('ConferenceSettingsDAO');
+		$settingsDao = DAORegistry::getDAO('ConferenceSettingsDAO');
 		$faviconTypes = array('.ico', '.png', '.gif');
 
 		import('classes.file.PublicFileManager');
@@ -136,7 +136,7 @@ class ConferenceSetupForm extends Form {
 	 */
 	function deleteImage($settingName, $locale = null) {
 		$conference =& Request::getConference();
-		$settingsDao =& DAORegistry::getDAO('ConferenceSettingsDAO');
+		$settingsDao = DAORegistry::getDAO('ConferenceSettingsDAO');
 		$setting = $settingsDao->getSetting($conference->getId(), $settingName);
 
 		import('classes.file.PublicFileManager');

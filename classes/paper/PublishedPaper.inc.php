@@ -227,7 +227,7 @@ class PublishedPaper extends Paper {
 	function getBestPaperId($conference = null) {
 		// Retrieve the conference, if necessary.
 		if (!isset($schedConf)) {
-			$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
+			$schedConfDao = DAORegistry::getDAO('SchedConfDAO');
 			$schedConf = $schedConfDao->getById($this->getSchedConfId());
 		}
 

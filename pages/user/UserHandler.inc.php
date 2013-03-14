@@ -38,8 +38,8 @@ class UserHandler extends PKPUserHandler {
 		$schedConfsToDisplay = array();
 		$conferencesToDisplay = array();
 
-		$roleDao =& DAORegistry::getDAO('RoleDAO');
-		$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
+		$roleDao = DAORegistry::getDAO('RoleDAO');
+		$schedConfDao = DAORegistry::getDAO('SchedConfDAO');
 
 		$this->setupTemplate($request);
 		$templateMgr =& TemplateManager::getManager($request);
@@ -53,7 +53,7 @@ class UserHandler extends PKPUserHandler {
 			unset($conference);
 
 			// Show roles for all conferences
-			$conferenceDao =& DAORegistry::getDAO('ConferenceDAO');
+			$conferenceDao = DAORegistry::getDAO('ConferenceDAO');
 			$conferences =& $conferenceDao->getConferences();
 
 			// Fetch the user's roles for each conference
@@ -150,26 +150,26 @@ class UserHandler extends PKPUserHandler {
 	 */
 	function _getRoleDataForConference($userId, $conferenceId, $schedConfId, &$submissionsCount, &$isValid) {
 		if (Validation::isConferenceManager($conferenceId)) {
-			$conferenceDao =& DAORegistry::getDAO('ConferenceDAO');
+			$conferenceDao = DAORegistry::getDAO('ConferenceDAO');
 			$isValid["ConferenceManager"][$conferenceId][$schedConfId] = true;
 		}
 		if (Validation::isDirector($conferenceId, $schedConfId)) {
 			$isValid["Director"][$conferenceId][$schedConfId] = true;
-			$directorSubmissionDao =& DAORegistry::getDAO('DirectorSubmissionDAO');
+			$directorSubmissionDao = DAORegistry::getDAO('DirectorSubmissionDAO');
 			$submissionsCount["Director"][$conferenceId][$schedConfId] = $directorSubmissionDao->getDirectorSubmissionsCount($schedConfId);
 		}
 		if (Validation::isTrackDirector($conferenceId, $schedConfId)) {
-			$trackDirectorSubmissionDao =& DAORegistry::getDAO('TrackDirectorSubmissionDAO');
+			$trackDirectorSubmissionDao = DAORegistry::getDAO('TrackDirectorSubmissionDAO');
 			$submissionsCount["TrackDirector"][$conferenceId][$schedConfId] = $trackDirectorSubmissionDao->getTrackDirectorSubmissionsCount($userId, $schedConfId);
 			$isValid["TrackDirector"][$conferenceId][$schedConfId] = true;
 		}
 		if (Validation::isReviewer($conferenceId, $schedConfId)) {
-			$reviewerSubmissionDao =& DAORegistry::getDAO('ReviewerSubmissionDAO');
+			$reviewerSubmissionDao = DAORegistry::getDAO('ReviewerSubmissionDAO');
 			$submissionsCount["Reviewer"][$conferenceId][$schedConfId] = $reviewerSubmissionDao->getSubmissionsCount($userId, $schedConfId);
 			$isValid["Reviewer"][$conferenceId][$schedConfId] = true;
 		} 
 		if (Validation::isAuthor($conferenceId, $schedConfId)) {
-			$authorSubmissionDao =& DAORegistry::getDAO('AuthorSubmissionDAO');
+			$authorSubmissionDao = DAORegistry::getDAO('AuthorSubmissionDAO');
 			$submissionsCount["Author"][$conferenceId][$schedConfId] = $authorSubmissionDao->getSubmissionsCount($userId, $schedConfId);
 			$isValid["Author"][$conferenceId][$schedConfId] = true;
 		}
@@ -224,7 +224,7 @@ class UserHandler extends PKPUserHandler {
 			$role->setRoleId($roleId);
 			$role->setUserId($user->getId());
 
-			$roleDao =& DAORegistry::getDAO('RoleDAO');
+			$roleDao = DAORegistry::getDAO('RoleDAO');
 			$roleDao->insertRole($role);
 			$request->redirectUrl($request->getUserVar('source'));
 		} else {

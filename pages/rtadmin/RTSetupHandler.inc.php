@@ -33,7 +33,7 @@ class RTSetupHandler extends RTAdminHandler {
 			$this->setupTemplate($request, true);
 			$templateMgr =& TemplateManager::getManager($request);
 
-			$rtDao =& DAORegistry::getDAO('RTDAO');
+			$rtDao = DAORegistry::getDAO('RTDAO');
 			$rt = $rtDao->getConferenceRTByConference($conference);
 
 			$versionOptions = array();
@@ -71,7 +71,7 @@ class RTSetupHandler extends RTAdminHandler {
 		$conference = $request->getConference();
 
 		if ($conference) {
-			$rtDao =& DAORegistry::getDAO('RTDAO');
+			$rtDao = DAORegistry::getDAO('RTDAO');
 			$rt = $rtDao->getConferenceRTByConference($conference);
 
 			if ($request->getUserVar('version')=='') $rt->setVersion(null);

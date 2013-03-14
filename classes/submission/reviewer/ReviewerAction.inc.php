@@ -38,8 +38,8 @@ class ReviewerAction extends Action {
 	 * @param $send boolean
 	 */
 	function confirmReview($reviewerSubmission, $decline, $send) {
-		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
-		$userDao =& DAORegistry::getDAO('UserDAO');
+		$reviewAssignmentDao = DAORegistry::getDAO('ReviewAssignmentDAO');
+		$userDao = DAORegistry::getDAO('UserDAO');
 
 		$reviewId = $reviewerSubmission->getReviewId();
 
@@ -120,8 +120,8 @@ class ReviewerAction extends Action {
 	 * @param $send boolean
 	 */
 	function recordRecommendation(&$reviewerSubmission, $recommendation, $send) {
-		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
-		$userDao =& DAORegistry::getDAO('UserDAO');
+		$reviewAssignmentDao = DAORegistry::getDAO('ReviewAssignmentDAO');
+		$userDao = DAORegistry::getDAO('UserDAO');
 
 		// Check validity of selected recommendation
 		$reviewerRecommendationOptions =& ReviewAssignment::getReviewerRecommendationOptions();
@@ -205,7 +205,7 @@ class ReviewerAction extends Action {
 	 */
 	function uploadReviewerVersion($reviewId) {
 		import('classes.file.PaperFileManager');
-		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
+		$reviewAssignmentDao = DAORegistry::getDAO('ReviewAssignmentDAO');
 		$reviewAssignment =& $reviewAssignmentDao->getById($reviewId);
 
 		$paperFileManager = new PaperFileManager($reviewAssignment->getSubmissionId());
@@ -233,7 +233,7 @@ class ReviewerAction extends Action {
 		import('classes.paper.log.PaperLog');
 		import('classes.paper.log.PaperEventLogEntry');
 
-		$userDao =& DAORegistry::getDAO('UserDAO');
+		$userDao = DAORegistry::getDAO('UserDAO');
 		$reviewer =& $userDao->getById($reviewAssignment->getReviewerId());
 
 		$entry = new PaperEventLogEntry();
@@ -259,7 +259,7 @@ class ReviewerAction extends Action {
 		import('classes.file.PaperFileManager');
 
 		$paperId = Request::getUserVar('paperId');
-		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
+		$reviewAssignmentDao = DAORegistry::getDAO('ReviewAssignmentDAO');
 		$reviewAssignment =& $reviewAssignmentDao->getById($reviewId);
 
 		if (!HookRegistry::call('ReviewerAction::deleteReviewerVersion', array(&$reviewAssignment, &$fileId, &$revision))) {
@@ -364,10 +364,10 @@ class ReviewerAction extends Action {
 				// Send a notification to associated users
 				import('classes.notification.NotificationManager');
 				$notificationManager = new NotificationManager();
-				$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
+				$reviewAssignmentDao = DAORegistry::getDAO('ReviewAssignmentDAO');
 				$reviewAssignment = $reviewAssignmentDao->getById($reviewId);
 				$paperId = $reviewAssignment->getSubmissionId();
-				$paperDao =& DAORegistry::getDAO('PaperDAO');
+				$paperDao = DAORegistry::getDAO('PaperDAO');
 				$paper =& $paperDao->getPaper($paperId);
 				$notificationUsers = $paper->getAssociatedUserIds(false, false);
 				$conference = $request->getConference();
@@ -398,7 +398,7 @@ class ReviewerAction extends Action {
 	 * @param $revision int
 	 */
 	function downloadReviewerFile($reviewId, &$paper, $fileId, $revision = null) {
-		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
+		$reviewAssignmentDao = DAORegistry::getDAO('ReviewAssignmentDAO');
 		$reviewAssignment =& $reviewAssignmentDao->getById($reviewId);
 		$conference =& Request::getConference();
 

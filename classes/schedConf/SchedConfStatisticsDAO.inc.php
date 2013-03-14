@@ -150,7 +150,7 @@ class SchedConfStatisticsDAO extends DAO {
 	 * @return array
 	 */
 	function getUserStatistics($schedConfId, $dateStart = null, $dateEnd = null) {
-		$roleDao =& DAORegistry::getDAO('RoleDAO');
+		$roleDao = DAORegistry::getDAO('RoleDAO');
 
 		// Get count of total users for this scheduled conference
 		$result =& $this->retrieve(

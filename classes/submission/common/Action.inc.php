@@ -242,7 +242,7 @@ class Action extends PKPAction {
 	function deleteComment($commentId, $user = null) {
 		if ($user == null) $user =& Request::getUser();
 
-		$paperCommentDao =& DAORegistry::getDAO('PaperCommentDAO');
+		$paperCommentDao = DAORegistry::getDAO('PaperCommentDAO');
 		$comment =& $paperCommentDao->getPaperCommentById($commentId);
 
 		if ($comment->getAuthorId() == $user->getId()) {

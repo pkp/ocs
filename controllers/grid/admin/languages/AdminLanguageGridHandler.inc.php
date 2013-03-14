@@ -41,7 +41,7 @@ class AdminLanguageGridHandler extends PKPAdminLanguageGridHandler {
 		$site =& $request->getSite();
 		$siteSupportedLocales = $site->getSupportedLocales();
 
-		$conferenceDao =& DAORegistry::getDAO('ConferenceDAO');
+		$conferenceDao = DAORegistry::getDAO('ConferenceDAO');
 		$contexts = $conferenceDao->getConferences()->toArray();
 		foreach ($contexts as $context) {
 			$primaryLocale = $context->getPrimaryLocale();
@@ -66,7 +66,7 @@ class AdminLanguageGridHandler extends PKPAdminLanguageGridHandler {
 	 * @return boolean
 	 */
 	function _canManage($request) {
-		$conferenceDao =& DAORegistry::getDAO('ConferenceDAO');
+		$conferenceDao = DAORegistry::getDAO('ConferenceDAO');
 		$conferences =& $conferenceDao->getConferences();
 		$userRoles = $this->getAuthorizedContextObject(ASSOC_TYPE_USER_ROLES);
 		$conference =& $request->getConference();

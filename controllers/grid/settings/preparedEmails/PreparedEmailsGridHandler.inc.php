@@ -124,7 +124,7 @@ class PreparedEmailsGridHandler extends PKPPreparedEmailsGridHandler {
 
 		$conference =& $request->getConference();
 
-		$emailTemplateDao =& DAORegistry::getDAO('EmailTemplateDAO'); /* @var $emailTemplateDao EmailTemplateDAO */
+		$emailTemplateDao = DAORegistry::getDAO('EmailTemplateDAO'); /* @var $emailTemplateDao EmailTemplateDAO */
 		if ($emailTemplateDao->templateExistsByKey($emailKey, $conference->getId())) {
 			$emailTemplateDao->deleteEmailTemplateByKey($emailKey, $conference->getId());
 			return DAO::getDataChangedEvent($emailKey);
@@ -141,7 +141,7 @@ class PreparedEmailsGridHandler extends PKPPreparedEmailsGridHandler {
 	 */
 	function resetAllEmails($args, &$request) {
 		$conference =& $request->getConference();
-		$emailTemplateDao =& DAORegistry::getDAO('EmailTemplateDAO'); /* @var $emailTemplateDao EmailTemplateDAO */
+		$emailTemplateDao = DAORegistry::getDAO('EmailTemplateDAO'); /* @var $emailTemplateDao EmailTemplateDAO */
 		$emailTemplateDao->deleteEmailTemplatesByConference($conference->getId());
 		return DAO::getDataChangedEvent();
 	}
@@ -157,7 +157,7 @@ class PreparedEmailsGridHandler extends PKPPreparedEmailsGridHandler {
 
 		$conference =& $request->getConference();
 
-		$emailTemplateDao =& DAORegistry::getDAO('EmailTemplateDAO'); /* @var $emailTemplateDao EmailTemplateDAO */
+		$emailTemplateDao = DAORegistry::getDAO('EmailTemplateDAO'); /* @var $emailTemplateDao EmailTemplateDAO */
 		$emailTemplate = $emailTemplateDao->getBaseEmailTemplate($emailKey, $conference->getId());
 
 		if (isset($emailTemplate)) {
@@ -195,7 +195,7 @@ class PreparedEmailsGridHandler extends PKPPreparedEmailsGridHandler {
 
 		$conference =& $request->getConference();
 
-		$emailTemplateDao =& DAORegistry::getDAO('EmailTemplateDAO'); /* @var $emailTemplateDao EmailTemplateDAO */
+		$emailTemplateDao = DAORegistry::getDAO('EmailTemplateDAO'); /* @var $emailTemplateDao EmailTemplateDAO */
 		$emailTemplate = $emailTemplateDao->getBaseEmailTemplate($emailKey, $conference->getId());
 
 		if (isset($emailTemplate)) {
@@ -225,7 +225,7 @@ class PreparedEmailsGridHandler extends PKPPreparedEmailsGridHandler {
 		$emailKey = $request->getUserVar('emailKey');
 		$conference =& $request->getConference();
 
-		$emailTemplateDao =& DAORegistry::getDAO('EmailTemplateDAO'); /* @var $emailTemplateDao EmailTemplateDAO */
+		$emailTemplateDao = DAORegistry::getDAO('EmailTemplateDAO'); /* @var $emailTemplateDao EmailTemplateDAO */
 		if ($emailTemplateDao->customTemplateExistsByKey($emailKey, $conference->getId())) {
 			$emailTemplateDao->deleteEmailTemplateByKey($emailKey, $conference->getId());
 			return DAO::getDataChangedEvent($emailKey);

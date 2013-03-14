@@ -29,7 +29,7 @@ class PaperReportDAO extends DAO {
 	function getPaperReport($conferenceId, $schedConfId) {
 		$primaryLocale = AppLocale::getPrimaryLocale();
 		$locale = AppLocale::getLocale();
-		$paperTypeDao =& DAORegistry::getDAO('PaperTypeDAO'); // Load constants
+		$paperTypeDao = DAORegistry::getDAO('PaperTypeDAO'); // Load constants
 
 		$result =& $this->retrieve(
 			'SELECT	p.status AS status,
@@ -118,7 +118,7 @@ class PaperReportDAO extends DAO {
 			unset($result);
 		}
 
-		$paperDao =& DAORegistry::getDAO('PaperDAO');
+		$paperDao = DAORegistry::getDAO('PaperDAO');
 		$papers =& $paperDao->getPapersBySchedConfId($schedConfId);
 		$authorsReturner = array();
 		$index = 1;

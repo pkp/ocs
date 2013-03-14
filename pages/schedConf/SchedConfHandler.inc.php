@@ -46,7 +46,7 @@ class SchedConfHandler extends Handler {
 			$enableAnnouncementsHomepage = $conference->getSetting('enableAnnouncementsHomepage');
 			if ($enableAnnouncementsHomepage) {
 				$numAnnouncementsHomepage = $conference->getSetting('numAnnouncementsHomepage');
-				$announcementDao =& DAORegistry::getDAO('AnnouncementDAO');
+				$announcementDao = DAORegistry::getDAO('AnnouncementDAO');
 				$announcements =& $announcementDao->getNumAnnouncementsNotExpiredByConferenceId($conference->getId(), $schedConf->getId(), $numAnnouncementsHomepage);
 				$templateMgr->assign('announcements', $announcements);
 				$templateMgr->assign('enableAnnouncementsHomepage', $enableAnnouncementsHomepage);
@@ -80,8 +80,8 @@ class SchedConfHandler extends Handler {
 			array($request->url(null, null, 'index'), $schedConf->getLocalizedName(), true)));
 		$this->setupTemplate($request, $conference, $schedConf);
 
-		$trackDao =& DAORegistry::getDAO('TrackDAO');
-		$trackDirectorsDao =& DAORegistry::getDAO('TrackDirectorsDAO');
+		$trackDao = DAORegistry::getDAO('TrackDAO');
+		$trackDirectorsDao = DAORegistry::getDAO('TrackDirectorsDAO');
 		$tracks = array();
 		$tracks =& $trackDao->getSchedConfTracks($schedConf->getId());
 		$tracks =& $tracks->toArray();
@@ -211,7 +211,7 @@ class SchedConfHandler extends Handler {
 		$this->setupTemplate($request, $conference, $schedConf);
 
 		$user =& $request->getUser();
-		$registrationDao =& DAORegistry::getDAO('RegistrationDAO');
+		$registrationDao = DAORegistry::getDAO('RegistrationDAO');
 		$registration = null;
 		if ($user && ($registrationId = $registrationDao->getRegistrationIdByUser($user->getId(), $schedConf->getId()))) {
 			// This user has already registered.
@@ -244,7 +244,7 @@ class SchedConfHandler extends Handler {
 			$form->display();
 		} else {
 			// A registration type has not been chosen; prompt for one.
-			$registrationTypeDao =& DAORegistry::getDAO('RegistrationTypeDAO');
+			$registrationTypeDao = DAORegistry::getDAO('RegistrationTypeDAO');
 			$registrationTypes =& $registrationTypeDao->getRegistrationTypesBySchedConfId($schedConf->getId());
 			$templateMgr->assign_by_ref('registrationTypes', $registrationTypes);
 			$templateMgr->assign('registration', $registration);
@@ -268,7 +268,7 @@ class SchedConfHandler extends Handler {
 		if (!$paymentManager->isConfigured()) $request->redirect(null, null, 'index');
 
 		$user =& $request->getUser();
-		$registrationDao =& DAORegistry::getDAO('RegistrationDAO');
+		$registrationDao = DAORegistry::getDAO('RegistrationDAO');
 		$registration = null;
 		if ($user && ($registrationId = $registrationDao->getRegistrationIdByUser($user->getId(), $schedConf->getId()))) {
 			// This user has already registered.
@@ -298,13 +298,13 @@ class SchedConfHandler extends Handler {
 				import('mail.MailTemplate');
 				$mail = new MailTemplate('USER_REGISTRATION_NOTIFY');
 				$mail->setFrom($schedConf->getSetting('contactEmail'), $schedConf->getSetting('contactName'));
-				$registrationTypeDao =& DAORegistry::getDAO('RegistrationTypeDAO');
+				$registrationTypeDao = DAORegistry::getDAO('RegistrationTypeDAO');
 				$registrationType =& $registrationTypeDao->getRegistrationType($typeId);
 
 				// Determine the registration options for inclusion
 				$registrationOptionText = '';
 				$totalCost = $registrationType->getCost();
-				$registrationOptionDao =& DAORegistry::getDAO('RegistrationOptionDAO');
+				$registrationOptionDao = DAORegistry::getDAO('RegistrationOptionDAO');
 				$registrationOptionIterator =& $registrationOptionDao->getRegistrationOptionsBySchedConfId($schedConf->getId());
 				$registrationOptionCosts = $registrationTypeDao->getRegistrationOptionCosts($typeId);
 				$registrationOptionIds = $registrationOptionDao->getRegistrationOptions($registration->getRegistrationId());
@@ -400,8 +400,8 @@ class SchedConfHandler extends Handler {
 			array($request->url(null, null, 'index'), $schedConf->getLocalizedName(), true)));
 		$this->setupTemplate($request, $conference, $schedConf);
 
-		$buildingDao =& DAORegistry::getDAO('BuildingDAO');
-		$roomDao =& DAORegistry::getDAO('RoomDAO');
+		$buildingDao = DAORegistry::getDAO('BuildingDAO');
+		$roomDao = DAORegistry::getDAO('RoomDAO');
 
 		$buildingsAndRooms = $allRooms = array();
 		$buildings =& $buildingDao->getBuildingsBySchedConfId($schedConf->getId());
@@ -426,7 +426,7 @@ class SchedConfHandler extends Handler {
 		// Merge special events and papers into an array by time/date
 		$itemsByTime = array();
 
-		$publishedPaperDao =& DAORegistry::getDAO('PublishedPaperDAO');
+		$publishedPaperDao = DAORegistry::getDAO('PublishedPaperDAO');
 		$publishedPapers =& $publishedPaperDao->getPublishedPapers($schedConf->getId(), PAPER_SORT_ORDER_TIME);
 		while ($paper =& $publishedPapers->next()) {
 			if ($paper->getStartTime()) {
@@ -437,7 +437,7 @@ class SchedConfHandler extends Handler {
 		}
 		unset($publishedPapers);
 
-		$specialEventDao =& DAORegistry::getDAO('SpecialEventDAO');
+		$specialEventDao = DAORegistry::getDAO('SpecialEventDAO');
 		$specialEvents =& $specialEventDao->getSpecialEventsBySchedConfId($schedConf->getId());
 		while ($specialEvent =& $specialEvents->next()) {
 			$startTime = strtotime($specialEvent->getStartTime());
@@ -524,8 +524,8 @@ class SchedConfHandler extends Handler {
 		$templateMgr->assign('mayViewPapers', $mayViewPapers);
 
 		if($mayViewProceedings) {
-			$publishedPaperDao =& DAORegistry::getDAO('PublishedPaperDAO');
-			$trackDao =& DAORegistry::getDAO('TrackDAO');
+			$publishedPaperDao = DAORegistry::getDAO('PublishedPaperDAO');
+			$trackDao = DAORegistry::getDAO('TrackDAO');
 
 			$tracks =& $trackDao->getTrackTitles($schedConf->getId());
 

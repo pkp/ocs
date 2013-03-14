@@ -40,7 +40,7 @@ class TimeBlockForm extends Form {
 	function checkBlockSequence($aStart) {
 		$aEnd = $this->getData('endTime');
 
-		$timeBlockDao =& DAORegistry::getDAO('TimeBlockDAO');
+		$timeBlockDao = DAORegistry::getDAO('TimeBlockDAO');
 		$schedConf =& Request::getSchedConf();
 
 		$allOk = true;
@@ -95,7 +95,7 @@ class TimeBlockForm extends Form {
 	 * @return array
 	 */
 	function getLocaleFieldNames() {
-		$timeBlockDao =& DAORegistry::getDAO('TimeBlockDAO');
+		$timeBlockDao = DAORegistry::getDAO('TimeBlockDAO');
 		return $timeBlockDao->getLocaleFieldNames();
 	}
 
@@ -123,7 +123,7 @@ class TimeBlockForm extends Form {
 	 */
 	function initData() {
 		if (isset($this->timeBlockId)) {
-			$timeBlockDao =& DAORegistry::getDAO('TimeBlockDAO');
+			$timeBlockDao = DAORegistry::getDAO('TimeBlockDAO');
 			$timeBlock =& $timeBlockDao->getTimeBlock($this->timeBlockId);
 
 			if ($timeBlock != null) {
@@ -152,7 +152,7 @@ class TimeBlockForm extends Form {
 	 * Save time block. 
 	 */
 	function execute() {
-		$timeBlockDao =& DAORegistry::getDAO('TimeBlockDAO');
+		$timeBlockDao = DAORegistry::getDAO('TimeBlockDAO');
 		$schedConf =& Request::getSchedConf();
 
 		if (isset($this->timeBlockId)) {

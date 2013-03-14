@@ -75,7 +75,7 @@ class CommentForm extends Form {
 	function display() {
 		$paper = $this->paper;
 
-		$paperCommentDao =& DAORegistry::getDAO('PaperCommentDAO');
+		$paperCommentDao = DAORegistry::getDAO('PaperCommentDAO');
 		$paperComments =& $paperCommentDao->getPaperComments($paper->getId(), $this->commentType, $this->assocId);
 
 		$templateMgr =& TemplateManager::getManager();
@@ -104,7 +104,7 @@ class CommentForm extends Form {
 	 * Add the comment.
 	 */
 	function execute() {
-		$commentDao =& DAORegistry::getDAO('PaperCommentDAO');
+		$commentDao = DAORegistry::getDAO('PaperCommentDAO');
 		$paper = $this->paper;
 
 		// Insert new comment		
@@ -128,7 +128,7 @@ class CommentForm extends Form {
 	 */
 	function email($recipients) {
 		$paper = $this->paper;
-		$paperCommentDao =& DAORegistry::getDAO('PaperCommentDAO');
+		$paperCommentDao = DAORegistry::getDAO('PaperCommentDAO');
 		$schedConf =& Request::getSchedConf();
 
 		import('classes.mail.PaperMailTemplate');

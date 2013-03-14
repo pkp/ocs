@@ -60,7 +60,7 @@ class TrackDirectorsDAO extends DAO {
 	function &getTracksByUserId($schedConfId, $userId) {
 		$tracks = array();
 
-		$trackDao =& DAORegistry::getDAO('TrackDAO');
+		$trackDao = DAORegistry::getDAO('TrackDAO');
 
 		$result =& $this->retrieve(
 			'SELECT t.* FROM tracks t, track_directors td WHERE t.track_id = td.track_id AND t.sched_conf_id = ? AND td.user_id = ?',
@@ -87,7 +87,7 @@ class TrackDirectorsDAO extends DAO {
 	function &getDirectorsByTrackId($schedConfId, $trackId) {
 		$users = array();
 
-		$userDao =& DAORegistry::getDAO('UserDAO');
+		$userDao = DAORegistry::getDAO('UserDAO');
 
 		$result =& $this->retrieve(
 			'SELECT u.* FROM users AS u, track_directors AS e WHERE u.user_id = e.user_id AND e.sched_conf_id = ? AND e.track_id = ? ORDER BY last_name, first_name',
@@ -114,7 +114,7 @@ class TrackDirectorsDAO extends DAO {
 	function &getDirectorsNotInTrack($schedConfId, $trackId) {
 		$users = array();
 
-		$userDao =& DAORegistry::getDAO('UserDAO');
+		$userDao = DAORegistry::getDAO('UserDAO');
 
 		$result =& $this->retrieve(
 			'SELECT	u.*

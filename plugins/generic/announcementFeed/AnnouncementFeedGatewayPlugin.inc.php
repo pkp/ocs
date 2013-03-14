@@ -99,7 +99,7 @@ class AnnouncementFeedGatewayPlugin extends GatewayPlugin {
 		$limitRecentItems = $announcementFeedPlugin->getSetting($conference->getId(), 0, 'limitRecentItems');
 		$recentItems = (int) $announcementFeedPlugin->getSetting($conference->getId(), 0, 'recentItems');
 
-		$announcementDao =& DAORegistry::getDAO('AnnouncementDAO');
+		$announcementDao = DAORegistry::getDAO('AnnouncementDAO');
 		$conferenceId = $conference->getId();
 		if ($schedConf) {
 			$schedConfId = $schedConf->getId();
@@ -131,7 +131,7 @@ class AnnouncementFeedGatewayPlugin extends GatewayPlugin {
 			}
 		}
 
-		$versionDao =& DAORegistry::getDAO('VersionDAO');
+		$versionDao = DAORegistry::getDAO('VersionDAO');
 		$version =& $versionDao->getCurrentVersion();
 
 		$templateMgr =& TemplateManager::getManager();

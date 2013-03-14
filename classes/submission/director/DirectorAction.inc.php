@@ -34,9 +34,9 @@ class DirectorAction extends TrackDirectorAction {
 	 * @return boolean true iff ready for redirect
 	 */
 	function assignDirector($paperId, $trackDirectorId, $isDirector = false, $send = false) {
-		$directorSubmissionDao =& DAORegistry::getDAO('DirectorSubmissionDAO');
-		$editAssignmentDao =& DAORegistry::getDAO('EditAssignmentDAO');
-		$userDao =& DAORegistry::getDAO('UserDAO');
+		$directorSubmissionDao = DAORegistry::getDAO('DirectorSubmissionDAO');
+		$editAssignmentDao = DAORegistry::getDAO('EditAssignmentDAO');
+		$userDao = DAORegistry::getDAO('UserDAO');
 
 		$user =& Request::getUser();
 		$conference =& Request::getConference();

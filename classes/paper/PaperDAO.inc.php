@@ -25,7 +25,7 @@ class PaperDAO extends DAO {
 	 */
 	function PaperDAO() {
 		parent::DAO();
-		$this->authorDao =& DAORegistry::getDAO('AuthorDAO');
+		$this->authorDao = DAORegistry::getDAO('AuthorDAO');
 	}
 
 	/**
@@ -116,7 +116,7 @@ class PaperDAO extends DAO {
 	 */
 	function _paperFromRow(&$paper, &$row) {
 		$schedConfId = $row['sched_conf_id'];
-		$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
+		$schedConfDao = DAORegistry::getDAO('SchedConfDAO');
 		$schedConf = $schedConfDao->getById($schedConfId);
 		$conferenceId = $schedConf->getConferenceId();
 
@@ -316,49 +316,49 @@ class PaperDAO extends DAO {
 	function deletePaperById($paperId) {
 		$this->authorDao->deleteAuthorsBySubmission($paperId);
 
-		$publishedPaperDao =& DAORegistry::getDAO('PublishedPaperDAO');
+		$publishedPaperDao = DAORegistry::getDAO('PublishedPaperDAO');
 		$publishedPaperDao->deletePublishedPaperByPaperId($paperId);
 
-		$commentDao =& DAORegistry::getDAO('CommentDAO');
+		$commentDao = DAORegistry::getDAO('CommentDAO');
 		$commentDao->deleteBySubmissionId($paperId);
 
-		$noteDao =& DAORegistry::getDAO('NoteDAO');
+		$noteDao = DAORegistry::getDAO('NoteDAO');
 		$noteDao->deleteByAssoc(ASSOC_TYPE_PAPER, $paperId);
 
-		$trackDirectorSubmissionDao =& DAORegistry::getDAO('TrackDirectorSubmissionDAO');
+		$trackDirectorSubmissionDao = DAORegistry::getDAO('TrackDirectorSubmissionDAO');
 		$trackDirectorSubmissionDao->deleteDecisionsByPaper($paperId);
 		$trackDirectorSubmissionDao->deleteReviewRoundsByPaper($paperId);
 
-		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
+		$reviewAssignmentDao = DAORegistry::getDAO('ReviewAssignmentDAO');
 		$reviewAssignmentDao->deleteReviewAssignmentsByPaper($paperId);
 
-		$editAssignmentDao =& DAORegistry::getDAO('EditAssignmentDAO');
+		$editAssignmentDao = DAORegistry::getDAO('EditAssignmentDAO');
 		$editAssignmentDao->deleteEditAssignmentsByPaper($paperId);
 
-		$paperCommentDao =& DAORegistry::getDAO('PaperCommentDAO');
+		$paperCommentDao = DAORegistry::getDAO('PaperCommentDAO');
 		$paperCommentDao->deletePaperComments($paperId);
 
-		$paperGalleyDao =& DAORegistry::getDAO('PaperGalleyDAO');
+		$paperGalleyDao = DAORegistry::getDAO('PaperGalleyDAO');
 		$paperGalleyDao->deleteGalleysByPaper($paperId);
 
-		$paperSearchDao =& DAORegistry::getDAO('PaperSearchDAO');
+		$paperSearchDao = DAORegistry::getDAO('PaperSearchDAO');
 		$paperSearchDao->deletePaperKeywords($paperId);
 
-		$paperEventLogDao =& DAORegistry::getDAO('PaperEventLogDAO');
+		$paperEventLogDao = DAORegistry::getDAO('PaperEventLogDAO');
 		$paperEventLogDao->deletePaperLogEntries($paperId);
 
-		$paperEmailLogDao =& DAORegistry::getDAO('PaperEmailLogDAO');
+		$paperEmailLogDao = DAORegistry::getDAO('PaperEmailLogDAO');
 		$paperEmailLogDao->deletePaperLogEntries($paperId);
 
-		$paperEventLogDao =& DAORegistry::getDAO('PaperEventLogDAO');
+		$paperEventLogDao = DAORegistry::getDAO('PaperEventLogDAO');
 		$paperEventLogDao->deletePaperLogEntries($paperId);
 
-		$suppFileDao =& DAORegistry::getDAO('SuppFileDAO');
+		$suppFileDao = DAORegistry::getDAO('SuppFileDAO');
 		$suppFileDao->deleteSuppFilesByPaper($paperId);
 
 		// Delete paper files -- first from the filesystem, then from the database
 		import('classes.file.PaperFileManager');
-		$paperFileDao =& DAORegistry::getDAO('PaperFileDAO');
+		$paperFileDao = DAORegistry::getDAO('PaperFileDAO');
 		$paperFiles =& $paperFileDao->getPaperFilesByPaper($paperId);
 
 		$paperFileManager = new PaperFileManager($paperId);

@@ -35,7 +35,7 @@ class AuthorSubmitStep4Form extends AuthorSubmitForm {
 		$templateMgr =& TemplateManager::getManager();
 
 		// Get supplementary files for this paper
-		$suppFileDao =& DAORegistry::getDAO('SuppFileDAO');
+		$suppFileDao = DAORegistry::getDAO('SuppFileDAO');
 		$templateMgr->assign_by_ref('suppFiles', $suppFileDao->getSuppFilesByPaper($this->paperId));
 
 		parent::display();
@@ -45,7 +45,7 @@ class AuthorSubmitStep4Form extends AuthorSubmitForm {
 	 * Save changes to paper.
 	 */
 	function execute() {
-		$paperDao =& DAORegistry::getDAO('PaperDAO');
+		$paperDao = DAORegistry::getDAO('PaperDAO');
 
 		// Update paper
 		$paper =& $this->paper;

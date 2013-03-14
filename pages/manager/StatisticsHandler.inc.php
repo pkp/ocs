@@ -44,14 +44,14 @@ class StatisticsHandler extends ManagerHandler {
 			$templateMgr->assign($name, $schedConf->getSetting($name));
 		}
 
-		$schedConfStatisticsDao =& DAORegistry::getDAO('SchedConfStatisticsDAO');
+		$schedConfStatisticsDao = DAORegistry::getDAO('SchedConfStatisticsDAO');
 		$paperStatistics = $schedConfStatisticsDao->getPaperStatistics($schedConf->getId(), null);
 		$templateMgr->assign('paperStatistics', $paperStatistics);
 
 		$limitedPaperStatistics = $schedConfStatisticsDao->getPaperStatistics($schedConf->getId(), $trackIds);
 		$templateMgr->assign('limitedPaperStatistics', $limitedPaperStatistics);
 
-		$trackDao =& DAORegistry::getDAO('TrackDAO');
+		$trackDao = DAORegistry::getDAO('TrackDAO');
 		$tracks =& $trackDao->getSchedConfTracks($schedConf->getId());
 		$templateMgr->assign('tracks', $tracks->toArray());
 

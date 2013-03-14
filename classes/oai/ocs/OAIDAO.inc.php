@@ -39,14 +39,14 @@ class OAIDAO extends DAO {
 	 */
 	function OAIDAO() {
 		parent::DAO();
-		$this->conferenceDao =& DAORegistry::getDAO('ConferenceDAO');
-		$this->schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
-		$this->trackDao =& DAORegistry::getDAO('TrackDAO');
-		$this->publishedPaperDao =& DAORegistry::getDAO('PublishedPaperDAO');
-		$this->paperGalleyDao =& DAORegistry::getDAO('PaperGalleyDAO');
-		$this->authorDao =& DAORegistry::getDAO('AuthorDAO');
-		$this->suppFileDao =& DAORegistry::getDAO('SuppFileDAO');
-		$this->conferenceSettingsDao =& DAORegistry::getDAO('ConferenceSettingsDAO');
+		$this->conferenceDao = DAORegistry::getDAO('ConferenceDAO');
+		$this->schedConfDao = DAORegistry::getDAO('SchedConfDAO');
+		$this->trackDao = DAORegistry::getDAO('TrackDAO');
+		$this->publishedPaperDao = DAORegistry::getDAO('PublishedPaperDAO');
+		$this->paperGalleyDao = DAORegistry::getDAO('PaperGalleyDAO');
+		$this->authorDao = DAORegistry::getDAO('AuthorDAO');
+		$this->suppFileDao = DAORegistry::getDAO('SuppFileDAO');
+		$this->conferenceSettingsDao = DAORegistry::getDAO('ConferenceSettingsDAO');
 
 		$this->conferenceCache = array();
 		$this->schedConfCache = array();

@@ -64,7 +64,7 @@ class PaperComment extends DataObject {
 	 * @return string
 	 */
 	function getRoleName() {
-		$roleDao =& DAORegistry::getDAO('RoleDAO');
+		$roleDao = DAORegistry::getDAO('RoleDAO');
 		$roleName = $roleDao->getRoleName($this->getData('roleId'));
 
 		return $roleName;
@@ -126,7 +126,7 @@ class PaperComment extends DataObject {
 		static $authorFullName;
 
 		if(!isset($authorFullName)) {
-			$userDao =& DAORegistry::getDAO('UserDAO');
+			$userDao = DAORegistry::getDAO('UserDAO');
 			$authorFullName = $userDao->getUserFullName($this->getAuthorId(), true);
 		}
 
@@ -141,7 +141,7 @@ class PaperComment extends DataObject {
 		static $authorEmail;
 
 		if(!isset($authorEmail)) {
-			$userDao =& DAORegistry::getDAO('UserDAO');
+			$userDao = DAORegistry::getDAO('UserDAO');
 			$authorEmail = $userDao->getUserEmail($this->getAuthorId(), true);
 		}
 

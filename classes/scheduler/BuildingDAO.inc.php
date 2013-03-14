@@ -161,7 +161,7 @@ class BuildingDAO extends DAO {
 	 */
 	function deleteBuildingById($buildingId) {
 		// Delete dependent rooms first.
-		$roomDao =& DAORegistry::getDAO('RoomDAO');
+		$roomDao = DAORegistry::getDAO('RoomDAO');
 		$rooms =& $roomDao->deleteRoomsByBuildingId($buildingId);
 
 		$this->update('DELETE FROM building_settings WHERE building_id = ?', $buildingId);

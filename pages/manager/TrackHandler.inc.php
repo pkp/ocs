@@ -31,7 +31,7 @@ class TrackHandler extends ManagerHandler {
 
 		$schedConf =& $request->getSchedConf();
 		$rangeInfo =& Handler::getRangeInfo($request, 'tracks', array());
-		$trackDao =& DAORegistry::getDAO('TrackDAO');
+		$trackDao = DAORegistry::getDAO('TrackDAO');
 		while (true) {
 			$tracks =& $trackDao->getSchedConfTracks($schedConf->getId(), $rangeInfo);
 			if ($tracks->isInBounds()) break;
@@ -103,7 +103,7 @@ class TrackHandler extends ManagerHandler {
 
 		$schedConf =& $request->getSchedConf();
 		if (isset($args) && !empty($args)) {
-			$trackDao =& DAORegistry::getDAO('TrackDAO');
+			$trackDao = DAORegistry::getDAO('TrackDAO');
 			$trackDao->deleteTrackById($args[0], $schedConf->getId());
 		}
 
@@ -117,7 +117,7 @@ class TrackHandler extends ManagerHandler {
 		$this->validate();
 
 		$schedConf =& $request->getSchedConf();
-		$trackDao =& DAORegistry::getDAO('TrackDAO');
+		$trackDao = DAORegistry::getDAO('TrackDAO');
 		$track =& $trackDao->getTrack($request->getUserVar('trackId'), $schedConf->getId());
 
 		if ($track != null) {

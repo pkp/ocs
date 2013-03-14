@@ -32,15 +32,15 @@ class AuthorSubmissionDAO extends DAO {
 	 */
 	function AuthorSubmissionDAO() {
 		parent::DAO();
-		$this->paperDao =& DAORegistry::getDAO('PaperDAO');
-		$this->authorDao =& DAORegistry::getDAO('AuthorDAO');
-		$this->userDao =& DAORegistry::getDAO('UserDAO');
-		$this->reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
-		$this->editAssignmentDao =& DAORegistry::getDAO('EditAssignmentDAO');
-		$this->paperFileDao =& DAORegistry::getDAO('PaperFileDAO');
-		$this->suppFileDao =& DAORegistry::getDAO('SuppFileDAO');
-		$this->paperCommentDao =& DAORegistry::getDAO('PaperCommentDAO');
-		$this->galleyDao =& DAORegistry::getDAO('PaperGalleyDAO');
+		$this->paperDao = DAORegistry::getDAO('PaperDAO');
+		$this->authorDao = DAORegistry::getDAO('AuthorDAO');
+		$this->userDao = DAORegistry::getDAO('UserDAO');
+		$this->reviewAssignmentDao = DAORegistry::getDAO('ReviewAssignmentDAO');
+		$this->editAssignmentDao = DAORegistry::getDAO('EditAssignmentDAO');
+		$this->paperFileDao = DAORegistry::getDAO('PaperFileDAO');
+		$this->suppFileDao = DAORegistry::getDAO('SuppFileDAO');
+		$this->paperCommentDao = DAORegistry::getDAO('PaperCommentDAO');
+		$this->galleyDao = DAORegistry::getDAO('PaperGalleyDAO');
 	}
 
 	/**

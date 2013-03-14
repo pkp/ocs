@@ -368,7 +368,7 @@ class RegistrationTypeDAO extends DAO {
 		$this->deleteRegistrationOptionCosts($typeId);
 		$this->update('DELETE FROM registration_type_settings WHERE type_id = ?', $typeId);
 
-		$registrationDao =& DAORegistry::getDAO('RegistrationDAO');
+		$registrationDao = DAORegistry::getDAO('RegistrationDAO');
 		return $registrationDao->deleteRegistrationByTypeId($typeId);
 	}
 

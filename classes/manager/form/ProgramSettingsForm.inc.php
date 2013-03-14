@@ -136,7 +136,7 @@ class ProgramSettingsForm extends Form {
 	 */
 	function deleteProgram($settingName, $locale = null) {
 		$schedConf =& Request::getSchedConf();
-		$settingsDao =& DAORegistry::getDAO('SchedConfSettingsDAO');
+		$settingsDao = DAORegistry::getDAO('SchedConfSettingsDAO');
 		$setting = $schedConf->getSetting($settingName);
 
 		import('classes.file.PublicFileManager');

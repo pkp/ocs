@@ -67,7 +67,7 @@ class CreateAccountForm extends Form {
 				$this->addCheck(new FormValidatorReCaptcha($this, 'recaptcha_challenge_field', 'recaptcha_response_field', Request::getRemoteAddr(), 'common.captchaField.badCaptcha'));
 			}
 
-			$authDao =& DAORegistry::getDAO('AuthSourceDAO');
+			$authDao = DAORegistry::getDAO('AuthSourceDAO');
 			$this->defaultAuth =& $authDao->getDefaultPlugin();
 			if (isset($this->defaultAuth)) {
 				$this->addCheck(new FormValidatorCustom($this, 'username', 'required', 'user.account.form.usernameExists', create_function('$username,$form,$auth', 'return (!$auth->userExists($username) || $auth->authenticate($username, $form->getData(\'password\')));'), array(&$this, $this->defaultAuth)));
@@ -96,13 +96,13 @@ class CreateAccountForm extends Form {
 			$templateMgr->assign('captchaEnabled', true);
 		}
 
-		$countryDao =& DAORegistry::getDAO('CountryDAO');
+		$countryDao = DAORegistry::getDAO('CountryDAO');
 		$countries =& $countryDao->getCountries();
 		$templateMgr->assign_by_ref('countries', $countries);
 
 		import('classes.schedConf.SchedConfAction');
 
-		$userDao =& DAORegistry::getDAO('UserDAO');
+		$userDao = DAORegistry::getDAO('UserDAO');
 		$templateMgr->assign('genderOptions', $userDao->getGenderOptions());
 
 		$templateMgr->assign('privacyStatement', $conference->getLocalizedSetting('privacyStatement'));
@@ -123,7 +123,7 @@ class CreateAccountForm extends Form {
 	}
 
 	function getLocaleFieldNames() {
-		$userDao =& DAORegistry::getDAO('UserDAO');
+		$userDao = DAORegistry::getDAO('UserDAO');
 		return $userDao->getLocaleFieldNames();
 	}
 
@@ -219,7 +219,7 @@ class CreateAccountForm extends Form {
 		$requireValidation = Config::getVar('email', 'require_validation');
 		if ($this->existingUser) {
 			// Existing user in the system
-			$userDao =& DAORegistry::getDAO('UserDAO');
+			$userDao = DAORegistry::getDAO('UserDAO');
 			$user =& $userDao->getByUsername($this->getData('username'));
 			if ($user == null) {
 				return false;
@@ -276,7 +276,7 @@ class CreateAccountForm extends Form {
 				$user->setDisabledReason(__('user.login.accountNotValidated'));
 			}
 
-			$userDao =& DAORegistry::getDAO('UserDAO');
+			$userDao = DAORegistry::getDAO('UserDAO');
 			$userDao->insertObject($user);
 			$userId = $user->getId();
 			if (!$userId) {
@@ -298,7 +298,7 @@ class CreateAccountForm extends Form {
 		$conference =& Request::getConference();
 		$schedConf =& Request::getSchedConf();
 
-		$roleDao =& DAORegistry::getDAO('RoleDAO');
+		$roleDao = DAORegistry::getDAO('RoleDAO');
 
 		// Roles users are allowed to register themselves in
 		$allowedRoles = array('reader' => 'createAsReader', 'author' => 'createAsAuthor', 'reviewer' => 'createAsReviewer');
@@ -331,7 +331,7 @@ class CreateAccountForm extends Form {
 		}
 
 		if (isset($allowedRoles['reader']) && $this->getData('openAccessNotification')) {
-			$userSettingsDao =& DAORegistry::getDAO('UserSettingsDAO');
+			$userSettingsDao = DAORegistry::getDAO('UserSettingsDAO');
 			$userSettingsDao->updateSetting($userId, 'openAccessNotification', true, 'bool', $conference->getId());
 		}
 	}

@@ -77,7 +77,7 @@ class ConferenceSetupStep4Form extends ConferenceSetupForm {
 	 */
 	function uploadStyleSheet($settingName) {
 		$conference =& Request::getConference();
-		$settingsDao =& DAORegistry::getDAO('ConferenceSettingsDAO');
+		$settingsDao = DAORegistry::getDAO('ConferenceSettingsDAO');
 
 		import('classes.file.PublicFileManager');
 		$fileManager = new PublicFileManager();

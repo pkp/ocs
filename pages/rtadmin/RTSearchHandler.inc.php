@@ -29,7 +29,7 @@ class RTSearchHandler extends RTAdminHandler {
 
 		$conference = $request->getConference();
 
-		$rtDao =& DAORegistry::getDAO('RTDAO');
+		$rtDao = DAORegistry::getDAO('RTDAO');
 
 		$versionId = isset($args[0])?$args[0]:0;
 		$version =& $rtDao->getVersion($versionId, $conference->getId());
@@ -54,7 +54,7 @@ class RTSearchHandler extends RTAdminHandler {
 
 		$conference = $request->getConference();
 
-		$rtDao =& DAORegistry::getDAO('RTDAO');
+		$rtDao = DAORegistry::getDAO('RTDAO');
 		$rangeInfo = $this->getRangeInfo($request, 'searches');
 
 		$versionId = isset($args[0])?$args[0]:0;
@@ -84,7 +84,7 @@ class RTSearchHandler extends RTAdminHandler {
 	function editSearch($args, &$request) {
 		$this->validate();
 
-		$rtDao =& DAORegistry::getDAO('RTDAO');
+		$rtDao = DAORegistry::getDAO('RTDAO');
 
 		$conference = $request->getConference();
 		$versionId = isset($args[0])?$args[0]:0;
@@ -109,7 +109,7 @@ class RTSearchHandler extends RTAdminHandler {
 	function deleteSearch($args, &$request) {
 		$this->validate();
 
-		$rtDao =& DAORegistry::getDAO('RTDAO');
+		$rtDao = DAORegistry::getDAO('RTDAO');
 
 		$conference = $request->getConference();
 		$versionId = isset($args[0])?$args[0]:0;
@@ -129,7 +129,7 @@ class RTSearchHandler extends RTAdminHandler {
 	function saveSearch($args, &$request) {
 		$this->validate();
 
-		$rtDao =& DAORegistry::getDAO('RTDAO');
+		$rtDao = DAORegistry::getDAO('RTDAO');
 
 		$conference = $request->getConference();
 		$versionId = isset($args[0])?$args[0]:0;
@@ -152,7 +152,7 @@ class RTSearchHandler extends RTAdminHandler {
 	function moveSearch($args, &$request) {
 		$this->validate();
 
-		$rtDao =& DAORegistry::getDAO('RTDAO');
+		$rtDao = DAORegistry::getDAO('RTDAO');
 
 		$conference = $request->getConference();
 		$versionId = isset($args[0])?$args[0]:0;

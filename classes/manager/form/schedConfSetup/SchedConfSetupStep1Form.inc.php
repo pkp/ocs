@@ -92,7 +92,7 @@ class SchedConfSetupStep1Form extends SchedConfSetupForm {
 		if (Config::getVar('email', 'allow_envelope_sender'))
 			$templateMgr->assign('envelopeSenderEnabled', true);
 
-		$countryDao =& DAORegistry::getDAO('CountryDAO');
+		$countryDao = DAORegistry::getDAO('CountryDAO');
 		$countries =& $countryDao->getCountries();
 		$templateMgr->assign_by_ref('countries', $countries);
 

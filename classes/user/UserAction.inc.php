@@ -34,15 +34,15 @@ class UserAction {
 			return false;
 		}
 
-		$paperDao =& DAORegistry::getDAO('PaperDAO');
+		$paperDao = DAORegistry::getDAO('PaperDAO');
 		foreach ($paperDao->getPapersByUserId($oldUserId) as $paper) {
 			$paper->setUserId($newUserId);
 			$paperDao->updatePaper($paper);
 			unset($paper);
 		}
 
-		$commentDao =& DAORegistry::getDAO('CommentDAO');
-		$userDao =& DAORegistry::getDAO('UserDAO');
+		$commentDao = DAORegistry::getDAO('CommentDAO');
+		$userDao = DAORegistry::getDAO('UserDAO');
 		$newUser =& $userDao->getById($newUserId);
 		foreach ($commentDao->getByUserId($oldUserId) as $comment) {
 			$comment->setUser($newUser);
@@ -50,7 +50,7 @@ class UserAction {
 			unset($comment);
 		}
 
-		$noteDao =& DAORegistry::getDAO('NoteDAO');
+		$noteDao = DAORegistry::getDAO('NoteDAO');
 		$notes =& $noteDao->getByUserId($oldUserId);
 		while ($note =& $notes->next()) {
 			$note->setUserId($newUserId);
@@ -58,7 +58,7 @@ class UserAction {
 			unset($note);
 		}
 
-		$editAssignmentDao =& DAORegistry::getDAO('EditAssignmentDAO');
+		$editAssignmentDao = DAORegistry::getDAO('EditAssignmentDAO');
 		$editAssignments =& $editAssignmentDao->getEditAssignmentsByUserId($oldUserId);
 		while ($editAssignment =& $editAssignments->next()) {
 			$editAssignment->setDirectorId($newUserId);
@@ -66,34 +66,34 @@ class UserAction {
 			unset($editAssignment);
 		}
 
-		$directorSubmissionDao =& DAORegistry::getDAO('DirectorSubmissionDAO');
+		$directorSubmissionDao = DAORegistry::getDAO('DirectorSubmissionDAO');
 		$directorSubmissionDao->transferDirectorDecisions($oldUserId, $newUserId);
 
-		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
+		$reviewAssignmentDao = DAORegistry::getDAO('ReviewAssignmentDAO');
 		foreach ($reviewAssignmentDao->getByUserId($oldUserId) as $reviewAssignment) {
 			$reviewAssignment->setReviewerId($newUserId);
 			$reviewAssignmentDao->updateObject($reviewAssignment);
 			unset($reviewAssignment);
 		}
 
-		$paperEmailLogDao =& DAORegistry::getDAO('PaperEmailLogDAO');
+		$paperEmailLogDao = DAORegistry::getDAO('PaperEmailLogDAO');
 		$paperEmailLogDao->transferPaperLogEntries($oldUserId, $newUserId);
-		$paperEventLogDao =& DAORegistry::getDAO('PaperEventLogDAO');
+		$paperEventLogDao = DAORegistry::getDAO('PaperEventLogDAO');
 		$paperEventLogDao->transferPaperLogEntries($oldUserId, $newUserId);
 
-		$paperCommentDao =& DAORegistry::getDAO('PaperCommentDAO');
+		$paperCommentDao = DAORegistry::getDAO('PaperCommentDAO');
 		foreach ($paperCommentDao->getPaperCommentsByUserId($oldUserId) as $paperComment) {
 			$paperComment->setAuthorId($newUserId);
 			$paperCommentDao->updatePaperComment($paperComment);
 			unset($paperComment);
 		}
 
-		$accessKeyDao =& DAORegistry::getDAO('AccessKeyDAO');
+		$accessKeyDao = DAORegistry::getDAO('AccessKeyDAO');
 		$accessKeyDao->transferAccessKeys($oldUserId, $newUserId);
 
 		// Transfer old user's valid registrations if new user does not
 		// have similar registrations of if they're invalid
-		$registrationDao =& DAORegistry::getDAO('RegistrationDAO');
+		$registrationDao = DAORegistry::getDAO('RegistrationDAO');
 		$oldUserRegistrations =& $registrationDao->getRegistrationsByUser($oldUserId);
 
 		while ($oldUserRegistration =& $oldUserRegistrations->next()) {
@@ -119,7 +119,7 @@ class UserAction {
 		}
 
 		// Delete any remaining oldUser registrations and associated options
-		$registrationOptionDao =& DAORegistry::getDAO('RegistrationOptionDAO');
+		$registrationOptionDao = DAORegistry::getDAO('RegistrationOptionDAO');
 		$oldUserRegistrations =& $registrationDao->getRegistrationsByUser($oldUserId);
 
 		while ($oldUserRegistration =& $oldUserRegistrations->next()) {
@@ -128,7 +128,7 @@ class UserAction {
 		$registrationDao->deleteRegistrationsByUserId($oldUserId);
 
 		// Transfer old user's roles
-		$roleDao =& DAORegistry::getDAO('RoleDAO');
+		$roleDao = DAORegistry::getDAO('RoleDAO');
 
 		$roles =& $roleDao->getRolesByUserId($oldUserId);
 		foreach ($roles as $role) {
@@ -140,13 +140,13 @@ class UserAction {
 		$roleDao->deleteRoleByUserId($oldUserId);
 
 		// Delete the old user and all remaining associated info.
-		$sessionDao =& DAORegistry::getDAO('SessionDAO');
+		$sessionDao = DAORegistry::getDAO('SessionDAO');
 		$sessionDao->deleteByUserId($oldUserId);
-		$temporaryFileDao =& DAORegistry::getDAO('TemporaryFileDAO');
+		$temporaryFileDao = DAORegistry::getDAO('TemporaryFileDAO');
 		$temporaryFileDao->deleteTemporaryFilesByUserId($oldUserId);
-		$userSettingsDao =& DAORegistry::getDAO('UserSettingsDAO');
+		$userSettingsDao = DAORegistry::getDAO('UserSettingsDAO');
 		$userSettingsDao->deleteSettings($oldUserId);
-		$trackDirectorsDao =& DAORegistry::getDAO('TrackDirectorsDAO');
+		$trackDirectorsDao = DAORegistry::getDAO('TrackDirectorsDAO');
 		$trackDirectorsDao->deleteDirectorsByUserId($oldUserId);
 		$userDao->deleteUserById($oldUserId);
 

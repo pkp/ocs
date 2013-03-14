@@ -44,10 +44,10 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 
 		$user =& $request->getUser();
 
-		$roleDao =& DAORegistry::getDAO('RoleDAO');
+		$roleDao = DAORegistry::getDAO('RoleDAO');
 		$isDirector = $roleDao->userHasRole($conference->getId(), $schedConf->getId(), $user->getId(), ROLE_ID_DIRECTOR);
 
-		$trackDao =& DAORegistry::getDAO('TrackDAO');
+		$trackDao = DAORegistry::getDAO('TrackDAO');
 		$track =& $trackDao->getTrack($submission->getTrackId());
 
 		$enableComments = $conference->getSetting('enableComments');
@@ -64,7 +64,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		$templateMgr->assign('isDirector', $isDirector);
 		$templateMgr->assign('enableComments', $enableComments);
 
-		$trackDao =& DAORegistry::getDAO('TrackDAO');
+		$trackDao = DAORegistry::getDAO('TrackDAO');
 		$templateMgr->assign_by_ref('tracks', $trackDao->getTrackTitles($schedConf->getId()));
 		if ($enableComments) {
 			import('classes.paper.Paper');
@@ -72,7 +72,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 			$templateMgr->assign_by_ref('commentsStatusOptions', Paper::getCommentsStatusOptions());
 		}
 
-		$publishedPaperDao =& DAORegistry::getDAO('PublishedPaperDAO');
+		$publishedPaperDao = DAORegistry::getDAO('PublishedPaperDAO');
 		$publishedPaper =& $publishedPaperDao->getPublishedPaperByPaperId($submission->getId());
 		if ($publishedPaper) {
 			$templateMgr->assign_by_ref('publishedPaper', $publishedPaper);
@@ -82,7 +82,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 			$templateMgr->assign('helpTopicId', 'editorial.directorsRole.summaryPage');
 		}
 
-		$controlledVocabDao =& DAORegistry::getDAO('ControlledVocabDAO');
+		$controlledVocabDao = DAORegistry::getDAO('ControlledVocabDAO');
 		$templateMgr->assign('sessionTypes', $controlledVocabDao->enumerateBySymbolic('paperType', ASSOC_TYPE_SCHED_CONF, $schedConf->getId()));
 
 		$templateMgr->assign('mayEditPaper', true);
@@ -98,7 +98,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		$submission =& $this->submission;
 		$this->setupTemplate($request, true, $paperId, 'review');
 
-		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
+		$reviewAssignmentDao = DAORegistry::getDAO('ReviewAssignmentDAO');
 		$cancelsAndRegrets = $reviewAssignmentDao->getCancelsAndRegrets($paperId);
 		$reviewFilesByRound = $reviewAssignmentDao->getReviewFilesByRound($paperId);
 
@@ -107,7 +107,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 
 		$directorDecisions = $submission->getDecisions();
 
-		$reviewFormResponseDao =& DAORegistry::getDAO('ReviewFormResponseDAO');
+		$reviewFormResponseDao = DAORegistry::getDAO('ReviewFormResponseDAO');
 		$reviewFormResponses = array();
 		if (isset($rounds[$numRounds-1])) {
 			foreach ($rounds[$numRounds-1] as $round) {
@@ -158,10 +158,10 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 
 		$this->setupTemplate($request, true, $paperId);
 
-		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
-		$reviewFormDao =& DAORegistry::getDAO('ReviewFormDAO');
+		$reviewAssignmentDao = DAORegistry::getDAO('ReviewAssignmentDAO');
+		$reviewFormDao = DAORegistry::getDAO('ReviewFormDAO');
 
-		$trackDao =& DAORegistry::getDAO('TrackDAO');
+		$trackDao = DAORegistry::getDAO('TrackDAO');
 		$tracks =& $trackDao->getSchedConfTracks($schedConf->getId());
 
 		$directorDecisions = $submission->getDecisions($round);
@@ -198,10 +198,10 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		// get conference published review form titles
 		$reviewFormTitles =& $reviewFormDao->getTitlesByAssocId(ASSOC_TYPE_CONFERENCE, $conference->getId(), 1);
 
-		$reviewFormResponseDao =& DAORegistry::getDAO('ReviewFormResponseDAO');
+		$reviewFormResponseDao = DAORegistry::getDAO('ReviewFormResponseDAO');
 		$reviewFormResponses = array();
 
-		$reviewFormDao =& DAORegistry::getDAO('ReviewFormDAO');
+		$reviewFormDao = DAORegistry::getDAO('ReviewFormDAO');
 		$reviewFormTitles = array();
 
 		if ($submission->getReviewAssignments($round)) {
@@ -250,7 +250,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 
 		$templateMgr->assign('helpTopicId', 'editorial.trackDirectorsRole.review');
 
-		$controlledVocabDao =& DAORegistry::getDAO('ControlledVocabDAO');
+		$controlledVocabDao = DAORegistry::getDAO('ControlledVocabDAO');
 		$templateMgr->assign('sessionTypes', $controlledVocabDao->enumerateBySymbolic('sessionTypes', ASSOC_TYPE_SCHED_CONF, $schedConf->getId()));
 
 		$templateMgr->display('trackDirector/submissionReview.tpl');
@@ -269,7 +269,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		$this->setupTemplate($request, true, $paperId);
 
 		// submission notes
-		$noteDao =& DAORegistry::getDAO('NoteDAO');
+		$noteDao = DAORegistry::getDAO('NoteDAO');
 
 		$submissionNotes =& $noteDao->getByAssoc(ASSOC_TYPE_PAPER, $paperId);
 
@@ -411,7 +411,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		$sort = isset($sort) ? $sort : 'name';
 		$sortDirection = $request->getUserVar('sortDirection');
 
-		$trackDirectorSubmissionDao =& DAORegistry::getDAO('TrackDirectorSubmissionDAO');
+		$trackDirectorSubmissionDao = DAORegistry::getDAO('TrackDirectorSubmissionDAO');
 
 		if ($reviewerId) {
 			// Assign reviewer to paper
@@ -422,7 +422,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		} else {
 			$this->setupTemplate($request, true, $paperId, 'review');
 
-			$trackDirectorSubmissionDao =& DAORegistry::getDAO('TrackDirectorSubmissionDAO');
+			$trackDirectorSubmissionDao = DAORegistry::getDAO('TrackDirectorSubmissionDAO');
 
 			$searchType = null;
 			$searchMatch = null;
@@ -447,7 +447,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 				unset($reviewers);
 			}
 
-			$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
+			$reviewAssignmentDao = DAORegistry::getDAO('ReviewAssignmentDAO');
 
 			$templateMgr =& TemplateManager::getManager($request);
 
@@ -539,7 +539,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		$submission =& $this->submission;
 
 
-		$roleDao =& DAORegistry::getDAO('RoleDAO');
+		$roleDao = DAORegistry::getDAO('RoleDAO');
 		$roleId = $roleDao->getRoleIdFromPath('reviewer');
 
 		$user =& $request->getUser();
@@ -562,7 +562,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		}
 
 		$rangeInfo = $this->getRangeInfo($request, 'users', array((string) $searchType, (string) $searchMatch, (string) $search)); // Paper ID intentionally omitted
-		$userDao =& DAORegistry::getDAO('UserDAO');
+		$userDao = DAORegistry::getDAO('UserDAO');
 		while (true) {
 			$users =& $userDao->getUsersByField($searchType, $searchMatch, $search, false, $rangeInfo);
 			if ($users->isInBounds()) break;
@@ -599,7 +599,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		$schedConf =& $request->getSchedConf();
 		$submission =& $this->submission;
 
-		$roleDao =& DAORegistry::getDAO('RoleDAO');
+		$roleDao = DAORegistry::getDAO('RoleDAO');
 		$roleId = $roleDao->getRoleIdFromPath('reviewer');
 
 		$users = $request->getUserVar('users');
@@ -693,7 +693,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 			$this->validate($request, $paperId, TRACK_DIRECTOR_ACCESS_REVIEW);
 			$userId = isset($args[1]) ? (int) $args[1] : 0;
 
-			$trackDirectorSubmissionDao =& DAORegistry::getDAO('TrackDirectorSubmissionDAO');
+			$trackDirectorSubmissionDao = DAORegistry::getDAO('TrackDirectorSubmissionDAO');
 			$submission =& $trackDirectorSubmissionDao->getTrackDirectorSubmission($paperId);
 			$round = $submission->getCurrentRound();
 
@@ -801,7 +801,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		} else {
 			$this->setupTemplate($request, true, $paperId, 'review');
 
-			$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
+			$reviewAssignmentDao = DAORegistry::getDAO('ReviewAssignmentDAO');
 			$reviewAssignment = $reviewAssignmentDao->getById($reviewId);
 
 			$settings = $schedConf->getSettings();
@@ -875,7 +875,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		$templateMgr =& TemplateManager::getManager($request);
 		$templateMgr->assign('currentUrl', $request->url(null, null, null, $request->getRequestedPage()));
 
-		$userDao =& DAORegistry::getDAO('UserDAO');
+		$userDao = DAORegistry::getDAO('UserDAO');
 		if (is_numeric($userId)) {
 			$userId = (int) $userId;
 			$user = $userDao->getById($userId);
@@ -891,7 +891,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		} else {
 			$site =& $request->getSite();
 
-			$countryDao =& DAORegistry::getDAO('CountryDAO');
+			$countryDao = DAORegistry::getDAO('CountryDAO');
 			$country = null;
 			if ($user->getCountry() != '') {
 				$country = $countryDao->getCountry($user->getCountry());
@@ -941,11 +941,11 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		$reviewFormId = (int) array_shift($args);
 
 		$conference =& $request->getConference();
-		$reviewFormDao =& DAORegistry::getDAO('ReviewFormDAO');
+		$reviewFormDao = DAORegistry::getDAO('ReviewFormDAO');
 		$reviewForm =& $reviewFormDao->getReviewForm($reviewFormId, ASSOC_TYPE_CONFERENCE, $conference->getId());
-		$reviewFormElementDao =& DAORegistry::getDAO('ReviewFormElementDAO');
+		$reviewFormElementDao = DAORegistry::getDAO('ReviewFormElementDAO');
 		$reviewFormElements =& $reviewFormElementDao->getReviewFormElements($reviewFormId);
-		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
+		$reviewAssignmentDao = DAORegistry::getDAO('ReviewAssignmentDAO');
 		$reviewAssignment =& $reviewAssignmentDao->getById($reviewId);
 
 		$templateMgr =& TemplateManager::getManager($request);
@@ -994,9 +994,9 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		} else {
 			$conference =& $request->getConference();
 			$rangeInfo = $this->getRangeInfo($request, 'reviewForms');
-			$reviewFormDao =& DAORegistry::getDAO('ReviewFormDAO');
+			$reviewFormDao = DAORegistry::getDAO('ReviewFormDAO');
 			$reviewForms =& $reviewFormDao->getActiveByAssocId(ASSOC_TYPE_CONFERENCE, $conference->getId(), $rangeInfo);
-			$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
+			$reviewAssignmentDao = DAORegistry::getDAO('ReviewAssignmentDAO');
 			$reviewAssignment =& $reviewAssignmentDao->getById($reviewId);
 
 			$this->setupTemplate($request, true, $paperId, 'review');
@@ -1047,7 +1047,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 			// If the Send To Editing button was pressed
 			$file = explode(',', $request->getUserVar('directorDecisionFile'));
 			$submission->stampDateToPresentations();
-			$trackDirectorSubmissionDao =& DAORegistry::getDAO('TrackDirectorSubmissionDAO');
+			$trackDirectorSubmissionDao = DAORegistry::getDAO('TrackDirectorSubmissionDAO');
 			$trackDirectorSubmissionDao->updateTrackDirectorSubmission($submission);
 
 			if (isset($file[0]) && isset($file[1])) {
@@ -1123,7 +1123,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		$submission =& $this->submission;
 
 		$suppFileId = $request->getUserVar('fileId');
-		$suppFileDao =& DAORegistry::getDAO('SuppFileDAO');
+		$suppFileDao = DAORegistry::getDAO('SuppFileDAO');
 		$suppFile = $suppFileDao->getSuppFile($suppFileId, $paperId);
 
 		if (isset($suppFile) && $suppFile != null) {
@@ -1155,7 +1155,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 			// Send a notification to associated users
 			import('classes.notification.NotificationManager');
 			$notificationManager = new NotificationManager();
-			$paperDao =& DAORegistry::getDAO('PaperDAO');
+			$paperDao = DAORegistry::getDAO('PaperDAO');
 			$paper =& $paperDao->getPaper($paperId);
 			$conference =& $request->getConference();
 			$notificationUsers = $paper->getAssociatedUserIds(true, false);
@@ -1368,7 +1368,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 			// Send a notification to associated users
 			import('classes.notification.NotificationManager');
 			$notificationManager = new NotificationManager();
-			$paperDao =& DAORegistry::getDAO('PaperDAO');
+			$paperDao = DAORegistry::getDAO('PaperDAO');
 			$paper =& $paperDao->getPaper($paperId);
 			$conference =& $request->getConference();
 			$notificationUsers = $paper->getAssociatedUserIds(true, false);
@@ -1462,7 +1462,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		$galleyId = (int) array_shift($args);
 		$this->validate($request, $paperId, TRACK_DIRECTOR_ACCESS_EDIT);
 
-		$galleyDao =& DAORegistry::getDAO('PaperGalleyDAO');
+		$galleyDao = DAORegistry::getDAO('PaperGalleyDAO');
 		$galley =& $galleyDao->getGalley($galleyId, $paperId);
 
 		import('classes.file.PaperFileManager'); // FIXME
@@ -1541,7 +1541,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		$templateMgr->assign_by_ref('submission', $submission);
 
 		if ($logId) {
-			$logDao =& DAORegistry::getDAO('PaperEventLogDAO');
+			$logDao = DAORegistry::getDAO('PaperEventLogDAO');
 			$logEntry =& $logDao->getLogEntry($logId, $paperId);
 		}
 
@@ -1574,7 +1574,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		$this->validate($request, $paperId);
 		$submission =& $this->submission;
 
-		$logDao =& DAORegistry::getDAO('PaperEventLogDAO');
+		$logDao = DAORegistry::getDAO('PaperEventLogDAO');
 
 		if ($logId) {
 			$logDao->deleteLogEntry($logId, $paperId);
@@ -1602,7 +1602,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		$templateMgr->assign_by_ref('submission', $submission);
 
 		if ($logId) {
-			$logDao =& DAORegistry::getDAO('PaperEmailLogDAO');
+			$logDao = DAORegistry::getDAO('PaperEmailLogDAO');
 			$logEntry =& $logDao->getLogEntry($logId, $paperId);
 		}
 
@@ -1634,7 +1634,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		$logId = (int) array_shift($args);
 		$this->validate($request, $paperId);
 
-		$logDao =& DAORegistry::getDAO('PaperEmailLogDAO');
+		$logDao = DAORegistry::getDAO('PaperEmailLogDAO');
 
 		if ($logId) {
 			$logDao->deleteLogEntry($logId, $paperId);
@@ -1707,7 +1707,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		$this->setupTemplate($request, true, $paperId, 'history');
 		$submission =& $this->submission;
 
-		$noteDao =& DAORegistry::getDAO('NoteDAO');
+		$noteDao = DAORegistry::getDAO('NoteDAO');
 
 		// submission note edit
 		if ($noteViewType == 'edit') {
@@ -1785,7 +1785,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 
 		$isValid = true;
 
-		$trackDirectorSubmissionDao =& DAORegistry::getDAO('TrackDirectorSubmissionDAO');
+		$trackDirectorSubmissionDao = DAORegistry::getDAO('TrackDirectorSubmissionDAO');
 		$conference =& $request->getConference();
 		$schedConf =& $request->getSchedConf();
 		$user =& $request->getUser();
@@ -1819,7 +1819,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		}
 
 		// If necessary, note the current date and time as the "underway" date/time
-		$editAssignmentDao =& DAORegistry::getDAO('EditAssignmentDAO');
+		$editAssignmentDao = DAORegistry::getDAO('EditAssignmentDAO');
 		$editAssignments =& $trackDirectorSubmission->getEditAssignments();
 		foreach ($editAssignments as $editAssignment) {
 			if ($editAssignment->getDirectorId() == $user->getId() && $editAssignment->getDateUnderway() === null) {

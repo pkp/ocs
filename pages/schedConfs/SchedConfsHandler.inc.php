@@ -36,7 +36,7 @@ class SchedConfsHandler extends Handler {
 
 		$templateMgr =& TemplateManager::getManager();
 
-		$conferenceDao =& DAORegistry::getDAO('ConferenceDAO');
+		$conferenceDao = DAORegistry::getDAO('ConferenceDAO');
 
 		$templateMgr->assign('helpTopicId', 'user.home');
 
@@ -51,7 +51,7 @@ class SchedConfsHandler extends Handler {
 		$templateMgr->assign('description', $conference->getSetting('description'));
 		$templateMgr->assign('conferenceTitle', $conference->getLocalizedName());
 
-		$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
+		$schedConfDao = DAORegistry::getDAO('SchedConfDAO');
 		$currentSchedConfs =& $schedConfDao->getCurrentSchedConfs($conference->getId());
 
 		$templateMgr->assign_by_ref('schedConfs', $currentSchedConfs);
@@ -70,7 +70,7 @@ class SchedConfsHandler extends Handler {
 
 		$templateMgr =& TemplateManager::getManager();
 
-		$conferenceDao =& DAORegistry::getDAO('ConferenceDAO');
+		$conferenceDao = DAORegistry::getDAO('ConferenceDAO');
 
 		$templateMgr->assign('helpTopicId', 'user.home');
 
@@ -85,7 +85,7 @@ class SchedConfsHandler extends Handler {
 		$templateMgr->assign('description', $conference->getSetting('description'));
 		$templateMgr->assign('conferenceTitle', $conference->getLocalizedName());
 
-		$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
+		$schedConfDao = DAORegistry::getDAO('SchedConfDAO');
 		$pastSchedConfs = $schedConfDao->getAll(true, $conference->getId());
 
 		$templateMgr->assign_by_ref('schedConfs', $pastSchedConfs);

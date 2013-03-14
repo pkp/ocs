@@ -52,7 +52,7 @@ class StaticPagesEditForm extends Form {
 	 * @param $staticPageId int
 	 */
 	function checkForDuplicatePath($pagePath, $conferenceId, $staticPageId) {
-		$staticPagesDao =& DAORegistry::getDAO('StaticPagesDAO');
+		$staticPagesDao = DAORegistry::getDAO('StaticPagesDAO');
 
 		return !$staticPagesDao->duplicatePathExists($pagePath, $conferenceId, $staticPageId);
 	}
@@ -68,7 +68,7 @@ class StaticPagesEditForm extends Form {
 		$this->addTinyMCE();
 
 		if (isset($this->staticPageId)) {
-			$staticPagesDao =& DAORegistry::getDAO('StaticPagesDAO');
+			$staticPagesDao = DAORegistry::getDAO('StaticPagesDAO');
 			$staticPage =& $staticPagesDao->getStaticPage($this->staticPageId);
 
 			if ($staticPage != null) {
@@ -145,7 +145,7 @@ class StaticPagesEditForm extends Form {
 		$conferenceId = $this->conferenceId;
 
 		$plugin->import('StaticPage');
-		$staticPagesDao =& DAORegistry::getDAO('StaticPagesDAO');
+		$staticPagesDao = DAORegistry::getDAO('StaticPagesDAO');
 		if (isset($this->staticPageId)) {
 			$staticPage =& $staticPagesDao->getStaticPage($this->staticPageId);
 		}

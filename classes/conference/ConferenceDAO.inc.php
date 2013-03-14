@@ -95,34 +95,34 @@ class ConferenceDAO extends ContextDAO {
 	 * @param $conferenceId int
 	 */
 	function deleteById($conferenceId) {
-		$conferenceSettingsDao =& DAORegistry::getDAO('ConferenceSettingsDAO');
+		$conferenceSettingsDao = DAORegistry::getDAO('ConferenceSettingsDAO');
 		$conferenceSettingsDao->deleteById($conferenceId);
 
-		$emailTemplateDao =& DAORegistry::getDAO('EmailTemplateDAO');
+		$emailTemplateDao = DAORegistry::getDAO('EmailTemplateDAO');
 		$emailTemplateDao->deleteEmailTemplatesByConference($conferenceId);
 
-		$rtDao =& DAORegistry::getDAO('RTDAO');
+		$rtDao = DAORegistry::getDAO('RTDAO');
 		$rtDao->deleteVersionsByConference($conferenceId);
 
-		$roleDao =& DAORegistry::getDAO('RoleDAO');
+		$roleDao = DAORegistry::getDAO('RoleDAO');
 		$roleDao->deleteRoleByConferenceId($conferenceId);
 
-		$groupDao =& DAORegistry::getDAO('GroupDAO');
+		$groupDao = DAORegistry::getDAO('GroupDAO');
 		$groupDao->deleteGroupsByAssocId(ASSOC_TYPE_CONFERENCE, $conferenceId);
 
-		$pluginSettingsDao =& DAORegistry::getDAO('PluginSettingsDAO');
+		$pluginSettingsDao = DAORegistry::getDAO('PluginSettingsDAO');
 		$pluginSettingsDao->deleteSettingsByConferenceId($conferenceId);
 		
-		$reviewFormDao =& DAORegistry::getDAO('ReviewFormDAO');
+		$reviewFormDao = DAORegistry::getDAO('ReviewFormDAO');
 		$reviewFormDao->deleteByAssoc(ASSOC_TYPE_CONFERENCE, $conferenceId);
 
-		$announcementDao =& DAORegistry::getDAO('AnnouncementDAO');
+		$announcementDao = DAORegistry::getDAO('AnnouncementDAO');
 		$announcementDao->deleteByAssoc(ASSOC_TYPE_CONFERENCE, $conferenceId);
 
-		$announcementTypeDao =& DAORegistry::getDAO('AnnouncementTypeDAO');
+		$announcementTypeDao = DAORegistry::getDAO('AnnouncementTypeDAO');
 		$announcementTypeDao->deleteByAssoc(ASSOC_TYPE_CONFERENCE, $conferenceId);
 
-		$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
+		$schedConfDao = DAORegistry::getDAO('SchedConfDAO');
 		$schedConfDao->deleteByConferenceId($conferenceId);
 
 		parent::deleteById($conferenceId);

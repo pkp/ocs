@@ -31,14 +31,14 @@ class ReviewerSubmissionDAO extends DAO {
 	 */
 	function ReviewerSubmissionDAO() {
 		parent::DAO();
-		$this->paperDao =& DAORegistry::getDAO('PaperDAO');
-		$this->authorDao =& DAORegistry::getDAO('AuthorDAO');
-		$this->userDao =& DAORegistry::getDAO('UserDAO');
-		$this->reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
-		$this->editAssignmentDao =& DAORegistry::getDAO('EditAssignmentDAO');
-		$this->paperFileDao =& DAORegistry::getDAO('PaperFileDAO');
-		$this->suppFileDao =& DAORegistry::getDAO('SuppFileDAO');
-		$this->paperCommentDao =& DAORegistry::getDAO('PaperCommentDAO');
+		$this->paperDao = DAORegistry::getDAO('PaperDAO');
+		$this->authorDao = DAORegistry::getDAO('AuthorDAO');
+		$this->userDao = DAORegistry::getDAO('UserDAO');
+		$this->reviewAssignmentDao = DAORegistry::getDAO('ReviewAssignmentDAO');
+		$this->editAssignmentDao = DAORegistry::getDAO('EditAssignmentDAO');
+		$this->paperFileDao = DAORegistry::getDAO('PaperFileDAO');
+		$this->suppFileDao = DAORegistry::getDAO('SuppFileDAO');
+		$this->paperCommentDao = DAORegistry::getDAO('PaperCommentDAO');
 	}
 
 	/**

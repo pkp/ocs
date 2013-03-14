@@ -32,8 +32,8 @@ class RegistrationExpiryReminder extends ScheduledTask {
 
 	function sendReminder ($registration, $conference, $schedConf, $emailKey) {
 
-		$userDao =& DAORegistry::getDAO('UserDAO');
-		$registrationTypeDao =& DAORegistry::getDAO('RegistrationTypeDAO');
+		$userDao = DAORegistry::getDAO('UserDAO');
+		$registrationTypeDao = DAORegistry::getDAO('RegistrationTypeDAO');
 
 		$schedConfName = $schedConf->getLocalizedName();
 		$schedConfId = $schedConf->getId();
@@ -99,7 +99,7 @@ class RegistrationExpiryReminder extends ScheduledTask {
 			$expiryDay = $curDay;
 
 			// Retrieve all registration that match expiry date
-			$registrationDao =& DAORegistry::getDAO('RegistrationDAO');
+			$registrationDao = DAORegistry::getDAO('RegistrationDAO');
 			$dateEnd = $expiryYear . '-' . $expiryMonth . '-' . $expiryDay;
 			$registration =& $registrationDao->getRegistrationByDateEnd($dateEnd, $schedConf->getId()); 
 
@@ -121,7 +121,7 @@ class RegistrationExpiryReminder extends ScheduledTask {
 			$expiryMonth = (int)fmod($expiryMonth,12);				
 
 			// Retrieve all registration that match expiry date
-			$registrationDao =& DAORegistry::getDAO('RegistrationDAO');
+			$registrationDao = DAORegistry::getDAO('RegistrationDAO');
 			$dateEnd = $expiryYear . '-' . $expiryMonth . '-' . $expiryDay;
 			$registration =& $registrationDao->getRegistrationByDateEnd($dateEnd, $schedConf->getId()); 
 
@@ -149,7 +149,7 @@ class RegistrationExpiryReminder extends ScheduledTask {
 			$expiryDay = $curDay;
 
 			// Retrieve all registration that match expiry date
-			$registrationDao =& DAORegistry::getDAO('RegistrationDAO');
+			$registrationDao = DAORegistry::getDAO('RegistrationDAO');
 			$dateEnd = $expiryYear . '-' . $expiryMonth . '-' . $expiryDay;
 			$registration =& $registrationDao->getRegistrationByDateEnd($dateEnd, $schedConf->getId()); 
 
@@ -187,7 +187,7 @@ class RegistrationExpiryReminder extends ScheduledTask {
 			$expiryYear = $curYear - $afterYears;
 
 			// Retrieve all registration that match expiry date
-			$registrationDao =& DAORegistry::getDAO('RegistrationDAO');
+			$registrationDao = DAORegistry::getDAO('RegistrationDAO');
 			$dateEnd = $expiryYear . '-' . $expiryMonth . '-' . $expiryDay;
 			$registration =& $registrationDao->getRegistrationByDateEnd($dateEnd, $schedConf->getId()); 
 
@@ -202,8 +202,8 @@ class RegistrationExpiryReminder extends ScheduledTask {
 	}
 
 	function execute() {
-		$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
-		$conferenceDao =& DAORegistry::getDAO('ConferenceDAO');
+		$schedConfDao = DAORegistry::getDAO('SchedConfDAO');
+		$conferenceDao = DAORegistry::getDAO('ConferenceDAO');
 		$schedConfs = $schedConfDao->getAll(true);
 		$conference = null;
 

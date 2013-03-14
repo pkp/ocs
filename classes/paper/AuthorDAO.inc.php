@@ -37,7 +37,7 @@ class AuthorDAO extends PKPAuthorDAO {
 	 */
 	function &getPublishedPapersForAuthor($schedConfId, $firstName, $middleName, $lastName, $affiliation, $country) {
 		$publishedPapers = array();
-		$publishedPaperDao =& DAORegistry::getDAO('PublishedPaperDAO');
+		$publishedPaperDao = DAORegistry::getDAO('PublishedPaperDAO');
 		$params = array(
 			'affiliation',
 			$firstName, $middleName, $lastName,

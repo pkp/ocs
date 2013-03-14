@@ -39,7 +39,7 @@ class ReviewerHandler extends Handler {
 
 		$schedConf =& $request->getSchedConf();
 		$user =& $request->getUser();
-		$reviewerSubmissionDao =& DAORegistry::getDAO('ReviewerSubmissionDAO');
+		$reviewerSubmissionDao = DAORegistry::getDAO('ReviewerSubmissionDAO');
 		$rangeInfo = $this->getRangeInfo($request, 'submissions');
 
 		$page = isset($args[0]) ? $args[0] : '';
@@ -108,7 +108,7 @@ class ReviewerHandler extends Handler {
 		);
 
 		if ($accessKey) {
-			$userDao =& DAORegistry::getDAO('UserDAO');
+			$userDao = DAORegistry::getDAO('UserDAO');
 			$user =& $userDao->getById($accessKey->getUserId(), false);
 			return $user;
 		}

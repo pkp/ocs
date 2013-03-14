@@ -34,7 +34,7 @@ class AuthorSubmitStep3Form extends AuthorSubmitForm {
 		if ($reviewMode != REVIEW_MODE_PRESENTATIONS_ALONE) {
 			$this->addCheck(new FormValidatorLocale($this, 'abstract', 'required', 'author.submit.form.abstractRequired'));
 
-			$trackDao =& DAORegistry::getDAO('TrackDAO');
+			$trackDao = DAORegistry::getDAO('TrackDAO');
 			$track = $trackDao->getTrack($paper->getTrackId());
 			$abstractWordCount = $track->getAbstractWordCount();
 			if (isset($abstractWordCount) && $abstractWordCount > 0) {
@@ -47,7 +47,7 @@ class AuthorSubmitStep3Form extends AuthorSubmitForm {
 	 * Initialize form data from current paper.
 	 */
 	function initData() {
-		$trackDao =& DAORegistry::getDAO('TrackDAO');
+		$trackDao = DAORegistry::getDAO('TrackDAO');
 
 		if (isset($this->paper)) {
 			$paper =& $this->paper;
@@ -121,7 +121,7 @@ class AuthorSubmitStep3Form extends AuthorSubmitForm {
 
 		// Load the track. This is used in the step 2 form to
 		// determine whether or not to display indexing options.
-		$trackDao =& DAORegistry::getDAO('TrackDAO');
+		$trackDao = DAORegistry::getDAO('TrackDAO');
 		$this->_data['track'] =& $trackDao->getTrack($this->paper->getTrackId());
 	}
 
@@ -145,7 +145,7 @@ class AuthorSubmitStep3Form extends AuthorSubmitForm {
 	function display() {
 		$templateMgr =& TemplateManager::getManager();
 
-		$countryDao =& DAORegistry::getDAO('CountryDAO');
+		$countryDao = DAORegistry::getDAO('CountryDAO');
 		$countries =& $countryDao->getCountries();
 		$templateMgr->assign_by_ref('countries', $countries);
 
@@ -164,8 +164,8 @@ class AuthorSubmitStep3Form extends AuthorSubmitForm {
 	 * @return int the paper ID
 	 */
 	function execute() {
-		$paperDao =& DAORegistry::getDAO('PaperDAO');
-		$authorDao =& DAORegistry::getDAO('AuthorDAO');
+		$paperDao = DAORegistry::getDAO('PaperDAO');
+		$authorDao = DAORegistry::getDAO('AuthorDAO');
 		$paper =& $this->paper;
 		$conference =& Request::getConference();
 		$schedConf =& Request::getSchedConf();

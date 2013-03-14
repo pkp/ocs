@@ -50,13 +50,13 @@ class AuthorSubmitStep1Form extends AuthorSubmitForm {
 		$templateMgr =& TemplateManager::getManager();
 
 		// Get tracks for this conference
-		$trackDao =& DAORegistry::getDAO('TrackDAO');
+		$trackDao = DAORegistry::getDAO('TrackDAO');
 
 		// If this user is a track director or a director, they are
 		// allowed to submit to tracks flagged as "director-only" for
 		// submissions. Otherwise, display only tracks they are allowed
 		// to submit to.
-		$roleDao =& DAORegistry::getDAO('RoleDAO');
+		$roleDao = DAORegistry::getDAO('RoleDAO');
 		$isDirector = $roleDao->userHasRole($conference->getId(), $schedConf->getId(), $user->getId(), ROLE_ID_DIRECTOR) ||
 			$roleDao->userHasRole($conference->getId(), $schedConf->getId(), $user->getId(), ROLE_ID_TRACK_DIRECTOR) ||
 			$roleDao->userHasRole($conference->getId(), 0, $user->getId(), ROLE_ID_DIRECTOR) ||
@@ -64,7 +64,7 @@ class AuthorSubmitStep1Form extends AuthorSubmitForm {
 
 		$templateMgr->assign('trackOptions', array('0' => __('author.submit.selectTrack')) + $trackDao->getTrackTitles($schedConf->getId(), !$isDirector));
 
-		$paperTypeDao =& DAORegistry::getDAO('PaperTypeDAO');
+		$paperTypeDao = DAORegistry::getDAO('PaperTypeDAO');
 		$sessionTypes = $paperTypeDao->getPaperTypes($schedConf->getId());
 		$templateMgr->assign('sessionTypes', $sessionTypes->toArray());
 
@@ -129,7 +129,7 @@ class AuthorSubmitStep1Form extends AuthorSubmitForm {
 	 * @return int the paper ID
 	 */
 	function execute() {
-		$paperDao =& DAORegistry::getDAO('PaperDAO');
+		$paperDao = DAORegistry::getDAO('PaperDAO');
 
 		if (isset($this->paper)) {
 			$reviewMode = $this->paper->getReviewMode();
@@ -184,7 +184,7 @@ class AuthorSubmitStep1Form extends AuthorSubmitForm {
 			$this->paperId = $this->paper->getPaperId();
 
 			// Set user to initial author
-			$authorDao =& DAORegistry::getDAO('AuthorDAO'); /* @var $authorDao AuthorDAO */
+			$authorDao = DAORegistry::getDAO('AuthorDAO'); /* @var $authorDao AuthorDAO */
 			$user =& Request::getUser();
 			$author = new Author();
 			$author->setSubmissionId($this->paperId);

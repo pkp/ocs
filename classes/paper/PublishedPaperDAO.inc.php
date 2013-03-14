@@ -30,10 +30,10 @@ class PublishedPaperDAO extends DAO {
 	 */
 	function PublishedPaperDAO() {
 		parent::DAO();
-		$this->paperDao =& DAORegistry::getDAO('PaperDAO');
-		$this->authorDao =& DAORegistry::getDAO('AuthorDAO');
-		$this->galleyDao =& DAORegistry::getDAO('PaperGalleyDAO');
-		$this->suppFileDao =& DAORegistry::getDAO('SuppFileDAO');
+		$this->paperDao = DAORegistry::getDAO('PaperDAO');
+		$this->authorDao = DAORegistry::getDAO('AuthorDAO');
+		$this->galleyDao = DAORegistry::getDAO('PaperGalleyDAO');
+		$this->suppFileDao = DAORegistry::getDAO('SuppFileDAO');
 	}
 
 	/**
@@ -190,7 +190,7 @@ class PublishedPaperDAO extends DAO {
 				$params[] = $search;
 				break;
 			case SUBMISSION_FIELD_AUTHOR:
-				$directorSubmissionDao =& DAORegistry::getDAO('DirectorSubmissionDAO');
+				$directorSubmissionDao = DAORegistry::getDAO('DirectorSubmissionDAO');
 				$searchSql = $directorSubmissionDao->_generateUserNameSearchSQL($search, $searchMatch, 'pp.', $params);
 				break;
 		}

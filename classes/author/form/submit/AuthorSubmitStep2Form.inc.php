@@ -53,7 +53,7 @@ class AuthorSubmitStep2Form extends AuthorSubmitForm {
 		$templateMgr =& TemplateManager::getManager();
 
 		// Get supplementary files for this paper
-		$paperFileDao =& DAORegistry::getDAO('PaperFileDAO');
+		$paperFileDao = DAORegistry::getDAO('PaperFileDAO');
 		if ($this->paper->getSubmissionFileId() != null) {
 			$templateMgr->assign_by_ref('submissionFile', $paperFileDao->getPaperFile($this->paper->getSubmissionFileId()));
 		}
@@ -69,7 +69,7 @@ class AuthorSubmitStep2Form extends AuthorSubmitForm {
 		import('classes.file.PaperFileManager');
 
 		$paperFileManager = new PaperFileManager($this->paperId);
-		$paperDao =& DAORegistry::getDAO('PaperDAO');
+		$paperDao = DAORegistry::getDAO('PaperDAO');
 
 		if ($paperFileManager->uploadError($fileName)) return false;
 
@@ -93,7 +93,7 @@ class AuthorSubmitStep2Form extends AuthorSubmitForm {
 	 */
 	function execute() {
 		// Update paper
-		$paperDao =& DAORegistry::getDAO('PaperDAO');
+		$paperDao = DAORegistry::getDAO('PaperDAO');
 		$paper =& $this->paper;
 
 		if ($paper->getSubmissionProgress() <= $this->step) {

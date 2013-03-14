@@ -46,7 +46,7 @@ class RTHandler extends PaperHandler {
 		$conference =& $router->getContext($request, CONTEXT_CONFERENCE);
 		$paper =& $this->paper;
 
-		$rtDao =& DAORegistry::getDAO('RTDAO');
+		$rtDao = DAORegistry::getDAO('RTDAO');
 		$conferenceRt =& $rtDao->getConferenceRTByConference($conference);
 
 		if (!$conferenceRt || !$conferenceRt->getAuthorBio()) {
@@ -76,14 +76,14 @@ class RTHandler extends PaperHandler {
 		$paper =& $this->paper;
 
 
-		$rtDao =& DAORegistry::getDAO('RTDAO');
+		$rtDao = DAORegistry::getDAO('RTDAO');
 		$conferenceRt =& $rtDao->getConferenceRTByConference($conference);
 
 		if (!$conferenceRt || !$conferenceRt->getViewMetadata()) {
 			$request->redirect(null, null, $router->getRequestedPage($request));
 		}
 
-		$trackDao =& DAORegistry::getDAO('TrackDAO');
+		$trackDao = DAORegistry::getDAO('TrackDAO');
 		$track =& $trackDao->getTrack($paper->getTrackId());
 
 		$templateMgr =& TemplateManager::getManager();
@@ -116,7 +116,7 @@ class RTHandler extends PaperHandler {
 		$conference =& $router->getContext($request, CONTEXT_CONFERENCE);
 		$paper =& $this->paper;
 
-		$rtDao =& DAORegistry::getDAO('RTDAO');
+		$rtDao = DAORegistry::getDAO('RTDAO');
 		$conferenceRt =& $rtDao->getConferenceRTByConference($conference);
 
 		$context =& $rtDao->getContext($contextId);
@@ -209,7 +209,7 @@ class RTHandler extends PaperHandler {
 		$schedConf =& $router->getContext($request, CONTEXT_SCHED_CONF);
 		$paper =& $this->paper;
 
-		$rtDao =& DAORegistry::getDAO('RTDAO');
+		$rtDao = DAORegistry::getDAO('RTDAO');
 		$conferenceRt =& $rtDao->getConferenceRTByConference($conference);
 
 		if (!$conferenceRt || !$conferenceRt->getCaptureCite()) {
@@ -248,17 +248,17 @@ class RTHandler extends PaperHandler {
 		$schedConf =& $router->getContext($request, CONTEXT_SCHED_CONF);
 		$paper =& $this->paper;
 
-		$rtDao =& DAORegistry::getDAO('RTDAO');
+		$rtDao = DAORegistry::getDAO('RTDAO');
 		$conferenceRt =& $rtDao->getConferenceRTByConference($conference);
 
 		if (!$conferenceRt || !$conferenceRt->getPrinterFriendly()) {
 			$request->redirect(null, null, $router->getRequestedPage($request));
 		}
 
-		$paperGalleyDao =& DAORegistry::getDAO('PaperGalleyDAO');
+		$paperGalleyDao = DAORegistry::getDAO('PaperGalleyDAO');
 		$galley =& $paperGalleyDao->getGalley($galleyId, $paper->getId());
 
-		$trackDao =& DAORegistry::getDAO('TrackDAO');
+		$trackDao = DAORegistry::getDAO('TrackDAO');
 		$track =& $trackDao->getTrack($paper->getTrackId());
 
 		$templateMgr =& TemplateManager::getManager();
@@ -288,7 +288,7 @@ class RTHandler extends PaperHandler {
 		$schedConf =& $router->getContext($request, CONTEXT_SCHED_CONF);
 		$paper =& $this->paper;
 
-		$rtDao =& DAORegistry::getDAO('RTDAO');
+		$rtDao = DAORegistry::getDAO('RTDAO');
 		$conferenceRt =& $rtDao->getConferenceRTByConference($conference);
 		$user =& $request->getUser();
 
@@ -337,7 +337,7 @@ class RTHandler extends PaperHandler {
 		$schedConf =& $router->getContext($request, CONTEXT_SCHED_CONF);
 		$paper =& $this->paper;
 
-		$rtDao =& DAORegistry::getDAO('RTDAO');
+		$rtDao = DAORegistry::getDAO('RTDAO');
 		$conferenceRt =& $rtDao->getConferenceRTByConference($conference);
 		$user =& $request->getUser();
 
@@ -379,7 +379,7 @@ class RTHandler extends PaperHandler {
 		$conference =& $router->getContext($request, CONTEXT_CONFERENCE);
 		$paper =& $this->paper;
 
-		$rtDao =& DAORegistry::getDAO('RTDAO');
+		$rtDao = DAORegistry::getDAO('RTDAO');
 		$conferenceRt =& $rtDao->getConferenceRTByConference($conference);
 
 		if (!$conferenceRt || !$conferenceRt->getSupplementaryFiles()) {
@@ -411,10 +411,10 @@ class RTHandler extends PaperHandler {
 		$conference =& $router->getContext($request, CONTEXT_CONFERENCE);
 		$paper =& $this->paper;
 
-		$rtDao =& DAORegistry::getDAO('RTDAO');
+		$rtDao = DAORegistry::getDAO('RTDAO');
 		$conferenceRt =& $rtDao->getConferenceRTByConference($conference);
 
-		$suppFileDao =& DAORegistry::getDAO('SuppFileDAO');
+		$suppFileDao = DAORegistry::getDAO('SuppFileDAO');
 		$suppFile = $suppFileDao->getSuppFile($suppFileId, $paper->getId());
 
 		if (!$conferenceRt || !$conferenceRt->getSupplementaryFiles() || !$suppFile) {
@@ -445,7 +445,7 @@ class RTHandler extends PaperHandler {
 		$conference =& $router->getContext($request, CONTEXT_CONFERENCE);
 		$paper =& $this->paper;
 
-		$rtDao =& DAORegistry::getDAO('RTDAO');
+		$rtDao = DAORegistry::getDAO('RTDAO');
 		$conferenceRt =& $rtDao->getConferenceRTByConference($conference);
 
 		if (!$conferenceRt || !$conferenceRt->getFindingReferences()) {

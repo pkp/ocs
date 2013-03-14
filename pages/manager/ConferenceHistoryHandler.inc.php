@@ -38,7 +38,7 @@ class ConferenceHistoryHandler extends ManagerHandler {
 		$templateMgr->assign_by_ref('conference', $conference);
 
 		if ($logId) {
-			$logDao =& DAORegistry::getDAO('ConferenceEventLogDAO');
+			$logDao = DAORegistry::getDAO('ConferenceEventLogDAO');
 			$logEntry =& $logDao->getLogEntry($logId);
 			if ($logEntry && $logEntry->getConferenceId() != $conference->getId()) $request->redirect(null, null, null, 'index');
 		}
@@ -74,7 +74,7 @@ class ConferenceHistoryHandler extends ManagerHandler {
 		$conference =& $request->getConference();
 
 		$rangeInfo = $this->getRangeInfo($request, 'eventLogEntries', array($assocType, $assocId));
-		$logDao =& DAORegistry::getDAO('ConferenceEventLogDAO');
+		$logDao = DAORegistry::getDAO('ConferenceEventLogDAO');
 		while (true) {
 			$eventLogEntries =& $logDao->getConferenceLogEntriesByAssoc($conference->getId(), null, $assocType, $assocId, $rangeInfo);
 			if ($eventLogEntries->isInBounds()) break;
@@ -100,7 +100,7 @@ class ConferenceHistoryHandler extends ManagerHandler {
 		$this->validate();
 		$conference =& $request->getConference();
 
-		$logDao =& DAORegistry::getDAO('ConferenceEventLogDAO');
+		$logDao = DAORegistry::getDAO('ConferenceEventLogDAO');
 
 		if ($logId) {
 			$logDao->deleteLogEntry($logId, $conference->getId());

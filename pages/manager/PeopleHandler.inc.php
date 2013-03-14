@@ -31,7 +31,7 @@ class PeopleHandler extends ManagerHandler {
 		$this->validate();
 		$this->setupTemplate($request, true);
 
-		$roleDao =& DAORegistry::getDAO('RoleDAO');
+		$roleDao = DAORegistry::getDAO('RoleDAO');
 
 		if ($request->getUserVar('roleSymbolic')!=null) $roleSymbolic = $request->getUserVar('roleSymbolic');
 		else $roleSymbolic = isset($args[0])?$args[0]:'all';
@@ -123,7 +123,7 @@ class PeopleHandler extends ManagerHandler {
 		$templateMgr->assign('searchInitial', $request->getUserVar('searchInitial'));
 
 		if ($roleId == ROLE_ID_REVIEWER) {
-			$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
+			$reviewAssignmentDao = DAORegistry::getDAO('ReviewAssignmentDAO');
 			$templateMgr->assign('rateReviewerOnQuality', $conference->getSetting('rateReviewerOnQuality'));
 			$templateMgr->assign('qualityRatings', $conference->getSetting('rateReviewerOnQuality') ? $reviewAssignmentDao->getAverageQualityRatings($conference->getId()) : null);
 		}
@@ -155,8 +155,8 @@ class PeopleHandler extends ManagerHandler {
 		$this->validate();
 		$this->setupTemplate($request, true);
 
-		$roleDao =& DAORegistry::getDAO('RoleDAO');
-		$userDao =& DAORegistry::getDAO('UserDAO');
+		$roleDao = DAORegistry::getDAO('RoleDAO');
+		$userDao = DAORegistry::getDAO('UserDAO');
 
 		$roleId = (int)(isset($args[0])?$args[0]:$request->getUserVar('roleId'));
 		$conference =& $request->getConference();
@@ -236,7 +236,7 @@ class PeopleHandler extends ManagerHandler {
 		$conference =& $request->getConference();
 		$schedConf =& $request->getSchedConf();
 
-		$roleDao =& DAORegistry::getDAO('RoleDAO');
+		$roleDao = DAORegistry::getDAO('RoleDAO');
 		$role =& $roleDao->newDataObject();
 		$role->setId($roleId);
 		$rolePath = $role->getPath();
@@ -297,7 +297,7 @@ class PeopleHandler extends ManagerHandler {
 		$isSiteAdmin = Validation::isSiteAdmin();
 
 		if ($roleId != ROLE_ID_SITE_ADMIN && ($isSiteAdmin || $conferenceId == $conference->getId())) {
-			$roleDao =& DAORegistry::getDAO('RoleDAO');
+			$roleDao = DAORegistry::getDAO('RoleDAO');
 			$roleDao->deleteRoleByUserId($userId, $conferenceId, $roleId, $schedConfId);
 		}
 
@@ -314,7 +314,7 @@ class PeopleHandler extends ManagerHandler {
 		$this->setupTemplate($request, true);
 
 		$rolePath = isset($args[0]) ? $args[0] : '';
-		$roleDao =& DAORegistry::getDAO('RoleDAO');
+		$roleDao = DAORegistry::getDAO('RoleDAO');
 		$roleId = $roleDao->getRoleIdFromPath($rolePath);
 		if ($roleId) {
 			$roleName = $roleDao->getRoleName($roleId, true);
@@ -323,7 +323,7 @@ class PeopleHandler extends ManagerHandler {
 			$roleName = '';
 		}
 
-		$conferenceDao =& DAORegistry::getDAO('ConferenceDAO');
+		$conferenceDao = DAORegistry::getDAO('ConferenceDAO');
 		$conferenceTitles =& $conferenceDao->getNames();
 
 		$conference =& $request->getConference();
@@ -352,7 +352,7 @@ class PeopleHandler extends ManagerHandler {
 
 		if (!$schedConf) $request->redirect(null, null, 'manager');
 
-		$roleDao =& DAORegistry::getDAO('RoleDAO');
+		$roleDao = DAORegistry::getDAO('RoleDAO');
 		$roleId = $roleDao->getRoleIdFromPath($rolePath);
 
 		if ((!empty($roleId) || $rolePath == 'all') && !empty($syncConference)) {
@@ -437,8 +437,8 @@ class PeopleHandler extends ManagerHandler {
 		$this->validate();
 		$this->setupTemplate($request, true);
 
-		$roleDao =& DAORegistry::getDAO('RoleDAO');
-		$userDao =& DAORegistry::getDAO('UserDAO');
+		$roleDao = DAORegistry::getDAO('RoleDAO');
+		$userDao = DAORegistry::getDAO('UserDAO');
 
 		$conference =& $request->getConference();
 		$schedConf =& $request->getSchedConf();
@@ -539,7 +539,7 @@ class PeopleHandler extends ManagerHandler {
 		$templateMgr->assign('searchInitial', $request->getUserVar('searchInitial'));
 
 		if ($roleId == ROLE_ID_REVIEWER) {
-			$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
+			$reviewAssignmentDao = DAORegistry::getDAO('ReviewAssignmentDAO');
 			$templateMgr->assign('rateReviewerOnQuality', $conference->getSetting('rateReviewerOnQuality'));
 			$templateMgr->assign('qualityRatings', $conference->getSetting('rateReviewerOnQuality') ? $reviewAssignmentDao->getAverageQualityRatings($conference->getId()) : null);
 		}
@@ -584,7 +584,7 @@ class PeopleHandler extends ManagerHandler {
 				$templateMgr->assign('backLinkLabel', 'manager.people.allUsers');
 				return $templateMgr->display('common/error.tpl');
 			}
-			$userDao =& DAORegistry::getDAO('UserDAO');
+			$userDao = DAORegistry::getDAO('UserDAO');
 			$user =& $userDao->getById($userId);
 			if ($user) {
 				$user->setDisabled(1);
@@ -608,7 +608,7 @@ class PeopleHandler extends ManagerHandler {
 		$user =& $request->getUser();
 
 		if ($userId != null && $userId != $user->getId()) {
-			$userDao =& DAORegistry::getDAO('UserDAO');
+			$userDao = DAORegistry::getDAO('UserDAO');
 			$user =& $userDao->getById($userId, true);
 			if ($user) {
 				$user->setDisabled(0);
@@ -632,7 +632,7 @@ class PeopleHandler extends ManagerHandler {
 		$conference =& $request->getConference();
 
 		if ($userId != null && $userId != $user->getId()) {
-			$roleDao =& DAORegistry::getDAO('RoleDAO');
+			$roleDao = DAORegistry::getDAO('RoleDAO');
 			$roleDao->deleteRoleByUserId($userId, $conference->getId());
 		}
 
@@ -698,7 +698,7 @@ class PeopleHandler extends ManagerHandler {
 		$templateMgr->assign('currentUrl', $request->url(null, null, null, 'people', 'all'));
 		$templateMgr->assign('helpTopicId', 'conference.users.index');
 
-		$userDao =& DAORegistry::getDAO('UserDAO');
+		$userDao = DAORegistry::getDAO('UserDAO');
 		$userId = isset($args[0]) ? $args[0] : 0;
 		if (is_numeric($userId)) {
 			$userId = (int) $userId;
@@ -721,20 +721,20 @@ class PeopleHandler extends ManagerHandler {
 			$isSiteAdmin = Validation::isSiteAdmin();
 			$templateMgr->assign('isSiteAdmin', $isSiteAdmin);
 
-			$roleDao =& DAORegistry::getDAO('RoleDAO');
+			$roleDao = DAORegistry::getDAO('RoleDAO');
 			$roles =& $roleDao->getRolesByUserId($user->getId(), $conference->getId());
 			if ($isSiteAdmin) {
 				// We'll be displaying all roles, so get ready to display
 				// conference names other than the current journal.
-				$conferenceDao =& DAORegistry::getDAO('ConferenceDAO');
-				$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
+				$conferenceDao = DAORegistry::getDAO('ConferenceDAO');
+				$schedConfDao = DAORegistry::getDAO('SchedConfDAO');
 				$conferenceTitles =& $conferenceDao->getNames();
 				$schedConfTitles =& $schedConfDao->getNames();
 				$templateMgr->assign_by_ref('conferenceTitles', $conferenceTitles);
 				$templateMgr->assign_by_ref('schedConfTitles', $schedConfTitles);
 			}
 
-			$countryDao =& DAORegistry::getDAO('CountryDAO');
+			$countryDao = DAORegistry::getDAO('CountryDAO');
 			$country = null;
 			if ($user->getCountry() != '') {
 				$country = $countryDao->getCountry($user->getCountry());

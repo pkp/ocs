@@ -475,7 +475,7 @@ class Paper extends Submission {
 			case COMMENTS_ENABLE:
 				return true;
 			case COMMENTS_TRACK_DEFAULT:
-				$trackDao =& DAORegistry::getDAO('TrackDAO');
+				$trackDao = DAORegistry::getDAO('TrackDAO');
 				$track =& $trackDao->getTrack($this->getTrackId(), $this->getSchedConfId());
 				if ($track->getDisableComments()) {
 					return false;
@@ -517,7 +517,7 @@ class Paper extends Submission {
 		}
 
 		if($reviewers) {
-			$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
+			$reviewAssignmentDao = DAORegistry::getDAO('ReviewAssignmentDAO');
 			$reviewAssignments =& $reviewAssignmentDao->getBySubmissionId($paperId);
 			foreach ($reviewAssignments as $reviewAssignment) {
 				$userId = $reviewAssignment->getReviewerId();
@@ -526,7 +526,7 @@ class Paper extends Submission {
 			}
 		}
 
-		$editAssignmentDao =& DAORegistry::getDAO('EditAssignmentDAO');
+		$editAssignmentDao = DAORegistry::getDAO('EditAssignmentDAO');
 
 		if($trackDirectors) {
 			$editAssignments =& $editAssignmentDao->getTrackDirectorAssignmentsByPaperId($paperId);

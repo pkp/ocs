@@ -174,37 +174,37 @@ class SchedConfDAO extends ContextDAO {
 	 * @param $schedConfId int
 	 */
 	function deleteById($schedConfId) {
-		$schedConfSettingsDao =& DAORegistry::getDAO('SchedConfSettingsDAO');
+		$schedConfSettingsDao = DAORegistry::getDAO('SchedConfSettingsDAO');
 		$schedConfSettingsDao->deleteById($schedConfId);
 
-		$trackDao =& DAORegistry::getDAO('TrackDAO');
+		$trackDao = DAORegistry::getDAO('TrackDAO');
 		$trackDao->deleteTracksBySchedConf($schedConfId);
 
-		$registrationDao =& DAORegistry::getDAO('RegistrationDAO');
+		$registrationDao = DAORegistry::getDAO('RegistrationDAO');
 		$registrationDao->deleteRegistrationsBySchedConf($schedConfId);
 
-		$registrationTypeDao =& DAORegistry::getDAO('RegistrationTypeDAO');
+		$registrationTypeDao = DAORegistry::getDAO('RegistrationTypeDAO');
 		$registrationTypeDao->deleteRegistrationTypesBySchedConf($schedConfId);
 
-		$registrationOptionDao =& DAORegistry::getDAO('RegistrationOptionDAO');
+		$registrationOptionDao = DAORegistry::getDAO('RegistrationOptionDAO');
 		$registrationOptionDao->deleteRegistrationOptionsBySchedConf($schedConfId);
 
-		$announcementDao =& DAORegistry::getDAO('AnnouncementDAO');
+		$announcementDao = DAORegistry::getDAO('AnnouncementDAO');
 		$announcementDao->deleteByAssoc(ASSOC_TYPE_SCHED_CONF, $schedConfId);
 
-		$buildingDao =& DAORegistry::getDAO('BuildingDAO');
+		$buildingDao = DAORegistry::getDAO('BuildingDAO');
 		$buildingDao->deleteBuildingsBySchedConfId($schedConfId);
 
-		$specialEventDao =& DAORegistry::getDAO('SpecialEventDAO');
+		$specialEventDao = DAORegistry::getDAO('SpecialEventDAO');
 		$specialEventDao->deleteSpecialEventsBySchedConfId($schedConfId);
 
-		$paperDao =& DAORegistry::getDAO('PaperDAO');
+		$paperDao = DAORegistry::getDAO('PaperDAO');
 		$paperDao->deletePapersBySchedConfId($schedConfId);
 
-		$roleDao =& DAORegistry::getDAO('RoleDAO');
+		$roleDao = DAORegistry::getDAO('RoleDAO');
 		$roleDao->deleteRoleBySchedConfId($schedConfId);
 
-		$groupDao =& DAORegistry::getDAO('GroupDAO');
+		$groupDao = DAORegistry::getDAO('GroupDAO');
 		$groupDao->deleteGroupsByAssocId(ASSOC_TYPE_SCHED_CONF, $schedConfId);
 
 		parent::deleteById($schedConfId);

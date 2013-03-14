@@ -43,7 +43,7 @@ class NativeExportDom {
 			unset($policyNode);
 		}
 
-		$publishedPaperDao =& DAORegistry::getDAO('PublishedPaperDAO');
+		$publishedPaperDao = DAORegistry::getDAO('PublishedPaperDAO');
 		foreach ($publishedPaperDao->getPublishedPapersByTrackId($track->getId(), $schedConf->getId()) as $paper) {
 			$paperNode =& NativeExportDom::generatePaperDom($doc, $schedConf, $track, $paper);
 			XMLCustomWriter::appendChild($root, $paperNode);
@@ -212,7 +212,7 @@ class NativeExportDom {
 
 		import('classes.file.PaperFileManager');
 		$paperFileManager = new PaperFileManager($paper->getId());
-		$paperFileDao =& DAORegistry::getDAO('PaperFileDAO');
+		$paperFileDao = DAORegistry::getDAO('PaperFileDAO');
 
 		$root =& XMLCustomWriter::createElement($doc, $isHtml?'htmlgalley':'galley');
 		if ($root) XMLCustomWriter::setAttribute($root, 'locale', $galley->getLocale());

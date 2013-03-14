@@ -21,14 +21,14 @@ class PaperLog {
 	 * @param $entry PaperEventLogEntry
 	 */
 	function logEventEntry($paperId, &$entry) {
-		$paperDao =& DAORegistry::getDAO('PaperDAO');
+		$paperDao = DAORegistry::getDAO('PaperDAO');
 		$schedConfId = $paperDao->getPaperSchedConfId($paperId);
 
 		if (!$schedConfId) {
 			// Invalid paper
 			return false;
 		}
-		$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
+		$schedConfDao = DAORegistry::getDAO('SchedConfDAO');
 		$schedConf = $schedConfDao->getById($schedConfId);
 		$conferenceId = $schedConf->getConferenceId();
 
@@ -40,7 +40,7 @@ class PaperLog {
 			$entry->setUserId($user == null ? 0 : $user->getId());
 		}
 
-		$logDao =& DAORegistry::getDAO('PaperEventLogDAO');
+		$logDao = DAORegistry::getDAO('PaperEventLogDAO');
 		return $logDao->insertLogEntry($entry);
 	}
 
@@ -87,7 +87,7 @@ class PaperLog {
 	 * @return array PaperEventLogEntry
 	 */
 	function &getEventLogEntries($paperId, $rangeInfo = null) {
-		$logDao =& DAORegistry::getDAO('PaperEventLogDAO');
+		$logDao = DAORegistry::getDAO('PaperEventLogDAO');
 		$returner =& $logDao->getPaperLogEntries($paperId, $rangeInfo);
 		return $returner;
 	}
@@ -98,10 +98,10 @@ class PaperLog {
 	 * @param $entry PaperEmailLogEntry
 	 */
 	function logEmailEntry($paperId, &$entry) {
-		$paperDao =& DAORegistry::getDAO('PaperDAO');
+		$paperDao = DAORegistry::getDAO('PaperDAO');
 		$schedConfId = $paperDao->getPaperSchedConfId($paperId);
 
-		$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
+		$schedConfDao = DAORegistry::getDAO('SchedConfDAO');
 		$schedConf = $schedConfDao->getById($schedConfId);
 
 		if (!$schedConfId) {
@@ -117,7 +117,7 @@ class PaperLog {
 			$entry->setSenderId($user == null ? 0 : $user->getId());
 		}
 
-		$logDao =& DAORegistry::getDAO('PaperEmailLogDAO');
+		$logDao = DAORegistry::getDAO('PaperEmailLogDAO');
 		return $logDao->insertLogEntry($entry);
 	}
 
@@ -127,7 +127,7 @@ class PaperLog {
 	 * @return array PaperEmailLogEntry
 	 */
 	function &getEmailLogEntries($paperId, $rangeInfo = null) {
-		$logDao =& DAORegistry::getDAO('PaperEmailLogDAO');
+		$logDao = DAORegistry::getDAO('PaperEmailLogDAO');
 		$result =& $logDao->getPaperLogEntries($paperId, $rangeInfo);
 		return $result;
 	}

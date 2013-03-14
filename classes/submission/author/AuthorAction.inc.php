@@ -37,7 +37,7 @@ class AuthorAction extends Action {
 	function designateReviewVersion($authorSubmission) {
 		import('classes.file.PaperFileManager');
 		$paperFileManager = new PaperFileManager($authorSubmission->getId());
-		$authorSubmissionDao =& DAORegistry::getDAO('AuthorSubmissionDAO');
+		$authorSubmissionDao = DAORegistry::getDAO('AuthorSubmissionDAO');
 
 		if (!HookRegistry::call('AuthorAction::designateReviewVersion', array(&$authorSubmission))) {
 			$submissionFile =& $authorSubmission->getSubmissionFile();
@@ -48,10 +48,10 @@ class AuthorAction extends Action {
 
 				$authorSubmissionDao->updateAuthorSubmission($authorSubmission);
 
-				$trackDirectorSubmissionDao =& DAORegistry::getDAO('TrackDirectorSubmissionDAO');
+				$trackDirectorSubmissionDao = DAORegistry::getDAO('TrackDirectorSubmissionDAO');
 				$schedConf =& Request::getSchedConf();
 				if (!$schedConf || $schedConf->getId() != $authorSubmission->getSchedConfId()) {
-					$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
+					$schedConfDao = DAORegistry::getDAO('SchedConfDAO');
 					unset($schedConf);
 					$schedConf = $schedConfDao->getById($authorSubmission->getSchedConfId());
 				}
@@ -70,8 +70,8 @@ class AuthorAction extends Action {
 		import('classes.file.PaperFileManager');
 
 		$paperFileManager = new PaperFileManager($paper->getId());
-		$paperFileDao =& DAORegistry::getDAO('PaperFileDAO');
-		$authorSubmissionDao =& DAORegistry::getDAO('AuthorSubmissionDAO');
+		$paperFileDao = DAORegistry::getDAO('PaperFileDAO');
+		$authorSubmissionDao = DAORegistry::getDAO('AuthorSubmissionDAO');
 
 		$paperFile =& $paperFileDao->getPaperFile($fileId, $revisionId, $paper->getId());
 		$authorSubmission = $authorSubmissionDao->getAuthorSubmission($paper->getId());
@@ -98,7 +98,7 @@ class AuthorAction extends Action {
 	function uploadRevisedVersion($authorSubmission) {
 		import('classes.file.PaperFileManager');
 		$paperFileManager = new PaperFileManager($authorSubmission->getId());
-		$authorSubmissionDao =& DAORegistry::getDAO('AuthorSubmissionDAO');
+		$authorSubmissionDao = DAORegistry::getDAO('AuthorSubmissionDAO');
 
 		$fileName = 'upload';
 		if ($paperFileManager->uploadError($fileName)) return false;
@@ -146,7 +146,7 @@ class AuthorAction extends Action {
 	 * @param $send boolean
 	 */
 	function emailDirectorDecisionComment($authorSubmission, $send) {
-		$userDao =& DAORegistry::getDAO('UserDAO');
+		$userDao = DAORegistry::getDAO('UserDAO');
 		$conference =& Request::getConference();
 		$schedConf =& Request::getSchedConf();
 
@@ -164,7 +164,7 @@ class AuthorAction extends Action {
 			HookRegistry::call('AuthorAction::emailDirectorDecisionComment', array(&$authorSubmission, &$email));
 			$email->send();
 
-			$paperCommentDao =& DAORegistry::getDAO('PaperCommentDAO');
+			$paperCommentDao = DAORegistry::getDAO('PaperCommentDAO');
 			$paperComment = new PaperComment();
 			$paperComment->setCommentType(COMMENT_TYPE_DIRECTOR_DECISION);
 			$paperComment->setRoleId(ROLE_ID_AUTHOR);
@@ -209,7 +209,7 @@ class AuthorAction extends Action {
 	 * TODO: Complete list of files author has access to
 	 */
 	function downloadAuthorFile($paper, $fileId, $revision = null) {
-		$authorSubmissionDao =& DAORegistry::getDAO('AuthorSubmissionDAO');		
+		$authorSubmissionDao = DAORegistry::getDAO('AuthorSubmissionDAO');		
 
 		$submission =& $authorSubmissionDao->getAuthorSubmission($paper->getId());
 
@@ -237,7 +237,7 @@ class AuthorAction extends Action {
 			foreach ($submission->getReviewAssignments(null) as $roundReviewAssignments) {
 				foreach ($roundReviewAssignments as $reviewAssignment) {
 					if ($reviewAssignment->getReviewerFileId() == $fileId) {
-						$paperFileDao =& DAORegistry::getDAO('PaperFileDAO');
+						$paperFileDao = DAORegistry::getDAO('PaperFileDAO');
 
 						$paperFile =& $paperFileDao->getPaperFile($fileId, $revision);
 
@@ -263,7 +263,7 @@ class AuthorAction extends Action {
 			}
 
 			// Check current review version
-			$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
+			$reviewAssignmentDao = DAORegistry::getDAO('ReviewAssignmentDAO');
 			$reviewFilesByRound =& $reviewAssignmentDao->getReviewFilesByRound($paper->getId());
 			$reviewFile = @$reviewFilesByRound[$paper->getCurrentRound()];
 			if ($reviewFile && $fileId == $reviewFile->getFileId()) {
@@ -294,7 +294,7 @@ class AuthorAction extends Action {
 		$schedConf =& Request::getSchedConf();
 		if (!$schedConf || $schedConf->getId() != $authorSubmission->getSchedConfId()) {
 			unset($schedConf);
-			$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
+			$schedConfDao = DAORegistry::getDAO('SchedConfDAO');
 			$schedConf = $schedConfDao->getById($paper->getSchedConfId());
 		}
 

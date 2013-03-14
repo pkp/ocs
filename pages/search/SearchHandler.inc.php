@@ -53,10 +53,10 @@ class SearchHandler extends Handler {
 		parent::validate();
 		$this->setupTemplate($request, false);
 		$templateMgr =& TemplateManager::getManager($request);
-		$publishedPaperDao =& DAORegistry::getDAO('PublishedPaperDAO');
+		$publishedPaperDao = DAORegistry::getDAO('PublishedPaperDAO');
 
 		if ($request->getConference() == null) {
-			$conferenceDao =& DAORegistry::getDAO('ConferenceDAO');
+			$conferenceDao = DAORegistry::getDAO('ConferenceDAO');
 			$conferences =& $conferenceDao->getNames(true); // Enabled added
 			$templateMgr->assign('siteSearch', true);
 			$templateMgr->assign('conferenceOptions', array('' => AppLocale::Translate('search.allConferences')) + $conferences);
@@ -80,7 +80,7 @@ class SearchHandler extends Handler {
 		parent::validate();
 		$this->setupTemplate($request, true);
 
-		$authorDao =& DAORegistry::getDAO('AuthorDAO');
+		$authorDao = DAORegistry::getDAO('AuthorDAO');
 
 		if (isset($args[0]) && $args[0] == 'view') {
 			// View a specific author
@@ -107,9 +107,9 @@ class SearchHandler extends Handler {
 			$tracks = array();
 			$schedConfsUnavailable = array();
 
-			$trackDao =& DAORegistry::getDAO('TrackDAO');
-			$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
-			$conferenceDao =& DAORegistry::getDAO('ConferenceDAO');
+			$trackDao = DAORegistry::getDAO('TrackDAO');
+			$schedConfDao = DAORegistry::getDAO('SchedConfDAO');
+			$conferenceDao = DAORegistry::getDAO('ConferenceDAO');
 
 			foreach ($publishedPapers as $paper) {
 				$trackId = $paper->getTrackId();
@@ -147,7 +147,7 @@ class SearchHandler extends Handler {
 			$templateMgr->assign('lastName', $lastName);
 			$templateMgr->assign('affiliation', $affiliation);
 
-			$countryDao =& DAORegistry::getDAO('CountryDAO');
+			$countryDao = DAORegistry::getDAO('CountryDAO');
 			$country = $countryDao->getCountry($country);
 			$templateMgr->assign('country', $country);
 
@@ -186,8 +186,8 @@ class SearchHandler extends Handler {
 		$schedConf =& $request->getSchedConf();
 		import('classes.schedConf.SchedConfAction');
 
-		$publishedPaperDao =& DAORegistry::getDAO('PublishedPaperDAO');
-		$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
+		$publishedPaperDao = DAORegistry::getDAO('PublishedPaperDAO');
+		$schedConfDao = DAORegistry::getDAO('SchedConfDAO');
 
 		$rangeInfo = $this->getRangeInfo($request, 'search');
 
@@ -236,8 +236,8 @@ class SearchHandler extends Handler {
 		parent::validate();
 		$this->setupTemplate($request, true);
 
-		$conferenceDao =& DAORegistry::getDAO('ConferenceDAO');
-		$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
+		$conferenceDao = DAORegistry::getDAO('ConferenceDAO');
+		$schedConfDao = DAORegistry::getDAO('SchedConfDAO');
 
 		$conferences =& $conferenceDao->getConferences(true);
 		$conferenceIndex = array();
@@ -270,7 +270,7 @@ class SearchHandler extends Handler {
 
 		$searchConferenceId = $request->getUserVar('searchConference');
 		if (!empty($searchConferenceId)) {
-			$conferenceDao =& DAORegistry::getDAO('ConferenceDAO');
+			$conferenceDao = DAORegistry::getDAO('ConferenceDAO');
 			$conference =& $conferenceDao->getById($searchConferenceId);
 		} else {
 			$conference =& $request->getConference();
@@ -302,10 +302,10 @@ class SearchHandler extends Handler {
 
 		$rangeInfo = $this->getRangeInfo($request, 'search');
 
-		$publishedPaperDao =& DAORegistry::getDAO('PublishedPaperDAO');
+		$publishedPaperDao = DAORegistry::getDAO('PublishedPaperDAO');
 		$searchConferenceId = $request->getUserVar('searchConference');
 		if (!empty($searchConferenceId)) {
-			$conferenceDao =& DAORegistry::getDAO('ConferenceDAO');
+			$conferenceDao = DAORegistry::getDAO('ConferenceDAO');
 			$conference =& $conferenceDao->getById($searchConferenceId);
 			$yearRange = $publishedPaperDao->getPaperYearRange($conference->getId());
 		} else {

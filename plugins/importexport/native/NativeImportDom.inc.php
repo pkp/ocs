@@ -66,7 +66,7 @@ class NativeImportDom {
 	}
 
 	function handleTrackNode(&$conference, &$schedConf, &$trackNode, &$errors, &$user, $isCommandLine, &$dependentItems, $trackIndex = null) {
-		$trackDao =& DAORegistry::getDAO('TrackDAO');
+		$trackDao = DAORegistry::getDAO('TrackDAO');
 
 		$errors = array();
 
@@ -238,8 +238,8 @@ class NativeImportDom {
 		$errors = array();
 
 		$conferenceSupportedLocales = array_keys($conference->getSupportedLocaleNames()); // => locales must be set up before
-		$publishedPaperDao =& DAORegistry::getDAO('PublishedPaperDAO');
-		$paperDao =& DAORegistry::getDAO('PaperDAO');
+		$publishedPaperDao = DAORegistry::getDAO('PublishedPaperDAO');
+		$paperDao = DAORegistry::getDAO('PaperDAO');
 
 		$paper = new Paper();
 		if ($locale = $paperNode->getAttribute('locale')) {
@@ -519,7 +519,7 @@ class NativeImportDom {
 		$errors = array();
 
 		$conferenceSupportedLocales = array_keys($conference->getSupportedLocaleNames()); // => locales must be set up before
-		$galleyDao =& DAORegistry::getDAO('PaperGalleyDAO');
+		$galleyDao = DAORegistry::getDAO('PaperGalleyDAO');
 
 		if ($isHtml) $galley = new PaperHtmlGalley();
 		else $galley = new PaperGalley();
@@ -597,7 +597,7 @@ class NativeImportDom {
 	 * ridiculous.
 	 */
 	function handleHtmlGalleyNodes(&$galleyNode, &$paperFileManager, &$galley, &$errors, &$isCommandLine) {
-		$paperGalleyDao =& DAORegistry::getDAO('PaperGalleyDAO');
+		$paperGalleyDao = DAORegistry::getDAO('PaperGalleyDAO');
 
 		foreach ($galleyNode->children as $node) {
 			$isStylesheet = ($node->getName() == 'stylesheet');
@@ -646,7 +646,7 @@ class NativeImportDom {
 		$errors = array();
 
 		$conferenceSupportedLocales = array_keys($conference->getSupportedLocaleNames()); // => locales must be set up before
-		$suppFileDao =& DAORegistry::getDAO('SuppFileDAO');
+		$suppFileDao = DAORegistry::getDAO('SuppFileDAO');
 
 		$suppFile = new SuppFile();
 		$suppFile->setPaperId($paper->getId());
@@ -797,7 +797,7 @@ class NativeImportDom {
 	}
 
 	function cleanupFailure (&$dependentItems) {
-		$paperDao =& DAORegistry::getDAO('PaperDAO');
+		$paperDao = DAORegistry::getDAO('PaperDAO');
 
 		foreach ($dependentItems as $dependentItem) {
 			$type = array_shift($dependentItem);

@@ -23,7 +23,7 @@ class RoleDAO extends PKPRoleDAO {
 	 */
 	function RoleDAO() {
 		parent::PKPRoleDAO();
-		$this->userDao =& DAORegistry::getDAO('UserDAO');
+		$this->userDao = DAORegistry::getDAO('UserDAO');
 	}
 
 	/**
@@ -389,7 +389,7 @@ class RoleDAO extends PKPRoleDAO {
 	 * @return int
 	 */
 	function getConferenceUsersCount($conferenceId) {
-		$userDao =& DAORegistry::getDAO('UserDAO');
+		$userDao = DAORegistry::getDAO('UserDAO');
 
 		$result =& $this->retrieve(
 			'SELECT COUNT(DISTINCT(user_id)) FROM roles WHERE conference_id = ?',
@@ -411,7 +411,7 @@ class RoleDAO extends PKPRoleDAO {
 	 * @return int
 	 */
 	function getSchedConfUsersCount($schedConfId, $roleId = null) {
-		$userDao =& DAORegistry::getDAO('UserDAO');
+		$userDao = DAORegistry::getDAO('UserDAO');
 
 		$params = array((int) $schedConfId);
 		if ($roleId !== null) $params[] = (int) $roleId;

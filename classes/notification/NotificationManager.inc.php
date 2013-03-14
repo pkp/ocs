@@ -117,10 +117,10 @@ class NotificationManager extends PKPNotificationManager {
 		assert($notification->getAssocType() == ASSOC_TYPE_PAPER);
 		$paperId = (int) $notification->getAssocId();
 
-		$paperDao =& DAORegistry::getDAO('PaperDAO'); /* @var $paperDao PaperDAO */
+		$paperDao = DAORegistry::getDAO('PaperDAO'); /* @var $paperDao PaperDAO */
 		$paper =& $paperDao->getPaper($paperId);
 
-		$schedConfDao =& DAORegistry::getDAO('SchedConfDAO'); /* @var $schedConfDao SchedConfDAO */
+		$schedConfDao = DAORegistry::getDAO('SchedConfDAO'); /* @var $schedConfDao SchedConfDAO */
 		$schedConf = $schedConfDao->getById($paper->getSchedConfId());
 
 		return $schedConf->getPath();
@@ -135,13 +135,13 @@ class NotificationManager extends PKPNotificationManager {
 		assert($notification->getAssocType() == ASSOC_TYPE_PAPER);
 		$paperId = (int) $notification->getAssocId();
 
-		$paperDao =& DAORegistry::getDAO('PaperDAO'); /* @var $paperDao PaperDAO */
+		$paperDao = DAORegistry::getDAO('PaperDAO'); /* @var $paperDao PaperDAO */
 		$paper =& $paperDao->getPaper($paperId);
 
-		$schedConfDao =& DAORegistry::getDAO('SchedConfDAO'); /* @var $schedConfDao SchedConfDAO */
+		$schedConfDao = DAORegistry::getDAO('SchedConfDAO'); /* @var $schedConfDao SchedConfDAO */
 		$schedConf = $schedConfDao->getById($paper->getSchedConfId());
 
-		$conferenceDao =& DAORegistry::getDAO('ConferenceDAO'); /* @var $conferenceDaoDao ConferenceDAO */
+		$conferenceDao = DAORegistry::getDAO('ConferenceDAO'); /* @var $conferenceDaoDao ConferenceDAO */
 		$conferenceId = $schedConf->getConferenceId();
 		$conference =& $conferenceDao->getById($conferenceId);
 
@@ -162,7 +162,7 @@ class NotificationManager extends PKPNotificationManager {
 		// Check if we've already set the roles for this user and paper, otherwise fetch them
 		if(!isset($this->privilegedRoles[$userId][$paperId])) $this->privilegedRoles[$userId][$paperId] = $this->_getHighestPrivilegedRolesForPaper($request, $paperId);
 
-		$roleDao =& DAORegistry::getDAO('RoleDAO'); /* @var $roleDao RoleDAO */
+		$roleDao = DAORegistry::getDAO('RoleDAO'); /* @var $roleDao RoleDAO */
 
 		if(is_array($validRoles)) {
 			// We've specified a list of roles that should be the only roles considered
@@ -193,11 +193,11 @@ class NotificationManager extends PKPNotificationManager {
 	function _getHighestPrivilegedRolesForPaper(&$request, $paperId) {
 		$user =& $request->getUser();
 		$userId = $user->getId();
-		$roleDao =& DAORegistry::getDAO('RoleDAO'); /* @var $roleDao RoleDAO */
-		$paperDao =& DAORegistry::getDAO('PaperDAO'); /* @var $paperDao PaperDAO */
+		$roleDao = DAORegistry::getDAO('RoleDAO'); /* @var $roleDao RoleDAO */
+		$paperDao = DAORegistry::getDAO('PaperDAO'); /* @var $paperDao PaperDAO */
 		$paper =& $paperDao->getPaper($paperId);
 
-		$schedConfDao =& DAORegistry::getDAO('SchedConfDAO'); /* @var $schedConfDao SchedConfDAO */
+		$schedConfDao = DAORegistry::getDAO('SchedConfDAO'); /* @var $schedConfDao SchedConfDAO */
 		$schedConf = $schedConfDao->getById($paper->getSchedConfId());
 
 		$roles = array();
@@ -206,7 +206,7 @@ class NotificationManager extends PKPNotificationManager {
 			$roles[] = ROLE_ID_DIRECTOR;
 		}
 
-		$editAssignmentDao =& DAORegistry::getDAO('EditAssignmentDAO'); /* @var $editAssignmentDao EditAssignmentDAO */
+		$editAssignmentDao = DAORegistry::getDAO('EditAssignmentDAO'); /* @var $editAssignmentDao EditAssignmentDAO */
 		$editAssignments =& $editAssignmentDao->getTrackDirectorAssignmentsByPaperId($paperId);
 		while ($editAssignment =& $editAssignments->next()) {
 			if ($userId == $editAssignment->getDirectorId()) $roles[] = ROLE_ID_TRACK_DIRECTOR;
@@ -217,7 +217,7 @@ class NotificationManager extends PKPNotificationManager {
 		if ($userId == $paper->getUserId()) $roles[] = ROLE_ID_AUTHOR;
 
 		// Check if user is reviewer
-		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO'); /* @var $reviewAssignmentDao ReviewAssignmentDAO */
+		$reviewAssignmentDao = DAORegistry::getDAO('ReviewAssignmentDAO'); /* @var $reviewAssignmentDao ReviewAssignmentDAO */
 		$reviewAssignments =& $reviewAssignmentDao->getBySubmissionId($paperId);
 		foreach ($reviewAssignments as $reviewAssignment) {
 			if ($userId == $reviewAssignment->getReviewerId()) $roles[] = ROLE_ID_REVIEWER;
@@ -234,7 +234,7 @@ class NotificationManager extends PKPNotificationManager {
 	function _getPaperTitle(&$notification) {
 		assert($notification->getAssocType() == ASSOC_TYPE_PAPER);
 		assert(is_numeric($notification->getAssocId()));
-		$paperDao =& DAORegistry::getDAO('PaperDAO'); /* @var $paperDao PaperDAO */
+		$paperDao = DAORegistry::getDAO('PaperDAO'); /* @var $paperDao PaperDAO */
 		$paper =& $paperDao->getPaper($notification->getAssocId());
 		return $paper->getLocalizedTitle();
 	}

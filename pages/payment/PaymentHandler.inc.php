@@ -62,7 +62,7 @@ class PaymentHandler extends Handler {
 		$schedConf =& $request->getSchedConf();
 		if (!$user || !$schedConf) $request->redirect(null, null, 'index');
 
-		$registrationDao =& DAORegistry::getDAO('RegistrationDAO');
+		$registrationDao = DAORegistry::getDAO('RegistrationDAO');
 		$registrationId = $registrationDao->getRegistrationIdByUser($user->getId(), $schedConf->getId());
 		$registration =& $registrationDao->getRegistration($registrationId);
 

@@ -52,7 +52,7 @@ class METSExportPlugin extends ImportExportPlugin {
 		$conference =& $request->getConference();
 		switch (array_shift($args)) {
 			case 'exportschedConf':
-				$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
+				$schedConfDao = DAORegistry::getDAO('SchedConfDAO');
 				$schedConfId = array_shift($args);
 				if ($schedConfId) {
 					$schedConf = $schedConfDao->getById($schedConfId);
@@ -69,10 +69,10 @@ class METSExportPlugin extends ImportExportPlugin {
 				$this->setBreadcrumbs(array(), true);
 				$templateMgr =& TemplateManager::getManager();
 
-				$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
+				$schedConfDao = DAORegistry::getDAO('SchedConfDAO');
 				$currentSchedConfs =& $schedConfDao->getCurrentSchedConfs($conference->getId());
 
-				$siteDao =& DAORegistry::getDAO('SiteDAO');
+				$siteDao = DAORegistry::getDAO('SiteDAO');
 				$site = $siteDao->getSite();
 				$organization = $site->getLocalizedTitle();
 
@@ -120,7 +120,7 @@ class METSExportPlugin extends ImportExportPlugin {
 
 	function exportSchedConfs(&$conference, &$schedConfIdArray) {
 		$this->import('MetsExportDom');
-		$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
+		$schedConfDao = DAORegistry::getDAO('SchedConfDAO');
 		$doc =& XMLCustomWriter::createDocument();
 		$root =& XMLCustomWriter::createElement($doc, 'METS:mets');
 		XMLCustomWriter::setAttribute($root, 'xmlns:METS', 'http://www.loc.gov/METS/');

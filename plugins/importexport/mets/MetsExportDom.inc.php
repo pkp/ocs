@@ -38,7 +38,7 @@ class MetsExportDom {
 	 *  creates the METS:structMap element for a conference with multiple Scheduled Conferences referenced by their IDs
 	 */
 	function generateConfstructMapWithSchedConfsIdArray(&$doc, &$root, &$conference, &$schedConfIdArray) {
-		$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
+		$schedConfDao = DAORegistry::getDAO('SchedConfDAO');
 		$structMap =& XMLCustomWriter::createElement($doc, 'METS:structMap');
 		XMLCustomWriter::setAttribute($structMap, 'TYPE', 'logical');
 		$cDiv =& XMLCustomWriter::createElement($doc, 'METS:div');
@@ -78,7 +78,7 @@ class MetsExportDom {
 		XMLCustomWriter::setAttribute($sDiv, 'TYPE', 'conference');
 		XMLCustomWriter::setAttribute($sDiv, 'DMDID', 'SCHC-'.$schedConf->getId());
 		MetsExportDom::generateOverViewDiv($doc, $sDiv, $schedConf);
-		$publishedPaperDao =& DAORegistry::getDAO('PublishedPaperDAO');
+		$publishedPaperDao = DAORegistry::getDAO('PublishedPaperDAO');
 		$publishedPapersIterator =& $publishedPaperDao->getPublishedPapers($schedConf->getId());
 		$publishedPaperArray =& $publishedPapersIterator->toArray();
 
@@ -94,7 +94,7 @@ class MetsExportDom {
 	 *  creates the METS:div element for the Over View of the Scheduled Conference
 	 */
 	function generateOverViewDiv(&$doc, &$root, &$schedConf) {
-		$schedConfSettingsDAO =& DAORegistry::getDAO('SchedConfSettingsDAO');
+		$schedConfSettingsDAO = DAORegistry::getDAO('SchedConfSettingsDAO');
 		$schedConfOverview = $schedConfSettingsDAO->getSetting($schedConf->getId(), 'schedConfOverview');
 		$schedConfIntroduction = $schedConfSettingsDAO->getSetting($schedConf->getId(), 'schedConfIntroduction');
 		if($schedConfOverview != '' || $schedConfIntroduction != ''){
@@ -112,7 +112,7 @@ class MetsExportDom {
 		$pDiv =& XMLCustomWriter::createElement($doc, 'METS:div');
 		XMLCustomWriter::setAttribute($pDiv, 'TYPE', 'submission');
 		XMLCustomWriter::setAttribute($pDiv, 'DMDID', 'P'.$paper->getId());
-		$paperGalleyDAO =& DAORegistry::getDAO('PaperGalleyDAO');
+		$paperGalleyDAO = DAORegistry::getDAO('PaperGalleyDAO');
 		$i = 0;
 		$galleysArray =& $paperGalleyDAO->getGalleysByPaper($paper->getId());
 		while ($i < sizeof($galleysArray)) {
@@ -120,10 +120,10 @@ class MetsExportDom {
 			$i++;
 		}
 		$exportSuppFiles =& Request::getUserVar('exportSuppFiles');
-		$rtDao =& DAORegistry::getDAO('RTDAO');
+		$rtDao = DAORegistry::getDAO('RTDAO');
 		$conferenceRt =& $rtDao->getConferenceRTByConference($schedConf->getConference());
 		if($exportSuppFiles == 'on' || $conferenceRt->getEnabled()) {
-			$suppFileDAO =& DAORegistry::getDAO('SuppFileDAO');
+			$suppFileDAO = DAORegistry::getDAO('SuppFileDAO');
 			$paperFilesArray =& $suppFileDAO->getSuppFilesByPaper($paper->getId());
 			$i = 0;
 			while ($i < sizeof($paperFilesArray)) {
@@ -198,7 +198,7 @@ class MetsExportDom {
 		XMLCustomWriter::appendChild($mdWrap,$xmlData);
 		XMLCustomWriter::appendChild($root, $dmdSec);
 		MetsExportDom::generateOverViewDmdSecDom($doc, $root, $schedConf);
-		$publishedPaperDao =& DAORegistry::getDAO('PublishedPaperDAO');
+		$publishedPaperDao = DAORegistry::getDAO('PublishedPaperDAO');
 		$publishedPapersIterator =& $publishedPaperDao->getPublishedPapers($schedConf->getId());
 		$publishedPaperArray =& $publishedPapersIterator->toArray();
 
@@ -213,7 +213,7 @@ class MetsExportDom {
 	 *  creates the METS:dmdSec element for the OverView if schedConfOverview or schedConfIntroduction present
 	 */
 	function generateOverViewDmdSecDom(&$doc, $root, &$schedConf) {
-		$schedConfSettingsDAO =& DAORegistry::getDAO('SchedConfSettingsDAO');
+		$schedConfSettingsDAO = DAORegistry::getDAO('SchedConfSettingsDAO');
 		$schedConfOverview = $schedConfSettingsDAO->getSetting($schedConf->getId(), 'schedConfOverview');
 		$schedConfIntroduction = $schedConfSettingsDAO->getSetting($schedConf->getId(), 'schedConfIntroduction');
 		if($schedConfOverview != '' || $schedConfIntroduction != ''){
@@ -279,10 +279,10 @@ class MetsExportDom {
 			XMLCustomWriter::appendChild($mdWrap,$xmlData);
 			XMLCustomWriter::appendChild($root, $dmdSec);
 			$exportSuppFiles =& Request::getUserVar('exportSuppFiles');
-			$rtDao =& DAORegistry::getDAO('RTDAO');
+			$rtDao = DAORegistry::getDAO('RTDAO');
 			$conferenceRt =& $rtDao->getConferenceRTByConference($schedConf->getConference());
 			if($exportSuppFiles == 'on' || $conferenceRt->getEnabled()) {
-				$suppFileDAO =& DAORegistry::getDAO('SuppFileDAO');
+				$suppFileDAO = DAORegistry::getDAO('SuppFileDAO');
 				$paperFilesArray =& $suppFileDAO->getSuppFilesByPaper($paper->getId());
 				$i = 0;
 				while ($i < sizeof($paperFilesArray)) {
@@ -373,7 +373,7 @@ class MetsExportDom {
 	 *
 	 */
 	function generateSchedConfFileSecDom(&$doc, &$root, &$conference, &$schedConf) {
-		$publishedPaperDao =& DAORegistry::getDAO('PublishedPaperDAO');
+		$publishedPaperDao = DAORegistry::getDAO('PublishedPaperDAO');
 		$publishedPapersIterator =& $publishedPaperDao->getPublishedPapers($schedConf->getId());
 		$publishedPaperArray =& $publishedPapersIterator->toArray();
 
@@ -388,7 +388,7 @@ class MetsExportDom {
 	 *  finds all files associated with this published Papers and if exportSuppFiles == 'on' in the Config file
 	 */
 	function generatePaperFilesDom(&$doc, &$root, &$paper, &$conference, &$schedConf) {
-		$paperGalleyDAO =& DAORegistry::getDAO('PaperGalleyDAO');
+		$paperGalleyDAO = DAORegistry::getDAO('PaperGalleyDAO');
 		$i = 0;
 		$galleysArray =& $paperGalleyDAO->getGalleysByPaper($paper->getId());
 		while ($i < sizeof($galleysArray)) {
@@ -396,10 +396,10 @@ class MetsExportDom {
 			$i++;
 		}
 		$exportSuppFiles =& Request::getUserVar('exportSuppFiles');
-		$rtDao =& DAORegistry::getDAO('RTDAO');
+		$rtDao = DAORegistry::getDAO('RTDAO');
 		$conferenceRt =& $rtDao->getConferenceRTByConference($schedConf->getConference());
 		if($exportSuppFiles == 'on' || $conferenceRt->getEnabled()) {
-			$suppFileDAO =& DAORegistry::getDAO('SuppFileDAO');
+			$suppFileDAO = DAORegistry::getDAO('SuppFileDAO');
 			$paperFilesArray =& $suppFileDAO->getSuppFilesByPaper($paper->getId());
 			$i = 0;
 			while ($i < sizeof($paperFilesArray)) {
@@ -483,7 +483,7 @@ class MetsExportDom {
 	 *  Process All authors for the Given Paper
 	 */
 	function generateAuthorsDom(&$doc, &$root, $paperID) {
-		$authorDAO =& DAORegistry::getDAO('AuthorDAO');
+		$authorDAO = DAORegistry::getDAO('AuthorDAO');
 		$i = 0;
 		$authorsArray =& $authorDAO->getAuthorsBySubmissionId($paperID);
 		while ($i < sizeof($authorsArray)) {
@@ -553,7 +553,7 @@ class MetsExportDom {
 		XMLCustomWriter::setAttribute($agentNode, 'TYPE', 'ORGANIZATION');
 		$organization =& Request::getUserVar('organization');
 		if($organization == ''){
-		  $siteDao =& DAORegistry::getDAO('SiteDAO');
+		  $siteDao = DAORegistry::getDAO('SiteDAO');
 		  $site = $siteDao->getSite();
 		  $organization = $site->getLocalizedTitle();
 		}
@@ -571,7 +571,7 @@ class MetsExportDom {
 	 *  Creator is the OCS Sysytem
 	 */
 	function getCreatorString() {
-		$versionDAO =& DAORegistry::getDAO('VersionDAO');
+		$versionDAO = DAORegistry::getDAO('VersionDAO');
 		$cVersion = $versionDAO->getCurrentVersion();
 		return sprintf('Open Conference Systems v%d.%d.%d build %d', $cVersion->getMajor(), $cVersion->getMinor(), $cVersion->getRevision(), $cVersion->getBuild());
 	}
@@ -580,10 +580,10 @@ class MetsExportDom {
 	 *  getPublicFilePath had to be added due to problems in the current  $paperFile->getFilePath(); for Galley Files
 	 */
 	function getPublicFilePath(&$paperFile, $pathComponent) {
-		$paperDao =& DAORegistry::getDAO('PaperDAO');
+		$paperDao = DAORegistry::getDAO('PaperDAO');
 		$paper =& $paperDao->getPaper($paperFile->getPaperId());
 		$paperId = $paper->getSchedConfId();
-		$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
+		$schedConfDao = DAORegistry::getDAO('SchedConfDAO');
 		$schedConf = $schedConfDao->getById($paperId);
 		return Config::getVar('files', 'files_dir') . '/conferences/' . $schedConf->getConferenceId() . '/schedConfs/' . $paperId .
 		'/papers/' . $paperFile->getPaperId() . $pathComponent . $paperFile->getFileName();

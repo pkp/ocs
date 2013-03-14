@@ -58,7 +58,7 @@ class SchedConfSetupStep2Form extends SchedConfSetupForm {
 		parent::initData();
 
 		$schedConf =& Request::getSchedConf();
-		$paperTypeDao =& DAORegistry::getDAO('PaperTypeDAO');
+		$paperTypeDao = DAORegistry::getDAO('PaperTypeDAO');
 		$paperTypeEntryIterator = $paperTypeDao->getPaperTypes($schedConf->getId());
 		$paperTypes = array();
 		$i=0;
@@ -140,8 +140,8 @@ class SchedConfSetupStep2Form extends SchedConfSetupForm {
 		$schedConf =& Request::getSchedConf();
 		$paperTypeIds = array();
 
-		$paperTypeDao =& DAORegistry::getDAO('PaperTypeDAO');
-		$paperTypeEntryDao =& DAORegistry::getDAO('PaperTypeEntryDAO');
+		$paperTypeDao = DAORegistry::getDAO('PaperTypeDAO');
+		$paperTypeEntryDao = DAORegistry::getDAO('PaperTypeEntryDAO');
 
 		if (isset($this->_data['paperTypes'])) {
 			$paperTypes =& $this->_data['paperTypes'];

@@ -66,7 +66,7 @@ class ConferenceGridHandler extends ContextGridHandler {
 	 */
 	function loadData(&$request) {
 		// Get all conferences.
-		$conferenceDao =& DAORegistry::getDAO('ConferenceDAO');
+		$conferenceDao = DAORegistry::getDAO('ConferenceDAO');
 		$conferences = $conferenceDao->getAll();
 
 		return $conferences->toAssociativeArray();
@@ -147,7 +147,7 @@ class ConferenceGridHandler extends ContextGridHandler {
 
 		// Identify the conference Id.
 		$conferenceId = $request->getUserVar('rowId');
-		$conferenceDao =& DAORegistry::getDAO('ConferenceDAO');
+		$conferenceDao = DAORegistry::getDAO('ConferenceDAO');
 		$conference =& $conferenceDao->getById($conferenceId);
 
 		if ($conference) {

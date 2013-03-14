@@ -34,7 +34,7 @@ class SettingsPluginGridHandler extends PluginGridHandler {
 	function getCategoryData($categoryDataElement, $filter) {
 		$plugins = parent::getCategoryData($categoryDataElement, $filter);
 
-		$conferenceDao =& DAORegistry::getDAO('ConferenceDAO');
+		$conferenceDao = DAORegistry::getDAO('ConferenceDAO');
 		$conferences =& $conferenceDao->getConferences();
 		$singleConference = false;
 		if ($conferences->getCount() == 1) {

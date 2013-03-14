@@ -27,7 +27,7 @@ class RTVersionHandler extends RTAdminHandler {
 	function createVersion($args, &$request) {
 		$this->validate();
 
-		$rtDao =& DAORegistry::getDAO('RTDAO');
+		$rtDao = DAORegistry::getDAO('RTDAO');
 
 		$conference = $request->getConference();
 
@@ -47,7 +47,7 @@ class RTVersionHandler extends RTAdminHandler {
 	function exportVersion($args, &$request) {
 		$this->validate();
 
-		$rtDao =& DAORegistry::getDAO('RTDAO');
+		$rtDao = DAORegistry::getDAO('RTDAO');
 
 		$conference = $request->getConference();
 		$versionId = isset($args[0])?$args[0]:0;
@@ -84,7 +84,7 @@ class RTVersionHandler extends RTAdminHandler {
 		// If the conference RT was configured, change its state to
 		// "disabled" because the RT version it was configured for
 		// has now been deleted.
-		$rtDao =& DAORegistry::getDAO('RTDAO');
+		$rtDao = DAORegistry::getDAO('RTDAO');
 		$conferenceRt = $rtDao->getConferenceRTByConference($conference);
 		if ($conferenceRt) {
 			$conferenceRt->setVersion(null);
@@ -100,7 +100,7 @@ class RTVersionHandler extends RTAdminHandler {
 
 		$conference = $request->getConference();
 
-		$rtDao =& DAORegistry::getDAO('RTDAO');
+		$rtDao = DAORegistry::getDAO('RTDAO');
 		$rangeInfo = $this->getRangeInfo($request, 'versions');
 
 		$templateMgr =& TemplateManager::getManager($request);
@@ -112,7 +112,7 @@ class RTVersionHandler extends RTAdminHandler {
 	function editVersion($args, &$request) {
 		$this->validate();
 
-		$rtDao =& DAORegistry::getDAO('RTDAO');
+		$rtDao = DAORegistry::getDAO('RTDAO');
 
 		$conference = $request->getConference();
 		$versionId = isset($args[0])?$args[0]:0;
@@ -131,7 +131,7 @@ class RTVersionHandler extends RTAdminHandler {
 	function deleteVersion($args, &$request) {
 		$this->validate();
 
-		$rtDao =& DAORegistry::getDAO('RTDAO');
+		$rtDao = DAORegistry::getDAO('RTDAO');
 
 		$conference = $request->getConference();
 		$versionId = isset($args[0])?$args[0]:0;
@@ -144,7 +144,7 @@ class RTVersionHandler extends RTAdminHandler {
 	function saveVersion($args, &$request) {
 		$this->validate();
 
-		$rtDao =& DAORegistry::getDAO('RTDAO');
+		$rtDao = DAORegistry::getDAO('RTDAO');
 
 		$conference = $request->getConference();
 		$versionId = isset($args[0])?$args[0]:0;

@@ -69,8 +69,8 @@ class DirectorDecisionCommentForm extends CommentForm {
 	 * Email the comment.
 	 */
 	function email() {
-		$roleDao =& DAORegistry::getDAO('RoleDAO');
-		$userDao =& DAORegistry::getDAO('UserDAO');
+		$roleDao = DAORegistry::getDAO('RoleDAO');
+		$userDao = DAORegistry::getDAO('UserDAO');
 		$conference =& Request::getConference();
 
 		// Create list of recipients:
@@ -86,7 +86,7 @@ class DirectorDecisionCommentForm extends CommentForm {
 			if ($user) $recipients = array_merge($recipients, array($user->getEmail() => $user->getFullName()));
 		} else {
 			// Then add director
-			$editAssignmentDao =& DAORegistry::getDAO('EditAssignmentDAO');
+			$editAssignmentDao = DAORegistry::getDAO('EditAssignmentDAO');
 			$editAssignments =& $editAssignmentDao->getEditAssignmentsByPaperId($this->paper->getPaperId());
 			$directorAddresses = array();
 			while (!$editAssignments->eof()) {

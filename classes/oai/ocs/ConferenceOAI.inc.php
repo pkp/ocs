@@ -45,7 +45,7 @@ class ConferenceOAI extends OAI {
 		$this->site =& Request::getSite();
 		$this->conference =& Request::getConference();
 		$this->conferenceId = isset($this->conference) ? $this->conference->getId() : null;
-		$this->dao =& DAORegistry::getDAO('OAIDAO');
+		$this->dao = DAORegistry::getDAO('OAIDAO');
 		$this->dao->setOAI($this);
 	}
 
@@ -121,7 +121,7 @@ class ConferenceOAI extends OAI {
 		$info->earliestDatestamp = $this->dao->getEarliestDatestamp($this->conferenceId);
 
 		$info->toolkitTitle = 'Open Conference Systems';
-		$versionDao =& DAORegistry::getDAO('VersionDAO');
+		$versionDao = DAORegistry::getDAO('VersionDAO');
 		$currentVersion =& $versionDao->getCurrentVersion();
 		$info->toolkitVersion = $currentVersion->getVersionString();
 		$info->toolkitURL = 'http://pkp.sfu.ca/ocs/';

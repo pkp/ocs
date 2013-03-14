@@ -32,9 +32,9 @@ class ReviewFormHandler extends ManagerHandler {
 
 		$conference =& $request->getConference();
 		$rangeInfo =& Handler::getRangeInfo($request, 'reviewForms');
-		$reviewFormDao =& DAORegistry::getDAO('ReviewFormDAO');
+		$reviewFormDao = DAORegistry::getDAO('ReviewFormDAO');
 		$reviewForms =& $reviewFormDao->getByAssocId(ASSOC_TYPE_CONFERENCE, $conference->getId(), $rangeInfo);
-		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
+		$reviewAssignmentDao = DAORegistry::getDAO('ReviewAssignmentDAO');
 
 		$templateMgr =& TemplateManager::getManager($request);
 		$templateMgr->addJavaScript('lib/pkp/js/lib/jquery/plugins/jquery.tablednd.js');
@@ -64,7 +64,7 @@ class ReviewFormHandler extends ManagerHandler {
 		$reviewFormId = isset($args[0]) ? (int)$args[0] : null;
 
 		$conference =& $request->getConference();
-		$reviewFormDao =& DAORegistry::getDAO('ReviewFormDAO');
+		$reviewFormDao = DAORegistry::getDAO('ReviewFormDAO');
 		$reviewForm =& $reviewFormDao->getReviewForm($reviewFormId, ASSOC_TYPE_CONFERENCE, $conference->getId());
 		$completeCounts = $reviewFormDao->getUseCounts(ASSOC_TYPE_CONFERENCE, $conference->getId(), true);
 		$incompleteCounts = $reviewFormDao->getUseCounts(ASSOC_TYPE_CONFERENCE, $conference->getId(), false);
@@ -103,7 +103,7 @@ class ReviewFormHandler extends ManagerHandler {
 		$reviewFormId = $request->getUserVar('reviewFormId') === null? null : (int) $request->getUserVar('reviewFormId');
 
 		$conference =& $request->getConference();
-		$reviewFormDao =& DAORegistry::getDAO('ReviewFormDAO');
+		$reviewFormDao = DAORegistry::getDAO('ReviewFormDAO');
 		$reviewForm =& $reviewFormDao->getReviewForm($reviewFormId, ASSOC_TYPE_CONFERENCE, $conference->getId());
 
 		$completeCounts = $reviewFormDao->getUseCounts(ASSOC_TYPE_CONFERENCE, $conference->getId(), true);
@@ -142,9 +142,9 @@ class ReviewFormHandler extends ManagerHandler {
 		$reviewFormId = isset($args[0]) ? (int)$args[0] : null;
 
 		$conference =& $request->getConference();
-		$reviewFormDao =& DAORegistry::getDAO('ReviewFormDAO');
+		$reviewFormDao = DAORegistry::getDAO('ReviewFormDAO');
 		$reviewForm =& $reviewFormDao->getReviewForm($reviewFormId, ASSOC_TYPE_CONFERENCE, $conference->getId());
-		$reviewFormElementDao =& DAORegistry::getDAO('ReviewFormElementDAO');
+		$reviewFormElementDao = DAORegistry::getDAO('ReviewFormElementDAO');
 		$reviewFormElements =& $reviewFormElementDao->getReviewFormElements($reviewFormId);
 
 		if (!isset($reviewForm)) {
@@ -181,13 +181,13 @@ class ReviewFormHandler extends ManagerHandler {
 		$reviewFormId = isset($args[0]) ? (int)$args[0] : null;
 
 		$conference =& $request->getConference();
-		$reviewFormDao =& DAORegistry::getDAO('ReviewFormDAO');
+		$reviewFormDao = DAORegistry::getDAO('ReviewFormDAO');
 		$reviewForm =& $reviewFormDao->getReviewForm($reviewFormId, ASSOC_TYPE_CONFERENCE, $conference->getId());
 
 		$completeCounts = $reviewFormDao->getUseCounts(ASSOC_TYPE_CONFERENCE, $conference->getId(), true);
 		$incompleteCounts = $reviewFormDao->getUseCounts(ASSOC_TYPE_CONFERENCE, $conference->getId(), false);
 		if (isset($reviewForm) && $completeCounts[$reviewFormId] == 0 && $incompleteCounts[$reviewFormId] == 0) {
-			$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
+			$reviewAssignmentDao = DAORegistry::getDAO('ReviewAssignmentDAO');
 			$reviewAssignments =& $reviewAssignmentDao->getByReviewFormId($reviewFormId);
 
 			foreach ($reviewAssignments as $reviewAssignment) {
@@ -211,7 +211,7 @@ class ReviewFormHandler extends ManagerHandler {
 		$reviewFormId = isset($args[0]) ? (int)$args[0] : null;
 
 		$conference =& $request->getConference();
-		$reviewFormDao =& DAORegistry::getDAO('ReviewFormDAO');
+		$reviewFormDao = DAORegistry::getDAO('ReviewFormDAO');
 		$reviewForm =& $reviewFormDao->getReviewForm($reviewFormId, ASSOC_TYPE_CONFERENCE, $conference->getId());
 
 		if (isset($reviewForm) && !$reviewForm->getActive()) {
@@ -232,7 +232,7 @@ class ReviewFormHandler extends ManagerHandler {
 		$reviewFormId = isset($args[0]) ? (int)$args[0] : null;
 
 		$conference =& $request->getConference();
-		$reviewFormDao =& DAORegistry::getDAO('ReviewFormDAO');
+		$reviewFormDao = DAORegistry::getDAO('ReviewFormDAO');
 		$reviewForm =& $reviewFormDao->getReviewForm($reviewFormId, ASSOC_TYPE_CONFERENCE, $conference->getId());
 
 		if (isset($reviewForm) && $reviewForm->getActive()) {
@@ -252,7 +252,7 @@ class ReviewFormHandler extends ManagerHandler {
 		$reviewFormId = isset($args[0]) ? (int)$args[0] : null;
 
 		$conference =& $request->getConference();
-		$reviewFormDao =& DAORegistry::getDAO('ReviewFormDAO');
+		$reviewFormDao = DAORegistry::getDAO('ReviewFormDAO');
 		$reviewForm =& $reviewFormDao->getReviewForm($reviewFormId, ASSOC_TYPE_CONFERENCE, $conference->getId());
 
 		if (isset($reviewForm)) {
@@ -261,7 +261,7 @@ class ReviewFormHandler extends ManagerHandler {
 			$newReviewFormId = $reviewFormDao->insertObject($reviewForm);
 			$reviewFormDao->resequenceReviewForms(ASSOC_TYPE_CONFERENCE, $conference->getId());
 
-			$reviewFormElementDao =& DAORegistry::getDAO('ReviewFormElementDAO');
+			$reviewFormElementDao = DAORegistry::getDAO('ReviewFormElementDAO');
 			$reviewFormElements =& $reviewFormElementDao->getReviewFormElements($reviewFormId);
 			foreach ($reviewFormElements as $reviewFormElement) {
 				$reviewFormElement->setReviewFormId($newReviewFormId);
@@ -282,7 +282,7 @@ class ReviewFormHandler extends ManagerHandler {
 		$this->validate();
 
 		$conference =& $request->getConference();
-		$reviewFormDao =& DAORegistry::getDAO('ReviewFormDAO');
+		$reviewFormDao = DAORegistry::getDAO('ReviewFormDAO');
 		$reviewForm =& $reviewFormDao->getReviewForm($request->getUserVar('reviewFormId'), ASSOC_TYPE_CONFERENCE, $conference->getId());
 
 		if (isset($reviewForm)) {
@@ -303,7 +303,7 @@ class ReviewFormHandler extends ManagerHandler {
 		$reviewFormId = isset($args[0]) ? $args[0] : null;
 
 		$conference =& $request->getConference();
-		$reviewFormDao =& DAORegistry::getDAO('ReviewFormDAO');
+		$reviewFormDao = DAORegistry::getDAO('ReviewFormDAO');
 		$reviewForm =& $reviewFormDao->getReviewForm($reviewFormId, ASSOC_TYPE_CONFERENCE, $conference->getId());
 		$completeCounts = $reviewFormDao->getUseCounts(ASSOC_TYPE_CONFERENCE, $conference->getId(), true);
 		$incompleteCounts = $reviewFormDao->getUseCounts(ASSOC_TYPE_CONFERENCE, $conference->getId(), false);
@@ -313,7 +313,7 @@ class ReviewFormHandler extends ManagerHandler {
 		}
 
 		$rangeInfo =& Handler::getRangeInfo($request, 'reviewFormElements');
-		$reviewFormElementDao =& DAORegistry::getDAO('ReviewFormElementDAO');
+		$reviewFormElementDao = DAORegistry::getDAO('ReviewFormElementDAO');
 		$reviewFormElements =& $reviewFormElementDao->getReviewFormElementsByReviewForm($reviewFormId, $rangeInfo);
 
 		$unusedReviewFormTitles =& $reviewFormDao->getTitlesByAssocId(ASSOC_TYPE_CONFERENCE, $conference->getId(), 0);
@@ -351,9 +351,9 @@ class ReviewFormHandler extends ManagerHandler {
 		$reviewFormElementId = isset($args[1]) ? (int) $args[1] : null;
 
 		$conference =& $request->getConference();
-		$reviewFormDao =& DAORegistry::getDAO('ReviewFormDAO');
+		$reviewFormDao = DAORegistry::getDAO('ReviewFormDAO');
 		$reviewForm =& $reviewFormDao->getReviewForm($reviewFormId, ASSOC_TYPE_CONFERENCE, $conference->getId());
-		$reviewFormElementDao =& DAORegistry::getDAO('ReviewFormElementDAO');
+		$reviewFormElementDao = DAORegistry::getDAO('ReviewFormElementDAO');
 		$completeCounts = $reviewFormDao->getUseCounts(ASSOC_TYPE_CONFERENCE, $conference->getId(), true);
 		$incompleteCounts = $reviewFormDao->getUseCounts(ASSOC_TYPE_CONFERENCE, $conference->getId(), false);
 
@@ -391,8 +391,8 @@ class ReviewFormHandler extends ManagerHandler {
 		$reviewFormElementId = $request->getUserVar('reviewFormElementId') === null? null : (int) $request->getUserVar('reviewFormElementId');
 
 		$conference =& $request->getConference();
-		$reviewFormDao =& DAORegistry::getDAO('ReviewFormDAO');
-		$reviewFormElementDao =& DAORegistry::getDAO('ReviewFormElementDAO');
+		$reviewFormDao = DAORegistry::getDAO('ReviewFormDAO');
+		$reviewFormElementDao = DAORegistry::getDAO('ReviewFormElementDAO');
 
 		$reviewForm =& $reviewFormDao->getReviewForm($reviewFormId, ASSOC_TYPE_CONFERENCE, $conference->getId());
 		$this->setupTemplate($request, true, $reviewForm);
@@ -464,10 +464,10 @@ class ReviewFormHandler extends ManagerHandler {
 		$reviewFormElementId = isset($args[1]) ? (int) $args[1] : null;
 
 		$conference =& $request->getConference();
-		$reviewFormDao =& DAORegistry::getDAO('ReviewFormDAO');
+		$reviewFormDao = DAORegistry::getDAO('ReviewFormDAO');
 
 		if ($reviewFormDao->unusedReviewFormExists($reviewFormId, ASSOC_TYPE_CONFERENCE, $conference->getId())) {
-			$reviewFormElementDao =& DAORegistry::getDAO('ReviewFormElementDAO');
+			$reviewFormElementDao = DAORegistry::getDAO('ReviewFormElementDAO');
 			$reviewFormElementDao->deleteById($reviewFormElementId);
 		}
 		$request->redirect(null, null, null, 'reviewFormElements', array($reviewFormId));
@@ -480,8 +480,8 @@ class ReviewFormHandler extends ManagerHandler {
 		$this->validate();
 
 		$conference =& $request->getConference();
-		$reviewFormDao =& DAORegistry::getDAO('ReviewFormDAO');
-		$reviewFormElementDao =& DAORegistry::getDAO('ReviewFormElementDAO');
+		$reviewFormDao = DAORegistry::getDAO('ReviewFormDAO');
+		$reviewFormElementDao = DAORegistry::getDAO('ReviewFormElementDAO');
 		$reviewFormElement =& $reviewFormElementDao->getReviewFormElement($request->getUserVar('reviewFormElementId'));
 
 		if (isset($reviewFormElement) && $reviewFormDao->unusedReviewFormExists($reviewFormElement->getReviewFormId(), ASSOC_TYPE_CONFERENCE, $conference->getId())) {
@@ -503,10 +503,10 @@ class ReviewFormHandler extends ManagerHandler {
 		$targetReviewFormId = $request->getUserVar('targetReviewForm');
 
 		$conference =& $request->getConference();
-		$reviewFormDao =& DAORegistry::getDAO('ReviewFormDAO');
+		$reviewFormDao = DAORegistry::getDAO('ReviewFormDAO');
 
 		if (is_array($copy) && $reviewFormDao->unusedReviewFormExists($targetReviewFormId, ASSOC_TYPE_CONFERENCE, $conference->getId())) {
-			$reviewFormElementDao =& DAORegistry::getDAO('ReviewFormElementDAO');
+			$reviewFormElementDao = DAORegistry::getDAO('ReviewFormElementDAO');
 			foreach ($copy as $reviewFormElementId) {
 				$reviewFormElement =& $reviewFormElementDao->getReviewFormElement($reviewFormElementId);
 				if (isset($reviewFormElement) && $reviewFormDao->unusedReviewFormExists($reviewFormElement->getReviewFormId(), ASSOC_TYPE_CONFERENCE, $conference->getId())) {

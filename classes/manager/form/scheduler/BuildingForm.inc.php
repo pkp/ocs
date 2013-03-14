@@ -40,7 +40,7 @@ class BuildingForm extends Form {
 	 * @return array
 	 */
 	function getLocaleFieldNames() {
-		$buildingDao =& DAORegistry::getDAO('BuildingDAO');
+		$buildingDao = DAORegistry::getDAO('BuildingDAO');
 		return $buildingDao->getLocaleFieldNames();
 	}
 
@@ -60,7 +60,7 @@ class BuildingForm extends Form {
 	 */
 	function initData() {
 		if (isset($this->buildingId)) {
-			$buildingDao =& DAORegistry::getDAO('BuildingDAO');
+			$buildingDao = DAORegistry::getDAO('BuildingDAO');
 			$building =& $buildingDao->getBuilding($this->buildingId);
 
 			if ($building != null) {
@@ -88,7 +88,7 @@ class BuildingForm extends Form {
 	 * Save building. 
 	 */
 	function execute() {
-		$buildingDao =& DAORegistry::getDAO('BuildingDAO');
+		$buildingDao = DAORegistry::getDAO('BuildingDAO');
 		$schedConf =& Request::getSchedConf();
 
 		if (isset($this->buildingId)) {

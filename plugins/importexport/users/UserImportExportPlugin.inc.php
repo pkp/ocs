@@ -62,7 +62,7 @@ class UserImportExportPlugin extends ImportExportPlugin {
 			'reader' => 'user.role.reader'
 		));
 
-		$roleDao =& DAORegistry::getDAO('RoleDAO');
+		$roleDao = DAORegistry::getDAO('RoleDAO');
 
 		$schedConf =& $request->getSchedConf();
 
@@ -211,8 +211,8 @@ class UserImportExportPlugin extends ImportExportPlugin {
 		$schedConfPath = array_shift($args);
 		$flags =& $args;
 
-		$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
-		$userDao =& DAORegistry::getDAO('UserDAO');
+		$schedConfDao = DAORegistry::getDAO('SchedConfDAO');
+		$userDao = DAORegistry::getDAO('UserDAO');
 
 		$schedConf =& $schedConfDao->getByPath($schedConfPath);
 
@@ -256,7 +256,7 @@ class UserImportExportPlugin extends ImportExportPlugin {
 				break;
 			case 'export':
 				$this->import('UserExportDom');
-				$roleDao =& DAORegistry::getDAO('RoleDAO');
+				$roleDao = DAORegistry::getDAO('RoleDAO');
 				$rolePaths = null;
 				if (empty($args)) {
 					$users =& $roleDao->getUsersBySchedConfId($schedConf->getId());

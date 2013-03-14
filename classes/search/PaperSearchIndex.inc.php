@@ -30,7 +30,7 @@ class PaperSearchIndex {
 	 * @param $position int
 	 */
 	function indexObjectKeywords($objectId, $text, &$position) {
-		$searchDao =& DAORegistry::getDAO('PaperSearchDAO');
+		$searchDao = DAORegistry::getDAO('PaperSearchDAO');
 		$keywords =& PaperSearchIndex::filterKeywords($text);
 		for ($i = 0, $count = count($keywords); $i < $count; $i++) {
 			if ($searchDao->insertObjectKeyword($objectId, $keywords[$i], $position) !== null) {
@@ -47,7 +47,7 @@ class PaperSearchIndex {
 	 * @param $assocId int optional
 	 */
 	function updateTextIndex($paperId, $type, $text, $assocId = null) {
-			$searchDao =& DAORegistry::getDAO('PaperSearchDAO');
+			$searchDao = DAORegistry::getDAO('PaperSearchDAO');
 			$objectId = $searchDao->insertObject($paperId, $type, $assocId);
 			$position = 0;
 			PaperSearchIndex::indexObjectKeywords($objectId, $text, $position);
@@ -70,7 +70,7 @@ class PaperSearchIndex {
 
 		if (isset($parser)) {
 			if ($parser->open()) {
-				$searchDao =& DAORegistry::getDAO('PaperSearchDAO');
+				$searchDao = DAORegistry::getDAO('PaperSearchDAO');
 				$objectId = $searchDao->insertObject($paperId, $type, $fileId);
 
 				$position = 0;
@@ -89,7 +89,7 @@ class PaperSearchIndex {
 	 * @param $assocId int optional
 	 */
 	function deleteTextIndex($paperId, $type = null, $assocId = null) {
-		$searchDao =& DAORegistry::getDAO('PaperSearchDAO');
+		$searchDao = DAORegistry::getDAO('PaperSearchDAO');
 		return $searchDao->deletePaperKeywords($paperId, $type, $assocId);
 	}
 
@@ -174,7 +174,7 @@ class PaperSearchIndex {
 		PaperSearchIndex::updateTextIndex($paperId, PAPER_SEARCH_AUTHOR, $authorText);
 		PaperSearchIndex::updateTextIndex($paperId, PAPER_SEARCH_TITLE, $paper->getTitle(null));
 
-		$trackDao =& DAORegistry::getDAO('TrackDAO');
+		$trackDao = DAORegistry::getDAO('TrackDAO');
 		$track =& $trackDao->getTrack($paper->getTrackId());
 		PaperSearchIndex::updateTextIndex($paperId, PAPER_SEARCH_ABSTRACT, $paper->getAbstract(null));
 		PaperSearchIndex::updateTextIndex($paperId, PAPER_SEARCH_DISCIPLINE, $paper->getDiscipline(null));
@@ -220,7 +220,7 @@ class PaperSearchIndex {
 	 */
 	function indexPaperFiles(&$paper) {
 		// Index supplementary files
-		$fileDao =& DAORegistry::getDAO('SuppFileDAO');
+		$fileDao = DAORegistry::getDAO('SuppFileDAO');
 		$files =& $fileDao->getSuppFilesByPaper($paper->getId());
 		foreach ($files as $file) {
 			if ($file->getFileId()) {
@@ -231,7 +231,7 @@ class PaperSearchIndex {
 		unset($files);
 
 		// Index galley files
-		$fileDao =& DAORegistry::getDAO('PaperGalleyDAO');
+		$fileDao = DAORegistry::getDAO('PaperGalleyDAO');
 		$files =& $fileDao->getGalleysByPaper($paper->getId());
 		foreach ($files as $file) {
 			if ($file->getFileId()) {
@@ -246,7 +246,7 @@ class PaperSearchIndex {
 	function rebuildIndex($log = false) {
 		// Clear index
 		if ($log) echo 'Clearing index ... ';
-		$searchDao =& DAORegistry::getDAO('PaperSearchDAO');
+		$searchDao = DAORegistry::getDAO('PaperSearchDAO');
 		// FIXME Abstract into PaperSearchDAO?
 		$searchDao->update('DELETE FROM paper_search_object_keywords');
 		$searchDao->update('DELETE FROM paper_search_objects');
@@ -256,8 +256,8 @@ class PaperSearchIndex {
 		if ($log) echo "done\n";
 
 		// Build index
-		$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
-		$paperDao =& DAORegistry::getDAO('PaperDAO');
+		$schedConfDao = DAORegistry::getDAO('SchedConfDAO');
+		$paperDao = DAORegistry::getDAO('PaperDAO');
 
 		$schedConfs = $schedConfDao->getAll();
 		while (!$schedConfs->eof()) {

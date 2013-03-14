@@ -40,10 +40,10 @@ class PaperFile extends SubmissionFile {
 	 * @return string
 	 */
 	function getFilePath() {
-		$paperDao =& DAORegistry::getDAO('PaperDAO');
+		$paperDao = DAORegistry::getDAO('PaperDAO');
 		$paper =& $paperDao->getPaper($this->getPaperId());
 		$paperId = $paper->getSchedConfId();
-		$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
+		$schedConfDao = DAORegistry::getDAO('SchedConfDAO');
 		$schedConf = $schedConfDao->getById($paperId);
 
 		import('classes.file.PaperFIleManager');
@@ -96,7 +96,7 @@ class PaperFile extends SubmissionFile {
 	 * @return boolean
 	 */
 	function isInlineable() {
-		$paperFileDao =& DAORegistry::getDAO('PaperFileDAO');
+		$paperFileDao = DAORegistry::getDAO('PaperFileDAO');
 		return $paperFileDao->isInlineable($this);
 	}
 }

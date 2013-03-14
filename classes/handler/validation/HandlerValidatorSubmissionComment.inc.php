@@ -42,7 +42,7 @@ class HandlerValidatorSubmissionComment extends HandlerValidator {
 	function isValid() {
 		$isValid = true;
 
-		$paperCommentDao =& DAORegistry::getDAO('PaperCommentDAO');
+		$paperCommentDao = DAORegistry::getDAO('PaperCommentDAO');
 		$user =& $this->user;
 
 		$comment =& $paperCommentDao->getPaperCommentById($this->commentId);
