@@ -508,8 +508,8 @@ class NativeImportDom {
 
 		$author->setSubmissionId($paper->getId());
 		$author->setPrimaryContact($authorNode->getAttribute('primary_contact')==='true'?1:0);
-		$authorDao =& DAORegistry::getDAO('AuthorDAO'); /* @var $authorDao AuthorDAO */
-		$authorDao->insertAuthor($author);
+		$authorDao = DAORegistry::getDAO('AuthorDAO'); /* @var $authorDao AuthorDAO */
+		$authorDao->insertObject($author);
 
 		return true;
 

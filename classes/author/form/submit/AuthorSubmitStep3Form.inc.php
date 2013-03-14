@@ -247,9 +247,9 @@ class AuthorSubmitStep3Form extends AuthorSubmitForm {
 				$author->setSequence($authors[$i]['seq']);
 
 				if ($isExistingAuthor) {
-					$authorDao->updateAuthor($author);
+					$authorDao->updateObject($author);
 				} else {
-					$authorDao->insertAuthor($author);
+					$authorDao->insertObject($author);
 				}
 			}
 			unset($author);

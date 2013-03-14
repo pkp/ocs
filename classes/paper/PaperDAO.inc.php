@@ -223,7 +223,7 @@ class PaperDAO extends DAO {
 		$authors =& $paper->getAuthors();
 		for ($i=0, $count=count($authors); $i < $count; $i++) {
 			$authors[$i]->setPaperId($paper->getId());
-			$this->authorDao->insertAuthor($authors[$i]);
+			$this->authorDao->insertObject($authors[$i]);
 		}
 
 		return $paper->getId();
@@ -289,9 +289,9 @@ class PaperDAO extends DAO {
 		$authors =& $paper->getAuthors();
 		for ($i=0, $count=count($authors); $i < $count; $i++) {
 			if ($authors[$i]->getId() > 0) {
-				$this->authorDao->updateAuthor($authors[$i]);
+				$this->authorDao->updateObject($authors[$i]);
 			} else {
-				$this->authorDao->insertAuthor($authors[$i]);
+				$this->authorDao->insertObject($authors[$i]);
 			}
 		}
 
