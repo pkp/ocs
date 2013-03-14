@@ -242,8 +242,8 @@ class UserRegistrationForm extends Form {
 
 			$user->setPassword(Validation::encryptCredentials($this->getData('username'), $this->getData('password')));
 
-			$userDao =& DAORegistry::getDAO('UserDAO');
-			$userId = $userDao->insertUser($user);
+			$userDao = DAORegistry::getDAO('UserDAO');
+			$userId = $userDao->insertObject($user);
 			if (!$userId) {
 				return REGISTRATION_FAILED;
 			}

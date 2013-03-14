@@ -315,7 +315,7 @@ class UserManagementForm extends Form {
 			}
 
 			$user->setDateRegistered(Core::getCurrentDate());
-			$userId = $userDao->insertUser($user);
+			$userId = $userDao->insertObject($user);
 
 			if (!empty($this->_data['enrollAs'])) {
 				foreach ($this->getData('enrollAs') as $roleName) {

@@ -277,7 +277,7 @@ class CreateAccountForm extends Form {
 			}
 
 			$userDao =& DAORegistry::getDAO('UserDAO');
-			$userDao->insertUser($user);
+			$userDao->insertObject($user);
 			$userId = $user->getId();
 			if (!$userId) {
 				return false;
