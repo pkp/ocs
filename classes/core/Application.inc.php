@@ -97,7 +97,6 @@ class Application extends PKPApplication {
 			'PaperEventLogDAO' => 'classes.paper.log.PaperEventLogDAO',
 			'PaperFileDAO' => 'classes.paper.PaperFileDAO',
 			'PaperGalleyDAO' => 'classes.paper.PaperGalleyDAO',
-			'PaperNoteDAO' => 'classes.paper.PaperNoteDAO', // DEPRECATED
 			'PaperSearchDAO' => 'classes.search.PaperSearchDAO',
 			'PaperTypeDAO' => 'classes.paper.PaperTypeDAO',
 			'PaperTypeEntryDAO' => 'classes.paper.PaperTypeEntryDAO',
