@@ -204,7 +204,7 @@ class RegistrationDAO extends DAO {
 				$registration->getSpecialRequests()
 			)
 		);
-		$registration->setId($this->getInsertRegistrationId());
+		$registration->setId($this->getInsertId());
 		return $registration->getId();
 	}
 
@@ -672,7 +672,7 @@ class RegistrationDAO extends DAO {
 	 * Get the ID of the last inserted registration.
 	 * @return int
 	 */
-	function getInsertRegistrationId() {
+	function getInsertId() {
 		return $this->_getInsertId('registrations', 'registration_id');
 	}
 

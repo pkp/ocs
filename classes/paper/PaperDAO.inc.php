@@ -216,7 +216,7 @@ class PaperDAO extends DAO {
 			)
 		);
 
-		$paper->setId($this->getInsertPaperId());
+		$paper->setId($this->getInsertId());
 		$this->updateLocaleFields($paper);
 
 		// Insert authors for this paper
@@ -542,7 +542,7 @@ class PaperDAO extends DAO {
 	 * Get the ID of the last inserted paper.
 	 * @return int
 	 */
-	function getInsertPaperId() {
+	function getInsertId() {
 		return $this->_getInsertId('papers', 'paper_id');
 	}
 }

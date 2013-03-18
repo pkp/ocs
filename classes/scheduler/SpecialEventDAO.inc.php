@@ -123,7 +123,7 @@ class SpecialEventDAO extends DAO {
 				(int) $specialEvent->getSchedConfId()
 			)
 		);
-		$specialEvent->setId($this->getInsertSpecialEventId());
+		$specialEvent->setId($this->getInsertId());
 		$this->updateLocaleFields($specialEvent);
 		return $specialEvent->getId();
 	}
@@ -197,7 +197,7 @@ class SpecialEventDAO extends DAO {
 	 * Get the ID of the last inserted special event.
 	 * @return int
 	 */
-	function getInsertSpecialEventId() {
+	function getInsertId() {
 		return $this->_getInsertId('special_events', 'special_event_id');
 	}
 }

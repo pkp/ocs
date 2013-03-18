@@ -294,7 +294,7 @@ class RegistrationTypeDAO extends DAO {
 			)
 		);
 
-		$registrationType->setTypeId($this->getInsertRegistrationTypeId());
+		$registrationType->setTypeId($this->getInsertId());
 		$this->updateLocaleFields($registrationType);
 		return $registrationType->getTypeId();
 	}
@@ -399,7 +399,7 @@ class RegistrationTypeDAO extends DAO {
 	 * Get the ID of the last inserted registration type.
 	 * @return int
 	 */
-	function getInsertRegistrationTypeId() {
+	function getInsertId() {
 		return $this->_getInsertId('registration_types', 'type_id');
 	}
 

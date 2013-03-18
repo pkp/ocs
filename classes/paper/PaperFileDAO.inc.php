@@ -250,7 +250,7 @@ class PaperFileDAO extends DAO {
 		);
 
 		if (!$fileId) {
-			$paperFile->setFileId($this->getInsertPaperFileId());
+			$paperFile->setFileId($this->getInsertId());
 		}
 
 		return $paperFile->getFileId();
@@ -333,7 +333,7 @@ class PaperFileDAO extends DAO {
 	 * Get the ID of the last inserted paper file.
 	 * @return int
 	 */
-	function getInsertPaperFileId() {
+	function getInsertId() {
 		return $this->_getInsertId('paper_files', 'file_id');
 	}
 

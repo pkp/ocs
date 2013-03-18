@@ -120,7 +120,7 @@ class BuildingDAO extends DAO {
 				$building->getSchedConfId()
 			)
 		);
-		$building->setId($this->getInsertBuildingId());
+		$building->setId($this->getInsertId());
 		$this->updateLocaleFields($building);
 		return $building->getId();
 	}
@@ -201,7 +201,7 @@ class BuildingDAO extends DAO {
 	 * Get the ID of the last inserted building.
 	 * @return int
 	 */
-	function getInsertBuildingId() {
+	function getInsertId() {
 		return $this->_getInsertId('buildings', 'building_id');
 	}
 }

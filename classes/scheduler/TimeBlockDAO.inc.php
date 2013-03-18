@@ -149,7 +149,7 @@ class TimeBlockDAO extends DAO {
 				$timeBlock->getUnassignedColour()
 			)
 		);
-		$timeBlock->setId($this->getInsertTimeBlockId());
+		$timeBlock->setId($this->getInsertId());
 		$this->updateLocaleFields($timeBlock);
 		return $timeBlock->getId();
 	}
@@ -233,7 +233,7 @@ class TimeBlockDAO extends DAO {
 	 * Get the ID of the last inserted timeBlock.
 	 * @return int
 	 */
-	function getInsertTimeBlockId() {
+	function getInsertId() {
 		return $this->_getInsertId('time_blocks', 'time_block_id');
 	}
 }

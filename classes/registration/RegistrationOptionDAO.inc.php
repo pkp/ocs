@@ -227,7 +227,7 @@ class RegistrationOptionDAO extends DAO {
 			)
 		);
 
-		$registrationOption->setOptionId($this->getInsertRegistrationOptionId());
+		$registrationOption->setOptionId($this->getInsertId());
 		$this->updateLocaleFields($registrationOption);
 		return $registrationOption->getOptionId();
 	}
@@ -378,7 +378,7 @@ class RegistrationOptionDAO extends DAO {
 	 * Get the ID of the last inserted registration option.
 	 * @return int
 	 */
-	function getInsertRegistrationOptionId() {
+	function getInsertId() {
 		return $this->_getInsertId('registration_options', 'option_id');
 	}
 

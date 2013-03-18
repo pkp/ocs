@@ -139,7 +139,7 @@ class PaperEventLogDAO extends DAO {
 			)
 		);
 
-		$entry->setLogId($this->getInsertLogId());
+		$entry->setLogId($this->getInsertId());
 		return $entry->getLogId();
 	}
 
@@ -187,7 +187,7 @@ class PaperEventLogDAO extends DAO {
 	 * Get the ID of the last inserted log entry.
 	 * @return int
 	 */
-	function getInsertLogId() {
+	function getInsertId() {
 		return $this->_getInsertId('paper_event_log', 'log_id');
 	}
 }

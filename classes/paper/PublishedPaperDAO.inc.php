@@ -583,7 +583,7 @@ class PublishedPaperDAO extends DAO {
 			)
 		);
 
-		$publishedPaper->setPubId($this->getInsertPublishedPaperId());
+		$publishedPaper->setPubId($this->getInsertId());
 		return $publishedPaper->getPubId();
 	}
 
@@ -591,7 +591,7 @@ class PublishedPaperDAO extends DAO {
 	 * Get the ID of the last inserted published paper.
 	 * @return int
 	 */
-	function getInsertPublishedPaperId() {
+	function getInsertId() {
 		return $this->_getInsertId('published_papers', 'pub_id');
 	}
 

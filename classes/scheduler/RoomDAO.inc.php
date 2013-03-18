@@ -108,7 +108,7 @@ class RoomDAO extends DAO {
 				$room->getBuildingId()
 			)
 		);
-		$room->setId($this->getInsertRoomId());
+		$room->setId($this->getInsertId());
 		$this->updateLocaleFields($room);
 		return $room->getId();
 	}
@@ -185,7 +185,7 @@ class RoomDAO extends DAO {
 	 * Get the ID of the last inserted room.
 	 * @return int
 	 */
-	function getInsertRoomId() {
+	function getInsertId() {
 		return $this->_getInsertId('rooms', 'room_id');
 	}
 }

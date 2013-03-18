@@ -133,7 +133,7 @@ class DirectorSubmissionDAO extends DAO {
 			)
 		);
 
-		$directorSubmission->setEditId($this->getInsertEditId());
+		$directorSubmission->setEditId($this->getInsertId());
 
 		// Insert review assignments.
 		$reviewAssignments =& $directorSubmission->getReviewAssignments();
@@ -591,7 +591,7 @@ class DirectorSubmissionDAO extends DAO {
 	 * Get the ID of the last inserted director assignment.
 	 * @return int
 	 */
-	function getInsertEditId() {
+	function getInsertId() {
 		return $this->_getInsertId('edit_assignments', 'edit_id');
 	}
 

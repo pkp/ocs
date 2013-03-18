@@ -161,7 +161,7 @@ class PaperGalleyDAO extends DAO {
 				$galley->getSequence() == null ? $this->getNextGalleySequence($galley->getPaperId()) : $galley->getSequence()
 			)
 		);
-		$galley->setId($this->getInsertGalleyId());
+		$galley->setId($this->getInsertId());
 		return $galley->getId();
 	}
 
@@ -309,7 +309,7 @@ class PaperGalleyDAO extends DAO {
 	 * Get the ID of the last inserted gallery.
 	 * @return int
 	 */
-	function getInsertGalleyId() {
+	function getInsertId() {
 		return $this->_getInsertId('paper_galleys', 'galley_id');
 	}
 

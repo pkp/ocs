@@ -198,7 +198,7 @@ class TrackDAO extends DAO {
 			)
 		);
 
-		$track->setId($this->getInsertTrackId());
+		$track->setId($this->getInsertId());
 		$this->updateLocaleFields($track);
 		return $track->getId();
 	}
@@ -445,7 +445,7 @@ class TrackDAO extends DAO {
 	 * Get the ID of the last inserted track.
 	 * @return int
 	 */
-	function getInsertTrackId() {
+	function getInsertId() {
 		return $this->_getInsertId('tracks', 'track_id');
 	}
 }
