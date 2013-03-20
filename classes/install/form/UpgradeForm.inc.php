@@ -40,6 +40,7 @@ class UpgradeForm extends Form {
 	 * Perform installation.
 	 */
 	function execute() {
+		define('RUNNING_UPGRADE', 1);
 		$templateMgr =& TemplateManager::getManager();
 		$installer = new Upgrade($this->_data);
 
