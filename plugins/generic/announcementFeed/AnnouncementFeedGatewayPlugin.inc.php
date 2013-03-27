@@ -124,7 +124,7 @@ class AnnouncementFeedGatewayPlugin extends GatewayPlugin {
 				$dateUpdated = $lastDateUpdated;
 			}
 		} else {
-			$mostRecentAnnouncement =& $announcementDao->getMostRecentAnnouncementByConferenceId($conferenceId, $schedConfId);
+			$mostRecentAnnouncement =& $announcementDao->getMostRecentAnnouncementByAssocId(ASSOC_TYPE_SCHED_CONF, $schedConfId);
 			$dateUpdated = $mostRecentAnnouncement->getDatetimePosted();
 			if (empty($lastDateUpdated) || (strtotime($dateUpdated) > strtotime($lastDateUpdated))) {
 				$announcementFeedPlugin->updateSetting($conference->getId(), $schedConfId, 'dateUpdated', $dateUpdated, 'string');
