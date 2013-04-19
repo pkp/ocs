@@ -1798,9 +1798,6 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		} else if ($trackDirectorSubmission->getSchedConfId() != $schedConf->getId()) {
 			$isValid = false;
 
-		} else if ($trackDirectorSubmission->getDateSubmitted() == null) {
-			$isValid = false;
-
 		} else {
 			$templateMgr =& TemplateManager::getManager($request);
 			// If this user isn't the submission's director, they don't have access.
