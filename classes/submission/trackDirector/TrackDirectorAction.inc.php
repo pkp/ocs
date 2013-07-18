@@ -884,7 +884,7 @@ class TrackDirectorAction extends Action {
 				$paperGalleyDao = DAORegistry::getDAO('PaperGalleyDAO');
 				$galleys =& $paperGalleyDao->getGalleysByPaper($trackDirectorSubmission->getId());
 				if (empty($galleys)) {
-					$layoutFile =& $paperFileDao->getPaperFile($newFileId, $revision);
+					$layoutFile =& $paperFileDao->getPaperFile($newFileId, 1);
 					$fileType = $layoutFile->getFileType();
 					$fileId = $paperFileManager->copyPublicFile($layoutFile->getFilePath(), $fileType);
 					if (strstr($fileType, 'html')) {
