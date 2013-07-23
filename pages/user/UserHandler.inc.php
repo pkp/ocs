@@ -265,6 +265,7 @@ class UserHandler extends Handler {
 			$roleDao->insertRole($role);
 			Request::redirectUrl(Request::getUserVar('source'));
 		} else {
+			$this->setupTemplate();
 			$templateMgr =& TemplateManager::getManager();
 			$templateMgr->assign('message', $deniedKey);
 			return $templateMgr->display('common/message.tpl');
