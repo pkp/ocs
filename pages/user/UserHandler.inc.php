@@ -229,6 +229,7 @@ class UserHandler extends PKPUserHandler {
 			$request->redirectUrl($request->getUserVar('source'));
 		} else {
 			$templateMgr =& TemplateManager::getManager($request);
+			$this->setupTemplate();
 			$templateMgr->assign('message', $deniedKey);
 			return $templateMgr->display('common/message.tpl');
 		}
