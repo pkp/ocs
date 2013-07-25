@@ -7,10 +7,9 @@
  * generated automatically from the OCS source code.
  *
  * The design of Open %Conference Systems is heavily structured for
- * maintainability, flexibility and robustness. For this reason it may seem
- * complex when first approached. Those familiar with Sun's Enterprise Java
- * Beans technology or the Model-View-Controller (MVC) pattern will note many
- * similarities.
+ * maintainability, flexibility and robustness. Those familiar with Sun's
+ * Enterprise Java Beans technology or the Model-View-Controller (MVC) pattern
+ * will note many similarities.
  *
  * As in a MVC structure, data storage and representation, user interface
  * presentation, and control are separated into different layers. The major
@@ -28,6 +27,8 @@
  *   update, create, and delete functions for their associated Model classes,
  *   are responsible for all database interaction;
  * - Support classes, which provide core functionalities, miscellaneous common
+ * - Controllers, which implement reusable pieces of content e.g. for AJAX
+ *   subrequests.
  *
  * As the system makes use of inheritance and has consistent class naming
  * conventions, it is generally easy to tell what category a particular class
@@ -53,7 +54,6 @@
  * Bootstrap code for OCS site. Loads required files and then calls the
  * dispatcher to delegate to the appropriate request handler.
  */
-
 
 // Initialize global environment
 define('INDEX_FILE_LOCATION', __FILE__);
