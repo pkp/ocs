@@ -599,7 +599,7 @@ class DirectorSubmissionDAO extends DAO {
 		switch ($heading) {
 			case 'id': return 'p.paper_id';
 			case 'submitDate': return 'p.date_submitted';
-			case 'section': return 'section_abbrev';
+			case 'track': return 'track_abbrev';
 			case 'authors': return 'author_name';
 			case 'title': return 'submission_title';
 			case 'active': return 'p.submission_progress';		
