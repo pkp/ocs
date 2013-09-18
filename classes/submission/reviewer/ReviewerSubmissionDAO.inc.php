@@ -218,8 +218,8 @@ class ReviewerSubmissionDAO extends DAO {
 				r.reviewer_id = ? AND
 				r.date_notified IS NOT NULL' .
 				($active?
-					' AND r.date_completed IS NULL AND r.declined <> 1 AND (r.cancelled = 0 OR r.cancelled IS NULL) AND a.status = ' . STATUS_QUEUED:
-					' AND (r.date_completed IS NOT NULL OR r.cancelled = 1 OR r.declined = 1 OR a.status <> ' . STATUS_QUEUED . ')'
+					' AND r.date_completed IS NULL AND r.declined <> 1 AND (r.cancelled = 0 OR r.cancelled IS NULL) AND p.status = ' . STATUS_QUEUED:
+					' AND (r.date_completed IS NOT NULL OR r.cancelled = 1 OR r.declined = 1 OR p.status <> ' . STATUS_QUEUED . ')'
 				),
 			array(
 				'title',
