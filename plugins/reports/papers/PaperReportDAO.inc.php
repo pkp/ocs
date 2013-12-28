@@ -49,7 +49,8 @@ class PaperReportDAO extends DAO {
 				LEFT JOIN paper_settings psl2 ON (psl2.paper_id=p.paper_id AND psl2.setting_name = ? AND psl2.locale = ?)
 				LEFT JOIN track_settings tpl ON (tpl.track_id=p.track_id AND tpl.setting_name = ? AND tpl.locale = ?)
 				LEFT JOIN track_settings tl ON (tl.track_id=p.track_id AND tl.setting_name = ? AND tl.locale = ?)
-			WHERE	p.sched_conf_id = ?
+			WHERE	p.sched_conf_id = ? AND
+				p.submission_progress = 0
 			ORDER BY p.paper_id',
 			array(
 				'title',
@@ -71,11 +72,12 @@ class PaperReportDAO extends DAO {
 		unset($result);
 
 		$result =& $this->retrieve(
-			'SELECT	MAX(ed.date_decided) AS date,
+			'SELECT	MAX(ed.date_decided) AS date_decided,
 				ed.paper_id AS paper_id
 			FROM	edit_decisions ed,
 				papers p
 			WHERE	p.sched_conf_id = ? AND
+				p.submission_progress = 0 AND
 				p.paper_id = ed.paper_id
 			GROUP BY p.paper_id, ed.paper_id',
 			array($schedConfId)
@@ -86,13 +88,16 @@ class PaperReportDAO extends DAO {
 		$decisionsReturner = array();
 		while ($row =& $decisionDatesIterator->next()) {
 			$result =& $this->retrieve(
-				'SELECT	decision AS decision,
-					paper_id AS paper_id
-				FROM	edit_decisions
-				WHERE	date_decided = ? AND
-					paper_id = ?',
+				'SELECT	d.decision AS decision,
+					d.paper_id AS paper_id
+				FROM	edit_decisions d,
+					papers p
+				WHERE	d.date_decided = ? AND
+					d.paper_id = p.paper_id AND
+					p.submission_progress = 0 AND
+					p.paper_id = ?',
 				array(
-					$row['date'],
+					$row['date_decided'],
 					$row['paper_id']
 				)
 			);
@@ -115,10 +120,11 @@ class PaperReportDAO extends DAO {
 					pa.url AS url,
 					COALESCE(pasl.setting_value, pas.setting_value) AS biography
 				FROM	paper_authors pa
-					LEFT JOIN papers p ON pa.paper_id=p.paper_id
+					JOIN papers p ON pa.paper_id=p.paper_id
 					LEFT JOIN paper_author_settings pas ON (pa.author_id=pas.author_id AND pas.setting_name = ? AND pas.locale = ?)
 					LEFT JOIN paper_author_settings pasl ON (pa.author_id=pasl.author_id AND pasl.setting_name = ? AND pasl.locale = ?)
 				WHERE	p.sched_conf_id = ? AND
+					p.submission_progress = 0 AND
 					p.paper_id = ?',
 				array(
 					'biography',
