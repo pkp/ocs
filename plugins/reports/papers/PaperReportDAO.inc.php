@@ -125,7 +125,8 @@ class PaperReportDAO extends DAO {
 					LEFT JOIN paper_author_settings pasl ON (pa.author_id=pasl.author_id AND pasl.setting_name = ? AND pasl.locale = ?)
 				WHERE	p.sched_conf_id = ? AND
 					p.submission_progress = 0 AND
-					p.paper_id = ?',
+					p.paper_id = ?
+				ORDER BY pa.primary_contact DESC, pa.seq',
 				array(
 					'biography',
 					$primaryLocale,
