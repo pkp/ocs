@@ -31,7 +31,7 @@
 		<td>{$submission->getTrackAbbrev()|escape}</td>
 		<td>{$submission->getAuthorString(true)|truncate:40:"..."|escape}</td>
 		{translate|assign:"untitledPaper" key="common.untitled"}
-		<td><a href="{url op="submission" path=$submission->getPaperId()}" class="action">{$submission->getLocalizedTitle()|default:$untitledPaper|strip_tags|truncate:60:"..."|default:"&nbsp;"}</a>
+		<td><a href="{url op="submission" path=$submission->getPaperId()}" class="action">{$submission->getLocalizedTitle()|default:$untitledPaper|strip_tags|truncate:60:"..."|default:"&mdash;"}</a>
 			{if $submissionProgress != 0 && ($currentStage == REVIEW_STAGE_ABSTRACT || ($currentStage == REVIEW_STAGE_PRESENTATION && $submissionProgress < 3))}
 				(<a href="{url op="deleteSubmission" path=$paperId}" class="action" onclick="return confirm('{translate|escape:"jsparam" key="author.submissions.confirmDelete"}')">{translate key="common.delete"}</a>)
 			{/if}
