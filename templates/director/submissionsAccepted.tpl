@@ -12,13 +12,14 @@
 
 <table width="100%" class="listing">
 	<tr>
-		<td colspan="6" class="headseparator">&nbsp;</td>
+		<td colspan="7" class="headseparator">&nbsp;</td>
 	</tr>
 	<tr class="heading" valign="bottom">
 		<td width="3%">{sort_search key="common.id" sort="id"}</td>
 		<td width="4%">{sort_search key="submissions.track" sort="track"}</td>
+		<td width="4%">{sort_search key="paper.sessionType" sort="sessionType"}</td>
 		<td width="15%">{sort_search key="paper.authors" sort="authors"}</td>
-		<td width="60%">{sort_search key="paper.title" sort="title"}</td>
+		<td width="56%">{sort_search key="paper.title" sort="title"}</td>
 		<td width="8%">{translate key="common.order"}</td>
 		<td width="10%" align="right">{sort_search key="common.status" sort="status"}</td>
 	</tr>
@@ -27,12 +28,12 @@
 
 	<tr>
 		{if !$lastTrackId}
-			<td colspan="6" class="headseparator">&nbsp;</td>
+			<td colspan="7" class="headseparator">&nbsp;</td>
 			{assign var=notFirst value=1}
 		{elseif $lastTrackId != $submission->getTrackId()}
-			<td colspan="6" class="headseparator">&nbsp;</td>
+			<td colspan="7" class="headseparator">&nbsp;</td>
 		{else}
-			<td colspan="6" class="separator">&nbsp;</td>
+			<td colspan="7" class="separator">&nbsp;</td>
 		{/if}
 		{assign var=lastTrackId value=$submission->getTrackId()}
 	</tr>
@@ -42,6 +43,13 @@
 	<tr valign="top">
 		<td>{$paperId|escape}</td>
 		<td>{$submission->getTrackAbbrev()|escape}</td>
+		<td>
+			{assign var="sessionTypeId" value=$submission->getData('sessionType')}
+			{if $sessionTypeId}
+				{assign var="sessionType" value=$sessionTypes.$sessionTypeId}
+				{$sessionType->getLocalizedName()|escape}
+			{/if}
+		</td>
 		<td>{$submission->getAuthorString(true)|truncate:40:"..."|escape}</td>
 		<td><a href="{url op="submissionReview" path=$paperId}" class="action">{$submission->getLocalizedTitle()|strip_tags|truncate:60:"..."|default:"&mdash;"}</a></td>
 		<td>
@@ -62,20 +70,20 @@
 {/iterate}
 {if $submissions->wasEmpty()}
 	<tr>
-		<td colspan="6" class="headseparator">&nbsp;</td>
+		<td colspan="7" class="headseparator">&nbsp;</td>
 	</tr>
 	<tr>
-		<td colspan="6" class="nodata">{translate key="submissions.noSubmissions"}</td>
+		<td colspan="7" class="nodata">{translate key="submissions.noSubmissions"}</td>
 	</tr>
 	<tr>
 		<td colspan="6" class="endseparator">&nbsp;</td>
 	</tr>
 {else}
 	<tr>
-		<td colspan="6" class="endseparator">&nbsp;</td>
+		<td colspan="7" class="endseparator">&nbsp;</td>
 	</tr>
 	<tr>
-		<td colspan="3" align="left">{page_info iterator=$submissions}</td>
+		<td colspan="4" align="left">{page_info iterator=$submissions}</td>
 		<td colspan="3" align="right">{page_links anchor="submissions" name="submissions" iterator=$submissions searchField=$searchField searchMatch=$searchMatch search=$search track=$track sort=$sort sortDirection=$sortDirection}</td>
 	</tr>
 {/if}
