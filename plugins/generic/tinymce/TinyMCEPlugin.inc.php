@@ -219,7 +219,7 @@ class TinyMCEPlugin extends GenericPlugin {
 			case 'trackDirector/editComment':
 			case 'trackDirector/saveComment':
 			case 'reviewer/viewPeerReviewComments':
-  			case 'reviewer/postPeerReviewComment':
+			case 'reviewer/postPeerReviewComment':
 			case 'reviewer/editComment':
 			case 'reviewer/saveComment':
 				$fields[] = 'comments';
@@ -235,7 +235,7 @@ class TinyMCEPlugin extends GenericPlugin {
 				$fields[] = 'biography';
 				break;
 			case 'reviewer/viewPeerReviewComments':
-  			case 'reviewer/postPeerReviewComment':
+			case 'reviewer/postPeerReviewComment':
 				$fields[] = 'presenterComments';
 				$fields[] = 'comments';
 				break;
@@ -396,13 +396,13 @@ class TinyMCEPlugin extends GenericPlugin {
 		return $verbs;
 	}
 
- 	/*
- 	 * Execute a management verb on this plugin
- 	 * @param $verb string
- 	 * @param $args array
+	/**
+	 * Execute a management verb on this plugin
+	 * @param $verb string
+	 * @param $args array
 	 * @param $message string Location for the plugin to put a result msg
- 	 * @return boolean
- 	 */
+	 * @return boolean
+	 */
 	function manage($verb, $args, &$message) {
 		$conference =& Request::getConference();
 		$conferenceId = $conference?$conference->getId():0;
