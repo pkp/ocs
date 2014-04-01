@@ -111,7 +111,9 @@ class PaperReportPlugin extends ReportPlugin {
 			'end_time' => __('manager.scheduler.endTime'),
 			'building' => __('manager.scheduler.building'),
 			'room' => __('manager.scheduler.room'),
-			'status' => __('common.status')
+			'status' => __('common.status'),
+			'paper_type' => __('paper.sessionType'),
+			'comments' => __('paper.commentsToDirector')
 		));
 
 		$fp = fopen('php://output', 'wt');
