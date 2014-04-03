@@ -15,7 +15,7 @@
 {/strip}
 
 {url|assign:"loginUrl" page="login"}
-{translate key="installer.installationComplete" loginUrl=$loginUrl}
+{translate key="installer.installationComplete" loginUrl=$loginUrl createUrl=$createUrl importUrl=$importUrl}
 
 {if $writeConfigFailed}
 {translate key="installer.overwriteConfigFileInstructions"}
