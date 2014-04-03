@@ -105,7 +105,7 @@ class AdminConferenceHandler extends AdminHandler {
 			$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
 			$schedConf =& $schedConfDao->getSchedConfsByConferenceId($conferenceId);
 
-			if ( $schedConf->getCount() < 2  ) {
+			if ( $schedConf->getCount() < 1  ) {
 				$request->redirect($conferencePath, null, 'manager', 'createSchedConf');
 			} else {
 				$request->redirect(null, null, null, 'conferences');
