@@ -143,6 +143,15 @@ class TrackDirectorHandler extends Handler {
 		$templateMgr->assign('durationOptions', $this->getDurationOptions());
 		$templateMgr->assign('sort', $sort);
 		$templateMgr->assign('sortDirection', $sortDirection);
+
+		$sessionTypesArray = array();
+		$paperTypeDao = DAORegistry::getDAO('PaperTypeDAO');
+		$sessionTypes = $paperTypeDao->getPaperTypes($schedConfId);
+		while ($sessionType = $sessionTypes->next()) {
+			$sessionTypesArray[$sessionType->getId()] = $sessionType;
+		}
+		$templateMgr->assign('sessionTypes', $sessionTypesArray);
+
 		// Set search parameters
 		$duplicateParameters = array(
 			'searchField', 'searchMatch', 'search'

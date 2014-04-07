@@ -73,6 +73,7 @@ class TrackDirectorSubmissionDAO extends DAO {
 				LEFT JOIN track_settings ttl ON (t.track_id = ttl.track_id AND ttl.setting_name = ? AND ttl.locale = ?)
 				LEFT JOIN track_settings tapl ON (t.track_id = tapl.track_id AND tapl.setting_name = ? AND tapl.locale = ?)
 				LEFT JOIN track_settings tal ON (t.track_id = tal.track_id AND tal.setting_name = ? AND tal.locale = ?)
+				LEFT JOIN paper_settings sts ON (p.paper_id = sts.paper_id AND sts.setting_name = \'sessionType\')
 			WHERE	p.paper_id = ?',
 			array(
 				'title',
@@ -376,6 +377,7 @@ class TrackDirectorSubmissionDAO extends DAO {
 				LEFT JOIN track_settings tal ON (t.track_id = tal.track_id AND tal.setting_name = ? AND tal.locale = ?)
 				LEFT JOIN paper_settings ptl ON (p.paper_id = ptl.paper_id AND ptl.setting_name = ?)
 				LEFT JOIN paper_settings pptl ON (p.paper_id = pptl.paper_id AND pptl.setting_name = ? AND pptl.locale = ?)
+				LEFT JOIN paper_settings sts ON (p.paper_id = sts.paper_id AND sts.setting_name = \'sessionType\')
 			WHERE	p.sched_conf_id = ?
 				' . (!empty($additionalWhereSql)?" AND ($additionalWhereSql)":'') . '
 				AND e.director_id = ? ' .
@@ -842,6 +844,7 @@ class TrackDirectorSubmissionDAO extends DAO {
 			case 'id': return 'p.paper_id';
 			case 'submitDate': return 'p.date_submitted';
 			case 'track': return 'track_abbrev';
+			case 'sessionType': return 'sts.setting_value';
 			case 'authors': return 'author_name';
 			case 'title': return 'submission_title';
 			case 'status': return 'p.status';
