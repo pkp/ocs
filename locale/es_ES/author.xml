@@ -106,7 +106,7 @@
 	<message key="author.submit.expedite"><![CDATA[Si este trabajo está formalmente listo para publicarse, sin que precise mayor revisión o edición de formato, puede enviarse directamente a la página de Actas de la Conferencia <a href="{$expediteUrl}" class="action">Pulsando aquí</a>. (Nota: Sólo los directores de la conferencia  tienen esta opción para sus envíos).]]></message>
 	<message key="author.paper.uploadAuthorVersion">Versión depositada por el autor</message>
 	<message key="presenter.submit.authorSubmitLoginMessage">Se necesita una cuenta de usuario para enviar trabajos a esta conferencia. Esto permite a los organizadores registrar los envíos y contactar con usted cuando haya algún cambio en los mismos, o si se precisa alguna información adicional suya.</message>
-	<message key="author.submit.step3AbstOnly">2do paso: Ingresar los Metadatos del Envio</message>
+	<message key="author.submit.step3AbstOnly">2do paso: Ingresar los Metadatos del Envío</message>
 	<message key="author.submit.metadataOnly">2. Ingresar metadatos</message>
 	<message key="author.submit.uploadOnly">3. Cargar envio</message>
 	<message key="author.submit.supplementaryFilesAbstractOnly">3. Cargar Ficheros Suplementarios</message>
