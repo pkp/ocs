@@ -113,7 +113,7 @@ class SpecialEventForm extends Form {
 	}
 
 	/**
-	 * Save specialEvent. 
+	 * Save specialEvent.
 	 */
 	function execute() {
 		$specialEventDao =& DAORegistry::getDAO('SpecialEventDAO');

@@ -46,8 +46,8 @@ class SchedConfSetupStep3Form extends SchedConfSetupForm {
 	function getLocaleFieldNames() {
 		return array('reviewPolicy', 'reviewGuidelines');
 	}
-	
-	
+
+
 	/**
 	 * Assign form data to user-submitted data.
 	 */
@@ -84,7 +84,7 @@ class SchedConfSetupStep3Form extends SchedConfSetupForm {
 
 		parent::display();
 	}
-	
+
 
 }
 

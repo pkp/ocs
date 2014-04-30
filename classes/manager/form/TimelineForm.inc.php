@@ -141,6 +141,7 @@ class TimelineForm extends Form {
 		list($earliestDate, $latestDate) = $this->getOutsideDates($schedConf);
 		$templateMgr->assign('firstYear', strftime('%Y', $earliestDate));
 		$templateMgr->assign('lastYear', strftime('%Y', $latestDate));
+		$templateMgr->assign('cStartDate', strtotime( '+1 day', time() ));
 
 		parent::display();
 	}
@@ -187,6 +188,60 @@ class TimelineForm extends Form {
 			'closeComments' => $schedConf->getSetting('closeComments'),
 			'closeCommentsDate' => $schedConf->getSetting('closeCommentsDate')
 		);
+
+		// Make sure the initial values are passable
+		foreach( array(
+			//  site go-live happens before conference start
+			array('startDate', 'siteStartDate'),
+
+			//  Submission CfP is before Close Submissions
+			array('submissionsCloseDate', 'showCFPDate'),
+
+			//  submissions close before the conference starts
+			array('startDate', 'submissionsCloseDate'),
+
+			// conference begins before it ends
+			array('endDate', 'startDate'),
+
+			// conference start happens before site moves to archive
+			array('siteEndDate', 'startDate'),
+
+			//  conference site starts before site end
+			array('siteEndDate', 'siteStartDate'),
+
+			//  last day of conf is before conference archive
+			array('siteEndDate', 'endDate'),
+
+			//  regAuthorOpenDate is before regAuthorCloseDate
+			array('regAuthorCloseDate', 'regAuthorOpenDate'),
+
+			//  regReviewerOpenDate is before regReviewerCloseDate
+			array('regReviewerCloseDate', 'regReviewerOpenDate'),
+		) as $event) {
+			if( $this->_data[ $event[0] ] == NULL )
+			$this->_data[ $event[0] ] = $this->thisBeforeThatDate(
+				$this->_data[ $event[1] ],
+				$this->_data[ $event[0] ] );
+		}
+
+	}
+
+	function thisBeforeThatDate($thisDate, $thatDate) {
+		if($thisDate == NULL) $thisDate = time();
+		if($thatDate == NULL) $thatDate = time();
+		while( $thisDate >= $thatDate ) {
+			$thatDate = strtotime( '+1 days', $thatDate);
+		}
+		return $thatDate;
+	}
+
+	/**
+	 * Check if the interval between two dates is within a tolerance
+	 */
+	function checkIntervalDays($d1, $d2, $tolerance) {
+		if ( date_diff( $datetime1, $datetime2 )->format( '%R%a' ) == $tolerance )
+			return true;
+		return false;
 	}
 
 	/**
@@ -261,7 +316,7 @@ class TimelineForm extends Form {
 		$schedConf->updateSetting('postAccommodation', $this->getData('postAccommodation'), 'bool');
 		$schedConf->updateSetting('postSupporters', $this->getData('postSupporters'), 'bool');
 		$schedConf->updateSetting('postPayment', $this->getData('postPayment'), 'bool');
-		
+
 
 		//
 		// Log the rest.

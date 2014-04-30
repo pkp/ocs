@@ -150,7 +150,7 @@ class TimeBlockForm extends Form {
 	}
 
 	/**
-	 * Save time block. 
+	 * Save time block.
 	 */
 	function execute() {
 		$timeBlockDao =& DAORegistry::getDAO('TimeBlockDAO');

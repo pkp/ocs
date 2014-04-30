@@ -3,7 +3,7 @@
 /**
  * @defgroup manager_form_scheduler
  */
- 
+
 /**
  * @file ScheduleForm.inc.php
  *
@@ -144,7 +144,7 @@ class ScheduleForm extends Form {
 			// this function may generate the E_STRICT warning "usort() [function.usort]:
 			// Array was modified by the user comparison function In file". This is actually
 			// a generic error for "an error was generated in the callback function", which
-			// will be a "Non-static method cannot be called statically" error. This is a 
+			// will be a "Non-static method cannot be called statically" error. This is a
 			// benign warning; see http://www.php.net/manual/en/language.oop5.static.php
 			usort($this->_data['publishedPapers'], $sortFuncMap[$sort]);
 		}
@@ -326,7 +326,7 @@ class ScheduleForm extends Form {
 	}
 
 	/**
-	 * Save schedule. 
+	 * Save schedule.
 	 */
 	function execute() {
 		$modifiedPapersById = array();

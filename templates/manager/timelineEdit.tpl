@@ -190,15 +190,15 @@
 		</td>
 	</tr>
 	*}
-	
-	
+
+
 	<tr valign="top">
 		<td class="label" colspan="2">
 			<input type="checkbox" name="postTimeline" id="postTimeline" value="1" {if $postTimeline}checked="checked"{/if} />
 			{fieldLabel name="postTimeline" key="manager.timeline.postTimeline"}
 		</td>
 	</tr>
-	
+
 	<tr valign="top">
 		<td class="label" colspan="2">
 			<input type="checkbox" name="postOverview" id="postOverview" value="1" {if $postOverview}checked="checked"{/if} />
@@ -225,7 +225,7 @@
 	</tr>
 	<tr valign="top">
 		<td class="label" colspan="2">
-			<input type="checkbox" name="postProgram" id="postProgram" value="1" {if $postProgram}checked="checked"{/if} /> 
+			<input type="checkbox" name="postProgram" id="postProgram" value="1" {if $postProgram}checked="checked"{/if} />
 			{fieldLabel name="postProgram" key="manager.timeline.postProgram"}
 		</td>
 	</tr>
@@ -253,7 +253,7 @@
 			{fieldLabel name="postPayment" key="manager.timeline.postRegistration"}
 		</td>
 	</tr>
-	
+
 	<tr valign="top">
 		<td width="50%"><h4>{translate key="manager.timeline.include"}</h4></td>
 		<td width="50%" class="heading"><h4>{translate key="manager.timeline.postDate"}</h4></td>
@@ -306,7 +306,7 @@
 			<input type="hidden" name="closeCommentsDateSecond" value="59" />
 		</td>
 	</tr>
-	
+
 </table>
 </div>
 <br/>
