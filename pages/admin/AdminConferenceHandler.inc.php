@@ -96,7 +96,6 @@ class AdminConferenceHandler extends AdminHandler {
 			import('notification.NotificationManager');
 			$notificationManager = new NotificationManager();
 			$notificationManager->createTrivialNotification('notification.notification', 'common.changesSaved');
-			// $request->redirect(null, null, null, 'conferences');
 			$conferenceDao =& DAORegistry::getDAO('ConferenceDAO');
 			$conference = $conferenceDao->getFreshestConference($conferenceId);
 			$conferenceId = $conference->_data['id'];
