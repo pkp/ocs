@@ -141,7 +141,6 @@ class TimelineForm extends Form {
 		list($earliestDate, $latestDate) = $this->getOutsideDates($schedConf);
 		$templateMgr->assign('firstYear', strftime('%Y', $earliestDate));
 		$templateMgr->assign('lastYear', strftime('%Y', $latestDate));
-		$templateMgr->assign('cStartDate', strtotime( '+1 day', time() ));
 
 		parent::display();
 	}
@@ -226,6 +225,10 @@ class TimelineForm extends Form {
 
 	}
 
+/**
+ * Checks if one date is before another. If it's not, adds a day to the other
+ * until there is a difference of at least one day.
+ */
 	function thisBeforeThatDate($thisDate, $thatDate) {
 		if($thisDate == NULL) $thisDate = time();
 		if($thatDate == NULL) $thatDate = time();
@@ -233,15 +236,6 @@ class TimelineForm extends Form {
 			$thatDate = strtotime( '+1 days', $thatDate);
 		}
 		return $thatDate;
-	}
-
-	/**
-	 * Check if the interval between two dates is within a tolerance
-	 */
-	function checkIntervalDays($d1, $d2, $tolerance) {
-		if ( date_diff( $datetime1, $datetime2 )->format( '%R%a' ) == $tolerance )
-			return true;
-		return false;
 	}
 
 	/**
