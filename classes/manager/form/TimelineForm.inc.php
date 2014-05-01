@@ -189,53 +189,74 @@ class TimelineForm extends Form {
 		);
 
 		// Make sure the initial values are passable
-		foreach( array(
+		$timing = array(
 			//  site go-live happens before conference start
-			array('startDate', 'siteStartDate'),
+			array('siteStartDate', 'startDate'),
 
 			//  Submission CfP is before Close Submissions
-			array('submissionsCloseDate', 'showCFPDate'),
+			array('showCFPDate', 'submissionsCloseDate'),
 
 			//  submissions close before the conference starts
-			array('startDate', 'submissionsCloseDate'),
+			array('submissionsCloseDate', 'startDate'),
 
 			// conference begins before it ends
-			array('endDate', 'startDate'),
+			array('startDate', 'endDate'),
 
 			// conference start happens before site moves to archive
-			array('siteEndDate', 'startDate'),
+			array('startDate', 'siteEndDate', ),
 
 			//  conference site starts before site end
-			array('siteEndDate', 'siteStartDate'),
+			array('siteStartDate', 'siteEndDate'),
 
 			//  last day of conf is before conference archive
-			array('siteEndDate', 'endDate'),
+			array('endDate', 'siteEndDate'),
 
 			//  regAuthorOpenDate is before regAuthorCloseDate
-			array('regAuthorCloseDate', 'regAuthorOpenDate'),
+			array('regAuthorOpenDate', 'regAuthorCloseDate'),
 
 			//  regReviewerOpenDate is before regReviewerCloseDate
-			array('regReviewerCloseDate', 'regReviewerOpenDate'),
-		) as $event) {
-			if( $this->_data[ $event[0] ] == NULL )
-			$this->_data[ $event[0] ] = $this->thisBeforeThatDate(
-				$this->_data[ $event[1] ],
-				$this->_data[ $event[0] ] );
+			array('regReviewerOpenDate', 'regReviewerCloseDate')
+		);
+
+		// Correct timing as needed.
+		$dt = & $this->_data; // This is a bad way of referencing the data
+		while ( $timingCorrect == false ) {
+			foreach ($timing as $rule) {
+				$timingCorrect = true;
+				if($dt[$rule[0]] == NULL) $dt[$rule[0]] = time();
+				if($dt[$rule[1]] == NULL) $dt[$rule[1]] = time();
+
+				while ( $dt[$rule[0]] >= $dt[$rule[1]] ) {
+					$dt[$rule[1]] = strtotime( '+1 days', $dt[$rule[1]]);
+					$timingCorrect = false;
+				}
+			}
 		}
 
 	}
 
-/**
- * Checks if one date is before another. If it's not, adds a day to the other
- * until there is a difference of at least one day.
- */
-	function thisBeforeThatDate($thisDate, $thatDate) {
-		if($thisDate == NULL) $thisDate = time();
-		if($thatDate == NULL) $thatDate = time();
-		while( $thisDate >= $thatDate ) {
-			$thatDate = strtotime( '+1 days', $thatDate);
+	/**
+	 * Ensures that all the dates which should be before other dates are
+	 */
+	function correctDateTiming($dateTiming){
+
+		return $afterDate;
+
+	}
+
+	/**
+	 * Checks if one date is before another. If it's not, add a day to the other until there is a difference of at least one day.
+	 * @param  date $beforeDate The date which should be earlier
+	 * @param  date $afterDate The date which should be later
+	 * @return date           The corrected later date with a difference of at least one day after the before date
+	 */
+	function thisBeforeThatDate($beforeDate, $afterDate) {
+		if($beforeDate == NULL) $beforeDate = time();
+		if($afterDate == NULL) $afterDate = time();
+		while( $beforeDate >= $afterDate ) {
+			$afterDate = strtotime( '+1 days', $afterDate);
 		}
-		return $thatDate;
+		return $afterDate;
 	}
 
 	/**

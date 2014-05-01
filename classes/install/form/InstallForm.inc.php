@@ -203,7 +203,7 @@ class InstallForm extends Form {
 				$templateMgr->assign(array('writeConfigFailed' => true, 'configFileContents' => $installer->getConfigContents()));
 			}
 
-			$templateMgr->assign(array('createUrl' => Request::url(null, null, 'admin', 'createConference'), 'importUrl' => Request::url(null, null, 'admin', 'importOCS1') ) );
+			$templateMgr->assign('createUrl', Request::url(null, null, 'admin', 'createConference') );
 			$templateMgr->display('install/installComplete.tpl');
 
 		} else {
