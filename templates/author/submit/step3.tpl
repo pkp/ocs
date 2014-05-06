@@ -180,7 +180,7 @@ function moveAuthor(dir, authorIndex) {
 </div>
 <div class="separator"></div>
 
-<div id="title">
+<div id="titleAndAbstract">
 {if $collectAbstracts}
 	<h3>{translate key="submission.titleAndAbstract"}</h3>
 {else}
