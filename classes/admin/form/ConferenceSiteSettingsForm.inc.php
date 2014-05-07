@@ -63,7 +63,7 @@ class ConferenceSiteSettingsForm extends Form {
 					'description' => $conference->getDescription(null), // Localized
 					'conferencePath' => $conference->getPath(),
 					'enabled' => $conference->getEnabled()
-				);
+					);
 
 			} else {
 				$this->conferenceId = null;
@@ -72,7 +72,20 @@ class ConferenceSiteSettingsForm extends Form {
 		if (!isset($this->conferenceId)) {
 			$this->_data = array(
 				'enabled' => 1
-			);
+				);
+		}
+		if( $conference == null ) {
+			$this->_data['scheduleConf'] = 1;
+		} else {
+			$conferenceId = $conference->_data['id'];
+			$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
+			$schedConf =& $schedConfDao->getSchedConfsByConferenceId($conferenceId);
+
+			if ( $schedConf->getCount() < 1 ) {
+				$this->_data['scheduleConf'] = 1;
+			} else {
+				$this->_data['scheduleConf'] = 0;
+			}
 		}
 	}
 
@@ -88,7 +101,7 @@ class ConferenceSiteSettingsForm extends Form {
 	 * Assign form data to user-submitted data.
 	 */
 	function readInputData() {
-		$this->readUserVars(array('title', 'description', 'conferencePath', 'enabled'));
+		$this->readUserVars(array('title', 'description', 'conferencePath', 'enabled', 'scheduleConf'));
 		$this->setData('enabled', (int)$this->getData('enabled'));
 
 		if (isset($this->conferenceId)) {
@@ -160,7 +173,7 @@ class ConferenceSiteSettingsForm extends Form {
 				'aboutUrl' => Request::url($this->getData('conferencePath'), 'index', 'about', null),
 				'accountUrl' => Request::url($this->getData('conferencePath'), 'index', 'user', 'register'),
 				'conferenceName' => $titles[$site->getPrimaryLocale()]
-			));
+				));
 
 			// Install the default RT versions.
 			import('rt.ocs.ConferenceRTAdmin');

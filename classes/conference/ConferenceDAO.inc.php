@@ -38,7 +38,7 @@ class ConferenceDAO extends DAO {
 	}
 
 	/**
-	 * Retrieve a conference by ID.
+	 * Retrieves the most recently created conference.
 	 * @param $conferenceId int
 	 * @return Conference
 	 */
