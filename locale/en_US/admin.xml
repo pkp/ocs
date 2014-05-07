@@ -40,6 +40,7 @@
 	<message key="admin.conferences.form.pathAlphaNumeric">The path can contain only alphanumeric characters, underscores, and hyphens, and must begin and end with an alphanumeric character.</message>
 	<message key="admin.conferences.form.pathExists">The selected path is already in use by another conference.</message>
 	<message key="admin.conferences.enableConferenceInstructions">Enable this conference to appear publicly on the site</message>
+	<message key="admin.conferences.scheduleConferenceInstructions">Proceed to schedule a conference next.</message>
 	<message key="admin.conferences.conferenceDescription">Conference description</message>
 	<message key="admin.conferences.conferenceDescriptionInstructions">The conference description identifies the ongoing mission of this conference. It appears on the main conference page, as well as all of the conference's convention pages.</message>
 	<message key="admin.conferences.importOCS1">Import from OCS 1</message>
@@ -57,7 +58,7 @@
 	<message key="admin.conferences.form.importPathRequired">The import path is required.</message>
 	<message key="admin.conferences.importErrors">Importing failed to complete successfully</message>
 
-	<!-- Site Administration Merge Users -->	
+	<!-- Site Administration Merge Users -->
 	<message key="admin.mergeUsers">Merge Users</message>
 	<message key="admin.mergeUsers.mergeUser">Merge User</message>
 	<message key="admin.mergeUsers.into.description">Select a user to whom to attribute the previous user's submissions, editing assignments, etc.</message>

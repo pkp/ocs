@@ -45,7 +45,7 @@ class ConferenceDAO extends DAO {
 	function &getFreshestConference() {
 		$returner = null;
 		$result =& $this->retrieve(
-			'SELECT c1.conference_id, c1.path, c1.seq, c1.primary_locale, c1.enabled FROM conferences c1 LEFT JOIN conferences c2 ON c1.conference_id < c2.conference_id ORDER BY c1.conference_id DESC LIMIT 1'
+			'SELECT MAX(conference_id), path, seq, primary_locale, enabled FROM conferences GROUP BY conference_id ORDER BY conference_id DESC LIMIT 1'
 		);
 
 		if ($result->RecordCount() != 0) {

@@ -62,13 +62,11 @@
 	<tr valign="top">
 		<td colspan="2" class="label">
 			<input type="checkbox" name="enabled" id="enabled" value="1"{if $enabled} checked="checked"{/if} /> <label for="enabled">{translate key="admin.conferences.enableConferenceInstructions"}</label>
-		}
-		}
 		</td>
 	</tr>
 	<tr valign="top">
 		<td colspan="2" class="label">
-			<input type="checkbox" name="scheduleConf" id="scheduleConf" value="1"{if $scheduleConf} checked="checked"{/if} /> <label for="scheduleConf">Take me to schedule a conference next.</label>
+			<input type="checkbox" name="scheduleConf" id="scheduleConf" value="1"{if $scheduleConf} checked="checked"{/if} /> <label for="scheduleConf">{translate key="admin.conferences.scheduleConferenceInstructions"}</label>
 		</td>
 	</tr>
 </table>
