@@ -63,7 +63,7 @@ class ConferenceSiteSettingsForm extends Form {
 					'description' => $conference->getDescription(null), // Localized
 					'conferencePath' => $conference->getPath(),
 					'enabled' => $conference->getEnabled()
-					);
+				);
 
 			} else {
 				$this->conferenceId = null;
@@ -82,9 +82,9 @@ class ConferenceSiteSettingsForm extends Form {
 			$schedConf =& $schedConfDao->getSchedConfsByConferenceId($conferenceId);
 
 			if ( $schedConf->getCount() < 1 ) {
-				$this->_data['scheduleConf'] = 1;
+				$this->getData['scheduleConf'] = 1;
 			} else {
-				$this->_data['scheduleConf'] = 0;
+				$this->getData['scheduleConf'] = 0;
 			}
 		}
 	}
@@ -173,7 +173,7 @@ class ConferenceSiteSettingsForm extends Form {
 				'aboutUrl' => Request::url($this->getData('conferencePath'), 'index', 'about', null),
 				'accountUrl' => Request::url($this->getData('conferencePath'), 'index', 'user', 'register'),
 				'conferenceName' => $titles[$site->getPrimaryLocale()]
-				));
+			));
 
 			// Install the default RT versions.
 			import('rt.ocs.ConferenceRTAdmin');
