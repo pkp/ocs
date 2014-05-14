@@ -236,15 +236,6 @@ class TimelineForm extends Form {
 	}
 
 	/**
-	 * Ensures that all the dates which should be before other dates are
-	 */
-	function correctDateTiming($dateTiming){
-
-		return $afterDate;
-
-	}
-
-	/**
 	 * Checks if one date is before another. If it's not, add a day to the other until there is a difference of at least one day.
 	 * @param  date $beforeDate The date which should be earlier
 	 * @param  date $afterDate The date which should be later
