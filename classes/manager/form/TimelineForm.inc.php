@@ -236,21 +236,6 @@ class TimelineForm extends Form {
 	}
 
 	/**
-	 * Checks if one date is before another. If it's not, add a day to the other until there is a difference of at least one day.
-	 * @param  date $beforeDate The date which should be earlier
-	 * @param  date $afterDate The date which should be later
-	 * @return date           The corrected later date with a difference of at least one day after the before date
-	 */
-	function thisBeforeThatDate($beforeDate, $afterDate) {
-		if($beforeDate == NULL) $beforeDate = time();
-		if($afterDate == NULL) $afterDate = time();
-		while( $beforeDate >= $afterDate ) {
-			$afterDate = strtotime( '+1 days', $afterDate);
-		}
-		return $afterDate;
-	}
-
-	/**
 	 * Assign form data to user-submitted data.
 	 */
 	function readInputData() {
