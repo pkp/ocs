@@ -219,15 +219,15 @@ class TimelineForm extends Form {
 		);
 
 		// Correct timing as needed.
-		$dt = & $this->_data; // This is a bad way of referencing the data
-		while ( $timingCorrect == false ) {
+		while (!$timingCorrect) {
 			foreach ($timing as $rule) {
 				$timingCorrect = true;
-				if($dt[$rule[0]] == NULL) $dt[$rule[0]] = time();
-				if($dt[$rule[1]] == NULL) $dt[$rule[1]] = time();
-
-				while ( $dt[$rule[0]] >= $dt[$rule[1]] ) {
-					$dt[$rule[1]] = strtotime( '+1 days', $dt[$rule[1]]);
+				if( $this->getData($rule[0]) == NULL)
+					$this->setData($rule[0], time());
+				if( $this->getData($rule[1]) == NULL)
+					$this->setData($rule[1], time());
+				while ($this->getData($rule[0]) >= $this->getData($rule[1])) {
+					$this->setData($rule[1], strtotime( '+1 days', $this->getData($rule[1])));
 					$timingCorrect = false;
 				}
 			}
