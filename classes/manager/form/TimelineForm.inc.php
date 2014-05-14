@@ -203,7 +203,7 @@ class TimelineForm extends Form {
 			array('startDate', 'endDate'),
 
 			// conference start happens before site moves to archive
-			array('startDate', 'siteEndDate', ),
+			array('startDate', 'siteEndDate' ),
 
 			//  conference site starts before site end
 			array('siteStartDate', 'siteEndDate'),
