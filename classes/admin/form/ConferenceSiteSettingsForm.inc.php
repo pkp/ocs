@@ -81,9 +81,9 @@ class ConferenceSiteSettingsForm extends Form {
 			$schedConf =& $schedConfDao->getSchedConfsByConferenceId($this->conferenceId);
 
 			if ( $schedConf->getCount() < 1 ) {
-				$this->getData['scheduleConf'] = 1;
+				$this->setData('scheduleConf', 1);
 			} else {
-				$this->getData['scheduleConf'] = 0;
+				$this->setData('scheduleConf', 0);
 			}
 		}
 	}
