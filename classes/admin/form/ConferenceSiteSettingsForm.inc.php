@@ -74,6 +74,8 @@ class ConferenceSiteSettingsForm extends Form {
 				'enabled' => 1
 				);
 		}
+
+		// Let the form know if a conference has a scheduled conference
 		if( $conference == null ) {
 			$this->setData('scheduleConf', 1);
 		} else {

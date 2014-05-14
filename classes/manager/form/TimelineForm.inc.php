@@ -218,7 +218,7 @@ class TimelineForm extends Form {
 			array('regReviewerOpenDate', 'regReviewerCloseDate')
 		);
 
-		// Correct timing as needed.
+		// Ensure the default dates for the form are acceptable
 		while (!$timingCorrect) {
 			foreach ($timing as $rule) {
 				$timingCorrect = true;
