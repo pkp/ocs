@@ -98,10 +98,10 @@ class AdminConferenceHandler extends AdminHandler {
 			$notificationManager->createTrivialNotification('notification.notification', 'common.changesSaved');
 			$conferenceDao =& DAORegistry::getDAO('ConferenceDAO');
 			$conference = $conferenceDao->getFreshestConference();
-			$conferenceId = $conference->_data['id'];
-			$conferencePath = $conference->_data['path'];
+			$conferenceId = $conference->getData('id');
+			$conferencePath = $conference->getData('path');
 
-			if ( $settingsForm->_data['scheduleConf'] ) {
+			if ( $settingsForm->getData('scheduleConf') ) {
 				$request->redirect($conferencePath, null, 'manager', 'createSchedConf');
 			} else {
 				$request->redirect(null, null, null, 'conferences');
