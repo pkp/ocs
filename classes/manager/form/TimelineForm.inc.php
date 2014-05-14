@@ -187,6 +187,53 @@ class TimelineForm extends Form {
 			'closeComments' => $schedConf->getSetting('closeComments'),
 			'closeCommentsDate' => $schedConf->getSetting('closeCommentsDate')
 		);
+
+		// Make sure the initial values are passable
+		$timing = array(
+			//  site go-live happens before conference start
+			array('siteStartDate', 'startDate'),
+
+			//  Submission CfP is before Close Submissions
+			array('showCFPDate', 'submissionsCloseDate'),
+
+			//  submissions close before the conference starts
+			array('submissionsCloseDate', 'startDate'),
+
+			// conference begins before it ends
+			array('startDate', 'endDate'),
+
+			// conference start happens before site moves to archive
+			array('startDate', 'siteEndDate' ),
+
+			//  conference site starts before site end
+			array('siteStartDate', 'siteEndDate'),
+
+			//  last day of conf is before conference archive
+			array('endDate', 'siteEndDate'),
+
+			//  regAuthorOpenDate is before regAuthorCloseDate
+			array('regAuthorOpenDate', 'regAuthorCloseDate'),
+
+			//  regReviewerOpenDate is before regReviewerCloseDate
+			array('regReviewerOpenDate', 'regReviewerCloseDate')
+		);
+
+		// Ensure the default dates for the form are acceptable
+		while (!$timingCorrect) {
+			foreach ($timing as $rule) {
+				$timingCorrect = true;
+				if ($this->getData($rule[0]) == NULL)
+					$this->setData($rule[0], time());
+				if ($this->getData($rule[1]) == NULL)
+					$this->setData($rule[1], time());
+
+				if ($this->getData($rule[0]) >= $this->getData($rule[1])) {
+					$this->setData($rule[1], mktime(0, 0, 0, date('m', $this->getData($rule[0])), date('d', $this->getData($rule[0])) + 1, date('Y', $this->getData($rule[0]))));
+					$timingCorrect = false;
+				}
+			}
+		}
+
 	}
 
 	/**
@@ -261,7 +308,7 @@ class TimelineForm extends Form {
 		$schedConf->updateSetting('postAccommodation', $this->getData('postAccommodation'), 'bool');
 		$schedConf->updateSetting('postSupporters', $this->getData('postSupporters'), 'bool');
 		$schedConf->updateSetting('postPayment', $this->getData('postPayment'), 'bool');
-		
+
 
 		//
 		// Log the rest.

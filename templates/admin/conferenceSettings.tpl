@@ -64,6 +64,11 @@
 			<input type="checkbox" name="enabled" id="enabled" value="1"{if $enabled} checked="checked"{/if} /> <label for="enabled">{translate key="admin.conferences.enableConferenceInstructions"}</label>
 		</td>
 	</tr>
+	<tr valign="top">
+		<td colspan="2" class="label">
+			<input type="checkbox" name="scheduleConf" id="scheduleConf" value="1"{if $scheduleConf} checked="checked"{/if} /> <label for="scheduleConf">{translate key="admin.conferences.scheduleConferenceInstructions"}</label>
+		</td>
+	</tr>
 </table>
 
 <p><input type="submit" value="{translate key="common.save"}" class="button defaultButton" /> <input type="button" value="{translate key="common.cancel"}" class="button" onclick="document.location.href='{url op="conferences"}'" /></p>

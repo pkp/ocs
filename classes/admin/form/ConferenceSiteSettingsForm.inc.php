@@ -72,7 +72,21 @@ class ConferenceSiteSettingsForm extends Form {
 		if (!isset($this->conferenceId)) {
 			$this->_data = array(
 				'enabled' => 1
-			);
+				);
+		}
+
+		// Let the form know if a conference has a scheduled conference
+		if( $conference == null ) {
+			$this->setData('scheduleConf', 1);
+		} else {
+			$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
+			$schedConf =& $schedConfDao->getSchedConfsByConferenceId($this->conferenceId);
+
+			if ( $schedConf->getCount() < 1 ) {
+				$this->setData('scheduleConf', 1);
+			} else {
+				$this->setData('scheduleConf', 0);
+			}
 		}
 	}
 
@@ -88,7 +102,7 @@ class ConferenceSiteSettingsForm extends Form {
 	 * Assign form data to user-submitted data.
 	 */
 	function readInputData() {
-		$this->readUserVars(array('title', 'description', 'conferencePath', 'enabled'));
+		$this->readUserVars(array('title', 'description', 'conferencePath', 'enabled', 'scheduleConf'));
 		$this->setData('enabled', (int)$this->getData('enabled'));
 
 		if (isset($this->conferenceId)) {

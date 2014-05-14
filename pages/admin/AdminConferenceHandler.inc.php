@@ -9,7 +9,7 @@
  * @class AdminConferenceHandler
  * @ingroup pages_admin
  *
- * @brief Handle requests for conference management in site administration. 
+ * @brief Handle requests for conference management in site administration.
  */
 
 //$Id$
@@ -96,7 +96,16 @@ class AdminConferenceHandler extends AdminHandler {
 			import('notification.NotificationManager');
 			$notificationManager = new NotificationManager();
 			$notificationManager->createTrivialNotification('notification.notification', 'common.changesSaved');
-			$request->redirect(null, null, null, 'conferences');
+			$conferenceDao =& DAORegistry::getDAO('ConferenceDAO');
+			$conference = $conferenceDao->getFreshestConference();
+			$conferenceId = $conference->getData('id');
+			$conferencePath = $conference->getData('path');
+
+			if ( $settingsForm->getData('scheduleConf') ) {
+				$request->redirect($conferencePath, null, 'manager', 'createSchedConf');
+			} else {
+				$request->redirect(null, null, null, 'conferences');
+			}
 		} else {
 			$settingsForm->display();
 		}

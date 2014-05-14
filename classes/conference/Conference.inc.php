@@ -3,7 +3,7 @@
 /**
  * @defgroup conference
  */
- 
+
 /**
  * @file Conference.inc.php
  *
@@ -294,7 +294,7 @@ class Conference extends DataObject {
 		}
 		return null;
 	}
-	
+
 	/**
 	 * Get localized favicon
 	 * @return string
@@ -305,7 +305,6 @@ class Conference extends DataObject {
 			if (isset($faviconArray[$locale])) return $faviconArray[$locale];
 		}
 	}
-		
 }
 
 ?>

@@ -38,6 +38,26 @@ class ConferenceDAO extends DAO {
 	}
 
 	/**
+	 * Retrieves the most recently created conference.
+	 * @param $conferenceId int
+	 * @return Conference
+	 */
+	function &getFreshestConference() {
+		$returner = null;
+		$result =& $this->retrieve(
+			'SELECT * FROM conferences ORDER BY conference_id DESC LIMIT 1'
+		);
+
+		if ($result->RecordCount() != 0) {
+			$returner =& $this->_returnConferenceFromRow($result->GetRowAssoc(false));
+		}
+
+		$result->Close();
+		unset($result);
+		return $returner;
+	}
+
+	/**
 	 * Retrieve a conference by path.
 	 * @param $path string
 	 * @return Conference
@@ -77,7 +97,7 @@ class ConferenceDAO extends DAO {
 	/**
 	 * Insert a new conference.
 	 * @param $conference Conference
-	 */	
+	 */
 	function insertConference(&$conference) {
 		$this->update(
 			'INSERT INTO conferences
@@ -149,7 +169,7 @@ class ConferenceDAO extends DAO {
 
 		$pluginSettingsDao =& DAORegistry::getDAO('PluginSettingsDAO');
 		$pluginSettingsDao->deleteSettingsByConferenceId($conferenceId);
-		
+
 		$reviewFormDao =& DAORegistry::getDAO('ReviewFormDAO');
 		$reviewFormDao->deleteByAssocId(ASSOC_TYPE_CONFERENCE, $conferenceId);
 
