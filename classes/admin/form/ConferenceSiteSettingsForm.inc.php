@@ -75,11 +75,10 @@ class ConferenceSiteSettingsForm extends Form {
 				);
 		}
 		if( $conference == null ) {
-			$this->_data['scheduleConf'] = 1;
+			$this->setData('scheduleConf', 1);
 		} else {
-			$conferenceId = $conference->_data['id'];
 			$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
-			$schedConf =& $schedConfDao->getSchedConfsByConferenceId($conferenceId);
+			$schedConf =& $schedConfDao->getSchedConfsByConferenceId($this->conferenceId);
 
 			if ( $schedConf->getCount() < 1 ) {
 				$this->getData['scheduleConf'] = 1;
