@@ -222,12 +222,13 @@ class TimelineForm extends Form {
 		while (!$timingCorrect) {
 			foreach ($timing as $rule) {
 				$timingCorrect = true;
-				if( $this->getData($rule[0]) == NULL)
+				if ($this->getData($rule[0]) == NULL)
 					$this->setData($rule[0], time());
-				if( $this->getData($rule[1]) == NULL)
+				if ($this->getData($rule[1]) == NULL)
 					$this->setData($rule[1], time());
-				while ($this->getData($rule[0]) >= $this->getData($rule[1])) {
-					$this->setData($rule[1], strtotime( '+1 days', $this->getData($rule[1])));
+
+				if ($this->getData($rule[0]) >= $this->getData($rule[1])) {
+					$this->setData($rule[1], mktime(0, 0, 0, date('m', $this->getData($rule[0])), date('d', $this->getData($rule[0])) + 1, date('Y', $this->getData($rule[0]))));
 					$timingCorrect = false;
 				}
 			}
