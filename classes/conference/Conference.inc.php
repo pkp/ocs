@@ -305,14 +305,6 @@ class Conference extends DataObject {
 			if (isset($faviconArray[$locale])) return $faviconArray[$locale];
 		}
 	}
-
-	/**
-	 * Gets a scheduled conference if there is one
-	 * @return bool
-	 */
-	function getScheduledConf($conference) {
-
-	}
 }
 
 ?>
