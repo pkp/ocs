@@ -7,11 +7,11 @@
   * Copyright (c) 2000-2012 John Willinsky
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
   *
-  * Localization strings for the en_US (U.S. English) locale.
+  * Localization strings for the zh_TW (繁體中文) locale.
   *
   -->
  
-<locale name="en_US" full_name="U.S. English">
+<locale name="zh_TW" full_name="繁體中文">
 	<message key="plugins.generic.translator.name">翻譯插件</message>
 	<message key="plugins.generic.translator.description">本插件可以讓您使用網路界面直接進行翻譯檔的編輯工作。</message>
 	<message key="plugins.generic.translator.longdescription">本區塊可以讓網站管理者建立、修改，以及檢查 OCS 相關的翻譯內容。本翻譯的內容將會套用到所有的研討會中，如果您完成翻譯的工作，歡迎您將它提供給 Public Knowledge Project 小組，以提供人使用。</message>
