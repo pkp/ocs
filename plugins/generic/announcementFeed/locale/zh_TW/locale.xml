@@ -7,11 +7,11 @@
   * Copyright (c) 2000-2012 John Willinsky
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
   *
-  * Localization strings for the en_US (U.S. English) locale.
+  * Localization strings for the zh_TW (繁體中文) locale.
   *
   -->
  
-<locale name="en_US" full_name="U.S. English">
+<locale name="zh_TW" full_name="繁體中文">
 	<message key="plugins.generic.announcementfeed.displayName">公告聚合 (RSS) 插件</message>
 	<message key="plugins.generic.announcementfeed.description">本插件可以產生 RSS/Atom 網路聚合資料，提供其他網站同步取得本研討會的公告內容。</message>
 

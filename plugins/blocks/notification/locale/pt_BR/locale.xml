@@ -7,11 +7,11 @@
   * Copyright (c) 2000-2012 John Willinsky
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
   *
-  * Localization strings for the en_US (U.S. English) locale.
+  * Localization strings for the pt_BR (Português (Brasil)) locale.
   *
   -->
  
-<locale name="en_US" full_name="U.S. English">
+<locale name="pt_BR" full_name="Português (Brasil)">
 	<message key="plugins.block.notification.displayName">Bloco "Notificações"</message>
 	<message key="plugins.block.notification.description">Este plugin exibe informações sobre notificações do sistema.</message>
 </locale>

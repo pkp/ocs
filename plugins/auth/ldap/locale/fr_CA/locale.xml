@@ -11,7 +11,7 @@
   *
   -->
  
-<locale name="en_US" full_name="U.S. English">
+<locale name="fr_CA" full_name="Français (Canada)">
 	<message key="plugins.auth.ldap.displayName">Protocole LDAP</message>
 	<message key="plugins.auth.ldap.description">Ce plugiciel permet l'authentification et la synchronisation de comptes d'utilisateurs au moyen d'une source de données LDAP externe.</message>
 	
