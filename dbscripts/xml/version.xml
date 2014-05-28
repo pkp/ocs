@@ -12,19 +12,21 @@
 <version>
 	<application>ocs2</application>
 	<type>core</type>
-	<release>2.3.5.0</release>
-	<tag>ocs-2_3_5-0</tag>
-	<date>2012-03-16</date>
+	<release>2.3.6.0</release>
+	<tag>ocs-2_3_6-0</tag>
+	<date>2014-05-28</date>
 	<info>http://pkp.sfu.ca/ocs/</info>
-	<package>http://pkp.sfu.ca/ocs/download/ocs-2.3.5.tar.gz</package>
-	<patch from="2.0.0.0">http://pkp.sfu.ca/ocs/download/patch/ocs-2.0.0-1_to_2.3.5.patch.gz</patch><!-- OCS 2.0.0.1 is marked in DB as 2.0.0.0. -->
-	<patch from="2.1.0.1">http://pkp.sfu.ca/ocs/download/patch/ocs-2.1.0-1_to_2.3.5.patch.gz</patch>
-	<patch from="2.1.1.2">http://pkp.sfu.ca/ocs/download/patch/ocs-2.1.1-2_to_2.3.5.patch.gz</patch>
-	<patch from="2.1.2.0">http://pkp.sfu.ca/ocs/download/patch/ocs-2.1.2_to_2.3.5.patch.gz</patch>
-	<patch from="2.1.2.1">http://pkp.sfu.ca/ocs/download/patch/ocs-2.1.2-1_to_2.3.5.patch.gz</patch>
-	<patch from="2.3.0.0">http://pkp.sfu.ca/ocs/download/patch/ocs-2.3_to_2.3.5.patch.gz</patch>
-	<patch from="2.3.1.0">http://pkp.sfu.ca/ocs/download/patch/ocs-2.3.1_to_2.3.5.patch.gz</patch>
-	<patch from="2.3.2.0">http://pkp.sfu.ca/ocs/download/patch/ocs-2.3.2_to_2.3.5.patch.gz</patch>
-	<patch from="2.3.3.0">http://pkp.sfu.ca/ocs/download/patch/ocs-2.3.3_to_2.3.5.patch.gz</patch>
-	<patch from="2.3.3.1">http://pkp.sfu.ca/ocs/download/patch/ocs-2.3.3-1_to_2.3.5.patch.gz</patch>
+	<package>http://pkp.sfu.ca/ocs/download/ocs-2.3.6.tar.gz</package>
+	<patch from="2.0.0.0">http://pkp.sfu.ca/ocs/download/patch/ocs-2.0.0-1_to_2.3.6.patch.gz</patch><!-- OCS 2.0.0.1 is marked in DB as 2.0.0.0. -->
+	<patch from="2.1.0.1">http://pkp.sfu.ca/ocs/download/patch/ocs-2.1.0-1_to_2.3.6.patch.gz</patch>
+	<patch from="2.1.1.2">http://pkp.sfu.ca/ocs/download/patch/ocs-2.1.1-2_to_2.3.6.patch.gz</patch>
+	<patch from="2.1.2.0">http://pkp.sfu.ca/ocs/download/patch/ocs-2.1.2_to_2.3.6.patch.gz</patch>
+	<patch from="2.1.2.1">http://pkp.sfu.ca/ocs/download/patch/ocs-2.1.2-1_to_2.3.6.patch.gz</patch>
+	<patch from="2.3.0.0">http://pkp.sfu.ca/ocs/download/patch/ocs-2.3_to_2.3.6.patch.gz</patch>
+	<patch from="2.3.1.0">http://pkp.sfu.ca/ocs/download/patch/ocs-2.3.1_to_2.3.6.patch.gz</patch>
+	<patch from="2.3.2.0">http://pkp.sfu.ca/ocs/download/patch/ocs-2.3.2_to_2.3.6.patch.gz</patch>
+	<patch from="2.3.3.0">http://pkp.sfu.ca/ocs/download/patch/ocs-2.3.3_to_2.3.6.patch.gz</patch>
+	<patch from="2.3.3.1">http://pkp.sfu.ca/ocs/download/patch/ocs-2.3.3-1_to_2.3.6.patch.gz</patch>
+	<patch from="2.3.4">http://pkp.sfu.ca/ocs/download/patch/ocs-2.3.4_to_2.3.6.patch.gz</patch>
+	<patch from="2.3.5">http://pkp.sfu.ca/ocs/download/patch/ocs-2.3.5_to_2.3.6.patch.gz</patch>
 </version>
