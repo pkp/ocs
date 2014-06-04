@@ -1,0 +1,205 @@
+<!--
+
+  * ocs2-devel/locale/ru_RU/author.xml
+  *
+  * Copyright (c) 2000-2012 John Willinsky
+  * Copyright (c) 2014 Artem Gusarenko
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the ru_RU (Russian) locale.
+  *
+
+-->
+<locale name="ru_RU" full_name="Russian">
+<message key="author.submit">Новые материалы</message>
+<message key="author.track">Активные материалы</message>
+<message key="author.submit.startHere">Начать отправку материалов в эту конфренцию.</message>
+<message key="author.submit.startHereLink">Первый шаг процесса отправки</message>
+<message key="author.submit.step1">Шаг 1. Начало отправки</message>
+<message key="author.submit.step3">Шаг 3. Ввод метаданных для отправляемых материалов</message>
+<message key="author.submit.step3AbstOnly">Шаг 2. Ввод метаданных для материалов</message>
+<message key="author.submit.step4AbstOnly">Шаг 3. Загрузка сопроводительных файлов</message>
+<message key="author.submit.step2">Шаг 2. Загрузка материалов</message>
+<message key="author.submit.step2NoAbstracts">Шаг 3. Загрузка материалов</message>
+<message key="author.submit.step4">Шаг 4. Загрузка сопроводительных файлов</message>
+<message key="author.submit.step4a">Шаг 4a. Добавить сопроводительный файл</message>
+<message key="author.submit.step5">Шаг 5. Подтвердить отправку</message>
+<message key="author.submit.step5SkipSupp">Шаг 4. Подтверждение отправки</message>
+<message key="author.submit.start">1. Начало</message>
+<message key="author.submit.metadata">3. Ввод метаданных</message>
+<message key="author.submit.metadataOnly">2. Ввод метаданных</message>
+<message key="author.submit.upload">2. Загрузить материалы</message>
+<message key="author.submit.uploadOnly">3. Загрузить материалы</message>
+<message key="author.submit.supplementaryFiles">4. Загрузить сопроводительные файлы</message>
+<message key="author.submit.supplementaryFilesAbstractOnly">3. Загрузить сопроводительные файлы</message>
+<message key="author.submit.supplementaryFilesInfoAbstractOnly">3a. Загрузка сопроводительных файлов</message>
+<message key="author.submit.confirmation">5. Подтверждение</message>
+<message key="author.submit.confirmationSkipSupp">4. Подтверждение</message>
+<message key="author.submit.cancelSubmission">
+Вы можете завершить эту отправку позже с помощью выбора Активных материалов с домашней страницы автора.
+</message>
+<message key="author.submit.notAcceptingYet">
+Эта конференция ещё не началась, материалы принимаются.
+</message>
+<message key="author.submit.notAccepting">Эта конференция в данный момент не принимает материалов.</message>
+<message key="author.submit.submissionDeadlinePassed">
+Отправка материалов для этой конференции была закрыта {$closedDate}.
+</message>
+<message key="author.submit.authorRegistrationClosed">Регистрация авторов для этой конференции закрыта.</message>
+<message key="author.submissions.queuedAbstractReviewRevisions">Аннотация на рецензировании: Требуется доработка</message>
+<message key="author.submissions.queuedPaperReviewRevisions">Материалы на рецензировании: Требуется доработка</message>
+<message key="author.submissions.confirmDelete">
+Вы уререны что хотите удалить эту не завершенную отправку материалов?
+</message>
+<message key="author.submissions.viewStatus">Посмотреть статус</message>
+<message key="author.submissions.noSubmissions">Нет отправок.</message>
+<message key="author.submit.howToSubmit">
+<![CDATA[
+Столкнулись с трудностями? Свжяитесь с <a href="mailto:{$supportEmail}">{$supportName}</a> для получения помощи ({$supportPhone}).
+]]>
+</message>
+<message key="author.submit.howToSubmitNoPhone">
+<![CDATA[
+Столкнулись с трудностями? Свжяитесь с <a href="mailto:{$supportEmail}">{$supportName}</a> для получения помощи.
+]]>
+</message>
+<message key="author.submit.conferenceTrack">Путь конференции</message>
+<message key="author.submit.conferenceTrackDescription">
+<![CDATA[
+Выберите соответствующий путь для этой подачи материалов (смотрите <a href="{$aboutUrl}" target="_new">Политику пути</a>).
+]]>
+</message>
+<message key="author.submit.selectTrack">Пожалуйста выберите путь...</message>
+<message key="author.submit.submissionChecklist">Проверочный список отправки</message>
+<message key="author.submit.submissionChecklistDescription">
+Обратите внимание, что загрузка готова к рассмотрению на этой конференции после проверки (комментарии для руководителя могут быть добавлены ниже).
+</message>
+<message key="author.submit.verifyChecklist">
+Вы должны убедиться в том, что все загрузки в листе отправки Вас удовлетворяют для того, чтобы продолжить.
+</message>
+<message key="author.submit.copyrightNoticeAgree">
+Авторы согласны с условиями напоминания в этом соглашении о разграничении прав, который будет применен к этим загрузкам если и когда они будут опубликованы на конференции (комментарии для руководителя могут быть добавлены ниже).
+</message>
+<message key="author.submit.copyrightNoticeAgreeRequired">
+Вы должны согласиться с условиями соглашения о правах, прежде чем сможете продолжить.
+</message>
+<message key="author.submit.commentsForDirector">Комментарии для руководителя конференции</message>
+<message key="author.submit.comments">Введите текст (опционально)</message>
+<message key="author.submit.form.authorRequired">По крайней мере один автор требуется.</message>
+<message key="author.submit.form.authorRequiredFields">
+Требуются фамилия имя и email адрес электронной почты каждого из авторов.
+</message>
+<message key="author.submit.form.trackRequired">
+Выберите соответствующий путь конференции для этой отправки.
+</message>
+<message key="author.submit.form.abstractRequired">Пожалуйста введите аннотацию для вашей отправки.</message>
+<message key="author.submit.privacyStatement">Соглашение о приватности конференции</message>
+<message key="author.submit.reorderInstructions">
+Переупорядочить авторов в порядке их появления в списке опубликованных материалов.
+</message>
+<message key="author.submit.reorder">Переупорядочить имена авторов</message>
+<message key="author.submit.selectPrincipalContact">Главный контакт для обмена корреспонденцией с редакцией.</message>
+<message key="author.submit.addAuthor">Добавить автора</message>
+<message key="author.submit.deleteAuthor">Удалить автора</message>
+<message key="author.submit.submissionIndexingDescription">
+Заполнить термины для индексирования материалов; отделяйте термины друг от друга точкой с запятой (термин1; термин2; термин3).
+</message>
+<message key="author.submit.submissionSupportingAgencies">Поддерживающие организации</message>
+<message key="author.submit.submissionSupportingAgenciesDescription">
+Установите организации которые обеспечивают финансирование или оказывают поддрежку работы предстваленной в подаваемых материалах.
+</message>
+<message key="author.submit.subjectClassInstructions">
+Используйте гиперссылочную классификационную систему, чтобы выбрать классификационные термины и, если это соотвествующие номера.
+</message>
+<message key="author.submit.languageInstructions">
+<![CDATA[
+English=en; French=fr; Spanish=es. <a href="http://www.loc.gov/standards/iso639-2/php/code_list.php" target="_blank">Дополнительный код</a>.
+]]>
+</message>
+<message key="presenter.submit.form.authorRequired">Требуется по крайней мере один автор.</message>
+<message key="presenter.submit.form.authorRequiredFields">
+Требуются фамилия имя и email адрес электронной почты каждого из авторов.
+</message>
+<message key="author.submit.form.titleRequired">Пожалуйста введите название вашей работы.</message>
+<message key="author.submit.form.wordCountAlert">
+Вы превысили максимальное ограничение слов для аннотации в этом пути конференции.
+</message>
+<message key="author.submit.submissionFile">Подаваемый файл</message>
+<message key="author.submit.uploadSubmissionFile">Загрузить подаваемый файл</message>
+<message key="author.submit.replaceSubmissionFile">Заменить подаваемый файл</message>
+<message key="author.submit.noSubmissionFile">Не было загружено подаваемых файлов.</message>
+<message key="author.submit.noSubmissionConfirm">
+Вы уверены что хотите продолжить без загрузки файла подаваемых материалов?
+</message>
+<message key="author.submit.supplementaryFilesInstructions">
+Этот опциональный этап позволяет добавлять сопроводительные файлы к подаваемым материалам. Это файлы, которые могут быть в любом формате, могут включать (a)  инструментарии исследования, (b) наборы данных, которые соответствуют терминам исследовательской работы в соответствии с этическими нормами рецензирования, (c) источники которые могут быть не доступны читателям, (d) рисунки и таблицы, которые не могут быть интегрированы в текст илидругие материалы, которые могут быть добавлены как вклад в данную работу.
+</message>
+<message key="author.submit.supplementaryFiles.saveToUpload">
+Нажмите Сохранить, чтобы загрузить файл (после чего дополнительные файлы могут быть загружены).
+</message>
+<message key="author.submit.forgottenSubmitSuppFile">
+Вы уверены, что хотите продолжить без загрузки сопроводительного файла, который вы выбрали?
+</message>
+<message key="author.submit.noSupplementaryFiles">
+Нет сопроводительных файлов добавленных к данным материалам.
+</message>
+<message key="author.submit.backToSupplementaryFiles">Вернуться к сопроводительному файлу</message>
+<message key="author.submit.confirmDeleteSuppFile">
+Вы уверены, что хотите удалить этот сопроводительный файл?
+</message>
+<message key="author.submit.uploadSuppFile">Загрузить сопроводительный файл</message>
+<message key="author.submit.addSupplementaryFile">Добавить сопроводительный файл</message>
+<message key="author.submit.editSupplementaryFile">Редактировать сопроводительный файл</message>
+<message key="author.submit.supplementaryFileData">Метаданные сопроводительного файла</message>
+<message key="author.submit.supplementaryFileDataDescription">
+Для того чтобы индексировать этот сопроводительный материал, снабдите его метаданными.
+</message>
+<message key="author.submit.supplementaryFileUpload">Сопроводительный файл</message>
+<message key="author.submit.suppFile.createrOrOwner">Создатель (или владелец) файла</message>
+<message key="author.submit.suppFile.researchInstrument">Исследовательский инструмент</message>
+<message key="author.submit.suppFile.researchMaterials">Исследовательские материалы</message>
+<message key="author.submit.suppFile.researchResults">Исследовательские результаты</message>
+<message key="author.submit.suppFile.transcripts">Копии</message>
+<message key="author.submit.suppFile.dataAnalysis">Анализ данных</message>
+<message key="author.submit.suppFile.dataSet">Набор данных</message>
+<message key="author.submit.suppFile.sourceText">Исходный текст</message>
+<message key="author.submit.suppFile.briefDescription">Краткое описание</message>
+<message key="author.submit.suppFile.contributorOrSponsor">Инвестор или спонсорская организация</message>
+<message key="author.submit.suppFile.availableToPeers">
+Текущий файл для рецензентов (без метаданных), который не причинит ущерба при слепом рецензировании.
+</message>
+<message key="author.submit.suppFile.publisherDescription">Используйте только с официально опубликованными материалами.</message>
+<message key="author.submit.suppFile.dateDescription">
+Дата, когда данные были собраны или создан документ.
+</message>
+<message key="author.submit.suppFile.sourceDescription">Имя работы или другое место происхождения.</message>
+<message key="author.submit.suppFile.specifyOtherType">Укажите другое</message>
+<message key="author.submit.suppFile.noFile">Нет загруженных файлов.</message>
+<message key="author.submit.suppFile.form.titleRequired">Пожалуйста введите название этого сопроводительного файла.</message>
+<message key="author.submit.suppFile.form.subjectRequired">Пожалуйста введите предмет.</message>
+<message key="author.submit.suppFile.form.descriptionRequired">Пожалуйста введите описание.</message>
+<message key="author.suppFile.suppFilePublicIdentificationExists">
+Публичный сопроводительный справочный файл уже сущетвует.
+</message>
+<message key="author.suppFile.publicSuppFileIdentifier">Публичный справочный файл</message>
+<message key="author.submit.addSubmissionFile">Добавить сопроводительный файл</message>
+<message key="author.submit.submissionFileUpload">Сопроводительный файл</message>
+<message key="author.submit.confirmationDescription">
+Для того чтобы отправить Ваши материалы в {$conferenceTitle} нажмите Закончить отправку. Ответственный за подаваемые материалы свяжется с Вами как только получит извещение по электронной почте и станет возможно просматривать ход процесса отправки через редакционный процесс через Ваш аккаунт на сайте конференции. Спасибо что заинтересовались в опубликовании в {$conferenceTitle}.
+</message>
+<message key="author.submit.noFiles">Ни одного файла не было прикреплено к это отправке.</message>
+<message key="author.submit.filesSummary">Основные файлы</message>
+<message key="author.submit.finishSubmission">Закончить отправку</message>
+<message key="author.submit.submissionComplete">
+Отправка завершена. Спасибо за отправку метериалов Вашей работы в {$conferenceTitle}.
+</message>
+<message key="author.submit.expedite">
+<![CDATA[
+Если материалы в формате которые готовы к публикации без дальнейшего рецензирования или редакторской правки, это может быть отправлено напрямую на страницу материалов конференции с помощью <a href="{$expediteUrl}" class="action">Кликните здесь</a>. (Заметьте: Только руководители конференции располагают этой опцией для их подаваемых материалов.)
+]]>
+</message>
+<message key="author.paper.uploadAuthorVersion">Загрузить авторскую версию</message>
+<message key="presenter.submit.authorSubmitLoginMessage">
+Необходимо зарегистрироваться для того, чтобы отправить материалы на эту конференцию. Это позволяет нашему руководству отслеживать ваши отправки и связываться с Вами, когда статус отпрвки меняется или от Вас требуется дополнительная информация.
+</message>
+</locale>
