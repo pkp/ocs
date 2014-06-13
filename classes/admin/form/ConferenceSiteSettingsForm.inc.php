@@ -76,7 +76,7 @@ class ConferenceSiteSettingsForm extends Form {
 		}
 
 		// Let the form know if a conference has a scheduled conference
-		if( $conference == null ) {
+		if (isset($conference)) {
 			$this->setData('scheduleConf', 1);
 		} else {
 			$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');

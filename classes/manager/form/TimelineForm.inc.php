@@ -219,6 +219,7 @@ class TimelineForm extends Form {
 		);
 
 		// Ensure the default dates for the form are acceptable
+		$timingCorrect = false;
 		while (!$timingCorrect) {
 			foreach ($timing as $rule) {
 				$timingCorrect = true;
