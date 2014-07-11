@@ -176,11 +176,11 @@ class ConferenceOAI extends OAI {
 	 * @see OAI#identifiers
 	 */
 	function &identifiers($metadataPrefix, $from, $until, $set, $offset, $limit, &$total) {
-		$trackId = null;
 		if (isset($set)) {
 			list($conferenceId, $schedConfId, $trackId) = $this->setSpecToTrackId($set);
 		} else {
 			$conferenceId = $this->conferenceId;
+			$schedConfId = $trackId = null;
 		}
 		$records =& $this->dao->getIdentifiers($conferenceId, $schedConfId, $trackId, $from, $until, $offset, $limit, $total);
 		return $records;
