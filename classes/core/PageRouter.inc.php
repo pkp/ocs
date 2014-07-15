@@ -80,6 +80,7 @@ class PageRouter extends PKPPageRouter {
 										$schedConfPath = 'index';
 				}
 
+				if ($role->getRoleId() == ROLE_ID_READER) $request->redirect($confPath, $schedConfPath, 'index');
 				$request->redirect($confPath, $schedConfPath, $role->getRolePath());
 			} else $request->redirect('index', 'index', 'user');
 		}
