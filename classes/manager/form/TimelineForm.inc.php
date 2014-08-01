@@ -152,8 +152,8 @@ class TimelineForm extends Form {
 		$schedConf =& Request::getSchedConf();
 
 		$this->_data = array(
-			'siteStartDate' => $schedConf->getStartDate(),
-			'siteEndDate' => $schedConf->getEndDate(),
+			'siteStartDate' => strtotime($schedConf->getStartDate()),
+			'siteEndDate' =>  strtotime($schedConf->getEndDate()),
 
 			'startDate' => $schedConf->getSetting('startDate'),
 			'endDate' => $schedConf->getSetting('endDate'),
