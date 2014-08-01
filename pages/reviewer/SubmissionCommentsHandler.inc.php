@@ -34,15 +34,11 @@ class SubmissionCommentsHandler extends ReviewerHandler {
 		$paperId = $args[0];
 		$reviewId = $args[1];
 
-		$submissionReviewHandler = new SubmissionReviewHandler();
-		$submissionReviewHandler->validate($reviewId);
+		$this->validate($reviewId);
 		$paperDao =& DAORegistry::getDAO('PaperDAO');
-		$submission =& $paperDao->getPaper($paperId);
 		
-		$user =& Request::getUser();
-
 		$this->setupTemplate(true);
-		ReviewerAction::viewPeerReviewComments($user, $submission, $reviewId);
+		ReviewerAction::viewPeerReviewComments($this->user, $this->submission, $reviewId);
 
 	}
 
@@ -56,15 +52,12 @@ class SubmissionCommentsHandler extends ReviewerHandler {
 		// If the user pressed the "Save and email" button, then email the comment.
 		$emailComment = Request::getUserVar('saveAndEmail') != null ? true : false;
 
-		$submissionReviewHandler = new SubmissionReviewHandler();
-		$submissionReviewHandler->validate($reviewId);
+		$this->validate($reviewId);
 		$paperDao =& DAORegistry::getDAO('PaperDAO');
-		$submission =& $paperDao->getPaper($paperId);
-		$user =& $submissionReviewHandler->user;
 
 		$this->setupTemplate(true);
-		if (ReviewerAction::postPeerReviewComment($user, $submission, $reviewId, $emailComment)) {
-			ReviewerAction::viewPeerReviewComments($user, $submission, $reviewId);
+		if (ReviewerAction::postPeerReviewComment($this->user, $this->submission, $reviewId, $emailComment)) {
+			ReviewerAction::viewPeerReviewComments($this->user, $this->submission, $reviewId);
 		}
 	}
 
@@ -79,17 +72,11 @@ class SubmissionCommentsHandler extends ReviewerHandler {
 		$paperDao =& DAORegistry::getDAO('PaperDAO');
 		$submission = $paperDao->getPaper($paperId);
 
-		$submissionReviewHandler = new SubmissionReviewHandler();
-		$submissionReviewHandler->validate($reviewId);
-		$user =& $submissionReviewHandler->user;
-
-		$this->addCheck(new HandlerValidatorSubmissionComment($this, $commentId, $user));
-		$this->validate();
-		$comment =& $this->comment;
-		
+		$this->validate($reviewId);
+		$this->addCheck(new HandlerValidatorSubmissionComment($this, $commentId, $this->user));
 		$this->setupTemplate(true);
 
-		ReviewerAction::editComment($submission, $comment, $reviewId);
+		ReviewerAction::editComment($this->submission, $this->comment, $reviewId);
 	}
 
 	/**
@@ -103,20 +90,16 @@ class SubmissionCommentsHandler extends ReviewerHandler {
 		$paperDao =& DAORegistry::getDAO('PaperDAO');
 		$submission = $paperDao->getPaper($paperId);
 
-		$submissionReviewHandler = new SubmissionReviewHandler();
-		$submissionReviewHandler->validate($reviewId);
-		$user =& $submissionReviewHandler->user;
+		$this->validate($reviewId);
 
-		$this->addCheck(new HandlerValidatorSubmissionComment($this, $commentId, $user));
-		$this->validate();
-		$comment =& $this->comment;
+		$this->addCheck(new HandlerValidatorSubmissionComment($this, $commentId, $this->user));
 		
 		// If the user pressed the "Save and email" button, then email the comment.
 		$emailComment = Request::getUserVar('saveAndEmail') != null ? true : false;
 
 		$this->setupTemplate(true);
 
-		ReviewerAction::saveComment($submission, $comment, $emailComment);
+		ReviewerAction::saveComment($this->submission, $this->comment, $emailComment);
 
 		// Refresh the comment
 		$paperCommentDao =& DAORegistry::getDAO('PaperCommentDAO');
@@ -138,18 +121,13 @@ class SubmissionCommentsHandler extends ReviewerHandler {
 		
 		$this->setupTemplate(true);
 		
-		$submissionReviewHandler = new SubmissionReviewHandler();
-		$submissionReviewHandler->validate($reviewId);
-		$user =& $submissionReviewHandler->user;
-
-		$this->addCheck(new HandlerValidatorSubmissionComment($this, $commentId, $user));
-		$this->validate();
-		$comment =& $this->comment;
-		ReviewerAction::deleteComment($commentId, $user);
+		$this->validate($reviewId);
+		$this->addCheck(new HandlerValidatorSubmissionComment($this, $commentId, $this->user));
+		ReviewerAction::deleteComment($commentId, $this->user);
 
 		// Redirect back to initial comments page
-		if ($comment->getCommentType() == COMMENT_TYPE_PEER_REVIEW) {
-			Request::redirect(null, null, null, 'viewPeerReviewComments', array($paperId, $comment->getAssocId()));
+		if ($this->comment->getCommentType() == COMMENT_TYPE_PEER_REVIEW) {
+			Request::redirect(null, null, null, 'viewPeerReviewComments', array($paperId, $this->comment->getAssocId()));
 		}
 	}
 }

@@ -225,43 +225,5 @@ class SubmissionReviewHandler extends ReviewerHandler {
 		}
 	}
 
-	//
-	// Validation
-	//
-
-	/**
-	 * Validate that the user is an assigned reviewer for
-	 * the paper.
-	 * Redirects to reviewer index page if validation fails.
-	 */
-	function validate($reviewId) {
-		$reviewerSubmissionDao =& DAORegistry::getDAO('ReviewerSubmissionDAO');
-		$schedConf =& Request::getSchedConf();
-		$user =& Request::getUser();
-
-		$isValid = true;
-		$newKey = Request::getUserVar('key');
-
-		$reviewerSubmission =& $reviewerSubmissionDao->getReviewerSubmission($reviewId);
-
-		if (!$reviewerSubmission || $reviewerSubmission->getSchedConfId() != $schedConf->getId()) {
-			$isValid = false;
-		} elseif ($user && empty($newKey)) {
-			if ($reviewerSubmission->getReviewerId() != $user->getId()) {
-				$isValid = false;
-			}
-		} else {
-			$user =& SubmissionReviewHandler::validateAccessKey($reviewerSubmission->getReviewerId(), $reviewId, $newKey);
-			if (!$user) $isValid = false;
-		}
-
-		if (!$isValid) {
-			Request::redirect(null, null, Request::getRequestedPage());
-		}
-
-		$this->submission =& $reviewerSubmission;
-		$this->user =& $user;
-		return true;
-	}
 }
 ?>
