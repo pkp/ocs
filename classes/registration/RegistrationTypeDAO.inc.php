@@ -446,7 +446,7 @@ class RegistrationTypeDAO extends DAO {
 			array(
 				(int) $typeId,
 				(int) $optionId,
-				$cost
+				(float) $cost
 			)
 		);
 	}
