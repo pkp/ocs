@@ -60,7 +60,7 @@ class DirectorHandler extends TrackDirectorHandler {
 	/**
 	 * Display director submission queue pages.
 	 */
-	function submissions($args) {
+	function submissions($args, $request) {
 		$this->validate();
 		$this->setupTemplate(DIRECTOR_TRACK_SUBMISSIONS);
 
@@ -177,6 +177,12 @@ class DirectorHandler extends TrackDirectorHandler {
 			$submissions =& ArrayItemIterator::fromRangeInfo($submissionsArray, $rangeInfo);
 		}
 
+		// If only result is returned from a search, fast-forward to it
+		if ($search && $submissions && $submissions->getCount() == 1) {
+			$submission =& $submissions->next();
+			$request->redirect(null, null, null, 'submission', array($submission->getId()));
+		}
+
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('pageToDisplay', $page);
 		$templateMgr->assign('director', $user->getFullName());
@@ -210,6 +216,7 @@ class DirectorHandler extends TrackDirectorHandler {
 
 		$templateMgr->assign('fieldOptions', Array(
 			SUBMISSION_FIELD_TITLE => 'paper.title',
+			SUBMISSION_FIELD_ID => 'paper.submissionId',
 			SUBMISSION_FIELD_AUTHOR => 'user.role.author',
 			SUBMISSION_FIELD_DIRECTOR => 'user.role.director',
 			SUBMISSION_FIELD_REVIEWER => 'user.role.reviewer'

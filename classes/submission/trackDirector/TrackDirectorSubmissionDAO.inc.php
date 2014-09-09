@@ -292,6 +292,10 @@ class TrackDirectorSubmissionDAO extends DAO {
 		// set up the search filters based on what the user selected
 		$searchSql = '';
 		if (!empty($search)) switch ($searchField) {
+			case SUBMISSION_FIELD_ID:
+				$params[] = (int) $search;
+				$searchSql = ' AND p.paper_id = ?';
+				break;
 			case SUBMISSION_FIELD_TITLE:
 				if ($searchMatch === 'is') {
 					$searchSql = ' AND LOWER(ptl.setting_value) = LOWER(?)';
