@@ -363,7 +363,7 @@ class TrackDirectorAction extends Action {
 						'reviewerUsername' => $reviewer->getUsername(),
 						'reviewerPassword' => $reviewer->getPassword(),
 						'editorialContactSignature' => $user->getContactSignature(),
-						'reviewGuidelines' => $schedConf->getLocalizedSetting('reviewGuidelines'),
+						'reviewGuidelines' => String::html2text($schedConf->getLocalizedSetting('reviewGuidelines')),
 						'submissionReviewUrl' => $submissionUrl,
 						'passwordResetUrl' => Request::url(null, null, 'login', 'resetPassword', $reviewer->getUsername(), array('confirm' => Validation::generatePasswordResetHash($reviewer->getId())))
 					);
@@ -1541,11 +1541,7 @@ import('file.PaperFileManager');
 									foreach ($paperComments as $comment) {
 										// If the comment is viewable by the author, then add the comment.
 										if ($comment->getViewable()) {
-											$body .= String::html2utf(
-												strip_tags(
-													str_replace(array('<p>', '<br>', '<br/>'), array("\n", "\n", "\n"), $comment->getComments())
-												)
-											) . "\n\n";
+											$body .= String::html2text($comment->getComments()) . "\n\n";
 											$hasBody = true;
 										}
 									}
@@ -1563,7 +1559,7 @@ import('file.PaperFileManager');
 									$body .= __('submission.comments.importPeerReviews.reviewerLetter', array('reviewerLetter' => chr(ord('A') + $reviewIndexes[$reviewAssignment->getId()]))) . "\n\n";
 								}
 								foreach ($reviewFormElements as $reviewFormElement) if ($reviewFormElement->getIncluded()) {
-									$body .= strip_tags($reviewFormElement->getLocalizedQuestion()) . ": \n";
+									$body .= String::html2text($reviewFormElement->getLocalizedQuestion()) . ": \n";
 									$reviewFormResponse = $reviewFormResponseDao->getReviewFormResponse($reviewId, $reviewFormElement->getId());
 			
 									if ($reviewFormResponse) {
@@ -1571,14 +1567,14 @@ import('file.PaperFileManager');
 										if (in_array($reviewFormElement->getElementType(), $reviewFormElement->getMultipleResponsesElementTypes())) {
 											if ($reviewFormElement->getElementType() == REVIEW_FORM_ELEMENT_TYPE_CHECKBOXES) {
 												foreach ($reviewFormResponse->getValue() as $value) {
-													$body .= "\t" . String::html2utf(strip_tags($possibleResponses[$value-1]['content'])) . "\n";
+													$body .= "\t" . String::html2text($possibleResponses[$value-1]['content']) . "\n";
 												}
 											} else {
-												$body .= "\t" . String::html2utf(strip_tags($possibleResponses[$reviewFormResponse->getValue()-1]['content'])) . "\n";
+												$body .= "\t" . String::html2text($possibleResponses[$reviewFormResponse->getValue()-1]['content']) . "\n";
 											}
 											$body .= "\n";
 										} else {
-											$body .= "\t" . String::html2utf(strip_tags($reviewFormResponse->getValue())) . "\n\n";
+											$body .= "\t" . String::html2text($reviewFormResponse->getValue()) . "\n\n";
 										}
 									}
 								}
@@ -1620,7 +1616,7 @@ import('file.PaperFileManager');
 
 		$commentsText = "";
 		foreach ($comments as $comment) {
-			$commentsText .= String::html2utf(strip_tags($comment->getComments())) . "\n\n";
+			$commentsText .= String::html2text($comment->getComments()) . "\n\n";
 		}
 
 		$user =& Request::getUser();
