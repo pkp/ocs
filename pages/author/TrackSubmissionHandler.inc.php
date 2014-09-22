@@ -160,7 +160,7 @@ class TrackSubmissionHandler extends AuthorHandler {
 				$stage = REVIEW_STAGE_PRESENTATION;
 				break;
 			case REVIEW_MODE_BOTH_SEQUENTIAL:
-				if ($stage != REVIEW_STAGE_ABSTRACT && $stage != REVIEW_STAGE_PRESENTATION) $stage = $submission->getCurrentStage();
+				if ($stage != REVIEW_STAGE_ABSTRACT && $stage != REVIEW_STAGE_PRESENTATION) $stage = $authorSubmission->getCurrentStage();
 				break;
 		}
 
