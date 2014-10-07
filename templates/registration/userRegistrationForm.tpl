@@ -18,6 +18,13 @@
 
 {include file="common/formErrors.tpl"}
 
+{if $registration}
+	{* An unpaid registration already exists. Warn the user. *}
+	<div id="registrationWarning">
+		<p>{translate key="schedConf.registration.alreadyRegistered"}</p>
+	</div>
+{/if}
+
 {if count($formLocales) > 1 && !$existingUser}
 <div id="locales">
 <table class="data" width="100%">
@@ -33,15 +40,6 @@
 </div>
 {/if}
 
-{assign var="registrationAdditionalInformation" value=$schedConf->getLocalizedSetting('registrationAdditionalInformation')}
-{if $registrationAdditionalInformation}
-<div id="registrationAdditionalInformation">
-	<h3>{translate key="manager.registrationPolicies.registrationAdditionalInformation"}</h3>
-
-	<p>{$registrationAdditionalInformation|nl2br}</p>
-</div>
-	<div class="separator"></div>
-{/if}
 <div id="conferenceFees">
 <h3>{translate key="schedConf.registration.conferenceFees"}</h3>
 

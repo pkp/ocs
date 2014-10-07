@@ -422,6 +422,44 @@ If you have any questions, please feel free to contact me.
 {$registrationContactSignature}</body>
 		<description>This email notifies a registered reader that the Manager has created a registration for them. It provides the conference's URL along with instructions for access.</description>
 	</email_text>
+	<email_text key="USER_REGISTRATION_NOTIFY">
+		<subject>Registration Notification</subject>
+		<body>{$registrantName}:
+
+You have now been registered as a registrant in our online conference management system for {$conferenceName}, with the following registration:
+
+{$registrationType}
+{$registrationOptions}
+Total: {$totalCost}
+
+Special Requests: {$specialRequests}
+
+To access content that is available only to registrants, simply log in to the system with your username, "{$username}".
+
+Once you have logged in to the system you can change your profile details and password at any point.
+
+Please note that if you have an institutional registration, there is no need for users at your institution to log in, since requests for registration content will be automatically authenticated by the system.
+
+If you have any questions, please feel free to contact me.
+Invoice ID: {$invoiceId}
+
+{$registrationContactSignature}</body>
+		<description>This email notifies a registered reader that the Manager has created a registration for them. It provides the conference's URL along with instructions for access.</description>
+	</email_text>
+	<email_text key="USER_REGISTRATION_CHANGE">
+		<subject>Registration Change</subject>
+		<body>{$managerName}:
+
+The registrant {$registrantName} (username {$username}) has replaced a registration that was previously in progress with a new registration.
+
+The old registration ID was {$registrationId}. The old registration type was {$oldRegistrationType}. The new registration type is {$newRegistrationType}.
+
+If any registration options differ, they will be listed here:
+{$differingOptions}
+
+{$registrationContactSignature}</body>
+		<description>This email notifies a registered reader that the Manager has created a registration for them. It provides the conference's URL along with instructions for access.</description>
+	</email_text>
 	<email_text key="OPEN_ACCESS_NOTIFY">
 		<subject>Issue Now Open Access</subject>
 		<body>Readers:

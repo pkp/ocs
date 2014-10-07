@@ -209,6 +209,7 @@ class SchedConfHandler extends Handler {
 
 		$user =& Request::getUser();
 		$registrationDao =& DAORegistry::getDAO('RegistrationDAO');
+		$registration = null;
 		if ($user && ($registrationId = $registrationDao->getRegistrationIdByUser($user->getId(), $schedConf->getId()))) {
 			// This user has already registered.
 			$registration =& $registrationDao->getRegistration($registrationId);
@@ -232,9 +233,9 @@ class SchedConfHandler extends Handler {
 			import('registration.form.UserRegistrationForm');
 
 			if (checkPhpVersion('5.0.0')) { // WARNING: This form needs $this in constructor
-				$form = new UserRegistrationForm($typeId);
+				$form = new UserRegistrationForm($typeId, $registration);
 			} else {
-				$form =& new UserRegistrationForm($typeId);
+				$form =& new UserRegistrationForm($typeId, $registration);
 			}
 			if ($form->isLocaleResubmit()) {
 				$form->readInputData();
@@ -247,6 +248,7 @@ class SchedConfHandler extends Handler {
 			$registrationTypeDao =& DAORegistry::getDAO('RegistrationTypeDAO');
 			$registrationTypes =& $registrationTypeDao->getRegistrationTypesBySchedConfId($schedConf->getId());
 			$templateMgr->assign_by_ref('registrationTypes', $registrationTypes);
+			$templateMgr->assign('registration', $registration);
 			return $templateMgr->display('registration/selectRegistrationType.tpl');
 		}
 	}
@@ -266,15 +268,13 @@ class SchedConfHandler extends Handler {
 
 		$user =& Request::getUser();
 		$registrationDao =& DAORegistry::getDAO('RegistrationDAO');
+		$registration = null;
 		if ($user && ($registrationId = $registrationDao->getRegistrationIdByUser($user->getId(), $schedConf->getId()))) {
 			// This user has already registered.
 			$registration =& $registrationDao->getRegistration($registrationId);
 			if ( !$registration || $registration->getDatePaid() ) {
 				// And they have already paid. Redirect to a message explaining.
 				Request::redirect(null, null, null, 'registration');
-			} else {
-				// Allow them to resubmit the form to change type or pay again.
-				$registrationDao->deleteRegistrationById($registrationId);
 			}
 		}
 
@@ -287,13 +287,52 @@ class SchedConfHandler extends Handler {
 		import('registration.form.UserRegistrationForm');
 		$typeId = (int) Request::getUserVar('registrationTypeId');
 		if (checkPhpVersion('5.0.0')) { // WARNING: This form needs $this in constructor
-			$form = new UserRegistrationForm($typeId);
+			$form = new UserRegistrationForm($typeId, $registration);
 		} else {
-			$form =& new UserRegistrationForm($typeId);
+			$form =& new UserRegistrationForm($typeId, $registration);
 		}
 		$form->readInputData();
 		if ($form->validate()) {
-			if (($registrationError = $form->execute()) != REGISTRATION_SUCCESSFUL) {
+			if (($registrationError = $form->execute()) == REGISTRATION_SUCCESSFUL) {
+				$registration =& $form->getRegistration();
+				$queuedPayment =& $form->getQueuedPayment();
+
+				// Successful: Send an email.
+				import('mail.MailTemplate');
+				$mail = new MailTemplate('USER_REGISTRATION_NOTIFY');
+				$mail->setFrom($schedConf->getSetting('contactEmail'), $schedConf->getSetting('contactName'));
+				$registrationTypeDao =& DAORegistry::getDAO('RegistrationTypeDAO');
+				$registrationType =& $registrationTypeDao->getRegistrationType($typeId);
+
+				// Determine the registration options for inclusion
+				$registrationOptionText = '';
+				$totalCost = $registrationType->getCost();
+				$registrationOptionDao =& DAORegistry::getDAO('RegistrationOptionDAO');
+				$registrationOptionIterator =& $registrationOptionDao->getRegistrationOptionsBySchedConfId($schedConf->getId());
+				$registrationOptionCosts = $registrationTypeDao->getRegistrationOptionCosts($typeId);
+				$registrationOptionIds = $registrationOptionDao->getRegistrationOptions($registration->getRegistrationId());
+				while ($registrationOption =& $registrationOptionIterator->next()) {
+					if (in_array($registrationOption->getOptionId(), $registrationOptionIds)) {
+						$registrationOptionText .= $registrationOption->getRegistrationOptionName() . ' - ' . sprintf('%.2f', $registrationOptionCosts[$registrationOption->getOptionId()]) . ' ' . $registrationType->getCurrencyCodeAlpha() . "\n";
+						$totalCost += $registrationOptionCosts[$registrationOption->getOptionId()];
+					}
+					unset($registrationOption);
+				}
+
+				$mail->assignParams(array(
+					'registrantName' => $user->getFullName(),
+					'registrationType' => $registrationType->getSummaryString(),
+					'registrationOptions' => $registrationOptionText,
+					'totalCost' => sprintf('%.2f', $totalCost) . ' ' . $registrationType->getCurrencyCodeAlpha(),
+					'username' => $user->getUsername(),
+					'specialRequests' => $registration->getSpecialRequests(),
+					'invoiceId' => $queuedPayment->getInvoiceId(),
+					'registrationContactSignature' => $schedConf->getSetting('registrationName')
+				));
+				$mail->addRecipient($user->getEmail(), $user->getFullName());
+				$mail->send();
+			} else {
+				// Not successful
 				$templateMgr->assign('isUserLoggedIn', Validation::isLoggedIn()); // In case a user was just created, make sure they appear logged in
 				if ($registrationError == REGISTRATION_FAILED) {
 					// User not created
