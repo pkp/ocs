@@ -135,6 +135,12 @@
 			<td class="label">{translate key="common.mailingAddress"}</td>
 			<td class="value">{$user->getMailingAddress()|strip_unsafe_html|nl2br}</td>
 		</tr>
+		{if $user->getBillingAddress()}
+			<tr valign="top">
+				<td class="label">{translate key="common.billingAddress"}</td>
+				<td class="value">{$user->getBillingAddress()|strip_unsafe_html|nl2br}</td>
+			</tr>
+		{/if}
 	</table>
 {else}
 	{url|assign:"loginUrl" page="login" op="index" source=$requestUri}
@@ -239,7 +245,12 @@
 	<td class="label">{fieldLabel name="mailingAddress" required="true" key="common.mailingAddress"}</td>
 	<td class="value"><textarea name="mailingAddress" id="mailingAddress" rows="3" cols="40" class="textArea">{$mailingAddress|escape}</textarea></td>
 </tr>
-	
+
+<tr valign="top">
+	<td class="label">{fieldLabel name="billingAddress" required="true" key="common.billingAddress"}</td>
+	<td class="value"><textarea name="billingAddress" id="billingAddress" rows="3" cols="40" class="textArea">{$billingAddress|escape}</textarea></td>
+</tr>
+
 <tr valign="top">
 	<td class="label">{fieldLabel name="country" required="true" key="common.country"}</td>
 	<td class="value">
