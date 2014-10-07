@@ -128,6 +128,10 @@
 		<td class="label">{fieldLabel name="mailingAddress" key="common.mailingAddress"}</td>
 		<td class="value"><textarea name="mailingAddress" id="mailingAddress" rows="3" cols="40" class="textArea">{$mailingAddress|escape}</textarea></td>
 	</tr>
+	<tr valign="top">
+		<td class="label">{fieldLabel name="billingAddress" key="common.billingAddress"}</td>
+		<td class="value"><textarea name="billingAddress" id="billingAddress" rows="3" cols="40" class="textArea">{$billingAddress|escape}</textarea></td>
+	</tr>
 <tr valign="top">
 	<td class="label">{fieldLabel name="country" key="common.country"}</td>
 	<td class="value">

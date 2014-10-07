@@ -77,7 +77,8 @@ class RegistrantReportPlugin extends ReportPlugin {
 			'email' => __('user.email'),
 			'phone' => __('user.phone'),
 			'fax' => __('user.fax'),
-			'address' => __('common.mailingAddress'),
+			'mailingAddress' => __('common.mailingAddress'),
+			'billingAddress' => __('common.billingAddress'),
 			'country' => __('common.country'),
 			'type' => __('manager.registration.registrationType')
 		);

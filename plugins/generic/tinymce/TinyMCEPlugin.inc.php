@@ -106,6 +106,7 @@ class TinyMCEPlugin extends GenericPlugin {
 			case 'manager/createUser':
 			case 'manager/updateUser':
 				$fields[] = 'mailingAddress';
+				$fields[] = 'billingAddress';
 				$fields[] = 'biography';
 				break;
 			case 'manager/editReviewForm':
@@ -232,6 +233,7 @@ class TinyMCEPlugin extends GenericPlugin {
 			case 'director/createReviewer':
 			case 'trackDirector/createReviewer':
 				$fields[] = 'mailingAddress';
+				$fields[] = 'billingAddress';
 				$fields[] = 'biography';
 				break;
 			case 'reviewer/viewPeerReviewComments':

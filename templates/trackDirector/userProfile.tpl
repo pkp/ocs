@@ -88,6 +88,10 @@
 	<td class="value">{$user->getMailingAddress()|strip_unsafe_html|nl2br}</td>
 </tr>
 <tr valign="top">
+	<td class="label">{translate key="common.billingAddress"}:</td>
+	<td class="value">{$user->getBillingAddress()|strip_unsafe_html|nl2br}</td>
+</tr>
+<tr valign="top">
 	<td class="label">{translate key="user.biography"}:</td>
 	<td class="value">{$user->getLocalizedBiography()|strip_unsafe_html|nl2br}</td>
 </tr>
