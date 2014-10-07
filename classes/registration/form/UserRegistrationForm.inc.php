@@ -95,6 +95,8 @@ class UserRegistrationForm extends Form {
 		$schedConf =& Request::getSchedConf();
 		$site =& Request::getSite();
 
+		$userDao =& DAORegistry::getDAO('UserDAO');
+		$templateMgr->assign('genderOptions', $userDao->getGenderOptions());
 		$registrationOptionDao =& DAORegistry::getDAO('RegistrationOptionDAO');
 		$registrationOptions =& $registrationOptionDao->getRegistrationOptionsBySchedConfId($schedConf->getId());
 		$templateMgr->assign_by_ref('registrationOptions', $registrationOptions);
@@ -156,6 +158,7 @@ class UserRegistrationForm extends Form {
 			$userVars[] = 'captcha';
 			$userVars[] = 'lastName';
 			$userVars[] = 'initials';
+			$userVars[] = 'gender';
 			$userVars[] = 'affiliation';
 			$userVars[] = 'signature';
 			$userVars[] = 'email';
@@ -197,6 +200,7 @@ class UserRegistrationForm extends Form {
 			$user->setMiddleName($this->getData('middleName'));
 			$user->setInitials($this->getData('initials'));
 			$user->setLastName($this->getData('lastName'));
+			$user->setGender($this->getData('gender'));
 			$user->setAffiliation($this->getData('affiliation'));
 			$user->setSignature($this->getData('signature'), null); // Localized
 			$user->setEmail($this->getData('email'));
