@@ -451,10 +451,21 @@ class SchedConfHandler extends Handler {
 
 		// WARNING: $itemsByTime contains both PublishedPapers and
 		// SpecialEvents; both implement getStartTime() and
-		// getEndTime.
+		// getEndTime().
 		ksort($itemsByTime);
 		foreach ($itemsByTime as $startTime => $junk) {
-			uasort($itemsByTime[$startTime], create_function('$a, $b', 'return strtotime($a->getEndTime()) - strtotime($b->getEndTime());'));
+			uasort($itemsByTime[$startTime], create_function('$a, $b', '
+				$dateComparison = strtotime($a->getEndTime()) - strtotime($b->getEndTime());
+				$aIsPaper = is_a($a, \'PublishedPaper\');
+				$bIsPaper = is_a($b, \'PublishedPaper\');
+				if ($dateComparision==0) {
+					// Start/end times both the same. Sort by room (if both PublishedPapers)
+					if (!$aIsPaper) return -1;
+					if (!$bIsPaper) return 1;
+					return $a->getRoomId() - $b->getRoomId();
+				}
+				return $dateComparison;
+			'));
 		}
 
 		// Read in schedule layout settings

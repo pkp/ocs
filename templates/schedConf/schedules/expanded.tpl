@@ -76,26 +76,42 @@
 				</ul>
 				{assign var=needsUlClose value=0}
 			{/if}
+			{assign var=roomId value=0}
 			<h4>{$startTime|date_format:$timeFormat} {if $showEndTime}- {$endTime|date_format:$timeFormat}{/if}</h4>
-			<ul>
-			{assign var=needsUlClose value=1}
 		{/if}
-		{if (get_class($item) == 'SpecialEvent' || get_class($item) == 'specialevent')}
-			<li>
-				<strong>{$item->getSpecialEventName()|escape}</strong>{if $item->getSpecialEventDescription() != ''}:&nbsp;{$item->getSpecialEventDescription()}{/if}
-			</li>
-		{else}
-			<li>
-				{if $showAuthors} {$item->getAuthorString()|escape}, {/if}<a class="action" href="{url page="paper" op="view" path=$item->getBestPaperId()}">{$item->getLocalizedTitle()|escape}</a>
+		{if strtolower(get_class($item)) != strtolower('SpecialEvent')}
+			{if $item->getRoomId() != $roomId}
+				{if $needsUlClose}
+					</ul>
+					{assign var=needsUlClose value=0}
+				{/if}
 				{assign var=roomId value=$item->getRoomId()}
-				{if $roomId && $allRooms[$roomId]}
+				{if ($roomId && $allRooms[$roomId])}
 					{assign var=room value=$allRooms[$roomId]}
 					{assign var=buildingId value=$room->getBuildingId()}
 					{assign var=building value=$buildingsAndRooms.$buildingId.building}
-					{if $building && $buildingsAndRooms|@count != 1}<br/>{translate key="manager.scheduler.building"}:&nbsp;{$building->getBuildingName()|escape}{/if}
+					{if $building && $buildingsAndRooms|@count != 1}{translate key="manager.scheduler.building"}:&nbsp;{$building->getBuildingName()|escape}{/if}
 					<br/>{translate key="manager.scheduler.room"}:&nbsp;{$room->getRoomName()}
 				{/if}
+				<ul>
+				{assign var=needsUlClose value=1}
+			{/if}
+		{/if}
+		{if strtolower(get_class($item) == strtolower('SpecialEvent')}
+			<li>
+				<strong>{$item->getSpecialEventName()|escape}</strong>{if $item->getSpecialEventDescription() != ''}:&nbsp;{$item->getSpecialEventDescription()}{/if}
 			</li>
+		{else}{* PublishedPaper *}
+			<li>
+<a class="action" href="{url page="paper" op="view" path=$item->getBestPaperId()}">{$item->getLocalizedTitle()|escape}</a>
+				{if $showAuthors}
+					{assign var=authors value=$item->getAuthors()}
+					{foreach from=$authors item=author}
+<br/>{$author->getFullName()|escape}{if $author->getAffiliation()}, {$author->getAffiliation()}{/if}
+					{/foreach}
+				{/if}
+			</li>
+			{assign var=roomId value=$item->getRoomId()}
 		{/if}
 		{assign var=lastStartTime value=$startTime}
 	{/foreach}
