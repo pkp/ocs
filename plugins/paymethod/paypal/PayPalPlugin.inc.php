@@ -236,11 +236,13 @@ class PayPalPlugin extends PaymethodPlugin {
 								$paramArray = array(
 									'registrantName' => $registrantName,
 									'conferenceName' => $schedConf->getFullTitle(),
+									'invoiceId' => $queuedPayment->getInvoiceId(),
+
 									'registrationContactSignature' => $registrationContactSignature
 								);
 
 								import('mail.MailTemplate');
-								$mail = new MailTemplate('MANUAL_PAYMENT_RECEIVED');
+								$mail = new MailTemplate('PAYPAL_PAYMENT_RECEIVED');
 								$mail->setFrom($registrationEmail, $registrationName);
 								$mail->assignParams($paramArray);
 								$mail->addRecipient($registrantEmail, $registrantName);

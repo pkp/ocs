@@ -28,4 +28,13 @@ Server vars:
 </body>
 		<description>This email template is used to notify a conference's primary contact that suspicious activity or activity requiring manual intervention was encountered by the PayPal plugin.</description>
 	</email_text>
+	<email_text key="PAYPAL_PAYMENT_RECEIVED">
+		<subject>A payment for {$conferenceName} has been received</subject>
+		<body>A payment for the registrant "{$registrantName}" has been recieved via PayPal for {$conferenceName}.
+
+The invoice ID for this transaction is "{$invoiceId}".
+
+{$registrationContactSignature}</body>
+		<description>This email template is used to notify a conference's primary contact that suspicious activity or activity requiring manual intervention was encountered by the PayPal plugin.</description>
+	</email_text>
 </email_texts>

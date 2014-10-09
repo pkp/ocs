@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE data SYSTEM "../../../lib/pkp/dtd/xmlData.dtd">
+
+<!--
+  * 2.3.7_update.xml
+  *
+  * Copyright (c) 2000-2014 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * 2.3.7 database updates XML file.
+  *
+  -->
+
+<data>
+	<!-- Bug #6187: Clarify PayPal acceptance email -->
+	<sql>
+		<query>INSERT INTO email_templates_default (email_key, can_edit, can_disable, from_role_id, to_role_id) SELECT 'PAYPAL_PAYMENT_RECEIVED', can_edit, can_disable, from_role_id, to_role_id FROM email_templates_default WHERE email_key = 'MANUAL_PAYMENT_RECEIVED'</query>
+		<query>INSERT INTO email_templates_default_data (email_key, locale, subject, body, description) SELECT 'PAYPAL_PAYMENT_RECEIVED', locale, subject, body, description FROM email_templates_default_data WHERE email_key = 'MANUAL_PAYMENT_RECEIVED'</query>
+		<query>INSERT INTO email_templates (email_key, assoc_id, enabled, assoc_type) SELECT 'PAYPAL_PAYMENT_RECEIVED', assoc_id, enabled, assoc_type FROM email_templates WHERE email_key = 'MANUAL_PAYMENT_RECEIVED'</query>
+		<query>INSERT INTO email_templates_data (email_key, locale, assoc_id, subject, body, assoc_type) SELECT 'PAYPAL_PAYMENT_RECEIVED', locale, assoc_id, subject, body, assoc_type FROM email_templates_data WHERE email_key = 'MANUAL_PAYMENT_RECEIVED'</query>
+	</sql>
+</data>
