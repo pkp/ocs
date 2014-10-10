@@ -28,6 +28,7 @@
 	<message key="plugins.paymethod.paypal.description"><![CDATA[The PayPal Plugin enables users, whether or not they are PayPal members, to use all major credit cards, as well as eChecks, when paying through the system. The Conference Manager will need to set up a <a href="http://www.paypal.com" target="_new">PayPal Business Account</a> to use this payment option.]]></message>
 	<message key="plugins.paymethod.paypal.warning">Clicking Continue will direct you to the PayPal site.  After making your payment with PayPal you can click the "Return to Merchant" button to return to this site.</message>
 	<message key="plugins.paymethod.paypal.purchase.amount">Amount</message>
+	<message key="plugins.paymethod.paypal.purchase.total">Total</message>
 	<message key="plugins.paymethod.paypal.purchase.description">Description</message>
 	<message key="plugins.paymethod.paypal.purchase.cancelled">Your purchase has been cancelled.</message>
 	<message key="plugins.paymethod.paypal.purchase.cancelled.title">Purchase Cancelled</message>
