@@ -344,6 +344,10 @@ a.defaultFont:hover {
 	height: 23px;
 }
 
+#registrationWarning p {
+	color: #ff0000;
+}
+
 a.largeFont:hover {
 	background: url(../lib/pkp/templates/images/icons/font-up.png);
 	color: none;
