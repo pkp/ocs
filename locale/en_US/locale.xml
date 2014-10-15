@@ -281,6 +281,8 @@
 	<message key="schedConf.registration.cost">Cost</message>
 	<message key="schedConf.registrationTypes.noneAvailable">No registration types are available.</message>
 	<message key="schedConf.registrationOptions.noneAvailable">No registration options are available.</message>
+	<message key="schedConf.registrationOptions.removed">The registration option "{$option}" was previously chosen but has not been selected for the new registration.</message>
+	<message key="schedConf.registrationOptions.added">The registration option "{$option}" was not previously chosen but has been added to the new registration.</message>
 	<message key="schedConf.registration.register">Register</message>
 	<message key="schedConf.registration.typeCloses">(Closes {$closingDate})</message>
 	<message key="schedConf.registration.typeClosed">(Registration Closed {$closingDate})</message>
