@@ -16,8 +16,10 @@
 <p>{$cfpMessage|nl2br}</p>
 
 {if $authorGuidelines != ''}
-	<h3>{translate key="about.authorGuidelines"}</h3>
-	<p>{$authorGuidelines|nl2br}</p>
+	<div id="authorGuidelines">
+		<h3>{translate key="about.authorGuidelines"}</h3>
+		<p>{$authorGuidelines|nl2br}</p>
+	</div>
 {/if}
 
 {if $acceptingSubmissions}
