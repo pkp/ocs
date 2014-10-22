@@ -52,6 +52,8 @@
 {if $schedConfPostOverview || $schedConfShowCFP
 			|| $schedConfPostPolicies || $schedConfShowProgram ||  $schedConfPostPresentations || $schedConfPostSchedule 
 			|| $schedConfPostPayment  || $schedConfPostAccommodation || $schedConfPostSupporters  || $schedConfPostTimeline}
+
+<div id="schedConfContents">
 <h3>{translate key="schedConf.contents"}</h3>
 
 <ul class="plain">
@@ -68,6 +70,7 @@
 	{if $schedConfPostSupporters}<li>&#187; <a href="{url page="about" op="organizingTeam"}">{translate key="schedConf.supporters"}</a></li>{/if}
 	{if $schedConfPostTimeline}<li>&#187; <a href="{url page="schedConf" op="timeline"}">{translate key="schedConf.timeline"}</a></li>{/if}
 </ul>
+</div>
 {/if}
 {$additionalHomeContent}
 
