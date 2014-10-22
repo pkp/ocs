@@ -52,7 +52,7 @@
 			<tr>
 				<td style="padding-left: 30px;font-style: italic;">
 					{foreach from=$paper->getAuthors() item=author name=authorList}
-						{$author->getFullName()|escape}{if !$smarty.foreach.authorList.last},{/if}
+						{$author->getFullName()|escape}{if $author->getAffiliation()}, {strip}<em>{$author->getAffiliation()}</em>{/strip}{/if}{if !$smarty.foreach.authorList.last}<br />{/if}
 					{/foreach}
 				</td>
 				<td align="right">{$paper->getPages()|escape}</td>
