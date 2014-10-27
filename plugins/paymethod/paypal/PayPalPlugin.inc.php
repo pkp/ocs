@@ -155,7 +155,7 @@ class PayPalPlugin extends PaymethodPlugin {
 				curl_setopt($ch, CURLOPT_URL, $this->getSetting($schedConf->getConferenceId(), $schedConf->getId(), 'paypalurl'));
 				curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 				curl_setopt($ch, CURLOPT_POST, 1);
-				curl_setopt($ch, CURLOPT_HTTPHEADER, Array('Content-Type: application/x-www-form-urlencoded', 'Content-Length: ' . strlen($req)));
+				curl_setopt($ch, CURLOPT_HTTPHEADER, Array('User-Agent: PKP PayPal Service', 'Content-Type: application/x-www-form-urlencoded', 'Content-Length: ' . strlen($req)));
 				curl_setopt($ch, CURLOPT_POSTFIELDS, $req);
 				$ret = curl_exec ($ch);
 				$curlError = curl_error($ch);
