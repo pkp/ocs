@@ -217,6 +217,7 @@ class UserRegistrationForm extends Form {
 	function execute() {
 		$schedConf =& Request::getSchedConf();
 		$user =& Request::getUser();
+		$registrationDao =& DAORegistry::getDAO('RegistrationDAO');
 
 		$registrationOptionIds = (array) $this->getData('registrationOptionId');
 
