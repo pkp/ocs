@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * locale.xml
+  *
+  * Copyright (c) 2000-2012 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * LDAP authentication plugin localization strings for the en_US (U.S. English) locale.
+  *
+  * $Id$
+  -->
+ 
+<locale name="en_US" full_name="U.S. English">
+	<message key="plugins.auth.ldap.displayName">LDAP</message>
+	<message key="plugins.auth.ldap.description">Цей плагін дозволяє авторизацію та синхронізацію облікових записів користувачів із зовнішнім джерелом даних LDAP.</message>
+	
+	<message key="plugins.auth.ldap.settings">Налаштування LDAP</message>
+	<message key="plugins.auth.ldap.settings.hostname">Ім'я сервера</message>
+	<message key="plugins.auth.ldap.settings.hostname.description">Наприклад, "ldap.example.com", або "ldaps://ldap.example.com" (при використанні SSL)</message>
+	<message key="plugins.auth.ldap.settings.port">Порт сервера</message>
+	<message key="plugins.auth.ldap.settings.port.description">Опційно. Типові - 389 (LDAP) або 636 (LDAP over SSL)</message>
+	<message key="plugins.auth.ldap.settings.basedn">Базове DN</message>
+	<message key="plugins.auth.ldap.settings.basedn.description">Наприклад, "ou=people,dc=example,dc=com"</message>
+	<message key="plugins.auth.ldap.settings.managerdn">DN менеджера</message>
+	<message key="plugins.auth.ldap.settings.managerdn.description">Наприклад, "cn=Manager,dc=example,dc=com"</message>
+	<message key="plugins.auth.ldap.settings.managerpwd">Пароль менеджера</message>
+	<message key="plugins.auth.ldap.settings.managerpwd.description">DN та пароль менеджера потрібні тільки тоді, якщо активовані опції синхронізації профілю/пароля користувача створення користувача. Якщо LDAP буде використовуватися тільки для авторизації, тоді ці опції можна не використовувати.</message>
+	<message key="plugins.auth.ldap.settings.uid">Атрибути назви облікового запису</message>
+	<message key="plugins.auth.ldap.settings.uid.description">Атрибут, значення якого унікальним чином ідентифікує об'єкт користувача, такий як uid або cn або sAMAccountName.</message>
+	<message key="plugins.auth.ldap.settings.pwhash">Шифрування пароля</message>
+	<message key="plugins.auth.ldap.settings.pwhash.description"><![CDATA[Хеш-формат для пароля, який буде зберігатися на сервері. Рекомендується використовувати SSHA (потребує PHP >= 4.3.0).]]></message>
+	<message key="plugins.auth.ldap.settings.saslopt">Налаштування SASL (опційно)</message>
+	<message key="plugins.auth.ldap.settings.sasl"><![CDATA[Використовуйте SASL замість простої авторизації (потребує PHP >= 5)]]></message>
+	<message key="plugins.auth.ldap.settings.saslmech">Механізм SASL</message>
+	<message key="plugins.auth.ldap.settings.saslmech.description">Наприклад, "DIGEST-MD5"</message>
+	<message key="plugins.auth.ldap.settings.saslrealm">Галузь</message>
+	<message key="plugins.auth.ldap.settings.saslauthzid">ID авторизації</message>
+	<message key="plugins.auth.ldap.settings.saslprop">Властивості безпеки SASL</message>
+</locale>

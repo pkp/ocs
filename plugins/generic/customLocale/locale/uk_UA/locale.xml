@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * locale.xml
+  *
+  * Copyright (c) 2000-2012 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the en_US (U.S. English) locale.
+  *
+  * $Id$
+  -->
+ 
+<locale name="en_US" full_name="U.S. English">
+	<message key="plugins.generic.customLocale.name">Плагін власної локалізації</message>
+	<message key="plugins.generic.customLocale.description">Цей плагін дозволяє налаштувати за власним бажанням текст типового інтерфейсу користувача OCS.</message>	
+	<message key="plugins.generic.customLocale.enabled">Плагін власної локалізації був активований.</message>
+	<message key="plugins.generic.customLocale.disabled">Плагін власної локалізації був деактивований.</message>
+
+	<message key="plugins.generic.customLocale.longDescription">Ця сторінка показує всі локалізації, встановлені в системі.</message>
+	<message key="plugins.generic.customLocale.localeDescription">Ця сторінка показує всі файли, наявні для обраної локалізації.</message>
+	<message key="plugins.generic.customLocale.fileDescription">Введіть текст у відповідне текстове поле. Залиште текстове поле порожнім, якщо плануєте використовувати типовий текст OCS.</message>
+	<message key="plugins.generic.customLocale.localeName">Назва локалізації</message>
+	<message key="plugins.generic.customLocale.localeKey">Ключове слово</message>
+	<message key="plugins.generic.customLocale.localeKey.description">Введіть повне ключове слово локалізації для пошуку.</message>
+	<message key="plugins.generic.customLocale.localeKeyValue">Значення</message>
+	<message key="plugins.generic.customLocale.customize">Оформити</message>
+	<message key="plugins.generic.customLocale.availableLocales">Наявні локалізації</message>
+
+	<message key="plugins.generic.customLocale.locale">{$locale} Локалізація</message>
+	<message key="plugins.generic.customLocale.localeFiles">Файли локалізації</message>
+	<message key="plugins.generic.customLocale.file.filename">Ім'я файлу</message>
+	<message key="plugins.generic.customLocale.file.edit">Редагування {$filename}</message>
+	<message key="plugins.generic.customLocale.file.reference">Типовий текст</message>
+	<message key="plugins.generic.customLocale.file.custom">Власний текст</message>
+</locale>
