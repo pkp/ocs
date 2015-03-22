@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * locale.xml
+  *
+  * Copyright (c) 2000-2012 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the en_US (U.S. English) locale.
+  *
+  * $Id$
+  -->
+ 
+<locale name="en_US" full_name="U.S. English">
+	<message key="plugins.importexport.METSExport.displayName">Плагін експорту у METS XML</message>
+	<message key="plugins.importexport.METSExport.description">Експортує конференції у METS XML</message>
+	<message key="plugins.importexport.METSExport.settings">Налаштування</message>
+	<message key="plugins.importexport.METSExport.export">Експортувати дані</message>
+	<message key="plugins.importexport.METSExport.export.schedConfs">Експортувати заплановані конференції</message>
+	<message key="plugins.importexport.METSExport.export.selectschedConfs">Оберіть заплановаі конференції для експорту.</message>
+	<message key="plugins.importexport.METSExport.export.error.SchedConfNotFound">Кількість запланованих конференцій, які відповідають вказаному ID публікації "{$SchedConfId}".</message>
+	<message key="plugins.importexport.METSExport.export.error.unknownConference">Невідомий шлях конференції {$conferencePath}</message>
+	<message key="plugins.importexport.METSExport.settings.FContent">Використовуйте base64 шифрування для обгортки змісту</message>
+	<message key="plugins.importexport.METSExport.settings.FLocat">Використовуйте URL бітстріму для обгортки змісту</message>
+	<message key="plugins.importexport.METSExport.settings.organization">METS:атрибут організації елементу агента</message>
+	<message key="plugins.importexport.METSExport.settings.preservationLevel">Рівень збереження PREMIS</message>
+	<message key="plugins.importexport.METSExport.settings.exportSuppFiles">Експортувати додаткові файли</message>
+</locale>

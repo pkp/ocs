@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * locale.xml
+  *
+  * Copyright (c) 2000-2012 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the en_US (U.S. English) locale.
+  *
+  * $Id$
+  -->
+ 
+<locale name="en_US" full_name="U.S. English">
+	<message key="plugins.block.fontSize.displayName">Блок вибору розміру шрифта.</message>
+	<message key="plugins.block.fontSize.description">Цей плагін забеспечує наявність елемента для зміни розміру шрифта на боковому блоці.</message>
+	<message key="plugins.block.fontSize.title">Розмір шрифта</message>
+	<message key="plugins.block.fontSize.small">Малий</message>
+	<message key="plugins.block.fontSize.medium">Середній</message>
+	<message key="plugins.block.fontSize.large">Великий</message>
+</locale>

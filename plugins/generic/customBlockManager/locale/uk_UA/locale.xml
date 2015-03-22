@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * locale.xml
+  *
+  * Copyright (c) 2000-2012 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the en_US (U.S. English) locale.
+  *
+  * $Id$
+  -->
+ 
+<locale name="en_US" full_name="U.S. English">
+	<message key="plugins.generic.customBlockManager.displayName">Менеджер налаштування власного блоку</message>
+	<message key="plugins.generic.customBlockManager.description">Цей плагін дозволяє Вам управляти власними бічними блоками. Ви можете редагувати блоки у налаштуваннях кожного плагіну, який Ви створюєте тут.</message>	
+	<message key="plugin.generic.customBlockManager.introduction"><![CDATA[Ви можете використовувати цей плагін для того, щоб додати або видалити плагіни власних блоків. Після цього Ви можете редагувати вміст за допомогою сторінки <a href="{$systemPluginsUrl}">Системні плагіни </a> (у секції Бічні Плагіни).  Для того, щоб розмістити плагіни у бажаному місці бічного блоку, перейдіть до <a href="{$setupStep4}">Налаштування кроку 4</a>]]></message>
+	<message key="plugins.generic.customBlockManager.settings">Налаштування</message>
+	<message key="plugins.generic.customBlockManager.blockName">Ім'я блоку</message>	
+	<message key="plugins.generic.customBlockManager.action">Дія</message>	
+	<message key="plugins.generic.customBlockManager.delete">Видалити</message>	
+	<message key="plugins.generic.customBlockManager.addBlock">Додати блок</message>	
+
+	<message key="plugins.generic.customBlock.content">Вміст</message>
+	<message key="plugins.generic.customBlock.saved">Вміст блоку був збережений.</message>
+	<message key="plugins.generic.customBlock.nameSuffix">(Плагін власного блоку)</message>
+	<message key="plugins.generic.customBlock.description">Це блок, створений користувачем.</message>
+	<message key="plugins.generic.customBlock.editContent">Редагувати вміст бічного блоку</message>
+	<message key="plugins.generic.customBlock.contentRequired">Потрібен будь-який вміст. Якщо Ви хочете видалити цей блок, Ви можете зробити це за допомогою Плагіну менеджера блоків або деактивувати цей блок на 5 кроці налаштування.</message>
+	<message key="plugins.generic.customBlock.edit">Редагувати</message>
+</locale>

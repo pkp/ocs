@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * locale.xml
+  *
+  * Copyright (c) 2000-2012 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the en_US (U.S. English) locale.
+  *
+  * $Id$
+  -->
+ 
+<locale name="en_US" full_name="U.S. English">
+	<message key="plugins.importexport.nlm.displayName">Плагін експорту NLM XML</message>
+	<message key="plugins.importexport.nlm.description">Експортувати метадані публікації у NLM Meeting Abstracts XML формат для індексування.</message>
+
+	<message key="plugins.importexport.nlm.export">Експортувати дані</message>
+	<message key="plugins.importexport.nlm.export.papers">Експортувати публікації</message>
+	<message key="plugins.importexport.nlm.export.selectPaper">Обрати матеріали для експорту</message>
+	
+	<message key="plugins.importexport.nlm.cliUsage">Використання: 
+{$scriptName} {$pluginName} [xmlFileName] [conference_path] матеріали [paperId1] [paperId2] ...</message>
+	<message key="plugins.importexport.nlm.cliError">ПОМИЛКА:</message>
+
+	<message key="plugins.importexport.nlm.export.error.paperNotFound">Жодна публікація не відповідає зазначеному ID  публікації "{$paperId}".</message>
+	<message key="plugins.importexport.nlm.export.error.unknownConference">Невідомий шлях конференції {$conferencePath}</message>
+	<message key="plugins.importexport.nlm.export.error.couldNotWrite">Неможливо експортуати вказаний файл "{$fileName}"</message>
+</locale>
