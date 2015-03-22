@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * locale.xml
+  *
+  * Copyright (c) 2000-2012 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the en_US (U.S. English) locale.
+  *
+  * $Id$
+ -->
+
+<locale name="en_US" full_name="U.S. English">
+	<message key="plugins.paymethod.manual.displayName">Оплата власноруч</message>
+	<message key="plugins.paymethod.manual.description">Організатор вручну запише квітанцію оплати користувача (поза межами цього програмного забезпечення).</message>
+	<message key="plugins.paymethod.manual">Оплата власноруч</message>
+	<message key="plugins.paymethod.manual.settings">Налаштування оплати власноруч</message>
+	<message key="plugins.paymethod.manual.settings.instructions">Інструкції</message>
+	<message key="plugins.paymethod.manual.settings.manualInstructions">Інструкції для оплати власноруч для тих користувачів, хто обрав цей тип оплати</message>
+
+	<message key="plugins.paymethod.manual.sendNotificationOfPayment">Надіслати повідомленя про оплату</message>
+	<message key="plugins.paymethod.manual.paymentNotification">Повідомлення про оплат</message>
+	<message key="plugins.paymethod.manual.notificationSent">Повідомлення про оплату надіслане</message>
+
+	<message key="plugins.paymethod.manual.purchase.title">Назва</message>
+	<message key="plugins.paymethod.manual.purchase.fee">Платня</message>
+</locale>

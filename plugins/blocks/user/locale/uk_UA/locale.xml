@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * locale.xml
+  *
+  * Copyright (c) 2000-2012 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the en_US (U.S. English) locale.
+  *
+  * $Id$
+  -->
+ 
+<locale name="en_US" full_name="U.S. English">
+	<message key="plugins.block.user.displayName">Блок користувача</message>
+	<message key="plugins.block.user.description">Цей плагін забеспечує наявність елементів керування обліковим записом на бокому блоці (напр. вхід, вихід, посилання на профіль та ін.).</message>
+	<message key="plugins.block.user.loggedInAs">Ви ввійшли як...</message>
+	<message key="plugins.block.user.myConferences">Мої конференції</message>
+	<message key="plugins.block.user.myProfile">Мій профіль</message>
+	<message key="plugins.block.user.logout">Вийти</message>
+	<message key="plugins.block.user.signOutAsUser">Вийти як користувач</message>
+	<message key="plugins.block.user.rememberMe">Пам'ятати мене</message>
+</locale>

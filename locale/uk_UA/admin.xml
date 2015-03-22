@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * ocs2-devel/locale/en_US/admin.xml
+  *
+  * Copyright (c) 2000-2012 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the en_US (English) locale.
+  *
+  * $Id$
+  -->
+
+<locale name="en_US" full_name = "English">
+	<message key="admin.languages.primaryLocaleInstructions">Ця мова буде основною для сайту і для будь-якої конференції, яка на ньому розміщена.</message>
+	<message key="admin.languages.supportedLocalesInstructions">Оберіть усі локалізації, які будуть підтримуватися на цьому сайті. Обрані локалізації будуть наявні для використання усіма конференціями, які розміщені на сайті, а також з'являться у меню вибору мови на кожній сторінці сайту (що може бути змінено на специфічних для конференції сторінках). Якщо не обрано декілька локалізацій, меню переключення мови не з'явиться і розширені налаштування мови не будуть доступні для конференцій.</message>
+	<message key="admin.locale.maybeIncomplete">Відзначені локалізації можуть бути неповними.</message>
+	<message key="admin.languages.confirmUninstall">Ви впевнені, що хочете видалити цю локалізацію. Це може вплинути на усі конференції, які розміщені на сайті і використовують цю локалізацію.</message>
+	<message key="admin.languages.installNewLocalesInstructions">Оберіть будь-які додаткові локалізації для встановлення підтримки для цієї системи. Локалізації повинні бути встановлені перед тим, як вони можуть бути використані розміщеними на сайті конференціями. Зверніть до документації з OCS для надання підтримки новим мовам.</message>
+	<message key="admin.auth.enableSyncProfiles">Активуйте синхронізацію профілів користувачів (якщо підтримується поточним плагіном авторизації). Інформація профілю користувачів буде автоматично оновлюватися з віддаленого джерела, коли користувач заходить у систему, і зміни профіля (включно із зміною пароля), здійснені з допомогою OCS будуть автоматично оновлені на віддаленому джерелі. Якщо ця опція не активована, інформація профілю буде утримуватися окремо від інформації профілю з віддаленого джерела.</message>
+	<message key="admin.auth.enableSyncPasswords">Активуйте зміну пароля користувача (якщо це підтримується плагіном авторизації). Активація цієї опції дозволить користувачам змінити їх пароль за допомогою OCS та використовувати функцію OCS для зміни забутого пароля. Ці функції будуть недоступні користувачам з цим типом джерела авторизації, якщо ця опція не активована.</message>
+	<message key="admin.auth.enableCreateUsers">Активуйте створення користувача (ящо це підтримується цим плагіном авторизації). Користувачі, які створені за допомогою OCS із цим типом авторизації користувача, будуть автоматично додані до віддаленого джерела авторизації, якщо воне ще не існують. Додатково, якщо це джерело є типовим джерелом авторизації, облікові записи OCS, створені за допомогою реєстрації користувача, будуть такод додані до віддаленого джерела авторизації.</message>
+	<message key="admin.systemVersion">Версія OCS</message>
+	<message key="admin.systemConfiguration">Конфігурація OCS</message>
+	<message key="admin.systemConfigurationDescription"><![CDATA[Налаштування OCS від <tt>config.inc.php</tt>.]]></message>
+	<message key="admin.hostedConferences">Конференції, які розміщені на цьому сайті</message>
+	<message key="admin.settings.conferenceRedirect">Перенаправлення конференції</message>
+	<message key="admin.settings.conferenceRedirectInstructions">Запити до головного сайту будуть перенаправлені на цю конференцію. Це може бути зручно, якщо, наприклад, цей сайт містить лише єдину конференцію.</message>
+	<message key="admin.settings.noConferenceRedirect">Не перенаправляти</message>
+	<message key="admin.auth.ocs">База даних корстувача OCS</message>
+	<message key="admin.conferences.conferenceSettings">Налаштування конференції</message>
+	<message key="admin.conferences.noneCreated">Жодної конференції не було створено.</message>
+	<message key="admin.conferences.confirmDelete">Ви впевнені, що хочете назавжди видалити цю конференцію та весь її зміст?</message>
+	<message key="admin.conferences.create">Створити конференцію</message>
+	<message key="admin.conferences.createInstructions">Ви автоматично будете залучені як організатор цієї конференції. Після створення нової конференції, увійдіть в неї яка організатор для того, щоб продовжити її налаштування та залучення користувачів.</message>
+	<message key="admin.conferences.urlWillBe">Це повинно бути одне коротке слово або акронім, який ідентифікує конференцію. URL конференцыъ буде {$sampleUrl}</message>
+	<message key="admin.conferences.form.titleRequired">Необхідно додати назву.</message>
+	<message key="admin.conferences.form.pathRequired">Необхідно вказати шлях.</message>
+	<message key="admin.conferences.form.pathAlphaNumeric">Шлях може містити тільки літери латинського алфавіту, цифри, підкреслення, тире та починатися і закінчуватися на літеру латинського алфавіту або цифру.</message>
+	<message key="admin.conferences.form.pathExists">Обраний шлях вже використовується іншою конференцією.</message>
+	<message key="admin.conferences.enableConferenceInstructions">Активувати цю конференцію для того, щоб вона була опублікована на сайті</message>
+	<message key="admin.conferences.conferenceDescription">Опис конференції</message>
+	<message key="admin.conferences.conferenceDescriptionInstructions">Опис конференції описує поточну місію цієї конференції. Він з'явиться на головній сторінці конференції, як і всі конвенційні сторінки конференції.</message>
+	<message key="admin.conferences.importOCS1">Імпортувати з OCS 1</message>
+	<message key="admin.conferences.importOCS1.editMigratedConference">Редагувати перенесену конференцію</message>
+	<message key="admin.conferences.importOCS1.conflict.desc">Деякі облікові записи користувачів мають інформацію, що не збігається. OCS 1.x дозволяє декільком користувачам мати одну і ту саму адресу електронної пошти, проте OCS 2.x цього не дозволяє. У переліку нижче, другий обліковий запис в перелік має тимчасову електронну адресу, що відноситься до облікового запису. Це повинно бути виправлено власноруч, або за допомогою призначення іншої електронної адреси обліковому запису, або за допомогою злиття облікових записів.</message>
+	<message key="admin.conferences.importOCS1.errors.desc">Наступні помилки виникли при переході від конференції OCS 1.x до OCS 2.x.</message>
+	<message key="admin.conferences.importOCS1.conflict">{$firstUsername} ({$firstName}) та {$secondUsername} ({$secondName})</message>
+	<message key="admin.conferences.importOCS1Instructions"><![CDATA[Проконсультуйтеся з документом ОНОВЛЕННЯ (UPGRADE), який розповсюджується разом із OCS для детальної інформації по переносу даних з OCS 1 на OCS 2. Зауважте, що цей процес НЕ створить повністю налаштовану конференцію OCS 2; тільки певні елементи (наприклад, матеріали) будуть імпортовані. <strong>Усі імпортовані користувачі повинні будуть оновити паролі до власних облікових записів. Нагально рекомендується Голові Конференції переглянути всю імпортовану інформацію перед запуском сайту конференції.</strong>]]></message>
+	<message key="admin.conference.pathImportInstructions">Існуючий шлях конференції або шлях, що потрібно створити (наприклад, "ocs").</message>
+	<message key="admin.conference.importPath">Шлях OCS 1</message>
+	<message key="admin.conference.importPathInstructions">Повний шлях локальної файлової системи до файлів OCS 1 (e.g., "/var/www/ocs").</message>
+	<message key="admin.conferences.importRegistrations">Імпортувати реєстрації</message>
+	<message key="admin.conferences.emailUsers">Надіслати електронні повідомлення користувачам із інформацією про дані для входу, включно із випадковим паролем</message>
+	<message key="admin.conferences.transcode">Метадані транскодованих матеріалів з ISO8859-1</message>
+	<message key="admin.conferences.form.importPathRequired">Необхідно вказати шлях імпорта.</message>
+	<message key="admin.conferences.importErrors">Не вдалося успішно завершити імпортування.</message>
+
+	<!-- Site Administration Merge Users -->	
+	<message key="admin.mergeUsers">Об'єднати користувачів</message>
+	<message key="admin.mergeUsers.mergeUser">Об'єднати користувача</message>
+	<message key="admin.mergeUsers.into.description">Оберіть користувача, якому передати інформацію попередніх подань користувача, призначень на редагування, інше.</message>
+	<message key="admin.mergeUsers.from.description">Оберіть користувача (або декілька) для об'єднаня із іншим обліковим записом користувача (наприклад, для тих випадків, коли хтось має два облікових записи користувача). Облікові записи, які будуть обрані першими, будуть видалені і будь-які подання, призначення, інше, буде передано другому обліковому запису.</message>
+	<message key="admin.mergeUsers.allUsers">Зареєстровані користувачі</message>
+	<message key="admin.mergeUsers.confirm">Ви впевнені, що хочете об'єднати обраний {$oldAccountCount} обліковий запис(и) у один обліковий запис із ім'ям користувача "{$newUsername}"? Обрані {$oldAccountCount} облікові записи після цього припинять існування. Цю дію не можна буде відмінити.</message>
+	<message key="admin.mergerUsers.noneEnrolled">Немає зареєстрованих користувачів.</message>
+</locale>

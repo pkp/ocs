@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * locale.xml
+  *
+  * Copyright (c) 2000-2012 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the en_US (U.S. English) locale.
+  *
+  * $Id$
+  -->
+ 
+<locale name="en_US" full_name="U.S. English">
+	<message key="plugins.block.role.displayName">Блок, специфічний до ролі користувача</message>
+	<message key="plugins.block.role.description">Цей плагін забеспечує боковий блок інформацією, специфічною до ролі користувача, такою як кількість подань, швидкими посиланнями для Голів, Доповідачів та ін.</message>
+</locale>
