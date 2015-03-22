@@ -7,12 +7,12 @@
   * Copyright (c) 2000-2012 John Willinsky
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
   *
-  * Localization strings for the en_US (U.S. English) locale.
+  * Localization strings for the uk_UA (Український) locale.
   *
   * $Id$
   -->
  
-<locale name="en_US" full_name="U.S. English">
+<locale name="uk_UA" full_name = "Український">
 	<message key="plugins.generic.tinymce.name">Плагін TinyMCE</message>
 	<message key="plugins.generic.tinymce.description"><![CDATA[Цей плагін активує WYSIWYG редагування текстових полів OCS із використанням редактору змісту<a href="http://tinymce.moxiecode.com" target="_new">TinyMCE</a>.]]></message>
 	<message key="plugins.generic.tinymce.descriptionDisabled"><![CDATA[Цей плагін активує WYSIWYG редагування текстових полів OCS із використанням редактору змісту<a href="http://tinymce.moxiecode.com" target="_new">TinyMCE</a>. <strong>TinyMCE на даний момент не встановлено; будь ласка, встановіть його {$tinyMcePath}.</strong>]]></message>

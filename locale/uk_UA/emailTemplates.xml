@@ -10,7 +10,7 @@
   *
   * $Id$
   -->
-<email_texts locale="en_US">
+<email_texts locale="uk_UA">
 	<email_text key="NOTIFICATION">
 		<subject>Нове повідомлення від {$siteTitle}</subject>
 		<body>Ви маєте нове повідомлення від {$siteTitle}:

@@ -2,16 +2,16 @@
 <!DOCTYPE locale SYSTEM "../../lib/pkp/dtd/locale.dtd">
 
 <!--
-  * ocs2-devel/locale/en_US/author.xml
+  * ocs2-devel/locale/uk_UA/author.xml
   *
   * Copyright (c) 2000-2012 John Willinsky
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
   *
-  * Localization strings for the en_US (English) locale.
+  * Localization strings for the uk_UA (Український) locale.
   *
   -->
 
-<locale name="en_US" full_name = "English">
+<locale name="uk_UA" full_name = "Український">
 	<message key="author.submit">Нове подання</message>
 	<message key="author.track">Активні подання</message>
 	<message key="author.submit.startHere">Почніть звідси, щоб подати матеріали на цю конференцію.</message>

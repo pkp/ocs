@@ -2,17 +2,17 @@
 <!DOCTYPE locale SYSTEM "../../lib/pkp/dtd/locale.dtd">
 
 <!--
-  * ocs2-devel/locale/en_US/manager.xml
+  * ocs2-devel/locale/uk_UA/manager.xml
   *
   * Copyright (c) 2000-2012 John Willinsky
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
   *
-  * Localization strings for the en_US (English) locale.
+  * Localization strings for the uk_UA (Український) locale.
   *
   * $Id$
   -->
 
-<locale name="en_US" full_name = "English">
+<locale name="uk_UA" full_name = "Український">
 	<message key="manager.accommodation">Розміщення</message>
 	<message key="manager.accommodation.form.accommodationFiles">Файли</message>
 	<message key="manager.accommodation.form.accommodationFiles.description">Використовуйте цей розділ для завантаження одного чи більшої кількості файлів для зареєстрованих та потенційних учасників - таких, як мапи, форми, інше.</message>
