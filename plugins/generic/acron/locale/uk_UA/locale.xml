@@ -7,12 +7,12 @@
   * Copyright (c) 2000-2012 John Willinsky
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
   *
-  * Localization strings for the en_US (U.S. English) locale.
+  * Localization strings for the uk_UA (Український) locale.
   *
   * $Id$
   -->
  
-<locale name="en_US" full_name="U.S. English">
+<locale name="uk_UA" full_name = "Український">
 	<message key="plugins.generic.acron.name">Плагін Acron</message>
 	<message key="plugins.generic.acron.description">Цей плагін призначений для зменшення залежності OCS від засобів планування періодичних подій, таких як 'cron.'</message>
 	<message key="plugins.generic.acron.enabled">Плагі Acron був активований.</message>

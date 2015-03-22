@@ -7,12 +7,12 @@
   * Copyright (c) 2000-2012 John Willinsky
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
   *
-  * Localization strings for the en_US (U.S. English) locale.
+  * Localization strings for the uk_UA (Український) locale.
   *
   * $Id$
   -->
  
-<locale name="en_US" full_name="U.S. English">
+<locale name="uk_UA" full_name = "Український">
 	<message key="plugins.generic.customBlockManager.displayName">Менеджер налаштування власного блоку</message>
 	<message key="plugins.generic.customBlockManager.description">Цей плагін дозволяє Вам управляти власними бічними блоками. Ви можете редагувати блоки у налаштуваннях кожного плагіну, який Ви створюєте тут.</message>	
 	<message key="plugin.generic.customBlockManager.introduction"><![CDATA[Ви можете використовувати цей плагін для того, щоб додати або видалити плагіни власних блоків. Після цього Ви можете редагувати вміст за допомогою сторінки <a href="{$systemPluginsUrl}">Системні плагіни </a> (у секції Бічні Плагіни).  Для того, щоб розмістити плагіни у бажаному місці бічного блоку, перейдіть до <a href="{$setupStep4}">Налаштування кроку 4</a>]]></message>

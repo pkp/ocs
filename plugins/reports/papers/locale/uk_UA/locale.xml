@@ -7,12 +7,12 @@
   * Copyright (c) 2000-2012 John Willinsky
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
   *
-  * Localization strings for the en_US (U.S. English) locale.
+  * Localization strings for the uk_UA (Український) locale.
   *
   * $Id$
   -->
 
-<locale name="en_US" full_name="U.S. English">
+<locale name="uk_UA" full_name = "Український">
 	<message key="plugins.reports.papers.displayName">Звіт про публікації</message>
 	<message key="plugins.reports.papers.description">Цей плагін створює CSV звіт, який містить перелік матеріалів та інформацію про них.</message>
 	<message key="plugins.reports.papers.nodecision">Немає рішення</message>

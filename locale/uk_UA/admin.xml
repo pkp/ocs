@@ -2,17 +2,17 @@
 <!DOCTYPE locale SYSTEM "../../lib/pkp/dtd/locale.dtd">
 
 <!--
-  * ocs2-devel/locale/en_US/admin.xml
+  * ocs2-devel/locale/uk_UA/admin.xml
   *
   * Copyright (c) 2000-2012 John Willinsky
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
   *
-  * Localization strings for the en_US (English) locale.
+  * Localization strings for the uk_UA (Український) locale.
   *
   * $Id$
   -->
 
-<locale name="en_US" full_name = "English">
+<locale name="uk_UA" full_name = "Український">
 	<message key="admin.languages.primaryLocaleInstructions">Ця мова буде основною для сайту і для будь-якої конференції, яка на ньому розміщена.</message>
 	<message key="admin.languages.supportedLocalesInstructions">Оберіть усі локалізації, які будуть підтримуватися на цьому сайті. Обрані локалізації будуть наявні для використання усіма конференціями, які розміщені на сайті, а також з'являться у меню вибору мови на кожній сторінці сайту (що може бути змінено на специфічних для конференції сторінках). Якщо не обрано декілька локалізацій, меню переключення мови не з'явиться і розширені налаштування мови не будуть доступні для конференцій.</message>
 	<message key="admin.locale.maybeIncomplete">Відзначені локалізації можуть бути неповними.</message>
