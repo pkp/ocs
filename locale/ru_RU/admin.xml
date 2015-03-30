@@ -3,120 +3,64 @@
   * ocs2-devel/locale/ru_RU/admin.xml
   *
   * Copyright (c) 2000-2012 John Willinsky
-  * Copyright (c) 2014 Artem Gusarenko
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
-  *
+  * Contributed by Artem Gusarenko
   * Localization strings for the ru_RU (Russian) locale.
   *
   * $Id$
 
 -->
 <locale name="ru_RU" full_name="Russian">
-<message key="admin.languages.primaryLocaleInstructions">
-Этот язык будет использоваться по-умолчанию для всего сайта и для любой конференции, размещенной на этом сайте.
-</message>
-<message key="admin.languages.supportedLocalesInstructions">
-Выберите все локализации которые должны поддерживаться на сайте. Выбранные локализации будут доступны для использования всеми конференциями размещенными на сайте, и также появятся в меню выбора языка на каждой странице сайта (могут быть перезаписаны специфичными страницами конференции). Если несколько локализаций не выбраны языковое меню не появится и расширенные языковые настройки не будут доступны для конференций.
-</message>
-<message key="admin.locale.maybeIncomplete">Отмеченные локализации могут быть не полными.</message>
-<message key="admin.languages.confirmUninstall">
-Вы уверены что хотите удалить эту локализацию? Это может повлиять на размещенные на этом сайте конференции, которые используют эту локализацию.
-</message>
-<message key="admin.languages.installNewLocalesInstructions">
-Выберите любые дополнительные локализации для того, чтобы установить и включить их поддержку в системе. Локализации должны юыть установлены до того как они могут быть использованы размещенными конференциями. Обратитесь к документации OCS за информацией по добавлению новых языков.
-</message>
-<message key="admin.auth.enableSyncProfiles">
-Включите синхронизацию пользовательского профиля (Если это поддерживается плагином аутентификации). Информация пользовательского профиля будет автоматически обновлена из удаленного источника когда пользователь авторизуется, и профиль изменяется (включая изменения пароля) сделанные внутри  OCS будут автоматически обновлены в удаленном источнике. Если эта опция не включена информация профиля OCS будет содержаться отдельно от информации из удаленного источника.
-</message>
-<message key="admin.auth.enableSyncPasswords">
-Включите модификацию пользовательского пароля (Если это поддерживается плагином аутентификации). Включение этой опции позволяет пользователям изменять их пароли в OCS и использовать OCS функцию "восстановления пароля" для сброса забытого пароля. Эти функции будут недоступны пользователям с таким источником авторизации, если эта опция не включена.
-</message>
-<message key="admin.auth.enableCreateUsers">
-Включите создание пользователей (Если это поддерживается плагином аутентификации). Пользователи созданные внутри OCS с таким источником авторизации будут автоматически добавлены в удаленный источник авторизации если они еще не существуют. Дополнительно, если этот источник явлется по-умолчанию источником авторизации, OCS аккаунты, созданные через форму регистрации пользователей OCS, будут добавлены в удаленный источник аутентификации.
-</message>
-<message key="admin.systemVersion">Версия OCS</message>
-<message key="admin.systemConfiguration">Настройки конфигурации OCS</message>
-<message key="admin.systemConfigurationDescription">
-<![CDATA[
-OCS настройки из <tt>config.inc.php</tt>.
-]]>
-</message>
+<message key="admin.languages.primaryLocaleInstructions">Этот язык будет использоваться по-умолчанию для всего сайта и для любой конференции, размещенной на этом сайте.</message>
+<message key="admin.languages.supportedLocalesInstructions">Выберите все локализации, которые должны поддерживаться на сайте. Выбранные локализации будут доступны для использования всеми конференциями размещенными на сайте, и также появятся в меню выбора языка на каждой странице сайта (могут быть перезаписаны специфичными страницами конференции). Если несколько локализаций не выбраны, языковое меню не появится и расширенные языковые настройки не будут доступны для конференций.</message>
+<message key="admin.locale.maybeIncomplete">Отмеченные локализации могут быть неполными.</message>
+<message key="admin.languages.confirmUninstall">Вы уверены, что хотите удалить эту локализацию? Это может повлиять на размещенные на этом сайте конференции, которые используют эту локализацию.</message>
+<message key="admin.languages.installNewLocalesInstructions">Выберите любые дополнительные локализации для того, чтобы установить и включить их поддержку в системе. Локализации должны быть установлены до того как они могут быть использованы размещенными конференциями. Обратитесь к документации системы за информацией по добавлению новых языков.</message>
+<message key="admin.auth.enableSyncProfiles">Включите синхронизацию пользовательского профиля (Если это поддерживается плагином аутентификации). Информация пользовательского профиля будет автоматически обновлена из удаленного источника, когда пользователь авторизуется, и изменения профиля (включая изменения пароля), сделанные внутри системы, будут автоматически обновлены в удаленном источнике. Если эта опция не включена, информация профиля системы будет содержаться отдельно от информации из удаленного источника.</message>
+<message key="admin.auth.enableSyncPasswords">Включите модификацию пользовательского пароля (Если это поддерживается плагином аутентификации). Включение этой опции позволяет пользователям изменять их пароли в системе и использовать системную функцию "восстановления пароля" для сброса забытого пароля. Эти функции будут недоступны пользователям с таким источником авторизации, если эта опция не включена.</message>
+<message key="admin.auth.enableCreateUsers">Включите создание пользователей (Если это поддерживается плагином аутентификации). Пользователи, созданные внутри системы, с таким источником авторизации будут автоматически добавлены в удаленный источник авторизации, если они еще не существуют. Дополнительно, если этот источник явлется по-умолчанию источником авторизации, системные аккаунты, созданные через форму регистрации пользователей системы, будут добавлены в удаленный источник аутентификации.</message>
+<message key="admin.systemVersion">Версия системы</message>
+<message key="admin.systemConfiguration">Настройки конфигурации системы</message>
+<message key="admin.systemConfigurationDescription"><![CDATA[системные настройки из <tt>config.inc.php</tt>.]]></message>
 <message key="admin.hostedConferences">Размещенные конференции</message>
 <message key="admin.settings.conferenceRedirect">Перенаправление конференции</message>
-<message key="admin.settings.conferenceRedirectInstructions">
-Запрос к главной странице сайта будет перенправлен к этой конференции. Это может быть полезно если, например, сайт размещает только одну единственную конференцию.
-</message>
+<message key="admin.settings.conferenceRedirectInstructions">Запрос к главной странице сайта будет перенаправлен к этой конференции. Это может быть полезно если, например, сайт размещает только одну единственную конференцию.</message>
 <message key="admin.settings.noConferenceRedirect">Не перенаправлять</message>
-<message key="admin.auth.ocs">Пользователь базы данных OCS</message>
+<message key="admin.auth.ocs">Пользователь базы данных системы</message>
 <message key="admin.conferences.conferenceSettings">Настройки конференции</message>
 <message key="admin.conferences.noneCreated">Не было создано ни одной конференции.</message>
-<message key="admin.conferences.confirmDelete">
-Вы уверены что неизменно хотите удалить эту конференцию и все ее содержимое?
-</message>
+<message key="admin.conferences.confirmDelete">Вы уверены, что неизменно хотите удалить эту конференцию и все ее содержимое?</message>
 <message key="admin.conferences.create">Создать конференцию</message>
-<message key="admin.conferences.createInstructions">
-Вы будете автоматически назначены руководителем этой конференции. После создания новой конференции, войдите как руководитель, чтобы продолжить ее установку и назначение пользователей.
-</message>
-<message key="admin.conferences.urlWillBe">
-Это должно быть одно короткое слово или сокращение, которое идентифицирует конференцию. Адрес URL конференции будет {$sampleUrl}
-</message>
+<message key="admin.conferences.scheduleConferenceInstructions">Далее приступить к планированию конференции</message>
+<message key="admin.conferences.createInstructions">Вы будете автоматически назначены руководителем этой конференции. После создания новой конференции, войдите как руководитель, чтобы продолжить ее установку и назначение пользователей.</message>
+<message key="admin.conferences.urlWillBe">Это должно быть одно короткое слово или сокращение, которое идентифицирует конференцию. Адрес URL конференции будет {$sampleUrl}</message>
 <message key="admin.conferences.form.titleRequired">Требуется название.</message>
 <message key="admin.conferences.form.pathRequired">Требуется путь.</message>
-<message key="admin.conferences.form.pathAlphaNumeric">
-Путь может содержать только буквенно-цифровые символы, подчеркивание и дефис, и должен начинаться и заканчиваться буквенно-цифровым символом.
-</message>
-<message key="admin.conferences.form.pathExists">
-Выбранный путь уже используется другой конференцией.
-</message>
-<message key="admin.conferences.enableConferenceInstructions">
-Активируйте эту конференцию, чтобы она опубликовалась на сайте
-</message>
+<message key="admin.conferences.form.pathAlphaNumeric">Путь может содержать только буквенно-цифровые символы, подчеркивание и дефис, и должен начинаться и заканчиваться буквенно-цифровым символом.</message>
+<message key="admin.conferences.form.pathExists">Выбранный путь уже используется другой конференцией.</message>
+<message key="admin.conferences.enableConferenceInstructions">Активируйте эту конференцию, чтобы она опубликовалась на сайте</message>
 <message key="admin.conferences.conferenceDescription">Описание конференции</message>
-<message key="admin.conferences.conferenceDescriptionInstructions">
-Описание конференции идентифицирует постоянную миссию этой конференции. Описание появится на главной странице конференции, также как и все страницы согласованные с этой конференцией.
-</message>
-<message key="admin.conferences.importOCS1">Импорт из OCS 1 версии</message>
+<message key="admin.conferences.conferenceDescriptionInstructions">Описание конференции идентифицирует постоянную миссию этой конференции. Описание появится на главной странице конференции, также как и все страницы согласованные с этой конференцией.</message>
+<message key="admin.conferences.importOCS1">Импорт из системы 1 версии</message>
 <message key="admin.conferences.importOCS1.editMigratedConference">Редактировать перенесенную конференцию</message>
-<message key="admin.conferences.importOCS1.conflict.desc">
-Несколько пользовательских аккаунтов имеют конфликты в информации. OCS 1.x позволяет нескольким пользовательским аккаунтам разделять один и тот же email адрес электронной почты, в то время как OCS 2.x не позволяет. В списке ниже, второй аккаунт в списке имеет временный email, ассоциированный с ним. Это следует исправить вручную, либо путем ассоциации разных email аккаунтов, или с помощью соединения аккаунтов.
-</message>
-<message key="admin.conferences.importOCS1.errors.desc">
-Во время переноса конференции из OCS 1.x в OCS 2.x возникли следующие ошибки.
-</message>
-<message key="admin.conferences.importOCS1.conflict">
-{$firstUsername} ({$firstName}) и {$secondUsername} ({$secondName})
-</message>
-<message key="admin.conferences.importOCS1Instructions">
-<![CDATA[
-Прочитайте UPGRADE документ, поставляемый с OCS для получения детальной информации по переносу данных из OCS 1 в OCS 2. Заметьте, что этот процесс НЕ создает польностью сконфигурированную систему OCS 2 для проведения конференций; только некоторые части (например, работы) будут импортированы. <strong>Всем пимпортированным пользователям требуется сбросить их пароли. Это является  строго рекомендуемым потому что Руководитель конференции рецензирует всю импортированную информацию перед запуском сайта конференции.</strong>
-]]>
-</message>
-<message key="admin.conference.pathImportInstructions">
-Существующий путь конференции или путь для создания (пример, "ocs").
-</message>
-<message key="admin.conference.importPath">OCS 1 путь</message>
-<message key="admin.conference.importPathInstructions">
-Полный локальный путь файловой системы сервера для установки OCS 1 (пример, "/var/www/ocs").
-</message>
+<message key="admin.conferences.importOCS1.conflict.desc">Несколько пользовательских аккаунтов имеют конфликты в информации. Система версии 1.x позволяет нескольким пользовательским аккаунтам разделять один и тот же email адрес электронной почты, в то время как система версии 2.x это не позволяет. В списке ниже, второй аккаунт в списке имеет временный email, ассоциированный с ним. Это следует исправить вручную, либо путем ассоциации разных email аккаунтов, или с помощью соединения аккаунтов.</message>
+<message key="admin.conferences.importOCS1.errors.desc">Во время переноса конференции из системы версии 1.x в системы версии 2.x возникли следующие ошибки.</message>
+<message key="admin.conferences.importOCS1.conflict">{$firstUsername} ({$firstName}) и {$secondUsername} ({$secondName})</message>
+<message key="admin.conferences.importOCS1Instructions"><![CDATA[Прочитайте UPGRADE документ, поставляемый с системой для получения детальной информации по переносу данных из системы 1 в системы 2. Заметьте, что этот процесс НЕ создает польностью сконфигурированную систему 2 для проведения конференций; только некоторые части (например, работы) будут импортированы. <strong>Всем пимпортированным пользователям требуется сбросить их пароли. Это является  строго рекомендуемым потому что Руководитель конференции рецензирует всю импортированную информацию перед запуском сайта конференции.</strong>]]></message>
+<message key="admin.conference.pathImportInstructions">Существующий путь конференции или путь для создания (пример, "путь").</message>
+<message key="admin.conference.importPath">Путь к системе 1</message>
+<message key="admin.conference.importPathInstructions">Полный локальный путь файловой системы сервера для установки системы версии 1 (пример, "/var/www/system").</message>
 <message key="admin.conferences.importRegistrations">Импортировать регистрации</message>
-<message key="admin.conferences.emailUsers">
-Email созданный пользователямис информацией о логине, включая случайный пароль
-</message>
+<message key="admin.conferences.emailUsers">Email созданный пользователями с информацией о логине, включая случайный пароль</message>
 <message key="admin.conferences.transcode">Перекодировать метаданные из ISO8859-1</message>
 <message key="admin.conferences.form.importPathRequired">Требуется путь импорта.</message>
 <message key="admin.conferences.importErrors">Импорт не удался</message>
 <!--  Администрирование сайта, слияние пользователей  -->
 <message key="admin.mergeUsers">Слияние пользователей</message>
 <message key="admin.mergeUsers.mergeUser">Слить пользовательский аккаунт</message>
-<message key="admin.mergeUsers.into.description">
-Выберите пользователя, которому приписывать представления предыдущего пользователя, редактирование заданий, и т.д.
-</message>
-<message key="admin.mergeUsers.from.description">
-Выберите пользователя (или несколько) для того чтобы слить с другим пользовательским аккаунтом (пример, когда кто-то имеет два пользовательских аккаунта). Аккаунт(ы) выбранные первым будут удалены и любые загрузки, задачи, и т.д. будут приписаны ко второму аккаунту.
-</message>
+<message key="admin.mergeUsers.into.description">Выберите пользователя, которому приписывать представления предыдущего пользователя, редактирование заданий, и т.д.</message>
+<message key="admin.mergeUsers.from.description">Выберите пользователя (или несколько) для того, чтобы слить с другим пользовательским аккаунтом (пример, когда кто-то имеет два пользовательских аккаунта). Аккаунт(ы) выбранные первым будут удалены и любые загрузки, задачи, и т.д. будут приписаны ко второму аккаунту.</message>
 <message key="admin.mergeUsers.allUsers">Все назначенные пользователи</message>
-<message key="admin.mergeUsers.confirm">
-Вы уверены что хотите слить выбранные {$oldAccountCount} аккаунт(ы) в аккаунт с именем "{$newUsername}"? Выбранные {$oldAccountCount} аккаунты перестанут существовать после этого. Это действие необратимо.
-</message>
+<message key="admin.mergeUsers.confirm">Вы уверены что хотите слить выбранные {$oldAccountCount} аккаунт(ы) в аккаунт с именем "{$newUsername}"? Выбранные {$oldAccountCount} аккаунты перестанут существовать после этого. Это действие необратимо.</message>
 <message key="admin.mergerUsers.noneEnrolled">Отсутствуют назначенные пользователи.</message>
 </locale>
