@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * ocs2-devel/locale/en_US/director.xml
+  *
+  * Copyright (c) 2000-2012 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the en_US (English) locale.
+  *
+  -->
+
+<locale name="en_US" full_name = "English">
+	<message key="director.home">Director Home</message>
+	<message key="director.reassign">Reassign</message>
+	<message key="director.submissionQueue">Submission Queue</message>
+	<message key="director.submissionArchive">Submission Archive</message>
+	<message key="director.allTracks">All Tracks</message>
+	<message key="director.allDirectors">All Directors</message>
+	<message key="director.me">Me</message>
+	<message key="director.submissionQueue.noSubmissions">No submissions in the queue.</message>
+	<message key="director.submissionQueue.saveChanges">Save changes to queued submissions?</message>
+	<message key="director.submissionArchive.noSubmissions">No submissions in the archive.</message>
+	<message key="director.submissionArchive.saveChanges">Save changes to archived submissions? Submissions marked for deletion will be permanently deleted from the system.</message>
+	<message key="director.submissionArchive.confirmDelete">Are you sure you want to permanently delete this submission?</message>
+	<message key="director.submissionReview.confirmDecision">Are you sure you wish to record this decision?</message>
+	<message key="director.submissionReview.confirmToLayout">Has the author been notified of this decision? If not, press Cancel and use the Notify Author tool before moving this submission to layout.</message>
+	<message key="director.submissionReview.confirmToArchive">Has the author been notified of this decision? If not, press Cancel and use the Notify Author tool before moving this submission to the Archive.</message>
+	<message key="director.submissionReview.notes">Due indicates number of weeks remaining until the review's due date or (-) weeks that it is overdue. It is filled in when a reviewer accepts the request to review.</message>
+	<message key="director.notifyUsers">Notify Users</message>
+	<message key="director.notifyUsers.allUsers">All users associated with this conference ({$count} users)</message>
+	<message key="director.notifyUsers.interestedUsers">Users associated with this conference who wish to receive updates ({$count} users)</message>
+	<message key="director.notifyUsers.includeToc">Include the presentations for this conference</message>
+	<message key="director.notifyUsers.allReaders">All readers ({$count} users)</message>
+	<message key="director.notifyUsers.allAuthors">All published presenters ({$count} users)</message>
+	<message key="director.notifyUsers.allPaidRegistrants">All paid registrants ({$count} users)</message>
+	<message key="director.notifyUsers.allRegistrants">All registrants ({$count} users)</message>
+	<message key="director.navigation.management">Management</message>
+	<message key="director.paper.sendToArchive">Archive this submission</message>
+	<message key="director.paper.designateReviewVersion">Designate the original file as the Review Version</message>
+	<message key="director.paper.uploadReviewVersion">Upload a revised file to serve as the Review Version</message>
+	<message key="director.paper.uploadDirectorVersion">Upload Director Version</message>
+	<message key="director.paper.showSuppFile">Present file to reviewers</message>
+	<message key="director.paper.stageDisabled">It's not yet possible to perform this review. The abstract review is not yet complete.</message>
+	<message key="director.paper.clear">Clear</message>
+	<message key="director.paper.clearReviewer">Clear reviewer</message>
+	<message key="director.paper.changeTrack">Change Track</message>
+	<message key="director.paper.setDueDate">Set Due Date</message>
+	<message key="director.paper.addReviewer">Add Reviewer</message>
+	<message key="director.paper.toReviewer">To Reviewer</message>
+	<message key="director.paper.notifyReviewer">Notify Reviewer</message>
+	<message key="director.paper.initiateReview">Initiate Review</message>
+	<message key="director.paper.cancelReview">Cancel Review Request</message>
+	<message key="director.paper.clearReview">Clear Reviewer</message>
+	<message key="director.paper.enterRecommendation">Enter Recommendation</message>
+	<message key="director.paper.enterReviewerRecommendation">Enter Reviewer Recommendation</message>
+	<message key="director.paper.recommendation">Recommendation</message>
+	<message key="director.paper.selectReviewer">Select Reviewer</message>
+	<message key="director.paper.replaceReviewer">Replace Reviewer</message>
+	<message key="director.paper.directorToEnter">Director to enter recommendation/comments for reviewer</message>
+	<message key="director.paper.uploadReviewForReviewer">Upload review</message>
+	<message key="director.paper.peerReviewOptions">Peer Review Options</message>
+	<message key="director.paper.decision">Decision</message>
+	<message key="director.paper.recordDecision">Record Decision</message>
+	<message key="director.paper.cannotRecord">Cannot record a decision; a track director not yet recorded or no review file has been uploaded.</message>
+	<message key="director.paper.cannotRecordYet">Before a decision can be recorded, a submission must be assigned to a Track Director. The Review Version becomes, by default, the Director Version.</message>
+	<message key="director.paper.cannotRecordTooLate">The submission has already completed this review stage. You can no longer change this decision.</message>
+	<message key="director.paper.designateDueDate">Designate a Due Date</message>
+	<message key="director.paper.designateDueDateDescription">To change the due date for this Reviewer, enter another date or delete the date and enter the number of weeks until the review is due.</message>
+	<message key="director.paper.todaysDate">Today's Date</message>
+	<message key="director.paper.requestedByDate">Requested By Date</message>
+	<message key="director.paper.dueDateFormat">Format: YYYY-MM-DD</message>
+	<message key="director.paper.numberOfWeeks">Number of Weeks</message>
+	<message key="director.paper.showAuthor">Let author view file</message>
+	<message key="director.paper.rateReviewer">Rate Reviewer</message>
+	<message key="director.paper.reviewerRating.veryGood">5 High</message>
+	<message key="director.paper.reviewerRating.good">4</message>
+	<message key="director.paper.reviewerRating.average">3 Average</message>
+	<message key="director.paper.reviewerRating.poor">2</message>
+	<message key="director.paper.reviewerRating.veryPoor">1 Low</message>
+	<message key="director.paper.quality">Rating</message>
+	<message key="director.paper.comments">Comments</message>
+	<message key="director.paper.commentsRequired">The comments field is required.</message>
+	<message key="director.paper.archiveSubmission">Reject and Archive Submission</message>
+	<message key="director.paper.restoreToQueue">Restore to Active List</message>
+	<message key="director.paper.assignTrackDirector">Add Track Director</message>
+	<message key="director.paper.assignDirector">Add Director</message>
+	<message key="director.paper.selectDirector">Select {$roleName}</message>
+	<message key="director.paper.selectDecision">Select decision</message>
+	<message key="director.paper.decision.invitePresentation">Invite Presentation</message>
+	<message key="director.paper.decision.accept">Accept Submission</message>
+	<message key="director.paper.decision.pendingRevisions">Revisions Required</message>
+	<message key="director.paper.decision.decline">Decline Submission</message>
+	<message key="director.paper.moveToLayout">Move to Layout</message>
+	<message key="director.paper.createGalley">This file is ready for publication.</message>
+	<message key="director.paper.completeReview">Mark review as completed</message>
+	<message key="director.paper.scheduleSubmission">Send</message>
+	<message key="director.submissions.showBy">Show By</message>
+	<message key="director.submissions.submitMMDD">Submit MM-DD</message>
+	<message key="director.submissions.activeAssignments">Active Assignments</message>
+	<message key="director.submissions.invite">Invite</message>
+	<message key="director.submissions.accept">Accept</message>
+	<message key="director.submissions.noSubmissions">No Submissions</message>
+	<message key="director.submissions.lastAssigned">Latest</message>
+	<message key="director.submissions.averageTime">Weeks</message>
+	<message key="director.submissions.lastCompleted">Last Complete</message>
+	<message key="director.submissions.assignedTo">Assigned To</message>
+	<message key="director.submissions.inTrack">In Track</message>
+</locale>
