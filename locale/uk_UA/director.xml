@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * ocs2-devel/locale/en_US/director.xml
+  *
+  * Copyright (c) 2000-2012 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the en_US (English) locale.
+  *
+  -->
+
+<locale name="ek_UA" full_name = "Ukraine">
+	<message key="director.home">Домівка голови секції</message>
+	<message key="director.submissionQueue">Черга поданих документів</message>
+	<message key="director.submissionArchive">Архів поданих документів</message>
+	<message key="director.allTracks">Всі завдання</message>
+	<message key="director.allDirectors">Всі директори</message>
+	<message key="director.me">Я</message>
+	<message key="director.submissionQueue.noSubmissions">У черзі немає жодного документу.</message>
+	<message key="director.submissionQueue.saveChanges">Зберегти зміни до поданих документів в черзі?</message>
+	<message key="director.submissionArchive.noSubmissions">В архіві немає жодного документу.</message>
+	<message key="director.submissionArchive.saveChanges">Зберегти зміни до архівованих документів? Документи, які були відзначені для знищення, будуть видалені з системи.</message>
+	<message key="director.submissionArchive.confirmDelete">Ви впевнені, що хочете знищити цей документ?</message>
+	<message key="director.submissionReview.confirmDecision">Ви впевнені, що хочете запам’ятати цей вибір?</message>
+	<message key="director.submissionReview.confirmToLayout">Чи був повідомлений про це рішення автор? Якщо ні, натисніть Відмінити та використайте інструмент для повідомлення автора перед переміщенням даного документу в макет.</message>
+	<message key="director.submissionReview.confirmToArchive">Чи був повідомлений про це рішення автор? Якщо ні, натисніть Відмінити та використайте інструмент для повідомлення автора перед архівуванням даного документу.</message>
+	<message key="director.submissionReview.notes">Дата завершення вказує на кількість тижнів, які залишаються для завершення рецензування документу або (-) при запізненні. Це поле заповнюється при погодженні рецензентом на заявку про рецензування.</message>
+	<message key="director.notifyUsers">Сповістити користувачів</message>
+	<message key="director.notifyUsers.allUsers">Всі користувачі, які пов’язані з даною конференцією ({$count} users)</message>
+	<message key="director.notifyUsers.interestedUsers">Користувачі пов’язані з цією конференцією, які просять отримувати оновлення інформації ({$count} users)</message>
+	<message key="director.notifyUsers.includeToc">Включити презентації для цієї конференції</message>
+	<message key="director.notifyUsers.allReaders">Всі читачі ({$count} users)</message>
+	<message key="director.notifyUsers.allAuthors">Всі опубліковані доповідачі ({$count} users)</message>
+	<message key="director.notifyUsers.allPaidRegistrants">Всі оплачені учасники ({$count} users)</message>
+	<message key="director.notifyUsers.allRegistrants">Всі учасники ({$count} users)</message>
+	<message key="director.navigation.management">Управління</message>
+	<message key="director.paper.sendToArchive">Заархівувати цей документ</message>
+	<message key="director.paper.designateReviewVersion">Подати оригінальний файл, як версію рецензії</message>
+	<message key="director.paper.uploadReviewVersion">Завантажити опрацьований файл, як версію рецензії</message>
+	<message key="director.paper.uploadDirectorVersion">Завантажити версію голови</message>
+	<message key="director.paper.showSuppFile">Представити файл для рецензентів</message>
+	<message key="director.paper.stageDisabled">На даний момент неможливо провести рецензування. Не завершено рецензування анотації.</message>
+	<message key="director.paper.clear">Очистити</message>
+	<message key="director.paper.clearReviewer">Очистити рецензента</message>
+	<message key="director.paper.changeTrack">Змінити секцію</message>
+	<message key="director.paper.setDueDate">Встановити дату завершення</message>
+	<message key="director.paper.addReviewer">Додати рецензента</message>
+	<message key="director.paper.toReviewer">До рецензента</message>
+	<message key="director.paper.notifyReviewer">Повідомити реценезента</message>
+	<message key="director.paper.initiateReview">Розпочати рецензування</message>
+	<message key="director.paper.cancelReview">Відмінити запит про рецензію</message>
+	<message key="director.paper.clearReview">Очистити рецензію</message>
+	<message key="director.paper.enterRecommendation">Ввести рекомендацію</message>
+	<message key="director.paper.enterReviewerRecommendation">Ввести рекомендації рецензенту</message>
+	<message key="director.paper.recommendation">Рекомендації</message>
+	<message key="director.paper.selectReviewer">Вибрати рецензента</message>
+	<message key="director.paper.replaceReviewer">Замінити рецензента</message>
+	<message key="director.paper.directorToEnter">Голова мусить внести рекомендації/коментарі для рецензента</message>
+	<message key="director.paper.uploadReviewForReviewer">Завантажити рецензію</message>
+	<message key="director.paper.peerReviewOptions">Властивості експертної оцінки</message>
+	<message key="director.paper.decision">Рішення</message>
+	<message key="director.paper.recordDecision">Запам’ятати вибір</message>
+	<message key="director.paper.cannotRecord">Неможливо записати рішення; не визначений відповідальний (голова секції) або ще не завантажена рецензія.</message>
+	<message key="director.paper.cannotRecordYet">Перед тим як можна записати рішення, документ має бути закріпленим за головою секції. Версія рецензії, по замовчуванню, є версією голови секції.</message>
+	<message key="director.paper.cannotRecordTooLate">Документ завершив дану стадію рецензування. Ви більше не можете змінювати це рішення.</message>
+	<message key="director.paper.designateDueDate">Призначення дати завершення</message>
+	<message key="director.paper.designateDueDateDescription">Для зміни дати завершення рецензії рецензентом, введіть іншу дату або зітріть дату та введіть число тижнів до завершення рецензування.</message>
+	<message key="director.paper.todaysDate">Сьогоднішня дата</message>
+	<message key="director.paper.requestedByDate">Прохання за датою</message>
+	<message key="director.paper.dueDateFormat">Формат: YYYY-MM-DD</message>
+	<message key="director.paper.numberOfWeeks">Кількість тижнів</message>
+	<message key="director.paper.showAuthor">Дозволити автору обгяладти файл</message>
+	<message key="director.paper.rateReviewer">Оцініть рецензента</message>
+	<message key="director.paper.reviewerRating.veryGood">5 Дуже добре</message>
+	<message key="director.paper.reviewerRating.good">4</message>
+	<message key="director.paper.reviewerRating.average">3 Середньо</message>
+	<message key="director.paper.reviewerRating.poor">2</message>
+	<message key="director.paper.reviewerRating.veryPoor">1 Низько</message>
+	<message key="director.paper.quality">Рейтинг</message>
+	<message key="director.paper.comments">Коментарі</message>
+	<message key="director.paper.commentsRequired">Поле коментарів є обов’язковим.</message>
+	<message key="director.paper.archiveSubmission">Відхилити та заархівувати документ</message>
+	<message key="director.paper.restoreToQueue">Відновити до списку активних</message>
+	<message key="director.paper.assignTrackDirector">Додати голову секції</message>
+	<message key="director.paper.assignDirector">Додати голову</message>
+	<message key="director.paper.selectDirector">Вибрати {$roleName}</message>
+	<message key="director.paper.selectDecision">Вибрати рішення</message>
+	<message key="director.paper.decision.invitePresentation">Запросити презентацію</message>
+	<message key="director.paper.decision.accept">Прийняти документ</message>
+	<message key="director.paper.decision.pendingRevisions">Необхідні рецензії</message>
+	<message key="director.paper.decision.decline">Відхилити документ</message>
+	<message key="director.paper.moveToLayout">Перемістити на макет</message>
+	<message key="director.paper.createGalley">Документ готовий для публікації.</message>
+	<message key="director.paper.completeReview">Відзначити рецензію, як завершену</message>
+	<message key="director.paper.scheduleSubmission">Відправити</message>
+	<message key="director.submissions.showBy">Відобразити до</message>
+	<message key="director.submissions.submitMMDD">Подання MM-DD</message>
+	<message key="director.submissions.activeAssignments">Активні завдання</message>
+	<message key="director.submissions.invite">Запросити</message>
+	<message key="director.submissions.accept">Прийняти</message>
+	<message key="director.submissions.noSubmissions">Немає надходжень</message>
+	<message key="director.submissions.lastAssigned">Останній</message>
+	<message key="director.submissions.averageTime">Тижні</message>
+	<message key="director.submissions.lastCompleted">Останній завершений</message>
+	<message key="director.submissions.assignedTo">Призначено до</message>
+	<message key="director.submissions.inTrack">У секції</message>
+</locale>
