@@ -11,24 +11,24 @@
   *
   -->
 
-<locale name="en_US" full_name="U.S. English">
-	<message key="default.paperType.individual.name">Individual Submission</message>
+<locale name="uk_UA" full_name="Ukraine">
+	<message key="default.paperType.individual.name">Індивідуальна заява</message>
 	<message key="default.paperType.individual.description"></message>
-	<message key="default.paperType.panel.name">Panel Submission</message>
+	<message key="default.paperType.panel.name">Панель заяв</message>
 	<message key="default.paperType.panel.description"></message>
-	<message key="track.default.title">General Papers</message>
+	<message key="track.default.title">Загальні документи</message>
 	<message key="track.default.abbrev">GEN</message>
 	<message key="track.default.policy"></message>
-	<message key="default.conferenceSettings.copyrightNotice"><![CDATA[Authors who submit to this conference agree to the following terms:<br/>
-<strong>a)</strong>&nbsp;Authors retain copyright over their work, while allowing the conference to place this unpublished work under a <a href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution License</a>, which allows others to freely access, use, and share the work, with an acknowledgement of the work's authorship and its initial presentation at this conference.<br/>
-<strong>b)</strong>&nbsp;Authors are able to waive the terms of the CC license and enter into separate, additional contractual arrangements for the non-exclusive distribution and subsequent publication of this work (e.g., publish a revised version in a journal, post it to an institutional repository or publish it in a book), with an acknowledgement of its initial presentation at this conference.<br/>
-<strong>c)</strong>&nbsp;In addition, authors are encouraged to post and share their work online (e.g., in institutional repositories or on their website) at any point before and after the conference.]]></message>
+	<message key="default.conferenceSettings.copyrightNotice"><![CDATA[Автори, які подаються на  цю конференцію згодні з наступними умовами:<br/>
+<strong>a)</strong>&nbsp;Автори зберігають авторське право на свої роботи, дозволяючи конференції розмiстити дані неопубліковані роботи по <a href="http://creativecommons.org/licenses/by/3.0/">Ліцензія загальної творчої атрибуції</a>,яка дозволяє іншим вільний доступ, користуватися і обмінюватися роботами, з підтвердженням авторства твору та його первісного подання на цій конференції.<br/>
+<strong>б)</strong>&nbsp;Автори можуть відмовитися від умов ліцензії CC і увійти в окремих, додаткових контрактах на невиключний розподіл і подальшу публікацію цієї роботи (наприклад, опублікувати переглянутий варіант в журналі, розмістити його на інституційний репозитор або опублікувати її в книзі), з визнанням його первісного подання на цій конференції. <br/>
+<strong>в)</strong>&nbsp;Крім того, авторам рекомендується розміщувати і обмінюватися роботами в Інтернеті (наприклад, в інституціональному репозиторі або на їх сайті) в будь-якій точці до і після конференції.]]></message>
 
-	<message key="default.schedConfSettings.checklist.notPreviouslyPublished">The submission has not been previously published, nor is it before another conference for consideration (or an explanation has been provided in Comments to the Director).</message>
-	<message key="default.schedConfSettings.checklist.fileFormat">The submission file is in OpenOffice, Microsoft Word, RTF, or WordPerfect document file format.</message>
-	<message key="default.schedConfSettings.checklist.addressesLinked"><![CDATA[All URL addresses in the text (e.g., <a href="http://pkp.sfu.ca">http://pkp.sfu.ca</a>) are activated and ready to click.]]></message>
-	<message key="default.schedConfSettings.checklist.submissionAppearance">The text is single-spaced; uses a 12-point font; employs italics, rather than underlining (except with URL addresses); and all illustrations, figures, and tables are placed within the text at the appropriate points, rather than at the end.</message>
-	<message key="default.schedConfSettings.checklist.anonymous">If submitting to a peer-reviewed track of the conference, authors' names are removed from submission, with "Author" and year used in the bibliography and footnotes, instead of authors' name, paper title, etc.</message>
+	<message key="default.schedConfSettings.checklist.notPreviouslyPublished">Заява не була раніше опублікована, так само як і перед іншою конференції для розгляду (або пояснення були представлені в Коментарях до Директора).</message>
+	<message key="default.schedConfSettings.checklist.fileFormat">Файл заяви є у форматі  OpenOffice, Microsoft Word, RTF або WordPerfect.</message>
+	<message key="default.schedConfSettings.checklist.addressesLinked"><![CDATA[Усі URL адреси в тексті (наприклад, <a href="http://pkp.sfu.ca">http://pkp.sfu.ca</a>) активовані і готові бути натиснутими.]]></message>
+	<message key="default.schedConfSettings.checklist.submissionAppearance">Текст написано через один інтервал; використовує 12-ий шрифт; використовує курсив, а не підкреслення (окрім як з URL-адресами) і всі ілюстрації, малюнки і таблиці поміщаються в тексті у відповідних місці, а не в кінці .</message>
+	<message key="default.schedConfSettings.checklist.anonymous">Якщо подавати заяву в рецензований трек конференції, імена авторів будуть видалені із заяви разом з «Автор» і роками, що  використовується в бібліографії і виноски, на відмінно від ім'я автора, назви статті, і т.д.</message>
 	<message key="default.schedConfSettings.checklist.personalInformationRemoved">If submitting to peer review, all Microsoft Office documents (including Supplementary Files) have been saved by going to File and selecting Save As; clicking Tools (or Options in a Mac); clicking Security; selecting "Remove personal information from file properties on save"; clicking Save.</message>
 	<message key="default.conferenceSettings.privacyStatement">The names and email addresses entered in this conference site will be used exclusively for the stated purposes of this conference and will not be made available for any other purpose or to any other party.</message>
 	<message key="default.conferenceSettings.authorSelfArchivePolicy">Authors are permitted to post their papers on personal or institutional websites prior to and after publication by this conference (while providing the bibliographic details of that publication).</message>
