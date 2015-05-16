@@ -1,3 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../lib/pkp/dtd/locale.dtd">
+
 <!--
 
   * ocs2-devel/locale/ru_RU/author.xml
@@ -7,7 +10,7 @@
   * Contributed by Artem Gusarenko
   * Localization strings for the ru_RU (Russian) locale.
   *
-
+  * $Id$
 -->
 <locale name="ru_RU" full_name="Russian">
 <message key="author.submit">Новые материалы</message>

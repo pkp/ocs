@@ -9,7 +9,7 @@
   * Localized email templates XML file.
   *
   -->
-<email_texts locale="uk__UA">
+<email_texts locale="uk_UA" full_name="Ukraine">
 	<email_text key="NOTIFICATION">
 		<subject>New notification from {$siteTitle}</subject>
 		<body>You have a new notification from {$siteTitle}:
