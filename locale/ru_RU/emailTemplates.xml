@@ -8,6 +8,7 @@
   * Contributed by Artem Gusarenko
   * Localized email templates XML file.
   *
+  * $Id$
   -->
 <email_texts locale="ru_RU">
 	<email_text key="NOTIFICATION">

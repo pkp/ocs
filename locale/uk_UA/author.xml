@@ -117,8 +117,8 @@
 	<message key="author.submit.suppFile.form.descriptionRequired">Будь ласка, введіть опис.</message>
 	<message key="author.suppFile.suppFilePublicIdentificationExists">Оприлюднений додатковий файл ідентифікації не існує.</message>
 	<message key="author.suppFile.publicSuppFileIdentifier">Ідентифікатор оприлюдненого додаткового файлу</message>
-	<message key="author.submit.addSubmissionFile">Додайте додатковий файл/message>
-	<message key="author.submit.submissionFileUpload">Додатковий файл/message>
+	<message key="author.submit.addSubmissionFile">Додайте додатковий файл</message>
+	<message key="author.submit.submissionFileUpload">Додатковий файл</message>
 	<message key="author.submit.confirmationDescription">Щоб відправити рукопис до  {$conferenceTitle} натисніть кнопку "Завершити заяву". Власник заяви отримає підтвердження по електронній пошті і зможете переглянути хід подання через редакційний процес входу в систему на веб-сайті конференції. Дякуємо Вам за інтерес, проявлений до публікації {$conferenceTitle}. </message>
 	<message key="author.submit.noFiles">Жоден файл не був прикріплений до даної заяви.</message>
 	<message key="author.submit.filesSummary">Підсумок файлів</message>
