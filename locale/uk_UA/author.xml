@@ -51,8 +51,8 @@
 	<message key="author.submit.conferenceTrack">Дані відсліджування Конференції</message>
 	<message key="author.submit.conferenceTrackDescription"><![CDATA[Вберіть потроібний трек для цієї заяви (див. <a href="{$aboutUrl}" target="_new">Політика відслідковування</a>).]]></message>
 	<message key="author.submit.selectTrack">Будь ласка, виберіть трек...</message>
-	<message key="author.submit.submissionLocale">Submission Language</message>
-	<message key="author.submit.submissionLocaleDescription">This conference accepts submissions in several languages. Choose the primary language of the submission from the pulldown below.</message>
+	<message key="author.submit.submissionLocale">Мова подання</message>
+	<message key="author.submit.submissionLocaleDescription">Ця конференція дозволяє подання кількома мовами. Виберіть основну мову у переліку нижче.</message>
 	<message key="author.submit.submissionChecklist">Контрольний список заяв</message>
 	<message key="author.submit.submissionChecklistDescription">Визначте чи ця заява готова для розгляду в цій конференції, перевіривши наступне (коментарі до директора можуть бути додані нижче).</message>
 	<message key="author.submit.verifyChecklist">Перш ніж продовжити ви повинні переконатися, що всі елементи в поданому переліку задоволені.</message>
