@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE email_texts SYSTEM "../../../../../lib/pkp/dtd/emailTemplateData.dtd">
+<!--
+  * plugins/paymethod/manual/locale/uk_UA/emailTemplates.xml
+  *
+  * Copyright (c) 2003-2013 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localized email templates XML file.
+  *
+  * Translated by Denys Solovianenko, 2011
+  * V. I. Vernadsky National Library of Ukraine
+  -->
+<email_texts locale="uk_UA">
+       <email_text key="MANUAL_PAYMENT_NOTIFICATION">
+               <subject>Інформування про платіж</subject>
+               <body>На рахунок журналу {$journalName} користувачем {$userFullName} (username "{$userName}") повинен бути перерахований платіж.
+
+Це плата за "{$itemName}".
+Сума платежу {$itemCost} ({$itemCurrencyCode}).
+
+Цей лист був створений модулем ручних платежів системи Open Journal Systems.</body>
+               <description>Цей шаблон листа використовується для інформування менеджера журнала про запит на здійснення ручного платежу.</description>
+       </email_text>
+</email_texts>
