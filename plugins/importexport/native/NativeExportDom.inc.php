@@ -56,6 +56,15 @@ class NativeExportDom {
 
 	function &generatePaperDom(&$doc, &$schedConf, &$track, &$paper) {
 		$root =& XMLCustomWriter::createElement($doc, 'paper');
+		if ($sessionType = $paper->getData('sessionType')) {
+			$paperTypeDao =& DAORegistry::getDAO('PaperTypeDAO');
+			$paperTypes = $paperTypeDao->getPaperTypes($paper->getSchedConfId());
+			$paperTypesArray = array();
+			while ($paperType = $paperTypes->next()) {
+				$paperTypesArray[$paperType->getId()] = $paperType;
+			}
+			XMLCustomWriter::setAttribute($root, 'session_type', $paperTypesArray[$sessionType]->getLocalizedName());
+		}
 
 		/* --- PaperID --- */
 		XMLCustomWriter::createChildWithText($doc, $root, 'id', $paper->getId());
@@ -160,19 +169,20 @@ class NativeExportDom {
 
 		XMLCustomWriter::createChildWithText($doc, $root, 'pages', $paper->getPages(), false);
 
-		XMLCustomWriter::createChildWithText($doc, $root, 'date_published', NativeExportDom::formatDate($paper->getDatePublished()), false);
+		if (is_a($paper, 'PublishedPaper')) {
+			XMLCustomWriter::createChildWithText($doc, $root, 'date_published', NativeExportDom::formatDate($paper->getDatePublished()), false);
 
-
-		/* --- Galleys --- */
-		foreach ($paper->getGalleys() as $galley) {
-			$galleyNode =& NativeExportDom::generateGalleyDom($doc, $schedConf, $paper, $galley);
-			if ($galleyNode !== null) XMLCustomWriter::appendChild($root, $galleyNode);
-			unset($galleyNode);
-
+			/* --- Galleys --- */
+			foreach ($paper->getGalleys() as $galley) {
+				$galleyNode =& NativeExportDom::generateGalleyDom($doc, $schedConf, $paper, $galley);
+				if ($galleyNode !== null) XMLCustomWriter::appendChild($root, $galleyNode);
+				unset($galleyNode);
+			}
 		}
 
 		/* --- Supplementary Files --- */
-		foreach ($paper->getSuppFiles() as $suppFile) {
+		$suppFileDao =& DAORegistry::getDAO('SuppFileDAO');
+		foreach ($suppFileDao->getSuppFilesByPaper($paper->getId()) as $suppFile) {
 			$suppNode =& NativeExportDom::generateSuppFileDom($doc, $schedConf, $paper, $suppFile);
 			if ($suppNode !== null) XMLCustomWriter::appendChild($root, $suppNode);
 			unset($suppNode);			

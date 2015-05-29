@@ -61,13 +61,13 @@ class NativeImportExportPlugin extends ImportExportPlugin {
 		switch (array_shift($args)) {
 			case 'exportPaper':
 				$paperIds = array(array_shift($args));
-				$result = array_shift(PaperSearch::formatResults($paperIds));
+				$result = array_shift(PaperSearch::formatResults($paperIds, true));
 				$this->exportPaper($schedConf, $result['track'], $result['publishedPaper']);
 				break;
 			case 'exportPapers':
 				$paperIds = Request::getUserVar('paperId');
 				if (!isset($paperIds)) $paperIds = array();
-				$results =& PaperSearch::formatResults($paperIds);
+				$results =& PaperSearch::formatResults($paperIds, true);
 				$this->exportPapers($results);
 				break;
 			case 'papers':
@@ -79,7 +79,7 @@ class NativeImportExportPlugin extends ImportExportPlugin {
 				$totalPapers = count($paperIds);
 				if ($rangeInfo->isValid()) $paperIds = array_slice($paperIds, $rangeInfo->getCount() * ($rangeInfo->getPage()-1), $rangeInfo->getCount());
 				import('core.VirtualArrayIterator');
-				$iterator = new VirtualArrayIterator(PaperSearch::formatResults($paperIds), $totalPapers, $rangeInfo->getPage(), $rangeInfo->getCount());
+				$iterator = new VirtualArrayIterator(PaperSearch::formatResults($paperIds, true), $totalPapers, $rangeInfo->getPage(), $rangeInfo->getCount());
 				$templateMgr->assign_by_ref('papers', $iterator);
 				$templateMgr->display($this->getTemplatePath() . 'papers.tpl');
 				break;
@@ -168,6 +168,10 @@ class NativeImportExportPlugin extends ImportExportPlugin {
 
 		foreach ($results as $result) {
 			$paper =& $result['publishedPaper'];
+			if (!$paper) {
+				unset($paper);
+				$paper =& $result['paper'];
+			}
 			$track =& $result['track'];
 			$conference =& $result['conference'];
 			$schedConf =& $result['schedConf'];
@@ -345,7 +349,7 @@ class NativeImportExportPlugin extends ImportExportPlugin {
 						}
 						return;
 					case 'papers':
-						$results =& PaperSearch::formatResults($args);
+						$results =& PaperSearch::formatResults($args, true);
 						if (!$this->exportPapers($results, $xmlFile)) {
 							echo __('plugins.importexport.native.cliError') . "\n";
 							echo __('plugins.importexport.native.export.error.couldNotWrite', array('fileName' => $xmlFile)) . "\n\n";

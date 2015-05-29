@@ -83,13 +83,15 @@
   * NOTES:
   *  - Locale attribute value must correspond to the paper's
   *    additional locales, if enabled, otherwise an error will be displayed.
-  * - When exporting papers, there will be an <id> element for each
+  *  - When exporting papers, there will be an <id> element for each
   *    paper.  The <id> will be ignored on import.
+  *  - The session_type attribute is output-only and will not be imported.
   -->
 <!ELEMENT paper (id?, title+, abstract*, indexing?, sponsor*, author*, pages?, date_published, open_access?, (galley?, htmlgalley?)+, supplemental_file*)>
 	<!ATTLIST paper
 		public_id CDATA #IMPLIED
-		language CDATA "en">
+		language CDATA "en"
+		session_type CDATA #IMPLIED>
 
 <!ELEMENT author (firstname, middlename?, lastname, affiliation?, country?, email, url?, biography*)>
 	<!-- One author should be designated as the primary contact for this

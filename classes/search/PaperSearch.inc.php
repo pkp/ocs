@@ -230,7 +230,7 @@ class PaperSearch {
 	 * Note that this function is also called externally to fetch
 	 * results for the title index, and possibly elsewhere.
 	 */
-	function &formatResults(&$results) {
+	function &formatResults(&$results, $allowUnpublished = false) {
 		$paperDao =& DAORegistry::getDAO('PaperDAO');
 		$publishedPaperDao =& DAORegistry::getDAO('PublishedPaperDAO');
 		$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
@@ -255,14 +255,14 @@ class PaperSearch {
 			$paper =& $paperCache[$paperId];
 			$publishedPaper =& $publishedPaperCache[$paperId];
 
-			if ($publishedPaper && $paper) {
+			if (($publishedPaper || $allowUnpublished) && $paper) {
 				$trackId = $paper->getTrackId();
 				if (!isset($trackCache[$trackId])) {
 					$trackCache[$trackId] =& $trackDao->getTrack($trackId);
 				}
 
 				// Get the conference, storing in cache if necessary.
-				$schedConfId = $publishedPaper->getSchedConfId();
+				$schedConfId = $paper->getSchedConfId();
 				$schedConf =& $schedConfDao->getSchedConf($schedConfId);
 				$conferenceId = $schedConf->getConferenceId();
 				if (!isset($conferenceCache[$conferenceId])) {
@@ -277,7 +277,7 @@ class PaperSearch {
 				}
 
 				// Store the retrieved objects in the result array.
-				if($schedConfAvailabilityCache[$schedConfId]) {
+				if($allowUnpublished || $schedConfAvailabilityCache[$schedConfId]) {
 					$returner[] = array(
 						'paper' => &$paper,
 						'publishedPaper' => &$publishedPaperCache[$paperId],
