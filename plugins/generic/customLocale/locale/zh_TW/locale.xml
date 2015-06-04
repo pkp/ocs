@@ -7,12 +7,12 @@
   * Copyright (c) 2000-2012 John Willinsky
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
   *
-  * Localization strings for the en_US (U.S. English) locale.
+  * Localization strings for the zh_TW (繁體中文) locale.
   *
   * $Id$
   -->
  
-<locale name="en_US" full_name="U.S. English">
+<locale name="zh_TW" full_name="繁體中文">
 	<message key="plugins.generic.customLocale.name">客製化語系插件</message>
 	<message key="plugins.generic.customLocale.description">此客製化的插件可以讓您變更 OCS 使用者介面中的預設的文字內容.</message>
 
