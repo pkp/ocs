@@ -7,12 +7,12 @@
   * Copyright (c) 2000-2012 John Willinsky
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
   *
-  * Localization strings for the en_US (U.S. English) locale.
+  * Localization strings for the it_IT (Italiano) locale.
   *
   * $Id$
   -->
  
-<locale name="en_US" full_name="U.S. English">
+<locale name="it_IT" full_name="Italiano">
 	<message key="plugins.generic.customBlockManager.displayName">Gestione di blocchi personalizzati</message>
 	<message key="plugins.generic.customBlockManager.description">Questo plugin permette la gestione personalizzata di blocchi nella barra laterale. E' possibile modificare i blocchi nelle impostazioni di ogni plugin.</message>	
 	<message key="plugin.generic.customBlockManager.introduction"><![CDATA[You can use this plugin to add or delete custom block plugins.  You can then edit the content through the <a href="{$systemPluginsUrl}">System Plugins</a> page (in the Blocks Plugin section).  To place your plugin in the desired location in the sidebar, go to <a href="{$setupStep4}">Setup step 4</a>]]></message>
