@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * plugins/generic/announcementFeed/locale/ru_RU/locale.xml
+  *
+  * Copyright (c) 2003-2013 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the ru_RU (Russian) locale.
+  *
+  -->
+ 
+<locale name="ru_RU" full_name="Russian">
+	<message key="plugins.generic.announcementfeed.displayName">Модуль ленты объявлений</message>
+	<message key="plugins.generic.announcementfeed.description">Модуль производит ленту в формате RSS/Atom, которая содержит объявления конференции.</message>
+	
+	<message key="plugins.generic.announcementfeed.settings">Настройки</message>
+	<message key="plugins.generic.announcementfeed.settings.all">Показать ссылки на ленту на всех страницах конференции.</message>
+	<message key="plugins.generic.announcementfeed.settings.homepage">Показать ссылки на ленту только на домашней странице и на странице объявлений.</message>
+	<message key="plugins.generic.announcementfeed.settings.announcement">Показать ссылки на ленту только на странице объявлений.</message>
+	<message key="plugins.generic.announcementfeed.settings.recentAnnouncements1">Ограничить ленту</message>
+	<message key="plugins.generic.announcementfeed.settings.recentAnnouncements2">наиболее свежими объявлениями.</message>
+	<message key="plugins.generic.announcementfeed.settings.recentItemsRequired">Пожалуйста введите положительное целое число.</message>
+	<message key="plugins.generic.announcementfeed.atom.altText">Логотип Atom</message>
+	<message key="plugins.generic.announcementfeed.rss1.altText">Логотип RSS1</message>
+	<message key="plugins.generic.announcementfeed.rss2.altText">Логотип RSS2</message>
+</locale>

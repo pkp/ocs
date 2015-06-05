@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * plugins/generic/staticPages/locale/uk_UA/locale.xml
+  *
+  * Copyright (c) 2003-2013 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the ru_RU (Russian) locale.
+  *
+  -->
+ 
+<locale name="ru_RU" full_name="Russian">
+       <message key="plugins.generic.staticPages.displayName">Модуль статических страниц</message>
+       <message key="plugins.generic.staticPages.description">Этот модуль позволяет управления статическим содержимым.</message>
+       <message key="plugins.generic.staticPages.pageTitle">Название</message>
+       <message key="plugins.generic.staticPages.content">Содержание</message>
+
+       <message key="plugins.generic.staticPages.path">Путь</message>
+       <message key="plugins.generic.staticPages.requirement.tinymce"><![CDATA[<strong>Для получения возможностей добавления/изменения содержимого нужно установить и разрешить модуль TinyMCE.</strong>]]></message>
+
+       <message key="plugins.generic.staticPages.editAddContent">Редактировать/добавить содержимое</message>
+
+       <message key="plugins.generic.staticPages.addStaticPage">Добавить статическую страницу</message>
+       <message key="plugins.generic.staticPages.addNewPage">Додати нову сторінку</message>
+       <message key="plugins.generic.staticPages.editStaticPage">Редактировать статическую страницу</message>        
+
+       <message key="plugins.generic.staticPages.settingInstructions">В форме ниже отображаются все созданные Вами статические страницы. Вы можете редактировать или удалять эти страницы, используя ссылки справа от них.</message>
+       <message key="plugins.generic.staticPages.editInstructions">Используйте форму ниже для добавления/изменения содержания страницы.</message>
+       <message key="plugins.generic.staticPages.viewInstructions"><![CDATA[Страницы станут доступными по адресам: {$pagesPath}, где %PATH% - это избранное Вами значение. <strong>Примечание:</strong> Разные страницы не могут иметь одинаковый путь.]]></message>
+       <message key="plugins.generic.staticPages.duplicatePath">Этот путь уже используется другой статической страницы.</message>
+       
+       <message key="plugins.generic.staticPages.pageSaved">Страница успешно сохранена.</message>
+       <message key="plugins.generic.staticPages.pageDeleted">Страница успешно удалена.</message>
+       
+       <message key="plugins.generic.staticPages.noneExist">Никаких страниц не было создано</message>
+</locale>
