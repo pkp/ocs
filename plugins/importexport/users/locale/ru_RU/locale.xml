@@ -12,7 +12,6 @@
   -->
  
 <locale name="ru_RU" full_name="Russian">
-	<!-- FIXME: We need a Russian translation. -->
 	<message key="plugins.importexport.users.displayName">Модуль учетных записей в XML</message>
 	<message key="plugins.importexport.users.description">Импорт и экспорт пользователей в формате XML.</message>
 	<message key="plugins.importexport.users.cliUsage">Вызов: {$scriptName} {$pluginName} [command] ...

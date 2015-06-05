@@ -12,7 +12,6 @@
   -->
  
 <locale name="ru_RU" full_name="Russian">
-	<!-- FIXME: We need a Russian translation. -->
 	<message key="plugins.auth.ldap.displayName">LDAP</message>
 	<message key="plugins.auth.ldap.description">Этот модуль поддерживает авторизацию и синхронизацию пользовательских учетных записей с внешней базой данных LDAP.</message>
 	<message key="plugins.auth.ldap.settings">Настройки LDAP</message>

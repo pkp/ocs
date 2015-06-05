@@ -6,18 +6,18 @@
   * Copyright (c) 2000-2012 John Willinsky
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
   *
-  * Localization strings for the en_US (English) locale.
+  * Localization strings for the uk_UA (Ukraine) locale.
   *
   -->
 <locale name="uk_UA" full_name="Ukraine">
-	<message key="admin.languages.downloadUnavailable"><![CDATA[<p>Downloading language packs from the Public Knowledge Project web server is not currently available because:</p>
+	<message key="admin.languages.downloadUnavailable"><![CDATA[<p>DЗавантаження мовних пакетів локалізації з веб-серверу Public Knowledge Project на данй момент недоступне бо:</p>
 	<ul>
-		<li>Your server does not have or allow execution of the GNU "tar" utility</li>
-		<li>OCS is unable to modify the locale registry file, typically "registry/locales.xml".</li>
+		<li>На Вашому сервері відсутня або заборонена до виконання GNU утиліта "tar"</li>
+		<li>OCS не може змінити файл реєстрації локалізацій, звичайно "registry/locales.xml".</li>
 	</ul>
-<p>Language packs can be manually downloaded from the <a href="http://pkp.sfu.ca">PKP web site</a>.</p>]]></message>
+<p>Мовні пакети можна завантажити вручну з <a href="http://pkp.sfu.ca">PKP веб-сайту</a>.</p>]]></message>
 
-	<message key="admin.languages.confirmDisable">Are you sure you want to disable this locale? This may affect any hosted conferences currently using the locale.</message>
+	<message key="admin.languages.confirmDisable">Ви впевнені, що хочете вимкнути дану мову локалізації? Це вплине на кожну конференцію, що зараз використоавує цю мову локалізаці.</message>
 	<message key="admin.languages.primaryLocaleInstructions">Це буде мовою сайту і будь-якої розміщенної на сайті конференції за замовчуванням.</message>
 	<message key="admin.languages.supportedLocalesInstructions">Виберіть мову для підтримки на сайті. Вибрані мови будуть доступні для використання всім конференціям розміщених на сайті, а також з'являться в меню вибору мов на кожній сторінці сайту(які можна змінмити для конкретних конференцій). Якщо не буде вибрано декілька мов для сайту, то перемикач мов не з'явиться і розширині налаштування вибору мови не будуть доступні для конференцій.</message>
 	<message key="admin.locale.maybeIncomplete">Позначені мови можуть бути незавершеними. </message>
