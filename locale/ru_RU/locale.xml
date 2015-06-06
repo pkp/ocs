@@ -622,7 +622,7 @@
 	<message key="installer.installationComplete"><![CDATA[<p>Установка системы успешно завершена.</p>
 <p>Чтобы начать использовать систему, <a href="{$createUrl}">войдите</a> с именем и паролем введя его на предыдущей странице.</p>]]></message>
 	<message key="installer.upgradeComplete"><![CDATA[<p>Обновление системы до версии {$version} успешно завершено.</p>
-<p>Не забудьте установить "installed" настройку в Вашем config.inc.php конфигурационном файле обратно на <em>On</em>.</p><p> , <strong>  <a href="" target="_new"> </a>.</strong>   <a href=" " target="_new"> </a>.</p>]]></message>
+<p>Не забудьте установить "installed" настройку в Вашем config.inc.php конфигурационном файле обратно на <em>On</em>.</p><p>Если Вы не зарегистрированы но хотите получать обновления и новости, <strong>пожалуйста зарегистрируйтесь на <a href="http://pkp.sfu.ca/ocs/register" target="_new">http://pkp.sfu.ca/ocs/register</a>.</strong> Если у Вас есть вопросы или комментарии, пожалуйста посетите <a href="http://pkp.sfu.ca/support/forum" target="_new">форум поддержки</a>.</p>]]></message>
 
 	<!-- Installation upgrade warnings -->
 	<!-- Paper Logs -->

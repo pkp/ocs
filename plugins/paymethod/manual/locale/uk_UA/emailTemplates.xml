@@ -13,13 +13,13 @@
   -->
 <email_texts locale="uk_UA">
        <email_text key="MANUAL_PAYMENT_NOTIFICATION">
-               <subject>Інформування про платіж</subject>
-               <body>На рахунок журналу {$journalName} користувачем {$userFullName} (username "{$userName}") повинен бути перерахований платіж.
+		<subject>Інформування про платіж</subject>
+		<body>На рахунок конференції {$schedConfName} користувачем {$userFullName} (username "{$userName}") повинен бути перерахований платіж.
 
 Це плата за "{$itemName}".
 Сума платежу {$itemCost} ({$itemCurrencyCode}).
 
-Цей лист був створений модулем ручних платежів системи Open Journal Systems.</body>
-               <description>Цей шаблон листа використовується для інформування менеджера журнала про запит на здійснення ручного платежу.</description>
-       </email_text>
+Цей лист був створений модулем ручних платежів системи Open Conference Systems.</body>
+		<description>Цей шаблон листа використовується для інформування менеджера журнала про запит на здійснення ручного платежу.</description>
+	</email_text>
 </email_texts>

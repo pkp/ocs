@@ -70,9 +70,9 @@
 	<message key="plugins.importexport.native.import.error.couldNotCopy">Вказана адреса URL "{$url}" не може бути скопійована до локального файлу.</message>
 	<message key="plugins.importexport.native.import.error.paperTitleLocaleUnsupported">Назву статті ("{$paperTitle}") вказано на мові ("{$locale}") що не підтримується у цій конференції.</message>
 	<message key="plugins.importexport.native.import.error.paperAbstractLocaleUnsupported">Аннотацію до статті "{$paperTitle}" подано в локалізації ("{$locale}") що не підтримується у цій конференції.</message>
-	<message key="plugins.importexport.native.import.error.galleyLabelMissing">Стаття "{$articleTitle}" у розділі "{$trackTitle}" не має мітки гранки.</message>
-	<message key="plugins.importexport.native.import.error.suppFileMissing">Стаття "{$articleTitle}" у розділі "{$trackTitle}" не має супровідного файлу.</message>
-	<message key="plugins.importexport.native.import.error.galleyFileMissing">Стаття "{$articleTitle}" у розділі "{$trackTitle}" не має файлу гранки.</message>
+	<message key="plugins.importexport.native.import.error.galleyLabelMissing">Стаття "{$paperTitle}" у розділі "{$trackTitle}" не має мітки гранки.</message>
+	<message key="plugins.importexport.native.import.error.suppFileMissing">Стаття "{$paperTitle}" у розділі "{$trackTitle}" не має супровідного файлу.</message>
+	<message key="plugins.importexport.native.import.error.galleyFileMissing">Стаття "{$paperTitle}" у розділі "{$trackTitle}" не має файлу гранки.</message>
 
 	<message key="plugins.importexport.native.import.error.trackTitleLocaleUnsupported">Назву розділу ("{$trackTitle}") вказано на мові ("{$locale}") що не підтримується у цій конференції.</message>
 	<message key="plugins.importexport.native.import.error.trackAbbrevLocaleUnsupported">Аббревіатуру назви розділу ("{$trackAbbrev}") вказано на мові ("{$locale}") що не підтримується у цій конференції.</message>
@@ -96,7 +96,7 @@
 	<message key="plugins.importexport.native.import.error.paperAuthorCompetingInterestsLocaleUnsupported">Перелік інтересів автра "{$authorFullName}" статті "{$paperTitle}" вказано на мові ("{$locale}") що не підтримується у цій конференції.</message>
 	<message key="plugins.importexport.native.import.error.paperAuthorBiographyLocaleUnsupported">Біогрфія автора "{$authorFullName}" статті "{$paperTitle}" представлена на мові ("{$locale}") що не підтримується у цій конференції.</message>
 
-	<message key="plugins.importexport.native.import.error.galleyLocaleUnsupported">Гранка статті "{$articleTitle}"  представлена на мові "{$locale}", що не підтримується у цій конференції.</message>
+	<message key="plugins.importexport.native.import.error.galleyLocaleUnsupported">Гранка статті "{$paperTitle}" представлена на мові "{$locale}", що не підтримується у цій конференції.</message>
 
 	<message key="plugins.importexport.native.import.error.paperSuppFileTitleLocaleUnsupported">Назву супровідного файлу ("{$suppFileTitle}") статті "{$paperTitle}" вказано на мові ("{$locale}") що не підтримується у цій конференції.</message>
 	<message key="plugins.importexport.native.import.error.paperSuppFileCreatorLocaleUnsupported">Автора супровідного файлу "{$suppFileTitle}" статті "{$paperTitle}" вказано на мові ("{$locale}") що не підтримується у цій конференції.</message>
