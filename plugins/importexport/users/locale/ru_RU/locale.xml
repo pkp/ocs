@@ -14,7 +14,7 @@
 <locale name="ru_RU" full_name="Russian">
 	<message key="plugins.importexport.users.displayName">Модуль учетных записей в XML</message>
 	<message key="plugins.importexport.users.description">Импорт и экспорт пользователей в формате XML.</message>
-	<message key="plugins.importexport.users.cliUsage">Вызов: {$scriptName} {$pluginName} [command] ...
+	<message key="plugins.importexport.users.cliUsage"><![CDATA[Вызов: {$scriptName} {$pluginName} [command] ...
 Команды:
 	import [xmlFileName] [journal_path] [optional flags]
 	export [xmlFileName] [journal_path]
@@ -38,6 +38,8 @@
 	{$scriptName} {$pluginName} export myExportFile.xml myJournal reviewer</message>
 	<message key="plugins.importexport.users.import.importUsers">Импортировать записи</message>
 	<message key="plugins.importexport.users.import.instructions"><![CDATA[Выберите файл XML, содержащий пользовательские данные, для импорта в этот журнал. Относительно деталей формата этого файла смотрите подсказку.<br /><br />Заметьте, что если импортируемый файл содержит имена пользователей или почтовые адреса уже присутствующие в системе, профили этих пользователей импортированы не будут, а любые новые роли будут назначены существующим пользователям.]]></message>
+	<message key="plugins.importexport.users.import.importUsers">Импорт пользователей</message>
+	<message key="plugins.importexport.users.import.instructions"><![CDATA[Выберите файл XML с информацией о пользователях, данные которого будут импортированы в этот журнал. Для получения подробной информации о формате этого файла см. соответствующий раздел помощи. <br/> <br/> Обратите внимание, что если файл для импорта содержит имена пользователей или адреса email, которые уже существуют в системе, данные о таких пользователей не будут импортированы, а те роли, которые должны быть созданы для новых пользователей, будут добавлены существующим пользователям.]]></message>    
 	<message key="plugins.importexport.users.import.failedToImportUser">Ошибка при импорте пользователя</message>
 	<message key="plugins.importexport.users.import.failedToImportRole">Ошибка при назначении пользователя на роль</message>
 	<message key="plugins.importexport.users.import.dataFile">Файл данных пользователей</message>
@@ -48,8 +50,8 @@
 	<message key="plugins.importexport.users.import.errorsOccurred">При импорте произошли ошибки</message>
 	<message key="plugins.importexport.users.import.confirmUsers">Подтвердите, что это и есть пользователи, которых Вы хотите импортировать</message>
 	<message key="plugins.importexport.users.import.warning">Предупреждение</message>
-	<message key="plugins.importexport.users.import.encryptionMismatch">Невозможно использовать пароли, кодированные {$importHash}; OJS использует сейчас {$ojsHash}. Если Вы продолжите, прийдется сбросить пароли импортированных пользователей.</message>
-	<message key="plugins.importexport.users.unknownJournal">Был указан неизвестный путь "{$journalPath}" в журнале.</message>
+	<message key="plugins.importexport.users.import.encryptionMismatch">Невозможно использовать пароли, кодированные {$importHash}; OJS использует сейчас {$ocsHash}. Если Вы продолжите, прийдется сбросить пароли импортированных пользователей.</message>
+	<message key="plugins.importexport.users.unknownSchedConf">Был указан неизвестный путь "{$schedConfPath}" в конференции.</message>
 	<message key="plugins.importexport.users.export.exportUsers">Экспортировать записи</message>
 	<message key="plugins.importexport.users.export.exportByRole">Экспортировать по ролям</message>
 	<message key="plugins.importexport.users.export.exportAllUsers">Экспортировать всех</message>

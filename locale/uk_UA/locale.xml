@@ -6,7 +6,7 @@
   * Copyright (c) 2000-2012 John Willinsky
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
   *
-  * Localization strings for the uk_UA (Ukraine) locale.
+  * Localization strings for the uk_UA (Ukrainian) locale.
   *
   -->
 <locale name="uk_UA" full_name="Ukraine">
@@ -35,7 +35,7 @@
 	<message key="manager.reviewForms">Форми попереднього перегляду</message>
 
 	<message key="manager.reviewForms.list.description">Форми для рецензентів, створені тут будуть представлені рецензентам, для заповнення, замість форми за замовчуванням, яка складається з двох текстових полів, перше "для автора і редактора," і друге "для редактора." Форми рецензування можуть бути призначені спеціальному розділу конференції та редакторам буде доступна опція вибору, яку саме форму використовувати для рецензування. У всіх випадках, редактори матимуть опцію включає рецензії в листування з автором.</message>
-	<message key="manager.reviewForms.noneChosen">Ніщо /Вільний перегляд форми</message>
+	<message key="manager.reviewForms.noneChosen">Ніщо/Вільний перегляд форми</message>
 	<message key="manager.reviewForms.noneCreated">Ніяких форм не було створено.</message>
 	<message key="manager.reviewForms.create">Створити форму перегляду</message>
 	<message key="manager.reviewForms.edit">Форма перегляду</message>
@@ -206,7 +206,7 @@
 	<message key="submission.directorReview">Відгук директора</message>
 	<message key="submission.notifyAuthor">Повідомити автора</message>
 	<message key="submission.notifyDirector">Повідомити директора</message>
-	<message key="submission.directorAuthorRecord">Запис Email Директора /Автора</message>
+	<message key="submission.directorAuthorRecord">Запис Email Директора/Автора</message>
 	<message key="submission.directorVersion">Директорська версія</message>
 	<message key="submission.authorsRevisedVersion">Авторський, переглянутий варіант файлу</message>
 	<message key="submission.authorVersion">Авторська версія</message>
@@ -291,7 +291,7 @@
 	<message key="schedConf.registration.specialRequests">спеціальні запити</message>
 	<message key="schedConf.registration.specialRequests.description">Будь ласка, опишіть будьякі спеціальні вимоги або запити, такі як дієта, доступ, і т.д.</message>
 	<message key="schedConf.registration.account">користувальницький аккаунт</message>
-	<message key="schedConf.registration.loggedInAs"><![CDATA[Зараз Ви авторізовані. Перевірте інформацію облікового запису нижче на коректність. Якщо вона НЕ корректна, скоригуйте її за допомогою ПОСИЛАННЯ <a href="{$profileUrl}">Мій Профіль</a> або <a href="{$logoutUrl}">вийти</a> щоб використовувати інший обліковій Запис.]]></message>
+	<message key="schedConf.registration.loggedInAs"><![CDATA[Зараз Ви авторизовані. Перевірте інформацію облікового запису нижче на коректність. Якщо вона НЕ корректна, скоригуйте її за допомогою ПОСИЛАННЯ <a href="{$profileUrl}">Мій Профіль</a> або <a href="{$logoutUrl}">вийти</a> щоб використовувати інший обліковій Запис.]]></message>
 	<message key="schedConf.registration.createAccount.description"><![CDATA[На даний момент Ви не авторизовані. Для того, щоб зареєструватися на цю конференцію Вам потрібно обліковий запис. Якщо вона у Вас є, <a href="{$loginUrl}">натисніть тут</a>, щоб увійти; в іншому випадку, заповніть інформацією форму нижче, щоб створити обліковий запис.]]></message>
 	<message key="schedConf.registration.options">Реєстраційні опції</message>
 
@@ -390,7 +390,7 @@
 
 	<!-- Site Administration -->
 
-	<message key="admin.settings.oaiRegistrationDescription"><![CDATA[Для того щоб весь вміст конференцій на цьому сайті було проіндексовано в розподілених дослідницьких базах даних, <a href = "http://pkp.sfu.ca/harvester/add.php" target = "_ blank">зареєструйте</a> URL вашого сайту на Public Knowledge Project метаданих <a href="http://pkp.sfu.ca/harvester/" target="_blank">харвестер</a>. Це інструментарій збирає метадані з кожної конференції, включаючи точний і колективний пошук серед дослідницьких сайтів, які дотримуються<a href="http://www.openarchives.org/OAI/openarchivesprotocol.htm#Introduction" target="_blank">Ініціативи відкритого доступу для збору метаданих</a>.
+	<message key="admin.settings.oaiRegistrationDescription"><![CDATA[Для того щоб весь вміст конференцій на цьому сайті було проіндексовано в розподілених дослідницьких базах даних, <a href = "http://pkp.sfu.ca/harvester/add.php" target = "_ blank">зареєструйте</a> URL вашого сайту на Public Knowledge Project метаданих <a href="http://pkp.sfu.ca/harvester/" target="_blank">харвестер</a>. Це інструментарій збирає метадані з кожної конференції, включаючи точний і колективний пошук серед дослідницьких сайтів, які дотримуються <a href="http://www.openarchives.org/OAI/openarchivesprotocol.htm#Introduction" target="_blank">Ініціативи відкритого доступу для збору метаданих</a>.
 <br /><br />
 <a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">Клікніть тут</a> і введіть <span class = "highlight">{$siteUrl}</span > під<strong>URL сайту</strong>, і <span class = "highlight">{$oaiUrl}</span> під<strong>URL основного архіву OAI</strong>.
 <br /><br />
@@ -402,7 +402,7 @@
 </ul>]]></message>
 
 	<!-- System Information -->
-	<message key="admin.overwriteConfigFileInstructions"><![CDATA[<h4>Примітка!</Div><p>Система не могла автоматично перезаписати конфігураційний файл. Щоб застосувати Ваші зміни в конфігурації, Ви повинні відкрити<tt>config.inc.php</tt>файл у текстовому редакторі і замінити його вміст на вміст тексового поля нижче.</p>]]></message>
+	<message key="admin.overwriteConfigFileInstructions"><![CDATA[<h4>Примітка!</Div><p>Система не могла автоматично перезаписати конфігураційний файл. Щоб застосувати Ваші зміни в конфігурації, Ви повинні відкрити <tt>config.inc.php</tt> файл у текстовому редакторі і замінити його вміст на вміст тексового поля нижче.</p>]]></message>
 
 	<!-- Payment Handling -->
 	<message key="payment.type.conferenceRegistration">Реєстрація конференції; {$schedConfTitle}; {$registrationTypeName}</message>
@@ -432,7 +432,7 @@
 <br/><br/>
 Зауважте, що якщо Ваш адміністратор сайту вже зареєстрував сайт в збирача метаданих, Ваша конференція буде проіндексована автоматично і Вам не потрібно буде реєструвати Вашу конференцію.
 <br/><br/>
-<a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">Клікніть тут</a> і введіть <span class = "highlight">{$siteUrl}</span >під<strong>URL сайту</strong>, і <span class = "highlight">{$oaiUrl}</span>під<strong>Основний URL для OAI Архіву</strong>.]]></message>
+<a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">Клікніть тут</a> і введіть <span class = "highlight">{$siteUrl}</span > під<strong>URL сайту</strong>, і <span class = "highlight">{$oaiUrl}</span> під <strong>Основний URL для OAI Архіву</strong>.]]></message>
 
 	<!-- Scheduled Conference Setup Step 2 -->
 	<message key="manager.schedConfSetup.submissions.subjectClassificationDescription"><![CDATA[Конференція буде використовувати предметну класифікацію доступну на веб-сайті.<br/>
@@ -558,8 +558,8 @@
 	<message key="user.account.createAs">Створити обліковий запис як</message>
 	<message key="user.account.privacyStatement">Заява про конфіденційність</message>
 	<message key="user.account.completeForm">Заповніть цю форму для того, щоб створити обліковий запис для цієї конференції.</message>
-	<message key="user.account.hasAccount"><![CDATA[<a href="{$accountUrl}">Клікніть тут</a>якщо ви маєте облікового запису в цій або іншій конференції на цьому сайті.]]></message>
-	<message key="user.account.hasNoAccount"><![CDATA[<a href="{$accountUrl}">Клікніть тут</a>якщо ви<strong>не</strong>маєте облікового запису в цій або іншій конференції на цьому сайті.]]></message>
+	<message key="user.account.hasAccount"><![CDATA[<a href="{$accountUrl}">Клікніть тут</a> якщо ви маєте облікового запису в цій або іншій конференції на цьому сайті.]]></message>
+	<message key="user.account.hasNoAccount"><![CDATA[<a href="{$accountUrl}">Клікніть тут</a> якщо ви<strong>не</strong>маєте облікового запису в цій або іншій конференції на цьому сайті.]]></message>
 	<message key="user.account.loginToRegister">Введіть існуючі ім'я користувача та пароль, для того щоб створити обліковий запис для цієї конференції.</message>
 	<message key="user.account.createAccountDisabled">Ця конференція в даний момент не приймає нових користувачів.</message>
 	<message key="user.account.usernameRestriction">Ім'я користувача повинно містити тільки малі літери, цифри і дефіси /підкреслення.</message>
@@ -591,7 +591,7 @@
 <li>Комбінуйте набо слів з оператором <em>АБО</em>, щоб знайти роботи містять або термін1 або термін2; приклад, <em>освіту АБО дослідження</em></li>
 <li>Використовуйте дужки для створення більш складних запитів; приклад, <em>архів ((журнал АБО конференція) НЕ дисертації)</em></li>
 <li>Іщщіте точні фрази укладаючи її в лапки; приклад, <em>"публікації відкритого доступу"</em></li>
-<li>Виключіть слово за допомогою приміщення префікса перед ним <strong>-</strong> або <em>НЕ</em>; приклад<em>онлайн-політики </em> або <em>онлайн НЕ політики</em></li>
+<li>Виключіть слово за допомогою приміщення префікса перед ним <strong>-</strong> або <em>НЕ</em>; приклад <em>онлайн-політики </em> або <em>онлайн НЕ політики</em></li>
 <li>Використовуйте символ<strong>*</strong>в термах як вайлдкард, щоб порівнювати з будь-якою послідовністю символів; приклад, <em>соціо * мораль</em> співпало б з документами що містять "соціологічний" or "соціальний"</li>
 </ul>]]></message>
 
@@ -686,14 +686,14 @@
 <li><a href="http://www.php.net/" target="_blank">PHP</a>= {$phpRequiredVersion} (включаючи PHP 5.x); зараз ви використовуєте версію PHP {$phpVersion} {$wrongPhpText}</li>
 <li><a href="http://www.mysql.com/" target="_blank">MySQL</a>= 3.23.23 (включаючи MySQL 4.x) або<a href = "http: //www.postgresql.org/"target =" _ blank ">PostgreSQL</a>= 7.1 (включаючи PostgreSQL 8.x)</li>
 <li><a href="http://httpd.apache.org/" target="_blank">Apache</a>= 1.3.2x or>= 2.0.4x або Microsoft IIS 6</li>
-<li>Операційна система: Будь-яка ОС, яка підтримує вище перераховане ПЗ, включаючи <a href="http://www.linux.org/" target="_blank">Linux</a>,<a href = "http : //www.bsd.org/"target =" _ blank ">BSD</a>,<a href="http://www.sun.com/" target="_blank">Solaris</a>,<a href="http://www.apple.com/" target="_blank">Mac OS X</a>,<a href="http://www.microsoft.com/">Windows</a></li>
+<li>Операційна система: Будь-яка ОС, яка підтримує вище перераховане ПЗ, включаючи <a href="http://www.linux.org/" target="_blank">Linux</a>, <a href = "http : //www.bsd.org/"target =" _ blank ">BSD</a>, <a href="http://www.sun.com/" target="_blank">Solaris</a>,<a href="http://www.apple.com/" target="_blank">Mac OS X</a>, <a href="http://www.microsoft.com/">Windows</a></li>
 </ul>
 
 <p>Зміни в цих настройках можуть бути зроблені після установки за допомогою редагування конфігураційного файлу <tt>config.inc.php</tt> в базовій директорії системи, або використовуючи веб-інтерфейс адміністративної частини сайту.</p>
 
 <h4>Підтримувані СУБД</h4>
 
-<p>Система тільки, що була протестована на MySQL і PostgreSQL, хоча інші СУБД підтримуються<a href="http://adodb.sourceforge.net/" target="_blank">ADOdb</a>можуть працювати (повністю або частково). Працює звітів та /або коди патчів для альтернативних СУБД можуть бути відправлені розробнику.</p>
+<p>Система була протестована лише на MySQL і PostgreSQL, хоча інші СУБД підтримуються <a href="http://adodb.sourceforge.net/" target="_blank">ADOdb</a> можуть працювати (повністю або частково). Розробки звітів та /або коди патчів для альтернативних СУБД можуть бути відправлені розробнику.</p>
 <h4>предустановочной кроки</h4>
 
 <p>1. Наступні файли і директорії (і їх вміст) повинні бути записувані:</p>
@@ -714,7 +714,7 @@
 	</message>
 	<message key="installer.localeSettingsInstructions"><![CDATA[Для повної підтримки Unicode (UTF-8), виберіть UTF-8 для всіх наборів налаштувань. Зауважте що ця підтримка в даний момент вимагає MySQL>= 4.1.1 або PostgreSQL>= 7.1 сервер баз даних. Будь ласка також зауважте, що повна підтримка Unicode вимагає PHP>= 4.3.0 разом з підтримкою <a href="http://www.php.net/mbstring" target="_blank">mbstring</a> бібліотеки (включена по -умолчанію в останніх настановних пакетах PHP). Ви можете зіткнутися з проблемами використовуючи розширені набори символів якщо Ваш сервер не задовольняє цим вимогам.
 <br /><br />
-Ваш сервер в даний момент підтримує mbstring: <strong>{$ supportsMBString}</strong>]]></message>
+Ваш сервер в даний момент підтримує mbstring: <strong>{$supportsMBString}</strong>]]></message>
 	<message key="installer.allowFileUploads"><![CDATA[Ваш сервер в даний момент дозволяє завантаження файлів: <strong>{$allowFileUploads}</strong>]]></message>
 	<message key="installer.maxFileUploadSize"><![CDATA[Ваш сервер в даний момент дозволяє завантажувати файли максимального розміру: <strong>{$maxFileUploadSize}</strong>]]></message>
 	<message key="installer.localeInstructions">Головні мови для використання в системі. Будь ласка, керуйтеся документацією системи, якщо Ви зацікавилися в підтримці мов не перерахованих тут.</message>
@@ -728,8 +728,8 @@
 <p>Установник не зміг автоматично перезаписати конфігураційний файл. Перед тим як використовувати систему, будь ласка відкрийте<tt>config.inc.php</tt>у зручному для Вас текстовому редакторі і замініть його вміст на текст у вікні нижче.</p>]]></message>
 	<message key="installer.installationComplete"><![CDATA[<p>Встановлення системи успішно завершено.</p>
 <p>Щоб почати використовувати систему, <a href="{$createUrl}">увійдіть</a> з ім'ям і паролем ввівши його на попередній сторінці.</p>]]></message>
-	<message key="installer.upgradeComplete"><![CDATA[<p>Оновлення системи до версії {$ version} успішно завершено.</p>
-<p>Не забудьте встановити "installed" настройку у Вашому config.inc.php конфігураційному файлі назад на<em>On</em>.</p><p>,<strong><a href = "" target = "_new "></a>.</strong><a href="" target="_new"></a>.</p>]]></message>
+	<message key="installer.upgradeComplete"><![CDATA[<p>Оновлення системи до версії {$version} успішно завершено.</p>
+<p>Не забудьте встановити "installed" настройку у Вашому config.inc.php конфігураційному файлі назад на<em>On</em>.</p><p>Якщо Ви ще не зареєстровані але бажаєте отримувати оновлення та новини, <strong>будь-ласка зареєструйтеся на <a href="http://pkp.sfu.ca/ocs/register" target="_new">http://pkp.sfu.ca/ocs/register</a>.</strong> Якщо Ви маєте запитання чи коментарі, будь-ласка відвідайте <a href="http://pkp.sfu.ca/support/forum" target="_new">форум підтримки</a>.</p>]]></message>
 
 	<!-- Installation upgrade warnings -->
 	<message key="site.upgradeAvailable.admin"><![CDATA[Доступна оновлена версія OCS! Зараз Ви використовуєте OCS {$currentVersion}. Актуальною є версія OCS {$latestVersion}. Будь-ласка, відвідайте <a href="http://pkp.sfu.ca/ocs_download" target="_new">цю сторнку</a> щоб завантажити оновлену вірсію та отримати інструкції з оновлення.]]></message>
@@ -749,7 +749,7 @@
 	<message key="log.review.reviewCancelled">Етап {$stage} рецензується {$reviewerName} для матеріалу {$paperId} був скасований.</message>
 	<message key="log.review.reviewCleared">Етап {$stage} рецензується {$reviewerName} для матеріалу {$paperId} був очищений.</message>
 	<message key="log.review.reviewerRated">{$reviewerName} був оцінений за етап {$stage} рецензування матеріалу {$paperId}.</message>
-	<message key="log.review.reviewDueDateSet">Дата проведення етапу {$stage} рецензування матеріалу {$paperId} рецензентом {$reviewerName} була встановлена ​​{$ueDate}.</message>
+	<message key="log.review.reviewDueDateSet">Дата проведення етапу {$stage} рецензування матеріалу {$paperId} рецензентом {$reviewerName} була встановлена ​​{$dueDate}.</message>
 	<message key="log.review.reviewRecommendationSet">Рекомендація для етапу {$stage} рецензування матеріалу {$paperId} рецензентом {$reviewerName} була встановлена.</message>
 	<message key="log.review.reviewRecommendationSetByProxy">Рекомендація для етапу {$stage} рецензування матеріалу {$paperId} була встановлена ​​директором, {$directorName}, від імені рецензента, {$reviewerName}.</message>
 	<message key="log.review.resubmit">Матеріал {$paperId} був заново відправлений на рецензування.</message>

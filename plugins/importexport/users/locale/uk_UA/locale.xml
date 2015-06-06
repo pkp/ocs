@@ -7,6 +7,7 @@
   * Copyright (c) 2003-2013 John Willinsky
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
   *
+  * Localization strings for the uk_UA (Ukrainian) locale.
   * Translated by Denys Solovianenko, 2011
   * V. I. Vernadsky National Library of Ukraine
   -->
@@ -27,17 +28,17 @@
        send_notify: Якщо цей параметр вказаний, імпортованим користувачам будуть надіслані листи іменами і паролями
 
 Приклади:
-       Імпортування користувачів у журнал myJournal з файлу myImportFile.xml, процес не зупиняється у разі виникнення помилок:
-       {$scriptName} {$pluginName} import myImportFile.xml myJournal continue_on_error
+       Імпортування користувачів у конференцію mySchedConf з файлу myImportFile.xml, процес не зупиняється у разі виникнення помилок:
+       {$scriptName} {$pluginName} import myImportFile.xml mySchedConf continue_on_error
 
-       Експортування всіх користувачів журналу myJournal:
-       {$scriptName} {$pluginName} export myExportFile.xml myJournal
+       Експортування всіх користувачів конференції mySchedConf:
+       {$scriptName} {$pluginName} export myExportFile.xml mySchedConf
 
        Експортування всіх користувачів, зареєстрованих як рецензенти (лише з тією інформацією, яка стосується їх ролей рецензентів):
-       {$scriptName} {$pluginName} export myExportFile.xml myJournal reviewer
+       {$scriptName} {$pluginName} export myExportFile.xml mySchedConf reviewer
 ]]></message>
        <message key="plugins.importexport.users.import.importUsers">Імпорт користувачів</message>
-       <message key="plugins.importexport.users.import.instructions"><![CDATA[Оберіть файл XML з інформацією про користувачів, дані якого будуть імпортовані у цей журнал. Для отримання докладної інформації щодо формату цього файлу див. відповідний розділ допомоги.<br /><br />Зауважте, що якщо файл для імпорту містить імена користувачів або адреси email, які вже існують у системі, дані про таких користувачів не будуть імпортовані, а ті ролі, які мали б бути створені для нових користувачів, будуть додані існуючим користувачам.]]></message>
+       <message key="plugins.importexport.users.import.instructions"><![CDATA[Оберіть файл XML з інформацією про користувачів, дані якого будуть імпортовані у цю конференцію. Для отримання докладної інформації щодо формату цього файлу див. відповідний розділ допомоги.<br /><br />Зауважте, що якщо файл для імпорту містить імена користувачів або адреси email, які вже існують у системі, дані про таких користувачів не будуть імпортовані, а ті ролі, які мали б бути створені для нових користувачів, будуть додані існуючим користувачам.]]></message>
        <message key="plugins.importexport.users.import.failedToImportUser">Помилка імпортування користувача</message>
        <message key="plugins.importexport.users.import.failedToImportRole">Помилка призначення користувача на роль</message>
        <message key="plugins.importexport.users.import.dataFile">Файл даних користувача</message>
@@ -48,8 +49,8 @@
        <message key="plugins.importexport.users.import.errorsOccurred">Під час імпорту виникли помилки</message>
        <message key="plugins.importexport.users.import.confirmUsers">Підтвердіть, що це саме ті користувачі, яких Ви хочете імпортувати до системи</message>
        <message key="plugins.importexport.users.import.warning">Попередження</message>
-       <message key="plugins.importexport.users.import.encryptionMismatch">Паролі з криптографічним ключем {$importHash} неприйнятні; система OJS налаштована на використання ключа {$ojsHash}. Якщо Ви продовжите процес, потім Вам необхідно буде скинути паролі для імпортованих користувачів.</message>
-       <message key="plugins.importexport.users.unknownJournal">Вказаний невідомий шлях журналу "{$journalPath}".</message>
+       <message key="plugins.importexport.users.import.encryptionMismatch">Паролі з криптографічним ключем {$importHash} неприйнятні; система OJS налаштована на використання ключа {$ocsHash}. Якщо Ви продовжите процес, потім Вам необхідно буде скинути паролі для імпортованих користувачів.</message>
+       <message key="plugins.importexport.users.unknownSchedConf">Вказаний невідомий шлях "{$schedConfPath}" в конференції.</message>
 
        <message key="plugins.importexport.users.export.exportUsers">Експорт користувачів</message>
        <message key="plugins.importexport.users.export.exportByRole">Експорт за ролями</message>

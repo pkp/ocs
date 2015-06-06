@@ -69,9 +69,9 @@ XML документа.
 	<message key="plugins.importexport.native.import.error.couldNotCopy">Невозможно скопировать "{$url}" в локальный файл.</message>
 	<message key="plugins.importexport.native.import.error.paperTitleLocaleUnsupported">Название статьи ("{$paperTitle}") указано на языке ("{$locale}") который не поддерживается в этой конференции.</message>
 	<message key="plugins.importexport.native.import.error.paperAbstractLocaleUnsupported">Аннотацию к статье "{$paperTitle}" предложено на языке ("{$locale}") который не поддерживается в этой конференции.</message>
-	<message key="plugins.importexport.native.import.error.galleyLabelMissing">Статье "{$articleTitle}" в разделе "{$trackTitle}" не хватает метки гранок.</message>
-	<message key="plugins.importexport.native.import.error.suppFileMissing">Статье "{$articleTitle}" в разделе "{$trackTitle}" не хватает дополнительного файла.</message>
-	<message key="plugins.importexport.native.import.error.galleyFileMissing">Статье "{$articleTitle}" в разделе "{$trackTitle}" не хватает файла гранок.</message>
+	<message key="plugins.importexport.native.import.error.galleyLabelMissing">Статье "{$paperTitle}" в разделе "{$trackTitle}" не хватает метки гранок.</message>
+	<message key="plugins.importexport.native.import.error.suppFileMissing">Статье "{$paperTitle}" в разделе "{$trackTitle}" не хватает дополнительного файла.</message>
+	<message key="plugins.importexport.native.import.error.galleyFileMissing">Статье "{$paperTitle}" в разделе "{$trackTitle}" не хватает файла гранок.</message>
 
 	<message key="plugins.importexport.native.import.error.trackTitleLocaleUnsupported">Название раздела ("{$trackTitle}")  указано на языке ("{$locale}") который не поддерживается в этой конференции.</message>
 	<message key="plugins.importexport.native.import.error.trackAbbrevLocaleUnsupported">Аббревитура названия раздела ("{$trackAbbrev}") указана на языке ("{$locale}") который не поддерживается в этой конференции.</message>
@@ -95,7 +95,7 @@ XML документа.
 	<message key="plugins.importexport.native.import.error.paperAuthorCompetingInterestsLocaleUnsupported">Список интересов автора для статьи "{$authorFullName}" статьи "{$paperTitle}" указан на языке ("{$locale}") который не поддерживается в этой конференции.</message>
 	<message key="plugins.importexport.native.import.error.paperAuthorBiographyLocaleUnsupported">Биография автора статьи для статьи "{$authorFullName}" статьи "{$paperTitle}" указано на языке ("{$locale}") который не поддерживается в этой конференции.</message>
 
-	<message key="plugins.importexport.native.import.error.galleyLocaleUnsupported">Гранки статьи "{$articleTitle}" указаны на языке  ("{$locale}"), который не поддерживается в этой конференции.</message>
+	<message key="plugins.importexport.native.import.error.galleyLocaleUnsupported">Гранки статьи "{$paperTitle}" указаны на языке ("{$locale}"), который не поддерживается в этой конференции.</message>
 
 	<message key="plugins.importexport.native.import.error.paperSuppFileTitleLocaleUnsupported">Название дополнительного файла ("{$suppFileTitle}") статьи "{$paperTitle}" указано на языке ("{$locale}") который не поддерживается в этой конференции.</message>
 	<message key="plugins.importexport.native.import.error.paperSuppFileCreatorLocaleUnsupported">Создатель дополнительного файла "{$suppFileTitle}" статьи "{$paperTitle}" указан на языке ("{$locale}") который не поддерживается в этой конференции.</message>
