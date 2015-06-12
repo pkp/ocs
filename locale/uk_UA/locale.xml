@@ -235,7 +235,7 @@
 	<message key="schedConf.scheduledConferences">Заплановані конференції</message>
 	<message key="schedConf.noScheduledConferences">Ні запланованих конференцій</message>
 	<message key="schedConf.schedConf">Запланована конференція</message>
-	<message key="schedConf.contents">Інформація конференції</message>
+	<message key="schedConf.contents">Інформація про конференцію</message>
 	<message key="schedConf.overview">Огляд</message>
 	<message key="schedConf.trackPolicies">Політики розділів</message>
 	<message key="schedConf.schedule">Планування конференції</message>
