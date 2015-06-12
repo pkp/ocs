@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../lib/pkp/dtd/locale.dtd">
+<!--
+  * ocs2-devel/locale/en_US/author.xml
+  *
+  * Copyright (c) 2000-2012 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the uk_UA (Ukraine) locale.
+  *
+  -->
+<locale name="uk_UA" full_name="Ukraine">
+	<message key="author.submit">Нові Заяви</message>
+	<message key="author.track">Активні Заяви</message>
+	<message key="author.submit.startHere">Почніть звідси, щоб подати документи на цю конференцію.</message>
+	<message key="author.submit.startHereLink">Оберіть один з процесів подачі заявки</message>
+	<message key="author.submit.step1">Крок 1. Початок подачі заяви</message>
+	<message key="author.submit.step3">Крок 3. Входження в Метадані користувача</message>
+	<message key="author.submit.step3AbstOnly">Крок 2. Входження в Метадані користувача</message>
+	<message key="author.submit.step4AbstOnly">Крок 3. Заванатаження додаткових даних</message>
+	<message key="author.submit.step2">Крок 2. Завантаження заяви</message>
+	<message key="author.submit.step2NoAbstracts">Крок 3. Завантаження заяви</message>	
+	<message key="author.submit.step4">Крок 4. Заванатаження додаткових даних</message>
+	<message key="author.submit.step4a">Крок 4a. Додайте додаткові дані</message>
+	<message key="author.submit.step5">Крок 5. Підтвердження заяви</message>
+	<message key="author.submit.step5SkipSupp">Крок 4. Підтвердження заяви</message>
+	<message key="author.submit.start">1. Початок</message>
+	<message key="author.submit.metadata">3. Введіть Метадані</message>
+	<message key="author.submit.metadataOnly">2. Введіть Метадані</message>
+	<message key="author.submit.upload">2. Завантажити заяви</message>
+	<message key="author.submit.uploadOnly">3. Завантаження заяви</message>
+	<message key="author.submit.supplementaryFiles">4.  Заванатаження додаткових даних</message>
+	<message key="author.submit.supplementaryFilesAbstractOnly">3.  Заванатаження додаткових даних</message>
+	<message key="author.submit.supplementaryFilesInfoAbstractOnly">3a. Заванатаження додаткових даних</message>
+	<message key="author.submit.confirmation">5. Пдтвердження</message>
+	<message key="author.submit.confirmationSkipSupp">4. Підтвердження</message>
+	<message key="author.submit.cancelSubmission">Ви можете завершити цю заяву пізніше, вибравши Активні Заяви на домашній сторінці автора.</message>
+	<message key="author.submit.notAcceptingYet">Ця конференція ще не розпочала приймати заяви.</message>
+	<message key="author.submit.notAccepting">Ця конференція не приймає заяви.</message>
+	<message key="author.submit.submissionDeadlinePassed">Подача заяви на цю конференцію закінчилась в {$closedDate}.</message>
+	<message key="author.submit.authorRegistrationClosed">Реєстрація Автора закрита для цієї конференції.</message>
+	<message key="author.submissions.queuedAbstractReviewRevisions">Анотація в огляді: Потребуються зміни</message>
+	<message key="author.submissions.queuedPaperReviewRevisions">Документи в огляді: Потребуються зміни</message>
+	<message key="author.submissions.confirmDelete">Ви впевнені, що хочете видалити цю неповну заяву?</message>
+	<message key="author.submissions.viewStatus">Стан перегляду</message>
+	<message key="author.submissions.noSubmissions">Немає заяв</message>
+	<message key="author.submit.howToSubmit"><![CDATA[Зіткнулись з труднощами? Зв'яжіться з  <a href="mailto:{$supportEmail}">{$supportName}</a> для допомоги ({$supportPhone}).]]></message>
+	<message key="author.submit.howToSubmitNoPhone"><![CDATA[Зіткнулись з труднощами? Зв'яжіться з <a href="mailto:{$supportEmail}">{$supportName}</a> для допомоги.]]></message>
+	<message key="author.submit.conferenceTrack">Дані відсліджування Конференції</message>
+	<message key="author.submit.conferenceTrackDescription"><![CDATA[Вберіть потроібний трек для цієї заяви (див. <a href="{$aboutUrl}" target="_new">Політика відслідковування</a>).]]></message>
+	<message key="author.submit.selectTrack">Будь ласка, виберіть трек...</message>
+	<message key="author.submit.submissionLocale">Мова подання</message>
+	<message key="author.submit.submissionLocaleDescription">Ця конференція дозволяє подання кількома мовами. Виберіть основну мову у переліку нижче.</message>
+	<message key="author.submit.submissionChecklist">Контрольний список заяв</message>
+	<message key="author.submit.submissionChecklistDescription">Визначте чи ця заява готова для розгляду в цій конференції, перевіривши наступне (коментарі до директора можуть бути додані нижче).</message>
+	<message key="author.submit.verifyChecklist">Перш ніж продовжити ви повинні переконатися, що всі елементи в поданому переліку задоволені.</message>
+	<message key="author.submit.copyrightNoticeAgree">Автори згодні з умовами авторських прав, які будуть застосовані до цієї заяви, якщо і коли воно буде опублікована на цій конференції(коментарі до директора можуть бути додані нижче).</message>
+	<message key="author.submit.copyrightNoticeAgreeRequired">Ви повинні погодитися з умовами авторських прав, перш ніж продовжити.</message>
+	<message key="author.submit.commentsForDirector">Коментарі для Директора Конференцій</message>
+	<message key="author.submit.comments">Введіть текст (не обов'язково)</message>
+	<message key="author.submit.form.authorRequired">Вимагається принаймні один автор.</message>
+	<message key="author.submit.form.authorRequiredFields">Вимагається прізвище, ім'я та електронна адреса кожного автора.</message>
+	<message key="author.submit.form.trackRequired">Будь ласка, виберіть відповідний трек конференції для цієї заяви.</message>
+	<message key="author.submit.form.abstractRequired">Будь ласка введіть реферат для вашої заяви.</message>
+	<message key="author.submit.form.localeRequired">Please select a submission language.</message>
+	<message key="author.submit.privacyStatement">Заява безпеки кноференції</message>
+	<message key="author.submit.reorderInstructions">Поставте авторів в порядок, в якому ви хочете, щоб вони з'влялися на публікації.</message>
+	<message key="author.submit.reorder">Зміна порядку іменів автора</message>
+	<message key="author.submit.selectPrincipalContact">Основний контакт для редакційного листування.</message>
+	<message key="author.submit.addAuthor">Додати автора</message>
+	<message key="author.submit.deleteAuthor">Видалити автора</message>
+	<message key="author.submit.submissionIndexingDescription">Введіть терміни для індексації заяви; терміни мають бути розділені комою(термін 1, термін 2).</message>
+	<message key="author.submit.submissionSupportingAgencies">Організації підтримки</message>
+	<message key="author.submit.submissionSupportingAgenciesDescription">Визначити установи, які надали фінансування або підтримку роботи, представлені в цій заяві.</message>
+	<message key="author.submit.subjectClassInstructions">Використовуйте систему класифікації гіперпосилань для вибору класифікації термінів і, при необхідності, номерів.</message>
+	<message key="author.submit.languageInstructions"><![CDATA[English=en; French=fr; Spanish=es. <a href="http://www.loc.gov/standards/iso639-2/php/code_list.php" target="_blank">Додатковий код</a>.]]></message>
+	<message key="presenter.submit.form.authorRequired">Вимагається принаймні один автор.</message>
+	<message key="presenter.submit.form.authorRequiredFields">Вимагається прізвище, ім'я та електронна адреса кожного автора.</message>
+	<message key="author.submit.form.titleRequired">Будь ласка, введіть назву вашої роботи.</message>
+	<message key="author.submit.form.wordCountAlert">Ви перевищили максимальну межу слів тези у треці цієї конференції.</message>
+	<message key="author.submit.submissionFile">Файл заяви</message>
+	<message key="author.submit.uploadSubmissionFile">Завантажити файл заяви</message>
+	<message key="author.submit.replaceSubmissionFile">Замінити файл заяви</message>
+	<message key="author.submit.noSubmissionFile">Не завантажено жодного файлу заяви</message>
+	<message key="author.submit.noSubmissionConfirm">Ви впевнені, що хочете продовжити без завантаження файлу заяви?</message>
+	<message key="author.submit.supplementaryFilesInstructions">Цей додатковий крок дозволяє додавати додаткові файли до  заяви. Файли, які можуть бути в будь-якому форматі, можуть включати в себе (а) інструменти дослідження,(б) набір даних, які відповідають умовам дослідження,(c) джерела, які в нашому випадку будуть  недоступні для читачів, (d ) рисунки і таблиці, які не можуть бути інтегровані в сам текст, або інші матеріали, які додаються до вашої роботи. </message>
+	<message key="author.submit.supplementaryFiles.saveToUpload">Натисніть кнопку Зберегти, щоб завантажити файл (після чого додаткові файли можуть бути завантажені).</message>
+	<message key="author.submit.forgottenSubmitSuppFile">Ви впевнені, що хочете продовжити без завантаження додаткового файлу, який ви обрали?</message>
+	<message key="author.submit.noSupplementaryFiles">Немає додаткових файлів, які були додані до цієї заяви.</message>
+	<message key="author.submit.backToSupplementaryFiles">Повернутись до додаткових файлів</message>
+	<message key="author.submit.confirmDeleteSuppFile">Ви впевнені, що хочете видалити цей додатковий файл?</message>
+	<message key="author.submit.uploadSuppFile">Завантажити додатковий файл</message>
+	<message key="author.submit.addSupplementaryFile">Додати додатковий файл</message>
+	<message key="author.submit.editSupplementaryFile">Редагувати додатковий файл</message>
+	<message key="author.submit.supplementaryFileData">Метадані додаткового файлу</message>
+	<message key="author.submit.supplementaryFileDataDescription">Для індексу цього додаткового матеріалу, забезпечте наступні метадані для завантажено додаткового файлу.</message>
+	<message key="author.submit.supplementaryFileUpload">Додатковий файл</message>
+	<message key="author.submit.suppFile.createrOrOwner">Творець (або власник) файлу</message>
+	<message key="author.submit.suppFile.researchInstrument">Інструмент дослідження</message>
+	<message key="author.submit.suppFile.researchMaterials">матеріали дослідження</message>
+	<message key="author.submit.suppFile.researchResults">Результати дослідження</message>
+	<message key="author.submit.suppFile.transcripts">Стенограми</message>
+	<message key="author.submit.suppFile.dataAnalysis">Аналіз даних</message>
+	<message key="author.submit.suppFile.dataSet">Набір даних</message>
+	<message key="author.submit.suppFile.sourceText">Вихідний текст</message>
+	<message key="author.submit.suppFile.briefDescription">Короткий опис</message>
+	<message key="author.submit.suppFile.contributorOrSponsor">Вкладник або спонсорська організація</message>
+	<message key="author.submit.suppFile.availableToPeers">Продемонструйте файл оглядачам(без метаданих), так як він не буде компромісом сліпого рецензування.</message>
+	<message key="author.submit.suppFile.publisherDescription">Використовуйте тільки офіційно опубліковані матеріали.</message>
+	<message key="author.submit.suppFile.dateDescription">Дата, коли дані були зібрані чи був створений інструмент.</message>
+	<message key="author.submit.suppFile.sourceDescription">Назва дослідження або інші точки зору походження.</message>
+	<message key="author.submit.suppFile.specifyOtherType">Вкажіть інші</message>
+	<message key="author.submit.suppFile.noFile">Не завантажено жодного файлу.</message>
+	<message key="author.submit.suppFile.form.titleRequired">Будь ласка, введіть назву цього додаткового файлу.</message>
+	<message key="author.submit.suppFile.form.subjectRequired">Будь ласка, введіть тему.</message>
+	<message key="author.submit.suppFile.form.descriptionRequired">Будь ласка, введіть опис.</message>
+	<message key="author.suppFile.suppFilePublicIdentificationExists">Оприлюднений додатковий файл ідентифікації не існує.</message>
+	<message key="author.suppFile.publicSuppFileIdentifier">Ідентифікатор оприлюдненого додаткового файлу</message>
+	<message key="author.submit.addSubmissionFile">Додайте додатковий файл</message>
+	<message key="author.submit.submissionFileUpload">Додатковий файл</message>
+	<message key="author.submit.confirmationDescription">Щоб відправити рукопис до  {$conferenceTitle} натисніть кнопку "Завершити заяву". Власник заяви отримає підтвердження по електронній пошті і зможете переглянути хід подання через редакційний процес входу в систему на веб-сайті конференції. Дякуємо Вам за інтерес, проявлений до публікації {$conferenceTitle}. </message>
+	<message key="author.submit.noFiles">Жоден файл не був прикріплений до даної заяви.</message>
+	<message key="author.submit.filesSummary">Підсумок файлів</message>
+	<message key="author.submit.finishSubmission">Завершити заяву</message>
+	<message key="author.submit.submissionComplete">Подання завершено. Спасибі за відправлення ваших робіт на{$conferenceTitle}.</message>
+	<message key="author.submit.expedite"><![CDATA[Якщо ця заява у форматі, який готовий до публікації, без подальшого розгляду і редагування роботи, то вона може бути спрямована безпосередньо на виконавчу сторінку через кнопку<a href="{$expediteUrl}" class="action">Натисніть тут</a>.(Примітка: Тільки директори конференцій мають цю опцію для своїх заяв.]]></message>
+	<message key="author.paper.uploadAuthorVersion">UЗавантажена версія автора</message>
+	<message key="presenter.submit.authorSubmitLoginMessage">Обліковий запис користувача потребується для подання матеріалів на цю конференцію. Це дозволяє нашим директорам відслідковувати ваші заяви і зв'язуватись з Вами, коли змінюється статус вашої заяви або, якщо потрібна додаткова інформація від Вас.</message>
+</locale>

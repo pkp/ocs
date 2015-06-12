@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../lib/pkp/dtd/locale.dtd">
+<!--
+  * locale.xml
+  *
+  * Copyright (c) 2000-2012 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the ru_RU (Russian) locale.
+  *
+  * $Id$
+  -->
+<locale name="ru_RU" full_name="Russian">
+	<message key="plugins.importexport.native.displayName">Модуль публикаций в XML</message>
+	<message key="plugins.importexport.native.description">Импортирует и экспортирует пбликации</message>
+
+	<message key="plugins.importexport.native.cliUsage"><![CDATA[Использование: {$scriptName} {$pluginName} [command] ...
+Команды:
+	import [xmlFileName] [journal_path] [user_name] ...
+	export [xmlFileName] [journal_path] articles [articleId1] [articleId2] ...
+	export [xmlFileName] [journal_path] article [articleId]
+	export [xmlFileName] [journal_path] issues [issueId1] [issueId2] ...
+	export [xmlFileName] [journal_path] issue [issueId]
+
+Для импорта требуются дополнительные параметры в зависимости от корневого узла
+XML документа.
+
+Если корневой узел <article> или <articles>, требуются дополнительные параметры.
+Допустимы следующие форматы:
+
+{$scriptName} {$pluginName} import [xmlFileName] [journal_path] [user_name]
+	issue_id [issueId] section_id [sectionId]
+
+{$scriptName} {$pluginName} import [xmlFileName] [journal_path] [user_name]
+	issue_id [issueId] section_name [name]
+
+{$scriptName} {$pluginName} import [xmlFileName] [journal_path]
+	issue_id [issueId] section_abbrev [abbrev]]]></message>
+	<message key="plugins.importexport.native.export">Экспортировать данные</message>
+	<message key="plugins.importexport.native.export.tracks">Экспорт разделов</message>
+	<message key="plugins.importexport.native.export.papers">Экспорт статей</message>
+
+	<message key="plugins.importexport.native.selectPaper">Выбор статьи</message>
+
+	<message key="plugins.importexport.native.import.papers">Импорт статей</message>
+	<message key="plugins.importexport.native.import.papers.description">Файл, который импортируется содержит более одной статьи. Вы должны выбрать трек для импорта этих статей; если вы не хотите импортировать их все в один и тот же раздел, Вы можете либо разделить их в разные файлы XML или переместить их в соответствующие разделы после импорта.</message>
+
+	<message key="plugins.importexport.native.import">Импортировать данные</message>
+	<message key="plugins.importexport.native.import.description"><![CDATA[Модуль поддерживает импорт для типа документа native.dtd. Поддерживаются корневые узлы &lt;article&gt;, &lt;articles&gt;, &lt;issue&gt;,и &lt;issues&gt;.]]></message>
+
+	<message key="plugins.importexport.native.import.error">Ошибка импорта</message>
+	<message key="plugins.importexport.native.import.error.description">При импорте произошли ошибки. Пожалуйста проверьте, что формат входного файла точно соответствует спецификации. Конкретные сообщения об ощибках приведены ниже.</message>
+
+	<message key="plugins.importexport.native.cliError">ОШИБКА:</message>
+	<message key="plugins.importexport.native.error.uploadFailed">Загрузка завершилась неудачно; пожалуйста убедитесь, что загрузки разрешены на сервере и что файл не слишком большой для текущей конфигурации сервера и PHP.</message>
+	<message key="plugins.importexport.native.error.unknownUser">Указанный пользователь, "{$userName}", не известен.</message>
+	<message key="plugins.importexport.native.error.unknownConference">Указанная конференция или путь к запланированной конференции, "{$conferencePath}" или "{$schedConfPath}" (respectively), не существуют.</message>
+	<message key="plugins.importexport.native.export.error.couldNotWrite">Невозможно записать в файл "{$fileName}".</message>
+	<message key="plugins.importexport.native.export.error.trackNotFound">Нет треков, соответствующх указанному "{$trackIdentifier}".</message>
+	<message key="plugins.importexport.native.export.error.paperNotFound">Нет статей, соответствующих указанному ID "{$paperId}".</message>
+	<message key="plugins.importexport.native.import.error.unsupportedRoot">Модуль не поддерживает корневой узел "{$rootName}". Пожалуйста убедитесь, что файл имеет правильный формат и попробуйте снова.</message>
+
+	<message key="plugins.importexport.native.import.error.invalidBooleanValue">Было использовано неверное булево значение "{$value}". Пожалуйста используйте "true" или "false".</message>
+	<message key="plugins.importexport.native.import.error.invalidDate">Была указана неверная дата "{$value}".</message>
+	<message key="plugins.importexport.native.import.error.unknownEncoding">Дата была кодирована неизвестным способом "{$type}".</message>
+	<message key="plugins.importexport.native.import.error.couldNotWriteFile">Невозможно сохранить локальную копию "{$originalName}".</message>
+	<message key="plugins.importexport.native.import.error.illegalUrl">Указанный URL "{$url}" не поддерживается. Импорт из интернета поддерживает только протоколы http, https, ftp, или ftps.</message>
+	<message key="plugins.importexport.native.import.error.unknownSuppFileType">Неизвестный тип дополнительного файла "{$suppFileType}".</message>
+	<message key="plugins.importexport.native.import.error.couldNotCopy">Невозможно скопировать "{$url}" в локальный файл.</message>
+	<message key="plugins.importexport.native.import.error.paperTitleLocaleUnsupported">Название статьи ("{$paperTitle}") указано на языке ("{$locale}") который не поддерживается в этой конференции.</message>
+	<message key="plugins.importexport.native.import.error.paperAbstractLocaleUnsupported">Аннотацию к статье "{$paperTitle}" предложено на языке ("{$locale}") который не поддерживается в этой конференции.</message>
+	<message key="plugins.importexport.native.import.error.galleyLabelMissing">Статье "{$paperTitle}" в разделе "{$trackTitle}" не хватает метки гранок.</message>
+	<message key="plugins.importexport.native.import.error.suppFileMissing">Статье "{$paperTitle}" в разделе "{$trackTitle}" не хватает дополнительного файла.</message>
+	<message key="plugins.importexport.native.import.error.galleyFileMissing">Статье "{$paperTitle}" в разделе "{$trackTitle}" не хватает файла гранок.</message>
+
+	<message key="plugins.importexport.native.import.error.trackTitleLocaleUnsupported">Название раздела ("{$trackTitle}")  указано на языке ("{$locale}") который не поддерживается в этой конференции.</message>
+	<message key="plugins.importexport.native.import.error.trackAbbrevLocaleUnsupported">Аббревитура названия раздела ("{$trackAbbrev}") указана на языке ("{$locale}") который не поддерживается в этой конференции.</message>
+	<message key="plugins.importexport.native.import.error.trackIdentifyTypeLocaleUnsupported">Тип идентификатора раздела ("{$trackIdentifyType}") указан на языке ("{$locale}") который не поддерживается в этой конференции.</message>
+	<message key="plugins.importexport.native.import.error.trackPolicyLocaleUnsupported">Условия раздела ("{$trackPolicy}")  указаны на языке ("{$locale}") который не поддерживается в этой конференции.</message>
+
+	<message key="plugins.importexport.native.import.error.trackTitleMismatch">Название раздела "{$track1Title}" и название раздела "{$track2Title}" соответствуют разным суествующим разделам конференции.</message>
+	<message key="plugins.importexport.native.import.error.trackTitleMatch">Название раздела "{$trackTitle}" соответствует названию существующего раздела конференции, но другое название этого раздела не соответсвует другому названию существующего раздела конференции.</message>
+	<message key="plugins.importexport.native.import.error.trackAbbrevMismatch">Аббревитура названия раздела "{$track1Abbrev}" и аббревитура названия раздела "{$track2Abbrev}" соответствуют разным суествующим разделам конференции.</message>
+	<message key="plugins.importexport.native.import.error.trackAbbrevMatch">Аббревитура названия раздела "{$trackAbbrev}" соответствует аббревитуре названия существующего раздела конференции, но другая аббревитура названия этого раздела не соответсвует друго аббревитуре названия существующего раздела конференции.</message>
+
+	<message key="plugins.importexport.native.import.error.paperDisciplineLocaleUnsupported">Дисциплина для статьи  "{$paperTitle}" указана на языке ("{$locale}") который не поддерживается в этой конференции.</message>
+	<message key="plugins.importexport.native.import.error.paperTypeLocaleUnsupported">Тип статьи для статьи "{$paperTitle}" указан на языке ("{$locale}") который не поддерживается в этой конференции.</message>
+	<message key="plugins.importexport.native.import.error.paperSubjectLocaleUnsupported">Предметная область для статьи  "{$paperTitle}" указана на языке ("{$locale}") который не поддерживается в этой конференции.</message>
+	<message key="plugins.importexport.native.import.error.paperSubjectClassLocaleUnsupported">Классификация предметной области для статьи "{$paperTitle}" указана на языке ("{$locale}") который не поддерживается в этой конференции.</message>
+	<message key="plugins.importexport.native.import.error.paperCoverageGeoLocaleUnsupported">Географическое покрытие для статьи "{$paperTitle}" указано на языке ("{$locale}") который не поддерживается в этой конференции.</message>
+	<message key="plugins.importexport.native.import.error.paperCoverageChronLocaleUnsupported">Хронологическое покрытие для статьи "{$paperTitle}" указано на языке ("{$locale}") который не поддерживается в этой конференции.</message>
+	<message key="plugins.importexport.native.import.error.paperCoverageSampleLocaleUnsupported">Обложка статьи для статьи  "{$paperTitle}" указана на языке ("{$locale}") который не поддерживается в этой конференции.</message>
+	<message key="plugins.importexport.native.import.error.paperSponsorLocaleUnsupported">Спонсор статьи для статьи  "{$paperTitle}" указан на языке ("{$locale}") который не поддерживается в этой конференции.</message>
+
+	<message key="plugins.importexport.native.import.error.paperAuthorCompetingInterestsLocaleUnsupported">Список интересов автора для статьи "{$authorFullName}" статьи "{$paperTitle}" указан на языке ("{$locale}") который не поддерживается в этой конференции.</message>
+	<message key="plugins.importexport.native.import.error.paperAuthorBiographyLocaleUnsupported">Биография автора статьи для статьи "{$authorFullName}" статьи "{$paperTitle}" указано на языке ("{$locale}") который не поддерживается в этой конференции.</message>
+
+	<message key="plugins.importexport.native.import.error.galleyLocaleUnsupported">Гранки статьи "{$paperTitle}" указаны на языке ("{$locale}"), который не поддерживается в этой конференции.</message>
+
+	<message key="plugins.importexport.native.import.error.paperSuppFileTitleLocaleUnsupported">Название дополнительного файла ("{$suppFileTitle}") статьи "{$paperTitle}" указано на языке ("{$locale}") который не поддерживается в этой конференции.</message>
+	<message key="plugins.importexport.native.import.error.paperSuppFileCreatorLocaleUnsupported">Создатель дополнительного файла "{$suppFileTitle}" статьи "{$paperTitle}" указан на языке ("{$locale}") который не поддерживается в этой конференции.</message>
+	<message key="plugins.importexport.native.import.error.paperSuppFileSubjectLocaleUnsupported">Предметная область  дополнительного файла "{$suppFileTitle}" статьи "{$paperTitle}" указана на языке ("{$locale}") который не поддерживается в этой конференции.</message>
+	<message key="plugins.importexport.native.import.error.paperSuppFileTypeOtherLocaleUnsupported">Тип дополнительного файла "{$suppFileTitle}" статьи "{$paperTitle}" указан на языке ("{$locale}") который не поддерживается в этой конференции.</message>
+	<message key="plugins.importexport.native.import.error.paperSuppFileDescriptionLocaleUnsupported">Описание дополнительного файла "{$suppFileTitle}" статьи "{$paperTitle}" указано на языке ("{$locale}") который не поддерживается в этой конференции.</message>
+	<message key="plugins.importexport.native.import.error.paperSuppFilePublisherLocaleUnsupported">Издатель дополнительного файла "{$suppFileTitle}" статьи "{$paperTitle}" указан на языке ("{$locale}") который не поддерживается в этой конференции.</message>
+	<message key="plugins.importexport.native.import.error.paperSuppFileSponsorLocaleUnsupported">Спонсор дополнительного файла "{$suppFileTitle}" статьи "{$paperTitle}" указан на языке ("{$locale}") который не поддерживается в этой конференции.</message>
+	<message key="plugins.importexport.native.import.error.paperSuppFileSourceLocaleUnsupported">Источник дополнительного файла "{$suppFileTitle}" статьи "{$paperTitle}" указан на языке ("{$locale}") который не поддерживается в этой конференции.</message>
+
+	<message key="plugins.importexport.native.import.success">Импорт успешно завершен</message>
+	<message key="plugins.importexport.native.import.success.description">Импорт успешно завершен. Импортированные элементы указаны ниже.</message>
+
+</locale>

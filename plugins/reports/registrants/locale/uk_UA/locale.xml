@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * locale.xml
+  *
+  * Copyright (c) 2000-2012 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the uk_UA (Ukrainian) locale.
+  *
+  * $Id$
+  -->
+ 
+<locale name="uk_UA" full_name="Ukrainian">
+	<message key="plugins.reports.registrants.displayName">Звіт учасників</message>
+	<message key="plugins.reports.registrants.description">Цей плагін формує звіт в форматі CSV, що містить перелік учасників з їх реєстраційними та контактними даними, інформацією про оплату і т.д.</message>
+	<message key="plugins.reports.registrants.userid">ID користувача</message>
+</locale>
