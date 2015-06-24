@@ -7,12 +7,12 @@
   * Copyright (c) 2000-2012 John Willinsky
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
   *
-  * Localization strings for the en_US (U.S. English) locale.
+  * Localization strings for the pt_BR (Português (Brasil)) locale.
   *
   * $Id$
   -->
  
-<locale name="en_US" full_name="U.S. English">
+<locale name="pt_BR" full_name="Português (Brasil)">
 	<message key="plugins.generic.customBlockManager.displayName">Adminsitraçaõ de Blocos Customizados</message>
 	<message key="plugins.generic.customBlockManager.description">Este Plugin permite gerenciar blocos laterais personalizados. Edite os blocos nas configurações de cada plugin que criar aqui.</message>	
 	<message key="plugin.generic.customBlockManager.introduction"><![CDATA[Use este plugin para incluir ou excluir plugins de bloco customizados.  Edite os conteúdos através dos <a href="{$systemPluginsUrl}">Plugins do Sistema</a> (na seção Pluigns de Bloco).  Para incluir seu plugin no local desejado, nas barras laterais, acesse <a href="{$setupStep4}">Passo 4 da Configuração</a>.]]></message>

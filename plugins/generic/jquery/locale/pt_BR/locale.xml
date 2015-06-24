@@ -7,12 +7,12 @@
   * Copyright (c) 2000-2012 John Willinsky
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
   *
-  * Localization strings for the en_US (U.S. English) locale.
+  * Localization strings for the pt_BR (Português (Brasil)) locale.
   *
   * $Id$
   -->
  
-<locale name="en_US" full_name="U.S. English">
+<locale name="pt_BR" full_name="Português (Brasil)">
 	<message key="plugins.generic.jquery.name">Plugin jQuery</message>
 	<message key="plugins.generic.jquery.description"><![CDATA[Este plugin habilita interação e estilos em javascript de conteúdo do OCS usando a biblioteca <a href="http://www.jquery.com" target="_new">jQuery</a>.]]></message>
 	<message key="plugins.generic.jquery.descriptionDisabled"><![CDATA[Este plugin habilita interação e estilos em javascript de conteúdo do OCS usando a biblioteca <a href="http://www.jquery.com" target="_new">jQuery</a>. <strong>jQuery não está instalado; execute sua instalação em {$jQueryPath}.</strong>]]></message>

@@ -7,12 +7,12 @@
   * Copyright (c) 2000-2012 John Willinsky
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
   *
-  * Localization strings for the en_US (U.S. English) locale.
+  * Localization strings for the fr_CA (Français (Canada)) locale.
   *
   * $Id$
   -->
  
-<locale name="en_US" full_name="U.S. English">
+<locale name="fr_CA" full_name="Français (Canada)">
 	<message key="plugins.generic.customBlockManager.displayName">Gestionnaire de bloc personnalisé</message>
 	<message key="plugins.generic.customBlockManager.description">Ce plugiciel vous permet de gérer des blocs personnalisés d'encadrés latéraux. Vous pouvez modifier les blocs dans les paramètres de chaque plugiciel que vous créez ici.</message>	
 	<message key="plugin.generic.customBlockManager.introduction"><![CDATA[Vous pouvez utiliser ce plugiciel pour ajouter ou supprimer des plugiciels de blocs personnalisés. Vous pouvez alors modifier le contenu à l'aide de la page de <a href="{$systemPluginsUrl}">Plugiciels du système</a> (dans la section Plugiciel de blocs). Pour placer votre plugiciel à l'emplacement souhaité dans l'encadré latéral, aller à <a href="{$setupStep4}">Configuration - étape 4</a>]]></message>
