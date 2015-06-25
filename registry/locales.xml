@@ -27,4 +27,5 @@
 	<locale key="pt_BR" name="Português (Brasil)" iso639-2b="por" iso639-3="por" />
 	<locale key="pt_PT" complete="false" name="Português (Portugal)" iso639-2b="por" iso639-3="por" />
 	<locale key="zh_TW" complete="false" name="正體中文" iso639-2b="chi" iso639-3="zho" />
+	<locale key="ru_RU" complete="false" name="Russian" />
 </locales>
