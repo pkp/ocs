@@ -46,6 +46,7 @@
 
 {assign var=needsSeparator value=1}
 
+</div>{* paperComments *}
 {/if}{* $comments *}
 
 {if $postingAllowed}
@@ -56,4 +57,3 @@
 	{/if}
 	<a class="action" href="{url page="comment" op="add" path=$paper->getId()|to_array:$galleyId}" target="_parent">{translate key="rt.addComment"}</a>
 {/if}
-</div>
