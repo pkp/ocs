@@ -7,11 +7,11 @@
   * Copyright (c) 2000-2012 John Willinsky
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
   *
-  * Localization strings for the es_ES (Español) locale.
+  * Localization strings for the es_ES (Español (España)) locale.
   *
   -->
 
-<locale name="es_ES" full_name="España Castellano">
+<locale name="es_ES" full_name="Español (España)">
 	<!--
 	 * This file is organized into several major sections, separated
 	 * by comments like this one. These sections are called:
