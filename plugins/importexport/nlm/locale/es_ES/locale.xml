@@ -11,7 +11,7 @@
   *
   -->
  
-<locale name="es_ES" full_name="España Castellano">
+<locale name="es_ES" full_name="Español (España)">
 	<message key="plugins.importexport.nlm.displayName">NLM XML Plugin de exportación</message>
 	<message key="plugins.importexport.nlm.description"> Exportar metadatos del trabajo al formato NML Meeting Abstracts XML para su indexación.</message>
 

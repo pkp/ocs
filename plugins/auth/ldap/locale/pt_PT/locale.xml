@@ -11,7 +11,7 @@
   *
   -->
  
-<locale name="pt_PT" full_name="Português">
+<locale name="pt_PT" full_name="Português (Portugal)">
 	<message key="plugins.auth.ldap.displayName">LDAP</message>
 	<message key="plugins.auth.ldap.description">Este plugin permite a autenticação e sincronização de contas de utilizadores em oposição a uma fonte de dados externa LDAP.</message>
 	

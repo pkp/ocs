@@ -11,7 +11,7 @@
   *
   -->
 
-<locale name="pt_PT" full_name="Português">
+<locale name="pt_PT" full_name="Português (Portugal)">
 	<message key="plugins.reports.reviews.displayName">Relatório de Avaliação</message>
 	<message key="plugins.reports.reviews.description">Este plugin implementa um relatório no formato CSV contendo a lista de tarefas de availação da conferência.</message>
 	<message key="plugins.reports.reviews.reviewerId">ID do Avaliador</message>

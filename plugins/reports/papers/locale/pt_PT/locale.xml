@@ -11,7 +11,7 @@
   *
   -->
 
-<locale name="pt_PT" full_name="Português">
+<locale name="pt_PT" full_name="Português (Portugal)">
 	<message key="plugins.reports.papers.displayName">Relatório de Submissões</message>
 	<message key="plugins.reports.papers.description">Este plugin implementa um relatório CSV com a lista de submissões e informações relacionadas.</message>
 	<message key="plugins.reports.papers.nodecision">Sem decisão</message>

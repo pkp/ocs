@@ -7,11 +7,11 @@
   * Copyright (c) 2000-2012 John Willinsky
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
   *
-  * Localization strings for the pt_PT (U.S. English) locale.
+  * Localization strings for the pt_PT (Português (Portugal)) locale.
   *
   -->
  
-<locale name="pt_PT" full_name="Português">
+<locale name="pt_PT" full_name="Português (Portugal)">
 	<message key="plugins.importexport.METSExport.displayName">Plugin de Exportação METS XML</message>
 	<message key="plugins.importexport.METSExport.description">Exportar conferências no formato METS XML</message>
 	<message key="plugins.importexport.METSExport.settings">Configurações</message>

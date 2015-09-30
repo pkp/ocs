@@ -11,7 +11,7 @@
   *
   -->
  
-<locale name="pt_PT" full_name="Português">
+<locale name="pt_PT" full_name="Português (Portugal)">
 	<message key="plugins.citationFormats.abnt.displayName">Plugin Formato de Citação ABNT</message>
 	<message key="plugins.citationFormats.abnt.citationFormatName">ABNT</message>
 	<message key="plugins.citationFormats.abnt.description">Este plugin instala o formato de citação ABNT.</message>

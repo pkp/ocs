@@ -11,7 +11,7 @@
   *
   -->
  
-<locale name="pt_PT" full_name="Português">
+<locale name="pt_PT" full_name="Português (Portugal)">
 	<message key="plugins.block.navigation.displayName">Bloco Navegação</message>
 	<message key="plugins.block.navigation.description">Este plugin oferece links de navegação na barra de menus.</message>
 	<message key="plugins.block.navigation.conferenceContent">Conteúdo da Conferência</message>
