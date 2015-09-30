@@ -12,7 +12,7 @@
   * $Id$
   -->
  
-<locale name="pt_PT" full_name="Português">
+<locale name="pt_PT" full_name="Português (Portugal)">
 	<message key="plugins.block.developedBy.displayName">Bloco "Desenvolvido Por"</message>
 	<message key="plugins.block.developedBy.description">Este plugin oferece um link "Desenvolvido Por" na barra de menus.</message>
 </locale>

@@ -12,7 +12,7 @@
   * $Id$
   -->
  
-<locale name="pt_PT" full_name="Português">
+<locale name="pt_PT" full_name="Português (Portugal)">
 	<message key="plugins.importexport.nlm.displayName">Plugin de Exportação NLM XML</message>
 	<message key="plugins.importexport.nlm.description">Exporte o documento de metadados no formato NLM Meeting Abstracts XML para indexação.</message>
 

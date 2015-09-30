@@ -11,7 +11,7 @@
   *
  -->
  
-<locale name="pt_PT" full_name="Português">
+<locale name="pt_PT" full_name="Português (Portugal)">
 	<message key="plugins.paymethod.paypal.displayName">Paypal</message>
 
 	<!-- PayPal Settings Form -->

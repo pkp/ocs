@@ -12,7 +12,7 @@
   * $Id$
   -->
  
-<locale name="pt_PT" full_name="Português">
+<locale name="pt_PT" full_name="Português (Portugal)">
 	<message key="plugins.reports.registrants.displayName">Relatório de Inscritos</message>
 	<message key="plugins.reports.registrants.description">Este plugin implementa um relatório no formato CSV contendo a lista de inscritos e dados sobre registo, contactos, situação do pagamento, entre outras.</message>
 	<message key="plugins.reports.registrants.userid">ID do Utilizador</message>
