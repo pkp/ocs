@@ -11,7 +11,7 @@
   *
  -->
  
-<locale name="pt_PT" full_name="Português">
+<locale name="pt_PT" full_name="Português (Portugal)">
 	<message key="plugins.paymethod.manual.displayName">Pagamento Manual</message>
 	<message key="plugins.paymethod.manual.description">O Pagamento deve ser enviado fora do Sistema e requer que o Administrador valide-o antes de activar o registo. O conteúdo dos campos de Informação de Registo na Gestão das Políticas de Registo será visualizado pelos utilizadores, ao se registarem, e deve fornecer informações sobre como proceder no envio do registo manual.</message>
 	<message key="plugins.paymethod.manual">Pagamento do Registo</message>

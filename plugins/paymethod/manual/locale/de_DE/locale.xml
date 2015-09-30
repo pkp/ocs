@@ -11,7 +11,7 @@
   *
  -->
  
-<locale name="de_DE" full_name="Deutsch">
+<locale name="de_DE" full_name="Deutsch (Deutschland)">
 	<message key="plugins.paymethod.manual.displayName">Überweisung</message>
 	<message key="plugins.paymethod.manual.description">Zahlungen werden unabhängig vom OCS abgewickelt und erfordern daher, dass der Konferenzmanager diese überprüft, bevor Teilnehmerregistrierungen vollständig akzeptiert werden.</message>
 	<message key="plugins.paymethod.manual">Überweisung</message>

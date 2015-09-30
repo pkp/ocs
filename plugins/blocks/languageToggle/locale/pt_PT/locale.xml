@@ -12,7 +12,7 @@
   * $Id$
   -->
  
-<locale name="pt_PT" full_name="Português">
+<locale name="pt_PT" full_name="Português (Portugal)">
 	<message key="plugins.block.languageToggle.displayName">Bloco Alteração de Idioma</message>
 	<message key="plugins.block.languageToggle.description">Este plugin oferece a opção de selecção do idioma</message>
 </locale>
