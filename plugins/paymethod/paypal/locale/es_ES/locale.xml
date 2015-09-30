@@ -11,7 +11,7 @@
   *
  -->
  
-<locale name="es_ES" full_name="España Castellano">
+<locale name="es_ES" full_name="Español (España)">
 	<message key="plugins.paymethod.paypal.displayName">Pago online (PayPal)</message>
 
 	<!-- PayPal Settings Form -->
