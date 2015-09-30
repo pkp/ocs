@@ -12,7 +12,7 @@
   * $Id: locale.xml,v 1.145 2007/05/16 21:51:17 asmecher Exp
   * $
   -->
-<locale name="ca_ES" full_name="Català (Espanya)">
+<locale name="ca_ES" full_name="Català">
 	<!--
 	 * This file is organized into several major sections, separated
 	 * by comments like this one. These sections are called:
