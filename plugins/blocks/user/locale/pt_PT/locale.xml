@@ -7,11 +7,11 @@
   * Copyright (c) 2000-2012 John Willinsky
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
   *
-  * Localization strings for the pt_PT (Portuguese) locale.
+  * Localization strings for the pt_PT (Português (Portugal)) locale.
   *
   -->
  
-<locale name="pt_PT" full_name="Português">
+<locale name="pt_PT" full_name="Português (Portugal)">
 	<message key="plugins.block.user.displayName">Bloco Utilizador</message>
 	<message key="plugins.block.user.description">Este plugin oferece uma barra lateral com ferramentas do registp do utilizador (ex.: entrar no sistema, sair do sistema, acesso ao perfil, etc).</message>
 	<message key="plugins.block.user.loggedInAs">Está conectado como...</message>

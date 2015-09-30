@@ -11,7 +11,7 @@
   *
   -->
  
-<locale name="pt_PT" full_name="Português">
+<locale name="pt_PT" full_name="Português (Portugal)">
 	<message key="plugins.block.help.displayName">Bloco Ajuda</message>
 	<message key="plugins.block.help.description">Este plugin oferece um link para ajuda na barra de menus.</message>
 </locale>
