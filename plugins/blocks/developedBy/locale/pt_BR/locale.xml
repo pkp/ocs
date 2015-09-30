@@ -7,11 +7,11 @@
   * Copyright (c) 2000-2012 John Willinsky
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
   *
-  * Localization strings for the pt_BR (Portuguese) locale.
+  * Localization strings for the pt_BR (Português (Brasil)) locale.
   *
   -->
  
-<locale name="pt_BR" full_name="Portuguese">
+<locale name="pt_BR" full_name="Português (Brasil)">
 	<message key="plugins.block.developedBy.displayName">Bloco "Desenvolvido Por"</message>
 	<message key="plugins.block.developedBy.description">Este plugin oferece um link na barra desejada para "Desenvolvido Por".</message>
 </locale>

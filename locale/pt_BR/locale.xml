@@ -7,13 +7,13 @@
   * Copyright (c) 2000-2012 John Willinsky
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
   *
-  * Localization strings for the pt_BR (Portuguese Brazilian) locale.
+  * Localization strings for the pt_BR (Português (Brasil)) locale.
   * Translation and updates by IBICT;
   * some updates by bruno.beghelli@gmail.com
   *
   -->
 
-<locale name="pt_BR" full_name="Português do Brasil">
+<locale name="pt_BR" full_name="Português (Brasil)">
 	<!--
 	 * This file is organized into several major sections, separated
 	 * by comments like this one. These sections are called:
