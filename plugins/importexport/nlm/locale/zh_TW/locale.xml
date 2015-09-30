@@ -7,12 +7,12 @@
   * Copyright (c) 2000-2012 John Willinsky
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
   *
-  * Localization strings for the zh_TW (正體中文) locale.
+  * Localization strings for the zh_TW (繁體中文) locale.
   *正體中文由 陳文誌 (長庚大學工業設計系) 與 莊惠茹 共同翻譯 (V1 @ 20080515)
   * $Id$
   -->
  
-<locale name="zh_TW" full_name="正體中文">
+<locale name="zh_TW" full_name="繁體中文">
 	<message key="plugins.importexport.nlm.displayName">NLM XML 輸出外掛程式</message>
 	<message key="plugins.importexport.nlm.description">輸出在 NLM 中的文章解釋資料 (metadata) 以符合 XML 的摘要格式作為索引使用。</message>
 
