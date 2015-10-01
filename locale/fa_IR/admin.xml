@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../lib/pkp/dtd/locale.dtd"[]>
+<!--
+  * ocs2-devel/locale/en_US/admin.xml
+  *
+  * Copyright (c) 2000-2012 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  *
+  * Localization strings for the fa_IR (Persian) locale.
+  * # Localized by ICT Center - Imam Hossein University (IHU) - 2013 
+  * # CONTACT: conf@ihu.ac.ir
+  * #  ترجمه شده توسط مرکز فاوا – دانشگاه جامع امام حسین (ع) - 1392
+  *
+  *
+  * $Id$
+  -->
+<locale name="fa_IR" full_name="Persian">
+  <message key="admin.languages.primaryLocaleInstructions">این زبان به عنوان زبان پیش‌فرض برای این سایت و کنفرانس‌های آن در نظر گرفته خواهد شد.</message>
+  <message key="admin.languages.supportedLocalesInstructions">تمامی زبان‌های دلخواه را برای سایت را  انتخاب کنید. زبان‌های انتخاب شده برای تمام کنفرانس‌های این سایت در دسترس خواهد بود و در منوی انتخاب زبان هر کنفرانس ظاهر می‌شود که مدیر هر مجله در صورت تمایل می تواند آنرا برای سایت خود انتخاب کند. چنانچه فقط یک زبان انتخاب شود، منوی انتخاب زبان و تنظیمات مربوطه موجود نخواهد بود.</message>
+  <message key="admin.locale.maybeIncomplete">زبانهای مشخص شده ممکن است ناکامل باشند.</message>
+  <message key="admin.languages.confirmUninstall">آیا مطمئن هستید که می‌خواهید این زبان را حذف کنید؟ این امر ممکن است تمامی کنفرانس‌هایی که از این زبان استفاده می‌کنند را تحت تأثیر قرار دهد.</message>
+  <message key="admin.languages.installNewLocalesInstructions">زبان‌های دیگری را که می‌خواهید در این سیستم در دسترس باشند، انتخاب کنید. زبان‌ها قبل از استفاده توسط کنفرانس‌ها می‌بایست نصب شوند. برای اطلاع از اضافه کردن زبان‌های جدید به مستندات سیستم OCS مراجعه نمایید.</message>
+  <message key="admin.auth.enableSyncProfiles">Enable user profile synchronization (if supported by this authentication plug-in). User profile information will be automatically updated from the remote source when a user logs in, and profile changes (including password changes) made within OCS will be automatically updated on the remote source. If this option is not enabled OCS profile information will be kept separate from remote source profile information.</message>
+  <message key="admin.auth.enableSyncPasswords">Enable user password modification (if supported by this authentication plug-in). Enabling this option allows users to modify their password from within OCS and to use the OCS "lost password" feature to reset a forgotten password. These functions will be unavailable to users with this authentication source if this option is not enabled.</message>
+  <message key="admin.auth.enableCreateUsers">Enable user creation (if supported by this authentication plug-in). Users created within OCS with this authentication source will be automatically added to the remote authentication source if they do not already exist. Additionally, if this source is the default authentication source, OCS accounts created through user registration will also be added to the remote authentication source.</message>
+  <message key="admin.systemVersion">OCS Version</message>
+  <message key="admin.systemConfiguration">پیکربندی سیستم OCS</message>
+  <message key="admin.systemConfigurationDescription"><![CDATA[OCS configuration settings from <tt>config.inc.php</tt>.]]></message>
+  <message key="admin.hostedConferences">کنفرانس های موجود</message>
+  <message key="admin.settings.conferenceRedirect">تغییر مسیر کنفرانس</message>
+  <message key="admin.settings.conferenceRedirectInstructions">درخواست‌ها ارسالی به سایت اصلی به این کنفرانس ارجاع می‌شود. به عنوان مثال، این مورد زمانی که این سایت فقط میزبان یک کنفرانس است، می‌تواند است مورد استفاده قرار گیرد.</message>
+  <message key="admin.settings.noConferenceRedirect">تغییر جهت داده نشود.</message>
+  <message key="admin.auth.ocs">پایگاه داده‌های کاربران OCS</message>
+  <message key="admin.conferences.conferenceSettings">تنظیمات کنفرانس</message>
+  <message key="admin.conferences.noneCreated">هیچ کنفرانسی ایجاد نشده است.</message>
+  <message key="admin.conferences.confirmDelete">آیا مطمئن هستید که می‌خواهید این کنفرانس و تمام محتویات آن را به صورت دائمی حذف کنید؟</message>
+  <message key="admin.conferences.create">ایجاد کنفرانس</message>
+  <message key="admin.conferences.createInstructions">شما به طور خودکار به عنوان مدیر این کنفرانس ثبت‌نام خواهید شد. پس از ایجاد یک کنفرانس جدید، به عنوان مدیر وارد آن شده و راه‌اندازی آن و ثبت‌نام کاربران را ادامه دهید.</message>
+  <message key="admin.conferences.urlWillBe">این باید یک کلمه کوتاه و یا مخفف باشد که کنفرانس را مشخص می‌نماید. آدرس URL کنفرانس اینگونه خواهد بود: {$sampleUrl}</message>
+  <message key="admin.conferences.form.titleRequired">عنوان الزامی است</message>
+  <message key="admin.conferences.form.pathRequired">مسیر الزامی است</message>
+  <message key="admin.conferences.form.pathAlphaNumeric">مسیر فقط می تواند شامل کاراکترهای حروف و عدد باشد</message>
+  <message key="admin.conferences.form.pathExists">مسیر انتخاب شده در حال حاضر توسط کنفرانس دیگری مورد استفاده قرار گرفته است.</message>
+  <message key="admin.conferences.enableConferenceInstructions">این کنفرانس را به صورت عمومی بر روی سایت قرار بده.</message>
+  <message key="admin.conferences.conferenceDescription">توصیف کنفرانس</message>
+  <message key="admin.conferences.conferenceDescriptionInstructions">توصیف کنفرانس، هدف جاری این کنفرانس را مشخص می کند. این توصیف در صفحه اصلی و صفحه کانونشن کنفرانس نمایش داده می شود.</message>
+  <message key="admin.conferences.importOCS1">Import from OCS 1</message>
+  <message key="admin.conferences.importOCS1.editMigratedConference">Edit Migrated Conference</message>
+  <message key="admin.conferences.importOCS1.conflict.desc">Some user accounts had conflicting information. OCS 1.x allows multiple user accounts to share the same email address, while OCS 2.x does not. In the list below, the second account listed has had a temporary email account assigned to it. These should be corrected by hand, either by assigning a different email account, or by merging accounts.</message>
+  <message key="admin.conferences.importOCS1.errors.desc">The following errors were encountered when migrating from the OCS 1.x conference into OCS 2.x.</message>
+  <message key="admin.conferences.importOCS1.conflict">{$firstUsername} ({$firstName}) and {$secondUsername} ({$secondName})</message>
+  <message key="admin.conferences.importOCS1Instructions"><![CDATA[Consult the UPGRADE document distributed with OCS for detailed information on migrating data from OCS 1 to OCS 2. Note that this process will NOT create a completely configured OCS 2 conference; only certain items (e.g. papers) will be imported. <strong>All imported users will need to reset their passwords. It is strongly suggested that the Conference Director review all imported information before launching the conference website.</strong>]]></message>
+  <message key="admin.conference.pathImportInstructions">Existing conference path or path to create (e.g., "ocs").</message>
+  <message key="admin.conference.importPath">OCS 1 path</message>
+  <message key="admin.conference.importPathInstructions">Complete local filesystem path to the OCS 1 installation (e.g., "/var/www/ocs").</message>
+  <message key="admin.conferences.importRegistrations">Import registrations</message>
+  <message key="admin.conferences.emailUsers">Email created users with login information, including a random password</message>
+  <message key="admin.conferences.transcode">Transcode paper metadata from ISO8859-1</message>
+  <message key="admin.conferences.form.importPathRequired">برای واردات مسیر مورد نیاز است</message>
+  <message key="admin.conferences.importErrors">واردات با موفقیت انجام نشد</message>
+  <!-- Site Administration Merge Users -->
+  <message key="admin.mergeUsers">ادغام کاربران</message>
+  <message key="admin.mergeUsers.mergeUser">ادغام کاربر</message>
+  <message key="admin.mergeUsers.into.description">Select a user to whom to attribute the previous user's submissions, editing assignments, etc.</message>
+  <message key="admin.mergeUsers.from.description">یک یا چند کاربر را انتخاب کنید تا با یک حساب کاربری ادغام شوند (مثلا وقتی یک نفر دو حساب کاربری دارد). حساب(های) کاربری انتخاب شده حذف شده و تمامی ارسالات و واگذاری‌ها و غیره به حساب کاربری دوم منتسب خواهند شد.</message>
+  <message key="admin.mergeUsers.allUsers">تمامی کاربران ثبت‌نام شده</message>
+  <message key="admin.mergeUsers.confirm">آیا مطمئن هستید که می خواهید حساب(های) کاربری «{$oldUsername}» را با حساب با نام کاربری «{$newUsername}» ادغام کنید؟ حساب(های) انتخاب‌شده «{$oldAccountCount}» دیگر وجود نخواهند داشت . این عملیات قابل بازگشت نیست.</message>
+  <message key="admin.mergerUsers.noneEnrolled">فاقد کاربر داری نقش</message>
+</locale>
