@@ -109,13 +109,15 @@ class ReviewReportPlugin extends ReportPlugin {
 		$fp = fopen('php://output', 'wt');
 		String::fputcsv($fp, array_values($columns));
 
+		import('submission.trackDirector.TrackDirectorAction');
+
 		while ($row =& $reviewsIterator->next()) {
 			foreach ($columns as $index => $junk) {
 				if (in_array($index, array('declined', 'cancelled'))) {
 					$yesNoIndex = $row[$index];
 					if (is_string($yesNoIndex)) {
 						// Accomodate Postgres boolean casting
-						$yesNoIndex = $yesNoIndex == "f" ? 0 : 1;
+						$yesNoIndex = (($yesNoIndex == "f" || $yesNoIndex == "0") ? 0 : 1);
 					}
 					$columns[$index] = $yesnoMessages[$yesNoIndex];
 				} elseif ($index == "reviewstage") {
@@ -124,7 +126,10 @@ class ReviewReportPlugin extends ReportPlugin {
 					$columns[$index] = (!isset($row[$index])) ? __('common.none') : __($recommendations[$row[$index]]);
 				} elseif ($index == "comments") {
 					if (isset($comments[$row['paperid']][$row['reviewerid']])) {
-						$columns[$index] = html_entity_decode(strip_tags($comments[$row['paperid']][$row['reviewerid']]), ENT_QUOTES, 'UTF-8');
+						$columns[$index] = String::html2utf(strip_tags($comments[$row['paperid']][$row['reviewerid']]));
+					} elseif (isset($row['reviewformid'])) {
+						$columns[$index] = String::html2utf(strip_tags(TrackDirectorAction::getReviewFormResponses($row['reviewid'], $row['reviewformid'])));
+
 					} else {
 						$columns[$index] = "";
 					}
