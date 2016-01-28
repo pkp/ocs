@@ -252,7 +252,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		$templateMgr->assign('helpTopicId', 'editorial.trackDirectorsRole.review');
 
 		$controlledVocabDao =& DAORegistry::getDAO('ControlledVocabDAO');
-		$templateMgr->assign('sessionTypes', $controlledVocabDao->enumerateBySymbolic('sessionTypes', ASSOC_TYPE_SCHED_CONF, $schedConf->getId()));
+		$templateMgr->assign('sessionTypes', $controlledVocabDao->enumerateBySymbolic('paperType', ASSOC_TYPE_SCHED_CONF, $schedConf->getId()));
 
 		$templateMgr->display('trackDirector/submissionReview.tpl');
 	}
