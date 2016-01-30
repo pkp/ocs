@@ -3,7 +3,7 @@
 <!--
   * registry/locales.xml
   *
-  * Copyright (c) 2000-2012 John Willinsky
+  * Copyright (c) 2000-2016 John Willinsky
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
   *
   * Locales registry file.
@@ -22,6 +22,7 @@
 	<locale key="es_AR" complete="false" name="Español (Argentina)" iso639-2b="spa" iso639-3="spa" />	
 	<locale key="es_ES" name="Español (España)" iso639-2b="spa" iso639-3="spa" />
 	<locale key="eu_ES" complete="false" name="Basque" iso639-2b="baq" />
+	<locale key="fa_IR" complete="false" name="فارسی" iso639-2b="per" iso639-3="fas" />
 	<locale key="fr_CA" name="Français" iso639-2b="fre" iso639-3="fra" />
 	<locale key="it_IT" complete="false" name="Italiano" iso639-2b="ita" iso639-3="ita" />
 	<locale key="pt_BR" name="Português (Brasil)" iso639-2b="por" iso639-3="por" />
