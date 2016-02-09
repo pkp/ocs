@@ -867,12 +867,12 @@ class TrackDirectorAction extends Action {
 	function getReviewFormResponses($reviewId, $reviewFormId) {
 		$responses = "";
 
-		if (!reviewId || !reviewFormId) return $responses;
+		if (!$reviewId || !$reviewFormId) return $responses;
 
 		$reviewFormElementDao =& DAORegistry::getDAO('ReviewFormElementDAO');
 		$reviewFormElements =& $reviewFormElementDao->getReviewFormElements($reviewFormId);
 
-		if (!reviewFormElements) return $responses;
+		if (!$reviewFormElements) return $responses;
 
 		$reviewFormResponseDao =& DAORegistry::getDAO('ReviewFormResponseDAO');
 
