@@ -404,7 +404,17 @@ class DirectorHandler extends TrackDirectorHandler {
 			$publishedPaperDao->resequencePublishedPapers($publishedPaper->getTrackId(), $schedConf->getId());
 		}
 
-		Request::redirect(null, null, null, 'submissions', 'submissionsAccepted');
+		Request::redirect(
+			null, null, null, 'submissions', 'submissionsAccepted',
+			array(
+				'searchField' => Request::getUserVar('searchField'),
+				'searchMatch' => Request::getUserVar('searchMatch'),
+				'search' => Request::getUserVar('search'),
+				'track' => Request::getUserVar('track'),
+				'sort' => Request::getUserVar('sort'),
+				'sortDirection' => Request::getUserVar('sortDirection'),
+			)
+		);
 	}
 
 	/**

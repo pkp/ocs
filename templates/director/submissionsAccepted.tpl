@@ -53,8 +53,8 @@
 		<td>{$submission->getAuthorString(true)|truncate:40:"..."|escape}</td>
 		<td><a href="{url op="submissionReview" path=$paperId}" class="action">{$submission->getLocalizedTitle()|strip_tags|truncate:60:"..."|default:"&mdash;"}</a></td>
 		<td>
-			<a href="{url op="movePaper" d=u paperId=$submission->getPaperId()}" class="plain">&uarr;</a>
-			<a href="{url op="movePaper" d=d paperId=$submission->getPaperId()}" class="plain">&darr;</a>
+			<a href="{url op="movePaper" d=u paperId=$submission->getPaperId() searchField=$searchField searchMatch=$searchMatch search=$search track=$track sort=$sort sortDirection=$sortDirection}" class="plain">&uarr;</a>
+			<a href="{url op="movePaper" d=d paperId=$submission->getPaperId() searchField=$searchField searchMatch=$searchMatch search=$search track=$track sort=$sort sortDirection=$sortDirection}" class="plain">&darr;</a>
 		</td>
 		<td align="right">
 			{assign var="status" value=$submission->getStatus()}

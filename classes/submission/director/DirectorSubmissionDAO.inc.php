@@ -276,7 +276,7 @@ class DirectorSubmissionDAO extends DAO {
 			$params[] = $directorId;
 		}
 
-		$sql .= ' ' . $searchSql . ($sortBy?(' ORDER BY ' . $this->getSortMapping($sortBy) . ' ' . $this->getDirectionMapping($sortDirection)) : '');
+		$sql .= ' ' . $searchSql . ' ORDER BY ' . ($sortBy?($this->getSortMapping($sortBy) . ' ' . $this->getDirectionMapping($sortDirection) . ($sortBy=='track'?', pp.seq':'')) : 'pp.seq');
 
 		$result =& $this->retrieveRange(
 			$sql,
