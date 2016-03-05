@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * locale/fa_IR/locale.xml
+  *
+  * Copyright (c) 2000-2016 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  * Localization strings for the fa_IR (سی) locale.
+  * # Localized by ICT Center - Imam Hossein University (IHU) - 2013
+  * # CONTACT: conf@ihu.ac.ir
+  -->
+
+<locale name="fa_IR" full_name="فارسی">
+	<message key="track.default.title">مقالات عمومی</message>
+	<message key="track.default.abbrev">م. ع.</message>
+	<message key="default.schedConfSettings.checklist.notPreviouslyPublished">مقاله ارسالی قبلا چاپ نشده است، همچنین در کنفرانس دیگری در دست بررسی نیست ( و یا توضیحاتی در بخش یادداشت برای مدیر کنفرانس داده شده است).</message>
+	<message key="default.schedConfSettings.checklist.fileFormat">فایل ساب میشن به فرمات OpenOffice, Microsoft Word, RTF, یا WordPerfect میباشد.</message>
+	<message key="default.schedConfSettings.checklist.addressesLinked">تمام آدرس‌های URL داخل متن (مثلا &lt;a href="http://pkp.sfu.ca"&gt;http://pkp.sfu.ca&lt;/a&gt;) فعال و آماده کلیک کردن هستند.</message>
+	<message key="default.schedConfSettings.checklist.submissionAppearance">فاصله سطور در متن، تک‌فاصله‌ای است. از قلم با اندازه 12 استفاده شده است. به جای خط کشیدن زیر حروف (به جز در آدرس‌های URL)، از حروف ایتالیک بهره گرفته شده است و تمام تصاویر، شکل‌ها و جداول در جای خود در متن قرار گرفته‌اند و نه در انتهای آن.</message>
+	<message key="default.conferenceSettings.emailSignature"><![CDATA[________________________________________________________________________
+{$conferenceName}
+{$conferenceUrl}
+]]></message>
+	<message key="default.conferenceSettings.forReaders"><![CDATA[ما خوانندگان را تشویق می‌کنیم که برای دریافت اطلاع‌رسانی مقالات ارسالی به این کنفرانس ثبت‌نام نمایند. به شما توصیه می‌کنیم که صفحه <a href="{$aboutUrl}">«درباره کنفرانس»</a> را برای اطلاع از سیاست‌های کنفرانس مرور نمایید. همچنین <a href="{$conferenceUrl}">صفحه اصلی کنفرانس</a> را برای اطلاع از کنفرانس‌های آتی، ببینید.]]></message>
+	<message key="default.conferenceSettings.forAuthors"><![CDATA[آیا تمایل دارید برای این کنفرانس مقاله ارسال کنید؟ توصیه می‌کنیم که صفحه <a href="{$aboutUrl}">«درباره کنفرانس»</a> را برای اطلاع از سیاست‌های کنفرانس مرور نمایید. همچنین <a href="{$conferenceUrl}">صفحه اصلی کنفرانس</a> را برای اطلاع از کنفرانس‌های آتی، ببینید.]]></message>
+	<message key="default.schedConfSettings.emailSignature"><![CDATA[________________________________________________________________________
+{$conferenceName} {$schedConfName}
+{$schedConfUrl}
+]]></message>
+	<message key="default.conferenceSettings.archiveAccessPolicy">ارائه‌های تشکیل دهنده کنفرانس جاری و کنفرانس‌های بایگانی شده بر روی این سایت به صورت دسترسی باز درآمده‌اند و به جهت نفع نویسندگان و خوانندگان، به صورت رایگان برای مشاهده در دسترس هستند.</message>
+</locale>

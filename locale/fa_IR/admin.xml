@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * locale/fa_IR/admin.xml
+  *
+  * Copyright (c) 2000-2016 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  * Localization strings for the fa_IR (فارسی) locale.
+  * # Localized by ICT Center - Imam Hossein University (IHU) - 2013 
+  * # CONTACT: conf@ihu.ac.ir
+  -->
+
+<locale name="fa_IR" full_name="فارسی">
+	<message key="admin.languages.primaryLocaleInstructions">این زبان به عنوان زبان پیش‌فرض برای این سایت و کنفرانس‌های آن در نظر گرفته خواهد شد.</message>
+	<message key="admin.languages.supportedLocalesInstructions">تمامی زبان‌های دلخواه را برای سایت را  انتخاب کنید. زبان‌های انتخاب شده برای تمام کنفرانس‌های این سایت در دسترس خواهد بود و در منوی انتخاب زبان هر کنفرانس ظاهر می‌شود که مدیر هر مجله در صورت تمایل می تواند آنرا برای سایت خود انتخاب کند. چنانچه فقط یک زبان انتخاب شود، منوی انتخاب زبان و تنظیمات مربوطه موجود نخواهد بود.</message>
+	<message key="admin.locale.maybeIncomplete">زبانهای مشخص شده ممکن است ناکامل باشند.</message>
+	<message key="admin.languages.confirmUninstall">آیا مطمئن هستید که می‌خواهید این زبان را حذف کنید؟ این امر ممکن است تمامی کنفرانس‌هایی که از این زبان استفاده می‌کنند را تحت تأثیر قرار دهد.</message>
+	<message key="admin.languages.installNewLocalesInstructions">زبان‌های دیگری را که می‌خواهید در این سیستم در دسترس باشند، انتخاب کنید. زبان‌ها قبل از استفاده توسط کنفرانس‌ها می‌بایست نصب شوند. برای اطلاع از اضافه کردن زبان‌های جدید به مستندات سیستم OCS مراجعه نمایید.</message>
+	<message key="admin.systemConfiguration">پیکربندی سیستم OCS</message>
+	<message key="admin.systemConfigurationDescription"><![CDATA[OCS configuration settings from <tt>config.inc.php</tt>.]]></message>
+	<message key="admin.hostedConferences">کنفرانس های موجود</message>
+	<message key="admin.settings.conferenceRedirect">تغییر مسیر کنفرانس</message>
+	<message key="admin.settings.conferenceRedirectInstructions">درخواست‌ها ارسالی به سایت اصلی به این کنفرانس ارجاع می‌شود. به عنوان مثال، این مورد زمانی که این سایت فقط میزبان یک کنفرانس است، می‌تواند است مورد استفاده قرار گیرد.</message>
+	<message key="admin.settings.noConferenceRedirect">تغییر جهت داده نشود.</message>
+	<message key="admin.auth.ocs">پایگاه داده‌های کاربران OCS</message>
+	<message key="admin.conferences.conferenceSettings">تنظیمات کنفرانس</message>
+	<message key="admin.conferences.noneCreated">هیچ کنفرانسی ایجاد نشده است.</message>
+	<message key="admin.conferences.confirmDelete">آیا مطمئن هستید که می‌خواهید این کنفرانس و تمام محتویات آن را به صورت دائمی حذف کنید؟</message>
+	<message key="admin.conferences.create">ایجاد کنفرانس</message>
+	<message key="admin.conferences.createInstructions">شما به طور خودکار به عنوان مدیر این کنفرانس ثبت‌نام خواهید شد. پس از ایجاد یک کنفرانس جدید، به عنوان مدیر وارد آن شده و راه‌اندازی آن و ثبت‌نام کاربران را ادامه دهید.</message>
+	<message key="admin.conferences.urlWillBe">این باید یک کلمه کوتاه و یا مخفف باشد که کنفرانس را مشخص می‌نماید. آدرس URL کنفرانس اینگونه خواهد بود: {$sampleUrl}</message>
+	<message key="admin.conferences.form.titleRequired">عنوان الزامی است</message>
+	<message key="admin.conferences.form.pathRequired">مسیر الزامی است</message>
+	<message key="admin.conferences.form.pathAlphaNumeric">مسیر فقط می تواند شامل کاراکترهای حروف و عدد باشد</message>
+	<message key="admin.conferences.form.pathExists">مسیر انتخاب شده در حال حاضر توسط کنفرانس دیگری مورد استفاده قرار گرفته است.</message>
+	<message key="admin.conferences.enableConferenceInstructions">این کنفرانس را به صورت عمومی بر روی سایت قرار بده.</message>
+	<message key="admin.conferences.conferenceDescription">توصیف کنفرانس</message>
+	<message key="admin.conferences.conferenceDescriptionInstructions">توصیف کنفرانس، هدف جاری این کنفرانس را مشخص می کند. این توصیف در صفحه اصلی و صفحه کانونشن کنفرانس نمایش داده می شود.</message>
+
+	<message key="admin.conferences.form.importPathRequired">برای واردات مسیر مورد نیاز است</message>
+	<message key="admin.conferences.importErrors">واردات با موفقیت انجام نشد</message>
+
+	<!-- Site Administration Merge Users -->
+	<message key="admin.mergeUsers">ادغام کاربران</message>
+	<message key="admin.mergeUsers.mergeUser">ادغام کاربر</message>
+	<message key="admin.mergeUsers.from.description">یک یا چند کاربر را انتخاب کنید تا با یک حساب کاربری ادغام شوند (مثلا وقتی یک نفر دو حساب کاربری دارد). حساب(های) کاربری انتخاب شده حذف شده و تمامی ارسالات و واگذاری‌ها و غیره به حساب کاربری دوم منتسب خواهند شد.</message>
+	<message key="admin.mergeUsers.allUsers">تمامی کاربران ثبت‌نام شده</message>
+	<message key="admin.mergeUsers.confirm">آیا مطمئن هستید که می خواهید حساب(های) کاربری «{$oldUsername}» را با حساب با نام کاربری «{$newUsername}» ادغام کنید؟ حساب(های) انتخاب‌شده «{$oldAccountCount}» دیگر وجود نخواهند داشت . این عملیات قابل بازگشت نیست.</message>
+	<message key="admin.mergerUsers.noneEnrolled">فاقد کاربر داری نقش</message>
+</locale>

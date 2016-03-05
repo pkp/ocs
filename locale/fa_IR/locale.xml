@@ -1,0 +1,645 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * locale/fa_IR/locale.xml
+  *
+  * Copyright (c) 2000-2016 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  * Localization strings for the fa_IR (فارسی) locale.
+  * # Localized by ICT Center - Imam Hossein University (IHU) - 2013
+  * # CONTACT: conf@ihu.ac.ir
+  -->
+
+<locale name="fa_IR" full_name="فارسی">
+	<!--
+	 * This file is organized into several major sections, separated
+	 * by comments like this one. These sections are called:
+	 *  COMMON - Contains frequently-used words
+	 *  ENTITIES - Contains terms pertaining to the system's major
+	 *             entities, e.g. Paper, Conference, Track
+	 *  INTERFACE - Contains phrases organized by the section of the
+	 *              user interface they appear in.
+	 *  LOG - Contains phrases related to log entries
+	 *  MISC - Entries that don't belong elsewhere.
+	 *  DEFAULT - Default settings for configuration items.
+	-->
+
+	<!-- review forms start -->
+
+	<!-- common -->
+	<message key="common.copy">کپی</message>
+	<message key="common.preview">نگاه اجمالی</message>
+	<message key="common.activate">فعال کن</message>
+	<message key="common.deactivate">غیر فعال کن</message>
+
+	<!-- Conference Management -->
+	<message key="manager.reviewForms">فرم‌های داوری</message>
+
+	<message key="manager.reviewForms.list.description">فرم‌های داوری‌ای که در اینجا ایجاد می‌شوند، به داوران ارائه خواهند شد تا به جای فرم‌های پیش‌فرض که متشکل از دو کادر متنی باز «برای نویسنده و دبیر» و «برای دبیر» هستند، تکمیل گردند. فرم‌های داوری می‌توانند به محور خاصی از کنفرانس اختصاص یابند و دبیران این امکان را خواهند داشت که انتخاب کنند کدام فرم هنگام انتصاب داوری مورد استفاده قرار گیرد. در تمامی حالات، دبیران گزینه شامل کردن داوری‌های متناظر با نویسنده را خواهند داشت.</message>
+	<message key="manager.reviewForms.noneChosen">هیچکدام / فرم کارشناسی آزاد</message>
+	<message key="manager.reviewForms.noneCreated">هیچ فرم کارشناسی تولید نشده است</message>
+	<message key="manager.reviewForms.create">ایجاد فرم کارشناسی</message>
+	<message key="manager.reviewForms.edit">فرم کارشناسی</message>
+	<message key="manager.reviewForms.title">عنوان</message>
+	<message key="manager.reviewForms.description">تعاریف و دستورالعمل ها</message>
+	<message key="manager.reviewForms.preview">فرم کارشناسی</message>
+	<message key="manager.reviewForms.completed">تکمیل شده</message>
+	<message key="manager.reviewForms.inReview">در حال بررسی</message>
+	<message key="manager.reviewForms.confirmDeleteUnpublished">لطفا خذف فرم منتشر نشده را تایید نمائید</message>
+
+	<message key="manager.reviewForms.form.titleRequired">عنوان فرم کارشناسی الزامی است</message>
+
+	<message key="manager.reviewFormElements">آیتم های فرم</message>
+	<message key="manager.reviewFormElements.create">ایجاد آیتم جدید</message>
+	<message key="manager.reviewFormElements.edit">ویرایش آیتم فرم</message>
+	<message key="manager.reviewFormElements.noneCreated">هنوز آیتمی برای این فرم ایجاد نشده است</message>
+	<message key="manager.reviewFormElements.confirmDelete">لطفا خذف آیتم فرم منتشر شده را تایید نمائید</message>
+	<message key="manager.reviewFormElements.copyTo">کپی به:</message>
+	<message key="manager.reviewFormElements.question">آیتم</message>
+	<message key="manager.reviewFormElements.required">پاسخ به این آیتم توسط کارشناسان الزامی است</message>
+	<message key="manager.reviewFormElements.included">در داخل پیام برای نویسنده ضمیمه شده است.</message>
+	<message key="manager.reviewFormElements.elementType">نوع آیتم</message>
+	<message key="manager.reviewFormElements.possibleResponse">گزینه</message>
+	<message key="manager.reviewFormElements.addResponseItem">افزودن گزینه</message>
+	<message key="manager.reviewFormElements.chooseType">انتخاب نوع آیتم</message>
+	<message key="manager.reviewFormElement.changeType">تغییر نوع آیتم فرم</message>
+
+	<message key="manager.reviewFormElements.form.questionRequired">این آیتم یک پرسش لازم دارد</message>
+	<message key="manager.reviewFormElements.form.elementTypeRequired">تعیین نوع آیتم برای آیتم فرم اجباری است</message>
+
+	<message key="manager.reviewFormElements.smalltextfield">جعبه متن یک کلمه ای</message>
+	<message key="manager.reviewFormElements.textfield">جعبه متن یک سطری</message>
+	<message key="manager.reviewFormElements.textarea">جعبه متن طویل</message>
+	<message key="manager.reviewFormElements.checkboxes">جعبه چک مارک: یک یا چند گزینه قابل انتخاب است</message>
+	<message key="manager.reviewFormElements.radiobuttons">دکمه رادیوئی: فقط یک گزینه قابل انتخاب است</message>
+	<message key="manager.reviewFormElements.dropdownbox">جعبه منوی کرکره ای</message>
+	<!--  peer review -->
+	<message key="submission.reviewForm">فرم کارشناسی</message>
+	<message key="submission.reviewFormResponse">پاسخ فرم کارشناسی</message>
+	<message key="editor.paper.reviewForms">فرم‌های داوری</message>
+	<message key="editor.paper.selectReviewForm">انتخاب فرم کارشناسی</message>
+	<message key="editor.paper.clearReviewForm">حذف فرم کارشناسی</message>
+	<message key="editor.paper.confirmChangeReviewForm">تغییر فرم کارشناسی موجب از بین رفتن پاسخ های وارد شده میشود</message>
+	<message key="reviewer.paper.enterReviewForm">لطفا بر روی  شکلک کلیک کنید تا به فرم کارشناسی بروید</message>
+	<message key="reviewer.paper.reviewFormResponse.form.responseRequired">لطفا فیلد های الزامی را پر کنید</message>
+
+	<!-- review forms end -->
+
+	<!--
+	 *
+	 * COMMON - This section contains the most frequently-used words
+	 *
+	-->
+
+	<!-- Common Messages -->
+	<message key="common.openConferenceSystems">حامیان کنفرانس</message>
+	<message key="common.noDate">(تاریخ)</message>
+	<message key="common.time">زمان</message>
+	<message key="common.days">روزها</message>
+	<message key="common.timeZone">منطفه زمانی</message>
+	<message key="common.ellipsis">...</message>
+	<message key="common.path">مسیر</message>
+	<message key="common.sortBy">مرتب‌سازی بر اساس...</message>
+
+	<!-- Navigation -->
+	<message key="navigation.conferenceHelp">دریافت فراخوان</message>
+	<message key="navigation.account">ثبت نام</message>
+	<message key="navigation.archive">بایگانی</message>
+	<message key="navigation.current">کنفرانس‌های جاری</message>
+	<message key="navigation.otherConferences">دیگر کنفرانس ها</message>
+	<message key="navigation.browseByConference">مرور با کنفرانس</message>
+	<message key="navigation.browseByAuthor">مرور بر اساس نویسنده</message>
+	<message key="navigation.infoForAuthors">برای نویسندگان</message>
+	<message key="navigation.infoForReviewers">برای کارشناسان</message>
+	<message key="navigation.infoForAuthors.long">اطلاعات برای نویسندگان</message>
+	<message key="navigation.infoForReviewers.long">اطلاعات برای داورها</message>
+
+	<!-- Paper Queues -->
+	<message key="common.queue.long.submissionsUnassigned">منتسب نشده</message>
+	<message key="common.queue.short.submissionsUnassigned">منتسب نشده</message>
+	<message key="common.queue.long.submissionsInReview">ساب میشن های در حال بررسی</message>
+	<message key="common.queue.short.submissionsInReview">در حال بررسی</message>
+	<message key="common.queue.long.submissionsAccepted">ارائه‌ها</message>
+	<message key="common.queue.short.submissionsAccepted">ارائه‌ها</message>
+	<message key="common.queue.long.submissionsArchives">بایگانی</message>
+	<message key="common.queue.short.submissionsArchives">بایگانی</message>
+	<message key="common.queue.long.active">ارسال‌های فعال</message>
+	<message key="common.queue.short.active">فعال</message>
+	<message key="common.queue.long.completed">بایگانی</message>
+	<message key="common.queue.short.completed">بایگانی</message>
+
+	<!--
+	 *
+	 * ENTITIES - This section contains terms pertaining to the system's
+	 *            major entities, e.g. Paper, Conference, Track
+	 *
+	-->
+
+	<!-- Common Track Terms -->
+	<message key="track.track">محور</message>
+	<message key="track.tracks">محور های کنفرانس</message>
+	<message key="track.title">عنوان محور</message>
+	<message key="track.abbreviation">اختصار</message>
+	<message key="track.abbreviation.example">(به عنوان مثال، مقالات تخصصی = تخص. و یا General Papers = GEN)</message>
+
+	<!-- Common Paper Terms -->
+	<message key="paper.papers">مقالات</message>
+	<message key="paper.submissionId">سابمیشنID</message>
+	<message key="paper.title">عنوان</message>
+	<message key="paper.authors">نویسندگان</message>
+	<message key="paper.conferenceTrack">محور کنفرانس</message>
+	<message key="paper.file">فایل</message>
+	<message key="paper.suppFile">فایل مکمل</message>
+	<message key="paper.suppFiles">فایل(های) مکمل</message>
+	<message key="paper.suppFilesAbbrev">فایلهای مکمل</message>
+	<message key="paper.discipline">رشته علمی</message>
+	<message key="paper.subjectClassification">طبقه بندی موضوعی</message>
+	<message key="paper.subject">کلیدواژه‌ها</message>
+	<message key="paper.coverage">پوشش</message>
+	<message key="paper.coverageGeo">پوشش جغرافیایی</message>
+	<message key="paper.coverageChron">پوشش تاریخی یا زمانی</message>
+	<message key="paper.coverageSample">نمونه خصوصیات پژوهش</message>
+	<message key="paper.type">نوع مقاله</message>
+	<message key="paper.language">زبان</message>
+	<message key="paper.trackDirector">دبیر محور</message>
+	<message key="paper.commentsToDirector">توضیحات نویسنده</message>
+	<message key="paper.submission">ساب میشن</message>
+	<message key="paper.submissions">آثار ارسالی</message>
+	<message key="paper.abstract">چکیده</message>
+	<message key="paper.details">جزئیات</message>
+	<message key="paper.location">مکان</message>
+	<message key="paper.time">زمان</message>
+	<message key="paper.comments.trackDefault">پیش فرض</message>
+	<message key="paper.comments.disable">غیرفعال کردن</message>
+	<message key="paper.comments.enable">فعال کردن</message>
+	<message key="paper.fontSize">اندازه فونت</message>
+	<message key="paper.fontSize.small.altText">کوچک</message>
+	<message key="paper.fontSize.medium.altText">متوسط</message>
+	<message key="paper.fontSize.large.altText">بزرگ</message>
+
+	<!-- Submission Tracking - Common -->
+	<message key="submission.fromTime">از</message>
+	<message key="submission.toTime">به</message>
+	<message key="submission.abstractReview">داوری چکیده</message>
+	<message key="submission.paperReview">داوری مقاله</message>
+	<message key="submission.page.abstractReview">#{$id} داوری چکیده</message>
+	<message key="submission.page.paperReview">#{$id} داوری مقاله</message>
+	<message key="submission.changeTrack">تغییر بده به</message>
+	<message key="submission.complete.description">مقاله ارسالی را به لیست ارائه‌های پذیرفته شده اضافه کن.</message>
+	<message key="submission.directorDecision">تصمیم مدیر</message>
+	<message key="submission.stage">مرحله&amp;nbsp;{$stage}</message>
+	<message key="submission.notifyAuthor">اطلاع به نویسنده</message>
+	<message key="submission.notifyDirector">باخبر کردن دبیر</message>
+	<message key="submission.directorAuthorRecord">رکورد پست الکترونیکی دبیر/نویسنده</message>
+	<message key="submission.directorVersion">نسخه دبیر</message>
+	<message key="submission.authorsRevisedVersion">نسخه بازبینی شده نویسنده </message>
+	<message key="submission.authorVersion">نسخه نویسنده</message>
+	<message key="submission.layout.description">این مرحله اختیاری می‌تواند برای صفحه‌آرایی مقالات ارسالی، یا تغییر فرمت‌های فایل، قبل یا بعد از اینکه ارسالات به «ارائه‌ها» فرستاده شدند، مورد استفاده قرار گیرد.</message>
+	<message key="submissions.track">محور</message>
+	<message key="submissions.queuedAbstractReview">چکیده در دست داوری</message>
+	<message key="submissions.queuedPaperReview">مقاله در دست داوری</message>
+	<message key="submissions.published">پست شد</message>
+	<message key="submissions.accepted">پذیرش</message>
+	<message key="submissions.reviewStage">مرحله داوری</message>
+	<message key="submissions.reviewType">نوع داوری</message>
+	<message key="submissions.expired">منقضی شده</message>
+	<message key="submissions.directorDecision">تصمیم مدیر</message>
+	<message key="trackDirector.galley.replaceGalley">جایگزینی فایل</message>
+	<message key="submission.abstract">چکیده</message>
+	<message key="submission.paper">مقاله</message>
+
+	<!-- Common Conference Terms -->
+	<message key="conference.conferences">کنفرانس ها</message>
+	<message key="conference.conference">کنفرانس</message>
+
+	<!-- Common Scheduled Conference Terms -->
+	<message key="schedConf.scheduledConferences">کنفرانس های زمان‌بندی شده</message>
+	<message key="schedConf.noScheduledConferences">هیچ کنفرانس زمان‌بندی‌ شده وجود ندارد</message>
+	<message key="schedConf.schedConf">کنفرانس زمان‌بندی شده</message>
+	<message key="schedConf.contents">اطلاعات کنفرانس</message>
+	<message key="schedConf.overview">معرفی کنفرانس</message>
+	<message key="schedConf.trackPolicies">اهداف و محورها</message>
+	<message key="schedConf.program">برنامه</message>
+	<message key="schedConf.cfp">فراخوان مقاله</message>
+	<message key="schedConf.registration">ثبت نام</message>
+	<message key="schedConf.accommodation">تسهیلات اقامتی</message>
+	<message key="schedConf.supporters">برگزارکنندگان و حامیان</message>
+	<message key="schedConf.timeline">زمان‌بندی</message>
+	<message key="schedConf.schedule">زمان‌بندی کنفرانس</message>
+	<message key="schedConf.links">لینک های مرتبط</message>
+	<message key="schedConf.presentations">ارائه‌ها و نویسندگان</message>
+	<message key="schedConf.presentations.short">ارائه‌ها</message>
+	<message key="schedConf.abstract">چکیده</message>
+	<message key="schedConf.submission">ساب میشن</message>
+	<message key="schedConf.submissions">آثار ارسالی</message>
+	<message key="schedConf.cfp.title">فراخوان مقاله</message>
+	<message key="schedConf.overview.title">معرفی کنفرانس</message>
+	<message key="schedConf.presentations.title">ارائه‌ها و نویسندگان</message>
+	<message key="schedConf.schedule.title">در نوبت قرار دادن</message>
+	<message key="schedConf.program.title">برنامه</message>
+	<message key="schedConf.accommodation.title">تسهیلات اقامتی</message>
+	<message key="schedConf.trackPolicies.title">اهداف و محورها</message>
+
+	<!-- Reader interface for scheduler -->
+	<message key="schedConf.scheduler.locations">مکان‌های کنفرانس</message>
+
+	<!-- User self-registration form -->
+	<message key="schedConf.registration.free">ثبت‌نام شما ثبت نشده است و هیچ پرداختی نیاز نیست.</message>
+	<message key="schedConf.registration.conferenceFees">هزینه ثبت نام</message>
+	<message key="schedConf.registration.failed">ثبت‌نام شما ناموفق بود. لطفا دوباره تلاش کنید.</message>
+	<message key="schedConf.registration.type">نوع ثبت نام</message>
+	<message key="schedConf.registration.cost">هزینه</message>
+	<message key="schedConf.registrationTypes.noneAvailable">هیچگونه نوع ثبت‌نامی در دسترس نیست.</message>
+	<message key="schedConf.registration.register">ثبت نام</message>
+	<message key="schedConf.registration.typeCloses">(بسته می شود {$closingDate})</message>
+	<message key="schedConf.registration.typeClosed">(ثبت‌نام بسته شده است {$closingDate})</message>
+	<message key="schedConf.registration.typeFuture">(شروع ثبت‌نام {$openingDate})</message>
+	<message key="schedConf.registration.optionCloses">(بسته می شود {$closingDate})</message>
+	<message key="schedConf.registration.optionClosed">(ثبت‌نام بسته شده است {$closingDate})</message>
+	<message key="schedConf.registration.optionFuture">(شروع ثبت‌نام {$openingDate})</message>
+	<message key="schedConf.registration.feeCode">کد هزینه</message>
+	<message key="schedConf.registration.feeCode.description">اگر شما قبلا کد هزینه ثبت نام دریافت کردید آنرا اینجا وارد نمایید، درغیر اینصورت فیلد بالا را خالی بگذارید.</message>
+	<message key="schedConf.registration.specialRequests">درخواست ویژه</message>
+	<message key="schedConf.registration.specialRequests.description">اگر درخواست یا تقاضای خاصی دارید، ذکر کنید</message>
+	<message key="schedConf.registration.account">حساب کاربری</message>
+	<message key="schedConf.registration.loggedInAs">شما اکنون وارد شده اید.. مطمئن شوید که اطلاعات زیر صحیح است. اگر درست نیست, با استفاده از  &lt;a href="{$profileUrl}"&gt;صفحه شخصی من&lt;/a&gt; آنرا تصحیح نمایید یا با گزینه &lt;a href="{$logoutUrl}"&gt;خروج&lt;/a&gt; از حساب کاربری دیگر استفاده نمایید.</message>
+	<message key="schedConf.registration.createAccount.description">شما در حال حاضر وارد نشده اید. برای ثبت نام در کنفرانس, نیاز به حساب کاربری دارد. اگر قبلا حساب کاربری ایجاد کردید جهت ورود &lt;a href="{$loginUrl}"&gt;اینجا کلیک کنید&lt;/a&gt;  در غیر اینصورت؛ جهت ایجاد یک حساب کاربری، اطلاعات زیر را وارد نمایید.</message>
+	<message key="schedConf.registration.options">انتخاب گزینه های ثبت نام</message>
+
+	<!-- User -->
+	<message key="user.showAllConferences">نمایش کنفرانس ها</message>
+	<message key="user.createAccount">ایجاد</message>
+	<message key="user.createAccountForOtherConferences">ایجاد یک حساب کاربری برای کنفرانس‌های دیگر</message>
+	<message key="user.myConferences">کنفرانس ها</message>
+	<message key="user.noRoles.chooseConference">حساب کاربری شما در حال حاضر به هیچ کنفرانسی مرتبط نیست. لطفا یک کنفرانس را انتخاب کنید:</message>
+	<message key="user.noRoles.noRolesForConference">حساب کاربری شما در حال حاضر دارای هیچ نقشی در این کنفرانس نمی‌باشد. لطفا از عملیات‌های زیر انتخاب کنید:</message>
+	<message key="user.noRoles.submitProposal">ارسال پروپوزال</message>
+	<message key="user.noRoles.submitProposalRegClosed">ارسال یک پروپوزال: در حال حاضر ثبت‌نام نویسندگان بسته است.</message>
+	<message key="user.noRoles.submitProposalSubmissionsClosed">ارسال یک پروپوزال: در حال حاضر ارسالات بسته است.</message>
+	<message key="user.noRoles.regReviewer">ثبت‌نام به عنوان یک داور کنفرانس</message>
+	<message key="user.noRoles.regReviewerClosed">ثبت‌نام به عنوان یک داور کنفرانس: ثبت‌نام داور در حال حاضر بسته است.</message>
+	<message key="user.noRoles.register">ثبت‌نام جهت حضور در کنفرانس</message>
+	<message key="user.noRoles.registerUnavailable">ثبت‌نام جهت حضور در کنفرانس: در حال حاضر ثبت‌نام انجام نمی‌شود.</message>
+
+	<!-- Roles -->
+	<message key="user.role.manager">مدیر کنفرانس</message>
+	<message key="user.role.director">دبیر</message>
+	<message key="user.role.trackDirector">دبیر محور</message>
+	<message key="user.role.author">نویسنده</message>
+	<message key="user.role.managers">مدیران کنفرانس</message>
+	<message key="user.role.directors">دبیران</message>
+	<message key="user.role.trackDirectors">دبیران محور</message>
+	<message key="user.role.authors">نویسندگان</message>
+
+	<!--
+	 *
+	 * LOG - This section contains entries related to log entries.
+	 *
+	-->
+
+	<message key="event.logType.paper">مقاله</message>
+	<message key="event.logType.author">نویسنده</message>
+	<message key="event.logType.director">دبیر</message>
+	<message key="event.logType.review">داوری</message>
+	<message key="event.logType.conference">کنفرانس</message>
+	<message key="event.eventLog">ثبت رخدادها</message>
+	<message key="event.logLevel">سطح وقایع نگاری</message>
+	<message key="event.logLevel.info">اطلاعات</message>
+	<message key="event.logLevel.notice">توجه</message>
+	<message key="event.logLevel.warning">اخطار</message>
+	<message key="event.logLevel.error">خطا</message>
+	<message key="event.general.defaultEvent">واقعه پیش فرض</message>
+
+	<!-- Submission events -->
+	<message key="submission.event.general.abstractSubmitted">چکیده ارسال شد</message>
+	<message key="submission.event.general.presentationSubmitted">ارائه ارسال شد</message>
+	<message key="submission.event.general.paperPublished">مقاله منتشر شد</message>
+	<message key="submission.event.presenter.authorRevision">اصلاح نویسنده</message>
+	<message key="submission.event.general.authorRevision">اصلاح نویسنده</message>
+	<message key="submission.event.director.directorAssigned">دبیر به اثر ارسالی منتسب شد</message>
+	<message key="submission.event.director.directorDecision">تصمیم دبیر ارسال شد</message>
+	<message key="submission.event.director.directorFile">Director file updated</message>
+	<message key="submission.event.director.submissionArchived">سابمیشن بایگانی شد</message>
+	<message key="submission.event.director.submissionRestored">بازیابی ساب میشن از آرشیو</message>
+
+	<!-- Conference events -->
+	<message key="conference.event.general.configuration">پیکربندی کنفرانس تغییر کرد</message>
+	<message key="conference.event.general.deadline">مهلت کنفرانس گذشته است</message>
+
+	<!--
+	 *
+	 * INTERFACE - Contains phrases organized by the section of the
+	 *             user interface they appear in.
+	 *
+	-->
+
+	<!-- Reader paper view -->
+	<message key="reader.fullTextNotAvailable">مقالات کنفرانس در حال حاضر در دسترس نیستند.</message>
+	<message key="reader.accessDenied">در حال حاضر شما مجاز به مشاهده این مقاله نیستید. اگر حساب کاربری برای این سایت کنفرانس دارید، احتمالا برای مشاهده نیاز است تا وارد سیستم شوید.</message>
+	<message key="reader.fullTextRegistrationRequired">ثبت‌نام کنفرانس برای مشاهده مقالات لازم است.</message>
+	<message key="reader.fullTextAccountRequired"><![CDATA[An account with this site is required in order to view papers. <a href="{$registerUrl}">Click here</a> to create an account.]]></message>
+	<message key="reader.fullTextRegistrantsOnlyUntil">دسترسی آزاد به این کنفرانس در تاریخ {$date} آغاز خواهد شد.</message>
+	<message key="reader.fullTextNotPostedYet">Papers for this conference will be posted on {$date}.</message>
+
+	<!-- Reader Comments -->
+	<message key="comments.authenticated">{$userName}</message>
+	<message key="comments.commentsOnPaper">نظرات در مورد مقاله</message>
+	<message key="comments.commentsClosed">نظرات در تاریخ {$closeCommentsDate} بسته شد.</message>
+
+	<!-- Site Administration -->
+
+	<message key="admin.settings.oaiRegistrationDescription"><![CDATA[برای نمایه‌سازی شدن محتوای این کنفرانس در یک سیستم پایگاه‌های داده تحقیقاتی توزیع شده در سرتاسر جهان، URL  کنفرانس خود را در <a href="http://pkp.sfu.ca/harvester/" target="_blank">سیستم برداشت</a> بنیاد Public Knowledge Poject <a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">ثبت‌نام نمایید.</a> این ابزار فراداده را از هر مورد نمایه‌سازی شده در این کنفرانس جمع‌آوری می‌نماید، که باعث به وجودآمدن قابلیت جستجوی دقیق و تجمعی در میان سایت‌هایی که به <a href="http://www.openarchives.org/OAI/openarchivesprotocol.htm#Introduction" target="_blank">Open Archives Initiative Protocol for Metadata Harvesting</a> پیوسته‌اند، می‌گردد. 
+<br /><br />
+	توجه داشته باشید که اگر مدیر سایت، این سایت را در این سیستم برداشت ثبت کرده است، این کنفرانس به طور خودکار نمایه‌سازی خواهد شد و نیازی به ثبت‌نام مجدد کنفرانس شما نخواهد بود.
+<br /><br />
+	جهت ثبت سایت خود به <a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">اینجا</a> بروید و اطلاعات زیر را وارد نمایید:
+<p dir="ltr">
+<b>Site URL:</b> <span class="highlight">{$siteUrl}</span>
+<br />
+<b>Base URL for OAI Archive:</b> <span class="highlight">{$oaiUrl}</span>
+</p>]]></message>
+
+	<!-- System Information -->
+	<message key="admin.overwriteConfigFileInstructions"><![CDATA[<h4>توجه!</h4>
+	<p>
+	سیستم بطور اتوماتیک نمی‌تواند برروی فایل تنظیمات بنویسد. برای اعمال تنظیمات مورد نظر، می‌بایست خود فایل <tt>config.inc.php</tt>  را در یک ویرایشگر مناسب باز نموده و محتویات آن را با محتویات کادر متنی زیر جایگزین نمایید.
+	</p>]]></message>
+
+	<!-- Payment Handling -->
+
+	<!-- Conference Event Log -->
+	<message key="conference.event.confirmDeleteLogEntry">آیا میخواهید این سابقه رویداد را از لیست حذف کنید؟</message>
+	<message key="conference.event.deleteLogEntry">حذف سابقه</message>
+	<message key="conference.event.backToEventLog">بازگشت به سابقه رویدادها</message>
+	<message key="conference.history.conferenceEventLog">ثبت رخدادها</message>
+	<message key="conference.history.clearLog">پاک کردن سوابق</message>
+	<message key="conference.history.noLogEntries">هیج سابقه ای وجود ندارد</message>
+	<!-- General plugin information -->
+	<message key="plugins.categories.generic.description">پلاگین‌های عمومی، برای گسترش قابلیت‌های OCS در موارد مختلف و متنوعی مورد استفاده قرار می‌گیرند که مربوط به سایر دسته‌بندی‌های پلاگین‌ها نیست.</message>
+	<message key="plugins.categories.auth.description">پلاگین‌های کسب اجازه دسترسی به OCS این اجازه را می‌دهد تا امور تصدیق هویت را به سیستم‌های دیگر از جمله سرورهای LDAP واگذار نماید.</message>
+	<message key="plugins.categories.citationFormats.description">پلاگین‌های الگوی مرجع‌نویسی، برای کاربر دسترسی به الگوهای متنوع مرجع‌نویسی مقالات را فراهم می‌کنند.</message>
+	<!-- Leftovers -->
+
+	<message key="manager.setup.citations">به نویسندگان اجازه بده تا به طور جداگانه یک لیست قالب‌بندی شده از مراجع (ارجاعات) را به عنوان بخشی از ارسال خود تهیه کنند.</message>
+	<message key="manager.setup.indexing.registerConferenceForIndexing.description"><![CDATA[برای نمایه‌سازی شدن محتوای این کنفرانس در یک سیستم پایگاه‌های داده تحقیقاتی توزیع شده در سرتاسر جهان، URL  کنفرانس خود را در <a href="http://pkp.sfu.ca/harvester/" target="_blank">سیستم برداشت</a> بنیاد Public Knowledge Poject <a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">ثبت‌نام نمایید.</a> این ابزار فراداده را از هر مورد نمایه‌سازی شده در این کنفرانس جمع‌آوری می‌نماید، که باعث به وجودآمدن قابلیت جستجوی دقیق و تجمعی در میان سایت‌هایی که به <a href="http://www.openarchives.org/OAI/openarchivesprotocol.htm#Introduction" target="_blank">Open Archives Initiative Protocol for Metadata Harvesting</a> پیوسته‌اند، می‌گردد. 
+<br /><br />
+	توجه داشته باشید که اگر مدیر سایت، این سایت را در این سیستم برداشت ثبت کرده است، این کنفرانس به طور خودکار نمایه‌سازی خواهد شد و نیازی به ثبت‌نام مجدد کنفرانس شما نخواهد بود.
+<br /><br />
+	جهت ثبت سایت خود به <a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">اینجا</a> بروید و اطلاعات زیر را وارد نمایید:
+<p dir="ltr">
+<b>Site URL:</b> <span class="highlight">{$siteUrl}</span>
+<br />
+<b>Base URL for OAI Archive:</b> <span class="highlight">{$oaiUrl}</span>
+</p>]]></message>
+
+	<!-- Scheduled Conference Setup Step 2 -->
+
+	<!-- People Management -->
+	<message key="manager.people.confirmDisable">آیا این کاربر غیر فعال شود؟ این اقدام از ورود کاربر به سیستم جلوگیری می‌کند.
+	در صورت تمایل می‌توانید دلیل این اقدام را به کاربر خاطرنشان سازید.</message>
+
+	<!-- Used by director in submission review / editing -->
+	<message key="director.paper.selectReviewerNotes">نام به پروفایل داور لینک می‌شود.&lt;br /&gt;
+	نمره دهی بر مبنای پنج (عالی) است.&lt;br /&gt;
+	منظور از هفته، میانگین مدت زمانی است که طول می‌کشد یک داوری به پایان برسد. &lt;br /&gt;
+	منظور از آخرین، در واقع تاریخ آخرین داوری مورد قبول است. &lt;br /&gt;
+	منظور از فعال، تعداد داوری‌های در دست بررسی می‌باشد.</message>
+
+	<!-- Track Director -->
+	<message key="trackDirector.author.confirmRenotify">چنانچه بخواهید دوباره به این نویسنده اطلاع دهید عمل انتصاب وی از نو شروع خواهد شد. آیا مطمئن هستید که این کار را میخواهید انجام دهید؟</message>
+	<message key="trackDirector.regrets.breadcrumb">موارد انصراف</message>
+	<message key="trackDirector.regrets.title">#{$paperId} عدم داوری و لغویات داور</message>
+	<message key="trackDirector.regrets">انصراف</message>
+	<message key="trackDirector.regrets.link">نمایش عدم داوری و لغویات</message>
+	<message key="trackDirector.regrets.reviewStage">داوری، مرحله {$stage}</message>
+	<message key="trackDirector.regrets.decisionStage">تصمیم دبیر، مرحله {$stage}</message>
+	<message key="trackDirector.regrets.regretsAndCancels">موارد عدم تمایل به انجام کارشناسی و موارد کنسل </message>
+	<message key="trackDirector.regrets.regret">انصراف</message>
+	<message key="trackDirector.regrets.result">نتیجه</message>
+	<message key="trackDirector.review.enrollReviewer">نقش‌دهی کاربر جاری به عنوان داور</message>
+	<message key="trackDirector.review.createReviewer">ایجاد کارشناس جدید</message>
+
+	<!-- Reviewer -->
+	<message key="reviewer.completedReviews">انجام شده</message>
+	<message key="reviewer.averageQuality">امتیاز</message>
+
+	<!-- Used in submission review -->
+	<message key="reviewer.paper.fileToBeReviewed">فایلی که باید کارشناسی شود</message>
+	<message key="reviewer.paper.notifyTheDirector">Notify The Director</message>
+	<message key="reviewer.paper.canDoReview">کارشناسی را انجام میدهم</message>
+	<message key="reviewer.paper.cannotDoReview">موفق به انجام کارشناسی نیستم</message>
+	<message key="reviewer.paper.restrictedFileAccess">مقاله ارسالی تنها می‌تواند زمانی که فرآیند داوری طی شده باشد، نمایش داده شود.</message>
+	<message key="reviewer.paper.submissionDirector">دبیر اثر ارسالی</message>
+	<message key="reviewer.paper.reviewerCommentsDescription">نظر کارشناسی خود را در این قسمت وارد کنید</message>
+	<message key="reviewer.paper.directorToEnter">ورود توسط دبیر</message>
+	<message key="reviewer.paper.sendReminder">ارسال ایمیل یادآور</message>
+	<message key="reviewer.paper.automatic">(خودکار)</message>
+	<message key="reviewer.paper.selectRecommendation">یک توصیه را انتخاب کنید و داوری را ارسال نمایید تا فرآیند تکمیل شود. شما باید یک داوری را وارد کرده و یا یک فایل را پیش از انتخاب یک توصیه بارگذاری کنید.</message>
+	<message key="reviewer.paper.recommendation">توصیه</message>
+	<message key="reviewer.paper.reviewerComments">نظرات</message>
+	<message key="reviewer.paper.uploadedFile">فایل های آپلود شده</message>
+	<message key="reviewer.paper.reviewersAnnotatedVersion">نسخه آپلود شده بوسیله کارشناس</message>
+	<message key="reviewer.paper.schedule.request">درخواست دبیر</message>
+	<message key="reviewer.paper.schedule.response">پاسخ شما</message>
+	<message key="reviewer.paper.schedule.submitted">کارشناسی ارسال شد</message>
+	<message key="reviewer.paper.schedule.due">مهلت کارشناسی</message>
+	<message key="reviewer.paper.decision.accept">قبول ساب میشن</message>
+	<message key="reviewer.paper.decision.pendingRevisions">اصلاحات لازم است</message>
+	<message key="reviewer.paper.decision.resubmitElsewhere">جای دیگری ارسال شود</message>
+	<message key="reviewer.paper.decision.decline">رد کردن اثر ارسالی</message>
+	<message key="reviewer.paper.decision.seeComments">نظراتم را ببینید</message>
+	<message key="reviewer.paper.schedule">در نوبت قرار دادن</message>
+	<message key="reviewer.paper.submissionToBeReviewed">ساب میشنی که باید کارشناسی شود</message>
+	<message key="reviewer.paper.reviewSchedule">نوبت کارشناسی</message>
+	<message key="reviewer.paper.reviewSteps">مراحل کارشناسی</message>
+	<message key="reviewer.paper.reviewerGuidelines">دستورالعمل کارشناسی</message>
+	<message key="reviewer.paper.notifyEditorA">خبر بده به دبیر اثر ارسالی</message>
+	<message key="reviewer.paper.notifyEditorB">که آیا این کارشناسی را به عهده میگیرید</message>
+	<message key="reviewer.paper.consultGuidelines">چنانچه کارشناسی را به عهده میگیرید, متن راهنمای کارشناسی در پائین این صفحه را مطالعه فرمائید.</message>
+	<message key="reviewer.paper.downloadSubmissionAbstractOnly">چکیده همراه‌شده با مقاله ارسالی را داوری کنید.</message>
+	<message key="reviewer.paper.downloadSubmissionSubmission">اثر ارسالی را داوری کنید.</message>
+	<message key="reviewer.paper.enterReviewA">بر روی شکلک کلیک کرده و سپس کارشناسی خود را در رابطه با این مقاله وارد کنید</message>
+	<message key="reviewer.paper.uploadFile">به علاوه، شما می‌توانید فایل‌هایی جهت بررسی برای دبیر و یا نویسنده بارگذاری کنید.</message>
+	<message key="reviewer.paper.selectRecommendation">یک توصیه انتخاب کنید و داوری را جهت تکمیل فرآیند ارسال نمایید. شما می‌بایست پیش از انتخاب توصیه خود، داوری را وارد و یا یک فایل را بارگذاری کنید.</message>
+	<message key="reviewer.paper.mustSelectDecision">هیچ توصیه های انتخاب نشده است.  می بایست یکی از توصیه ها را انتخاب و ساب میت کنید.</message>
+	<message key="reviewer.paper.confirmDecision">در صورتی که تصمیم خود را ثبت کردید دیگر نمیتوانید تغییری در این کارشناسی بدهید.  آیا میخواهید این کار را انجام دهید؟</message>
+	<message key="reviewer.paper.ensuringBlindReview">اطمینان از کارشناسی بینام</message>
+
+	<!-- Paper Submission Step 3 -->
+	<message key="author.submit.uploadInstructions">&lt;p&gt;برای ارسال فایل به این کنفرانس مراحل زیر را انجام دهید.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;در همین صفحه بر روی دکمه «مرور» کلیک کنید.با این کار پنجره انتخاب فایل باز می‌شود که از طریق آن میتوانید فایل مورد نظرتان را بر روی کامپیوتر خود پیدا کنید.&lt;/li&gt;
+&lt;li&gt;پس از یافتن فایل مقاله بر روی آن کلیک کنید تا انتخاب شود.&lt;/li&gt;
+&lt;li&gt;بر روی Open در پنجره انتخاب فایل کلیک کنید. در این صورت نام وآدرس کامل فایل در قسمت مربوطه در همین صفحه وارد میشود.&lt;/li&gt;
+&lt;li&gt;بر روی «بارگذاری» در همین صفحه کلیک کنید. بدین ترتیب فایل مورد نظر از کامپیوتر شما بر روی وب‌سایت مجله بارگذاری می شود و نام آن مظابق با استاندارد مجله تغییر پیدا میکند.&lt;/li&gt;
+&lt;li&gt;پس از آپلود کردن مقاله، بر روی «ذخیره و ادامه» در پائین همین صفحه کلیک کنید.&lt;/li&gt;
+&lt;/ol&gt;</message>
+
+	<!-- Paper Submission: upload file -->
+	<message key="submission.submissionFiles">Submission Files</message>
+
+	<!-- Submission Comments -->
+	<message key="submission.comments.directorAuthorCorrespondence">Director/Author Correspondence</message>
+	<message key="submission.comments.viewableDescription">این نظرات را میتوانید به رویت نویسنده برسانید.&lt;br /&gt; (پس از ذخیره باز هم می‌توانید نظرات بیشتری وارد کنید.)</message>
+	<message key="submission.comments.canShareWithAuthor">برای نویسنده و دبیر</message>
+	<message key="submission.comments.cannotShareWithAuthor">برای دبیر</message>
+	<message key="submission.comments.blindCcReviewers">After sending, present a blind carbon copy of editorial decision for emailing to reviewers.</message>
+	<message key="submission.comments.forAuthorDirector">برای نویسنده و دبیر</message>
+	<message key="submission.comments.forDirector">برای دبیر</message>
+	<message key="submission.comments.saveAndEmailAuthor">ذخیره و ایمیل به نویسنده</message>
+	<message key="submission.comments.saveAndEmailDirector">ذخیره و ایمیل به دبیر</message>
+
+	<!-- Login -->
+	<message key="user.login.createAccount">برای ثبت نام در سایت اینجا را کلیک کنید.</message>
+	<message key="user.login.resetPasswordInstructions">بنابر دلایل امنیتی،این سیستم یک رمز جدید به شما ارسال نمی کند بلکه رمز شما را ریست می کند&lt;br /&gt;&lt;br /&gt;ایمیل خود را جهت ریست  رمز عبورتان وارد نمایید، تاییدیه به این ایمیل ارسال خواهد شد.</message>
+
+	<!-- Registration -->
+	<message key="user.account.repeatPassword">تکرار کلمه عبور</message>
+	<message key="user.account.form.usernameExists">نام کاربری انتخاب شده در حال حاضر متعلق به دیگری میباشد.</message>
+	<message key="user.account.form.usernameAlphaNumeric">نام کاربری فقط میتواند شامل حروف ، اعداد ، خط فاصله زیرین و خط فاصله باشد و میبایست با یک حرف یا عدد شروع و به یک حرف یا عدد ختم شود.</message>
+	<message key="user.account.form.emailExists">آدرس ایمیل انتخاب شده قبلا با آن ثبت نام شده است. (ممکن است قبلا ثبت نام کرده باشید!)</message>
+	<message key="user.account.form.passwordsDoNotMatch">رمز عبور با تکرار آن یکسان نیست</message>
+	<message key="user.account.selectSchedConf">کنفرانس زیر را برای ثبت نام انتخاب نمایید.</message>
+	<message key="user.account.createAs">ایجاد کاربر به عنوان</message>
+	<message key="user.account.privacyStatement">بیانیه محرمانگی اطلاعات</message>
+	<message key="user.account.completeForm">برای ایجاد یک حساب کاربری در این کنفرانس فرم زیر را تکمیل نمایید</message>
+	<message key="user.account.hasAccount"> اگر شما قبلا در این سایت ثبت نام کردید اینجا را &lt;a href="{$accountUrl}"&gt;کلیک &lt;/a&gt; کنید.</message>
+	<message key="user.account.hasNoAccount">&lt;a href="{$accountUrl}"&gt;کلیک&lt;/a&gt; اگر شما  نام کاربری و کلمه عبور&lt;strong&gt;ندارید&lt;/strong&gt;</message>
+	<message key="user.account.loginToRegister">نام کاربری و کلمه عبور خود را وارد نمایید.</message>
+	<message key="user.account.createAccountDisabled">در حال حاضر این کنفرانس کاربر جدید نمی‌پذیرد.</message>
+	<message key="user.account.usernameRestriction">نام کاربری فقط میتواند دارای حروف کوچک ، اعداد ، خط فاصله و خط فاصله زیرین باشد.</message>
+	<message key="user.account.passwordLengthRestriction">کلمه عبور حداقل باید {$length} کاراکتر باشد.</message>
+	<message key="user.account.form.passwordLengthTooShort">طول رمز عبور انتخاب شده کافی نیست</message>
+	<message key="user.account.readerDescription">به وسیله ایمیل از اخبار و اطلاعیه ها و نیز مقالات پذیرفته شده باخبر شوم.</message>
+	<message key="user.account.openAccessNotificationDescription">Notified by email when a conference is made open access.</message>
+	<message key="user.account.authorDescription">ارسال مقاله به کنفرانس.</message>
+	<message key="user.account.reviewerDescriptionNoInterests">Willing to conduct peer review of submissions to the conference.</message>
+	<message key="user.account.reviewerDescription">تمایل به انجام داوری مقالات کنفرانس(علایق داوری خود را بیان کنید)</message>
+	<message key="user.account.authorRegistrationMessage">علیرغم اینکه شما در این سایت حساب کاربری دارید، در حال حاضر در این کنفرانس نقش نویسنده ندارید.</message>
+
+	<!-- Search -->
+	<message key="search.browseAuthorIndex">مرور نمایه نویسندگان</message>
+	<message key="search.searchFor">جستجوی مقالات برای</message>
+	<message key="search.inField">در</message>
+	<message key="search.author">نویسندگان</message>
+	<message key="search.withinConference">درون</message>
+	<message key="search.allConferences">همه کنفرانس ها</message>
+	<message key="search.authorIndex">مرور نمایه نویسندگان</message>
+	<message key="search.authorDetails">جزئیات نویسندگان</message>
+
+	<!-- Interstitial page for PDFs -->
+	<message key="paper.pdf.title">فايل پی دی اف</message>
+
+	<!-- Interstitial page for non-PDF non-HTML galleys -->
+	<message key="paper.nonpdf.title">Paper Download</message>
+	<message key="paper.nonpdf.note">فایل انتخاب شده بصورت اتوماتیک دان لود خواهد شد. در غیر این صورت بر روی لینک زیر کلیک کنید. توجه داشته باشید که برای دیدن محتویات این فایل ممکن است ابزار خاصی احتیاج داشته باشید.&lt;br /&gt;&lt;br /&gt;چنانچه فایل بصورت اتوماتیک دان لود نشد ، &lt;a href="{$url}"&gt;اینجا&lt;/a&gt; را کلیک کنید.</message>
+
+	<!-- Site index -->
+	<message key="site.conferencesHosted">کنفرانس های موجود در سایت</message>
+	<message key="site.conferenceView">مشاهده کنفرانس</message>
+	<message key="site.conferenceAccount">ثبت نام</message>
+	<message key="site.schedConfView">نمایش جزئیات کنفرانس</message>
+	<message key="site.schedConfCurrent">کنفرانس‌های زمان‌بندی شده جاری</message>
+
+	<!-- Conference page -->
+	<message key="conference.currentConferences">کنفرانس‌های جاری</message>
+	<message key="conference.noCurrentConferences">هیچ کنفرانسی در حال حاضر فعال نیست. لطفا بایگانی را برای کنفرانس‌های زمان‌بندی شده پیشین چک کنید.</message>
+	<message key="conference.archive">بایگانی‌های کنفرانس</message>
+
+	<!-- Scheduled Conference page -->
+	<message key="schedConf.proposalSubmission">ارسال مقاله</message>
+
+	<!-- Call-for-Papers (CFP) page -->
+
+	<!-- Conference Proceedings -->
+	<message key="presentations.notPermitted">شما هنوز به ارائه‌های این کنفرانس دسترسی ندارید.</message>
+	<message key="presentations.trackEmpty">هیچ مقاله‌ای در این محور وجود ندارد.</message>
+
+	<!-- Program page -->
+	<message key="schedConf.program.programFileInstructions">برنامه این کنفرانس از طریق پیوند زیر قابل دسترسی است.</message>
+	<message key="schedConf.program.viewProgramFile">نمایش برنامه</message>
+
+	<!-- About The Conference -->
+	<message key="about.statistics">آمار</message>
+	<message key="about.conferenceContact">تماس با کنفرانس</message>
+	<message key="about.aboutTheConference">درباره کنفرانس</message>
+	<message key="about.organizingTeam">تیم برگزارکننده</message>
+	<message key="about.conferencePolicies">سیاست‌های کنفرانس</message>
+	<message key="about.submissions">آثار ارسالی</message>
+	<message key="about.sponsors">حامیان</message>
+	<message key="about.contributors">منابع پشتیبانی</message>
+	<message key="about.onlineSubmissions">آثار ارسالی آنلاین</message>
+	<message key="about.onlineSubmissions.haveAccount">دارای یک نام کاربری و رمزعبور هستید در {$conferenceTitle}?</message>
+	<message key="about.onlineSubmissions.login">برو به ورود کاربر</message>
+	<message key="about.onlineSubmissions.needAccount">آیا به یک نام کاربری/رمزعبور نیاز دارید؟</message>
+	<message key="about.onlineSubmissions.registration">برو به ثبت‌نام</message>
+	<message key="about.onlineSubmissions.registrationRequired">ثبت نام و ورود به سایت برای ارسال مقاله و پیگیری وضعیت آن ضروری است.</message>
+	<message key="about.authorGuidelines">راهنمای نویسندگان</message>
+	<message key="about.submissionPreparationChecklist">چک‌لیست آماده‌سازی ارسال اثر</message>
+	<message key="about.copyrightNotice">اطلاعیه حق مالکیت معنوی</message>
+	<message key="about.privacyStatement">بیانیه محرمانگی اطلاعات</message>
+	<message key="about.peerReviewProcess">روند کارشناسی</message>
+	<message key="about.openAccessPolicy">سیاست دسترسی آزاد</message>
+	<message key="about.archiveAccessPolicy">سیاست دسترسی به بایگانی</message>
+	<message key="about.delayedOpenAccess">دسترسی آزاد تأخیری</message>
+	<message key="about.authorSelfArchive">بایگانی توسط خود نویسنده</message>
+	<message key="about.archiving">بایگانی</message>
+	<message key="about.registration">ثبت نام</message>
+	<message key="about.availableRegistrationTypes">انواع ثبت‌نام</message>
+	<message key="about.aboutThisPublishingSystem">درباره سیستم کنفرانس</message>
+	<message key="about.aboutThisPublishingSystem.altText">فرآیند ارسال، داوری و انتشار در سیستم OCS</message>
+	<message key="about.currentConferences">کنفرانس‌های جاری</message>
+	<message key="about.aboutOCSConference"><![CDATA[این کنفرانس از Open Conference Systems {$ocsVersion} استفاده می‌کند، که نرم‌افزار مدیریت کنفرانس متن بازی است که توسط <a href="http://pkp.sfu.ca/">Public Knowledge Project</a> تحت مجوز GNU General Public License توسعه، پشتیبانی و توزیع شده است.]]></message>
+
+	<!-- Announcement -->
+
+	<!-- Help -->
+	<message key="help.ocsHelp">راهنمای سیستم Open Conference Systems (OCS)</message>
+	<message key="help.ocsHelpAbbrev">راهنمای سیستم OCS</message>
+
+	<!-- Installer -->
+	<message key="installer.ocsInstallation">نصب و راه‌اندازی OCS</message>
+	<message key="installer.ocsUpgrade">ارتقاء OCS</message>
+	<message key="installer.localeSettingsInstructions">برای حمایت کامل یونی کد UTF-8 ، برای تمام تنظیمات مجموعه کاراکتری  UTF-8 را انتخاب کنید.  توجه کنید که این نوع حمایت نیاز به  MySQL &gt;= 4.1.1 یا PostgreSQL &gt;= 7.1 دارد. همچنین توجه کنید که حمایت کامل یونی کد نیاز به PHP &gt;= 4.3.0 که همرا با حمایت کتابخانه &lt;a href="http://www.php.net/mbstring" target="_blank"&gt;mbstring&lt;/a&gt; کمپایل شده باشد دارد. حمایت کتابخانه mbstring بصورت پیش فرض در نسخه های جدید نصب PHP فعال است. چنانچه سرور شما از این ملزومات پشتیبانی نکند شما ممکن است هنگام استفاده از مجموعه های کاراکتری توسعه یافته مشکلاتی را تجربه کنید.&lt;br /&gt;&lt;br /&gt;
+	سرور شما در حال حاضر mbstring را حمایت میکند: &lt;strong&gt;{$supportsMBString}&lt;/strong&gt;</message>
+	<message key="installer.overwriteConfigFileInstructions">&lt;h4&gt;مهم!&lt;/h4&gt;
+&lt;p&gt;برنامه نصب کننده نمی تواند بطور خودکار در فایل تنظیمات بنویسد. قبل از شروع کار با سیستم لطفا فایل &lt;tt&gt;config.inc.php&lt;/tt&gt; را در یک ویرایشگر مناسب متنی باز کرده و محتوای آن را با محتوای کادر متنی زیر جایگزین کنید.&lt;/p&gt;
+	</message>
+
+	<!-- Paper Logs -->
+	<message key="log.review.reviewerFile">یک فایل کارشناسی آپلود شد</message>
+
+	<!-- Conference log entries -->
+
+	<!-- Reading Tools entries -->
+
+	<!-- RT Settings -->
+	<message key="rt.admin.settings">تنظیمات ابزار خواندن</message>
+	<message key="rt.admin.settings.description">ابزارهای خواندن در یک فریم کنار موارد منتشر شده در محورهای همایش که به نمایه‌سازی اختصاص یافته‌اند، نمایش داده می‌شوند. ابزارهای خواندن شامل مجموعه‌ای از ابزارهای اختیاری مربوط به مورد منتشر شده، که در زیر لیست شده‌اند، و همچنین مجموعه‌ای از ابزارها که دسترسی به موارد مرتبط را فراهم می‌کنند، می‌شوند که بر اساس رشته و موضوع علمی سازماندهی شده‌اند.</message>
+	<message key="rt.admin.settings.enableReadingTools">ابزارهای خواندن را برای محورهای اختصاص داده شده کنفرانس فعال کن.</message>
+	<message key="rt.admin.settings.relatedItems">رشته موارد مرتبط</message>
+	<message key="rt.admin.options">ابزارهای اختیاری</message>
+	<message key="rt.admin.settings.addComment">نظر اضافه کن (به خوانندگان این امکان را می‌دهد که نظرات ارسال کنند، که دبیر کنفرانس می‌تواند خذف کند). «نظرات خواننده» باید در «مدیریت وب‌سایت»، بخش 1.5 فعال شود.</message>
+	<message key="rt.admin.validateUrls.description">احتمالا آدرس های جستجوی بی اعتباری در اینجا نشان داده شده است. &lt;br /&gt;
+	می‌بایست بصورت دستی هر آدرسی که به عنوان بی اعتبار مشخص شده را بررسی کنید چرا که آزمایشی که در اینجا انجام شده است، صد در صد دقیق نیست.&lt;br /&gt; ممکن است در مورد آدرسهای جستجویی که مشتمل بر پر کردن و پست کردن اطلاعات یک فرم باشد، این آزمایش تعیین اعتبار شکست بخورد.</message>
+	<message key="rt.metadata.dublinCore.primaryAuthor">ایجاد</message>
+	<message key="rt.metadata.pkp.primaryAuthor">نام ، وابستگی ، و کشور نویسنده</message>
+
+	<!-- Notification Types -->
+	<message key="notification.type.paperSubmitted">یک مقاله جدید، «{$param}»، ارسال شده است.</message>
+	<message key="notification.type.editing">رویدادهای ویرایش</message>
+	<message key="notification.type.directorDecisionComment">نقطه نظری در خصوص تصمیم دبیر در باره «{$param}» برجا گذاشته شده است.</message>
+	<message key="notification.type.galleyModified">یک گالی در مورد «{$param}» تغییر یافته است.</message>
+	<message key="notification.type.metadataModified">فراداده «{$param}» تغییر یافته است.</message>
+	<message key="notification.type.newAnnouncement">یک اطلاعیه جدید ایجاد شده است</message>
+	<message key="notification.type.reviewerComment">یک کارشناس در مورد «{$param}» نظر داده است</message>
+	<message key="notification.type.reviewerFormComment">یک فرم کارشناسی در خصوص «{$param}» ساب میت شده است</message>
+	<message key="notification.type.reviewing">رودادهای کارشناسی</message>
+	<message key="notification.type.site">رویدادهای سایت</message>
+	<message key="notification.type.submissionComment">یک دبیر در مورد «{$param}» یک نظر داده است.</message>
+	<message key="notification.type.submissions">رویدادهای ساب میشن</message>
+	<message key="notification.type.suppFileModified">فایل(های) مکمل مربوط به «{$param}» تغییر یافته است.</message>
+	<message key="notification.type.userComment">یک خواننده نظری در مورد «{$param}» داده است</message>
+	<message key="rt.thisConference">Search conference</message>
+</locale>

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * locale/fa_IR/director.xml
+  *
+  * Copyright (c) 2000-2016 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  * Localization strings for the fa_IR (سی) locale.
+  * # Localized by ICT Center - Imam Hossein University (IHU) - 2013
+  * # CONTACT: conf@ihu.ac.ir
+  -->
+
+<locale name="fa_IR" full_name="فارسی">
+	<message key="director.home">صفحه خانگی دبیر</message>
+	<message key="director.submissionQueue">نوبت ساب میشن</message>
+	<message key="director.submissionArchive">بایگانی ساب میشن</message>
+	<message key="director.allTracks">تمامی محورها</message>
+	<message key="director.allDirectors">تمامی دبیرها</message>
+	<message key="director.me">مرا</message>
+	<message key="director.submissionArchive.noSubmissions">هیچ ساب میشنی در بایگانی نیست</message>
+	<message key="director.submissionArchive.saveChanges">آیا تغییرات ساب میشن بایگانی شده ذخیره شود؟ ساب میشن هائی که جهت حذف انتخاب شده اند برای همیشه از سیستم حذف خواهند شد.</message>
+	<message key="director.submissionArchive.confirmDelete">آیا می خواهید برای همیشه این ساب میشن را حذف کنید؟</message>
+	<message key="director.submissionReview.confirmDecision">آیا از تصمیم گرفته شده مطمئن هستید؟</message>
+	<message key="director.submissionReview.notes">«مهلت»، تعداد هفته‌هایی که به پایان مهلت داوری مانده و یا تعداد هفته‌هایی که از آن گذشته است را بیان می‌کند. این فیلد زمانی پر می‌شود که داور، درخواست داوری را می‌پذیرد.</message>
+	<message key="director.notifyUsers">اطلاع به کاربران</message>
+	<message key="director.notifyUsers.allUsers">این پیغام را به تمام کاربران این مجله بفرست ({$count} کاربر)</message>
+	<message key="director.notifyUsers.interestedUsers">کاربران مربوط به این کنفرانس که علاقه‌مند دریافت اخبار جدید هستند ({$count} کاربر)</message>
+	<message key="director.notifyUsers.includeToc">ارائه‌های این کنفرانس را لحاظ کن</message>
+	<message key="director.notifyUsers.allReaders">تمام خوانندگان ({$count}  کاربر)</message>
+	<message key="director.notifyUsers.allAuthors">تمام ارائه‌کنندگان منتشر شده ({$count} کاربر)</message>
+	<message key="director.notifyUsers.allPaidRegistrants">تمام کاربران پرداخت کرده ({$count}  کاربر)</message>
+	<message key="director.notifyUsers.allRegistrants">تمام کاربران ({$count} کاربر)</message>
+	<message key="director.navigation.management">مدیریت</message>
+	<message key="director.paper.designateReviewVersion">تعیین فایل اصلی به عنوان نسخه کارشناسی</message>
+	<message key="director.paper.uploadReviewVersion">بارگذاری نسخه اصلاح شده به عنوان «نسخه داوری»</message>
+	<message key="director.paper.uploadDirectorVersion">بارگذاری نسخه دبیر</message>
+	<message key="director.paper.showSuppFile">قرار گرفتن فایل در دسترس کارشناسان</message>
+	<message key="director.paper.clear">پاک کردن</message>
+	<message key="director.paper.clearReviewer">حذف کارشناس</message>
+	<message key="director.paper.changeTrack">تغییر محور</message>
+	<message key="director.paper.setDueDate">تعیین مهلت کارشناسی</message>
+	<message key="director.paper.addReviewer">افزودن کارشناس</message>
+	<message key="director.paper.toReviewer">به کارشناس</message>
+	<message key="director.paper.notifyReviewer">باخبر کردن کارشناس</message>
+	<message key="director.paper.initiateReview">براه انداختن کارشناسی</message>
+	<message key="director.paper.cancelReview">لغو درخواست داوری</message>
+	<message key="director.paper.clearReview">حذف کارشناس</message>
+	<message key="director.paper.enterRecommendation">وارد کردن توصیه ها</message>
+	<message key="director.paper.enterReviewerRecommendation">وارد کردن توصیه کارشناسی</message>
+	<message key="director.paper.recommendation">توصیه</message>
+	<message key="director.paper.selectReviewer">انتخاب کارشناس</message>
+	<message key="director.paper.replaceReviewer">جایگزینی کارشناس</message>
+	<message key="director.paper.uploadReviewForReviewer">آپلود کارشناسی</message>
+	<message key="director.paper.peerReviewOptions">گزینه های کارشناسی</message>
+	<message key="director.paper.decision">تصمیم</message>
+	<message key="director.paper.recordDecision">دخیره تصمیم</message>
+	<message key="director.paper.designateDueDate">یک تاریخ برای مهلت کارشناسی تعیین کن.</message>
+	<message key="director.paper.designateDueDateDescription">برای تغییر موعد مقرر برای این داور، یک تاریخ دیگر وارد نمایید یا تاریخ را حذف کرده و تعداد هفته‌ها تا زمانی که مهلت داوری سرآید را وارد کنید.</message>
+	<message key="director.paper.todaysDate">امروز</message>
+	<message key="director.paper.requestedByDate">مورد درخواست تا تاریخ</message>
+	<message key="director.paper.dueDateFormat">فرمات: YYYY-MM-DD</message>
+	<message key="director.paper.numberOfWeeks">تعداد هفته ها</message>
+	<message key="director.paper.showAuthor">نویسنده مجاز است فایل را ببیند</message>
+	<message key="director.paper.rateReviewer">ارزیابی داور</message>
+	<message key="director.paper.reviewerRating.veryGood">5 عالی</message>
+	<message key="director.paper.reviewerRating.good">4</message>
+	<message key="director.paper.reviewerRating.average">3 متوسط</message>
+	<message key="director.paper.reviewerRating.poor">2</message>
+	<message key="director.paper.reviewerRating.veryPoor">1 ضعیف</message>
+	<message key="director.paper.quality">امتیاز</message>
+	<message key="director.paper.comments">نظرات</message>
+	<message key="director.paper.commentsRequired">قسمت توضیح الزامی است</message>
+	<message key="director.paper.archiveSubmission">رد وبایگانی کردن ساب میشن</message>
+	<message key="director.paper.restoreToQueue">برگرداندن به لیست جاری</message>
+	<message key="director.paper.assignTrackDirector">اضافه کردن دبیر محور</message>
+	<message key="director.paper.assignDirector">اضافه کردن دبیر</message>
+	<message key="director.paper.selectDirector">انتخاب {$roleName}</message>
+	<message key="director.paper.selectDecision">انتخاب تصمیم</message>
+	<message key="director.paper.decision.accept">قبول ساب میشن</message>
+	<message key="director.paper.decision.pendingRevisions">اصلاحات لازم است</message>
+	<message key="director.paper.decision.decline">رد کردن اثر ارسالی</message>
+	<message key="director.paper.createGalley">این فایل برای انتشار آماده است.</message>
+	<message key="director.paper.completeReview">این داوری را به عنوان کامل شده علامت بزن.</message>
+	<message key="director.paper.scheduleSubmission">ارسال</message>
+	<message key="director.submissions.showBy">نشان دادن بزحسب</message>
+	<message key="director.submissions.submitMMDD">ساب میت MM-DD</message>
+	<message key="director.submissions.activeAssignments">انتصابات جاری</message>
+	<message key="director.submissions.invite">دعوت</message>
+	<message key="director.submissions.accept">پذیرفتن</message>
+	<message key="director.submissions.noSubmissions">فاقد اثر ارسالی</message>
+	<message key="director.submissions.lastAssigned">آخرین</message>
+	<message key="director.submissions.averageTime">هفته</message>
+	<message key="director.submissions.lastCompleted">آخرین کارشناسی کامل شده</message>
+	<message key="director.submissions.assignedTo">منتسب شده به</message>
+	<message key="director.submissions.inTrack">در محور</message>
+</locale>
