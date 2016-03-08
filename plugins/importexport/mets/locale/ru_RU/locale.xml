@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * locale.xml
+  *
+  * Copyright (c) 2000-2012 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the ru_RU (Русский) locale.
+  * Translated by Pavel Pisklakov. 
+  *
+  * $Id$
+  -->
+ 
+<locale name="ru_RU" full_name="Russian">
+	<message key="plugins.importexport.METSExport.displayName">Плагин «Экспорт в METS XML»</message>
+	<message key="plugins.importexport.METSExport.description">Этот плагин экспортирует конференции в METS XML</message>
+	<message key="plugins.importexport.METSExport.settings">Настройки</message>
+	<message key="plugins.importexport.METSExport.export">Экспортировать данные</message>
+	<message key="plugins.importexport.METSExport.export.schedConfs">Экспортировать запланированные конференции</message>
+	<message key="plugins.importexport.METSExport.export.selectschedConfs">Выберите запланированные конференции для экспорта.</message>
+	<message key="plugins.importexport.METSExport.export.error.SchedConfNotFound">Нет запланированной конференции с указанным ID материала «{$SchedConfId}».</message>
+	<message key="plugins.importexport.METSExport.export.error.unknownConference">Неизвестный путь конференции {$conferencePath}</message>
+	<message key="plugins.importexport.METSExport.settings.FContent">Использовать кодирование base64 для контента</message>
+	<message key="plugins.importexport.METSExport.settings.FLocat">Использовать адрес (URL) битового потока для контента</message>
+	<message key="plugins.importexport.METSExport.settings.organization">Элемент атрибута организации METS:agent</message>
+	<message key="plugins.importexport.METSExport.settings.preservationLevel">Уровень сохранения PREMIS</message>
+	<message key="plugins.importexport.METSExport.settings.exportSuppFiles">Экспортировать дополнительные файлы</message>
+</locale>

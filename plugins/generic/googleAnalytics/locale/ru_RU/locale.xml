@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * locale.xml
+  *
+  * Copyright (c) 2000-2012 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the ru_RU (Русский) locale.
+  * Translated by Pavel Pisklakov. 
+  *
+  * $Id$
+  -->
+ 
+<locale name="ru_RU" full_name="Russian">
+
+	<!-- Google Analytics -->
+	<message key="plugins.generic.googleAnalytics.displayName">Плагин «Google Analytics»</message>
+	<message key="plugins.generic.googleAnalytics.description"><![CDATA[Этот плагин интегрирует OCS с Google Analytics, приложением для анализа трафика веб-сайта от компании Google. Требует наличия у вас учетной записи в системе Google Analytics. Пожалуйста, просмотрите <a href="http://www.google.com/analytics/" title="сайт Google Analytics">сайт Google Analytics</a> для получения более подробной информации.]]></message>
+	<message key="plugins.generic.googleAnalytics.enabled">Плагин «Google Analytics» был включен.</message>
+	<message key="plugins.generic.sgoogleAnalyticsehl.disabled">Плагин «Google Analytics» был отключен.</message>
+	<!-- Управление настройками Google Analytics -->
+	<message key="plugins.generic.googleAnalytics.manager.settings">Настройки</message>
+	<message key="plugins.generic.googleAnalytics.manager.googleAnalyticsSettings">Настройки Google Analytics</message>
+	<message key="plugins.generic.googleAnalytics.manager.settings.description"><![CDATA[<p>При включении этого плагина можно использовать Google Analytics для сбора и анализа использования сайта и трафика для этой конференции. Обратите внимание, что этот плагин требует наличия у Вас учетной записи в системе Google Analytics. Пожалуйста, просмотрите <a href="http://www.google.com/analytics/" title="сайт Google Analytics">сайт Google Analytics</a> для получения более подробной информации.</p><p>Пожалуйста, обратите внимание, что Google Analytics может потребоваться до 24 часов для начала сбора статистики и формирования отчетов. В течение этого периода функция «Check Status» может неправильно отображать наличие требуемого для отслеживания кода в конференции.</p>]]></message>
+	<message key="plugins.generic.googleAnalytics.manager.settings.googleAnalyticsSiteId">Номер учетной записи</message>
+	<message key="plugins.generic.googleAnalytics.manager.settings.googleAnalyticsSiteIdInstructions"><![CDATA[Щелкните на «Check Status» в Google Analytics, чтобы просмотреть код отслеживания для вашего сайта. Для старого кода отслеживания, номер учетной записи отображается в коде отслеживания как: _uacct = "###". Для нового кода отслеживания, номер учетной записи отображается в коде отслеживания как : var pageTracker = _gat._getTracker("###"). Введите текст, который соответствует ###.]]></message>
+	<message key="plugins.generic.googleAnalytics.manager.settings.googleAnalyticsSiteIdRequired">Пожалуйста введите номер учетной записи.</message>
+	<message key="plugins.generic.googleAnalytics.manager.settings.trackingCode">Код отслеживания</message>
+	<message key="plugins.generic.googleAnalytics.manager.settings.trackingCodeRequired">Пожалуйста, выберите код отслеживания, который вы хотите использовать.</message>
+	<message key="plugins.generic.googleAnalytics.manager.settings.urchin">Старый код отслеживания (urchin.js)</message>
+	<message key="plugins.generic.googleAnalytics.manager.settings.ga">Новый код отслеживания (ga.js)</message>
+</locale>

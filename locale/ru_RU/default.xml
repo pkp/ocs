@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * locale.xml
+  *
+  * Copyright (c) 2000-2012 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the ru_RU (Русский) locale.
+  * Translated by Pavel Pisklakov. 
+  *
+  * $Id$
+  -->
+
+<locale name="ru_RU" full_name = "Russian">
+	<message key="default.paperType.individual.name">Самостоятельный материал</message>
+	<message key="default.paperType.individual.description"></message>
+	<message key="default.paperType.panel.name">Материал для панельной дискуссии</message>
+	<message key="default.paperType.panel.description"></message>
+	<message key="track.default.title">Общие материалы</message>
+	<message key="track.default.abbrev">ОБЩ</message>
+	<message key="track.default.policy"></message>
+	<message key="default.conferenceSettings.copyrightNotice"><![CDATA[Авторы, отправляющие материалы на эту конференцию, соглашаются со следующими условиями:<br/>
+<strong>a)</strong>&nbsp;Авторы сохраняют за собой авторские права на работу, разрешая конференции размещать эту неопубликованную работу по лицензии <a href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution License</a>, которая позволяет другим лицам свободно получать доступ, использовать и делиться работой с указанием авторства работы и ее первоначального представления на данной конференции.<br/>
+<strong>b)</strong>&nbsp;Авторы могут отказаться от условий лицензии CC  и заключить отдельные, дополнительные договора на неисключительное распространение и последующую публикацию этой работы (например, опубликовать переработанную версию  в журнале, разместить ее в университетском хранилище или опубликовать в книге) с указанием ее первоначального представления на данной конференции.<br/>
+<strong>c)</strong>&nbsp;Кроме того, авторам разрешается публиковать и делиться своей работой в сети Интернет (например, в университетском хранилище или на их сайте) в любой момент до и после конференции.]]></message>
+
+	<message key="default.schedConfSettings.checklist.notPreviouslyPublished">Этот материал ранее не был опубликован или представлен для рассмотрения на другую конференцию (или дано объяснение этого в комментариях для ответственного секретаря).</message>
+	<message key="default.schedConfSettings.checklist.fileFormat">Отправляемый файл представлен в формате документа OpenOffice, Microsoft Word, RTF или WordPerfect.</message>
+	<message key="default.schedConfSettings.checklist.addressesLinked"><![CDATA[Все URL-адреса в тексте (например, <a href="http://pkp.sfu.ca">http://pkp.sfu.ca</a>) являются активными гиперссылками, по которым можно щелкать и переходить на соответствующие страницы.]]></message>
+	<message key="default.schedConfSettings.checklist.submissionAppearance">Текст набран с одинарным межстрочным интервалом; используется кегль шрифта в 12 пунктов; для выделения используется курсив, а не подчеркивание (за исключением URL-адресов); все иллюстрации, графики и таблицы расположены в соответствующих местах в тексте, а не в конце документа.</message>
+	<message key="default.schedConfSettings.checklist.anonymous">Если вы отправляете материал в рецензируемое направление конференции, то имена авторов убраны из отправляемого материала, в библиографии и сносках указано «Автор» и год вместо имени автора, названия статьи и т. д.</message>
+	<message key="default.schedConfSettings.checklist.personalInformationRemoved">При отправке на рецензию все документы Microsoft Office (включая дополнительные файлы) были сохранены следующим образом: зайти в меню «Файл», выбрать команду «Сохранить как», щелкнуть на кнопке «Инструменты» (или «Настройки» на Mac), щелкнуть на разделе «Безопасность» и выбрать «Убрать личную информацию из свойств файла при сохранении», щелкнуть на кнопке «Сохранить».</message>
+	<message key="default.conferenceSettings.privacyStatement">Имена и адреса электронной почты, введенные на сайте этой конференции, будут использованы исключительно для целей, обозначенных этой конференцией, и не будут использованы для каких-либо других целей или предоставлены другим лицам и организациям.</message>
+	<message key="default.conferenceSettings.authorSelfArchivePolicy">Авторам разрешается публиковать свои статьи на личных веб-сайтах или сайтах организации до и после публикации этой конференции с указанием в библиографическом описании информации о публикации на данной конференции.</message>
+	<message key="default.conferenceSettings.emailSignature"><![CDATA[________________________________________________________________________
+{$conferenceName}
+{$conferenceUrl}
+]]></message>
+	<message key="default.conferenceSettings.forReaders"><![CDATA[Мы приглашаем наших читателей подписаться на уведомления о статьях, опубликованных на этой конференции. Мы рекомендуем вам изучить страницу <a href="{$aboutUrl}">О конференции</a> для знакомства с правилами конференции и посетить <a href="{$conferenceUrl}">главную страницу</a>, чтобы узнать о предстоящих конференциях.]]></message>
+	<message key="default.conferenceSettings.forAuthors"><![CDATA[Вы хотите отправить материал на эту конференцию? Мы рекомендуем вам изучить страницу <a href="{$aboutUrl}">О конференции</a> для знакомства с правилами конференции и посетить <a href="{$conferenceUrl}">главную страницу</a>, чтобы узнать о предстоящих конференциях.]]></message>
+	<message key="default.conferenceSettings.lockssLicense"><![CDATA[Эта конференция использует систему LOCKSS для создания распределенной архивной системы между участвующими в этой системе библиотеками и разрешает этим библиотекам создавать постоянные архивы конференции в целях сохранения и восстановления. <a href="http://lockss.stanford.edu/">Подробнее...</a>]]></message>
+
+	<message key="default.schedConfSettings.emailSignature"><![CDATA[________________________________________________________________________
+{$conferenceName} {$schedConfName}
+{$schedConfUrl}
+]]></message>
+	<message key="default.conferenceSettings.archiveAccessPolicy">Презентации, входящие в текущую и архивные конференции на этом сайте, размещены в открытом доступе и свободно доступны для просмотра для авторов и заинтересованных читателей.</message>
+	<message key="default.schedConfSettings.checklist.bibliographicRequirements"><![CDATA[Текст соответствует стилистическим и библиографческим требованиям, описанным в <a href=""{$authorGuidelinesUrl}">Руководстве для авторов</a>, расположенном на странице «О конференции».]]></message>
+	<message key="default.schedConfSettings.forReaders"><![CDATA[Мы приглашаем наших читателей подписаться на уведомления о статьях, опубликованных на этой конференции. Используйте ссылку <a href="{$accountUrl}">Учетная запись</a> в верхней части главной страницы конференции. Этот список позволяет конференции говорить об определенном уровне поддержки или количестве читателей. Посмотрите также страницу <a href="{$privacyStatementUrl}">Заявление о конфиденциальности</a>, которая убеждает читателей в том, что их имя и адрес электронной почты не будут использованы для других целей.]]></message>
+	<message key="default.schedConfSettings.forAuthors"><![CDATA[Вы хотите отправить материал на эту конференцию? Мы рекомендуем вам изучить страницу <a href="{$aboutUrl}">О конференции</a> для знакомства с правилами для направлений конференции, а также <a href="{$authorGuidelinesUrl}">Руководством для авторов</a>. Авторам нужно <a href="{$accountUrl}">создать учетную запись</a> в конференции перед отправкой материалов, или, если вы уже зарегистрированы, можно просто <a href="{$loginUrl}">войти</a> со своей учетной записью и начать процесс отправки.]]></message>
+</locale>

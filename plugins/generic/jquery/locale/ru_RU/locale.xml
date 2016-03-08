@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * locale.xml
+  *
+  * Copyright (c) 2000-2012 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the ru_RU (Русский) locale.
+  * Translated by Pavel Pisklakov. 
+  *
+  * $Id$
+  -->
+ 
+<locale name="ru_RU" full_name="Russian">
+	<message key="plugins.generic.jquery.name">Плагин «jQuery»</message>
+	<message key="plugins.generic.jquery.description"><![CDATA[Этот плагин включает взаимодействие javascript и оформление контента OCS с помощью фреймворка <a href="http://www.jquery.com" target="_new">jQuery</a>.]]></message>
+	<message key="plugins.generic.jquery.descriptionDisabled"><![CDATA[Этот плагин включает взаимодействие javascript и оформление контента OCS с помощью фреймворка <a href="http://www.jquery.com" target="_new">jQuery</a>. <strong>jQuery в настоящий момент не установлен; пожалуйста, установите его в {$jQueryPath}.</strong>]]></message>
+	<message key="plugins.generic.jquery.disabled">Плагин «jQuery» был отключен.</message>
+	<message key="plugins.generic.jquery.enabled">Плагин «jQuery» был включен.</message>
+	<message key="plugins.generic.jquery.settings">Настройки</message>
+</locale>

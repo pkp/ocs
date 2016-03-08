@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * locale.xml
+  *
+  * Copyright (c) 2000-2012 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the ru_RU (Русский) locale.
+  * Translated by Pavel Pisklakov. 
+  *
+  * $Id$
+  -->
+ 
+<locale name="ru_RU" full_name="Russian">
+	<message key="plugins.citationFormats.proCite.displayName">Плагин форматирования ссылок ProCite</message>
+	<message key="plugins.citationFormats.proCite.citationFormatName">ProCite - формат RIS (Macintosh &amp; Windows)</message>
+	<message key="plugins.citationFormats.proCite.description">Этот плагин реализует формат ссылок ProCite.</message>
+</locale>

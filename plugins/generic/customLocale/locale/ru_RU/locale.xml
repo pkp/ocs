@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * locale.xml
+  *
+  * Copyright (c) 2000-2012 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the ru_RU (Русский) locale.
+  * Translated by Pavel Pisklakov. 
+  *
+  * $Id$
+  -->
+ 
+<locale name="ru_RU" full_name="Russian">
+	<message key="plugins.generic.customLocale.name">Плагин «Язык пользователя»</message>
+	<message key="plugins.generic.customLocale.description">Этот плагин позволяет изменять текст пользовательского интерфейса, используемый OCS по умолчанию.</message>
+	<message key="plugins.generic.customLocale.enabled">Плагин «Язык пользователя» был включен.</message>
+	<message key="plugins.generic.customLocale.disabled">Плагин «Язык пользователя» был отключен.</message>
+
+	<message key="plugins.generic.customLocale.longDescription">На этой странице показаны все языки, установленные в данный момент для конференции.</message>
+	<message key="plugins.generic.customLocale.localeDescription">На этой странице приведен список всех файлов, которые доступны для выбранного языка.</message>
+	<message key="plugins.generic.customLocale.fileDescription">Введите текст в соответствующее поле с заголовком «Текст пользователя». Оставьте это поле пустым, если вы хотите использовать стандартный текст OCS.</message>
+	<message key="plugins.generic.customLocale.localeName">Название языка</message>
+	<message key="plugins.generic.customLocale.localeKey">Ключ</message>
+	<message key="plugins.generic.customLocale.localeKey.description">Введите полный ключ сообщения для поиска.</message>
+	<message key="plugins.generic.customLocale.localeKeyValue">Значение</message>
+	<message key="plugins.generic.customLocale.customize">Изменить</message>
+	<message key="plugins.generic.customLocale.availableLocales">Доступные языки</message>
+
+	<message key="plugins.generic.customLocale.locale">Язык {$locale}</message>
+	<message key="plugins.generic.customLocale.localeFiles">Файлы языка</message>
+	<message key="plugins.generic.customLocale.file.filename">Имя файла</message>
+	<message key="plugins.generic.customLocale.file.edit">Редактирование {$filename}</message>
+	<message key="plugins.generic.customLocale.file.reference">Стандартный текст</message>
+	<message key="plugins.generic.customLocale.file.custom">Текст пользователя</message>
+</locale>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * locale.xml
+  *
+  * Copyright (c) 2000-2012 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the ru_RU (Русский) locale.
+  * Translated by Pavel Pisklakov. 
+  *
+  * $Id$
+  -->
+
+<locale name="ru_RU" full_name="Russian">
+	<message key="plugins.reports.papers.displayName">Плагин «Отчет о материалах»</message>
+	<message key="plugins.reports.papers.description">Этот плагин реализует отчет в формате CSV, содержащий список материалов и информацию о них.</message>
+	<message key="plugins.reports.papers.nodecision">Нет решения</message>
+</locale>
