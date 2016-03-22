@@ -13,7 +13,7 @@
   * $Id$
   -->
  
-<locale name="ru_RU" full_name="Russian">
+<locale name="ru_RU" full_name="Русский">
 	<message key="plugins.generic.announcementfeed.displayName">Плагин «Лента объявлений»</message>
 	<message key="plugins.generic.announcementfeed.description">Плагин создает ленту в форматах RSS/Atom, содержащую объявления конференции.</message>
 

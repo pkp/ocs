@@ -13,7 +13,7 @@
   * $Id$
  -->
 
-<locale name="ru_RU" full_name="Russian">
+<locale name="ru_RU" full_name="Русский">
 	<message key="plugins.paymethod.manual.displayName">Плагин «Ввод оплаты вручную»</message>
 	<message key="plugins.paymethod.manual.description">Этот плагин позволяет менеджеру вручную ввести информацию о платеже пользователя (оплату, прошедшую вне этой системы).</message>
 	<message key="plugins.paymethod.manual">Ввод оплаты вручную</message>

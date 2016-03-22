@@ -13,7 +13,7 @@
   * $Id$
   -->
  
-<locale name="ru_RU" full_name="Russian">
+<locale name="ru_RU" full_name="Русский">
 	<message key="plugins.generic.translator.name">Плагин «Переводчик»</message>
 	<message key="plugins.generic.translator.description">Этот плагин позволяет выполнять работать с файлами перевода через веб-интерфейс.</message>
 	<message key="plugins.generic.translator.longdescription">Эта область позволяет администратору сайта создавать, изменять и проверять переводы системы OCS. Изменения в этой области затрагивают весь сайт, поэтому данная область не должна использоваться для изменения перевода для одной конференции OCS. Если вы корректируете или создаете перевод, пожалуйста подумайте над его отправкой в Public Knowledge Project для включения в будущие версии OCS.</message>

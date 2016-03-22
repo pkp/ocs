@@ -13,7 +13,7 @@
   * $Id$
   -->
  
-<locale name="ru_RU" full_name="Russian">
+<locale name="ru_RU" full_name="Русский">
 	<message key="plugins.importexport.nlm.displayName">Плагин «Экспорт в NLM XML»</message>
 	<message key="plugins.importexport.nlm.description">Этот плагин экспортирует метаданные материалов в формат NLM Meeting Abstracts XML для индексирования.</message>
 

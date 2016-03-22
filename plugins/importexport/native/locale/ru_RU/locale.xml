@@ -13,7 +13,7 @@
   * $Id$
   -->
 
-<locale name="ru_RU" full_name="Russian">
+<locale name="ru_RU" full_name="Русский">
 	<message key="plugins.importexport.native.displayName">Плагин «Материалы в XML»</message>
 	<message key="plugins.importexport.native.description">Этот плагин импортирует и экспортирует материалы</message>
 

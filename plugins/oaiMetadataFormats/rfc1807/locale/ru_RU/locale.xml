@@ -12,7 +12,7 @@
   *
   -->
  
-<locale name="ru_RU" full_name="Russian">
+<locale name="ru_RU" full_name="Русский">
 	<message key="plugins.OAIMetadata.rfc1807.displayName">Плагин «Формат метаданных RFC1807»</message>
 	<message key="plugins.OAIMetadata.rfc1807.description">Этот плагин структурирует метаданные таким образом, чтобы они соответствовали формату RFC1807.</message>
 </locale>

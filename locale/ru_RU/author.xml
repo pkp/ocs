@@ -12,7 +12,7 @@
   *
   -->
 
-<locale name="ru_RU" full_name = "Russian">
+<locale name="ru_RU" full_name="Русский">
 	<message key="author.submit">Новый материал</message>
 	<message key="author.track">Материалы в работе</message>
 	<message key="author.submit.startHere">Начать отправку нового материала на эту конференцию.</message>

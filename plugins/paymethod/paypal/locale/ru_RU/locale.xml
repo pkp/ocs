@@ -12,7 +12,7 @@
   *
  -->
  
-<locale name="ru_RU" full_name="Russian">
+<locale name="ru_RU" full_name="Русский">
 	<message key="plugins.paymethod.paypal.displayName">Плагин «Платежи через PayPal»</message>
 
 	<!-- Форма настройки PayPal -->

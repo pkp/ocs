@@ -13,7 +13,7 @@
   * $Id$
   -->
  
-<locale name="ru_RU" full_name="Russian">
+<locale name="ru_RU" full_name="Русский">
 	<message key="plugins.block.navigation.displayName">Блок «Навигация»</message>
 	<message key="plugins.block.navigation.description">Этот плагин добавляет навигационные ссылки на боковую панель.</message>
 	<message key="plugins.block.navigation.conferenceContent">Контент конференции</message>

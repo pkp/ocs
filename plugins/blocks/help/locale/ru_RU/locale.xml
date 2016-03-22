@@ -13,7 +13,7 @@
   * $Id$
   -->
  
-<locale name="ru_RU" full_name="Russian">
+<locale name="ru_RU" full_name="Русский">
 	<message key="plugins.block.help.displayName">Блок «Помощь»</message>
 	<message key="plugins.block.help.description">Этот плагин добавляет на боковую панель ссылку на помощь.</message>
 </locale>

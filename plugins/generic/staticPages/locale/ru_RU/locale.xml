@@ -12,7 +12,7 @@
   *
   -->
  
-<locale name="ru_RU" full_name="Russian">
+<locale name="ru_RU" full_name="Русский">
 	<message key="plugins.generic.staticPages.displayName">Плагин «Статические страницы»</message>
 	<message key="plugins.generic.staticPages.description">Этот плагин позволяет управлять статическим контентом.</message>
 	<message key="plugins.generic.staticPages.pageTitle">Заголовок</message>

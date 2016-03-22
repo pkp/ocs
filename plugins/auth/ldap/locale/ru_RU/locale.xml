@@ -13,7 +13,7 @@
   * $Id$
   -->
  
-<locale name="ru_RU" full_name = "Russian">
+<locale name="ru_RU" full_name="Русский">
 	<message key="plugins.auth.ldap.displayName">LDAP</message>
 	<message key="plugins.auth.ldap.description">Этот плагин позволяет выполнять аутентификацию и синхронизацию учетных записей пользователей с внешним источником данных LDAP.</message>
 	

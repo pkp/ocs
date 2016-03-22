@@ -13,7 +13,7 @@
   * $Id$
   -->
  
-<locale name="ru_RU" full_name="Russian">
+<locale name="ru_RU" full_name="Русский">
 	<message key="plugins.generic.jquery.name">Плагин «jQuery»</message>
 	<message key="plugins.generic.jquery.description"><![CDATA[Этот плагин включает взаимодействие javascript и оформление контента OCS с помощью фреймворка <a href="http://www.jquery.com" target="_new">jQuery</a>.]]></message>
 	<message key="plugins.generic.jquery.descriptionDisabled"><![CDATA[Этот плагин включает взаимодействие javascript и оформление контента OCS с помощью фреймворка <a href="http://www.jquery.com" target="_new">jQuery</a>. <strong>jQuery в настоящий момент не установлен; пожалуйста, установите его в {$jQueryPath}.</strong>]]></message>

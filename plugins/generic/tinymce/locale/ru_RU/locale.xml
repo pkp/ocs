@@ -13,7 +13,7 @@
   * $Id$
   -->
  
-<locale name="ru_RU" full_name="Russian">
+<locale name="ru_RU" full_name="Русский">
 	<message key="plugins.generic.tinymce.name">Плагин «TinyMCE»</message>
 	<message key="plugins.generic.tinymce.description"><![CDATA[Этот плагин включает визуальное редактирование (WYSIWYG) текстовых полей в OCS с использованием редактора <a href="http://tinymce.moxiecode.com" target="_new">TinyMCE</a>.]]></message>
 	<message key="plugins.generic.tinymce.descriptionDisabled"><![CDATA[Этот плагин включает визуальное редактирование (WYSIWYG) текстовых полей в OCS с использованием редактора <a href="http://tinymce.moxiecode.com" target="_new">TinyMCE</a>.<strong>TinyMCE сейчас не установлен; пожалуйста, установите его в {$tinyMcePath}.</strong>]]></message>

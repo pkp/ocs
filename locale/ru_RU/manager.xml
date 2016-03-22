@@ -13,7 +13,7 @@
   * $Id$
   -->
 
-<locale name="ru_RU" full_name = "Russian">
+<locale name="ru_RU" full_name="Русский">
 	<message key="manager.accommodation">Размещение</message>
 	<message key="manager.accommodation.form.accommodationFiles">Файлы</message>
 	<message key="manager.accommodation.form.accommodationFiles.description">Используйте этот раздел для загрузки на сайт одного или нескольких файлов для участников и потенциальных участников: карт, бланков и т.д.</message>

@@ -13,7 +13,7 @@
   * $Id$
   -->
  
-<locale name="ru_RU" full_name="Russian">
+<locale name="ru_RU" full_name="Русский">
 	<message key="plugins.reports.registrants.displayName">Плагин «Отчет о зарегистрировавшихся»</message>
 	<message key="plugins.reports.registrants.description">Этот плагин реализует отчет в формате CSV, содержащий список зарегистрировавшихся и их регистрационную информацию, такую как контактная информация, статус платежа и т. д.</message>
 	<message key="plugins.reports.registrants.userId">ID пользователя</message>

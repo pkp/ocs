@@ -13,7 +13,7 @@
   * $Id$
   -->
  
-<locale name="ru_RU" full_name="Russian">
+<locale name="ru_RU" full_name="Русский">
 	<message key="plugins.block.languageToggle.displayName">Блок «Переключение языка»</message>
 	<message key="plugins.block.languageToggle.description">Этот плагин добавляет на боковую панель переключатель языка.</message>
 </locale>

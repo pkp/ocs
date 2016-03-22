@@ -13,7 +13,7 @@
   * $Id$
   -->
 
-<locale name="ru_RU" full_name="Russian">
+<locale name="ru_RU" full_name="Русский">
 	<message key="plugins.reports.papers.displayName">Плагин «Отчет о материалах»</message>
 	<message key="plugins.reports.papers.description">Этот плагин реализует отчет в формате CSV, содержащий список материалов и информацию о них.</message>
 	<message key="plugins.reports.papers.nodecision">Нет решения</message>

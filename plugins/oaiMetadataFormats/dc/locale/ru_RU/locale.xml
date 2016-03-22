@@ -12,7 +12,7 @@
   *
   -->
  
-<locale name="ru_RU" full_name="Russian">
+<locale name="ru_RU" full_name="Русский">
 	<message key="plugins.oaiMetadata.dc.displayName">Плагин «Формат метаданных DC»</message>
 	<message key="plugins.oaiMetadata.dc.description">Этот плагин структурирует метаданные таким образом, чтобы они соответствовали формату Dublin Core.</message>
 </locale>

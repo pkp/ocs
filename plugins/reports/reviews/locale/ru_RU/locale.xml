@@ -13,7 +13,7 @@
   * $Id$
   -->
 
-<locale name="ru_RU" full_name="Russian">
+<locale name="ru_RU" full_name="Русский">
 	<message key="plugins.reports.reviews.displayName">Плагин «Отчет о рецензиях»</message>
 	<message key="plugins.reports.reviews.description">Этот плагин реализует отчет в формате CSV, содержащий список заданий на рецензирование для конференции.</message>
 	<message key="plugins.reports.reviews.reviewerId">ID рецензента</message>

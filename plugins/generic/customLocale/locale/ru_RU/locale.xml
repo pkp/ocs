@@ -13,7 +13,7 @@
   * $Id$
   -->
  
-<locale name="ru_RU" full_name="Russian">
+<locale name="ru_RU" full_name="Русский">
 	<message key="plugins.generic.customLocale.name">Плагин «Язык пользователя»</message>
 	<message key="plugins.generic.customLocale.description">Этот плагин позволяет изменять текст пользовательского интерфейса, используемый OCS по умолчанию.</message>
 	<message key="plugins.generic.customLocale.enabled">Плагин «Язык пользователя» был включен.</message>

@@ -12,7 +12,7 @@
   *
   -->
  
-<locale name="ru_RU" full_name="Russian">
+<locale name="ru_RU" full_name="Русский">
 	<message key="plugins.OAIMetadata.marcxml.displayName">Плагин «Формат метаданных MARC21»</message>
 	<message key="plugins.OAIMetadata.marcxml.description">Этот плагин структурирует метаданные таким образом, чтобы они соответствовали формату MARC21.</message>
 </locale>
