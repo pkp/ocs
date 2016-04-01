@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * locale.xml
+  *
+  * Copyright (c) 2000-2012 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the ru_RU (Русский) locale.
+  * Translated by Pavel Pisklakov. 
+  *
+  * $Id$
+  -->
+
+<locale name="ru_RU" full_name="Русский">
+	<message key="plugins.citationFormats.apa.displayName">Плагин форматирования ссылок APA</message>
+	<message key="plugins.citationFormats.apa.citationFormatName">APA</message>
+	<message key="plugins.citationFormats.apa.description">Этот плагин реализует формат ссылок APA.</message>
+	<message key="plugins.citationFormats.apa.retrieved"><![CDATA[Получено из <a href="{$url}" target="_new">{$url}</a>]]></message>
+</locale>

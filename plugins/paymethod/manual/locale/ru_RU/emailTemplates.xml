@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE email_texts SYSTEM "../../../../../lib/pkp/dtd/emailTemplateData.dtd">
+<!--
+  * emailTemplates.xml
+  *
+  * Copyright (c) 2000-2012 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the ru_RU (Русский) locale.
+  * Translated by Pavel Pisklakov. 
+  *
+  * $Id$
+  -->
+<email_texts locale="ru_RU">
+	<email_text key="MANUAL_PAYMENT_NOTIFICATION">
+		<subject>Уведомление о платеже</subject>
+		<body>Необходимо вручную обработать платеж для конференции «{$schedConfName}» и пользователя {$userFullName} (имя пользователя «{$userName}»).
+
+Пользователь платит за «{$itemName}».
+Сумма {$itemCost} ({$itemCurrencyCode}).
+
+Это письмо сгенерировано плагином «Ввод оплаты вручную» системы Open Conference Systems.</body>
+		<description>Этот шаблон письма используется для уведомления контактного лица для регистрации на конференцию о том, что был запрошен ввод оплаты вручную.</description>
+	</email_text>
+</email_texts>

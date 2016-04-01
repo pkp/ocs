@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * locale.xml
+  *
+  * Copyright (c) 2000-2012 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the ru_RU (Русский) locale.
+  * Translated by Pavel Pisklakov. 
+  *
+  * $Id$
+  -->
+ 
+<locale name="ru_RU" full_name="Русский">
+	<message key="plugins.block.role.displayName">Блок «Информация о роли»</message>
+	<message key="plugins.block.role.description">Этот плагин добавляет на боковую панель блок, содержащий информацию, связанную с ролью пользователя, такую как количество отправленных материалов и набор ссылок для ответственных секретарей, докладчиков и т. д.</message>
+</locale>

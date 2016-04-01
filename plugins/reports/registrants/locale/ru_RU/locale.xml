@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * locale.xml
+  *
+  * Copyright (c) 2000-2012 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the ru_RU (Русский) locale.
+  * Translated by Pavel Pisklakov. 
+  *
+  * $Id$
+  -->
+ 
+<locale name="ru_RU" full_name="Русский">
+	<message key="plugins.reports.registrants.displayName">Плагин «Отчет о зарегистрировавшихся»</message>
+	<message key="plugins.reports.registrants.description">Этот плагин реализует отчет в формате CSV, содержащий список зарегистрировавшихся и их регистрационную информацию, такую как контактная информация, статус платежа и т. д.</message>
+	<message key="plugins.reports.registrants.userId">ID пользователя</message>
+	<message key="plugins.reports.registrants.registrationId">ID регистрации</message>
+	<message key="plugins.reports.registrants.total">Всего</message>
+</locale>

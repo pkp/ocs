@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * ocs2-devel/locale/ru_RU/director.xml
+  *
+  * Copyright (c) 2000-2012 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the ru_RU (Русский) locale.
+  * Translated by Pavel Pisklakov. 
+  *
+  * $Id$
+  -->
+
+<locale name="ru_RU" full_name="Русский">
+	<message key="director.home">Главная страница ответственного секретаря</message>
+	<message key="director.submissionQueue">Очередь материалов</message>
+	<message key="director.submissionArchive">Архив материалов</message>
+	<message key="director.allTracks">Все направления</message>
+	<message key="director.allDirectors">Все ответственные секретари</message>
+	<message key="director.me">Я</message>
+	<message key="director.submissionQueue.noSubmissions">Нет материалов в очереди.</message>
+	<message key="director.submissionQueue.saveChanges">Сохранить изменения в очереди материалов?</message>
+	<message key="director.submissionArchive.noSubmissions">Нет материалов в архиве.</message>
+	<message key="director.submissionArchive.saveChanges">Сохранить изменения в архиве материалов? Отмеченные для удаления материалы будут навсегда удалены из системы.</message>
+	<message key="director.submissionArchive.confirmDelete">Вы уверены, что хотите навсегда удалить этот материал?</message>
+	<message key="director.submissionReview.confirmDecision">Вы уверены, что хотите записать это решение?</message>
+	<message key="director.submissionReview.confirmToLayout">Был ли автор уведомлен об этом решении? Если нет, нажмите «Отмена» и используйте инструмент «Уведомить автора» перед передачей этого материала на верстку.</message>
+	<message key="director.submissionReview.confirmToArchive">Был ли автор уведомлен об этом решении? Если нет, нажмите «Отмена» и используйте инструмент «Уведомить автора» перед перемещением этого материала в архив.</message>
+	<message key="director.submissionReview.notes">Срок показывает число недель, оставшихся до даты окончания рецензирования, или (-) недель, на которые рецензирование просрочено. Заполняется, когда рецензент принимает запрос на рецензию.</message>
+	<message key="director.notifyUsers">Уведомить пользователей</message>
+	<message key="director.notifyUsers.allUsers">Все пользователи, связанные с этой конференцией ({$count} пользователей)</message>
+	<message key="director.notifyUsers.interestedUsers">Все пользователи, связанные с этой конференцией, которые хотят получать уведомления ({$count} пользователей)</message>
+	<message key="director.notifyUsers.includeToc">Включать презентации для этой конференции</message>
+	<message key="director.notifyUsers.allReaders">Все читатели ({$count} пользователей)</message>
+	<message key="director.notifyUsers.allAuthors">Все опубликованные докладчики ({$count} пользователей)</message>
+	<message key="director.notifyUsers.allPaidRegistrants">Все оплатившие регистрацию ({$count} пользователей)</message>
+	<message key="director.notifyUsers.allRegistrants">Все зарегистрировавшиеся ({$count} пользователей)</message>
+	<message key="director.navigation.management">Управление</message>
+	<message key="director.paper.sendToArchive">Отправить этот материал в архив</message>
+	<message key="director.paper.designateReviewVersion">Обозначить оригинальный файл как версию для рецензирования</message>
+	<message key="director.paper.uploadReviewVersion">Загрузить переработанную версию как версию для рецензирования</message>
+	<message key="director.paper.uploadDirectorVersion">Загрузить версию ответственного секретаря</message>
+	<message key="director.paper.showSuppFile">Предоставить файл рецензентам</message>
+	<message key="director.paper.stageDisabled">Пока не возможно выполнить данное рецензирование. Рецензирование тезисов еще не завершено.</message>
+	<message key="director.paper.clear">Очистить</message>
+	<message key="director.paper.clearReviewer">Убрать рецензента</message>
+	<message key="director.paper.changeTrack">Изменить направление</message>
+	<message key="director.paper.setDueDate">Определить срок выполнения</message>
+	<message key="director.paper.addReviewer">Добавить рецензента</message>
+	<message key="director.paper.toReviewer">Рецензенту</message>
+	<message key="director.paper.notifyReviewer">Уведомить рецензента</message>
+	<message key="director.paper.initiateReview">Начать рецензирование</message>
+	<message key="director.paper.cancelReview">Отменить запрос</message>
+	<message key="director.paper.clearReview">Удалить рецензента</message>
+	<message key="director.paper.enterRecommendation">Ввести рекомендацию</message>
+	<message key="director.paper.enterReviewerRecommendation">Ввести рекомендацию рецензента</message>
+	<message key="director.paper.recommendation">Рекомендация</message>
+	<message key="director.paper.selectReviewer">Выбрать рецензента</message>
+	<message key="director.paper.replaceReviewer">Заменить рецензента</message>
+	<message key="director.paper.directorToEnter">Секретарь для ввода рекомендаций/комментариев для рецензента</message>
+	<message key="director.paper.uploadReviewForReviewer">Загрузить рецензию</message>
+	<message key="director.paper.peerReviewOptions">Параметры рецензирования</message>
+	<message key="director.paper.decision">Решение</message>
+	<message key="director.paper.recordDecision">Записать решение</message>
+	<message key="director.paper.cannotRecord">Не удается записать решение; ответственный секретарь направления еще не назначен или не загружен файл рецензии.</message>
+	<message key="director.paper.cannotRecordYet">Перед записью решения материал должен быть назначен ответственному секретарю направления. Версия для рецензирования по умолчанию становится версией ответственного секретаря.</message>
+	<message key="director.paper.cannotRecordTooLate">Материал уже прошел эту стадию рецензирования. Вы больше не можете изменить это решение.</message>
+	<message key="director.paper.designateDueDate">Обозначить срок выполнения</message>
+	<message key="director.paper.designateDueDateDescription">Чтобы изменить срок выполнения для этого рецензента, введите другую дату или удалите дату и введите количество недель на выполнение рецензии.</message>
+	<message key="director.paper.todaysDate">Сегодня</message>
+	<message key="director.paper.requestedByDate">Срок выполнения</message>
+	<message key="director.paper.dueDateFormat">Формат: ГГГГ-MM-ДД</message>
+	<message key="director.paper.numberOfWeeks">Количество недель</message>
+	<message key="director.paper.showAuthor">Разрешить автору просмотр файла</message>
+	<message key="director.paper.rateReviewer">Оценить рецензента</message>
+	<message key="director.paper.reviewerRating.veryGood">5 Отлично</message>
+	<message key="director.paper.reviewerRating.good">4</message>
+	<message key="director.paper.reviewerRating.average">3 Средне</message>
+	<message key="director.paper.reviewerRating.poor">2</message>
+	<message key="director.paper.reviewerRating.veryPoor">1 Плохо</message>
+	<message key="director.paper.quality">Рейтинг</message>
+	<message key="director.paper.comments">Комментарии</message>
+	<message key="director.paper.commentsRequired">Поле комментария должно быть заполнено.</message>
+	<message key="director.paper.archiveSubmission">Отклонить и переместить материал в архив</message>
+	<message key="director.paper.restoreToQueue">Восстановить в список материалов в работе</message>
+	<message key="director.paper.assignTrackDirector">Добавить ответственного секретаря направления</message>
+	<message key="director.paper.assignDirector">Назначить ответственного секретаря</message>
+	<message key="director.paper.selectDirector">Выбрать {$roleName}</message>
+	<message key="director.paper.selectDecision">Выбрать решение</message>
+	<message key="director.paper.decision.invitePresentation">Пригласить с презентацией</message>
+	<message key="director.paper.decision.accept">Принять материал</message>
+	<message key="director.paper.decision.pendingRevisions">Нужны исправления</message>
+	<message key="director.paper.decision.decline">Отклонить материал</message>
+	<message key="director.paper.moveToLayout">Отправить в верстку</message>
+	<message key="director.paper.createGalley">Этот файл готов для публикации.</message>
+	<message key="director.paper.completeReview">Отметить рецензирование как завершенное</message>
+	<message key="director.paper.scheduleSubmission">Отправить</message>
+	<message key="director.submissions.showBy">Показать по</message>
+	<message key="director.submissions.submitMMDD">Отправить MM-DD</message>
+	<message key="director.submissions.activeAssignments">Активные задания</message>
+	<message key="director.submissions.invite">Пригласить</message>
+	<message key="director.submissions.accept">Принять</message>
+	<message key="director.submissions.noSubmissions">Нет отправленных материалов</message>
+	<message key="director.submissions.lastAssigned">Последняя</message>
+	<message key="director.submissions.averageTime">Недель</message>
+	<message key="director.submissions.lastCompleted">Последняя завершенная</message>
+	<message key="director.submissions.assignedTo">Кому назначено</message>
+	<message key="director.submissions.inTrack">В направлении</message>
+</locale>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * locale.xml
+  *
+  * Copyright (c) 2006-2009 Gunther Eysenbach, Juan Pablo Alperin, MJ Suhonos
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the ru_RU (Русский) locale.
+  * Translated by Pavel Pisklakov. 
+  *
+ -->
+ 
+<locale name="ru_RU" full_name="Русский">
+	<message key="plugins.paymethod.paypal.displayName">Плагин «Платежи через PayPal»</message>
+
+	<!-- Форма настройки PayPal -->
+	<message key="plugins.paymethod.paypal.settings.paypalenable">Включить PayPal</message>
+	<message key="plugins.paymethod.paypal.settings.paypalurl">Адрес (URL) IPN</message>
+	<message key="plugins.paymethod.paypal.settings.paypalurl.description"><![CDATA[Это адрес (URL) службы уведомлений о моментальных платежах PayPal (PayPal's Instant Payment Notification (IPN). Для проверки используйте <u>https://www.sandbox.paypal.com/cgi-bin/webscr</u>; для работы используйте <u>https://www.paypal.com/cgi-bin/webscr</u>.]]></message>
+	<message key="plugins.paymethod.paypal.settings.selleraccount">Учетная запись продавца (Seller Account)</message>
+	<message key="plugins.paymethod.paypal.settings.selleraccount.description">Это имя пользователя учетной записи PayPal, которую использует продавец, обычно это адрес электронной почты.</message>
+	<message key="plugins.paymethod.paypal.settings.curlNotInstalled">Предупреждение: поддержка CURL для PHP не установлена. Поддержка оплаты через PayPal требует библиотеку CURL и не будет работать до тех пор, пока она не будет установлена.</message>
+	<message key="plugins.paymethod.paypal.settings">Настройки PayPal</message>
+
+	<!-- PayPal -->
+	<message key="plugins.paymethod.paypal">Платеж через PayPal</message>
+	<message key="plugins.paymethod.paypal.description"><![CDATA[PayPal позволяет пользователям (неважно, зарегистрированы они на PayPal или нет) использовать все основные кредитные карты, а также электронные чеки (eChecks) при оплате через систему. Управляющий конференцией должен будет настроить <a href="http://www.paypal.com" target="_new">PayPal Business Account</a> для использования данного способа оплаты.]]></message>
+	<message key="plugins.paymethod.paypal.warning">Щелкните на кнопке «Продолжить» ниже, чтобы перейти на сайт PayPal. Используйте кнопку «Вернуться к продавцу» после внесения платежа через PayPal, чтобы вернуться на этот сайт.</message>
+	<message key="plugins.paymethod.paypal.purchase.amount">Сумма</message>
+	<message key="plugins.paymethod.paypal.purchase.total">Всего</message>
+	<message key="plugins.paymethod.paypal.purchase.description">Описание</message>
+	<message key="plugins.paymethod.paypal.purchase.cancelled">Ваша покупка была отменена.</message>
+	<message key="plugins.paymethod.paypal.purchase.cancelled.title">Покупка отменена</message>
+</locale>

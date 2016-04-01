@@ -7,11 +7,18 @@
   * Copyright (c) 2000-2012 John Willinsky
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
   *
-  * Localization strings for the ru_RU locale.
+  * Localization strings for the ru_RU (Русский) locale.
+  * Translated by Pavel Pisklakov. 
   *
   * $Id$
   -->
  
-<locale name="ru_RU" full_name="Russian">
-	<!-- FIXME: We need a Russian translation. -->
+<locale name="ru_RU" full_name="Русский">
+	<message key="plugins.generic.tinymce.name">Плагин «TinyMCE»</message>
+	<message key="plugins.generic.tinymce.description"><![CDATA[Этот плагин включает визуальное редактирование (WYSIWYG) текстовых полей в OCS с использованием редактора <a href="http://tinymce.moxiecode.com" target="_new">TinyMCE</a>.]]></message>
+	<message key="plugins.generic.tinymce.descriptionDisabled"><![CDATA[Этот плагин включает визуальное редактирование (WYSIWYG) текстовых полей в OCS с использованием редактора <a href="http://tinymce.moxiecode.com" target="_new">TinyMCE</a>.<strong>TinyMCE сейчас не установлен; пожалуйста, установите его в {$tinyMcePath}.</strong>]]></message>
+
+	<message key="plugins.generic.tinymce.settings">Настройки</message>
+	<message key="plugins.generic.tinymce.enabled">Плагин «TinyMCE» был включен.</message>
+	<message key="plugins.generic.tinymce.disabled">Плагин «TinyMCE» был отключен.</message>
 </locale>

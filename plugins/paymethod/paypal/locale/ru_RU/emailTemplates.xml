@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE email_texts SYSTEM "../../../../../lib/pkp/dtd/emailTemplateData.dtd">
+<!--
+  * emailTemplates.xml
+  *
+  * Copyright (c) 2000-2012 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the ru_RU (Русский) locale.
+  * Translated by Pavel Pisklakov. 
+  *
+  * $Id$
+  -->
+<email_texts locale="ru_RU">
+	<email_text key="PAYPAL_INVESTIGATE_PAYMENT">
+		<subject>Необычная активность PayPal</subject>
+		<body>Система Open Conference Systems обнаружила необычную активность, связанную с поддержкой платежей через PayPal для конференции «{$schedConfName}». Эта активность может требовать дополнительного изучения или вмешательства в ручном режиме.
+			
+Это письмо было сгенерировано плагином «Платежи через PayPal» системы Open Conference Systems.
+
+Полная информация о запросе:
+{$postInfo}
+
+Дополнительная информация (если есть):
+{$additionalInfo}
+
+Переменные сервера:
+{$serverVars}
+</body>
+		<description>Этот шаблон письма используется для уведомления контактного лица конференции о том, что была зарегистрирована подозрительная активность или активность, требующая вмешательства в ручном режиме, вызванная плагином «Платежи через PayPal».</description>
+	</email_text>
+	<email_text key="PAYPAL_PAYMENT_RECEIVED">
+		<subject>Был получен платеж для конференции «{$conferenceName}»</subject>
+		<body>Платеж за участника «{$registrantName}» был получен через PayPal для конференции «{$conferenceName}».
+
+ID счета для этой транзакции — «{$invoiceId}».
+
+{$registrationContactSignature}</body>
+		<description>Этот шаблон письма используется для уведомления контактного лица конференции о том, что была зарегистрирована подозрительная активность или активность, требующая вмешательства в ручном режиме, вызванная плагином «Платежи через PayPal».</description>
+	</email_text>
+</email_texts>

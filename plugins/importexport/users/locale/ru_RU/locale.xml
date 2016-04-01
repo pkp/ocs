@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * locale.xml
+  *
+  * Copyright (c) 2000-2012 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the ru_RU (Русский) locale.
+  * Translated by Pavel Pisklakov. 
+  *
+  * $Id$
+  -->
+ 
+<locale name="ru_RU" full_name="Русский">
+	<message key="plugins.importexport.users.displayName">Плагин «Пользователи в XML»</message>
+	<message key="plugins.importexport.users.description">Этот плагин импортирует и экспортирует пользователей.</message>
+
+	<message key="plugins.importexport.users.cliUsage"><![CDATA[Вызов: {$scriptName} {$pluginName} [команда] ...
+Команды:
+	import [xmlFileName] [sched_conf_path] [дополнительные флаги]
+	export [xmlFileName] [sched_conf_path]
+	export [xmlFileName] [sched_conf_path] [role_path1] [role_path2] ...
+
+Дополнительные флаги:
+	continue_on_error: Если задан, не останавливает импорт пользователей при возникновении ошибки
+
+	send_notify: Если задан, отправляет импортированным пользователям уведомления по электронной
+                 почте с указанием их имен пользователей и паролей
+
+Примеры:
+	Импортировать пользователей в mySchedConf из файла myImportFile.xml, не останавливаясь при ошибке:
+	{$scriptName} {$pluginName} import myImportFile.xml mySchedConf continue_on_error
+
+	Экспортировать всех пользователей из mySchedConf:
+	{$scriptName} {$pluginName} export myExportFile.xml mySchedConf
+
+	Экспортировать всех пользователей, зарегистрированных как рецензенты, вместе с указанием их роли только в качестве рецензентов:
+	{$scriptName} {$pluginName} export myExportFile.xml mySchedConf reviewer
+]]></message>
+	<message key="plugins.importexport.users.import.importUsers">Импортировать пользователей</message>
+	<message key="plugins.importexport.users.import.instructions"><![CDATA[Выберите файл данных XML, содержащий информацию о пользователях, для импорта в эту запланированную конференцию. Подробности о формате этого файла смотрите в помощи запланированной конференции.<br /><br />Обратите внимание, что если импортируемый файл содержит имена пользователей или почтовые адреса, уже существующие в системе, то данные для этих пользователей не будут импортированы, а все новые роли, которые должны были быть созданы, будут назначены существующим пользователям.]]></message>
+	<message key="plugins.importexport.users.import.failedToImportUser">Ошибка при импорте пользователя</message>
+	<message key="plugins.importexport.users.import.failedToImportRole">Ошибка при назначении пользователя на роль</message>
+	<message key="plugins.importexport.users.import.dataFile">Файл с данными пользователей</message>
+	<message key="plugins.importexport.users.import.sendNotify">Отправить каждому импортированному пользователю уведомление по электронной почте с указанием его имени пользователя и пароля.</message>
+	<message key="plugins.importexport.users.import.continueOnError">Продолжить импорт остальных пользователей при возникновении ошибки.</message>
+	<message key="plugins.importexport.users.import.noFileError">Файл не был загружен на сервер!</message>
+	<message key="plugins.importexport.users.import.usersWereImported">Следующие пользователи были успешно импортированы в систему</message>
+	<message key="plugins.importexport.users.import.errorsOccurred">При импорте произошли ошибки</message>
+	<message key="plugins.importexport.users.import.confirmUsers">Подтвердите, что это те самые пользователи, которых вы хотите импортировать в систему</message>
+	<message key="plugins.importexport.users.import.warning">Предупреждение</message>
+	<message key="plugins.importexport.users.import.encryptionMismatch">Нельзя использовать пароли, хэшированные алгоритмом {$importHash}; OCS сейчас настроен на использование {$ocsHash}. Если вы продолжите, то вам будет необходимо сбросить пароли импортированных пользователей.</message>
+	<message key="plugins.importexport.users.unknownSchedConf">Был указан неизвестный путь запланированной конференции «{$schedConfPath}».</message>
+
+	<message key="plugins.importexport.users.export.exportUsers">Экспортировать пользователей</message>
+	<message key="plugins.importexport.users.export.exportByRole">Экспортировать по ролям</message>
+	<message key="plugins.importexport.users.export.exportAllUsers">Экспортировать всех</message>
+	<message key="plugins.importexport.users.export.errorsOccurred">При экспорте произошли ошибки</message>
+	<message key="plugins.importexport.users.export.couldNotWriteFile">Не могу записать в файл «{$fileName}».</message>
+</locale>

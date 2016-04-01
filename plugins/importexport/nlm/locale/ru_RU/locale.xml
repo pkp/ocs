@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * locale.xml
+  *
+  * Copyright (c) 2000-2012 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the ru_RU (Русский) locale.
+  * Translated by Pavel Pisklakov. 
+  *
+  * $Id$
+  -->
+ 
+<locale name="ru_RU" full_name="Русский">
+	<message key="plugins.importexport.nlm.displayName">Плагин «Экспорт в NLM XML»</message>
+	<message key="plugins.importexport.nlm.description">Этот плагин экспортирует метаданные материалов в формат NLM Meeting Abstracts XML для индексирования.</message>
+
+	<message key="plugins.importexport.nlm.export">Экспортировать данные</message>
+	<message key="plugins.importexport.nlm.export.papers">Экспортировать материалы</message>
+	<message key="plugins.importexport.nlm.export.selectPaper">Выберите материалы для экспорта.</message>
+	
+	<message key="plugins.importexport.nlm.cliUsage"><![CDATA[Вызов: 
+{$scriptName} {$pluginName} [xmlFileName] [conference_path] papers [paperId1] [paperId2] ...
+]]></message>
+	<message key="plugins.importexport.nlm.cliError">ОШИБКА:</message>
+
+	<message key="plugins.importexport.nlm.export.error.paperNotFound">Нет материала с указанным ID материала «{$paperId}».</message>
+	<message key="plugins.importexport.nlm.export.error.unknownConference">Указанный путь конференции «{$conferencePath}» не существует</message>
+	<message key="plugins.importexport.nlm.export.error.couldNotWrite">Не могу записать в файл «{$fileName}»</message>
+</locale>

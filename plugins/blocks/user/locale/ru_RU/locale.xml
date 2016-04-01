@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * locale.xml
+  *
+  * Copyright (c) 2000-2012 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the ru_RU (Русский) locale.
+  * Translated by Pavel Pisklakov. 
+  *
+  * $Id$
+  -->
+ 
+<locale name="ru_RU" full_name="Русский">
+	<message key="plugins.block.user.displayName">Блок «Пользователь»</message>
+	<message key="plugins.block.user.description">Этот плагин добавляет на боковую панель инструменты для работы с учетной записью (например, вход в систему, выход, ссылка на профиль пользователя и т. д.).</message>
+	<message key="plugins.block.user.loggedInAs">Вы вошли в систему как...</message>
+	<message key="plugins.block.user.myConferences">Мои конференции</message>
+	<message key="plugins.block.user.myProfile">Мой профиль</message>
+	<message key="plugins.block.user.logout">Выйти</message>
+	<message key="plugins.block.user.signOutAsUser">Выйти как пользователь</message>
+	<message key="plugins.block.user.rememberMe">Запомнить меня</message>
+</locale>

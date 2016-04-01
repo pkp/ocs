@@ -1,0 +1,863 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * locale.xml
+  *
+  * Copyright (c) 2000-2012 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the ru_RU (Русский) locale.
+  * Translated by Pavel Pisklakov. 
+  *
+  * $Id$
+  -->
+
+<locale name="ru_RU" full_name="Русский">
+	<!--
+	 * Этот файл состоит из нескольких основных разделов, разделяемых
+	 * комментариями, подобными данному. Эти разделы называются:
+	 *  ОБЩЕЕ - Содержит часто используемые слова
+	 *  СУЩНОСТИ - Содержит термины, относящиеся к основным сущностям
+	 *             системы, например, Статья, Конференция, Направление 
+	 *  ИНТЕРФЕЙС - Содержит фразы, организованные по разделам
+	 *              интерфейса пользователя, в которых они появляются.
+	 *  ЛОГ - Содержит фразы, связанные с записями в логах
+	 *  РАЗНОЕ - Строки, которые не попали в остальные разделы
+	 *  УМОЛЧАНИЯ - Значения по умолчанию для параметров настройки.
+	-->
+
+	<!-- формы рецензии (начало) -->
+
+	<!-- общее -->
+	<message key="common.copy">Копировать</message>
+	<message key="common.preview">Предварительный просмотр</message>
+	<message key="common.activate">Активировать</message>
+	<message key="common.deactivate">Деактивировать</message>
+
+	<!-- Управление конференцией -->
+	<message key="manager.reviewForms">Формы рецензии</message>
+
+	<message key="manager.reviewForms.list.description">Созданные здесь формы рецензии будут показываться рецензентам для заполнения вместо формы, отображаемой по умолчанию. Форма по умолчанию состоит из двух текстовых полей: первое —  «Для автора и ответственного секретаря» и второе — «Для ответственного секретаря». Формы рецензии могут быть присвоены конкретному направлению конференции, и ответственные секретари имеют возможность выбрать конкретную форму при назначении рецензии. Во всех случаях ответственные секретари имеют возможность добавить полученные рецензии в переписку с автором.</message>
+	<message key="manager.reviewForms.noneChosen">Нет / Рецензия в свободной форме</message>
+	<message key="manager.reviewForms.noneCreated">Формы рецензии не были созданы.</message>
+	<message key="manager.reviewForms.create">Создать форму рецензии</message>
+	<message key="manager.reviewForms.edit">Форма рецензии</message>
+	<message key="manager.reviewForms.title">Заголовок</message>
+	<message key="manager.reviewForms.description">Описание и инструкции</message>
+	<message key="manager.reviewForms.preview">Предварительный просмотр формы</message>
+	<message key="manager.reviewForms.completed">Заполнено</message>
+	<message key="manager.reviewForms.inReview">На рецензии</message>
+	<message key="manager.reviewForms.confirmDeleteUnpublished">Вы уверены, что хотите удалить эту неопубликованную форму рецензии?</message>
+
+	<message key="manager.reviewForms.form.titleRequired">Необходимо ввести заголовок формы рецензии.</message>
+
+	<message key="manager.reviewFormElements">Элементы формы</message>
+	<message key="manager.reviewFormElements.create">Создать новый элемент</message>
+	<message key="manager.reviewFormElements.edit">Редактировать элемент формы</message>
+	<message key="manager.reviewFormElements.noneCreated">Элементы формы не были созданы.</message>
+	<message key="manager.reviewFormElements.confirmDelete">Вы уверены, что хотите удалить элемент опубликованной формы рецензии?</message>
+	<message key="manager.reviewFormElements.copyTo">Скопировать в:</message>
+	<message key="manager.reviewFormElements.question">Элемент</message>
+	<message key="manager.reviewFormElements.required">Рецензенты обязательно должны заполнить элемент</message>
+	<message key="manager.reviewFormElements.included">Добавляется в сообщение для автора</message>
+	<message key="manager.reviewFormElements.elementType">Тип элемента</message>
+	<message key="manager.reviewFormElements.possibleResponse">Выбор</message>
+	<message key="manager.reviewFormElements.addResponseItem">Добавить выбранный</message>
+	<message key="manager.reviewFormElements.chooseType">Выберите тип элемента</message>
+	<message key="manager.reviewFormElement.changeType">Предупреждение: Изменение типа элемента в форме рецензии с множественного выбора на открытый тип (текстовое поле) приведет к удалению вариантов множественного выбора.</message>
+
+	<message key="manager.reviewFormElements.form.questionRequired">Необходимо ввести вопрос для элемента формы.</message>
+	<message key="manager.reviewFormElements.form.elementTypeRequired">Необходимо выбрать тип элемента для элемента формы.</message>
+
+	<message key="manager.reviewFormElements.smalltextfield">Текстовое поле для ввода одного слова</message>
+	<message key="manager.reviewFormElements.textfield">Поле для ввода одной строки</message>
+	<message key="manager.reviewFormElements.textarea">Расширенное текстовое поле</message>
+	<message key="manager.reviewFormElements.checkboxes">Галочки (можно выбрать один или более вариантов)</message>
+	<message key="manager.reviewFormElements.radiobuttons">Радиокнопки (можно выбрать только один вариант)</message>
+	<message key="manager.reviewFormElements.dropdownbox">Выпадающий список</message>
+
+	<!--  рецензирование -->
+	<message key="submission.reviewForm">Форма рецензии</message>
+	<message key="submission.reviewFormResponse">Сообщение формы рецензии</message>
+
+	<message key="editor.paper.reviewForms">Формы для рецензии</message>
+	<message key="editor.paper.selectReviewForm">Выбрать форму рецензии</message>
+	<message key="editor.paper.clearReviewForm">Очистить форму рецензии</message>
+	<message key="editor.paper.confirmChangeReviewForm">Предупреждение: внесение изменений в форму рецензии повлияет на все ответы рецензентов, которые уже были сделаны с использованием данной формы. Вы уверены, что хотите продолжить?</message>
+
+	<message key="reviewer.paper.enterReviewForm">Щелкните на значке, чтобы заполнить форму рецензии.</message>
+	<message key="reviewer.paper.reviewFormResponse.form.responseRequired">Пожалуйста, заполните обязательные поля.</message>
+
+	<!-- формы рецензии (конец) -->
+
+	<!--
+	 *
+	 * ОБЩЕЕ - Этот раздел содержит наиболее часто используемые слова
+	 *
+	-->
+
+	<!-- Общие сообщения -->
+	<message key="common.openConferenceSystems">Open Conference Systems</message>
+	<message key="common.noDate">(дата)</message>
+	<message key="common.time">Время</message>
+	<message key="common.days">дней</message>
+	<message key="common.timeZone">Временная зона</message>
+	<message key="common.ellipsis">...</message>
+	<message key="common.path">Путь</message>
+	<message key="common.dateTimeSeparator">в</message>
+	<message key="common.ccLicense"><![CDATA[
+		<a target="_new" rel="license" href="http://creativecommons.org/licenses/by/3.0/">
+			<img alt="Creative Commons License" style="border-width:0" src="{$ccLicenseImageUrl}"/>
+		</a>
+		<br/>
+		Эта <span xmlns:dc="http://purl.org/dc/elements/1.1/" href="http://purl.org/dc/dcmitype/Text" rel="dc:type">работа</span> размещена по лицензии <a rel="license" target="_new" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0 License</a>.
+	]]></message>
+	<message key="common.sortBy">Сортировать по</message>
+	<message key="common.sitePageHeader.altText">Изображение заголовка сайта</message>
+	<message key="common.pageHeader.altText">Изображение заголовка страницы</message>
+	<message key="common.homePageHeader.altText">Изображение заголовка главной страницы</message>
+	<message key="common.conferenceHomepageImage.altText">Изображение главной страницы конференции</message>
+
+	<!-- Навигация -->
+	<message key="navigation.conferenceHelp">Помощь</message>
+	<message key="navigation.account">Учетная запись</message>
+	<message key="navigation.archive">Архив</message>
+	<message key="navigation.current">Текущие конференции</message>
+	<message key="navigation.otherConferences">Другие журналы</message>
+	<message key="navigation.browseByConference">По конференциям</message>
+	<message key="navigation.browseByAuthor">По авторам</message>
+	<message key="navigation.infoForAuthors">Для авторов</message>
+	<message key="navigation.infoForReviewers">Для рецензентов</message>
+	<message key="navigation.infoForAuthors.long">Информация для авторов</message>
+	<message key="navigation.infoForReviewers.long">Информация для рецензентов</message>
+
+	<!-- Очереди материалов -->
+	<message key="common.queue.long.submissionsUnassigned">Не назначенные</message>
+	<message key="common.queue.short.submissionsUnassigned">Новые</message>
+	<message key="common.queue.long.submissionsInReview">Материалы в процессе рецензирования</message>
+	<message key="common.queue.short.submissionsInReview">На рецензии</message>
+	<message key="common.queue.long.submissionsAccepted">Презентации</message>
+	<message key="common.queue.short.submissionsAccepted">Презентации</message>
+	<message key="common.queue.long.submissionsArchives">Архивы</message>
+	<message key="common.queue.short.submissionsArchives">Архивы</message>
+	<message key="common.queue.long.active">Материалы в работе</message>
+	<message key="common.queue.short.active">В работе</message>
+	<message key="common.queue.long.completed">Архив</message>
+	<message key="common.queue.short.completed">Архив</message>
+
+	<!--
+	 *
+	 * СУЩНОСТИ - Этот раздел содержит термины, относящиеся к основным 
+	 *            сущностям системы, например, Статья, Конференция, Направление 
+	 *
+	-->
+
+	<!-- Общие термины направления -->
+	<message key="track.track">Направление</message>
+	<message key="track.tracks">Направления конференции</message>
+	<message key="track.title">Название направления</message>
+	<message key="track.abbreviation">Аббревиатура</message>
+	<message key="track.abbreviation.example">(Например, Общие материалы=ОБЩ)</message>
+
+	<!-- Общие термины материала -->
+	<message key="paper.papers">Статьи</message>
+	<message key="paper.submissionId">ID статьи</message>
+	<message key="paper.title">Название</message>
+	<message key="paper.authors">Авторы</message>
+	<message key="paper.conferenceTrack">Направление конференции</message>
+	<message key="paper.file">Файл</message>
+	<message key="paper.suppFile">Дополнительный файл</message>
+	<message key="paper.suppFiles">Дополнительные файлы</message>
+	<message key="paper.suppFilesAbbrev">Доп. файлы</message>
+	<message key="paper.discipline">Академические дисциплины и разделы дисциплин</message>
+	<message key="paper.subjectClassification">Тематическая классификация</message>
+	<message key="paper.subject">Ключевые слова</message>
+	<message key="paper.coverage">Охват</message>
+	<message key="paper.coverageGeo">Геопространственный охват</message>
+	<message key="paper.coverageChron">Хронологический или исторический охват</message>
+	<message key="paper.coverageSample">Характеристики исследуемого образца</message>
+	<message key="paper.type">Тип, метод или подход</message>
+	<message key="paper.language">Язык</message>
+	<message key="paper.trackDirector">ОСН</message>
+	<message key="paper.commentsToDirector">Комментарии автора</message>
+	<message key="paper.submission">Материал</message>
+	<message key="paper.submissions">Материалы</message>
+	<message key="paper.abstract">Тезисы</message>
+	<message key="paper.details">Подробности</message>
+	<message key="paper.location">Место</message>
+	<message key="paper.time">Время</message>
+	<message key="paper.comments.trackDefault">По умолчанию</message>
+	<message key="paper.comments.disable">Выключить</message>
+	<message key="paper.comments.enable">Включить</message>
+	<message key="paper.fontSize">Размер шрифта</message>
+	<message key="paper.fontSize.small.altText">Мелкий</message>
+	<message key="paper.fontSize.medium.altText">Средний</message>
+	<message key="paper.fontSize.large.altText">Крупный</message>
+	<message key="paper.sessionType">Тип сессии</message>
+
+	<!-- Отслеживание отправленного материала - Общее -->
+	<message key="submission.fromTime">С</message>
+	<message key="submission.toTime">До</message>
+	<message key="submission.abstractReview">Рецензирование тезисов</message>
+	<message key="submission.paperReview">Рецензирование статей</message>
+	<message key="submission.page.abstractReview">#{$id} Рецензирование тезисов</message>
+	<message key="submission.page.paperReview">#{$id} Рецензирование статьи</message>
+	<message key="submission.uploadFile">Загрузить материал</message>
+	<message key="submission.changeTrack">Заменить на</message>
+	<message key="submission.acceptance">Согласился дать рецензию</message>
+	<message key="submission.complete.description">Добавить материал в список принятых презентаций.</message>
+	<message key="submission.directorDecision">Решение ответственного секретаря</message>
+	<message key="submission.stage">Этап&amp;nbsp;{$stage}</message>
+	<message key="submission.directorReview">Отзыв ответственного секретаря</message>
+	<message key="submission.notifyAuthor">Уведомить автора</message>
+	<message key="submission.notifyDirector">Уведомить ответственного секретаря</message>
+	<message key="submission.directorAuthorRecord">Запись переписки «Ответственный секретарь/Автор»</message>
+	<message key="submission.directorVersion">Версия ответственного секретаря</message>
+	<message key="submission.authorsRevisedVersion">Версия файла, исправленная автором</message>
+	<message key="submission.authorVersion">Версия автора</message>
+	<message key="submission.layout.description">Этот дополнительный шаг может использоваться для верстки материалов или изменения форматов файлов до или после добавления материалов в список презентаций.</message>
+
+	<message key="submissions.track">Направление</message>
+	<message key="submissions.queuedAbstractReview">Тезисы на рецензии</message>
+	<message key="submissions.queuedPaperReview">Статьи на рецензии</message>
+	<message key="submissions.published">Опубликовано</message>
+	<message key="submissions.accepted">Принято</message>
+	<message key="submissions.reviewStage">Этап рецензирования</message>
+	<message key="submissions.reviewType">Тип рецензирования</message>
+	<message key="submissions.pendingPresentation">Ожидается загрузка</message>
+	<message key="submissions.expired">Просрочено</message>
+	<message key="submissions.directorDecision">Решение ответственного секретаря</message>
+	<message key="submissions.directorRuling">Правила ответственного секретаря</message>
+	<message key="trackDirector.galley.replaceGalley">Заменить файл</message>
+	<message key="submission.abstract">Тезисы</message>
+	<message key="submission.paper">Статья</message>
+
+	<!-- Общие термины конференции -->
+	<message key="conference.conferences">Конференции</message>
+	<message key="conference.conference">Конференция</message>
+
+	<!-- Общие термины запланированных конференций -->
+	<message key="schedConf.scheduledConferences">Запланированные конференции</message>
+	<message key="schedConf.noScheduledConferences">Нет запланированных конференций</message>
+	<message key="schedConf.schedConf">Запланированная конференция</message>
+	<message key="schedConf.contents">Информация о конференции</message>
+	<message key="schedConf.overview">Обзор</message>
+	<message key="schedConf.trackPolicies">Правила для направлений</message>
+	<message key="schedConf.schedule">Расписание</message>
+	<message key="schedConf.program">Программа</message>
+	<message key="schedConf.cfp">Информация о приеме материалов</message>
+	<message key="schedConf.discussion">Обсуждение</message>
+	<message key="schedConf.registration">Регистрация</message>
+	<message key="schedConf.accommodation">Размещение</message>
+	<message key="schedConf.supporters">Организаторы и партнеры</message>
+	<message key="schedConf.timeline">Сроки</message>
+	<message key="schedConf.schedule">Расписание конференции</message>
+	<message key="schedConf.links">Полезные ссылки</message>
+	<message key="schedConf.presentations">Презентации и авторы</message>
+	<message key="schedConf.presentations.short">Презентации</message>
+	<message key="schedConf.abstract">Тезисы</message>
+	<message key="schedConf.submission">Материал</message>
+	<message key="schedConf.submissions">Материалы</message>
+
+	<message key="schedConf.cfp.title">Информация о приеме материалов</message>
+	<message key="schedConf.overview.title">Обзор</message>
+	<message key="schedConf.presentations.title">Презентации и авторы</message>
+	<message key="schedConf.schedule.title">Расписание</message>
+	<message key="schedConf.program.title">Программа</message>
+	<message key="schedConf.accommodation.title">Размещение</message>
+	<message key="schedConf.trackPolicies.title">Правила для направлений</message>
+
+	<!-- Интерфейс читателя для составителя расписания -->
+	<message key="schedConf.scheduler.locations">Места проведения конференции</message>
+
+	<!-- Форма самостоятельной регистрации пользователей -->
+	<message key="schedConf.registration.alreadyRegistered">Вы уже зарегистрировались на эту конференцию, хотя ваша оплата еще не получена. Пожалуйста, свяжитесь с представителем оргкомитета, указанным на странице «О нас», если это ошибка или вы хотите изменить свою регистрацию.</message>
+	<message key="schedConf.registration.alreadyRegisteredAndPaid">Вы уже зарегистрировались на эту конференцию и ваша регистрация оплачена. Пожалуйста, свяжитесь с представителем оргкомитета, указанным на странице «О нас», если это ошибка или вы хотите изменить свою регистрацию.</message>
+	<message key="schedConf.registration.noPaymentMethodAvailable">Вы успешно зарегистрированы. При необходимости мы свяжемся с вами относительно оплаты.</message>
+	<message key="schedConf.registration.free">Вы успешно зарегистрированы, оплачивать ничего не нужно.</message>
+	<message key="schedConf.registration.conferenceFees">Платежи конференции</message>
+	<message key="schedConf.registration.failed">Произошла ошибка при регистрации. Пожалуйста, попробуйте еще раз.</message>
+	<message key="schedConf.registration.type">Тип регистрации</message>
+	<message key="schedConf.registration.cost">Стоимость</message>
+	<message key="schedConf.registrationTypes.noneAvailable">Нет доступных типов регистрации.</message>
+	<message key="schedConf.registrationOptions.noneAvailable">Нет доступных дополнительных возможностей при регистрации.</message>
+	<message key="schedConf.registrationOptions.removed">Дополнительная возможность «{$option}» была выбрана ранее, но не была выбрана при новой регистрации.</message>
+	<message key="schedConf.registrationOptions.added">Дополнительная возможность «{$option}» не была выбрана ранее, но была добавлена при новой регистрации.</message>
+	<message key="schedConf.registration.register">Зарегистрироваться</message>
+	<message key="schedConf.registration.typeCloses">(Заканчивается {$closingDate})</message>
+	<message key="schedConf.registration.typeClosed">(Регистрация закончилась {$closingDate})</message>
+	<message key="schedConf.registration.typeFuture">(Регистрация начнется {$openingDate})</message>
+	<message key="schedConf.registration.optionCloses">(Заканчивается {$closingDate})</message>
+	<message key="schedConf.registration.optionClosed">(Регистрация закончилась {$closingDate})</message>
+	<message key="schedConf.registration.optionFuture">(Регистрация начнется {$openingDate})</message>
+	<message key="schedConf.registration.feeCode">Код оплаты</message>
+	<message key="schedConf.registration.feeCode.description">Если вы получили секретный код для регистрации, введите его в это поле и убедитесь, что вы выбрали правильный тип регистрации выше. Во всех остальных случаях оставьте поле «Код оплаты» пустым.</message>
+	<message key="schedConf.registration.specialRequests">Особые пожелания</message>
+	<message key="schedConf.registration.specialRequests.description">Пожалуйста опишите все особые пожелания, которые у вас есть: специальное питание, необходимость специальной помощи для участников с ограниченными возможностями по здоровью, и т. д.</message>
+	<message key="schedConf.registration.account">Учетная запись пользователя</message>
+	<message key="schedConf.registration.loggedInAs"><![CDATA[Вы уже вошли в систему. Проверьте правильность приведенной ниже информации об учетной записи. Если информация не корректна, исправьте ее, воспользовавшись ссылкой <a href="{$profileUrl}">«Мой профиль»</a>, или <a href="{$logoutUrl}">выйдите из системы</a>, чтобы использовать другую учетную запись.]]></message>
+	<message key="schedConf.registration.createAccount.description"><![CDATA[Вы еще не вошли в систему. Чтобы зарегистрироваться на эту конференцию, вам необходима учетная запись. Если она у вас уже есть, <a href="{$loginUrl}">щелкните здесь</a> для входа в систему; если у вас нет учетной записи, заполните ниже необходимую информацию, чтобы создать новую учетную запись.]]></message>
+	<message key="schedConf.registration.options">Дополнительные возможности при регистрации</message>
+
+	<message key="schedConf.registration.landingPaid">Благодарим вас за оплату! Мы свяжемся с вами, если потребуется дополнительная информация.</message>
+	<message key="schedConf.registration.landingPaid">Благодарим вас за регистрацию! Мы свяжемся с вами насчет дальнейшей информации об оплате.</message>
+
+	<!-- Пользователь -->
+	<message key="user.showAllConferences">Показать мои конференции</message>
+	<message key="user.createAccount">Создать</message>
+	<message key="user.createAccountForOtherConferences">Создать учетную запись для других конференций</message>
+	<message key="user.myConferences">Мои конференции</message>
+	<message key="user.noRoles.chooseConference">Ваша учетная запись сейчас не связана ни с одной конференцией. Пожалуйста, выберите конференцию:</message>
+	<message key="user.noRoles.noRolesForConference">Вашей учетной записи в этой конференции не задана ни одна роль. Пожалуйста, выберите одно из предложенных ниже действий:</message>
+	<message key="user.noRoles.submitProposal">Отправить материал</message>
+	<message key="user.noRoles.submitProposalRegClosed">Отправить материал: регистрация авторов сейчас закрыта.</message>
+	<message key="user.noRoles.submitProposalSubmissionsClosed">Отправить материал: отправка материалов сейчас закрыта.</message>
+	<message key="user.noRoles.regReviewer">Зарегистрироваться в качестве рецензента конференции</message>
+	<message key="user.noRoles.regReviewerClosed">Зарегистрироваться в качестве рецензента конференции: регистрация рецензентов сейчас закрыта.</message>
+	<message key="user.noRoles.register">Зарегистрироваться для участия в конференции</message>
+	<message key="user.noRoles.registerUnavailable">Зарегистрироваться для участия в конференции: регистрация сейчас не доступна.</message>
+
+	<!-- Роли -->
+	<message key="user.role.manager">Управляющий конференции</message>
+	<message key="user.role.director">Ответственный секретарь</message>
+	<message key="user.role.trackDirector">Ответственный секретарь направления</message>
+	<message key="user.role.author">Автор</message>
+
+	<message key="user.role.managers">Управляющие конференциями</message>
+	<message key="user.role.directors">Ответственные секретари</message>
+	<message key="user.role.trackDirectors">Ответственные секретари направлений</message>
+	<message key="user.role.authors">Авторы</message>
+
+	<!--
+	 *
+	 * ЛОГ - Этот раздел содержит фразы, связанные с записями в логах.
+	 *
+	-->
+
+	<message key="event.logType.paper">Материал</message>
+	<message key="event.logType.author">Автор</message>
+	<message key="event.logType.director">Ответственный секретарь</message>
+	<message key="event.logType.review">Рецензирование</message>
+	<message key="event.logType.conference">Конференция</message>
+
+	<message key="event.eventLog">Журнал действий</message>
+	<message key="event.logLevel">Уровень</message>
+
+	<message key="event.logLevel.info">Информация</message>
+	<message key="event.logLevel.notice">Сообщение</message>
+	<message key="event.logLevel.warning">Предупреждение</message>
+	<message key="event.logLevel.error">Ошибка</message>
+
+	<message key="event.general.defaultEvent">Событие отправки</message>
+
+	<!-- События отправки -->
+
+	<message key="submission.event.general.abstractSubmitted">Тезисы отправлены</message>
+	<message key="submission.event.general.presentationSubmitted">Презентация отправлена</message>
+	<message key="submission.event.general.paperPublished">Материал опубликован</message>
+
+	<message key="submission.event.presenter.authorRevision">Автор прислал исправленную версию</message>
+
+	<message key="submission.event.general.authorRevision">Файл авторской правки обновлен</message>
+
+	<message key="submission.event.director.directorAssigned">Назначен ответственный секретарь для материала</message>
+	<message key="submission.event.director.directorUnassigned">Отозван ответственный секретарь для материала</message>
+	<message key="submission.event.director.directorDecision">Отправлено решение ответственного секретаря</message>
+	<message key="submission.event.director.directorFile">Файл ответственного секретаря обновлен</message>
+	<message key="submission.event.director.submissionArchived">Материал отправлен в архив</message>
+	<message key="submission.event.director.submissionRestored">Материал восстановлен из архива</message>
+
+
+	<!-- События конференции -->
+	<message key="conference.event.general.configuration">Изменена настройка конференции</message>
+	<message key="conference.event.general.deadline">Срок конференции прошел</message>
+
+	<!--
+	 *
+	 * ИНТЕРФЕЙС - Содержит фразы, организованные по разделам
+	 *             интерфейса пользователя, в которых они появляются.
+	 *
+	-->
+
+	<!-- Просмотр материала читателем -->
+	<message key="reader.fullTextNotAvailable">Материалы конференции сейчас не доступны.</message>
+	<message key="reader.accessDenied">Сейчас у вас нет прав на просмотр этого материала. Если у вас есть учетная запись на веб-сайте этой конференции, вам может потребоваться войти в систему для просмотра контента.</message>
+	<message key="reader.fullTextRegistrationRequired">Для просмотра материалов необходимо зарегистрироваться на конференцию.</message>
+	<message key="reader.fullTextAccountRequired"><![CDATA[Для просмотра материалов необходима учетная запись на этом сайте. <a href="{$registerUrl}">Щелкните здесь</a> для создания учетной записи.]]></message>
+	<message key="reader.fullTextRegistrantsOnlyUntil">Открытый доступ к материалам этой конференции будет предоставлен с {$date}.</message>
+	<message key="reader.fullTextNotPostedYet">Материалы этой конференции будут опубликованы {$date}.</message>
+
+	<!-- Комментарии читателей -->
+	<message key="comments.authenticated">{$userName}</message>
+	<message key="comments.commentsOnPaper">Комментарии к материалу</message>
+	<message key="comments.commentsClosed">Комментирование закрыто {$closeCommentsDate}.</message>
+
+	<!-- Администрирование сайта -->
+
+	<message key="admin.settings.oaiRegistrationDescription"><![CDATA[Чтобы контент всех конференций, размещенных на этом сайте, индексировался в глобальной распределенной системе баз данных исследований, <a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">зарегистрируйте</a> адрес Вашего сайта в <a href="http://pkp.sfu.ca/harvester/" target="_blank">сборщике</a> метаданных Public Knowledge Project. Этот инструмент собирает метаданные каждого проиндексированного элемента в этой конференции, обеспечивая точный и коллективный поиск по исследовательским сайтам, которые поддерживают <a href="http://www.openarchives.org/OAI/openarchivesprotocol.htm#Introduction" target="_blank">протокол сбора метаданных Open Archives Initiative</a>.
+<br /><br />
+<a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">Щелкните здесь</a> и  введите <span class="highlight">{$siteUrl}</span> в поле <strong>«Site URL»</strong>, <span class="highlight">{$oaiUrl}</span> в поле <strong>«Base URL for OAI Archive»</strong>.
+<br /><br />
+Обратите внимание, что интерфейс OAI может быть отключен для этого сайта, путем редактирования конфигурации системы OCS. Будущие версии OCS будут позволять включать и выключать интерфейс OAI для отдельных конференций на сайте.]]></message>
+
+	<message key="admin.auth.defaultSourceDescription"><![CDATA[<p>Указание источника аутентификации по умолчанию, отличного от OCS, имеет следующий эффект:</p>
+<ul>
+	<li>Если пользователь пытается зарегистрировать на этом сайте новую учетную запись с именем пользователя, которое уже существует в источнике аутентификации (но не в базе данных OCS), попытка регистрации будет разрешена только в том случае, если пользователь введет пароль, соответствующий этой учетной записи в источнике аутентификации.</li>
+</ul>]]></message>
+
+	<!-- Информация системы -->
+	<message key="admin.overwriteConfigFileInstructions"><![CDATA[<h4>ВНИМАНИЕ!</div>
+<p>Система не сможет автоматически перезаписать конфигурационный файл. Чтобы применить ваши измененные настройки конфигурации, Вам нужно открыть <tt>config.inc.php</tt> в подходящем текстовом редакторе и заменить его содержимое содержимым текстового поля ниже.</p>]]></message>
+
+	<!-- Обработка платежей -->
+	<message key="payment.type.conferenceRegistration">Регистрация на конференцию; {$schedConfTitle}; {$registrationTypeName}</message>
+
+	<!-- Conference Event Log -->
+	<message key="conference.event.confirmClearLog">Вы уверены, что хотите очистить журнал событий для этой конференции?</message>
+	<message key="conference.event.confirmDeleteLogEntry">Вы уверены, что хотите удалить эту запись из журнала событий?</message>
+	<message key="conference.event.deleteLogEntry">Удалить запись журнала</message>
+	<message key="conference.event.backToEventLog">Назад к журналу событий</message>
+	<message key="conference.history.conferenceEventLog">Журнал событий</message>
+	<message key="conference.history.clearLog">Очистить журнал</message>
+	<message key="conference.history.noLogEntries">Нет записей.</message>
+
+	<!-- Общая информация плагинов -->
+	<message key="plugins.categories.generic.description">Общие плагины используются для расширения возможностей Open Conference Systems различными способами, которые не поддерживаются другими категориями плагинов.</message>
+	<message key="plugins.categories.auth.description">Плагины авторизации позволяют Open Conference Systems делегировать задачу аутентификации пользователей другим системам, таким как LDAP-сервера.</message>
+	<message key="plugins.categories.citationFormats.description">Плагины форматов ссылок предоставляют пользователям различные форматы, с помощью которых можно получить доступ к ссылкам статей.</message>
+
+	<!-- Остатки -->
+	<message key="manager.setup.finalStepSavedNotes"><![CDATA[
+			<p>Почти готово!</p>
+			<p>Конференция сейчас была настроена, что дает возможность создать одну запланированную конференцию, ежегодную конференцию или серию запланированных конференций, которые будут управляться с этого сайта конференции. Для того чтобы запланировать проведение конкретной конференции на этом сайте, перейдите на страницу <a href="{$schedConfSetupUrl}">«Запланированные конференции»</a>. Вы также можете перейти на эту страницу с главной страницы управляющего конференцией.</p>
+			<p>Вы можете вернуться к этим шести страницам в любое время, перейдя по ссылкам «Страница пользователя > Управляющий конференцией > Настройка».</p>
+			<p>Вы можете управлять запланированными конференциями через «Страница пользователя > Управляющий конференцией > Настройка»</p>
+	]]></message>
+	<message key="manager.setup.citations">Разрешить авторам отдельно вводить отформатированный список ссылок (источников) в качестве части их отправляемого мататериала.</message>
+
+	<message key="manager.setup.indexing.registerConferenceForIndexing.description"><![CDATA[Чтобы контент этой конференции индексировался в глобальной распределенной системе баз данных исследований, <a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">зарегистрируйте</a> URL-адрес вашей конференции в <a href="http://pkp.sfu.ca/harvester/" target="_blank">сборщике</a> метаданных Public Knowledge Project. Этот инструмент собирает метаданные каждого проиндексированного элемента в этой конференции, обеспечивая точный и коллективный поиск по исследовательским сайтам, которые поддерживают <a href="http://www.openarchives.org/OAI/openarchivesprotocol.htm#Introduction" target="_blank">протокол сбора метаданных Open Archives Initiative.
+<br /><br />
+Обратите внимание, что если ваш администратор сайта уже зарегистрировал этот сайт в сборщике PKP, ваша конференция автоматически будет индексироваться и вам не нужно регистрировать ее отдельно.
+<br /><br />
+<a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">Щелкните здесь</a> и введите <span class="highlight">{$siteUrl}</span> в поле <strong>«Site URL»</strong>, <span class="highlight">{$oaiUrl}</span> в поле <strong>«Base URL for OAI Archive»</strong>.]]></message>
+
+	<!-- Настройка запланированной конференции — Шаг 2 -->
+	<message key="manager.schedConfSetup.submissions.subjectClassificationDescription"><![CDATA[Конференция будет использовать систему тематической классификации, доступную через интернет.<br />
+Название системы классификации]]></message>
+
+	<!-- People Management -->
+	<message key="manager.people.confirmDisable">Отключить этого пользователя? Это запретит пользователю входить на сайт под его учетной записью.
+
+Вы также (при необходимости) можете указать пользователю причину отключения его учетной записи.</message>
+	<message key="manager.people.noAdministrativeRights"><![CDATA[Извините, у вас нет достаточных административных прав для управления записью этого пользователя. Возможные причины:
+		<ul>
+			<li>Этот пользователь является администратором сайта</li>
+			<li>Этот пользователь активен в конференциях, которыми вы не можете управлять</li>
+		</ul>
+	Эта задача должна быть выполнена администратором сайта.
+	]]></message>
+
+	<!-- Используются ответственным секретарем в процессе рецензирования / редактирования материалов -->
+	<message key="director.paper.selectReviewerNotes"><![CDATA[Имя является ссылкой на профиль рецензента.<br/>
+Высшая оценка в рейтинге — 5 (Отлично).<br/>
+Недель — показывает средний срок выполнения рецензии рецензентом.<br />
+Последняя — дата последней принятой рецензии от данного рецензента,<br/>
+Активны — количество рецензий, запросы на которые сейчас рассматривает или выполняет рецензент.]]></message>
+
+	<!-- Ответственный секретарь направления -->
+	<message key="trackDirector.author.confirmRenotify">Повторное уведомление этого автора приведет к запуску задания с самого начала. Вы уверены, что хотите это сделать?</message>
+
+	<message key="trackDirector.regrets.breadcrumb">Отказы</message>
+	<message key="trackDirector.regrets.title">#{$paperId} Отказы рецензентов и отмены</message>
+	<message key="trackDirector.regrets">Отказы</message>
+	<message key="trackDirector.regrets.link">Просмотреть отказы, отмены</message>
+	<message key="trackDirector.regrets.reviewStage">Рецензирование, этап {$stage}</message>
+	<message key="trackDirector.regrets.decisionStage">Решение ответственного секретаря, этап {$stage}</message>
+	<message key="trackDirector.regrets.regretsAndCancels">Отказы рецензентов и отмены</message>
+	<message key="trackDirector.regrets.regret">Отказ</message>
+	<message key="trackDirector.regrets.result">Результат</message>
+	<message key="trackDirector.review.enrollReviewer">Назначить существующего пользователя рецензентом</message>
+	<message key="trackDirector.review.createReviewer">Создать нового рецензента</message>
+
+	<!-- Рецензент -->
+	<message key="reviewer.completedReviews">Завершены</message>
+	<message key="reviewer.averageQuality">Рейтинг</message>
+
+	<!-- Используются в рецензировании материала -->
+	<message key="reviewer.paper.fileToBeReviewed">Файл, который нужно отрецензировать</message>
+	<message key="reviewer.paper.notifyTheDirector">Уведомить ответственного секретаря</message>
+	<message key="reviewer.paper.canDoReview">Согласен на рецензирование</message>
+	<message key="reviewer.paper.cannotDoReview">Отказываюсь от рецензирования</message>
+	<message key="reviewer.paper.restrictedFileAccess">Материал можно просмотреть только в том случае, если рецензент согласится на рецензирование.</message>
+	<message key="reviewer.paper.submissionDirector">Ответственный редактор материала</message>
+	<message key="reviewer.paper.reviewerCommentsDescription">Введите или вставьте здесь комментарии рецензента</message>
+	<message key="reviewer.paper.directorToEnter">Ответственный секретарь для ввода</message>
+	<message key="reviewer.paper.sendReminder">Отправить напоминание</message>
+	<message key="reviewer.paper.automatic">(Авто)</message>
+	<message key="reviewer.paper.selectRecommendation">Выбрать рекомендацию</message>
+	<message key="reviewer.paper.recommendation">Рекомендация</message>
+	<message key="reviewer.paper.submitReview">Отправить рецензию ответственному секретарю</message>
+	<message key="reviewer.paper.reviewerComments">Комментарии</message>
+	<message key="reviewer.paper.uploadedFile">Загруженные файлы</message>
+	<message key="reviewer.paper.reviewersAnnotatedVersion">Версия, загруженная рецензентом</message>
+	<message key="reviewer.paper.reviewersAnnotatedVersionDescription">(Если вы хотите добавить свои пометки в файл для ответственного секретаря, сохраните файл на свой компьютер и используйте Обзор/Загрузить.)</message>
+	<message key="reviewer.paper.schedule.request">Запрос ответственного секретаря</message>
+	<message key="reviewer.paper.schedule.response">Ваш ответ</message>
+	<message key="reviewer.paper.schedule.submitted">Рецензия отправлена</message>
+	<message key="reviewer.paper.schedule.due">Срок отправки рецензии</message>
+	<message key="reviewer.paper.decision.accept">Принять материал</message>
+	<message key="reviewer.paper.decision.pendingRevisions">Требуется доработка</message>
+	<message key="reviewer.paper.decision.resubmitElsewhere">Отправить в другое место</message>
+	<message key="reviewer.paper.decision.decline">Отклонить материал</message>
+	<message key="reviewer.paper.decision.seeComments">Смотри комментарии</message>
+	<message key="reviewer.paper.schedule">Расписание</message>
+	<message key="reviewer.paper.submissionToBeReviewed">Материал на рецензию</message>
+	<message key="reviewer.paper.reviewSchedule">Расписание рецензирования</message>
+	<message key="reviewer.paper.reviewSteps">Шаги рецензирования</message>
+	<message key="reviewer.paper.reviewerGuidelines">Руководство для рецензента</message>
+	<message key="reviewer.paper.notifyEditorA">Уведомить ответственного секретаря материала (</message>
+	<message key="reviewer.paper.notifyEditorB">) о том, что вы согласны дать рецензию.</message>
+	<message key="reviewer.paper.consultGuidelines">Если вы собираетесь дать рецензию, ознакомьтесь с Руководством для рецензента, приведенным ниже.</message>
+	<message key="reviewer.paper.downloadSubmissionAbstractOnly">Рецензировать тезисы, представленные с материалом.</message>
+	<message key="reviewer.paper.downloadSubmissionSubmission">Рецензировать материал.</message>
+	<message key="reviewer.paper.enterReviewA">Щелкните на значке, чтобы ввести (или вставить) вашу рецензию на этот материал.</message>
+	<message key="reviewer.paper.uploadFile">В дополнение, вы можете загрузить файлы для редактора и/или автора для консультации.</message>
+	<message key="reviewer.paper.selectRecommendation">Выберите рекомендацию и отправьте рецензию для завершения процесса редактирования. Вы должны ввести рецензию или загрузить файл до выбора рекомендации.</message>
+	<message key="reviewer.paper.mustSelectDecision">Рекомендация не была выбрана. Вы должны выбрать рекомендацию для отправки.</message>
+	<message key="reviewer.paper.confirmDecision">Как только вы запишите свое решение, вы больше не сможете вносить изменения в эту рецензию. Вы уверены, что хотите продолжить?</message>
+	<message key="reviewer.paper.ensuringBlindReview">Обеспечение слепого рецензирования</message>
+
+	<!-- Отправка материала (Шаг 3) -->
+	<message key="author.submit.uploadInstructions"><![CDATA[
+<p>Чтобы отправить материал на эту конференцию, выполните следующие шаги.</p>
+
+<ol>
+<li>На этой странице щелкните на «Обзор» (или «Выбрать файл»), после чего откроется диалоговое окно для выбора файла на жестком диске вашего компьютера.</li>
+<li>Найдите файл, который вы хотите отправить, и выберите его.</li>
+<li>Щелкните на «Открыть» в окне «Выбор файла» — имя выбранного вами файла будет добавлено на эту страницу.</li>
+<li>Щелкните на «Загрузить на сервер» на этой странице — файл будет загружен с компьютера на веб-сайт конференции и переименован в соответствии с правилами конференции.</li>
+<li>После того как материал будет загружен, щелкните на «Сохранить и продолжить» в нижней части этой страницы.</li>
+</ol>]]></message>
+
+	<!-- Отправка материала: загрузить файл -->
+	<message key="submission.submissionFiles">Файлы материала</message>
+
+	<!-- Комментарии к отправкам -->
+	<message key="submission.comments.directorAuthorCorrespondence">Переписка «Ответственный секретарь/Автор»</message>
+	<message key="submission.comments.viewableDescription"><![CDATA[Эти комментарии могут быть предоставлены автору.<br />
+(После сохранения могут быть добавлены дополнительные комментарии.)]]></message>
+	<message key="submission.comments.canShareWithAuthor">Для автора и ответственного секретаря</message>
+	<message key="submission.comments.cannotShareWithAuthor">Для ответственного секретаря</message>
+	<message key="submission.comments.blindCcReviewers">После отправки предоставить копию решения по материалу для отправки рецензентам.</message>
+	<message key="submission.comments.forAuthorDirector">Для автора и ответственного секретаря</message>
+	<message key="submission.comments.forDirector">Для ответственного секретаря</message>
+	<message key="submission.comments.saveAndEmailAuthor">Сохранить и отправить автору</message>
+	<message key="submission.comments.saveAndEmailDirector">Сохранить и отправить ответственному секретарю</message>
+
+	<!-- Вход в систему -->
+	<message key="user.login.createAccount">Не являетесь пользователем? Зарегистрируйтесь на этом сайте</message>
+	<message key="user.login.resetPasswordInstructions"><![CDATA[В целях безопасности эта система сбрасывает пароль зарегистрированного пользователя и высылает новый, а не отправляет пользователю его 
+старый пароль.<br /><br />Введите ниже ваш адрес электронной почты для сброса вашего пароля. Подтверждение будет направлено вам на этот адрес электронной почты.]]></message>
+
+	<!-- Регистрация -->
+	<message key="user.account.repeatPassword">Повторите пароль</message>
+	<message key="user.account.form.usernameExists">Выбранное имя пользователя уже используется другим пользователем сайта.</message>
+	<message key="user.account.form.usernameAlphaNumeric">Имя пользователя может содержать только буквы, цифры, подчеркивания и дефисы, оно должно начинаться и заканчиваться буквой или цифрой.</message>
+	<message key="user.account.form.emailExists">Выбранный адрес электронной почты уже используется другим пользователем сайта.</message>
+	<message key="user.account.form.passwordsDoNotMatch">Пароли не совпадают.</message>
+	<message key="user.account.selectConference">Выбрать конференцию для регистрации</message>
+	<message key="user.account.noConferences">На сайте нет конференций, в которых вы могли бы зарегистрироваться.</message>
+	<message key="user.account.selectSchedConf">Выбрать запланированную конференцию для регистрации</message>
+	<message key="user.account.noSchedConfs">На сайте нет запланированных конференций, в которых вы могли бы зарегистрироваться.</message>
+	<message key="user.account.createAs">Зарегистрироваться как</message>
+	<message key="user.account.privacyStatement">Заявление о конфиденциальности</message>
+	<message key="user.account.completeForm">Заполните, пожалуйста, эту форму для регистрации на эту конференцию.</message>
+	<message key="user.account.hasAccount"><![CDATA[<a href="{$accountUrl}">Щелкните здесь</a>, если вы уже зарегистрированы на этой или другой конференции на этом сайте.]]></message>
+	<message key="user.account.hasNoAccount"><![CDATA[<a href="{$accountUrl}">Щелкните здесь</a>, если вы еще <strong>не</strong> зарегистрированы на этой или другой конференции на этом сайте.]]></message>
+	<message key="user.account.loginToRegister">Введите имеющиеся у вас имя пользователя и пароль для регистрации на эту конференцию.</message>
+	<message key="user.account.createAccountDisabled">Эта конференция в настоящий момент не принимает новых пользователей.</message>
+	<message key="user.account.usernameRestriction">Имя пользователя должно содержать только строчные буквы, цифры и дефисы/подчеркивания.</message>
+	<message key="user.account.passwordLengthRestriction">Пароль должен содержать не менее {$length} знаков.</message>
+	<message key="user.account.form.passwordLengthTooShort">Пароль, введенный вами, является недостаточно длинным.</message>
+	<message key="user.account.readerDescription">Уведомлять по электронной почте о публикации презентаций.</message>
+	<message key="user.account.openAccessNotificationDescription">Уведомлять по электронной почте, когда материалы конференции будут выставлены в открытом доступе.</message>
+	<message key="user.account.authorDescription">Разрешить отправлять материалы на конференцию.</message>
+	<message key="user.account.reviewerDescriptionNoInterests">Согласен участвовать в рецензировании материалов, направляемых на эту конференцию.</message>
+	<message key="user.account.reviewerDescription">Согласен участвовать в рецензировании рукописей, направляемых на эту конференцию. Укажите ваши интересы как рецензента (основные области и методы исследования).</message>
+	<message key="user.account.authorRegistrationMessage">Хотя у вас есть учетная запись на этом сайте, в настоящий момент вы не являетесь автором на этой конференции.</message>
+
+
+
+	<!-- Поиск -->
+	<message key="search.browseAuthorIndex">Просмотреть список авторов</message>
+	<message key="search.searchFor">Искать по материалам</message>
+	<message key="search.inField">в</message>
+	<message key="search.author">Авторы</message>
+	<message key="search.withinConference">В этой конференции</message>
+	<message key="search.allConferences">Все конференции</message>
+	<message key="search.authorIndex">Просмотреть список авторов</message>
+	<message key="search.authorDetails">Информация об авторе</message>
+	<message key="search.syntaxInstructions"><![CDATA[<p>Советы по поиску: </p>
+<ul>
+<li>Поиск ведется без учета регистра (строчные и прописные буквы не различаются)</li>
+<li>Общие слова игнорируются</li>
+<li>По умолчанию отображаются только материалы, содержащие <em>все</em> слова из запроса (то есть предполагается условие <strong>AND</strong>)</li>
+<li>Для поиска материалов, содержащих один из терминов, разделяйте слова с помощью <strong>OR</strong>, например, <em>образование OR обучение</em></li>
+<li>Используйте круглые скобки для создания более сложных запросов, например, <em>архив ((журнал OR конференция) NOT диссертации)</em></li>
+<li>Для поиска точного совпадения фразы используйте кавычки, например, <em>"издания в открытом доступе"</em></li>
+<li>Исключайте слово из поиска, поставив перед ним <strong>-</strong> (дефис) или <em>NOT</em>, например <em>конкурс -красоты</em> или <em>конкурс NOT красоты</em></li>
+<li>Используйте <strong>*</strong> в качестве специального символа, заменяющего любую последовательность символов, например, <em>соц* мораль</em> найдет документы, содержащие «социальная» или «социологическая»</li>
+</ul>]]></message>
+
+	<!-- Промежуточная страница для PDF -->
+	<message key="paper.pdf.title">Portable Document Format (PDF)</message>
+	<message key="paper.pdf.note"><![CDATA[<p>Выбранный файл PDF должен загрузиться здесь, если в вашем веб-браузере установлен плагин для чтения PDF (например, последняя версия <a href="https://get.adobe.com/reader/">Adobe Acrobat Reader</a>). В качестве альтернативы, вы можете скачать файл PDF на свой компьютер, на котором файл может быть открыт любой программой для просмотра PDF. Если вам нужна дополнительная информация о том, как распечатать, сохранить и работать с PDF-файлами, у издательства Highwire Press на сайте размещен полезный материал <a href="http://highwire.stanford.edu/help/pdf-faq.dtl">«Frequently Asked Questions about PDFs»</a>.<br /><br />Если файл не начал загружаться автоматически, <a href="{$url}">щелкните здесь</a>.]]></message>
+
+	<!-- Промежуточная страница для гранок в форматах, отличных от PDF и HTML -->
+	<message key="paper.nonpdf.title">Скачать материал</message>
+	<message key="paper.nonpdf.note"><![CDATA[Выбранный файл должен начать скачиваться автоматически. Если это не произошло, щелкните на ссылке ниже. Обратите внимание, что этот файл может потребовать специальной программы или плагина для просмотра.<br /><br />Если файл не начал скачиваться автоматически, <a href="{$url}">щелкните здесь</a>.]]></message>
+
+	<!-- Индекс сайта -->
+	<message key="site.conferencesHosted">Конференции, размещенные на этом сайте</message>
+	<message key="site.conferenceView">Посмотреть конференцию</message>
+	<message key="site.conferenceAccount">Учетная запись</message>
+	<message key="site.schedConfView">Посмотреть подробную информацию о конференции</message>
+	<message key="site.schedConfCurrent">Текущая запланированная конференция</message>
+
+	<!-- Страница конференции-->
+	<message key="conference.currentConferences">Текущие конференции</message>
+	<message key="conference.noCurrentConferences">Сейчас нет активных конференций. Пожалуйста, посмотрите в архивах старые запланированные конференции.</message>
+	<message key="conference.archive">Архивы конференций</message>
+
+	<!-- Странизца запланированной конференции -->
+	<message key="schedConf.proposalSubmission">Отправка материала</message>
+
+	<!-- Страница приема матералов (cfp) -->
+	<message key="schedConf.cfp.submitHere">Начните здесь отправку материала на эту конференцию.</message>
+
+	<!-- Материалы конференции -->
+	<message key="presentations.notPermitted">У вас пока нет доступа к презентациям этой конференции.</message>
+	<message key="presentations.trackEmpty">В этом направлении нет доступных статей.</message>
+	<message key="presentations.schedConfEmpty">Презентации этой конференции пока не доступны или подходящие презентации не были найдены.</message>
+
+	<!-- Страница программы -->
+	<message key="schedConf.program.programFileInstructions">Программа этой конференции доступна по следующей ссылке.</message>
+	<message key="schedConf.program.viewProgramFile">Просмотр программы</message>
+
+	<!-- О конференции -->
+	<message key="about.statistics">Статистика</message>
+	<message key="about.conferenceContact">Контакты конференции</message>
+	<message key="about.aboutTheConference">О конференции</message>
+	<message key="about.organizingTeam">Оргкомитет</message>
+	<message key="about.conferencePolicies">Правила конференции</message>
+	<message key="about.submissions">Отправка материалов</message>
+	<message key="about.sponsors">Спонсоры</message>
+	<message key="about.contributors">Источники поддержки</message>
+	<message key="about.onlineSubmissions">Отправка материалов через Интернет</message>
+	<message key="about.onlineSubmissions.haveAccount">У вас уже есть имя пользователя и пароль для конференции «{$conferenceTitle}»?</message>
+	<message key="about.onlineSubmissions.login">Перейти к входу в систему</message>
+	<message key="about.onlineSubmissions.needAccount">Вам нужно имя пользователя и пароль?</message>
+	<message key="about.onlineSubmissions.registration">Перейти к регистрации</message>
+	<message key="about.onlineSubmissions.registrationRequired">Для отправки материалов через Интернет и проверки статуса отправленных материалов вам необходимо зарегистрироваться и войти в систему под своей учетной записью.</message>
+	<message key="about.authorGuidelines">Руководство для авторов</message>
+	<message key="about.submissionPreparationChecklist">Контрольный список подготовки материала к отправке</message>
+	<message key="about.copyrightNotice">Условия передачи авторских прав</message>
+	<message key="about.privacyStatement">Заявление о конфиденциальности</message>
+	<message key="about.peerReviewProcess">Процесс рецензирования</message>
+	<message key="about.openAccessPolicy">Правила открытого доступа</message>
+	<message key="about.archiveAccessPolicy">Правила доступа к архиву</message>
+	<message key="about.delayedOpenAccess">Отложенный открытый доступ</message>
+	<message key="about.delayedOpenAccessDescription">Контент этой конференции будет доступен в открытом доступе через {$delayedOpenAccessDuration} месяцев после того, как материалы запланированной конференции будут открыты для ее участников.</message>
+	<message key="about.authorSelfArchive">Самостоятельное создание архива автором</message>
+	<message key="about.archiving">Архивация</message>
+	<message key="about.registration">Регистрация</message>
+	<message key="about.registrationContact">Контактное лицо для регистрации</message>
+	<message key="about.availableRegistrationTypes">Типы регистрации</message>
+	<message key="about.aboutThisPublishingSystem">Об этой системе для конференций</message>
+	<message key="about.aboutThisPublishingSystem.altText">Процесс отправки, рецензирования и публикации в OCS</message>
+	<message key="about.currentConferences">Текущие конференции</message>
+	<message key="about.aboutOCSConference"><![CDATA[Эта конференция использует Open Conference Systems {$ocsVersion}, которая является программным обеспечением с открытым исходным кодом для управления конференциями. Данное программное обеспечение разработано, поддерживается и свободно распространяется <a href="http://pkp.sfu.ca/">Public Knowledge Project</a> по лицензии GNU General Public License.]]></message>
+	<message key="about.aboutOCSSite"><![CDATA[Этот сайт использует Open Conference Systems {$ocsVersion}, которая является программным обеспечением с открытым исходным кодом для управления конференциями. Данное программное обеспечение разработано, поддерживается и свободно распространяется <a href="http://pkp.sfu.ca/">Public Knowledge Project</a> по лицензии GNU General Public License.]]></message>
+
+	<!-- Объявления -->
+
+	<!-- Помощь -->
+	<message key="help.ocsHelp">Помощь по Open Conference Systems</message>
+	<message key="help.ocsHelpAbbrev">Помощь по OCS</message>
+
+	<!-- Установщик -->
+	<message key="installer.ocsInstallation">Установка OCS</message>
+	<message key="installer.ocsUpgrade">Обновление OCS</message>
+	<message key="installer.installationInstructions"><![CDATA[<h4>Версия OCS {$version}</h4>
+
+<p>Благодарим вас за скачивание <strong>Open Conference Systems</strong>, разработанной в рамках Public Knowledge Project. Перед продолжением, пожалуйста, прочтите файл <a href="{$baseUrl}/docs/README">README</a>, идущий с этим программным обеспечением. Более подробную информацию о Public Knowledge Project и их проектах в области программного обеспечения вы можете узнать, посетив <a href="http://pkp.sfu.ca/" target="_blank">веб-сайт PKP</a>. Если вы обнаружили ошибки или у вас есть вопросы к технической поддержке о Open Conference Systems, посмотрите <a href="http://pkp.sfu.ca/support/forum" target="_blank">форум поддержки</a> или посетите онлайновую <a href="http://pkp.sfu.ca/bugzilla/" target="_blank">систему регистрации ошибок</a> PKP. Хотя обращение в форум поддержки является предпочтительным способом связи, вы также можете отправить сообщение команде проекта на адрес <a href="mailto:pkp.contact@gmail.com">pkp.contact@gmail.com</a>.</p>
+
+<h4>Обновление</h4>
+
+<p>Если вы обновляете существующую инсталляцию OCS 2.x, <a href="{$upgradeUrl}">щелкните здесь</a> для продолжения.</p>
+
+<h4>Рекомендуемые требования к системе</h4>
+
+<ul>
+	<li><a href="http://www.php.net/" target="_blank">PHP</a> >= {$phpRequiredVersion} (включая PHP 5.x); вы сейчас используете PHP {$phpVersion}{$wrongPhpText}</li>
+	<li><a href="http://www.mysql.com/" target="_blank">MySQL</a> >= 3.23.23 включая MySQL 4.x) или <a href="http://www.postgresql.org/" target="_blank">PostgreSQL</a> >= 7.1 (включая PostgreSQL 8.x)</li>
+	<li><a href="http://httpd.apache.org/" target="_blank">Apache</a> >= 1.3.2x или >= 2.0.4x или Microsoft IIS 6</li>
+	<li>Операционная система: любая ОС, которая поддерживает перечисленное выше программное обеспечение, включая <a href="http://www.linux.org/" target="_blank">Linux</a>, <a href="http://www.bsd.org/" target="_blank">BSD</a>, <a href="http://www.sun.com/" target="_blank">Solaris</a>, <a href="http://www.apple.com/" target="_blank">Mac OS X</a>, <a href="http://www.microsoft.com/">Windows</a></li>
+</ul>
+
+<p>Поскольку у PKP нет ресурсов, чтобы тестировать все возможные комбинации версий программного обеспечения и платформ, то не предполагается никаких гарантий правильной работы или поддержки.</p>
+
+<p>Изменения этих параметров могут быть сделаны после установки системы путем редактирования файла <tt>config.inc.php</tt>, лежащего в основном каталоге OCS, или с помощью веб-интерфейса администрирования сайта.</p>
+
+<h4>Поддерживаемые СУБД</h4>
+
+<p>OCS на текущий момент была протестирована только на MySQL и PostgreSQL, хотя другие СУБД, поддерживаемые <a href="http://adodb.sourceforge.net/" target="_blank">ADOdb</a>, также могут работать (полностью или частично). Отчеты о совместимости и/или исправления кода для альтернативных СУБД можно высылать команде проекта OCS.</p>
+
+<h4>Шаги подготовки к установке</h4>
+
+<p>1. Следующие файлы и каталоги (и их содержимое) необходимо сделать доступными для записи:</p>
+<ul>
+	<li><tt>config.inc.php</tt> доступен для записи (не обязательно): {$writable_config}</li>
+	<li><tt>public/</tt> доступен для записи: {$writable_public}</li>
+	<li><tt>cache/</tt> доступен для записи: {$writable_cache}</li>
+	<li><tt>cache/t_cache/</tt> доступен для записи: {$writable_templates_cache}</li>
+	<li><tt>cache/t_compile/</tt> доступен для записи: {$writable_templates_compile}</li>
+	<li><tt>cache/_db</tt> доступен для записи: {$writable_db_cache}</li>
+</ul>
+
+<p>2. Каталог для хранения загруженных файлов должен быть создан и сделан доступным для записи (смотри «Настройки файлов» ниже).</p>]]></message>
+	<message key="installer.upgradeInstructions"><![CDATA[<h4>Версия OCS {$version}</h4>
+
+<p>Благодарим вас за скачивание <strong>Open Conference Systems</strong>, разработанной в рамках Public Knowledge Project. Перед продолжением, пожалуйста, прочтите файлы <a href="{$baseUrl}/docs/README">README</a> и <a href="{$baseUrl}/docs/UPGRADE">UPGRADE</a>, идущие с этим программным обеспечением. Более подробную информацию о Public Knowledge Project и их проектах в области программного обеспечения вы можете узнать, посетив <a href="http://pkp.sfu.ca/" target="_blank">веб-сайт PKP</a>. Если вы обнаружили ошибки или у вас есть вопросы к технической поддержке о Open Conference Systems, посмотрите <a href="http://pkp.sfu.ca/support/forum" target="_blank">форум поддержки</a> или посетите онлайновую <a href="http://pkp.sfu.ca/bugzilla/" target="_blank">систему регистрации ошибок</a> PKP. Хотя обращение в форум поддержки является предпочтительным способом связи, вы также можете отправить сообщение команде проекта на адрес <a href="mailto:pkp.contact@gmail.com">pkp.contact@gmail.com</a>.</p>
+<p>Перед продолжением <strong>настоятельно рекомендуется</strong> создать резервную копию вашей базы данных, каталога с файлами и каталога с установленной системой OCS.</p>
+<p>Если PHP запущен у вас в режиме <a href="http://www.php.net/features.safe-mode" target="_blank">PHP Safe Mode</a>, пожалуйста, убедитесь, что значение max_execution_time в файле конфигурации php.ini задано достаточно большим. Если это или какое-либо другое ограничение по времени (например, значение Timeout для Apache) будет достигнуто и процес обновления будет прерван, потребуется ручное вмешательство в процесс обновления.</p>]]></message>
+	<message key="installer.localeSettingsInstructions"><![CDATA[Для полной поддержки Unicode (UTF-8), выберите UTF-8 для всех настроек кодировки символов. Обратите внимание, что поддержка этого на сегодняшний день требует версии СУБД MySQL >= 4.1.1 или PostgreSQL >= 7.1. Пожалуйста, также обратите внимание, что полная поддержка Unicode требует PHP >= 4.3.0, откомпилированного с поддержкой библиотеки <a href="http://www.php.net/mbstring" target="_blank">mbstring</a> (включена по умолчанию в большинстве современных инсталляций PHP). У вас могут возникнуть проблемы с расширенными кодировками, если ваш сервер не соответствует этим требованиям.
+<br /><br />
+Ваш сервер сейчас поддерживает mbstring: <strong>{$supportsMBString}</strong>]]></message>
+	<message key="installer.localeInstructions">Основной язык, который будет использоваться для этой системы. Пожалуйста, обратитесь к документации OCS, если вы заинтересованы в поддержке языков, отстуствующих в этом списке.</message>
+	<message key="installer.additionalLocalesInstructions">Выберите любые дополнительные языки, которые будут поддерживаться в этой системе. Эти языки будут доступны для использования конференциями, размещенными на сайте. Дополнительные языки могут также быть установлены в любой момент из интерфейса администрирования сайта.</message>
+	<message key="installer.filesDirInstructions"><![CDATA[Введите полный путь к существующему каталогу, в котором будут храниться загруженные файлы. Этот каталог не должен быть напрямую доступен через сеть Интернет. <strong>Пожалуйста, убедитесь, что каталог существует и доступен для записи перед установкой.</strong> Пути к каталогам в Windows должны использовать прямые слэши, например, «C:/myconference/files».]]></message>
+	<message key="installer.databaseSettingsInstructions">OCS для хранения своих данных требует доступ к базе данных, поддерживающей язык SQL. Выше, в требованиях к системе, указаны поддерживаемые базы данных. В полях ниже укажите настройки, которые будут использованы для соединения с базой данных.</message>
+	<message key="installer.installApplication">Установить Open Conference Systems</message>
+	<message key="installer.upgradeApplication">Обновить Open Conference Systems</message>
+	<message key="installer.reinstallAfterDatabaseError"><![CDATA[<strong>Предупреждение:</strong> Если установка завершится неудачей в процессе установки базы данных, вам может потребоваться удалить вашу базу данных OCS или таблицы из базы данных, после чего предпринять попытку переустановить базу данных.]]></message>
+	<message key="installer.overwriteConfigFileInstructions"><![CDATA[<h4>ВАЖНО!</h4>
+<p>Установщик не смог автоматически перезаписать файл конфигурации. Прежде чем попытаться воспользоваться системой, пожалуйста откройте <tt>config.inc.php</tt> в подходящем текстовом редакторе и замените его содержимое содержимым текстового поля ниже.</p>]]></message>
+	<message key="installer.installationComplete"><![CDATA[<p>Установка OCS была успешно завершена.</p>
+<p>Чтобы начать использовать систему, <a href="{$createUrl}" class="action">создайте конференцию</a>. Вам будет предложено войти в систему с именем пользователя и паролем, который вы ввели на предыдущей странице.</p>
+<p>Если вы хотите получать новости и обновления, пожалуйста, <strong>зарегистрируйтесь<a href="http://pkp.sfu.ca/ocs/register" target="_new">http://pkp.sfu.ca/node/add/pkp-site-submission</a>.</strong> Если у вас есть вопросы или предложения, пожалуйста, посетите <a href="http://pkp.sfu.ca/support/forum" target="_new">форум поддержки</a>.</p>]]></message>
+	<message key="installer.upgradeComplete"><![CDATA[<p>Обновление OCS до версии {$version} было успешно завершено.</p>
+<p>Не забудьте установить параметр installed в вашем файле конфигурации config.inc.php обратно в значение <em>On</em>.</p>
+<p>Если вы еще не зарегистрированы и хотите получать новости и обновления, <strong>пожалуйста, зарегистрируйтесь на <a href="http://pkp.sfu.ca/ojs/register" target="_new">http://pkp.sfu.ca/ojs/register</a>.</strong> Если у вас есть вопросы или предложения, пожалуйста, посетите <a href="http://pkp.sfu.ca/support/forum" target="_new">форум поддержки</a>.</p>]]></message>
+
+
+	<!-- Записи в журнале событий о материалах -->
+	<message key="log.default.abstractPeriodExpired">Период отправки тезисов для частично заполненного материала {$paperId} прошел. Материал отправлен в мусорную корзину.</message>
+	<message key="log.default.paperPeriodExpired">Период отправки статьи для частично заполненного материала {$paperId} прошел. Материал отправлен в мусорную корзину.</message>
+	<message key="log.author.abstractSubmitted">Автор {$authorName} добавил новые тезисы, ID {$submissionId}.</message>
+	<message key="log.author.presentationSubmitted">Автор {$authorName} загрузил презентацию, ID {$submissionId}.</message>
+	<message key="log.author.documentRevised">Автор {$authorName} исправил материал {$paperId}. Новый ID файла — {$fileId}.</message>
+	<message key="log.review.reviewerAssigned">Рецензент {$reviewerName} был назначен на рецензирование материала {$paperId} на этапе {$stage}.</message>
+	<message key="log.review.reviewerUnassigned">Рецензент {$reviewerName} был освобожден от рецензирования материала {$paperId} на этапе {$stage}.</message>
+	<message key="log.review.reviewInitiated">Этап {$stage} рецензирования рецензентом {$reviewerName} для материала {$paperId} был начат.</message>
+	<message key="log.review.reviewReinitiated">Этап {$stage} рецензирования рецензентом {$reviewerName} для материала {$paperId} был начат заново.</message>
+	<message key="log.review.reviewCancelled">Этап {$stage} рецензирования рецензентом {$reviewerName} для материала {$paperId} был отменен.</message>
+	<message key="log.review.reviewCleared">Этап {$stage} рецензирования рецензентом {$reviewerName} для материала {$paperId} был очищен.</message>
+	<message key="log.review.reviewerRated">Рецензенту {$reviewerName} был присвоен рейтинг за этап {$stage} рецензирования материала {$paperId}.</message>
+	<message key="log.review.reviewDueDateSet">Срок выполнения рецензии в рамках этапа {$stage} рецензирования материала {$paperId} рецензентом {$reviewerName} был установлен равным {$dueDate}.</message>
+	<message key="log.review.reviewRecommendationSet">Рекомендация на этапе {$stage} рецензирования материала {$paperId} рецензентом {$reviewerName} была задана.</message>
+	<message key="log.review.reviewRecommendationSetByProxy">Рекомендация на этапе {$stage} рецензирования материала {$paperId} была задана ответственным секретарем ({$directorName}) по поручению рецензента ({$reviewerName}).</message>
+	<message key="log.review.resubmit">Материал {$paperId} была снова отправлен на рецензирование.</message>
+	<message key="log.review.reviewDeclined">Рецензент {$reviewerName} отказался дать рецензию на этапе {$stage} рецензирования для материала {$paperId}.</message>
+	<message key="log.review.reviewAccepted">Рецензент {$reviewerName} согласился дать рецензию на этапе {$stage} рецензирования для материала {$paperId}.</message>
+	<message key="log.review.reviewAcceptedByProxy">{$userName} внес согласие дать рецензию на этапе {$stage} рецензирования для материала {$paperId} по поручению рецензента {$reviewerName}.</message>
+	<message key="log.review.reviewFileByProxy">Ответственный секретарь {$userName} has загрузил файл рецензии на этапе {$stage} рецензирования материала {$paperId} oпо поручению рецензента {$reviewerName}.</message>
+	<message key="log.review.reviewerFile">Файл рецензента был загружен на сайт.</message>
+	<message key="log.director.decision">Решение ответственного секретаря ({$decision}) по материалу {$paperId} было введено ответственным секретарем ({$directorName}).</message>
+	<message key="log.director.publish">Материал был опубликован.</message>
+	<message key="log.director.unpublish">Материал был перемещен обратно в очередь материалов.</message>
+
+	<message key="log.director.metadataModified">Метаданные для этого материала были изменены ответственным секретарем ({$directorName}).</message>
+	<message key="log.director.directorFile">Версия материала, исправленная ответственным секретарем, была загружена на сайт.</message>
+	<message key="log.director.archived">Материал {$paperId} был перемещен в архив.</message>
+	<message key="log.director.restored">Материал {$paperId} был восстановлен из архива в очередь материалов.</message>
+	<message key="log.director.directorAssigned">Ответственный секретарь {$directorName} был назначен ответственным секретарем для материала {$paperId}.</message>
+	<message key="log.director.submissionExpedited">Ответственный секретарь {$directorName} взял контроль над процессом рассмотрения материала {$paperId}.</message>
+	<message key="log.layout.layoutFileSet">Ответственный секретарь {$directorName} выбрал сверстанную версию для материала {$paperId}.</message>
+
+	<!-- Записи в журнале событий о конференциях -->
+	<message key="log.deadline.submissionDeadlinePassed">Срок отправки материалов прошел.</message>
+	<message key="log.deadline.presentationsReleasedToParticipants">Презентации были опубликованы для участников конференции.</message>
+	<message key="log.deadline.presentationsReleasedToPublic">Презентации были опубликованы для широкой публики.</message>
+
+	<message key="log.timeline.publicationStateChanged">Состояние публикации изменилось с {$oldPublicationState} на {$newPublicationState}.</message>
+	<message key="log.timeline.submissionStateChanged">Состояние отправки изменилось с {$oldSubmissionState} на {$newSubmissionState}.</message>
+	<message key="log.timeline.startDateChanged">Дата начала конференции изменилась с {$oldStartDate} на {$newStartDate}.</message>
+	<message key="log.timeline.endDateChanged">Дата окончания конференции изменилась с {$oldEndDate} на {$newEndDate}.</message>
+	<message key="log.timeline.regReviewerOpenDateChanged">Дата начала регистрации рецензентов изменилась с {$oldRegReviewerOpenDate} на {$newRegReviewerOpenDate}.</message>
+	<message key="log.timeline.regReviewerCloseDateChanged">Дата окончания регистрации рецензентов изменилась с {$oldRegReviewerCloseDate} на {$newRegReviewerCloseDate}.</message>
+	<message key="log.timeline.regAuthorOpenDateChanged">Дата начала регистрации авторов изменилась с {$oldRegAuthorOpenDate} на {$newRegAuthorOpenDate}.</message>
+	<message key="log.timeline.regAuthorCloseDateChanged">Дата окончания регистрации авторов изменилась с {$oldRegAuthorCloseDate} на {$newRegAuthorCloseDate}.</message>
+	<message key="log.timeline.showCFPDateChanged">Дата публикации информации о приеме материалов изменилась с {$oldShowCFPDate} на {$newShowCFPDate}.</message>
+	<message key="log.timeline.submissionsOpenDateChanged">Дата начала приема материалов изменилась с {$oldSubmissionsOpenDate} на {$newSubmissionsOpenDate}</message>
+	<message key="log.timeline.submissionsCloseDateChanged">Дата окончания приема материалов изменилась с {$oldSubmissionsCloseDate} на {$newSubmissionsCloseDate}</message>
+	<message key="log.timeline.postAbstractsDateChanged">Дата публикации тезисов изменилась с {$oldPostAbstractsDate} на {$newPostAbstractsDate}.</message>
+	<message key="log.timeline.postAbstractsChanged">Настройка «Публиковать тезисы» изменилась с {$oldPostAbstracts} на {$newPostAbstracts}.</message>
+	<message key="log.timeline.postScheduleDateChanged">Дата публикации расписания изменилась с {$oldPostScheduleDate} на {$newPostScheduleDate}.</message>
+	<message key="log.timeline.postScheduleChanged">Настройка «Публиковать расписание» изменилась с  {$oldPostSchedule} на {$newPostSchedule}.</message>
+	<message key="log.timeline.postPapersDateChanged">Дата публикации материалов изменилась с {$oldPostPapersDate} на {$newPostPapersDate}.</message>
+	<message key="log.timeline.postPapersChanged">Настройка «Публиковать материалы» изменилась с {$oldPostPapers} на {$newPostPapers}.</message>
+	<message key="log.timeline.delayOpenAccessDateChanged">Дата открытого доступа изменилась с {$oldDelayOpenAccessDate} на {$newDelayOpenAccessDate}.</message>
+	<message key="log.timeline.delayOpenAccessChanged">Настройка «Отложить открытый доступ» изменилась с {$oldDelayOpenAccess} на {$newDelayOpenAccess}.</message>
+	<message key="log.timeline.closeCommentsDateChanged">Дата закрытия возможности комментировать изменилась с {$oldCloseCommentsDate} на {$newCloseCommentsDate}.</message>
+	<message key="log.timeline.closeCommentsChanged">Настройка «Закрытие комментирования» изменилась с {$oldCloseComments} на {$newCloseComments}.</message>
+
+	<!-- Строки для инструментов читателя -->
+
+
+	<!-- Настройки инструментов читателя -->
+	<message key="rt.admin.settings">Настройки инструментов читателя</message>
+
+	<message key="rt.admin.settings.description">Инструменты читателя появляются в области рядом с опубликованными материалами в направлениях конференции, которые были указаны для индексирования. Инструменты читателя состоят из нижеперечисленного набора дополнительных инструментов для опубликованного материала, и набора инструментов, осуществляющих доступ к связанным материалам, организованным в соответствии с областью науки и дисциплиной.</message>
+	<message key="rt.admin.settings.enableReadingTools">Включить инструменты читателя для указанных направлений конференции.</message>
+	<message key="rt.admin.settings.relatedItems">Область науки</message>
+
+	<message key="rt.admin.options">Дополнительные инструменты</message>
+
+	<message key="rt.admin.settings.addComment">Добавить комментарий (позволяет читателям оставлять комментарии, которые управляющие конференцией могут удалять). Комментарии читателей должны быть разрешены в разделе «Управление сайтом», раздел 1.5.</message>
+
+	<message key="rt.admin.validateUrls.description"><![CDATA[Ниже показаны потенциально неправильные адреса (URL) сайтов для поиска.<br/>
+Вам необходимо вручную проверить все адреса (URL), которые помечены как неправильные, так как этот тест не является точным на 100%.<br/>
+Проверка может оказываться неудачной на адресах сайтов для поиска, которые требуют заполнения формы поиска.]]></message>
+
+	<message key="rt.metadata.dublinCore.primaryAuthor">Создатель</message>
+
+	<message key="rt.metadata.pkp.primaryAuthor">Автор, организация, страна</message>
+	<message key="rt.metadata.pkp.peerReviewed">Рецензированный материал</message>
+
+	<!-- Типы уведомлений -->
+	<message key="notification.mailListDescription">Введите ваш адрес электронной почты, чтобы получать информационные сообщения о добавлении нового контента на сайт конференции.</message>
+	<message key="notification.notificationsPublicDescription">На этой странице показан список важных новостей, связанных с этой конференцией, таких как новые материалы или объявления. Вы можете подписаться на эти новости через ленты RSS (щелкнув на значках справа) или <![CDATA[  <a href="{$emailUrl}">по электронной почте.</a>]]></message>
+
+	<message key="notification.type.paperSubmitted">Новый материал «{$param}» был отправлен.</message>
+	<message key="notification.type.editing">События процесса рассмотрения</message>
+	<message key="notification.type.directorDecisionComment">Добавлен комментарий о решении ответственного секретаря по материалу «{$param}».</message>
+	<message key="notification.type.galleyModified">Изменена гранка для материала «{$param}».</message>
+	<message key="notification.type.metadataModified">Изменены метаданные для материала «{$param}».</message>
+	<message key="notification.type.newAnnouncement">Создано новое обьявление.</message>
+	<message key="notification.type.reviewerComment">Добавлен комментарий рецензента о материале «{$param}».</message>
+	<message key="notification.type.reviewerFormComment">Форма рецензии была заполнена рецензентом для материала «{$param}».</message>
+	<message key="notification.type.reviewing">События рецензирования</message>
+	<message key="notification.type.site">События сайта</message>
+	<message key="notification.type.submissionComment">Ответственный секретарь оставил комментарий о материале «{$param}».</message>
+	<message key="notification.type.submissions">События процесса отправки</message>
+	<message key="notification.type.suppFileModified">Изменились дополнительные файлы к материалу «{$param}».</message>
+	<message key="notification.type.userComment">Читатель добавил комментарий о материале «{$param}».</message>
+
+	<message key="rt.thisConference">Поиск в этой конференции</message>
+
+	<message key="rt.comments.commentsClosed">† Комментирование закрыто с {$closeCommentsDate}</message>
+
+	<message key="rt.context.authorTermsDescription">Для материалов с несколькими авторами оставьте отмеченными всех авторов, чтобы найти выполненные этими авторами работы в том же составе соавторов, или проводите поиск по одному автору, отмечая только одно имя в списке. Чтобы узнать больше о ресурсе, на котором проводится поиск, щелкните на «О РЕСУРСЕ». Эти ресурсы были выбраны, поскольку они соответствут тематике и предоставляют открытый (свободный) доступ ко всему своему контенту.</message>
+</locale>

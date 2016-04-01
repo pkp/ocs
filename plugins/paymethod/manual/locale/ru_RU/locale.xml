@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * locale.xml
+  *
+  * Copyright (c) 2000-2012 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the ru_RU (Русский) locale.
+  * Translated by Pavel Pisklakov. 
+  *
+  * $Id$
+ -->
+
+<locale name="ru_RU" full_name="Русский">
+	<message key="plugins.paymethod.manual.displayName">Плагин «Ввод оплаты вручную»</message>
+	<message key="plugins.paymethod.manual.description">Этот плагин позволяет менеджеру вручную ввести информацию о платеже пользователя (оплату, прошедшую вне этой системы).</message>
+	<message key="plugins.paymethod.manual">Ввод оплаты вручную</message>
+	<message key="plugins.paymethod.manual.settings">Настройки ввода оплаты вручную</message>
+	<message key="plugins.paymethod.manual.settings.instructions">Инструкции</message>
+	<message key="plugins.paymethod.manual.settings.manualInstructions">Инструкции по оплате для пользователей, выбирающих оплату без использования сети Интернет</message>
+
+	<message key="plugins.paymethod.manual.sendNotificationOfPayment">Отправить уведомление о платеже</message>
+	<message key="plugins.paymethod.manual.paymentNotification">Уведомление о платеже</message>
+	<message key="plugins.paymethod.manual.notificationSent">Уведомление о платеже отправлено</message>
+
+	<message key="plugins.paymethod.manual.purchase.title">Название</message>
+	<message key="plugins.paymethod.manual.purchase.fee">Сумма</message>	
+</locale>
