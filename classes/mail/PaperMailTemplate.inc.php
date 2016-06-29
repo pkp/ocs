@@ -58,6 +58,7 @@ class PaperMailTemplate extends MailTemplate {
 		$conference = isset($this->conference)?$this->conference:Request::getConference();
 		$schedConf = isset($this->schedConf)?$this->schedConf:Request::getSchedConf();
 
+		$paramArray['paperId'] = $paper->getId();
 		$paramArray['paperTitle'] = strip_tags($paper->getLocalizedTitle());
 		$paramArray['conferenceName'] = strip_tags($conference->getConferenceTitle());
 		$paramArray['schedConfName'] = strip_tags($schedConf->getSchedConfTitle());
