@@ -30,6 +30,8 @@ class MetadataForm extends Form {
 	 * Constructor.
 	 */
 	function MetadataForm($paper) {
+		$this->paper = $paper;
+                
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
 
 		$schedConf =& Request::getSchedConf();
@@ -64,8 +66,6 @@ class MetadataForm extends Form {
 		if ($roleId != null && $roleId == ROLE_ID_REVIEWER) {
 			$this->canViewAuthors = false;
 		}
-
-		$this->paper = $paper;
 
 		$this->addCheck(new FormValidatorPost($this));
 	}
@@ -114,6 +114,8 @@ class MetadataForm extends Form {
 				}
 			}
 		}
+                
+                parent::initData();
 	}
 
 	/**
