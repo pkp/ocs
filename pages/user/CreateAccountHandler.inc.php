@@ -164,6 +164,7 @@ class CreateAccountHandler extends UserHandler {
 			$userDao->updateObject($user);
 
 			$templateMgr =& TemplateManager::getManager();
+			AppLocale::requireComponents(array(LOCALE_COMPONENT_APPLICATION_COMMON));
 			$templateMgr->assign('message', 'user.login.activated');
 			return $templateMgr->display('common/message.tpl');
 		}
