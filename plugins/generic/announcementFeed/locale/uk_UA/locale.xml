@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * locale.xml
+  *
+  * Copyright (c) 2000-2012 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the en_US (U.S. English) locale.
+  *
+  * $Id$
+  -->
+ 
+<locale name="en_US" full_name="U.S. English">
+	<message key="plugins.generic.announcementfeed.displayName">Плагін стрічки оголошень</message>
+	<message key="plugins.generic.announcementfeed.description">Цей плагін створює стрічку RSS/Atom для оголошень конференції.</message>
+
+	<message key="plugins.generic.announcementfeed.settings">Налаштування</message>
+	<message key="plugins.generic.announcementfeed.settings.all">Показати посилання стрічки на сторінці конференції.</message>
+	<message key="plugins.generic.announcementfeed.settings.homepage">Показати посилання стрічки на головній сторінці та сторінці оголошень.</message>
+	<message key="plugins.generic.announcementfeed.settings.announcement">Показати посилання стрічки на сторінці оголошень.</message>
+	<message key="plugins.generic.announcementfeed.settings.recentAnnouncements1">Обмежити стрічку до</message>
+	<message key="plugins.generic.announcementfeed.settings.recentAnnouncements2">останні оголошення.</message>
+	<message key="plugins.generic.announcementfeed.settings.recentItemsRequired">Будь ласка, введіть позитивне число для відображення останніх оголошень.</message>
+	<message key="plugins.generic.announcementfeed.atom.altText">Логотип Atom</message>
+	<message key="plugins.generic.announcementfeed.rss1.altText">Логотип RSS1</message>
+	<message key="plugins.generic.announcementfeed.rss2.altText">Логотип RSS2</message>	
+	<message key="plugins.generic.announcementfeed.enabled">Плагін Стрічки Оголошень був активований.</message>
+	<message key="plugins.generic.announcementfeed.disabled">Плагін Стрічки Оголошень був деактивований.</message>
+</locale>

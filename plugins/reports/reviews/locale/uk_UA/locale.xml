@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * locale.xml
+  *
+  * Copyright (c) 2000-2012 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the en_US (U.S. English) locale.
+  *
+  * $Id$
+  -->
+
+<locale name="en_US" full_name="U.S. English">
+	<message key="plugins.reports.reviews.displayName">Звіт з рецензій</message>
+	<message key="plugins.reports.reviews.description">Цей плагін дозвояє створити звіт у форматі CSV із переліком призначень на рецензування по конференції.</message>
+	<message key="plugins.reports.reviews.reviewerId">Рецензента ID</message>
+	<message key="plugins.reports.reviews.reviewer">Рецензент</message>
+	<message key="plugins.reports.reviews.dateAssigned">Дата призначення</message>
+	<message key="plugins.reports.reviews.dateNotified">Дата повідомлення</message>
+	<message key="plugins.reports.reviews.dateConfirmed">Дата підтвердження</message>
+	<message key="plugins.reports.reviews.dateCompleted">Дата закінчення</message>
+	<message key="plugins.reports.reviews.dateReminded">Дата нагадування</message>
+</locale>
+
