@@ -2,17 +2,17 @@
 <!DOCTYPE locale SYSTEM "../../lib/pkp/dtd/locale.dtd">
 
 <!--
-  * ocs2-devel/locale/en_US/manager.xml
+  * ocs2-devel/locale/tr_TR/manager.xml
   *
-  * Copyright (c) 2000-2011 John Willinsky
+  * Copyright (c) 2000-2012 John Willinsky
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
   *
-  * Localization strings for the en_US (English) locale.
+  * Localization strings for the tr_TR (Türkçe) locale.
   *
   * $Id$
   -->
 
-<locale name="tr_TR" full_name="Türkiye Türkçesi">
+<locale name="tr_TR" full_name="Türkçe">
 	<message key="manager.accommodation">Konaklama</message>
 	<message key="manager.accommodation.form.accommodationFiles">Dosyalar</message>
 	<message key="manager.accommodation.form.accommodationFiles.description">Kayıtları ve potansiyel kayıt yaptıranları, örneğin haritalar, formlar vb. için bir veya daha fazla dosya yüklemek için bu bölümü kullanın.</message>
