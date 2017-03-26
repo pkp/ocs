@@ -4,15 +4,15 @@
 <!--
   * locale.xml
   *
-  * Copyright (c) 2000-2011 John Willinsky
+  * Copyright (c) 2000-2012 John Willinsky
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
   *
-  * Localization strings for this citation plugin in en_US.
+  * Localization strings for this citation plugin in tr_TR.
   *
   * $Id$
   -->
  
-<locale name="tr_TR" full_name="Türkiye Türkçesi">
+<locale name="tr_TR" full_name="Türkçe">
 	<message key="plugins.citationFormats.abnt.displayName">ABNT atıf biçimi eklentisi</message>
 	<message key="plugins.citationFormats.abnt.citationFormatName">ABNT</message>
 	<message key="plugins.citationFormats.abnt.description">Bu eklenti ABNT atıf biçimini uygulamaktadır.</message>
