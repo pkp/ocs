@@ -2,17 +2,17 @@
 <!DOCTYPE locale SYSTEM "../../lib/pkp/dtd/locale.dtd">
 
 <!--
-  * ocs2-devel/locale/en_US/admin.xml
+  * ocs2-devel/locale/tr_TR/admin.xml
   *
-  * Copyright (c) 2000-2011 John Willinsky
+  * Copyright (c) 2000-2012 John Willinsky
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
   *
-  * Localization strings for the en_US (English) locale.
+  * Localization strings for the tr_TR (Türkçe) locale.
   *
   * $Id$
   -->
 
-<locale name="tr_TR" full_name = "Turkish">
+<locale name="tr_TR" full_name = "Türkçe">
 	<message key="admin.languages.primaryLocaleInstructions">Bu kongrenin varsayılan dilidir ve henüz bir konferans yoktur</message>
 	<message key="admin.languages.supportedLocalesInstructions">Siteyi desteklemek için tüm dilleri seçiniz.Seçilen diller sitede yer alan tüm diller için ve ayrıca dil seçeneği menüsünün her sayfada görünmesi için uygun olacaktır(konferansa özgü sayfalarda kaldırılabilir). Çok sayıda dil seçili değilse, dil geçiş menüsü görünmez ve genişletilmiş dil ayarları konferanslarda mevcut olmayacaktır.</message>
 	<message key="admin.locale.maybeIncomplete">İşaretli diller tamamlanmamış olabilir</message>
