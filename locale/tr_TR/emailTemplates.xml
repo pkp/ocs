@@ -1,0 +1,446 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE email_texts SYSTEM "../../lib/pkp/dtd/emailTemplateData.dtd">
+<!--
+  * emailTemplateData.xml
+  *
+  * Copyright (c) 2000-2012 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localized email templates XML file.
+  *
+  * $Id$
+  -->
+<email_texts locale="tr_TR">
+	<email_text key="NOTIFICATION">
+		<subject>{$siteTitle}den yeni bildirim</subject>
+		<body>{$siteTitle}: den yeni bir bildiriminiz var
+
+{$notificationContents}
+
+Link: {$url}
+
+{$principalContactSignature}</body>
+	</email_text>
+	<email_text key="USER_REGISTER">
+		<subject>Yeni Kullanıcı Kaydı</subject>
+		<body>{$conferenceName} kayıt olduğunuz için teşekkür ederiz. Lütfen kullanıcı adı ve şifrenizi saklayınız, ileride konferans işlemleri sırasında gerekli olacaktır.
+
+Kullanıcı adı: {$username}
+Şifre: {$password}
+
+Teşekkür ederiz,
+{$principalContactSignature}</body>
+		<description></description>
+	</email_text>
+	<email_text key="REVIEW_REQUEST">
+		<subject>Bildiri Değerlendirme İsteği</subject>
+		<body>{$reviewerName}:
+
+{$conferenceName} 'na gönderilmiş olan "{$paperTitle} başlıklı önerinin değerlendirmesini yapmanızı arzu ediyoruz. Bildiri aşağıya eklenmiştir. 
+
+Lütfen bildiriyi değerlendirme görevini üstlenip-üstlenmeyeceğinizi belirtmek, bildiriye ulaşmak ve değerlendirmenizi ve tavsiyenizi kaydetmek adına sempozyum web-sitesine {$weekLaterDate}'e giriş yapınız. Sempozyum web sitesi adresi {$conferenceUrl}.
+
+{$reviewDueDate} tarihine kadar bildiriyi değerlendirebilirsiniz.
+
+Eğer Sempozyum web-sitesi için kullanıcı adı ve şifreniz yok ise veya hatırlamıyorsanız, aşağıdaki linki şifrenizi yenilemek ya da şifre oluşturmak için kullanabilirsiniz (Böylece şifreniz kullanıcı adınızla beraber size e-mail olarak iletilecektir). {$passwordResetUrl}
+
+Bildiri URL'si: {$submissionReviewUrl}
+
+Bu talebi dikkate aldığınız için teşekkür ederiz.
+
+{$editorialContactSignature}
+
+
+
+"{$paperTitle}"
+
+Özet
+{$paperAbstract}</body>
+		<description></description>
+	</email_text>
+	<email_text key="REVIEW_REQUEST_ONECLICK">
+		<subject>Bildiri Değerlendirme İsteği</subject>
+		<body>{$reviewerName}:
+
+{$conferenceName} adlı etkinliğe gönderilmiş olan "{$paperTitle}" başlıklı öneriyi değerlendirmenizi arzu ediyoruz. Bildiri aşağıya eklenmiştir.
+
+Lütfen bildiriyi değerlendirme görevini üstlenip-üstlenmeyeceğinizi belirtmek, bildiriye ulaşmak ve değerlendirmenizi ve tavsiyenizi kaydetmek için sempozyum web-sitesine {$weekLaterDate} giriniz.
+
+{$reviewDueDate} tarihine kadar bildiriyi değerlendirebilirsiniz.
+
+Bildiri URL'si: {$submissionReviewUrl}
+
+Bu talebi dikkate aldığınız için teşekkür ederiz.
+
+{$editorialContactSignature}
+
+
+
+"{$paperTitle}"
+
+Özet
+{$paperAbstract}</body>
+		<description></description>
+	</email_text>
+	<email_text key="REVIEW_CONFIRM">
+		<subject>Değerlendirebilirim</subject>
+		<body>{$editorialContactName}:
+
+{$conferenceName} adlı etkinlik için "{$paperTitle}" başlıklı öneriyi değerlendirmeyi kabul ediyorum. Bu görevi tarafıma verdiğiniz için için teşekkür ederim. Değerlendirmemi en geç {$reviewDueDate} tarihine kadar bitirmeyi planlamaktayım.
+
+{$reviewerName}</body>
+		<description></description>
+	</email_text>
+	<email_text key="REVIEW_CANCEL">
+		<subject>Değerlendirme İptal İsteği</subject>
+		<body>{$reviewerName}:
+
+{$conferenceName} adlı etkinlik için "{$paperTitle}" başlıklı öneriyi değerlendirme talebi iptal edilmiştir. 
+
+Eğer bir sorunuz var ise lütfen bağlantı kurmaktan çekinmeyin.
+
+{$editorialContactSignature}</body>
+		<description></description>
+	</email_text>
+	<email_text key="REVIEW_CONFIRM_ACK">
+		<subject>Değerlendirme Kabul Teşekkürü</subject>
+		<body>{$reviewerName}:
+
+{$conferenceName} adlı etkinlik için "{$paperTitle}" başlıklı öneriyi {$reviewDueDate} tarihine kadar değerlendirmeyi kabul ettiğiniz için teşekkür ederiz.
+
+{$editorialContactSignature}</body>
+		<description></description>
+	</email_text>
+	<email_text key="PASSWORD_RESET">
+		<subject>Şifre Yenileme</subject>
+		<body>{$siteTitle} sitesi için kullanıcı şifreniz başarıyla sıfırlandı. Lütfen, etkinlikle ilgili işlemleriniz için gerekli olan, yeni kullanıcı adı ve şifrenizi saklayınız.
+
+Kullanıcı adınız: {$username}
+Yeni şifreniz: {$password}
+
+{$principalContactSignature}</body>
+		<description></description>
+	</email_text>
+	<email_text key="NOTIFICATION_MAILLIST">
+		<subject>{$siteTitle} 'dan yeni ileti</subject>
+		<body>{$siteTitle} 'dan yeni bir iletiniz var:
+--
+{$notificationContents}
+
+Link: {$url}
+--
+İleti e-postalarını almak istemiyorsanız, lütfen {$unsubscribeLink} adresine gidip e-posta adresinizi ve şifrenizi giriniz.
+
+{$principalContactSignature}</body>
+		<description></description>
+	</email_text>
+	<email_text key="NOTIFICATION_MAILLIST_WELCOME">
+		<subject>{$siteTitle} e-posta listemize hoşgeldiniz!</subject>
+		<body>{$siteTitle} 'den bildirim almak üzere kayıt oldunuz.
+			
+Lütfen talebinizi onaylamak ve e-posta adresinizi mail listesine eklemek için {$confirmLink} linkine tıklayınız. 
+
+Eğer bildirim e-postaları almak istemiyorsanız, lütfen {$unsubscribeLink} linkine gidin ve e-posta adresiniz ile şifrenizle giriş yapınız.
+
+E-posta bildirimini önlemek için şifreniz: {$password}
+
+{$principalContactSignature}</body>
+		<description></description>
+	</email_text>
+	<email_text key="NOTIFICATION_MAILLIST_PASSWORD">
+		<subject>{$siteTitle} için e-posta bildirim listesi bilgisi</subject>
+		<body>E-posta bildirimlerini önlemek için yeni şifreniz: {$password}
+
+Eğer bildirim e-postaları almak istemiyorsanız, lütfen {$unsubscribeLink} linkine gidin ve e-posta adresiniz ile şifrenizle giriş yapınız.
+
+{$principalContactSignature}</body>
+		<description></description>
+	</email_text>
+	<email_text key="PASSWORD_RESET_CONFIRM">
+		<subject>Şifre Yenileme Doğrulama</subject>
+		<body>{$siteTitle} web sitesi için şifre yenileme talebi aldık.
+
+Eğer talebi siz yapmadıysanız, lütfen bu e-postayı dikkate almayınız. Bu durumda şifreniz değiştirilmeyecektir. Eğer şifrenizi yenilemek istiyorsanız lütfen aşağıdaki linke tıklayınız.
+
+Şifremi yenile: {$url}
+
+{$principalContactSignature}</body>
+		<description></description>
+	</email_text>
+	<email_text key="USER_VALIDATE">
+		<subject>Hesabınızı Doğrulayın</subject>
+		<body>{$userFullName}
+
+{$conferenceName} adlı etkinlikte bir hesap açtınız, ancak bunu kullanmaya başlamadan önce e-posta adresinizi doğrulamanız gerekmektedir. Bunu yapmak için, aşağıdaki linke tıklayınız:
+
+{$activateUrl}
+
+Teşekkürler,
+{$principalContactSignature}</body>
+		<description></description>
+	</email_text>
+	<email_text key="SUBMISSION_ACK">
+		<subject>Başvurunuz Alındı</subject>
+		<body>{$authorName}:
+
+{$conferenceName} adlı etkinliğe göndermiş olduğunuz "{$paperTitle}" başlıklı gönderiniz için teşekkür ederiz. Kullanmakta olduğumuz online yönetim sistemi sayesinde etkinlik web sitesine giriş yaparak gönderinizin editoryal sürecini takip edebilirsiniz.
+
+Bildiri URL'si: {$submissionUrl}
+Kullanıcı Adı: {$authorUsername}
+
+Herhangi bir sorunuz olduğu takdirde, bağlantı kurmaktan çekinmeyiniz. 
+
+{$editorialContactSignature}</body>
+		<description></description>
+	</email_text>
+	<email_text key="SUBMISSION_UPLOAD_ACK">
+		<subject>Gönderi yükleme onayı</subject>
+		<body>{$authorName}:
+
+{$conferenceName} adlı etkinlik için "{$paperTitle}" başlıklı sunumunuzu yüklediğiniz için teşekkür ederiz. Kullanmakta olduğumuz online yönetim sistemi sayesinde etkinlik web sitesine giriş yaparak gönderinizin editoryal sürecini takip edebilirsiniz.
+
+Bildiri URL'si: {$submissionUrl}
+Kullanıcı Adı: {$authorUsername}
+
+Herhangi bir sorunuz olduğu takdirde, bağlantı kurmaktan çekinmeyiniz. 
+
+{$editorialContactSignature}</body>
+		<description></description>
+	</email_text>
+	<email_text key="SUBMISSION_UNSUITABLE">
+		<subject>Uygun olmayan başvuru</subject>
+		<body>{$authorName},
+
+"{$paperTitle}" adlı başvurunuz ile ilgili yapılan ön değerlendirmede sonucunda, önerinizin {$conferenceName} adlı etkinlik kapsamı ve odağına uymadığına karar verilmiştir. İlginiz için teşekkür ederiz.
+
+{$editorialContactSignature}</body>
+		<description></description>
+	</email_text>
+	<email_text key="SUBMISSION_COMMENT">
+		<subject>Başvuru Yorumu</subject>
+		<body>{$name}:
+
+{$commentName} {$conferenceName} 'ndaki "{$paperTitle}" gönderiminize yorum yapmıştır.
+
+{$comments}</body>
+		<description></description>
+	</email_text>
+	<email_text key="SUBMISSION_DECISION_REVIEWERS">
+		<subject>Kararımız "{$paperTitle}"</subject>
+		<body>{$conferenceName} adlı etkinlik için "{$paperTitle}" başlıklı gönderinin hakemlerinden biri olarak, yazarın kendisine gönderilen değerlendirmeleri ve editör kararını gönderiyorum. Bu sürece olan önemli katkılarınızdan dolayı tekrar teşekkür ederiz.
+ 
+{$editorialContactSignature}
+
+{$comments}</body>
+		<description></description>
+	</email_text>
+	<email_text key="DIRECTOR_ASSIGN">
+		<subject>Yönetici Atama(Director)</subject>
+		<body>{$editorialContactName}:
+
+{$conferenceName} için "{$paperTitle}," isimli gönderi değerlendirmeniz için atanmıştır. Değerlendirme sürecindeki rolünüz "Bölüm Yöneticisi" olarak atanmıştır.
+
+Gönderi URL'si: {$submissionUrl}
+Kullanıcı Adı: {$directorUsername}
+
+Teşekkürler,
+{$editorialContactSignature}</body>
+		<description></description>
+	</email_text>
+	<email_text key="REVIEW_DECLINE">
+		<subject>Değerlendiremeyeceğim</subject>
+		<body>{$editorialContactName}:
+
+{$conferenceName} adlı etkinlik için {$paperTitle} başlıklı gönderiyi değerlendiremeyeceğimi üzüntülerimle bildiririm. Bu görev için beni düşündüğünüzden dolayı teşekkür ederim. Gelecekte de size yardımcı olmayı dilerim.
+
+{$reviewerName}</body>
+		<description></description>
+	</email_text>
+	<email_text key="REVIEW_COMPLETE">
+		<subject>Hakem Değerlendirmesi Tamamlandı</subject>
+		<body>{$editorialContactName}:
+
+{$conferenceName} adlı etkinlik için "{$paperTitle}" başlıklı önerinin değerlendirmesini bitirdim ve önerilerim "{$recommendation}" şeklindedir.
+
+{$reviewerName}</body>
+		<description></description>
+	</email_text>
+	<email_text key="REVIEW_ACK">
+		<subject>Metin Değerlendirme Onayı</subject>
+		<body>{$reviewerName}:
+
+{$conferenceName} 'ndaki "{$paperTitle}," isimli gönderiyi değerlendirmeyi tamamladığınız için teşekkür ederim. Çalışmalarımızın kalitelerinin arttırılması konusundaki katkılarınızdan dolayı teşekkür ederim.
+
+{$editorialContactSignature}</body>
+		<description></description>
+	</email_text>
+	<email_text key="REVIEW_REMIND">
+		<subject>Hatırlatma: Başvuru değerlendirmesi</subject>
+		<body>{$reviewerName}:
+
+{$conferenceName} için gönderilmiş olan , "{$paperTitle}," başlıklı gönderinin değerlendirmesini hatırlatmak istiyoruz. Değerlendirmenin {$reviewDueDate} tarihine kadar tamamlanmış olmasını bekliyorduk. En kısa sürede değerlendirmenizi almaktan memnuniyet duyacağız.
+
+Etkinlik web sitesi için kullanıcı adı ve şifreniz ile ilgili bir sorun yaşıyorsanız, şifrenizi sıfırlamak için {$passwordResetUrl} linkini kullanabilirsiniz. Böylece kullanıcı adınız ve şifreniz size e-posta yolu ile iletilecektir.
+
+Gönderi URL'si: {$submissionReviewUrl}
+
+Sempozyum çalışmalarına yapacağınız bu büyük katkı bizim için oldukça önemlidir. Cevabınızı dört gözle bekliyorum.
+
+{$editorialContactSignature}</body>
+		<description></description>
+	</email_text>
+	<email_text key="REVIEW_REMIND_ONECLICK">
+		<subject>Gönderi Değerlendirme Hatırlatması</subject>
+		<body>{$reviewerName}:
+
+{$conferenceName} için gönderilmiş olan , "{$paperTitle}," isimli gönderi değerlendirmeniz için nazik bir hatırlatma. Değerlendirmenin {$reviewDueDate} tarihine kadar tamamlanmış olmasını umuyorduk. Hazırlayabildiğiniz en kısa sürede gönderiyi teslim almaktan memnuniyet duyacağız.
+
+Gönderi URL'si: {$submissionReviewUrl}
+
+Sempozyum çalışmalarına yapacağınız bu büyük katkı bizim için oldukça önemlidir. Cevabınızı dört gözle bekliyorum.
+
+{$editorialContactSignature}</body>
+		<description></description>
+	</email_text>
+	<email_text key="REVIEW_REMIND_AUTO">
+		<subject>Otomatik Hatırlatma; Başvuru değerlendirmesi</subject>
+		<body>{$reviewerName}:
+
+{$conferenceName} için gönderilmiş olan , "{$paperTitle}," isimli gönderi değerlendirmeniz için nazik bir hatırlatma. Değerlendirmenin {$reviewDueDate} tarihine kadar tamamlanmış olmasını umuyorduk. Bu mesaj otomatik olarak oluşturulmaktadır ve değerlendirme tarihinin geçmesi ile birlikte otomatik olarak gönderilmiştir. Hazırlayabildiğiniz en kısa sürede gönderiyi teslim almaktan memnuniyet duyacağız.
+
+Sempozyum web-sitesi için kullanıcı adı ve şifreniz ile ilgili bir sorun yaşıyorsanız, şifrenizi sıfırlamak için {$passwordResetUrl} linkini kullanabilirsiniz. Böylece kullanıcı adınız ve şifreniz size e-posta yolu ile iletilecektir.
+
+Gönderi URL'si: {$submissionReviewUrl}
+
+Sempozyum çalışmalarına yapacağınız bu büyük katkı bizim için oldukça önemlidir. Cevabınızı dört gözle bekliyorum.
+
+{$editorialContactSignature}</body>
+		<description></description>
+	</email_text>
+	<email_text key="REVIEW_REMIND_AUTO_ONECLICK">
+		<subject>Otomatik Hatırlatma; Başvuru değerlendirmesi</subject>
+		<body>{$reviewerName},
+
+{$conferenceName} için gönderilmiş olan, "{$paperTitle}," başlıklı gönderi değerlendirmeniz hatırlatma yapmak istedik. Değerlendirmenin {$reviewDueDate} tarihine kadar tamamlanmış olmasını bekliyorduk. Bu mesaj otomatik olarak oluşturulmaktadır ve değerlendirme tarihinin geçmesi ile birlikte otomatik olarak gönderilmiştir. Hazırlayabildiğiniz en kısa sürede değerlendirmeyi teslim almaktan memnuniyet duyacağız.
+
+Gönderi URL'si: {$submissionReviewUrl}
+
+Sempozyum çalışmalarına yapacağınız bu büyük katkı bizim için oldukça önemlidir. 
+
+Saygılarımızla,
+
+{$editorialContactSignature}</body>
+		<description></description>
+	</email_text>
+	<email_text key="SUBMISSION_ABSTRACT_ACCEPT">
+		<subject>Özete ilişkin Karar</subject>
+		<body>{$authorName},
+
+{$paperTitle} başlıklı özetiniz {$conferenceDate} tarihinde, {$locationCity}'da düzenlenecek olan {$conferenceTitle} adlı etkinlikte sunulmak üzere kabul edilmiştir.
+
+Saygılarımızla bilgilerinize sunarız.
+{$editorialContactSignature}</body>
+		<description></description>
+	</email_text>
+	<email_text key="SUBMISSION_ABSTRACT_DECLINE">
+		<subject>Özete ilişkin karar</subject>
+		<body>{$authorName},
+
+"{$paperTitle}" başlıklı özet gönderinizin değerlendirme süreci tamamlanmıştır. Sonuç olarak...
+
+{$editorialContactSignature}</body>
+		<description></description>
+	</email_text>
+	<email_text key="SUBMISSION_ABSTRACT_REVISE">
+		<subject>Özete ilişkin karar</subject>
+		<body>{$authorName},
+
+"{$paperTitle}" başlıklı gönderinizin değerlendirilmesinin ardından, gerekli düzeltmeler yapıldığı takdirde {$conferenceTitle} adlı etkinlikte sunulmasının uygun olduğuna kara verilmiştir.
+
+Saygılarımızla bilgilerinize sunarız.
+
+{$editorialContactSignature}</body>
+		<description></description>
+	</email_text>
+	<email_text key="SUBMISSION_PAPER_ACCEPT">
+		<subject>Bildiri için editör kararı</subject>
+		<body>{$authorName}:
+
+{$paperTitle} başlıklı gönderiniz {$conferenceDate} tarihinde {$locationCity}'da düzenlenecek olan {$conferenceTitle} adlı etkinlikte sunulmak üzere kabul edilmiştir. 
+
+Saygılarımızla bilgilerinize sunarız.
+
+{$editorialContactSignature}</body>
+		<description></description>
+	</email_text>
+	<email_text key="SUBMISSION_PAPER_DECLINE">
+		<subject>Bildiri için editör kararı</subject>
+		<body>{$authorName},
+
+"{$paperTitle}" başlıklı göderinizle ilgili değerlendirmemizi tamamlamış bulunmaktayız. Sonuç olarak...
+
+{$editorialContactSignature}</body>
+		<description></description>
+	</email_text>
+	<email_text key="SUBMISSION_PAPER_REVISE">
+		<subject>Bildiri için editör kararı</subject>
+		<body>{$authorName},
+
+"{$paperTitle}" başlıklı gönderinizin değerlendirilmesinin ardından, gerekli düzeltmeler yapıldığı takdirde {$conferenceTitle} adlı etkinlikte sunulmasının uygun olduğuna kara verilmiştir.
+
+Saygılarımızla bilgilerinize sunarız.
+
+{$editorialContactSignature}</body>
+		<description></description>
+	</email_text>
+	<email_text key="SUBMISSION_PAPER_INVITE">
+		<subject>Bildiri için editör kararı</subject>
+		<body>{$authorName},
+
+{$paperTitle} başlıklı özetiniz {$conferenceDate} tarihinde {$locationCity}'da düzenlenecek olan {$conferenceTitle} adlı etkinlikte sunulmak üzere kabul edilmiştir. Bildiri metninizi hazırlayarak değerlendirme için sunabilirsiniz.
+
+Saygılarımızla bilgilerinize sunarız.
+
+{$editorialContactSignature}</body>
+		<description></description>
+	</email_text>
+	<email_text key="REGISTRATION_NOTIFY">
+		<subject>Kayıt Bildirimi</subject>
+		<body>{$registrantName},
+
+{$conferenceName} için Online Sistemi'mize {$registrationType} şeklinde kaydolmuş blunmaktasınız.
+
+Sadece kayıtlı olanların ulaşabilecekleri içeriğe ulaşmak için kullanıcı adınızla "{$username}" sisteme giriş yapınız.
+
+Sisteme bir defa giriş yaptıktan sonra profil bilgilerinizi ve şifrenizi istediğiniz zaman değiştirebilirsiniz.
+
+Eğer kurumsal kaydınız varsa, kurumunuzda kullanıcı girişi yapmanıza gerek olamayacaktır. Kayıt içeriği talebi sistem tarafından otomatik olarak doğrulanacaktır.
+
+Herhangi bir sorunuz olduğu takdirde, lütfen bağlantı kurmaktan çekinmeyiniz.
+
+{$registrationContactSignature}</body>
+		<description></description>
+	</email_text>
+	<email_text key="OPEN_ACCESS_NOTIFY">
+		<subject>Açık Erişim Sayısı</subject>
+		<body>Okurlar,
+
+{$conferenceName} adlı etkinlik aşağıdaki konu ile ilgili olarak açık erişim biçiminde ulaşılabilir duruma gelmiştir. Sizi içindekiler tablosunu gözden geçirmeye, sonrasında ise web-sitemizi ({$conferenceUrl}) ziyaret etmeye, metinleri ve ilginizi çeken öğeleri incelemeye davet ediyoruz.
+
+Çalışmamız konusunda devam eden ilginiz için teşekkür ederiz.
+
+{$editorialContactSignature}</body>
+		<description></description>
+	</email_text>
+	<email_text key="MANUAL_PAYMENT_RECEIVED">
+		<subject>{$conferenceName} için ödemeniz alındı</subject>
+		<body>{$registrantName}:
+
+{$conferenceName} için ödemeniz alınmıştır ve hesabınıza kaydedilmiştir.
+
+Herhangi bir sorunuz olduğu takdirde, benimle iletişime geçmekten çekinmeyiniz.
+
+{$registrationContactSignature}</body>
+		<description></description>
+	</email_text>
+</email_texts>

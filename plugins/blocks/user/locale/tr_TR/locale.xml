@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * locale.xml
+  *
+  * Copyright (c) 2000-2012 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the tr_TR (Türkçe) locale.
+  *
+  * $Id$
+  -->
+ 
+<locale name="tr_TR" full_name="Türkçe">
+	<message key="plugins.block.user.displayName">Kullanıcı Blogu</message>
+	<message key="plugins.block.user.description">Bu eklenti kenar çubuğu kullanıcı hesap araçları sağlar (ör: giriş, çıkış, profil bağlantısı, vb.).</message>
+	<message key="plugins.block.user.loggedInAs">Oturum açan üye:</message>
+	<message key="plugins.block.user.myConferences">Konferanslarım</message>
+	<message key="plugins.block.user.myProfile">Profilim</message>
+	<message key="plugins.block.user.logout">Çıkış</message>
+	<message key="plugins.block.user.signOutAsUser">Kullanıcı olarak çık</message>
+	<message key="plugins.block.user.rememberMe">Beni hatırla</message>
+</locale>

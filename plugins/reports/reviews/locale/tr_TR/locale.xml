@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * locale.xml
+  *
+  * Copyright (c) 2000-2012 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the tr_TR (Türkçe) locale.
+  *
+  * $Id$
+  -->
+
+<locale name="tr_TR" full_name="Türkçe">
+	<message key="plugins.reports.reviews.displayName">Değerlendirme Raporu</message>
+	<message key="plugins.reports.reviews.description">Bu eklenti bir konferanstaki değerlendirme görevlerinin listesini içeren bir CSV raporu sağlar.</message>
+	<message key="plugins.reports.reviews.reviewerId">Hakem ID</message>
+	<message key="plugins.reports.reviews.reviewer">Hakem</message>
+	<message key="plugins.reports.reviews.dateAssigned">Atanma Tarihi</message>
+	<message key="plugins.reports.reviews.dateNotified">Bildirim Tarihi</message>
+	<message key="plugins.reports.reviews.dateConfirmed">Doğrulama Tarihi</message>
+	<message key="plugins.reports.reviews.dateCompleted">Tamamlanma Tarihi</message>
+	<message key="plugins.reports.reviews.dateReminded">Hatırlatma Tarihi</message>
+</locale>
+

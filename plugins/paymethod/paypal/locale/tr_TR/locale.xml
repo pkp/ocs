@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * locale.xml
+  *
+  * Copyright (c) 2006-2009 Gunther Eysenbach, Juan Pablo Alperin, MJ Suhonos
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the tr_TR (Türkçe) locale.
+  *
+ -->
+ 
+<locale name="tr_TR" full_name="Türkçe">
+	<message key="plugins.paymethod.paypal.displayName">PayPal</message>
+
+	<!-- PayPal Settings Form -->
+	<message key="plugins.paymethod.paypal.settings.paypalenable">PayPal'ı Devreye Sok</message>
+	<message key="plugins.paymethod.paypal.settings.paypalurl">IPN URL</message>
+	<message key="plugins.paymethod.paypal.settings.paypalurl.description"><![CDATA[Bu bir e-posta hesabı gibi satıcıların hesap olarak kullandığı PayPal kullanıcı adıdır.
+Deneme için: <u>https://www.sandbox.paypal.com/cgi-bin/webscr</u>; 
+Üretim sistemleri için <u>https://www.paypal.com/cgi-bin/webscr</u>.]]></message>
+	<message key="plugins.paymethod.paypal.settings.selleraccount">Satıcı Hesabı</message>
+	<message key="plugins.paymethod.paypal.settings.selleraccount.description">Bu satıcı hesabının kullanılabilmesi için PayPal hesabı kullanıcı adıdır. Genellikle bir e-posta adresidir.</message>
+	<message key="plugins.paymethod.paypal.settings.curlNotInstalled">Dikkat: PHP tarafından desteklenen CURL yüklü değildir. PayPal ödemelerinin desteklenmesinde CURL kütüphanesine gereksinim vardır ve bu yüklenmedikçe çalıştırılamaz.</message>
+	<message key="plugins.paymethod.paypal.settings">PayPal Ayarları</message>
+
+	<!-- PayPal -->
+	<message key="plugins.paymethod.paypal">PayPal Ödeme</message>
+	<message key="plugins.paymethod.paypal.description"><![CDATA[PayPal Eklentisi; kullanıcılar PayPay üyesi olsalar da olmasalar da başlıca kredi kartlarıyla, internet çekleriyle sistem üzerinden ödeme yapmasına olanak sağlar. Konferans yöneticisi bu ödeme seçeneğinin kullanılabilmesi için bir <a href="http://www.paypal.com" target="_new">PayPal Business Account</a> oluşturmalıdır.]]></message>
+	<message key="plugins.paymethod.paypal.warning">Devam a basmak sizi PayPal sitesine yönlendirecektir. PayPal ile ödemenizi yaptıktan sonra siteye dönmek için "Return to Merchant" butonuna basabilirsiniz.</message>
+	<message key="plugins.paymethod.paypal.purchase.amount">Miktar</message>
+	<message key="plugins.paymethod.paypal.purchase.description">Açıklama</message>
+	<message key="plugins.paymethod.paypal.purchase.cancelled">Ödemeniz iptal edildi.</message>
+	<message key="plugins.paymethod.paypal.purchase.cancelled.title">Ödeme İptali</message>
+</locale>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * locale.xml
+  *
+  * Copyright (c) 2000-2012 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Google Analytics plugin localization strings for the tr_TR (Türkçe) locale.
+  *
+  * $Id$
+  -->
+ 
+<locale name="tr_TR" full_name="Türkçe">
+
+	<!-- Google Analytics -->
+	<message key="plugins.generic.googleAnalytics.displayName">Google Analiz Eklentisi</message>
+	<message key="plugins.generic.googleAnalytics.description"><![CDATA[OCS, Google Analytics ile birleştirildi. Google web sayfa akışı uygulamayı analiz ediyor. Bu işlem Google Analytics hesabınız olmasını gerektiriyor. Lütfen daha fazla bilgi için: <a href="http://www.google.com/analytics/" title="Google Analytics site">Google Analytics site</a>]]></message>
+	<message key="plugins.generic.googleAnalytics.enabled">Google Analiz Eklentisi etkinleştirildi.</message>
+	<message key="plugins.generic.sgoogleAnalyticsehl.disabled">Google Analiz Eklentisi devre dışı bırakıldı.</message>
+	<!-- Google Analytics Settings Management -->
+	<message key="plugins.generic.googleAnalytics.manager.settings">Ayarlar</message>
+	<message key="plugins.generic.googleAnalytics.manager.googleAnalyticsSettings">Google Analiz Ayarları</message>
+	<message key="plugins.generic.googleAnalytics.manager.settings.description"><![CDATA[<p>Google Analizi aktif hale getiren bu eklenti bu dergi için web sitesinin kullanımını ve akışının toplanması ve anali,z edilmesi için kullanılabilir. Bu eklenti Google .analiz hesabınızın kurulu olmasını gerektirir. Daha fazla bilgi için: <a href="http://www.google.com/analytics/" title="Google Analytics site">Google Analytics site</a> .</p><p>İstatistikler toplanana ve raporlaştırılana kadar Google Analizin 24 saate ihtiyacı vardır. Bu süre boyunca 'Check Status' işlevi dergi için gerekli takip kodunu tespit edip edemediğini doğru biçimde raporlayamayabilir.</p>]]></message>
+	<message key="plugins.generic.googleAnalytics.manager.settings.googleAnalyticsSiteId">Hesap Numarası</message>
+	<message key="plugins.generic.googleAnalytics.manager.settings.googleAnalyticsSiteIdInstructions">Google Analiz ile sitenizin takip kodunu görüntülemek için 'Check Status' a tıklayınız. Yasal takip kodu için hesap numarası şu takip koduyla gösterilmiştir: _uacct = "###". Yeni takip kodu için hesap numarası şu takip koduyla gösterilmiştir: var pageTracker = _gat._getTracker("###").  ### a karşılık gelen metni giriniz.</message>
+	<message key="plugins.generic.googleAnalytics.manager.settings.googleAnalyticsSiteIdRequired">Lütfen hesap numarasını giriniz.</message>
+	<message key="plugins.generic.googleAnalytics.manager.settings.trackingCode">Takip Kodu</message>
+	<message key="plugins.generic.googleAnalytics.manager.settings.trackingCodeRequired">Lütfen kullanmak için takip kodunu seçiniz.</message>
+	<message key="plugins.generic.googleAnalytics.manager.settings.urchin">Yasal takip kodu (urchin.js)</message>
+	<message key="plugins.generic.googleAnalytics.manager.settings.ga">Yeni takip kodu (ga.js)</message>
+</locale>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * locale.xml
+  *
+  * Copyright (c) 2000-2012 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the tr_TR (Türkçe) locale.
+  *
+  * $Id$
+  -->
+ 
+<locale name="tr_TR" full_name="Türkçe">
+	<message key="plugins.generic.customBlockManager.displayName">Özel Blok Yöneticisi</message>
+	<message key="plugins.generic.customBlockManager.description">Bu eklenti özel kenar çubuğu blokları yönetmenizi sağlar. Burada oluşturduğunuz her eklentinin ayarlarından blokları düzenleyebilirsiniz.</message>	
+	<message key="plugin.generic.customBlockManager.introduction"><![CDATA[Bu eklentiyi kenar çubuğu eklentileri eklemek veya silmek için kullanabilirsiniz. Daha sonra  <a href="{$systemPluginsUrl}">System Plugins</a> sayfasından içerikleri düzenleyebilirsiniz(Blok Eklenti Bölümünden). eklenti kenar çubuğunda istenen konuma yerleştirmek için <a href="{$setupStep4}">Setup step 4</a> adresine gidiniz.]]></message>
+	<message key="plugins.generic.customBlockManager.settings">Ayarlar</message>
+	<message key="plugins.generic.customBlockManager.blockName">Blok Adı</message>	
+	<message key="plugins.generic.customBlockManager.action">Eylem</message>	
+	<message key="plugins.generic.customBlockManager.delete">Sil</message>	
+	<message key="plugins.generic.customBlockManager.addBlock">Blok Ekle</message>	
+
+	<message key="plugins.generic.customBlock.content">İçerik</message>
+	<message key="plugins.generic.customBlock.saved">Blok içerik kaydedildi.</message>
+	<message key="plugins.generic.customBlock.nameSuffix">(Özel Blok Eklentisi)</message>
+	<message key="plugins.generic.customBlock.description">Bu kullanıcı tarafından oluşturulan bir bloktur.</message>
+	<message key="plugins.generic.customBlock.editContent">Yanbar İçeriğini Düzenle</message>
+	<message key="plugins.generic.customBlock.contentRequired">Bazı içerik gerekli. Bu bloğu silmek isterseniz, bunu Blog Yönetim Eklentisi ile ayarların 5.adımından blog seçimini kaldırarak yapabilirsiniz</message>
+	<message key="plugins.generic.customBlock.edit">Düzenle</message>
+</locale>

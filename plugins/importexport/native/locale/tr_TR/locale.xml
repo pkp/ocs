@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * locale.xml
+  *
+  * Copyright (c) 2000-2012 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the tr_TR (Türkçe) locale.
+  *
+  * $Id$
+  -->
+
+<locale name="tr_TR" full_name="Türkçe">
+	<message key="plugins.importexport.native.displayName">Makale XML Eklentisi</message>
+	<message key="plugins.importexport.native.description">Bildirileri içe ve dışa aktarma</message>
+
+	<message key="plugins.importexport.native.cliUsage"><![CDATA[Usage: {$scriptName} {$pluginName} [command] ...
+Commands:
+	import [xmlFileName] [conference_path] [sched_conf_path] [user_name] ...
+	export [xmlFileName] [conference_path] [sched_conf_path] papers [paperId1] [paperId2] ...
+	export [xmlFileName] [conference_path] [sched_conf_path] paper [paperId]
+
+Additional parameters are required for importing data as follows, depending
+on the root node of the XML document.
+
+If the root node is <paper> or <papers>, additional parameters are required.
+The following formats are accepted:
+
+{$scriptName} {$pluginName} import [xmlFileName] [conference_path]
+	[sched_conf_path] [user_name] track_id [trackId]
+
+{$scriptName} {$pluginName} import [xmlFileName] [conference_path]
+	[sched_conf_path] [user_name] track_name [trackName]
+
+{$scriptName} {$pluginName} import [xmlFileName] [conference_path]
+	[sched_conf_path] [user_name] track_abbrev [trackAbbrev]]]></message>
+	<message key="plugins.importexport.native.export">Verileri Dışa aktarma</message>
+	<message key="plugins.importexport.native.export.tracks">Parçaları dışa aktarma</message>
+	<message key="plugins.importexport.native.export.papers">Bildirileri dışa aktarma</message>
+
+	<message key="plugins.importexport.native.selectPaper">Seçili bildiri</message>
+
+	<message key="plugins.importexport.native.import.papers">Bildirileri içe aktarma</message>
+	<message key="plugins.importexport.native.import.papers.description">Bir ya da daha fazla bildiriyi içeren dosyayı içe aktarıyorsunuz. Eğer tümünü aynı parça içerisinde içe aktarmak istemiyorsanız, ya farklı XML dosyalarına ayırabileceğiniz ya da içe aktardıktan sonra uygun parçalar içerisine taşıyabileceğiniz bu bildirileri içeren bir parça seçmelisiniz.</message>
+
+	<message key="plugins.importexport.native.import">Verileri içe aktarma</message>
+	<message key="plugins.importexport.native.import.description"><![CDATA[Bu eklenti native.dtd belge türü olarak tanımlanmış veri içe aktarımını destekler. Desteklenen dizin kökü ağları: &lt;paper&gt; and &lt;papers&gt;.]]></message>
+
+	<message key="plugins.importexport.native.import.error">İçe aktarma hatası</message>
+	<message key="plugins.importexport.native.import.error.description">İçe aktarma sırasında bir veya daha fazla hata oluştu. İçe aktarma dosya biçimini doğru özellikleri ile uyumlu olduğundan emin olmak için kontrol edin. İçe aktarma hataları spesifik detayları aşağıda listelenmiştir.</message>
+
+	<message key="plugins.importexport.native.cliError">HATA:</message>
+	<message key="plugins.importexport.native.error.uploadFailed">Yükleme başarısız; lütfen sunucunuzun yapılandırmasını ve PHP'niz için dosyanın büyük olmadığını ve sunucunuzun yüklemeye izin verip vermediğini kontrol edin.</message>
+	<message key="plugins.importexport.native.error.unknownUser">Belirtilen kullanıcı, "{$userName}", bulunmamaktadır.</message>
+	<message key="plugins.importexport.native.error.unknownConference">Belirtilen konferans ya da planlanan konferans yolu, "{$conferencePath}" ya da "{$schedConfPath}" (sırasıyla), bulunmamaktadır.</message>
+	<message key="plugins.importexport.native.export.error.couldNotWrite">Dosyaya yazamadı "{$fileName}".</message>
+	<message key="plugins.importexport.native.export.error.trackNotFound">Hiçbir parça belirticisiyle eşleştirilemedi "{$trackIdentifier}".</message>
+	<message key="plugins.importexport.native.export.error.paperNotFound">Belirtilen bildiri ID si ile hiçbir bildiri eşleştirilemedi "{$paperId}".</message>
+	<message key="plugins.importexport.native.import.error.unsupportedRoot">Bu eklenti sağlanan kök düğümünü desteklemiyor "{$rootName}". Lütfen dosyanın düzgün biçimlendirildiğinden emin olun ve tekrar deneyin.</message>
+
+	<message key="plugins.importexport.native.import.error.invalidBooleanValue">Geçersiz bir mantıksal değer "{$value}" belirtildi. Lütfen "true" ya da "false" kullanın.</message>
+	<message key="plugins.importexport.native.import.error.invalidDate">Geçersiz bir tarih "{$value}" belirtildi.</message>
+	<message key="plugins.importexport.native.import.error.unknownEncoding">Veriler bilinmeyen bir kodlama türü kullanılarak gömüldü. "{$type}".</message>
+	<message key="plugins.importexport.native.import.error.couldNotWriteFile">"{$originalName}" yerel bir kopyası kaydedilemiyor.</message>
+	<message key="plugins.importexport.native.import.error.illegalUrl">Belirlenen URL "{$url}" yasa dışıdır. Web-gönderim aktarımları sadece http, https, ftp, ya da ftps türlerini destekler.</message>
+	<message key="plugins.importexport.native.import.error.unknownSuppFileType">Bilinmeyen tamamlayıcı dosya türü "{$suppFileType}" belirlendi.</message>
+	<message key="plugins.importexport.native.import.error.couldNotCopy">Belirlenen URL "{$url}" yerel dosyalara kopyalanamaz.</message>
+	<message key="plugins.importexport.native.import.error.paperTitleLocaleUnsupported">("{$paperTitle}") metni için sağlanan metin başlığı bu konferansın desteklemediği ("{$locale}") lokalinden sağlanmaktadır.</message>
+	<message key="plugins.importexport.native.import.error.paperAbstractLocaleUnsupported">"{$paperTitle}" metni için sağlanan metin özeti bu konferansın desteklemediği ("{$locale}") lokalinde sağlanmaktadır.</message>
+	<message key="plugins.importexport.native.import.error.galleyLabelMissing">"{$trackTitle}" izindeki "{$paperTitle}" metninin bir galeri etiketi kaybedilmiştir.</message>
+	<message key="plugins.importexport.native.import.error.suppFileMissing">"{$trackTitle}" izindeki "{$paperTitle}" metninin bir tamamlayıcı dosyası kaybedilmiştir.</message>
+	<message key="plugins.importexport.native.import.error.galleyFileMissing">"{$trackTitle}" izindeki "{$paperTitle}" metninin bir galeri dosyası kaybedilmiştir.</message>
+
+	<message key="plugins.importexport.native.import.error.trackTitleLocaleUnsupported">("{$trackTitle}") iz başlığı bu konferansın desteklemediği ("{$locale}") lokalinde sağlanmaktadır.</message>
+	<message key="plugins.importexport.native.import.error.trackAbbrevLocaleUnsupported">("{$trackAbbrev}") iz kısaltması bu konferansın desteklemediği ("{$locale}") lokalinde sağlanmaktadır.</message>
+	<message key="plugins.importexport.native.import.error.trackIdentifyTypeLocaleUnsupported">("{$trackIdentifyType}") iz tanımlama türü bu konferansın desteklemediği ("{$locale}") lokalinde sağlanmaktadır.</message>
+	<message key="plugins.importexport.native.import.error.trackPolicyLocaleUnsupported">("{$trackPolicy}") iz planı bu konferansın desteklemediği ("{$locale}") lokalinde sağlanmaktadır.</message>
+
+	<message key="plugins.importexport.native.import.error.trackTitleMismatch">The track title "{$track1Title}" and the track title "{$track2Title}" matched the different existing conference tracks.</message>
+	<message key="plugins.importexport.native.import.error.trackTitleMatch">The track title "{$trackTitle}" matched an existing conference track, but another title of this track doesn't match with another title of the existing conference track.</message>
+	<message key="plugins.importexport.native.import.error.trackAbbrevMismatch">The track abbreviation "{$track1Abbrev}" and the track abbreviation "{$track2Abbrev}" matched the different existing conference tracks.</message>
+	<message key="plugins.importexport.native.import.error.trackAbbrevMatch">The track abbreviation "{$trackAbbrev}" matched an existing conference track, but another abbreviation of this track doesn't match with another abbreviation of the existing conference track.</message>
+
+	<message key="plugins.importexport.native.import.error.paperDisciplineLocaleUnsupported">"{$paperTitle}"  metni için sağlanan metin disiplini bu konferansın desteklemediği ("{$locale}") lokalinde 
+ bulunmaktadır.</message>
+	<message key="plugins.importexport.native.import.error.paperTypeLocaleUnsupported">"{$paperTitle}"  metni için sağlanan metin türü bu konferansın desteklemediği ("{$locale}") lokalinde 
+ bulunmaktadır.</message>
+	<message key="plugins.importexport.native.import.error.paperSubjectLocaleUnsupported">"{$paperTitle}"  metni için sağlanan metin konusu bu konferansın desteklemediği ("{$locale}") lokalinde 
+ bulunmaktadır.</message>
+	<message key="plugins.importexport.native.import.error.paperSubjectClassLocaleUnsupported">"{$paperTitle}"  metni için sağlanan metin konu sınıflandırması bu konferansın desteklemediği ("{$locale}") lokalinde 
+ bulunmaktadır.</message>
+	<message key="plugins.importexport.native.import.error.paperCoverageGeoLocaleUnsupported">"{$paperTitle}"  metni için sağlanan coğrafik metin koruması bu konferansın desteklemediği ("{$locale}") lokalinde 
+ bulunmaktadır.</message>
+	<message key="plugins.importexport.native.import.error.paperCoverageChronLocaleUnsupported">"{$paperTitle}"  metni için sağlanan kronolojik metin koruması bu konferansın desteklemediği ("{$locale}") lokalinde 
+ bulunmaktadır.</message>
+	<message key="plugins.importexport.native.import.error.paperCoverageSampleLocaleUnsupported">"{$paperTitle}"  metni için sağlanan metin örneği koruması bu konferansın desteklemediği ("{$locale}") lokalinde 
+ bulunmaktadır.</message>
+	<message key="plugins.importexport.native.import.error.paperSponsorLocaleUnsupported">"{$paperTitle}"  metni için sağlanan metin destekleyicisi bu konferansın desteklemediği ("{$locale}") lokalinde 
+ bulunmaktadır.</message>
+
+	<message key="plugins.importexport.native.import.error.paperAuthorCompetingInterestsLocaleUnsupported">"{$paperTitle}"  metninin "{$authorFullName}" yazarı için sağlanan rakip ilgi alanları yazarları bu konferansın desteklemediği ("{$locale}") lokalinde 
+ bulunmaktadır.</message>
+	<message key="plugins.importexport.native.import.error.paperAuthorBiographyLocaleUnsupported">{$paperTitle}" metninin yazarı olan "{$authorFullName}" için sağlanan yazar biyografisi bu konferansın desteklemediği ("{$locale}") lokalinde sağlanmaktadır.</message>
+
+	<message key="plugins.importexport.native.import.error.galleyLocaleUnsupported">{$paperTitle}" metninin bir dizgisi bu konferansın desteklemediği ("{$locale}") lokalinde sağlanmaktadır.</message>
+
+	<message key="plugins.importexport.native.import.error.paperSuppFileTitleLocaleUnsupported">{$paperTitle}" metninin tamamlayıcı bir dosya başlığı "{$suppFileTitle}" bu konferansın desteklemediği ("{$locale}") lokalinde sağlanmaktadır.</message>
+	<message key="plugins.importexport.native.import.error.paperSuppFileCreatorLocaleUnsupported">{$paperTitle}" metninin tamamlayıcı "{$suppFileTitle}" dosyasının bir oluşturucusu bu konferansın desteklemediği ("{$locale}") lokalinde sağlanmaktadır.</message>
+	<message key="plugins.importexport.native.import.error.paperSuppFileSubjectLocaleUnsupported">{$paperTitle}" metninin tamamlayıcı "{$suppFileTitle}" dosyasının bir öznesi bu konferansın desteklemediği ("{$locale}") lokalinde sağlanmaktadır.</message>
+	<message key="plugins.importexport.native.import.error.paperSuppFileTypeOtherLocaleUnsupported">{$paperTitle}" metninin tamamlayıcı "{$suppFileTitle}" dosyasının özel bir türü bu konferansın desteklemediği ("{$locale}") lokalinde sağlanmaktadır.</message>
+	<message key="plugins.importexport.native.import.error.paperSuppFileDescriptionLocaleUnsupported">{$paperTitle}" metninin tamamlayıcı "{$suppFileTitle}" dosyasının bir açıklaması bu konferansın desteklemediği ("{$locale}") lokalinde sağlanmaktadır.</message>
+	<message key="plugins.importexport.native.import.error.paperSuppFilePublisherLocaleUnsupported">{$paperTitle}" metninin tamamlayıcı "{$suppFileTitle}" dosyasının bir yayımcısı bu konferansın desteklemediği ("{$locale}") lokalinde sağlanmaktadır.</message>
+	<message key="plugins.importexport.native.import.error.paperSuppFileSponsorLocaleUnsupported">"{$paperTitle}" metninin tamamlayıcı "{$suppFileTitle}" dosyasının bir destekleyicisi bu konferansın desteklemediği ("{$locale}") lokalinde sağlanmaktadır.</message>
+	<message key="plugins.importexport.native.import.error.paperSuppFileSourceLocaleUnsupported">"{$paperTitle}" metninin tamamlayıcı "{$suppFileTitle}" dosyasının kaynağı bu konferansın desteklemediği ("{$locale}") lokalinde sağlanmaktadır.</message>
+
+	<message key="plugins.importexport.native.import.success">İçe Aktarım Başarılı</message>
+	<message key="plugins.importexport.native.import.success.description">İçe Aktarım Başarıyla Sonuçlandı. Başarıyla içe aktarılan ögeler aşağıda listelenmiştir.</message>
+
+</locale>

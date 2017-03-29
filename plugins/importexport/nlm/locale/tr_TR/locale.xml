@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * locale.xml
+  *
+  * Copyright (c) 2000-2012 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the tr_TR (Türkçe) locale.
+  *
+  * $Id$
+  -->
+ 
+<locale name="tr_TR" full_name="Türkçe">
+	<message key="plugins.importexport.nlm.displayName">NLM XML Dışaktarım Eklentisi</message>
+	<message key="plugins.importexport.nlm.description">Metnin üstverisini dizinleme için, NLM ile eşleşen özetlere XLM formatında aktar.</message>
+
+	<message key="plugins.importexport.nlm.export">Dışa veri aktar</message>
+	<message key="plugins.importexport.nlm.export.papers">Makaleleri dışa aktar</message>
+	<message key="plugins.importexport.nlm.export.selectPaper">Seçilen makaleleri dışa aktar.</message>
+	
+	<message key="plugins.importexport.nlm.cliUsage">Usage: 
+{$scriptName} {$pluginName} [xmlFileName] [conference_path] makaleler [paperId1] [paperId2] ...</message>
+	<message key="plugins.importexport.nlm.cliError">Hata:</message>
+
+	<message key="plugins.importexport.nlm.export.error.paperNotFound">Özel bir makale ID si ile hiçbir yazı eşleştirilemedi "{$paperId}".</message>
+	<message key="plugins.importexport.nlm.export.error.unknownConference">Bilinmeyen konferans yolu {$conferencePath}</message>
+	<message key="plugins.importexport.nlm.export.error.couldNotWrite">Belirtilen dosya bulunamadı  "{$fileName}"</message>
+</locale>

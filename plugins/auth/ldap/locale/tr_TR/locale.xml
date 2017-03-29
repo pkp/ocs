@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * locale.xml
+  *
+  * Copyright (c) 2000-2012 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * LDAP authentication plugin localization strings for the tr_TR (Türkçe) locale.
+  *
+  * $Id$
+  -->
+ 
+<locale name="tr_TR" full_name="Türkçe">
+	<message key="plugins.auth.ldap.displayName">LDAP</message>
+	<message key="plugins.auth.ldap.description">Bu eklenti harici LDAP veri kaynağına karşı kimlik doğrulama ve kullanıcı hesaplarının senkronizasyonu için izin verir.</message>
+	
+	<message key="plugins.auth.ldap.settings">LDAP Ayarları</message>
+	<message key="plugins.auth.ldap.settings.hostname">Server sistem adı</message>
+	<message key="plugins.auth.ldap.settings.hostname.description">Örn, "ldap.example.com", ya da "ldaps://ldap.example.com" ( SSL yi kullanmak için)</message>
+	<message key="plugins.auth.ldap.settings.port">Sunucu bağlantı noktası</message>
+	<message key="plugins.auth.ldap.settings.port.description">Optional. Defaults to 389 (LDAP) or 636 (LDAP over SSL)</message>
+	<message key="plugins.auth.ldap.settings.basedn">Base DN</message>
+	<message key="plugins.auth.ldap.settings.basedn.description">E.g., "ou=people,dc=example,dc=com"</message>
+	<message key="plugins.auth.ldap.settings.managerdn">Yönetici DN</message>
+	<message key="plugins.auth.ldap.settings.managerdn.description">E.g., "cn=Manager,dc=example,dc=com"</message>
+	<message key="plugins.auth.ldap.settings.managerpwd">Yönetici şifresi</message>
+	<message key="plugins.auth.ldap.settings.managerpwd.description">Kullanıcı profili / parola eşitleme veya kullanıcı oluşturma seçenekleri etkinse yalnızca yönetici DN ve şifre gereklidir.
+LDAP sadece kimlik doğrulama için kullanılacak ise bu seçenekler ihmal edilebilir.</message>
+	<message key="plugins.auth.ldap.settings.uid">Hesap adı özniteliği</message>
+	<message key="plugins.auth.ldap.settings.uid.description">Değerini niteliği benzersiz böyle uid veya cn veya SAMAccountName olarak bir kullanıcı nesnesi tanımlar.</message>
+	<message key="plugins.auth.ldap.settings.pwhash">Şifre şifreleme</message>
+	<message key="plugins.auth.ldap.settings.pwhash.description"><![CDATA[Sunucuya depolanan parolalar için Hash formatı. SSHA önerilir (requires PHP >= 4.3.0).]]></message>
+	<message key="plugins.auth.ldap.settings.saslopt">SASL ayarları (opsiyonel)</message>
+	<message key="plugins.auth.ldap.settings.sasl"><![CDATA[Basit kimlik doğrulaması yerine SASL kullan ( PHP >= 5 gerektirir)]]></message>
+	<message key="plugins.auth.ldap.settings.saslmech">SASL yöntemi</message>
+	<message key="plugins.auth.ldap.settings.saslmech.description">Örn, "DIGEST-MD5"</message>
+	<message key="plugins.auth.ldap.settings.saslrealm">Erişim alanı</message>
+	<message key="plugins.auth.ldap.settings.saslauthzid">İstenen yetki ID</message>
+	<message key="plugins.auth.ldap.settings.saslprop">SASL güvenlik özellikleri</message>
+</locale>

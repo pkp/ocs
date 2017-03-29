@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * locale.xml
+  *
+  * Copyright (c) 2000-2012 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the tr_TR (Türkçe) locale.
+  *
+  * $Id$
+  -->
+ 
+<locale name="tr_TR" full_name="Türkçe">
+	<message key="plugins.importexport.users.displayName">Kullanıcılar XML eklentisi</message>
+	<message key="plugins.importexport.users.description">Kullanıcıları İçe ve Dışa Aktar</message>
+
+	<message key="plugins.importexport.users.cliUsage">Usage: {$scriptName} {$pluginName} [command] ...
+Commands:
+	import [xmlFileName] [sched_conf_path] [optional flags]
+	export [xmlFileName] [sched_conf_path]
+	export [xmlFileName] [sched_conf_path] [role_path1] [role_path2] ...
+
+Optional flags:
+	continue_on_error: If specified, do not stop importing users if an error occurs
+
+	send_notify: If specified, send notification emails containing usernames
+		and passwords to imported users
+
+Examples:
+	Import users into mySchedConf from myImportFile.xml, continuing on error:
+	{$scriptName} {$pluginName} import myImportFile.xml mySchedConf continue_on_error
+
+	Export all users from mySchedConf:
+	{$scriptName} {$pluginName} export myExportFile.xml mySchedConf
+
+	Export all users registered as reviewers, along with their reviewer roles only:
+	{$scriptName} {$pluginName} export myExportFile.xml mySchedConf reviewer</message>
+	<message key="plugins.importexport.users.import.importUsers">Kullanıcıları İçe Aktar</message>
+	<message key="plugins.importexport.users.import.instructions"><![CDATA[Bu zamanı belirlenmiş konferansa aktarmak için kullanıcı bilgisi içeren bir XLM veri dosyası seçiniz. Bu dosya formatındaki zamanı belirlenmiş konferansın detaylarına ilişkin yardım almak için:<br /><br /> Eğer içe aktarılan dosya sistemde zaten var olan herhangi bir kullanıcı adı ya da e-posta adresi içeriyorsa, o kullanıcılar için kullanıcı verisi aktarılmayacaktır ve kaydedilen her yeni görev var olan kullanıcılara atanacaktır.]]></message>
+	<message key="plugins.importexport.users.import.failedToImportUser">Kullanıcı içe aktarımında hata oluştu</message>
+	<message key="plugins.importexport.users.import.failedToImportRole">Kullanıcının göreve atanmasında hata oluştu</message>
+	<message key="plugins.importexport.users.import.dataFile">Kullanıcı bilgi dosyası</message>
+	<message key="plugins.importexport.users.import.sendNotify">İçe aktarılan her kullanıcı için kullanıcıların e-postasını ve şifresini içeren bir bildirim e-postası yolla.</message>
+	<message key="plugins.importexport.users.import.continueOnError">Eğer bir hata oluşursa diğer kullanıcıları içe aktarmaya devam edin.</message>
+	<message key="plugins.importexport.users.import.noFileError">Hiçbir dosya yüklenmedi!</message>
+	<message key="plugins.importexport.users.import.usersWereImported">Şu kullanıcılar sisteme başarıyla aktarıldı.</message>
+	<message key="plugins.importexport.users.import.errorsOccurred">İçe Aktarım sırasında hata oluştu.</message>
+	<message key="plugins.importexport.users.import.confirmUsers">Bu kullanıcıları içeri aktarmak istediğinizi onaylayınız.</message>
+	<message key="plugins.importexport.users.import.warning">Uyarı</message>
+	<message key="plugins.importexport.users.import.encryptionMismatch">{$importHash} ile sağlanan şifreler kullanılamıyor; OCS {$ocsHash} kullanmak üzere yapılandırıldı. Eğer devam ederseniz, içe aktarılan kullanıcıların şifrelerini sıfırlamanız gerekecek.</message>
+	<message key="plugins.importexport.users.unknownSchedConf">Bilinmeyen zamanlı bir konferans izi "{$schedConfPath}" belirlendi.</message>
+
+	<message key="plugins.importexport.users.export.exportUsers">Kullanıcıları Dışa Aktar</message>
+	<message key="plugins.importexport.users.export.exportByRole">Rolüne Göre Dışa Aktar</message>
+	<message key="plugins.importexport.users.export.exportAllUsers">Hepsini Dışa Aktar</message>
+	<message key="plugins.importexport.users.export.errorsOccurred">Dışaktarım sırasında hata oluştu</message>
+	<message key="plugins.importexport.users.export.couldNotWriteFile">"{$fileName}" dosyasına yazılamadı.</message>
+</locale>

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * locale.xml
+  *
+  * Copyright (c) 2000-2012 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the tr_TR (Türkçe) locale.
+  *
+  * $Id$
+  -->
+ 
+<locale name="tr_TR" full_name="Türkçe">
+	<message key="plugins.generic.translator.name">Çeviri eklentisi</message>
+	<message key="plugins.generic.translator.description">Bu eklenti çeviri dosyalarının web-tabanlı muhafazasını mümkün kılmaktadır.</message>
+	<message key="plugins.generic.translator.longdescription">Bu alan Site Yöneticisine OCS çevirilerinin kurulumu, değiştrilmesi ve kontrol etmesine olanak sağlar. Bu tüm siteyi kapsar ve bir tek OCS konferansının düzenlemek amacıyla kullanılmamaktadır. Eğer bir çeviri yaptıysanız ya da düzelttiyseniz bunu projedekilerin bilgisine sunun.</message>
+	<message key="plugins.generic.translator.localeDescription">Bu sayfa OCS çevirisinin tüm bileşenlerini listeler ve her birini düzenlemek için çeviriciye olanak sağlar. Bir çevirinin tam versiyonu o çevirinin tüm bileşenlerinin tamamen çevrilmesini içerir.</message>
+	<message key="plugins.generic.translator.enabled">Çeviri eklentisi etkinleştirildi.</message>
+	<message key="plugins.generic.translator.disabled">Çeviri eklentisi devre dışı bırakıldı.</message>
+	
+	<message key="plugins.generic.translator.tarMissing">Bu eklentinin dış aktarım işlevi yapılandırılmış tar binary bu sistemde bulunamadığından devre dışı bırakılmıştır. Lütfen tar programının yüklü olduğundan emin olunuz ve daha sonra tar binary'yi yapılandırın: config.inc.php's [cli] section!</message>
+	
+	<message key="plugins.generic.translator.localeName">Yerel Dil</message>
+	<message key="plugins.generic.translator.localeKey">Anahtar</message>
+	<message key="plugins.generic.translator.localeKey.description">Arama için tüm yerel dil anahtarını giriniz.</message>
+	<message key="plugins.generic.translator.localeKeyValue">Değer</message>
+	<message key="plugins.generic.translator.translate">Çevir</message>
+	<message key="plugins.generic.translator.availableLocales">Kullanılabilir yerel dilleri</message>
+	<message key="plugins.generic.translator.check">Kontrol Et</message>
+
+	<message key="plugins.generic.translator.errors">Yerel dil hataları</message>
+
+	<message key="plugins.generic.translator.errors.LOCALE_ERROR_MISSING_KEY.title">Kayıp Anahtarlar</message>
+	<message key="plugins.generic.translator.errors.LOCALE_ERROR_EXTRA_KEY.title">Ekstra Anahtarlar</message>
+	<message key="plugins.generic.translator.errors.LOCALE_ERROR_DIFFERING_PARAMS.title">Parametrik listeleri değiştirme</message>
+	<message key="plugins.generic.translator.errors.LOCALE_ERROR_MISSING_FILE.title">Kayıp yerel dil dosyaları</message>
+	<message key="plugins.generic.translator.errors.EMAIL_ERROR_MISSING_EMAIL.title">Kayıp e-Postalar</message>
+	<message key="plugins.generic.translator.errors.EMAIL_ERROR_EXTRA_EMAIL.title">Ekstra Postalar</message>
+	<message key="plugins.generic.translator.errors.EMAIL_ERROR_DIFFERING_PARAMS.title">Eposta parametre listelerini değiştirme</message>
+
+	<message key="plugins.generic.translator.errors.LOCALE_ERROR_MISSING_KEY.message">"{$key}" anahtarı "{$filename}" den kaybolmuştur. İngilizce versiyonu varsayılan olarak tanımlanmaktadır.</message>
+	<message key="plugins.generic.translator.errors.LOCALE_ERROR_EXTRA_KEY.message">"{$key}" anahtarı artık kullanılmıyor ve "{$filename}" den kaldırılabilir.</message>
+	<message key="plugins.generic.translator.errors.LOCALE_ERROR_DIFFERING_PARAMS.message">"{$filename}" deki "{$key}"  yerel anahtarı kullanım parametreleri açısından referans yerelinden farklılık göstermektedir. Lütfen tüm geçerli parametreleri içerdiğinden emin olunuz. Uyuşmayan parametre(ler) şunlardır:</message>
+	<message key="plugins.generic.translator.errors.LOCALE_ERROR_MISSING_FILE.message">"{$filename}" yerel dil dosyası kayıp ya da okunamıyor.</message>
+	<message key="plugins.generic.translator.errors.EMAIL_ERROR_MISSING_EMAIL.message">"{$key}" e-posta mesajı dönüştürmeden dolayı kayıp.</message>
+	<message key="plugins.generic.translator.errors.EMAIL_ERROR_EXTRA_EMAIL.message">"{$key}" e-posta mesajı artık kullanılmıyor ve silinebilir.</message>
+	<message key="plugins.generic.translator.errors.EMAIL_ERROR_DIFFERING_PARAMS.message">"{$key}" e-posta mesajı kullanım parametreleri açısından referans bölümünde yazandan farklıdır.  Lütfen ilgili tüm parametreleri içerdiğinden emin olunuz. Yanlış eşleşen parametre(ler):</message>
+
+	<message key="plugins.generic.translator.locale">{$locale} Yerel Dil</message>
+	<message key="plugins.generic.translator.localeFiles">Yerel Dosyalar</message>
+	<message key="plugins.generic.translator.miscFiles">Çeşitli Dosyalar</message>
+	<message key="plugins.generic.translator.emails">E-posta Şablonları</message>
+	<message key="plugins.generic.translator.file.filename">Dosya Adı</message>
+	<message key="plugins.generic.translator.file.edit">Düzenliyor {$filename}</message>
+	<message key="plugins.generic.translator.email.edit">Düzenliyor {$emailKey}</message>
+	<message key="plugins.generic.translator.file.reference">Referans Sürümü</message>
+	<message key="plugins.generic.translator.file.translation">Çevir</message>
+	<message key="plugins.generic.translator.email.reference">Referans Sürümü</message>
+	<message key="plugins.generic.translator.email.translation">Çeviri</message>
+	<message key="plugins.generic.translator.file.reset">Sıfırla</message>
+	<message key="plugins.generic.translator.file.resetToReference">Referansları Sıfırla</message>
+	<message key="plugins.generic.translator.email.reset">Sıfırla</message>
+	<message key="plugins.generic.translator.email.resetToReference">Referansları Sıfırla</message>
+	<message key="plugins.generic.translator.file.resetConfirm">Dosya içeriklerini sıfırlamak istediğinize emin misiniz?</message>
+	<message key="plugins.generic.translator.email.resetConfirm">E-posta içeriklerini sıfırlamak istediğinize emin misiniz?</message>
+	<message key="plugins.generic.translator.file.doesNotExistNote">* Bu dosya henüz çevrilmedi.</message>
+	<message key="plugins.generic.translator.file.confirmCreate">"{$filename}" dosyası İngilizce versiyon kullanılarak oluşturulacaktır; dosyadaki her diziyi çevirmeniz gerekecektir. Devam etmek istiyor musunuz?</message>
+	<message key="plugins.generic.translator.email.description">Aşağıdaki alanda, e-posta şablonlarının başlıklarını, gövdelerini ve açıklamalarını çeviriniz. Açıklama bölümü sadece Konferans Yöneticisi'nin ilgisinedir.</message>
+	<message key="plugins.generic.translator.confirmDelete">Bu ögeyi silmek istediğinize emin misiniz? Bu eylem geri alınamaz.</message>
+	<message key="plugins.generic.translator.deleteKey">Bu şifreyi sil</message>
+	<message key="plugins.generic.translator.deleteEmail">Bu e-postayı sil</message>
+	<message key="plugins.generic.translator.saveBeforeContinuing">Devam etmeden önce, bu sayfada yaptığınız her türlü değişikliği kaydettiğinizden emin olunuz. Aksi takdirde bu değişiklikler kaybolacaktır. Devam etmek istiyor musunuz? Eğer öyleyse, Kaydedilmeyen her türlü değişiklik kaybolacaktır.</message>
+	<message key="plugins.generic.translator.fileNotWriteable">Bu yerel dosya sunucu tarafından yazılabilir durumda değil. Yapacağınız herhangi bir değişiklik kaydedilmeyecek.</message>
+	<message key="plugins.generic.translator.filesNotWriteable">Bu yerel dosyalar sunucu tarafından yazılabilir durumda değil. Yapacağınız herhangi bir değişiklik kaydedilmeyecek.</message>
+</locale>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * locale.xml
+  *
+  * Copyright (c) 2000-2012 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the tr_TR (Türkçe) locale.
+  *
+  * $Id$
+  -->
+ 
+<locale name="tr_TR" full_name="Türkçe">
+	<message key="plugins.importexport.METSExport.displayName">METS XML Dışaktarım Eklentisi</message>
+	<message key="plugins.importexport.METSExport.description">Konferansları METS XML'ye aktar</message>
+	<message key="plugins.importexport.METSExport.settings">Ayarlar</message>
+	<message key="plugins.importexport.METSExport.export">Dışaktarım Verisi</message>
+	<message key="plugins.importexport.METSExport.export.schedConfs">Zamanı Belirlenmiş Konferansları Dışa Aktar</message>
+	<message key="plugins.importexport.METSExport.export.selectschedConfs">Dışaktarım için Zamanı Belirlenmiş Konferansları Seçiniz</message>
+	<message key="plugins.importexport.METSExport.export.error.SchedConfNotFound">Zamanı Belirlenmiş Hiçbir Konferans Belirlenen Metin Kimliği ile Eşleşmedi "{$SchedConfId}".</message>
+	<message key="plugins.importexport.METSExport.export.error.unknownConference">Bilinmeyen Konferans İzi {$conferencePath}</message>
+	<message key="plugins.importexport.METSExport.settings.FContent">base64'ü içerik örtümünü kodlamak için kullanın.</message>
+	<message key="plugins.importexport.METSExport.settings.FLocat">Bitstream URL'sini içerik örtümü için kullanın.</message>
+	<message key="plugins.importexport.METSExport.settings.organization">METS: ajan öge organizasyon özelliği</message>
+	<message key="plugins.importexport.METSExport.settings.preservationLevel">PREMIS Muhafaza Düzeyi</message>
+	<message key="plugins.importexport.METSExport.settings.exportSuppFiles">Ek dosyaları Dışa Aktar</message>
+</locale>
