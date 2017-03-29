@@ -28,6 +28,8 @@
 	<locale key="it_IT" complete="false" name="Italiano"/>
 	<locale key="pt_BR" complete="false" name="Português (Brasil)"/>
 	<locale key="pt_PT" complete="false" name="Português (Portugal)"/>
+	<locale key="tr_TR" complete="true"  name="Türkçe" />
+
 	<locale key="uk_UA" complete="true"  name="Українська"/>
 	<locale key="zh_TW" complete="false" name="繁體中文"/>
 </locales>
