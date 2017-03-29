@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * locale.xml
+  *
+  * Copyright (c) 2000-2012 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the tr_TR (Türkçe) locale.
+  *
+  * $Id$
+  -->
+
+<locale name="tr_TR" full_name="Türkçe">
+	<message key="default.paperType.individual.name">Bireysel başvuru</message>
+        <message key="default.paperType.individual.description"></message>
+	<message key="default.paperType.panel.name">Panel Başvurusu</message>
+        <message key="default.paperType.panel.description"></message>
+	<message key="track.default.title">Genel Bildiriler</message>
+	<message key="track.default.abbrev">GEN</message>
+	<message key="track.default.policy"></message>
+	<message key="default.conferenceSettings.copyrightNotice"><![CDATA[Bu kogreye başvuran yazarlar aşağıdaki hususları kabul eder:<br/>
+<strong>a)</strong>&nbsp;Authors retain copyright over their work, while allowing the conference to place this unpublished work under a <a href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution License</a>, which allows others to freely access, use, and share the work, with an acknowledgement of the work's authorship and its initial presentation at this conference.<br/>
+<strong>b)</strong>&nbsp;Authors are able to waive the terms of the CC license and enter into separate, additional contractual arrangements for the non-exclusive distribution and subsequent publication of this work (e.g., publish a revised version in a journal, post it to an institutional repository or publish it in a book), with an acknowledgement of its initial presentation at this conference.<br/>
+<strong>c)</strong>&nbsp;In addition, authors are encouraged to post and share their work online (e.g., in institutional repositories or on their website) at any point before and after the conference.]]></message>
+
+	<message key="default.schedConfSettings.checklist.notPreviouslyPublished">Bildiri daha önce yayınlanmamıştır ve değerlendirilmek üzere  başka konferansa gönderilmemiştir (ayrıca yöneticiye herhangi bir açıklama yapılmamıştır).</message>
+	<message key="default.schedConfSettings.checklist.fileFormat">Gönderilen dosya OpenOffice, Microsoft Word, RTF veya doküman dosyasıdır.</message>
+	<message key="default.schedConfSettings.checklist.addressesLinked"><![CDATA[Yazıdaki tüm internet adresleri (örneğin, <a href="http://www.hasuder.org.tr">http://www.hasuder.org.tr</a>) aktif edildi ve kullanıma hazır.]]></message>
+	<message key="default.schedConfSettings.checklist.submissionAppearance">Yazı tek boşluklu; 12 punto; altçizgi yerine italik kullanılarak yazılmış (internet adresleri hariç); ve tüm resim, şekil ve tablolar metin içinde uygun yerlerde olacak şekilde olmalıdır.</message>
+	<message key="default.schedConfSettings.checklist.anonymous">If submitting to a peer-reviewed track of the conference, authors' names are removed from submission, with "Author" and year used in the bibliography and footnotes, instead of authors' name, paper title, etc.</message>
+	<message key="default.schedConfSettings.checklist.personalInformationRemoved">Eğer denk bir değerlendirme sunuluyorsa, tüm Microsoft Office belgeleri (Tamamlayıcı Dosyalar dahil) Dosya'dan Farklı Kaydet seçeneği seçilerek; Araçlar tıklanarak (ya da Mac'ta Ayarlar'ı tıklamak); Güvenlik tıklanarak; "Kayıt yaparken kişisel bilgileri dosya ayarlarından sil seçilerek; Kaydet tıklanarak; kaydedilir.</message>
+	<message key="default.conferenceSettings.privacyStatement">Bu konferans sitesine girilen isimler ve eposta adresleri, bu konferans için belirlenen amaçlar doğrultusunda kullanılacaklardır. Başka herhangi bir gruba ya da başka bir amaca hizmet etmeyecektir.</message>
+	<message key="default.conferenceSettings.authorSelfArchivePolicy">Yazarların metinlerini bu konferansın yayımlama tarihinin öncesinde ya da sonrasında kişisel veya kurumsal web-sitelerinde yayınlamalarına izin verilir. (yayının bibliyografik detayları sağlanmak kaydıyla).</message>
+	<message key="default.conferenceSettings.emailSignature">________________________________________________________________________
+{$conferenceName}
+{$conferenceUrl}</message>
+	<message key="default.conferenceSettings.forReaders"><![CDATA[Biz okuyucuların bu konferansa yollanan metinlerin bildirimi için giriş yapmalarını istemekteyiz. Size  <a href="{$aboutUrl}">About the Conference</a> a göz atmanızı öneriyoruz.  Yaklaşan konferansları bulmak için: <a href="{$conferenceUrl}">Conference Homepage</a>]]></message>
+	<message key="default.conferenceSettings.forAuthors"><![CDATA[Bu konferansa bildiri göndermeyi mi düşünüyorsunuz? O halde, size  <a href="{$aboutUrl}">About the Conference</a> a göz atmanızı öneriyoruz.  Yaklaşan konferansları bulmak için: <a href="{$conferenceUrl}">Conference Homepage</a>]]></message>
+	<message key="default.conferenceSettings.lockssLicense"><![CDATA[Konferans katılımcı kütüphanelerle sınıflandırılmış bir arşivleme sistemi oluşturmak için LOCKSS sisteminden faydalanır ve bu kütüphanelerin, tekrar sunumu ve düzenlenmesi amacıyla kalıcı bir konferans arşivi oluşturmalarına izin verir. <a href="http://lockss.stanford.edu/">Daha fazla bilgi için...</a>]]></message>
+
+	<message key="default.schedConfSettings.emailSignature">________________________________________________________________________
+{$conferenceName} {$schedConfName}
+{$schedConfUrl}</message>
+	<message key="default.conferenceSettings.archiveAccessPolicy">Bu sitedeki güncel veya arşivlenmiş konferanslardan oluşan sunumlar ilgili okuyucular ve yazarların yararına ulaşıma açıktır ve ücretsiz görüntülenebilir.</message>
+	<message key="default.schedConfSettings.checklist.bibliographicRequirements"><![CDATA[Metin <a href="{$authorGuidelinesUrl}">Author Guidelines</a> gösterilen biçimsel ve bibliyografik gereklilikleri birleştirir. Bunlara Konferans Hakkında bölümünden ulaşabilirsiniz.]]></message>
+	<message key="default.schedConfSettings.forReaders"><![CDATA[Biz okuyucuların bu konferansa yollanan metinlerin bildirimi için giriş yapmalarını istemekteyiz. konferansın web-sayfasının üstünde yer alan <a href="{$accountUrl}">Account</a> linkini kullanın. Bu link konferansın belirli düzeyde destek almasını ve okuyucu kitlesi varlığını iddia etmesini sağlar. Konferansın Gizlilik Bayanı için <a href="{$privacyStatementUrl}">Privacy Statement</a>  Bu da okuyucuların isimlerinin ve eposta adreslerinin başka amaçlar için kullanılmayacağını garanti eder.]]></message>
+	<message key="default.schedConfSettings.forAuthors"><![CDATA[Bu konferansa bildiri göndermeyi mi düşünüyorsunuz? O halde, size  <a href="{$aboutUrl}">  a göz atmanızı öneriyoruz. Konferansın izleme politikası için</a>sayfasına, Yazar Kılavuzu için <a href="{$authorGuidelinesUrl}"> </a>. Bildiriyi yollamadan önce yazarlar </a> bir hesap <a href="{$accountUrl}"> açtırmalıdır, eğer zaten var olan bir hesap varsa kolayca gönderi sürecine başlayabilir. <a href="{$loginUrl}">log in</a>]]></message>
+</locale>

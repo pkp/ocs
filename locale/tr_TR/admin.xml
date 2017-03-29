@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * ocs2-devel/locale/tr_TR/admin.xml
+  *
+  * Copyright (c) 2000-2012 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the tr_TR (Türkçe) locale.
+  *
+  * $Id$
+  -->
+
+<locale name="tr_TR" full_name = "Türkçe">
+	<message key="admin.languages.primaryLocaleInstructions">Bu kongrenin varsayılan dilidir ve henüz bir konferans yoktur</message>
+	<message key="admin.languages.supportedLocalesInstructions">Siteyi desteklemek için tüm dilleri seçiniz.Seçilen diller sitede yer alan tüm diller için ve ayrıca dil seçeneği menüsünün her sayfada görünmesi için uygun olacaktır(konferansa özgü sayfalarda kaldırılabilir). Çok sayıda dil seçili değilse, dil geçiş menüsü görünmez ve genişletilmiş dil ayarları konferanslarda mevcut olmayacaktır.</message>
+	<message key="admin.locale.maybeIncomplete">İşaretli diller tamamlanmamış olabilir</message>
+	<message key="admin.languages.confirmUninstall">Bu dili kaldırmak istediğinizden emin misiniz? Bu şu anda dili kullanan herhangi bir konferansı etkileyebilir.</message>
+	<message key="admin.languages.installNewLocalesInstructions">Bu sistemde desteğini yüklemek için herhangi bir ek dili seçiniz. Onlar barındırılan konferanslar tarafından kullanılmadan önce yerel ayarlar yüklü olmalıdır. Yeni diller için destek eklemek için OCS belgelerine bakın.</message>
+	<message key="admin.auth.enableSyncProfiles">(Bu kimlik doğrulama plug-in tarafından destekleniyorsa) Kullanıcı profili senkronizasyonunu etkinleştirin. Kullanıcı profili bilgileri uzak bir kullanıcı oturum açtığında kaynağı ve profil değişiklikleri(şifre değişiklikleri de dahil) otomatik olarak OCS içinde yapılan uzaktan kaynağında güncellenecektir.Bu seçenek etkin değilse OCS profil bilgileri uzaktan kaynak profil bilgileri ayrı tutulacaktır.</message>
+	<message key="admin.auth.enableSyncPasswords">Kullanıcı parolası değişikliği etkinleştirin(if supported by this authentication plug-in). Bu seçeneğin etkinleştirilmesi OCS ile kullanıcılara şifrelerini değiştirme imkanı ve "parolayı unut" seçeneği ile unutulan parolayı sıfırlama imkanı verir.  Bu seçenek etkin değilse bu işlevler bu kimlik doğrulama kaynağı ile kullanılamaz.</message>
+	<message key="admin.auth.enableCreateUsers">(Bu kimlik doğrulama plug-in tarafından destekleniyorsa) kullanıcı oluşturmayı etkinleştirin. Zaten yok ise bu kimlik doğrulama kaynağı ile OCS içinde oluşturulan kullanıcılar otomatik olarak uzak kimlik kaynağına eklenecektir. Bu kaynak varsayılan kimlik doğrulama kaynağı ise kullanıcı kaydı da Uzak kimlik doğrulama kaynağına OCS nin oluşturduğu hesaplar aracılığıyla eklenecektir.</message>
+	<message key="admin.systemVersion">OCS sürümü</message>
+	<message key="admin.systemConfiguration">OCS Yapılandırma</message>
+	<message key="admin.systemConfigurationDescription"><![CDATA[OCS yapılandırma ayarları <tt>config.inc.php</tt>.]]></message>
+	<message key="admin.hostedConferences">Var olan konferanslar</message>
+	<message key="admin.settings.conferenceRedirect">Konferans yönlendirme</message>
+	<message key="admin.settings.conferenceRedirectInstructions">Ana siteye talepler bu konferansa yönlendirilecektir. Örneğin, tek bir konferansa ev sahipliği yapıyor ise, yararlı olabilir.</message>
+	<message key="admin.settings.noConferenceRedirect">Yönlendirme yapma</message>
+	<message key="admin.auth.ocs">OCS Kullanıcı Veritabanı</message>
+	<message key="admin.conferences.conferenceSettings">Konferans ayarları</message>
+	<message key="admin.conferences.noneCreated">Konferans oluşturulmadı.</message>
+	<message key="admin.conferences.confirmDelete">Bu konferans ve tüm içeriğini kalıcı olarak silmek istediğinizden emin misiniz?</message>
+	<message key="admin.conferences.create">Konferans oluştur</message>
+	<message key="admin.conferences.createInstructions">Otomatik olarak bu konferansın yöneticisi olarak kayıt edileceksiniz. Yeni konferansı oluşturduktan sonra, onun kurulum ve kullanıcı kayıt ile devam etmek için yönetici olarak giriş yapın.</message>
+	<message key="admin.conferences.urlWillBe">Konferansa tanımlayan tek bir sözcük ya da kısa kısaltma olmalıdır. Konferansın URL'si  {$sampleUrl} olacaktır.</message>
+	<message key="admin.conferences.form.titleRequired">Bir başlık girilmesi gerekli</message>
+	<message key="admin.conferences.form.pathRequired">Bir yol gerekli</message>
+	<message key="admin.conferences.form.pathAlphaNumeric">Yol yalnızca alfasayısal karakterler, alt çizgiler ve tire içerebilir ve başlar ve bir alfanümerik karakter ile bitmelidir.</message>
+	<message key="admin.conferences.form.pathExists">Seçilen yol başka bir konferansta kullanılıyor.</message>
+	<message key="admin.conferences.enableConferenceInstructions">Konferansı sitedeki tüm kullanıcıların görmesi için etkinleştirib</message>
+	<message key="admin.conferences.conferenceDescription">Konferans Tanımı</message>
+	<message key="admin.conferences.conferenceDescriptionInstructions">Konferans açıklaması bu konferansın devam eden misyonunu tanımlar. Konferansın tüm sayfaları olarak, ana konferans sayfasında görünür.</message>
+	<message key="admin.conferences.importOCS1">Veri alma kaynağı OCS 1</message>
+	<message key="admin.conferences.importOCS1.editMigratedConference">Göç Konferansı Düzenle</message>
+	<message key="admin.conferences.importOCS1.conflict.desc">Bazı kullanıcı hesaplarında çelişkili bilgiler vardı. OCS 2.x değil ise OCS 1.x, birden fazla kullanıcı hesabı aynı e-posta adresini paylaşmanızı sağlar. Aşağıdaki listede, listelenen ikinci hesap kendisine atanan geçici e-posta hesabı olmuştur. Bu hesaplar elle ya farklı bir e-posta hesabı atama veya birleştirerek hesapları ile düzeltilmelidir.</message>
+	<message key="admin.conferences.importOCS1.errors.desc">OCS 1.x den OCS 2.x ye konferans geçirirken şu hatalarla karşılaşıldı</message>
+	<message key="admin.conferences.importOCS1.conflict">{$firstUsername} ({$firstName}) ve {$secondUsername} ({$secondName})</message>
+	<message key="admin.conferences.importOCS1Instructions"><![CDATA[OCS 1 OCS'ye 2 veri göç hakkında detaylı bilgi için OCS ile dağıtılan UPGRADE belgesine danışın. Bu süreç tamamen yapılandırılmış OCS 2 konferansı oluşturmaz; Yalnızca belirli öğeler (örneğin kağıtları) ithal edilecektir.<strong>Tüm ithal kullanıcılar parolalarını sıfırlayacaklardır. Kuvvetle Konferans Direktörünün konferans web sitesini başlatmadan önce tüm ithal bilgileri gözden geçirmesi önerilmektedir.</strong>]]></message>
+	<message key="admin.conference.pathImportInstructions">Konferans yolu oluşturma veya yol oluşturma (örneğin, "ocs") oluşturmak için.</message>
+	<message key="admin.conference.importPath">OCS 1 yolu</message>
+	<message key="admin.conference.importPathInstructions">OCS 1 kurulumuna yerel dosya yolunu tamalayın (Örneğin, "/var/www/ocs").</message>
+	<message key="admin.conferences.importRegistrations">Veri alma kayıtları</message>
+	<message key="admin.conferences.emailUsers">Rastgele şifre dahil giriş bilgileri ile e-posta oluşturulan kullanıcılar</message>
+	<message key="admin.conferences.transcode">Kağıt metaverisini ISO8859-1 den tekrar kodlayın</message>
+	<message key="admin.conferences.form.importPathRequired">Veri alma yolu gereklidir.</message>
+	<message key="admin.conferences.importErrors">Veri alma başarıyla tamamlanamadı</message>
+
+	<!-- Site Administration Merge Users -->	
+	<message key="admin.mergeUsers">Kullanıcıları Birleştir</message>
+	<message key="admin.mergeUsers.mergeUser">Kullanıcıyı Birleştir</message>
+	<message key="admin.mergeUsers.into.description">Önceki kullanıcının bildirim, görev düzenlemelerinin vs. atfedildiği bir kullanıcı seçin.</message>
+	<message key="admin.mergeUsers.from.description">Başka bir kullanıcının hesabına katılan bir ya da birkaç kullanıcı seçin(örn; iki kullanıcı hesabı olanlar için).Seçilen hesaplar önce silinecek ve bildirim, değerlendirmeler ikinci hesaba aktarılacaktır.</message>
+	<message key="admin.mergeUsers.allUsers">Tüm kayıtlı Kullanıcılar</message>
+	<message key="admin.mergeUsers.confirm">Adı ile seçilmiş {$oldAccountCount} hesapların "{$newUsername}"adlı hesaba aktarılmasından emin misiniz? Seçilen {$oldAccountCount}hesabı yok olacaktır. Bu ger alınabilir bir işlemdir.</message>
+	<message key="admin.mergerUsers.noneEnrolled">Kayıtlı kullanıcı yok</message>
+	<message key="admin.conferences.scheduleConferenceInstructions">Sıradaki konferansı takvime eklemek için ilerleyin.</message>
+</locale>

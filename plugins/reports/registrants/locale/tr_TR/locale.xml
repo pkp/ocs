@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * locale.xml
+  *
+  * Copyright (c) 2000-2012 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the tr_TR (Türkçe) locale.
+  *
+  * $Id$
+  -->
+ 
+<locale name="tr_TR" full_name="Türkçe">
+	<message key="plugins.reports.registrants.displayName">Kayıt Raporu</message>
+	<message key="plugins.reports.registrants.description">Bu eklenti iletişim bilgileri, ödeme durumu gibi kayıt bilgileri ile birlikte kayıt yaptıranların listesini içeren bir CSV raporu sağlar.</message>
+	<message key="plugins.reports.registrants.userid">Kullanıcı ID'si</message>
+</locale>

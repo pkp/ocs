@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * locale.xml
+  *
+  * Copyright (c) 2000-2012 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the tr_TR (Türkçe) locale.
+  *
+  * $Id$
+  -->
+ 
+<locale name="tr_TR" full_name="Türkçe">
+	<message key="plugins.generic.customLocale.name">Özel Diller Eklentisi</message>
+	<message key="plugins.generic.customLocale.description">Bu eklenti OCS tarafından kullanılan varsayılan kullanıcı arayüzü metin özelleştirme sağlar.</message>	
+	<message key="plugins.generic.customLocale.enabled">Özel Yerel Eklenti etkinleştirilmiştir.</message>
+	<message key="plugins.generic.customLocale.disabled">Özel Yerel Eklenti devre dışı bırakılmıştır.</message>
+
+	<message key="plugins.generic.customLocale.longDescription">Bu sayfa şu anda konferans için yüklü tüm yerelleri listeler</message>
+	<message key="plugins.generic.customLocale.localeDescription">Bu sayfa seçili yerelin için kullanılabilir tüm dosyaları listeler.</message>
+	<message key="plugins.generic.customLocale.fileDescription">Özel metin alanını karşılık gelen metni girin. Varsayılan OCS metin kullanılması gerektiğinde, boş özel metin alanını bırakın.</message>
+	<message key="plugins.generic.customLocale.localeName">Dil adı</message>
+	<message key="plugins.generic.customLocale.localeKey">Anahtar</message>
+	<message key="plugins.generic.customLocale.localeKey.description">Aramak için tüm yerel anahtarını girin.</message>
+	<message key="plugins.generic.customLocale.localeKeyValue">Değer</message>
+	<message key="plugins.generic.customLocale.customize">Özelleştirme</message>
+	<message key="plugins.generic.customLocale.availableLocales">Kullanılabilir Yerel Diller</message>
+
+	<message key="plugins.generic.customLocale.locale">{$locale} Yerel diller</message>
+	<message key="plugins.generic.customLocale.localeFiles">Yerel Dil Dosyaları</message>
+	<message key="plugins.generic.customLocale.file.filename">Dosya Adı</message>
+	<message key="plugins.generic.customLocale.file.edit">düzenleniyor {$filename}</message>
+	<message key="plugins.generic.customLocale.file.reference">Varsayılan Metin</message>
+	<message key="plugins.generic.customLocale.file.custom">Özel Metin</message>
+</locale>

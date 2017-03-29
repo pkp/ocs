@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * locale.xml
+  *
+  * Copyright (c) 2000-2012 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the tr_TR (Türkçe) locale.
+  *
+  -->
+ 
+<locale name="tr_TR" full_name="Türkçe">
+	<message key="plugins.generic.staticPages.displayName">Statik Sayfalar Eklentisi</message>
+	<message key="plugins.generic.staticPages.description">Bu eklenti Sabit İçerik Yönetimi sağlar.</message>
+	<message key="plugins.generic.staticPages.pageTitle">Başlık</message>
+	<message key="plugins.generic.staticPages.content">İçerik</message>
+
+	<message key="plugins.generic.staticPages.path">Yol</message>
+	<message key="plugins.generic.staticPages.requirement.tinymce"><![CDATA[<strong>The TinyMCE Eklentisi içerik Yükleme/düzenleme için etkin olmalıdır.</strong>]]></message>
+
+	<message key="plugins.generic.staticPages.editAddContent">İçerik Düzenle/Ekle</message>
+
+	<message key="plugins.generic.staticPages.addStaticPage">Statik sayfa ekle</message>
+	<message key="plugins.generic.staticPages.addNewPage">Yeni sayfa ekle</message>
+	<message key="plugins.generic.staticPages.editStaticPage">Edit Static Page</message>	
+
+	<message key="plugins.generic.staticPages.settingInstructions">Oluşturduğunuz tüm statik sayfalar aşağıdaki formda görülmektedir. Sağ taraftaki linki kullanarak sayfaları düzenleyebilir ya da silebilirsiniz.</message>
+	<message key="plugins.generic.staticPages.editInstructions">Sayfa içeriği eklemek/düzenlemek için aşağıdaki formu kullanın.</message>
+	<message key="plugins.generic.staticPages.viewInstructions"><![CDATA[Sayfalara seçtiğiniz bir değere daha sonra buradan ulaşabilirsiniz: {$pagesPath}, where %PATH% . <strong>Note:</strong> Aynı yolu olan iki sayfa bulunmamaktadır.]]></message>
+	<message key="plugins.generic.staticPages.duplicatePath">Bu yol, başka bir statik bir sayfa zaten var.</message>
+	
+	<message key="plugins.generic.staticPages.pageSaved">Sayfa başarıyla kaydedildi.</message>
+	<message key="plugins.generic.staticPages.pageDeleted">Sayfa başarılı bir şekilde silindi.</message>
+	
+	<message key="plugins.generic.staticPages.noneExist">Hiçbir sayfa oluşturulamadı.</message>
+</locale>

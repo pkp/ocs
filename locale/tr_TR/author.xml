@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * ocs2-devel/locale/tr_TR/author.xml
+  *
+  * Copyright (c) 2000-2012 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the tr_TR (Türkçe) locale.
+  *
+  -->
+
+<locale name="tr_TR" full_name="Türkçe">
+	<message key="author.submit">Yeni Başvuru</message>
+	<message key="author.track">Aktif Başvurular</message>
+	<message key="author.submit.startHere">Bu konferansa yeni bir başvuru için tıklayınız.</message>
+	<message key="author.submit.startHereLink">Başvuru sürecinin ilk adımı</message>
+	<message key="author.submit.step1">Adım 1. Başvuruyua Başlayınız</message>
+	<message key="author.submit.step3">Adım 3. Başvurunun üst verisini giriniz</message>
+	<message key="author.submit.step3AbstOnly">Adım 2. Başvurunun üst verisini giriniz</message>
+	<message key="author.submit.step4AbstOnly">Adım 3. Ek Dosya Yükleyiniz</message>
+	<message key="author.submit.step2">Adım 2. Başvuru Yükleyiniz</message>
+	<message key="author.submit.step2NoAbstracts">Adim 3. Başvuru Yükleyiniz</message>	
+	<message key="author.submit.step4">Adim 4. Ek Dosya Yükle</message>
+	<message key="author.submit.step4a">Step 4a. Ek Bir Dosya Yükle</message>
+	<message key="author.submit.step5">Adim 5. Başvuru Doğrulama</message>
+	<message key="author.submit.step5SkipSupp">Adim 4. Başvuru Doğrulama</message>
+	<message key="author.submit.start">1. Başla</message>
+	<message key="author.submit.metadata">3. Üst Veri Giriniz</message>
+	<message key="author.submit.metadataOnly">2. Üst Veri Giriniz</message>
+	<message key="author.submit.upload">2. Başvuru Yükle</message>
+	<message key="author.submit.uploadOnly">3. Başvuru Yükle</message>
+	<message key="author.submit.supplementaryFiles">4. Ek Dosyaları Yükle</message>
+	<message key="author.submit.supplementaryFilesAbstractOnly">3. Ek Dosyaları Yükle</message>
+	<message key="author.submit.supplementaryFilesInfoAbstractOnly">3a. Ek Dosyaları Yükleniyor</message>
+	<message key="author.submit.confirmation">5. Doğrulama</message>
+	<message key="author.submit.confirmationSkipSupp">4. Doğrulama</message>
+	<message key="author.submit.cancelSubmission">Yazar ana sayfasından aktif Başvuru seçerek, bu Başvuru daha sonra da tamamlayabilirsiniz.</message>
+	<message key="author.submit.notAcceptingYet">Bu konferans henüz başvuru almaya başlamadı</message>
+	<message key="author.submit.notAccepting">Bu etkinlik henüz başvuru kabul etmiyor</message>
+	<message key="author.submit.submissionDeadlinePassed">Başvurular {$closedDate} tarihinde kapandı</message>
+	<message key="author.submit.authorRegistrationClosed">Bu etkinlik için yazar kaydı kapandı</message>
+	<message key="author.submissions.queuedAbstractReviewRevisions">Özet Değerlendirme: Düzeltme gerekli</message>
+	<message key="author.submissions.queuedPaperReviewRevisions">Bildiri Değerlendirme: Düzeltme gerekli</message>
+	<message key="author.submissions.confirmDelete">Bu başvuruyu silmek istediğinizden eminmisiniz?</message>
+	<message key="author.submissions.viewStatus">Durumu Görün</message>
+	<message key="author.submissions.noSubmissions">Başvuru yok.</message>
+	<message key="author.submit.howToSubmit"><![CDATA[Bir zorlukla mı karşılaştınız? Yardım için <a href="mailto:{$supportEmail}">{$supportName}</a> adlı kişiyle iletişim egeçin ({$supportPhone}).]]></message>
+	<message key="author.submit.howToSubmitNoPhone"><![CDATA[Zorlukla mı karşılaştınız? Yardım için <a href="mailto:{$supportEmail}">{$supportName}</a> adlı kişiyle iletişim egeçin.]]></message>
+	<message key="author.submit.conferenceTrack">Konferans Takibi</message>
+	<message key="author.submit.conferenceTrackDescription"><![CDATA[Bu başvuru için uygun bir bölüm seçin (see <a href="{$aboutUrl}" target="_new">Bölü politikaları</a>).]]></message>
+	<message key="author.submit.selectTrack">Lütfen bir bölüm seçin...</message>
+	<message key="author.submit.submissionChecklist">Başvuru kontrol listesi</message>
+	<message key="author.submit.submissionChecklistDescription">Aşağıdakileri işaretleryerek başvurunuzun hazır olduğunu denetleyiniz.</message>
+	<message key="author.submit.verifyChecklist">Devam etmeden önce, başvuru kontrol listesindeki tüm koşulları sağlamanız ve zorunlu alanları doldurmanız gerekir.</message>
+	<message key="author.submit.copyrightNoticeAgree">Yazarlar, bu sunum için bu telif hakkı bildirisinin şartlarını kabul ederler; bu sunum, bu konferans tarafından yayınlanır (yöneticiye yapılan yorumlar eklenebilir).</message>
+	<message key="author.submit.copyrightNoticeAgreeRequired">Devam etmeden önce Telif Hakları şartlarını kabul etmeniz gerekir.</message>
+	<message key="author.submit.commentsForDirector">Konferans Yöneticisi Notlar</message>
+	<message key="author.submit.comments">Metin giriniz (isteğe bağlı)</message>
+	<message key="author.submit.form.authorRequired">En az bir yazar gerekli.</message>
+	<message key="author.submit.form.authorRequiredFields">Her yazarın ilk adı, soyadı, ve e-posta adresi gereklidir.</message>
+	<message key="author.submit.form.trackRequired">Lütfen başvuru için uygun bir konferans bölümü seçiniz.</message>
+	<message key="author.submit.form.abstractRequired">Başvuru için bir özet girin lütfen.</message>
+	<message key="author.submit.privacyStatement">Konferans Gizlilik Bildirimi</message>
+	<message key="author.submit.reorderInstructions">Yayın üzerinde yer alacak şeklide yazarları yeniden sıralayın</message>
+	<message key="author.submit.reorder">Yazar adını yeniden sırala</message>
+	<message key="author.submit.selectPrincipalContact">Editoryal yazışmalar için iletişim.</message>
+	<message key="author.submit.addAuthor">Yazar Ekle</message>
+	<message key="author.submit.deleteAuthor">Yazarı Sil</message>
+	<message key="author.submit.submissionIndexingDescription">Sözcükler arasına noktalı virgül (; sözcük1; sözcük2; sözcük3) kullanın</message>
+	<message key="author.submit.submissionSupportingAgencies">Destekleyen Kuruluşlar</message>
+	<message key="author.submit.submissionSupportingAgenciesDescription">Bu sunulan iş için fon veya destek sağlanan ajansları belirleyin.</message>
+	<message key="author.submit.subjectClassInstructions">Sınıflandırma açısından seçin ve uygunsa numaraları köprü sınıflandırma sistemi kullanın.</message>
+	<message key="author.submit.languageInstructions"><![CDATA[Türkçe=tr; İngilizce=en; Arapça=ar. <a href="http://www.loc.gov/standards/iso639-2/php/code_list.php" target="_blank">Ek kodlar</a>.]]></message>
+	<message key="presenter.submit.form.authorRequired">En az bir yazar gerekli.</message>
+	<message key="presenter.submit.form.authorRequiredFields">Her yazarın adı, soyadı, ve e-posta adresi gereklidir.</message>
+	<message key="author.submit.form.titleRequired">Lütfen bildirinizin başlığını giriniz.</message>
+	<message key="author.submit.form.wordCountAlert">Bu konferansın özetli için maksimum kelime sınırını aştınız.</message>
+	<message key="author.submit.submissionFile">Başvuru Dosyası</message>
+	<message key="author.submit.uploadSubmissionFile">Başvuru dosyasını yükleyin</message>
+	<message key="author.submit.replaceSubmissionFile">Başvuru dosyasını değiştirin</message>
+	<message key="author.submit.noSubmissionFile">Başvuru dosyası yüklenmedi.</message>
+	<message key="author.submit.noSubmissionConfirm">Bir bildiri dosyası yükleme olmadan devam etmek istediğiniz emin misiniz?</message>
+	<message key="author.submit.supplementaryFilesInstructions">Bu isteğe bağlı bir adımdır, bir bildiri eklenecek Ek Dosyalar sağlar. Herhangi bir formatta olabilir dosyaları, (a) araştırma araçları, (b) Çalışmanın araştırma etik inceleme şartlarına uygun veri setleri, aksi halde okuyucularına kullanılamaz olacak (c) kaynakları, (d) içerebilir ) rakamlar ve tablolar metnin kendisi, ya da işin katkısını eklemek diğer malzemeler entegre olamaz.</message>
+	<message key="author.submit.supplementaryFiles.saveToUpload">(Ek dosyalar yüklenebilir sonra) dosya yüklemek için Kaydet'i tıklatın.</message>
+	<message key="author.submit.forgottenSubmitSuppFile">Seçtiğiniz ek dosya yükleme olmadan devam etmek istediğinizden emin musunuz?</message>
+	<message key="author.submit.noSupplementaryFiles">Bu başvuru için bir ek dosya yüklenmedi</message>
+	<message key="author.submit.backToSupplementaryFiles">Ek Dosyalara Geri Dön</message>
+	<message key="author.submit.confirmDeleteSuppFile">Bu ek dosyayı silmek istediğinizden emin misiniz?</message>
+	<message key="author.submit.uploadSuppFile">Ek dosya yükleyin</message>
+	<message key="author.submit.addSupplementaryFile">Bir ek dosya ekleyin</message>
+	<message key="author.submit.editSupplementaryFile">Ek Bir Dosyayı Düzenleyin</message>
+	<message key="author.submit.supplementaryFileData">Ek Dosya Üstverisi</message>
+	<message key="author.submit.supplementaryFileDataDescription">Endeksi bu ek materyal için, yüklenen ek dosya için aşağıdaki meta veri sağlar.</message>
+	<message key="author.submit.supplementaryFileUpload">Ek dosya</message>
+	<message key="author.submit.suppFile.createrOrOwner">Dosya yaratıcısı (veya sahibi)</message>
+	<message key="author.submit.suppFile.researchInstrument">Araştırma Araçları</message>
+	<message key="author.submit.suppFile.researchMaterials">Araştırma Materyali</message>
+	<message key="author.submit.suppFile.researchResults">Araştırma Bulguları</message>
+	<message key="author.submit.suppFile.transcripts">Transkriptler</message>
+	<message key="author.submit.suppFile.dataAnalysis">Veri Analizi</message>
+	<message key="author.submit.suppFile.dataSet">Veri Dizisi</message>
+	<message key="author.submit.suppFile.sourceText">Kaynak Metin</message>
+	<message key="author.submit.suppFile.briefDescription">Kısa tanım</message>
+	<message key="author.submit.suppFile.contributorOrSponsor">Katılımcı ya da sponsor kuruluş</message>
+	<message key="author.submit.suppFile.availableToPeers">Hakemler için üstverisiz dosya sunun, kör değerlendirme nedeni ile.</message>
+	<message key="author.submit.suppFile.publisherDescription">Sadece yayınlanmış malzemeler ile kullanın.</message>
+	<message key="author.submit.suppFile.dateDescription">Verinin toplanma ve araçların oluşturulma tarihi</message>
+	<message key="author.submit.suppFile.sourceDescription">Araştırmanın adı ya da kaynağı</message>
+	<message key="author.submit.suppFile.specifyOtherType">Diğer belitiniz</message>
+	<message key="author.submit.suppFile.noFile">Dosya yüklenmedi</message>
+	<message key="author.submit.suppFile.form.titleRequired">Bu ek dosyanın başlığı giriniz.</message>
+	<message key="author.submit.suppFile.form.subjectRequired">Bir konu giriniz.</message>
+	<message key="author.submit.suppFile.form.descriptionRequired">Bir tanım giriniz.</message>
+	<message key="author.suppFile.suppFilePublicIdentificationExists">Bu ek dosya kimliği zaten mevcut</message>
+	<message key="author.suppFile.publicSuppFileIdentifier">Ek dosya tanımlayıcısı</message>
+	<message key="author.submit.addSubmissionFile">Bir ek dosya ekle</message>
+	<message key="author.submit.submissionFileUpload">Ek dosya</message>
+	<message key="author.submit.confirmationDescription">Bildirinizi {$conferenceTitle} adlı etkinliğe göndermek için Gönderiyi Bitir'e tıklayın. Başvurunun temel iletişim adresine e-posta ile bir bildirim gönderlecektir ve konferans web sitesine giriş yapılarak, gönderinin sonraki süreci izlenebilecektir. {$conferenceTitle} adlı etkinliğe gösterdiğiniz ilgiye teşekkür ederiz.</message>
+	<message key="author.submit.noFiles">Bu başvuruya herhangi bir dosya eklenmemiştir.</message>
+	<message key="author.submit.filesSummary">Dosya Özeti</message>
+	<message key="author.submit.finishSubmission">Başvuruyu Bitir</message>
+	<message key="author.submit.submissionComplete">Başvurunuz tamamlanmıştır. {$conferenceTitle} adlı etkinliğe katkınızdan dolayı teşekkür ederiz.</message>
+	<message key="author.submit.expedite"><![CDATA[Bu başvuru daha fazla inceleme veya düzenleme olmadan, yayınlanmak üzere hazır ise, Proceedings sayfasına <a doğrudan gönderilen olabilir href="{$expediteUrl}" class="action"> buraya tıklayın </ a>. (Not: Sadece konferans yöneticileri gönderimler için bu seçenek var.)]]></message>
+	<message key="author.paper.uploadAuthorVersion">Yazar Sürümünü Yükleyin</message>
+	<message key="presenter.submit.authorSubmitLoginMessage">Bu etkinliğe bildiri  göndermek için bir kullanıcı hesabı  gereklidir. Bu, yöneticilerimizin gönderilerinizi takip etmelerine ve gönderilerinizin durumu değiştiğinde veya size ek bilgi girilmesi gerekiyorsa sizinle iletişime geçmesine izin verir.</message>
+</locale>

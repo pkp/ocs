@@ -1,0 +1,855 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * locale.xml
+  *
+  * Copyright (c) 2000-2012 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the tr_TR (Türkçe) locale.
+  *
+  * $Id$
+  -->
+
+<locale name="tr_TR" full_name="Türkçe">
+	<!--
+	 * This file is organized into several major sections, separated
+	 * by comments like this one. These sections are called:
+	 *  COMMON - Contains frequently-used words
+	 *  ENTITIES - Contains terms pertaining to the system's major
+	 *             entities, e.g. Paper, Conference, Track
+	 *  INTERFACE - Contains phrases organized by the section of the
+	 *              user interface they appear in.
+	 *  LOG - Contains phrases related to log entries
+	 *  MISC - Entries that don't belong elsewhere.
+	 *  DEFAULT - Default settings for configuration items.
+	-->
+
+	<!-- review forms start -->
+
+	<!-- common -->
+	<message key="common.copy">Kopyala</message>
+	<message key="common.preview">Ön İzleme</message>
+	<message key="common.activate">Aktifleştir</message>
+	<message key="common.deactivate">Pasifleştir</message>
+
+	<!-- Conference Management -->
+	<message key="manager.reviewForms">Değerlendirme Formları</message>
+
+	<message key="manager.reviewForms.list.description">Burada oluşturulacak formlar, değerlendirmelerde kullanılmak üzere hakemlere sunulacaktır. Değerlendirme formlarında hakem ve editör için birlikte ya da ayrı bölümler oluşturulabilir.</message>
+	<message key="manager.reviewForms.noneChosen">Yok / Serbest Değerlendirme Formu</message>
+	<message key="manager.reviewForms.noneCreated">Hiçbir değerlendirme formu oluşturulmadı.</message>
+	<message key="manager.reviewForms.create">Değerlendirme Formu Oluştur</message>
+	<message key="manager.reviewForms.edit">Değerlendirme formu</message>
+	<message key="manager.reviewForms.title">Başlık</message>
+	<message key="manager.reviewForms.description">Tanımlama ve Yönergeler</message>
+	<message key="manager.reviewForms.preview">Form Önizleme</message>
+	<message key="manager.reviewForms.completed">Tamamlandı</message>
+	<message key="manager.reviewForms.inReview">Değerlendirmede</message>
+	<message key="manager.reviewForms.confirmDeleteUnpublished">Yayınlanmamış bu formun silinmesini istediğinizden emin misiniz?</message>
+
+	<message key="manager.reviewForms.form.titleRequired">Değerlendirme formu için bir başlık gereklidir.</message>
+
+	<message key="manager.reviewFormElements">Form öğeleri</message>
+	<message key="manager.reviewFormElements.create">Yeni Öğe Ekle</message>
+	<message key="manager.reviewFormElements.edit">Form Öğesini Düzenle</message>
+	<message key="manager.reviewFormElements.noneCreated">Hiçbir form öğesi oluşturulmadı.</message>
+	<message key="manager.reviewFormElements.confirmDelete">Yayınlanmış bir formun bir bileşenini silmek istediğinize emin misiniz?</message>
+	<message key="manager.reviewFormElements.copyTo">e/a kopyala:</message>
+	<message key="manager.reviewFormElements.question">Öğe</message>
+	<message key="manager.reviewFormElements.required">Değerlendiricinin öğeyi tamamlaması gerekir</message>
+	<message key="manager.reviewFormElements.included">Bilgi yazara gitsin</message>
+	<message key="manager.reviewFormElements.elementType">Madde türü</message>
+	<message key="manager.reviewFormElements.possibleResponse">Seçim</message>
+	<message key="manager.reviewFormElements.addResponseItem">Seçim ekle</message>
+	<message key="manager.reviewFormElements.chooseType">Madde türü seçin</message>
+	<message key="manager.reviewFormElement.changeType">Uyarı: Çoktan seçmeli bir soru türünün açık uçlu soru türüne değiştirilmesi, çoktan seçmeli seçenekleri silinmesine neden olacaktır.</message>
+
+	<message key="manager.reviewFormElements.form.questionRequired">Madde için bir soru gerekli</message>
+	<message key="manager.reviewFormElements.form.elementTypeRequired">Madde için bir madde türü gereklidir</message>
+
+	<message key="manager.reviewFormElements.smalltextfield">Tek kelimelik metin kutusu</message>
+	<message key="manager.reviewFormElements.textfield">Tek satırlık metin kutusu</message>
+	<message key="manager.reviewFormElements.textarea">Geniş metin kutusu</message>
+	<message key="manager.reviewFormElements.checkboxes">Onay kutuları (birden fazla seçebilirsiniz)</message>
+	<message key="manager.reviewFormElements.radiobuttons">Seçim düğmeleri (yalnızca birini seçebilirsiniz)</message>
+	<message key="manager.reviewFormElements.dropdownbox">Aşağı açılan kutu</message>
+
+	<!--  peer review -->
+	<message key="submission.reviewForm">Değerlendirme Formu</message>
+	<message key="submission.reviewFormResponse">Değerlendirme Formu Yanıtı</message>
+
+	<message key="editor.paper.reviewForms">Değerlendirme Formları</message>
+	<message key="editor.paper.selectReviewForm">Değerlendirme Formu Seçiniz</message>
+	<message key="editor.paper.clearReviewForm">Değerlendirme Formunu Temizle</message>
+	<message key="editor.paper.confirmChangeReviewForm">Uyarı: Yapılan değişiklik bu formu kullanan hakemlerin yanıtlarını etkileyecektir.  Devam etmek istediğiniz emin misiniz?</message>
+
+	<message key="reviewer.paper.enterReviewForm">Değerlendirme formunu doldurmak için simge üzerine tıklayınız.</message>
+	<message key="reviewer.paper.reviewFormResponse.form.responseRequired">Lütfen zorunlu alanları doldurunuz.</message>
+
+	<!-- review forms end -->
+
+	<!--
+	 *
+	 * COMMON - This section contains the most frequently-used words
+	 *
+	-->
+
+	<!-- Common Messages -->
+	<message key="common.openConferenceSystems">Açık Konferans Sistemleri</message>
+	<message key="common.noDate">(tarih)</message>
+	<message key="common.time">Zaman</message>
+	<message key="common.days">günler</message>
+	<message key="common.timeZone">Zaman Dilimi</message>
+	<message key="common.ellipsis">...</message>
+	<message key="common.path">Yol</message>
+	<message key="common.dateTimeSeparator">anda</message>
+	<message key="common.ccLicense"><![CDATA[<a target="_new" rel="license" href="http://creativecommons.org/licenses/by/3.0/">
+			<img alt= "Creative Commons Lisansı" style="border-width:0" src="{$ccLicenseImageUrl}"/>
+		</a>
+		<br/>
+Bu <span xmlns:dc="http://purl.org/dc/elements/1.1/" href="http://purl.org/dc/dcmitype/Text" rel="dc:type"> çalışma </span>, bir <a rel="license" target="_new" href="http://creativecommons.org/licenses/by/3.0/"> Creative Commons Atıf 3,0 Lisansı </a> kapsamında lisanslanır.]]></message>
+	<message key="common.sortBy">Göre Sırala...</message>
+	<message key="common.sitePageHeader.altText">Site Başlık Resmi</message>
+	<message key="common.pageHeader.altText">Sayfa Başlık Resmi</message>
+	<message key="common.homePageHeader.altText">Anasayfa Başlık Resmi</message>
+	<message key="common.conferenceHomepageImage.altText">Konferans Anasayfa Resmi</message>
+
+	<!-- Navigation -->
+	<message key="navigation.conferenceHelp">Konferans yardımı</message>
+	<message key="navigation.account">Başvuru</message>
+	<message key="navigation.archive">Arşiv</message>
+	<message key="navigation.current">Güncel Konferanslar</message>
+	<message key="navigation.otherConferences">Diğer konferanslar</message>
+	<message key="navigation.browseByConference">Konferansa Göre</message>
+	<message key="navigation.browseByAuthor">Yazara Göre</message>
+	<message key="navigation.infoForAuthors">Yazarlar İçin</message>
+	<message key="navigation.infoForReviewers">Hakemler İçin</message>
+	<message key="navigation.infoForAuthors.long">Yazarlar İçin Bilgi</message>
+	<message key="navigation.infoForReviewers.long">Hakemler İçin Bilgi</message>
+
+	<!-- Paper Queues -->
+	<message key="common.queue.long.submissionsUnassigned">Atanmamış</message>
+	<message key="common.queue.short.submissionsUnassigned">Atanmamış</message>
+	<message key="common.queue.long.submissionsInReview">Değerlendirmedeki Bildiriler</message>
+	<message key="common.queue.short.submissionsInReview">Değerlendirmede</message>
+	<message key="common.queue.long.submissionsAccepted">Bildiriler</message>
+	<message key="common.queue.short.submissionsAccepted">Bildiriler</message>
+	<message key="common.queue.long.submissionsArchives">Arşivler</message>
+	<message key="common.queue.short.submissionsArchives">Arşivler</message>
+	<message key="common.queue.long.active">Aktif Bildiriler</message>
+	<message key="common.queue.short.active">Aktif</message>
+	<message key="common.queue.long.completed">Arşiv</message>
+	<message key="common.queue.short.completed">Arşiv</message>
+
+	<!--
+	 *
+	 * ENTITIES - This section contains terms pertaining to the system's
+	 *            major entities, e.g. Paper, Conference, Track
+	 *
+	-->
+
+	<!-- Common Track Terms -->
+	<message key="track.track">Bölüm</message>
+	<message key="track.tracks">Konferans Bölümleri</message>
+	<message key="track.title">Bölüm Başlığı</message>
+	<message key="track.abbreviation">Kısaltma</message>
+	<message key="track.abbreviation.example">(Örneğin, Genel makaleler=GEN)</message>
+
+	<!-- Common Paper Terms -->
+	<message key="paper.papers">Makaleler</message>
+	<message key="paper.submissionId">Bildiri ID</message>
+	<message key="paper.title">Başlık</message>
+	<message key="paper.authors">Yazarlar</message>
+	<message key="paper.conferenceTrack">Konferans Bölümü</message>
+	<message key="paper.file">Dosya</message>
+	<message key="paper.suppFile">Ek Dosya</message>
+	<message key="paper.suppFiles">Ek Dosya(lar)</message>
+	<message key="paper.suppFilesAbbrev">Ek. dosyalar</message>
+	<message key="paper.discipline">Akademik disiplin ve alt-disiplinler</message>
+	<message key="paper.subjectClassification">Konu sınıflandırması</message>
+	<message key="paper.subject">Anahtar Kelimeler</message>
+	<message key="paper.coverage">Kapsam</message>
+	<message key="paper.coverageGeo">Coğrafi-mekansal kapsam</message>
+	<message key="paper.coverageChron">Kronolojik ya da tarihsel kapsam</message>
+	<message key="paper.coverageSample">Araştırma örnek özellikleri</message>
+	<message key="paper.type">Tür,yöntem ya da yaklaşım</message>
+	<message key="paper.language">Dil</message>
+	<message key="paper.trackDirector">TD</message>
+	<message key="paper.commentsToDirector">Yazar yorumları</message>
+	<message key="paper.submission">Bildiri</message>
+	<message key="paper.submissions">Bildiriler</message>
+	<message key="paper.abstract">Özet</message>
+	<message key="paper.details">Ayrıntılar</message>
+	<message key="paper.location">Yerleşim</message>
+	<message key="paper.time">Zaman</message>
+	<message key="paper.comments.trackDefault">Varsayılan</message>
+	<message key="paper.comments.disable">Etkisizleştir</message>
+	<message key="paper.comments.enable">Etkinleştir</message>
+	<message key="paper.fontSize">Yazı Boyutu</message>
+	<message key="paper.fontSize.small.altText">Küçük</message>
+	<message key="paper.fontSize.medium.altText">Orta</message>
+	<message key="paper.fontSize.large.altText">Büyük</message>
+	<message key="paper.sessionType">Oturum Türü</message>
+
+	<!-- Submission Tracking - Common -->
+	<message key="submission.fromTime">den/ten</message>
+	<message key="submission.toTime">e/a</message>
+	<message key="submission.abstractReview">Özet Değerlendirme</message>
+	<message key="submission.paperReview">Bildiri Değerlendirme</message>
+	<message key="submission.page.abstractReview">#{$id} Özet Değerlendirme</message>
+	<message key="submission.page.paperReview">#{$id} Bildiri Değerlendirme</message>
+	<message key="submission.uploadFile">Bildiri yükle</message>
+	<message key="submission.changeTrack">e değiştir</message>
+	<message key="submission.acceptance">Değerlendirmede Anlaşıldı</message>
+	<message key="submission.complete.description">Kabul edilen bildiriler listesine ekle</message>
+	<message key="submission.directorDecision">Yönetici Kararı</message>
+	<message key="submission.stage"><![CDATA[Tur&nbsp;{$stage}]]></message>
+	<message key="submission.directorReview">Yönetici Değerlendirmesi</message>
+	<message key="submission.notifyAuthor">Yazara Bildir</message>
+	<message key="submission.notifyDirector">Yöneticiye Bildir</message>
+	<message key="submission.directorAuthorRecord">Yönetici/Yazar e-posta Kaydı</message>
+	<message key="submission.directorVersion">Yönetici Sürümü</message>
+	<message key="submission.authorsRevisedVersion">Yazar tarafından düzeltilmiş dosya sürümü</message>
+
+	<message key="submission.authorVersion">Yazar Sürümü</message>
+	<message key="submission.layout.description">Bu isteğe bağlı adım; gönderilmiş olan bildirilerin ya bildiriden önce ya da sonra, dosya biçimini değiştirmek ya da bildiriyi düzenlemek için kullanılabilir.</message>
+
+	<message key="submissions.track">Bölüm</message>
+	<message key="submissions.queuedAbstractReview">Değerlendirmedeki Özet</message>
+	<message key="submissions.queuedPaperReview">Değerlendirmedeki Bildiri</message>
+	<message key="submissions.published">Gönderildi</message>
+	<message key="submissions.accepted">Kabul edilenler</message>
+	<message key="submissions.reviewStage">Değerlendirme Aşaması</message>
+	<message key="submissions.reviewType">Değerlendirme Türü</message>
+	<message key="submissions.pendingPresentation">Bekleyen Yükleme</message>
+	<message key="submissions.expired">Süresi Dolan</message>
+	<message key="submissions.directorDecision">Yönetici Kararı</message>
+	<message key="submissions.directorRuling">Yönetici Talimatı</message>
+	<message key="trackDirector.galley.replaceGalley">Dosyayı Değiştir</message>
+	<message key="submission.abstract">Özet</message>
+	<message key="submission.paper">Bildiri</message>
+
+	<!-- Common Conference Terms -->
+	<message key="conference.conferences">Konferanslar</message>
+	<message key="conference.conference">Konferans</message>
+
+	<!-- Common Scheduled Conference Terms -->
+	<message key="schedConf.scheduledConferences">Planlanmış Konferanslar</message>
+	<message key="schedConf.noScheduledConferences">Planlanış Konferans Yok</message>
+	<message key="schedConf.schedConf">Planlanmış Konferans</message>
+	<message key="schedConf.contents">Konferans Bilgisi</message>
+	<message key="schedConf.overview">Etkinlik Hakkında</message>
+	<message key="schedConf.trackPolicies">İzlem Politikası</message>
+	<message key="schedConf.schedule">Konferans Planı</message>
+	<message key="schedConf.program">Program</message>
+	<message key="schedConf.cfp">Bildiri Gönderimi</message>
+	<message key="schedConf.discussion">Tartışma</message>
+	<message key="schedConf.registration">Başvuru</message>
+	<message key="schedConf.accommodation">Konaklama</message>
+	<message key="schedConf.supporters">Destekleyen Kuruluşlar</message>
+	<message key="schedConf.timeline">Zaman Çizelgesi</message>
+	<message key="schedConf.schedule">Konferans Planı</message>
+	<message key="schedConf.links">İlgili Bağlantılar</message>
+	<message key="schedConf.presentations">Sunumlar ve Yazarlar</message>
+	<message key="schedConf.presentations.short">Sunumlar</message>
+	<message key="schedConf.abstract">Özet</message>
+	<message key="schedConf.submission">Gönderi</message>
+	<message key="schedConf.submissions">Gönderiler</message>
+
+	<message key="schedConf.cfp.title">Bildiri Çağrısı</message>
+	<message key="schedConf.overview.title">Genel Bakış</message>
+	<message key="schedConf.presentations.title">Sunumlar ve Yazarlar</message>
+	<message key="schedConf.schedule.title">Plan</message>
+	<message key="schedConf.program.title">Program</message>
+	<message key="schedConf.accommodation.title">Konaklama</message>
+	<message key="schedConf.trackPolicies.title">İzlem Politikaları</message>
+
+	<!-- Reader interface for scheduler -->
+	<message key="schedConf.scheduler.locations">Konferans Yerleri</message>
+
+	<!-- User self-registration form -->
+	<message key="schedConf.registration.alreadyRegistered">Ödeme henüz alınmamış olmasına rağmen, bu konferans için kayıtlısınız. Bunun hatalı olduğunu düşünüyorsanız yada kaydınızı değiştirmek istiyorsanız lütfen irtibata geçiniz.</message>
+	<message key="schedConf.registration.alreadyRegisteredAndPaid">Hali hazırda bu konferans için kayıtlısınız. Bunun hatalı olduğunu düşünüyorsanız ya da kaydınızı değiştirmek istiyorsanız konferans yöneticisi ile irtibata geçiniz.</message>
+	<message key="schedConf.registration.noPaymentMethodAvailable">Kaydı alınmıştır. Varsa, ödeme ile ilgili olarak irtibata geçilecektir.</message>
+	<message key="schedConf.registration.free">Kaydınız yapılmıştır ve herhangi bir ödeme gerekli olmmamıştır</message>
+	<message key="schedConf.registration.conferenceFees">Konferans Ücretleri</message>
+	<message key="schedConf.registration.failed">Kayıt başarısız, lütfen yeniden deneyin.</message>
+	<message key="schedConf.registration.type">Kayıt Türü</message>
+	<message key="schedConf.registration.cost">Maliyet</message>
+	<message key="schedConf.registrationTypes.noneAvailable">Hiçbir kayıt türü mevcut değil.</message>
+	<message key="schedConf.registrationOptions.noneAvailable">Hiçbir kayıt seçeneği mevcut değil.</message>
+	<message key="schedConf.registration.register">Kayıt Ol</message>
+	<message key="schedConf.registration.typeCloses">(Kapanış {$closingDate})</message>
+	<message key="schedConf.registration.typeClosed">(Kayıt Kapanışı {$closingDate})</message>
+	<message key="schedConf.registration.typeFuture">(Kayıt Açılışı {$openingDate})</message>
+	<message key="schedConf.registration.optionCloses">(Kapanış {$closingDate})</message>
+	<message key="schedConf.registration.optionClosed">(Kayıt kapanışı {$closingDate})</message>
+	<message key="schedConf.registration.optionFuture">(Kayıt açılışı {$openingDate})</message>
+	<message key="schedConf.registration.feeCode">Ücret Kodu</message>
+	<message key="schedConf.registration.feeCode.description">Eğer kayıt için bir gizli koda sahip iseniz lütfen buraya giriniz ve yukarıdaki doğru kayıt türünü seçtiğinizden emin olunuz. Böyle bir koda sahip değilseniz bu alanı boş bırakınız.</message>
+	<message key="schedConf.registration.specialRequests">Özel İstekler</message>
+	<message key="schedConf.registration.specialRequests.description">Lütfen bu alanda gereksinim duyduğunuz şeyleri ya da isteklerinizi tanımlayınız (örneğin, diyet, ulaşım vb.)</message>
+	<message key="schedConf.registration.account">Kullanıcı Hesabı</message>
+	<message key="schedConf.registration.loggedInAs"><![CDATA[Şu anda oturum açmış bulunmaktasınız. Aşağıdaki hesap bilgilerinin doğru olduğundan emin olunuz. Eğer bilgiler doğru değil ise, <a href="{$profileUrl}">My Profile</a> or <a href="{$logoutUrl}">log out</a> bunu düzeltmek için başka bir kullanıcı hesabı kullanarak giriş yapınız.]]></message>
+	<message key="schedConf.registration.createAccount.description"><![CDATA[Şu anda oturum açmadınız. Bu konferansa kayıt yaptırmak için bir hesaba sahip olmanız gerekir. Eğer bir hesabınız var ise, <a href="{$loginUrl}">girmek için buraya tıklayın</a>; hesabınız yok ise bir hesap oluşturmak için aşağıdaki formu doldurunuz.]]></message>
+	<message key="schedConf.registration.options">Kayıt Seçenekleri</message>
+
+	<message key="schedConf.registration.landingPaid">Kayıt olduğunuz için teşekkürler! Ödeme hakkında daha fazla bilgi almak için sizinle irtibata geçilecektir.</message>
+	<message key="schedConf.registration.landingPaid">Thank you for registering! You will be contacted for further information on payment.</message>
+
+	<!-- User -->
+	<message key="user.showAllConferences">Konferanslarımı Göster</message>
+	<message key="user.createAccount">Oluştur</message>
+	<message key="user.createAccountForOtherConferences">Diğer konferanslar için bir hesap oluştur</message>
+	<message key="user.myConferences">Konferanslarım</message>
+	<message key="user.noRoles.chooseConference">Hesabınız şu anda herhangi bir konferansla ilişkilendirilmiş değildir. Lütfen bir konferans seçiniz:</message>
+	<message key="user.noRoles.noRolesForConference">Şu anda hesabınıza bu konferansta bir rol atanmamıştır. Lütfen aşağıdaki eylemlerden seçim yapınız:</message>
+	<message key="user.noRoles.submitProposal">Bir Bildiri Gönder</message>
+	<message key="user.noRoles.submitProposalRegClosed">Bir Bildiri gönder: Yazar kaydı şu anda kapalı</message>
+	<message key="user.noRoles.submitProposalSubmissionsClosed">Bildiri gönderin: Bildiriler şu anda kapalı.</message>
+	<message key="user.noRoles.regReviewer">Hakem olarak konferansa kayıt</message>
+	<message key="user.noRoles.regReviewerClosed">Hakem olarak konferansa kayıt: Hakem kaydı şu anda kapalı.</message>
+	<message key="user.noRoles.register">Konferansa katılmak için kaydolun</message>
+	<message key="user.noRoles.registerUnavailable">Konferansa katılmak için kayıt: Kayıt henüz kabul edilmedi.</message>
+
+	<!-- Roles -->
+	<message key="user.role.manager">Konferans Yöneticisi</message>
+	<message key="user.role.director">Yönetici</message>
+	<message key="user.role.trackDirector">Bölüm Yöneticisi</message>
+	<message key="user.role.author">Yazar</message>
+
+	<message key="user.role.managers">Konferans Yöneticileri</message>
+	<message key="user.role.directors">Yöneticiler</message>
+	<message key="user.role.trackDirectors">Bölüm Yöneticileri</message>
+	<message key="user.role.authors">Yazarlar</message>
+
+	<!--
+	 *
+	 * LOG - This section contains entries related to log entries.
+	 *
+	-->
+
+	<message key="event.logType.paper">Bildiri</message>
+	<message key="event.logType.author">Yazar</message>
+	<message key="event.logType.director">Yönetci</message>
+	<message key="event.logType.review">Değerlendirme</message>
+	<message key="event.logType.conference">Konferans</message>
+
+	<message key="event.eventLog">Etkinlik Günlüğü</message>
+	<message key="event.logLevel">Düzey</message>
+
+	<message key="event.logLevel.info">Bilgi</message>
+	<message key="event.logLevel.notice">Dikkat</message>
+	<message key="event.logLevel.warning">Uyarı</message>
+	<message key="event.logLevel.error">Hata</message>
+
+	<message key="event.general.defaultEvent">Bildiri etkinliği</message>
+
+	<!-- Submission events -->
+
+	<message key="submission.event.general.abstractSubmitted">Gönderilen Özet</message>
+	<message key="submission.event.general.presentationSubmitted">Gönderilen Bildiri</message>
+	<message key="submission.event.general.paperPublished">Yayınlanan Bildiri</message>
+
+	<message key="submission.event.presenter.authorRevision">Gönderilen yazar düzeltmesi</message>
+
+	<message key="submission.event.general.authorRevision">Yazar düzeltme dosyası güncellendi</message>
+
+	<message key="submission.event.director.directorAssigned">Bildiriye atanan yönetici</message>
+	<message key="submission.event.director.directorUnassigned">Bildiriden geri alınan yönetici</message>
+	<message key="submission.event.director.directorDecision">Yönetici kararı gönderildi</message>
+	<message key="submission.event.director.directorFile">Yönetici dosyası güncellendi</message>
+	<message key="submission.event.director.submissionArchived">Arşive giden başvuru</message>
+	<message key="submission.event.director.submissionRestored">Arşivden geri yüklenen başvuru</message>
+
+
+	<!-- Conference events -->
+	<message key="conference.event.general.configuration">Konferans yapısı değişti</message>
+	<message key="conference.event.general.deadline">Konferans son tarihi geçti</message>
+
+	<!--
+	 *
+	 * INTERFACE - Contains phrases organized by the section of the
+	 *             user interface they appear in.
+	 *
+	-->
+
+	<!-- Reader paper view -->
+	<message key="reader.fullTextNotAvailable">Konferans bildirilerine şu an ulaşılamaz</message>
+	<message key="reader.accessDenied">Şu anda bu incelemeyi görüntülemek için izniniz yok. Bu konferans web sitesi için bir hesabınız varsa, içeriğini görüntülemek için oturum açmanız gerekebilir.</message>
+	<message key="reader.fullTextRegistrationRequired">Bildirileri görüntülemek için konferansa kayıt gereklidir.</message>
+	<message key="reader.fullTextAccountRequired"><![CDATA[Bildirileri görmek için konferansa kayıt gereklidir. Kayıt olmak için <a href="{$registerUrl}">buraya tıklayın</a> .]]></message>
+	<message key="reader.fullTextRegistrantsOnlyUntil">Bu konferansa {$date} tarihinde açık erişime sunulacak.</message>
+	<message key="reader.fullTextNotPostedYet">Bu konferansa bildiriler {$date} tarihinde gönderilebilir.</message>
+
+	<!-- Reader Comments -->
+	<message key="comments.authenticated">{$userName}</message>
+	<message key="comments.commentsOnPaper">Bildiri Üzerine Yorumlar</message>
+	<message key="comments.commentsClosed">Yorumlar {$closeCommentsDate} tarihde kapandı.</message>
+
+	<!-- Site Administration -->
+
+	<message key="admin.settings.oaiRegistrationDescription"><![CDATA[Araştırma veri tabanında küresel olarak düzenlenmiş sistemli bu sitede var olan tüm konferansların içeriğine ulaşmak için, <a href=bhttp://pkp.sfu.ca/harvester/add.php" target="_blank">register</a> Toplum Bilgisi Projesi metaverisi için sitenizin URL'si <a href="http://pkp.sfu.ca/harvester/" target="_blank">harvester</a>. Bu araç bu konferanstaki her dizin öğesinin düzgün ve kollektif taramasını sağlayarak şu konuma bağlı araştırma sitelerindeki metaveriyi birleştirir <a href="http://www.openarchives.org/OAI/openarchivesprotocol.htm#Introduction" target="_blank">Open Archives Initiative Protocol for Metadata Harvesting</a>.
+<br /><br />
+<a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">Click here</a> and enter <span class="highlight">{$siteUrl}</span> under <strong>Site URL</strong>, and <span class="highlight">{$oaiUrl}</span> under <strong>Base URL for OAI Archive</strong>.
+<br /><br />
+OAI arayüzünün OCS sistem ayarlarının yüklenmesiyle birlikte bu site için devre dışı bırakıldığını unutmayınız. OCS'nin gelecek versiyonları OAI arayüzünün bu site tarafından bireysel konferanslarda aktif hale getirilmesini ya da devre dışı bırakılmasına olanak verecektir.]]></message>
+
+	<message key="admin.auth.defaultSourceDescription"><![CDATA[<p>Varsayılan bir yetkilendirme kaynağının diğer OCS den bağımsız olarak özelleştirilmesi şu etkilere sebep olur:</p>
+<ul>
+	<li>Eğer bir kullanıcı yetki kaynağında varolan bir kullanıcı adıyla sitede yeni bir hesap oluşturuyorsa( ancak OCS veritabanında olmayan), kayıt denemesi sadece desteklenen şifre kullanıcı hesabı için geçerliyse izin verilecektir.
+ .</li>
+</ul>]]></message>
+
+	<!-- System Information -->
+	<message key="admin.overwriteConfigFileInstructions"><![CDATA[<h4>NOTE!</div>
+<p>Sistem düzenleme dosyalarının üzerine otomatik olarak yazamıyor. Düzenleme değişikliklerini uygulamak için, uygun bir metin editörü ile açmalısınız  <tt>config.inc.php</tt> ve aşağıda doldurulan metin içeriği dahil içeriği değiştirmelisiniz  </p>]]></message>
+
+	<!-- Payment Handling -->
+	<message key="payment.type.conferenceRegistration">Konferans Kaydı; {$schedConfTitle}; {$registrationTypeName}</message>
+
+	<!-- Conference Event Log -->
+	<message key="conference.event.confirmClearLog">Bu konferans için olay günlüğüne temizlemek istediğinize emin misiniz?</message>
+	<message key="conference.event.confirmDeleteLogEntry">Bu olay günlük giriş bilgilerini silmek istediğinizden emin musunuz?</message>
+	<message key="conference.event.deleteLogEntry">Günlük Girişi Sil</message>
+	<message key="conference.event.backToEventLog">Olay Günlüğüne Geri Dön</message>
+	<message key="conference.history.conferenceEventLog">Olay Günlüğü</message>
+	<message key="conference.history.clearLog">Günlüğü Temizle</message>
+	<message key="conference.history.noLogEntries">Günlük girişi yok.</message>
+
+	<!-- General plugin information -->
+	<message key="plugins.categories.generic.description">Jenerik eklentileri diğer eklenti kategorilere tarafından desteklenen çeşitli şekillerde Açık Konferans Sistemleri niuzatmak için kullanılır.</message>
+	<message key="plugins.categories.auth.description">Yetkilendirme Eklentiler Açık Konferans Sistemleri gibi LDAP sunucuları gibi diğer sistemlere, kullanıcı kimlik doğrulama görevleri için izin verir.</message>
+	<message key="plugins.categories.citationFormats.description">Atıf biçimi eklentileri kağıt alıntıları erişmek için çeşitli formatları ile kullanıcılara sunar.</message>
+
+	<!-- Leftovers -->
+	<message key="manager.setup.finalStepSavedNotes"><![CDATA[<p>Almost Done!</p>
+			<p>Şimdi kurulan konferans, yıllık bir konferans ya da programlanmış konferans gruplarının bu konferans sitesinden yönetilebileceği tek programlı bir konferans gerektirebilir. bu konferansın özel bir örneğini programlamak için gidiniz  <a href="{$schedConfSetupUrl}">Scheduled Conferences</a>. Bu sayfaya Konferans Yöneticisi ana sayfasından istediğiniz zaman ulaşabilirsiniz.</p>
+			<p>Bağlantıları takip ederek istediğiniz zaman şu sayfalara dönebilirsiniz "Kullanıcı Girişi > Konferans Yöneticisi > Kur".</p>
+			<p>Programlanmış konferanslar "Kullanıcı Girişi > Konferans Yöneticisi > Kur"</p>üzerinden yönetebilirsiniz]]></message>
+	<message key="manager.setup.citations">Yazarlara ayrı ayrı bildirilerinin bir parçası olarak referans(atıf)ların biçimlendirilmiş bir listesini sağlar.</message>
+
+	<message key="manager.setup.indexing.registerConferenceForIndexing.description"><![CDATA[To have the contents of this conference indexed within a globally distributed system of research databases, <a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">register</a> your conference's URL with the Public Knowledge Project metadata <a href="http://pkp.sfu.ca/harvester/" target="_blank">harvester</a>. This tool collects the metadata from each indexed item in this conference, enabling accurate and collective searching among the research sites that adhere to the <a href="http://www.openarchives.org/OAI/openarchivesprotocol.htm#Introduction" target="_blank">Open Archives Initiative Protocol for Metadata Harvesting</a>.
+<br /><br />
+Note that if your site administrator has already registered this site with the PKP Harvester, your conference will be indexed automatically and you do not need to register your conference.
+<br /><br />
+<a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">Click here</a> and enter <span class="highlight">{$siteUrl}</span> under <strong>Site URL</strong>, and <span class="highlight">{$oaiUrl}</span> under <strong>Base URL for OAI Archive</strong>.]]></message>
+
+	<!-- Scheduled Conference Setup Step 2 -->
+	<message key="manager.schedConfSetup.submissions.subjectClassificationDescription"><![CDATA[Konferans, web üzerinde mevcut bir konu sınıflandırma sistemi kullanacaktır. <br />
+Sınıflandırma sistemi başlığı]]></message>
+
+	<!-- People Management -->
+	<message key="manager.people.confirmDisable">Bu kullanıcıyı engellemek mi istiyorsunuz? Bu kullanıcının sisteme girişini engelleyecektir.
+
+Neden engellediğinizi kullanıcıya bildirmek isteyebilirsiniz.</message>
+	<message key="manager.people.noAdministrativeRights"><![CDATA[Üzgünüz, bu kullanıcı üzerinde yönetsel yetkileriniz yok. Nedenleri:
+		<ul>
+			<li>Kullanıcı site yöneticisi olabilir</li>
+			<li>Kullanıcı şu an aktif olabilir</li>
+		</ul>
+	Bu görevler site yöneticisi tarafından yapılmalıdır.]]></message>
+
+	<!-- Used by director in submission review / editing -->
+	<message key="director.paper.selectReviewerNotes"><![CDATA[Hakem profili bağlantı adı.<br/>
+5 üzerinden değerlendirmeler (Mükemmel).<br/>
+Haftalar bir değerlendirmeyi tamamlamak için ortalama süreyi belirtir.<br/>
+Son en son kabul edilen değerlendirme tarihidir.<br/>
+Aktif ise şu anda kaç değerlendirmenin üzerinde düşünüldüğü ve yapım aşamasında olduğudur.]]></message>
+
+	<!-- Track Director -->
+	<message key="trackDirector.author.confirmRenotify">Bu yazara bildirim, atamasını tekrar yeniden başlatacak. Bunu yapmak istediğinizden emin mısınız?</message>
+
+	<message key="trackDirector.regrets.breadcrumb">Redler</message>
+	<message key="trackDirector.regrets.title"><![CDATA[#{$paperId} Hakem Redleri & İptaller]]></message>
+	<message key="trackDirector.regrets">Redler</message>
+	<message key="trackDirector.regrets.link">İtiraz ve İptalleri Gör</message>
+	<message key="trackDirector.regrets.reviewStage">Akran Değerlendirmesi, Aşama {$stage}</message>
+	<message key="trackDirector.regrets.decisionStage">Yönetmen Kararı, Aşama {$stage}</message>
+	<message key="trackDirector.regrets.regretsAndCancels"><![CDATA[Hakem Redleri & İptaller]]></message>
+	<message key="trackDirector.regrets.regret">Kabul Etme</message>
+	<message key="trackDirector.regrets.result">Sonuç</message>
+	<message key="trackDirector.review.enrollReviewer">Var olan kullanıcıyı hakem olarak kaydet</message>
+	<message key="trackDirector.review.createReviewer">Yeni Hakem Oluştur</message>
+
+	<!-- Reviewer -->
+	<message key="reviewer.completedReviews">Bitir</message>
+	<message key="reviewer.averageQuality">Oyla</message>
+
+	<!-- Used in submission review -->
+	<message key="reviewer.paper.fileToBeReviewed">Değerlendirilecek dosya</message>
+	<message key="reviewer.paper.notifyTheDirector">Yönetmene Bildir</message>
+	<message key="reviewer.paper.canDoReview">Değerlendirme Yapacağım</message>
+	<message key="reviewer.paper.cannotDoReview">Değerlendirme Yapamayacağım</message>
+	<message key="reviewer.paper.restrictedFileAccess">Hakem incelemeyi yaparsa başvuruyu görülebilir.</message>
+	<message key="reviewer.paper.submissionDirector">Yönetmen Başvurusu</message>
+	<message key="reviewer.paper.reviewerCommentsDescription">Değerlendirme yorumlarınızı buraya yazın veya yapıştırın</message>
+	<message key="reviewer.paper.directorToEnter">Yönetmen Girişi</message>
+	<message key="reviewer.paper.sendReminder">Hatırlatma Gönder</message>
+	<message key="reviewer.paper.automatic">(Otomatik)</message>
+	<message key="reviewer.paper.selectRecommendation">Başvuru sürecini tamamlamak için bir öneri seçin ve gönderin. Bunu yapmadan önce bildiri değerlendirme işlemini tamamlayınız.</message>
+	<message key="reviewer.paper.recommendation">Öneri</message>
+	<message key="reviewer.paper.submitReview">Değerlendirmeyi Yöneticiye Gönder</message>
+	<message key="reviewer.paper.reviewerComments">Yorumlar</message>
+	<message key="reviewer.paper.uploadedFile">Yüklenen Dosyalar</message>
+	<message key="reviewer.paper.reviewersAnnotatedVersion">Eleştirmen tarafından yüklenen sürümü</message>
+	<message key="reviewer.paper.reviewersAnnotatedVersionDescription">(Dosyaya açıklama yapmak istiyorsanız yönetici için, , sabit diskinize kaydedin ve  Gözat / Yükle işlevlerini kullanın.)</message>
+	<message key="reviewer.paper.schedule.request">Yönetmenin İsteği</message>
+	<message key="reviewer.paper.schedule.response">Sizin Yanıtınız</message>
+	<message key="reviewer.paper.schedule.submitted">Değerlendirme Gönderildi</message>
+	<message key="reviewer.paper.schedule.due">Değerlendirme Tarihi</message>
+	<message key="reviewer.paper.decision.accept">Başvuruyu Kabul Et</message>
+	<message key="reviewer.paper.decision.pendingRevisions">Düzeltme Gerekli</message>
+	<message key="reviewer.paper.decision.resubmitElsewhere">Başka bir yere başvurun</message>
+	<message key="reviewer.paper.decision.decline">Başvuruyu Reddet</message>
+	<message key="reviewer.paper.decision.seeComments">Yorumları Gör</message>
+	<message key="reviewer.paper.schedule">Plan</message>
+	<message key="reviewer.paper.submissionToBeReviewed">Değerlendirilmesi Gereken Başvurular</message>
+	<message key="reviewer.paper.reviewSchedule">Planı İncele</message>
+	<message key="reviewer.paper.reviewSteps">Değerlendirme Adımları</message>
+	<message key="reviewer.paper.reviewerGuidelines">Değerlendirme Kılavuzu</message>
+	<message key="reviewer.paper.notifyEditorA">Değerlendirme yapıp yapamayacağınızı yönetmene bildirin. Yönetmen:</message>
+	<message key="reviewer.paper.notifyEditorB">Daha sonraki aşamalara geçiş için değerlendirmeyi kabul etmeniz gerekir</message>
+	<message key="reviewer.paper.consultGuidelines">Değerlendirme yapacak iseniz, değerlendirme kılavuzuna bakınız</message>
+	<message key="reviewer.paper.downloadSubmissionAbstractOnly">Başvuru ile birlikte gelen özeti değerlendirin.</message>
+	<message key="reviewer.paper.downloadSubmissionSubmission">Başvuruyu Değerlendir</message>
+	<message key="reviewer.paper.enterReviewA">Bu başvuru için değerlendirmenizi girmek ya da yapıştırmak için  için enter tuşuna basınız</message>
+	<message key="reviewer.paper.uploadFile">Ayrıca yönetici ve yazar için dosyalar yükleyebilirsiniz</message>
+	<message key="reviewer.paper.selectRecommendation">Başvuru sürecini tamamlamak için bir öneri seçin ve gönderin. Bunu yapmadan önce bildiri değerlendirme işlemini tamamlayınız.</message>
+	<message key="reviewer.paper.mustSelectDecision">Bir öneri seçilmedi. Göndermeden önce bir öneri seçmelisiniz</message>
+	<message key="reviewer.paper.confirmDecision">Bir kararı kaydettikten sonra, değişiklik yapmak mümkün olmayacaktır. Devam etmek istediğiniz emin misiniz?</message>
+	<message key="reviewer.paper.ensuringBlindReview">Kör Değerlendirme Sağlayın</message>
+
+	<!-- Paper Submission Step 3 -->
+	<message key="author.submit.uploadInstructions"><![CDATA[<p>Bu etkinliğe bildiri yüklemek için aşağıdaki adımları izleyin.</p>
+
+<ol>
+<li>Bu sayfada,  Gözat'ı (Browse) tıklayın.</li>
+<li>Yüklemek istediğiniz dosyayı bulun ve seçin</li>
+<li>Aç'ı tıklayın.</li>
+<li>Yükle'yi Tıklayın</li>
+<li>Yükleme tamamlanınca, Kaydet ve Devam Et butonuna basın.</li>
+</ol>]]></message>
+
+	<!-- Paper Submission: upload file -->
+	<message key="submission.submissionFiles">Başvuru Dosyaları</message>
+
+	<!-- Submission Comments -->
+	<message key="submission.comments.directorAuthorCorrespondence">Yönetmen/Yazar Yazışması</message>
+	<message key="submission.comments.viewableDescription"><![CDATA[Bu yorumlar yazarla paylaşılabilir.<br />
+(Kayıttan sonra, yorum eklenebilir.)]]></message>
+	<message key="submission.comments.canShareWithAuthor">Yazar ve Yönetici için</message>
+	<message key="submission.comments.cannotShareWithAuthor">Yönetici İçin</message>
+	<message key="submission.comments.blindCcReviewers">Gönderdikten sonra, hakemlere editör kararının bir kör gizli kopyasını sağlayın.</message>
+	<message key="submission.comments.forAuthorDirector">Yazar ve Yönetici için</message>
+	<message key="submission.comments.forDirector">Yönetici İçin</message>
+	<message key="submission.comments.saveAndEmailAuthor">Kaydet ve Yazara E-posta gönder</message>
+	<message key="submission.comments.saveAndEmailDirector">Kaydet ve Yönetciye E-posta Gönder</message>
+
+	<!-- Login -->
+	<message key="user.login.createAccount">Kayıtlı değilmisiniz? Yeni bir kayıt oluşturun</message>
+	<message key="user.login.resetPasswordInstructions"><![CDATA[Güvenlik nedeni ile sistem eski şifreniz yerine yeni bir şifre yollayacaktır.<br /><br />Yeni şifre içim E-posta adresinizi giriniz. Bu e-posta adresine bir doğrulama e-postası yollanacaktır.]]></message>
+
+	<!-- Registration -->
+	<message key="user.account.repeatPassword">Şifreyi Tekrarlayın</message>
+	<message key="user.account.form.usernameExists">Bu kullancı adı kullanılmaktadır, lüften başka bir kullanıcı adı kullanın</message>
+	<message key="user.account.form.usernameAlphaNumeric">Kullanıcı adınız, sadece alfasayısal karakterler, altçizgi, ve tire  içerebilir. Alfasayısal karakter ile başlayıp ve sona ermelidir.</message>
+	<message key="user.account.form.emailExists">Seçilen bir e-posta adresi başka bir kullanıcı tarafından kullanılıyor.</message>
+	<message key="user.account.form.passwordsDoNotMatch">Şifreniz eşleşmedi.</message>
+	<message key="user.account.selectConference">Hesap oluşturmak istediğiniz bir konferans seçiniz</message>
+	<message key="user.account.noConferences">Bu sitede hesap oluşturabileceğiniz bir konferans yoktur.</message>
+	<message key="user.account.selectSchedConf">Bir hesap oluşturmak için konferans seçin</message>
+	<message key="user.account.noSchedConfs">Bu sitede hesap oluşturabileceğiniz planlanmış bir konferans yoktur.</message>
+	<message key="user.account.createAs">Okuyucu, yazar ve hakem seçeneklerini işaretleyiniz</message>
+	<message key="user.account.privacyStatement">Gizlilk Bildirimi</message>
+	<message key="user.account.completeForm">Kayıt için aşağıdaki formu doldurunuz</message>
+	<message key="user.account.hasAccount"><![CDATA[<a href="{$accountUrl}">Bu sitede başka bir konferansa kayıtlı iseniz, buraya tıklayın</a>.]]></message>
+	<message key="user.account.hasNoAccount"><![CDATA[<a href="{$accountUrl}">Bu sitede başka bir konferans için hesabınız yok ise buraya tıklayın</a>.]]></message>
+	<message key="user.account.loginToRegister">Bu konferans için oluşturmak için, mevcut kullanıcı adı ve şifrenizi giriniz</message>
+	<message key="user.account.createAccountDisabled">Bu konferans şimdi yeni kullanıcı kabul etmiyor.</message>
+	<message key="user.account.usernameRestriction">Kullanıcı adı sadece küçük harfler, sayılar, tire ve altçizgi içerebilir.</message>
+	<message key="user.account.passwordLengthRestriction">Şifre en az {$length} karakter olmalı.</message>
+	<message key="user.account.form.passwordLengthTooShort">Girdiğiniz şifre yeterince uzun değil.</message>
+	<message key="user.account.readerDescription">Bildiri yayınlamalarını e-posta ile bildir.</message>
+	<message key="user.account.openAccessNotificationDescription">Erişime açık bir konferans yapıldığında e-posta ile bildirilir.</message>
+	<message key="user.account.authorDescription">Konferansa bildiri sunabilmek için yazar rolünü seçmelisiniz</message>
+	<message key="user.account.reviewerDescriptionNoInterests">Konferansa başvuruları değerlendirme için istekliyim</message>
+	<message key="user.account.reviewerDescription">Konferanstaki bildirilerin hakem görüşlerini yürütmeye gönüllülük. Gözden geçirme görüşlerini tanımlayınız(maddi alanları ve araştırma yöntemleri)</message>
+	<message key="user.account.authorRegistrationMessage">Bu sitenin kullanıcısı olmanıza karşın, bu konferans için yazar değilsiniz</message>
+
+
+
+	<!-- Search -->
+	<message key="search.browseAuthorIndex">Yazar İndeksini Göster</message>
+	<message key="search.searchFor">Yayınları Ara</message>
+	<message key="search.inField">İçinde</message>
+	<message key="search.author">Yazarlar</message>
+	<message key="search.withinConference">İçinde</message>
+	<message key="search.allConferences">Tüm Konferanslar</message>
+	<message key="search.authorIndex">Yazar İndeksini Göster</message>
+	<message key="search.authorDetails">Yazar Ayrıntıları</message>
+	<message key="search.syntaxInstructions"><![CDATA[<p>Arama ipuçları:</p>
+<ul>
+<li>Aranan sözcük büyük-küçük harfe duyarlıdır</li>
+<li>Genel sözcükler gözardı edilir</li>
+<li>Varsayılan olarak bildirileri içerir <em>all</em> terimleri sorguda geri çevrilir (i.e., <em>AND</em> is implied)</li>
+<li>Birden fazla kelimeleri <em>OR</em> ile birleştirin ya da terimi içeren metinleri bulmak için ; Örn., <em>eğitim YA DA araştırma</em></li>
+<li>Daha karmaşık sorguları oluşturmak için parantez kullanın; örn., <em>arşiv ((dergi YA DA konferans) tezler DEĞİL)</em></li>
+<li>Kesin bir ifade için tırnak koyarak ara; e.g., <em>"erişime açık yayınlar"</em></li>
+<li>Başına koyarak bir kelimeyi hariç tutun <strong>-</strong> or <em>NOT</em>; örn. <em>çevrimiçi -politika</em> or <em>çevrimiçi politika DEĞİL</em></li>
+<li>Use <strong>*</strong> herhangi bir karakter dizisini eşleştirmek için sembol olarak bir terim kullan; e.g., <em>sos* ahlak</em> "sosyolojik" veya "sosyal" i içeren belgelerle eşleştirecektir</li>
+</ul>]]></message>
+
+	<!-- Interstitial page for PDFs -->
+	<message key="paper.pdf.title">Portable Document Format (PDF)</message>
+	<message key="paper.pdf.note"><![CDATA[The PDF file you selected should load here, if your Web browser has a PDF reader plug-in installed (for example, a recent version of <a href="http://www.adobe.com/products/acrobat/readstep2.html">Adobe Acrobat Reader</a>). Alternatively, the PDF file will download to your computer, where it can also be opened using a PDF reader. If you would like more information about how to print, save, and work with PDFs, Highwire Press provides a helpful <a href="http://highwire.stanford.edu/help/pdf-faq.dtl">Frequently Asked Questions about PDFs</a>.<br /><br />If the file does not download automatically, <a href="{$url}">click here</a>.]]></message>
+
+	<!-- Interstitial page for non-PDF non-HTML galleys -->
+	<message key="paper.nonpdf.title">Bildiri İndir</message>
+	<message key="paper.nonpdf.note"><![CDATA[Seçtiğiniz dosya otomatik olarak indirilmeye başlayacaktır. Başlamaz ise aşağıdaki bağlantıya tıklatın. Bu dosyayı görmek için özel bir eklenti gerekebilir.<br /><br />Dosya otomatik olarak indirilmeye başlamaz ise, <a href="{$url}">buraya tıklatın</a>.]]></message>
+
+	<!-- Site index -->
+	<message key="site.conferencesHosted">Bu sitedeki konferanslar</message>
+	<message key="site.conferenceView">Konferansı Görün</message>
+	<message key="site.conferenceAccount">Hesap</message>
+	<message key="site.schedConfView">Konferans Ayrıntılarını görün</message>
+	<message key="site.schedConfCurrent">Mevcut Planlanan Konferanslar</message>
+
+	<!-- Conference page -->
+	<message key="conference.currentConferences">Mevcut Konferanslar</message>
+	<message key="conference.noCurrentConferences">Şu anda etkin konferans yoktur. Geçmişte planlanan konferanslar için arşivleri kontrol edin.</message>
+	<message key="conference.archive">Konferans Arşivi</message>
+
+	<!-- Scheduled Conference page -->
+	<message key="schedConf.proposalSubmission">Bildiri Başvurusu</message>
+
+	<!-- Call-for-Papers (CFP) page -->
+	<message key="schedConf.cfp.submitHere">Bir bildiri göndermek için buradan başlayın</message>
+
+	<!-- Conference Proceedings -->
+	<message key="presentations.notPermitted">Henüz bu konferans bildirilerine erişim hakkınız yoktur.</message>
+	<message key="presentations.trackEmpty">Bu bölümde başvuru yok</message>
+	<message key="presentations.schedConfEmpty">Bu konferans bildirileri henüz mevcut değildir veya hiçbir eşleşen bildiri bulunmadı.</message>
+
+	<!-- Program page -->
+	<message key="schedConf.program.programFileInstructions">Bu konferans için program aşağıdaki link üzerinden ulaşılabilir.</message>
+	<message key="schedConf.program.viewProgramFile">Programı Görün</message>
+
+	<!-- About The Conference -->
+	<message key="about.statistics">İstatistikler</message>
+	<message key="about.conferenceContact">Konferans İletişim</message>
+	<message key="about.aboutTheConference">Konferans Hakkında</message>
+	<message key="about.organizingTeam">Kurullar</message>
+	<message key="about.conferencePolicies">Konferans Politikası</message>
+	<message key="about.submissions">Başvurular</message>
+	<message key="about.sponsors">Destekleyenler</message>
+	<message key="about.contributors">Destek Kaynakları</message>
+	<message key="about.onlineSubmissions">Online Başvurular</message>
+	<message key="about.onlineSubmissions.haveAccount">{$conferenceTitle} için bir kullanıcı adınız ve şifreniz zaten varmı?</message>
+	<message key="about.onlineSubmissions.login">Giriş Yapınız</message>
+	<message key="about.onlineSubmissions.needAccount">Bir kullanıcı adı ve şifreyemi ihtiyacınız var?</message>
+	<message key="about.onlineSubmissions.registration">Kayıt Olunuz</message>
+	<message key="about.onlineSubmissions.registrationRequired">Çevrimiçi ürün sunma ve güncel başvurularının durumunu kontrol etmek için kayıt ve giriş gereklidir.</message>
+	<message key="about.authorGuidelines">Yazar Kılavuzu</message>
+	<message key="about.submissionPreparationChecklist">Başvuru Hazırlık Listesi</message>
+	<message key="about.copyrightNotice">Telif Hakkı Uyarısı</message>
+	<message key="about.privacyStatement">Gizlilik Bildirimi</message>
+	<message key="about.peerReviewProcess">Değerlendirme Süreci</message>
+	<message key="about.openAccessPolicy">Açık Erişim Politikası</message>
+	<message key="about.archiveAccessPolicy">Arşiv Erişim Politikası</message>
+	<message key="about.delayedOpenAccess">Gecikmeli Açık Erişimler</message>
+	<message key="about.delayedOpenAccessDescription">Bu konferansın içeriği gecikmeli açık erişim biçimindedir ilgili konferans yayınları katılımcılara gönderildikten {$delayedOpenAccessDuration} ay(lar) sonra açılır.</message>
+	<message key="about.authorSelfArchive">Yazar Kişisel Arşivi</message>
+	<message key="about.archiving">Arşivleme</message>
+	<message key="about.registration">Kayıt</message>
+	<message key="about.registrationContact">Kayıt İletişimi</message>
+	<message key="about.availableRegistrationTypes">Kayıt Türleri</message>
+	<message key="about.aboutThisPublishingSystem">Konferans Sistemi Hakkında</message>
+	<message key="about.aboutThisPublishingSystem.altText">AKS Basvuru, Değerlendirme, ve Yayın Süreci</message>
+	<message key="about.currentConferences">Var Olan Konferanslar</message>
+	<message key="about.aboutOCSConference"><![CDATA[Bu konferans açık kaynaklı konferans yönetimi yazılımı  <a href="http://pkp.sfu.ca/"> tarafından geliştirilen, desteklenen ve serbestçe dağıtılabilen Açık Konferans Sistemini{$ocsVersion} kullanır ,<a href="http://pkp.sfu.ca/">Public Knowledge Project</a> under the GNU General Public License.]]></message>
+	<message key="about.aboutOCSSite"><![CDATA[Bu site, <a href="http://pkp.sfu.ca/"> Kamu Bilgi Projesi </a> tarafından geliştirilen, desteklenen ve serbestçe dağıtılan açık kaynak konferans yönetim yazılımı olan Açık Konferans Sistemi {$ocsVersion} sürümünü kullanmaktadır. > GNU Genel Kamu Lisansı altında.]]></message>
+
+	<!-- Announcement -->
+
+	<!-- Help -->
+	<message key="help.ocsHelp">Açık Konferans Sistemi Yardım</message>
+	<message key="help.ocsHelpAbbrev">AKS Yardım</message>
+
+	<!-- Installer -->
+	<message key="installer.ocsInstallation">AKS Kurulum</message>
+	<message key="installer.ocsUpgrade">AKS Yükseltme</message>
+	<message key="installer.installationInstructions"><![CDATA[<h4>AKS Sürüm {$version}</h4>
+
+<p>Thank you for downloading the Public Knowledge Project's <strong>Open Conference Systems</strong>. Before proceeding, please read the <a href="{$baseUrl}/docs/README">README</a> file included with this software. For more information about the Public Knowledge Project and its software projects, please visit the <a href="http://pkp.sfu.ca/" target="_blank">PKP web site</a>. If you have bug reports or technical support inquiries about Open Conference Systems, see the <a href="http://pkp.sfu.ca/support/forum" target="_blank">support forum</a> or visit PKP's online <a href="http://pkp.sfu.ca/bugzilla/" target="_blank">bug reporting system</a>. Although the support forum is the preferred method of contact, you can also email the team at <a href="mailto:pkp.contact@gmail.com">pkp.contact@gmail.com</a>.</p>
+
+<h4>Upgrade</h4>
+
+<p>If you are upgrading an existing installation of OCS 2.x, <a href="{$upgradeUrl}">click here</a> to proceed.</p>
+
+<h4>Recommended system requirements</h4>
+
+<ul>
+	<li><a href="http://www.php.net/" target="_blank">PHP</a> >= {$phpRequiredVersion} (including PHP 5.x); you are currently using PHP {$phpVersion}{$wrongPhpText}</li>
+	<li><a href="http://www.mysql.com/" target="_blank">MySQL</a> >= 3.23.23 (including MySQL 4.x) or <a href="http://www.postgresql.org/" target="_blank">PostgreSQL</a> >= 7.1 (including PostgreSQL 8.x)</li>
+	<li><a href="http://httpd.apache.org/" target="_blank">Apache</a> >= 1.3.2x or >= 2.0.4x or Microsoft IIS 6</li>
+	<li>Operating system: Any OS that supports the above software, including <a href="http://www.linux.org/" target="_blank">Linux</a>, <a href="http://www.bsd.org/" target="_blank">BSD</a>, <a href="http://www.sun.com/" target="_blank">Solaris</a>, <a href="http://www.apple.com/" target="_blank">Mac OS X</a>, <a href="http://www.microsoft.com/">Windows</a></li>
+</ul>
+
+<p>As PKP does not have the resources to test every possible combination of software versions and platforms, no guarantee of correct operation or support is implied.</p>
+
+<p>Changes to these settings can be made after installation by editing the file <tt>config.inc.php</tt> in the base OCS directory, or using the site administration web interface.</p>
+
+<h4>Supported database systems</h4>
+
+<p>OCS has currently only been tested on MySQL and PostgreSQL, although other database management systems supported by <a href="http://adodb.sourceforge.net/" target="_blank">ADOdb</a> may work (in full or partially). Compatibility reports and/or code patches for alternative DBMSs can be sent to the OCS team.</p>
+
+<h4>Pre-Installation Steps</h4>
+
+<p>1. The following files and directories (and their contents) must be made writable:</p>
+<ul>
+	<li><tt>config.inc.php</tt> is writable (optional): {$writable_config}</li>
+	<li><tt>public/</tt> is writable: {$writable_public}</li>
+	<li><tt>cache/</tt> is writable: {$writable_cache}</li>
+	<li><tt>cache/t_cache/</tt> is writable: {$writable_templates_cache}</li>
+	<li><tt>cache/t_compile/</tt> is writable: {$writable_templates_compile}</li>
+	<li><tt>cache/_db</tt> is writable: {$writable_db_cache}</li>
+</ul>
+
+<p>2. A directory to store uploaded files must be created and made writable (see "File Settings" below).</p>]]></message>
+	<message key="installer.upgradeInstructions"><![CDATA[<h4>OCS Version {$version}</h4>
+
+<p>Thank you for downloading the Public Knowledge Project's <strong>Open Conference Systems</strong>. Before proceeding, please read the <a href="{$baseUrl}/docs/README">README</a> and <a href="{$baseUrl}/docs/UPGRADE">UPGRADE</a> files included with this software. For more information about the Public Knowledge Project and its software projects, please visit the <a href="http://pkp.sfu.ca/" target="_blank">PKP web site</a>. If you have bug reports or technical support inquiries about Open Conference Systems, see the <a href="http://pkp.sfu.ca/support/forum" target="_blank">support forum</a> or visit PKP's online <a href="http://pkp.sfu.ca/bugzilla/" target="_blank">bug reporting system</a>. Although the support forum is the preferred method of contact, you can also email the team at <a href="mailto:pkp.contact@gmail.com">pkp.contact@gmail.com</a>.</p>
+<p>It is <strong>strongly recommended</strong> that you back up your database, files directory, and OCS installation directory before proceeding.</p>
+<p>If you are running in <a href="http://www.php.net/features.safe-mode" target="_blank">PHP Safe Mode</a>, please ensure that the max_execution_time directive in your php.ini configuration file is set to a high limit. If this or any other time limit (e.g. Apache's "Timeout" directive) is reached and the upgrade process is interrupted, manual intervention will be required.</p>]]></message>
+	<message key="installer.localeSettingsInstructions"><![CDATA[For complete Unicode (UTF-8) support, select UTF-8 for all character set settings. Note that this support currently requires a MySQL >= 4.1.1 or PostgreSQL >= 7.1 database server. Please also note that full Unicode support requires PHP >= 4.3.0 compiled with support for the <a href="http://www.php.net/mbstring" target="_blank">mbstring</a> library (enabled by default in most recent PHP installations). You may experience problems using extended character sets if your server does not meet these requirements.
+<br /><br />
+Your server currently supports mbstring: <strong>{$supportsMBString}</strong>]]></message>
+	<message key="installer.localeInstructions">Bu sistem için kullanılacak birincil dil. Burada listelenmemiş dil desteği ile ilgileniyorsanız lütfen OCS dokümanlarına bakın.</message>
+	<message key="installer.additionalLocalesInstructions">Bu sistemde desteklemek için ek diller seçin. Bu diller, sitede barındırılan konferanslar tarafından kullanılabilecektir. Ek diller, site yönetimi arayüzünden istediğiniz zaman da yüklenebilir.</message>
+	<message key="installer.filesDirInstructions"><![CDATA[Yüklenen dosyaların saklanacağı mevcut bir dizinin tam yol adını girin. Bu dizine doğrudan web'den erişilebilir olmamalıdır. <Strong> Lütfen bu dizininin mevcut olduğundan ve kurulumdan önce yazılabilir olduğundan emin olun.</Strong> Windows yol adlarında eğik çizgiler kullanmalısınız, ör. "C:/myconference/files".]]></message>
+	<message key="installer.databaseSettingsInstructions">OCS, verilerini depolamak için bir SQL veri tabanına erişim gerektirir. Desteklenen veritabanlarının listesi için yukarıdaki sistem gereksinimlerine bakın. Aşağıdaki alanlara, veri tabanına bağlanmak için kullanılacak ayarları sağlayın.</message>
+	<message key="installer.installApplication">Açık Konferans Sistemlerini Kurun</message>
+	<message key="installer.upgradeApplication">Açık Konferans Sistemlerini Yükseltme</message>
+	<message key="installer.reinstallAfterDatabaseError"><![CDATA[<Strong> Uyarı: </strong>Kurulum veri tabanı kurulumunda kısmen başarısız olursa, veri tabanını yeniden yüklemeye başlamadan önce OCS veri tabanınızı veya veritabanı tablolarınızı atmanız gerekebilir.]]></message>
+	<message key="installer.overwriteConfigFileInstructions"><![CDATA[<h4> ÖNEMLİ!</h4>
+<p>Yükleyici yapılandırma dosyasının üzerine otomatik olarak yazamadı. Sistemi kullanmaya başlamadan önce lütfen <tt>config.inc.php</tt>'yi uygun bir metin düzenleyicisinde açın ve içeriğini aşağıdaki metin alanının içeriğiyle değiştirin. </p>]]></message>
+	<message key="installer.installationComplete"><![CDATA[<p>Installation of OCS has completed successfully.</p>
+<p>To begin, <a href="{$createUrl}" class="action">create a conference</a>. You'll be asked to login with the username and password entered on the previous page.</p>
+<p>If you wish to receive news and updates, <strong>please register at <a href="http://pkp.sfu.ca/ocs/register" target="_new">http://pkp.sfu.ca/node/add/pkp-site-submission</a>.</strong> If you have questions or comments, please visit the <a href="http://pkp.sfu.ca/support/forum" target="_new">support forum</a>.</p>]]></message>
+	<message key="installer.upgradeComplete"><![CDATA[<p>Upgrade of OCS to version {$version} has completed successfully.</p>
+<p>Don't forget to set the "installed" setting in your config.inc.php configuration file back to <em>On</em>.</p>
+<p>If you haven't already registered and wish to receive news and updates, <strong>please register at <a href="http://pkp.sfu.ca/ocs/register" target="_new">http://pkp.sfu.ca/ocs/register</a>.</strong> If you have questions or comments, please visit the <a href="http://pkp.sfu.ca/support/forum" target="_new">support forum</a>.</p>]]></message>
+
+
+	<!-- Paper Logs -->
+	<message key="log.default.abstractPeriodExpired">Eksik gönderi {$paperId} için soyut gönderme penceresi doldu. Gönderi arşive taşındı.</message>
+	<message key="log.default.paperPeriodExpired">Eksik gönderi {$paperId} için soyut gönderme penceresi doldu. Gönderi arşive taşındı.</message>
+	<message key="log.author.abstractSubmitted">{$authorName} yeni bir bildiri girdi, kimliği {$submissionId}.</message>
+	<message key="log.author.presentationSubmitted">{$authorName} bir bildiri yükledi, ID {$submissionId}.</message>
+	<message key="log.author.documentRevised">{$authorName} bildirisini düzenledi {$paperId}. The new file ID is {$fileId}.</message>
+	<message key="log.review.reviewerAssigned">{$reviewerName} bildiri değerlendirmek üzere atandı {$paperId} değerlendirme aşaması için {$stage}.</message>
+	<message key="log.review.reviewerUnassigned">{$reviewerName}bildiri değerlendirmeden geri alındı {$paperId} değerlendirme aşaması için {$stage}.</message>
+	<message key="log.review.reviewInitiated">Aşama {$stage}  {$reviewerName}  tarafından {$paperId} başvurusu için başlatıldı.</message>
+	<message key="log.review.reviewReinitiated">Aşama {$stage} {$reviewerName} tarafından {$paperId} bildirisi için yeniden başlatıldı.</message>
+	<message key="log.review.reviewCancelled">Aşama {$stage}  {$reviewerName} tarafından {$paperId} bildirisi için iptal edildi.</message>
+	<message key="log.review.reviewCleared">Aşama {$stage}  {$reviewerName} tarafından {$paperId} bildirisi için temizlendi.</message>
+	<message key="log.review.reviewerRated">{$reviewerName} derece {$stage} olarak degerlendirildi  {$paperId}.</message>
+	<message key="log.review.reviewDueDateSet">The due date for the stage {$stage} review of submission {$paperId} by {$reviewerName} has been set to {$dueDate}.</message>
+	<message key="log.review.reviewRecommendationSet">The recommendation for the stage {$stage} review of submission {$paperId} by {$reviewerName} has been set.</message>
+	<message key="log.review.reviewRecommendationSetByProxy">The recommendation for the stage {$stage} review of submission {$paperId} has been set by the director, {$directorName}, on behalf of the reviewer, {$reviewerName}.</message>
+	<message key="log.review.resubmit">{$paperId} Bu başvuru değerlendirme için yeniden gönderildi..</message>
+	<message key="log.review.reviewDeclined">{$reviewerName}  {$paperId} numaralı bildirinin değerlendirilmesini {$stage}. aşamada reddetti.</message>
+	<message key="log.review.reviewAccepted">{$reviewerName}  {$paperId} numaralı bildirinin değerlendirilmesini {$stage}. aşamada kabul etti.</message>
+	<message key="log.review.reviewAcceptedByProxy">{$userName} {$reviewerName} adına {$paperId} bildirisinin değerlendirilmesini {$stage}. aşamasında kabul etti.</message>
+	<message key="log.review.reviewFileByProxy">Yönetici, {$userName}, {$stage}. aşamada bildirinin hakemi {$reviewerName} adına gözden geçirilmiş bir dosya ({$paperId}) yükledi.</message>
+	<message key="log.review.reviewerFile">Bir hakem düzeltme dosyası yüklendi.</message>
+	<message key="log.director.decision">Yonetmen kararı ({$decision}) bu başvuru için {$paperId},  {$directorName} tarafından kayıt edildi.</message>
+	<message key="log.director.publish">Bildiri yayınlandı.</message>
+	<message key="log.director.unpublish">Bildiri tekrar kuyruğa eklendi.</message>
+
+	<message key="log.director.metadataModified">Bu bildiri için üst-veri {$directorName} tarafından değiştirildi .</message>
+	<message key="log.director.directorFile">Başvuru dosyasının bir yönetmen sürümü yüklendi.</message>
+	<message key="log.director.archived">Başvuru {$paperId} arşivlendi.</message>
+	<message key="log.director.restored">Başvuru {$paperId} kuruga yeniden yüklendi.</message>
+	<message key="log.director.directorAssigned">{$directorName} yönetici olarak atandı. Başvuru: {$paperId}.</message>
+	<message key="log.director.submissionExpedited">{$directorName} düzenleme sürecini hızlandırdı {$paperId}.</message>
+	<message key="log.layout.layoutFileSet">{$directorName} sunulması için bir düzen sürümü ayarladı {$paperId}.</message>
+
+	<!-- Conference log entries -->
+	<message key="log.deadline.submissionDeadlinePassed">Başvuru tarihi sona erdi.</message>
+	<message key="log.deadline.presentationsReleasedToParticipants">Bildiriler katılımcılara gönderildi.</message>
+	<message key="log.deadline.presentationsReleasedToPublic">Bildiriler herkese gönderildi.</message>
+
+	<message key="log.timeline.publicationStateChanged">Yayın durumu {$oldPublicationState}. aşama yerine {$newPublicationState}. aşama şeklinde düzenlendi.</message>
+	<message key="log.timeline.submissionStateChanged">Yayın durumu {$oldSubmissionState}. aşama yerine {$newSubmissionState}. aşama şeklinde düzenlendi.</message>
+	<message key="log.timeline.startDateChanged">Konferans başlangıç tarihi {$oldStartDate} yerine {$newStartDate} şeklinde değiştirildi.</message>
+	<message key="log.timeline.endDateChanged">Konferans bitiş tarihi {$oldEndDate} yerine {$newEndDate} şeklinde değiştirildi.</message>
+	<message key="log.timeline.regReviewerOpenDateChanged">Yazar kayıt açılışı {$oldRegReviewerOpenDate} yerine {$newRegReviewerOpenDate} şeklinde değiştirildi.</message>
+	<message key="log.timeline.regReviewerCloseDateChanged">Yazar kaydı kapanışı {$oldRegReviewerCloseDate} yerine {$newRegReviewerCloseDate} şeklinde değiştirildi.</message>
+	<message key="log.timeline.regAuthorOpenDateChanged">Yazar kaydı açılışı {$oldRegAuthorOpenDate} yerine {$newRegAuthorOpenDate} şeklinde değiştirildi.</message>
+	<message key="log.timeline.regAuthorCloseDateChanged">Yazar kaydı kapanışı {$oldRegAuthorCloseDate} yerine {$newRegAuthorCloseDate} şeklinde değiştirildi.</message>
+	<message key="log.timeline.showCFPDateChanged">TCFP görüntülenen tarihi {$oldShowCFPDate} yerine {$newShowCFPDate} şeklinde değiştirildi.</message>
+	<message key="log.timeline.submissionsOpenDateChanged">Bildiri kabul başlangıcı {$oldSubmissionsOpenDate} yerine {$newSubmissionsOpenDate} şeklinde değiştirildi.</message>
+	<message key="log.timeline.submissionsCloseDateChanged">Bildiri başvuru kapanış tarihi {$oldSubmissionsCloseDate} yerine {$newSubmissionsCloseDate} şeklinde değiştirildi.</message>
+	<message key="log.timeline.postAbstractsDateChanged">Bildiri yollama tarihi {$oldPostAbstractsDate} yerine {$newPostAbstractsDate} şeklinde değiştirildi.</message>
+	<message key="log.timeline.postAbstractsChanged">Bildiri özetleri ayarları {$oldPostAbstracts} yerine {$newPostAbstracts} şeklinde değiştirildi.</message>
+	<message key="log.timeline.postScheduleDateChanged">Belirlenen program tarihi {$oldPostScheduleDate} yerine {$newPostScheduleDate} şeklinde değiştirilmiştir.</message>
+	<message key="log.timeline.postScheduleChanged">Belirlenen program ayarları {$oldPostSchedule} yerine {$newPostSchedule} şeklinde değiştirilmiştir..</message>
+	<message key="log.timeline.postPapersDateChanged">Yollanan metin ayarları {$oldPostPapersDate} yerine {$newPostPapersDate} şeklinde değiştirilmiştir.</message>
+	<message key="log.timeline.postPapersChanged">Gönderilen bildiri metin ayarları {$oldPostPapers} yerine {$newPostPapers} şeklinde değiştirilmiştir.</message>
+	<message key="log.timeline.delayOpenAccessDateChanged">Açık erişim ayarları {$oldDelayOpenAccessDate} yerine {$newDelayOpenAccessDate} şeklinde değiştirildi.</message>
+	<message key="log.timeline.delayOpenAccessChanged">Gecikmiş açık erişim ayarları {$oldDelayOpenAccess} yerine {$newDelayOpenAccess} şeklinde değiştirildi.</message>
+	<message key="log.timeline.closeCommentsDateChanged">Yorumların/açıklamaların bitiş tarihi {$oldCloseCommentsDate} yerine {$newCloseCommentsDate} şeklinde değiştirildi</message>
+	<message key="log.timeline.closeCommentsChanged">Açıklama/yorum ayarlarının bitiş tarihi {$oldCloseComments} yerine {$newCloseComments} şeklinde değiştirildi.</message>
+
+	<!-- Reading Tools entries -->
+
+
+	<!-- RT Settings -->
+	<message key="rt.admin.settings">Okuma Aygıtları Ayarları</message>
+
+	<message key="rt.admin.settings.description">Okuma araçları indeksleme için atanmış konferansın parçalarında yayınlanan öğelerin yanında bir çerçeve içinde görünür. Okuma araçları yayınlanan öğe ile ilgili isteğe bağlı araçlardan oluşan, aşağıda listelenen ve alan ve disiplin tarafından düzenlenen ilgili öğelere ulaşımı sağlayan araçları içerir.</message>
+	<message key="rt.admin.settings.enableReadingTools">Konferansın belirlenen yolların için Okuma Araçlarını Etkinleştir.</message>
+	<message key="rt.admin.settings.relatedItems">İlgili Madde Alanları</message>
+
+	<message key="rt.admin.options">İsteğe Bağlı Araçlar</message>
+
+	<message key="rt.admin.settings.addComment">Yorum Ekle (okuyuculara Konferans Yöneticisinin silebileceği yorumlar gönderebilmelerine olanak verir).Okuyucu Yorumları Website Yönetimi'nde etkinleştirilmelidir, bölüm 1.5.</message>
+
+	<message key="rt.admin.validateUrls.description"><![CDATA[Geçersiz URL'si olabilecek araştırma siteleri aşağıda listelenmiştir.<br/>
+Herhangi bir URL'yi elle girerek geçersizliğini kontrol etmelisiniz, bu test 100% geçerli değildir.<br/>
+Gönderilen biçim verisinin içeren geçerlilik onaylaması taranan URL'lerde yanılabilir.]]></message>
+
+	<message key="rt.metadata.dublinCore.primaryAuthor">Yaratıcı</message>
+
+	<message key="rt.metadata.pkp.primaryAuthor">Yazar adı, kurum ve ülke</message>
+	<message key="rt.metadata.pkp.peerReviewed">Hakem Değerlendirmeli Bildiri</message>
+
+	<!-- Notification Types -->
+	<message key="notification.mailListDescription">Konferansa eklenen önemli yeni içeriklerden oluşan bildirimleri anında almak için e-posta adresinizi giriniz.</message>
+	<message key="notification.notificationsPublicDescription"><![CDATA[Bu sayfa yeni metinler ve ilanlar gibi konferansla bağlantılı önemli güncellemeler içermektedir. Bu bildirimleri RSS desteği aracılığıyla abone olabilirsiniz (sağdaki şekle tıklayarak), ya da e-posta yolu ile   <a href="{$emailUrl}"> </a>]]></message>
+
+	<message key="notification.type.paperSubmitted">Yeni bir bildiri "{$param}" sunuldu.</message>
+	<message key="notification.type.editing">Düzenleme Olayları</message>
+	<message key="notification.type.directorDecisionComment">"{$param}"için, editörün kararı üzerine bir yorum bırakıldı.</message>
+	<message key="notification.type.galleyModified">"{$param}" için bir biçem değiştirildi.</message>
+	<message key="notification.type.metadataModified">"{$param}'s" üstveri değiştirilmiştir.</message>
+	<message key="notification.type.newAnnouncement">Yeni bir duyuru oluşturuldu.</message>
+	<message key="notification.type.reviewerComment">Bir hakem "{$param}" üzerine yorum yaptı.</message>
+	<message key="notification.type.reviewerFormComment">"{$param}" için yeni bir değerlendirme formu oluşturuldu..</message>
+	<message key="notification.type.reviewing">Değerlendirme Olayları</message>
+	<message key="notification.type.site">Site Olayları</message>
+	<message key="notification.type.submissionComment">Bir yönetici "{$param}" üzerine yorum yaptı.</message>
+	<message key="notification.type.submissions">Başvuru Olayları</message>
+	<message key="notification.type.suppFileModified">"{$param}'s" ek dosyaları değiştirildi</message>
+	<message key="notification.type.userComment">Bir okuyucu "{$param}" üzerine yorum yaptı.</message>
+
+	<message key="rt.thisConference">Konferans Ara</message>
+
+	<message key="rt.comments.commentsClosed">† {$closeCommentsDate} üzerine kapalı yorumlar</message>
+
+	<message key="rt.context.authorTermsDescription">Birden fazla yazarı olan ögeler için, birlikte sunulan çalışma için taramada tüm isimlerin kontrol edilmesine izin ver ya da tek seferde tek ismi taratarak bir tanesini ara. Kaynak taraması ile ilgili daha fazla bilgi için, Hakkında'ya tıklayınız. Bu kaynaklar bağlantılarından ve içeriklerinin bir kısmının ya da tamamının ulaşılabilirliğinden dolayı seçilmiştir.</message>
+</locale>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * locale.xml
+  *
+  * Copyright (c) 2000-2012 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the tr_TR (Türkçe) locale.
+  *
+  * $Id$
+ -->
+
+<locale name="tr_TR" full_name="Türkçe">
+	<message key="plugins.paymethod.manual.displayName">Manuel ücret ödemesi</message>
+	<message key="plugins.paymethod.manual.description">Yönetici bir kullanıcının ödeme alıntısını (bu yazılımın dışında) elle kayıt edecektir.</message>
+	<message key="plugins.paymethod.manual">Manuel ücret edemesi</message>
+	<message key="plugins.paymethod.manual.settings">Manual Ödeme Ayarları</message>
+	<message key="plugins.paymethod.manual.settings.instructions">Açıklamalar</message>
+	<message key="plugins.paymethod.manual.settings.manualInstructions">Kullanıcılar tarafından seçilen manuel ödeme seçenekleri için ücret ödeme talimatları</message>
+
+	<message key="plugins.paymethod.manual.sendNotificationOfPayment">Ödeme bildirimini gönder</message>
+	<message key="plugins.paymethod.manual.paymentNotification">Ödeme Bildirimi</message>
+	<message key="plugins.paymethod.manual.notificationSent">Ödeme bildirimi gönderildi</message>
+
+	<message key="plugins.paymethod.manual.purchase.title">Başlık</message>
+	<message key="plugins.paymethod.manual.purchase.fee">Ücret</message>
+</locale>

@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * ocs2-devel/locale/tr_TR/director.xml
+  *
+  * Copyright (c) 2000-2012 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the tr_TR (Türkçe) locale.
+  *
+  * $Id$
+  -->
+
+<locale name="tr_TR" full_name="Türkçe">
+	<message key="director.home">Yönetici Anasayfa</message>
+	<message key="director.submissionQueue">Başvuru kuyruğu</message>
+	<message key="director.submissionArchive">Başvuru arşivi</message>
+	<message key="director.allTracks">Tüm Bölümler</message>
+	<message key="director.allDirectors">Tüm Yöneticiler</message>
+	<message key="director.me">Bana</message>
+	<message key="director.submissionQueue.noSubmissions">Bu kuyrukta başvuru yok</message>
+	<message key="director.submissionQueue.saveChanges">Sıraya başvuru değişiklikler kaydedilsin mi?</message>
+	<message key="director.submissionArchive.noSubmissions">Arşivde bildiri yok.</message>
+	<message key="director.submissionArchive.saveChanges">Arşivlenmiş başvuru değişiklikler kaydedilsin mi? Silinmek üzere işaretlenmiş bildirier kalıcı sistemden silinecektir.</message>
+	<message key="director.submissionArchive.confirmDelete">Bu bildiriyi kalıcı olarak silmek istediğinizden emin misiniz?</message>
+	<message key="director.submissionReview.confirmDecision">Bu kararı kaydetmek istediğiniz emin misiniz?</message>
+	<message key="director.submissionReview.confirmToLayout">Yazar bu karardan haberdar edildi mi? Değil ise; İptal'e basın ve bu düzenlemeyi değiştirmeden önce Yazara Bilgi Ver'i tıklayın.</message>
+	<message key="director.submissionReview.confirmToArchive">Yazar bu karardan haberdar edildi mi? Değil ise; İptal'e basın ve bu düzenlemeyi arşivlemeden önce Yazara Bilgi Ver'i tıklayın.</message>
+	<message key="director.submissionReview.notes">Son tarih hakemin teslim tarihine kadar veya süresi dolmuş(-) haftayı gösterir Bu hakem değerlendirme talebini kabul ettiğinde doldurulur.</message>
+	<message key="director.notifyUsers">Bildiri Kullanıcıları</message>
+	<message key="director.notifyUsers.allUsers">Bu konferans ile ilişkili tüm kullanıcılar ({$count} users)</message>
+	<message key="director.notifyUsers.interestedUsers">Güncellemeleri almak isteyen bu konferans ile ilişkili kullanıcılar ({$count} users)</message>
+	<message key="director.notifyUsers.includeToc">Bu konferans için bildirileri içerir</message>
+	<message key="director.notifyUsers.allReaders">Tüm okuyucular({$count} users)</message>
+	<message key="director.notifyUsers.allAuthors">Yayınlanan tüm bildiriler ({$count} users)</message>
+	<message key="director.notifyUsers.allPaidRegistrants">Ücretini ödeyen tüm ücretli katılımcılar ({$count} users)</message>
+	<message key="director.notifyUsers.allRegistrants">Tüm ücretli kayıt yaptıranlar ({$count} users)</message>
+	<message key="director.navigation.management">Yönetim</message>
+	<message key="director.paper.sendToArchive">Bu bildiriyi arşivle</message>
+	<message key="director.paper.designateReviewVersion">İnceleme Sürüm olarak orijinal dosyayı atayın</message>
+	<message key="director.paper.uploadReviewVersion">İnceleme Sürüm olarak hizmet verecek bir revize dosya yükleyin</message>
+	<message key="director.paper.uploadDirectorVersion">Yönetici Sürümü Yükle</message>
+	<message key="director.paper.showSuppFile">Dosyayı hakemlere sun</message>
+	<message key="director.paper.stageDisabled">Bu yorumu yapmak henüz mümkün değildir. Özet henüz tamamlanmamıştır.</message>
+	<message key="director.paper.clear">Temizle</message>
+	<message key="director.paper.clearReviewer">Değerlendirmeyi temizle</message>
+	<message key="director.paper.changeTrack">Bölümü değiştir</message>
+	<message key="director.paper.setDueDate">Tarihe Göre Kur</message>
+	<message key="director.paper.addReviewer">Hakem Ekle</message>
+	<message key="director.paper.toReviewer">Hakeme</message>
+	<message key="director.paper.notifyReviewer">Hakeme Haber Ver</message>
+	<message key="director.paper.initiateReview">Düzenlemeyi Başlat</message>
+	<message key="director.paper.cancelReview">Düzenleme İsteğini İptal Et</message>
+	<message key="director.paper.clearReview">Düzenleyiciyi Temizle</message>
+	<message key="director.paper.enterRecommendation">Öneri Gir</message>
+	<message key="director.paper.enterReviewerRecommendation">Hakem Önerisi Gir</message>
+	<message key="director.paper.recommendation">Öneri</message>
+	<message key="director.paper.selectReviewer">Hakemi seç</message>
+	<message key="director.paper.replaceReviewer">Hakemi Değiştir</message>
+	<message key="director.paper.directorToEnter">Hakeme öneri/yorum girmek için yönetici</message>
+	<message key="director.paper.uploadReviewForReviewer">Düzenleme Yükle</message>
+	<message key="director.paper.peerReviewOptions">Eş Değerlendirme Seçeneği</message>
+	<message key="director.paper.decision">Karar</message>
+	<message key="director.paper.recordDecision">Kararı Kaydet</message>
+	<message key="director.paper.cannotRecord">Bir karar kaydedemezsiniz; bölüm yöneticisi henüz kaydedilmiş veya hiçbir inceleme dosyası yüklenmemiştir.</message>
+	<message key="director.paper.cannotRecordYet">Bir kararın kaydedilebilir olması için önce  Bölüm Yöneticisi için bir başvuru atanmalıdır. İnceleme Sürüm, varsayılan olarak, Yönetmen Versionudur.</message>
+	<message key="director.paper.cannotRecordTooLate">Bu bildiri düzenleme aşamasını tamamlamıştır. Artık bu kararı değiştiremezsiniz.</message>
+	<message key="director.paper.designateDueDate">Bir Due Date atayın</message>
+	<message key="director.paper.designateDueDateDescription">Bu Yorumcunun bitiş tarihini değiştirmek için, başka bir tarihi girin veya tarihi silin ve hafta sayılarını girin.</message>
+	<message key="director.paper.todaysDate">Bugünün Tarihi</message>
+	<message key="director.paper.requestedByDate">Tarihe Göre Talep</message>
+	<message key="director.paper.dueDateFormat">Format: YYYY-MM-DD</message>
+	<message key="director.paper.numberOfWeeks">Hafta Sayısı</message>
+	<message key="director.paper.showAuthor">Yazarın dosyaya göz atmasına izin ver</message>
+	<message key="director.paper.rateReviewer">Puan Yorumcusu</message>
+	<message key="director.paper.reviewerRating.veryGood">5 Yüksek</message>
+	<message key="director.paper.reviewerRating.good">4</message>
+	<message key="director.paper.reviewerRating.average">3 Orta</message>
+	<message key="director.paper.reviewerRating.poor">2</message>
+	<message key="director.paper.reviewerRating.veryPoor">1 Düşük</message>
+	<message key="director.paper.quality">Kurmak</message>
+	<message key="director.paper.comments">Yorumlar</message>
+	<message key="director.paper.commentsRequired">Yorum alanı gerekiyor.</message>
+	<message key="director.paper.archiveSubmission">Reddet ve Arşive Gönder</message>
+	<message key="director.paper.restoreToQueue">Aktiv Listeye Geri Yükle</message>
+	<message key="director.paper.assignTrackDirector">Bölüm Yöneticisi Ekle</message>
+	<message key="director.paper.assignDirector">Yönetici Ekle</message>
+	<message key="director.paper.selectDirector">Seç {$roleName}</message>
+	<message key="director.paper.selectDecision">Karar Seç</message>
+	<message key="director.paper.decision.invitePresentation">Bildiri Daveti</message>
+	<message key="director.paper.decision.accept">Bildiriyi Kabul Et</message>
+	<message key="director.paper.decision.pendingRevisions">Düzenleme Gerekli</message>
+	<message key="director.paper.decision.decline">Bildiriyi Reddet</message>
+	<message key="director.paper.moveToLayout">Anahatta Taşı</message>
+	<message key="director.paper.createGalley">Bu dosya yayına hazır.</message>
+	<message key="director.paper.completeReview">Değerlendirmeyi tamamlandı olarak işaretle</message>
+	<message key="director.paper.scheduleSubmission">Gönder</message>
+	<message key="director.submissions.showBy">Yoluyla Göster</message>
+	<message key="director.submissions.submitMMDD">MM-DD Gönder</message>
+	<message key="director.submissions.activeAssignments">Aktif Atamalar</message>
+	<message key="director.submissions.invite">Davet Et</message>
+	<message key="director.submissions.accept">Kabul Et</message>
+	<message key="director.submissions.noSubmissions">Bildiri Yok</message>
+	<message key="director.submissions.lastAssigned">En Son</message>
+	<message key="director.submissions.averageTime">Haftalar</message>
+	<message key="director.submissions.lastCompleted">Son Tamamlanan</message>
+	<message key="director.submissions.assignedTo">Atanan</message>
+	<message key="director.submissions.inTrack">Bölümde</message>
+</locale>

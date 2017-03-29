@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * locale.xml
+  *
+  * Copyright (c) 2000-2012 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the tr_TR (Türkçe) locale.
+  *
+  * $Id$
+  -->
+ 
+<locale name="tr_TR" full_name="Türkçe">
+	<message key="plugins.generic.tinymce.name">TinyMCE Eklentisi</message>
+	<message key="plugins.generic.tinymce.description"><![CDATA[Bu eklenti OCS'nin  WYSIWYG eklentisini  <a href="http://tinymce.moxiecode.com" target="_new">TinyMCE</a> içerik editörü kullanarak olanak tanır.]]></message>
+	<message key="plugins.generic.tinymce.descriptionDisabled"><![CDATA[Bu eklenti OCS'nin  WYSIWYG eklentisini  <a href="http://tinymce.moxiecode.com" target="_new">TinyMCE</a> içerik editörü kullanarak olanak tanır. <strong>TinyMCE şuan yüklenemedi; lütfen buradan yükleyin {$tinyMcePath}.</strong>]]></message>
+
+	<message key="plugins.generic.tinymce.settings">Ayarlar</message>
+	<message key="plugins.generic.tinymce.enabled">The TinyMCE Eklentisi etkinleştirildi.</message>
+	<message key="plugins.generic.tinymce.disabled">The TinyMCE Eklentisi devre dışı bırakıldı.</message>	
+</locale>

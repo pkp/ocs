@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * locale.xml
+  *
+  * Copyright (c) 2000-2012 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for this citation plugin in tr_TR.
+  *
+  * $Id$
+  -->
+ 
+<locale name="tr_TR" full_name="Türkçe">
+	<message key="plugins.citationFormats.endNote.displayName">EndNote atıf biçimi eklentisi</message>
+	<message key="plugins.citationFormats.endNote.citationFormatName"><![CDATA[EndNote - EndNote biçimi (Macintosh & Windows)]]></message>
+	<message key="plugins.citationFormats.endNote.description">Bu eklenti EndNote atıf biçimini uygular.</message>
+</locale>
