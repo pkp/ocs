@@ -40,7 +40,7 @@
 	<message key="admin.conferences.form.pathAlphaNumeric">O caminho pode conter apenas caracteres alfanuméricos, sublinhado, hífens, e deve começar e terminar com um caractere alfanumérico.</message>
 	<message key="admin.conferences.form.pathExists">O caminho selecionado já está em uso por outra conferência.</message>
 	<message key="admin.conferences.enableConferenceInstructions">Permitir Acesso Livre a esta conferência no portal</message>
-	<message key="admin.conferences.scheduleConferenceInstructions">Agendar uma conferência agora.</message>
+	<message key="admin.conferences.scheduleConferenceInstructions">Prossiga para agendar uma conferência em seguida.</message>
 	<message key="admin.conferences.conferenceDescription">Descrição da conferência</message>
 	<message key="admin.conferences.conferenceDescriptionInstructions">A descrição da conferência identifica a sua missão constante, sendo exibida na página principal da conferência, bem como em todas as páginas de eventos da conferência.</message>
 	<message key="admin.conferences.importOCS1">Importar de OCS 1</message>
