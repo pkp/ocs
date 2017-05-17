@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @file classes/core/Handler.inc.php
+ * @file classes/handler/Handler.inc.php
  *
  * Copyright (c) 2000-2012 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
@@ -25,7 +25,7 @@ class Handler extends PKPHandler {
 
 		$conference =& Request::getConference();
 		$page = Request::getRequestedPage();
-		if ( $conference && $conference->getSetting('restrictSiteAccess')) { 
+		if ( $conference && $conference->getSetting('restrictSiteAccess')) {
 			$this->addCheck(new HandlerValidatorCustom($this, true, null, null, create_function('$page', 'if (!Validation::isLoggedIn() && !in_array($page, Handler::getLoginExemptions())) return false; else return true;'), array($page)));
 		}
 	}
