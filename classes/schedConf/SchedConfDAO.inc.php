@@ -328,7 +328,26 @@ class SchedConfDAO extends DAO {
 		$resultFactory = new DAOResultFactory($result, $this, '_returnSchedConfFromRow');
 		return $resultFactory;
 	}
+	/*alteration done by Everton Junior
+	/**
+	 * Retrieve past enableds scheduleds conferences of a given conference
+	 * @return array SchedConfs ordered by sequence
+	 */
+	function &getPastSchedConfs($conferenceId) {
+		$result =& $this->retrieve('
+			SELECT i.* FROM sched_confs i
+				LEFT JOIN conferences c ON (i.conference_id = c.conference_id)
+			WHERE c.enabled = 1
+				AND i.conference_id = ?
+				AND i.end_date < NOW()
+			ORDER BY c.seq, i.seq',
+			$conferenceId);
 
+		$resultFactory = new DAOResultFactory($result, $this, '_returnSchedConfFromRow');
+		return $resultFactory;
+	}
+	//end alteration
+	
 	/**
 	 * Check if one or more archived scheduled conferences exist for a conference.
 	 * @param $conferenceId the conference owning the scheduled conference
