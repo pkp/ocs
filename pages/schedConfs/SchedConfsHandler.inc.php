@@ -87,7 +87,7 @@ class SchedConfsHandler extends Handler {
 		$templateMgr->assign('conferenceTitle', $conference->getConferenceTitle());
 
 		$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
-		$pastSchedConfs =& $schedConfDao->getEnabledSchedConfs($conference->getId());
+		$pastSchedConfs =& $schedConfDao->getPastSchedConfs($conference->getId());
 
 		$templateMgr->assign_by_ref('schedConfs', $pastSchedConfs);
 
