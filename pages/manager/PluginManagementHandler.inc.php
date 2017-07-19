@@ -187,11 +187,11 @@ class PluginManagementHandler extends ManagerHandler {
 		
 		$pluginVersion = $versionInfo['version'];
 		$pluginName = $pluginVersion->getProduct();
-		$category = $this->getPluginCategory($plugin);
+		$category = explode(".",$pluginVersion->getProductType())[1];
 		
 		$versionDao =& DAORegistry::getDAO('VersionDAO'); 
 		$installedPlugin = $versionDao->getCurrentVersion($pluginName);
-		
+
 		if(!$installedPlugin) {
 			$pluginDest = Core::getBaseDir() . DIRECTORY_SEPARATOR . 'plugins' . DIRECTORY_SEPARATOR . $category . DIRECTORY_SEPARATOR . $pluginName;
 
