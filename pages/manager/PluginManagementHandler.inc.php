@@ -259,7 +259,7 @@ class PluginManagementHandler extends ManagerHandler {
 		
 		$pluginVersion = $versionInfo['version'];
 		$pluginName = $versionInfo['application'];
-		$category = explode(".", $pluginVersion->getProductType());
+		$category = explode(".", $pluginVersion->getProductType())[1];
 		
 		$versionDao =& DAORegistry::getDAO('VersionDAO');
 		$installedPlugin = $versionDao->getCurrentVersion($pluginName);
