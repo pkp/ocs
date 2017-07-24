@@ -114,7 +114,7 @@ class TrackForm extends Form {
 	function initData() {
 		$conference =& Request::getConference();
 		$trackDirectorsDao =& DAORegistry::getDAO('TrackDirectorsDAO');
-		$schedConf =& Request::getSchedConf(); //Necessary to fix a bug - Bruno Clemente
+		$schedConf =& Request::getSchedConf(); 
 		
 		if (isset($this->trackId)) {
 			$trackDao =& DAORegistry::getDAO('TrackDAO');
@@ -138,7 +138,7 @@ class TrackForm extends Form {
 			}
 		} else {
 			$this->_data = array(
-				'unassignedDirectors' => $trackDirectorsDao->getDirectorsNotInTrack($schedConf->getId(), null)  //Fixed a bug where all track director of this conference were shown -- Bruno Clemente
+				'unassignedDirectors' => $trackDirectorsDao->getDirectorsNotInTrack($schedConf->getId(), null) 
 			);
 
 		}
