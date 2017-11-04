@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * ocs2-devel/locale/ar_IQ/admin.xml
+  *
+  * Copyright (c) 2000-2012 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the ar_IQ (Arabic) locale.
+  *
+  * $Id$
+  -->
+
+<locale name="ar_IQ" full_name = "العربية">
+	<message key="admin.languages.primaryLocaleInstructions">هذه ستكون اللغة الإفتراضية للموقع ولأي مؤتمر مستضاف.</message>
+	<message key="admin.languages.supportedLocalesInstructions">إختر كل اللغات التي تريد أن يدعمها هذا الموقع. اللغات المختارة ستكون متاحة للاستعمال من قبل كل المؤتمرات المستضافة في الموقع، كما أنها ستظهر في القائمة المنسدلة للغات في كل صفحة (والتي بالإمكان تجاوزها عند بعض صفحات المؤتمرات). إذا لم تحدد أكثر من لغة واحدة للموقع، فإن القائمة المنسدلة لن تظهر، كما أن الإعدادات الخاصة باللغة لن تظهر للمؤتمرات المستضافة.</message>
+	<message key="admin.locale.maybeIncomplete">اللغات المعلَّمة قد لا تكون كاملة.</message>
+	<message key="admin.languages.confirmUninstall">هل أنت متأكد من رغبتك في إخفاء هذه اللغة؟ هذا الأمر قد يؤثر على أي من المؤتمرات المستضافة التي تستعمل هذه اللغة حالياً.</message>
+	<message key="admin.languages.installNewLocalesInstructions">إختر أي من اللغات الأخرى التي تريد أن يدعمها هذا النظام. ينبغي تنصيب أي لغة قبل أن تكون متاحة للمؤتمرات المستضافة. أنظر ملف التوثيق لنظام المؤتمرات المفتوحة لمزيد من المعلومات عن كيفية إضافة الدعم للغات جديدة.</message>
+	<message key="admin.auth.enableSyncProfiles">تمكين مزامنة الملف التعريفي للمستخدم (إذا كانت هذه الوظيفة الإضافية تدعمه). بيانات الملف التعريفي للمستخدم سيتم تحديثها تلقائياً من المصدر الخارجي بمجرد دخول المستخدم إلى النظام، كما أن تلك التحديثات (بضمنها تعديل كلمة المرور) المجراة ضمن نظام المؤتمرات المفتوحة سيتم تحديثها تلقائياً في المصدر الخارجي. إذا تم تعطيل هذا الخيار، ملفات تعريف المستخدمين في نظام المؤتمرات المفتوحة ستبقى منفصلة عن المصادر الخارجية.</message>
+	<message key="admin.auth.enableSyncPasswords">تمكين المستخدمين من تعديل كلمات مرورهم (إذا كانت الميزة مدعومة من قبل إضافة المصادقة هذه). تمكين هذا الخيار يسمح للمستخدمين بتغيير كلمات مرورهم من داخل نظام المؤتمرات المفتوحة عبر استعمال خاصية "نسيت كلمة المرور" لتصفير كلمة المرور المفقودة. هذه الوظائف لن تكون متاحة للمستخدمين من مصدر المصادقة هذا ما لم تكن تلك الميزة مفعلة.</message>
+	<message key="admin.auth.enableCreateUsers">تمكين إنشاء المستخدمين (إذا كانت الميزة مدعومة من قبل إضافة المصادقة هذه). حسابات المستخدمين المنشأة من داخل نظام المؤتمرات المفتوحة باستعمال مصدر المصادقة هذا ستتم إضافتها تلقائياً إلى مصدر المصادقة الخارجي إذا لم يكن لها وجود مسبق هناك. فضلاً عن ذلك، إذا كان هذا هو مصدر المصادقة الإفتراضي، فإن حسابات المستخدمين في نظام المؤتمرات المفتوحة التي يتم إنشاؤها عبر التسجيل المباشر ستتم إضافتها أيضاً إلى مصدر المصادقة الخارجي.</message>
+	<message key="admin.systemVersion">نسخة نظام المؤتمرات المفتوحة</message>
+	<message key="admin.systemConfiguration">إعدادات نظام المؤتمرات المفتوحة</message>
+	<message key="admin.systemConfigurationDescription"><![CDATA[إعدادات نظام المؤتمرات المفتوحة من ملف <tt>config.inc.php</tt>.]]></message>
+	<message key="admin.hostedConferences">المؤتمرات المستضافة</message>
+	<message key="admin.settings.conferenceRedirect">إعادة توجيه المؤتمر</message>
+	<message key="admin.settings.conferenceRedirectInstructions">الزيارات المعنونة إلى الموقع الرئيسي ستتم إعادة توجيهها إلى هذا المؤتمر. قد يكون هذا الأمر مفيداً في حالة كون الموقع يستضيف مؤتمراً واحداً أو ما شابه.</message>
+	<message key="admin.settings.noConferenceRedirect">لا تقم بإعادة التوجيه</message>
+	<message key="admin.auth.ocs">قاعدة بيانات المستخدمين لنظام المؤتمرات المفتوحة</message>
+	<message key="admin.conferences.conferenceSettings">إعدادات المؤتمر</message>
+	<message key="admin.conferences.noneCreated">لم يتم إنشاء أي مؤتمرات بعد.</message>
+	<message key="admin.conferences.confirmDelete">هل أنت متأكد من رغبتك في حذف هذا المؤتمر نهائياً مع كافة متعلقاته؟</message>
+	<message key="admin.conferences.create">أنشئ مؤتمراً</message>
+	<message key="admin.conferences.createInstructions">سيمنحك النظام تلقائياً دور مدير المؤتمر. بعد إنشاء المؤتمر الجديد، أدخل فيه من نوافذ الإدارة لمتابعة متعلقات تهيئته وتوزيع الأدوار فيه.</message>
+	<message key="admin.conferences.urlWillBe">لا بد أن يكون كلمة واحدة موجزة أو اختصاراً من شأنه التعريف بالمؤتمر. رابط المؤتمر سيكون: {$sampleUrl}</message>
+	<message key="admin.conferences.form.titleRequired">العنوان مطلوب حتماً.</message>
+	<message key="admin.conferences.form.pathRequired">المسار مطلوب حتماً.</message>
+	<message key="admin.conferences.form.pathAlphaNumeric">تسمية المسار يجب أن تقتصر على الحروف، الأرقام، الخطوط التحتانية والشرطة، ولا بد أن تبدأ بحرف أو رقم وتنتهي بأي منهما.</message>
+	<message key="admin.conferences.form.pathExists">المسار الذي اخترته مستعمل سلفاً من قبل مؤتمر آخر.</message>
+	<message key="admin.conferences.enableConferenceInstructions">إظهار هذا المؤتمر علانية في الموقع</message>
+	<message key="admin.conferences.scheduleConferenceInstructions">المتابعة لجدولة المؤتمر.</message>
+	<message key="admin.conferences.conferenceDescription">وصف المؤتمر</message>
+	<message key="admin.conferences.conferenceDescriptionInstructions">وصف المؤتمر يعرف المهمة الحالية له. هذا الوصف سيظهر على صفحته الرئيسية، فضلاً عن جميع الصفحات التقليدية الأخرى ذات الصلة به.</message>
+	<message key="admin.conferences.importOCS1">الاستيراد من نظام المؤتمرات المفتوحة بإصداره الأول</message>
+	<message key="admin.conferences.importOCS1.editMigratedConference">تعديل المؤتمر المنقول</message>
+	<message key="admin.conferences.importOCS1.conflict.desc">لبعض حسابات المستخدمين بيانات متضاربة. يسمح النظام بنسخته الأولى لأكثر من مستخدم واحد بمشاركة نفس العنوان البريدي، بينما النسخة الثانية لا تسمح بذلك. في القائمة أدناه، تم وضع عناوين بريدية وهمية للحسابات في القائمة الثانية. تلك العناوين لا بد من تعديلها يدوياً، إما عبر وضع عناوين بريدية مغايرة أو عبر دمج الحسابات.</message>
+	<message key="admin.conferences.importOCS1.errors.desc">واجهتنا الأخطاء الآتية عند محاولة الترقية من نظام المؤتمرات المفتوحة بنسخته الأولى إلى نسخته الثانية.</message>
+	<message key="admin.conferences.importOCS1.conflict">{$firstUsername} ({$firstName}) و {$secondUsername} ({$secondName})</message>
+	<message key="admin.conferences.importOCS1Instructions"><![CDATA[راجع الملف UPGRADE الموزع مع نظام المؤتمرات المفتوحة لمعلومات تفصيلية عن نقل البيانات من النسخة الأولى من النظام إلى النسخة الثانية منه. لاحظ أن هذه العملية لن تؤدي إلى الحصول على النظام بنسخته الثانية كامل الإعداد؛ بعض المكونات فقط سيتم استيرادها (مثل أوراق العمل). <strong>كل المستخدمين المستوردين سيكون عليهم تصفير كلمات مرورهم. نوصي بشدة بأن يقوم مدير المؤتمر بمعاينة كل البيانات المستوردة قبل إطلاق موقع المؤتمر.</strong>]]></message>
+	<message key="admin.conference.pathImportInstructions">مسار المؤتمر الموجود سلفاً أو الذي في النية إنشاؤه (مثلاً: "ocs").</message>
+	<message key="admin.conference.importPath">مسار النسخة الأولى من النظام</message>
+	<message key="admin.conference.importPathInstructions">المسار الكامل في نظام الملفات لموقع تنصيب النسخة الأولى من نظام المؤتمرات المفتوحة (مثلاً: "/var/www/ocs").</message>
+	<message key="admin.conferences.importRegistrations">استيرات التسجيلات</message>
+	<message key="admin.conferences.emailUsers">راسل المستخدمين الذين تم إنشاؤهم لإبلاغهم بحسابات الدخول مع كلمات مرور عشوائية</message>
+	<message key="admin.conferences.transcode">غيِّر ترميز البيانات الوصفية لأوراق العمل من ISO8859-1</message>
+	<message key="admin.conferences.form.importPathRequired">مسار الاستيراد مطلوب حتماً.</message>
+	<message key="admin.conferences.importErrors">فشلت عملية الاستيراد</message>
+
+	<!-- Site Administration Merge Users -->
+	<message key="admin.mergeUsers">دمج المستخدمين</message>
+	<message key="admin.mergeUsers.mergeUser">إدمج المستخدم</message>
+	<message key="admin.mergeUsers.into.description">إختر المستخدم الذي تريد أن تنتقل إليه خصائص المستخدم السابق ومتعلقاته ومهامه وأدواره... إلخ.</message>
+	<message key="admin.mergeUsers.from.description">إختر مستخدماً (أو أكثر) ليتم دمجهم مع حساب مستخدم آخر (كما في حالة أن يكون لأحد المستخدمين أكثر من حساب واحد). الحساب/الحسابات التي تختارها أولاً هي التي سيتم حذفها، وكل متعلقاتها من طلبات تقديم، مهام، أدوار... إلخ. ستذهب إلى المستخدم التالي.</message>
+	<message key="admin.mergeUsers.allUsers">كل المستخدمين ذوي الأدوار</message>
+	<message key="admin.mergeUsers.confirm">هل أنت متأكد من رغبتك في دمج الحسابات المختارة {$oldAccountCount} مع حساب المستخدم الذي اسمه "{$newUsername}"؟ إن الحسابات {$oldAccountCount} لن يكون لها وجود بعد تنفيذ هذا الأمر. إجراء من هذا النوع غير قابل للتراجع.</message>
+	<message key="admin.mergerUsers.noneEnrolled">لا مستخدمين بأدوار بعد.</message>
+</locale>

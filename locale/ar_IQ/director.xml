@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * ocs2-devel/locale/ar_IQ/director.xml
+  *
+  * Copyright (c) 2000-2012 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the ar_IQ (Arabic) locale.
+  *
+  * $Id$
+  -->
+
+<locale name="ar_IQ" full_name = "العربية">
+	<message key="director.home">صفحة المشرف الرئيسية</message>
+	<message key="director.submissionQueue">طابور طلبات التقديم</message>
+	<message key="director.submissionArchive">التقديمات المحفوظة</message>
+	<message key="director.allTracks">كل المسارات</message>
+	<message key="director.allDirectors">كل المشرفين</message>
+	<message key="director.me">لي</message>
+	<message key="director.submissionQueue.noSubmissions">لا تقديمات في الطابور حالياً.</message>
+	<message key="director.submissionQueue.saveChanges">هل تريد حفظ التغييرات لهذه التقديمات؟</message>
+	<message key="director.submissionArchive.noSubmissions">لا تقديمات محفوظة حالياً.</message>
+	<message key="director.submissionArchive.saveChanges">هل تريد حفظ التغييرات لهذه التقديمات المحفوظة؟ ما أشرته للحذف سيتم حذفه نهائياً من النظام.</message>
+	<message key="director.submissionArchive.confirmDelete">هل أنت متأكد من رغبتك في حذف هذه التقديمات نهائياً؟</message>
+	<message key="director.submissionReview.confirmDecision">هل أنت متأكد من رغبتك في توثيق هذا القرار؟</message>
+	<message key="director.submissionReview.confirmToLayout">هل تم إبلاغ المؤلف بهذه القرار؟ إن لم يحدث ذلك، إضغظ إلغاء ثم استعمل أداة إشعار المؤلف قبل نقل طلب التقديم هذا إلى التصميم الطباعي.</message>
+	<message key="director.submissionReview.confirmToArchive">هل تم إبلاغ المؤلف بهذه القرار؟ إن لم يحدث ذلك، إضغظ إلغاء ثم استعمل أداة إشعار المؤلف قبل نقل طلب التقديم هذا إلى المحفوظات.</message>
+	<message key="director.submissionReview.notes">موعد الاستيجاب يحدد عدد الأسابيع المتبقية حتى تنتهي مهلة المحكم أو تكون إشارة (-) مؤشراً على عدد الأسابيع المتأخرة عن الموعد. تجري تعبئة هذا الحقل بمجرد قبول المحكم لالتماس التحكيم.</message>
+	<message key="director.notifyUsers">إشعار المستخدمين</message>
+	<message key="director.notifyUsers.allUsers">جميع المستخدمين المرتبطين بهذا المؤتمر والبالغ عددهم({$count} مستخدم)</message>
+	<message key="director.notifyUsers.interestedUsers">المستخدمون المرتبطون بهذا المؤتمر والذين يودون استلام تحديثات والبالغ عددهم ({$count} مستخدم)</message>
+	<message key="director.notifyUsers.includeToc">تضمين العروض الخاصة بهذا المؤتمر</message>
+	<message key="director.notifyUsers.allReaders">جميع القراء والبالغ عددهم ({$count})</message>
+	<message key="director.notifyUsers.allAuthors">جميع المساهمين في العروض المنشورة والبالغ عددهم ({$count})</message>
+	<message key="director.notifyUsers.allPaidRegistrants">جميع المسجلين من دافعي الرسوم ({$count})</message>
+	<message key="director.notifyUsers.allRegistrants">جميع المسجلين والبالغ عددهم ({$count})</message>
+	<message key="director.navigation.management">الإدارة</message>
+	<message key="director.paper.sendToArchive">إحفظ طلب التقديم هذا</message>
+	<message key="director.paper.designateReviewVersion">إعتبار الملف الأصلي بمثابة نسخة التحكيم</message>
+	<message key="director.paper.uploadReviewVersion">رفع ملف منقح ليكون بمثابة النسخة المحكمة</message>
+	<message key="director.paper.uploadDirectorVersion">رفع نسخة المشرف</message>
+	<message key="director.paper.showSuppFile">تقديم الملف إلى المحكمين</message>
+	<message key="director.paper.stageDisabled">ليس بالإمكان حالياً إجراء هذا التحكيم لأن تحكيم الملخص لم يُنجز بعد.</message>
+	<message key="director.paper.clear">التصفير</message>
+	<message key="director.paper.clearReviewer">تصفير المحكمين</message>
+	<message key="director.paper.changeTrack">تغيير المسار</message>
+	<message key="director.paper.setDueDate">تحديد موعد الاستيجاب</message>
+	<message key="director.paper.addReviewer">أضف محكماً</message>
+	<message key="director.paper.toReviewer">إلى المحكم</message>
+	<message key="director.paper.notifyReviewer">إشعار المحكم</message>
+	<message key="director.paper.initiateReview">الشروع بالتحكيم</message>
+	<message key="director.paper.cancelReview">إلغاء إلتماسات التحكيم</message>
+	<message key="director.paper.clearReview">تصفير المحكم</message>
+	<message key="director.paper.enterRecommendation">أدخل التوصيات</message>
+	<message key="director.paper.enterReviewerRecommendation">أدخل توصيات المحكم</message>
+	<message key="director.paper.recommendation">التوصيات</message>
+	<message key="director.paper.selectReviewer">إختيار المحكم</message>
+	<message key="director.paper.replaceReviewer">استبدال المحكم</message>
+	<message key="director.paper.directorToEnter">ما يذكره المشرف من توصيات/تعليقات إلى المحكم</message>
+	<message key="director.paper.uploadReviewForReviewer">رفع رأي التحكيم</message>
+	<message key="director.paper.peerReviewOptions">خيارات التحكيم المناظر</message>
+	<message key="director.paper.decision">القرار</message>
+	<message key="director.paper.recordDecision">توثيق القرار</message>
+	<message key="director.paper.cannotRecord">يتعذر توثيق القرار؛ لم يتم تعيين المشرف على المسار أو لم يتم رفع ملف التحكيم بعد.</message>
+	<message key="director.paper.cannotRecordYet">قبل توثيق القرار، لا بد من تعيين طلب التقديم إلى مشرف المسار. إن نسخة المحكم تصير، تلقائياً، نسخة المشرف.</message>
+	<message key="director.paper.cannotRecordTooLate">قد سبق لطلب التقديم أن اجتاز مرحلة التحكيم هذه. لم يعد بإمكانك تغيير هذا القرار.</message>
+	<message key="director.paper.designateDueDate">تعيين موعد الاستيجاب</message>
+	<message key="director.paper.designateDueDateDescription">لتغيير موعد الاستيجاب لهذا المحكم، أدخل تأريخاً آخر، أو إحذف التأريخ وأدخل عدد الأسابيع المتاحة حتى انقضاء مهلة التحكيم.</message>
+	<message key="director.paper.todaysDate">تأريخ اليوم</message>
+	<message key="director.paper.requestedByDate">الملتمسة حسب التأريخ</message>
+	<message key="director.paper.dueDateFormat">الصيغة: YYYY-MM-DD</message>
+	<message key="director.paper.numberOfWeeks">عدد الأسابيع</message>
+	<message key="director.paper.showAuthor">إسمح للمؤلف بمعاينة الملف</message>
+	<message key="director.paper.rateReviewer">قيّم المحكم</message>
+	<message key="director.paper.reviewerRating.veryGood">5 عال</message>
+	<message key="director.paper.reviewerRating.good">4</message>
+	<message key="director.paper.reviewerRating.average">3 متوسط</message>
+	<message key="director.paper.reviewerRating.poor">2</message>
+	<message key="director.paper.reviewerRating.veryPoor">1 واطئ</message>
+	<message key="director.paper.quality">التقييم</message>
+	<message key="director.paper.comments">التعليقات</message>
+	<message key="director.paper.commentsRequired">إن حقل التعليقات مطلوب حتماً.</message>
+	<message key="director.paper.archiveSubmission">إرفض طلب التقديم واحفظه</message>
+	<message key="director.paper.restoreToQueue">أعده إلى القائمة النشطة</message>
+	<message key="director.paper.assignTrackDirector">أضف مشرف المسار</message>
+	<message key="director.paper.assignDirector">أضف مشرفاً</message>
+	<message key="director.paper.selectDirector">إختر {$roleName}</message>
+	<message key="director.paper.selectDecision">إختر قراراً</message>
+	<message key="director.paper.decision.invitePresentation">عرض مدعو له</message>
+	<message key="director.paper.decision.accept">قبول طلب النشر</message>
+	<message key="director.paper.decision.pendingRevisions">يستدعي التحكيم</message>
+	<message key="director.paper.decision.decline">طلب التقديم مرفوض</message>
+	<message key="director.paper.moveToLayout">أنقله إلى التصميم الطباعي</message>
+	<message key="director.paper.createGalley">هذا الملف جاهز للنشر.</message>
+	<message key="director.paper.completeReview">أشِّر التحكيم على أنه مكتمل</message>
+	<message key="director.paper.scheduleSubmission">أرسل</message>
+	<message key="director.submissions.showBy">العرض حسب</message>
+	<message key="director.submissions.submitMMDD">تأريخ التقديم MM-DD</message>
+	<message key="director.submissions.activeAssignments">المهام النشطة</message>
+	<message key="director.submissions.invite">توجيه دعوة</message>
+	<message key="director.submissions.accept">قبول</message>
+	<message key="director.submissions.noSubmissions">لا طلبات تقديم</message>
+	<message key="director.submissions.lastAssigned">الأحدث</message>
+	<message key="director.submissions.averageTime">الأسابيع</message>
+	<message key="director.submissions.lastCompleted">آخر ما اكتمل</message>
+	<message key="director.submissions.assignedTo">المعينة إلى</message>
+	<message key="director.submissions.inTrack">في المسار</message>
+</locale>

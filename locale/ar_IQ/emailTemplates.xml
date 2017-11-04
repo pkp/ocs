@@ -1,0 +1,485 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE email_texts SYSTEM "../../lib/pkp/dtd/emailTemplateData.dtd">
+<!--
+  * emailTemplateData.xml
+  *
+  * Copyright (c) 2000-2012 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localized email templates XML file.
+  *
+  * $Id$
+  -->
+<email_texts locale="ar_IQ">
+	<email_text key="NOTIFICATION">
+		<subject>إشعار جديد من {$siteTitle}</subject>
+		<body>وصلك إشعار جديد من {$siteTitle}:
+
+{$notificationContents}
+
+الرابط: {$url}
+
+{$principalContactSignature}</body>
+		<description>هذه الرسالة تعنون إلى المستخدمين المسجلين في النظام الذين اختاروا أن تصلهم إشعارات من هذا النوع بريدياً.</description>
+	</email_text>
+	<email_text key="NOTIFICATION_MAILLIST">
+		<subject>إشعار جديد من {$siteTitle}</subject>
+		<body>وصلك إشعار جديد من {$siteTitle}:
+--
+{$notificationContents}
+
+الرابط: {$url}
+--
+
+إن كنت تفضل أن لا تردك إشعارات عبر البريد الالكتروني، لطفاً، أنقر {$unsubscribeLink} ثم أدخل عنوان بريدك وكلمة المرور الخاصة بإبطال إشعارات نظام المؤتمرات المفتوحة.
+
+{$principalContactSignature}</body>
+		<description>هذه الرسالة تعنون إلى المستخدمين غير المسجلين في النظام من المضافين إلى قائمة المراسلة البريدية.</description>
+	</email_text>
+	<email_text key="NOTIFICATION_MAILLIST_WELCOME">
+		<subject>مرحباً بكم في قائمة المراسلة الخاصة بموقع {$siteTitle}!</subject>
+		<body>لقد سجلت عندنا رغبتك في الحصول على إشعارات بريدية من {$siteTitle}.
+			
+لطفاً، أنقر على الرابط الآتي لتأكيد رغبتك في أن نضيفك إلى قائمة مراسلاتنا البريدية: {$confirmLink}
+
+إذا فضلت في أي وقت آخر إزالة عنوانك من هذه القائمة، فما عليك سوى الذهاب إلى {$unsubscribeLink} وإدخال عنوانك البريدي وكلمة المرور.
+
+إن كلمة المرور الخاصة بإبطال إشعارات نظام المؤتمرات المفتوحة هي: {$password}
+
+{$principalContactSignature}</body>
+		<description>هذه الرسالة تعنون إلى المستخدمين غير المسجلين من الذين تمت إضافتهم تواً إلى قائمة المراسلات البريدية.</description>
+	</email_text>
+	<email_text key="NOTIFICATION_MAILLIST_PASSWORD">
+		<subject>معلومات قائمة المراسلة البريدية لموقع {$siteTitle}</subject>
+		<body>إن كلمة المرور الجديدة لإبطال إشعارات نظام المؤتمرات المفتوحة هي: {$password}
+
+إذا فضلت في أي وقت إيقاف الإشعارات عبر البريد الالكتروني، لطفاً، إذهب إلى {$unsubscribeLink} إدخال عنوانك البريدي وكلمة المرور.
+
+{$principalContactSignature}</body>
+		<description>هذه الرسالة تعنون إلى المستخدمين غير المسجلين في قائمة المراسلة البريدية عندما يشيرون إلى نسيانهم لكلمات مرورهم أو مواجهتهم صعوبات في الدخول إلى الموقع. الرسالة تقدم لهم رابطاً يمكنهم من تصفير كلمات مرورهم.</description>
+	</email_text>
+	<email_text key="PASSWORD_RESET_CONFIRM">
+		<subject>تأكيد تصفير كلمة المرور</subject>
+		<body>قد تلقينا إلتماساً لتصفير كلمة مرورك إلى الموقع {$siteTitle}.
+
+إذا لم تكن أنت شخصياً من قدم هذا الإلتماس، رجاءً تجاهل هذه الرسالة لتبقى كلمة مرورك على حالها. إذا كانت لديك فعلاً النية في تصفير كلمة مرورك، أنقر الرابط أدناه.
+
+تصفير كلمة المرور: {$url}
+
+{$principalContactSignature}</body>
+		<description>هذه الرسالة معنونة إلى المستخدمين المسجلين عندما يشيرون إلى فقدانهم لكلمات مرورهم أو تعذر دخولهم إلى الموقع. الرسالة تعطيهم رابطاً يسمح لهم بتصفير كلمة المرور.</description>
+	</email_text>
+	<email_text key="PASSWORD_RESET">
+		<subject>تصفير كلمة المرور</subject>
+		<body>كلمة مرورك في موقع {$siteTitle} قد تم تصفيرها بنجاح. لطفاً، إحتفظ باسم المستخدم وكلمة المرور لأنهما ضروريان لدخول الموقع.
+
+اسم المستخدم: {$username}
+كلمة مرورك الجديدة: {$password}
+
+{$principalContactSignature}</body>
+		<description>هذه الرسالة تعنون إلى المستخدم المسجل في الموقع عندما ينجح في تصفير كلمة مروره متبعاً الإرشادات المبينة في رسالة تأكيد تصفير كلمة المرور.</description>
+	</email_text>
+	<email_text key="USER_REGISTER">
+		<subject>تسجيل مستخدم جديد</subject>
+		<body>نشكر تسجيلك لتكون أحد المساهمين في {$conferenceName}. لطفاً، تابع اسم المستخدم وكلمة المرور الخاصين بك لأنهما ضروريان في جميع الأعمال المتعلقة بالمؤتمر.
+
+اسم المستخدم: {$username}
+كلمة المرور: {$password}
+
+تقبل إمتناننا,
+{$principalContactSignature}</body>
+		<description>هذه الرسالة تعنون إلى المستخدم الجديد بعيد تسجيله في الموقع للترحيب به وإبلاغه بمعلومات دخوله إلى متعلقات المؤتمر.</description>
+	</email_text>
+	<email_text key="USER_VALIDATE">
+		<subject>التحقق من صحة حسابك</subject>
+		<body>{$userFullName}
+
+لقد أنشأت لنفسك حساباً في {$conferenceName}، ولكن قبل أن يتسنى لك التعامل معه، عليك أن تؤكد لنا صحة عنوانك البريدي. للقيام بذلك، ما عليك سوى النقر على الرابط أدناه:
+
+{$activateUrl}
+
+مع خالص التقدير،
+{$principalContactSignature}</body>
+		<description>هذه الرسالة تعنون إلى المستخدم الذي سجل نفسه حديثاً في الموقع لتزويده برابط يسمح له بتأكيد إمتلاكه لعنوانه البريدي.</description>
+	</email_text>
+	<email_text key="SUBMISSION_ACK">
+		<subject>إعتراف بطلب التقديم</subject>
+		<body>{$authorName}:
+
+شكراً لتقديمك ورقة العمل الموسومة: "{$paperTitle}" للمساهمة في {$conferenceName}. عبر نظام المؤتمرات المفتوحة الذي نستعمله حالياً، سيكون بإمكانك متابعة مراحل التحرير التي سيمر بها طلبك عبر الدخول إلى موقع المؤتمر:
+
+رابط طلب التقديم: {$submissionUrl}
+اسم المستخدم: {$authorUsername}
+
+إذا كانت لديك أية استفسارات، لطفاً لا تتردد في مراسلتي. شكراً لاعتبارك هذا المؤتمر جديراً بنشر أعمالك.
+
+{$editorialContactSignature}</body>
+		<description>هذه الرسالة، إذا تم تمكينها، يرسلها النظام تلقائياً للمؤلف بمجرد إكماله لخطوات تقديم طلب للمساهمة في أحد المؤتمرات المسجلة فيه. الرسالة تبلغ المؤلف عن إمكانية متابعة تقديمه خلال مراحل التحرير المختلفة وتشكره على إسهامه في المؤتمر.</description>
+	</email_text>
+	<email_text key="SUBMISSION_UPLOAD_ACK">
+		<subject>إعتراف برفع طلب تقديم</subject>
+		<body>{$authorName}:
+
+شكراً لقيامك برفع العرض الموسوم: "{$paperTitle}" للمساهمة به في {$conferenceName}. عبر نظام المؤتمرات المفتوحة الذي نستعمله حالياً، سيكون بإمكانك متابعة مراحل التحرير التي سيمر بها طلبك عبر الدخول إلى موقع المؤتمر:
+
+
+رابط طلب التقديم: {$submissionUrl}
+اسم المستخدم: {$authorUsername}
+
+إذا كانت لديك أية استفسارات، لطفاً لا تتردد في مراسلتي. شكراً لاعتبارك هذا المؤتمر جديراً بنشر أعمالك.
+
+{$editorialContactSignature}</body>
+		<description>هذه الرسالة، إذا تم تمكينها، يرسلها النظام تلقائياً للمؤلف بمجرد إكماله لخطوات تقديم طلب للمساهمة في أحد المؤتمرات المسجلة فيه. الرسالة تبلغ المؤلف عن إمكانية متابعة تقديمه خلال مراحل التحرير المختلفة وتشكره على إسهامه في المؤتمر.</description>
+	</email_text>
+	<email_text key="SUBMISSION_UNSUITABLE">
+		<subject>طلب تقديم غير مناسب</subject>
+		<body>{$authorName}:
+
+بعد المراجعة الأولية لعملك الموسوم "{$paperTitle}" تبين لنا بأنه لا يتناسب مع نطاق اهتمامات {$conferenceName}. نحثك بالاطلاع على وصف هذا المؤتمر ضمن باب (عن) فضلاً عن باقي المؤتمرات المستقبلية لمعرفة المزيد عن طبيعة الأعمال المقبولة فيها. إذ قد يكون من الأنسب لو تقدم عملك هذا إلى مؤتمر آخر يصب في مجاله العلمي.
+
+{$editorialContactSignature}</body>
+	</email_text>
+	<email_text key="SUBMISSION_COMMENT">
+		<subject>تعليقات طلب التقديم</subject>
+		<body>{$name}:
+
+{$commentName} قد أضاف تعليقاً إلى طلب التقديم الموسوم "{$paperTitle}" ضمن {$conferenceName}:
+
+{$comments}</body>
+		<description>هذه الرسالة تشعر مختلف الأشخاص ذوي العلاقة بتحرير طلب التقديم بإضافة تعليق جديد عنه.</description>
+	</email_text>
+	<email_text key="SUBMISSION_DECISION_REVIEWERS">
+		<subject>القرار بشأن "{$paperTitle}"</subject>
+		<body>باعتبارك أحد المحكمين لطلب التقديم الموسوم "{$paperTitle}،" ضمن {$conferenceName}، أرسل لك ما يتعلق به من تحكيمات وقرار هيئة التحرير والتي سبق إرسالها إلى المؤلف. نشكرك مرة أخرى لمساهمتك الفاعلة في عملية التحكيم.
+ 
+{$editorialContactSignature}
+
+{$comments}</body>
+		<description>هذه الرسالة تشعر محكمي طلب التقديم باكتمال عملية التحكيم. هي تتضمن معلومات عن ورقة العمل والقرار المتخذ بشأنها، كما تشكر المحكم على مساهمته في اتخاذ هذا القرار.</description>
+	</email_text>
+	<email_text key="DIRECTOR_ASSIGN">
+		<subject>تعيين مشرف</subject>
+		<body>{$editorialContactName}:
+
+إن طلب التقديم الموسوم "{$paperTitle}،" ضمن {$conferenceName} قد تم تعيينه إليك لتتولى مهام تحريره بصفتك مشرفاً على هذا المسار ضمن أعمال المؤتمر.  
+
+رابط طلب التقديم: {$submissionUrl}
+اسم المستخدم: {$directorUsername}
+
+شكراً جزيلاً،
+{$editorialContactSignature}</body>
+		<description>هذه الرسالة تُشعر مشرف المسار بأنه تم إيكال مهام التحرير له بشأن أحد طلبات التقديم المقدمة إلى المؤتمر. الرسالة تقدم له معلومات أولية عن طلب التقديم فضلاً عن رابط للوصول إليه ضمن موقع المؤتمر.</description>
+	</email_text>
+	<email_text key="REVIEW_REQUEST">
+		<subject>إلتماس تحكيم ورقة عمل</subject>
+		<body>{$reviewerName}:
+
+كلي ثقة بأنك جدير بتحكيم طلب التقديم الموسوم "{$paperTitle}،" والذي ينوي مؤلفه المشاركة به في {$conferenceName}. ملخص العمل مدرج أدناه، ولذا أرجو قبولك لهذه المهمة وأخذها بعين الاعتبار.
+
+لطفاً، أدخل إلى موقع المؤتمر خلال مدة أقصاها {$weekLaterDate} لتبين لنا بشكل صريح فيما لو أنك ستقبل القيام بمهمة التحكيم أم لا، فضلاً عن الوصول إلى طلب التقديم وتسجيل رأيك والتوصيات بشأنه. رابط الموقع هو {$conferenceUrl}
+
+آخر موعد لتسليم نتيجة التحكيم سيكون {$reviewDueDate}.
+
+إذا لم يكن بحوزتك اسم المستخدم وكلمة المرور الخاصين بموقع المؤتمر، فاتبع الرابط الآتي لتجهيز كلمة مرور لك (والتي سيتم إرسالها إليك مع اسم المستخدم عبر رسالة أخرى). {$passwordResetUrl}
+
+رابط طلب التقديم: {$submissionReviewUrl}
+
+تقبل خالص شكري وتقديري لأخذك هذا الإلتماس بعين الاعتبار.
+
+{$editorialContactSignature}
+
+
+
+"{$paperTitle}"
+
+الملخص
+{$paperAbstract}</body>
+		<description>هذه الرسالة يعنونها مشرف المسار إلى المحكم ملتمساً منه إبداء الرأي بشأن تولي مهمة تحكيم أحد طلبات التقديم الموجهة إلى المؤتمر. الرسالة تقدم معلومات أولية عن الطلب مثل العنوان والملخص، فضلاً عن موعد استيجاب التحكيم مع رابط الوصول إليه.</description>
+	</email_text>
+	<email_text key="REVIEW_REQUEST_ONECLICK">
+		<subject>إلتماس تحكيم ورقة عمل</subject>
+		<body>{$reviewerName}:
+
+كلي ثقة بأنك جدير بتحكيم طلب التقديم الموسوم "{$paperTitle}،" والذي ينوي مؤلفه المشاركة به في {$conferenceName}. ملخص العمل مدرج أدناه، ولذا أرجو قبولك لهذه المهمة وأخذها بعين الاعتبار.
+
+لطفاً، أدخل إلى موقع المؤتمر خلال مدة أقصاها {$weekLaterDate} لتبين لنا بشكل صريح فيما لو أنك ستقبل القيام بمهمة التحكيم أم لا، فضلاً عن الوصول إلى طلب التقديم وتسجيل رأيك والتوصيات بشأنه. رابط الموقع هو {$conferenceUrl}
+
+آخر موعد لتسليم نتيجة التحكيم سيكون {$reviewDueDate}.
+
+رابط طلب التقديم: {$submissionReviewUrl}
+
+تقبل خالص شكري وتقديري لأخذك هذا الإلتماس بعين الاعتبار.
+
+{$editorialContactSignature}
+
+
+
+"{$paperTitle}"
+
+الملخص
+{$paperAbstract}</body>
+		<description>هذه الرسالة يعنونها مشرف المسار إلى المحكم ملتمساً منه إبداء الرأي بشأن تولي مهمة تحكيم أحد طلبات التقديم الموجهة إلى المؤتمر. الرسالة تقدم معلومات أولية عن الطلب مثل العنوان والملخص، فضلاً عن موعد استيجاب التحكيم مع رابط الوصول إليه. تُستعمل هذه الرسالة عند اختيار طريقة التحكيم القياسية في إعدادات المؤتمر، الخطوة 2 مع تمكين المحكم من الوصول بنقرة واحدة.</description>
+	</email_text>
+	<email_text key="REVIEW_CANCEL">
+		<subject>إلغاء إلتماس التحكيم</subject>
+		<body>{$reviewerName}:
+
+لقد اتخذنا قراراً في هذه المرحلة بإلغاء إلتماسنا المقدم إليك بشأن تحكيم طلب التقديم الموسوم "{$paperTitle}،" ضمن {$conferenceName}. نبدي إعتذارنا عن أي مضايقات قد نكون سبباً لها ونعرب عن أملنا في أن نكون قادرين على دعوتك مستقبلاً للمساهمة في تحكيم الأعمال المقدمة إلى هذا المؤتمر.
+
+لطفاً، لا تتردد في مراسلتي إذا كانت لديك أية استفسارات.
+
+{$editorialContactSignature}</body>
+		<description>هذه الرسالة يعنونها مشرف المسار إلى المحكم الذي لا زال يعمل على تحكيم طلب تقديم معين لإبلاغه بإلغاء مهمة التحكيم هذه.</description>
+	</email_text>
+	<email_text key="REVIEW_CONFIRM">
+		<subject>قادر على التحكيم</subject>
+		<body>{$editorialContactName}:
+
+لدي القدرة والرغبة لتحكيم طلب التقديم الموسوم "{$paperTitle}،" ضمن {$conferenceName}. أشكر أخذكم لعملي بعين الاعتبار، وسأضع في حسباني إكمال مهمة التحكيم عند موعدها المقرر في {$reviewDueDate}، أو قبله.
+
+{$reviewerName}</body>
+		<description>هذه الرسالة يعنونها المحكم إلى مشرف المسار استجابة إلى التماس قبول التحكيم لإبلاغه بالموافقة على تولي المهمة وأنها ستسلم خلال الموعد المحدد.</description>
+	</email_text>
+	<email_text key="REVIEW_CONFIRM_ACK">
+		<subject>إعتراف الشروع بالتحكيم</subject>
+		<body>{$reviewerName}:
+
+شكراً جزيلاً لقبول مهمة تحكيم طلب التقديم الموسوم "{$paperTitle}" ضمن {$conferenceName} حتى يوم {$reviewDueDate}.
+
+{$editorialContactSignature}</body>
+		<description>هذه الرسالة يعنونها مشرف المسار إلى المحكم لبيان معرفته بقيام الأخير بتولي مهمة التحكيم ولتشجيعه على إنجاز المهمة ضمن الموعد المحدد.</description>
+	</email_text>
+	<email_text key="REVIEW_DECLINE">
+		<subject>غير قادر على التحكيم</subject>
+		<body>{$editorialContactName}:
+
+أخشى أنه ليس في وسعي حالياً تولي مهمة تحكيم طلب التقديم الموسوم "{$paperTitle}،" ضمن {$conferenceName}. شكراً لاهتمامكم بعملي، وأتطلع لتواصلكم معي في وقت آخر.
+
+{$reviewerName}</body>
+		<description>هذه الرسالة يعنونها المحكم إلى مشرف المسار استجابة إلى التماس الموافقة على التحكيم لإبلاغه بالاعتذار عنه في الوقت الحالي.</description>
+	</email_text>
+	<email_text key="REVIEW_COMPLETE">
+		<subject>التحكيم منجز</subject>
+		<body>{$editorialContactName}:
+
+لقد أكملت تواً تحكيمي للعمل الموسوم "{$paperTitle}" ضمن {$conferenceName}، وقدمت توصياتي بشأنه، "{$recommendation}."
+
+{$reviewerName}</body>
+		<description>هذه الرسالة يعنونها المحكم إلى مشرف المسار لإبلاغه بإنجاز مهمة التحكيم وبأن التوصيات والتعليقات المتصلة به قد تم تسجيلها في موقع المؤتمر.</description>
+	</email_text>
+	<email_text key="REVIEW_ACK">
+		<subject>إعتراف إنجاز التحكيم</subject>
+		<body>{$reviewerName}:
+
+نعرب لك عن شكرنا لتحكيم العمل الموسوم "{$paperTitle}،" ضمن {$conferenceName}. نحن نقدر مساهمتك معنا لضمان نوعية الأعمال التي نتبناها.
+
+{$editorialContactSignature}</body>
+		<description>هذه الرسالة يعنونها مشرف المسار إلى المحكم لتأكيد استلامه لنتائج التحكيم ولشكره على مساهمته القيمة.</description>
+	</email_text>
+	<email_text key="REVIEW_REMIND">
+		<subject>تذكير بمهمة التحكيم</subject>
+		<body>{$reviewerName}:
+
+رسالتنا هذه مجرد تذكير لحضرتكم بالتماسنا لكم لتحكيم العمل الموسوم "{$paperTitle}،" ضمن {$conferenceName}. كنا نأمل أن نحصل على نتيجة التحكيم حتى {$reviewDueDate}، وسيسعدنا أن يكون جاهزاً لتسليمه لنا حال إكماله.
+
+إذا لم يكن بحيازتكم اسم المستخدم وكلمة المرور الخاصين بموقع المؤتمر، فبإمكانكم استعمال الرابط الآتي لتصفير كلمة المرور (والتي عندها ستُرسل إليكم عبر البريد الالكتروني مع اسم المستخدم). {$passwordResetUrl}
+
+رابط طلب التقديم: {$submissionReviewUrl}
+
+لطفاً، أكدوا لنا مقدرتكم على إنجاز هذه المساهمة الهامة إلى أعمال المؤتمر. أتطلع إلى ردكم الكريم على رسالتي هذه.
+
+{$editorialContactSignature}</body>
+		<description>هذه الرسالة يعنونها مشرف المسار إلى المحكم لتذكيره بأن تسليم نتائج التحكيم قد استوجب.</description>
+	</email_text>
+	<email_text key="REVIEW_REMIND_ONECLICK">
+		<subject>تذكير بمهمة التحكيم</subject>
+		<body>{$reviewerName}:
+
+رسالتنا هذه مجرد تذكير لحضرتكم بالتماسنا لكم لتحكيم العمل الموسوم "{$paperTitle}،" ضمن {$conferenceName}. كنا نأمل أن نحصل على نتيجة التحكيم حتى {$reviewDueDate}، وسيسعدنا أن يكون جاهزاً لتسليمه لنا حال إكماله.
+
+رابط طلب التقديم: {$submissionReviewUrl}
+
+لطفاً، أكدوا لنا مقدرتكم على إنجاز هذه المساهمة الهامة إلى أعمال المؤتمر. أتطلع إلى ردكم الكريم على رسالتي هذه.
+
+{$editorialContactSignature}</body>
+		<description>هذه الرسالة يعنونها مشرف المسار إلى المحكم لتذكيره بأن تسليم نتائج التحكيم قد استوجب.</description>
+	</email_text>
+	<email_text key="REVIEW_REMIND_AUTO">
+		<subject>تذكير آلي بمهمة التحكيم</subject>
+		<body>{$reviewerName}:
+
+رسالتنا هذه مجرد تذكير لحضرتكم بالتماسنا لكم لتحكيم العمل الموسوم "{$paperTitle}،" ضمن {$conferenceName}. كنا نأمل أن نحصل على نتيجة التحكيم حتى {$reviewDueDate}، وإن هذه الرسالة مولدة آلياً بعد انقضاء هذا الموعد. لا زال يسعدنا أن يكون جاهزاً لتسليمه لنا حال إكماله.
+
+إذا لم يكن بحيازتكم اسم المستخدم وكلمة المرور الخاصين بموقع المؤتمر، فبإمكانكم استعمال الرابط الآتي لتصفير كلمة المرور (والتي عندها ستُرسل إليكم عبر البريد الالكتروني مع اسم المستخدم). {$passwordResetUrl}
+
+رابط طلب التقديم: {$submissionReviewUrl}
+
+لطفاً، أكدوا لنا مقدرتكم على إنجاز هذه المساهمة الهامة إلى أعمال المؤتمر. أتطلع إلى ردكم الكريم على رسالتي هذه.
+
+{$editorialContactSignature}</body>
+		<description>هذه الرسالة تذهب تلقائياً إلى المحكم عند اتقضاء موعد تسليم التحكيم (أنظر خيارات التحكيم ضمن إعدادات المؤتمر، الخطوة 2) في حالة تعطيل وصول المحكم بنقرة واحدة. لا بد من تمكين المهام المجدولة وضبط إعداداتها (أنظر ملف إعدادات الموقع).</description>
+	</email_text>
+	<email_text key="REVIEW_REMIND_AUTO_ONECLICK">
+		<subject>تذكير آلي بمهمة التحكيم</subject>
+		<body>{$reviewerName}:
+
+رسالتنا هذه مجرد تذكير لحضرتكم بالتماسنا لكم لتحكيم العمل الموسوم "{$paperTitle}،" ضمن {$conferenceName}. كنا نأمل أن نحصل على نتيجة التحكيم حتى {$reviewDueDate}، وإن هذه الرسالة مولدة آلياً بعد انقضاء هذا الموعد. لا زال يسعدنا أن يكون جاهزاً لتسليمه لنا حال إكماله.
+
+رابط طلب التقديم: {$submissionReviewUrl}
+
+لطفاً، أكدوا لنا مقدرتكم على إنجاز هذه المساهمة الهامة إلى أعمال المؤتمر. أتطلع إلى ردكم الكريم على رسالتي هذه.
+
+{$editorialContactSignature}</body>
+		<description>هذه الرسالة تذهب تلقائياً إلى المحكم عند اتقضاء موعد تسليم التحكيم (أنظر خيارات التحكيم ضمن إعدادات المؤتمر، الخطوة 2) في حالة تمكين وصول المحكم بنقرة واحدة. لا بد من تمكين المهام المجدولة وضبط إعداداتها (أنظر ملف إعدادات الموقع).</description>
+	</email_text>
+	<email_text key="SUBMISSION_ABSTRACT_ACCEPT">
+		<subject>قرار التحرير بشأن الملخص</subject>
+		<body>{$authorName}:
+
+تهانينا، ملخصك {$paperTitle} مقبول للعرض ضمن {$conferenceTitle} والذي سينعقد في {$conferenceDate} في {$locationCity}. 
+
+شكراً جزيلاً ونحن نتطلع لمساهمتك في هذا الحدث.
+{$editorialContactSignature}</body>
+		<description>هذه الرسالة يعنونها مشرف المسار إلى المؤلف لإبلاغه بالقرار المتخذ بشأن ملخص ورقة العمل الذي أرسله.</description>
+	</email_text>
+	<email_text key="SUBMISSION_ABSTRACT_DECLINE">
+		<subject>قرار التحرير بشأن ورقة العمل</subject>
+		<body>{$authorName}:
+
+لقد أكملنا تحكيم طلب تقديمك الموسوم "{$paperTitle}." وبالنتيجة...
+
+{$editorialContactSignature}</body>
+		<description>هذه الرسالة يعنونها مشرف المسار إلى المؤلف لإبلاغه بالقرار المتخذ بشأن ورقة العمل التي أرسلها.</description>
+	</email_text>
+	<email_text key="SUBMISSION_ABSTRACT_REVISE">
+		<subject>قرار التحرير بشأن ورقة العمل</subject>
+		<body>{$authorName}:
+
+بعد مراجعة مستفيضة لطلب تقديمك الموسوم "{$paperTitle}" وجدنا أنه بالإمكان عرضه في {$conferenceTitle} إذا تم الأخذ بالتنقيحات الآتية بشكل صحيح.
+
+شكراً جزيلاً ونحن نتطلع لمساهمتك في هذا الحدث.
+
+{$editorialContactSignature}</body>
+		<description>هذه الرسالة يعنونها مشرف المسار إلى المؤلف لإبلاغه بالقرار المتخذ بشأن ورقة العمل التي أرسلها.</description>
+	</email_text>
+	<email_text key="SUBMISSION_PAPER_ACCEPT">
+		<subject>قرار التحرير بشأن ورقة العمل</subject>
+		<body>{$authorName}:
+
+تهانينا، عملك الموسوم {$paperTitle} قد تم قبوله للعرض ضمن {$conferenceTitle} والذي سينعقد في {$conferenceDate} في {$locationCity}. 
+
+شكراً جزيلاً ونحن نتطلع لمساهمتك في هذا الحدث.
+{$editorialContactSignature}</body>
+		<description>هذه الرسالة يعنونها مشرف المسار إلى المؤلف لإبلاغه بالقرار المتخذ بشأن ورقة العمل التي أرسلها.</description>
+	</email_text>
+	<email_text key="SUBMISSION_PAPER_DECLINE">
+		<subject>قرار التحرير بشأن ورقة العمل</subject>
+		<body>{$authorName}:
+
+لقد أكملنا تحكيم طلب تقديمك الموسوم "{$paperTitle}." وبالنتيجة...
+
+{$editorialContactSignature}</body>
+		<description>هذه الرسالة يعنونها مشرف المسار إلى المؤلف لإبلاغه بالقرار المتخذ بشأن ورقة العمل التي أرسلها.</description>
+	</email_text>
+	<email_text key="SUBMISSION_PAPER_REVISE">
+		<subject>قرار التحرير بشأن ورقة العمل</subject>
+		<body>{$authorName}:
+
+بعد مراجعة مستفيضة لطلب تقديمك الموسوم "{$paperTitle}" وجدنا أنه بالإمكان عرضه في {$conferenceTitle} إذا تم الأخذ بالتنقيحات الآتية بشكل صحيح.
+
+شكراً جزيلاً ونحن نتطلع لمساهمتك في هذا الحدث.
+
+{$editorialContactSignature}</body>
+		<description>هذه الرسالة يعنونها مشرف المسار إلى المؤلف لإبلاغه بالقرار المتخذ بشأن ورقة العمل التي أرسلها.</description>
+	</email_text>
+	<email_text key="SUBMISSION_PAPER_INVITE">
+		<subject>قرار التحرير بشأن الملخص</subject>
+		<body>{$authorName}:
+
+تهانينا، ملخصك {$paperTitle} قد تم قبوله للعرض ضمن {$conferenceTitle} والذي سينعقد في {$conferenceDate} في {$locationCity}. يمكنك الآن إرسال ورقة عملك للاطلاع عليها عن كثب.
+
+شكراً جزيلاً ونحن نتطلع لمساهمتك في هذا الحدث.
+{$editorialContactSignature}</body>
+		<description>هذه الرسالة يعنونها مشرف المسار إلى المؤلف لإبلاغه بالقرار المتخذ بشأن ملخص ورقة العمل الذي أرسله ويدعوه لإرسال ورقة العمل بالكامل لمزيد من المعاينة.</description>
+	</email_text>
+	<email_text key="REGISTRATION_NOTIFY">
+		<subject>إشعار التسجيل</subject>
+		<body>{$registrantName}:
+
+لقد قمت بالتسجيل في نظامنا لإدارة المؤتمرات ضمن {$conferenceName}، وحسب معطيات التسجيل الآتية:
+
+{$registrationType}
+{$registrationOptions}
+إجمالي الرسوم: {$totalCost}
+
+للوصول إلى المحتوى المتاح للمسجلين حصراً، ما عليك إلا الدخول إلى الموقع مستعملاً اسم المستخدم "{$username}".
+
+بمجرد دخولك إلى النظام، بإمكانك تعديل بيانات ملفك الشخصي وكلمة مرورك في أي وقت.
+
+لطفاً، ننوه إلى أنه إذا كان تسجيلك هو من نوع تسجيل مؤسسات، فليس هناك من داع لأفراد المؤسسة للدخول إلى الموقع، لأن طلبات التسجيل المرسلة إلى النظام من المؤسسة ستتم مصادقتها تلقائياً من قبله.
+
+إذا كانت لديك أية استفسارات، لطفاً، لا تتردد في مراسلتي.
+
+{$registrationContactSignature}</body>
+		<description>هذه الرسالة تبلغ المسجل بصفة قارئ بأن مدير المؤتمر قد أنشأ له تسجيلاً في الموقع. الرسالة تذكر رابط المؤتمر مع معلومات الدخول إليه.</description>
+	</email_text>
+	<email_text key="USER_REGISTRATION_NOTIFY">
+		<subject>إشعار التسجيل</subject>
+		<body>{$registrantName}:
+
+لقد قمت بالتسجيل في نظامنا لإدارة المؤتمرات ضمن {$conferenceName}، وحسب معطيات التسجيل الآتية:
+
+{$registrationType}
+{$registrationOptions}
+إجمالي الرسوم: {$totalCost}
+
+المتطلبات الخاصة: {$specialRequests}
+
+للوصول إلى المحتوى المتاح للمسجلين حصراً، ما عليك إلا الدخول إلى الموقع مستعملاً اسم المستخدم "{$username}".
+
+بمجرد دخولك إلى النظام، بإمكانك تعديل بيانات ملفك الشخصي وكلمة مرورك في أي وقت.
+
+لطفاً، ننوه إلى أنه إذا كان تسجيلك هو من نوع تسجيل مؤسسات، فليس هناك من داع لأفراد المؤسسة للدخول إلى الموقع، لأن طلبات التسجيل المرسلة إلى النظام من المؤسسة ستتم مصادقتها تلقائياً من قبله.
+
+إذا كانت لديك أية استفسارات، لطفاً، لا تتردد في مراسلتي.
+رمز الفاتورة: {$invoiceId}
+
+{$registrationContactSignature}</body>
+		<description>هذه الرسالة تبلغ المسجل بصفة قارئ بأن مدير المؤتمر قد أنشأ له تسجيلاً في الموقع. الرسالة تذكر رابط المؤتمر مع معلومات الدخول إليه.</description>
+	</email_text>
+	<email_text key="USER_REGISTRATION_CHANGE">
+		<subject>تعديل التسجيل</subject>
+		<body>{$managerName}:
+
+لقد قام المسجل {$registrantName} (اسم المستخدم {$username}) بتغيير تسجيله الذي كان سابقاً قيد الإنشاء بتسجيل جديد.
+
+رمز التسجيل القديم كان {$registrationId}. نوع التسجيل القديم كان {$oldRegistrationType}. نوع التسجيل الجديد هو {$newRegistrationType}.
+
+أدناه مجمل التغييرات التي حصلت في خيارات التسجيل:
+{$differingOptions}
+
+{$registrationContactSignature}</body>
+		<description>هذه الرسالة تبلغ المسجل بصفة قارئ بأن مدير المؤتمر قد أنشأ له تسجيلاً في الموقع. الرسالة تذكر رابط المؤتمر مع معلومات الدخول إليه.</description>
+	</email_text>
+	<email_text key="OPEN_ACCESS_NOTIFY">
+		<subject>الإصدار متاح للوصول المفتوح الآن</subject>
+		<body>قراءنا الأعزاء:
+
+{$conferenceName} قد جعل الإصدار الآتي تواً متاحاً للوصول المفتوح. نحن ندعوكم لمعاينة جدول المحتويات هنا، ومن ثم زيارة موقعنا ({$conferenceUrl}) للاطلاع على أوراق عمله وما قد تجدوه جديراً بالقراءة.
+
+نشكر لكم متابعة اهتمامكم بأعمالنا،
+{$editorialContactSignature}</body>
+		<description>هذه الرسالة تعنون إلى القراء الذين اختاروا الحصول على إشعارات بشأن إطلاق الوصول المفتوح لمحتويات الموقع.</description>
+	</email_text>
+	<email_text key="MANUAL_PAYMENT_RECEIVED">
+		<subject>دفعك للرسوم الخاصة بـ {$conferenceName} قد تم استلامها</subject>
+		<body>{$registrantName}:
+
+إن دفعك للرسوم الخاصة بـ {$conferenceName} قد تم استلامها وتوثيقها في حسابك.
+
+إذا كانت لديك أية استفسارات، لطفاً، لا تتردد في مراسلتي.
+
+{$registrationContactSignature}</body>
+		<description>هذه الرسالة تبلغ المسجل بأن مدير المؤتمر قد استلم مبلغ الرسوم المترتبة عليه.</description>
+	</email_text>
+</email_texts>
