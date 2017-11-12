@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * locale.xml
+  *
+  * Copyright (c) 2000-2012 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the uk_UA (Ukrainian) locale.
+  *
+  * Translated  by Vasyl Ostrovskyi, 2017
+  * Institute of Mathematics, NAS of Ukraine
+  *
+  -->
+ 
+<locale name="en_US" full_name="U.S. English">
+	<message key="plugins.generic.staticPages.displayName">Плагін статичних сторінок</message>
+	<message key="plugins.generic.staticPages.description">Цей плагін дозволяє керувати статичним вмістом.</message>
+	<message key="plugins.generic.staticPages.pageTitle">Назва</message>
+	<message key="plugins.generic.staticPages.content">Вміст</message>
+
+	<message key="plugins.generic.staticPages.path">Шлях</message>
+	<message key="plugins.generic.staticPages.requirement.tinymce"><![CDATA[<strong>Для додавання та редагування вмісту повинен бути встановлений та увімкнений плагін TinyMCE.</strong>]]></message>
+
+	<message key="plugins.generic.staticPages.editAddContent">Редагувати/Додати вміст</message>
+
+	<message key="plugins.generic.staticPages.addStaticPage">Додати статичну сторінку</message>
+	<message key="plugins.generic.staticPages.addNewPage">Додати нову сторінку</message>
+	<message key="plugins.generic.staticPages.editStaticPage">Редагувати статичну сторінку</message>	
+
+	<message key="plugins.generic.staticPages.settingInstructions">Наведена форма показує усі створені Вами статичні сторінки.  Ви можете редагувати чи видалити сторінки, використавши посилання праворуч.</message>
+	<message key="plugins.generic.staticPages.editInstructions">Використайте наведену форму для додавання та редагування вмісту сторінок.</message>
+	<message key="plugins.generic.staticPages.viewInstructions"><![CDATA[Сторінки доступні за шляхом: {$pagesPath}, де  %PATH% є значення, яке Ви обираєте. <strong>Увага:</strong> Різні сторінки не можуть мати однаковий шлях.]]></message>
+	<message key="plugins.generic.staticPages.duplicatePath">Цей шлях вже існує для іншої статичної сторінки.</message>
+	
+	<message key="plugins.generic.staticPages.pageSaved">Сторінку успішно збережено.</message>
+	<message key="plugins.generic.staticPages.pageDeleted">Сторінку успішно видалено.</message>
+	
+	<message key="plugins.generic.staticPages.noneExist">Не створено жодної сторінки.</message>
+</locale>

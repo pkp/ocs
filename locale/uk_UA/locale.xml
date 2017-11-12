@@ -1,0 +1,856 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * locale.xml
+  *
+  * Copyright (c) 2000-2012 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the uk_UA (Ukrainian) locale.
+  *
+  * Translated  by Vasyl Ostrovskyi, 2017
+  * Institute of Mathematics, NAS of Ukraine
+  *
+  * $Id$
+  -->
+
+<locale name="uk_UA" full_name="Українська">
+	<!--
+	 * This file is organized into several major sections, separated
+	 * by comments like this one. These sections are called:
+	 *  COMMON - Contains frequently-used words
+	 *  ENTITIES - Contains terms pertaining to the system's major
+	 *             entities, e.g. Paper, Conference, Track
+	 *  INTERFACE - Contains phrases organized by the section of the
+	 *              user interface they appear in.
+	 *  LOG - Contains phrases related to log entries
+	 *  MISC - Entries that don't belong elsewhere.
+	 *  DEFAULT - Default settings for configuration items.
+	-->
+
+	<!-- review forms start -->
+
+	<!-- common -->
+	<message key="common.copy">Копіювати</message>
+	<message key="common.preview">Перегляд</message>
+	<message key="common.activate">Активувати</message>
+	<message key="common.deactivate">Деактивувати</message>
+
+	<!-- Conference Management -->
+	<message key="manager.reviewForms">Форма рецензування</message>
+
+	<message key="manager.reviewForms.list.description">Створені тут форми рецензування будуть запропоновані рецензенту замість стандартної форми, яка містить два поля введення тексту: "для автора та редактора" та "для редактора". Форми рецензування можуть бути призначені для окремих секцій конференції, тому редактори матимуть вибір, яку форму запропонувати рецензентові. В кожному разі редактор матимуть можливість вибирати форму для кожного автора.</message>
+	<message key="manager.reviewForms.noneChosen">Жодної / Рецензія у вільній формі</message>
+	<message key="manager.reviewForms.noneCreated">Не створено жодної форми рецензування.</message>
+	<message key="manager.reviewForms.create">Створити форму рецензування</message>
+	<message key="manager.reviewForms.edit">Форма рецензування</message>
+	<message key="manager.reviewForms.title">Назва</message>
+	<message key="manager.reviewForms.description">Опис та вказівки</message>
+	<message key="manager.reviewForms.preview">Перегляд форми</message>
+	<message key="manager.reviewForms.completed">Зроблено</message>
+	<message key="manager.reviewForms.inReview">На рецензуванні</message>
+	<message key="manager.reviewForms.confirmDeleteUnpublished">Ви певні, що слід видалити цю неопубліковану форму рецензування?</message>
+
+	<message key="manager.reviewForms.form.titleRequired">Слід вказати назву форми рецензування.</message>
+
+	<message key="manager.reviewFormElements">Елементи форми</message>
+	<message key="manager.reviewFormElements.create">Створити новий елемент</message>
+	<message key="manager.reviewFormElements.edit">Редагувати елемент форми</message>
+	<message key="manager.reviewFormElements.noneCreated">Не створено жодного елемента форми.</message>
+	<message key="manager.reviewFormElements.confirmDelete">Ви певні, що слід видалити елемент опублікованої форми рецензування?</message>
+	<message key="manager.reviewFormElements.copyTo">Копіювати до:</message>
+	<message key="manager.reviewFormElements.question">Елемент</message>
+	<message key="manager.reviewFormElements.required">Елемент обовʼязковий для заповнення рецензентом</message>
+	<message key="manager.reviewFormElements.included">Включено у повідомлення автору</message>
+	<message key="manager.reviewFormElements.elementType">Тип елементу</message>
+	<message key="manager.reviewFormElements.possibleResponse">Вибір</message>
+	<message key="manager.reviewFormElements.addResponseItem">Додати до вибору</message>
+	<message key="manager.reviewFormElements.chooseType">Виберіть тип елементу</message>
+	<message key="manager.reviewFormElement.changeType">Увага!: Зміна типу елементу форми рецензування з множинного на однозначний призведе до видалення множинних опцій.</message>
+
+	<message key="manager.reviewFormElements.form.questionRequired">Для елемента форми слід вказати запитання.</message>
+	<message key="manager.reviewFormElements.form.elementTypeRequired">Для елементу форми слід вказати його тип</message>
+
+	<message key="manager.reviewFormElements.smalltextfield">Текстове поле для одного слова</message>
+	<message key="manager.reviewFormElements.textfield">Текстове поле для одного рядка</message>
+	<message key="manager.reviewFormElements.textarea">Розширене текстове поле</message>
+	<message key="manager.reviewFormElements.checkboxes">Прапорці (можна вибрати одну або декілька відповідей)</message>
+	<message key="manager.reviewFormElements.radiobuttons">Перемикач (можна обрати лише одну відповідь)</message>
+	<message key="manager.reviewFormElements.dropdownbox">Вибір з переліку</message>
+
+	<!--  peer review -->
+	<message key="submission.reviewForm">Форма рецензування</message>
+	<message key="submission.reviewFormResponse">Відповідь форми</message>
+
+	<message key="editor.paper.reviewForms">Форми рецензування</message>
+	<message key="editor.paper.selectReviewForm">Виберіть форму рецензування</message>
+	<message key="editor.paper.clearReviewForm">Очистити форму рецензування</message>
+	<message key="editor.paper.confirmChangeReviewForm">Увага: Зміна форми рецензування вплине на відповіді, які рецензенти вже зробили з використанням цієї форми. Ви певні, що слід продожити?</message>
+
+	<message key="reviewer.paper.enterReviewForm">Клацніть на піктограмі для заповнення форми рецензування.</message>
+	<message key="reviewer.paper.reviewFormResponse.form.responseRequired">Будь-ласка, заповніть обовʼязкові поля.</message>
+
+	<!-- review forms end -->
+
+	<!--
+	 *
+	 * COMMON - This section contains the most frequently-used words
+	 *
+	-->
+
+	<!-- Common Messages -->
+	<message key="common.openConferenceSystems">Open Conference Systems</message>
+	<message key="common.noDate">(дата)</message>
+	<message key="common.time">Час</message>
+	<message key="common.days">днів</message>
+	<message key="common.timeZone">Часовий пояс</message>
+	<message key="common.ellipsis">...</message>
+	<message key="common.path">Шлях</message>
+	<message key="common.dateTimeSeparator">о</message>
+	<message key="common.ccLicense"><![CDATA[<a target="_new" rel="license" href="http://creativecommons.org/licenses/by/3.0/">
+			<img alt="Creative Commons License" style="border-width:0" src="{$ccLicenseImageUrl}"/>
+		</a>
+		<br/>
+		Ця <span xmlns:dc="http://purl.org/dc/elements/1.1/" href="http://purl.org/dc/dcmitype/Text" rel="dc:type">праця</span> поширюється на умовах ліцензії<a rel="license" target="_new" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0  License</a>.]]></message>
+	<message key="common.sortBy">Сортувати за...</message>
+	<message key="common.sitePageHeader.altText">Зображення заголовку сайту</message>
+	<message key="common.pageHeader.altText">Зображення заголовку сторінки</message>
+	<message key="common.homePageHeader.altText">Зображення заголовку початкової сторінки</message>
+	<message key="common.conferenceHomepageImage.altText">Зображення початкової сторінки конференції</message>
+
+	<!-- Navigation -->
+	<message key="navigation.conferenceHelp">Довідка</message>
+	<message key="navigation.account">Обліковий запис</message>
+	<message key="navigation.archive">Архів</message>
+	<message key="navigation.current">Поточні конференції</message>
+	<message key="navigation.otherConferences">Інші конференції</message>
+	<message key="navigation.browseByConference">За конференціями</message>
+	<message key="navigation.browseByAuthor">За авторами</message>
+	<message key="navigation.infoForAuthors">Для авторів</message>
+	<message key="navigation.infoForReviewers">Для рецензентів</message>
+	<message key="navigation.infoForAuthors.long">Інформація для авторів</message>
+	<message key="navigation.infoForReviewers.long">Інформація для рецензентів</message>
+
+	<!-- Paper Queues -->
+	<message key="common.queue.long.submissionsUnassigned">Непризначене</message>
+	<message key="common.queue.short.submissionsUnassigned">Непризначене</message>
+	<message key="common.queue.long.submissionsInReview">Подання на рецензуванні</message>
+	<message key="common.queue.short.submissionsInReview">На рецензуванні</message>
+	<message key="common.queue.long.submissionsAccepted">Прийняті</message>
+	<message key="common.queue.short.submissionsAccepted">Прийняті</message>
+	<message key="common.queue.long.submissionsArchives">Архіви</message>
+	<message key="common.queue.short.submissionsArchives">Архіви</message>
+	<message key="common.queue.long.active">Активні подання</message>
+	<message key="common.queue.short.active">Активні</message>
+	<message key="common.queue.long.completed">Архів</message>
+	<message key="common.queue.short.completed">Архів</message>
+
+	<!--
+	 *
+	 * ENTITIES - This section contains terms pertaining to the system's
+	 *            major entities, e.g. Paper, Conference, Track
+	 *
+	-->
+
+	<!-- Common Track Terms -->
+	<message key="track.track">Секція</message>
+	<message key="track.tracks">Секції конференції</message>
+	<message key="track.title">Назва секції</message>
+	<message key="track.abbreviation">Скорочено</message>
+	<message key="track.abbreviation.example">(Наприклад, General Papers=GEN)</message>
+
+	<!-- Common Paper Terms -->
+	<message key="paper.papers">Праці</message>
+	<message key="paper.submissionId">Ідентифікатор подання</message>
+	<message key="paper.title">Назва</message>
+	<message key="paper.authors">Автори</message>
+	<message key="paper.conferenceTrack">Секція</message>
+	<message key="paper.file">Файл</message>
+	<message key="paper.suppFile">Додатковий файл</message>
+	<message key="paper.suppFiles">Додаткові файли</message>
+	<message key="paper.suppFilesAbbrev">дод. файли</message>
+	<message key="paper.discipline">Розділ науки та підрозділи</message>
+	<message key="paper.subjectClassification">Предметна класифікація</message>
+	<message key="paper.subject">Ключові слова</message>
+	<message key="paper.coverage">Покриття</message>
+	<message key="paper.coverageGeo">Географічне покриття</message>
+	<message key="paper.coverageChron">Хронологічне чи історичне покриття</message>
+	<message key="paper.coverageSample">Характеристики дослідного зразка</message>
+	<message key="paper.type">Тип, метод чи підхід</message>
+	<message key="paper.language">Мова</message>
+	<message key="paper.trackDirector">TD</message>
+	<message key="paper.commentsToDirector">Коментарі автора</message>
+	<message key="paper.submission">Подання</message>
+	<message key="paper.submissions">Подання</message>
+	<message key="paper.abstract">Резюме</message>
+	<message key="paper.details">Деталі</message>
+	<message key="paper.location">Місце</message>
+	<message key="paper.time">Час</message>
+	<message key="paper.comments.trackDefault">Стандартне</message>
+	<message key="paper.comments.disable">Вимкнути</message>
+	<message key="paper.comments.enable">Увімкнути</message>
+	<message key="paper.fontSize">Розмір шрифту</message>
+	<message key="paper.fontSize.small.altText">Малий</message>
+	<message key="paper.fontSize.medium.altText">Середній</message>
+	<message key="paper.fontSize.large.altText">Великий</message>
+	<message key="paper.sessionType">Тип</message>
+
+	<!-- Submission Tracking - Common -->
+	<message key="submission.fromTime">З</message>
+	<message key="submission.toTime">до</message>
+	<message key="submission.abstractReview">Рецензія на резюме</message>
+	<message key="submission.paperReview">Рецензія на роботу</message>
+	<message key="submission.page.abstractReview">#{$id} Рецензія на резюме</message>
+	<message key="submission.page.paperReview">#{$id} Рецензія на роботу</message>
+	<message key="submission.uploadFile">Надіслати роботу</message>
+	<message key="submission.changeTrack">Змінити на</message>
+	<message key="submission.acceptance">Згода рецензувати</message>
+	<message key="submission.complete.description">Додати подання до переліку прийнятих доповідей.</message>
+	<message key="submission.directorDecision">Ухвала директора</message>
+	<message key="submission.stage"><![CDATA[Крок&nbsp;{$stage}]]></message>
+	<message key="submission.directorReview">Рецензія директора</message>
+	<message key="submission.notifyAuthor">Повідомити автора</message>
+	<message key="submission.notifyDirector">Повідомити директора</message>
+	<message key="submission.directorAuthorRecord">Листування директора та автора</message>
+	<message key="submission.directorVersion">Версія директора</message>
+	<message key="submission.authorsRevisedVersion">Оновлена версія автора</message>
+	<message key="submission.authorVersion">Версія автора</message>
+	<message key="submission.layout.description">Цей додатковий крок можна використати, щоб відформатувати подання чи змінити формат файлу як до, так і після публікації подання у розділі "Доповідії".</message>
+
+	<message key="submissions.track">Секція</message>
+	<message key="submissions.queuedAbstractReview">Резюме на рецензуванні</message>
+	<message key="submissions.queuedPaperReview">Робота на рецензуванні</message>
+	<message key="submissions.published">Надіслано</message>
+	<message key="submissions.accepted">Прийнято</message>
+	<message key="submissions.reviewStage">Стадія</message>
+	<message key="submissions.reviewType">Тип рецензії</message>
+	<message key="submissions.pendingPresentation">Очікується надсилання</message>
+	<message key="submissions.expired">Застаріло</message>
+	<message key="submissions.directorDecision">Ухвала директора</message>
+	<message key="submissions.directorRuling">Скерування директора</message>
+	<message key="trackDirector.galley.replaceGalley">Замінити файл</message>
+	<message key="submission.abstract">Резюме</message>
+	<message key="submission.paper">Робота</message>
+
+	<!-- Common Conference Terms -->
+	<message key="conference.conferences">Конференції</message>
+	<message key="conference.conference">Конференція</message>
+
+	<!-- Common Scheduled Conference Terms -->
+	<message key="schedConf.scheduledConferences">Призначені конференції</message>
+	<message key="schedConf.noScheduledConferences">Немає призначених конференцій</message>
+	<message key="schedConf.schedConf">Призначена конференція</message>
+	<message key="schedConf.contents">Інформація про конференцію</message>
+	<message key="schedConf.overview">Огляд</message>
+	<message key="schedConf.trackPolicies">Політика секцій</message>
+	<message key="schedConf.schedule">Розклад засідань</message>
+	<message key="schedConf.program">Програма</message>
+	<message key="schedConf.cfp">Приймання матеріалів</message>
+	<message key="schedConf.discussion">Обговорення</message>
+	<message key="schedConf.registration">Реєстрація</message>
+	<message key="schedConf.accommodation">Місце проведення</message>
+	<message key="schedConf.supporters">Організатори та партнери</message>
+	<message key="schedConf.timeline">Важливі дати</message>
+	<!-- <message key="schedConf.schedule">Conference Schedule</message> -->
+	<message key="schedConf.links">Повʼязані посилання</message>
+	<message key="schedConf.presentations">Доповіді та автори</message>
+	<message key="schedConf.presentations.short">Доповіді</message>
+	<message key="schedConf.abstract">Резюме</message>
+	<message key="schedConf.submission">Подання</message>
+	<message key="schedConf.submissions">Подання</message>
+
+	<message key="schedConf.cfp.title">Публікація матеріалів</message>
+	<message key="schedConf.overview.title">Огляд</message>
+	<message key="schedConf.presentations.title">Доповіді та автори</message>
+	<message key="schedConf.schedule.title">Розклад</message>
+	<message key="schedConf.program.title">Програма</message>
+	<message key="schedConf.accommodation.title">Місце проведення</message>
+	<message key="schedConf.trackPolicies.title">Правила для секцій</message>
+
+	<!-- Reader interface for scheduler -->
+	<message key="schedConf.scheduler.locations">Місця засідань</message>
+
+	<!-- User self-registration form -->
+	<message key="schedConf.registration.alreadyRegistered">Ви вже зареєстровані учасником конференції, хоча оплати участі ще не отримано. Будь-ласка, зверніться до контактної особи, вказаної у розділі "Про конференцію", якщо це трапилось помилково, чи Ви бажаєте змінити умови реєстрації.</message>
+	<message key="schedConf.registration.alreadyRegisteredAndPaid">Ви вже зареєстровані учасником конференції, та оплату участі отримано. Будь-ласка, зверніться до контактної особи, вказаної у розділі "Про конференцію", якщо трапилась помилка, чи Ви хочете змінити умови реєстрації.</message>
+	<message key="schedConf.registration.noPaymentMethodAvailable">Вашу реєстрацію записано. При потребі до Вас звернуться щодо оплати участі.</message>
+	<message key="schedConf.registration.free">Вашу реєстрацію записано, оплата участі не потрібна.</message>
+	<message key="schedConf.registration.conferenceFees">Організаційний внесок</message>
+	<message key="schedConf.registration.failed">Трапилась помилка при реєстрації. Спробуйте ще раз.</message>
+	<message key="schedConf.registration.type">Тип реєстрації</message>
+	<message key="schedConf.registration.cost">Вартість</message>
+	<message key="schedConf.registrationTypes.noneAvailable">Немає доступних типів реєстрації.</message>
+	<message key="schedConf.registrationOptions.noneAvailable">Немає доступних опцій реєстрації.</message>
+	<message key="schedConf.registration.register">Реєстрація</message>
+	<message key="schedConf.registration.typeCloses">(Буде закрито {$closingDate})</message>
+	<message key="schedConf.registration.typeClosed">(Реєстрацію закрито {$closingDate})</message>
+	<message key="schedConf.registration.typeFuture">(Реєстрацію буде відкрито {$openingDate})</message>
+	<message key="schedConf.registration.optionCloses">(Буде закрито {$closingDate})</message>
+	<message key="schedConf.registration.optionClosed">(Реєстрацію закрито {$closingDate})</message>
+	<message key="schedConf.registration.optionFuture">(Реєстрацію буде відкрито {$openingDate})</message>
+	<message key="schedConf.registration.feeCode">Код оплати</message>
+	<message key="schedConf.registration.feeCode.description">Якщо Вам повідомили таємний код реєстрації, вкажіть його тут, та переконайтесь, що вище Ви обрали відповідний тип реєстрації. Інакше залиште це поле порожнім.</message>
+	<message key="schedConf.registration.specialRequests">Особливі потреби</message>
+	<message key="schedConf.registration.specialRequests.description">Будь-ласка, вкажіть особливі потреби чи побажання, наприклад, дієту, засоби доступу та ін.</message>
+	<message key="schedConf.registration.account">Обліковий запис користувача</message>
+	<message key="schedConf.registration.loggedInAs"><![CDATA[Ви увійшли у систему. Перевірте наведені нижче дані облікового запису. При потребі виправте їх у розділі <a href="{$profileUrl}">Мій профайл</a> чи <a href="{$logoutUrl}">вийдіть з системи</a> для використання іншого облікового запису.]]></message>
+	<message key="schedConf.registration.createAccount.description"><![CDATA[Ви не увійшли у систему. Щоб зареєструватись учасником цієї конференції, Вам потрібно мати обліковий you will need запис. Якщо він у Вас є, <a href="{$loginUrl}">клацніть тут</a> для входу, або вкажіть нижче необхідні дані для створення нового облікового запису.]]></message>
+	<message key="schedConf.registration.options">Опції реєстрації</message>
+
+	<message key="schedConf.registration.landingPaid">Дякуємо за реєстрацію! З Вами зв'яжуться щодо подальшої інформації про оплату участі.</message>
+	<message key="schedConf.registration.landingPaid">Thank you for registering! You will be contacted for further information on payment.</message>
+
+	<!-- User -->
+	<message key="user.showAllConferences">Показати мої конференції</message>
+	<message key="user.createAccount">Створити</message>
+	<message key="user.createAccountForOtherConferences">Створити обліковий запис для інших конференцій</message>
+	<message key="user.myConferences">Мої конференції</message>
+	<message key="user.noRoles.chooseConference">Ваш обліковий запис не повʼязаний з жодною з конференцій. Будь-ласка, вкажіть потрібну конференцію:</message>
+	<message key="user.noRoles.noRolesForConference">Для Вашого облікового запису не вказано жодної ролі у цій конференції. Будь-ласка, виберіть з переліку:</message>
+	<message key="user.noRoles.submitProposal">Надіслати подання</message>
+	<message key="user.noRoles.submitProposalRegClosed">Надіслати подання: Реєстрацію авторів закрито.</message>
+	<message key="user.noRoles.submitProposalSubmissionsClosed">Надіслати подання: Прийом матеріалів закрито.</message>
+	<message key="user.noRoles.regReviewer">Зареєструватись як рецензент конференції</message>
+	<message key="user.noRoles.regReviewerClosed">Зареєструватись як рецензент конференції: Реєстрацію рецензентів закрито.</message>
+	<message key="user.noRoles.register">Зареєструватись як відвідувач</message>
+	<message key="user.noRoles.registerUnavailable">Зареєструватись як відвідувач: На даний час реєстрація недоступна.</message>
+
+	<!-- Roles -->
+	<message key="user.role.manager">Менеджер конференції</message>
+	<message key="user.role.director">Голова оргкомітету</message>
+	<message key="user.role.trackDirector">Керівник секції</message>
+	<message key="user.role.author">Автор</message>
+
+	<message key="user.role.managers">Менеджери конферецій</message>
+	<message key="user.role.directors">Співголови оргкомітету</message>
+	<message key="user.role.trackDirectors">Керівники секцій</message>
+	<message key="user.role.authors">Автори</message>
+
+	<!--
+	 *
+	 * LOG - This section contains entries related to log entries.
+	 *
+	-->
+
+	<message key="event.logType.paper">Робота</message>
+	<message key="event.logType.author">Автор</message>
+	<message key="event.logType.director">Директор</message>
+	<message key="event.logType.review">Рецензія</message>
+	<message key="event.logType.conference">Конференція</message>
+
+	<message key="event.eventLog">Протокол подій</message>
+	<message key="event.logLevel">Рівень</message>
+
+	<message key="event.logLevel.info">Інформація</message>
+	<message key="event.logLevel.notice">Зауваження</message>
+	<message key="event.logLevel.warning">Попередження</message>
+	<message key="event.logLevel.error">Помилка</message>
+
+	<message key="event.general.defaultEvent">Події подання</message>
+
+	<!-- Submission events -->
+
+	<message key="submission.event.general.abstractSubmitted">Резюме надіслано</message>
+	<message key="submission.event.general.presentationSubmitted">Доповідь надіслано</message>
+	<message key="submission.event.general.paperPublished">Працю опубліковано</message>
+
+	<message key="submission.event.presenter.authorRevision">Виправлення автора надіслано</message>
+
+	<message key="submission.event.general.authorRevision">Файл версії автора оновлено</message>
+
+	<message key="submission.event.director.directorAssigned">Для подання призначено директора</message>
+	<message key="submission.event.director.directorUnassigned">Для подання відкликано директора</message>
+	<message key="submission.event.director.directorDecision">Ухвалу директора надіслано</message>
+	<message key="submission.event.director.directorFile">Файл директора надіслано</message>
+	<message key="submission.event.director.submissionArchived">Подання перенесено до архіву</message>
+	<message key="submission.event.director.submissionRestored">Подання повернено з архіву</message>
+
+
+	<!-- Conference events -->
+	<message key="conference.event.general.configuration">Налаштування конференції змінено</message>
+	<message key="conference.event.general.deadline">Минув встановлений термін конференції</message>
+
+	<!--
+	 *
+	 * INTERFACE - Contains phrases organized by the section of the
+	 *             user interface they appear in.
+	 *
+	-->
+
+	<!-- Reader paper view -->
+	<message key="reader.fullTextNotAvailable">Праці конференції зараз недоступні.</message>
+	<message key="reader.accessDenied">Зараз Ви не маєте належного дозволу для перегляду цієї праці. Якщо Ви маєте обліковий запис учасника конференції, спробуйте увійти у систему для перегляду вмісту.</message>
+	<message key="reader.fullTextRegistrationRequired">Для перегляду праць потрібна реєстрація учасником конференції.</message>
+	<message key="reader.fullTextAccountRequired"><![CDATA[Для перегляду праць потрібен обліковий запис на цьому сайті. <a href="{$registerUrl}">Клацніть тут</a> для створення облікового запису.]]></message>
+	<message key="reader.fullTextRegistrantsOnlyUntil">Вільний доступ до конференції буде відкрито {$date}.</message>
+	<message key="reader.fullTextNotPostedYet">Праці конференції буде опубліковано на сайті {$date}.</message>
+
+	<!-- Reader Comments -->
+	<message key="comments.authenticated">{$userName}</message>
+	<message key="comments.commentsOnPaper">Коментарі до праці</message>
+	<message key="comments.commentsClosed">Коментарі закрито {$closeCommentsDate}.</message>
+
+	<!-- Site Administration -->
+
+	<message key="admin.settings.oaiRegistrationDescription"><![CDATA[Для індексування вмісту усіх конференцій, розміщених на цьому сайті глобально розподіленою системою дослідницьких баз даних, <a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">зареєструйте</a> адресу Вашого сайту у Public Knowledge Project metadata <a href="http://pkp.sfu.ca/harvester/" target="_blank">harvester</a>. Цей сайт збирає метадані усіх індексованих матеріалів цієї конференції, надаючи можливість точного та спільного пошуку на дослідницьких сайтах, що дотримуються <a href="http://www.openarchives.org/OAI/openarchivesprotocol.htm#Introduction" target="_blank">Open Archives Initiative Protocol for Metadata Harvesting</a>.
+<br /><br />
+<a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">Клацніть тут</a> та вкажіть  <span class="highlight">{$siteUrl}</span> у полі <strong>Site URL</strong>, та <span class="highlight">{$oaiUrl}</span> у полі  <strong>Base URL for OAI Archive</strong>.
+<br /><br />
+Зауважте, що інтерфейс OAI може бути вимкнений для цього сайту редагуванням налаштувань OCS. Майбутні версії OCS матимуть інтерфейс OAI для вмикання чи вимикання для окремих конференцій даного сайту.]]></message>
+
+	<message key="admin.auth.defaultSourceDescription"><![CDATA[<p>Вибір стандартного джерела автентифікації, відмінного від OCS матиме наступні наслідки:</p>
+<ul>
+	<li>Якщо користувач намагатиметься створити новий обліковий запис на цьому сайті з назвою, що існує у джерелі автентифікації  (але не в базі OCS), спроба реєстрації буде вдалою лише за умови, що обраний пароль є дійсним для відповідного користувача.</li>
+</ul>]]></message>
+
+	<!-- System Information -->
+	<message key="admin.overwriteConfigFileInstructions"><![CDATA[<h4>УВАГА!</div>
+<p>Система не змогла автоматично оновити файл налаштувань. Щоб застосувати зміни налаштувань, Вам слід відкрити файл <tt>config.inc.php</tt> у текстовому редакторі, та замінити його вміст наведеним нижче.</p>]]></message>
+
+	<!-- Payment Handling -->
+	<message key="payment.type.conferenceRegistration">Реєстраційний внесок; {$schedConfTitle}; {$registrationTypeName}</message>
+
+	<!-- Conference Event Log -->
+	<message key="conference.event.confirmClearLog">Ви певні, що слід очистити протокол подій цієї конференції?</message>
+	<message key="conference.event.confirmDeleteLogEntry">Ви певні, що слід видалити цей запис протоколу?</message>
+	<message key="conference.event.deleteLogEntry">Видалити запис з протоколу</message>
+	<message key="conference.event.backToEventLog">Повернутись до протоколу подій</message>
+	<message key="conference.history.conferenceEventLog">Протокол подій</message>
+	<message key="conference.history.clearLog">Очистити протокол</message>
+	<message key="conference.history.noLogEntries">Немає записів у протоколі.</message>
+
+	<!-- General plugin information -->
+	<message key="plugins.categories.generic.description">Загальні плагіни використовуються для розширення можливостей Open Conference Systems способами, що не підтримуються плагінами інших категорій.</message>
+	<message key="plugins.categories.auth.description">Плагіни авторизації дозволяють Open Conference Systems доручати завдання автентифікації користувачів іншим системам, наприклад, серверам LDAP.</message>
+	<message key="plugins.categories.citationFormats.description">Плагіни форматів цитування забезпечують користувачів різноманітними форматами доступу до цитованих джерел.</message>
+
+	<!-- Leftovers -->
+	<message key="manager.setup.finalStepSavedNotes"><![CDATA[<p>Майже готово!</p>
+			<p>Конференцію вже налаштовано, вона може складатись з однієї призначеної конференції, бути щорічною конференцією, чи серією конференцій, які керуються з цього сайту. Щоб створити окрему призначену конференцію, перейдіть до розділу <a href="{$schedConfSetupUrl}">Призначені конференції</a>. Ви можете також перейти на цю сторінку зі сторінки менеджера конференції.</p>
+			<p>Ви можете повернутись до цих шести сторінок за посиланнями "Моя сторінка > Менеджер конференції > Керування сайтом".</p>
+			<p>Ви можете керувати призначеними конференціями за посиланнями   "Моя сторінка > Менеджер конференції > Setup"</p>]]></message>
+	<message key="manager.setup.citations">Дозволити авторам окремо надавати форматований перелік цитованих джерел як частину подання.</message>
+
+	<message key="manager.setup.indexing.registerConferenceForIndexing.description"><![CDATA[Щоб індексувати матеріали цієї конференції  глобальною розподіленою системою дослідницьких баз даних, <a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">зареєструйте</a> адресу  URL конференції в Public Knowledge Project metadata <a href="http://pkp.sfu.ca/harvester/" target="_blank">harvester</a>. Цей сайт збиратиме метадані усіх індексованих матеріалів конференції, забезпечуючи точний та спільний пошук серед сайтів, що дотримуються <a href="http://www.openarchives.org/OAI/openarchivesprotocol.htm#Introduction" target="_blank">Open Archives Initiative Protocol for Metadata Harvesting</a>.
+<br /><br />
+Зауважте, що якщо адміністратор сайту вже зареєстрував увесь сайт в PKP Harvester, Ваша конференція індексуватиметься автоматично і немає потреби реєструвати її окремо.
+<br /><br />
+<a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">Клацніть тут</a> та вкажіть <span class="highlight">{$siteUrl}</span> у полі <strong>Site URL</strong>, та <span class="highlight">{$oaiUrl}</span> у полі  <strong>Base URL for OAI Archive</strong>.]]></message>
+
+	<!-- Scheduled Conference Setup Step 2 -->
+	<message key="manager.schedConfSetup.submissions.subjectClassificationDescription"><![CDATA[Конференція використовуватиме систему предметної класифікації, доступну в мережі.<br />
+Назва системи предметної класифікації]]></message>
+
+	<!-- People Management -->
+	<message key="manager.people.confirmDisable">Вимкнути цього користувача? Це заборонить йому вхід у систему.
+
+Ви можете додатково вказати користувачеві причину вимкнення облікового запису.</message>
+	<message key="manager.people.noAdministrativeRights"><![CDATA[Вибачте, Ви не маєте повноважень щодо цього користувача. Причиною може бути наступне:
+		<ul>
+			<li>Користувач є адміністратором сайту</li>
+			<li>Користувач зареєстрований у конференціях, якими Ви не керуєте</li>
+		</ul>
+	Це завдання має виконати адміністратор сайту.]]></message>
+
+	<!-- Used by director in submission review / editing -->
+	<message key="director.paper.selectReviewerNotes"><![CDATA[Назва дає посилання на профіль рецензента.<br/>Рейтинг за пʼятибальною шкалою (5 - відмінно).<br/>
+Тижні вказують середній термін рецензування.<br/>
+Останнє вказує дату останньої отриманої рецензії.<br/>
+Активні вказує кількість рецензій в процесі виконання.]]></message>
+
+	<!-- Track Director -->
+	<message key="trackDirector.author.confirmRenotify">Повторне повідомлення автору призведе до повторного призначення рецензентів. Ви певні, що слід це робити?</message>
+
+	<message key="trackDirector.regrets.breadcrumb">Відмови</message>
+	<message key="trackDirector.regrets.title">#{$paperId} Відмови та відкликання рецензентів</message>
+	<message key="trackDirector.regrets">Відмови</message>
+	<message key="trackDirector.regrets.link">Відмови та відкликання</message>
+	<message key="trackDirector.regrets.reviewStage">Рецензування, стадія {$stage}</message>
+	<message key="trackDirector.regrets.decisionStage">Ухвала директора, стадія {$stage}</message>
+	<message key="trackDirector.regrets.regretsAndCancels">Відмови та відкликання рецензентів</message>
+	<message key="trackDirector.regrets.regret">Відмова</message>
+	<message key="trackDirector.regrets.result">Результат</message>
+	<message key="trackDirector.review.enrollReviewer">Прийняти наявного користувача як рецензента</message>
+	<message key="trackDirector.review.createReviewer">Створити нового рецензента</message>
+
+	<!-- Reviewer -->
+	<message key="reviewer.completedReviews">Готово</message>
+	<message key="reviewer.averageQuality">Рейтинг</message>
+
+	<!-- Used in submission review -->
+	<message key="reviewer.paper.fileToBeReviewed">Файл для рецензування</message>
+	<message key="reviewer.paper.notifyTheDirector">Повідомити директора</message>
+	<message key="reviewer.paper.canDoReview">Згода рецензувати</message>
+	<message key="reviewer.paper.cannotDoReview">Відмова рецензувати</message>
+	<message key="reviewer.paper.restrictedFileAccess">Подання буде доступним для перегляду лише після отримання згоди на рецензування.</message>
+	<message key="reviewer.paper.submissionDirector">Директор подання</message>
+	<message key="reviewer.paper.reviewerCommentsDescription">Вкажіть тут зауваження рецензента</message>
+	<message key="reviewer.paper.directorToEnter">Директор, якого додати</message>
+	<message key="reviewer.paper.sendReminder">Надіслати нагадування</message>
+	<message key="reviewer.paper.automatic">(Автоматично)</message>
+	<message key="reviewer.paper.selectRecommendation">Виберіть рекомендацію та надішліть рецензію, щоб завершити процес. Перед вибором рекомендації слід ввести текст рецензії або надіслати файл.</message>
+	<message key="reviewer.paper.recommendation">Рекомендація</message>
+	<message key="reviewer.paper.submitReview">Надіслати рецензію директору</message>
+	<message key="reviewer.paper.reviewerComments">Зауваження</message>
+	<message key="reviewer.paper.uploadedFile">Надіслані файли</message>
+	<message key="reviewer.paper.reviewersAnnotatedVersion">Версія, надіслана рецензентом</message>
+	<message key="reviewer.paper.reviewersAnnotatedVersionDescription">(Якщо Ви бажаєте додати супровідні зауваження до файлу, збережіть його на диск, та використайре опцію вибору та надсилання файлу.)</message>
+	<message key="reviewer.paper.schedule.request">Запит директора</message>
+	<message key="reviewer.paper.schedule.response">Ваша відповідь</message>
+	<message key="reviewer.paper.schedule.submitted">Рецензію надіслано</message>
+	<message key="reviewer.paper.schedule.due">Термін рецензування</message>
+	<message key="reviewer.paper.decision.accept">Прийняти подання</message>
+	<message key="reviewer.paper.decision.pendingRevisions">Потребує доопрацювання</message>
+	<message key="reviewer.paper.decision.resubmitElsewhere">Надіслати до іншого місця</message>
+	<message key="reviewer.paper.decision.decline">Відхилити подання</message>
+	<message key="reviewer.paper.decision.seeComments">Дивись коментар</message>
+	<message key="reviewer.paper.schedule">Графік</message>
+	<message key="reviewer.paper.submissionToBeReviewed">Подання для рецензування</message>
+	<message key="reviewer.paper.reviewSchedule">Графік рецензування</message>
+	<message key="reviewer.paper.reviewSteps">Стадії рецензування</message>
+	<message key="reviewer.paper.reviewerGuidelines">Вказівки для рецензентів</message>
+	<message key="reviewer.paper.notifyEditorA">Повідомити директора подання</message>
+	<message key="reviewer.paper.notifyEditorB">щодо згоди провести рецензування.</message>
+	<message key="reviewer.paper.consultGuidelines">Якщо Ви згодні провести рецензування, ознайомтесь з наведеними нижче Вказівками для рецензентів.</message>
+	<message key="reviewer.paper.downloadSubmissionAbstractOnly">Подайте рецензію на резюме подання.</message>
+	<message key="reviewer.paper.downloadSubmissionSubmission">Подайте рецензію на подання.</message>
+	<message key="reviewer.paper.enterReviewA">Клацніть на піктограмі щоб надрукувати чи вставити текст рецензії.</message>
+	<message key="reviewer.paper.uploadFile">Додатково Ви можете надіслати файли для ознайомлення автору та/чи директору.</message>
+	<message key="reviewer.paper.selectRecommendation">Select a recommendation and submit the review to complete the process. You must enter a review or upload a file before selecting a recommendation.</message>
+	<message key="reviewer.paper.mustSelectDecision">Не вибрано жодної рекомендації. Слід вибрати рекомендацію.</message>
+	<message key="reviewer.paper.confirmDecision">Після надсилання рекомендації Ви більше не зможете вносити змін до рецензії. Ви певні, що слід продовжити?</message>
+	<message key="reviewer.paper.ensuringBlindReview">Забезпечення анонімного рецензування</message>
+
+	<!-- Paper Submission Step 3 -->
+	<message key="author.submit.uploadInstructions"><![CDATA[<p>Щоб надіслати працю до цієї конференції, виконайте наступні кроки.</p>
+
+<ol>
+<li>На цій сторінці клацніть "Переглянути" (чи Вибрати файл), щоб відкрити вікно вибору файлу на диску Вашого компʼютера.</li>
+<li>Знайдіть потрібний файл та виберіть його.</li>
+<li>Клацніть "Відкрити", щоб назва файлу зʼявилась на цій сторінці.</li>
+<li>Клацніть "Надіслати", щоб надіслати файл на сайт конференції, після чого йому буда надано іншу назву згідно внутрішніх правил системи.</li>
+<li>Після надсилання подання, клацніть "Зберегти та продовжити" внизу цієї сторінки.</li>
+</ol>]]></message>
+
+	<!-- Paper Submission: upload file -->
+	<message key="submission.submissionFiles">Файли подання</message>
+
+	<!-- Submission Comments -->
+	<message key="submission.comments.directorAuthorCorrespondence">Листування директора з автором</message>
+	<message key="submission.comments.viewableDescription"><![CDATA[Ці зауваження можуть бути також доступні авторові. <br />
+(Після запису можна додавати подальші зауваження.)]]></message>
+	<message key="submission.comments.canShareWithAuthor">Для автора та директора</message>
+	<message key="submission.comments.cannotShareWithAuthor">Для директора</message>
+	<message key="submission.comments.blindCcReviewers">Після надсилання подати копію ухвали редактора для надсилання рецензентам.</message>
+	<message key="submission.comments.forAuthorDirector">Для автора та директора</message>
+	<message key="submission.comments.forDirector">Для директора</message>
+	<message key="submission.comments.saveAndEmailAuthor">Зберегти та надіслати автору</message>
+	<message key="submission.comments.saveAndEmailDirector">Зберегти та надіслати директору</message>
+
+	<!-- Login -->
+	<message key="user.login.createAccount">Не маєте облікового запису? Зареєструйтесь.</message>
+	<message key="user.login.resetPasswordInstructions"><![CDATA[З міркувань безпеки система надсилає змінений пароль поштою зареєстрованому користувачу, а не нагадує поточний пароль.<br /><br />Вкажіть Вашу електронну адресу, щоб перевстановити пароль. Підтвердження буде надіслано на електронну пошту.]]></message>
+
+	<!-- Registration -->
+	<message key="user.account.repeatPassword">Ще раз вкажіть пароль</message>
+	<message key="user.account.form.usernameExists">Вибрана назва користувача вже використовується іншим обліковим записом.</message>
+	<message key="user.account.form.usernameAlphaNumeric">Назва користувача може містити лише літери, цифри, підкреслювання та дефіси, та має починатись з літери чи цифри.</message>
+	<message key="user.account.form.emailExists">Вказана електронна адреса вже використовується іншим обліковим записом.</message>
+	<message key="user.account.form.passwordsDoNotMatch">Паролі не співпадають.</message>
+	<message key="user.account.selectConference">Виберіть конференцію, для якої слід створити обліковий запис</message>
+	<message key="user.account.noConferences">Немає конференцій, для яких Ви можете створити обліковий запис</message>
+	<message key="user.account.selectSchedConf">Виберіть призначену конференцію, для якої слід створити обліковий запис</message>
+	<message key="user.account.noSchedConfs">Немає призначених конференція, для яких Ви можете створити обліковий запис</message>
+	<message key="user.account.createAs">Створити обліковий запис як</message>
+	<message key="user.account.privacyStatement">Заява про особисту інформацію</message>
+	<message key="user.account.completeForm">Заповніть цю форму, щоб створити обліковий запис для цієї конференції.</message>
+	<message key="user.account.hasAccount"><![CDATA[<a href="{$accountUrl}">Клацніть тут</a>, якщо Ви вже маєте обліковий запис для цієї чи іншої конференції на цьому сайті.]]></message>
+	<message key="user.account.hasNoAccount"><![CDATA[<a href="{$accountUrl}">Клацніть тут</a>, якщо Ви ще <strong>не маєте</strong> облікового запису для цієї чи іншої конференції на цьому сайті.]]></message>
+	<message key="user.account.loginToRegister">Вкажіть наявні назву користувача та пароль, щоб створити обліковий запис для цієї конференції.</message>
+	<message key="user.account.createAccountDisabled">Зараз ця конференція не приймає нових користувачів.</message>
+	<message key="user.account.usernameRestriction">Назва користувача може містити лише маленькі літери, цифри, символи підкреслювання та дефіси.</message>
+	<message key="user.account.passwordLengthRestriction">Пароль повинен мати принаймні {$length} символів.</message>
+	<message key="user.account.form.passwordLengthTooShort">Вказаний пароль надто короткий.</message>
+	<message key="user.account.readerDescription">Повідомляти про публікацію матеріалів.</message>
+	<message key="user.account.openAccessNotificationDescription">Повідомляти про надання відкритого доступу до матеріалів.</message>
+	<message key="user.account.authorDescription">Може подавати матеріали на конференцію.</message>
+	<message key="user.account.reviewerDescriptionNoInterests">Бажає проводити рецензування поданих матеріалів.</message>
+	<message key="user.account.reviewerDescription">Бажає проводити рецензування поданих матеріалів за вказаними напрямками та методами досліджень.</message>
+	<message key="user.account.authorRegistrationMessage">Хоч Ви і маєте обліковий запис на цій конференції, Ви не належите до числа авторів.</message>
+
+
+
+	<!-- Search -->
+	<message key="search.browseAuthorIndex">Переглянути перелік авторів</message>
+	<message key="search.searchFor">Шукати</message>
+	<message key="search.inField">В</message>
+	<message key="search.author">Автори</message>
+	<message key="search.withinConference">Всередині</message>
+	<message key="search.allConferences">Всі конференції</message>
+	<message key="search.authorIndex">Переглянути перелік авторів</message>
+	<message key="search.authorDetails">Детальніше про автора</message>
+	<message key="search.syntaxInstructions"><![CDATA[<p>Поради для пошуку:</p>
+<ul>
+<li>Терміну пошуку не враховують регістр літер</li>
+<li>Загальновживані слова ігноруються</li>
+<li>Стандартно буде показано лише праці, що містять  <em>усі</em> терміни запиту (тобто, застосовується умова <em>AND</em>)</li>
+<li>Поєднуйте терміни умовою  <em>OR</em>, щоб знайти праці, що містять хоча б один з термінів; наприклад, <em>освіта OR наука</em></li>
+<li>Для більш складних запитів користуйтесь дужками; наприклад, <em>архів ((журнал OR конференція) NOT дисертація)</em></li>
+<li>Для пошуку цілої фрази користуйтесь лапками; наприклад, <em>"публікації у відкритому доступі"</em></li>
+<li>Виключити термін можна додаючи префікс <strong>-</strong> чи <em>NOT</em>; наприклад, <em>онлайн -політика</em> чи <em>онлайн NOT політика</em></li>
+<li>Використовуйте <strong>*</strong> у термінах як шаблон, що відповідає довільній послідовності літер; наприклад, <em>соці* </em> відповідатиме документам, що містять  "соціологічний" чи "соціальний"</li>
+</ul>]]></message>
+
+	<!-- Interstitial page for PDFs -->
+	<message key="paper.pdf.title">Формат PDF</message>
+	<message key="paper.pdf.note"><![CDATA[Вміст файлу формату PDF, який Ви обрали, незабаром повинен зʼявитись тут, якщо Ваш переглядач містить плагін для перегляду PDF  (наприклад, <a href="http://www.adobe.com/products/acrobat/readstep2.html">Adobe Acrobat Reader</a>). В іншому разі, файл формату PDF буде завантажено на Ваш компʼютер, де Ви зможете переглянути його відповідною програмою. За додатковою інформацією щодо роботи з файлами у форматі PDFs, можна звернутись, наприклад, до <a href="http://highwire.stanford.edu/help/pdf-faq.dtl">Frequently Asked Questions about PDFs</a>.<br /><br />Якщо файл не завантажиться автоматично, <a href="{$url}">клацніть тут</a>.]]></message>
+
+	<!-- Interstitial page for non-PDF non-HTML galleys -->
+	<message key="paper.nonpdf.title">Завантаження документа</message>
+	<message key="paper.nonpdf.note"><![CDATA[Вибраний файл повинен завантажитись автоматично. Якщо цього не трапиться, клацніть  наведене нижче посилання. Зауважте, що перегляд вмісту цього типу файлів може потребувати окремого переглядача чи плагіна.<br /><br />Якщо файл не завантажується автоматично, <a href="{$url}">клацніть тут</a>.]]></message>
+
+	<!-- Site index -->
+	<message key="site.conferencesHosted">Конференції, що розміщені на цьому сайті</message>
+	<message key="site.conferenceView">Перейти до конференції</message>
+	<message key="site.conferenceAccount">Обліковий запис</message>
+	<message key="site.schedConfView">Переглянути конференцію</message>
+	<message key="site.schedConfCurrent">Поточні призначені конференції</message>
+
+	<!-- Conference page -->
+	<message key="conference.currentConferences">Поточні конференції</message>
+	<message key="conference.noCurrentConferences">Немає активних конференцій. Зверніться до архіву для перегляду попередніх призначених конференцій.</message>
+	<message key="conference.archive">Архів конференції</message>
+
+	<!-- Scheduled Conference page -->
+	<message key="schedConf.proposalSubmission">Подання матеріалів</message>
+
+	<!-- Call-for-Papers (CFP) page -->
+	<message key="schedConf.cfp.submitHere">Почніть подання матеріалів на цю конференцію.</message>
+
+	<!-- Conference Proceedings -->
+	<message key="presentations.notPermitted">Ви ще не маєте доступу до публікацій цієї конференції.</message>
+	<message key="presentations.trackEmpty">У цій секції немає доступних праць.</message>
+	<message key="presentations.schedConfEmpty">Праці цієї конференції поки недоступні чи не знайдено відповідних праць.</message>
+
+	<!-- Program page -->
+	<message key="schedConf.program.programFileInstructions">Програма цієї конференції доступна за наступним посиланням.</message>
+	<message key="schedConf.program.viewProgramFile">Переглянути програму</message>
+
+	<!-- About The Conference -->
+	<message key="about.statistics">Статистика</message>
+	<message key="about.conferenceContact">Контактна особа конференції</message>
+	<message key="about.aboutTheConference">Про конференцію</message>
+	<message key="about.organizingTeam">Організаційний комітет</message>
+	<message key="about.conferencePolicies">Політика конференції</message>
+	<message key="about.submissions">Подання</message>
+	<message key="about.sponsors">Спонсори</message>
+	<message key="about.contributors">Підтримка</message>
+	<message key="about.onlineSubmissions">Подання онлайн</message>
+	<message key="about.onlineSubmissions.haveAccount">Вже маєте обліковий запис для {$conferenceTitle}?</message>
+	<message key="about.onlineSubmissions.login">Перейти до входу у систему</message>
+	<message key="about.onlineSubmissions.needAccount">Потрібно отримати назву користувача та пароль?</message>
+	<message key="about.onlineSubmissions.registration">Перейти до реєстрації</message>
+	<message key="about.onlineSubmissions.registrationRequired">Реєстрація та вхід у систему потрібні для подання матеріалів та перевірки стану поточного подання.</message>
+	<message key="about.authorGuidelines">Вказівки для авторів</message>
+	<message key="about.submissionPreparationChecklist">Контрольний перелік подання</message>
+	<message key="about.copyrightNotice">Повідомлення щодо авторських прав</message>
+	<message key="about.privacyStatement">Заява щодо особистих даних</message>
+	<message key="about.peerReviewProcess">Процес рецензування</message>
+	<message key="about.openAccessPolicy">Політика відкритого доступу</message>
+	<message key="about.archiveAccessPolicy">Політика доступу до архіву</message>
+	<message key="about.delayedOpenAccess">Відкладений відкритий доступ</message>
+	<message key="about.delayedOpenAccessDescription">Вільний доступ до матеріалів цієї конференції буде відрито  через {$delayedOpenAccessDuration} місяців після того, як призначена конференція буде доступною для учасників.</message>
+	<message key="about.authorSelfArchive">Самостійне архівування</message>
+	<message key="about.archiving">Архівування</message>
+	<message key="about.registration">Реєстрація</message>
+	<message key="about.registrationContact">Контактна особа щодо реєстрації</message>
+	<message key="about.availableRegistrationTypes">Типи реєстрації</message>
+	<message key="about.aboutThisPublishingSystem">Про цю систему підтримки конференцій</message>
+	<message key="about.aboutThisPublishingSystem.altText">Процес подання, рецензування та публікації матеріалів в OCS</message>
+	<message key="about.currentConferences">Поточні конференції</message>
+	<message key="about.aboutOCSConference"><![CDATA[Ця конференція використовує Open Conference Systems {$ocsVersion}, що є системою керування конференціями з відкритим вихідним кодом, яка розроблена, підтримується та вільно поширюється проектом <a href="http://pkp.sfu.ca/">Public Knowledge Project</a> на умовах ліцензії GNU General Public License.]]></message>
+	<message key="about.aboutOCSSite"><![CDATA[Цей сайт створено на базі Open Conference Systems {$ocsVersion}, що є системою керування конференціями з відкритим вихідним кодом, яка розроблена, підтримується та вільно поширюється проектом
+<a href="http://pkp.sfu.ca/">Public Knowledge Project</a> на умовах ліцензії GNU General Public License.]]></message>
+
+	<!-- Announcement -->
+
+	<!-- Help -->
+	<message key="help.ocsHelp">Довідка з Open Conference Systems</message>
+	<message key="help.ocsHelpAbbrev">Довідка з OCS</message>
+
+	<!-- Installer -->
+	<message key="installer.ocsInstallation">Встановлення OCS</message>
+	<message key="installer.ocsUpgrade">Оновлення OCS</message>
+	<message key="installer.installationInstructions"><![CDATA[<h4>OCS Версії {$version}</h4>
+
+<p>Дякуємо за завантаження розробленої проектом Public Knowledge Project системи <strong>Open Conference Systems</strong>. Перш, ріж продовжити, будь-ласка ознайомтесь з файлом <a href="{$baseUrl}/docs/README">README</a>, що надається з програмою. За подальшою інформацією про проект Public Knowledge Project та розроблені ним системи, будь-ласка відвідайте <a href="http://pkp.sfu.ca/" target="_blank">сайт PKP</a>. З повідомленнями про помилки та запитами щодо технічної підтримки Open Conference Systems, звертайтесь на <a href="http://pkp.sfu.ca/support/forum" target="_blank">форум підтримки</a> чи відвідайте онлайнову <a href="http://pkp.sfu.ca/bugzilla/" target="_blank">систему звітів про помилки</a>. Хоча форум підтримки є рекомендованим засобом зв'язку, Ви можете також надіслати електронне повідомлення групі розробників на адресу <a href="mailto:pkp.contact@gmail.com">pkp.contact@gmail.com</a>.</p>
+
+<h4>Оновлення</h4>
+
+<p>Якщо Ви проводите оновлення встановленої версії OCS 2.x, <a href="{$upgradeUrl}">клацніть тут</a> для продовження.</p>
+
+<h4>Рекомендовані вимоги до системи</h4>
+
+<ul>
+	<li><a href="http://www.php.net/" target="_blank">PHP</a> >= {$phpRequiredVersion} (включно з PHP 5.x); встановлено PHP {$phpVersion}{$wrongPhpText}</li>
+	<li><a href="http://www.mysql.com/" target="_blank">MySQL</a> >= 3.23.23 (включно з MySQL 4.x) або <a href="http://www.postgresql.org/" target="_blank">PostgreSQL</a> >= 7.1 (including PostgreSQL 8.x)</li>
+	<li><a href="http://httpd.apache.org/" target="_blank">Apache</a> >= 1.3.2x or >= 2.0.4x чи Microsoft IIS 6</li>
+	<li>Операційна система: Будь-яка ОС, що підтримує роботу вказаних вище програм, включно з <a href="http://www.linux.org/" target="_blank">Linux</a>, <a href="http://www.bsd.org/" target="_blank">BSD</a>, <a href="http://www.sun.com/" target="_blank">Solaris</a>, <a href="http://www.apple.com/" target="_blank">Mac OS X</a>, <a href="http://www.microsoft.com/">Windows</a></li>
+</ul>
+
+<p>Оскільки PKP не має ресурсів для перевірки кожної з можливих комбінацій версій програм та платформ, гарантія коректної роботи чи підтримки не надається.</p>
+
+<p>Зміни до цих налаштувань можна внести після встановлення, редагуючи файл <tt>config.inc.php</tt> в каталогу встановлення OCS, або через веб-інтерфейс адміністратора.</p>
+
+<h4>Підтримувані системи керування базами даних</h4>
+
+<p>Працездатність OCS перевірено лише для  MySQL та PostgreSQL, хоча інші системи керування базами даних, що підтримуються <a href="http://adodb.sourceforge.net/" target="_blank">ADOdb</a> також можуть працювати (повністю чи частково). Звіти про сумісність та/чи латки для коду для альтернативних DBMS можна надсилати групі розробників OCS.</p>
+
+<h4>Кроки до встановлення</h4>
+
+<p>1. Наступним файлам та каталогам (та їх вмісту) повинні бути встановлені права на запис:</p>
+<ul>
+	<li><tt>config.inc.php</tt> право на запис (не обов'язково): {$writable_config}</li>
+	<li><tt>public/</tt> право на запис: {$writable_public}</li>
+	<li><tt>cache/</tt> право на запис: {$writable_cache}</li>
+	<li><tt>cache/t_cache/</tt> право на запис: {$writable_templates_cache}</li>
+	<li><tt>cache/t_compile/</tt> право на запис: {$writable_templates_compile}</li>
+	<li><tt>cache/_db</tt> право на запис: {$writable_db_cache}</li>
+</ul>
+
+<p>2. Каталог для зберігання надісланих файлів повинен існувати і бути доступним для запису (див "Налаштування файлів" нижче).</p>]]></message>
+	<message key="installer.upgradeInstructions"><![CDATA[<h4>OCS версії {$version}</h4>
+
+<p>Дякуємо за завантаження розробленої проектом Public Knowledge Project системи <strong>Open Conference Systems</strong>. Перш, ріж продовжити, будь-ласка ознайомтесь з файлами <a href="{$baseUrl}/docs/README">README</a> та <a href="{$baseUrl}/docs/UPGRADE">UPGRADE</a>, що надається з програмою. За подальшою інформацією про проект Public Knowledge Project та розроблені ним системи, будь-ласка відвідайте <a href="http://pkp.sfu.ca/" target="_blank">сайт PKP</a>. З повідомленнями про помилки та запитами щодо технічної підтримки Open Conference Systems, звертайтесь на <a href="http://pkp.sfu.ca/support/forum" target="_blank">форум підтримки</a> чи відвідайте онлайнову <a href="http://pkp.sfu.ca/bugzilla/" target="_blank">систему звітів про помилки</a>. Хоча форум підтримки є рекомендованим засобом зв'язку, Ви можете також надіслати електронне повідомлення групі розробників на адресу <a href="mailto:pkp.contact@gmail.com">pkp.contact@gmail.com</a>.</p>
+<p><strong>Наполегливо рекомендуємо</strong> створити резервні копії бази даних, каталогу файлів, та каталогу встановлення OCS, перш ніж почати оновлення.</p>
+<p>Якщо ви використовуєте <a href="http://www.php.net/features.safe-mode" target="_blank">Безпечний режим PHP</a>, будь-ласка, переконайтесь, що директива  max_execution_time у файлі налаштувань php.ini встановлена у верхню межу. Якщо це чи інше обмеження часу (наприклад, директива  "Timeout" в налаштуваннях Apache's) буде досягнуто та процес оновлення обірветься, виникне потреба у ручному втручанні.</p>]]></message>
+	<message key="installer.localeSettingsInstructions"><![CDATA[Для повної підтримки Unicode (UTF-8), вкажіть  UTF-8 для всіх наборів символів. Зауважте, що відповідна підтримка потребує сервера баз даних MySQL >= 4.1.1 чи PostgreSQL >= 7.1. Будь-ласка також зауважте, що повна підтримка Unicode потребує PHP >= 4.3.0 з підтримкою бібліотеки <a href="http://www.php.net/mbstring" target="_blank">mbstring</a> (стандартно увімкнено у більшості сучасних встановлень PHP). Якщо сервер не задовольняє ці вимоги, можуть виникнути проблеми при використанні розширених наборів символів.
+<br /><br />
+Ваш сервер підтримує mbstring: <strong>{$supportsMBString}</strong>]]></message>
+	<message key="installer.localeInstructions">Основна мова, що буде використовуватись системою. Будь-ласка, зверніться до документації з OCS, якщо Ви зацікавлені у підтримці мов, що не вказані тут.</message>
+	<message key="installer.additionalLocalesInstructions">Виберіть додаткові мови, що будуть підтримуватись системою. Ці мови будуть доступними для використання конференціями, розміщеними на сайті. Додаткові мови також можна встановити пізніше через інтерфейс адміністрування сайту.</message>
+	<message key="installer.filesDirInstructions"><![CDATA[Вкажіть шлях до створеної теки, де будуть зберігатись надіслані файли. Ця тека не повинна бути безпосередньо доступною через веб-службу. <strong>Будь-ласка, переконайтесь, що ця тека існує та доступна для запису до початку встановлення.</strong> Шляхи у Windows повинні використовувати прямі похилі, наприклад, "C:/myconference/files".]]></message>
+	<message key="installer.databaseSettingsInstructions">OCS потребує доступу до бази даних SQL для зберігання даних. Перелік підтримуваних баз даних наведено вище у розділі вимог до системи. В наведених полях вкажіть налаштування для зʼєднання з базою даних.</message>
+	<message key="installer.installApplication">Встановити Open Conference Systems</message>
+	<message key="installer.upgradeApplication">Оновити Open Conference Systems</message>
+	<message key="installer.reinstallAfterDatabaseError"><![CDATA[<strong>Увага:</strong> Якщо встановлення буде перерване при встановленні бази даних, при повторному встановленні може виникнути потреба видалити і створити знову базу даних OCS  чи її таблиці.]]></message>
+	<message key="installer.overwriteConfigFileInstructions"><![CDATA[<h4>ВАЖЛИВО!</h4>
+<p>Встановлювач не зміг автоматично змінити файл налаштувань. Перш, ніж використовувати систему, будь-ласка відкрийте файл <tt>config.inc.php</tt> текстовим редактором, та замініть його вміст текстом з наступного поля.</p>]]></message>
+	<message key="installer.installationComplete"><![CDATA[<p>Встановлення OCS пройшло успішно.</p>
+<p>Щоб розпочати роботу, <a href="{$createUrl}" class="action">створіть конференцію</a>. Вам слід буде увійти в систему з назвою користувача та паролем, вказаними на попередній сторінці.</p>
+<p>Якщо Ви бажаєте отримувати новини та оновлення, <strong>зареєструйтесь на сайті <a href="http://pkp.sfu.ca/ocs/register" target="_new">http://pkp.sfu.ca/node/add/pkp-site-submission</a>.</strong> Якщо у Вас виникли запитання чи зауваження, будь-ласка, відвідайте <a href="http://pkp.sfu.ca/support/forum" target="_new">форум підтримки</a>.</p>]]></message>
+	<message key="installer.upgradeComplete"><![CDATA[<p>Оновлення OCS до версії {$version} пройшло успішно.</p>
+<p>Не забудьте встановити налаштування  "installed" у файлі config.inc.php знову у значення <em>On</em>.</p>
+<p>Якщо Ви ще не зареєстровані і бажаєте отримувати новини та оновлення, <strong>будь-ласка, зареєструйтесь на сайті <a href="http://pkp.sfu.ca/ocs/register" target="_new">http://pkp.sfu.ca/ocs/register</a>.</strong> Якщо у Вас виникли запитання чи зауваження, будь-ласка, відвідайте <a href="http://pkp.sfu.ca/support/forum" target="_new">форум підтримки</a>.</p>]]></message>
+
+
+	<!-- Paper Logs -->
+	<message key="log.default.abstractPeriodExpired">Вікно подання тез неповної праці {$paperId} застаріло. Працю відправлено на смітник.</message>
+	<message key="log.default.paperPeriodExpired">Вікно подання праці {$paperId} застаріло. Працю відправлено на смітник.</message>
+	<message key="log.author.abstractSubmitted">{$authorName} надав тези, ID {$submissionId}.</message>
+	<message key="log.author.presentationSubmitted">{$authorName} надіслав презентацію, ID {$submissionId}.</message>
+	<message key="log.author.documentRevised">{$authorName} змінив працю {$paperId}. Новий ID файлу {$fileId}.</message>
+	<message key="log.review.reviewerAssigned">{$reviewerName} призначений рецензентом подання {$paperId} для стадії {$stage}.</message>
+	<message key="log.review.reviewerUnassigned">{$reviewerName} був відкликаний від рецензування подання {$paperId} для стадії {$stage}.</message>
+	<message key="log.review.reviewInitiated">Стадію {$stage} розгляду рецензентом  {$reviewerName} подання {$paperId} розпочато.</message>
+	<message key="log.review.reviewReinitiated">Стадію {$stage} розгляду рецензентом {$reviewerName} подання {$paperId} розпочато заново.</message>
+	<message key="log.review.reviewCancelled">Стадію {$stage} розгляду рецензентом {$reviewerName} подання {$paperId} скасовано.</message>
+	<message key="log.review.reviewCleared">Стадію {$stage} розгляду рецензентом {$reviewerName} подання {$paperId} очищено.</message>
+	<message key="log.review.reviewerRated">{$reviewerName} отримав оцінку за стадію {$stage} рецензування подання {$paperId}.</message>
+	<message key="log.review.reviewDueDateSet">Термін виконання стадії {$stage} розгляду подання {$paperId} рецензентом {$reviewerName} встановлено на {$dueDate}.</message>
+	<message key="log.review.reviewRecommendationSet">Рекомендацію для стадії {$stage} розгляду подання {$paperId} рецензентом {$reviewerName} встановлено.</message>
+	<message key="log.review.reviewRecommendationSetByProxy">Рекомендацію для стадії  {$stage} розгляду подання {$paperId} встановлено директором, {$directorName}, від імені рецензента, {$reviewerName}.</message>
+	<message key="log.review.resubmit">Подання {$paperId} подано заново для розгляду.</message>
+	<message key="log.review.reviewDeclined">{$reviewerName} відмовився від стадії {$stage} розгляду подання {$paperId}.</message>
+	<message key="log.review.reviewAccepted">{$reviewerName} прийняв на стадію {$stage} розгляду подання {$paperId}.</message>
+	<message key="log.review.reviewAcceptedByProxy">{$userName} прийняв стадію {$stage} розгляду подання {$paperId} від імені рецензента {$reviewerName}.</message>
+	<message key="log.review.reviewFileByProxy">Директор, {$userName}, надіслав файл рецензії для стадії {$stage} розгляду подання  {$paperId} від імені рецензента, {$reviewerName}.</message>
+	<message key="log.review.reviewerFile">Файл рецензента надіслано.</message>
+	<message key="log.director.decision">Ухвалу директора ({$decision}) для праці  {$paperId} записано директором {$directorName}.</message>
+	<message key="log.director.publish">Працю опубліковано.</message>
+	<message key="log.director.unpublish">Працю повернуто в чергу.</message>
+
+	<message key="log.director.metadataModified">Метадані праці змінено директором {$directorName}.</message>
+	<message key="log.director.directorFile">Версію директора файлу подання надіслано.</message>
+	<message key="log.director.archived">Подання {$paperId} відправлено до архіву.</message>
+	<message key="log.director.restored">Подання {$paperId} повернуто до черги.</message>
+	<message key="log.director.directorAssigned">{$directorName} призначений директором подання {$paperId}.</message>
+	<message key="log.director.submissionExpedited">{$directorName} прискорив процес редагування подання {$paperId}.</message>
+	<message key="log.layout.layoutFileSet">{$directorName} встановив версію для перегляду подання {$paperId}.</message>
+
+	<!-- Conference log entries -->
+	<message key="log.deadline.submissionDeadlinePassed">Термін подання матеріалів закнчився.</message>
+	<message key="log.deadline.presentationsReleasedToParticipants">Доступ до презентацій відкрито учасникам.</message>
+	<message key="log.deadline.presentationsReleasedToPublic">Загальний доступ до презентацій відкрито.</message>
+
+	<message key="log.timeline.publicationStateChanged">Стан публікації змінено з {$oldPublicationState} на {$newPublicationState}.</message>
+	<message key="log.timeline.submissionStateChanged">Стан подання змінено з {$oldSubmissionState} на {$newSubmissionState}.</message>
+	<message key="log.timeline.startDateChanged">Дату початку конференції змінено з {$oldStartDate} на {$newStartDate}.</message>
+	<message key="log.timeline.endDateChanged">Дату закінчення конференції змінено з {$oldEndDate} на {$newEndDate}.</message>
+	<message key="log.timeline.regReviewerOpenDateChanged">Дату відкриття реєстрації рецензентів змінено з  {$oldRegReviewerOpenDate} на {$newRegReviewerOpenDate}.</message>
+	<message key="log.timeline.regReviewerCloseDateChanged">Дату закриття реєстрації рецензентів змінено з {$oldRegReviewerCloseDate} на {$newRegReviewerCloseDate}.</message>
+	<message key="log.timeline.regAuthorOpenDateChanged">Дату відкриття реєстрації авторів змінено з {$oldRegAuthorOpenDate} на {$newRegAuthorOpenDate}.</message>
+	<message key="log.timeline.regAuthorCloseDateChanged">Дату закриття реєстрації авторів змінено з {$oldRegAuthorCloseDate} на {$newRegAuthorCloseDate}.</message>
+	<message key="log.timeline.showCFPDateChanged">Дату публікації оголошення про приймання матеріалів змінено з {$oldShowCFPDate} на {$newShowCFPDate}.</message>
+	<message key="log.timeline.submissionsOpenDateChanged">Дату відкриття приймання матеріалів змінено з {$oldSubmissionsOpenDate} на {$newSubmissionsOpenDate}</message>
+	<message key="log.timeline.submissionsCloseDateChanged">Дату закриття приймання матеріалів змінено з {$oldSubmissionsCloseDate} на {$newSubmissionsCloseDate}</message>
+	<message key="log.timeline.postAbstractsDateChanged">Дату публікації тез змінено з  {$oldPostAbstractsDate} на {$newPostAbstractsDate}.</message>
+	<message key="log.timeline.postAbstractsChanged">Налаштування "публікувати тези" змінено з  {$oldPostAbstracts} на {$newPostAbstracts}.</message>
+	<message key="log.timeline.postScheduleDateChanged">Дату публікації розкладу змінено з {$oldPostScheduleDate} на {$newPostScheduleDate}.</message>
+	<message key="log.timeline.postScheduleChanged">Налаштування "публікувати розклад" змінено з  {$oldPostSchedule} на {$newPostSchedule}.</message>
+	<message key="log.timeline.postPapersDateChanged">Дату публікації праць змінено з {$oldPostPapersDate} на {$newPostPapersDate}.</message>
+	<message key="log.timeline.postPapersChanged">Налаштування "публікувати праці" змінено з {$oldPostPapers} на {$newPostPapers}.</message>
+	<message key="log.timeline.delayOpenAccessDateChanged">Дату відкритого доступу змінено з {$oldDelayOpenAccessDate} на {$newDelayOpenAccessDate}.</message>
+	<message key="log.timeline.delayOpenAccessChanged">Налаштування відкладеного відкритого доступу змінено з {$oldDelayOpenAccess} на {$newDelayOpenAccess}.</message>
+	<message key="log.timeline.closeCommentsDateChanged">Дату закриття коментарів змінено з  {$oldCloseCommentsDate} на {$newCloseCommentsDate}.</message>
+	<message key="log.timeline.closeCommentsChanged">Налаштування закриття коментарів змінено з  {$oldCloseComments} на {$newCloseComments}.</message>
+
+	<!-- Reading Tools entries -->
+
+
+	<!-- RT Settings -->
+	<message key="rt.admin.settings">Налаштування засобів для читання</message>
+
+	<message key="rt.admin.settings.description">Засоби для читання зʼявляються в рамці поруч з опублікованими працями у секціях, що призначені для індексування. Засоби для читання - це набір додаткових засобів, повʼязаних з опублікованою працею, що наведені нижче, а також набір засобів, що забезпечують доступ до повʼязаних праць у даній галузі.</message>
+	<message key="rt.admin.settings.enableReadingTools">Увімкнути засоби для читання для вибраних секцій конференції.</message>
+	<message key="rt.admin.settings.relatedItems">Поле повʼязаних записів</message>
+
+	<message key="rt.admin.options">Додаткові засоби</message>
+
+	<message key="rt.admin.settings.addComment">Додати коментар (дозволяє читачам надсилати коментарі, що можуть бути видалені директором конференції). Коментарі читачів повинні бути увімкнені у розділі керування сайтом, пункт 1.5.</message>
+
+	<message key="rt.admin.validateUrls.description"><![CDATA[Можливо недійсні URL для сайтів пошуку наведено нижче.<br/>
+Вам слід вручну перевірити кожен URL, що помічений як недійсний, оскільки автоматична перевірка не є точною на 100%.<br/>
+Перевірка може видати помилку при пошуку на URL, що вимагають надсилання даних форм.]]></message>
+
+	<message key="rt.metadata.dublinCore.primaryAuthor">Автор</message>
+
+	<message key="rt.metadata.pkp.primaryAuthor">Імʼя, місце роботи та країна автора</message>
+	<message key="rt.metadata.pkp.peerReviewed">Рецензована праця</message>
+
+	<!-- Notification Types -->
+	<message key="notification.mailListDescription">Вкажіть Вашу електронну адресу, щоб отримувати негайні повідомлення про додавання нового вмісту до конференції.</message>
+	<message key="notification.notificationsPublicDescription"><![CDATA[Ця сторінка містить важливі оновлення, повʼязані з цією конференцією, такі як нові праці чи анонси. Ви можете підписатись на ці повідомлення через RSS (клацніть на зображенні праворуч), чи <a href="{$emailUrl}">електронною поштою.</a>]]></message>
+
+	<message key="notification.type.paperSubmitted">Подано нову працю, "{$param}".</message>
+	<message key="notification.type.editing">Події редагування</message>
+	<message key="notification.type.directorDecisionComment">Залишено коментар до ухвали редактора щодо "{$param}".</message>
+	<message key="notification.type.galleyModified">Гранки для "{$param}" змінено.</message>
+	<message key="notification.type.metadataModified">Метадані для "{$param}" змінено.</message>
+	<message key="notification.type.newAnnouncement">Зʼявився новий анонс.</message>
+	<message key="notification.type.reviewerComment">Рецензент прокоментував "{$param}".</message>
+	<message key="notification.type.reviewerFormComment">Надіслано рецензія у вигляді форми рецензування щодо "{$param}".</message>
+	<message key="notification.type.reviewing">Події розгляду</message>
+	<message key="notification.type.site">Події сайту</message>
+	<message key="notification.type.submissionComment">Директор залишив коментар щодо "{$param}".</message>
+	<message key="notification.type.submissions">Події подання</message>
+	<message key="notification.type.suppFileModified">Додаткові файли "{$param}" змінено.</message>
+	<message key="notification.type.userComment">Читач залишив коментар щодо "{$param}"</message>
+
+	<message key="rt.thisConference">Пошук у конференції</message>
+
+	<message key="rt.comments.commentsClosed">† Коментарі закрито з {$closeCommentsDate}</message>
+
+	<message key="rt.context.authorTermsDescription">Для записів, що мають більше одного автора, залиште відміченими усі імена, щоб шукати спільні роботи авторів, або відмітьте лише одне імʼя, щоб шукати лише одного. Щоб дізнатись більше про шуканий ресурс, клацніть посилання ПРО. Ці ресурси відібрано, бо вони мають відношення до теми та перебувають (повністю чи частково) у відкритому доступі.</message>
+</locale>

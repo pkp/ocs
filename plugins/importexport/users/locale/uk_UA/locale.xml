@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * locale.xml
+  *
+  * Copyright (c) 2000-2012 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the uk_UA (Ukrainian) locale.
+  *
+  * Translated  by Vasyl Ostrovskyi, 2017
+  * Institute of Mathematics, NAS of Ukraine
+  *
+  * $Id$
+  -->
+ 
+<locale name="en_US" full_name="U.S. English">
+	<message key="plugins.importexport.users.displayName">XML плагін користувачів</message>
+	<message key="plugins.importexport.users.description">Імпорт та експорт користувачів</message>
+
+	<message key="plugins.importexport.users.cliUsage">Використання: {$scriptName} {$pluginName} [команда] ...
+Команди:
+	import [xmlFileName] [sched_conf_path] [optional flags]
+	export [xmlFileName] [sched_conf_path]
+	export [xmlFileName] [sched_conf_path] [role_path1] [role_path2] ...
+
+Додаткові ключі:
+	continue_on_error: Якщо вказано, не зупиняти імпорт користувачів при помилці.
+
+	send_notify: Якщо вказано, посилати повідомлення імпортованим користувачам з назвами та паролями
+
+Приклади:
+	Імпортувати користувачів у  mySchedConf з myImportFile.xml, продовжуючи при помилках:
+	{$scriptName} {$pluginName} import myImportFile.xml mySchedConf continue_on_error
+
+	Експортувати усіх користувачів з mySchedConf:
+	{$scriptName} {$pluginName} export myExportFile.xml mySchedConf
+
+	Експортувати усіх користувачів , що зареєстровані як рецензенти, вказуючи також їх роль рецензента:
+	{$scriptName} {$pluginName} export myExportFile.xml mySchedConf reviewer</message>
+	<message key="plugins.importexport.users.import.importUsers">Імпорт користувачів</message>
+	<message key="plugins.importexport.users.import.instructions"><![CDATA[Виберіть файл даних формату XML, що містить інформацію про користувачів для імпорту у цю призначену конференцію. Зверніться до довідки призначеної конференції щодо формату цього файлу.<br /><br />Зауважте, що якщо файл містить назви користувачів чи електронні адреси, що вже є у системі, дані користувача не буде імпортовано, а наявні ролі буде призначено користувачам, що вже існують.]]></message>
+	<message key="plugins.importexport.users.import.failedToImportUser">Не вдалось імпортувати користувачів</message>
+	<message key="plugins.importexport.users.import.failedToImportRole">Не вдалось призначити користувача на роль</message>
+	<message key="plugins.importexport.users.import.dataFile">Файл даних користувачів</message>
+	<message key="plugins.importexport.users.import.sendNotify">Надсилати повідомлення імпортованим користувачам з назвами та паролями.</message>
+	<message key="plugins.importexport.users.import.continueOnError">Продовжувати імпорт інших користувачів при виникненні помилки.</message>
+	<message key="plugins.importexport.users.import.noFileError">Файл не надіслано!</message>
+	<message key="plugins.importexport.users.import.usersWereImported">Наступних користувачів успішно імпортовано до системи</message>
+	<message key="plugins.importexport.users.import.errorsOccurred">Помилки, що виникли при імпорті</message>
+	<message key="plugins.importexport.users.import.confirmUsers">Підтвердьте, що ви бажаєте імпортувати цих користувачів до системи</message>
+	<message key="plugins.importexport.users.import.warning">Попередження</message>
+	<message key="plugins.importexport.users.import.encryptionMismatch">Неможливо використовувати хеші паролів формату {$importHash}; OCS налаштовано на використання формату {$ocsHash}. Якщо продовжити, слід перевстановити паролі усіх імпортованих користувачів.</message>
+	<message key="plugins.importexport.users.unknownSchedConf">Вказано невідомий шлях призначеної конференції "{$schedConfPath}".</message>
+
+	<message key="plugins.importexport.users.export.exportUsers">Експорт користувачів</message>
+	<message key="plugins.importexport.users.export.exportByRole">Експорт за роллю</message>
+	<message key="plugins.importexport.users.export.exportAllUsers">Експорт усіх</message>
+	<message key="plugins.importexport.users.export.errorsOccurred">Помилки, що виникли при  експорті</message>
+	<message key="plugins.importexport.users.export.couldNotWriteFile">Неможливо записати дані до файлу "{$fileName}".</message>
+</locale>

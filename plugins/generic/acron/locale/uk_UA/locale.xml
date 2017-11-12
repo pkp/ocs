@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * locale.xml
+  *
+  * Copyright (c) 2000-2012 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the uk_UA (Ukrainian) locale.
+  *
+  * Translated  by Vasyl Ostrovskyi, 2017
+  * Institute of Mathematics, NAS of Ukraine
+  *
+  * $Id$
+  -->
+ 
+<locale name="en_US" full_name="U.S. English">
+	<message key="plugins.generic.acron.name">Плагін Acron</message>
+	<message key="plugins.generic.acron.description">Цей плагін дозволяє зменшити залежність OCS від системних планувальників подій на зразок  'cron.'</message>
+	<message key="plugins.generic.acron.enabled">Плагін Acron увімкнено.</message>
+	<message key="plugins.generic.acron.disabled">Плагін Acron вимкнено.</message>
+
+	<message key="plugins.generic.acron.reload">Перезавантажити заплановані завдання</message>
+</locale>

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * locale.xml
+  *
+  * Copyright (c) 2000-2012 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the uk_UA (Ukrainian) locale.
+  *
+  * Translated  by Vasyl Ostrovskyi, 2017
+  * Institute of Mathematics, NAS of Ukraine
+  *
+  * $Id$
+  -->
+ 
+<locale name="en_US" full_name="U.S. English">
+	<message key="plugins.generic.translator.name">Плагін перекладу</message>
+	<message key="plugins.generic.translator.description">Цей плагін дає можливість веб-керування файлами перекладів.</message>
+	<message key="plugins.generic.translator.longdescription">Цей розділ дозволяє адміністратору сайту створювати, виправляти та перевіряти переклади OCS. Цей плагін діє на увесь сайт і не повинен використовуватись для модифікації певної конференції OCS. Якщо Ви створили або виправили переклад, розгляньте можливість надсилання його до  Public Knowledge Project для поширення з наступними випусками.</message>
+	<message key="plugins.generic.translator.localeDescription">Ця сторінка подає список усіх компонент перекладу OCS та забезпечує перекладача можливістю редагувати кожну з них. Повний переклад повинен містити повний переклад усіх компонент.</message>
+	<message key="plugins.generic.translator.enabled">Плагін перекладу увімкнено.</message>
+	<message key="plugins.generic.translator.disabled">Плагін перекладу вимкнено.</message>
+	
+	<message key="plugins.generic.translator.tarMissing">Функцію експорту цього плагіну вимкнено через те, що у системі не знайдено програми tar. Будь ласка, переконайтесь, що програму  tar встановлено у системі, та налаштуйте шлях до бінарного файлу у розділі [cli] файлу config.inc.php!</message>
+	
+	<message key="plugins.generic.translator.localeName">Назва локалізації</message>
+	<message key="plugins.generic.translator.localeKey">Ключ</message>
+	<message key="plugins.generic.translator.localeKey.description">Вкажіть повний ключ локалізації для пошуку.</message>
+	<message key="plugins.generic.translator.localeKeyValue">Значення</message>
+	<message key="plugins.generic.translator.translate">Перекласти</message>
+	<message key="plugins.generic.translator.availableLocales">Доступні локалізації</message>
+	<message key="plugins.generic.translator.check">Перевірити</message>
+
+	<message key="plugins.generic.translator.errors">Помилки локалізації</message>
+
+	<message key="plugins.generic.translator.errors.LOCALE_ERROR_MISSING_KEY.title">Відсутні ключі</message>
+	<message key="plugins.generic.translator.errors.LOCALE_ERROR_EXTRA_KEY.title">Зайві ключі</message>
+	<message key="plugins.generic.translator.errors.LOCALE_ERROR_DIFFERING_PARAMS.title">Список параметрів, що різняться</message>
+	<message key="plugins.generic.translator.errors.LOCALE_ERROR_MISSING_FILE.title">Відсутні файли локалізації</message>
+	<message key="plugins.generic.translator.errors.EMAIL_ERROR_MISSING_EMAIL.title">Відсутні поштові повідомлення</message>
+	<message key="plugins.generic.translator.errors.EMAIL_ERROR_EXTRA_EMAIL.title">Зайві поштові повідомлення</message>
+	<message key="plugins.generic.translator.errors.EMAIL_ERROR_DIFFERING_PARAMS.title">Перелік параметрів повідомлень, що різняться</message>
+
+	<message key="plugins.generic.translator.errors.LOCALE_ERROR_MISSING_KEY.message">Ключ "{$key}" відсутній у файлі "{$filename}". Буде використовуватись англійська версія.</message>
+	<message key="plugins.generic.translator.errors.LOCALE_ERROR_EXTRA_KEY.message">Ключ "{$key}" більше не використовується та буде видалений з "{$filename}".</message>
+	<message key="plugins.generic.translator.errors.LOCALE_ERROR_DIFFERING_PARAMS.message">Ключ локалізації "{$key}" у "{$filename}" відрізняється від стандартної локалізації у використанні параметрів. Будь ласка, ретельно перевірте, що він містить усі належні параметри. Невідповідними параметрами є:</message>
+	<message key="plugins.generic.translator.errors.LOCALE_ERROR_MISSING_FILE.message">Файл локалізації "{$filename}" відсутній чи недоступний для читання.</message>
+	<message key="plugins.generic.translator.errors.EMAIL_ERROR_MISSING_EMAIL.message">Поштове повідомлення "{$key}" відсутнє у перекладі.</message>
+	<message key="plugins.generic.translator.errors.EMAIL_ERROR_EXTRA_EMAIL.message">Поштове повідомлення "{$key}" більше не використовується та може бути видалене.</message>
+	<message key="plugins.generic.translator.errors.EMAIL_ERROR_DIFFERING_PARAMS.message">Поштове повідомлення "{$key}" відрізняється від основної локалізації використанням параметрів. Будь ласка, ретельно перевірте, що воно містить усі належні параметри. Невідповідними параметрами є:</message>
+
+	<message key="plugins.generic.translator.locale">Локалізація {$locale}</message>
+	<message key="plugins.generic.translator.localeFiles">Файли локалізації</message>
+	<message key="plugins.generic.translator.miscFiles">Різні файли</message>
+	<message key="plugins.generic.translator.emails">Шаблони пошти</message>
+	<message key="plugins.generic.translator.file.filename">Назва файлу</message>
+	<message key="plugins.generic.translator.file.edit">Редагування {$filename}</message>
+	<message key="plugins.generic.translator.email.edit">Редагування {$emailKey}</message>
+	<message key="plugins.generic.translator.file.reference">Основна версія</message>
+	<message key="plugins.generic.translator.file.translation">Переклад</message>
+	<message key="plugins.generic.translator.email.reference">Основна версія</message>
+	<message key="plugins.generic.translator.email.translation">Переклад</message>
+	<message key="plugins.generic.translator.file.reset">Скинути</message>
+	<message key="plugins.generic.translator.file.resetToReference">Скинути до основної версії</message>
+	<message key="plugins.generic.translator.email.reset">Скинути</message>
+	<message key="plugins.generic.translator.email.resetToReference">Скинути до основної версії</message>
+	<message key="plugins.generic.translator.file.resetConfirm">Ви певні, що слід скинути вміст файлу?</message>
+	<message key="plugins.generic.translator.email.resetConfirm">Ви певні, що слід скинути вміст повідомлення?</message>
+	<message key="plugins.generic.translator.file.doesNotExistNote">* Цей файл ще не перекладено.</message>
+	<message key="plugins.generic.translator.file.confirmCreate">Файл "{$filename}" буде створено на основі англійської версії; Вам слід перекласти усі рядки у файлі. Бажаєте продовжити?</message>
+	<message key="plugins.generic.translator.email.description">У наступних полях перекладіть заголовок, тіло та опис. Опис подається лише для довідки керівника конференції.</message>
+	<message key="plugins.generic.translator.confirmDelete">Ви певні, що слід видалити цей запис? Цю дію неможливо скасувати.</message>
+	<message key="plugins.generic.translator.deleteKey">Видалити цей ключ</message>
+	<message key="plugins.generic.translator.deleteEmail">Видалити це повідомлення</message>
+	<message key="plugins.generic.translator.saveBeforeContinuing">Переконайтесь, що Ви зберегли зміни, зроблені на цій сторінці, перш ніж продовжити, бо інакше усі зміни буде втрачено. Ви певні, що слід продовжити? Якщо так, то усі незбережені зміни буде втрачено.</message>
+	<message key="plugins.generic.translator.fileNotWriteable">Цей файл локалізації недоступний для запису сервером. Жодні зміни не будуть збережені.</message>
+	<message key="plugins.generic.translator.filesNotWriteable">Ці файли локалізації недоступні для запису сервером. Жодні зміни не будуть збережені.</message>
+</locale>

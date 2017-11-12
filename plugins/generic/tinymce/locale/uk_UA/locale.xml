@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * locale.xml
+  *
+  * Copyright (c) 2000-2012 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the uk_UA (Ukrainian) locale.
+  *
+  * Translated  by Vasyl Ostrovskyi, 2017
+  * Institute of Mathematics, NAS of Ukraine
+  *
+  * $Id$
+  -->
+ 
+<locale name="en_US" full_name="U.S. English">
+	<message key="plugins.generic.tinymce.name">Плагін TinyMCE</message>
+	<message key="plugins.generic.tinymce.description"><![CDATA[Цей плагін вмикає редактор WYSIWYG для вікон введення тексту OCS з допомогою редактора <a href="http://tinymce.moxiecode.com" target="_new">TinyMCE</a>.]]></message>
+	<message key="plugins.generic.tinymce.descriptionDisabled"><![CDATA[Цей плагін вмикає редактор WYSIWYG для вікон введення тексту OCS з допомогою редактора <a href="http://tinymce.moxiecode.com" target="_new">TinyMCE</a>.
+ <strong>TinyMCE не встановлено; будь ласка, встановіть його у {$tinyMcePath}.</strong>]]></message>
+
+	<message key="plugins.generic.tinymce.settings">Налаштування</message>
+	<message key="plugins.generic.tinymce.enabled">Плагін TinyMCE увімкнено.</message>
+	<message key="plugins.generic.tinymce.disabled">Плагін TinyMCE вимкнено.</message>	
+</locale>

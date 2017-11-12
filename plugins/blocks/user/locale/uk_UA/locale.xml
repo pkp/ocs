@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * locale.xml
+  *
+  * Copyright (c) 2000-2012 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the uk_UA (Ukrainian) locale.
+  *
+  * Translated  by Vasyl Ostrovskyi, 2017
+  * Institute of Mathematics, NAS of Ukraine
+  *
+  * $Id$
+  -->
+ 
+<locale name="en_US" full_name="U.S. English">
+	<message key="plugins.block.user.displayName">Блок користувача</message>
+	<message key="plugins.block.user.description">Цей плагін реалізує на бічній панелі засоби облікового запису (вхід, вихід, посилання на профайл та ін.).</message>
+	<message key="plugins.block.user.loggedInAs">Ви увійшли як...</message>
+	<message key="plugins.block.user.myConferences">Мої конференції</message>
+	<message key="plugins.block.user.myProfile">Мій профайл</message>
+	<message key="plugins.block.user.logout">Вихід</message>
+	<message key="plugins.block.user.signOutAsUser">Вийти як користувач</message>
+	<message key="plugins.block.user.rememberMe">Запамʼятати</message>
+</locale>

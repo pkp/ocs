@@ -1,0 +1,450 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE email_texts SYSTEM "../../../../../lib/pkp/dtd/emailTemplateData.dtd">
+<!--
+  * emailTemplateData.xml
+  *
+  * Copyright (c) 2000-2012 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localized email templates XML file for the uk_UA (Ukrainian) locale.
+  *
+  * Translated  by Vasyl Ostrovskyi, 2017
+  * Institute of Mathematics, NAS of Ukraine
+  *
+  * $Id$
+  -->
+<email_texts locale="uk_UA">
+	<email_text key="NOTIFICATION">
+		<subject>Нове повідомлення від {$siteTitle}</subject>
+		<body>Ви отримали нове повідомлення від сайту {$siteTitle}:
+
+{$notificationContents}
+
+Посилання: {$url}
+
+{$principalContactSignature}</body>
+		<description>Повідомлення надсилається зареєстрованим користувачам, які виявили бажання отримувати повідомлення такого типу.</description>
+	</email_text>
+	<email_text key="NOTIFICATION_MAILLIST">
+		<subject>Нове повідомлення від сайту {$siteTitle}</subject>
+		<body>Ви маєте нове повідомлення від сайту {$siteTitle}:
+--
+{$notificationContents}
+
+Посилання: {$url}
+--
+
+Якщо Ви більше не хочете отримувати від нас повідомлення, будь ласка, перейдіть за посиланням {$unsubscribeLink} та вкажіть Вашу електронну адресу та пароль.
+
+{$principalContactSignature}</body>
+		<description>Це повідомлення надсилається незареєстрованим користувачам зі списку розсилки повідомлень.</description>
+	</email_text>
+	<email_text key="NOTIFICATION_MAILLIST_WELCOME">
+		<subject>Вітаємо у списку розсилки сайту {$siteTitle}!</subject>
+		<body>Ви підписались на отримання повідомлень з сайту {$siteTitle}.
+			
+Будь ласка, перейдіть за наступним посиланням, щоб підтвердити Ваш запит та додати Вашу електронну адресу до списку розсилки: {$confirmLink}
+
+Якщо Ви більше не хочете отримувати від нас повідомлення, будь ласка, перейдіть за посиланням {$unsubscribeLink} та вкажіть Вашу електронну адресу та пароль.
+
+Ваш пароль для відмови від наступних повідомлень: {$password}
+
+{$principalContactSignature}</body>
+		<description>Це повідомлення надсилається незареєстрованим користувачам, які лише хочуть отримувати нові повідомлення у списку розсилки.</description>
+	</email_text>
+	<email_text key="NOTIFICATION_MAILLIST_PASSWORD">
+		<subject>Ваші дані щодо розсилки повідомлень з сайту {$siteTitle}</subject>
+		<body>Ваш новий пароль для відмови від отримання повідомлень: {$password}
+
+Якщо Ви більше не хочете отримувати від нас повідомлення, будь ласка, перейдіть за посиланням {$unsubscribeLink} та вкажіть Вашу електронну адресу та пароль.
+
+{$principalContactSignature}</body>
+		<description>Це повідомлення надсилається незареєстрованим користувачам зі списку розсилки повідомлень для відновлення втраченого пароля чи неможливості входу. Воно надає адресу посилання для скидання пароля.</description>
+	</email_text>
+	<email_text key="PASSWORD_RESET_CONFIRM">
+		<subject>Підтвердження зміни паролю</subject>
+		<body>Ми отримали запит на зміну Вашого паролю на сайті {$siteTitle}.
+
+Якщо Ви не робили такого запиту, будь-ласка проігноруйте це повідомлення, тоді ваш пароль не буде змінено. Якщо Ви бажаєте змінити пароль, клацніть на вказаному нижче посиланні.
+
+Змінити мій пароль: {$url}
+
+{$principalContactSignature}</body>
+		<description>Це повідомлення надсилається зареєстрованим користувачам, коли вони вказують, що забули свій пароль та не можуть увійти у систему. Повідомлення містить посилання, на яке слід перейти, щоб змінити пароль.</description>
+	</email_text>
+	<email_text key="PASSWORD_RESET">
+		<subject>Зміна паролю</subject>
+		<body>Ваш пароль для входу на сайт {$siteTitle} успішно змінено. Будь-ласка, збережіть назву користувача та пароль, бо вони необхідні для роботи з сайтом конференції.
+
+Назва користувача: {$username}
+Ваш новий пароль: {$password}
+
+{$principalContactSignature}</body>
+		<description>Це повідомлення надсилається зареєстрованим користувачам, коли вони успішно змінили свій пароль згідно до вказівок, наведених у повідомленні PASSWORD_RESET_CONFIRM.</description>
+	</email_text>
+	<email_text key="USER_REGISTER">
+		<subject>Реєстрація нового користувача</subject>
+		<body>Дякуємо за реєстрацію користувачем конференції {$conferenceName}. Будь-ласка запамʼятайте назву Вашого облікового запису та пароль, які потрібні для роботи з сайтом конференції.
+
+Користувач: {$username}
+Пароль: {$password}
+
+Дякуємо,
+{$principalContactSignature}</body>
+		<description>Це повідомлення надіслано вперше зареєстрованому користувачеві, щоб запросити його до роботи в системі та забезпечити реквізитами для доступу.</description>
+	</email_text>
+	<email_text key="USER_VALIDATE">
+		<subject>Перевірка облікового запису</subject>
+		<body>{$userFullName}
+
+Ви створили обліковий запис на сайті {$conferenceName}, проте перш ніж Ви зможете розпочати його використовувати, слід підтвердити Вашу електронну адресу. Для цього перейдіть за вказаним нижче посиланням:
+
+{$activateUrl}
+
+Дякуємо,
+{$principalContactSignature}</body>
+		<description>Це повідомлення надсилається новим користувачам, щоб підтвердити правильність вказаної при реєстрації електронної адреси.</description>
+	</email_text>
+	<email_text key="SUBMISSION_ACK">
+		<subject>Підтвердження отримання подання</subject>
+		<body>{$authorName}:
+
+Дякуємо за подання матеріалу "{$paperTitle}" до конференції {$conferenceName}. За допомогою системи онлайн-керування конференціями, яку ми використовуємо, Ви зможете слідкувати за процесом проходження надісланих матеріалів, увійшовши на сайт:
+
+Ваше подання: {$submissionUrl}
+Користувач: {$authorUsername}
+
+Якщо у Вас виникли запитання, звертайтесь за допомогою. Дякуємо за використання нашої конференції у Вашій роботі.
+
+{$editorialContactSignature}</body>
+		<description>Це повідомлення, за вибором автора, автоматично надсилається авторові після подання матеріалів на конференцію.</description>
+	</email_text>
+	<email_text key="SUBMISSION_UPLOAD_ACK">
+		<subject>Підтвердження отримання матеріалів на конференцію</subject>
+		<body>{$authorName}:
+
+Дякуємо за надсилання матеріалів доповіді, "{$paperTitle}" на конференцію {$conferenceName}.  За допомогою системи онлайн-керування конференціями, яку ми використовуємо, Ви зможете слідкувати за процесом проходження надісланих матеріалів, увійшовши на сайт:
+
+Ваше подання: {$submissionUrl}
+Користувач: {$authorUsername}
+
+Якщо у Вас виникли запитання, звертайтесь за допомогою. Дякуємо за використання нашої конференції у Вашій роботі.
+
+{$editorialContactSignature}</body>
+		<description>Це повідомлення, за вибором автора, автоматично надсилається авторові після подання матеріалів на конференцію.</description>
+	</email_text>
+	<email_text key="SUBMISSION_UNSUITABLE">
+		<subject>Відхилене подання</subject>
+		<body>{$authorName}:
+
+Попередній розгляд роботи "{$paperTitle}" виявив, що дане подання не відповідає напрямку та тематиці конференції {$conferenceName}. Ми рекомендуємо звернутись до опису конференції у розділі "Про конференцію" та ознайомитись з матеріалами попередніх конференцій, щоб більше дізнатись про роботи, які ми приймаємо. Можливо, варто розглянути можливість подання матеріалів на іншу конференцію, яка більш відповідає даному матеріалу.
+
+{$editorialContactSignature}</body>
+		<description></description>
+	</email_text>
+	<email_text key="SUBMISSION_COMMENT">
+		<subject>Коментар до подання</subject>
+		<body>{$name}:
+
+{$commentName}додав коментар до праці "{$paperTitle}" на конференцію {$conferenceName}:
+
+{$comments}</body>
+		<description></description>
+	</email_text>
+	<email_text key="SUBMISSION_DECISION_REVIEWERS">
+		<subject>Ухвала щодо "{$paperTitle}"</subject>
+		<body>Надсилаємо Вам, як одному з рецензентів праці "{$paperTitle}" на конференцію {$conferenceName}, отримані рецензії та ухвалу редакції, які надіслані автору. Ще раз вдячні за Ваш важливий внесок у цей процес.
+ 
+{$editorialContactSignature}
+
+{$comments}</body>
+		<description>Цей лист повідомляє рецензентів подання, що процес рецензування завершено. Він включає інформацію про працю та прийняту ухвалу, та дякує рецензентам за їх внесок.</description>
+	</email_text>
+	<email_text key="DIRECTOR_ASSIGN">
+		<subject>Призначення директора</subject>
+		<body>{$editorialContactName}:
+
+Подання "{$paperTitle}" на конференцію {$conferenceName} призначено Вам на розгляд як директору секції для подальшого проходження процесу публікації.  
+
+Посилання на подання: {$submissionUrl}
+Користувач: {$directorUsername}
+
+З вдячністю,
+{$editorialContactSignature}</body>
+		<description></description>
+	</email_text>
+	<email_text key="REVIEW_REQUEST">
+		<subject>Запит на рецензування</subject>
+		<body>{$reviewerName}:
+
+Я вважаю, що Ви могли б стати чудовим рецензентом роботи "{$paperTitle}," яку подано до конференції {$conferenceName}. Витяг з подання додається нижче, і я сподіваюсь, що Ви розглянете можливість провести цю важливу для нас роботу.
+
+Будь ласка, увійдіть на сайт конференції не пізніше {$weekLaterDate}, щоб вказати, чи згодні ви провести рецензування, а також отримати повні матеріали подання та надіслати рецензію та Ваші рекомендації. Адреса сайту {$conferenceUrl}
+
+Термін рецензування {$reviewDueDate}.
+
+Якщо Ви не маєте облікового запису на сайті конференції, скористайтесь наступним посиланням, щоб перевстановити пароль  (який буде Вам надіслано разом з назвою користувача). {$passwordResetUrl}
+
+Посилання на подання: {$submissionReviewUrl}
+
+Дякую, що розглянули наш запит.
+
+{$editorialContactSignature}
+
+
+
+"{$paperTitle}"
+
+Резюме
+{$paperAbstract}</body>
+		<description>Це повідомлення від директора секції рецензенту просить рецензента прийняти чи відхилити пропозицію рецензування подання. Воно надає  назву та резюме подання, термін рецензування та спосіб доступу до подання.</description>
+	</email_text>
+	<email_text key="REVIEW_REQUEST_ONECLICK">
+		<subject>Запит на рецензування</subject>
+		<body>{$reviewerName}:
+
+Я вважаю, що Ви могли б стати чудовим рецензентом праці "{$paperTitle}," яку подано до конференції {$conferenceName}. Витяг з подання додано в кінці листа, і я сподіваюсь, що Ви розглянете можливість провести цю важливу для нас роботу.
+
+Будь ласка, увійдіть на сайт конференції не пізніше {$weekLaterDate}, щоб вказати, чи згодні Ви провести рецензування, та отримати доступ до матеріалів подання і надіслати рецензію та Ваші рекомендації.
+
+Термін рецензування {$reviewDueDate}.
+
+Адреса матеріалів подання: {$submissionReviewUrl}
+
+Дякуємо, що розглянули наше прохання.
+
+{$editorialContactSignature}
+
+
+
+"{$paperTitle}"
+
+Резюме
+{$paperAbstract}</body>
+		<description></description>
+	</email_text>
+	<email_text key="REVIEW_CANCEL">
+		<subject>Запит на рецензування скасовано</subject>
+		<body>{$reviewerName}:
+
+Ми прийняли рішення скасувати попередній запит на рецензування роботи  "{$paperTitle}," поданої до конференції {$conferenceName}. Просимо вибачити за турботи та сподіваємось, що зможемо розраховувати на Вашу допомогу у рецензуванні праць конференції у майбутньому.
+
+Якщо у Вас залишились якісь запитання, будь ласка, звертайтесь до мене.
+
+{$editorialContactSignature}</body>
+		<description>Це повідомлення надсилається директором секції рецензенту, який має на рецензуванні роботу, з повідомленням, що рецензування скасовано.</description>
+	</email_text>
+	<email_text key="REVIEW_CONFIRM">
+		<subject>Згоден на рецензування</subject>
+		<body>{$editorialContactName}:
+
+Я можу та згоден провести рецензування роботи "{$paperTitle}," поданої на конференцію {$conferenceName}. Дякую за увагу до мене, я сподіваюсь провести рецензування у відведений термін, {$reviewDueDate}, або раніше.
+
+{$reviewerName}</body>
+		<description></description>
+	</email_text>
+	<email_text key="REVIEW_CONFIRM_ACK">
+		<subject>Дякуємо за згоду на рецензування</subject>
+		<body>{$reviewerName}:
+
+Дякуємо за згоду провести рецензування роботи "{$paperTitle}", поданої до конференції {$conferenceName} до {$reviewDueDate}.
+
+{$editorialContactSignature}</body>
+		<description></description>
+	</email_text>
+	<email_text key="REVIEW_DECLINE">
+		<subject>Відмова від редагування</subject>
+		<body>{$editorialContactName}:
+
+Боюся, що на даний час я не матиму можливості рецензувати роботу  "{$paperTitle}," подану на конференцію {$conferenceName}. Дякуємо за увагу до мене, наступного разу звертайтесь до мене.
+
+{$reviewerName}</body>
+		<description></description>
+	</email_text>
+	<email_text key="REVIEW_COMPLETE">
+		<subject>Рецензування проведено</subject>
+		<body>{$editorialContactName}:
+
+Я закінчив рецензування роботи "{$paperTitle}", поданої на конференцію {$conferenceName}, та надіслав мою рекомендацію, "{$recommendation}."
+
+{$reviewerName}</body>
+		<description></description>
+	</email_text>
+	<email_text key="REVIEW_ACK">
+		<subject>Подяка за рецензування</subject>
+		<body>{$reviewerName}:
+
+Дякуємо за рецензування роботи "{$paperTitle}," поданої на конференцію{$conferenceName}. Ми вдячні за Ваш внесок до покращення якості роботи, що ми робимо.
+
+{$editorialContactSignature}</body>
+		<description></description>
+	</email_text>
+	<email_text key="REVIEW_REMIND">
+		<subject>Нагадування про рецензування</subject>
+		<body>{$reviewerName}:
+
+Дозвольте Вам нагадати про наш запит щодо рецензування роботи "{$paperTitle}," поданої до конференції {$conferenceName}. Ми сподівались мати рецензію до {$reviewDueDate}, і були б раді отримати її якомога швидше.
+
+Якщо у Вас немає облікового запису на сайті конференції, можете скористатись наведеним посиланням, щоб перевстановити пароль (який буде надіслано Вам разом з назвою користувача). {$passwordResetUrl}
+
+Адреса матеріалів подання: {$submissionReviewUrl}
+
+Будь ласка, підтвердіть можливість закінчити цю важливу для роботи конференції працю. Чекаємо на Вашу відповідь.
+
+{$editorialContactSignature}</body>
+		<description></description>
+	</email_text>
+	<email_text key="REVIEW_REMIND_ONECLICK">
+		<subject>Нагадування про рецензування</subject>
+		<body>{$reviewerName}:
+
+Дозвольте Вам нагадати про наш запит щодо рецензування роботи "{$paperTitle}," поданої до конференції {$conferenceName}. Ми сподівались мати рецензію до {$reviewDueDate}, і були б раді отримати її якомога швидше.
+
+Адреса матеріалів подання: {$submissionReviewUrl}
+
+Будь ласка, підтвердіть можливість закінчити цю важливу для роботи конференції працю. Чекаємо на Вашу відповідь.
+
+{$editorialContactSignature}</body>
+		<description></description>
+	</email_text>
+	<email_text key="REVIEW_REMIND_AUTO">
+		<subject>Автоматичне нагадування про рецензування</subject>
+		<body>{$reviewerName}:
+
+Дозвольте Вам нагадати про наш запит щодо рецензування роботи "{$paperTitle}," поданої до конференції {$conferenceName}. Ми сподівались мати рецензію до {$reviewDueDate}, і це повідомлення було автоматично сформовано та надіслано, коли цей час минув. Ми все ж були б раді отримати її якомога швидше.
+
+Якщо у Вас немає облікового запису на сайті конференції, можете скористатись наведеним посиланням, щоб перевстановити пароль (який буде надіслано Вам разом з назвою користувача). {$passwordResetUrl}
+
+Адреса матеріалів подання: {$submissionReviewUrl}
+
+Будь ласка, підтвердіть можливість закінчити цю важливу для роботи конференції працю. Чекаємо на Вашу відповідь.
+
+{$editorialContactSignature}</body>
+		<description></description>
+	</email_text>
+	<email_text key="REVIEW_REMIND_AUTO_ONECLICK">
+		<subject>Автоматичне нагадування про рецензування</subject>
+		<body>{$reviewerName}:
+
+Дозвольте Вам нагадати про наш запит щодо рецензування роботи "{$paperTitle}," поданої до конференції {$conferenceName}. Ми сподівались мати рецензію до {$reviewDueDate}, і це повідомлення було автоматично сформовано та надіслано, коли цей час минув. Ми все ж були б раді отримати її якомога швидше.
+
+Адреса матеріалів подання: {$submissionReviewUrl}
+
+Будь ласка, підтвердіть можливість закінчити цю важливу для роботи конференції працю. Чекаємо на Вашу відповідь.
+
+{$editorialContactSignature}</body>
+		<description>This email is automatically sent when a reviewer's due date elapses (see Review Options under Conference Setup, Step 2) and one-click reviewer access is enabled. Scheduled tasks must be enabled and configured (see the site configuration file).</description>
+	</email_text>
+	<email_text key="SUBMISSION_ABSTRACT_ACCEPT">
+		<subject>Резюме доповіді прийнято</subject>
+		<body>{$authorName}:
+
+Вітаємо, резюме Вашої доповіді {$paperTitle} прийнято для доповіді на конференції {$conferenceTitle}, що відбудеться {$conferenceDate} в місті {$locationCity}. 
+
+Дякуємо та чекаємо на Вашу участь у цій події.
+
+{$editorialContactSignature}</body>
+		<description></description>
+	</email_text>
+	<email_text key="SUBMISSION_ABSTRACT_DECLINE">
+		<subject>Резюме доповіді відхилено</subject>
+		<body>{$authorName}:
+
+Ми закінчили розгляд Вашого подання "{$paperTitle}." В результаті розгляду прийнято рішення відхилити Вашу пропозицію.
+
+{$editorialContactSignature}</body>
+		<description></description>
+	</email_text>
+	<email_text key="SUBMISSION_ABSTRACT_REVISE">
+		<subject>Резюме доповіді впотребує доопрацювання</subject>
+		<body>{$authorName}:
+
+Після детального розгляду Вашого подання, "{$paperTitle}" ми дійшли висновку, що воно може бути представлене на конференції {$conferenceTitle} якщо будуть враховані наступні зауваження.
+
+Дякуємо та чекаємо Вашої участі у цьому заході.
+
+{$editorialContactSignature}</body>
+		<description></description>
+	</email_text>
+	<email_text key="SUBMISSION_PAPER_ACCEPT">
+		<subject>Доповідь прийнято</subject>
+		<body>{$authorName}:
+
+Вітаємо, Ваше подання {$paperTitle} прийнято для доповіді на конференції {$conferenceTitle} що відбудеться {$conferenceDate} в місті {$locationCity}. 
+
+Дякуємо та чекаємо на Вашу участь у цьому заході.
+
+{$editorialContactSignature}</body>
+		<description></description>
+	</email_text>
+	<email_text key="SUBMISSION_PAPER_DECLINE">
+		<subject>Доповідь відхилено</subject>
+		<body>{$authorName}:
+
+Ми розглянули ваше подання "{$paperTitle}." В результаті...
+
+{$editorialContactSignature}</body>
+		<description></description>
+	</email_text>
+	<email_text key="SUBMISSION_PAPER_REVISE">
+		<subject>Доповідь потребує доопрацювання</subject>
+		<body>{$authorName}:
+
+Після детального розгляду Ваше подання, "{$paperTitle}" буде розглянуто для представлення на конференції {$conferenceTitle}, якщо будуть враховані наступні зауваження.
+
+Дякуємо та чекаємо на Вашу участь у цьому заході.
+
+{$editorialContactSignature}</body>
+		<description></description>
+	</email_text>
+	<email_text key="SUBMISSION_PAPER_INVITE">
+		<subject>Рішення оргкомітету</subject>
+		<body>{$authorName}:
+
+Вітаємо, резюме Вашої доповіді {$paperTitle} прийнято для представлення на конференції {$conferenceTitle} що відбудеться {$conferenceDate} у місті {$locationCity}. Запрошуємо Вас подати матеріал доповіді для подальшого рецензування.
+
+Дякуємо та чекаємо на Вашу участь у цьому заході.
+{$editorialContactSignature}</body>
+		<description></description>
+	</email_text>
+	<email_text key="REGISTRATION_NOTIFY">
+		<subject>Повідомлення про реєстрацію</subject>
+		<body>{$registrantName}:
+
+Ви зареєструвались в онлайн-системі керування конференціями як учасник  конференції {$conferenceName} з наступними даними:
+
+{$registrationType}
+ 
+Щоб мати доступ до вмісту, що доступний лише для зареєстрованих учасників, увійдіть системи з іменем користувача "{$username}".
+
+Після входу до системи ви завжди можете змінити деталі профайлу чи пароль.
+
+Зауважте, що для учасників з інститутською реєстрацією немає потреби додатково входити до системи, оскільки запити будуть автоматично автентифіковані системою.
+
+Якщо Ви маєте запитання, звертайтесь за допомогою.
+
+{$registrationContactSignature}</body>
+		<description></description>
+	</email_text>
+	<email_text key="OPEN_ACCESS_NOTIFY">
+		<subject>Праці у вільному доступі</subject>
+		<body>Шановні читачі:
+
+{$conferenceName} відкрила вільний доступ до наступного випуску матеріалів. Запрошуємо переглянути зміст та відвідати наш сайт ({$conferenceUrl}) для перегляду праць та цікавих матеріалів.
+
+Дякуємо за інтерес до нашої роботи,
+{$editorialContactSignature}</body>
+		<description>Це повідомлення надсилається зареєстрованим читачам, які залишили запит на повідомлення про відкриття доступу до матеріалів.</description>
+	</email_text>
+	<email_text key="MANUAL_PAYMENT_RECEIVED">
+		<subject>Кошти за участь у {$conferenceName} отримано</subject>
+		<body>{$registrantName}:
+
+Кошти, сплачені за участь у конференції {$conferenceName} отримані, відповідний запис додано до Вашого облікового запису.
+
+Якщо Ви маєте запитання, звертайтесь до нас.
+
+{$registrationContactSignature}</body>
+		<description></description>
+	</email_text>
+</email_texts>

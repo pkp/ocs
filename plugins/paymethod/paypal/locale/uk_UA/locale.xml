@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * locale.xml
+  *
+  * Copyright (c) 2006-2009 Gunther Eysenbach, Juan Pablo Alperin, MJ Suhonos
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the uk_UA (Ukrainian) locale.
+  *
+  * Translated  by Vasyl Ostrovskyi, 2017
+  * Institute of Mathematics, NAS of Ukraine
+  *
+ -->
+ 
+<locale name="en_US" full_name="U.S. English">
+	<message key="plugins.paymethod.paypal.displayName">Paypal</message>
+
+	<!-- PayPal Settings Form -->
+	<message key="plugins.paymethod.paypal.settings.paypalenable">Увімкнути PayPal</message>
+	<message key="plugins.paymethod.paypal.settings.paypalurl">IPN URL</message>
+	<message key="plugins.paymethod.paypal.settings.paypalurl.description"><![CDATA[Це адреса служби миттєвого повідомлення про оплату через PayPal (IPN). Для перевірки вкажіть 
+ <u>https://www.sandbox.paypal.com/cgi-bin/webscr</u>; для робочих систем, вкажіть <u>https://www.paypal.com/cgi-bin/webscr</u>.]]></message>
+	<message key="plugins.paymethod.paypal.settings.selleraccount">Рахунок продавця</message>
+	<message key="plugins.paymethod.paypal.settings.selleraccount.description">Це назва облікового запису продавця через  PayPal, зазвичай, адреса електронної пошти.</message>
+	<message key="plugins.paymethod.paypal.settings.curlNotInstalled">Увага: не встановлено підтримку CURL для  PHP. Підтримка сплати через PayPal потребує  CURL та не працюватиме без його встановлення.</message>
+	<message key="plugins.paymethod.paypal.settings">Налаштування PayPal</message>
+
+	<!-- PayPal -->
+	<message key="plugins.paymethod.paypal">Сплата через PayPal</message>
+	<message key="plugins.paymethod.paypal.description"><![CDATA[Плагін PayPal Plugin дозволяє користувачам, незалежно від наявності у них облікових записів  PayPal, користуватись основними кредитними картками, а також  eChecks, для оплати через систему. Менеджеру конференції для використання цієї опції слід налаштувати <a href="http://www.paypal.com" target="_new">Комерційний обліковий запис PayPal</a>.]]></message>
+	<message key="plugins.paymethod.paypal.warning">Клацання на "Продовжити" скерує Вас на сайт  PayPal. Після проведення сплати через PayPal Ви можете клацнути на кнопку "Return to Merchant", щоб повернутись на цей сайт.</message>
+	<message key="plugins.paymethod.paypal.purchase.amount">Сума</message>
+	<message key="plugins.paymethod.paypal.purchase.description">Опис</message>
+	<message key="plugins.paymethod.paypal.purchase.cancelled">Вашу сплату скасовано.</message>
+	<message key="plugins.paymethod.paypal.purchase.cancelled.title">Сплату скасовано</message>
+</locale>

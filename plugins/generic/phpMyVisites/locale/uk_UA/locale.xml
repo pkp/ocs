@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * locale.xml
+  *
+  * Copyright (c) 2000-2012 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * phpMyVisites plugin localization strings for the uk_UA (Ukrainian) locale.
+  *
+  * Translated  by Vasyl Ostrovskyi, 2017
+  * Institute of Mathematics, NAS of Ukraine
+  *
+  * $Id$
+  -->
+ 
+<locale name="en_US" full_name="U.S. English">
+
+	<!-- phpMyVisites -->
+	<message key="plugins.generic.phpmv.displayName">Плагін phpMyVisites</message>
+	<message key="plugins.generic.phpmv.description"><![CDATA[Інтегрує OCS з phpMyVisites, відкритою системою аналізу трафіку сайту. Вимагає, щоб система phpMyVisites вже була встановлена. Детальніше див. <a href="http://www.phpmyvisites.us/" title="phpMyVisites site">сайт phpMyVisites </a>.]]></message>
+	<message key="plugins.generic.phpmv.enabled">Плагін phpMyVisites увімкнено.</message>
+	<message key="plugins.generic.phpmv.disabled">Плагін phpMyVisites вимкнено.</message>
+	
+	<!-- phpMyVisites Settings Management -->
+	<message key="plugins.generic.phpmv.manager.settings">Налаштування</message>
+	<message key="plugins.generic.phpmv.manager.phpmvSettings">Налаштування phpMyVisites</message>
+	<message key="plugins.generic.phpmv.manager.settings.description"><![CDATA[<p>З допомогою цього плагіну можна використовувати phpMyVisites для збору та аналізу використання сайту та трафіку конференції. Зауважте, що цей плагін потребує, щоб phpMyVisites вже було встановлено. Детальніше див. <a href="http://www.phpmyvisites.us/" title="phpMyVisites site">сайт phpMyVisites</a>.</p>]]></message>
+	<message key="plugins.generic.phpmv.manager.settings.phpmvUrl">phpMyVisites Url</message>
+	<message key="plugins.generic.phpmv.manager.settings.phpmvUrlInstructions">Повний шлях url до встановленого phpMyVisites (напр., http://myserver.net/phpmv).</message>
+	<message key="plugins.generic.phpmv.manager.settings.phpmvUrlRequired">Будь ласка, вкажіть дійсну адресу url. Додайте http:// на початку.</message>
+	<message key="plugins.generic.phpmv.manager.settings.phpmvSiteId">Номер профайлу сайту</message>
+	<message key="plugins.generic.phpmv.manager.settings.phpmvSiteIdInstructions"><![CDATA[Всередині phpMyVisites, клацніть на Administration->Modify site. Номер профайлу сайту буде показано поруч з назвою профайлу сайту.]]></message>
+	<message key="plugins.generic.phpmv.manager.settings.phpmvSiteIdRequired">Будь ласка, вкажіть номер профайлу сайту.</message>
+
+</locale>

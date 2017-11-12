@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * locale.xml
+  *
+  * Copyright (c) 2000-2012 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the uk_UA (Ukrainian) locale.
+  *
+  * Translated  by Vasyl Ostrovskyi, 2017
+  * Institute of Mathematics, NAS of Ukraine
+  *
+  * $Id$
+  -->
+
+<locale name="en_US" full_name="U.S. English">
+	<message key="plugins.importexport.native.displayName">XML плагін праць</message>
+	<message key="plugins.importexport.native.description">Імпорт та експорт праць</message>
+
+	<message key="plugins.importexport.native.cliUsage"><![CDATA[Використання: {$scriptName} {$pluginName} [команда] ...
+Команди:
+	import [xmlFileName] [conference_path] [sched_conf_path] [user_name] ...
+	export [xmlFileName] [conference_path] [sched_conf_path] papers [paperId1] [paperId2] ...
+	export [xmlFileName] [conference_path] [sched_conf_path] paper [paperId]
+
+Для імпорту слід вказати додаткові параметри як вказано нижче, залежно від кореневого вузла документу XML.
+
+Якшо кореневий вузол - <paper> чи <papers>, слід вказати додаткові параметри.
+Приймаються наступні формати:
+
+{$scriptName} {$pluginName} import [xmlFileName] [conference_path]
+	[sched_conf_path] [user_name] track_id [trackId]
+
+{$scriptName} {$pluginName} import [xmlFileName] [conference_path]
+	[sched_conf_path] [user_name] track_name [trackName]
+
+{$scriptName} {$pluginName} import [xmlFileName] [conference_path]
+	[sched_conf_path] [user_name] track_abbrev [trackAbbrev]]]></message>
+	<message key="plugins.importexport.native.export">Експорт даних</message>
+	<message key="plugins.importexport.native.export.tracks">Експорт секцій</message>
+	<message key="plugins.importexport.native.export.papers">Експорт праць</message>
+
+	<message key="plugins.importexport.native.selectPaper">Вибрати працю</message>
+
+	<message key="plugins.importexport.native.import.papers">Імпорт праць</message>
+	<message key="plugins.importexport.native.import.papers.description">Файл, який ви імпортуєте, містить одну чи більше праць. Вам слід вибрати секцію, до якої імпортувати ці праці; якщо ви не бажаєте імпортувати усі праці до однієї секції, слід або розділити їх у різні файли  XML, або перемістити до потрібних секцій після закінчення імпортування.</message>
+
+	<message key="plugins.importexport.native.import">Імпорт даних</message>
+	<message key="plugins.importexport.native.import.description"><![CDATA[Цей плагін реалізує імпортування даних, що створені на основі файлу визначень типу native.dtd. Підтримуваними кореневими вузлами є &lt;paper&gt; та &lt;papers&gt;.]]></message>
+
+	<message key="plugins.importexport.native.import.error">Помилка імпортування</message>
+	<message key="plugins.importexport.native.import.error.description">При імпортуванні виникли одна чи більше помилок. Будь ласка, переконайтесь, що формат файлу імпортованих даних відповідає специфікації. Більш детальний опис помилок наведено нижче.</message>
+
+	<message key="plugins.importexport.native.cliError">ПОМИЛКА:</message>
+	<message key="plugins.importexport.native.error.uploadFailed">Надсилання не вдалось; будь ласка, переконайтесь, що сервер підтримує надсилання даних, та що розмір файлу не перевищує обсягів, вказаних в налаштуваннях PHP та веб-сервера.</message>
+	<message key="plugins.importexport.native.error.unknownUser">Вказаний користувач "{$userName}" не існує.</message>
+	<message key="plugins.importexport.native.error.unknownConference">Вказаний шлях конференції чи призначеної конференції, "{$conferencePath}" чи "{$schedConfPath}" (respectively), не існує.</message>
+	<message key="plugins.importexport.native.export.error.couldNotWrite">Неможливо записати у файл "{$fileName}".</message>
+	<message key="plugins.importexport.native.export.error.trackNotFound">Немає секції, що відповідає "{$trackIdentifier}".</message>
+	<message key="plugins.importexport.native.export.error.paperNotFound">Немає праці з вказаним ID "{$paperId}".</message>
+	<message key="plugins.importexport.native.import.error.unsupportedRoot">Цей плагін не підтримує кореневих вузлів "{$rootName}". Будь ласка, переконайтесь, що файл сформовано правильно, та спробуйте знову.</message>
+
+	<message key="plugins.importexport.native.import.error.invalidBooleanValue">Вказано недійсне логічне значення "{$value}". Слід використовувати "true" чи "false".</message>
+	<message key="plugins.importexport.native.import.error.invalidDate">Вказано недійсну дату "{$value}".</message>
+	<message key="plugins.importexport.native.import.error.unknownEncoding">Дані подано у невідомому типі кодування "{$type}".</message>
+	<message key="plugins.importexport.native.import.error.couldNotWriteFile">Неможливо зберегти локальну копію "{$originalName}".</message>
+	<message key="plugins.importexport.native.import.error.illegalUrl">Вказана адреса "{$url}" недійсна. Веб-імпорт підтримує лише методи http, https, ftp, чи ftps.</message>
+	<message key="plugins.importexport.native.import.error.unknownSuppFileType">Вказано невідомий тип додаткового файлу "{$suppFileType}".</message>
+	<message key="plugins.importexport.native.import.error.couldNotCopy">Вказана адреса "{$url}" не може бути скопійована у локальний файл.</message>
+	<message key="plugins.importexport.native.import.error.paperTitleLocaleUnsupported">Назву праці ("{$paperTitle}") вказано у локалізації ("{$locale}"), яка не підтримується даною конференцією.</message>
+	<message key="plugins.importexport.native.import.error.paperAbstractLocaleUnsupported">Тези праці "{$paperTitle}" надано у локалізації ("{$locale}"), що не підтримується даною конференцією.</message>
+	<message key="plugins.importexport.native.import.error.galleyLabelMissing">Праця "{$paperTitle}" у секції "{$trackTitle}" не містить мітки верстки.</message>
+	<message key="plugins.importexport.native.import.error.suppFileMissing">Праця "{$paperTitle}" у секції "{$trackTitle}" не містить додаткового файлу.</message>
+	<message key="plugins.importexport.native.import.error.galleyFileMissing">Праця "{$paperTitle}" у секції "{$trackTitle}" не містить файлу верстки.</message>
+
+	<message key="plugins.importexport.native.import.error.trackTitleLocaleUnsupported">Назву секції ("{$trackTitle}") подано у локалізації ("{$locale}"), яку дана конференція не підтримує.</message>
+	<message key="plugins.importexport.native.import.error.trackAbbrevLocaleUnsupported">Скорочену назву секції ("{$trackAbbrev}") подано у локалізації ("{$locale}"), яку дана конференція не підтримує.</message>
+	<message key="plugins.importexport.native.import.error.trackIdentifyTypeLocaleUnsupported">Тип секції ("{$trackIdentifyType}") подано у локалізації ("{$locale}"), яку дана конференція не підтримує.</message>
+	<message key="plugins.importexport.native.import.error.trackPolicyLocaleUnsupported">Політику секції ("{$trackPolicy}") подано у локалізації ("{$locale}"), яку дана конференція не підтримує.</message>
+
+	<message key="plugins.importexport.native.import.error.trackTitleMismatch">Назва секції "{$track1Title}" та назва секції "{$track2Title}" відповідають різним секціям, що існують для конференції.</message>
+	<message key="plugins.importexport.native.import.error.trackTitleMatch">Назва секції "{$trackTitle}" відповідає секції, що існує для даної конференції, проте інша назва цієї секції не відповідає іншій назві цієї секції.</message>
+	<message key="plugins.importexport.native.import.error.trackAbbrevMismatch">Скорочена назва секції "{$track1Abbrev}" та скорочена назва секції "{$track2Abbrev}" відповідають різним секціям, що існують для конференції.</message>
+	<message key="plugins.importexport.native.import.error.trackAbbrevMatch">Скорочена назва секції"{$trackAbbrev}" відповідає наявній секції конференції, проте інша скорочена назва цієї секції не відповідає іншій скороченій назві..</message>
+
+	<message key="plugins.importexport.native.import.error.paperDisciplineLocaleUnsupported">Науковий напрямок праці "{$paperTitle}" вказано в локалізації ("{$locale}"), яка не підтримується даною конференцією.</message>
+	<message key="plugins.importexport.native.import.error.paperTypeLocaleUnsupported">Тип праці "{$paperTitle}" вказано в локалізації  ("{$locale}"), яка не підтримується даною конференцією.</message>
+	<message key="plugins.importexport.native.import.error.paperSubjectLocaleUnsupported">Розділ науки для праці "{$paperTitle}" вказано в локалізації ("{$locale}", яка не підтримується даною конференцією.</message>
+	<message key="plugins.importexport.native.import.error.paperSubjectClassLocaleUnsupported">Предметну класифікацію праці "{$paperTitle}" вказано в локалізації ("{$locale}"), яка не підтримується даною конференцією.</message>
+	<message key="plugins.importexport.native.import.error.paperCoverageGeoLocaleUnsupported">Географічне покриття для праці "{$paperTitle}" вказано в локалізації ("{$locale}")), яка не підтримується даною конференцією.</message>
+	<message key="plugins.importexport.native.import.error.paperCoverageChronLocaleUnsupported">Хронологічне покриття для праці "{$paperTitle}" вказано в локалізації ("{$locale}")), яка не підтримується даною конференцією.</message>
+	<message key="plugins.importexport.native.import.error.paperCoverageSampleLocaleUnsupported">Покриття зразків для праці  "{$paperTitle}" вказано в локалізації ("{$locale}")), яка не підтримується даною конференцією.</message>
+	<message key="plugins.importexport.native.import.error.paperSponsorLocaleUnsupported">Спонсора дослідження для праці "{$paperTitle}" вказано в локалізації ("{$locale}")), яка не підтримується даною конференцією.</message>
+
+	<message key="plugins.importexport.native.import.error.paperAuthorCompetingInterestsLocaleUnsupported">Змагання інтересів для автора  "{$authorFullName}" праці "{$paperTitle}" вказано в локалізації  ("{$locale}")), яка не підтримується даною конференцією.</message>
+	<message key="plugins.importexport.native.import.error.paperAuthorBiographyLocaleUnsupported">A author biography was provided for the author "{$authorFullName}" of the paper "{$paperTitle}" вказано в локалізації  ("{$locale}"), яка не підтримується даною конференцією.</message>
+
+	<message key="plugins.importexport.native.import.error.galleyLocaleUnsupported">Верстку праці "{$paperTitle}" подано в локалізації  ("{$locale}"), яка не підтримується даною конференцією.</message>
+
+	<message key="plugins.importexport.native.import.error.paperSuppFileTitleLocaleUnsupported">Назву додаткового файлу ("{$suppFileTitle}") праці "{$paperTitle}" вказано в локалізації  ("{$locale}"), яка не підтримується даною конференцією.</message>
+	<message key="plugins.importexport.native.import.error.paperSuppFileCreatorLocaleUnsupported">Автора додаткового файлу "{$suppFileTitle}" праці "{$paperTitle}" вказано в локалізації  ("{$locale}"), яка не підтримується даною конференцією.</message>
+	<message key="plugins.importexport.native.import.error.paperSuppFileSubjectLocaleUnsupported">Предмет додаткового файлу  "{$suppFileTitle}" праці "{$paperTitle}" вказано в локалізації  ("{$locale}"), яка не підтримується даною конференцією.</message>
+	<message key="plugins.importexport.native.import.error.paperSuppFileTypeOtherLocaleUnsupported">Власний тип додаткового файлу "{$suppFileTitle}" праці "{$paperTitle}" вказано в локалізації  ("{$locale}"), яка не підтримується даною конференцією.</message>
+	<message key="plugins.importexport.native.import.error.paperSuppFileDescriptionLocaleUnsupported">Опис додаткового файлу "{$suppFileTitle}" праці "{$paperTitle}" вказано в локалізації  ("{$locale}"), яка не підтримується даною конференцією.</message>
+	<message key="plugins.importexport.native.import.error.paperSuppFilePublisherLocaleUnsupported">Видавця додаткового файлу "{$suppFileTitle}" праці "{$paperTitle}" вказано в локалізації  ("{$locale}"), яка не підтримується даною конференцією.</message>
+	<message key="plugins.importexport.native.import.error.paperSuppFileSponsorLocaleUnsupported">Спонсора додаткового файлу "{$suppFileTitle}" праці "{$paperTitle}" вказано в локалізації  ("{$locale}"), яка не підтримується даною конференцією.</message>
+	<message key="plugins.importexport.native.import.error.paperSuppFileSourceLocaleUnsupported">Джерело додаткового файлу "{$suppFileTitle}" праці "{$paperTitle}"  вказано в локалізації  ("{$locale}"), яка не підтримується даною конференцією.</message>
+
+	<message key="plugins.importexport.native.import.success">Імпортування проведено успішно.</message>
+	<message key="plugins.importexport.native.import.success.description">Імпортування проведено успішно. Нижче наведено перелік імпортованих записів.</message>
+
+</locale>

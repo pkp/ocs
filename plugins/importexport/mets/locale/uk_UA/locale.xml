@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * locale.xml
+  *
+  * Copyright (c) 2000-2012 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the uk_UA (Ukrainian) locale.
+  *
+  * Translated  by Vasyl Ostrovskyi, 2017
+  * Institute of Mathematics, NAS of Ukraine
+  *
+  * $Id$
+  -->
+ 
+<locale name="en_US" full_name="U.S. English">
+	<message key="plugins.importexport.METSExport.displayName">Плагін експорту METS у XML</message>
+	<message key="plugins.importexport.METSExport.description">Експортування конференції у METS XML</message>
+	<message key="plugins.importexport.METSExport.settings">Налаштування</message>
+	<message key="plugins.importexport.METSExport.export">Експорт даних</message>
+	<message key="plugins.importexport.METSExport.export.schedConfs">Експорт призначених конференційExport Scheduled Conferences</message>
+	<message key="plugins.importexport.METSExport.export.selectschedConfs">Виберіть призначені конференції для експортування.</message>
+	<message key="plugins.importexport.METSExport.export.error.SchedConfNotFound">Жодна призначена конференція не відповідає вказаному ідентифікатору "{$SchedConfId}".</message>
+	<message key="plugins.importexport.METSExport.export.error.unknownConference">Невідомий шлях конференції {$conferencePath}</message>
+	<message key="plugins.importexport.METSExport.settings.FContent">Використовувати кодування base64 для вкладення вмісту</message>
+	<message key="plugins.importexport.METSExport.settings.FLocat">Використовувати URL адресу потоку даних для вкладення вмісту</message>
+	<message key="plugins.importexport.METSExport.settings.organization">Атрибут METS:agent eелементу організації</message>
+	<message key="plugins.importexport.METSExport.settings.preservationLevel">Рівень збереження PREMIS</message>
+	<message key="plugins.importexport.METSExport.settings.exportSuppFiles">Експорт додаткових файлів</message>
+</locale>
