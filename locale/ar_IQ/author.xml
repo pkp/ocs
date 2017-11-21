@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * ocs2-devel/locale/ar_IQ/author.xml
+  *
+  * Copyright (c) 2000-2012 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the ar_IQ (Arabic) locale.
+  *
+  -->
+
+<locale name="ar_IQ" full_name = "العربية">
+	<message key="author.submit">طلب جديد</message>
+	<message key="author.track">الطلبات النشطة</message>
+	<message key="author.submit.startHere">إبدأ من هنا لتقديم أوراق عمل لهذا المؤتمر.</message>
+	<message key="author.submit.startHereLink">الخطوة الأولى من عملية التقديم</message>
+	<message key="author.submit.step1">الخطوة الأولى. الشروع بالتقديم</message>
+	<message key="author.submit.step3">الخطوة الثالثة. إدخال البيانات الوصفية للطلب</message>
+	<message key="author.submit.step3AbstOnly">الخطوة الثانية. إدخال البيانات الوصفية للطلب</message>
+	<message key="author.submit.step4AbstOnly">الخطوة الثالثة. رفع الملفات التكميلية</message>
+	<message key="author.submit.step2">الخطوة الثانية. رفع الطلب</message>
+	<message key="author.submit.step2NoAbstracts">الخطوة الثالثة. رفع الطلب</message>	
+	<message key="author.submit.step4">الخطوة الرابعة. رفع الملفات التكميلية</message>
+	<message key="author.submit.step4a">الخطوة الرابعة أ. أضف ملفاً تكميلياً</message>
+	<message key="author.submit.step5">الخطوة الخامسة. تأكيد طلب التقديم</message>
+	<message key="author.submit.step5SkipSupp">الخطوة الرابعة. تأكيد طلب التقديم</message>
+	<message key="author.submit.start">1. إبدأ</message>
+	<message key="author.submit.metadata">3. أدخل البيانات الوصفية</message>
+	<message key="author.submit.metadataOnly">2. أدخل البيانات الوصفية</message>
+	<message key="author.submit.upload">2. إرفع الطلب</message>
+	<message key="author.submit.uploadOnly">3. إرفع الطلب</message>
+	<message key="author.submit.supplementaryFiles">4. إرفع الملفات التكميلية</message>
+	<message key="author.submit.supplementaryFilesAbstractOnly">3. إرفع الملفات التكميلية</message>
+	<message key="author.submit.supplementaryFilesInfoAbstractOnly">3 أ. رفع الملفات التكميلية</message>
+	<message key="author.submit.confirmation">5. التأكيد</message>
+	<message key="author.submit.confirmationSkipSupp">4. التأكيد</message>
+	<message key="author.submit.cancelSubmission">بإمكانك إكمال طلب التقديم هذا لاحقاً عبر اختيار طلبات التقديم النشطة من صفحة المؤلف الرئيسية.</message>
+	<message key="author.submit.notAcceptingYet">هذا المؤتمر لم يبدأ بعد بقبول أوراق العمل.</message>
+	<message key="author.submit.notAccepting">هذا المؤتمر يعتذر عن قبول أوراق العمل.</message>
+	<message key="author.submit.submissionDeadlinePassed">تقديم أوراق العمل إلى هذا المؤتمر مغلق من {$closedDate}.</message>
+	<message key="author.submit.authorRegistrationClosed">تسجيل المؤلفين غير متاح لهذا المؤتمر.</message>
+	<message key="author.submissions.queuedAbstractReviewRevisions">الملخص قيد التقييم: لا بد من ورود التقييمات</message>
+	<message key="author.submissions.queuedPaperReviewRevisions">ورقة العمل قيد التقييم: لا بد من ورود التقييمات</message>
+	<message key="author.submissions.confirmDelete">هل أنت متأكد من رغبتك في حذف طلب التقديم غير المكتمل هذا؟</message>
+	<message key="author.submissions.viewStatus">معاينة الحالة</message>
+	<message key="author.submissions.noSubmissions">لا طلبات تقديم.</message>
+	<message key="author.submit.howToSubmit"><![CDATA[هل تواجهك صعوبات؟ راسل <a href="mailto:{$supportEmail}">{$supportName}</a> للحصول على مساعدة ({$supportPhone}).]]></message>
+	<message key="author.submit.howToSubmitNoPhone"><![CDATA[هل تواجهك صعوبات؟ راسل <a href="mailto:{$supportEmail}">{$supportName}</a> للحصول على مساعدة.]]></message>
+	<message key="author.submit.conferenceTrack">مسار المؤتمر</message>
+	<message key="author.submit.conferenceTrackDescription"><![CDATA[إختر المسار المناسب لهذا التقديم (أنظر <a href="{$aboutUrl}" target="_new">سياسات المسار</a>).]]></message>
+	<message key="author.submit.selectTrack">لطفاً، إختر مساراً...</message>
+	<message key="author.submit.submissionChecklist">قائمة مهام طلب التقديم</message>
+	<message key="author.submit.submissionChecklistDescription">أشِّر أن طلب التقديم هذا يعتبر جاهزاً من قبل هذا المؤتمر عبر رفع التأشيرة مما يأتي (بإمكانك إضافة ملاحظاتك إلى المشرف أدناه).</message>
+	<message key="author.submit.verifyChecklist">عليك التأكد من كون كل المتطلبات المتعلقة بطلب التقديم مستوفاة قبل المتابعة.</message>
+	<message key="author.submit.copyrightNoticeAgree">يوافق المؤلفون على بيان الحقوق الفكرية، والذي ستنطبق بنوده على طلب التقديم إذا نُشر عبر هذا المؤتمر (يمكن إضافة ملاحظات إلى المشرف أدناه).</message>
+	<message key="author.submit.copyrightNoticeAgreeRequired">عليك الموافقة على بنود بيان الحقوق الفكرية قبل المتابعة.</message>
+	<message key="author.submit.commentsForDirector">ملاحظات معنونة إلى مشرف المؤتمر</message>
+	<message key="author.submit.comments">أدخل نصاً (إختيارياً)</message>
+	<message key="author.submit.form.authorRequired">لا بد من ذِكر مؤلف واحد على الأقل.</message>
+	<message key="author.submit.form.authorRequiredFields">إن حقول الاسم الأول، الاسم الأخير وعنوان البريد الالكتروني لكل مؤلف مطلوبة حتماً.</message>
+	<message key="author.submit.form.trackRequired">لطفاً، إختر المسار المناسب لطلب التقديم هذا من مسارات المؤتمر.</message>
+	<message key="author.submit.form.abstractRequired">لطفاً، أدخل ملخصاً لتقديمك.</message>
+	<message key="author.submit.privacyStatement">بيان الخصوصية للمؤتمر</message>
+	<message key="author.submit.reorderInstructions">أعد فرز أسماء المؤلفين لتظهر حسب ما ستترتب به أسماؤهم عند النشر.</message>
+	<message key="author.submit.reorder">أعد ترتيب أسماء المؤلفين</message>
+	<message key="author.submit.selectPrincipalContact">عنوان المراسلة الأساسي لأغراض التواصل مع هيئة التحرير.</message>
+	<message key="author.submit.addAuthor">أضف مؤلفاً</message>
+	<message key="author.submit.deleteAuthor">إحذف مؤلفاً</message>
+	<message key="author.submit.submissionIndexingDescription">أدرج المعايير اللازمة لفهرسة طلب التقديم؛ إفصل بين المعايير بفارزة منقوطة إنجليزية (معيار 1; معيار 2; معيار 3).</message>
+	<message key="author.submit.submissionSupportingAgencies">الجهات الداعمة</message>
+	<message key="author.submit.submissionSupportingAgenciesDescription">حدد الجهات التي وفرت التمويل أو الدعم للعمل الذي يتضمنه طلب التقديم هذا.</message>
+	<message key="author.submit.subjectClassInstructions">استعمل نظام التصنيف المدعوم بالروابط لاختيار معايير التصنيف، وترقيمه حيما كان ذلك ملائماً.</message>
+	<message key="author.submit.languageInstructions"><![CDATA[English=en; French=fr; Spanish=es; Arabic=ar;. <a href="http://www.loc.gov/standards/iso639-2/php/code_list.php" target="_blank">المزيد من الترميزات</a>.]]></message>
+	<message key="presenter.submit.form.authorRequired">مؤلف واحد على الأقل مطلوب حتماً.</message>
+	<message key="presenter.submit.form.authorRequiredFields">إن حقول الاسم الأول، الاسم الأخير وعنوان البريد الالكتروني لكل مؤلف مطلوبة حتماً.</message>
+	<message key="author.submit.form.titleRequired">لطفاً أدخل عنوان ورقة العمل هذه.</message>
+	<message key="author.submit.form.wordCountAlert">لقد تجاوزت الحد الأقصى من الكلمات المتاحة للملخص حسب مسار المؤتمر هذا.</message>
+	<message key="author.submit.submissionFile">ملف التقديم</message>
+	<message key="author.submit.uploadSubmissionFile">رفع ملف التقديم</message>
+	<message key="author.submit.replaceSubmissionFile">استبدال ملف التقديم</message>
+	<message key="author.submit.noSubmissionFile">لم يتم رفع ملف التقديم بعد.</message>
+	<message key="author.submit.noSubmissionConfirm">هل أنت متأكد من رغبتك في المتابعة دون رفع ملف التقديم؟</message>
+	<message key="author.submit.supplementaryFilesInstructions">هذه الخطوة الإختيارية تتيح لك رفع ملفات تكميلية لإلحاقها بطلب التقديم. هذه الملفات التي قد تكون بأية صيغة، قد تتضمن (أ) أجهزة البحث، (ب) جداول البيانات، والتي تتوافق مع بنود أخلاقيات تحكيم البحث، (ج) مصادر أخرى من التي قد لا تتوفر للقراء، (د) رسومات وجداول يتعذر إقحامها في النص الأصلين أو أي مواد أخرى من شأنها إثراء ما جاد به البحث.</message>
+	<message key="author.submit.supplementaryFiles.saveToUpload">أنقر حفظ لرفع الملف (يمكن إلحاق المزيد من الملفات تباعاً).</message>
+	<message key="author.submit.forgottenSubmitSuppFile">هل أنت متأكد من رغبتك في المتابعة بدون رفع الملف التكميلي الذي اخترته؟</message>
+	<message key="author.submit.noSupplementaryFiles">لم يتم إضافة أي ملفات تكميلية إلى طلب التقديم بعد.</message>
+	<message key="author.submit.backToSupplementaryFiles">العودة إلى الملفات التكميلية</message>
+	<message key="author.submit.confirmDeleteSuppFile">هل أنت متأكد من رغبتك في حذف هذا الملف التكميلي؟</message>
+	<message key="author.submit.uploadSuppFile">رفع الملف التكميلي</message>
+	<message key="author.submit.addSupplementaryFile">أضف ملفاً تكميلياً</message>
+	<message key="author.submit.editSupplementaryFile">تعديل الملف التكميلي</message>
+	<message key="author.submit.supplementaryFileData">البيانات الوصفية للملف التكميلي</message>
+	<message key="author.submit.supplementaryFileDataDescription">لفهرسة هذه المادة التكميلية، عليك أن توفر البيانات الوصفية الآتية للملف التكميلي المرفوع إلى الموقع.</message>
+	<message key="author.submit.supplementaryFileUpload">الملف التكميلي</message>
+	<message key="author.submit.suppFile.createrOrOwner">منشئ الملف (أو مالكه)</message>
+	<message key="author.submit.suppFile.researchInstrument">جهاز البحث أو أداته</message>
+	<message key="author.submit.suppFile.researchMaterials">مواد البحث</message>
+	<message key="author.submit.suppFile.researchResults">نتائج البحث</message>
+	<message key="author.submit.suppFile.transcripts">النصوص</message>
+	<message key="author.submit.suppFile.dataAnalysis">تحليل البيانات</message>
+	<message key="author.submit.suppFile.dataSet">جدول البيانات</message>
+	<message key="author.submit.suppFile.sourceText">نصوص مصدرية</message>
+	<message key="author.submit.suppFile.briefDescription">وصف موجز</message>
+	<message key="author.submit.suppFile.contributorOrSponsor">الجهة المساهمة أو الراعية</message>
+	<message key="author.submit.suppFile.availableToPeers">تقديم الملف للمحكمين (بدون البيانات الوصفية)، حيث أن ذلك لا يتعرض من التحكيم السري.</message>
+	<message key="author.submit.suppFile.publisherDescription">يُستعمل حصراً مع المواد المنشورة رسمياً.</message>
+	<message key="author.submit.suppFile.dateDescription">تأريخ جمع البيانات أو إنشاء الجهاز.</message>
+	<message key="author.submit.suppFile.sourceDescription">مسمى الدراسة وغيرها من المصدر.</message>
+	<message key="author.submit.suppFile.specifyOtherType">حدد غير ذلك</message>
+	<message key="author.submit.suppFile.noFile">لم يتم رفع أي ملف بعد.</message>
+	<message key="author.submit.suppFile.form.titleRequired">لطفاً، أدخل عنوان الملف التكميلي هذا.</message>
+	<message key="author.submit.suppFile.form.subjectRequired">لطفاً، أدخل اسم الموضوع.</message>
+	<message key="author.submit.suppFile.form.descriptionRequired">لطفاًن أدخل وصفاً.</message>
+	<message key="author.suppFile.suppFilePublicIdentificationExists">المعرف العام للملف التكميلي موجود مسبقاً.</message>
+	<message key="author.suppFile.publicSuppFileIdentifier">المعرف العام للملف التكميلي</message>
+	<message key="author.submit.addSubmissionFile">أضف ملفاً تكميلياً</message>
+	<message key="author.submit.submissionFileUpload">الملف التكميلي</message>
+	<message key="author.submit.confirmationDescription">لتقديم نصوصك للمؤتمر الموسوم {$conferenceTitle} أنقر إنهاء التقديم. سيتلقى مسؤول التواصل الرئيسي إشعاراً عبر البريد الالكتروني وسيكون بإمكانه معاينة مستجدات طلب التقديم عبر مراحل التحرير بمجرد دخوله إلى موقع المؤتمر. نشكر لك اهتمامك ومساهمتك معنا في {$conferenceTitle}.</message>
+	<message key="author.submit.noFiles">لم يتم إلحاق أي ملفات بعد بطلب التقديم هذا</message>
+	<message key="author.submit.filesSummary">خلاصة الملفات</message>
+	<message key="author.submit.finishSubmission">إنهاء التقديم</message>
+	<message key="author.submit.submissionComplete">إكتملت مراحل التقديم. شكراً لتقديم عملك إلى {$conferenceTitle}.</message>
+	<message key="author.submit.expedite"><![CDATA[إن كان هذا التقديم جاهزاً للنشر دون الحاجة إلى إجراءات التحكيم أو التحرير، فبالإمكان إرساله مباشرة إلى صفحة الإجراءات عبر <a href="{$expediteUrl}" class="action">النقر هنا</a>. (ملاحظة: مشرفو المؤتمر فقط يملكون الحق في اتخاذ هذا القرار فيما يتعلق بأوراق عملهم.)]]></message>
+	<message key="author.paper.uploadAuthorVersion">رفع نسخة المؤلف</message>
+	<message key="presenter.submit.authorSubmitLoginMessage">لا بد من التسجيل في الموقع من أجل تقديم محتوى علمي أو أوراق عمل لهذا المؤتمر. هذا الأمر يسمح للمشرفين بمتابعة تقديمك والتواصل معك بشأن ما يطراً عليه من مستجدات، أو للحصول منك على مزيد من المعلومات بشأنه.</message>
+</locale>

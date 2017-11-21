@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * locale.xml
+  *
+  * Copyright (c) 2000-2012 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the ar_IQ (Arabic) locale.
+  *
+  * $Id$
+  -->
+
+<locale name="ar_IQ" full_name="العربية">
+	<message key="default.paperType.individual.name">طلب تقديم فردي</message>
+	<message key="default.paperType.individual.description">تقديم أوراق عمل إلى المؤتمر بشكل شخصي</message>
+	<message key="default.paperType.panel.name">طلب تقديم جماعي</message>
+	<message key="default.paperType.panel.description">تقديم أوراق عمل إلى المؤتمر بشكل جماعي</message>
+	<message key="track.default.title">أوراق عمل عامة</message>
+	<message key="track.default.abbrev">أ ع ع</message>
+	<message key="track.default.policy"></message>
+	<message key="default.conferenceSettings.copyrightNotice"><![CDATA[المؤلفون المساهمون في هذا المؤتمر يقرون بالشروط الآتية:<br/>
+<strong>أ)</strong>&nbsp;يحتفظ المؤلفون بالحقوق الفكرية لأعمالهم، وفي الوقت نفسه يسمحون للمؤتمر بعرض أعمالهم غير المنشورة هذه بصفة <a href="http://creativecommons.org/licenses/by/3.0/">رخصة المشاع الإبداعي</a>، والتي تسمح للآخرين بالوصول المجاني إلى تلك الأعمال واستعمالها ومشاركتها مع التعريف بالمؤلف الأصلي ومساهمته في هذا المؤتمر.<br/>
+<strong>ب)</strong>&nbsp;يمكن للمؤلفين التنازل عن شروط الحقوق الفكرية والدخول في تعاقدات مستقلة إضافية تتعلق بالنشر غير الحصري اللاحق لهذا العمل (مثلاً، نشر نسخة أخرى منقحة في مجلة علمية، أو إيداعه في مستوعب مؤسساتي أو نشره في كتاب)، مع التعريف بمساهمته في هذا المؤتمر.<br/>
+<strong>ج)</strong>&nbsp;فضلاً عن ذلك، نحث المؤلفين على نشر أعمالهم على الإنترنت (كما في المستوعبات المؤسساتية أو على مواقعهم) في أي وقت قبل المؤتمر أو بعده.]]></message>
+
+	<message key="default.schedConfSettings.checklist.notPreviouslyPublished">إن هذا العمل لم يسبق نشره أو تقديمه إلى مؤتمر آخر للنظر فيه (أو هناك توضيح مدرج في خانة الملاحظات الموجهة إلى المشرف).</message>
+	<message key="default.schedConfSettings.checklist.fileFormat">إن ملف التقديم هو بصيغة OpenOffice أو Microsoft Word أو RTF أو WordPerfect.</message>
+	<message key="default.schedConfSettings.checklist.addressesLinked"><![CDATA[جميع الروابط المذكورة في النص (مثل <a href="http://pkp.sfu.ca">http://pkp.sfu.ca</a>) مفعلة وجاهزة للنقر عليها.]]></message>
+	<message key="default.schedConfSettings.checklist.submissionAppearance">تباعد الأسطر في النصوص يكون مفرداً، والنصوص بحجم 12 نقطة، وتم استعمال الحروف المائلة بدلاً عن الخطوط التحتانية (ما عدا روابط الإنترنت)، وكل الرسوم والأشكال والجداول موضوعة ضمن النص في مواضعها الصحيحة بدلاً من إلحاقها في نهايته.</message>
+	<message key="default.schedConfSettings.checklist.anonymous">إذا تم التقديم إلى مسار التحكيم المناظر، ينبغي رفع أسماء المؤلفين من النصوص المقدمة واستبدالها بكلمة "المؤلف" والسنة ضمن موضع السيرة الذاتية والتعليقات  والهوامش والعناوين... إلخ.</message>
+	<message key="default.schedConfSettings.checklist.personalInformationRemoved">إذا تم التقديم إلى مسار التحكيم المناظر، فإن جميع الملفات التي بصيغة Microsoft Office (من ضمنها الملفات التكميلية) قد تم حفظها بعد إزالة آثار اسم المؤلف عبر الذهاب إلى قائمة ملف واختيار حفظ باسم، يسبق ذلك النقر على قائمة أدوات (أو خيارات في بيئة Mac) ثم النقر على الأمان واختيار "إزالة البيانات الشخصية من خصائص الملف عند الحفظ" ثم الحفظ بعد ذلك.</message>
+	<message key="default.conferenceSettings.privacyStatement">إن الأسماء والعناوين المسجلة في هذا المؤتمر سيتم استعمالها حصرياً للأغراض المتعلقة به ولن تكون متاحة لأي أغراض أخرى أو لأي طرف ثالث.</message>
+	<message key="default.conferenceSettings.authorSelfArchivePolicy">يُسمح للمؤلفين بطرح أعمالهم في مواقعهم الشخصية أو أي مواقع مؤسساتية قبل نشرها في هذا المؤتمر أو بعده (ما داموا يقدمون تعريفاً تفصيلياً بهذا الطرح).</message>
+	<message key="default.conferenceSettings.emailSignature"><![CDATA[________________________________________________________________________
+{$conferenceName}
+{$conferenceUrl}
+]]></message>
+	<message key="default.conferenceSettings.forReaders"><![CDATA[نحن نحث القراء على التسجيل للحصول على إشعارات تتعلق بأوراق العمل المقدمة إلى هذا المؤتمر. نوصي بمراجعة صفحة <a href="{$aboutUrl}">عن المؤتمر</a> للوقوف على سياسات المؤتمر وزيارة <a href="{$conferenceUrl}">الصفحة الرئيسية</a> لمعرفة القادم من المؤتمرات.]]></message>
+	<message key="default.conferenceSettings.forAuthors"><![CDATA[ألديك اهتمام بالمساهمة في هذا المؤتمر؟ إذن نوصيك بمراجعة صفحة <a href="{$aboutUrl}">عن المؤتمر</a> للوقوف على سياسات المؤتمر وزيارة <a href="{$conferenceUrl}">الصفحة الرئيسية</a> لمعرفة القادم من المؤتمرات.]]></message>
+	<message key="default.conferenceSettings.lockssLicense"><![CDATA[هذا المؤتمر يستعمل نظام LOCKSS لخلق نظام حفظ موزع على المكتبات المساهمة وتمكينها من إنشاء أرشيف دائم للمؤتمر لأغراض الحفظ والاسترجاع. <a href="http://lockss.stanford.edu/">للمزيد...</a>]]></message>
+
+	<message key="default.schedConfSettings.emailSignature"><![CDATA[________________________________________________________________________
+{$conferenceName} {$schedConfName}
+{$schedConfUrl}
+]]></message>
+	<message key="default.conferenceSettings.archiveAccessPolicy">إن المواد المعروضة والتي تمثل محتوى المؤتمر الحالي والمؤتمرات المحفوظة في هذا الموقع قد تمت إتاحتها بشكل مفتوح للمعاينة من قبل المؤلفين والقراء المهتمين.</message>
+	<message key="default.schedConfSettings.checklist.bibliographicRequirements"><![CDATA[إن النص هنا يتقيد بأنماط ومتطلبات السير الذاتية المشار إليها في <a href="{$authorGuidelinesUrl}">إرشادات المؤلف</a>، التي يمكن العثور عليها في صفحة عن المؤتمر.]]></message>
+	<message key="default.schedConfSettings.forReaders"><![CDATA[نحن نحث القراء على التسجيل للحصول على إشعارات تتعلق بأوراق العمل المقدمة إلى هذا المؤتمر. إستعمل رابط <a href="{$accountUrl}">حساب المستخدم</a> في أعلى الصفحة الرئيسية للمؤتمر. هذا الأمر يسمح للمؤتمر بالحصول على مستوى معين من الدعم والموثوقية. أنظر صفحة <a href="{$privacyStatementUrl}">بيان الخصوصية</a> الخاصة بالمؤتمر والتي تؤكد للقراء بأن أسماءهم وعناوينهم لن يتم استعمالها لأغراض أخرى.]]></message>
+	<message key="default.schedConfSettings.forAuthors"><![CDATA[ألديك اهتمام بالمساهمة في هذا المؤتمر؟ إذن نوصيك بمراجعة صفحة <a href="{$aboutUrl}">عن المؤتمر</a> للوقوف على سياسات مسارات المؤتمر فضلاُ عن <a href="{$authorGuidelinesUrl}">إرشادات المؤلف</a>. على المؤلفين أن يقوموا بإنشاء <a href="{$accountUrl}">حساب</a> ضمن المؤتمر قبل الشروع بتقديم أوراقهم له. إن كان الحساب موجوداً سلفاً، فيكفي الدخول إلى الموقع عبر <a href="{$loginUrl}">تسجيل الدخول</a> ثم الشروع بعملية التقديم.]]></message>
+</locale>

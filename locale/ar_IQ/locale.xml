@@ -1,0 +1,862 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * locale.xml
+  *
+  * Copyright (c) 2000-2012 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the ar_IQ (Arabic) locale.
+  *
+  * $Id$
+  -->
+
+<locale name="ar_IQ" full_name="العربية">
+	<!--
+	 * This file is organized into several major sections, separated
+	 * by comments like this one. These sections are called:
+	 *  COMMON - Contains frequently-used words
+	 *  ENTITIES - Contains terms pertaining to the system's major
+	 *             entities, e.g. Paper, Conference, Track
+	 *  INTERFACE - Contains phrases organized by the section of the
+	 *              user interface they appear in.
+	 *  LOG - Contains phrases related to log entries
+	 *  MISC - Entries that don't belong elsewhere.
+	 *  DEFAULT - Default settings for configuration items.
+	-->
+
+	<!-- review forms start -->
+
+	<!-- common -->
+	<message key="common.copy">نسخ</message>
+	<message key="common.preview">معاينة</message>
+	<message key="common.activate">تنشيط</message>
+	<message key="common.deactivate">تعطيل</message>
+
+	<!-- Conference Management -->
+	<message key="manager.reviewForms">نماذج التحكيم</message>
+
+	<message key="manager.reviewForms.list.description">إن نماذج التحكيم المنشأة هنا ستقدم إلى المحكمين لإملائها بدلاً عن النموذج الإفتراضي التي يتكون من حقلي نص، الأول "مخصص للمؤلف والمحرر" والثاني "للمحرر". بالإمكان تصميم نماذج تحكيم مخصصة لمسارات المؤتمر، ليكون للمحررين الحرية في اختيار أي منها لأغراض التحكيم. في جميع الأحوال، سيتاح للمحررين خيار تضمين التحكيمات بالتنسيق مع المؤلف.</message>
+	<message key="manager.reviewForms.noneChosen">بدون نموذج مخصص / تحكيم يستعمل النموذج الإفتراضي</message>
+	<message key="manager.reviewForms.noneCreated">لم يتم إنشاء نماذج تحكيم بعد.</message>
+	<message key="manager.reviewForms.create">إنشاء نموذج تحكيم</message>
+	<message key="manager.reviewForms.edit">نموذج التحكيم</message>
+	<message key="manager.reviewForms.title">العنوان</message>
+	<message key="manager.reviewForms.description">الوصف والتعليمات</message>
+	<message key="manager.reviewForms.preview">معاينة النموذج</message>
+	<message key="manager.reviewForms.completed">مكتمل</message>
+	<message key="manager.reviewForms.inReview">قيد التحكيم</message>
+	<message key="manager.reviewForms.confirmDeleteUnpublished">هل أنت متأكد من رغبتك في حذف نموذج التحكيم غير المنشور هذا؟</message>
+
+	<message key="manager.reviewForms.form.titleRequired">العنوان مطلوب حتماً لنموذج التحكيم.</message>
+
+	<message key="manager.reviewFormElements">فقرات النموذج</message>
+	<message key="manager.reviewFormElements.create">إنشاء فقرة جديدة</message>
+	<message key="manager.reviewFormElements.edit">تعديل الفقرة</message>
+	<message key="manager.reviewFormElements.noneCreated">لم يتم إنشاء فقرات للنموذج بعد.</message>
+	<message key="manager.reviewFormElements.confirmDelete">هل أنت متأكد من رغبتك في حذف أحد عناصر نموذج تحكيم منشور؟</message>
+	<message key="manager.reviewFormElements.copyTo">نسخ إلى:</message>
+	<message key="manager.reviewFormElements.question">الفقرة</message>
+	<message key="manager.reviewFormElements.required">على المحكمين إكمال هذه الفقرة</message>
+	<message key="manager.reviewFormElements.included">تضمين الفقرة في المراسلات مع المؤلف</message>
+	<message key="manager.reviewFormElements.elementType">نوع الفقرة</message>
+	<message key="manager.reviewFormElements.possibleResponse">خيار</message>
+	<message key="manager.reviewFormElements.addResponseItem">أضف خياراً</message>
+	<message key="manager.reviewFormElements.chooseType">إختر نوع الفقرة</message>
+	<message key="manager.reviewFormElement.changeType">تحذير: تغيير نوع الفقرة من خيارات متعددة إلى نوع آخر مطلق سيؤدي إلى حذف الخيارات التي يتضمنها.</message>
+
+	<message key="manager.reviewFormElements.form.questionRequired">لا بد من وضع سؤال لفقرة النموذج.</message>
+	<message key="manager.reviewFormElements.form.elementTypeRequired">لا بد من تحديد نوع الفقرة.</message>
+
+	<message key="manager.reviewFormElements.smalltextfield">مربع نص لكلمة واحدة</message>
+	<message key="manager.reviewFormElements.textfield">مربع نص من سطر واحد</message>
+	<message key="manager.reviewFormElements.textarea">مربع نص متعدد الأسطر</message>
+	<message key="manager.reviewFormElements.checkboxes">خانات إختيار (يمكن إختيار واحدة أو أكثر)</message>
+	<message key="manager.reviewFormElements.radiobuttons">أزرار إختيار (يمكن إختيار إحداها فقط)</message>
+	<message key="manager.reviewFormElements.dropdownbox">قائمة منسدلة</message>
+
+	<!--  peer review -->
+	<message key="submission.reviewForm">نموذج التحكيم</message>
+	<message key="submission.reviewFormResponse">إجابة نموذج التحكيم</message>
+
+	<message key="editor.paper.reviewForms">نماذج التحكيم</message>
+	<message key="editor.paper.selectReviewForm">إختر نموذج التحكيم</message>
+	<message key="editor.paper.clearReviewForm">تصفير نموذج التحكيم</message>
+	<message key="editor.paper.confirmChangeReviewForm">تحذير: تغيير نموذج التحكيم الآن سيتجاهل كل الإجابات التي قدمها المحكمون باستعماله. هل أنت متأكد من رغبتك في المتابعة؟</message>
+
+	<message key="reviewer.paper.enterReviewForm">أنقر على الإيقونة لإدخال إجاباتك في نموذج التحكيم.</message>
+	<message key="reviewer.paper.reviewFormResponse.form.responseRequired">لطفاً، لا بد من الإجابة على الحقول الإجبارية.</message>
+
+	<!-- review forms end -->
+
+	<!--
+	 *
+	 * COMMON - This section contains the most frequently-used words
+	 *
+	-->
+
+	<!-- Common Messages -->
+	<message key="common.openConferenceSystems">نظام المؤتمرات المفتوحة</message>
+	<message key="common.noDate">(التاريخ)</message>
+	<message key="common.time">الوقت</message>
+	<message key="common.days">أيام</message>
+	<message key="common.timeZone">المنطقة الزمنية</message>
+	<message key="common.ellipsis">...</message>
+	<message key="common.path">المسار</message>
+	<message key="common.dateTimeSeparator">عند</message>
+	<message key="common.ccLicense"><![CDATA[
+		<a target="_new" rel="الرخصة" href="http://creativecommons.org/licenses/by/3.0/">
+			<img alt="رخصة المشاع الإبداعي" style="border-width:0" src="{$ccLicenseImageUrl}"/>
+		</a>
+		<br/>
+		هذا <span xmlns:dc="http://purl.org/dc/elements/1.1/" href="http://purl.org/dc/dcmitype/Text" rel="dc:type">العمل</span> مرخص بموجب <a rel="رخصة" target="_new" href="http://creativecommons.org/licenses/by/3.0/">الإسناد 3.0 من رخصة المشاع الإبداعي</a>.
+	]]></message>
+	<message key="common.sortBy">الفرز حسب...</message>
+	<message key="common.sitePageHeader.altText">صورة رأس الموقع</message>
+	<message key="common.pageHeader.altText">صورة رأس الصفحة</message>
+	<message key="common.homePageHeader.altText">صورة الصفحة الرئيسية</message>
+	<message key="common.conferenceHomepageImage.altText">صورة صفحة المؤتمر الرئيسية</message>
+
+	<!-- Navigation -->
+	<message key="navigation.conferenceHelp">مساعدة</message>
+	<message key="navigation.account">حساب المستخدم</message>
+	<message key="navigation.archive">المحفوظات</message>
+	<message key="navigation.current">المؤتمرات الحالية</message>
+	<message key="navigation.otherConferences">مؤتمرات أخرى</message>
+	<message key="navigation.browseByConference">حسب المؤتمر</message>
+	<message key="navigation.browseByAuthor">حسب المؤلف</message>
+	<message key="navigation.infoForAuthors">للمؤلفين</message>
+	<message key="navigation.infoForReviewers">للمحكمين</message>
+	<message key="navigation.infoForAuthors.long">معلومات للمؤلفين</message>
+	<message key="navigation.infoForReviewers.long">معلومات للمحكمين</message>
+
+	<!-- Paper Queues -->
+	<message key="common.queue.long.submissionsUnassigned">غير معين</message>
+	<message key="common.queue.short.submissionsUnassigned">غير معين</message>
+	<message key="common.queue.long.submissionsInReview">طلبات التقديم قيد التحكيم</message>
+	<message key="common.queue.short.submissionsInReview">قيد التحكيم</message>
+	<message key="common.queue.long.submissionsAccepted">العروض المقبولة</message>
+	<message key="common.queue.short.submissionsAccepted">عروض مقبولة</message>
+	<message key="common.queue.long.submissionsArchives">المحفوظات</message>
+	<message key="common.queue.short.submissionsArchives">محفوظات</message>
+	<message key="common.queue.long.active">طلبات التقديم النشطة</message>
+	<message key="common.queue.short.active">نشطة</message>
+	<message key="common.queue.long.completed">المحفوظات</message>
+	<message key="common.queue.short.completed">محفوظات</message>
+
+	<!--
+	 *
+	 * ENTITIES - This section contains terms pertaining to the system's
+	 *            major entities, e.g. Paper, Conference, Track
+	 *
+	-->
+
+	<!-- Common Track Terms -->
+	<message key="track.track">المسار</message>
+	<message key="track.tracks">مسارات المؤتمر</message>
+	<message key="track.title">عنوان المسار</message>
+	<message key="track.abbreviation">الإختصار</message>
+	<message key="track.abbreviation.example">(على سبيل المثال، أوراق عمل عامة = عامة)</message>
+
+	<!-- Common Paper Terms -->
+	<message key="paper.papers">أوراق عمل</message>
+	<message key="paper.submissionId">رمز التقديم</message>
+	<message key="paper.title">العنوان</message>
+	<message key="paper.authors">المؤلفون</message>
+	<message key="paper.conferenceTrack">مسار المؤتمر</message>
+	<message key="paper.file">الملف</message>
+	<message key="paper.suppFile">الملف التكميلي</message>
+	<message key="paper.suppFiles">الملف/الملفات التكميلية</message>
+	<message key="paper.suppFilesAbbrev">ملفات تكميلية</message>
+	<message key="paper.discipline">التخصص العلمي وتفرعاته</message>
+	<message key="paper.subjectClassification">تصنيف الموضوع</message>
+	<message key="paper.subject">الكلمات المفتاحية</message>
+	<message key="paper.coverage">التغطية</message>
+	<message key="paper.coverageGeo">تغطية جغرافية مكانية</message>
+	<message key="paper.coverageChron">تغطية تاريخية أو زمانية</message>
+	<message key="paper.coverageSample"> خصائص عينة البحث</message>
+	<message key="paper.type">النوع، الطريقة أو المنهج</message>
+	<message key="paper.language">اللغة</message>
+	<message key="paper.trackDirector">م م</message>
+	<message key="paper.commentsToDirector">تعليقات المؤلف</message>
+	<message key="paper.submission">طلب التقديم</message>
+	<message key="paper.submissions">طلبات التقديم</message>
+	<message key="paper.abstract">الملخص</message>
+	<message key="paper.details">التفاصيل</message>
+	<message key="paper.location">الموقع</message>
+	<message key="paper.time">الوقت</message>
+	<message key="paper.comments.trackDefault">الإفتراضي</message>
+	<message key="paper.comments.disable">تعطيل</message>
+	<message key="paper.comments.enable">تمكين</message>
+	<message key="paper.fontSize">حجم الخط</message>
+	<message key="paper.fontSize.small.altText">صغير</message>
+	<message key="paper.fontSize.medium.altText">متوسط</message>
+	<message key="paper.fontSize.large.altText">كبير</message>
+	<message key="paper.sessionType">نوع الجولة</message>
+
+	<!-- Submission Tracking - Common -->
+	<message key="submission.fromTime">من</message>
+	<message key="submission.toTime">إلى</message>
+	<message key="submission.abstractReview">تحكيم الملخص</message>
+	<message key="submission.paperReview">تحكيم ورقة العمل</message>
+	<message key="submission.page.abstractReview">#{$id} تحكيم الملخص</message>
+	<message key="submission.page.paperReview">#{$id} تحكيم ورقة العمل</message>
+	<message key="submission.uploadFile">رفع ورقة العمل</message>
+	<message key="submission.changeTrack">تغيير إلى</message>
+	<message key="submission.acceptance">وافق على التحكيم</message>
+	<message key="submission.complete.description">أضف طلب التقديم إلى قائمة العروض المقبولة.</message>
+	<message key="submission.directorDecision">قرار المشرف</message>
+	<message key="submission.stage">المرحلة&amp;nbsp;{$stage}</message>
+	<message key="submission.directorReview">تحكيم المشرف</message>
+	<message key="submission.notifyAuthor">إشعار المؤلف</message>
+	<message key="submission.notifyDirector">إشعار المشرف</message>
+	<message key="submission.directorAuthorRecord">سجل بريد المشرف/المؤلف</message>
+	<message key="submission.directorVersion">نسخة المشرف</message>
+	<message key="submission.authorsRevisedVersion">نسخة المؤلف المنقحة من الملف</message>
+	<message key="submission.authorVersion">نسخة المؤلف</message>
+	<message key="submission.layout.description">يمكن اللجوء إلى هذه الخطوة الإختيارية لتعديل تصميم طلبات التقديم أو تغيير صيغ الملفات سواءً قبل إرسال الطلبات إلى العروض أو بعده.</message>
+
+	<message key="submissions.track">المسار</message>
+	<message key="submissions.queuedAbstractReview">الملخص قيد التحكيم</message>
+	<message key="submissions.queuedPaperReview">ورقة العمل قيد التحكيم</message>
+	<message key="submissions.published">منشورة</message>
+	<message key="submissions.accepted">مقبولة</message>
+	<message key="submissions.reviewStage">مرحلة التحكيم</message>
+	<message key="submissions.reviewType">نوعية التحكيم</message>
+	<message key="submissions.pendingPresentation">بانتظار الرفع</message>
+	<message key="submissions.expired">منتهية الصلاحية</message>
+	<message key="submissions.directorDecision">قرار المشرف</message>
+	<message key="submissions.directorRuling">سيطرة المشرف</message>
+	<message key="trackDirector.galley.replaceGalley">استبدال الملف</message>
+	<message key="submission.abstract">الملخص</message>
+	<message key="submission.paper">ورقة العمل</message>
+
+	<!-- Common Conference Terms -->
+	<message key="conference.conferences">المؤتمرات</message>
+	<message key="conference.conference">المؤتمر</message>
+
+	<!-- Common Scheduled Conference Terms -->
+	<message key="schedConf.scheduledConferences">المؤتمرات المجدولة</message>
+	<message key="schedConf.noScheduledConferences">لا توجد مؤتمرات مجدولة</message>
+	<message key="schedConf.schedConf">مؤتمر مجدول</message>
+	<message key="schedConf.contents">معلومات المؤتمر</message>
+	<message key="schedConf.overview">نظرة عامة</message>
+	<message key="schedConf.trackPolicies">سياسات المسار</message>
+	<message key="schedConf.schedule">جدولة</message>
+	<message key="schedConf.program">البرنامج</message>
+	<message key="schedConf.cfp">دعوة للحصول على أوراق عمل</message>
+	<message key="schedConf.discussion">القرار</message>
+	<message key="schedConf.registration">التسجيل</message>
+	<message key="schedConf.accommodation">الإقامة</message>
+	<message key="schedConf.supporters">المنظمون وشركائهم</message>
+	<message key="schedConf.timeline">الخط الزمني</message>
+	<message key="schedConf.schedule">جدول أعمال المؤتمر</message>
+	<message key="schedConf.links">روابط ذات صلة</message>
+	<message key="schedConf.presentations">العروض والمؤلفين</message>
+	<message key="schedConf.presentations.short">العروض</message>
+	<message key="schedConf.abstract">الملخص</message>
+	<message key="schedConf.submission">طلب التقديم</message>
+	<message key="schedConf.submissions">طلبات التقديم</message>
+
+	<message key="schedConf.cfp.title">دعوة للمساهمة بأوراق عمل</message>
+	<message key="schedConf.overview.title">نظرة عامة</message>
+	<message key="schedConf.presentations.title">العروض والمؤلفين</message>
+	<message key="schedConf.schedule.title">جدول الأعمال</message>
+	<message key="schedConf.program.title">البرنامج</message>
+	<message key="schedConf.accommodation.title">الإقامة</message>
+	<message key="schedConf.trackPolicies.title">سياسات المسار</message>
+
+	<!-- Reader interface for scheduler -->
+	<message key="schedConf.scheduler.locations">مواقع المؤتمر</message>
+
+	<!-- User self-registration form -->
+	<message key="schedConf.registration.alreadyRegistered">سبق لك التسجيل في هذا المؤتمر، على الرغم من أن الرسوم المستحقة عليك لم تصل بعد. لطفاً، تواصل مع عنوان الاتصال الرئيسي المذكور في صفحة "عن" إذا كان هذا بمثابة خطأ أو إذا أردت تغيير حالة تسجيلك.</message>
+	<message key="schedConf.registration.alreadyRegisteredAndPaid">لقد سبق لك التسجيل في هذا المؤتمر كما أن رسوم التسجيل مدفوعة. لطفاً، تواصل مع عنوان الاتصال الرئيسي المذكور في صفحة "عن" إذا كان هذا بمثابة خطأ أو إذا أردت تغيير حالة تسجيلك.</message>
+	<message key="schedConf.registration.noPaymentMethodAvailable">لقد تم توثيق تسجيلك. إذا كانت تترتب عليك رسوم، فسيتم التراسل معك بشأن تسديدها.</message>
+	<message key="schedConf.registration.free">لقد تم توثيق تسجيلك ولا تترتب عليك رسوم مالية.</message>
+	<message key="schedConf.registration.conferenceFees">رسوم المؤتمر</message>
+	<message key="schedConf.registration.failed">فشلت عملية تسجيلك، لطفاً حاول مرة أخرى.</message>
+	<message key="schedConf.registration.type">نوعية التسجيل</message>
+	<message key="schedConf.registration.cost">الكلفة</message>
+	<message key="schedConf.registrationTypes.noneAvailable">لا تتوفر أنواع للتسجيل.</message>
+	<message key="schedConf.registrationOptions.noneAvailable">لا تتوفر خيارات للتسجيل.</message>
+	<message key="schedConf.registrationOptions.removed">إن خيار التسجيل "{$option}" قد سبق تأشيره ولكن لم يتم اختياره للتسجيل الجديد.</message>
+	<message key="schedConf.registrationOptions.added">إن خيار التسجيل "{$option}" لم يسبق تأشيره ولكن تمت إضافته للتسجيل الجديد.</message>
+	<message key="schedConf.registration.register">التسجيل</message>
+	<message key="schedConf.registration.typeCloses">(تُغلق {$closingDate})</message>
+	<message key="schedConf.registration.typeClosed">(التسجيل مغلق بتاريخ {$closingDate})</message>
+	<message key="schedConf.registration.typeFuture">(التسجيل مفتوح منذ {$openingDate})</message>
+	<message key="schedConf.registration.optionCloses">(يُغلق {$closingDate})</message>
+	<message key="schedConf.registration.optionClosed">(التسجيل يُغلق {$closingDate})</message>
+	<message key="schedConf.registration.optionFuture">(يًفتتح التسجيل {$openingDate})</message>
+	<message key="schedConf.registration.feeCode">رمز الرسم</message>
+	<message key="schedConf.registration.feeCode.description">إذا تم إعطاؤك رمزاً سرياً لغرض التسجيل، لطفاً أدخله هنا وتأكد من اختيارك لنوع التسجيل الصحيح أعلاه، وإلا، فاترك حقل رمز الرسم فارغاً.</message>
+	<message key="schedConf.registration.specialRequests">الطلبات الخاصة</message>
+	<message key="schedConf.registration.specialRequests.description">لطفاً، أعط وصفاً لأي متطلبات خاصة أو مطالبات مثل حمية غذائية أو تسهيلات وصول وما شابه.</message>
+	<message key="schedConf.registration.account">حساب المستخدم</message>
+	<message key="schedConf.registration.loggedInAs"><![CDATA[أنت الآن مسجل دخولك إلى النظام. تحقق من صحة بيانات حسابك أدناه. إن لم تكن صحيحة، أجر ما يلزم من تعديلات عبر <a href="{$profileUrl}">تعديل حسابي</a> أو <a href="{$logoutUrl}">سجل خروجك</a> إذا أردت استعمال حساب مستخدم آخر.]]></message>
+	<message key="schedConf.registration.createAccount.description"><![CDATA[أنت حالياً غير مسجل دخولك إلى النظام. من أجل التسجيل للمساهمة في هذا المؤتمر، عليك المبادرة إلى التسجيل في الموقع. إذا سبق لك الحصول على حساب مستخدم، <a href="{$loginUrl}">أنقر هنا</a> لتسجيل الدخول؛ وإلا، إملأ حقول البيانات أدناه لإنشاء حساب مستخدم جديد.]]></message>
+	<message key="schedConf.registration.options">خيارات التسجيل</message>
+
+	<message key="schedConf.registration.landingPaid">شكراً لتسديدك لرسوم التسجيل! سيتم التواصل معك إذا كانت هناك حاجة لمزيد من المعلومات.</message>
+	<message key="schedConf.registration.landingPaid">شكراً لقيامك بالتسجيل! سيتم الاتصال بك بشأن رسوم التسجيل لاحقاً.</message>
+
+	<!-- User -->
+	<message key="user.showAllConferences">أظهر لي مؤتمراتي</message>
+	<message key="user.createAccount">إنشاء</message>
+	<message key="user.createAccountForOtherConferences">إنشاء حساب للمؤتمرات الأخرى</message>
+	<message key="user.myConferences">مؤتمراتي</message>
+	<message key="user.noRoles.chooseConference">إن حسابك غير مرتبط بأي مؤتمر بعد. لطفاً، إختر أحدها:</message>
+	<message key="user.noRoles.noRolesForConference">إن حسابك حالياً ليست له أي أدوار تتعلق بهذا المؤتمر. لطفاً، إختر ما تجده موائماً من الوظائف أدناه:</message>
+	<message key="user.noRoles.submitProposal">تقدم بمقترح</message>
+	<message key="user.noRoles.submitProposalRegClosed">تقديم مقترح: تسجيل المؤلفين مغلق حالياً.</message>
+	<message key="user.noRoles.submitProposalSubmissionsClosed">تقديم مقترح: تقديم الطلبات متوقف حالياً.</message>
+	<message key="user.noRoles.regReviewer">سجل نفسك بمثابة محكم للمؤتمر</message>
+	<message key="user.noRoles.regReviewerClosed">التسجيل بمثابة محكم: تسجيل المحكمين مغلق حالياً.</message>
+	<message key="user.noRoles.register">سجل لحضور المؤتمر</message>
+	<message key="user.noRoles.registerUnavailable">التسجيل لحضور المؤتمر: التسجيل متوقف حالياً.</message>
+
+	<!-- Roles -->
+	<message key="user.role.manager">مدير المؤتمر</message>
+	<message key="user.role.director">المشرف</message>
+	<message key="user.role.trackDirector">مشرف المسار</message>
+	<message key="user.role.author">المؤلف</message>
+
+	<message key="user.role.managers">مدراء المؤتمر</message>
+	<message key="user.role.directors">المشرفون</message>
+	<message key="user.role.trackDirectors">مدراء المسار</message>
+	<message key="user.role.authors">المؤلفون</message>
+
+	<!--
+	 *
+	 * LOG - This section contains entries related to log entries.
+	 *
+	-->
+
+	<message key="event.logType.paper">ورقة العمل</message>
+	<message key="event.logType.author">المؤلف</message>
+	<message key="event.logType.director">المشرف</message>
+	<message key="event.logType.review">معاينة</message>
+	<message key="event.logType.conference">المؤتمر</message>
+
+	<message key="event.eventLog">سجل الوقوعات</message>
+	<message key="event.logLevel">المستوى</message>
+
+	<message key="event.logLevel.info">معلومة</message>
+	<message key="event.logLevel.notice">ملاحظة</message>
+	<message key="event.logLevel.warning">تحذير</message>
+	<message key="event.logLevel.error">خطأ</message>
+
+	<message key="event.general.defaultEvent">حدث طلب التقديم</message>
+
+	<!-- Submission events -->
+
+	<message key="submission.event.general.abstractSubmitted">الملخص مقدم</message>
+	<message key="submission.event.general.presentationSubmitted">العرض مقدم</message>
+	<message key="submission.event.general.paperPublished">ورقة العمل منشورة</message>
+
+	<message key="submission.event.presenter.authorRevision">نسخة المؤلف المنقحة مقدمة</message>
+
+	<message key="submission.event.general.authorRevision">ملف المؤلف المنقح محدث</message>
+
+	<message key="submission.event.director.directorAssigned">تم تعيين مشرف لطلب التقديم</message>
+	<message key="submission.event.director.directorUnassigned">تمت تنحية المشرف عن طلب التقديم</message>
+	<message key="submission.event.director.directorDecision">قرار المشرف مقدم</message>
+	<message key="submission.event.director.directorFile">ملف المشرف محدث</message>
+	<message key="submission.event.director.submissionArchived">طلب التقديم مرسل إلى المحفوظات</message>
+	<message key="submission.event.director.submissionRestored">طلب التقديم مسترجع من المحفوظات</message>
+
+
+	<!-- Conference events -->
+	<message key="conference.event.general.configuration">تم تعديل إعدادات المؤتمر</message>
+	<message key="conference.event.general.deadline">انقضى الموعد النهائي للمؤتمر</message>
+
+	<!--
+	 *
+	 * INTERFACE - Contains phrases organized by the section of the
+	 *             user interface they appear in.
+	 *
+	-->
+
+	<!-- Reader paper view -->
+	<message key="reader.fullTextNotAvailable">أوراق عمل المؤتمر غير متاحة حالياً.</message>
+	<message key="reader.accessDenied">لا يسمح لك بمعاينة هذه الورقة حالياً. إذا كانت لديك حساب مستخدم متعلق بموقع المؤتمر هذا، فعليك تسجيل الخول إلى الموقع لمعاينة هذا المحتوى.</message>
+	<message key="reader.fullTextRegistrationRequired">لا بد من التسجيل في موقع المؤتمر لمعاينة أوراق عمله.</message>
+	<message key="reader.fullTextAccountRequired"><![CDATA[لا بد من الحصول على حساب مستخدم ضمن هذا الموقع لمعاينة محتوياته. <a href="{$registerUrl}">أنقر هنا</a> لإنشاء حساب جديد.]]></message>
+	<message key="reader.fullTextRegistrantsOnlyUntil">الوصول المفتوح لمحتويات هذا المؤتمر سيبدأ بتأريخ {$date}.</message>
+	<message key="reader.fullTextNotPostedYet">أوراق عمل هذا المؤتمر سيتم طرحها بتأريخ {$date}.</message>
+
+	<!-- Reader Comments -->
+	<message key="comments.authenticated">{$userName}</message>
+	<message key="comments.commentsOnPaper">التعليقات على ورقة العمل</message>
+	<message key="comments.commentsClosed">التعليقات متوقفة منذ {$closeCommentsDate}.</message>
+
+	<!-- Site Administration -->
+
+	<message key="admin.settings.oaiRegistrationDescription"><![CDATA[لفهرسة محتويات كل المؤتمرات المستضافة في هذا الموقع ضمن نظام توزيع عالمي لقواعد بيانات قابلة للبحث، <a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">سجل</a> رابط موقعك مع <a href="http://pkp.sfu.ca/harvester/" target="_blank">حاصود</a> البيانات الوصفية لمشروع المعرفة العامة. هذه الأداة تجمع البيانات الوصفية لكل مكون مفهرس ضمن المؤتمر، مما يسمح بعمليات البحث الدقيقة التي تجريها المواقع المتماشية مع <a href="http://www.openarchives.org/OAI/openarchivesprotocol.htm#Introduction" target="_blank">بروتوكول مبادرة حصاد البيانات الوصفية للمحفوظات المفتوحة</a>.
+<br /><br />
+<a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">أنقر هنا</a> ثم أدخل <span class="highlight">{$siteUrl}</span> ضمن حقل <strong>رابط الموقع</strong>، مع <span class="highlight">{$oaiUrl}</span> في حقل <strong>الرابط الأساسي لمحفوظات OAI</strong>.
+<br /><br />
+لاحظ أن واجهة OAI يمكن تعطيلها لهذا الموقع عبر تعديل إعدادات نظام المؤتمرات المفتوحة. النسخ القادمة من نظام المؤتمرات المفتوحة ستسمح بتمكين تلك الواجهة أو تعطيلها على مستوى كل مؤتمر ضمن الموقع.]]></message>
+
+	<message key="admin.auth.defaultSourceDescription"><![CDATA[<p>تحديد مصدر مصادقة إفتراضي مغاير لنظام المؤتمرات المفتوحة سيؤدي إلى:</p>
+<ul>
+	<li>إذا حاول مستخدم ما إنشاء حساب جديد ضمن هذا الموقع مستعملاً اسم مستخدم موجود سلفاً في مصدر المصادقة (لكنه غير موجود في قاعدة بيانات نظام المؤتمرات المفتوحة)، فإن محاولة التسجيل مسموح بها فقط إذا كانت كلمة المرور صحيحة لذلك المستخدم.</li>
+</ul>]]></message>
+
+	<!-- System Information -->
+	<message key="admin.overwriteConfigFileInstructions"><![CDATA[<h4>ملاحظة!</div>
+<p>تعذر على النظام تعديل ملف الإعدادات تلقائياً. لاعتماد إعداداتك بعد التغيير عليك أن تفتح الملف <tt>config.inc.php</tt> مستعملاً برنامجاً مناسباً لتحرير النصوص ثم استبدال محتوياته بالمحتوى المبين في النص أدناه.</p>]]></message>
+
+	<!-- Payment Handling -->
+	<message key="payment.type.conferenceRegistration">التسجيل في المؤتمر: {$schedConfTitle}; {$registrationTypeName}</message>
+
+	<!-- Conference Event Log -->
+	<message key="conference.event.confirmClearLog">هل أنت متأكد من رغبتك في تصفير سجل الوقوعات الخاص بهذا المؤتمر؟</message>
+	<message key="conference.event.confirmDeleteLogEntry">هل أنت متأكد من رغبتك في حذف هذه المعلومة من سجل الوقوعات؟</message>
+	<message key="conference.event.deleteLogEntry">حذف معلومة من سجل الوقاعات</message>
+	<message key="conference.event.backToEventLog">العودة إلى سجل الوقوعات</message>
+	<message key="conference.history.conferenceEventLog">سجل الوقوعات</message>
+	<message key="conference.history.clearLog">تصفير السجل</message>
+	<message key="conference.history.noLogEntries">لا بيانات في سجل الوقوعات.</message>
+
+	<!-- General plugin information -->
+	<message key="plugins.categories.generic.description">الإضافات العامة تستعمل لمنح نظام المؤتمرات المفتوحة المزيد من الإمكانيات التي قد لا يُعتبر مناسباً تبويبها ضمن أصناف الإضافات الأخرى.</message>
+	<message key="plugins.categories.auth.description">إضافات الصلاحيات تُمكن نظام المؤتمرات المفتوحة من تلبية مهام التفاوض مع الأنظمة الأخرى بشأن صلاحيات المستخدم، مثل ملقمات LDAP.</message>
+	<message key="plugins.categories.citationFormats.description">إضافات صيغ الاقتباسات تقدم للمستخدم أنماطاً متعددة من الاقتباسات التي يمكن الوصول إليها عبر أوراق العمل.</message>
+
+	<!-- Leftovers -->
+	<message key="manager.setup.finalStepSavedNotes"><![CDATA[
+			<p>على وشك الانتهاء!</p>
+			<p>لقد تم إعداد المؤتمر الآن، والذي من الممكن أن يكون مؤتمراً في حدث واحد منفرد، أو حدثاً سنوياً أو سلسلة أحداث متتابعة وفق جدول زمني، وكل تلك الإحتمالات يمكن إدارتها عبر موقع المؤتمر هذا. لجدولة نسخة أخرى من هذا المؤتمر، إذهب إلى <a href="{$schedConfSetupUrl}">المؤتمرات المجدولة</a>. يمكنك الوصول إلى هذه الصفحة في أي وقت لاحقاً عبر صفحة مدير المؤتمر الرئيسية.</p>
+			<p>بإمكانك العودة إلى هذه الصفحات الستة وقتما تشاء عبر اتباع الروابط "صفحة المستخدم الرئيسية > مدير المؤتمر > التهيئة".</p>
+			<p>يمكنك إدارة المؤتمرات المجدولة عبر "صفحة المستخدم الرئيسية > مدير المؤتمر > التهيئة"</p>
+	]]></message>
+	<message key="manager.setup.citations">يتيح للمؤلفين أن يقدموا بشكل مستقل قائمة منسقة بالمراجع (الاقتباسات) كجزء من عملية التقديم.</message>
+
+	<message key="manager.setup.indexing.registerConferenceForIndexing.description"><![CDATA[لفهرسة محتويات هذا المؤتمر ضمن نظام توزيع عالمي لقواعد بيانات قابلة للبحث، <a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">سجل</a> رابط موقع المؤتمر مع <a href="http://pkp.sfu.ca/harvester/" target="_blank">حاصود</a>  البيانات الوصفية لمشروع المعرفة العامة. هذه الأداة تجمع البيانات الوصفية لكل مكون مفهرس ضمن المؤتمر، مما يسمح بعمليات البحث الدقيقة التي تجريها المواقع المتماشية مع <a href="http://www.openarchives.org/OAI/openarchivesprotocol.htm#Introduction" target="_blank">بروتوكول مبادرة حصاد البيانات الوصفية للمحفوظات المفتوحة</a>.
+<br /><br />
+لاحظ أنه إذا سبق لمدير موقعك التسجيل ضمن حاصود مشروع المعرفة العامة، فإن موقع المؤتمر ستتم فهرسته تلقائياً وليس من داعٍ لتسجيله بشكل منفرد.
+<br /><br />
+<a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">أنقر هنا</a> ثم أدخل <span class="highlight">{$siteUrl}</span> ضمن حقل <strong>رابط الموقع</strong>، مع <span class="highlight">{$oaiUrl}</span> في حقل <strong>الرابط الأساسي لمحفوظات OAI</strong>.]]></message>
+
+	<!-- Scheduled Conference Setup Step 2 -->
+	<message key="manager.schedConfSetup.submissions.subjectClassificationDescription"><![CDATA[المؤتمر سيستعمل نظام تصنيف المواضيع المتاح عبر الإنترنت.<br />
+عنوان نظام التصنيف]]></message>
+
+	<!-- People Management -->
+	<message key="manager.people.confirmDisable">أتريد تعطيل هذا المستخدم؟ هذا سيحرمه من دخول النظام.
+
+بإمكانك إختيارياً تقديم عذر للمستخدم بشأن تعطيل حسابه.</message>
+	<message key="manager.people.noAdministrativeRights"><![CDATA[عذراً، ليست لديك صلاحيات التحكم بهذا المستخدم، قد يكون من أسباب ذلك:
+		<ul>
+			<li>إن المستخدم المعني هو مدير الموقع</li>
+			<li>إن المستخدم لديه نشاط آخر في مؤتمر لست مديراً فيه</li>
+		</ul>
+	لا بد من تنفيذ هذه المهمة بصلاحيات مدير الموقع.
+	]]></message>
+
+	<!-- Used by director in submission review / editing -->
+	<message key="director.paper.selectReviewerNotes"><![CDATA[روابط الاسم للملف التعريفي للمحكم.<br/>
+التقييم من خمس درجات (5 معناها إمتياز).<br/>
+الأسابيع تمثل معدل فترة إكمال التحكيم الواحد.<br/>
+الأخيرة هي تأريخ أحدث موافقة على التحكيم.<br/>
+النشطة تمثل عدد مهام التحكيم الفعالة حالياً أو التي في النية الشروع بها.]]></message>
+
+	<!-- Track Director -->
+	<message key="trackDirector.author.confirmRenotify">إشعار هذا المؤلف مرة أخرى سيؤدي إلى إعادة تكليفه بمهامه مجدداً. هل أنت متأكد من رغبتك في ذلك؟</message>
+
+	<message key="trackDirector.regrets.breadcrumb">الإعتذارات</message>
+	<message key="trackDirector.regrets.title">#{$paperId} إعتذارات التحكيم والإلغاءات</message>
+	<message key="trackDirector.regrets">الإعتذارات</message>
+	<message key="trackDirector.regrets.link">إعتذارات التحكيم والإلغاءات</message>
+	<message key="trackDirector.regrets.reviewStage">التحكيم المناظر، المرحلة {$stage}</message>
+	<message key="trackDirector.regrets.decisionStage">قرار المشرف، المرحلة {$stage}</message>
+	<message key="trackDirector.regrets.regretsAndCancels">إعتذارات المحكم والإلغاءات</message>
+	<message key="trackDirector.regrets.regret">إعتذار</message>
+	<message key="trackDirector.regrets.result">النتيجة</message>
+	<message key="trackDirector.review.enrollReviewer">تعيين مستخدم بمثابة محكم</message>
+	<message key="trackDirector.review.createReviewer">إنشاء محكم جديد</message>
+
+	<!-- Reviewer -->
+	<message key="reviewer.completedReviews">منجز</message>
+	<message key="reviewer.averageQuality">التقييم</message>
+
+	<!-- Used in submission review -->
+	<message key="reviewer.paper.fileToBeReviewed">الملف المعد للتحكيم</message>
+	<message key="reviewer.paper.notifyTheDirector">إشعار المشرف</message>
+	<message key="reviewer.paper.canDoReview">راغب بالتحكيم</message>
+	<message key="reviewer.paper.cannotDoReview">غير قادر على التحكيم</message>
+	<message key="reviewer.paper.restrictedFileAccess">يمكن معاينة طلب التقديم فقط عند تولي مهمة التحكيم.</message>
+	<message key="reviewer.paper.submissionDirector">مشرف طلب التقديم</message>
+	<message key="reviewer.paper.reviewerCommentsDescription">أدخل ملاحظات التحكيم أو إلصقها هنا</message>
+	<message key="reviewer.paper.directorToEnter">ما يدخله المشرف</message>
+	<message key="reviewer.paper.sendReminder">أرسل إشعاراً</message>
+	<message key="reviewer.paper.automatic">(آلي)</message>
+	<message key="reviewer.paper.selectRecommendation">إختر التوصية المناسبة</message>
+	<message key="reviewer.paper.recommendation">التوصية</message>
+	<message key="reviewer.paper.submitReview">تقديم التحكيم إلى المشرف</message>
+	<message key="reviewer.paper.reviewerComments">التعليقات</message>
+	<message key="reviewer.paper.uploadedFile">الملفات المرفوعة</message>
+	<message key="reviewer.paper.reviewersAnnotatedVersion">النسخة المرفوعة من قبل المحكم</message>
+	<message key="reviewer.paper.reviewersAnnotatedVersionDescription">(إذا رغبتك في وضع علامات وتعليقات في الملف للمشرف، إحفظه في حاسبتك ثم استعمل تصفح/رفع.)</message>
+	<message key="reviewer.paper.schedule.request">إلتماس المشرف</message>
+	<message key="reviewer.paper.schedule.response">إجابتك</message>
+	<message key="reviewer.paper.schedule.submitted">التحكيم مرسل</message>
+	<message key="reviewer.paper.schedule.due">موعد استيجاب التحكيم</message>
+	<message key="reviewer.paper.decision.accept">قبول طلب التقديم</message>
+	<message key="reviewer.paper.decision.pendingRevisions">لا بد من إجراء تنقيحات</message>
+	<message key="reviewer.paper.decision.resubmitElsewhere">التقديم في مكان آخر</message>
+	<message key="reviewer.paper.decision.decline">رفض طلب التقديم</message>
+	<message key="reviewer.paper.decision.seeComments">عاين التعليق</message>
+	<message key="reviewer.paper.schedule">جدولة</message>
+	<message key="reviewer.paper.submissionToBeReviewed">طلب التقديم سيخضع للتحكيم </message>
+	<message key="reviewer.paper.reviewSchedule">جدول التحكيم</message>
+	<message key="reviewer.paper.reviewSteps">خطوات التحكيم</message>
+	<message key="reviewer.paper.reviewerGuidelines">إرشادات المحكم</message>
+	<message key="reviewer.paper.notifyEditorA">إشعار المشرف على طلب التقديم</message>
+	<message key="reviewer.paper.notifyEditorB">فيما لو أنك ستتولى مهمة التحكيم.</message>
+	<message key="reviewer.paper.consultGuidelines">إذا قررت تولي هذا التحكيم، راجع إرشادات المحكم أدناه.</message>
+	<message key="reviewer.paper.downloadSubmissionAbstractOnly">حكم الملخص المرفق بطلب التقديم.</message>
+	<message key="reviewer.paper.downloadSubmissionSubmission">حكم طلب التقديم.</message>
+	<message key="reviewer.paper.enterReviewA">أنقر الإيقونة للدخول (أو إلصق) تحكيمك الخاص بطلب التقديم هذا.</message>
+	<message key="reviewer.paper.uploadFile">فضلاً عن ذلك، بإمكانك رفع ملفات موجهة إلى المشرف و/أو المؤلف لطلب استشارة.</message>
+	<message key="reviewer.paper.selectRecommendation">إختر التوصية المناسبة وسلم التحكيم لإنجاز المهمة. لا بد لك من إدخال نص أو رفع ملف ما قبل اختيار التوصية.</message>
+	<message key="reviewer.paper.mustSelectDecision">لم يتم إختيار التوصية. لا بد من اختيار التوصية المناسبة قبل تسليم التحكيم.</message>
+	<message key="reviewer.paper.confirmDecision">بمجرد تسجيل هذا القرار سيتعذر عليك العدول عنه أو إجراء تعديلات على هذا التحكيم. هل أنت متأكد من رغبتك في المتابعة؟</message>
+	<message key="reviewer.paper.ensuringBlindReview">ضمان التحكيم السري</message>
+
+	<!-- Paper Submission Step 3 -->
+	<message key="author.submit.uploadInstructions"><![CDATA[
+<p>لرفع ورقة عمل إلى هذا المؤتمر، أكمل الخطوات الآتية:</p>
+
+<ol>
+<li>على هذه الصفحة، أنقر استعراض (أو اختر ملف) والذي بدوره يفتح نافذة لاختيار ملف، فتتمكن من تحديد الملف في القرص الصلب لحاسبتك.</li>
+<li>حدد الملف الذي تريد تقديمه عبر تظليله.</li>
+<li>أنقر "إفتح" في نافذة إختيار الملف، عندها سيتم وضع اسم الملف على هذه الصفحة.</li>
+<li>أنقر "إرفع" على هذه الصفحة، ليتم رفع الملف من الحاسبة إلى موقع المؤتمر ولتعاد تسمية حسب نظام التسمية المعتمد في الموقع.</li>
+<li>بمجرد رفع ملف التقديم، أنقر "حفظ" ثم تابع إلى نهاية الصفحة.</li>
+</ol>]]></message>
+
+	<!-- Paper Submission: upload file -->
+	<message key="submission.submissionFiles">ملفات طلب التقديم</message>
+
+	<!-- Submission Comments -->
+	<message key="submission.comments.directorAuthorCorrespondence">مراسلات المشرف/المؤلف</message>
+	<message key="submission.comments.viewableDescription"><![CDATA[هذه التعليقات بالإمكان مشاركتها مع المؤلف.<br />
+(بعد الحفظ، يمكن إضافة المزيد من التعليقات.)]]></message>
+	<message key="submission.comments.canShareWithAuthor">للمؤلف والمشرف</message>
+	<message key="submission.comments.cannotShareWithAuthor">للمشرف</message>
+	<message key="submission.comments.blindCcReviewers">بعد الإرسال، حضِّر نسخة كربونية سرية من قرار هيئة التحرير لإرسالها إلى المحكمين.</message>
+	<message key="submission.comments.forAuthorDirector">للمؤلف والمشرف</message>
+	<message key="submission.comments.forDirector">للمشرف</message>
+	<message key="submission.comments.saveAndEmailAuthor">إحفظ وراسل المؤلف</message>
+	<message key="submission.comments.saveAndEmailDirector">إحفظ وراسل المشرف</message>
+
+	<!-- Login -->
+	<message key="user.login.createAccount">ألست مسجلاً في الموقع؟ أنشئ حساباً لنفسك الآن</message>
+	<message key="user.login.resetPasswordInstructions"><![CDATA[لأسباب تتعلق بالأمان، يقوم هذا النظام بإرسال رسائل تصفير كلمات المرور للمستخدمين المسجلين فيه بدلاً من تداول كلمات
+المرور الحالية لهم.<br /><br />أدخل عنوانك البريدي أدناه لتصفير كلمة مرورك. التأكيد سيتم إرساله إلى هذا العنوان البريدي.]]></message>
+
+	<!-- Registration -->
+	<message key="user.account.repeatPassword">إعادة كلمة المرور</message>
+	<message key="user.account.form.usernameExists">هذا الاسم مستعمل سلفاً من قبل مستخدم آخر.</message>
+	<message key="user.account.form.usernameAlphaNumeric">اسم المستخدم ينبغي أن يقتصر على الحروف والأرقام، الخطوط التحتانية، والشرط، ولا بد أن يبدأ وينتهي بحروف أو أرقام.</message>
+	<message key="user.account.form.emailExists">العنوان البريدي المختار مستعمل سلماً من قبل مستخدم آخر.</message>
+	<message key="user.account.form.passwordsDoNotMatch">كلمتا المرور غير متطابقتين.</message>
+	<message key="user.account.selectConference">إختر مؤتمراً ليتم إنشاء الحساب ضمنه</message>
+	<message key="user.account.noConferences">ليس هناك بعد مؤتمرات في هذا الموقع ليتسنى لك إنشاء حساب مستخدم ضمنها.</message>
+	<message key="user.account.selectSchedConf">إختر مؤتمراً مجدولاً ليتم إنشاء الحساب ضمنه</message>
+	<message key="user.account.noSchedConfs">ليس هناك بعد مؤتمرات مجدولة في هذا الموقع ليتسنى لك إنشاء حساب مستخدم ضمنها.</message>
+	<message key="user.account.createAs">أنشئ حساباً بمثابة</message>
+	<message key="user.account.privacyStatement">بيان الخصوصية</message>
+	<message key="user.account.completeForm">إملأ النموذج الآتي لإنشاء حساب ضمن هذا المؤتمر.</message>
+	<message key="user.account.hasAccount"><![CDATA[<a href="{$accountUrl}">أنقر هنا</a> إذا سبق لك الحصول على حساب مستخدم ضمن هذا المؤتمر أو ضمن أي مؤتمر آخر في هذا الموقع.]]></message>
+	<message key="user.account.hasNoAccount"><![CDATA[<a href="{$accountUrl}">أنقر هنا</a> إذا <strong>لم</strong> يسبق لك الحصول على حساب مستخدم ضمن هذا المؤتمر أو ضمن أي مؤتمر آخر في هذا الموقع.]]></message>
+	<message key="user.account.loginToRegister">أدخل اسم المستخدم وكلمة مرورك ليتم إنشاء حساب لك ضمن هذا المؤتمر.</message>
+	<message key="user.account.createAccountDisabled">هذاالمؤتمر لا يستقبل حالياً مستخدمين جدد.</message>
+	<message key="user.account.usernameRestriction">أسماء المستخدمين لا بد أن تتكون من حروف إنجليزية صغيرة، أرقام، خطوط تحتانية، وشُرط.</message>
+	<message key="user.account.passwordLengthRestriction">كلمة المرور لا بد أن لا تقل عن {$length} حرف.</message>
+	<message key="user.account.form.passwordLengthTooShort">كلمة المرور التي أدخلتها ليست بالطول المطلوب.</message>
+	<message key="user.account.readerDescription">يجري إشعاره بريدياً عند نشر العروض.</message>
+	<message key="user.account.openAccessNotificationDescription">يجري إشعاره بريدياً عند إتاحة الوصول المفتوح لمحتوى المؤتمر.</message>
+	<message key="user.account.authorDescription">يمكن له تقديم فقرات إلى المؤتمر.</message>
+	<message key="user.account.reviewerDescriptionNoInterests">راغب في تولي مهمة التحكيم المناظر لطلبات التقديم ضمن المؤتمر.</message>
+	<message key="user.account.reviewerDescription">راغب في تولي مهمة التحكيم المناظر لطلبات التقديم ضمن المؤتمر. حدد مجالات التحكيم (المجالات الجوهرية وطرائق البحث).</message>
+	<message key="user.account.authorRegistrationMessage">رغم أن لديك حساب مستخدم في هذا الموقع، إلا أنك لا تملك حالياً دور مؤلف ضمن هذا المؤتمر.</message>
+
+
+
+	<!-- Search -->
+	<message key="search.browseAuthorIndex">استعرض فهرس المؤلف</message>
+	<message key="search.searchFor">إبحث في أوراق العمل عن</message>
+	<message key="search.inField">في</message>
+	<message key="search.author">المؤلفون</message>
+	<message key="search.withinConference">ضمن</message>
+	<message key="search.allConferences">كل المؤتمرات</message>
+	<message key="search.authorIndex">استعرض فهرس المؤلف</message>
+	<message key="search.authorDetails">تفاصيل المؤلف</message>
+	<message key="search.syntaxInstructions"><![CDATA[<p>تلميحات البحث:</p>
+<ul>
+<li>عبارات البحث تتحسس حالة الحروف الصغيرة والكبيرة</li>
+<li>يتم تجاهل الكلمات الشائعة</li>
+<li>بشكل إفتراضي، أوراق العمل التي تتضمن <em>كل</em> عبارات البحث ستظهر في النتائج (أي، <em>AND</em> هي المطبقة)</li>
+<li>إجمع عدة كلمات بواسطة <em>OR</em> للعثور على أوراق العمل التي تضم أي منها، مثل <em>education OR research</em></li>
+<li>استعمل الأقواس لإنشاء استعلامات بحث أكثر تعقيداً؛ مثل <em>archive ((journal OR conference) NOT theses)</em></li>
+<li>إبحث عن جملة كاملة كما هي عبر وضعها بين علامات اقتباس؛ مثل: <em>"open access publishing"</em></li>
+<li>استثن كلمة ما عبر سبقها بعلامة <strong>-</strong> أو <em>NOT</em>; مثل: <em>online -politics</em> أو <em>online NOT politics</em></li>
+<li>إستعمل <strong>*</strong> ضمن أي عبارة بمثابة بديل لأي سلسلة محرفية؛ مثلاً: <em>soci* morality</em> ستضاهي ملفات تتضمن "sociological" أو "societal"</li>
+</ul>]]></message>
+
+	<!-- Interstitial page for PDFs -->
+	<message key="paper.pdf.title">صيغة المستندات المحمولة (PDF)</message>
+	<message key="paper.pdf.note"><![CDATA[ملف PDF الذي اخترته ينبغي أن يظهر هنا، إن كان مستعرض الإنترنت لديك متضمناً للإضافة التي تتعامل مع ملفات PDF (على سبيل المثال، النسخة الأخيرة من <a href="http://www.adobe.com/products/acrobat/readstep2.html">Adobe Acrobat Reader</a>). عوضاً عن ذلك، سيتم تنزيل ملف PDF إلى حاسبتك، حيث يمكن أيضاً فتحه باستعمال برنامج قارئ لملفات PDF. إذا أردت المزيد من المعلومات عن كيفية طباعة، حفظ أو العمل على ملفات PDF، فإن موقع Highwire Press يقدم <a href="http://highwire.stanford.edu/help/pdf-faq.dtl">أسئلة شائعة وإجاباتها عن ملفات PDF</a>.<br /><br />إذا تعذر تنزيل الملف بشكل تلقائي، <a href="{$url}">أنقر هنا</a>.]]></message>
+
+	<!-- Interstitial page for non-PDF non-HTML galleys -->
+	<message key="paper.nonpdf.title">تنزيل ورقة العمل</message>
+	<message key="paper.nonpdf.note"><![CDATA[الملف الذي اخترته ينبغي أن يبدأ التنزيل تلقائياً. إذا لم يحدث ذلك، أنقر الرابط أدناه. لاحظ أن هذا الملف قد يتطلب برنامجاً خاصاً أو إضافة معينة للتعامل معه.<br /><br />إذا تعذر تنزيل الملف بشكل تلقائي، <a href="{$url}">أنقر هنا</a>.]]></message>
+
+	<!-- Site index -->
+	<message key="site.conferencesHosted">المؤتمرات المستضافة في هذا الموقع</message>
+	<message key="site.conferenceView">معاينة المؤتمر</message>
+	<message key="site.conferenceAccount">الحساب</message>
+	<message key="site.schedConfView">معاينة تفاصيل المؤتمر</message>
+	<message key="site.schedConfCurrent">المؤتمر المجدول الحالي</message>
+
+	<!-- Conference page -->
+	<message key="conference.currentConferences">المؤتمرات الحالية</message>
+	<message key="conference.noCurrentConferences">لا توجد أي مؤتمرات نشطة حالياً. لطفاً، عاين المحفوظات للوصول إلى المؤتمرات المجدولة السابقة.</message>
+	<message key="conference.archive">محفوظات المؤتمر</message>
+
+	<!-- Scheduled Conference page -->
+	<message key="schedConf.proposalSubmission">تقديم عرض مقترح</message>
+
+	<!-- Call-for-Papers (CFP) page -->
+	<message key="schedConf.cfp.submitHere">إبدأ من هنا لتقديم عرض مقترح إلى هذا المؤتمر.</message>
+
+	<!-- Conference Proceedings -->
+	<message key="presentations.notPermitted">ليس لديك حتى الآن حق الوصول إلى عروض هذا المؤتمر.</message>
+	<message key="presentations.trackEmpty">لا توجد أي أوراق عمل متاحة ضمن هذا المسار.</message>
+	<message key="presentations.schedConfEmpty">عروض هذا المؤتمر غير متاحة حتى الآن أو ليست له أي عروض.</message>
+
+	<!-- Program page -->
+	<message key="schedConf.program.programFileInstructions">إن برنامج هذا المؤتمر متاح عبر الرابط الآتي:</message>
+	<message key="schedConf.program.viewProgramFile">معاينة البرنامج</message>
+
+	<!-- About The Conference -->
+	<message key="about.statistics">الإحصائيات</message>
+	<message key="about.conferenceContact">عنوان الاتصال للمؤتمر</message>
+	<message key="about.aboutTheConference">عن المؤتمر</message>
+	<message key="about.organizingTeam">الفريق المنظم</message>
+	<message key="about.conferencePolicies">سياسات المؤتمر</message>
+	<message key="about.submissions">طلبات التقديم</message>
+	<message key="about.sponsors">الجهات الراعية</message>
+	<message key="about.contributors">مصادر الدعم</message>
+	<message key="about.onlineSubmissions">طلبات التقديم عبر الإنترنت</message>
+	<message key="about.onlineSubmissions.haveAccount">ألديك مسبقاً اسم مستخدم وكلمة مرور لـ {$conferenceTitle}؟</message>
+	<message key="about.onlineSubmissions.login">إذهب إلى صفحة الدخول</message>
+	<message key="about.onlineSubmissions.needAccount">هل تحتاج إلى اسم مستخدم وكلمة مرور؟</message>
+	<message key="about.onlineSubmissions.registration">إذهب إلى صفحة التسجيل</message>
+	<message key="about.onlineSubmissions.registrationRequired">التسجيل في الموقع والدخول فيه مطلوبان لتقديم أي محتوى عبر الإنترنت ولمعرفة أوضاع عمليات التقديم حالياً.</message>
+	<message key="about.authorGuidelines">إرشادات المؤلف</message>
+	<message key="about.submissionPreparationChecklist">قائمة تدقيق تهيئة طلب التقديم</message>
+	<message key="about.copyrightNotice">بيان الحقوق الفكرية</message>
+	<message key="about.privacyStatement">بيان الخصوصية</message>
+	<message key="about.peerReviewProcess">عملية التحكيم المناظر</message>
+	<message key="about.openAccessPolicy">سياسة الوصول المفتوح</message>
+	<message key="about.archiveAccessPolicy">سياسة الوصول إلى المحفوظات</message>
+	<message key="about.delayedOpenAccess">الوصول المفتوح المؤجل</message>
+	<message key="about.delayedOpenAccessDescription">إن محتويات هذا المؤتمر ستكون متاحة للوصول المفتوح بعد مرور {$delayedOpenAccessDuration} شهر/أشهر من إطلاق نسخة المؤتمر المجدول إلى المساهمين فيه.</message>
+	<message key="about.authorSelfArchive">الحفظ الذاتي للمؤلف</message>
+	<message key="about.archiving">الحفظ</message>
+	<message key="about.registration">التسجيل</message>
+	<message key="about.registrationContact">عنوان الاتصال للتسجيل</message>
+	<message key="about.availableRegistrationTypes">أنواع التسجيل</message>
+	<message key="about.aboutThisPublishingSystem">عن نظام المؤتمرات هذا</message>
+	<message key="about.aboutThisPublishingSystem.altText">التقديم، التحكيم والنشر في نظام المؤتمرات المفتوحة</message>
+	<message key="about.currentConferences">المؤتمرات الحالية</message>
+	<message key="about.aboutOCSConference"><![CDATA[هذا المؤتمر يستعمل نظام المؤتمرات المفتوحة {$ocsVersion}، والذي هو نظام مفتوح المصدر لإدارة المؤتمرات مطور ومدعوم وموزع مجاناً من قبل <a href="http://pkp.sfu.ca/">مشروع المعرفة العامة</a> بالرخصة العامة المشاعة GNU General Public License.]]></message>
+	<message key="about.aboutOCSSite"><![CDATA[هذا الموقع يستعمل نظام المؤتمرات المفتوحة {$ocsVersion}، والذي هو نظام مفتوح المصدر لإدارة المؤتمرات مطور ومدعوم وموزع مجاناً من قبل <a href="http://pkp.sfu.ca/">مشروع المعرفة العامة</a> بالرخصة العامة المشاعة GNU General Public License.]]></message>
+
+	<!-- Announcement -->
+
+	<!-- Help -->
+	<message key="help.ocsHelp">أداة المساعدة لنظام المؤتمرات المفتوحة</message>
+	<message key="help.ocsHelpAbbrev">مساعدة</message>
+
+	<!-- Installer -->
+	<message key="installer.ocsInstallation">تنصيب نظام المؤتمرات المفتوحة</message>
+	<message key="installer.ocsUpgrade">ترقية نظام المؤتمرات المفتوحة</message>
+	<message key="installer.installationInstructions"><![CDATA[<h4>نسخة النظام {$version}</h4>
+
+<p>نشكر لك تنزيل <strong>نظام المؤتمرات المفتوحة</strong> من مشروع المعرفة العامة. قبل المتابعة، لطفاً، إقراً ملف <a href="{$baseUrl}/docs/README">README</a> المضمن مع هذا النظام. للمزيد من المعلومات عن مشروع المعرفة العامة ومشاريعه البرمجية، لطفاً، قم بزيارة <a href="http://pkp.sfu.ca/" target="_blank">موقع مشروع المعرفة العامة</a>. إذا كانت لديك الرغبة بإبلاغنا عن المشاكل الفنية أو الأخطاء أو أية استفسارات تتعلق بنظام المؤتمرات المفتوحة، أنظر <a href="http://pkp.sfu.ca/support/forum" target="_blank">منتدى الدعم</a> أو قم بزيارة موقعنا على الإنترنت <a href="http://pkp.sfu.ca/bugzilla/" target="_blank">نظام التبليغ عن الأخطاء</a>. مع أن منتدى الدعم هو الطريق المفضل للتواصل معنا، إلا أن بإمكانك مراسلتنا أيضاً عبر البريد الالكتروني <a href="mailto:pkp.contact@gmail.com">pkp.contact@gmail.com</a>.</p>
+
+<h4>الترقية</h4>
+
+<p>إذا كنت تريد ترقية النظام المنصب سابقاً بالنسخة الثانية <a href="{$upgradeUrl}">أنقر هنا</a> للمتابعة.</p>
+
+<h4>المتطلبات الموصى بها</h4>
+
+<ul>
+	<li><a href="http://www.php.net/" target="_blank">PHP</a> >= {$phpRequiredVersion} (متضمناً PHP 5.x)؛ أنت حالياً تستعمل PHP {$phpVersion}{$wrongPhpText}</li>
+	<li><a href="http://www.mysql.com/" target="_blank">MySQL</a> >= 3.23.23 (متضمناً MySQL 4.x) أو <a href="http://www.postgresql.org/" target="_blank">PostgreSQL</a> >= 7.1 (متضمناً PostgreSQL 8.x)</li>
+	<li><a href="http://httpd.apache.org/" target="_blank">Apache</a> >= 1.3.2x أو >= 2.0.4x أو Microsoft IIS 6</li>
+	<li>نظام التشغيل: أي نظام تشغيل يدعم البرامجيات أعلاه، بضمنها <a href="http://www.linux.org/" target="_blank">Linux</a>، <a href="http://www.bsd.org/" target="_blank">BSD</a>, <a href="http://www.sun.com/" target="_blank">Solaris</a>، <a href="http://www.apple.com/" target="_blank">Mac OS X</a>, <a href="http://www.microsoft.com/">Windows</a></li>
+</ul>
+
+<p>طالما أننا لا نمتلك الموارد اللازمة لاختبار تشغيل النظام عند كل تشكيلة ممكنة من البرامجيات ومنصات العمل وبمختلف إصداراتها، فإننا لا نضمن التشغيل الصحيح أو الدعم المتعلق ببيئة التشغيل التي تختارها.</p>
+
+<p>يمكن إجراء التعديلات على إعدادات النظام بعد تنصيبه عبر تعديل الملف <tt>config.inc.php</tt> المتوضع في حافظة الملفات الرئيسية للنظام، أو عبر واجهة إدارة النظام على الإنترنت.</p>
+
+<h4>أنظمة قواعد البانات المدعومة</h4>
+
+<p>نظام المؤتمرات المفتوحة مفحوص حالياً على MySQL و PostgreSQL، فقط... ورغم أن اعتماد قواعد بيانات أخرى مدعومة من <a href="http://adodb.sourceforge.net/" target="_blank">ADOdb</a> قد تعمل (كلياً أو جزئياً). إبلاغات التوافقية و/أو حزم البرامجيات لأنظمة إدارة قواعد بيانات أخرى يُرحب بها.</p>
+
+<h4>خطوات ما قبل التنصيب</h4>
+
+<p>1. إجعل الملفات وحوافظها الآتية قابلة للتعديل:</p>
+<ul>
+	<li><tt>config.inc.php</tt> (إختيارياً): {$writable_config}</li>
+	<li><tt>public/</tt>: {$writable_public}</li>
+	<li><tt>cache/</tt>: {$writable_cache}</li>
+	<li><tt>cache/t_cache/</tt>: {$writable_templates_cache}</li>
+	<li><tt>cache/t_compile/</tt>: {$writable_templates_compile}</li>
+	<li><tt>cache/_db</tt>: {$writable_db_cache}</li>
+</ul>
+
+<p>2. لا بد من توفير حافظة ملفات لحفظ الملفات المرفوعة إلى الموقع وجعلها قابلة للتعديل (أنظر "إعدادات الملفات" أدناه).</p>]]></message>
+	<message key="installer.upgradeInstructions"><![CDATA[<h4>نسخة نظام المؤتمرات المفتوحة {$version}</h4>
+
+<p>نشكر لك تنزيل <strong>نظام المؤتمرات المفتوحة</strong> من مشروع المعرفة العامة. قبل المتابعة، لطفاً، إقراً ملف <a href="{$baseUrl}/docs/README">README</a> والملف <a href="{$baseUrl}/docs/UPGRADE">UPGRADE</a> المضمنين مع هذا النظام. للمزيد من المعلومات عن مشروع المعرفة العامة ومشاريعه البرمجية، لطفاً، قم بزيارة <a href="http://pkp.sfu.ca/" target="_blank">موقع مشروع المعرفة العامة</a>. إذا كانت لديك الرغبة بإبلاغنا عن المشاكل الفنية أو الأخطاء أو أية استفسارات تتعلق بنظام المؤتمرات المفتوحة، أنظر <a href="http://pkp.sfu.ca/support/forum" target="_blank">منتدى الدعم</a> أو قم بزيارة موقعنا على الإنترنت <a href="http://pkp.sfu.ca/bugzilla/" target="_blank">نظام التبليغ عن الأخطاء</a>. مع أن منتدى الدعم هو الطريق المفضل للتواصل معنا، إلا أن بإمكانك مراسلتنا أيضاً عبر البريد الالكتروني <a href="mailto:pkp.contact@gmail.com">pkp.contact@gmail.com</a>.</p>
+<p><strong>نوصي بشدة</strong> بأن تقوم بالحفظ الإحتياطي لقاعدة بياناتك، حافظة الملفات، وحافظة ملفات تنصيب نظام المؤتمرات المفتوحة قبل المتابعة.</p>
+<p>إذا كنت بصدد التشغيل <a href="http://www.php.net/features.safe-mode" target="_blank">بالوضع الآمن لـ PHP (Safe Mode)</a>، لطفاً، تأكد من كون الموجه max_execution_time في ملف الإعدادات your php.ini مضبوطاً على قيمة عالية. إذا تم استنفاد هذا المُحدد أو أي محدد زمني آخر (مثل: موجه انتهاء الوقت في ملقم Apache المسمى "Timeout") خلال عملية الترقية وقبل انتهائها، فإن التدخل اليدوي لمعالجة الموقف ستكون مطلوبة.</p>]]></message>
+	<message key="installer.localeSettingsInstructions"><![CDATA[للحصول على دعم كامل لترميز Unicode (UTF-8)، إختر UTF-8 لجميع إعدادات مجاميع الحروف. لاحظ أن هذا الدعم يتطلب استعمال ملقم قاعدة بيانات MySQL >= 4.1.1 أو PostgreSQL >= 7.1. كما يُرجة ملاحظة أن الدعم الكامل لترميز الحروف يتطلب استعمال الملقم PHP >= 4.3.0 المجمع مع الدعم المخصص للمكتبة <a href="http://www.php.net/mbstring" target="_blank">mbstring</a> (وهي ممكنة إفتراضياً في معظم تنصيبات PHP الحديثة). قد تواجهك مشاكل عند التعامل مع المجاميع الكاملة من الحروف إذا كانت بيئة التشغيل عندك لا تراعي هذه المواصفات.
+<br /><br />
+ملقمك يدعم حالياً mbstring: <strong>{$supportsMBString}</strong>]]></message>
+	<message key="installer.localeInstructions">اللغة الأساسية المستعملة في هذا النظام. لطفاً، راجع أدبيات نظام المؤتمرات المفتوحة إذا كنت مهتماً بجعل النظام داعماً للغات أخرى غير مدرجة في هذه القائمة.</message>
+	<message key="installer.additionalLocalesInstructions">إختر أي لغات أخرى ليتم دعمها من قبل النظام. هذه اللغات ستكون متاحة للمؤتمرات المستضافة في الموقع. المزيد من اللغات يمكن إضافتها أيضاً عبر واجهة إدارة الموقع.</message>
+	<message key="installer.filesDirInstructions"><![CDATA[أدخل اسم المسار الكامل لحافظة ملفات موجودة فعلياً حيث سيتم حفظ الملفات المرفوعة إلى الموقع. هذه الحافظة ينبغي أن لا تكون متاحة لوصول زائري الموقع عبر مستعرض الإنترنت. <strong>لطفاً، تأكد من وجود حافظة الملفات فعلياً وأنها قابلة للكتابة قبل الشروع بالتنصيب.</strong> حوافظ ملفات نظام التشغيل Windows ينبغي أن تستعمل "/"، مثل: "C:/myconference/files".]]></message>
+	<message key="installer.databaseSettingsInstructions">نظام المؤتمرات المفتوحة يتطلب استعمال قاعدة بيانات تعمل بمبدء SQL لخزن بياناته. أنظر متطلبات النظام أعلاه للوقوف على قائمة من ملقمات قواعد البيانات التي يدعمها. في الحقول أدناه، أعط الإعدادات اللازمة لتأمين الاتصال مع ملقم قاعدة البيانات.</message>
+	<message key="installer.installApplication">تنصيب نظام المؤتمرات المفتوحة</message>
+	<message key="installer.upgradeApplication">ترقية نظام المؤتمرات المفتوحة</message>
+	<message key="installer.reinstallAfterDatabaseError"><![CDATA[<strong>تحذير:</strong> إذا فشلت عملية التنصيب خلال مرحلة إعداد قاعدة البيانات، فقد يكون عليك أن تزيل قاعدة البيانات بالكامل من الملقم قبل محاولة إعادة تنصيبها مجدداً.]]></message>
+	<message key="installer.overwriteConfigFileInstructions"><![CDATA[<h4>مهم!</h4>
+<p>تعذر على برنامج التنصيب الكتابة تلقائياً على ملف الإعدادات. قبل الشروع باستعمال النظام، لطفاً، إفتح الملف <tt>config.inc.php</tt> بواسطة محرر نصوص مناسب وقم باستبدال محتوياته بما تجده في الحقل أدناه.</p>]]></message>
+	<message key="installer.installationComplete"><![CDATA[<p>تنصيب نظام المؤتمرات المفتوحة قد اكتمل بنجاح.</p>
+<p>لتبدأ، <a href="{$createUrl}" class="action">أنشئ مؤتمراً</a>. ستتم مطالبتك بالدخول إلى الموقع مستعملاً اسم المستخدم وكلمة المرور اللتان أدخلتهما في الصفحة السابقة.</p>
+<p>إذا أردت الحصول على أخبار وتحديثات تتعلق بالنظام، لطفاً، <strong>سجل موقعك عند<a href="http://pkp.sfu.ca/ocs/register" target="_new">http://pkp.sfu.ca/node/add/pkp-site-submission</a>.</strong> إذا كانت لديك أسئلة أو تعليقات، لطفاً، قم بزيارة <a href="http://pkp.sfu.ca/support/forum" target="_new">منتدى الدعم</a>.</p>]]></message>
+	<message key="installer.upgradeComplete"><![CDATA[<p>ترقية نظام المؤتمرات المفتوحة إلى النسخة {$version} قد إكتملت بنجاح.</p>
+<p>لا تنس أن تعيد ضبط الإعداد "installed" في ملف الإعدادات config.inc.php مرة أخرى إلى القيمة <em>On</em>.</p>
+<p>إذا لم يسبق لك تسجيل موقعك، وكانت لديك الرغبة في الحصول على أخبار وتحديثات تتعلق بهذا النظام، لطفاً، <strong>سجل موقعك عند<a href="http://pkp.sfu.ca/ocs/register" target="_new">http://pkp.sfu.ca/ocs/register</a>.</strong> إذا كانت لديك أسئلة أو تعليقات، لطفاً، قم بزيارة <a href="http://pkp.sfu.ca/support/forum" target="_new">منتدى الدعم</a>.</p>]]></message>
+
+
+	<!-- Paper Logs -->
+	<message key="log.default.abstractPeriodExpired">استُنفدت مهلة تقديم الملخص لورقة العمل غير المكتملة {$paperId}. ورقة العمل تم تجاهلها.</message>
+	<message key="log.default.paperPeriodExpired">استُنفدت مهلة تقديم ورقة العمل غير المكتملة {$paperId}. ورقة العمل تم تجاهلها.</message>
+	<message key="log.author.abstractSubmitted">{$authorName} قد أدخل ملخصاً لعمله، تم منحه الرمز {$submissionId}.</message>
+	<message key="log.author.presentationSubmitted">{$authorName} قد رفع عرضاً، تم منحه الرمز {$submissionId}.</message>
+	<message key="log.author.documentRevised">{$authorName} قد أنجز تحكيماً لورقة العمل {$paperId}. رمز الملف الجديد هو {$fileId}.</message>
+	<message key="log.review.reviewerAssigned">{$reviewerName} قد عُيِّن لتحكيم طلب التقديم {$paperId} لمرحلة التحكيم {$stage}.</message>
+	<message key="log.review.reviewerUnassigned">{$reviewerName} قد ألغيت مهمة تحكيمه لطلب التقديم {$paperId} لمرحلة التحكيم {$stage}.</message>
+	<message key="log.review.reviewInitiated">مرحلة التحكيم {$stage} الموكلة للمحكم {$reviewerName} لطلب التقديم {$paperId} قد بوشر بها.</message>
+	<message key="log.review.reviewReinitiated">مرحلة التحكيم {$stage} الموكلة للمحكم {$reviewerName} لطلب التقديم {$paperId} قد بوشر بها مرة أخرى.</message>
+	<message key="log.review.reviewCancelled">مرحلة التحكيم {$stage} الموكلة للمحكم {$reviewerName} لطلب التقديم {$paperId} قد تم إلغاؤها.</message>
+	<message key="log.review.reviewCleared">مرحلة التحكيم {$stage} الموكلة للمحكم {$reviewerName} لطلب التقديم {$paperId} قد تم تصفيرها.</message>
+	<message key="log.review.reviewerRated">{$reviewerName} قد تم تقييمه لمرحلة التحكيم {$stage} عند طلب التقديم {$paperId}.</message>
+	<message key="log.review.reviewDueDateSet">موعد استيجاب مرحلة التحكيم {$stage} لطلب التقديم {$paperId} من قبل {$reviewerName} قد تم تحديده بتأريخ {$dueDate}.</message>
+	<message key="log.review.reviewRecommendationSet">التوصية لمرحلة التحكيم {$stage} لطلب التقديم {$paperId} من قبل {$reviewerName} قد تم وضعها.</message>
+	<message key="log.review.reviewRecommendationSetByProxy">التوصية لمرحلة التحكيم {$stage} لطلب التقديم {$paperId} قد تم وضعها من قبل المشرف {$directorName}، نيابة عن المحكم {$reviewerName}.</message>
+	<message key="log.review.resubmit">طلب التقديم {$paperId} قد تمت إعادة تقديمه للتحكيم.</message>
+	<message key="log.review.reviewDeclined">{$reviewerName} قد اعتذر عن مرحلة التحكيم {$stage} لطلب التقديم {$paperId}.</message>
+	<message key="log.review.reviewAccepted">{$reviewerName} قد قبل تولي مرحلة التحكيم {$stage} لطلب التقديم {$paperId}.</message>
+	<message key="log.review.reviewAcceptedByProxy">{$userName} قد قبل تولي مرحلة التحكيم {$stage} لطلب التقديم {$paperId} نيابة عن المحكم {$reviewerName}.</message>
+	<message key="log.review.reviewFileByProxy">المشرف {$userName} قد رفع ملف التحكيم للمرحلة {$stage} لطلب التقديم {$paperId} نيابة عن المحكم {$reviewerName}.</message>
+	<message key="log.review.reviewerFile">ملف محكم قد تم رفعه.</message>
+	<message key="log.director.decision">قرار المشرف ({$decision}) لورقة العمل {$paperId} قد تم تسجيله من قبل {$directorName}.</message>
+	<message key="log.director.publish">ورقة العمل نُشرت.</message>
+	<message key="log.director.unpublish">ورقة العمل أُعيدت إلى الطابور.</message>
+
+	<message key="log.director.metadataModified">البيانات الوصفية لورقة العمل تم تعديلها من قبل {$directorName}.</message>
+	<message key="log.director.directorFile">نسخة المشرف لملف التقديم قد تم رفعها.</message>
+	<message key="log.director.archived">طلب التقديم {$paperId} تم حفظه.</message>
+	<message key="log.director.restored">طلب التقديم {$paperId} تمت استعادته إلى الطابور.</message>
+	<message key="log.director.directorAssigned">{$directorName} تم تعيينه مشرفاً لطلب التقديم {$paperId}.</message>
+	<message key="log.director.submissionExpedited">{$directorName} قام بتسريع عملية تحرير ورقة العمل {$paperId}.</message>
+	<message key="log.layout.layoutFileSet">{$directorName} قام بتعيين نسخة التصميم الطباعي لطلب التقديم {$paperId}.</message>
+
+	<!-- Conference log entries -->
+	<message key="log.deadline.submissionDeadlinePassed">انتهت مهلة التقديم.</message>
+	<message key="log.deadline.presentationsReleasedToParticipants">تم إطلاق العروض إلى المساهمين.</message>
+	<message key="log.deadline.presentationsReleasedToPublic">تم إطلاق العروض إلى العامة.</message>
+
+	<message key="log.timeline.publicationStateChanged">حالة المنشور تغيرت من {$oldPublicationState} إلى {$newPublicationState}.</message>
+	<message key="log.timeline.submissionStateChanged">The submission state has been changed from {$oldSubmissionState} إلى {$newSubmissionState}.</message>
+	<message key="log.timeline.startDateChanged">موعد بدء المؤتمر تغير من {$oldStartDate} to {$newStartDate}.</message>
+	<message key="log.timeline.endDateChanged">موعد إنتهاء المؤتمر تغير من {$oldEndDate} إلى {$newEndDate}.</message>
+	<message key="log.timeline.regReviewerOpenDateChanged">موعد إنطلاق تسجيل المحكمين تغير من {$oldRegReviewerOpenDate} إلى {$newRegReviewerOpenDate}.</message>
+	<message key="log.timeline.regReviewerCloseDateChanged">موعد إغلاق تسجيل المحكمين تغير من {$oldRegReviewerCloseDate} إلى {$newRegReviewerCloseDate}.</message>
+	<message key="log.timeline.regAuthorOpenDateChanged">موعد إنطلاق تسجيل المؤلفين تغير من {$oldRegAuthorOpenDate} إلى {$newRegAuthorOpenDate}.</message>
+	<message key="log.timeline.regAuthorCloseDateChanged">موعد إغلاق تسجيل المؤلفين تغير من {$oldRegAuthorCloseDate} إلى {$newRegAuthorCloseDate}.</message>
+	<message key="log.timeline.showCFPDateChanged">موعد إنطلاق الدعوة لتقديم أوراق العمل تغير من {$oldShowCFPDate} إلى {$newShowCFPDate}.</message>
+	<message key="log.timeline.submissionsOpenDateChanged">موعد إنطلاق التقديم تغير من {$oldSubmissionsOpenDate} إلى {$newSubmissionsOpenDate}</message>
+	<message key="log.timeline.submissionsCloseDateChanged">موعد إغلاق التقديم تغير من {$oldSubmissionsCloseDate} إلى {$newSubmissionsCloseDate}</message>
+	<message key="log.timeline.postAbstractsDateChanged">موعد تقديم الملخصات تغير من {$oldPostAbstractsDate} إلى {$newPostAbstractsDate}.</message>
+	<message key="log.timeline.postAbstractsChanged">الإعداد "post abstracts" تغير من {$oldPostAbstracts} إلى {$newPostAbstracts}.</message>
+	<message key="log.timeline.postScheduleDateChanged">موعد الجدولة تغير من {$oldPostScheduleDate} إلى {$newPostScheduleDate}.</message>
+	<message key="log.timeline.postScheduleChanged">الإعداد "post schedule" تغير من {$oldPostSchedule} إلى {$newPostSchedule}.</message>
+	<message key="log.timeline.postPapersDateChanged">موعد طرح أوراق العمل تغير من {$oldPostPapersDate} إلى {$newPostPapersDate}.</message>
+	<message key="log.timeline.postPapersChanged">الإعداد "post papers" تغير من {$oldPostPapers} إلى {$newPostPapers}.</message>
+	<message key="log.timeline.delayOpenAccessDateChanged">موعد إنطلاق الوصول المفتوح تغير من {$oldDelayOpenAccessDate} إلى {$newDelayOpenAccessDate}.</message>
+	<message key="log.timeline.delayOpenAccessChanged">موعد إنطلاق الوصول المفتوح المؤجل تغير من {$oldDelayOpenAccess} إلى {$newDelayOpenAccess}.</message>
+	<message key="log.timeline.closeCommentsDateChanged">موعد إغلاق التعليقات تغير من {$oldCloseCommentsDate} إلى {$newCloseCommentsDate}.</message>
+	<message key="log.timeline.closeCommentsChanged">الإعداد المتعلق بإغلاق التعليقات تغير من {$oldCloseComments} إلى {$newCloseComments}.</message>
+
+	<!-- Reading Tools entries -->
+
+
+	<!-- RT Settings -->
+	<message key="rt.admin.settings">إعدادات أدوات القراءة</message>
+
+	<message key="rt.admin.settings.description">أدوات القراءة تظهر ضمن إطار مجاور للفقرات المنشورة في مسارات المؤتمر المعدة للفهرسة. هذه الأدوات تضم مجموعة من الأدوات الإختيارية ذات الصلة بالفقرة المنشورة، كما هي مدرجة أدناه، مع مجموعة أدوات تتيح الوصول إلى فقرات ذات صلة مرتبة حسب الحقل والتخصص.</message>
+	<message key="rt.admin.settings.enableReadingTools">تمكين أدوات القراءة للمسارات الظاهرة من المؤتمر.</message>
+	<message key="rt.admin.settings.relatedItems">حقل الفقرات ذات الصلة</message>
+
+	<message key="rt.admin.options">الأدوات الإختيارية</message>
+
+	<message key="rt.admin.settings.addComment">أضف تعليقاً (تمكين القراء من طرح تعليقات يمكن لمشرف المؤتمر حذفها). لا بد من تمكين تعليقات القراء عبر إدارة الموقع، المقطع 1.5.</message>
+
+	<message key="rt.admin.validateUrls.description"><![CDATA[الروابط التي قد تكون غير صحيحة للمواقع قيد البحث مدرجة أدناه.<br/>
+عليك أن تقوم يدوياً بالتحقق من صحة الروابط المؤشرة على أنها خاطئة، لأن هذا الإختبار قد لا يكون دقيقاً 100%.<br/>
+التحقق قد يفشل عند الروابط للمواقع قيد البحث التي تتطلب ملء بيانات دخول.]]></message>
+
+	<message key="rt.metadata.dublinCore.primaryAuthor">المنشئ</message>
+
+	<message key="rt.metadata.pkp.primaryAuthor">اسم المؤلف، إنتماؤه، بلده</message>
+	<message key="rt.metadata.pkp.peerReviewed">ورقة عمل محكَّمة</message>
+
+	<!-- Notification Types -->
+	<message key="notification.mailListDescription">أدخل عنوانك البريدي لتحصل على إشعارات مباشرة عن المحتويات الهامة الجديدة المضافة إلى المؤتمر.</message>
+	<message key="notification.notificationsPublicDescription">هذه الصفحة تُظهر تحديثات هامة تتعلق بهذا المؤتمر، مثل أوراق العمل الجديدة أو الإعلانات. بإمكانك الاشتراك بهذه الإشعارات عبر مغذي RSS، (عبر النقر على الصور في الجانب)، أو <![CDATA[  <a href="{$emailUrl}">عبر البريد الالكتروني.</a>]]></message>
+
+	<message key="notification.type.paperSubmitted">ورقة عمل جديدة، "{$param}"، قد تم تقديمها.</message>
+	<message key="notification.type.editing">تعديل الأحداث</message>
+	<message key="notification.type.directorDecisionComment">تم وضع تعليق على قرار المحرر المتعلق بـ "{$param}".</message>
+	<message key="notification.type.galleyModified">تم تعديل اللوح الطباعي لـ "{$param}".</message>
+	<message key="notification.type.metadataModified">البيانات الوصفية لـ "{$param}" تم تعديلها.</message>
+	<message key="notification.type.newAnnouncement">تم إنشاء إعلان جديد.</message>
+	<message key="notification.type.reviewerComment">وضع محكم تعليقاً على "{$param}".</message>
+	<message key="notification.type.reviewerFormComment">تم تقديم تحكيم من نوع نموذج بشأن "{$param}".</message>
+	<message key="notification.type.reviewing">أحداث التحكيم</message>
+	<message key="notification.type.site">أحداث الموقع</message>
+	<message key="notification.type.submissionComment">وضع المشرف تعليقات بشأن "{$param}".</message>
+	<message key="notification.type.submissions">أحداث طلب التقديم</message>
+	<message key="notification.type.suppFileModified">الملفات التكميلية لـ "{$param}" تم تعديلها.</message>
+	<message key="notification.type.userComment">وضع قارئ تعليقاً بشأن "{$param}"</message>
+
+	<message key="rt.thisConference">البحث في المؤتمر</message>
+
+	<message key="rt.comments.commentsClosed">التعليقات مغلقة منذ تأريخ {$closeCommentsDate}</message>
+
+	<message key="rt.context.authorTermsDescription">للفقرات ذات الأكثر من مؤلف واحد، أترك كل الأسماء مؤشرة للبحث عن الأعمال المشتركة المشابهة، أو إبحث فيها واحدة تلو الأخرى عبر تأشير اسم واحد فقط. لمعرفة المزيد عن الموارد قيد البحث، أنقر "عن". تم انتخاب هذه الموارد لكونها ذات صلة ولأنها متاحة مجاناً على مستوى كل أو بعض محتوياتها.</message>
+</locale>
