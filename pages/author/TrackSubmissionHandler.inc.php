@@ -162,7 +162,7 @@ class TrackSubmissionHandler extends AuthorHandler {
 				$round = REVIEW_ROUND_PRESENTATION;
 				break;
 			case REVIEW_MODE_BOTH_SEQUENTIAL:
-				if ($round != REVIEW_ROUND_ABSTRACT && $round != REVIEW_ROUND_PRESENTATION) $round = $submission->getCurrentRound();
+				if ($round != REVIEW_ROUND_ABSTRACT && $round != REVIEW_ROUND_PRESENTATION) $round = $authorSubmission->getCurrentRound();
 				break;
 		}
 
