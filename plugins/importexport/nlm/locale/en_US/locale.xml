@@ -27,5 +27,5 @@
 
 	<message key="plugins.importexport.nlm.export.error.paperNotFound">No paper matched the specified paper ID "{$paperId}".</message>
 	<message key="plugins.importexport.nlm.export.error.unknownConference">Unknown conference path {$conferencePath}</message>
-	<message key="plugins.importexport.nlm.export.error.couldNotWrite">Could not the specified file "{$fileName}"</message>
+	<message key="plugins.importexport.nlm.export.error.couldNotWrite">Could not write on the specified file "{$fileName}"</message>
 </locale>
