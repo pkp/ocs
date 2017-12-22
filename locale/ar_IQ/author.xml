@@ -82,10 +82,10 @@
 	<message key="author.submit.replaceSubmissionFile">استبدال ملف التقديم</message>
 	<message key="author.submit.noSubmissionFile">لم يتم رفع ملف التقديم بعد.</message>
 	<message key="author.submit.noSubmissionConfirm">هل أنت متأكد من رغبتك في المتابعة دون رفع ملف التقديم؟</message>
-	<message key="author.submit.supplementaryFilesInstructions">هذه الخطوة الإختيارية تتيح لك رفع ملفات تكميلية لإلحاقها بطلب التقديم. هذه الملفات التي قد تكون بأية صيغة، قد تتضمن (أ) أجهزة البحث، (ب) جداول البيانات، والتي تتوافق مع بنود أخلاقيات تحكيم البحث، (ج) مصادر أخرى من التي قد لا تتوفر للقراء، (د) رسومات وجداول يتعذر إقحامها في النص الأصلين أو أي مواد أخرى من شأنها إثراء ما جاد به البحث.</message>
+	<message key="author.submit.supplementaryFilesInstructions">هذه الخطوة الإختيارية تتيح لك رفع ملفات تكميلية لإلحاقها بطلب التقديم. هذه الملفات التي قد تكون بأية صيغة، قد تتضمن (أ) أجهزة البحث، (ب) جداول البيانات، والتي تتوافق مع بنود أخلاقيات تحكيم البحث، (ج) مصادر أخرى من التي قد لا تتوفر للقراء، (د) رسومات وجداول يتعذر إقحامها في النص الأصلي، أو أي مواد أخرى من شأنها إثراء ما جاد به البحث.</message>
 	<message key="author.submit.supplementaryFiles.saveToUpload">أنقر حفظ لرفع الملف (يمكن إلحاق المزيد من الملفات تباعاً).</message>
 	<message key="author.submit.forgottenSubmitSuppFile">هل أنت متأكد من رغبتك في المتابعة بدون رفع الملف التكميلي الذي اخترته؟</message>
-	<message key="author.submit.noSupplementaryFiles">لم يتم إضافة أي ملفات تكميلية إلى طلب التقديم بعد.</message>
+	<message key="author.submit.noSupplementaryFiles">لم تتم إضافة أي ملفات تكميلية إلى طلب التقديم بعد.</message>
 	<message key="author.submit.backToSupplementaryFiles">العودة إلى الملفات التكميلية</message>
 	<message key="author.submit.confirmDeleteSuppFile">هل أنت متأكد من رغبتك في حذف هذا الملف التكميلي؟</message>
 	<message key="author.submit.uploadSuppFile">رفع الملف التكميلي</message>
