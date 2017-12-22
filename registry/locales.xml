@@ -17,6 +17,7 @@
 <!DOCTYPE locales SYSTEM "../lib/pkp/dtd/locales.dtd">
 
 <locales>
+	<locale key="ar_IQ" complete="false" name="العربية" stylesheet="lib/pkp/styles/rtl-arabic.css" />
 	<locale key="ca_ES" complete="false" name="Català"/>
 	<locale key="cs_CZ" complete="true"  name="Čeština"/>
 	<locale key="de_DE" complete="false" name="Deutsch"/>
