@@ -35,6 +35,6 @@ Server vars:
 The invoice ID for this transaction is "{$invoiceId}".
 
 {$registrationContactSignature}</body>
-		<description>This email template is used to notify a conference's primary contact that suspicious activity or activity requiring manual intervention was encountered by the PayPal plugin.</description>
+		<description>This email template is used to notify a conference's primary contact that a registration fee for a registrant has been recieved via PayPal plugin.</description>
 	</email_text>
 </email_texts>
