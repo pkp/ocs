@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * locale.xml
+  *
+  * Copyright (c) 2000-2012 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the ar_IQ (العربية) locale.
+  *
+  * $Id$
+  -->
+ 
+<locale name="ar_IQ" full_name="العربية">
+	<message key="plugins.generic.jquery.name">إضافة jQuery</message>
+	<message key="plugins.generic.jquery.description"><![CDATA[هذه الإضافة تمكن مداخلة لغة javascript لمحتوى نظام المؤتمرات المفتوحة فضلاً عن تعديل أنماطه باستعمال إطار العمل <a href="http://www.jquery.com" target="_new">jQuery</a>.]]></message>
+	<message key="plugins.generic.jquery.descriptionDisabled"><![CDATA[هذه الإضافة تمكن مداخلة لغة javascript لمحتوى نظام المؤتمرات المفتوحة فضلاً عن تعديل أنماطه باستعمال إطار العمل <a href="http://www.jquery.com" target="_new">jQuery</a>. <strong>إن jQuery غير منصب حالياً؛ لطفاً، قم بتنصيبه في {$jQueryPath}.</strong>]]></message>
+	<message key="plugins.generic.jquery.disabled">تم تعطيل الإضافة jQuery.</message>
+	<message key="plugins.generic.jquery.enabled">تم تمكين الإضافة jQuery.</message>
+	<message key="plugins.generic.jquery.settings">الإعدادات</message>
+</locale>

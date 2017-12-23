@@ -29,7 +29,7 @@
 	<message key="director.submissionReview.confirmToArchive">هل تم إبلاغ المؤلف بهذه القرار؟ إن لم يحدث ذلك، إضغظ إلغاء ثم استعمل أداة إشعار المؤلف قبل نقل طلب التقديم هذا إلى المحفوظات.</message>
 	<message key="director.submissionReview.notes">موعد الاستيجاب يحدد عدد الأسابيع المتبقية حتى تنتهي مهلة المحكم أو تكون إشارة (-) مؤشراً على عدد الأسابيع المتأخرة عن الموعد. تجري تعبئة هذا الحقل بمجرد قبول المحكم لالتماس التحكيم.</message>
 	<message key="director.notifyUsers">إشعار المستخدمين</message>
-	<message key="director.notifyUsers.allUsers">جميع المستخدمين المرتبطين بهذا المؤتمر والبالغ عددهم({$count} مستخدم)</message>
+	<message key="director.notifyUsers.allUsers">جميع المستخدمين المرتبطين بهذا المؤتمر والبالغ عددهم ({$count} مستخدم)</message>
 	<message key="director.notifyUsers.interestedUsers">المستخدمون المرتبطون بهذا المؤتمر والذين يودون استلام تحديثات والبالغ عددهم ({$count} مستخدم)</message>
 	<message key="director.notifyUsers.includeToc">تضمين العروض الخاصة بهذا المؤتمر</message>
 	<message key="director.notifyUsers.allReaders">جميع القراء والبالغ عددهم ({$count})</message>

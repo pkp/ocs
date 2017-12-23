@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE email_texts SYSTEM "../../../../../lib/pkp/dtd/emailTemplateData.dtd">
+
+<!--
+  * @file plugins/paymethod/paypal/locale/ar_IQ/emailTemplates.xml
+  *
+  * Copyright (c) 2013-2017 Simon Fraser University
+  * Copyright (c) 2003-2016 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localized email templates XML file.
+  -->
+
+<email_texts locale="ar_IQ">
+	<email_text key="PAYPAL_INVESTIGATE_PAYMENT">
+		<subject>فعالية PayPal العالمية</subject>
+		<body>نظام المؤتمرات المفتوحة قد تعرض إلى نشاط غير عادي يتعلق بآلية دعم المدفوعات عبر PayPal يخص المؤتمر {$schedConfName}. هذا النشاط قد يستدعي المزيد من التحقيق بشأنه ولو يدوياً.
+                       
+هذه الرسالة أنشأتها إضافة PayPal لنظام المؤتمرات المفتوحة.
+
+معلومات الطرح الكامل للطلب:
+{$postInfo}
+
+معلومات إضافية (لو توفرت):
+{$additionalInfo}
+
+متغيرات الملقم:
+{$serverVars}
+</body>
+		<description>قالب الرسالة الالكترونية هذا يستعمل لإشعار عنوان الاتصال الرئيسي في المؤتمر بحدوث نشاط مريب من قبل إضافة PayPal مما قد يستدعي الالتفات إليه أو التحقيق بشأنه.</description>
+	</email_text>
+	<email_text key="PAYPAL_PAYMENT_RECEIVED">
+		<subject>استلام الدفع المالي لصالح {$conferenceName}</subject>
+		<body>
+			الرسوم المالية الخاصة بطالب التسجيل "{$registrantName}" قد تم استلامها عبر PayPal لصالح {$conferenceName}.
+
+رمز الفاتورة المتعلق بعملية التسديد هذه هو: "{$invoiceId}".
+
+			{$registrationContactSignature}
+		</body>
+		<description>قالب الرسالة الالكترونية هذا يستعمل لإشعار عنوان الاتصال الرئيسي في المؤتمر باستلام المبلغ المالي المستحق على أحد المسجلين في المؤتمر عبر PayPal.</description>
+	</email_text>
+</email_texts>
