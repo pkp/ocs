@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * plugins/importexport/native/locale/ar_IQ/locale.xml
+  *
+  * Copyright (c) 2013-2017 Simon Fraser University
+  * Copyright (c) 2003-2016 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings
+  -->
+
+<locale name="ar_IQ" full_name="العربية">
+	<message key="plugins.importexport.native.displayName">إضافة XML لأوراق العمل</message>
+	<message key="plugins.importexport.native.description">استيراد وتصدير أوراق العمل</message>
+
+	<message key="plugins.importexport.native.cliUsage">
+	<![CDATA[الاستعمال: {$scriptName} {$pluginName} [command] ...
+Commands:
+	import [xmlFileName] [conference_path] [sched_conf_path] [user_name] ...
+	export [xmlFileName] [conference_path] [sched_conf_path] papers [paperId1] [paperId2] ...
+	export [xmlFileName] [conference_path] [sched_conf_path] paper [paperId]
+
+عوامل إضافية مطلوبة لاستيراد البيانات كما يلي
+اعتماداً على عقدة الجذر لملف XML.
+
+إن كانت عقدة الجذر هي <paper> أو <papers>، المزيد من العوامل مطلوبة أيضاً.
+الصيغ الآتية مقبولة:
+
+{$scriptName} {$pluginName} import [xmlFileName] [conference_path]
+	[sched_conf_path] [user_name] track_id [trackId]
+
+{$scriptName} {$pluginName} import [xmlFileName] [conference_path]
+	[sched_conf_path] [user_name] track_name [trackName]
+
+{$scriptName} {$pluginName} import [xmlFileName] [conference_path]
+	[sched_conf_path] [user_name] track_abbrev [trackAbbrev]
+]]></message>
+	<message key="plugins.importexport.native.export">تصدير البيانات</message>
+	<message key="plugins.importexport.native.export.tracks">تصدير المسارات</message>
+	<message key="plugins.importexport.native.export.papers">تصدير أوراق العمل</message>
+
+	<message key="plugins.importexport.native.selectPaper">إختر ورقة العمل</message>
+
+	<message key="plugins.importexport.native.import.papers">استيراد أوراق العمل</message>
+	<message key="plugins.importexport.native.import.papers.description">الملف الذي تستورده يضم واحداً أو أكثر من أوراق العمل. عليك أن تختار مساراً من مسارات المؤتمر لاستيراد تلك الأوراق إليها؛ إن لم تكن ترغب باستيرادها جميعاً إلى نفس المسار، فقد ترغب في فصلها إلى عدة ملفات XML أو نقلها إلى المسار المناسب بعد إجراء الاستيراد.</message>
+
+	<message key="plugins.importexport.native.import">استيراد البيانات</message>
+	<message key="plugins.importexport.native.import.description">هذه الإضافة تدعم استيراد البيانات استناداً إلى تعريف نوعية المستند native.dtd (كما هي تسميته في النظام). العقد الجذرية المدعومة هي: &amp;lt;paper&amp;gt; and &amp;lt;papers&amp;gt;.</message>
+
+	<message key="plugins.importexport.native.import.error">خطأ في الاستيراد</message>
+	<message key="plugins.importexport.native.import.error.description">حدث خطأ واحد أو أكثر خلال عملية الاستيراد. لطفاً، تحقق من كون صيغة الملف المستورد تطابق فعلاً ما هو مطلوب. بعض تفاصيل الخطأ مبينة أدناه.</message>
+
+	<message key="plugins.importexport.native.cliError">خطأ:</message>
+	<message key="plugins.importexport.native.error.uploadFailed">فشلت عملية الرفع؛ لطفاً، تأكد من كون رفع الملفات متاح في ملقمك وأن الملف الذي تريد رفعه ليس كبيراً جداً بالنسبة إلى إعدادات PHP وإعدادات ملقم الإنترنت.</message>
+	<message key="plugins.importexport.native.error.unknownUser">المستخدم المحدد: "{$userName}"غير موجود.</message>
+	<message key="plugins.importexport.native.error.unknownConference">مسار المؤتمر المحدد: "{$conferencePath}"غير موجود.</message>
+	<message key="plugins.importexport.native.export.error.couldNotWrite">تعذرت الكتابة إلى الملف "{$fileName}".</message>
+	<message key="plugins.importexport.native.export.error.trackNotFound">لا يوجد مسار يطابق ما حددته "{$sectionIdentifier}".</message>
+	<message key="plugins.importexport.native.export.error.paperNotFound">لا توجد ورقة عمل تطابق رمز التعريف المحدد "{$paperId}".</message>
+	<message key="plugins.importexport.native.import.error.unsupportedRoot">هذه الإضافة لا تدعم عقدة الجذر المحددة "{$rootName}". لطفاً، تأكد من كون الملف بالصيغة الصحيحة ثم حاول مجدداً.</message>
+
+	<message key="plugins.importexport.native.import.error.invalidBooleanValue">قيمة منطقية غير صحيحة "{$value}" قد تم تحديدها. لطفاً، استعمل إما "true" أو "false".</message>
+	<message key="plugins.importexport.native.import.error.invalidDate">تأريخ غير صحيح "{$value}" تم تحديده.</message>
+	<message key="plugins.importexport.native.import.error.unknownEncoding">تم تضمين البيانات باستعمال نوعية ترميز غير معروفة "{$type}".</message>
+	<message key="plugins.importexport.native.import.error.couldNotWriteFile">تعذر حفظ نسخة محلية من "{$originalName}".</message>
+	<message key="plugins.importexport.native.import.error.illegalUrl">رابط الإنترنت المحدد "{$url}" كان خاطئاً. استيرادات البيانات المقدمة عبر الإنترنت تدعم فقط: http، https، ftp، أو ftps.</message>
+	<message key="plugins.importexport.native.import.error.unknownSuppFileType">نوعية ملف تكميلي غير معروفة "{$suppFileType}" تم تحديدها.</message>
+	<message key="plugins.importexport.native.import.error.couldNotCopy">رابط الإنترنت المحدد "{$url}" تعذر نسخه إلى ملف محلي.</message>
+	<message key="plugins.importexport.native.import.error.paperTitleLocaleUnsupported">إن عنوان ورقة العمل ("{$paperTitle}") قد تم إدراجه بلغة ("{$locale}") لا تدعمها هذه المؤتمر.</message>
+	<message key="plugins.importexport.native.import.error.paperAbstractLocaleUnsupported">إن ملخص ورقة العمل "{$paperTitle}" بلغة ("{$locale}") لا يدعمها هذا المؤتمر.</message>
+	<message key="plugins.importexport.native.import.error.galleyLabelMissing">ورقة العمل "{$paperTitle}" في المسار "{$trackTitle}" ينقصها عنوان اللوح الطباعي.</message>
+	<message key="plugins.importexport.native.import.error.suppFileMissing">ورقة العمل "{$paperTitle}" في المسار "{$trackTitle}" ينقصها ملف تكميلي.</message>
+	<message key="plugins.importexport.native.import.error.galleyFileMissing">ورقة العمل "{$paperTitle}" في المسار "{$trackTitle}" ينقصها ملف لوح طباعي.</message>
+
+	<message key="plugins.importexport.native.import.error.trackTitleLocaleUnsupported">عنوان المسار ("{$trackTitle}") مذكور بلغة ("{$locale}") لا يدعمها هذا المؤتمر.</message>
+	<message key="plugins.importexport.native.import.error.trackAbbrevLocaleUnsupported">مختصر المسار ("{$sectionAbbrev}") مذكور في العدد  ("{$issueTitle}") بلغة ("{$locale}") لا يدعمها هذا المؤتمر.</message>
+	<message key="plugins.importexport.native.import.error.trackIdentifyTypeLocaleUnsupported">نوعية تعريف المسار ("{$sectionIdentifyType}") بلغة ("{$locale}") لا يدعمها هذا المؤتمر.</message>
+	<message key="plugins.importexport.native.import.error.trackPolicyLocaleUnsupported">سياسة المسار ("{$sectionPolicy}") مذكورة في العدد ("{$issueTitle}") بلغة ("{$locale}") لا يدعمها هذا المؤتمر.</message>
+
+	<message key="plugins.importexport.native.import.error.trackTitleMismatch">عنوان المسار "{$track1Title}" وعنوان المسار "{$track2Title}" يطابقان قسمين مختلفين في المؤتمر.</message>
+	<message key="plugins.importexport.native.import.error.trackTitleMatch">عنوان المسار "{$trackTitle}" يطابق مساراً موجوداً في المؤتمر، غير أن عنواناً آخر لهذا المسار لا يطابق نظيره لنفس المسار في المؤتمر.</message>
+	<message key="plugins.importexport.native.import.error.trackAbbrevMismatch">مختصر المسار "{$track1Title}" ومختصر المسار "{$track2Title}" يطابقان مسارين مختلفين في المؤتمر.</message>
+	<message key="plugins.importexport.native.import.error.trackAbbrevMatch">مختصر المسار "{$sectionAbbrev}" يطابق مختصراً لمسار موجود في المؤتمر، غير أن مختصراً آخر لهذا المسار لا يطابق نظيره لنفس المسار في المؤتمر.</message>
+
+	<message key="plugins.importexport.native.import.error.paperDisciplineLocaleUnsupported">تخصص علمي لورقة العمل "{$paperTitle}" بلغة ("{$locale}") لا يدعمها هذا المؤتمر.</message>
+	<message key="plugins.importexport.native.import.error.paperTypeLocaleUnsupported">نوعية ورقة العمل "{$paperTitle}" بلغة ("{$locale}") لا يدعمها هذا المؤتمر.</message>
+	<message key="plugins.importexport.native.import.error.paperSubjectLocaleUnsupported">موضوع ورقة العمل "{$paperTitle}" بلغة ("{$locale}") لا يدعمها هذا المؤتمر.</message>
+	<message key="plugins.importexport.native.import.error.paperSubjectClassLocaleUnsupported">تصنيف موضوع ورقة العمل "{$paperTitle}" بلغة ("{$locale}") لا يدعمها هذا المؤتمر.</message>
+	<message key="plugins.importexport.native.import.error.paperCoverageGeoLocaleUnsupported">التغطية الجغرافية لورقة العمل "{$paperTitle}" بلغة ("{$locale}") لا يدعمها هذا المؤتمر.</message>
+	<message key="plugins.importexport.native.import.error.paperCoverageChronLocaleUnsupported">التغطية التأريخية لورقة العمل "{$paperTitle}" بلغة ("{$locale}") لا يدعمها هذا المؤتمر.</message>
+	<message key="plugins.importexport.native.import.error.paperCoverageSampleLocaleUnsupported">التغطية العينية لورقة العمل "{$paperTitle}" بلغة ("{$locale}") لا يدعمها هذا المؤتمر.</message>
+	<message key="plugins.importexport.native.import.error.paperSponsorLocaleUnsupported">راعي ورقة العمل "{$paperTitle}" بلغة ("{$locale}") لا يدعمها هذا المؤتمر.</message>
+
+	<message key="plugins.importexport.native.import.error.paperAuthorCompetingInterestsLocaleUnsupported">المصالح المتنافسة للمساهم "{$authorFullName}" لورقة العمل "{$paperTitle}" بلغة ("{$locale}") لا يدعمها هذا المؤتمر.</message>
+	<message key="plugins.importexport.native.import.error.paperAuthorBiographyLocaleUnsupported">سيرة المساهم "{$authorFullName}" لورقة العمل "{$paperTitle}" بلغة ("{$locale}") لا يدعمها هذا المؤتمر.</message>
+	<message key="plugins.importexport.native.import.error.paperAuthorAffiliationLocaleUnsupported">إنتماء المساهم "{$authorFullName}" لورقة العمل "{$paperTitle}" بلغة ("{$locale}") لا يدعمها هذا المؤتمر.</message>
+
+	<message key="plugins.importexport.native.import.error.galleyLocaleUnsupported">اللوح الطباعي لورقة العمل "{$paperTitle}" مذكور بلغة ("{$locale}") لا يدعمها هذا المؤتمر.</message>
+
+	<message key="plugins.importexport.native.import.error.paperSuppFileTitleLocaleUnsupported">عنوان الملف التكميلي ("{$suppFileTitle}") لورقة العمل "{$paperTitle}" مذكور بلغة ("{$locale}") لا يدعمها هذا المؤتمر.</message>
+	<message key="plugins.importexport.native.import.error.paperSuppFileCreatorLocaleUnsupported">منشئ الملف التكميلي "{$suppFileTitle}" لورقة العمل "{$paperTitle}" مذكور بلغة ("{$locale}") لا يدعمها هذا المؤتمر.</message>
+	<message key="plugins.importexport.native.import.error.paperSuppFileSubjectLocaleUnsupported">موضوع الملف التكميلي "{$suppFileTitle}" لورقة العمل "{$paperTitle}" مذكور بلغة ("{$locale}") لا يدعمها هذا المؤتمر.</message>
+	<message key="plugins.importexport.native.import.error.paperSuppFileTypeOtherLocaleUnsupported">نوع مخصص من الملف التكميلي "{$suppFileTitle}" لورقة العمل "{$paperTitle}" مذكور بلغة ("{$locale}") لا يدعمها هذا المؤتمر.</message>
+	<message key="plugins.importexport.native.import.error.paperSuppFileDescriptionLocaleUnsupported">وصف الملف التكميلي "{$suppFileTitle}" لورقة العمل "{$paperTitle}" مذكور بلغة ("{$locale}") لا يدعمها هذا المؤتمر.</message>
+	<message key="plugins.importexport.native.import.error.paperSuppFilePublisherLocaleUnsupported">ناشر الملف التكميلي "{$suppFileTitle}" لورقة العمل "{$paperTitle}" مذكور بلغة ("{$locale}") لا يدعمها هذا المؤتمر.</message>
+	<message key="plugins.importexport.native.import.error.paperSuppFileSponsorLocaleUnsupported">راعي الملف التكميلي "{$suppFileTitle}" لورقة العمل "{$paperTitle}" مذكور بلغة ("{$locale}") لا يدعمها هذا المؤتمر.</message>
+	<message key="plugins.importexport.native.import.error.paperSuppFileSourceLocaleUnsupported">مصدر الملف التكميلي "{$suppFileTitle}" لورقة العمل "{$paperTitle}" مذكور بلغة ("{$locale}") لا يدعمها هذا المؤتمر.</message>
+
+	<message key="plugins.importexport.native.import.error.invalidPubId">ملفك المستورد يتضمن مجموعة بيانات فيها {$pubIdType} غير صحيح: '{$pubId}'.</message>
+	<message key="plugins.importexport.native.import.error.duplicatePubId">ملفك المستورد يتضمن مجموعة بيانات فيها {$pubIdType} '{$pubId}' موجود سلفاً لمكون آخر في قاعدة البيانات. لطفاً، تأكد من كونك لا تستورد أبداً مكونات ذات رموز تعريف موجودة سابقاً في قاعدة البيانات.</message>
+	<message key="plugins.importexport.native.import.error.unknownPubId">ملفك المستورد يتضمن مجموعة بيانات فيها نوعية رمز التعريف '{$pubIdType}' ليس لها إضافة قادرة على معالجتها. لطفاً، قم بتنصيب و/أو تفعيل الإضافة ذات الصلة قبل محاولة استيراد مجموعة البيانات هذه.</message>
+	
+	<message key="plugins.importexport.native.import.success">تم الاستيراد بنجاح</message>
+	<message key="plugins.importexport.native.import.success.description">نجحت عملية الاستيراد. الفقرات المستوردة بنجاح مدرجة أدناه.</message>
+
+</locale>

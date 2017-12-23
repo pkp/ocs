@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * locale.xml
+  *
+  * Copyright (c) 2000-2012 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the ar_IQ (العربية) locale.
+  *
+  * $Id$
+  -->
+ 
+<locale name="ar_IQ" full_name="العربية">
+	<message key="plugins.reports.registrants.displayName">تقرير المسجلين</message>
+	<message key="plugins.reports.registrants.description">هذه الإضافة تعطي تقريراً بصيغة CSV يتضمن قائمة المسجلين مع بيانات تسجيلهم مثل عناوين الاتصال، حالة الدفع، وما شابه.</message>
+	<message key="plugins.reports.registrants.userId">رمز المستخدم</message>
+	<message key="plugins.reports.registrants.registrationId">رمز التسجيل</message>
+	<message key="plugins.reports.registrants.total">الإجمالي</message>
+</locale>

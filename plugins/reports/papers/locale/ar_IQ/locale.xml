@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * locale.xml
+  *
+  * Copyright (c) 2000-2012 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the ar_IQ (العربية) locale.
+  *
+  * $Id$
+  -->
+
+<locale name="ar_IQ" full_name="العربية">
+	<message key="plugins.reports.papers.displayName">تقرير أوراق العمل</message>
+	<message key="plugins.reports.papers.description">هذه الإضافة تعطي تقريراً بصيغة CSV يضم قائمة أوراق العمل وما يتعلق بها من معلومات.</message>
+	<message key="plugins.reports.papers.nodecision">لا قرار</message>
+</locale>
