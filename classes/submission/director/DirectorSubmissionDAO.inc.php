@@ -57,7 +57,7 @@ class DirectorSubmissionDAO extends DAO {
 				LEFT JOIN track_settings ttl ON (t.track_id = ttl.track_id AND ttl.setting_name = ? AND ttl.locale = ?)
 				LEFT JOIN track_settings tapl ON (t.track_id = tapl.track_id AND tapl.setting_name = ? AND tapl.locale = ?)
 				LEFT JOIN track_settings tal ON (t.track_id = tal.track_id AND tal.setting_name = ? AND tal.locale = ?)
-				LEFT JOIN paper_settings sts ON (p.paper_id = sts.paper_id AND sts.setting_name = "sessionType")
+				LEFT JOIN paper_settings sts ON (p.paper_id = sts.paper_id AND sts.setting_name = \'sessionType\')
 			WHERE	p.paper_id = ?',
 			array(
 				'title',
@@ -256,7 +256,7 @@ class DirectorSubmissionDAO extends DAO {
 				LEFT JOIN paper_settings ptl ON (p.paper_id = ptl.paper_id AND ptl.setting_name = ? AND ptl.locale = ?)
 				LEFT JOIN edit_assignments ea ON (p.paper_id = ea.paper_id)
 				LEFT JOIN edit_assignments ea2 ON (p.paper_id = ea2.paper_id AND ea.edit_id < ea2.edit_id)
-				LEFT JOIN paper_settings sts ON (p.paper_id = sts.paper_id AND sts.setting_name = "sessionType")
+				LEFT JOIN paper_settings sts ON (p.paper_id = sts.paper_id AND sts.setting_name = \'sessionType\')
 			WHERE	p.sched_conf_id = ?
 				AND ea2.edit_id IS NULL' .
 				(!empty($additionalWhereSql)?" AND ($additionalWhereSql)":'') . '
