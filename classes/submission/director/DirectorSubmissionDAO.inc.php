@@ -237,6 +237,7 @@ class DirectorSubmissionDAO extends DAO {
 				COALESCE(ptl.setting_value, pptl.setting_value) AS submission_title,
 				pap.last_name AS author_name,
 				t.seq, pp.seq,
+				sts.setting_value,
 				COALESCE(ttl.setting_value, ttpl.setting_value) AS track_title,
 				COALESCE(tal.setting_value, tapl.setting_value) AS track_abbrev
 			FROM	papers p
