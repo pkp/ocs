@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * locale.xml
+  *
+  * Copyright (c) 2000-2012 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the uk_UA (Ukrainian) locale.
+  *
+  * Translated  by Vasyl Ostrovskyi, 2017
+  * Institute of Mathematics, NAS of Ukraine
+  *
+  * $Id$
+  -->
+ 
+<locale name="en_US" full_name="U.S. English">
+	<message key="plugins.generic.jquery.name">Плагін jQuery</message>
+	<message key="plugins.generic.jquery.description"><![CDATA[Цей плагін вмикає взаємодію з допомогою javascript з вмістом та стилями OCS через фреймворк<a href="http://www.jquery.com" target="_new">jQuery</a>.]]></message>
+	<message key="plugins.generic.jquery.descriptionDisabled"><![CDATA[Цей плагін вмикає взаємодію з допомогою javascript з вмістом та стилями OCS через фреймворк<a href="http://www.jquery.com" target="_new">jQuery</a>. 
+<strong>jQuery наразі не встановлено; будь ласка, встановіть його у {$jQueryPath}.</strong>]]></message>
+	<message key="plugins.generic.jquery.disabled">Плагін jQuery вимкнено.</message>
+	<message key="plugins.generic.jquery.enabled">Плагін jQuery увімкнено.</message>
+	<message key="plugins.generic.jquery.settings">Налаштування</message>
+</locale>

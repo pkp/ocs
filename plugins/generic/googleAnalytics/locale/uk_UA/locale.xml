@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * locale.xml
+  *
+  * Copyright (c) 2000-2012 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Google Analytics plugin localization strings for the uk_UA (Ukrainian) locale.
+  *
+  * Translated  by Vasyl Ostrovskyi, 2017
+  * Institute of Mathematics, NAS of Ukraine
+  *
+  * $Id$
+  -->
+ 
+<locale name="en_US" full_name="U.S. English">
+
+	<!-- Google Analytics -->
+	<message key="plugins.generic.googleAnalytics.displayName">Плагін Google Analytics</message>
+	<message key="plugins.generic.googleAnalytics.description"><![CDATA[Інтегрувати OCS з Google Analytics, системою аналізу трафіку від Google. Потребує налаштованого облікового запису у Google Analytics. За детальною інформацією зверніться до сайту <a href="http://www.google.com/analytics/" title="Google Analytics site">Google Analytics</a> .]]></message>
+	<message key="plugins.generic.googleAnalytics.enabled">Плагін Google Analytics увімкнено.</message>
+	<message key="plugins.generic.sgoogleAnalyticsehl.disabled">Плагін Google Analyticsвимкнено.</message>
+	<!-- Google Analytics Settings Management -->
+	<message key="plugins.generic.googleAnalytics.manager.settings">Налаштування</message>
+	<message key="plugins.generic.googleAnalytics.manager.googleAnalyticsSettings">Налаштування Google Analytics</message>
+	<message key="plugins.generic.googleAnalytics.manager.settings.description"><![CDATA[<p>При увімкненні цього плагіна можна використовувати Google Analytics для обліку та аналізу використання сайту та трафіку цієї конференції. Зауважте, що цей плагін потребую наявності облікового запису у Google Analytics. За детальною інформацією зверніться до сайту <a href="http://www.google.com/analytics/" title="Google Analytics site">Google Analytics </a>.</p><p>Зверніть увагу, що Google Analytics може потребувати до 24 годин, перш ніж  буде зібрано статистику та складено звіт. Протягом цього періоду, функція 'Check Status' може неточно звітувати, чи виявила вона потрібний код слідкування конференції.</p>]]></message>
+	<message key="plugins.generic.googleAnalytics.manager.settings.googleAnalyticsSiteId">Номер облікового запису</message>
+	<message key="plugins.generic.googleAnalytics.manager.settings.googleAnalyticsSiteIdInstructions">У Google Analytics клацніть на 'Check Status' для перегляду коду слідкування за вашим сайтом. Для старих кодів вказується номер облікового запису з кодом слідкування у вигляді: _uacct = "###". Для нових кодів слідкування, номер облікового запису вказується у коді слідкування таким чином: var pageTracker = _gat._getTracker("###"). Вкажіть текст, що відповідає ###.</message>
+	<message key="plugins.generic.googleAnalytics.manager.settings.googleAnalyticsSiteIdRequired">Будь ласка, вкажіть номер облікового запису.</message>
+	<message key="plugins.generic.googleAnalytics.manager.settings.trackingCode">Код слідкування</message>
+	<message key="plugins.generic.googleAnalytics.manager.settings.trackingCodeRequired">Будь ласка, вкажіть потрібний код слідкування.</message>
+	<message key="plugins.generic.googleAnalytics.manager.settings.urchin">Застарілий код слідкування (urchin.js)</message>
+	<message key="plugins.generic.googleAnalytics.manager.settings.ga">Новий код слідкування (ga.js)</message>
+</locale>

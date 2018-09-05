@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * locale.xml
+  *
+  * Copyright (c) 2000-2012 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for this citation plugin in uk_UA (Ukrainian) locale.
+  *
+  * Translated  by Vasyl Ostrovskyi, 2017
+  * Institute of Mathematics, NAS of Ukraine
+  *
+  * $Id$
+  -->
+
+<locale name="en_US" full_name="U.S. English">
+	<message key="plugins.citationFormats.mla.displayName">Плагін цитувань формату MLA</message>
+	<message key="plugins.citationFormats.mla.citationFormatName">MLA</message>
+	<message key="plugins.citationFormats.mla.description">Цей плагін реалізує формат цитувань MLA.</message>
+	<message key="plugins.citationFormats.mla.noPages">кільк. стор.</message>
+</locale>

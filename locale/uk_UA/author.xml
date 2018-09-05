@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * ocs2-devel/locale/en_US/author.xml
+  *
+  * Copyright (c) 2000-2012 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the uk_UA (Ukrainian) locale.
+  *
+  * Translated  by Vasyl Ostrovskyi, 2017
+  * Institute of Mathematics, NAS of Ukraine
+  *
+  -->
+
+<locale name="en_US" full_name = "English">
+	<message key="author.submit">Нове подання</message>
+	<message key="author.track">Активні подання</message>
+	<message key="author.submit.startHere">Почніть подання матеріалів на конференцію.</message>
+	<message key="author.submit.startHereLink">Перший крок процесу подання</message>
+	<message key="author.submit.step1">Крок 1. Початок подання</message>
+	<message key="author.submit.step3">Крок 3. Надання метаданих до подання</message>
+	<message key="author.submit.step3AbstOnly">Крок 2. Надання метаданих до подання</message>
+	<message key="author.submit.step4AbstOnly">Крок 3. Надсилання додаткових файлів</message>
+	<message key="author.submit.step2">Крок 2. Надсилання подання</message>
+	<message key="author.submit.step2NoAbstracts">Крок 3. Надсилання подання</message>	
+	<message key="author.submit.step4">Крок 4. Надсилання додаткових файлів</message>
+	<message key="author.submit.step4a">Крок 4а. Додати додатковий файл</message>
+	<message key="author.submit.step5">Крок 5. Підтвердження подання</message>
+	<message key="author.submit.step5SkipSupp">Крок 4. Підтвердження подання</message>
+	<message key="author.submit.start">1. Початок</message>
+	<message key="author.submit.metadata">3. Вкажіть метадані</message>
+	<message key="author.submit.metadataOnly">2. Вкажіть метадані</message>
+	<message key="author.submit.upload">2. Надішліть подання</message>
+	<message key="author.submit.uploadOnly">3. Надішліть подання</message>
+	<message key="author.submit.supplementaryFiles">4. Надішліть додаткові файли</message>
+	<message key="author.submit.supplementaryFilesAbstractOnly">3. Надішліть додаткові файли</message>
+	<message key="author.submit.supplementaryFilesInfoAbstractOnly">3а. Надсилання додаткових файлів</message>
+	<message key="author.submit.confirmation">5. Підтвердження</message>
+	<message key="author.submit.confirmationSkipSupp">4. Підтвердження</message>
+	<message key="author.submit.cancelSubmission">Ви можете закінчити процес подання пізніше, вибираючи "Активні подання" з сторінки автора.</message>
+	<message key="author.submit.notAcceptingYet">Ця конференція ще не приймає матеріалів.</message>
+	<message key="author.submit.notAccepting">Ця конференція не приймає матеріалів.</message>
+	<message key="author.submit.submissionDeadlinePassed">Приймання матеріалів на конференцію закрите з {$closedDate}.</message>
+	<message key="author.submit.authorRegistrationClosed">Реєстрацію авторів на конференцію закрито.</message>
+	<message key="author.submissions.queuedAbstractReviewRevisions">Тези на розгляді: Потрібні виправлення</message>
+	<message key="author.submissions.queuedPaperReviewRevisions">Праця на розгляді: Потрібні виправлення</message>
+	<message key="author.submissions.confirmDelete">Ви певні, що слід видалити це незавершене подання?</message>
+	<message key="author.submissions.viewStatus">Переглянути стан</message>
+	<message key="author.submissions.noSubmissions">Немає подань.</message>
+	<message key="author.submit.howToSubmit"><![CDATA[Зіткнулись з труднощами? Зверніться до <a href="mailto:{$supportEmail}">{$supportName}</a> за допомогою ({$supportPhone}).]]></message>
+	<message key="author.submit.howToSubmitNoPhone"><![CDATA[Зіткнулись з труднощами? Зверніться до <a href="mailto:{$supportEmail}">{$supportName}</a> за допомогою.]]></message>
+	<message key="author.submit.conferenceTrack">Секція конференції</message>
+	<message key="author.submit.conferenceTrackDescription"><![CDATA[Виберіть відповідну секцію для подання (див. <a href="{$aboutUrl}" target="_new">Секції</a>).]]></message>
+	<message key="author.submit.selectTrack">Будь-ласка, вкажіть секцію...</message>
+	<message key="author.submit.submissionChecklist">Контрольний перелік подання</message>
+	<message key="author.submit.submissionChecklistDescription">Перевірте, що подання готове до розгляду на конференції, відмітьте виконані вимоги (нижче можна вказати додаткове повідомлення директору).</message>
+	<message key="author.submit.verifyChecklist">Перш, ніж продовжити, переконайтесь, що усі пункти контрольного переліку виконано.</message>
+	<message key="author.submit.copyrightNoticeAgree">Автори погоджуються з умовами наведеного Застереження щодо авторських прав, яке буде застосовано до подання за умови, що подання буде опубліковане конференцією (нижче можна вказати додаткове повідомлення директору).</message>
+	<message key="author.submit.copyrightNoticeAgreeRequired">Щоб продовжити, Ви маєте погодитись з умовами Застереження щодо авторських прав.</message>
+	<message key="author.submit.commentsForDirector">Додаткове повідомлення директору конференції</message>
+	<message key="author.submit.comments">Текст повідомлення (за потреби)</message>
+	<message key="author.submit.form.authorRequired">Слід вказати хоча б одного автора.</message>
+	<message key="author.submit.form.authorRequiredFields">Слід вказати імʼя, прізвище та електронну адресу кожного з авторів.</message>
+	<message key="author.submit.form.trackRequired">Будь-ласка, виберіть відповідну секцію для цього подання.</message>
+	<message key="author.submit.form.abstractRequired">Будь-ласка, введіть резюме подання.</message>
+	<message key="author.submit.privacyStatement">Застереження щодо особистих даних</message>
+	<message key="author.submit.reorderInstructions">Впорядкуйте авторів, як вони будуть перелічені у публікації.</message>
+	<message key="author.submit.reorder">Впорядкуйте імена авторів</message>
+	<message key="author.submit.selectPrincipalContact">Контактна особа для листування з редакторами.</message>
+	<message key="author.submit.addAuthor">Додати автора</message>
+	<message key="author.submit.deleteAuthor">Видалити автора</message>
+	<message key="author.submit.submissionIndexingDescription">Вкажіть терміни для індексування подання; розділяйте терміни крапкою з комою (термін1; термін2; термін3).</message>
+	<message key="author.submit.submissionSupportingAgencies">Установи, що надали підтримку</message>
+	<message key="author.submit.submissionSupportingAgenciesDescription">Вкажіть установи, що надали фінансову чи іншу підтримку досліджень, представлених у поданні.</message>
+	<message key="author.submit.subjectClassInstructions">Використовувати систему класифікації для вибору термінів класифікації та відповідних чисел.</message>
+	<message key="author.submit.languageInstructions"><![CDATA[Англійська=en; Українська=uk. <a href="http://www.loc.gov/standards/iso639-2/php/code_list.php" target="_blank">Інші коди</a>.]]></message>
+	<message key="presenter.submit.form.authorRequired">Слід вказати принаймні одного автора.</message>
+	<message key="presenter.submit.form.authorRequiredFields">Слід вказати ім'я, прізвище та електронну адресу кожного автора.</message>
+	<message key="author.submit.form.titleRequired">Будь-ласка, вкажіть назву роботи.</message>
+	<message key="author.submit.form.wordCountAlert">Ви перевищили встановлений максимум слів у резюме для цієї секції.</message>
+	<message key="author.submit.submissionFile">Файл подання</message>
+	<message key="author.submit.uploadSubmissionFile">Надіслати файл подання</message>
+	<message key="author.submit.replaceSubmissionFile">Замінити файл подання</message>
+	<message key="author.submit.noSubmissionFile">Файл подання не надіслано.</message>
+	<message key="author.submit.noSubmissionConfirm">Ви певні, що слід продовжити без надсилання файлу подання?</message>
+	<message key="author.submit.supplementaryFilesInstructions">Цей додатковий крок дозволяє надіслати додаткові файли до подання. Ці файли, що можуть надсилатись у довільному форматі, можуть містити (а) дослідницькі інструменти, (б) набори даних, за умови дотримання етичних норм, встановлених для даного дослідження, (в) джерела, що інакше були б недоступні читачам, (d) малюнки та таблиці, що не потрапили до основного тексту, а також інші матеріали, що доповнюють роботу.</message>
+	<message key="author.submit.supplementaryFiles.saveToUpload">Клацніть "Зберегти", щоб надіслати файл (після цього можна надіслати додаткові файли).</message>
+	<message key="author.submit.forgottenSubmitSuppFile">Ви певні, що слід продовжити без надсилання додаткового файлу, який Ви вибрали?</message>
+	<message key="author.submit.noSupplementaryFiles">До подання не надіслано жодного додаткового файлу.</message>
+	<message key="author.submit.backToSupplementaryFiles">Назад до додаткових файлів</message>
+	<message key="author.submit.confirmDeleteSuppFile">Ви певні,  що слід видалити цей додатковий файл?</message>
+	<message key="author.submit.uploadSuppFile">Надіслати додатковий файл</message>
+	<message key="author.submit.addSupplementaryFile">Додати додатковий файл</message>
+	<message key="author.submit.editSupplementaryFile">Редагувати додатковий файл</message>
+	<message key="author.submit.supplementaryFileData">Метадані додаткового файлу</message>
+	<message key="author.submit.supplementaryFileDataDescription">Для індексування цього додаткового матеріалу, вкажіть наступні метадані для надісланого додаткового файлу.</message>
+	<message key="author.submit.supplementaryFileUpload">Додатковий файл</message>
+	<message key="author.submit.suppFile.createrOrOwner">Автор (чи власник) файлу</message>
+	<message key="author.submit.suppFile.researchInstrument">Дослідницький інструмент</message>
+	<message key="author.submit.suppFile.researchMaterials">Дослідний матеріал</message>
+	<message key="author.submit.suppFile.researchResults">Результат дослідження</message>
+	<message key="author.submit.suppFile.transcripts">Розшифровки</message>
+	<message key="author.submit.suppFile.dataAnalysis">Аналіз даних</message>
+	<message key="author.submit.suppFile.dataSet">Набір даних</message>
+	<message key="author.submit.suppFile.sourceText">Вихідний текст</message>
+	<message key="author.submit.suppFile.briefDescription">Короткий опис</message>
+	<message key="author.submit.suppFile.contributorOrSponsor">Постачальник чи установа-спонсор</message>
+	<message key="author.submit.suppFile.availableToPeers">Надати файл рецензентам (без метаданих), оскільки він не порушує анонімності рецензування.</message>
+	<message key="author.submit.suppFile.publisherDescription">Використовувати лише з формально опублікованими матеріалами.</message>
+	<message key="author.submit.suppFile.dateDescription">Дата збору даних чи створення інструменту.</message>
+	<message key="author.submit.suppFile.sourceDescription">Назва дослідження чи інше джерело походження.</message>
+	<message key="author.submit.suppFile.specifyOtherType">Вкажіть інше</message>
+	<message key="author.submit.suppFile.noFile">Файли не надіслано.</message>
+	<message key="author.submit.suppFile.form.titleRequired">Будь-ласка, вкажіть назву для цього додаткового файлу</message>
+	<message key="author.submit.suppFile.form.subjectRequired">Будь-ласка, вкажіть предмет.</message>
+	<message key="author.submit.suppFile.form.descriptionRequired">Будь-ласка, вкажіть опис</message>
+	<message key="author.suppFile.suppFilePublicIdentificationExists">Публічна ідентифікація додаткового фалу вже існує.</message>
+	<message key="author.suppFile.publicSuppFileIdentifier">Публічний ідентифікатор додаткового файлу</message>
+	<message key="author.submit.addSubmissionFile">Додати додатковий файл</message>
+	<message key="author.submit.submissionFileUpload">Додатковий файл</message>
+	<message key="author.submit.confirmationDescription">Щоб надіслати Ваш матеріал до конференції  {$conferenceTitle}, клацніть "Закінчити подання". На адресу, вказану як контактна, буде надіслано підтвердження електронним листом, і відповідний автор зможе спостерігати іаілв на конференціїза стадіями проходження подання, увійшовши на сайт конференції. Дякуємо за Ваш інтерес до публікації матеріалів на конференції {$conferenceTitle}.</message>
+	<message key="author.submit.noFiles">До подання не приєднано жодного файлу</message>
+	<message key="author.submit.filesSummary">Резюме файлу</message>
+	<message key="author.submit.finishSubmission">Закінчити подання</message>
+	<message key="author.submit.submissionComplete">Подання закінчено. Дякуємо за надсилання Ваших матеріалів до конференції {$conferenceTitle}.</message>
+	<message key="author.submit.expedite"><![CDATA[Якщо це подання має формат, готовий до публікації без проведення розгляду чи редагування, його можна надіслати прямо на сторінку Праць <a href="{$expediteUrl}" class="action">клацнувши тут</a>. (Зауваження: Лише директори конференції мають доступною цю можливість.)]]></message>
+	<message key="author.paper.uploadAuthorVersion">Надіслати версію автора</message>
+	<message key="presenter.submit.authorSubmitLoginMessage">Для надсилання матеріалів на цю конференцію потрібно мати обліковий запис користувача. Це дозволяє директорам слідкувати за Вашим поданням та зв'язуватись з Вами при зміні статусу Вашого подання, чи за потреби отримати від Вас додаткову інформацію.</message>
+</locale>
