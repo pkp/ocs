@@ -164,11 +164,7 @@ class RegistrationHandler extends ManagerHandler {
 				$templateMgr->assign('registrationTitle', 'manager.registration.editTitle');	
 			}
 
-			if (checkPhpVersion('5.0.0')) { // WARNING: This form needs $this in constructor
-				$registrationForm = new RegistrationForm($registrationId, $userId);
-			} else {
-				$registrationForm =& new RegistrationForm($registrationId, $userId);
-			}
+			$registrationForm = new RegistrationForm($registrationId, $userId);
 			if ($registrationForm->isLocaleResubmit()) {
 				$registrationForm->readInputData();
 			} else {
@@ -265,11 +261,7 @@ class RegistrationHandler extends ManagerHandler {
 
 		if (($registrationId != null && $registrationDao->getRegistrationSchedConfId($registrationId) == $schedConf->getId()) || $registrationId == null) {
 
-			if (checkPhpVersion('5.0.0')) { // WARNING: This form needs $this in constructor
-				$registrationForm = new RegistrationForm($registrationId);
-			} else {
-				$registrationForm =& new RegistrationForm($registrationId);
-			}
+			$registrationForm = new RegistrationForm($registrationId);
 			$registrationForm->readInputData();
 
 			if ($registrationForm->validate()) {
@@ -394,11 +386,7 @@ class RegistrationHandler extends ManagerHandler {
 				$templateMgr->assign('registrationTypeTitle', 'manager.registrationTypes.editTitle');	
 			}
 
-			if (checkPhpVersion('5.0.0')) { // WARNING: This form needs $this in constructor
-				$registrationTypeForm = new RegistrationTypeForm($registrationTypeId);
-			} else {
-				$registrationTypeForm =& new RegistrationTypeForm($registrationTypeId);
-			}
+			$registrationTypeForm = new RegistrationTypeForm($registrationTypeId);
 
 			if ($registrationTypeForm->isLocaleResubmit()) {
 				$registrationTypeForm->readInputData();
@@ -434,11 +422,7 @@ class RegistrationHandler extends ManagerHandler {
 
 		if (($registrationTypeId != null && $registrationTypeDao->getRegistrationTypeSchedConfId($registrationTypeId) == $schedConf->getId()) || $registrationTypeId == null) {
 
-			if (checkPhpVersion('5.0.0')) { // WARNING: This form needs $this in constructor
-				$registrationTypeForm = new RegistrationTypeForm($registrationTypeId);
-			} else {
-				$registrationTypeForm =& new RegistrationTypeForm($registrationTypeId);
-			}
+			$registrationTypeForm = new RegistrationTypeForm($registrationTypeId);
 			$registrationTypeForm->readInputData();
 
 			if ($registrationTypeForm->validate()) {
@@ -450,11 +434,7 @@ class RegistrationHandler extends ManagerHandler {
 					$templateMgr->assign('registrationTypeTitle', 'manager.registrationTypes.createTitle');
 					$templateMgr->assign('registrationTypeCreated', '1');
 					unset($registrationTypeForm);
-					if (checkPhpVersion('5.0.0')) { // WARNING: This form needs $this in constructor
-						$registrationTypeForm = new RegistrationTypeForm($registrationTypeId);
-					} else {
-						$registrationTypeForm =& new RegistrationTypeForm($registrationTypeId);
-					}
+					$registrationTypeForm = new RegistrationTypeForm($registrationTypeId);
 					$registrationTypeForm->initData();
 					$registrationTypeForm->display();
 
@@ -572,11 +552,7 @@ class RegistrationHandler extends ManagerHandler {
 				$templateMgr->assign('registrationOptionTitle', 'manager.registrationOptions.editTitle');	
 			}
 
-			if (checkPhpVersion('5.0.0')) { // WARNING: This form needs $this in constructor
-				$registrationOptionForm = new RegistrationOptionForm($registrationOptionId);
-			} else {
-				$registrationOptionForm =& new RegistrationOptionForm($registrationOptionId);
-			}
+			$registrationOptionForm = new RegistrationOptionForm($registrationOptionId);
 			if ($registrationOptionForm->isLocaleResubmit()) {
 				$registrationOptionForm->readInputData();
 			} else {
@@ -611,11 +587,7 @@ class RegistrationHandler extends ManagerHandler {
 
 		if (($registrationOptionId != null && $registrationOptionDao->getRegistrationOptionSchedConfId($registrationOptionId) == $schedConf->getId()) || $registrationOptionId == null) {
 
-			if (checkPhpVersion('5.0.0')) { // WARNING: This form needs $this in constructor
-				$registrationOptionForm = new RegistrationOptionForm($registrationOptionId);
-			} else {
-				$registrationOptionForm =& new RegistrationOptionForm($registrationOptionId);
-			}
+			$registrationOptionForm = new RegistrationOptionForm($registrationOptionId);
 			$registrationOptionForm->readInputData();
 
 			if ($registrationOptionForm->validate()) {
@@ -629,11 +601,7 @@ class RegistrationHandler extends ManagerHandler {
 					$templateMgr->assign('registrationOptionTitle', 'manager.registrationOptions.createTitle');
 					$templateMgr->assign('registrationOptionCreated', '1');
 					unset($registrationOptionForm);
-					if (checkPhpVersion('5.0.0')) { // WARNING: This form needs $this in constructor
-						$registrationOptionForm = new RegistrationOptionForm($registrationOptionId);
-					} else {
-						$registrationOptionForm =& new RegistrationOptionForm($registrationOptionId);
-					}
+					$registrationOptionForm = new RegistrationOptionForm($registrationOptionId);
 					$registrationOptionForm->initData();
 					$registrationOptionForm->display();
 

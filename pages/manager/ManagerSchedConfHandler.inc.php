@@ -84,11 +84,7 @@ class ManagerSchedConfHandler extends ManagerHandler {
 
 		import('manager.form.SchedConfSettingsForm');
 
-		if (checkPhpVersion('5.0.0')) { // WARNING: This form needs $this in constructor
-			$settingsForm = new SchedConfSettingsForm($args);
-		} else {
-			$settingsForm =& new SchedConfSettingsForm($args);
-		}
+		$settingsForm = new SchedConfSettingsForm($args);
 		if ($settingsForm->isLocaleResubmit()) {
 			$settingsForm->readInputData();
 		} else {
@@ -106,15 +102,9 @@ class ManagerSchedConfHandler extends ManagerHandler {
 
 		import('manager.form.SchedConfSettingsForm');
 
-		if (checkPhpVersion('5.0.0')) { // WARNING: This form needs $this in constructor
-			$settingsForm = new SchedConfSettingsForm(
-				array(Request::getUserVar('conferenceId'), Request::getUserVar('schedConfId'))
-			);
-		} else {
-			$settingsForm =& new SchedConfSettingsForm(
-				array(Request::getUserVar('conferenceId'), Request::getUserVar('schedConfId'))
-			);
-		}
+		$settingsForm = new SchedConfSettingsForm(
+			array(Request::getUserVar('conferenceId'), Request::getUserVar('schedConfId'))
+		);
 		$settingsForm->readInputData();
 
 		if ($settingsForm->validate()) {

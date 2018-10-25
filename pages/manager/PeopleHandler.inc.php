@@ -412,11 +412,7 @@ class PeopleHandler extends ManagerHandler {
 
 		$templateMgr->assign('currentUrl', Request::url(null, null, null, 'people', 'all'));
 
-		if (checkPhpVersion('5.0.0')) { // WARNING: This form needs $this in constructor
-			$userForm = new UserManagementForm($userId);
-		} else {
-			$userForm =& new UserManagementForm($userId);
-		}
+		$userForm = new UserManagementForm($userId);
 		if ($userForm->isLocaleResubmit()) {
 			$userForm->readInputData();
 		} else {
@@ -655,11 +651,7 @@ class PeopleHandler extends ManagerHandler {
 
 		import('manager.form.UserManagementForm');
 
-		if (checkPhpVersion('5.0.0')) { // WARNING: This form needs $this in constructor
-			$userForm = new UserManagementForm($userId);
-		} else {
-			$userForm =& new UserManagementForm($userId);
-		}
+		$userForm = new UserManagementForm($userId);
 		$userForm->readInputData();
 
 		if ($userForm->validate()) {
@@ -670,11 +662,7 @@ class PeopleHandler extends ManagerHandler {
 				$templateMgr->assign('currentUrl', Request::url(null, null, null, 'people', 'all'));
 				$templateMgr->assign('userCreated', true);
 				unset($userForm);
-				if (checkPhpVersion('5.0.0')) { // WARNING: This form needs $this in constructor
-					$userForm = new UserManagementForm();
-				} else {
-					$userForm =& new UserManagementForm();
-				}
+				$userForm = new UserManagementForm();
 				$userForm->initData();
 				$userForm->display();
 
