@@ -384,6 +384,7 @@ class Upgrade extends Installer {
 			$indexes = $dict->MetaIndexes($tableName, true);
 			if (!empty($indexes)) switch(Config::getVar('database', 'driver')) {
 				case 'mysql':
+				case 'mysqli':
 					$siteDao->update("ALTER TABLE $tableName DROP PRIMARY KEY");
 					break;
 			}
