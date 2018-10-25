@@ -39,11 +39,7 @@ class CreateAccountHandler extends UserHandler {
 			// We're trying to create an account for a specific scheduled conference
 			import('user.form.CreateAccountForm');
 
-			if (checkPhpVersion('5.0.0')) { // WARNING: This form needs $this in constructor
-				$regForm = new CreateAccountForm();
-			} else {
-				$regForm =& new CreateAccountForm();
-			}
+			$regForm = new CreateAccountForm();
 			if ($regForm->isLocaleResubmit()) {
 				$regForm->readInputData();
 			} else {
@@ -87,11 +83,7 @@ class CreateAccountHandler extends UserHandler {
 		$this->setupTemplate(true);
 		import('user.form.CreateAccountForm');
 
-		if (checkPhpVersion('5.0.0')) { // WARNING: This form needs $this in constructor
-			$regForm = new CreateAccountForm();
-		} else {
-			$regForm =& new CreateAccountForm();
-		}
+		$regForm = new CreateAccountForm();
 		$regForm->readInputData();
 
 		if ($regForm->validate()) {

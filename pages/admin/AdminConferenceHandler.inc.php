@@ -59,11 +59,7 @@ class AdminConferenceHandler extends AdminHandler {
 
 		import('admin.form.ConferenceSiteSettingsForm');
 
-		if (checkPhpVersion('5.0.0')) { // WARNING: This form needs $this in constructor
-			$settingsForm = new ConferenceSiteSettingsForm(!isset($args) || empty($args) ? null : $args[0]);
-		} else {
-			$settingsForm =& new ConferenceSiteSettingsForm(!isset($args) || empty($args) ? null : $args[0]);
-		}
+		$settingsForm = new ConferenceSiteSettingsForm(!isset($args) || empty($args) ? null : $args[0]);
 		if ($settingsForm->isLocaleResubmit()) {
 			$settingsForm->readInputData();
 		} else {
@@ -83,11 +79,7 @@ class AdminConferenceHandler extends AdminHandler {
 
 		import('admin.form.ConferenceSiteSettingsForm');
 
-		if (checkPhpVersion('5.0.0')) { // WARNING: This form needs $this in constructor
-			$settingsForm = new ConferenceSiteSettingsForm($request->getUserVar('conferenceId'));
-		} else {
-			$settingsForm =& new ConferenceSiteSettingsForm($request->getUserVar('conferenceId'));
-		}
+		$settingsForm = new ConferenceSiteSettingsForm($request->getUserVar('conferenceId'));
 		$settingsForm->readInputData();
 
 		if ($settingsForm->validate()) {
