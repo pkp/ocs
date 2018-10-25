@@ -122,7 +122,7 @@ class AuthorSubmitStep1Form extends AuthorSubmitForm {
 			$this->paper->stampStatusModified();
 			$reviewMode = $schedConf->getSetting('reviewMode');
 			$this->paper->setReviewMode($reviewMode);
-			$this->paper->setLanguage(String::substr($conference->getPrimaryLocale(), 0, 2));
+			$this->paper->setLanguage(PKPString::substr($conference->getPrimaryLocale(), 0, 2));
 			$this->paper->setCommentsToDirector($this->getData('commentsToDirector'));
 
 			switch($reviewMode) {

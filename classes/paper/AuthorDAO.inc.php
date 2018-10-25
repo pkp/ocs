@@ -125,7 +125,7 @@ class AuthorDAO extends DAO {
 
 		if (isset($schedConfId)) $params[] = $schedConfId;
 		if (isset($initial)) {
-			$params[] = String::strtolower($initial) . '%';
+			$params[] = PKPString::strtolower($initial) . '%';
 			$initialSql = ' AND LOWER(aa.last_name) LIKE LOWER(?)';
 		} else {
 			$initialSql = '';

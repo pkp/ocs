@@ -1585,7 +1585,7 @@ import('file.PaperFileManager');
 									foreach ($paperComments as $comment) {
 										// If the comment is viewable by the author, then add the comment.
 										if ($comment->getViewable()) {
-											$body .= String::html2utf(
+											$body .= PKPString::html2utf(
 												strip_tags(
 													str_replace(array('<p>', '<br>', '<br/>'), array("\n", "\n", "\n"), $comment->getComments())
 												)
@@ -1602,7 +1602,7 @@ import('file.PaperFileManager');
 									$body .= "------------------------------------------------------\n";
 									$body .= __('submission.comments.importPeerReviews.reviewerLetter', array('reviewerLetter' => chr(ord('A') + $reviewIndexes[$reviewAssignment->getId()]))) . "\n\n";
 								}
-								$body .= String::html2utf(strip_tags(TrackDirectorAction::getReviewFormResponses($reviewId, $reviewFormId)));
+								$body .= PKPString::html2utf(strip_tags(TrackDirectorAction::getReviewFormResponses($reviewId, $reviewFormId)));
 								$body .= "------------------------------------------------------\n\n";
 								$hasBody = true;
 							}
@@ -1641,7 +1641,7 @@ import('file.PaperFileManager');
 
 		$commentsText = "";
 		foreach ($comments as $comment) {
-			$commentsText .= String::html2utf(strip_tags($comment->getComments())) . "\n\n";
+			$commentsText .= PKPString::html2utf(strip_tags($comment->getComments())) . "\n\n";
 		}
 
 		$user =& Request::getUser();

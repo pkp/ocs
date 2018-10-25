@@ -107,7 +107,7 @@ class ReviewReportPlugin extends ReportPlugin {
 		$yesNoArray = array('declined', 'cancelled');
 
 		$fp = fopen('php://output', 'wt');
-		String::fputcsv($fp, array_values($columns));
+		PKPString::fputcsv($fp, array_values($columns));
 
 		import('submission.trackDirector.TrackDirectorAction');
 
@@ -126,9 +126,9 @@ class ReviewReportPlugin extends ReportPlugin {
 					$columns[$index] = (!isset($row[$index])) ? __('common.none') : __($recommendations[$row[$index]]);
 				} elseif ($index == "comments") {
 					if (isset($comments[$row['paperid']][$row['reviewerid']])) {
-						$columns[$index] = String::html2utf(strip_tags($comments[$row['paperid']][$row['reviewerid']]));
+						$columns[$index] = PKPString::html2utf(strip_tags($comments[$row['paperid']][$row['reviewerid']]));
 					} elseif (isset($row['reviewformid'])) {
-						$columns[$index] = String::html2utf(strip_tags(TrackDirectorAction::getReviewFormResponses($row['reviewid'], $row['reviewformid'])));
+						$columns[$index] = PKPString::html2utf(strip_tags(TrackDirectorAction::getReviewFormResponses($row['reviewid'], $row['reviewformid'])));
 
 					} else {
 						$columns[$index] = "";
@@ -137,7 +137,7 @@ class ReviewReportPlugin extends ReportPlugin {
 					$columns[$index] = $row[$index];
 				}
 			}
-			String::fputcsv($fp, $columns);
+			PKPString::fputcsv($fp, $columns);
 			unset($row);
 		}
 		fclose($fp);

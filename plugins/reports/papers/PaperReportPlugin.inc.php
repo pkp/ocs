@@ -117,7 +117,7 @@ class PaperReportPlugin extends ReportPlugin {
 		));
 
 		$fp = fopen('php://output', 'wt');
-		String::fputcsv($fp, array_values($columns));
+		PKPString::fputcsv($fp, array_values($columns));
 
 		import('paper.Paper'); // Bring in getStatusMap function
 		$statusMap =& Paper::getStatusMap();
@@ -192,7 +192,7 @@ class PaperReportPlugin extends ReportPlugin {
 					} else $columns[$index] = '';
 				}
 			}
-			String::fputcsv($fp, $columns);
+			PKPString::fputcsv($fp, $columns);
 			$authorIndex++;
 			unset($row);
 		}

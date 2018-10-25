@@ -155,10 +155,10 @@ class CommentDAO extends DAO {
 				$comment->getParentCommentId(),
 				(isset($user)?$user->getId():null),
 				$comment->getPosterIP(),
-				String::substr($comment->getTitle(), 0, 255),
+				PKPString::substr($comment->getTitle(), 0, 255),
 				$comment->getBody(),
-				String::substr($comment->getPosterName(), 0, 90),
-				String::substr($comment->getPosterEmail(), 0, 90)
+				PKPString::substr($comment->getPosterName(), 0, 90),
+				PKPString::substr($comment->getPosterEmail(), 0, 90)
 			)
 		);
 
@@ -242,10 +242,10 @@ class CommentDAO extends DAO {
 				$comment->getParentCommentId(),
 				(isset($user)?$user->getId():null),
 				$comment->getPosterIP(),
-				String::substr($comment->getTitle(), 0, 255),
+				PKPString::substr($comment->getTitle(), 0, 255),
 				$comment->getBody(),
-				String::substr($comment->getPosterName(), 0, 90),
-				String::substr($comment->getPosterEmail(), 0, 90),
+				PKPString::substr($comment->getPosterName(), 0, 90),
+				PKPString::substr($comment->getPosterEmail(), 0, 90),
 				$comment->getId()
 			)
 		);

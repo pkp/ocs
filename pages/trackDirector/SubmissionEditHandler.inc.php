@@ -440,7 +440,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 				$searchMatch = Request::getUserVar('searchMatch');
 
 			} elseif (!empty($searchInitial)) {
-				$searchInitial = String::strtoupper($searchInitial);
+				$searchInitial = PKPString::strtoupper($searchInitial);
 				$searchType = USER_FIELD_INITIAL;
 				$search = $searchInitial;
 			}
@@ -564,7 +564,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 			$searchMatch = Request::getUserVar('searchMatch');
 
 		} elseif (!empty($searchInitial)) {
-			$searchInitial = String::strtoupper($searchInitial);
+			$searchInitial = PKPString::strtoupper($searchInitial);
 			$searchType = USER_FIELD_INITIAL;
 			$search = $searchInitial;
 		}

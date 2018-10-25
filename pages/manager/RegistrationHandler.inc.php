@@ -209,7 +209,7 @@ class RegistrationHandler extends ManagerHandler {
 			$searchMatch = Request::getUserVar('searchMatch');
 
 		} elseif (!empty($searchInitial)) {
-			$searchInitial = String::strtoupper($searchInitial);
+			$searchInitial = PKPString::strtoupper($searchInitial);
 			$searchType = USER_FIELD_INITIAL;
 			$search = $searchInitial;
 		}

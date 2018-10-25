@@ -167,7 +167,7 @@ class FilesHandler extends ManagerHandler {
 	}
 
 	function cleanFileName($var) {
-		$var = String::regexp_replace('/[^\w\-\.]/', '', $var);
+		$var = PKPString::regexp_replace('/[^\w\-\.]/', '', $var);
 		if (!FilesHandler::fileNameFilter($var)) {
 			$var = time() . '';
 		}
@@ -175,7 +175,7 @@ class FilesHandler extends ManagerHandler {
 	}
 
 	function fileMimeType($filePath) {
-		return String::mime_content_type($filePath);
+		return PKPString::mime_content_type($filePath);
 	}
 
 }

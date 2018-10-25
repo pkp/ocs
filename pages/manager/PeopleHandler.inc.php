@@ -37,7 +37,7 @@ class PeopleHandler extends ManagerHandler {
 		if (Request::getUserVar('roleSymbolic')!=null) $roleSymbolic = Request::getUserVar('roleSymbolic');
 		else $roleSymbolic = isset($args[0])?$args[0]:'all';
 
-		if ($roleSymbolic != 'all' && String::regexp_match_get('/^(\w+)s$/', $roleSymbolic, $matches)) {
+		if ($roleSymbolic != 'all' && PKPString::regexp_match_get('/^(\w+)s$/', $roleSymbolic, $matches)) {
 			$roleId = $roleDao->getRoleIdFromPath($matches[1]);
 			if ($roleId == null) {
 				Request::redirect(null, null, null, 'all');
@@ -67,7 +67,7 @@ class PeopleHandler extends ManagerHandler {
 			$searchMatch = Request::getUserVar('searchMatch');
 
 		} elseif (!empty($searchInitial)) {
-			$searchInitial = String::strtoupper($searchInitial);
+			$searchInitial = PKPString::strtoupper($searchInitial);
 			$searchType = USER_FIELD_INITIAL;
 			$search = $searchInitial;
 		}
@@ -172,7 +172,7 @@ class PeopleHandler extends ManagerHandler {
 			$searchMatch = Request::getUserVar('searchMatch');
 
 		} elseif (!empty($searchInitial)) {
-			$searchInitial = String::strtoupper($searchInitial);
+			$searchInitial = PKPString::strtoupper($searchInitial);
 			$searchType = USER_FIELD_INITIAL;
 			$search = $searchInitial;
 		}
@@ -471,7 +471,7 @@ class PeopleHandler extends ManagerHandler {
 		if (Request::getUserVar('roleSymbolic')!=null) $roleSymbolic = Request::getUserVar('roleSymbolic');
 		else $roleSymbolic = isset($args[0])?$args[0]:'all';
 
-		if ($roleSymbolic != 'all' && String::regexp_match_get('/^(\w+)s$/', $roleSymbolic, $matches)) {
+		if ($roleSymbolic != 'all' && PKPString::regexp_match_get('/^(\w+)s$/', $roleSymbolic, $matches)) {
 			$roleId = $roleDao->getRoleIdFromPath($matches[1]);
 			if ($roleId == null) {
 				Request::redirect(null, null, null, null, 'all');
@@ -495,7 +495,7 @@ class PeopleHandler extends ManagerHandler {
 			$searchMatch = Request::getUserVar('searchMatch');
 
 		} elseif (!empty($searchInitial)) {
-			$searchInitial = String::strtoupper($searchInitial);
+			$searchInitial = PKPString::strtoupper($searchInitial);
 			$searchType = USER_FIELD_INITIAL;
 			$search = $searchInitial;
 		}

@@ -178,7 +178,7 @@ class PaperCommentDAO extends DAO {
 				$paperComment->getPaperId(),
 				$paperComment->getAssocId(),
 				$paperComment->getAuthorId(),
-				String::substr($paperComment->getCommentTitle(), 0, 255),
+				PKPString::substr($paperComment->getCommentTitle(), 0, 255),
 				$paperComment->getComments(),
 				$paperComment->getViewable() === null ? 0 : $paperComment->getViewable()
 			)
@@ -250,7 +250,7 @@ class PaperCommentDAO extends DAO {
 				$paperComment->getPaperId(),
 				$paperComment->getAssocId(),
 				$paperComment->getAuthorId(),
-				String::substr($paperComment->getCommentTitle(), 0, 255),
+				PKPString::substr($paperComment->getCommentTitle(), 0, 255),
 				$paperComment->getComments(),
 				$paperComment->getViewable() === null ? 1 : $paperComment->getViewable(),
 				$paperComment->getId()
