@@ -96,7 +96,7 @@ class RegistrantReportPlugin extends ReportPlugin {
 		));
 
 		$fp = fopen('php://output', 'wt');
-		String::fputcsv($fp, array_values($columns));
+		PKPString::fputcsv($fp, array_values($columns));
 
 		$registrationOptionCosts = $registrationTypes = array();
 
@@ -155,7 +155,7 @@ class RegistrantReportPlugin extends ReportPlugin {
 			$columns[] = $registration->getSpecialRequests();
 			$columns[] = sprintf('%.2f', $totalCost);
 
-			String::fputcsv($fp, $columns);
+			PKPString::fputcsv($fp, $columns);
 			unset($registration, $registrationType, $user);
 		}
 		fclose($fp);

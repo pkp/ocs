@@ -83,7 +83,7 @@ class PayPalPlugin extends PaymethodPlugin {
 			'no_note' => 1,
 			'no_shipping' => 1,
 			'currency_code' => $queuedPayment->getCurrencyCode(),
-			'lc' => String::substr(AppLocale::getLocale(), 3),
+			'lc' => PKPString::substr(AppLocale::getLocale(), 3),
 			'custom' => $queuedPaymentId,
 			'notify_url' => Request::url(null, null, 'payment', 'plugin', array($this->getName(), 'ipn')),
 			'return' => $queuedPayment->getRequestUrl(),

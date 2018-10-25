@@ -202,7 +202,7 @@ class CreateAccountForm extends Form {
 			$mail->setFrom($schedConf->getSetting('contactEmail'), $schedConf->getSetting('contactName'));
 			$mail->assignParams(array(
 				'username' => $user->getUsername(),
-				'password' => String::substr($password, 0, 30), // Prevent mailer abuse via long passwords
+				'password' => PKPString::substr($password, 0, 30), // Prevent mailer abuse via long passwords
 			));
 			$mail->addRecipient($user->getEmail(), $user->getFullName());
 			$mail->send();

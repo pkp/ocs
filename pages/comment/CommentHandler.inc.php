@@ -212,7 +212,7 @@ class CommentHandler extends Handler {
 				Request::url(null, null, 'paper', 'view', array(
 					$paper->getBestPaperId(Request::getConference()), $galleyId
 				)),
-				String::stripUnsafeHtml($paper->getLocalizedTitle()),
+				PKPString::stripUnsafeHtml($paper->getLocalizedTitle()),
 				true
 			)
 		);

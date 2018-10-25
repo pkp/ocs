@@ -93,7 +93,7 @@ class PaperHTMLGalley extends PaperGalley {
 			$url = substr($url, 0, $i);
 		}
 		$urlParts = explode('/', $url);
-		if (isset($urlParts[0])) switch(String::strtolower($urlParts[0])) {
+		if (isset($urlParts[0])) switch(PKPString::strtolower($urlParts[0])) {
 			case 'conference':
 				$url = Request::url(
 					isset($urlParts[1]) ?
