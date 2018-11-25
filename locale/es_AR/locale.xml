@@ -48,7 +48,7 @@
 		<br/>
 		Este <span xmlns:dc="http://purl.org/dc/elements/1.1/" href="http://purl.org/dc/dcmitype/Text" rel="dc:type">trabajo</span> se distribuye con la licencia <a rel="license" target="_new" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0  License</a>.
 	]]></message>
-	<message key="common.sortBy">Ordenar Por...</message>
+	<message key="common.sortBy">Ordenar por...</message>
 	<message key="common.sitePageHeader.altText">Imagen del Encabezado del Sitio</message>
 	<message key="common.pageHeader.altText">Imagen del Encabezado de Página</message>
 	<message key="common.homePageHeader.altText">Imagen del Encabezado de la Página Principal</message>
@@ -78,7 +78,7 @@
 	<message key="navigation.info">Información</message>
 	<message key="navigation.infoForPresenters">Para autores</message>
 	<message key="navigation.infoForReviewers">Para evaluadores</message>
-	<message key="navigation.infoForPresenters.long">Informació para autores</message>
+	<message key="navigation.infoForPresenters.long">Información para autores</message>
 	<message key="navigation.infoForReviewers.long">Información para los evaluadores</message>
 	<message key="navigation.fontSize">Tamaño de letra</message>
 
@@ -129,7 +129,7 @@
 	<message key="paper.coverage">Cobertura</message>
 	<message key="paper.coverageGeo">Cobertura Geo-espacial</message>
 	<message key="paper.coverageChron">Cobertura cronológica o histórica</message>
-	<message key="paper.coverageSample">Características de las muestra</message>
+	<message key="paper.coverageSample">Características de las muestras</message>
 	<message key="paper.type">Tipo, método o aproximación</message>
 	<message key="paper.language">Idioma</message>
 	<message key="paper.trackDirector">TE</message>
@@ -156,13 +156,13 @@
 	<message key="submission.uploadFile">Subir el archivo</message>
 	<message key="submission.changeTrack">Cambiar a</message>
 	<message key="submission.acceptance">Conforme a la revisión</message>
-	<message key="submission.complete.description">Añadir el trabajo  a la lista de comunicaciones aceptadas.</message>
+	<message key="submission.complete.description">Añadir el trabajo a la lista de comunicaciones aceptadas.</message>
 	<message key="submission.directorDecision">Director que toma de decisiones</message>
 	<message key="submission.stage">Estado del envío&amp;nbsp;{$stage}</message>
 	<message key="submission.directorReview">Director de la revisión</message>
 	<message key="submission.notifyPresenter">Notificar al autor</message>
 	<message key="submission.notifyDirector">Notificar al director</message>
-	<message key="submission.directorPresenterRecord">Director/Autor Email</message>
+	<message key="submission.directorPresenterRecord">Director/Autor correo electrónico</message>
 	<message key="submission.directorVersion">Director de la versión</message>
 	<message key="submission.presentersRevisedVersion">Archivo corregido por los autores</message>
 	<message key="submission.presenterVersion">Versión del autor</message>
@@ -240,7 +240,7 @@
 	<message key="schedConf.registration.register">Inscripción</message>
 	<message key="schedConf.registration.typeCloses">(Finaliza el {$closingDate})</message>
 	<message key="schedConf.registration.typeClosed">(Registro cerrado {$closingDate})</message>
-	<message key="schedConf.registration.typeFuture">(Registro disponile a partir de {$openingDate}) </message>
+	<message key="schedConf.registration.typeFuture">(Registro disponible a partir de {$openingDate}) </message>
 	<message key="schedConf.registration.feeCode">Código de tasas</message>
 	<message key="schedConf.registration.feeCode.description">Si se le dio un código para la inscripción, por favor, escríbalo aquí y asegúrese de que ha elegido el tipo correcto. En caso contrario, deje en blanco dicho campo.</message>
 	<message key="schedConf.registration.specialRequests">Requisito especial</message>
@@ -256,13 +256,13 @@
 	<message key="user.url.description">Esto aparecerá como un enlace en la parte inferior de la biografía del "Acerca del autor" y en la página "Grupo de trabajo".</message>
 	<message key="user.createAccountForOtherConferences">Crear una cuenta para otros eventos</message>
 	<message key="user.myConferences">Mis eventos</message>
-	<message key="user.noRoles.chooseConference"> Esta cuenta no está actualmente asociada a ningún congreso. Por favor, seleccione un congreso:</message>
-	<message key="user.noRoles.submitProposalRegClosed"> Envío de propuestas: El registro de autores se encuentra cerrado en este momento.</message>
-	<message key="user.noRoles.regReviewerClosed"> Registro como un Revisor del Congreso: El registro de Revisores se encuentra cerrado en este momento.</message>
+	<message key="user.noRoles.chooseConference">Esta cuenta no está actualmente asociada a ningún congreso. Por favor, seleccione un congreso:</message>
+	<message key="user.noRoles.submitProposalRegClosed">Envío de propuestas: El registro de autores se encuentra cerrado en este momento.</message>
+	<message key="user.noRoles.regReviewerClosed">Registro como un Revisor del Congreso: El registro de Revisores se encuentra cerrado en este momento.</message>
 	<message key="user.noRoles.registerUnavailable"> Registro para participar del congreso: La inscripción no se acepta en este momento.</message>
-        <message key="user.noRoles.noRolesForConference"> Su cuenta no posee ningun rol en este congreso. Por favor seleccione una accion:</message>
+        <message key="user.noRoles.noRolesForConference">Su cuenta no posee ningún rol en este congreso. Por favor seleccione una acción:</message>
 	<message key="user.noRoles.submitProposal">Enviar una propuesta</message>
-        <message key="user.noRoles.submitProposalSubmissionsClosed">Enviar una Propuesta: Envios estan cerrados en este momento.</message>
+        <message key="user.noRoles.submitProposalSubmissionsClosed">Enviar una Propuesta: Envíos están cerrados en este momento.</message>
 	<message key="user.noRoles.regReviewer">Registrarse como un Revisor del Congreso.</message>
 	<message key="user.noRoles.register">Inscribirse para participar del congreso</message>
 
@@ -270,7 +270,7 @@
 	<!-- Roles -->
 	<message key="user.role.manager">Gestor del evento</message>
 	<message key="user.role.director">Director</message>
-	<message key="user.role.trackDirector">Director de al sección</message>
+	<message key="user.role.trackDirector">Director de la sección</message>
 	<message key="user.role.presenter">Autor</message>
 
 	<message key="user.role.managers">Gestores del evento</message>
@@ -290,7 +290,7 @@
 	<message key="event.logType.review">Revisor</message>
 	<message key="event.logType.conference">Conferencia/Congreso</message>
 
-	<message key="event.eventLog">Log del evento</message>
+	<message key="event.eventLog">Registro del evento</message>
 	<message key="event.logLevel">Nivel</message>
 
 	<message key="event.logLevel.info">Información</message>
@@ -304,7 +304,7 @@
 
 	<message key="submission.event.general.abstractSubmitted">Resumen enviado</message>
 	<message key="submission.event.general.presentationSubmitted">Presentación enviada</message>
-	<message key="submission.event.general.paperPublished">Articulo publicado</message>
+	<message key="submission.event.general.paperPublished">Artículo publicado</message>
 
 	<message key="submission.event.presenter.presenterRevision">Trabajo revisado por el autor</message>
 
@@ -347,7 +347,7 @@
 <br /><br />
 <a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">Haga clic aquí</a> e introduzca <span class="highlight">{$siteUrl}</span> bajo <strong>la URL</strong>, y <span class="highlight">{$oaiUrl}</span> bajo <strong>Base URL para Archivos OAI</strong>.
 <br /><br />
-Tenga en cuenta que la interfaz OAI puede ser desactivada para este sitio al editar la configuración del sistema. Las futuras versiones del OCS permitirán que la interfaz  OAI pueda ser activada o desactivada para cada una de las Conferencias/Congresos del sitio.]]></message>
+Tenga en cuenta que la interfaz OAI puede ser desactivada para este sitio al editar la configuración del sistema. Las futuras versiones del OCS permitirán que la interfaz OAI pueda ser activada o desactivada para cada una de las Conferencias/Congresos del sitio.]]></message>
 
 
 
@@ -379,13 +379,13 @@ Tenga en cuenta que la interfaz OAI puede ser desactivada para este sitio al edi
 	<message key="payment.type.registration">Inscripción a la Conferencia/Congreso</message>
 
 	<!-- Conference Event Log -->
-	<message key="conference.event.confirmClearLog">¿Está seguro de que desea borrar el log de la inscripción a las Conferencia/Congreso?</message>
+	<message key="conference.event.confirmClearLog">¿Está seguro de que desea borrar el registro de la inscripción a las Conferencia/Congreso?</message>
 	<message key="conference.event.confirmDeleteLogEntry">¿Está seguro de que quiere eliminar estas entradas de registro de eventos?</message>
-	<message key="conference.event.deleteLogEntry">Borrar los Log de entrada</message>
-	<message key="conference.event.backToEventLog">Volver a los logs del Evento</message>
-	<message key="conference.history.conferenceEventLog">Logs del Evento</message>
-	<message key="conference.history.clearLog">Limpiar Logs</message>
-	<message key="conference.history.noLogEntries">No hay logs de entradas.</message>
+	<message key="conference.event.deleteLogEntry">Borrar los registros de entrada</message>
+	<message key="conference.event.backToEventLog">Volver a los registros del Evento</message>
+	<message key="conference.history.conferenceEventLog">Registros del Evento</message>
+	<message key="conference.history.clearLog">Limpiar registros</message>
+	<message key="conference.history.noLogEntries">No hay registros de entradas.</message>
 
 	<!-- Scheduled Conference Management -->
 
@@ -406,7 +406,7 @@ Tenga en cuenta que la interfaz OAI puede ser desactivada para este sitio al edi
 	<message key="manager.statistics.reports.type.reviewer">Informe del Revisor</message>
 	<message key="manager.statistics.reports.type.track">Informe</message>
 	<message key="manager.statistics.reports.generate">Generar informe</message>
-	<message key="manager.statistics.reports.status">Estado (Acceptado, rechazado, otro)</message>
+	<message key="manager.statistics.reports.status">Estado (Aceptado, rechazado, otro)</message>
 	<message key="manager.statistics.reports.dateDecided">Fecha de decisión</message>
 	<message key="manager.statistics.reports.presenter">Autor #{$num}</message>
 	<message key="manager.statistics.reports.affiliation">Institución #{$num}</message>
@@ -422,13 +422,13 @@ Tenga en cuenta que la interfaz OAI puede ser desactivada para este sitio al edi
 	<!-- Plugin Management -->
 
 	<!-- General plugin information -->
-	<message key="plugins.categories.generic.description">Los plugins genéricos se usan para extender el sistema del Open Conference de diferentes maneras que otras categorías de plugins no soportan.</message>
-	<message key="plugins.categories.auth.description">Los plugins de autorización permiten al Open Conference System delegar tareas de autenticación de los usuarios a otros sistemas, tales como servidores LDAP.</message>
+	<message key="plugins.categories.generic.description">Los complementos genéricos se usan para extender el sistema del Open Conference de diferentes maneras que otras categorías de complementos no soportan.</message>
+	<message key="plugins.categories.auth.description">Los complementos de autorización permiten al Open Conference System delegar tareas de autenticación de los usuarios a otros sistemas, tales como servidores LDAP.</message>
 
 
 
 
-	<message key="plugins.categories.citationFormats.description">Los plugins de formatos de citas proveen a los usuarios con varios formatos en los cuales acceder a las citas de los trabajos.</message>
+	<message key="plugins.categories.citationFormats.description">Los complementos de formatos de citas proveen a los usuarios con varios formatos en los cuales acceder a las citas de los trabajos.</message>
 
 
 
@@ -486,9 +486,9 @@ Tenga en cuenta que la interfaz OAI puede ser desactivada para este sitio al edi
 	<!-- Conference setup page 6 -->
 	<message key="manager.setup.indexing.registerConferenceForIndexing.description"><![CDATA[Para que los contenidos de esta conferencia se indicen dentro de un sistema distribuido de base de datos, <a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">registre</a> la URL de su conferencia en el <a href="http://pkp.sfu.ca/harvester/" target="_blank">recolector</a> de metadatos del Public Knowledge Project. Este servicio recolecta los metadatos  de cada artículo indizado en esta conferencia, permite una búsqueda entre los sitios que cumplen con el <a href="http://www.openarchives.org/OAI/openarchivesprotocol.htm#Introduction" target="_blank">Protocolo de Recolección de metadatos OAI (PMH-OAI)</a>.
 <br /><br />
-Observe que si el administrador del sistema ya ha regisrado este sitio en el recolector PKP, su conferencia se indizará automáticamente si necesidad de que la registre de nuevo.
+Observe que si el administrador del sistema ya ha registrado este sitio en el recolector PKP, su conferencia se indizará automáticamente sin necesidad de que la registre de nuevo.
 <br /><br />
-<a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">Pulse aquí</a> y entre <span class="highlight">{$siteUrl}</span> a la  <strong>URL</strong>, y <span class="highlight">{$oaiUrl}</span> a la  <strong>URL de Archivo OAI</strong>.]]></message>
+<a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">Pulse aquí</a> y entre <span class="highlight">{$siteUrl}</span> a la  <strong>URL</strong>, y <span class="highlight">{$oaiUrl}</span> a la <strong>URL de Archivo OAI</strong>.]]></message>
 
 	<!--
 	     ***
@@ -515,8 +515,8 @@ Nombre del sistema de clasificación]]></message>
 	<message key="manager.languages.conferenceTitleAltLanguages">La imagen para el nombre, la cabecera de la página, etc. se cargarán en cada uno de los idiomas oficiales del Congreso.</message>
 
 	<!-- Track Management -->
-	<message key="manager.tracks.form.abstractLimitRequired">Es obligatorio un limite para los abstract para esta sección</message>
-	<message key="manager.tracks.form.abstractLimitNumeric">El limite para los abstract para esta sección debe ser un valor numérico positivo</message>
+	<message key="manager.tracks.form.abstractLimitRequired">Es obligatorio un límite para los abstract para esta sección</message>
+	<message key="manager.tracks.form.abstractLimitNumeric">El límite para los abstract para esta sección debe ser un valor numérico positivo</message>
 	<message key="manager.tracks.submissionsToThisTrack">Los envíos hechos a esta sección</message>
 	<message key="manager.tracks.abstractLimit">Límite de los Abstract de la Sección</message>
 	<message key="manager.tracks.abstractsDisabled">No se requiere resumen para hacer el envío.</message>
