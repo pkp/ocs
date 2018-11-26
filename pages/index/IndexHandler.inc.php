@@ -30,7 +30,7 @@ class IndexHandler extends Handler {
 	 * If no scheduled conference is specified, display a list of scheduled conferences.
 	 * If no conference is specified, display list of conferences.
 	 */
-	function index($args) {
+	function index($args, $request) {
 		$this->validate();
 		$this->setupTemplate();
 		
@@ -41,7 +41,8 @@ class IndexHandler extends Handler {
 
 			// A scheduled conference was specified; display it.
 			import('pages.schedConf.SchedConfHandler');
-			SchedConfHandler::index($args);
+			$conf = new SchedConfHandler($request);
+			$conf->index($args);
 
 		} elseif ($conference) {
 			$redirect = $conference->getSetting('schedConfRedirect');
@@ -53,7 +54,8 @@ class IndexHandler extends Handler {
 
 			// A scheduled conference was specified; display it.
 			import('pages.conference.ConferenceHandler');
-			ConferenceHandler::index($args);
+			$conf = new ConferenceHandler($request);
+			$conf->index($args);
 
 		} else {
 
