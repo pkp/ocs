@@ -342,10 +342,10 @@ class ImportOCS1 {
 		$registrationTypes = array();
 
 		foreach ($this->conferenceInfo as $conferenceId => $conferenceInfo) {
-			$levels = array_map('trim', split("\n", Core::cleanVar($conferenceInfo['reg_levels'])));
-			$fees = array_map('trim', split("\n", Core::cleanVar($conferenceInfo['reg_fees'])));
-			$levelsLate = array_map('trim', split("\n", Core::cleanVar($conferenceInfo['reg_levels_late'])));
-			$feesLate = array_map('trim', split("\n", Core::cleanVar($conferenceInfo['reg_fees_late'])));
+			$levels = array_map('trim', explode("\n", Core::cleanVar($conferenceInfo['reg_levels'])));
+			$fees = array_map('trim', explode("\n", Core::cleanVar($conferenceInfo['reg_fees'])));
+			$levelsLate = array_map('trim', explode("\n", Core::cleanVar($conferenceInfo['reg_levels_late'])));
+			$feesLate = array_map('trim', explode("\n", Core::cleanVar($conferenceInfo['reg_fees_late'])));
 
 			$lateDate = Core::cleanVar($conferenceInfo['reg_late_date']);
 			$schedConf =& $this->schedConfMap[$conferenceId];
@@ -399,7 +399,7 @@ class ImportOCS1 {
 			if (!$user =& $userDao->getUserByEmail($email)) {
 				// The user doesn't exist by email; create one.
 				$name = Core::cleanVar($row['name']);
-				$nameParts = split(' ', $name);
+				$nameParts = explode(' ', $name);
 
 				$lastName = array_pop($nameParts);
 				$firstName = join(' ', $nameParts);
@@ -544,7 +544,7 @@ class ImportOCS1 {
 				$user = new User();
 				$user->setUsername(Core::cleanVar($row['login']));
 
-				$nameParts = split(' ', Core::cleanVar($row['name']));
+				$nameParts = explode(' ', Core::cleanVar($row['name']));
 				$firstName = array_shift($nameParts);
 				$lastName = join(' ', $nameParts);
 
@@ -725,11 +725,11 @@ class ImportOCS1 {
 			$paper->setPages('');
 
 			// Bring in authors
-			$firstNames = split("\n", Core::cleanVar($row['first_name'] . "\n" . $row['add_first_names']));
-			$lastNames = split("\n", Core::cleanVar($row['surname'] . "\n" . $row['add_surnames']));
-			$emails = split("\n", Core::cleanVar($row['email'] . "\n" . $row['add_emails']));
-			$affiliations = split("\n", Core::cleanVar($row['affiliation'] . "\n" . $row['add_affiliations']));
-			$urls = split("\n", Core::cleanVar($row['url'] . "\n" . $row['add_urls']));
+			$firstNames = explode("\n", Core::cleanVar($row['first_name'] . "\n" . $row['add_first_names']));
+			$lastNames = explode("\n", Core::cleanVar($row['surname'] . "\n" . $row['add_surnames']));
+			$emails = explode("\n", Core::cleanVar($row['email'] . "\n" . $row['add_emails']));
+			$affiliations = explode("\n", Core::cleanVar($row['affiliation'] . "\n" . $row['add_affiliations']));
+			$urls = explode("\n", Core::cleanVar($row['url'] . "\n" . $row['add_urls']));
 			foreach ($emails as $key => $email) {
 				if (empty($email)) continue;
 
@@ -882,7 +882,7 @@ class ImportOCS1 {
 			$reviewAssignment->setDateNotified($row['timestamp']);
 			$reviewAssignment->setDateConfirmed($row['timestamp']);
 			$reviewAssignment->setDeclined(0);
-			switch (trim(strtolower(array_shift(split("[\n\.:]", $row['recommendation']))))) {
+			switch (trim(strtolower(array_shift(preg_split("/[\n\.:]/", $row['recommendation']))))) {
 				case 'accept':
 					$reviewAssignment->setRecommendation(SUBMISSION_REVIEWER_RECOMMENDATION_ACCEPT);
 					$reviewAssignment->setDateCompleted($row['timestamp']);

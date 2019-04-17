@@ -86,7 +86,7 @@ class ConferenceOAI extends OAI {
 	 * @return int
 	 */	
 	function setSpecToTrackId($setSpec, $conferenceId = null) {
-		$tmpArray = split(':', $setSpec);
+		$tmpArray = explode(':', $setSpec);
 		if (count($tmpArray) == 1) {
 			list($conferenceSpec) = $tmpArray;
 			$trackSpec = null;
