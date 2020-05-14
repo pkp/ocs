@@ -313,7 +313,7 @@ class TinyMCEPlugin extends GenericPlugin {
 			<script language="javascript" type="text/javascript">
 				tinyMCE_GZ.init({
 					relative_urls : "false",
-					plugins : "paste,fullscreen,jbimages",
+					plugins : "paste,fullscreen",
 					themes : "advanced",
 					languages : "' . join(',', $localeList) . '",
 					disk_cache : true
@@ -322,7 +322,7 @@ class TinyMCEPlugin extends GenericPlugin {
 			<script language="javascript" type="text/javascript">
 				tinyMCE.init({
 					entity_encoding : "raw",
-					plugins : "paste,fullscreen,jbimages",
+					plugins : "paste,fullscreen",
 					mode : "exact",
 					language : "' . PKPString::substr(AppLocale::getLocale(), 0, 2) . '",
 					elements : "' . $enableFields . '",
@@ -331,7 +331,7 @@ class TinyMCEPlugin extends GenericPlugin {
 					paste_auto_cleanup_on_paste : true,
 					apply_source_formatting : false,
 					theme : "advanced",
-					theme_advanced_buttons1 : "cut,copy,paste,|,bold,italic,underline,bullist,numlist,|,link,unlink,help,code,fullscreen,jbimages",
+					theme_advanced_buttons1 : "cut,copy,paste,|,bold,italic,underline,bullist,numlist,|,link,unlink,help,code,fullscreen",
 					theme_advanced_buttons2 : "",
 					theme_advanced_buttons3 : ""
 				});
